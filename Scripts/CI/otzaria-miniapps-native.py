@@ -798,6 +798,8 @@ class ActualMiniAppsProducer:
         self.captured = False
         self.video = None
         self.video_log = None
+        self.image_audits = []
+        self.image_evidence = None
         self.state = {"status": "NOT_REACHED", "fixture_producer": False, "synthetic_results_written": False}
 
     def validate_selection(self, baseline, release_manifest, selection):
@@ -812,11 +814,34 @@ class ActualMiniAppsProducer:
         self.group = None
         self.captured = False
         self.video = self.video_log = None
+        self.image_audits = []
         self.state = {"status": "NOT_REACHED", "fixture_producer": False, "synthetic_results_written": False}
         producer = PRODUCER_DIR / "HanlinMiniApps.app"
         require((OUT / "producer-admission.json").is_file(), "Actual producer product was not admitted")
         subprocess.run(["xcrun", "simctl", "install", udid, str(producer)], check=True, timeout=180)
-        subprocess.run(["xcrun", "simctl", "launch", udid, PRODUCER], check=True, timeout=60)
+        images = runpy.run_path(str(ROOT / "Scripts/CI/miniapps_runtime_image_origin.py"))
+        products = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator"
+        runner = plistlib.loads((products / "Maktabah-iOSUITests-Runner.app/Info.plist").read_bytes())
+        self.image_evidence = OUT / "image-origin" / label
+        self.image_evidence.mkdir(parents=True, exist_ok=False)
+        for role, artifact, bundle, required, names in [
+            ("producer", producer, PRODUCER, ["Frameworks/NativeScript.framework/NativeScript"], ["Hanlin MiniApps"]),
+            ("consumer", products / "Maktabah.app", BUNDLE, [], ["אוצריא", "Maktabah", "ChavrusaText"])
+        ]:
+            audit = images["ImageAudit"](ROOT, self.image_evidence / role, artifact,
+                bundle_id=bundle, runner_bundle_id=runner["CFBundleIdentifier"],
+                required_images=required, display_names=names)
+            self.image_audits.append(audit)
+        launch = subprocess.run(["xcrun", "simctl", "launch", udid, PRODUCER],
+                                capture_output=True, text=True, check=True, timeout=60)
+        (self.image_evidence / "producer-bootstrap-launch.log").write_text(launch.stdout + launch.stderr)
+        match = re.fullmatch(re.escape(PRODUCER) + r":\s*(\d+)\s*", launch.stdout)
+        require(match is not None, "Original producer launch returned no exact process identity")
+        producer_audit = self.image_audits[0]
+        producer_audit.sim = udid
+        producer_audit.bootstrap(udid, int(match.group(1)), producer_audit.installed_app(int(match.group(1))))
+        for audit in self.image_audits:
+            audit.start(udid)
         consumer_group = resolve_native_container(udid, BUNDLE, GROUP)
         producer_group = resolve_native_container(udid, PRODUCER, GROUP)
         require(Path(consumer_group).resolve() == Path(producer_group).resolve(),
@@ -847,11 +872,49 @@ class ActualMiniAppsProducer:
     def redact_evidence(self, line):
         return line
 
+    def configure_command(self, command, label):
+        require(label == self.label and self.image_evidence is not None, "Wrong image-origin command scope")
+        helper = runpy.run_path(str(ROOT / "Scripts/CI/miniapps_runtime_image_origin.py"))
+        original = helper["create_bundled_ui_configuration"](
+            ROOT, self.image_evidence,
+            ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app",
+            ROOT / "build/DerivedData")
+        require(command[:2] == ["xcodebuild", "test-without-building"] and "-xctestrun" not in command,
+                "MiniApps image-origin admission requires the original same-job UI command")
+        kept = []
+        index = 0
+        while index < len(command):
+            option = command[index]
+            if option in {"-workspace", "-scheme", "-clonedSourcePackagesDirPath", "-derivedDataPath"}:
+                require(index + 1 < len(command), "Incomplete original Xcode command")
+                index += 2
+            elif option == "-disableAutomaticPackageResolution":
+                index += 1
+            else:
+                kept.append(option)
+                index += 1
+        kept[2:2] = ["-xctestrun", str(original)]
+        write(self.image_evidence / "exact-ui-command.json", {"before": command, "after": kept,
+            "scope": "Original generated targets and selectors; only UI application loader paths constrained"})
+        return kept
+
+    def finish_image_origins(self, label):
+        attachment = ROOT / ("build/artifacts/visual-miniapps-phone" if label == "phone"
+                             else "build/artifacts/visual-miniapps")
+        reports = [audit.finish(
+            log_paths=[ROOT / ("build/artifacts/test-simulator-" + label + ".log")],
+            attachment_dirs=[attachment]) for audit in self.image_audits]
+        result = {"status": "PASS" if len(reports) == 2 and all(r["status"] == "PASS" for r in reports)
+                  else "IMAGE_ORIGIN_INCOMPLETE", "label": label, "reports": reports}
+        write(OUT / ("image-origin-" + label + ".json"), result)
+
     def capture(self, udid, label):
         require(udid == self.udid and label == self.label, "Wrong producer evidence simulator")
         if self.captured:
             return
         self.captured = True
+        for audit in self.image_audits:
+            audit.stop_observing()
         if self.video is not None:
             self.video.terminate()
             try:
@@ -862,6 +925,7 @@ class ActualMiniAppsProducer:
             self.video_log.close()
         if label == "phone":
             self.capture_phone_picker(udid)
+            self.finish_image_origins(label)
             return
         report = {"status": "INCOMPLETE", "records": [], "rich_records": [], "file_records": [], "plain_file_records": [],
                   "fixture_producer": False, "synthetic_results_written": False}
@@ -1002,6 +1066,7 @@ class ActualMiniAppsProducer:
         if result.is_dir():
             subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
                             "--output-path", str(ROOT / "build/artifacts/visual-miniapps")], check=True, timeout=180)
+        self.finish_image_origins(label)
 
     def capture_phone_picker(self, udid):
         evidence = {"status": "INCOMPLETE", "udid": udid, "device": "iphone",
@@ -1113,6 +1178,12 @@ def collect():
         require(bridge_proof == json.loads((OUT / "miniapps-bridge-source-proof.json").read_text()),
                 "Original shared MiniApps source changed during native acceptance")
         report["miniapps_bridge_source_ownership"] = bridge_proof
+        origins = [json.loads((OUT / ("image-origin-" + group["label"] + ".json")).read_text())
+                   for group in GROUPS]
+        require(all(row["status"] == "PASS" and len(row["reports"]) == 2
+                    and {p["bundle_id"] for p in row["reports"]} == {BUNDLE, PRODUCER}
+                    for row in origins), "Actual paired application image-origin coverage is incomplete")
+        report["actual_loaded_image_origins"] = origins
         report["status"] = "ACTUAL_TWO_APP_CONSUMER_UI_EXECUTED_PASS"
         return 0
     except Exception as error:

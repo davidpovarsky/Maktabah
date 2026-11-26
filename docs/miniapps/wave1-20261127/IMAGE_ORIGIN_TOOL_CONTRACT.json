@@ -1,0 +1,32 @@
+{
+  "oracle_raw_evidence": "/mnt/development/projects/evidence/otzaria-shared-agent1-20261126/miniapps-image-origin-tool-contract-20261127",
+  "mac_raw_evidence": "/Users/m1/builds/otzaria-wave1-miniapps-20261127/observer-tool-contract",
+  "result": {
+    "status": "PASS_TOOL_CONTRACT_ONLY",
+    "native_product_acceptance_credit": false,
+    "owned_process_pid": 1086,
+    "executable": "/bin/sleep",
+    "sampled_uuid": "D9F36BE8-D4E2-3E7A-A29C-8B8BA9E6219A",
+    "artifact_uuid_architecture": "arm64e",
+    "parsed_actual_image_count": 82,
+    "observer_source_sha256": "7e86d43f84334313de9c270b68f17d42e1b4a2737787d176704124cb6398fe52",
+    "files": {
+      "sample.txt": {
+        "bytes": 13164,
+        "sha256": "b8783e09fd025da6c10ec14663dd3b4739a7ff82d2d63aec41d5d57a7fda1dbd"
+      },
+      "sample.log": {
+        "bytes": 255,
+        "sha256": "fc18a4e5e57a3d7be5ecc65934af5e275fd311932af4fa0cbd816a6815885fc8"
+      },
+      "vmmap.log": {
+        "bytes": 51502,
+        "sha256": "1ab61c721b5e23a2756079526c7889c97ac13a536e11806a269920e27537cbca"
+      },
+      "uuids.log": {
+        "bytes": 192,
+        "sha256": "286f893b0c57652ec8e4118aea104a7e582fedfb45ecb15c30d445507d28d598"
+      }
+    }
+  }
+}

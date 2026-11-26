@@ -1,0 +1,15 @@
+{
+  "scope": "SWIFT_SYNTAX_ONLY",
+  "source_sha256": "30da36f02c8788120f1a4b2ed0d7a5a8d7711f496af9a6e94fcf0f554abf8ad3",
+  "argv": [
+    "xcrun",
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "/Users/m1/builds/otzaria-wave1-miniapps-20261127/observer-tool-contract/MiniAppsAnnotationAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "native_product_acceptance_credit": false
+}

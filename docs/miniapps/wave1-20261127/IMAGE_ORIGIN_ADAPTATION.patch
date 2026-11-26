@@ -1,0 +1,239 @@
+--- native_final_image_audit.py.original
++++ Scripts/CI/miniapps_runtime_image_origin.py
+@@ -2,29 +2,61 @@
+ The original native runner, selected methods and result verifiers remain unchanged.
+ """
+ from pathlib import Path
+-import ast, hashlib, json, os, plistlib, re, subprocess, threading, time, datetime
++import hashlib, json, os, plistlib, re, runpy, subprocess, sys, threading, time, datetime
+ def digest(path):
+     h=hashlib.sha256()
+     with Path(path).open("rb") as f:
+         for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
+     return h.hexdigest()
+ class ImageAudit:
+-    def __init__(self,root,evidence,app):
++    def __init__(self,root,evidence,app,*,bundle_id,runner_bundle_id,required_images=(),display_names=()):
++        assert not sys.flags.optimize,"Image-origin integrity assertions require normal Python execution"
+         self.root=Path(root);self.e=Path(evidence);self.app=Path(app)
++        self.e.mkdir(parents=True,exist_ok=True)
+         self.out=self.e/"actual-image-origin";self.out.mkdir()
+-        export=self.root/"Scripts/ProductSplit/export_cross_app_simulator.py"
+-        defs=[n for n in ast.parse(export.read_text()).body if isinstance(n,ast.FunctionDef) and n.name in("digest","inventory")]
+-        ns={"hashlib":hashlib,"os":os,"Path":Path,"stat":__import__("stat")}
+-        assert len(defs)==2
+-        exec(compile(ast.Module(body=defs,type_ignores=[]),str(export),"exec"),ns)
+-        self.inventory=ns["inventory"];self.files=self.inventory(self.app)
++        self.bundle_id=bundle_id;self.runner_bundle_id=runner_bundle_id
++        info=plistlib.loads((self.app/"Info.plist").read_bytes())
++        assert info["CFBundleIdentifier"]==bundle_id,"Artifact bundle identity differs"
++        self.executable=info["CFBundleExecutable"]
++        assert Path(self.executable).name==self.executable,"Malformed executable identity"
++        self.display_names=set(display_names)|{info.get("CFBundleDisplayName",""),info.get("CFBundleName","")}
++        self.display_names.discard("")
++        self.uuid_cache={}
++        # Reuse the inventory contract already admitting the original producer.
++        helper=runpy.run_path(str(self.root/"Scripts/CI/miniapps-local-producer.py"))
++        self.inventory=helper["app_inventory"];self.files=self.inventory(self.app)
++        self.required_images={self.executable,*required_images}
++        debug=self.executable+".debug.dylib"
++        if debug in self.files:self.required_images.add(debug)
++        assert self.required_images<=self.files.keys(),"Required original runtime image is absent"
+         self.save("built-app-inventory.json",self.files)
+         self.sim=None;self.stop=threading.Event();self.thread=None
+         self.rows=[];self.errors=[];self.verified=set();self.cache={}
+     def save(self,name,value):
+         (self.e/name).write_text(json.dumps(value,indent=2)+"\n")
+-    def observe(self,pid,installed,raw,name,phase):
++    def artifact_uuids(self,relative):
++        if relative not in self.uuid_cache:
++            target=self.app/relative
++            result=subprocess.run(["xcrun","dwarfdump","--uuid",str(target)],
++                                  capture_output=True,text=True,timeout=20)
++            name="artifact-uuid-"+hashlib.sha256(relative.encode()).hexdigest()+".txt"
++            (self.out/name).write_text(result.stdout+result.stderr)
++            assert result.returncode==0,("Cannot inspect admitted artifact UUID",relative,name)
++            rows=re.findall(r"^UUID:\s*([0-9A-Fa-f-]{36})\s+\(([^)]+)\)",result.stdout,re.M)
++            assert rows,("Artifact has no Mach-O UUID",relative,name)
++            self.uuid_cache[relative]={"uuids":sorted({value.upper() for value,arch in rows}),
++                "architectures":sorted({arch for value,arch in rows}),"evidence":name,
++                "evidence_sha256":digest(self.out/name)}
++        return self.uuid_cache[relative]
++    def observe(self,pid,installed,raw,name,phase,sample_raw,sample_name):
+         installed=Path(installed);paths=set()
++        for source in (raw,sample_raw):
++            process=re.search(r"^Process:\s+.+\[(\d+)\]\s*$",source,re.M)
++            main_path=re.search(r"^Path:\s+(/.+)\s*$",source,re.M)
++            assert process and int(process.group(1))==pid,("Wrong actual process report",pid)
++            assert main_path and Path(main_path.group(1).strip()).resolve()==(installed/self.executable).resolve(),("Actual process is not the installed target",pid)
++        actual_uuids=sample_image_uuids(sample_raw)
++        paths.update(actual_uuids)
+         for line in raw.splitlines():
+             if line.startswith("__TEXT "):
+                 m=re.search(r"\s(/.*)$",line)
+@@ -43,16 +75,25 @@
+                 s=p.stat();key=(text,s.st_ino,s.st_mtime_ns,s.st_size)
+                 if key not in self.cache:self.cache[key]=digest(p)
+                 assert self.cache[key]==expected["sha256"],("Private image differs",text)
+-                private.append({"path":text,"manifest_relative_path":relative,"sha256":self.cache[key],"origin":location})
++                observed=actual_uuids.get(text)
++                assert observed,("Loaded private image has no actual sampled UUID",pid,text)
++                expected_uuid=self.artifact_uuids(relative)
++                assert observed in expected_uuid["uuids"],("Loaded private image UUID differs",pid,text,observed)
++                private.append({"path":text,"manifest_relative_path":relative,"sha256":self.cache[key],
++                    "origin":location,"loaded_uuid":observed,"artifact_uuid_proof":expected_uuid})
+             elif text.startswith(("/System/","/usr/","/Library/Apple/","/Applications/Xcode.app/","/private/var/run/com.apple.security.cryptexd/","/var/run/com.apple.security.cryptexd/","/Library/Developer/CoreSimulator/Volumes/")):
+                 continue
+             else:foreign.append(text)
+         assert not foreign,("Foreign loaded image",foreign)
+-        assert any(x["manifest_relative_path"]=="HanlinMiniApps" for x in private)
+-        debug=[x for x in private if x["manifest_relative_path"]=="HanlinMiniApps.debug.dylib"]
++        assert any(x["manifest_relative_path"]==self.executable and x["origin"]=="ACTUAL_INSTALLED_APP" for x in private)
++        debug=[x for x in private if x["manifest_relative_path"]==self.executable+".debug.dylib"]
+         assert not debug or all(x["origin"]=="ACTUAL_INSTALLED_APP" for x in debug),("Debug metadata image outside installed main bundle",debug)
+-        full=bool(debug) and any(x["manifest_relative_path"]=="Frameworks/NativeScript.framework/NativeScript" for x in private)
+-        row={"utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"pid":pid,"phase":phase,"vmmap_file":name,"vmmap_sha256":digest(self.out/name),"full_original_runtime_presence":full,"private_images":private,"unqualified_images":foreign}
++        full=self.required_images<={x["manifest_relative_path"] for x in private}
++        row={"utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"pid":pid,"phase":phase,
++             "bundle_id":self.bundle_id,"installed_app":str(installed),
++             "vmmap_file":name,"vmmap_sha256":digest(self.out/name),
++             "sample_file":sample_name,"sample_sha256":digest(self.out/sample_name),
++             "full_original_runtime_presence":full,"private_images":private,"unqualified_images":foreign}
+         self.rows.append(row)
+         if full:self.verified.add(pid)
+         with(self.out/"observations.jsonl").open("a") as f:f.write(json.dumps(row)+"\n")
+@@ -79,24 +120,24 @@
+             assert pid_text=="-" or pid_text.isdigit(),("Malformed scoped PID",name,line)
+             if pid_text=="-":continue
+             pid=int(pid_text);all_pids.add(pid)
+-            if re.match(r"^UIKitApplication:com\.itorah\.hanlinminiapps(?:\[|$)",label):role="app"
+-            elif re.match(r"^UIKitApplication:com\.itorah\.hanlinminiapps\.integration\.uitests\.xctrunner(?:\[|$)",label):role="ui_runner"
++            if re.match(r"^UIKitApplication:"+re.escape(self.bundle_id)+r"(?:\[|$)",label):role="app"
++            elif re.match(r"^UIKitApplication:"+re.escape(self.runner_bundle_id)+r"(?:\[|$)",label):role="ui_runner"
+             else:continue
+             roles[role].append({"pid":pid,"label":label})
+         row={"utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"reason":reason,"simulator_udid":self.sim,"argv":argv,"raw_file":name,"raw_sha256":raw_sha,"roles":roles}
+         with(self.out/"owned-process-scopes.jsonl").open("a") as f:f.write(json.dumps(row)+"\n")
+         return roles,all_pids
+     def installed_app(self,pid):
+-        argv=["/usr/bin/xcrun","simctl","get_app_container",self.sim,"com.itorah.hanlinminiapps","app"]
++        argv=["/usr/bin/xcrun","simctl","get_app_container",self.sim,self.bundle_id,"app"]
+         p=subprocess.run(argv,capture_output=True,text=True,timeout=5)
+         name=f"installed-app-pid-{pid}.txt"
+         (self.out/name).write_text(p.stdout+p.stderr)
+         assert p.returncode==0,("Owned installed app query failed",pid,name)
+         path=Path(p.stdout.strip())
+         prefix=f"/CoreSimulator/Devices/{self.sim}/data/Containers/Bundle/Application/"
+-        assert prefix in str(path) and path.name=="HanlinMiniApps.app" and path.is_dir(),("Unexpected owned installed bundle",str(path))
++        assert prefix in str(path) and path.name==self.app.name and path.is_dir(),("Unexpected owned installed bundle",str(path))
+         info=plistlib.loads((path/"Info.plist").read_bytes())
+-        assert info["CFBundleIdentifier"]=="com.itorah.hanlinminiapps"
++        assert info["CFBundleIdentifier"]==self.bundle_id
+         return path
+     def capture(self,pid,installed,phase):
+         name=f"pid-{pid}-{time.time_ns()}.vmmap.txt"
+@@ -108,7 +149,19 @@
+                 with(self.out/"terminated-before-capture.jsonl").open("a") as f:f.write(json.dumps({"pid":pid,"file":name,"exit":p.returncode})+"\n")
+                 return False
+             raise RuntimeError(("Live own process vmmap failed",pid,p.returncode,name))
+-        return self.observe(pid,installed,p.stdout,name,phase)
++        sample_name=f"pid-{pid}-{time.time_ns()}.sample.txt"
++        sample=subprocess.run(["/usr/bin/sample",str(pid),"1","1","-mayDie","-file",str(self.out/sample_name)],
++                              capture_output=True,text=True,timeout=20)
++        (self.out/(sample_name+".command.log")).write_text(sample.stdout+sample.stderr)
++        if sample.returncode or not (self.out/sample_name).is_file():
++            _,live=self.scoped_processes("sample_failure_liveness")
++            if pid not in live:
++                with(self.out/"terminated-before-capture.jsonl").open("a") as f:
++                    f.write(json.dumps({"pid":pid,"file":sample_name,"exit":sample.returncode})+"\n")
++                return False
++            raise RuntimeError(("Live own process sample failed",pid,sample.returncode,sample_name))
++        return self.observe(pid,installed,p.stdout,name,phase,
++                            (self.out/sample_name).read_text(),sample_name)
+     def bootstrap(self,sim,pid,installed):
+         self.sim=sim
+         roles,_=self.scoped_processes("bootstrap_admission")
+@@ -136,36 +189,50 @@
+                 row={"utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"error":str(ex)}
+                 self.errors.append(row)
+                 with(self.out/"errors.jsonl").open("a") as f:f.write(json.dumps(row)+"\n")
+-    def start(self):
++    def start(self,sim=None):
++        if sim is not None:self.sim=sim
++        assert self.sim,"Owned simulator identity is required"
+         self.thread=threading.Thread(target=self.loop,daemon=True);self.thread.start()
+-    def finish(self):
++    def stop_observing(self):
++        self.stop.set()
++        if self.thread:
++            self.thread.join(30)
++            assert not self.thread.is_alive(),"Image observer did not complete"
++    def finish(self,log_paths=(),attachment_dirs=()):
+         self.stop.set()
+         if self.thread:
+             self.thread.join(30)
+             assert not self.thread.is_alive(),"Image observer did not complete"
+         assert self.inventory(self.app)==self.files,"Qualified built app changed during test-without-building"
+-        text=(self.e/"xcodebuild.log").read_text(errors="replace") if (self.e/"xcodebuild.log").exists() else ""
+-        pids=set(map(int,re.findall(r"com\.itorah\.hanlinminiapps:(\d+)",text)))
+-        for p in (self.e/"ui-attachments").glob("*.txt"):
+-            pids.update(map(int,re.findall(r"Application,\s*(?:0x[0-9a-fA-F]+,\s*)?pid:\s*(\d+),\s*label:\s*'Hanlin MiniApps'",p.read_text(errors="replace"))))
++        texts=[]
++        for path in [self.e/"xcodebuild.log",*map(Path,log_paths)]:
++            if path.is_file():texts.append(path.read_text(errors="replace"))
++        for directory in [self.e/"ui-attachments",*map(Path,attachment_dirs)]:
++            for path in directory.glob("*.txt"):texts.append(path.read_text(errors="replace"))
++        pids=set()
++        for text in texts:
++            pids.update(map(int,re.findall(re.escape(self.bundle_id)+r":\s*(\d+)",text)))
++            pids.update(map(int,re.findall(r"OTZARIA_MINIAPPS_IMAGE_PID bundle="+re.escape(self.bundle_id)+r" pid=(\d+)",text)))
++            for label in self.display_names:
++                pids.update(map(int,re.findall(r"Application,\s*(?:0x[0-9a-fA-F]+,\s*)?pid:\s*(\d+),\s*label:\s*'"+re.escape(label)+r"'",text)))
+         ui_verified={row["pid"] for row in self.rows if row["phase"]=="ACTUAL_ORIGINAL_APP_UI" and row["full_original_runtime_presence"]}
+         missing=sorted(pids-ui_verified)
+         status="PASS" if pids and ui_verified and not self.errors and not missing else "IMAGE_ORIGIN_INCOMPLETE"
+-        result={"status":status,"scope":"Authentic shipping bootstrap and actual original-app UI processes; native unit methods retain original Apple test instrumentation and are classified separately.","referenced_ui_pids":sorted(pids),"complete_observed_pids":sorted(self.verified),"complete_observed_ui_pids":sorted(ui_verified),"missing_referenced_ui_pids":missing,"nonempty_ui_pid_sets_required":True,"observations":len(self.rows),"errors":self.errors,"all_built_app_entries_unchanged":True}
++        result={"status":status,"bundle_id":self.bundle_id,"artifact_app":str(self.app),"required_images":sorted(self.required_images),"all_private_image_uuids_verified":bool(self.rows) and not self.errors,"scope":"Authentic shipping bootstrap and actual original-app UI processes; native unit methods retain original Apple test instrumentation and are classified separately.","referenced_ui_pids":sorted(pids),"complete_observed_pids":sorted(self.verified),"complete_observed_ui_pids":sorted(ui_verified),"missing_referenced_ui_pids":missing,"nonempty_ui_pid_sets_required":True,"observations":len(self.rows),"errors":self.errors,"all_built_app_entries_unchanged":True}
+         self.save("actual-image-origin-result.json",result)
+         return result
+-def create_bundled_ui_configuration(root,e,app,derived):
++def create_bundled_ui_configuration(root,e,app,derived,target_name="Maktabah-iOSUITests"):
+     products=Path(derived)/"Build/Products"
+-    originals=list(products.glob("HanlinMiniApps_*.xctestrun"));assert len(originals)==1,originals
++    originals=list(products.glob("Maktabah-iOS_*.xctestrun"));assert len(originals)==1,originals
+     original=originals[0];raw=original.read_bytes();data=plistlib.loads(raw)
+-    assert {"HanlinMiniAppsTests","HanlinMiniAppsUITests","HanlinMiniAppsBootstrapTests"}.issubset(data)
++    assert target_name in data and data[target_name].get("IsUITestBundle"),"Original UI test target is absent"
+     def resolve(v):
+         if isinstance(v,str):return v.replace("__TESTROOT__",str(products))
+         if isinstance(v,list):return [resolve(x) for x in v]
+         if isinstance(v,dict):return {k:resolve(x) for k,x in v.items()}
+         return v
+     data=resolve(data)
+-    target=data["HanlinMiniAppsUITests"]
++    target=data[target_name]
+     assert Path(target["UITargetAppPath"])==Path(app)
+     before=dict(target["UITargetAppEnvironmentVariables"]);after=dict(before)
+     after["DYLD_FRAMEWORK_PATH"]=str(Path(app)/"Frameworks")
+@@ -173,7 +240,20 @@
+     after.pop("DYLD_LIBRARY_PATH",None);after.pop("__XPC_DYLD_LIBRARY_PATH",None)
+     target["UITargetAppEnvironmentVariables"]=after
+     e=Path(e);(e/"original-built.xctestrun").write_bytes(raw)
+-    output=e/"ActualBundledFull25.xctestrun";output.write_bytes(plistlib.dumps(data))
++    output=e/"ActualBundledMiniAppsConsumer.xctestrun";output.write_bytes(plistlib.dumps(data))
+     changes={"source_configuration":str(original),"source_sha256":hashlib.sha256(raw).hexdigest(),"effective_configuration":str(output),"effective_sha256":digest(output),"change":"Resolve TESTROOT because the copy has a different directory; constrain only actual UI application framework lookup to its own verified bundled frameworks and remove target debug-library relocation overrides.","ui_environment_before":before,"ui_environment_after":after,"all_original_targets_retained":True,"native_unit_and_runner_environments_unchanged_after_path_resolution":True}
+     (e/"actual-bundled-xctestrun-admission.json").write_text(json.dumps(changes,indent=2)+"\n")
+     return output
++
++def sample_image_uuids(raw):
++    """Read actual load UUIDs from Apple's sample, never from a path guess."""
++    assert "Binary Images:\n" in raw,"Actual process sample has no binary-image section"
++    rows={}
++    for line in raw.split("Binary Images:\n",1)[1].splitlines():
++        match=re.match(r"\s*0x[0-9a-fA-F]+\s*-\s*0x[0-9a-fA-F]+\s+.*<([0-9A-Fa-f-]{36})>\s+(/.*)$",line)
++        if not match:continue
++        value,path=match.group(1).upper(),match.group(2)
++        assert path not in rows or rows[path]==value,"Ambiguous actual image UUID"
++        rows[path]=value
++    assert rows,"Actual process sample has no load identities"
++    return rows

@@ -478,6 +478,8 @@ def main(live_provider=None):
                 if runtime27_contract or release_manifest:
                     if live_provider is not None:
                         environment.update(live_provider.stage(udid, container, label, selection))
+                        if hasattr(live_provider, "configure_command"):
+                            command = live_provider.configure_command(command, label)
                     else:
                         recording_log = (artifacts / f"runtime27/recording-{label}.log").open("w")
                         recording = subprocess.Popen(["xcrun", "simctl", "io", udid, "recordVideo", str(artifacts / f"runtime27/native-{label}.mp4")],

@@ -1,0 +1,16 @@
+{
+  "scope": "INTEGRITY_CONTROLS_ONLY",
+  "native_product_acceptance_credit": false,
+  "test_count": 12,
+  "status": "PASS",
+  "job_id": "job_7e52b983df9a",
+  "started_at": "2026-11-26T23:32:01.225360+00:00",
+  "finished_at": "2026-11-26T23:32:01.547470+00:00",
+  "raw_log_sha256": "54c578cb9855728a5b475e732809e4addbf1cc956c9dbcade55c033293322be5",
+  "source_sha256": {
+    "Scripts/CI/miniapps_runtime_image_origin.py": "7e86d43f84334313de9c270b68f17d42e1b4a2737787d176704124cb6398fe52",
+    "Scripts/CI/test_miniapps_runtime_image_origin.py": "387838bc42bcd1b7cd12a985a49fc21ca276f8e67487aa3f022386070a07fcb4",
+    "Scripts/CI/otzaria-miniapps-native.py": "39c663ca6ec02b831bc35cdfc12c702ca127cddd59e86501db8164066a8568f1",
+    "Scripts/CI/run-faithful-ipad-matrix.py": "35691ad98247eacbeaf3eac2ebbe128e5d60529bf37c86cad79a52e5d3724bd1"
+  }
+}
