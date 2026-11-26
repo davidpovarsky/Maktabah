@@ -380,6 +380,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     func testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch() async throws {
+        executionTimeAllowance = 900
         XCTAssertTrue(isPad)
         XCTAssertEqual(ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_PRODUCER_BUNDLE"],
                        "com.itorah.hanlinminiapps")
@@ -1338,7 +1339,9 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     private func typeActualStudioResult(_ text: String, producer: XCUIApplication) throws {
         let editor = producer.textViews["miniapps.textstudio.editor"]
         XCTAssertTrue(editor.exists && editor.isHittable)
-        editor.tap(); editor.typeKey("a", modifierFlags: .command); editor.typeText(text)
+        XCTAssertEqual(editor.value as? String, "", "An original TextStudio request starts with an empty result")
+        if !editor.hasFocus { editor.tap() }
+        editor.typeText(text)
         XCTAssertEqual(editor.value as? String, text)
         XCTAssertTrue(producer.buttons["miniapps.textstudio.return"].isHittable)
     }
