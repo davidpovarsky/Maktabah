@@ -69,7 +69,7 @@ public final class UIGuideRun {
     @ObservationIgnored private let sceneID: UIStableID
     @ObservationIgnored private let clock: any ActionClock
     @ObservationIgnored private let observe: @MainActor () -> UISceneSnapshot?
-    @ObservationIgnored private let open: @MainActor (PublicNavigationSpecV2, UInt64) async throws -> UISceneAcknowledgement
+    @ObservationIgnored private let open: @MainActor (PublicNavigationSpecV2, UISceneSnapshot, UInt64) async throws -> UISceneAcknowledgement
     @ObservationIgnored private var task: Task<Void, Never>?
     @ObservationIgnored private var attempt: UUID?
     @ObservationIgnored private var draining = false
@@ -78,10 +78,11 @@ public final class UIGuideRun {
     @ObservationIgnored private var stepDeadline: UInt64 = 0
     @ObservationIgnored private var operations = 0
     @ObservationIgnored private var expectedScene: UISceneSnapshot?
+    @ObservationIgnored private var coachingScene: UISceneSnapshot?
 
     public init(definition: UIGuideDefinition, sceneID: UIStableID, clock: any ActionClock = SystemActionClock(),
                 observe: @escaping @MainActor () -> UISceneSnapshot?,
-                open: @escaping @MainActor (PublicNavigationSpecV2, UInt64) async throws -> UISceneAcknowledgement) {
+                open: @escaping @MainActor (PublicNavigationSpecV2, UISceneSnapshot, UInt64) async throws -> UISceneAcknowledgement) {
         self.definition = definition
         self.sceneID = sceneID
         self.clock = clock
@@ -116,6 +117,10 @@ public final class UIGuideRun {
         await interrupt(.exploring)
     }
 
+    public func resume() { resume(mode) }
+
+    public func replay() { start(mode) }
+
     public func resume(_ mode: Mode) {
         guard phase == .exploring, task == nil else { return }
         self.mode = mode
@@ -124,6 +129,26 @@ public final class UIGuideRun {
 
     public func stop() async {
         await interrupt(.stopped)
+    }
+
+    /// The practice button invokes the same real native action as automatic
+    /// navigation. A tap becomes coaching only after the actual receipt.
+    public func performManualNavigation() {
+        guard phase == .awaitingUser, clock.now() < stepDeadline else {
+            if phase == .awaitingUser { phase = .blocked(.cancelled) }
+            return
+        }
+        guard let scene = observe(), let expectedScene,
+              scene.sceneID == sceneID, scene.backendSnapshot == expectedScene.backendSnapshot else {
+            phase = .blocked(.staleState)
+            return
+        }
+        dispatch(step.destination, from: scene)
+    }
+
+    public func revalidateCoaching() {
+        guard phase == .coaching, let coachingScene else { return }
+        if observe() != coachingScene { phase = .blocked(.staleState) }
     }
 
     /// Called by a mounted app action that can supply the original receipt.
@@ -148,13 +173,16 @@ public final class UIGuideRun {
         expectedScene = scene
         stepDeadline = min(deadline, clock.now() + 15_000_000_000)
         if mode == .manual { phase = .awaitingUser; return }
+        dispatch(step.destination, from: scene)
+    }
 
-        let key = UUID(), intent = step.destination, end = stepDeadline
+    private func dispatch(_ intent: PublicNavigationSpecV2, from scene: UISceneSnapshot) {
+        let key = UUID(), end = stepDeadline
         attempt = key
         phase = .navigating
         task = Task { [weak self, open] in
             let outcome: Result<UISceneAcknowledgement, UIRouteError>
-            do { outcome = .success(try await open(intent, end)) }
+            do { outcome = .success(try await open(intent, scene, end)) }
             catch let error as UIRouteError { outcome = .failure(error) }
             catch is CancellationError { outcome = .success(.cancelled) }
             catch { outcome = .failure(.init(.failed, "guide_navigation_failed")) }
@@ -171,6 +199,7 @@ public final class UIGuideRun {
     private func interrupt(_ target: Phase) async {
         attempt = nil
         expectedScene = nil
+        coachingScene = nil
         phase = target
         guard let running = task, !draining else { return }
         draining = true
@@ -190,6 +219,7 @@ public final class UIGuideRun {
                   receipt.appliedSceneRevision > receipt.basedOnSceneRevision,
                   actual.revision == receipt.appliedSceneRevision, actual.visibleRoute == receipt.route,
                   matchesIntent(receipt.route) else { phase = .blocked(.staleState); return }
+            coachingScene = actual
             phase = .coaching
         case .queued: phase = .blocked(.uiQueued)
         case .requiresForeground: phase = .blocked(.requiresForeground)
