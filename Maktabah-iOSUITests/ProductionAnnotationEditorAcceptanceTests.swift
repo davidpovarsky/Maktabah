@@ -442,38 +442,48 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             XCTFail("The original preparation did not verify every saved note")
             return
         }
-        try revealPreparationControl(conversion)
-        try await waitForEnabled(conversion)
-        tap(conversion)
-        let confirmation = app.sheets.containing(.button, identifier: "annotation-native-backfill-confirm").firstMatch
-        XCTAssertTrue(confirmation.waitForExistence(timeout: 15))
-        let actions = confirmation.buttons.matching(identifier: "annotation-native-backfill-confirm")
-        XCTAssertTrue(actions.firstMatch.waitForExistence(timeout: 15))
-        let controls = actions.allElementsBoundByIndex.filter { $0.isHittable && !$0.frame.isEmpty }
-        // The iPad native sheet exposes a SwiftUI action and its UIKit button
-        // at the same point. Require a single physical confirmation target.
-        let frames = Set(controls.map { NSValue(cgRect: $0.frame) })
-        XCTAssertEqual(frames.count, 1)
-        let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil)
-        XCTAssertTrue(confirm.isEnabled)
-        confirm.tap()
         let complete = app.descendants(matching: .any)["annotation-native-backfill-complete"]
         let failure = app.descendants(matching: .any)["annotation-native-backfill-failed"]
         let closeFailure = app.descendants(matching: .any)["annotation-native-backfill-close-failed"]
         let paused = app.descendants(matching: .any)["annotation-native-backfill-paused"]
+        let pause = app.buttons["annotation-native-backfill-pause"]
+        let converted = app.staticTexts["annotation-native-backfill-converted"]
+        let convertedDatabase = try canonicalAnnotationDatabase()
         let deadline = Date().addingTimeInterval(12_000)
-        while !complete.exists && !failure.exists && !closeFailure.exists && !paused.exists && Date() < deadline {
-            try await Task.sleep(for: .seconds(5))
+        let checkpoints = [1_200, 2_400, 3_600]
+        var lastCommitted = 0
+        var finished = false
+        for _ in 0..<7 {
+            try await confirmBulkNativeConversion(conversion)
+            let checkpoint = checkpoints.first { $0 > lastCommitted }
+            var pauseRequested = false
+            while !complete.exists && !failure.exists && !closeFailure.exists && !paused.exists && Date() < deadline {
+                if let checkpoint, !pauseRequested, pause.exists, pause.isEnabled, converted.exists,
+                   let thisRun = Int(converted.label.filter(\.isNumber)), lastCommitted + thisRun >= checkpoint {
+                    try revealPreparationControl(pause)
+                    tap(pause)
+                    pauseRequested = true
+                }
+                try await Task.sleep(for: .seconds(5))
+            }
+            let committed = try confirmedNativeBackfillCount(databaseURL: convertedDatabase)
+            XCTAssertGreaterThanOrEqual(committed, lastCommitted, "Conversion must preserve previously saved native rows")
+            if complete.exists && !failure.exists && !closeFailure.exists && !paused.exists {
+                XCTAssertEqual(committed, 5_000, "All 5,000 original SQLite rows require a committed native body")
+                finished = committed == 5_000
+                break
+            }
+            retainNativeEvidence("scale-backfill-checkpoint-\(committed)")
+            guard !closeFailure.exists, (paused.exists || failure.exists), committed > lastCommitted,
+                  Date() < deadline else { break }
+            lastCommitted = committed
         }
-        guard complete.exists && !failure.exists && !closeFailure.exists && !paused.exists else {
+        guard finished else {
             retainNativeEvidence("scale-backfill-terminal-error")
             XCTFail("The original bulk migration did not finish")
             return
         }
-        let converted = app.staticTexts["annotation-native-backfill-converted"]
-        XCTAssertEqual(converted.label.filter(\.isNumber), "5000")
 
-        let convertedDatabase = try canonicalAnnotationDatabase()
         var payloadDigests = Set<String>()
         for seed in seeds {
             let row = try readCanonicalRow(seed.id, databaseURL: convertedDatabase)
@@ -495,6 +505,40 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(persisted, row)
             attachStorage(persisted, stage: "scale-after-cold-relaunch")
         }
+    }
+
+    @MainActor
+    private func confirmBulkNativeConversion(_ conversion: XCUIElement) async throws {
+        try revealPreparationControl(conversion)
+        try await waitForEnabled(conversion)
+        tap(conversion)
+        let confirmation = app.sheets.containing(.button, identifier: "annotation-native-backfill-confirm").firstMatch
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 15))
+        let actions = confirmation.buttons.matching(identifier: "annotation-native-backfill-confirm")
+        XCTAssertTrue(actions.firstMatch.waitForExistence(timeout: 15))
+        let controls = actions.allElementsBoundByIndex.filter { $0.isHittable && !$0.frame.isEmpty }
+        // SwiftUI and UIKit may expose one original action at the same frame.
+        let frames = Set(controls.map { NSValue(cgRect: $0.frame) })
+        let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil)
+        XCTAssertTrue(confirm.isEnabled)
+        confirm.tap()
+    }
+
+    private func confirmedNativeBackfillCount(databaseURL: URL) throws -> Int {
+        var handle: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(databaseURL.path, &handle, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(handle)
+        defer { sqlite3_close(database) }
+        var raw: OpaquePointer?
+        let query = "SELECT count(*), coalesce(sum(revision), 0) FROM otzaria_annotation_exchange_heads WHERE namespace = 'otzaria.local.annotation'"
+        XCTAssertEqual(sqlite3_prepare_v2(database, query, -1, &raw, nil), SQLITE_OK)
+        let statement = try XCTUnwrap(raw)
+        defer { sqlite3_finalize(statement) }
+        XCTAssertEqual(sqlite3_step(statement), SQLITE_ROW)
+        let count = Int(sqlite3_column_int64(statement, 0))
+        XCTAssertEqual(Int(sqlite3_column_int64(statement, 1)), count,
+                       "Continuing must not create an extra revision for an already converted note")
+        return count
     }
 
     /// Seed historical inputs inside the owned simulator while its application is stopped.
