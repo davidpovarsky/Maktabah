@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort, ActionRelatedRefsPort, ActionRelatedTopicsPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -406,6 +406,43 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try await require("reader.getTOC", backend: work.backend, invocation: invocation)
         return entries
+    }
+
+    func relatedRefs(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionTextRef] {
+        let backend = locator.backend
+        try await require("reader.relatedRefs", backend: backend, invocation: invocation)
+        guard try await validate(locator, invocation: invocation) == locator else { throw ActionPortError.invalidResponse }
+        let native = try ActionAppIdentityBridge.appLocator(locator)
+        let refs: [TextLocator]
+        do { refs = try await coordinator.related(to: native) }
+        catch { throw safe(error) }
+        guard refs.count <= 10_000 else { throw ActionPortError.invalidResponse }
+        let works = try await catalogWorks(backend: backend, invocation: invocation)
+        var result: [ActionTextRef] = []
+        for (index, ref) in refs.enumerated() {
+            if index.isMultiple(of: 256) {
+                await Task.yield()
+                try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
+            }
+            guard ActionAppIdentityBridge.actionBackend(ref.backend) == backend,
+                  works.workKeys.contains(ref.workKey) else { throw ActionPortError.invalidResponse }
+            result.append(try ActionAppIdentityBridge.actionRef(ref))
+        }
+        try await require("reader.relatedRefs", backend: backend, invocation: invocation)
+        return result
+    }
+
+    func relatedTopics(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionRelatedTopic] {
+        let backend = locator.backend
+        try await require("reader.relatedTopics", backend: backend, invocation: invocation)
+        guard try await validate(locator, invocation: invocation) == locator else { throw ActionPortError.invalidResponse }
+        let native = try ActionAppIdentityBridge.appLocator(locator)
+        let topics: [LibraryRelatedTopic]
+        do { topics = try await coordinator.topics(for: native) }
+        catch { throw safe(error) }
+        guard topics.count <= 10_000 else { throw ActionPortError.invalidResponse }
+        try await require("reader.relatedTopics", backend: backend, invocation: invocation)
+        return topics.map { .init(slug: $0.slug, titleHe: $0.titleHe, titleEn: $0.titleEn) }
     }
 
     func relatedSources(for locator: ActionTextRef,

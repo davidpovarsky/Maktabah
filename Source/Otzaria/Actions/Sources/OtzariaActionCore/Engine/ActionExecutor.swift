@@ -202,6 +202,8 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
                         && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
                         && (descriptor.id != "reader.relatedSources" || state is any ActionRelatedSourcesPort)
+                        && (descriptor.id != "reader.relatedRefs" || state is any ActionRelatedRefsPort)
+                        && (descriptor.id != "reader.relatedTopics" || state is any ActionRelatedTopicsPort)
                         && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
                         && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
                         && (descriptor.id != "catalog.listAuthors" || state is any ActionCatalogAuthorsPort)
@@ -305,6 +307,59 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
             result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "reader.relatedRefs":
+            guard let input = request.arguments["sourceLocator"] else {
+                throw ActionContractError.invalid("sourceLocator")
+            }
+            let locator = try input.decoded(as: ActionTextRef.self)
+            try ActionValidation.text(locator, backend: backend)
+            try ActionPolicy.work(locator.workKey, backend: backend, context: context)
+            guard let relationships = state as? any ActionRelatedRefsPort else {
+                throw ActionEngineFailure(.notSupported, "related_refs_unavailable")
+            }
+            let original = try await relationships.relatedRefs(for: locator, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard original.count <= 10_000 else { throw ActionPortError.invalidResponse }
+            var refs: [ActionTextRef] = []
+            var seen = Set<ActionTextRef>()
+            var truncated = false
+            for (index, ref) in original.enumerated() {
+                if index.isMultiple(of: 256) { try await recheck(snapshot, deadline: deadline) }
+                do { try ActionValidation.text(ref, backend: backend) }
+                catch { throw ActionPortError.invalidResponse }
+                if let restricted = context.allowedWorkKeys, restricted[backend]?.contains(ref.workKey) != true { continue }
+                guard seen.insert(ref).inserted else { continue }
+                if refs.count < 100 { refs.append(ref) } else { truncated = true }
+            }
+            result = completed(["locators": try .encoded(refs), "truncated": .bool(truncated)])
+        case "reader.relatedTopics":
+            guard let input = request.arguments["sourceLocator"] else {
+                throw ActionContractError.invalid("sourceLocator")
+            }
+            let locator = try input.decoded(as: ActionTextRef.self)
+            try ActionValidation.text(locator, backend: backend)
+            try ActionPolicy.work(locator.workKey, backend: backend, context: context)
+            guard let relationships = state as? any ActionRelatedTopicsPort else {
+                throw ActionEngineFailure(.notSupported, "related_topics_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 25, range: 1...100)
+            let original = try await relationships.relatedTopics(for: locator, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard original.count <= 10_000 else { throw ActionPortError.invalidResponse }
+            var topics: [ActionRelatedTopic] = []
+            var seen = Set<String>()
+            var truncated = false
+            for (index, topic) in original.enumerated() {
+                if index.isMultiple(of: 256) { try await recheck(snapshot, deadline: deadline) }
+                guard ActionValidation.nonempty(topic.slug, max: 512),
+                      topic.titleHe.map({ ActionValidation.nonempty($0, max: 512) }) ?? true,
+                      topic.titleEn.map({ ActionValidation.nonempty($0, max: 512) }) ?? true else {
+                    throw ActionPortError.invalidResponse
+                }
+                guard seen.insert(topic.slug).inserted else { continue }
+                if topics.count < limit { topics.append(topic) } else { truncated = true }
+            }
+            result = completed(["topics": try .encoded(topics), "truncated": .bool(truncated)])
         case "reader.relatedSources":
             guard let input = request.arguments["sourceLocator"] else {
                 throw ActionContractError.invalid("sourceLocator")
