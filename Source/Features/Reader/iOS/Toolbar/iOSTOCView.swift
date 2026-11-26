@@ -145,10 +145,10 @@ struct iOSTOCView: View {
                         Text(String(localized: "Loading Table of Contents..."))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
+                            .accessibilityIdentifier("toc-loading")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .accessibilityElement(children: .contain)
-                    .accessibilityIdentifier("toc-loading")
                 } else if identifiableNodes.isEmpty {
                     ContentUnavailableView(
                         String(localized: "No Table of Contents"),

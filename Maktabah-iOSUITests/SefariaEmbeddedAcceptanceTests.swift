@@ -117,11 +117,25 @@ private final class SefariaTOCNativeObservation {
     let app: XCUIApplication
     init(_ app: XCUIApplication) { self.app = app }
 
-    func visible(_ element: XCUIElement) -> Bool {
+    func onScreen(_ element: XCUIElement) -> Bool {
+        guard element.exists else { return false }
         let frame = element.frame
-        return element.exists && element.isHittable && !frame.isEmpty
-            && frame.minX.isFinite && frame.minY.isFinite
+        return !frame.isEmpty && frame.minX.isFinite && frame.minY.isFinite
+            && frame.width.isFinite && frame.height.isFinite
             && app.windows.firstMatch.frame.contains(frame)
+    }
+
+    func visible(_ element: XCUIElement) -> Bool {
+        guard onScreen(element) else { return false }
+        if element.elementType == .collectionView {
+            // Native116 exposes the actual phone list and its rows, but
+            // querying the non-action collection's activation point throws.
+            // Preserve visible geometry and prove an actual original row can
+            // receive input instead of treating a container as a button.
+            return element.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-"))
+                .allElementsBoundByIndex.contains { onScreen($0) && $0.isHittable }
+        }
+        return element.isHittable
     }
 
     func visibleIdentifier(_ identifier: String) -> Bool {
@@ -221,6 +235,38 @@ class SefariaTOCNativeBase: R27NativeUIBase {
 
     @MainActor
     private func openOriginalBook(_ work: String, title: String, backend: String) throws {
+        if !isPad {
+            // The original compact Reader has a Library BackButton, not the
+            // iPad split workspace's command-palette toolbar item.
+            let back = app.navigationBars.buttons.matching(identifier: "BackButton")
+            XCTAssertEqual(back.count, 1)
+            let action = back.firstMatch
+            XCTAssertTrue(["Library", "ספרייה"].contains(action.label))
+            XCTAssertTrue(SefariaTOCNativeObservation(app).visible(action))
+            action.tap()
+            let fields = app.searchFields
+            XCTAssertTrue(fields.firstMatch.waitForExistence(timeout: 20))
+            XCTAssertEqual(fields.count, 1, "Use the original compact Library search field")
+            let field = fields.firstMatch
+            XCTAssertTrue(SefariaTOCNativeObservation(app).visible(field))
+            field.tap()
+            field.typeKey("a", modifierFlags: .command)
+            field.typeText(title)
+            try requireQueryValue(title, in: field)
+            let rows = app.collectionViews.staticTexts.matching(NSPredicate(format: "label == %@", title))
+            let observation = SefariaTOCNativeObservation(app)
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated {
+                    rows.allElementsBoundByIndex.filter { observation.visible($0) }.count == 1
+                }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed,
+                           "Require one independently named original compact Library result")
+            let visible = rows.allElementsBoundByIndex.filter { observation.visible($0) }
+            try XCTUnwrap(visible.count == 1 ? visible.first : nil).tap()
+            try requireReader(backend: backend, work: work)
+            return
+        }
         let launcher = readerLibraryPaletteLauncher()
         launcher.tap()
         let palette = try requireVisible("reader-library-command-palette", timeout: 20)
@@ -231,7 +277,7 @@ class SefariaTOCNativeBase: R27NativeUIBase {
         field.tap()
         field.typeKey("a", modifierFlags: .command)
         field.typeText(title)
-        XCTAssertEqual(field.value as? String, title)
+        try requireQueryValue(title, in: field)
         let rows = palette.scrollViews.buttons.matching(NSPredicate(format: "label == %@", title))
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 30))
         let observation = SefariaTOCNativeObservation(app)
@@ -240,6 +286,16 @@ class SefariaTOCNativeBase: R27NativeUIBase {
         let row = try XCTUnwrap(visible.count == 1 ? visible.first : nil)
         row.tap()
         try requireReader(backend: backend, work: work)
+    }
+
+    @MainActor
+    private func requireQueryValue(_ value: String, in field: XCUIElement) throws {
+        // Native116's immediate snapshot contained only the first typed Hebrew
+        // character; its retained final AX contains the complete original query.
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", value), object: field)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed,
+                       "The original typed query must finish settling without changing its value")
+        XCTAssertEqual(field.value as? String, value)
     }
 
     @MainActor
@@ -277,13 +333,23 @@ class SefariaTOCNativeBase: R27NativeUIBase {
 
     @MainActor
     private func row(_ label: String, scrolls: Int = 12,
-                     scrollPastDuplicateLabels: Bool = false) throws -> XCUIElement {
+                     scrollPastDuplicateLabels: Bool = false,
+                     requiresDisclosure: Bool = false) throws -> XCUIElement {
         let observation = SefariaTOCNativeObservation(app)
         for turn in 0...scrolls {
             let list = try requireVisible("toc-content-list", timeout: 15)
             let rows = list.buttons.matching(NSPredicate(
                 format: "identifier BEGINSWITH %@ AND label == %@", "toc-row-", label))
-            let visible = rows.allElementsBoundByIndex.filter { observation.visible($0) }
+            let visible = rows.allElementsBoundByIndex.filter { candidate in
+                guard observation.visible(candidate) else { return false }
+                guard requiresDisclosure else { return true }
+                let id = String(candidate.identifier.dropFirst("toc-row-".count))
+                // English chapter "2" and the autoexpanded chapter 1's verse
+                // "2" have the same text. Only the original parent owns this
+                // same-node disclosure; a leaf must never qualify as a parent.
+                let disclosures = app.buttons.matching(identifier: "toc-expand-" + id)
+                return disclosures.allElementsBoundByIndex.filter { observation.visible($0) }.count == 1
+            }
             if visible.count == 1 { return visible[0] }
             if !scrollPastDuplicateLabels {
                 XCTAssertLessThanOrEqual(visible.count, 1, "A TOC label must identify one original visible row")
@@ -297,18 +363,29 @@ class SefariaTOCNativeBase: R27NativeUIBase {
 
     @MainActor
     private func expand(_ title: String, hebrew: Bool) throws {
-        let parent = try row(title)
+        let parent = try row(title, requiresDisclosure: true)
         XCTAssertTrue(parent.identifier.hasPrefix("toc-row-"))
         let id = String(parent.identifier.dropFirst("toc-row-".count))
         XCTAssertNotNil(Int(id), "Disclosure must belong to the same original LegacyIdentity node")
         let disclosure = try requireVisible("toc-expand-" + id, timeout: 15)
-        XCTAssertEqual(disclosure.label, hebrew ? "הרחב את \(title)" : "Expand \(title)")
+        assertDisclosureLabel(disclosure.label, prefix: hebrew ? "הרחב את " : "Expand ", title: title)
         if hebrew {
             XCTAssertLessThan(disclosure.frame.midX, parent.frame.midX,
                               "The original RTL row must keep its disclosure to the left of its label")
         }
         disclosure.tap()
-        XCTAssertEqual(disclosure.label, hebrew ? "כווץ את \(title)" : "Collapse \(title)")
+        assertDisclosureLabel(disclosure.label, prefix: hebrew ? "כווץ את " : "Collapse ", title: title)
+    }
+
+    @MainActor
+    private func assertDisclosureLabel(_ actual: String, prefix: String, title: String) {
+        // Apple localized interpolation can isolate the unchanged dynamic title
+        // using FSI/PDI. Preserve those product direction controls, and accept
+        // only the exact localized action/title with or without that wrapper.
+        let plain = prefix + title
+        let isolated = prefix + "\u{2068}" + title + "\u{2069}"
+        XCTAssertTrue(actual == plain || actual == isolated,
+                      "Require the exact localized action and original title: \(actual)")
     }
 
     @MainActor
@@ -445,7 +522,7 @@ class SefariaTOCNativeBase: R27NativeUIBase {
         XCTAssertEqual(armed["ownerID"] as? String, tagged["ownerID"] as? String)
         XCTAssertEqual(tagged["ownerID"] as? String, held["ownerID"] as? String)
         let loading = try requireVisible("toc-loading", timeout: 10)
-        XCTAssertTrue(loading.staticTexts[hebrew ? "טוען את תוכן העניינים…" : "Loading Table of Contents..."].exists)
+        XCTAssertEqual(loading.label, hebrew ? "טוען את תוכן העניינים…" : "Loading Table of Contents...")
         XCTAssertFalse(app.descendants(matching: .any)["toc-empty"].exists,
                        "An actual held request must not be presented as a loaded empty TOC")
         XCTAssertFalse(app.descendants(matching: .any)["toc-failure"].exists)
