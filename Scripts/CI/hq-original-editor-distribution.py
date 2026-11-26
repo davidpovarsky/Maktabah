@@ -245,10 +245,13 @@ def binary_command(argv, *, root, evidence, label, symbols=False, xcode_preview=
     return row
 
 
-def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
+def verify_symbol_free_xcode_preview(directory, relative, evidence, checks, *, observed_app=None):
     require(directory.suffix == ".app" and relative == "__preview.dylib"
             and checks["symbols"].get("symbol_lines") == 0, "Unexpected symbol-free runtime image")
-    binary = directory / relative
+    # The authenticated handoff preserves original tool output and image hashes.
+    observed = (observed_app or directory) / relative
+    require(all(Path(check["command"][-1]) == observed for check in checks.values()),
+            "The original Xcode preview inspection disagrees about its image")
 
     def output(role):
         with gzip.open(evidence / checks[role]["output"], "rt", encoding="utf-8") as stream:
@@ -256,7 +259,7 @@ def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
         require(len(raw) <= 65_536, "Oversized Xcode preview observation")
         return raw
 
-    require(output("symbols").strip() == str(binary) + ": no symbols",
+    require(output("symbols").strip() == str(observed) + ": no symbols",
             "Apple nm did not report the exact Xcode preview image")
     loads = output("loads")
     symtab = re.findall(r"(?m)^\s*cmd LC_SYMTAB\n((?:(?!Load command)[^\n]*\n)*)", loads)
@@ -266,7 +269,7 @@ def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
             and "LC_DYLD_EXPORTS_TRIE" in loads and "LC_ID_DYLIB" in loads,
             "Xcode Simulator preview does not have a provably empty nlist")
     exports = [line.strip() for line in output("exports").splitlines() if line.strip()]
-    require(len(exports) == 3 and exports[0] == str(binary) + " [arm64]:"
+    require(len(exports) == 3 and exports[0] == str(observed) + " [arm64]:"
             and exports[1] == "-exports:" and exports[2].split() == ["offset", "symbol"],
             "Xcode preview has an export or unexpected dyld inventory")
 
@@ -319,7 +322,7 @@ def runtime_absence_proof(root, directory, evidence, *, reused=None):
             "symbol_scan": "complete-nlist-and-dyld"}
 
 
-def verify_absence_receipt(root, directory, proof, *, reused=None):
+def verify_absence_receipt(root, directory, proof, *, reused=None, observed_app=None):
     directory = Path(directory)
     require(proof.get("status") == "ACTUAL_FULL_SYMBOL_IMPORT_AND_PRODUCT_CLOSURE_PASS"
             and code_images(directory) == proof["images"], "Runtime closure proof no longer matches actual images")
@@ -370,7 +373,7 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     and (symbol_free_preview or isinstance(symbol_lines, int) and symbol_lines > 0),
                     "Missing symbol/import/load closure")
         if symbol_free_preview:
-            verify_symbol_free_xcode_preview(directory, relative, evidence, row["checks"])
+            verify_symbol_free_xcode_preview(directory, relative, evidence, row["checks"], observed_app=observed_app)
 
 
 def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False,
@@ -1015,18 +1018,33 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
     app = app_bundle(root, app)
     require_unchanged(root, admitted)
     embedding = read_json(evidence / "app-embedding.json")
-    require(embedding["status"] == "EXACT_PRODUCTS_PRESENT" and Path(embedding["target"]) == app,
-            "Original app embed phase did not execute")
+    original_app = Path(embedding["target"])
+    app_layout = app.relative_to(root).parts
+    require(embedding["status"] == "EXACT_PRODUCTS_PRESENT"
+            and embedding["overwritten_products"] == 0
+            and embedding["codesign_on_copy"] is False
+            and embedding["remove_headers_on_copy"] is False
+            and (original_app == app or (after_ui and original_app.is_absolute()
+                 and ".." not in original_app.parts and original_app.parts[-len(app_layout):] == app_layout)),
+            "Original app embed phase did not execute for the exact product layout")
+    product_receipts = {(row["kind"], row["name"]): row for row in embedding["products"]}
+    expected_products = {("Frameworks", name) for name in admitted["dynamic_frameworks"]}
+    expected_products.update(("Bundles", name) for name in admitted["resource_bundles"])
+    require(set(product_receipts) == expected_products
+            and len(product_receipts) == len(embedding["products"]),
+            "Original app embed product inventory differs")
     distribution = root / admitted["distribution_root"]
     prefix = "after-ui-" if after_ui else ""
     for index, name in enumerate(admitted["dynamic_frameworks"]):
         target = app / "Frameworks" / name
-        require(inventory(target, metadata=True) == inventory(distribution / "Frameworks" / name, metadata=True),
+        require(inventory(target, metadata=True) == inventory(distribution / "Frameworks" / name, metadata=True)
+                == product_receipts["Frameworks", name]["files"],
                 "Embedded original framework changed: " + name)
         command(["codesign", "--verify", "--strict", str(target)], root=root, evidence=evidence,
                 label=prefix + "embedded-sdk-signature-" + str(index))
     for name in admitted["resource_bundles"]:
-        require(inventory(app / name, metadata=True) == inventory(distribution / "Bundles" / name, metadata=True),
+        require(inventory(app / name, metadata=True) == inventory(distribution / "Bundles" / name, metadata=True)
+                == product_receipts["Bundles", name]["files"],
                 "Embedded original resource bundle changed: " + name)
     command(["codesign", "--verify", "--strict", str(app)], root=root, evidence=evidence, label=prefix + "actual-app-signature")
     policy = admitted["shared_package_policy"]
@@ -1044,7 +1062,8 @@ def verify_built_app(root, admitted, app, evidence, *, after_ui=False):
                 require(retained.get("status") == "EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE"
                         and retained.get("sdk") == sdk_proof, "Retained built-app runtime proof differs")
                 admitted["consumer_runtime_absence"] = retained["app"]
-            verify_absence_receipt(root, app, admitted["consumer_runtime_absence"], reused=sdk_proof)
+            verify_absence_receipt(root, app, admitted["consumer_runtime_absence"], reused=sdk_proof,
+                                   observed_app=original_app)
         else:
             admitted["consumer_runtime_absence"] = runtime_absence_proof(
                 root, app, evidence / "swift-syntax-app", reused=sdk_proof)
