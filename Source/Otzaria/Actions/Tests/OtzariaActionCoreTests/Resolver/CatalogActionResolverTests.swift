@@ -7,6 +7,7 @@ private actor ResolverSource: ActionResolverDataPort, ActionBackendStatePort {
     var current: ActionBackendSnapshot
     var entries: [ActionCatalogEntry] = []
     var response: ActionResolution<ActionTextRef> = .notFound
+    var namedSections: [String: [String: ActionResolution<ActionTextRef>]] = [:]
     var verified = Set<ActionTextRef>()
     var substitute: ActionTextRef?
     var failure: ActionPortError?
@@ -24,6 +25,7 @@ private actor ResolverSource: ActionResolverDataPort, ActionBackendStatePort {
         self.entries = entries; self.response = response; self.verified = verified
         self.substitute = substitute; self.failure = failure; self.rawFailure = rawFailure; self.hook = hook
     }
+    func setNamedSections(_ values: [String: [String: ActionResolution<ActionTextRef>]]) { namedSections = values }
     func replaceSnapshot(_ value: ActionBackendSnapshot) { current = value }
     func invocation(deadline: UInt64 = 1_000) -> ActionPortInvocation {
         .init(requestId: UUID(), snapshot: current, deadlineUptimeNanoseconds: deadline)
@@ -37,7 +39,12 @@ private actor ResolverSource: ActionResolverDataPort, ActionBackendStatePort {
         try await touch("catalog"); return entries
     }
     func referenceCandidates(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
-        queries.append(query); try await touch("reference"); return response
+        queries.append(query)
+        try await touch("reference")
+        if let work = query.workRef, let section = query.section, let responses = namedSections[work.workKey] {
+            return responses[section] ?? .notFound
+        }
+        return response
     }
     func validate(_ ref: ActionTextRef, invocation: ActionPortInvocation) async throws -> ActionTextRef {
         try await touch("validate")
@@ -125,6 +132,35 @@ final class CatalogActionResolverTests: XCTestCase, @unchecked Sendable {
             let result = try await r.resolveWork(.init(backend: .otzaria, query: query), invocation: i)
             XCTAssertEqual(result, .notFound)
         }
+    }
+
+    func testNamedOtzariaReferenceUsesLongestCatalogAliasAndOriginalSection() async throws {
+        let source = ResolverSource(.otzaria), short = work(.otzaria, 1), commentary = work(.otzaria, 2)
+        let result = text(commentary, 512)
+        await source.setup([entry(short, title: "כלי"), entry(commentary, title: "כלי יקר על התורה", aliases: ["כלי יקר"])],
+                           verified: [result])
+        await source.setNamedSections([commentary.workKey: ["דברים": .unique(result)]])
+        let r = resolver(source), invocation = await source.invocation()
+        let resolved = try await r.resolveReference(.init(backend: .otzaria, text: " כלי   יקר על דברים "), invocation: invocation)
+        XCTAssertEqual(resolved, .unique(result))
+        let requests = await source.queries
+        XCTAssertEqual(requests.dropFirst().map(\.workRef), [commentary, commentary])
+        XCTAssertEqual(requests.dropFirst().map(\.section), ["על דברים", "דברים"])
+    }
+
+    func testNamedOtzariaReferenceRetainsEditionAmbiguityAndRejectsWrongWork() async throws {
+        let source = ResolverSource(.otzaria), first = work(.otzaria, 1), second = work(.otzaria, 2)
+        let one = text(first, 20), two = text(second, 30)
+        await source.setup([entry(second, title: "כלי יקר"), entry(first, title: "כלי יקר")], verified: [one, two])
+        await source.setNamedSections([first.workKey: ["דברים": .unique(one)], second.workKey: ["דברים": .unique(two)]])
+        let r = resolver(source), invocation = await source.invocation()
+        let query = ActionResolveReferenceQuery(backend: .otzaria, text: "כלי יקר דברים")
+        guard case .ambiguous(let result) = try await r.resolveReference(query, invocation: invocation) else {
+            return XCTFail("Two original source editions must remain ambiguous")
+        }
+        XCTAssertEqual(result.map { $0.ref["workKey"]?.string }, [first.workKey, second.workKey])
+        await source.setNamedSections([first.workKey: ["דברים": .unique(two)], second.workKey: ["דברים": .unique(two)]])
+        await assertError(.invalidResponse) { _ = try await r.resolveReference(query, invocation: invocation) }
     }
 
     func testDuplicateTitlesEditionsAliasesAndLimitOne() async throws {

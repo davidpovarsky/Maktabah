@@ -88,8 +88,12 @@ public actor CatalogActionResolver: ActionResolverPort, ActionCommentaryResolver
         if let ref = query.workRef { try requireWork(ref, backend: query.backend) }
         let entries = try await catalog(query.backend, invocation)
         if let ref = query.workRef, !entries.contains(ref) { return .notFound }
-        let response = try await sourceCall(invocation) { [data] in
+        var response = try await sourceCall(invocation) { [data] in
             try await data.referenceCandidates(query, invocation: invocation)
+        }
+        if case .notFound = response, query.backend == .otzaria,
+           query.workRef == nil, query.section == nil, let text = query.text, text.count <= 512 {
+            response = try await resolveNamedOtzariaSection(text, in: entries, invocation: invocation)
         }
         switch response {
         case .notFound: return .notFound
@@ -136,6 +140,75 @@ public actor CatalogActionResolver: ActionResolverPort, ActionCommentaryResolver
                 .prefix(25).compactMap { unique[$0] }
             try await checkpoint(invocation)
             return .ambiguous(output)
+        }
+    }
+
+    /// Reuse the exact source TOC when the original locator parser has no
+    /// match. Only an actual catalog name or alias can qualify the section.
+    private func resolveNamedOtzariaSection(_ input: String, in catalog: CatalogView,
+                                            invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
+        let normalized = try normalizedName(input, field: "text")
+        var longestName = 0
+        var sections: [ActionWorkRef: String] = [:]
+        for (index, entry) in catalog.entries.enumerated() {
+            try await scanCheckpoint(index, invocation)
+            for value in [entry.title] + entry.aliases {
+                let name = try normalizedName(value, field: "source")
+                let length = name.utf8.count
+                guard length >= longestName, normalized.hasPrefix(name + " ") else { continue }
+                if length > longestName {
+                    longestName = length
+                    sections.removeAll(keepingCapacity: true)
+                }
+                sections[entry.workRef] = String(normalized.dropFirst(name.count + 1))
+            }
+        }
+        // Do not drop editions to reach a unique result or start unbounded
+        // source TOC reads from a widely shared catalog name.
+        guard sections.count <= 8 else { throw ActionPortError.unavailable }
+        var results: [ActionTextRef: ActionCandidate] = [:]
+        var sourceAmbiguity = false
+        for work in sections.keys.sorted(by: workLess) {
+            guard var section = sections[work], section.count <= 500 else { continue }
+            var response = try await sourceSection(section, work: work, invocation: invocation)
+            if case .notFound = response, section.hasPrefix("על ") {
+                section = String(section.dropFirst(3))
+                response = try await sourceSection(section, work: work, invocation: invocation)
+            }
+            switch response {
+            case .notFound:
+                continue
+            case .unique(let locator):
+                try requireSourceReference(locator, backend: .otzaria, work: work, catalog: catalog)
+                results[locator] = try ActionCandidate(ref: object(locator), title: section, kind: .section,
+                    confidenceBand: .exact, reason: "source_catalog_and_toc")
+            case .ambiguous(let candidates):
+                guard !candidates.isEmpty, candidates.count <= maximumReferenceCandidates else {
+                    throw ActionPortError.invalidResponse
+                }
+                sourceAmbiguity = true
+                for candidate in candidates {
+                    try localCheckpoint(invocation)
+                    guard let locator = try? ActionJSON.object(candidate.ref).decoded(as: ActionTextRef.self) else {
+                        throw ActionPortError.invalidResponse
+                    }
+                    try requireSourceReference(locator, backend: .otzaria, work: work, catalog: catalog)
+                    results[locator] = candidate
+                }
+            }
+        }
+        try await checkpoint(invocation)
+        guard let first = results.keys.first else { return .notFound }
+        if results.count == 1 && !sourceAmbiguity { return .unique(first) }
+        guard results.count <= maximumReferenceCandidates else { throw ActionPortError.invalidResponse }
+        return .ambiguous(results.keys.sorted(by: textLess).compactMap { results[$0] })
+    }
+
+    private func sourceSection(_ section: String, work: ActionWorkRef,
+                               invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef> {
+        let query = ActionResolveReferenceQuery(backend: work.backend, workRef: work, section: section)
+        return try await sourceCall(invocation) { [data] in
+            try await data.referenceCandidates(query, invocation: invocation)
         }
     }
 
