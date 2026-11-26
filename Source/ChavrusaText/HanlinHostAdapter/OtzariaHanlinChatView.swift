@@ -90,7 +90,8 @@ private struct OtzariaHanlinChatView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink {
-                        OtzariaHanlinHistoryView(owner: owner, currentID: session.identity.conversationID)
+                        OtzariaHanlinHistoryView(owner: owner,
+                            currentID: session.identity.conversationID, close: session.close)
                     } label: {
                         Label(String(localized: "Conversations"), systemImage: "clock.arrow.circlepath")
                     }
@@ -369,6 +370,7 @@ private struct OtzariaHanlinConnectionView: View {
 private struct OtzariaHanlinHistoryView: View {
     let owner: OtzariaHanlinChatOwner
     let currentID: UUID
+    let close: () -> Void
     @State private var rows: [OtzariaHanlinConversationSummary] = []
     @State private var error: String?
     @State private var pendingDelete: OtzariaHanlinConversationSummary?
@@ -397,6 +399,12 @@ private struct OtzariaHanlinHistoryView: View {
             }
         }
         .navigationTitle(String(localized: "Conversations"))
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(String(localized: "Close"), action: close)
+                    .accessibilityIdentifier("otzaria-hanlin-close")
+            }
+        }
         .accessibilityIdentifier("otzaria-hanlin-history-list")
         .onAppear(perform: reload)
         .confirmationDialog(String(localized: "Delete this conversation?"),
