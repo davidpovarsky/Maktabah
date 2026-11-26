@@ -781,8 +781,10 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let launch = try richState(rowID: rowID, databasePath: warmDocument.profile)
         XCTAssertGreaterThan(launch.revision, 0, "Leaving the app must save the complete native launch baseline")
 
-        // Edit another real native block while the result is pending. Only
-        // application activation is assisted; the result itself returns by URL.
+        // Prepare the producer's draft before switching apps. The URL return
+        // stays pending until after the independent edit in the original host.
+        let warmText = "MiniApps rich warm שלום " + UUID().uuidString
+        try typeActualStudioResult(warmText, producer: producer)
         app.activate()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
         host = try await richHost()
@@ -803,8 +805,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             "The newer native draft is genuinely unsaved before the callback")
         producer.activate()
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
-        let warmText = "MiniApps rich warm שלום " + UUID().uuidString
-        try typeActualStudioResult(warmText, producer: producer)
+        XCTAssertEqual(producer.textViews["miniapps.textstudio.editor"].value as? String, warmText,
+            "TextStudio must still hold its pending original result when the user returns to it")
         let expectedWarm = try expectedNativeBodies(request: warm.request, text: warmText,
             bodyOverrides: [second: newerSecond])
         tap(producer.buttons["miniapps.textstudio.return"])
