@@ -380,6 +380,166 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         tap(app.navigationBars["Annotations"].buttons["Close"])
     }
 
+    #if targetEnvironment(simulator)
+    @MainActor
+    func testOrdinaryPreparationBackfillsFiveThousandSavedSQLiteNotes() async throws {
+        executionTimeAllowance = 14_400
+        XCTAssertTrue(isPad)
+        XCUIDevice.shared.orientation = .landscapeLeft
+        for key in ["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"] {
+            XCTAssertNil(ProcessInfo.processInfo.environment[key])
+        }
+        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        assertReaderHasText()
+        try await openAnnotations()
+        let previous = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
+        _ = try XCTUnwrap(previous.isEmpty ? true : nil, "The scale fixture requires a fresh annotations store")
+        tap(app.navigationBars["Annotations"].buttons["Close"])
+        tap(try originalStudyToolsActionInWindow())
+        let tools = app.segmentedControls["torah-inspector-tools"]
+        XCTAssertTrue(tools.waitForExistence(timeout: 15))
+        tap(tools.buttons["Notes"])
+        tap(app.buttons["torah-inspector-add-note"])
+        let quick = app.textViews["annotation-note-text"]
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        let marker = "Backfill שלום " + UUID().uuidString
+        tap(quick)
+        quick.typeText(marker)
+        tap(app.buttons["annotation-save-toolbar"])
+        try await waitForAbsence(quick)
+        tap(app.buttons["torah-inspector-close"])
+        try await openAnnotations()
+        let reference = try await newAnnotationRow(previous: previous)
+        let referenceID = try XCTUnwrap(Int64(reference.identifier.dropFirst("original-book-annotation-".count)))
+        let referenceRow = try readCanonicalRow(referenceID)
+        XCTAssertEqual(referenceRow.preview, marker)
+        XCTAssertEqual(referenceRow.revision, 0)
+        XCTAssertNil(referenceRow.body)
+
+        let databaseURL = try canonicalAnnotationDatabase()
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        let seeds = try seedHistoricalPlainNotes(reference: referenceRow, marker: marker, databaseURL: databaseURL)
+        XCTAssertEqual(seeds.count, 5_000)
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        assertReaderHasText()
+
+        try await openOrdinaryNotePreparation()
+        let preparation = app.buttons["annotation-backfill-start"]
+        let conversion = app.buttons["annotation-native-backfill-start"]
+        try revealPreparationControl(preparation, towardsBottom: false)
+        tap(preparation)
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-backfill-complete"].waitForExistence(timeout: 300))
+        try revealPreparationControl(conversion)
+        try await waitForEnabled(conversion)
+        tap(conversion)
+        let confirm = app.buttons["annotation-native-backfill-confirm"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
+        tap(confirm)
+        let complete = app.descendants(matching: .any)["annotation-native-backfill-complete"]
+        let failure = app.descendants(matching: .any)["annotation-native-backfill-failed"]
+        let closeFailure = app.descendants(matching: .any)["annotation-native-backfill-close-failed"]
+        let deadline = Date().addingTimeInterval(12_000)
+        while !complete.exists && !failure.exists && !closeFailure.exists && Date() < deadline {
+            try await Task.sleep(for: .seconds(5))
+        }
+        guard complete.exists && !failure.exists && !closeFailure.exists else {
+            retainNativeEvidence("scale-backfill-terminal-error")
+            XCTFail("The original bulk migration did not finish")
+            return
+        }
+        let converted = app.staticTexts["annotation-native-backfill-converted"]
+        XCTAssertEqual(converted.label.filter(\.isNumber), "5000")
+
+        let convertedDatabase = try canonicalAnnotationDatabase()
+        var payloadDigests = Set<String>()
+        for seed in seeds {
+            let row = try readCanonicalRow(seed.id, databaseURL: convertedDatabase)
+            XCTAssertEqual(row.uuid, seed.uuid)
+            XCTAssertEqual(row.preview, seed.text)
+            XCTAssertEqual(row.revision, 1)
+            XCTAssertNotNil(row.body)
+            payloadDigests.insert(try XCTUnwrap(row.payloadDigest))
+        }
+        XCTAssertEqual(payloadDigests.count, 5_000)
+        let samples = try [0, 2_499, 4_999].map { try readCanonicalRow(seeds[$0].id, databaseURL: convertedDatabase) }
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        assertReaderHasText()
+        for row in samples {
+            let persisted = try readCanonicalRow(row.id)
+            XCTAssertEqual(persisted, row)
+            attachStorage(persisted, stage: "scale-after-cold-relaunch")
+        }
+    }
+
+    /// Seed historical inputs inside the owned simulator while its application is stopped.
+    private func seedHistoricalPlainNotes(reference: CanonicalRow, marker: String, databaseURL: URL) throws
+        -> [(id: Int64, uuid: UUID, text: String)] {
+        let segments = databaseURL.standardizedFileURL.pathComponents
+        guard let devices = segments.firstIndex(of: "Devices"), devices > 0, segments.count > devices + 2,
+              segments[devices - 1] == "CoreSimulator", segments[devices + 2] == "data",
+              UUID(uuidString: segments[devices + 1]) != nil,
+              databaseURL.lastPathComponent == "Annotations.sqlite",
+              databaseURL.resolvingSymlinksInPath() == databaseURL else {
+            throw NSError(domain: "OriginalSQLiteBackfillFixture", code: Int(SQLITE_MISUSE),
+                          userInfo: [NSLocalizedDescriptionKey: "Scale fixture is outside the installed simulator"])
+        }
+        var connection: OpaquePointer?
+        let openResult = sqlite3_open_v2(databaseURL.path, &connection, SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX, nil)
+        guard openResult == SQLITE_OK, let database = connection else {
+            if let connection { sqlite3_close(connection) }
+            throw NSError(domain: "OriginalSQLiteBackfillFixture", code: Int(openResult))
+        }
+        defer { sqlite3_close(database) }
+        func check(_ actual: Int32, _ expected: Int32 = SQLITE_OK) throws {
+            guard actual == expected else {
+                throw NSError(domain: "OriginalSQLiteBackfillFixture", code: Int(actual),
+                              userInfo: [NSLocalizedDescriptionKey: String(cString: sqlite3_errmsg(database))])
+            }
+        }
+        try check(sqlite3_exec(database, "BEGIN IMMEDIATE", nil, nil, nil))
+        var committed = false
+        defer { if !committed { sqlite3_exec(database, "ROLLBACK", nil, nil, nil) } }
+        let sql = """
+            INSERT INTO annotations (bkId, contentId, startIndex, length, startIndexDiac, lengthDiac,
+                color, type, note, createdAt, context, part, page, ckRecordId, lastModified, backendLocator)
+            SELECT bkId, contentId, startIndex, length, startIndexDiac, lengthDiac,
+                color, type, ?, createdAt, context, part, page, ?, lastModified, backendLocator
+            FROM annotations WHERE id = ?;
+            """
+        var statement: OpaquePointer?
+        try check(sqlite3_prepare_v2(database, sql, -1, &statement, nil))
+        guard let insert = statement else {
+            throw NSError(domain: "OriginalSQLiteBackfillFixture", code: Int(SQLITE_INTERNAL))
+        }
+        defer { sqlite3_finalize(insert) }
+        var rows: [(Int64, UUID, String)] = [(reference.id, reference.uuid, marker)]
+        rows.reserveCapacity(5_000)
+        let copyString = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        for index in 1..<5_000 {
+            let uuid = UUID()
+            let text = "\(marker) \(index) 📖"
+            try check(sqlite3_bind_text(insert, 1, text, -1, copyString))
+            try check(sqlite3_bind_text(insert, 2, uuid.uuidString, -1, copyString))
+            try check(sqlite3_bind_int64(insert, 3, reference.id))
+            try check(sqlite3_step(insert), SQLITE_DONE)
+            guard sqlite3_changes(database) == 1 else {
+                throw NSError(domain: "OriginalSQLiteBackfillFixture", code: Int(SQLITE_NOTFOUND))
+            }
+            rows.append((sqlite3_last_insert_rowid(database), uuid, text))
+            try check(sqlite3_reset(insert))
+        }
+        try check(sqlite3_exec(database, "COMMIT", nil, nil, nil))
+        committed = true
+        return rows
+    }
+    #endif
+
     @MainActor
     private func openOrdinaryNotePreparation() async throws {
         let settings = app.buttons["main-settings-button"]
@@ -1101,7 +1261,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
-    private func readCanonicalRow(_ rowID: Int64) throws -> CanonicalRow {
+    private func canonicalAnnotationDatabase() throws -> URL {
         let initialPath = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
         XCTAssertTrue(initialPath.hasPrefix("/"))
         let initialDatabase = URL(fileURLWithPath: initialPath)
@@ -1121,6 +1281,11 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(values["annotations_FolderPath"] == nil, "No selected-folder bookmark may be replaced")
             XCTAssertFalse(values["use_icloud_for_annotations"] as? Bool ?? false)
         }
+        return databaseURL
+    }
+
+    private func readCanonicalRow(_ rowID: Int64, databaseURL: URL? = nil) throws -> CanonicalRow {
+        let databaseURL = try databaseURL ?? canonicalAnnotationDatabase()
         let path = databaseURL.path
         var connection: OpaquePointer?
         XCTAssertEqual(sqlite3_open_v2(path, &connection, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
