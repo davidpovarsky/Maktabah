@@ -167,3 +167,13 @@ public struct ActionTextVersion: Codable, Sendable, Equatable {
         self.isPrimary = isPrimary
     }
 }
+
+public struct ActionNavigationStructure: Codable, Sendable, Equatable {
+    public let id: String
+    public let title: String
+
+    public init(id: String, title: String) {
+        self.id = id
+        self.title = title
+    }
+}

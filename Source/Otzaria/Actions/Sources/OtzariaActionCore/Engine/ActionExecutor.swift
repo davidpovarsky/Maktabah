@@ -201,6 +201,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.getTOC" || state is any ActionTableOfContentsPort)
                         && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
                         && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
+                        && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -301,6 +302,20 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
             result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "reader.getNavigationStructures":
+            guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
+            let work = try rawWork.decoded(as: ActionWorkRef.self)
+            try ActionPolicy.work(work.workKey, backend: backend, context: context)
+            guard let provider = state as? any ActionNavigationStructurePort else {
+                throw ActionEngineFailure(.notSupported, "navigation_structures_unavailable")
+            }
+            let structures = try await provider.navigationStructures(for: work, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard structures.count <= 128,
+                  Set(structures.map(\.id)).count == structures.count,
+                  structures.allSatisfy({ ActionValidation.nonempty($0.id, max: 512)
+                      && ActionValidation.nonempty($0.title, max: 512) }) else { throw ActionPortError.invalidResponse }
+            result = completed(["workRef": try .encoded(work), "structures": try .encoded(structures)])
         case "reader.listVersions":
             guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
             let work = try rawWork.decoded(as: ActionWorkRef.self)
