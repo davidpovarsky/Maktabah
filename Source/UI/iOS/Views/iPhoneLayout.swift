@@ -81,6 +81,17 @@ struct iPhoneLayout: View {
         }
     }
 
+    // Each NavigationStack presents a book only when it owns that Reader.
+    private func readerSelection(in tab: iOSTab) -> Binding<BooksData?> {
+        Binding(
+            get: { bManager.selectedBookPresentationMode == tab.appMode ? bManager.selectedBook : nil },
+            set: { book in
+                guard bManager.selectedBookPresentationMode == tab.appMode else { return }
+                bManager.selectedBook = book
+            }
+        )
+    }
+
     // MARK: - Tab Contents
 
     private var viewerTabContent: some View {
@@ -89,7 +100,7 @@ struct iPhoneLayout: View {
                 .modifier(MaktabahNativeRoutingSurface(kind: .library))
                 .navigationTitle(iOSTab.viewer.title)
                 .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
+                    item: readerSelection(in: .viewer),
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
@@ -107,7 +118,7 @@ struct iPhoneLayout: View {
                 .modifier(MaktabahNativeRoutingSurface(kind: .search))
                 .navigationTitle(iOSTab.search.title)
                 .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
+                    item: readerSelection(in: .search),
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
@@ -119,7 +130,7 @@ struct iPhoneLayout: View {
             AuthorModeView()
                 .navigationTitle(iOSTab.author.title)
                 .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
+                    item: readerSelection(in: .author),
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
@@ -137,7 +148,7 @@ struct iPhoneLayout: View {
                 .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
                 .navigationTitle(iOSTab.annotations.title)
                 .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
+                    item: readerSelection(in: .annotations),
                     manager: bManager
                 )
                 .toolbarGeneral(showSettings: $showSettings)
@@ -150,7 +161,7 @@ struct iPhoneLayout: View {
                 .modifier(MaktabahNativeRoutingSurface(kind: .history))
                 .navigationTitle(iOSTab.history.title)
                 .adaptiveReaderPush(
-                    item: $bManager.selectedBook,
+                    item: readerSelection(in: .history),
                     manager: bManager
                 )
                 .toolbar {

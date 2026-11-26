@@ -25,7 +25,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
     }
 
     var currentMode: AppMode = .viewer
-    var selectedBook: BooksData?
+    var selectedBook: BooksData? {
+        didSet { selectedBookPresentationMode = selectedBook.map { _ in currentMode } }
+    }
+    private(set) var selectedBookPresentationMode: AppMode?
     var selectedBookForInfo: BooksData?
     var selectedContentId: Int?
     var searchText: String = ""
@@ -168,7 +171,9 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
 
         if selectedBook?.id == oldId {
+            let presentationMode = selectedBookPresentationMode
             selectedBook = newBookData
+            selectedBookPresentationMode = presentationMode
         }
     }
 
