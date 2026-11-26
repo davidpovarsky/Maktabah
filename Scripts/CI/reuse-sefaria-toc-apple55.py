@@ -8,11 +8,14 @@ import argparse
 import datetime as dt
 import hashlib
 import importlib.util
+import io
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import runpy
 import subprocess
 import sys
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = "docs/hq-integration/sefaria-apple55-result-20261120"
@@ -56,6 +59,68 @@ def checked_sources(gate, expected_sha, historical):
     return records
 
 
+def admit_scaleway_result(output, expected_sha):
+    source = "6163c376182172d8308e14a20bab4b9f92514eca"
+    archive_path = ROOT / "docs/hq-integration/sefaria-apple55-result-20261126/scaleway-xcode27-apple-foundation55.zip"
+    expected_digest = "85c1853d0b46f548d77b092aefc06fc978ac97a12eafab141723f8aa393df902"
+    packed = archive_path.read_bytes()
+    require(sha(packed) == expected_digest, "Sealed Scaleway Apple55 archive changed")
+    subprocess.run(["git", "merge-base", "--is-ancestor", source, expected_sha],
+                   cwd=ROOT, check=True, timeout=30)
+    snapshot = output / "scaleway-evidence"
+    snapshot.mkdir()
+    with zipfile.ZipFile(io.BytesIO(packed)) as archive:
+        for entry in archive.infolist():
+            path = PurePosixPath(entry.filename)
+            require(not entry.is_dir() and not path.is_absolute() and ".." not in path.parts
+                    and str(path) == entry.filename and entry.file_size < 200000,
+                    "Unexpected member in Scaleway Apple55 archive")
+            target = snapshot / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("xb") as out:
+                out.write(archive.read(entry))
+    result = json.loads((snapshot / "RESULT.json").read_text())
+    require(result["expectedSHA"] == source and result["status"] == "APPLE_FOUNDATION_55_PASS"
+            and result["host"]["platform"] == "darwin" and result["driverReturncode"] == 0
+            and result["inputHashesUnchanged"] is True, "Scaleway Apple55 execution failed admission")
+    historical = json.loads((snapshot / "SOURCE_INPUTS.json").read_text())
+    wrapper = "Scripts/CI/sefaria-toc-apple55.py"
+    require(sha((ROOT / wrapper).read_bytes()) == historical[wrapper]["sha256"],
+            "Original gate changed; Scaleway evidence reuse is not permitted")
+    gate = runpy.run_path(str(ROOT / wrapper))
+    current = gate["source_inputs"](ROOT, expected_sha)
+    require(len(current) == 13 and current == historical, "Scaleway Apple55 source closure differs")
+    for relative, record in historical.items():
+        previous = subprocess.check_output(["git", "show", source + ":" + relative], cwd=ROOT, timeout=30)
+        require(len(previous) == record["bytes"] and sha(previous) == record["sha256"],
+                "Scaleway Apple55 historical Git bytes differ: " + relative)
+    raw = snapshot / "raw"
+    index = json.loads((snapshot / "RAW_INDEX.json").read_text())
+    require(len(index) == 31 and {row["path"] for row in index}
+            == {file.relative_to(raw).as_posix() for file in raw.rglob("*") if file.is_file()},
+            "Missing original Scaleway Apple55 evidence")
+    for row in index:
+        content = (raw / row["path"]).read_bytes()
+        require(len(content) == row["bytes"] and sha(content) == row["sha256"],
+                "Original Scaleway Apple55 evidence differs: " + row["path"])
+    verified = gate["verify_driver_result"](raw, current)
+    require(verified == result["driverResult"], "Original Apple55 verifier receipt differs")
+    write_json(output / "SOURCE_INPUTS.json", current)
+    return {
+        "status": "REUSED_VERIFIED_APPLE_FOUNDATION_55_PASS",
+        "historical_source": source,
+        "historical_run": None,
+        "historical_run_url": None,
+        "historical_evidence_commit": None,
+        "historical_manifest_sha256": None,
+        "historical_artifact_sha256": expected_digest,
+        "execution_authority": "Scaleway Xcode 27 Apple Foundation run",
+        "verified_historical_cases": verified["passed"],
+        "exact_source_inputs": len(current),
+        "inputHashesUnchanged": True,
+    }
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--expected-sha", default=os.environ.get("EXPECTED_CHECKOUT_SHA", ""))
@@ -78,6 +143,10 @@ def main(argv=None):
         "embeddedHermes": "NOT_RUN", "physicalOffline": "NOT_RUN",
     }
     try:
+        library_models = ROOT / "Source/LibraryBackend/LibraryBackendModels.swift"
+        if sha(library_models.read_bytes()) == "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d":
+            report.update(admit_scaleway_result(output, args.expected_sha))
+            return 0
         evidence = ROOT / EVIDENCE
         manifest_raw = (evidence / "MANIFEST.json").read_bytes()
         require(sha(manifest_raw) == MANIFEST_SHA256, "Historical evidence manifest changed")
