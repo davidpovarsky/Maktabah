@@ -453,10 +453,13 @@ struct MaktabahNativeSceneBindings {
               scene.session.persistentIdentifier == sceneID.rawValue,
               textView.bounds.width > 1, textView.bounds.height > 1 else { return false }
         var current: UIView? = textView
+        var effectiveAlpha: CGFloat = 1
         while let view = current {
-            guard !view.isHidden, view.alpha > 0 else { return false }
+            guard !view.isHidden else { return false }
+            effectiveAlpha *= view.alpha
             current = view.superview
         }
+        guard effectiveAlpha >= 0.95 else { return false }
         let target = textView.convert(textView.bounds, to: window)
         guard target.origin.x.isFinite, target.origin.y.isFinite, target.width.isFinite, target.height.isFinite else { return false }
         var visible = target.intersection(window.bounds)
@@ -472,7 +475,8 @@ struct MaktabahNativeSceneBindings {
         guard !visible.isNull, visible.width > 1, visible.height > 1 else { return false }
         var top = window.rootViewController
         while let presented = top?.presentedViewController { top = presented }
-        guard let top, top !== window.rootViewController, textView.isDescendant(of: top.view) else { return false }
+        guard let top, top !== window.rootViewController, top.transitionCoordinator == nil,
+              textView.isDescendant(of: top.view) else { return false }
         if !expectedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             // Reuse the existing TextKit viewport/glyph proof for this actual
             // text view. Blank drafts need a visible editor, not an invented glyph.

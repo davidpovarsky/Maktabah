@@ -13,6 +13,13 @@ public struct NativeSurfaceWitness: UIViewControllerRepresentable {
         public let surface: NativeSurfaceState
         public let isVisible: Bool
         public let submissionID: UUID?
+
+        public init(sceneID: UIStableID, surface: NativeSurfaceState, isVisible: Bool, submissionID: UUID?) {
+            self.sceneID = sceneID
+            self.surface = surface
+            self.isVisible = isVisible
+            self.submissionID = submissionID
+        }
     }
     public let surface: NativeSurfaceState
     public let report: @MainActor (Evidence) -> Void

@@ -69,7 +69,6 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
     @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
     private var searchFieldRevision: UInt64 = 0
-    private var noteEditorSurfaceRevision: UInt64 = 0
     @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
     @ObservationIgnored private var searchPresentationOwner: UUID?
     @ObservationIgnored private var searchPresentationBlocked: (@MainActor () -> Bool)?
@@ -177,20 +176,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {
         guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
         guard owner.observeTextView(textView, presentationID: presentationID) else { return }
-        noteEditorSurfaceRevision &+= 1
         try? nativeStateChanged()
     }
     func noteEditorDidDismiss(id: UUID, presentationID: UUID) {
         guard let owner = noteEditorOwner, owner.id == id else { return }
         guard owner.didDismiss(presentationID: presentationID) else { return }
         try? nativeStateChanged()
-    }
-    func ownsNoteEditor(_ reader: ReaderViewModel, draft: Annotation) -> Bool {
-        // The sheet can appear before its UIKit editor is attached.
-        _ = noteEditorSurfaceRevision
-        guard let owner = noteEditorOwner, owner.reader === reader, owner.current == draft,
-              let bound = noteDraftBinding, bound.owner === owner, bound.draft == draft else { return false }
-        return true
     }
     #if DEBUG
     /// Passive acceptance observation of the existing exact Reader/editor owner.
@@ -262,7 +253,10 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         #if DEBUG
         if noteDraftBinding === bound { diagnoseNoteDraftSurface(stage: "before-binding-release") }
         #endif
-        if noteDraftBinding === bound { noteDraftBinding = nil }
+        if noteDraftBinding === bound {
+            noteDraftBinding = nil
+            visibilityChecks[UIDestinationID(rawValue: "native.reader.noteDraft")!] = nil
+        }
         // The original unsaved editor remains under the user's Save/Cancel.
     }
     func prepareNoteDraftRoute(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
@@ -463,6 +457,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try validateSurface(command)
             guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
             try bound.apply()
+            // Observe the actual editor's UITextView. Its binding checks the
+            // frontmost sheet, scene, text and TextKit layout on each read.
+            observeVisibility(for: command.route.route.destination) { [weak self, weak bound] in
+                guard let self, let bound, noteDraftBinding === bound,
+                      noteEditorOwner === bound.owner, (try? bound.validateVisible()) != nil,
+                      let actual = try? surface(.noteDraft) else { return nil }
+                return .init(sceneID: sceneID, surface: actual, isVisible: true,
+                             submissionID: command.invocation.requestId)
+            }
             #if DEBUG
             diagnoseNoteDraftSurface(stage: "after-apply")
             #endif

@@ -740,10 +740,6 @@ struct iOSReaderWorkspaceView: View {
                         nativeStudyAcceptance.observeNote(textView, presentationID: presentationID)
                     }
                     #endif
-                },
-                nativeSurface: {
-                    AnyView(MaktabahNativeRoutingWitness(kind: .noteDraft,
-                        noteReader: viewModel, noteDraft: editingAnnotation))
                 }
             )
         }

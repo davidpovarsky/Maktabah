@@ -275,16 +275,11 @@ struct MaktabahNativeRoutingSurface: ViewModifier {
 struct MaktabahNativeRoutingWitness: View {
     let kind: MaktabahNativeSceneProjection.Surface
     var inspectorReader: ReaderViewModel? = nil
-    var noteReader: ReaderViewModel? = nil
-    var noteDraft: Annotation? = nil
     @Environment(\.maktabahNativeRoutingSession) private var session
 
     var body: some View {
         if let session,
            kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
-           kind != .noteDraft || (noteReader.flatMap { reader in
-               noteDraft.map { session.ownsNoteEditor(reader, draft: $0) }
-           } == true),
            let state = try? session.surface(kind) {
             NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
                 observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
