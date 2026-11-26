@@ -734,6 +734,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     func makeGuide(_ definition: UIGuideDefinition, session: MaktabahNativeSceneSession,
                    manager: iOSNavigationManager) -> UIGuideRun {
         let sceneID = session.sceneID, managerID = ObjectIdentifier(manager)
+        var verifiedPresentation: (request: UUID, activeTab: UIStableID?)?
         return .init(definition: definition, sceneID: sceneID, observe: { [weak self, weak session] in
             guard let self, let session, let entry = scenes[sceneID], entry.session === session,
                   entry.managerID == managerID, session.foreground,
@@ -744,6 +745,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                 defer { finish(readContext, sceneID: sceneID) }
                 return try directory.synchronousScene(sceneID: sceneID, context: readContext, backend: snapshot)
             } catch { return nil }
+        }, verifyVisible: { [weak self, weak session] receipt in
+            guard let self, let session, scenes[sceneID]?.session === session,
+                  let identity = try? session.guidePresentationIdentity(for: receipt.route) else { return false }
+            if let prior = verifiedPresentation, prior.request == receipt.requestId {
+                return prior.activeTab == identity.activeTabID
+            }
+            verifiedPresentation = (receipt.requestId, identity.activeTabID)
+            return true
         }) { [weak self, weak session] intent, before, deadline in
             guard let self, let session, scenes[sceneID]?.session === session, before.sceneID == sceneID else {
                 throw UIRouteError(.staleState, "guide_scene_lifetime_changed")
