@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -324,6 +324,41 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         catch { throw safe(error) }
         try await require("reader.getNavigationStructures", backend: work.backend, invocation: invocation)
         return original.map { .init(id: $0.id, title: $0.title) }
+    }
+
+    func navigationItems(for work: ActionWorkRef, structureID: String?, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry] {
+        guard work.catalogRevision == nil, (1...101).contains(maximumEntries) else {
+            throw ActionContractError.invalid("workRef")
+        }
+        try await require("reader.navigationItems", backend: work.backend, invocation: invocation)
+        let catalog = try await catalogWorks(backend: work.backend, invocation: invocation)
+        guard let sourceWork = catalog.works.first(where: { $0.locator.workKey.utf8.elementsEqual(work.workKey.utf8) }) else {
+            throw ActionPortError.notFound
+        }
+
+        let entries: [ActionSourceSectionEntry]
+        do {
+            if let structureID {
+                let structures = try await coordinator.navigationStructures(for: sourceWork)
+                let matches = structures.filter { $0.id.utf8.elementsEqual(structureID.utf8) }
+                guard matches.count <= 1 else { throw ActionPortError.invalidResponse }
+                guard let structure = matches.first else { throw ActionPortError.notFound }
+                let task = Task.detached {
+                    try ActionLibraryProjection.sourceSections(structure.nodes, invocation: invocation,
+                                                               maximumEntries: maximumEntries, leavesOnly: true)
+                }
+                entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+            } else {
+                let items = try await coordinator.navigationItems(for: sourceWork)
+                entries = try items.prefix(maximumEntries).map {
+                    .init(locator: try ActionAppIdentityBridge.actionRef($0.locator), title: $0.title)
+                }
+            }
+        } catch let error as ActionPortError { throw error }
+        catch { throw safe(error) }
+        try await require("reader.navigationItems", backend: work.backend, invocation: invocation)
+        return entries
     }
 
     func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion] {

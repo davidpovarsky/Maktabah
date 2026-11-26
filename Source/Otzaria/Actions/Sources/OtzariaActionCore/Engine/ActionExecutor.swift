@@ -202,6 +202,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
                         && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
                         && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
+                        && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -316,6 +317,29 @@ public actor ActionExecutor {
                   structures.allSatisfy({ ActionValidation.nonempty($0.id, max: 512)
                       && ActionValidation.nonempty($0.title, max: 512) }) else { throw ActionPortError.invalidResponse }
             result = completed(["workRef": try .encoded(work), "structures": try .encoded(structures)])
+        case "reader.navigationItems":
+            guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
+            let work = try rawWork.decoded(as: ActionWorkRef.self)
+            try ActionPolicy.work(work.workKey, backend: backend, context: context)
+            guard let provider = state as? any ActionNavigationItemsPort else {
+                throw ActionEngineFailure(.notSupported, "navigation_items_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 25, range: 1...100)
+            let structureID = request.arguments["structureID"]?.string
+            let items = try await provider.navigationItems(for: work, structureID: structureID,
+                                                           maximumEntries: limit + 1, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard items.count <= limit + 1, Set(items.map(\.locator)).count == items.count else {
+                throw ActionPortError.invalidResponse
+            }
+            for item in items {
+                do { try ActionValidation.text(item.locator, backend: backend) }
+                catch { throw ActionPortError.invalidResponse }
+                guard item.locator.workKey.utf8.elementsEqual(work.workKey.utf8),
+                      ActionValidation.nonempty(item.title, max: 512) else { throw ActionPortError.invalidResponse }
+            }
+            result = completed(["workRef": try .encoded(work), "items": try .encoded(Array(items.prefix(limit))),
+                                "truncated": .bool(items.count > limit)])
         case "reader.listVersions":
             guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
             let work = try rawWork.decoded(as: ActionWorkRef.self)
