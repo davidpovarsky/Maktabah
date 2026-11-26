@@ -1,0 +1,123 @@
+--- bfc80e5e/OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotation.swift
++++ 9ebf4271/OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotation.swift
+@@ -540,10 +540,15 @@
+         guard maximumBytes >= 0, maximumBytes <= OriginalEditorMiniAppsFiles.maximumBytes else {
+             throw AnytypeOriginalEditorMiniAppsError.attachmentTooLarge
+         }
++        var probe = "start"
++        var completed = false
++        defer { NSLog("OriginalAnytypeSavedFilePhase %@ %@", probe, completed ? "complete" : "failed") }
+         try Task.checkCancellation()
+         try beginMiniApps()
+         defer { miniAppsBusy = false; owner.host.endMiniAppsInteraction() }
+         try validateMiniAppsContext(context)
++        probe = "read-source"
++        NSLog("OriginalAnytypeSavedFilePhase %@ started", probe)
+         let current = try await readMiniAppsNodes()
+         try Task.checkCancellation()
+         let selected = try remappedSelection(context: context, current: current)
+@@ -562,11 +567,15 @@
+         guard candidates.count == expected.count else {
+             throw AnytypeOriginalEditorMiniAppsError.nativeBodyChanged
+         }
+-        guard !candidates.isEmpty else { return [] }
++        guard !candidates.isEmpty else { probe = "no-files"; completed = true; return [] }
++        probe = "prepare-owned-archive"
++        NSLog("OriginalAnytypeSavedFilePhase %@ started", probe)
+         let captured = binding
+         let origin = owner.host.snapshotTransportOriginHostProfileID
+         let directory = try OriginalEditorArchiveFiles.makeOwnedDirectory()
+         defer { try? FileManager.default.removeItem(at: directory) }
++        probe = "native-export"
++        NSLog("OriginalAnytypeSavedFilePhase %@ started", probe)
+         let archive = try await owner.host.preparedSession.owner.withExclusiveRead(
+             contextId: captured.objectID, spaceId: captured.spaceID, rpcNames: ["ObjectListExport"]
+         ) {
+@@ -577,6 +586,8 @@
+         }
+         try Task.checkCancellation()
+         try owner.validateCurrent()
++        probe = "read-graph-after-export"
++        NSLog("OriginalAnytypeSavedFilePhase %@ started", probe)
+         let observed = try await readMiniAppsNodes()
+         let byID = Dictionary(uniqueKeysWithValues: observed.map { ($0.id, $0) })
+         var result: [AnytypeOriginalEditorMiniAppsFile] = []
+@@ -586,11 +597,14 @@
+                   try before.equivalent(to: node), case .file(let file)? = try actual.native().content else {
+                 throw AnytypeOriginalEditorMiniAppsError.nativeBodyChanged
+             }
++            probe = "read-selected-file-metadata"
++            NSLog("OriginalAnytypeSavedFilePhase %@ started", probe)
+             let attachment = try OriginalEditorMiniAppsFiles.attachment(file: file, from: archive, maximumBytes: remaining)
+             remaining -= attachment.data.count
+             result.append(.init(blockID: node.id, attachment: attachment))
+         }
+         try owner.validateCurrent()
++        completed = true
+         return result
+     }
+ 
+@@ -686,6 +700,10 @@
+         action: AnytypeOriginalEditorMiniAppsAction, text: String,
+         attachments: [AnytypeOriginalEditorMiniAppsAttachment], maximumBodyBytes: Int) async throws
+         -> AnytypeOriginalEditorLocalAnnotationCapture {
++        func stage(_ name: String) {
++            if !attachments.isEmpty { NSLog("OriginalAnytypeFileReturnPhase %@", name) }
++        }
++        stage("received")
+         try Task.checkCancellation()
+         try OriginalEditorMiniAppsFiles.validate(attachments)
+         try AnytypeOriginalEditorSnapshot.validateLimit(maximumBodyBytes)
+@@ -696,8 +714,10 @@
+         guard text.utf8.count <= 1_048_576, !text.utf8.contains(0) else {
+             throw AnytypeOriginalEditorMiniAppsError.unsupportedResult
+         }
++        stage("read-source")
+         var current = try await readMiniAppsNodes()
+         try Task.checkCancellation()
++        stage("read-source-returned")
+         let sameNativeObject = context.source.object == binding.objectID && context.source.space == binding.spaceID
+         if !sameNativeObject {
+             guard try OriginalEditorMiniAppsGraph.matching(context.nodes, current) else {
+@@ -826,11 +846,14 @@
+                 // The original block-upload operation schedules a background
+                 // update. Use the original file-object upload and link only
+                 // after that native operation has returned its saved object.
++                stage("stage-upload")
+                 let data = try await files.createFileData(source: .path(upload.path))
++                stage("upload-native-file")
+                 let saved = try await files.uploadFileObject(spaceId: binding.spaceID, data: data,
+                     origin: .none, createdInContext: binding.objectID, createdInContextRef: added)
+                 try Task.checkCancellation()
+                 try owner.validateCurrent()
++                stage("upload-returned")
+                 guard !saved.id.isEmpty, saved.spaceId == binding.spaceID,
+                       saved.sizeInBytes == attachment.data.count,
+                       saved.fileName.utf8.elementsEqual(attachment.name.utf8) else {
+@@ -846,6 +869,7 @@
+                 }
+                 try Task.checkCancellation()
+                 try owner.validateCurrent()
++                stage("file-link-returned")
+                 current = try await readMiniAppsNodes()
+                 guard let observed = current.first(where: { $0.id == added }),
+                       case .file(let file)? = try observed.native().content,
+@@ -865,8 +889,10 @@
+             }
+             try Task.checkCancellation()
+             owner.host.endMiniAppsInteraction(restore: false)
++            stage("native-export")
+             let capture = try await owner.capture(maximumBodyBytes: maximumBodyBytes)
+             try Task.checkCancellation()
++            stage("native-export-returned")
+             if !importedFiles.isEmpty {
+                 let archive = try OriginalEditorLocalAnnotationNativeBody.decoded(capture.nativeCapture.snapshot)
+                 for (objectID, expectedBytes) in importedFiles {
+@@ -875,6 +901,7 @@
+                     }
+                 }
+             }
++            stage("read-back-original-bytes")
+             return capture
+ 
+         } catch { owner.retire(); throw error }

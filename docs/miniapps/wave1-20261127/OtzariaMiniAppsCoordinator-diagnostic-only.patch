@@ -1,0 +1,113 @@
+--- 7f68307e6395b832ad294d26129f9dc6baa0639f/Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift
++++ 2aa8e3aa0819e74ae3e5af1056b84e73e723fa57/Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift
+@@ -47,11 +47,15 @@
+     private var originalEditors: [UUID: OriginalEditorOwner] = [:]
+ 
+     func registerOriginalEditor(_ model: AnnotationOriginalEditorProductionPresentation) {
++        NSLog("OriginalMiniAppsHostFilePhase original-editor-registered")
+         if originalEditors[model.id]?.model !== model {
+             originalEditors[model.id] = .init(model: model)
+         }
+     }
+-    func unregisterOriginalEditor(id: UUID) { originalEditors.removeValue(forKey: id) }
++    func unregisterOriginalEditor(id: UUID) {
++        NSLog("OriginalMiniAppsHostFilePhase original-editor-unregistered")
++        originalEditors.removeValue(forKey: id)
++    }
+     #endif
+ 
+     private var scenes: [String: SceneOwner] = [:]
+@@ -226,6 +230,7 @@
+         var continuingAsynchronously = false
+         defer { if !continuingAsynchronously { processing.remove(result.requestID) } }
+         do {
++            NSLog("OriginalMiniAppsHostFilePhase consume-request")
+             guard let request = try store.request(id: result.requestID),
+                   request.source.appID == Self.sourceAppID else { throw MiniAppBridgeError.wrongSource }
+             let sceneOwner = request.source.sceneID.flatMap { scenes[$0] }
+@@ -243,6 +248,7 @@
+                 display(result, store: store, scene: scene)
+                 return
+             }
++            NSLog("OriginalMiniAppsHostFilePhase restore-source")
+             let document = try OtzariaMiniAppsDocument.restore(from: request.source)
+             if try OtzariaMiniAppsPersistence.committed(result, document: document) != nil {
+                 _ = try store.acknowledgeResult(id: result.requestID, sourceAppID: Self.sourceAppID)
+@@ -290,7 +296,9 @@
+     private func receiveOriginal(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
+                                  contextJSON: String, store: MiniAppBridgeStore,
+                                  manager: iOSNavigationManager, scene: UIWindowScene?) {
++        NSLog("OriginalMiniAppsHostFilePhase recover-editor")
+         if let id = document.editorID, let owner = originalEditors[id], let model = owner.model {
++            NSLog("OriginalMiniAppsHostFilePhase live-editor-found")
+             // Only the issuing mount may preserve newer edits outside the captured targets.
+             let live = owner.pending.flatMap { pending in
+                 pending.id == result.requestID && pending.durableContextJSON.utf8.elementsEqual(contextJSON.utf8)
+@@ -302,21 +310,32 @@
+         }
+         // A cold callback must mount the original native editor against its
+         // actual saved row and the current scene's original workspace owner.
++        NSLog("OriginalMiniAppsHostFilePhase queue-cold-editor")
+         enqueuePresentation(requestID: result.requestID, scene: scene) { [weak self] finished in
+-            guard let self, let presenter = self.presenter(in: scene) else { return false }
++            guard let self, let presenter = self.presenter(in: scene) else {
++                NSLog("OriginalMiniAppsHostFilePhase cold-presenter-missing")
++                return false
++            }
+             let owner = scene.flatMap { self.scenes[$0.session.persistentIdentifier] }
+                 ?? self.scenes.values.first(where: { $0.manager === manager })
+-            guard let workspace = owner?.workspace else { return false }
++            guard let workspace = owner?.workspace else {
++                NSLog("OriginalMiniAppsHostFilePhase cold-workspace-missing")
++                return false
++            }
++            NSLog("OriginalMiniAppsHostFilePhase cold-workspace-admitted")
+             do {
+                 let annotation = try OtzariaMiniAppsPersistence.savedAnnotation(document: document)
+                 let model = AnnotationOriginalEditorProductionPresentation(
+                     annotation: annotation, inspected: nil, workspace: workspace)
+                 model.onReady = { [weak self, weak model] in
++                    NSLog("OriginalMiniAppsHostFilePhase cold-editor-ready")
+                     guard let self, let model else { return }
+                     self.applyOriginal(result, document: document, contextJSON: contextJSON,
+                         store: store, model: model, scene: scene)
+                 }
+                 model.onOpenFailure = { [weak self] error in
++                    let reason = error as NSError
++                    NSLog("OriginalMiniAppsHostFilePhase cold-editor-failed %@ %lld", reason.domain, Int64(reason.code))
+                     self?.originalFailure(error, requestID: result.requestID, scene: scene)
+                 }
+                 let controller = OtzariaMiniAppsResultHost(rootView:
+@@ -327,6 +346,8 @@
+                 presenter.present(controller, animated: true)
+                 return true
+             } catch {
++                let reason = error as NSError
++                NSLog("OriginalMiniAppsHostFilePhase cold-setup-failed %@ %lld", reason.domain, Int64(reason.code))
+                 self.processing.remove(result.requestID)
+                 self.reportedFailures.insert(result.requestID)
+                 return self.presentError(error, sourceView: presenter.view, onDismiss: finished)
+@@ -348,11 +369,14 @@
+                       let expectedNativeAnnotationUUID = model.mount?.binding.annotationUUID else {
+                     throw OtzariaMiniAppsError.missingDocument
+                 }
++                NSLog("OriginalMiniAppsHostFilePhase read-file-payload")
+                 let payload = try self.originalEditorPayload(result, store: store)
++                NSLog("OriginalMiniAppsHostFilePhase apply-in-editor")
+                 let context = try liveContext ?? JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self,
+                     from: Data(contextJSON.utf8))
+                 let outcome = try await model.applyMiniApps(result, context: context,
+                     text: payload.text, attachments: payload.attachments)
++                NSLog("OriginalMiniAppsHostFilePhase commit-completed")
+                 let receipt: AnnotationExchangeCommit
+                 switch outcome {
+                 case .committed(let saved): receipt = saved.receipt
+@@ -368,6 +392,8 @@
+                 ReaderAnnotationRefreshCoordinator.shared.notifyAnnotationMutated()
+                 NotificationCenter.default.post(name: .torahInspectorNotesDidChange, object: nil)
+             } catch {
++                let observed = error as NSError
++                NSLog("OriginalMiniAppsHostFilePhase apply-failed %@ %lld", observed.domain, Int64(observed.code))
+                 self.originalFailure(error, requestID: result.requestID, scene: scene)
+             }
+         }

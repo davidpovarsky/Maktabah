@@ -1,0 +1,32 @@
+--- 7f68307e6395b832ad294d26129f9dc6baa0639f/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift
++++ 2aa8e3aa0819e74ae3e5af1056b84e73e723fa57/Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift
+@@ -447,17 +447,28 @@
+     func applyMiniApps(_ result: MiniAppResult, context: AnytypeOriginalEditorMiniAppsContext, text: String,
+                       attachments: [AnytypeOriginalEditorMiniAppsAttachment]) async throws
+         -> AnnotationLocalEditorOutcome {
++        NSLog("OriginalMiniAppsHostFilePhase editor-admission")
+         guard canSave, operation == nil, let mount else { throw AnnotationLocalEditorError.busy }
+         stage = .saving
+         do {
++            NSLog("OriginalMiniAppsHostFilePhase restore-native-context")
+             let restored = try await mount.restoreMiniAppsContext(context)
++            NSLog("OriginalMiniAppsHostFilePhase restore-native-context-returned")
+             let outcome = try await mount.applyMiniApps(result, context: restored,
+                 text: text, attachments: attachments)
+             switch outcome {
+             case .committed(let saved):
+                 annotation = saved.snapshot.annotation
+                 do { try await open(expected: saved.snapshot) }
+-                catch { if !closed { stage = .failed } }
++                catch {
++                    let failure = error as NSError
++                    NSLog("OriginalMiniAppsHostFilePhase post-commit-reopen-failed %@ %lld",
++                          failure.domain, Int64(failure.code))
++                    if case .storageFailure(let number)? = error as? AnytypeOriginalEditorLocalAnnotationError {
++                        NSLog("OriginalMiniAppsHostFilePhase post-commit-native-storage-errno %lld", Int64(number))
++                    }
++                    if !closed { stage = .failed }
++                }
+             case .completedWithoutOwnership:
+                 if !closed { stage = .saved }
+             }
