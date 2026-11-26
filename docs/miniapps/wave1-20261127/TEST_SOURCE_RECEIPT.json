@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "scope": "TEST_ONLY_TRANSFER_NOT_NEW_RUNTIME_ACCEPTANCE",
+  "base_integration_sha": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "consumer_product_sha": "7f68307e6395b832ad294d26129f9dc6baa0639f",
+  "exact_source_files": [
+    {
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+      "source_sha": "a540762478940a2d920c504a03e413ea710a4df1",
+      "source_blob": "9d749e067d17b4a316c72cf239c09a8c823f735f",
+      "sha256": "df0aebc7d3d7afb897507880115a4dc186df5eda8b016f5292aece317bd2fad0",
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "source_sha": "d03c28e6208ddd93b0101760785d589aaed91a00",
+      "source_blob": "54b958f664d961e39b254736d3f299215325e08c",
+      "sha256": "4cfac093f6deb3a7704515ff2eee8f04472eede6500a942fed37461cd453cd05",
+      "byte_identical_to_source": true
+    }
+  ],
+  "harness_delta": {
+    "source_sha": "5f837db52c9bab3485223bf59c84d3a019b8d1b5",
+    "paths": [
+      "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    ],
+    "change": "Respect isolatesStudyWorkspace, default true; genuine cold OS callback tests explicitly use their dedicated simulator workspace. Preserved newer integration toolbar resolution unchanged."
+  },
+  "selectors": [
+    "testSharedPickerHebrewRTLUsesNativeEditingAndPersistsPreferences",
+    "testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
+    "testOriginalNativeFilesRoundTripAndReplayAfterColdReopen"
+  ],
+  "validation": {
+    "python_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "new_swift_compile": "NOT_RUN",
+    "new_native_runtime": "NOT_RUN"
+  },
+  "paired_runner_requirement": "Use exact final application/tests pins and explicit shared host SDK versus standalone producer pins; checked-in legacy inputs still reference86a6 and must not be silently treated as current."
+}

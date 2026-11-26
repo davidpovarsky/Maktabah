@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 import SQLite3
 import CryptoKit
 
@@ -6,6 +7,10 @@ import CryptoKit
 /// is written by this test: both apps execute their actual public UI and bridge.
 final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
+
+    // The isolated simulator provides test isolation. An actual URL callback
+    // starts a new OS process without XCTest launch arguments.
+    override var isolatesStudyWorkspace: Bool { false }
 
 
     private struct PickerPreferences: Decodable, Equatable {
@@ -52,6 +57,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         var locale: String { self == .hebrew ? "he_IL" : "en_US" }
         var isRTL: Bool { self == .hebrew }
         var more: String { self == .hebrew ? "עוד" : "More" }
+        var suggestions: String { self == .hebrew ? "הצעות" : "Suggestions" }
         var edit: String { self == .hebrew ? "עריכה" : "Edit" }
         var done: String { self == .hebrew ? "סיום" : "Done" }
         var addFavorite: String { self == .hebrew ? "הוספה למועדפים" : "Add to Favorites" }
@@ -219,10 +225,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         func scrollToWindowSwitch() -> XCUIElement {
             // The SwiftUI row contains the actual UIKit switch. Bring the
             // destination into the viewport before requiring its child.
+            let chooser = app.collectionViews.containing(.staticText, identifier: language.suggestions)
+            XCTAssertTrue(chooser.firstMatch.waitForExistence(timeout: 15))
+            XCTAssertEqual(chooser.count, 1, "Scroll only the original Apps list inside its popover or sheet")
+            let list = chooser.firstMatch
             let window = app.switches["miniapps-new-window"].switches.firstMatch
             for _ in 0..<6 {
                 if window.exists && window.isHittable { break }
-                app.swipeUp()
+                list.swipeUp()
             }
             XCTAssertTrue(window.waitForExistence(timeout: 15))
             XCTAssertTrue(window.isHittable && window.isEnabled)
@@ -370,6 +380,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     func testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch() async throws {
+        executionTimeAllowance = 900
         XCTAssertTrue(isPad)
         XCTAssertEqual(ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_PRODUCER_BUNDLE"],
                        "com.itorah.hanlinminiapps")
@@ -394,6 +405,10 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
+        if let originalDB = ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_RICH_ONLY_ORIGINAL_DB"] {
+            try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared, databasePath: originalDB)
+            return
+        }
         try await openAnnotations()
         let priorRows = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
         tap(app.navigationBars["Annotations"].buttons["Close"])
@@ -426,7 +441,9 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         let existingRequests = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["otzaria-note-miniapps"])
-        try await verifyPickerEditing(shared: shared)
+        if ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_CALLBACK_ACCEPTANCE_ONLY"] != "1" {
+            try await verifyPickerEditing(shared: shared)
+        }
         let textStudio = app.buttons["miniapps-launch-nativeapp.textstudio"]
         if !textStudio.waitForExistence(timeout: 3) {
             tap(app.buttons["miniapps-more"])
@@ -491,6 +508,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
         assertReaderHasText()
+        let restartReceipt = try persistedReceipt(requestID: pending.request.id, databasePath: document.profile)
+        XCTAssertEqual(restartReceipt.annotationID, rowID)
+        XCTAssertEqual(restartReceipt.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(restartReceipt.note, returnedText)
+        XCTAssertEqual(restartReceipt.count, 1)
+        attachReceipt(restartReceipt, requestID: pending.request.id, name: "miniapps-original-after-process-restart-sqlite")
         try await openAnnotations()
         XCTAssertEqual(Set(annotationRows().allElementsBoundByIndex.map(\.identifier)), priorRows.union([rowIdentifier]))
         let restored = app.buttons[rowIdentifier]
@@ -638,31 +661,110 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(open)
         var host = try await richHost()
         let firstBody = try await richBody(first, host: host)
-        firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
-        firstBody.typeText("\n")
-        let blanks = host.textViews.matching(NSPredicate(format: "value == %@", ""))
-        try await requireNativeCondition(timeout: 20) {
-            blanks.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
+        let keyboard = app.keyboards.firstMatch
+        var activeDatabasePath = databasePath
+        let seededThroughTextStudio = ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED"] == "1"
+        if seededThroughTextStudio {
+            // Have the real MiniApp create the second original native block.
+            // This checks the callback with the same product and persisted row.
+            let known = Set(try records(in: shared).map { $0.request.id })
+            tap(app.buttons["annotation-expanded-editor-miniapps"])
+            try await confirmOriginalMiniAppsSave()
+            try await openActualTextStudio(producer)
+            let seed = try XCTUnwrap(try records(in: shared).first { !known.contains($0.request.id) })
+            let document = try JSONDecoder().decode(Document.self, from:
+                Data(try XCTUnwrap(seed.request.source.metadata["otzaria.annotation.v1"]).utf8))
+            XCTAssertEqual(document.annotationID, rowID)
+            XCTAssertEqual(seed.request.source.documentText, first)
+            XCTAssertEqual(seed.request.operation, "insert")
+            let baseline = try richState(rowID: rowID, databasePath: document.profile)
+            try typeActualStudioResult(second, producer: producer)
+            try await returnActualStudioResult(producer)
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
+            try await requireNativeCondition(timeout: 60) {
+                (try? self.records(in: shared).first { $0.request.id == seed.request.id }?.acknowledged) == true
+            }
+            host = try await richHost()
+            try await assertNativeBodies([first, second], host: host)
+            let saved = try richState(rowID: rowID, databasePath: document.profile)
+            XCTAssertEqual(saved.revision, baseline.revision + 1)
+            XCTAssertEqual(saved.mutationID, seed.request.id)
+            XCTAssertEqual(try persistedReceipt(requestID: seed.request.id, databasePath: document.profile).count, 1)
+            attachRichState(saved, name: "miniapps-rich-second-native-block-via-textstudio")
+            // The original launch receipt names the app's current container.
+            activeDatabasePath = document.profile
+        } else if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_PASTE_SEED"] == "1" {
+            // Use the original clipboard command to create both real blocks.
+            // This fixture leaves the keyboard-focus regression test available.
+            UIPasteboard.general.string = first + "\n" + second
+            firstBody.tap()
+            firstBody.doubleTap()
+            let selectAll = app.descendants(matching: .any)["Select All"].firstMatch
+            XCTAssertTrue(selectAll.waitForExistence(timeout: 15) && selectAll.isHittable)
+            selectAll.tap()
+            let paste = app.descendants(matching: .any)["Paste"].firstMatch
+            XCTAssertTrue(paste.waitForExistence(timeout: 15) && paste.isHittable)
+            paste.tap()
+            let system = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+            let allow = system.alerts.buttons["Allow Paste"].firstMatch
+            if allow.exists && allow.isHittable { allow.tap() }
+        } else {
+            let firstBodyFrame = firstBody.frame
+            firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
+            let returnKeys = keyboard.buttons.matching(NSPredicate(format: "label =[c] %@", "return"))
+            try await requireNativeCondition(timeout: 20) {
+                returnKeys.allElementsBoundByIndex.filter(\.isHittable).count == 1
+            }
+            let returnKey = try XCTUnwrap(returnKeys.allElementsBoundByIndex.first { $0.isHittable })
+            returnKey.tap()
+            // The user can type when the original editor has moved focus below
+            // the original body. UIKit may expose placeholder text as the value.
+            try await requireNativeCondition(timeout: 20) {
+                host.textViews.allElementsBoundByIndex.filter {
+                    $0.hasFocus && !$0.frame.isEmpty && $0.frame.midY > firstBodyFrame.midY
+                }.count == 1
+            }
+            app.typeText(second)
         }
-        let blank = try XCTUnwrap(blanks.allElementsBoundByIndex.first { $0.isHittable })
-        tap(blank); blank.typeText(second)
-        _ = try await richBody(second, host: host)
-        // Capture a real caret from the first native block. If the original
-        // toolbar ends focus, the SDK's no-selection insertion adds a block;
-        // expected topology is derived from its actual native context below.
-        tap(try await richBody(first, host: host))
+        let hide = keyboard.buttons.matching(NSPredicate(format: "label IN %@",
+            ["Hide Keyboard", "Hide keyboard", "Dismiss Keyboard", "Dismiss keyboard"]))
+        let visibleHide = hide.allElementsBoundByIndex.filter(\.isHittable)
+        if visibleHide.count == 1 { visibleHide[0].tap() }
+        try await assertNativeBodies([first, second], host: host)
+        if !seededThroughTextStudio {
+            // The keyboard fixture exercises a real caret. The TextStudio fixture
+            // leaves the remounted editor unfocused so the native toolbar stays visible.
+            tap(try await richBody(first, host: host))
+        }
         let beforeWarm = Set(try records(in: shared).map { $0.request.id })
-        let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath)
+        let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath)
         tap(app.buttons["annotation-expanded-editor-miniapps"])
-        let cancelLaunch = app.buttons["annotation-miniapps-save-cancel"]
-        XCTAssertTrue(cancelLaunch.waitForExistence(timeout: 15))
-        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+        let cancelLaunch = app.descendants(matching: .any).matching(NSPredicate(format:
+            "identifier == %@ OR label == %@", "annotation-miniapps-save-cancel", "Continue editing"))
+        let confirmLaunch = app.buttons.matching(NSPredicate(format:
+            "identifier == %@ OR label == %@", "annotation-miniapps-save-confirm", "Save and open Mini Apps"))
+        try await requireNativeCondition(timeout: 15) {
+            confirmLaunch.allElementsBoundByIndex.contains { $0.isHittable && $0.isEnabled }
+        }
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Opening the MiniApps confirmation must not save or publish a private native draft")
         XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm,
             "No outgoing MiniApps request exists before explicit confirmation")
-        tap(cancelLaunch)
-        try await requireNativeCondition(timeout: 15) { !cancelLaunch.exists }
-        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+        if let dismissButton = cancelLaunch.allElementsBoundByIndex.first(where: { $0.isHittable && $0.isEnabled }) {
+            tap(dismissButton)
+        } else {
+            // The system iPad popover dismisses with an outside tap when it
+            // omits the cancel-role button.
+            let confirm = try XCTUnwrap(confirmLaunch.allElementsBoundByIndex.first { $0.isHittable && $0.isEnabled })
+            let outside = host.coordinate(withNormalizedOffset: CGVector(dx: 0.16, dy: 0.48))
+            XCTAssertFalse(confirm.frame.insetBy(dx: -24, dy: -96).contains(outside.screenPoint))
+            outside.tap()
+        }
+        try await requireNativeCondition(timeout: 15) {
+            !confirmLaunch.allElementsBoundByIndex.contains { $0.isHittable }
+        }
+        XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm)
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Cancelling keeps the original saved note and all canonical versions unchanged")
         host = try await richHost()
         try await assertNativeBodies([first, second], host: host)
@@ -680,30 +782,41 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let launch = try richState(rowID: rowID, databasePath: warmDocument.profile)
         XCTAssertGreaterThan(launch.revision, 0, "Leaving the app must save the complete native launch baseline")
 
-        // Edit another real native block while the result is pending. Only
-        // application activation is assisted; the result itself returns by URL.
+        // Prepare the producer's draft before switching apps. The URL return
+        // stays pending until after the independent edit in the original host.
+        let warmText = "MiniApps rich warm שלום " + UUID().uuidString
+        try typeActualStudioResult(warmText, producer: producer)
         app.activate()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
         host = try await richHost()
         let newerSecond = "Newer unsaved rich Beta שלום " + UUID().uuidString
         let other = try await richBody(second, host: host)
         tap(other); other.typeKey("a", modifierFlags: .command); other.typeText(newerSecond)
+        // The original collection shrinks behind the iPad keyboard while
+        // editing. Finish keyboard interaction before checking the native block.
+        let hideEditedKeyboard = app.keyboards.buttons["Hide keyboard"]
+        try await requireNativeCondition(timeout: 15) {
+            hideEditedKeyboard.exists && hideEditedKeyboard.isHittable
+        }
+        tap(hideEditedKeyboard)
+        try await requireNativeCondition(timeout: 15) { !keyboard.exists }
+        host = try await richHost()
         _ = try await richBody(newerSecond, host: host)
         XCTAssertEqual(try richState(rowID: rowID, databasePath: warmDocument.profile), launch,
             "The newer native draft is genuinely unsaved before the callback")
         producer.activate()
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
-        let warmText = "MiniApps rich warm שלום " + UUID().uuidString
-        try typeActualStudioResult(warmText, producer: producer)
+        XCTAssertEqual(producer.textViews["miniapps.textstudio.editor"].value as? String, warmText,
+            "TextStudio must still hold its pending original result when the user returns to it")
         let expectedWarm = try expectedNativeBodies(request: warm.request, text: warmText,
             bodyOverrides: [second: newerSecond])
-        tap(producer.buttons["miniapps.textstudio.return"])
+        try await returnActualStudioResult(producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 60))
-        host = try await richHost()
-        try await assertNativeBodies(expectedWarm, host: host)
         try await requireNativeCondition(timeout: 60) {
             (try? self.records(in: shared).first { $0.request.id == warm.request.id }?.acknowledged) == true
         }
+        host = try await richHost()
+        try await assertNativeBodies(expectedWarm, host: host)
         let warmSaved = try richState(rowID: rowID, databasePath: warmDocument.profile)
         XCTAssertEqual(warmSaved.revision, launch.revision + 1)
         XCTAssertEqual(warmSaved.mutationID, warm.request.id)
@@ -716,7 +829,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         // A second launch records a fresh native baseline, then the source is
         // terminated. No manual launch assists the callback or remount.
-        tap(try await richBody(expectedWarm[0], host: host))
+        _ = try await richBody(expectedWarm[0], host: host)
         let beforeCold = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["annotation-expanded-editor-miniapps"])
         try await confirmOriginalMiniAppsSave()
@@ -738,14 +851,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         app.terminate()
         XCTAssertTrue(app.wait(for: .notRunning, timeout: 20))
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 15))
-        tap(producer.buttons["miniapps.textstudio.return"])
+        try await returnActualStudioResult(producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
             "Only the actual MiniApps callback may cold-launch the original source")
-        host = try await richHost()
-        try await assertNativeBodies(expectedCold, host: host)
         try await requireNativeCondition(timeout: 60) {
             (try? self.records(in: shared).first { $0.request.id == cold.request.id }?.acknowledged) == true
         }
+        host = try await richHost()
+        try await assertNativeBodies(expectedCold, host: host)
         let coldSaved = try richState(rowID: rowID, databasePath: coldDocument.profile)
         XCTAssertEqual(coldSaved.revision, coldBaseline.revision + 1)
         XCTAssertEqual(coldSaved.mutationID, cold.request.id)
@@ -815,6 +928,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(quick.waitForExistence(timeout: 15))
         let sourceText = "OriginalAttachment" + UUID().uuidString.replacingOccurrences(of: "-", with: "")
         tap(quick); quick.typeText(sourceText)
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must receive the seed text")
         tap(app.buttons["annotation-save-toolbar"])
         try await requireNativeCondition(timeout: 30) { !quick.exists }
         tap(app.buttons["torah-inspector-close"])
@@ -826,6 +940,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
         let rowIdentifier = row.identifier
         editAnnotation(row)
+        XCTAssertTrue(quick.waitForExistence(timeout: 15))
+        XCTAssertEqual(quick.value as? String, sourceText, "The original compact editor must reload the saved seed text")
         try await openActualRichEditor()
         let fileHost = try await richHost()
         _ = try await richBody(sourceText, host: fileHost)
@@ -907,8 +1023,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         try await pressFileWorkshopAction("fileworkshop.return", producer: producer)
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90),
             "Only the real file callback may cold launch the original source app")
-        _ = try await richHost()
         let secondCompleted = try await acknowledgedFileRecord(second.request.id, shared: shared)
+        _ = try await richHost()
         let secondResult = try XCTUnwrap(secondCompleted.result)
         XCTAssertEqual(secondResult.status, "success")
         XCTAssertEqual(secondResult.metadata?["fileMode"], "edited-utf8")
@@ -1223,9 +1339,23 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     private func typeActualStudioResult(_ text: String, producer: XCUIApplication) throws {
         let editor = producer.textViews["miniapps.textstudio.editor"]
         XCTAssertTrue(editor.exists && editor.isHittable)
-        editor.tap(); editor.typeKey("a", modifierFlags: .command); editor.typeText(text)
+        XCTAssertEqual(editor.value as? String, "", "An original TextStudio request starts with an empty result")
+        if !editor.hasFocus { editor.tap() }
+        editor.typeText(text)
         XCTAssertEqual(editor.value as? String, text)
         XCTAssertTrue(producer.buttons["miniapps.textstudio.return"].isHittable)
+    }
+
+    @MainActor
+    private func returnActualStudioResult(_ producer: XCUIApplication) async throws {
+        let button = producer.buttons["miniapps.textstudio.return"]
+        let window = producer.windows.firstMatch
+        try await requireNativeCondition(timeout: 15) {
+            guard window.exists, button.exists, button.isHittable, button.isEnabled else { return false }
+            let frame = button.frame
+            return !frame.isEmpty && window.frame.contains(CGPoint(x: frame.midX, y: frame.midY))
+        }
+        button.tap()
     }
 
     private func expectedNativeBodies(request: Request, text: String,
@@ -1277,7 +1407,28 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
         let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
-        try await requireNativeCondition(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        let bodyList = host.collectionViews.firstMatch
+        // A retained keyboard can leave the original collection near its bottom.
+        // Scroll the mounted native editor until it exposes the exact body block.
+        for _ in 0..<3 {
+            if bodies.count == 1 && bodies.firstMatch.isHittable { break }
+            guard bodyList.exists && bodyList.isHittable else { break }
+            bodyList.swipeDown()
+        }
+        for _ in 0..<5 {
+            if bodies.count == 1 && bodies.firstMatch.isHittable { break }
+            guard bodyList.exists && bodyList.isHittable else { break }
+            bodyList.swipeUp()
+        }
+        let ready = try await waitUntil(timeout: 15) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        if !ready {
+            retainScreenshot(app, named: "miniapps-original-rich-body-not-ready")
+            let hierarchy = XCTAttachment(string: host.debugDescription)
+            hierarchy.name = "miniapps-original-expanded-host-accessibility"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        XCTAssertTrue(ready, "The exact original native body must be visible and hittable")
         XCTAssertEqual(bodies.count, 1)
         XCTAssertFalse(bodies.firstMatch.frame.isEmpty)
         return bodies.firstMatch
@@ -1294,8 +1445,23 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func confirmOriginalMiniAppsSave() async throws {
-        let confirm = app.buttons["annotation-miniapps-save-confirm"]
-        try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }
+        let title = app.staticTexts["Save before opening Mini Apps?"]
+        let actions = app.buttons.matching(NSPredicate(format: "identifier == %@ OR label == %@",
+            "annotation-miniapps-save-confirm", "Save and open Mini Apps"))
+        try await requireNativeCondition(timeout: 15) { title.exists && actions.firstMatch.exists }
+        let controls = actions.allElementsBoundByIndex.filter {
+            $0.isEnabled && !$0.frame.isEmpty && app.windows.firstMatch.frame.contains($0.frame)
+                && $0.frame.minY > title.frame.maxY
+        }
+        let frames = Set(controls.map { NSValue(cgRect: $0.frame) })
+        if frames.count != 1 {
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "miniapps-original-save-confirmation-accessibility"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil,
+            "Require the single native confirmation below the original dialog title")
         tap(confirm)
     }
 
@@ -1626,8 +1792,18 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(action.count, 1, "Require the unique Annotations action in the original reader popup")
         let menuAction = try XCTUnwrap(action.count == 1 ? action.allElementsBoundByIndex.first : nil)
         XCTAssertTrue(menuAction.isHittable)
-        tap(menuAction)
-        XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 15))
+        menuAction.tap()
+        let navigation = app.navigationBars["Annotations"]
+        let appeared = navigation.waitForExistence(timeout: 15)
+        if !appeared {
+            retainScreenshot(app, named: "miniapps-reader-annotations-after-original-menu-action")
+            let afterTap = XCTAttachment(string: app.debugDescription)
+            afterTap.name = "miniapps-reader-annotations-after-original-menu-action-ax"
+            afterTap.lifetime = .keepAlways
+            add(afterTap)
+        }
+        XCTAssertTrue(appeared)
+        _ = try XCTUnwrap(appeared ? navigation : nil)
         let list = app.descendants(matching: .any)["original-book-annotations-list"]
         XCTAssertTrue(list.waitForExistence(timeout: 15))
         let loaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "loaded"), object: list)

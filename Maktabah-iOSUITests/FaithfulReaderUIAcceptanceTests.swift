@@ -693,9 +693,9 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         // previously persisted provider when the feature-off case relaunches.
         let backendArguments = tier == .realUI
             ? ["-preferredBackend", backend, "-smokeBackend", backend] : []
-        launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + [
+        let workspaceArguments = isolatesStudyWorkspace ? ["-studyWorkspaceTestingNamespace", workspaceNamespace] : []
+        launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + workspaceArguments + [
             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
-            "-studyWorkspaceTestingNamespace", workspaceNamespace,
             "-textViewBackgroundColorLight", String(background)
         ] + (fontSize.map { ["-textViewFontSize", String($0)] } ?? []) + readerAdditionalLaunchArguments, language: language, locale: language == "he" ? "he_IL" : "en_US",
         extraEnvironment: prefix.map { ["CHAVRUSA_READER_VIEWPORT_REPORT": $0] } ?? [:])
