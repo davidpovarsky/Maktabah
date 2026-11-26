@@ -455,7 +455,15 @@ def main(live_provider=None):
                     hid_comparison = runpy.run_path("Scripts/CI/runtime27-hid.py")["HIDComparison"](
                         udid, container, label, tools, artifacts / "runtime27")
                     environment.update(hid_comparison.start())
-                if runtime27_contract or release_manifest:
+                focused_fixture_cases = (
+                    "NativeStudySheetPadTests/", "NativeStudySheetPhoneFallbackTests/",
+                    "Sidebar11201AcceptanceTests/", "StudyProfileNativeAcceptanceTests/",
+                )
+                needs_focused_fixture = diagnostic_cases and any(
+                    case.startswith(focused_fixture_cases) for case in selection
+                )
+                if runtime27_contract or release_manifest or needs_focused_fixture:
+                    (artifacts / "runtime27").mkdir(exist_ok=True)
                     environment.update(runpy.run_path("Scripts/CI/runtime27-fixture-oracle.py")["derive_oracle"](
                         udid, label,
                         include_sidebar=any(case.startswith("Sidebar11201AcceptanceTests/") for case in selection),
@@ -464,6 +472,7 @@ def main(live_provider=None):
                             "NativeRoutingAcceptanceTests/testCoreSearchOpenResults",
                             "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResults"
                         )) for case in selection)))
+                if runtime27_contract or release_manifest:
                     if live_provider is not None:
                         environment.update(live_provider.stage(udid, container, label, selection))
                     else:
