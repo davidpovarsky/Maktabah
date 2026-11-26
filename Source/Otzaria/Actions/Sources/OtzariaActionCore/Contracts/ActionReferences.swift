@@ -36,6 +36,16 @@ public enum ActionTextPosition: Codable, Sendable, Equatable, Hashable {
     }
 }
 
+public struct ActionCatalogAuthor: Codable, Sendable, Equatable {
+    public let id: String
+    public let name: String
+
+    public init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+}
+
 public struct ActionTextRef: Codable, Sendable, Equatable, Hashable {
     public let backend: ActionBackendID
     public let workKey: String

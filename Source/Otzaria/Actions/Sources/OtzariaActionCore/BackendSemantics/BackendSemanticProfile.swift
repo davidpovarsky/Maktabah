@@ -89,7 +89,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         let registered = (capability.map { evidence.registeredCapabilities.contains($0) } ?? false)
             && (action != "reader.openCommentary" || evidence.registeredCapabilities.contains("links"))
         let sourceSupported = sourceSupports(action)
-        let initial = ["catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
+        let initial = ["catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
         var unsupported: String? = sourceSupported ? nil : "source_capability_not_supported"
         if action == "search.countOccurrences" { unsupported = "exact_count_unavailable" }
         else if !initial { unsupported = "action_not_implemented" }
@@ -109,7 +109,7 @@ public struct ActionBackendSemanticProfile: Sendable {
             return .init(registered: false, supported: supported, availableNow: false, reasonCode: "provider_not_registered")
         }
         let readiness: ActionReadinessEvidence = switch action {
-        case "catalog.resolveWork": evidence.catalog
+        case "catalog.resolveWork", "catalog.listAuthors": evidence.catalog
         case "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems": evidence.catalog.isReady ? evidence.references : evidence.catalog
         case "reader.listVersions": evidence.catalog.isReady ? evidence.network : evidence.catalog
         case "catalog.resolveReference", "reader.open", "reader.openCommentary", "notes.prepareDraft": evidence.references

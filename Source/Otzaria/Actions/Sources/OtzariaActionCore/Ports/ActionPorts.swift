@@ -62,6 +62,11 @@ public protocol ActionSourceTextPort: Sendable {
                  invocation: ActionPortInvocation) async throws -> ActionSourceTextSection
 }
 
+/// Returns author names and stable values supplied by the active original catalog.
+public protocol ActionCatalogAuthorsPort: Sendable {
+    func catalogAuthors(backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> [ActionCatalogAuthor]
+}
+
 /// Reads the navigation structures registered by the work's original provider.
 public protocol ActionNavigationStructurePort: Sendable {
     func navigationStructures(for work: ActionWorkRef, invocation: ActionPortInvocation)
