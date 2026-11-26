@@ -740,16 +740,29 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(app.buttons["annotation-expanded-editor-miniapps"])
         let cancelLaunch = app.descendants(matching: .any).matching(NSPredicate(format:
             "identifier == %@ OR label == %@", "annotation-miniapps-save-cancel", "Continue editing"))
+        let confirmLaunch = app.buttons.matching(NSPredicate(format:
+            "identifier == %@ OR label == %@", "annotation-miniapps-save-confirm", "Save and open Mini Apps"))
         try await requireNativeCondition(timeout: 15) {
-            cancelLaunch.allElementsBoundByIndex.contains { $0.isHittable && $0.isEnabled }
+            confirmLaunch.allElementsBoundByIndex.contains { $0.isHittable && $0.isEnabled }
         }
         XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Opening the MiniApps confirmation must not save or publish a private native draft")
         XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm,
             "No outgoing MiniApps request exists before explicit confirmation")
-        let dismissButton = try XCTUnwrap(cancelLaunch.allElementsBoundByIndex.first { $0.isHittable && $0.isEnabled })
-        tap(dismissButton)
-        try await requireNativeCondition(timeout: 15) { cancelLaunch.count == 0 }
+        if let dismissButton = cancelLaunch.allElementsBoundByIndex.first(where: { $0.isHittable && $0.isEnabled }) {
+            tap(dismissButton)
+        } else {
+            // The system iPad popover dismisses with an outside tap when it
+            // omits the cancel-role button.
+            let confirm = try XCTUnwrap(confirmLaunch.allElementsBoundByIndex.first { $0.isHittable && $0.isEnabled })
+            let outside = host.coordinate(withNormalizedOffset: CGVector(dx: 0.16, dy: 0.48))
+            XCTAssertFalse(confirm.frame.insetBy(dx: -24, dy: -96).contains(outside.screenPoint))
+            outside.tap()
+        }
+        try await requireNativeCondition(timeout: 15) {
+            !confirmLaunch.allElementsBoundByIndex.contains { $0.isHittable }
+        }
+        XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm)
         XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Cancelling keeps the original saved note and all canonical versions unchanged")
         host = try await richHost()
