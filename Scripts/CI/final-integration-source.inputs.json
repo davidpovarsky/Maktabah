@@ -13,6 +13,8 @@
     "hanlin_native_metadata_session": "519c0926180693cf418ba9b4195e1b2f27e04df8",
     "hanlin_observed_source_and_history": "e292d2c71e9584ca4e3ca52dd27158e84e6071d5",
     "hanlin_original_read_adapter": "49759aa0ed9756132ab744ab4c866d83a94fc883",
+    "hanlin_original_source_9565": "cb8c22d0c0d151b2ff6352efb2177e1849853517",
+    "hanlin_source_notice_9565": "4e0b1cce028cf0d2cd376f133bae5ca247cdc5ae",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
     "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
@@ -49,14 +51,14 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "519c0926180693cf418ba9b4195e1b2f27e04df8",
+  "application_source_sha": "4e0b1cce028cf0d2cd376f133bae5ca247cdc5ae",
   "application_trees": {
     "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "e8bd00903fd2c9012e16b92a17f5e763dcc8a4d5",
-    "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
+    "Source": "4e1b5af7b2d77c4c6e45a224f0d943da400bc9e6",
+    "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
-  "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
+  "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -272,6 +274,20 @@
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "hanlin_original_read_adapter": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "hanlin_original_source_9565": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "hanlin_source_notice_9565": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -883,6 +899,20 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "hanlin_original_source_9565": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "hanlin_source_notice_9565": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 21097,
           "kind": "blob",
@@ -1232,6 +1262,20 @@
           "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "hanlin_original_read_adapter": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "hanlin_original_source_9565": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "hanlin_source_notice_9565": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1626,6 +1670,20 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "hanlin_original_read_adapter": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "hanlin_original_source_9565": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "hanlin_source_notice_9565": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -2051,6 +2109,20 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "hanlin_original_source_9565": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
+        "hanlin_source_notice_9565": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 30093,
           "kind": "blob",
@@ -2389,6 +2461,20 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "hanlin_original_read_adapter": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "hanlin_original_source_9565": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "hanlin_source_notice_9565": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2789,8 +2875,8 @@
         "bytes": 1251,
         "kind": "blob",
         "mode": "100644",
-        "object": "57959e09e7f2e46c09e8259edb600cc395e0325f",
-        "sha256": "d0cd1d99c6f8ad1d644d234378c79ed5a9436e0557181b09a047a7d49107963c"
+        "object": "494214c1bd0af7146478a87013867f61d53af62d",
+        "sha256": "b37e0879681738b976a1b5c5d2405fede52467a9e9a05daaf796f1699c50897e"
       },
       "before": {
         "bytes": 461,
@@ -2799,7 +2885,7 @@
         "object": "e38aa3324e13cf2f6232b13f229032d777c498eb",
         "sha256": "5cea6e55c53f66fa69e4899d2f41721b3988bcf4f4a3ccb51dfccbe5443534b5"
       },
-      "component": "original_license_texts",
+      "component": "hanlin_source_notice_9565",
       "path": "Source/ChavrusaText/ThirdPartyNotices/NOTICE.txt"
     },
     {
@@ -3196,6 +3282,20 @@
           "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "hanlin_original_read_adapter": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "hanlin_original_source_9565": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "hanlin_source_notice_9565": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -4189,265 +4289,19 @@
       "path": "Source/iOS-Info.plist"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        "object": "9565a9e4775901a4cee6f0402d7fd2978fab6612"
       },
       "before": {
         "kind": "commit",
         "mode": "160000",
         "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
       },
-      "component_objects": {
-        "anytype_native_host": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "app_intent_scoped_discovery": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "command_palette_accessibility": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "empty_note": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "full_v40_occurrence_diagnostic": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "guided_navigation_core": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "guided_navigation_native": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "guided_navigation_receipt_source": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_containing_reader_admission": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_full_history_checkpoint": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_native_metadata_session": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_observed_source_and_history": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_original_read_adapter": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hebrew_highlight_utf16": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "hebrew_shortcuts": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "library": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "library_install_cancel_rollback": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "managed_database_identity": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "miniapps": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "a774de24926ca13d563c45c42917d03b8c04296f"
-        },
-        "miniapps_hebrew_rtl": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "miniapps_save_confirmation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
-        },
-        "native_reader_menu_label": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "native_share": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "navigation_items": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "navigation_structures": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "normal_editor": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "offline_package_observations": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_account_exchange_ui": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
-        },
-        "original_catalog_authors": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_explicit_save": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
-        },
-        "original_license_texts": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_lifecycle_and_native_batch": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
-        },
-        "original_phone_picker_acceptance": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_rich_miniapps": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
-        },
-        "original_sefaria_versions": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_toc_semantic_resolution": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "palette_localized_title": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_cancellation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "reader_designkit_modifier": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_html_performance": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_related_refs_topics": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_related_sources": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_source_actions": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "safari_toolbar_localization": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "shared_original_account_exchange_ui": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
-        },
-        "stable_native_group_segments": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "study_workspace_locale": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        },
-        "universal_link_transport": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        }
-      },
-      "patch": {
-        "bytes": 323,
-        "sha256": "099c9311846a0dc0a99bc6a23c036882fe6338bb85cde1866d3677cedd79ca1d"
-      },
-      "path": "Vendor/HanlinSDK",
-      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin. Adopt final integrated producer27381. Complete four consumed package trees match the actual SDK6f source exactly (959 leaves), preserving original SDK producer identity. Full native acceptance remains required. Adopt standalone70eb catalog localization correction; all four shared package trees and 959 leaf objects remain exactly equal to qualified SDK6f and prior273. Standalone actual build/UI evidence is admitted separately. Adopt final fe3 producer source with original iPad orientation and import presentation fixes; every consumed package tree remains unchanged from70 and the qualified SDK. Bind the actual immutable simulator export separately; native acceptance remains required. Adopt actual built86 producer source with the reviewed package-window helper and original import presentation continuation; every consumed package tree remains unchanged fromfe3 and the qualified SDK. Bind the exact immutable simulator export separately; native batch acceptance remains required."
+      "component": "hanlin_original_source_9565",
+      "path": "Vendor/HanlinSDK"
     }
   ],
   "product_roots": [
