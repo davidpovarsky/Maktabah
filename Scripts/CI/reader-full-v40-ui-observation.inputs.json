@@ -1,0 +1,149 @@
+{
+  "schema": "otzaria.full-v40.original-ui-observation/1",
+  "application_source_sha": "UNFINALIZED",
+  "application_trees": {
+    "Source": "UNFINALIZED",
+    "Vendor": "UNFINALIZED",
+    "Maktabah.xcodeproj": "UNFINALIZED",
+    "Maktabah-iOSUITests": "UNFINALIZED"
+  },
+  "selected_case_ids": [
+    "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
+    "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn"
+  ],
+  "source_database": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseID": 455390662,
+    "releaseTag": "v40-20261123094345",
+    "assetID": 782942035,
+    "assetName": "seforim-schema7.db.zst.manifest.json",
+    "assetBytes": 2129902636,
+    "assetSHA256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+    "manifestAssetBytes": 589,
+    "manifestSHA256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+    "databaseBytes": 4355063808,
+    "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+    "counts": {
+      "book": 8259,
+      "line": 7925185,
+      "link": 7001824
+    }
+  },
+  "catalog_compiled_sources": [
+    "Source/Core/Database/SQLiteDatabase.swift",
+    "Source/Core/Database/ZstdShim.swift",
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift",
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift",
+    "Source/Otzaria/Core/String+OtzariaText.swift",
+    "Source/Otzaria/Data/OtzariaSchema.swift",
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift"
+  ],
+  "execution_input_paths": [
+    ".github/workflows/otzaria-reader-groups-full-v32.yml",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Scripts/CI/hq-original-editor-distribution.py",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+    "Scripts/CI/hq-stage2-focused-apple.py",
+    "Scripts/CI/mac-prepared-inputs.py",
+    "Scripts/CI/library-morph-focused-native.inputs.json",
+    "Scripts/CI/library-morph-focused-native.py",
+    "Scripts/CI/native-cohort-artifacts.py",
+    "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+    "Scripts/CI/prepare-hanlin-sdk.py",
+    "Scripts/CI/prepare-pinned-sharp-libvips.py",
+    "Scripts/CI/reader-full-v32-ui-observation.py",
+    "Scripts/CI/reader-groups100-focused-native.inputs.json",
+    "Scripts/CI/reader-groups100-focused-native.py",
+    "Scripts/CI/runtime27-url-delivery.py",
+    "Scripts/CI/runtime27_interruption.py",
+    "Scripts/CI/select-runtime27-toolchain.py",
+    "Scripts/CI/shutdown-faithful-simulator.py",
+    "Scripts/CI/verify-faithful-xctest.py",
+    "Scripts/CI/verify-otzaria-xcode-project.py",
+    "Scripts/CI/verify-xcframework.sh",
+    "Scripts/DataProfiles/miniTest10.seed.json",
+    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+    "Source/Core/Database/SQLiteDatabase.swift",
+    "Source/Core/Database/ZstdShim.swift",
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift",
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift",
+    "Source/Otzaria/Core/String+OtzariaText.swift",
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift",
+    "Source/Otzaria/Data/OtzariaSchema.swift",
+    "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+    "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+    "Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+    "tools/verify_xcresult_zero_skips.py",
+    "Scripts/CI/runtime27-final-source-composition.inputs.json",
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+    "Scripts/CI/reader-full-v40-ui-observation.py",
+    "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
+    "Scripts/CI/library-v40-focused-native.py",
+    "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
+    "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py"
+  ],
+  "input_sha256": {},
+  "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "source_status": "UNFINALIZED_INTEGRATION_OWNER_MUST_FREEZE_CURRENT_SOURCE_AND_INPUT_BYTES",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0,
+  "perf_candidate_promoted": false,
+  "required_reader_opens": 20,
+  "required_forced_relaunches": 10,
+  "required_inspector_counts": [
+    100,
+    500,
+    2000
+  ],
+  "exact_inspector_count_policy": "Actual original counts only; natural at-least exploration does not satisfy missing exact sizes; no truncation",
+  "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics",
+  "installation_policy": "REUSE_EXPLICIT_ROOT_OWNED_VERIFIED_V40_INSTALL",
+  "catalog_targets": {
+    "books": [
+      {
+        "bookID": 103,
+        "lineCount": 2875,
+        "title": "ברכות"
+      },
+      {
+        "bookID": 28,
+        "lineCount": 2678,
+        "title": "תהילים"
+      },
+      {
+        "bookID": 3152,
+        "lineCount": 528,
+        "title": "דרשות הר\"ן"
+      }
+    ],
+    "retainedChapter": {
+      "bookID": 8042,
+      "focusLineIndex": 26166,
+      "sourceUTF16Length": 8307947,
+      "unitEndLineIndex": 52331,
+      "unitID": "toc:1948815",
+      "unitRowCount": 52332,
+      "unitStartLineIndex": 0
+    }
+  },
+  "corpus_identity_provenance": {
+    "prior_component_receipt": "docs/hq-integration/core-final-20261126/COMPONENT_ACCEPTANCE.md",
+    "fresh_read_only_query": "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
+    "query_recipe_sha256": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38",
+    "same_numeric_book_ids_as_v32": "Independently queried on hash-bound v40; no v32 catalog/evidence transfer",
+    "prior_installation_acceptance_attributed_only_to_original_source": true,
+    "fresh_read_only_query_sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b"
+  }
+}

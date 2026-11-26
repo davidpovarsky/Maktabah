@@ -33,6 +33,12 @@ INPUTS = Path(__file__).with_suffix(".inputs.json")
 HERE = ROOT / "docs/hq-integration/reader-full-v32-ui-observation-20261123"
 OUT = ROOT / "build/artifacts/reader-full-v32-ui-observation"
 BUNDLE = "com.davidpovarsky.chavrusatext"
+# The v40 wrapper selects an independent profile before calling main().
+# Without it, the original v32 install/identity/lifetime contract is unchanged.
+CORPUS_NAME = "full-v32"
+OBSERVATION_SCHEMA = "otzaria.full-v32.original-ui-observation/1"
+CATALOG_SOURCE = HERE / "FullV32ObservationCatalog.swift"
+REUSED_INSTALLATION = None
 SELECTED = [
     "FaithfulProductionReleaseTests/testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch",
     "FaithfulProductionReleaseTests/testOriginalFullV32InspectorRelationshipScalesAndReturn",
@@ -105,7 +111,7 @@ def json_command(args, timeout=90):
 
 def source_context(require_frozen):
     config = json.loads(INPUTS.read_text())
-    require(config.get("schema") == "otzaria.full-v32.original-ui-observation/1", "Wrong observation schema")
+    require(config.get("schema") == OBSERVATION_SCHEMA, "Wrong observation schema")
     require(config["selected_case_ids"] == SELECTED, "The exact two original additive cases are required")
     head = git("rev-parse", "HEAD")
     source = config["application_source_sha"]
@@ -192,12 +198,15 @@ def prepare_catalog(config, installation):
     args = [swiftc, "-parse-as-library", "-swift-version", "6", "-Xfrontend", "-strict-concurrency=complete",
             "-O", "-sdk", sdk, "-L", str(zstd.parent), "-lzstd", "-Xlinker", "-rpath", "-Xlinker", str(zstd.parent),
             *[str(ROOT / p) for p in config["catalog_compiled_sources"]],
-            str(HERE / "FullV32ObservationCatalog.swift"), "-o", str(binary)]
+            str(CATALOG_SOURCE), "-o", str(binary)]
     write(catalog_dir / "compile-inputs.json", {"command": args, "swiftc": witness(swiftc), "zstd": witness(zstd),
           "source_sha256": {p: digest(ROOT / p) for p in config["catalog_compiled_sources"]}})
     require(bounded(args, catalog_dir / "compile.log", 300) == 0, "Original source-catalog Apple compilation failed")
-    write(catalog_dir / "input.json", {"databaseURI": installation["uri"],
-          "databaseSHA256": installation["database"]["sha256"]})
+    catalog_input = {"databaseURI": installation["uri"],
+                     "databaseSHA256": installation["database"]["sha256"]}
+    if CORPUS_NAME == "full-v40":
+        catalog_input["v40Targets"] = config["catalog_targets"]
+    write(catalog_dir / "input.json", catalog_input)
     require(bounded([str(binary), str(catalog_dir / "input.json"), str(catalog_dir)],
                     catalog_dir / "execution.log", 600) == 0, "Original source-catalog execution failed")
     catalog = json.loads((catalog_dir / "catalog.json").read_text())
@@ -275,7 +284,7 @@ class AppleTraceCapture:
         self.udid, self.inventory = udid, inventory
         self.process = self.output = None
         self.record = {"status": "NOT_STARTED", "scope": "owned Simulator all-process Time Profiler; exact app PID/epoch filtering required"}
-        self.path = OUT / "traces/original-full-v32.trace"
+        self.path = OUT / ("traces/original-" + CORPUS_NAME + ".trace")
 
     def start(self):
         help_text = self.inventory.get("record_help", "")
@@ -849,7 +858,8 @@ class ObservationHost(threading.Thread):
             require(ids and len(ids) == len(set(ids)) and set(ids) == set(self.inspector_records),
                     "Every actual Inspector observation, including failed scales, must be retained")
             exploration = request["exploration"]
-            expected_targets = {k for k, v in self.targets.items() if v["bookID"] in (103, 28, 3152)}
+            inspector_ids = self.catalog["inspectorBookIDs"] if CORPUS_NAME == "full-v40" else (103, 28, 3152)
+            expected_targets = {k for k, v in self.targets.items() if v["bookID"] in inspector_ids}
             require(len(exploration) == len(expected_targets) == 9
                     and {r["targetKey"] for r in exploration} == expected_targets,
                     "Original first/middle/last Inspector chapter exploration must retain all nine outcomes")
@@ -999,11 +1009,16 @@ def execute():
     runtime = runtimes[0]
     types = [t for t in runtime["supportedDeviceTypes"] if "iPad Pro" in t["name"] and "13-inch" in t["name"]]
     require(types, "Actual supported original 13-inch iPad type missing")
-    device_type = sorted(types, key=lambda t: t["identifier"])[-1]
-    udid = command(["xcrun", "simctl", "create", "Original-full-v32-" + uuid.uuid4().hex[:8],
-                    device_type["identifier"], runtime["identifier"]]).stdout.strip()
-    require(str(uuid.UUID(udid)).upper() == udid, "Unexpected owned Simulator identity")
-    report = {"status": "STARTED_NOT_ACCEPTED", "source": context, "created_owned_simulator": udid,
+    if REUSED_INSTALLATION is None:
+        device_type = sorted(types, key=lambda t: t["identifier"])[-1]
+        udid = command(["xcrun", "simctl", "create", "Original-full-v32-" + uuid.uuid4().hex[:8],
+                        device_type["identifier"], runtime["identifier"]]).stdout.strip()
+        require(str(uuid.UUID(udid)).upper() == udid, "Unexpected owned Simulator identity")
+        ownership = {"created_owned_simulator": udid}
+    else:
+        udid, device_type, ownership = REUSED_INSTALLATION.admit_owner(config, runtime, types)
+    report = {"status": "STARTED_NOT_ACCEPTED", "source": context, **ownership,
+        "corpus_profile": CORPUS_NAME,
         "runtime": runtime, "device_type": device_type, "configuration": "Debug", "data_profile": "production",
         "full_native116_acceptance": False, "full_release114_acceptance": False,
         "physical_device_acceptance": False, "full_performance_acceptance": False}
@@ -1015,13 +1030,17 @@ def execute():
         command(["xcrun", "simctl", "boot", udid], timeout=90)
         command(["xcrun", "simctl", "bootstatus", udid, "-b"], timeout=900)
         command(["xcrun", "simctl", "install", udid, str(products / "Maktabah.app")], timeout=600)
-        (ROOT / "sim_udid.txt").write_text(udid)
-        require(not (ROOT / "build/artifacts/production-native-fixture-install.json").exists(),
-                "A retained original production installer report must not be overwritten/reused")
-        require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production",
-                         "--release-id", str(config["source_database"]["releaseID"])],
-                        OUT / "original-production-install.log", 3900) == 0, "Original production native installer failed")
-        database, installation = admit_installation(config, udid)
+        if REUSED_INSTALLATION is None:
+            (ROOT / "sim_udid.txt").write_text(udid)
+            require(not (ROOT / "build/artifacts/production-native-fixture-install.json").exists(),
+                    "A retained original production installer report must not be overwritten/reused")
+            require(bounded([sys.executable, "Scripts/CI/prepare-faithful-ipad-fixtures.py", "--profile", "production",
+                             "--release-id", str(config["source_database"]["releaseID"])],
+                            OUT / "original-production-install.log", 3900) == 0, "Original production native installer failed")
+            database, installation = admit_installation(config, udid)
+        else:
+            database, installation = REUSED_INSTALLATION.admit_current_installation(config, udid, build)
+            report["reused_installation"] = installation
         catalog_dir, catalog = prepare_catalog(config, installation)
         container = Path(command(["xcrun", "simctl", "get_app_container", udid, BUNDLE, "data"], timeout=45).stdout.strip())
         environment = os.environ.copy()
@@ -1033,8 +1052,9 @@ def execute():
         trace.start()
         host = ObservationHost(udid, container, catalog_dir, catalog, installation, trace)
         environment.update(host.environment())
+        environment["TEST_RUNNER_READER_OBSERVATION_CORPUS"] = CORPUS_NAME
         host.start()
-        result_bundle = OUT / "original-full-v32.xcresult"
+        result_bundle = OUT / ("original-" + CORPUS_NAME + ".xcresult")
         args = ["xcodebuild", "test-without-building", "-xctestrun", str(test_run),
                 "-destination", "platform=iOS Simulator,id=" + udid, "-parallel-testing-enabled", "NO",
                 "-maximum-concurrent-test-simulator-destinations", "1",
@@ -1105,6 +1125,9 @@ def execute():
                 cleanup_failures.append("original_url_transport")
         if database is not None:
             try:
+                if REUSED_INSTALLATION is not None:
+                    database, relocation = REUSED_INSTALLATION.current_database(udid)
+                    report["post_ui_data_container_relocation"] = relocation
                 report["post_ui_database"] = witness(database)
                 require(report["post_ui_database"]["sha256"] == installation["database"]["sha256"]
                         and report["post_ui_database"]["bytes"] == installation["database"]["bytes"],
@@ -1126,20 +1149,30 @@ def execute():
             report["qualified_sdk_route"] = qualified
             report["complete_native_image_count"] = len(build["complete_native_images"])
             report["source_and_built_binary_bytes_unchanged"] = True
+            if REUSED_INSTALLATION is not None:
+                report["current_installed_images_after_ui"] = REUSED_INSTALLATION.verify_installed_images(udid, build)
+                report["original_installation_receipts_unchanged"] = REUSED_INSTALLATION.verify_prior_receipts()
         except Exception as error:
             cleanup["source_binary_verification"] = type(error).__name__
             cleanup_failures.append("source_binary_verification")
-        for name, args, timeout in (
-            ("shutdown", [sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], 240),
-            ("delete", ["xcrun", "simctl", "delete", udid], 120),
-        ):
+        if REUSED_INSTALLATION is None:
+            for name, args, timeout in (
+                ("shutdown", [sys.executable, "Scripts/CI/shutdown-faithful-simulator.py", udid], 240),
+                ("delete", ["xcrun", "simctl", "delete", udid], 120),
+            ):
+                try:
+                    result = command(args, timeout=timeout, check=False)
+                    cleanup[name] = {"exit": result.returncode}
+                    if result.returncode: cleanup_failures.append(name)
+                except Exception as error:
+                    cleanup[name] = {"error_type": type(error).__name__}
+                    cleanup_failures.append(name)
+        else:
             try:
-                result = command(args, timeout=timeout, check=False)
-                cleanup[name] = {"exit": result.returncode}
-                if result.returncode: cleanup_failures.append(name)
+                cleanup["retained_external_simulator"] = REUSED_INSTALLATION.retain_simulator(udid)
             except Exception as error:
-                cleanup[name] = {"error_type": type(error).__name__}
-                cleanup_failures.append(name)
+                cleanup["retained_external_simulator"] = {"error_type": type(error).__name__}
+                cleanup_failures.append("retained_external_simulator")
         report["owned_cleanup"] = cleanup
         report["cleanup_or_post_verification_failures"] = cleanup_failures
         if cleanup_failures:
