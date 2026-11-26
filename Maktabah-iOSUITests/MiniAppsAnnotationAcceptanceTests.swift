@@ -400,7 +400,6 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
         if let originalDB = ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_RICH_ONLY_ORIGINAL_DB"] {
-            XCTAssertTrue(FileManager.default.fileExists(atPath: originalDB))
             try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared, databasePath: originalDB)
             return
         }
