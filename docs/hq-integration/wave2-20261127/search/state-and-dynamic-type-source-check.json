@@ -1,0 +1,8 @@
+{
+  "scope": "Syntax parse only; controller controls separately in offline-refresh/RESULT.json; native UIKit/UI pending",
+  "exit": 0,
+  "files": {
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift": "0a29bc3992a1da701ac8ffb2af3f4825dbeaafe87b4710caba207ac307665c28",
+    "Source/ZayitSearch/ZayitSearchDistribution.swift": "98429a31f01ba9db5953440cb7c48cb65f1111c8c5923105fe657fb5b49a838d"
+  }
+}
