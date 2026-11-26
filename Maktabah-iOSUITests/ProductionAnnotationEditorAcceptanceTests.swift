@@ -457,6 +457,8 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let paused = app.descendants(matching: .any)["annotation-native-backfill-paused"]
         let pause = app.buttons["annotation-native-backfill-pause"]
         let converted = app.staticTexts["annotation-native-backfill-converted"]
+        let finishClosing = app.buttons["annotation-native-backfill-close-retry"]
+        let closing = app.staticTexts["Closing the private editor…"]
         let convertedDatabase = try canonicalAnnotationDatabase()
         let deadline = Date().addingTimeInterval(12_000)
         let checkpoints = [1_200, 2_400, 3_600]
@@ -466,7 +468,16 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             try await confirmBulkNativeConversion(conversion)
             let checkpoint = checkpoints.first { $0 > lastCommitted }
             var pauseRequested = false
+            // SwiftUI lazily mounts the status rows. A save or confirmation can
+            // refresh and move the list above the conversion controls.
+            for _ in 0..<4 {
+                if pause.exists || finishClosing.exists || complete.exists || failure.exists || paused.exists { break }
+                app.swipeUp()
+            }
+            _ = try XCTUnwrap((pause.exists || finishClosing.exists || complete.exists || failure.exists || paused.exists)
+                              ? true : nil, "The original conversion state must be visible")
             while !complete.exists && !failure.exists && !closeFailure.exists && !paused.exists && Date() < deadline {
+                if !pause.exists && !closing.exists { app.swipeUp() }
                 if let checkpoint, !pauseRequested, pause.exists, pause.isEnabled, converted.exists,
                    let thisRun = Int(converted.label.filter(\.isNumber)), lastCommitted + thisRun >= checkpoint {
                     try revealPreparationControl(pause)
@@ -478,14 +489,13 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             let committed = try confirmedNativeBackfillCount(databaseURL: convertedDatabase)
             XCTAssertGreaterThanOrEqual(committed, lastCommitted, "Conversion must preserve previously saved native rows")
             if !complete.exists { retainNativeEvidence("scale-backfill-checkpoint-\(committed)") }
-            let finishClosing = app.buttons["annotation-native-backfill-close-retry"]
             for _ in 0..<2 where closeFailure.exists {
                 try revealPreparationControl(finishClosing)
                 try await waitForEnabled(finishClosing)
                 tap(finishClosing)
                 let retryDeadline = Date().addingTimeInterval(120)
-                let closing = app.staticTexts["Closing the private editor…"]
-                while !conversion.exists && (!closeFailure.exists || closing.exists) && Date() < retryDeadline {
+                while !conversion.exists && !closeFailure.exists && Date() < retryDeadline {
+                    if !closing.exists { app.swipeUp() }
                     try await Task.sleep(for: .seconds(2))
                 }
             }
