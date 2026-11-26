@@ -1,0 +1,39 @@
+Building for debugging...
+[Computing dependencies]
+[Provisioning 3 / 11]
+[Pre-planning 1 / 242]
+[Planning deferred tasks]
+[56 / 94] OtzariaUIRouting_OtzariaUIRouting
+[60 / 97] OtzariaActionCore
+[61 / 97] OtzariaActionCore
+[66 / 98]
+[68 / 101] OtzariaUIRouting
+[69 / 101] OtzariaUIRouting
+[70 / 101] OtzariaUIRouting
+[74 / 101] OtzariaUIRouting
+[75 / 102] OtzariaUIRouting
+[76 / 102] OtzariaUIRouting-product
+[77 / 103]
+[79 / 106] ChavrusaUIRoutingHost
+[80 / 106] ChavrusaUIRoutingHost
+[82 / 106] ChavrusaUIRoutingHost
+[88 / 108]
+[90 / 111] ChavrusaUIRoutingHostTests-product
+[91 / 112] OtzariaActionCore
+[96 / 112] ChavrusaUIRoutingHostTests-product
+[98 / 112] ChavrusaUIRoutingHostTests-product
+[100 / 112] ChavrusaUIRoutingHost
+[101 / 112] ChavrusaUIRoutingHostTests-product
+[105 / 113] ChavrusaUIRoutingHostTests-product
+[109 / 116] ChavrusaUIRoutingHostTests-test-runner
+[113 / 116] ChavrusaUIRoutingHostTests-test-runner
+[117 / 117] ChavrusaUIRoutingHostTests-test-runner
+Build complete! (61.08 secs)
+Test Suite 'Selected tests' started at 2026-11-26 22:38:09.285
+Test Suite 'NativeIntentServiceTests' started at 2026-11-26 22:38:09.310
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-26 22:38:09.310
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.106 seconds)
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-26 22:38:09.416
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.106 (0.106) seconds
+Test Suite 'Selected tests' passed at 2026-11-26 22:38:09.416
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.106 (0.106) seconds

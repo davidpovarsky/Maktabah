@@ -1,0 +1,3917 @@
+{
+  "source_sha": "4a04aeb208fd0e5408a2521f2757e97982bc258c",
+  "boundary": "All original facets preserved verbatim. A source anchor or root-context route does not close UI03-07. Neither public-API inappropriateness nor original unavailable status waives native UI/guide/state requirements.",
+  "original_status_counts": {
+    "planned": 193,
+    "supported": 29,
+    "not-appropriate": 13,
+    "NOT_IMPLEMENTED": 10,
+    "unavailable": 49
+  },
+  "original_intent_suitability_counts": {
+    "candidate_foreground_gated": 137,
+    "not_appropriate_as_direct_public_action": 144,
+    "same_original_intent_live_component_entity_foreground_gated": 1,
+    "installed_foreground_gated": 8,
+    "same_existing_live_foreground_intent_for_actual_reader": 1,
+    "source_wired_core_reader_intent_native_pending": 3
+  },
+  "rows": [
+    {
+      "id": "inventory.v1.app.scene",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.tab.library",
+      "area": "shell",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.library",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.tab.search",
+      "area": "shell",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.search",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.tab.authors",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.tab.annotations",
+      "area": "shell",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.annotations",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.tab.history",
+      "area": "shell",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.history",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.ipad-split",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.iphone-stack",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.settings-sheet",
+      "area": "shell",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.settings",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.book-info-sheet",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.alert",
+      "area": "shell",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.source",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.sefaria-confirmation",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.otzaria-assets",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.import",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.welcome",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bootstrap.core-update",
+      "area": "bootstrap",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.catalog",
+      "area": "library",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.library",
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.query",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.category-expansion",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.open-work",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.grouping",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.author-grouping",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.selection",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.download-filter",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.options",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.book-info-context",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.updates",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.delete",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import.book",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import.author",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import.file",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import.category",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.import.form",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.updates-review",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.author",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.narrator-detail",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.library.narrator-reader",
+      "area": "library",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.content",
+      "area": "reader",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader",
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.viewport",
+      "area": "reader",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader",
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.text-selection",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.selection-actions",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.pull-navigation",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.navigation-popover",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.navigation-unit",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.toolbar.search",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.toolbar.annotations",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.toolbar.view-options",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.toolbar.toc",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.toolbar-actions",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.book-info",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.book-info-anchor",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.options.typography",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.options.fonts",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.options.text-mode",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.options.display",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.options.background",
+      "area": "reader",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.reader.version-picker",
+      "area": "reader",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.contents",
+      "area": "toc",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader.toc",
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.query",
+      "area": "toc",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.structure",
+      "area": "toc",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.selected-node",
+      "area": "toc",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.expansion",
+      "area": "toc",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.toc.node",
+      "area": "toc",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.sidebar.page",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library",
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.sidebar.visibility",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.library",
+        "native.reader.toc"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.panel",
+      "area": "inspector",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader.inspector",
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.sheet",
+      "area": "inspector",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader.inspector",
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.tool",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.width",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.related-source",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "TRUSTED_CORE_TO_ORIGINAL_NATIVE_ROUTE",
+      "current_destination": "native.reader",
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.line-links",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.generic-relationships",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.commentaries",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.links",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.notes",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.commentary-group",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.note-item",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.note-delete",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.reader",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inspector.shared.route",
+      "area": "inspector",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.inspector"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.draft",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "TRUSTED_CORE_TO_ORIGINAL_NATIVE_ROUTE",
+      "current_destination": "native.reader.noteDraft",
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.body",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.tags",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.style",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.save",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.delete",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.notes.editor.cancel",
+      "area": "notes",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader.noteDraft"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.list",
+      "area": "annotations",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.annotations",
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.filter",
+      "area": "annotations",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.import",
+      "area": "annotations",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.export",
+      "area": "annotations",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.book",
+      "area": "annotations",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.annotations.import-conflict",
+      "area": "annotations",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.annotations"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.global",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "TRUSTED_CORE_TO_ORIGINAL_NATIVE_ROUTE",
+      "current_destination": "native.search.results",
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.input-focus",
+      "area": "search",
+      "original_status": "supported",
+      "original_app_intent_suitability": "same_original_intent_live_component_entity_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.search",
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.history",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.filters",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.filter-tree",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.advanced",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.help",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.results",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.clipboard",
+      "area": "search",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.paging",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.engine-state",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.book",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.command-palette",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.save-results-draft",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.list",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.folder",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.query",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.move",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.delete",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.rename",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.move-destination",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.bookmarks.folder-selection",
+      "area": "bookmarks",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.history.list",
+      "area": "history",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.history",
+      "containing_context_only": [
+        "native.history"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.history.open-entry",
+      "area": "history",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.history"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.history.favorite-picker",
+      "area": "history",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.history"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.history.favorite-item",
+      "area": "history",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.history"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.reader-tabs",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.tabs-popover",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.groups-overview",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.document-tabs",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.profile-menu",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.management",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.draft",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.groups",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.delete",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.workspace.scene-identity",
+      "area": "workspace",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.reader"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.root",
+      "area": "settings",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.settings",
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.backend",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.offline",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.database-mode",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.history",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.storage",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.annotations",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.cloud",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.appearance",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.search-data",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.search-credits",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.search-index",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.optimization",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.updates",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.downloads",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.data-profile",
+      "area": "settings",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.accessibility",
+      "area": "settings",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.language",
+      "area": "settings",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.offline-packages",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.packages.review",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.packages.apply",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.packages.updates",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.packages.update",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.packages.cancel",
+      "area": "packages",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.search-data-detail",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.settings.search-data-install",
+      "area": "settings",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.settings"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.diagnostics",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.legacy-link.history",
+      "area": "ingress",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "LEGACY_URL_HANDLER_RETAINED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.legacy-link.annotation",
+      "area": "ingress",
+      "original_status": "supported",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "LEGACY_URL_HANDLER_RETAINED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.widget.configuration",
+      "area": "ingress",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.registry",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.orchestrator",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.app-intents",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.universal-links",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.guide-spotlight",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.future.hanlin-host",
+      "area": "future",
+      "original_status": "NOT_IMPLEMENTED",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "FORMER_FUTURE_ROW_NOW_HAS_REAL_INFRASTRUCTURE",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.safari-host",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.otzaria-root",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.otzaria-library",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.otzaria-reader",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.otzaria-settings",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.inactive.otzaria-search",
+      "area": "inactive",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.surface-host",
+      "area": "embedded",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.runtime",
+      "area": "embedded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rpc-data",
+      "area": "embedded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn-root",
+      "area": "embedded",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reader",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.library",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.category",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reader-controls",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.text-column",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.segment",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.toc",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections-filter",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.link-content",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.versions",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.translations",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dictionary",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.display-options",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-results",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-filters",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.autocomplete",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.history-saved",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.account",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.auth",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reset-password",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topics",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topic-list",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.learning-schedules",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.sheet",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.about",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.footer-tabs",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.deep-links",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.error",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.web",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.interface-language",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.text-language",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.network",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.offline-library",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.debug-destructive",
+      "area": "embedded_rn",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.email-frequency",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.reading-history",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.custom",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.grogger",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "never_GET; independent explicit user confirmation",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.logout",
+      "area": "embedded_rn",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.delete-account",
+      "area": "embedded_rn",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dedication",
+      "area": "embedded_rn",
+      "original_status": "unavailable",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.embedded.rn.notice",
+      "area": "embedded_rn",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.decorative.toolbar-icons",
+      "area": "excluded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.decorative.theme",
+      "area": "excluded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.decorative.row-layout",
+      "area": "excluded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.decorative.reader-label",
+      "area": "excluded",
+      "original_status": "not-appropriate",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.shell.donation",
+      "area": "shell",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.command-palette.close",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "candidate_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": true,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-sefaria-match",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-sefaria-distance",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-options-validation",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-options-content",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-options-done",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-positive-scope",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-distance",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-word-match",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-word-count",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-negative-query",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-negative-scope",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-negative-distance",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaEnablesPrefixes",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaEnablesSuffixes",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaEnablesSpellingVariants",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaEnablesAramaic",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaIgnoresQuotes",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaMatchNikud",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-otzariaMatchTaamim",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-spacing",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-alternatives",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-grouping",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-zayit-match",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-rerun",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-dirty",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-cancel",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-loading",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-cancelled",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-filter-empty",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-retry",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-error",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-index-status",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-missing-index",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-empty",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-page-retry",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-page-error",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-options",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-books",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-mode",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-header",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-history-clear",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-history",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-count",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-result-filter-toggle",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.toggle-sefariaReverseSort",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-sort",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-result-filter",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-result-filter-done",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-results-header",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-saved",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-save",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-data",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-reset",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.search.native.global-search-more",
+      "area": "search",
+      "original_status": "planned",
+      "original_app_intent_suitability": "not_appropriate_as_direct_public_action",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "NO_EXACT_COMPONENT_ROUTE_ESTABLISHED",
+      "current_destination": null,
+      "containing_context_only": [
+        "native.search"
+      ],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.library",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.library",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.reader.toc",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader.toc",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.history",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.history",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.search",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.search",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.annotations",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.annotations",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.settings",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.settings",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.reader.inspector",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "same_existing_live_foreground_intent_for_actual_reader",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader.inspector",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.reader",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "source_wired_core_reader_intent_native_pending",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.reader-new-tab",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "source_wired_core_reader_intent_native_pending",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "ROOT_OR_CANONICAL_READER_SUBSET",
+      "current_destination": "native.reader",
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.foreground-intent",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "SYSTEM_INGRESS_DEFINITION",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.shortcut",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "installed_foreground_gated",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "SYSTEM_INGRESS_DEFINITION",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    },
+    {
+      "id": "inventory.v1.native.reader-intent",
+      "area": "native-routing",
+      "original_status": "supported",
+      "original_app_intent_suitability": "source_wired_core_reader_intent_native_pending",
+      "original_mutation_rule": "navigation_does_not_authorize_writes",
+      "original_private_payload": false,
+      "current_mapping_relationship": "SYSTEM_INGRESS_DEFINITION",
+      "current_destination": null,
+      "containing_context_only": [],
+      "meaning": "Original exposure/disposition facets retained; not a new unsupported label or waiver of component/state requirements."
+    }
+  ]
+}
