@@ -427,8 +427,11 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
                     guard let reopened = self.mount else { throw AnnotationOriginalEditorUIError.closed }
                     let restored = try await reopened.restoreMiniAppsContext(launch.context)
                     let files = try await reopened.miniAppsFiles(context: restored)
+                    // Use the archive's durable witness for the external request.
+                    // The restored context owns this mount and its file reads;
+                    // its private object IDs can change after a cold import.
                     OtzariaMiniAppsCoordinator.shared.showOriginalEditor(annotation: annotation,
-                        context: restored, files: files, editorID: id, sourceView: reopened.viewController.view)
+                        context: launch.context, files: files, editorID: id, sourceView: reopened.viewController.view)
                 case .completedWithoutOwnership:
                     if !closed { stage = .saved }
                 }
