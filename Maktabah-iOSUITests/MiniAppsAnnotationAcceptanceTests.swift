@@ -657,7 +657,34 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         var host = try await richHost()
         let firstBody = try await richBody(first, host: host)
         let keyboard = app.keyboards.firstMatch
-        if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_PASTE_SEED"] == "1" {
+        if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED"] == "1" {
+            // Have the real MiniApp create the second original native block.
+            // This checks the callback with the same product and persisted row.
+            let known = Set(try records(in: shared).map { $0.request.id })
+            tap(app.buttons["annotation-expanded-editor-miniapps"])
+            try await confirmOriginalMiniAppsSave()
+            try await openActualTextStudio(producer)
+            let seed = try XCTUnwrap(try records(in: shared).first { !known.contains($0.request.id) })
+            let document = try JSONDecoder().decode(Document.self, from:
+                Data(try XCTUnwrap(seed.request.source.metadata["otzaria.annotation.v1"]).utf8))
+            XCTAssertEqual(document.annotationID, rowID)
+            XCTAssertEqual(seed.request.source.documentText, first)
+            XCTAssertEqual(seed.request.operation, "insert")
+            let baseline = try richState(rowID: rowID, databasePath: document.profile)
+            try typeActualStudioResult(second, producer: producer)
+            tap(producer.buttons["miniapps.textstudio.return"])
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 90))
+            host = try await richHost()
+            try await assertNativeBodies([first, second], host: host)
+            try await requireNativeCondition(timeout: 60) {
+                (try? self.records(in: shared).first { $0.request.id == seed.request.id }?.acknowledged) == true
+            }
+            let saved = try richState(rowID: rowID, databasePath: document.profile)
+            XCTAssertEqual(saved.revision, baseline.revision + 1)
+            XCTAssertEqual(saved.mutationID, seed.request.id)
+            XCTAssertEqual(try persistedReceipt(requestID: seed.request.id, databasePath: document.profile).count, 1)
+            attachRichState(saved, name: "miniapps-rich-second-native-block-via-textstudio")
+        } else if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_PASTE_SEED"] == "1" {
             // Use the original clipboard command to create both real blocks.
             // This fixture leaves the keyboard-focus regression test available.
             UIPasteboard.general.string = first + "\n" + second
