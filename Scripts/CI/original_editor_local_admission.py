@@ -7,6 +7,7 @@ hq-original-editor-distribution.py. No GitHub run/artifact ID is manufactured.
 import json
 from pathlib import Path
 import re
+import runpy
 import shutil
 import stat
 import uuid
@@ -59,6 +60,7 @@ def donor_policy_scope(source=None):
     }
 
 
+DEBUG_CONTINUATION = runpy.run_path(str(Path(__file__).with_name('original_editor_debug_continuation.py')))
 FRESH_SCHEMA = 'otzaria.original-import-local-sdk-input/3'
 FRESH_ROLES = {'abi_generation_qualification', 'abi_changed_swift_qualification',
                'abi_final_native_rpc_union', 'abi_pinned_wrapper', 'abi_fresh_verification'}
@@ -195,12 +197,17 @@ def validate_configuration(config):
         require(re.fullmatch(r'[0-9a-f]{64}', config.get(name, '')), 'Missing local SDK digest: ' + name)
     rows = config.get('local_receipts', {})
     provenance = config.get('abi_provenance')
-    require(provenance in (None, DONOR_SCHEMA, FRESH_SCHEMA), 'Unsupported local ABI provenance route')
+    debug_route = provenance == DEBUG_CONTINUATION['DEBUG_CONTINUATION']
+    require(provenance in (None, DONOR_SCHEMA, FRESH_SCHEMA) or debug_route,
+            'Unsupported local ABI provenance route')
     require(provenance == DONOR_SCHEMA or 'abi_donor_source_sha' not in config,
             'A native donor identity requires the explicit donor provenance route')
     scope = donor_policy_scope(config.get('abi_donor_source_sha')) if provenance == DONOR_SCHEMA else None
     roles = ROLES | (DONOR_ROLES | scope['extra_roles'] if scope else
                      FRESH_ROLES if provenance == FRESH_SCHEMA else set())
+    if debug_route:
+        roles |= DEBUG_CONTINUATION['ROLES']
+        DEBUG_CONTINUATION['validate_configuration'](config)
     require(set(rows) == roles, 'Local SDK source/ABI evidence closure is incomplete')
     for role, row in rows.items():
         require(set(row) == {'path', 'bytes', 'sha256'} and type(row['bytes']) is int and row['bytes'] > 0
@@ -457,9 +464,14 @@ def validate_provenance(root, config, qualification, api):
     execution = values['execution']
     donor_route = config.get('abi_provenance') == DONOR_SCHEMA
     fresh_route = config.get('abi_provenance') == FRESH_SCHEMA
+    debug_route = config.get('abi_provenance') == DEBUG_CONTINUATION['DEBUG_CONTINUATION']
     require(not donor_route or contract in (MINIAPPS_CONTRACT, FILES_MINIAPPS_CONTRACT),
             'Donor reuse requires the reviewed complete MiniApps public contract')
-    if donor_route:
+    if debug_route:
+        branch = DEBUG_CONTINUATION['DEBUG_BRANCH']
+        require(execution.get('source_tree') == DEBUG_CONTINUATION['DEBUG_TREE'],
+                'Unexpected Debug continuation producer tree')
+    elif donor_route:
         branch = donor_policy_scope(config.get('abi_donor_source_sha'))['current_branch']
     elif fresh_route:
         # The independently rebuilt Collections13 SDK retains its own actual
@@ -493,10 +505,13 @@ def validate_provenance(root, config, qualification, api):
             and before.get('execution_identity') == identity
             and before.get('status') == 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
             'Actual SDK source closure was not preserved through execution')
-    donor_proof = fresh_proof = None
+    donor_proof = fresh_proof = debug_proof = None
     require((abi.get('schema') == FRESH_SCHEMA) == fresh_route,
             'Fresh original ABI cannot silently use a historical provenance route')
-    if donor_route:
+    if debug_route:
+        debug_proof = DEBUG_CONTINUATION['verify_native_origin'](
+            values, config, qualification, before, validate_abi_adapter)
+    elif donor_route:
         donor_proof = validate_donor_abi(values, config, qualification.get('heart', {}), before)
     else:
         validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
@@ -511,7 +526,8 @@ def validate_provenance(root, config, qualification, api):
                 and qualification['heart'].get('native_qualification') == abi.get('native_qualification')
                 and abi.get('native_qualification', {}).get('status') == 'PASS',
                 'SDK does not consume the qualified original Import ABI')
-    require(qualification.get('status') == QUALIFIED and qualification.get('phase') == 'COMPLETE'
+    status = DEBUG_CONTINUATION['DEBUG_QUALIFIED'] if debug_route else QUALIFIED
+    require(qualification.get('status') == status and qualification.get('phase') == 'COMPLETE'
             and qualification.get('original_framework_build') == 'PASS'
             and qualification.get('external_consumer_build') == 'PASS'
             and qualification.get('native_editor_ui_tests') == 0,
@@ -520,6 +536,7 @@ def validate_provenance(root, config, qualification, api):
             'local_receipts': config['local_receipts'], 'native_stageb_qualified': False,
             'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY',
             **({'abi_reuse': donor_proof} if donor_proof else {}),
+            **({'debug_continuation': debug_proof} if debug_proof else {}),
             **({'fresh_abi_provenance': fresh_proof} if fresh_proof else {}),
             **({'public_host_contract_sha256': contract} if contract else {})}
 

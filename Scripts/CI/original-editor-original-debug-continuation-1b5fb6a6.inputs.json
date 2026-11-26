@@ -1,0 +1,156 @@
+{
+  "abi_provenance": "otzaria.original-import-sdk-debug-continuation/1",
+  "archive_bytes": 393148145,
+  "archive_path": "build/original-editor-local-debug-continuation-1b5fb6a6/framework.zip",
+  "archive_sha256": "a5306aac0eb06bdea1041a064dbb47fb7aa7bd289a0faeb70c48caae86f477bc",
+  "configuration": "Debug",
+  "device_framework_qualified": false,
+  "distribution_manifest_path": "build/original-editor-local-debug-continuation-1b5fb6a6/framework-distribution.json",
+  "distribution_manifest_sha256": "4c776963de048a4410ce99a22c9f3a9f62c5c4c928345918b04e0f470ddf004c",
+  "distribution_root": "build/original-editor-local-debug-continuation-1b5fb6a6/distribution",
+  "hanlin_source_path": "build/original-editor-local-debug-continuation-1b5fb6a6/original-hanlin-snapshot.json",
+  "hanlin_source_sha256": "9e4b8820164a95023efe23ccc2a0bdbfb9aeb24553aba3eb502e1f15a98b95cf",
+  "local_execution_sha256": "0c85c186805e6a06b2ac8f864547ee3bc9920e0a0c7112fd5f0b8f6d25ca6778",
+  "local_receipts": {
+    "abi": {
+      "bytes": 11755,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/abi.json",
+      "sha256": "daa628a8616350e83e7bd196e28fa802d23b8512f9d5489f18264cce6fe69e60"
+    },
+    "debug_origin_abi": {
+      "bytes": 9239,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/debug_origin_abi.json",
+      "sha256": "29b7e8472c9c80245c26101e716e4687cdc4c2666ad4aadf8d3543a9b94d30de"
+    },
+    "debug_origin_verification": {
+      "bytes": 6899,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/debug_origin_verification.json",
+      "sha256": "968f57544d061ec76c39d83feeb5d624e10dd7037d355efb5a2366272d5c3658"
+    },
+    "debug_producer_verification": {
+      "bytes": 3511,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/debug_producer_verification.json",
+      "sha256": "05b7e336562327ad910de250208488c020a8263eb2aa3205d5b912a8fc2d3219"
+    },
+    "debug_shared_runtime_ownership": {
+      "bytes": 374772,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/debug_shared_runtime_ownership.json",
+      "sha256": "c061878f64950a32132df68bb04e10fba0d875d4046fd5e4527b511f035c5dbc"
+    },
+    "execution": {
+      "bytes": 1103,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/execution.json",
+      "sha256": "0c85c186805e6a06b2ac8f864547ee3bc9920e0a0c7112fd5f0b8f6d25ca6778"
+    },
+    "source_after": {
+      "bytes": 313149,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/source_after.json",
+      "sha256": "0cca110276077d42f476015f93e9dd2202ad7fc69fd9c94b7d26d90294fc01d1"
+    },
+    "source_before": {
+      "bytes": 313149,
+      "path": "build/original-editor-local-debug-continuation-1b5fb6a6/source_before.json",
+      "sha256": "0cca110276077d42f476015f93e9dd2202ad7fc69fd9c94b7d26d90294fc01d1"
+    }
+  },
+  "native_source_tree": "ccff9278b2c165eb470891e4dac41e0eca65a5e7",
+  "native_stageb_qualified": false,
+  "original_source_sha256": "cf3352262faebb9b61ec44839bc43c3f2f9e9cde69d892211e00ccc1031e22c6",
+  "platform": "iphonesimulator",
+  "producer_kind": "local-mac",
+  "public_host_contract_sha256": "6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141",
+  "qualification_sha256": "671734345dbe58658f24ee91edda2374a1cd5be04dc660edfa8401048baeff3b",
+  "repository": "davidpovarsky/anytype-swift",
+  "run_attempt": 1,
+  "run_id": "local-67e0e0c7-f31a-407f-87f7-1c9d8fd89d6e",
+  "schema": 3,
+  "shared_runtime": {
+    "clang_manifest_sha256": "00e6811e45f4095fa57ad988325b7a8354126741c1d5212b4a40c8f9430ea628",
+    "clang_roots": {
+      "header_search_paths": [
+        "Clang/Packages/swift-cmark/src/include",
+        "Clang/Packages/swift-cmark/extensions/include",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include",
+        "Clang/Packages/iosMath/iosMath",
+        "Clang/Packages/firebase-ios-sdk/FirebaseInstallations/Source/Library/Public",
+        "Clang/Packages/firebase-ios-sdk/FirebaseCore/Sources/Public",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources",
+        "Clang/Packages/firebase-ios-sdk/FirebaseMessaging/Sources/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Network/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/NSData+zlib/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Reachability/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/MethodSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/SwizzlerTestHelpers/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Logger/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Environment/Public",
+        "Clang/Packages/GoogleUtilities/third_party/IsAppEncrypted/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/UserDefaults/Public",
+        "Clang/Packages/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public",
+        "Clang/Packages/promises/Sources/FBLPromises/include",
+        "Clang/Packages/nanopb/spm_headers"
+      ],
+      "module_maps": [
+        "Clang/Packages/swift-cmark/src/include/module.modulemap",
+        "Clang/Packages/swift-cmark/extensions/include/module.modulemap",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap",
+        "Clang/Packages/iosMath/iosMath/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseCore.modulemap",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseMessaging.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Network.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-NSData.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Reachability.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-MethodSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-SwizzlerTestHelpers.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Logger.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Environment.modulemap",
+        "Clang/GeneratedModuleMaps/third-party-IsAppEncrypted.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-UserDefaults.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap",
+        "Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap",
+        "Clang/GeneratedModuleMaps/nanopb.modulemap"
+      ]
+    },
+    "hanlin_revision": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+    "host_pod_versions": {
+      "FirebaseCore": "12.8.0",
+      "FirebaseCoreInternal": "12.8.0",
+      "FirebaseInstallations": "12.8.0",
+      "GoogleDataTransport": "10.1.1",
+      "GoogleUtilities": "8.1.5",
+      "PromisesObjC": "2.4.1",
+      "PromisesSwift": "2.4.1",
+      "nanopb": "3.30910.0"
+    },
+    "host_products": [
+      "HanlinHostContracts",
+      "HanlinAgentCore",
+      "HanlinChatCore",
+      "HanlinScriptUI",
+      "HanlinChatUI",
+      "HanlinPresentationKit",
+      "HanlinRichUI",
+      "HanlinPlatformContracts",
+      "FloatingPanel",
+      "TorahInspectorCore",
+      "TorahInspectorUI",
+      "ZIPFoundation"
+    ],
+    "host_source_equivalence": {
+      "path": "Scripts/CI/original-editor-hanlin-equivalence-9565a9e4.json",
+      "sha256": "2116b877ddb3c4ff50daccba869dd26c39f89ba25f907cbe12500361e0d76bb4"
+    },
+    "kind": "original-shared-implementations/1",
+    "swift_ai_revision": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
+  },
+  "source_sha": "1b5fb6a68b1f8e1e61ac20ce02920e6c1fdb09e3",
+  "status": "CURRENT_EXTERNAL_RUNTIME_DEBUG_ONLY",
+  "toolchain": {
+    "sdk_version": "27.0",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "xcode": "Xcode 27.0\nBuild version 27A266a"
+  }
+}

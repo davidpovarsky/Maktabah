@@ -501,7 +501,9 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     if continuation:
         continuation_receipt = continuation["validate_qualification"](config, qualification)
     elif not production:
-        require(qualification.get("status") == QUALIFIED and qualification.get("phase") == "COMPLETE"
+        debug = local_provenance.get("debug_continuation") if local_provenance else None
+        required_status = local["DEBUG_CONTINUATION"]["DEBUG_QUALIFIED"] if debug else QUALIFIED
+        require(qualification.get("status") == required_status and qualification.get("phase") == "COMPLETE"
                 and qualification.get("original_framework_build") == "PASS"
                 and qualification.get("external_consumer_build") == "PASS"
                 and qualification.get("same_toolchain_only") is True,
@@ -589,9 +591,13 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
         result["clang_import_context"] = clang["admitted_context"](distribution, identity)
     if config["schema"] == 3 or production:
         shared = runpy.run_path(str(owned_path(root, "Scripts/CI/original_editor_shared_runtime.py")))
+        provider_qualification = qualification
+        if local_provenance and local_provenance.get("debug_continuation"):
+            ownership = local_provenance["debug_continuation"]["shared_runtime_ownership"]
+            provider_qualification = {**qualification, "shared_runtime_ownership": ownership}
         result.update(schema="otzaria.original-editor.production-admission/1" if production else 3,
                       toolchain=config["toolchain"],
-                      shared_runtime=shared["validate_provider"](root, config, qualification, result))
+                      shared_runtime=shared["validate_provider"](root, config, provider_qualification, result))
         result["clang_import_context"] = result["shared_runtime"]["clang_context"]
     if production:
         require(config.get("distribution_files") == actual, "Committed Release product inventory differs")

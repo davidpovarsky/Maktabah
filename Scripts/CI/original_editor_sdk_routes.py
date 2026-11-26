@@ -81,6 +81,8 @@ def load(root, manifest=MANIFEST):
                 and re.fullmatch(r'[a-f0-9]{64}', config.get('archive_sha256', '')),
                 'Original SDK variants do not bind the same product/native source')
         require(config.get('repository') == 'davidpovarsky/anytype-swift', 'Wrong SDK repository')
+        require(config.get('abi_provenance') != 'otzaria.original-import-sdk-debug-continuation/1',
+                'Final build routes require independently qualified distributions, not the focused Debug continuation')
         if key == 'debug-simulator':
             require(config.get('schema') == 3, 'Debug must retain the complete original Simulator admission')
         else:
