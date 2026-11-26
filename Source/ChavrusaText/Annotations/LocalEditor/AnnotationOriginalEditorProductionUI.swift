@@ -562,7 +562,7 @@ struct AnnotationOriginalEditorProductionView: View {
                 .background(.bar)
             }
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .primaryAction) {
                     Button { model.requestMiniApps() } label: {
                         Label("Mini Apps", systemImage: "square.grid.2x2")
                     }

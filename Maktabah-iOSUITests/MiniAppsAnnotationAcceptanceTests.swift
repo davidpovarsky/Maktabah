@@ -136,12 +136,30 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(visibleRow.waitForExistence(timeout: 15))
         let visible = visibleRow.switches.firstMatch
         XCTAssertTrue(visible.waitForExistence(timeout: 15) && visible.isHittable && visible.isEnabled)
-        visible.tap()
+        if isPad {
+            // Move the visible UIKit switch thumb within the native control.
+            // Tapping its exposed center on iPadOS can leave the value unchanged.
+            let leading = visible.coordinate(withNormalizedOffset:
+                CGVector(dx: language.isRTL ? 0.78 : 0.22, dy: 0.5))
+            let trailing = visible.coordinate(withNormalizedOffset:
+                CGVector(dx: language.isRTL ? 0.22 : 0.78, dy: 0.5))
+            trailing.press(forDuration: 0.25, thenDragTo: leading)
+        } else {
+            visible.tap()
+        }
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
         }
         XCTAssertTrue(visible.isHittable && visible.isEnabled)
-        visible.tap()
+        if isPad {
+            let leading = visible.coordinate(withNormalizedOffset:
+                CGVector(dx: language.isRTL ? 0.78 : 0.22, dy: 0.5))
+            let trailing = visible.coordinate(withNormalizedOffset:
+                CGVector(dx: language.isRTL ? 0.22 : 0.78, dy: 0.5))
+            leading.press(forDuration: 0.25, thenDragTo: trailing)
+        } else {
+            visible.tap()
+        }
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden == original.hidden
         }
@@ -1307,9 +1325,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func confirmOriginalMiniAppsSave() async throws {
-        let confirm = app.buttons["annotation-miniapps-save-confirm"]
-        try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }
-        tap(confirm)
+        let identified = app.buttons["annotation-miniapps-save-confirm"]
+        let nativeLabel = app.buttons["Save and open Mini Apps"]
+        try await requireNativeCondition(timeout: 15) {
+            (identified.exists && identified.isHittable) || (nativeLabel.exists && nativeLabel.isHittable)
+        }
+        tap(identified.exists && identified.isHittable ? identified : nativeLabel)
     }
 
     /// Actual original saved row and immutable versions, including a first note
