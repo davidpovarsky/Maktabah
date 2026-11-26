@@ -29,14 +29,15 @@
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b",
     "safari_toolbar_localization": "104168712f060f0a21a78d27fcde98dc312d9527",
     "shared_original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
+    "stable_native_group_segments": "816672732d0c96f192a2a2af22f405df67855272",
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "b15fd08ca475d9fbcb1be0f1e465da96496fd9d6",
+  "application_source_sha": "816672732d0c96f192a2a2af22f405df67855272",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "917eb142d9bef5e2da5fb5e37ce0571f6ac9fd73",
+    "Source": "b0567cc613931c32e1838312b4e2e793e352e2b0",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -240,6 +241,13 @@
           "mode": "100644",
           "object": "06a2de328228edbcb737189e8d4e662f2dba8aa6",
           "sha256": "50ef9d2848d342b0ee58d7ffc13e826e5a3fc55f31d6f21805d59bd17333db4d"
+        },
+        "stable_native_group_segments": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "study_workspace_locale": {
           "bytes": 71096,
@@ -514,6 +522,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "stable_native_group_segments": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "study_workspace_locale": {
           "bytes": 5427,
@@ -1001,6 +1016,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "stable_native_group_segments": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "study_workspace_locale": {
           "bytes": 21097,
           "kind": "blob",
@@ -1230,6 +1252,13 @@
           "mode": "100644",
           "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
           "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
+        },
+        "stable_native_group_segments": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "study_workspace_locale": {
           "bytes": 42323,
@@ -1506,6 +1535,13 @@
           "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
           "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
         },
+        "stable_native_group_segments": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "study_workspace_locale": {
           "bytes": 54697,
           "kind": "blob",
@@ -1767,6 +1803,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "stable_native_group_segments": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "study_workspace_locale": {
           "bytes": 38814,
           "kind": "blob",
@@ -1998,6 +2041,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "stable_native_group_segments": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "study_workspace_locale": {
           "bytes": 30093,
           "kind": "blob",
@@ -2223,6 +2273,13 @@
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
+        "stable_native_group_segments": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "study_workspace_locale": {
           "bytes": 12957,
           "kind": "blob",
@@ -2299,11 +2356,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 1869,
+        "bytes": 2371,
         "kind": "blob",
         "mode": "100644",
-        "object": "4e6847cdbbcea72483e8c391349c4fceb9bdc6c8",
-        "sha256": "211169b4f37e3a7a55c1104c2534d68e1c4a9f1bfb9bf3c0607e4c14b48be086"
+        "object": "56c98c17b897ca13072a0633f2fa03d80229d253",
+        "sha256": "52cb3e9d35cf017dbf9575349e3ff0a91012da3e646fde2b31be0e63220688fb"
       },
       "before": {
         "bytes": 1773,
@@ -2312,7 +2369,7 @@
         "object": "35575761a20de182fbc64c18ab6a4f96b730dd5a",
         "sha256": "06752eaa3c446942c410aac486067fea6ad7ae33b7fb8065cb23e449cc2c7b6a"
       },
-      "component": "study_workspace_locale",
+      "component": "stable_native_group_segments",
       "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableGroupsHost.swift"
     },
     {
@@ -2852,6 +2909,13 @@
           "mode": "100644",
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "stable_native_group_segments": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "study_workspace_locale": {
           "bytes": 22996,
@@ -3598,6 +3662,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
+        },
+        "stable_native_group_segments": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "study_workspace_locale": {
           "kind": "commit",
