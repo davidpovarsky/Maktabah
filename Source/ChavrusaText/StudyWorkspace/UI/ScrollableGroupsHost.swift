@@ -17,10 +17,19 @@ struct ScrollableGroupsHost: UIViewRepresentable {
     func updateUIView(_ bar: ScrollableTabBar<UUID>, context: Context) {
         context.coordinator.onSelect = onSelect
         context.coordinator.canonicalSelection = selectedID
-        bar.isEnabled = isEnabled
-        bar.accessibilityLabel = StudyWorkspaceText(locale: locale)("Tab Groups", "קבוצות כרטיסיות")
+        if bar.isEnabled != isEnabled { bar.isEnabled = isEnabled }
+        let label = StudyWorkspaceText(locale: locale)("Tab Groups", "קבוצות כרטיסיות")
+        if bar.accessibilityLabel != label { bar.accessibilityLabel = label }
+
         let items = groups.map { ScrollableTabBar<UUID>.Item(id: $0.id, title: $0.name) }
-        bar.setItems(items, selectedID: groups.contains { $0.id == selectedID } ? selectedID : nil)
+        let selection = items.contains { $0.id == selectedID } ? selectedID : nil
+        // Store observations often update the selected document without changing the groups.
+        // Keep the original UIKit segments alive across selection-only updates.
+        if !bar.items.elementsEqual(items, by: { $0.id == $1.id && $0.title == $1.title }) {
+            bar.setItems(items, selectedID: selection)
+        } else if bar.selectedID != selection {
+            bar.selectedID = selection
+        }
     }
     final class Coordinator: NSObject, ScrollableTabBarDelegate {
         var onSelect: (UUID) -> Void
