@@ -1,0 +1,131 @@
+diff --git a/Source/Localizable.xcstrings b/Source/Localizable.xcstrings
+index e504d083d7f54b03f253592e83ad42d0cea07079..a60bff78654244052bf0d213c34a90bef502694c 100644
+--- a/Source/Localizable.xcstrings
++++ b/Source/Localizable.xcstrings
+@@ -1,6 +1,126 @@
+ {
+   "sourceLanguage": "en",
+   "strings": {
++    "Maktabah is waiting for the destination to become visible.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "אוצריא ממתינה להצגת היעד."
++          }
++        }
++      }
++    },
++    "Open Maktabah to continue navigation.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "יש לפתוח את אוצריא כדי להמשיך בניווט."
++          }
++        }
++      }
++    },
++    "Select the requested library in Maktabah before continuing.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "יש לבחור את הספרייה המבוקשת באוצריא לפני ההמשך."
++          }
++        }
++      }
++    },
++    "Choose the destination window in Maktabah.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "יש לבחור את חלון היעד באוצריא."
++          }
++        }
++      }
++    },
++    "Confirm this request in Maktabah.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "יש לאשר את הבקשה באוצריא."
++          }
++        }
++      }
++    },
++    "The destination changed. Choose it again.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "היעד השתנה. יש לבחור אותו שוב."
++          }
++        }
++      }
++    },
++    "This destination is not available in the selected library.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "היעד אינו זמין בספרייה שנבחרה."
++          }
++        }
++      }
++    },
++    "The destination is not ready. Try again in Maktabah.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "היעד עדיין אינו מוכן. יש לנסות שוב באוצריא."
++          }
++        }
++      }
++    },
++    "Navigation was cancelled.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "הניווט בוטל."
++          }
++        }
++      }
++    },
++    "Maktabah could not display this destination.": {
++      "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
++      "extractionState": "manual",
++      "localizations": {
++        "he": {
++          "stringUnit": {
++            "state": "translated",
++            "value": "אוצריא לא הצליחה להציג את היעד."
++          }
++        }
++      }
++    },
+     "Books": {
+       "localizations": {
+         "he": {

@@ -1,0 +1,224 @@
+diff --git a/Source/UI/iOS/Views/iOSMainView.swift b/Source/UI/iOS/Views/iOSMainView.swift
+index 14475c6a8454321809810e35d50ba9dbab5dbb3b..4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7 100644
+--- a/Source/UI/iOS/Views/iOSMainView.swift
++++ b/Source/UI/iOS/Views/iOSMainView.swift
+@@ -78,22 +78,39 @@ enum iOSTab: Int, CaseIterable, Identifiable {
+ struct iOSMainView: View {
+     @Environment(\.scenePhase) private var scenePhase
+     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+-    @State private var navigationManager = iOSNavigationManager()
+-    @State private var selectedTab: iOSTab = .viewer
++    @State private var navigationManager: iOSNavigationManager
++    @State private var selectedTab: iOSTab
+     @State private var columnVisibility: NavigationSplitViewVisibility = .all
+     @State private var showSettings = false
++    @State private var sidebar = ReaderSidebarPageCoordinator()
++    @State private var sefariaEmbeddedAcceptanceResult: String?
+     @Bindable var donationManager = DonationManager.shared
+ 
++    // Restore the global destination before TabView creates its first native
++    // container. Switching from a temporary Reader in onAppear can leave the
++    // restored split view with the Reader's initial tab-bar safe-area layout.
++    init() {
++        let manager = iOSNavigationManager()
++        let savedTab = iOSTab(rawValue: UserDefaults.standard.integer(forKey: "lastSelectedTab")) ?? .viewer
++        let canonicalTab = savedTab.canonical
++        let initialTab = canonicalTab.isAvailable(for: BackendCoordinator.shared.activeCapabilities)
++            ? canonicalTab : .viewer
++        manager.switchToMode(initialTab.appMode)
++        _navigationManager = State(initialValue: manager)
++        _selectedTab = State(initialValue: initialTab)
++    }
++
+     var body: some View {
+         @Bindable var bManager = navigationManager
+ 
+         Group {
+-            if horizontalSizeClass == .regular {
++            if horizontalSizeClass == .regular || (MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled) {
+                 iPadLayout(
+                     bManager: bManager,
+                     selectedTab: $selectedTab,
+                     columnVisibility: $columnVisibility,
+-                    showSettings: $showSettings
++                    showSettings: $showSettings,
++                    sidebar: sidebar
+                 )
+             } else {
+                 iPhoneLayout(
+@@ -104,12 +121,17 @@ struct iOSMainView: View {
+             }
+         }
+         .environment(navigationManager)
++        .background(OtzariaMiniAppsSceneRegistration(manager: navigationManager).frame(width: 0, height: 0))
++        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
++            OtzariaMiniAppsCoordinator.shared.resume(manager: navigationManager)
++        }
+         .onOpenURL { url in
+             handleOpenURL(url, bManager: bManager)
+         }
+         .sheet(isPresented: $showSettings) {
+             NavigationStack {
+                 SettingsView()
++                    .modifier(MaktabahNativeRoutingSurface(kind: .settings))
+                     .listRowBackground(Color.appCellBackground)
+                     .background(Color.appBackground)
+                     .navigationTitle("Settings".localized)
+@@ -117,6 +139,7 @@ struct iOSMainView: View {
+                     .toolbar {
+                         ToolbarItem(placement: .topBarTrailing) {
+                             Button("Done") { showSettings = false }
++                                .accessibilityIdentifier("settings-done-button")
+                         }
+                     }
+             }
+@@ -131,7 +154,7 @@ struct iOSMainView: View {
+         .sheet(item: $bManager.selectedBookForInfo) { book in
+             iOSBookInfoView(book: book)
+         }
+-        .sheet(isPresented: $bManager.showingTabsList) {
++        .sheet(isPresented: CompactStudyWorkspaceHostModifier.legacyTabsPresentation($bManager.showingTabsList)) {
+             iOSReaderTabsPopoverView(bManager: bManager, isPresented: $bManager.showingTabsList)
+                 .environment(navigationManager)
+         }
+@@ -157,6 +180,18 @@ struct iOSMainView: View {
+                 navigationManager.persistCurrentSession(immediate: true)
+             }
+         }
++        .overlay(alignment: .bottomTrailing) {
++            Text(sefariaEmbeddedAcceptanceResult ?? "PENDING")
++                .font(.system(size: 8))
++                .accessibilityIdentifier("sefaria-embedded-acceptance-result")
++                .accessibilityLabel(sefariaEmbeddedAcceptanceResult ?? "PENDING")
++                .accessibilityValue(sefariaEmbeddedAcceptanceResult ?? "PENDING")
++                .frame(width: 2, height: 2)
++                .opacity(0.02)
++                .allowsHitTesting(false)
++        }
++        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled ? sidebar : nil))
++        .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
+         #if DEBUG
+         .task {
+             await performSmokeAutomationIfNeeded()
+@@ -165,6 +200,8 @@ struct iOSMainView: View {
+     }
+ 
+     private func handleOpenURL(_ url: URL, bManager: iOSNavigationManager) {
++        if OtzariaMiniAppsCoordinator.shared.receive(url, manager: bManager) { return }
++        if MaktabahNativeURLHandler.handle(url, manager: bManager) { return }
+         guard let deepLink = WidgetDeepLink.parse(from: url) else { return }
+ 
+         Task {
+@@ -208,15 +245,23 @@ extension View {
+                 initialContentId: manager.selectedContentId
+             )
+             .id(tab?.id)
++            .modifier(MaktabahNativeRoutingSurface(kind: .reader))
+         }
+     }
+ 
+     func toolbarGeneral(showSettings: Binding<Bool>) -> some View {
+         toolbar {
++            ToolbarItem(placement: .topBarTrailing) {
++                OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-global-launch")
++            }
++            ToolbarItem(placement: .topBarTrailing) {
++                OtzariaGuidedTourButton()
++            }
+             ToolbarItem(placement: .topBarLeading) {
+                 Button { showSettings.wrappedValue = true } label: {
+                     Image(systemName: "gear")
+                 }
++                .accessibilityIdentifier("main-settings-button")
+                 .accessibilityLabel(String(localized: "Settings"))
+                 .help(String(localized: "Settings"))
+             }
+@@ -267,11 +312,19 @@ private extension iOSMainView {
+ 
+     func performSmokeAutomationIfNeeded() async {
+         let args = ProcessInfo.processInfo.arguments
++        if args.contains("-runSefariaEmbeddedAcceptance") {
++            await runSefariaEmbeddedComprehensiveAcceptance()
++            return
++        }
+         guard let scenarioIndex = args.firstIndex(of: "-smokeScenario"),
+               scenarioIndex + 1 < args.count else {
+             return
+         }
+         let scenario = args[scenarioIndex + 1]
++        if scenario == "embeddedAcceptance" {
++            await runSefariaEmbeddedComprehensiveAcceptance()
++            return
++        }
+         var smokeSucceeded = true
+         var smokeFailureDetail: String?
+         defer {
+@@ -361,6 +414,7 @@ private extension iOSMainView {
+             try? await Task.sleep(for: .milliseconds(500))
+             if let first = await prepareSmokeSearch(query: query) {
+                 navigationManager.unifiedSearchSession.openResult(first, using: navigationManager)
++                selectedTab = .viewer
+                 navigationManager.switchToMode(.viewer)
+             } else {
+                 smokeSucceeded = false
+@@ -407,6 +461,36 @@ private extension iOSMainView {
+         }
+     }
+ 
++
++    @MainActor
++    func runSefariaEmbeddedComprehensiveAcceptance() async {
++        let report = await SefariaEmbeddedAcceptanceDiagnosticRunner.run {
++            await self.runBackendSwitchSnapshotRegression()
++        }
++
++        let encoder = JSONEncoder()
++        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
++        if let data = try? encoder.encode(report), let jsonStr = String(data: data, encoding: .utf8) {
++            self.sefariaEmbeddedAcceptanceResult = jsonStr
++            #if canImport(UIKit)
++            UIAccessibility.post(notification: .layoutChanged, argument: nil)
++            #endif
++            writeSmokeAutomationResult(
++                scenario: "embeddedAcceptance",
++                succeeded: report.status == "SUCCESS",
++                failureDetail: report.errorMessage
++            )
++            if let docsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
++                let fileURL = docsURL.appendingPathComponent("sefaria-acceptance-result.json")
++                try? data.write(to: fileURL)
++            }
++            NSLog("=== SefariaEmbedded Acceptance Result ===\n%@", jsonStr)
++            print("=== SefariaEmbedded Acceptance Result ===")
++            print(jsonStr)
++            print("=========================================")
++        }
++    }
++
+     func writeSmokeAutomationResult(
+         scenario: String,
+         succeeded: Bool,
+@@ -487,7 +571,10 @@ private extension iOSMainView {
+     @MainActor
+     func runBackendSwitchSnapshotRegression() async -> (succeeded: Bool, failureDetail: String?) {
+         let model = navigationManager.libraryViewModel
+-        for backend in [BackendID.otzaria, .sefaria, .otzaria, .sefaria] {
++        let backendsToTest: [BackendID] = OtzariaMaktabahBridge.shared.isEnabled
++            ? [.otzaria, .sefaria, .sefariaEmbedded, .sefaria]
++            : [.sefaria, .sefariaEmbedded, .sefaria, .sefariaEmbedded]
++        for backend in backendsToTest {
+             BackendCoordinator.shared.commit(backend)
+             let taskToAwait = model.reloadTask.withLock { $0 }
+             if let taskToAwait {
+@@ -575,9 +662,9 @@ private extension iOSMainView {
+ 
+     func openSmokeBook(for backend: BackendID, inspectorMode: SmokeInspectorMode) async {
+         switch backend {
+-        case .sefaria:
++        case .sefaria, .sefariaEmbedded:
+             let genesisLocator = TextLocator(
+-                backend: .sefaria,
++                backend: backend,
+                 workKey: "Genesis",
+                 position: .canonicalRef("Genesis 1:1")
+             )

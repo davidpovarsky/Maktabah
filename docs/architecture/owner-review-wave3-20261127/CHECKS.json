@@ -1,0 +1,83 @@
+{
+  "schema": "otzaria.wave3-owner-review-controls/1",
+  "candidate": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+  "bridge_sha256": "9e66c9eebb969cbf31938ee8b84de5a215b4632aa92e3a48872970a891e4790b",
+  "observed_at": "2026-11-26T23:21:21.285838+00:00",
+  "scope": "PUBLIC_KEY_ONLY_NO_DPAPI_NO_SIGNING",
+  "checks": [
+    {
+      "case": "actual_exact_review_packet",
+      "exit_code": 0,
+      "status": "PASS",
+      "report": {
+        "schema": "otzaria.wave3-owner-delta-check/1",
+        "status": "REVIEW_PACKET_CHECK_PASS_SIGNING_NOT_RUN",
+        "candidate": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+        "product_source": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+        "repository": "davidpovarsky/Maktabah",
+        "manifest_sha256": "ed750de696a80d908d7cce2d61a8785075d68d57d8ab5f69aa14679b420a79da",
+        "registry_before_sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a",
+        "external_public_key_sha256": "b0f0fa39ad1b59595699cd7eaef340a17567c9ff8dbe1408c2372c2a5866818b",
+        "verifier_sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+        "canonical_signer_sha256": "07e94cbb190d28d1a0f086f77d47bd8d921cea69bc87a130bd36829cfc0d0006",
+        "protected_paths": 55,
+        "old_authentic_signatures_verified": 55,
+        "reusable_current_signatures": 53,
+        "new_signatures_required": 2,
+        "unrelated_informational_records_preserved": 5,
+        "changed_paths": [
+          "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+          "Source/Localizable.xcstrings"
+        ],
+        "observed_at": "2026-11-26T23:21:19.789002+00:00",
+        "private_key_accessed": false,
+        "signing_performed": false,
+        "final_owner_release_gate": "NOT_RUN",
+        "native_acceptance": "NOT_CLAIMED"
+      }
+    },
+    {
+      "case": "different_external_public_key",
+      "exit_code": 1,
+      "status": "PASS_CORRECT_REFUSAL",
+      "refusal": {
+        "status": "REFUSED",
+        "error_type": "ReviewError",
+        "error": "External owner public-key fingerprint differs"
+      }
+    },
+    {
+      "case": "manifest_byte_tamper",
+      "exit_code": 1,
+      "status": "PASS_CORRECT_REFUSAL",
+      "refusal": {
+        "status": "REFUSED",
+        "error_type": "ReviewError",
+        "error": "Reviewed manifest bytes differ"
+      }
+    },
+    {
+      "case": "canonical_patch_byte_tamper",
+      "exit_code": 1,
+      "status": "PASS_CORRECT_REFUSAL",
+      "refusal": {
+        "status": "REFUSED",
+        "error_type": "ValueError",
+        "error": "Patch file digest mismatch for '019-protected.patch': actual 6f3072ed515538d52d643b8f6692ebced14ef7babed17914d89540a7683e8f0b != expected 56ce55811f160d8712d37fa6adcca0cd8ced8c04f3851d13fbb7d8ef49493f84"
+      }
+    },
+    {
+      "case": "wrong_immutable_checkout",
+      "exit_code": 1,
+      "status": "PASS_CORRECT_REFUSAL",
+      "refusal": {
+        "status": "REFUSED",
+        "error_type": "ReviewError",
+        "error": "Checkout must equal the frozen candidate"
+      }
+    }
+  ],
+  "sign_mode_executed": false,
+  "private_key_accessed": false,
+  "windows_dpapi_execution": "NOT_RUN"
+}

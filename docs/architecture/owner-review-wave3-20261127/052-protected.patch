@@ -1,0 +1,86 @@
+diff --git a/Source/UI/iOS/Views/iPhoneLayout.swift b/Source/UI/iOS/Views/iPhoneLayout.swift
+index b6692b114311ee389e9548ff557887194bdb3e05..fb1aa1edf7f52369edbfe999801b70d3fdc6cca3 100644
+--- a/Source/UI/iOS/Views/iPhoneLayout.swift
++++ b/Source/UI/iOS/Views/iPhoneLayout.swift
+@@ -81,14 +81,26 @@ struct iPhoneLayout: View {
+         }
+     }
+ 
++    // Each NavigationStack presents a book only when it owns that Reader.
++    private func readerSelection(in tab: iOSTab) -> Binding<BooksData?> {
++        Binding(
++            get: { bManager.selectedBookPresentationMode == tab.appMode ? bManager.selectedBook : nil },
++            set: { book in
++                guard bManager.selectedBookPresentationMode == tab.appMode else { return }
++                bManager.selectedBook = book
++            }
++        )
++    }
++
+     // MARK: - Tab Contents
+ 
+     private var viewerTabContent: some View {
+         NavigationStack {
+             iOSLibraryView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .library))
+                 .navigationTitle(iOSTab.viewer.title)
+                 .adaptiveReaderPush(
+-                    item: $bManager.selectedBook,
++                    item: readerSelection(in: .viewer),
+                     manager: bManager
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+@@ -103,18 +115,14 @@ struct iPhoneLayout: View {
+     private var searchTabContent: some View {
+         NavigationStack {
+             SearchModeView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .search))
+                 .navigationTitle(iOSTab.search.title)
+                 .adaptiveReaderPush(
+-                    item: $bManager.selectedBook,
++                    item: readerSelection(in: .search),
+                     manager: bManager
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+         }
+-        .searchable(
+-            text: Bindable(bManager.searchViewModel).filterText,
+-            placement: .toolbar,
+-            prompt: String(localized: "Filter Books to Search")
+-        )
+     }
+ 
+     private var authorTabContent: some View {
+@@ -122,7 +130,7 @@ struct iPhoneLayout: View {
+             AuthorModeView()
+                 .navigationTitle(iOSTab.author.title)
+                 .adaptiveReaderPush(
+-                    item: $bManager.selectedBook,
++                    item: readerSelection(in: .author),
+                     manager: bManager
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+@@ -137,9 +145,10 @@ struct iPhoneLayout: View {
+     private var annotationsTabContent: some View {
+         NavigationStack {
+             AnnotationListView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .annotations))
+                 .navigationTitle(iOSTab.annotations.title)
+                 .adaptiveReaderPush(
+-                    item: $bManager.selectedBook,
++                    item: readerSelection(in: .annotations),
+                     manager: bManager
+                 )
+                 .toolbarGeneral(showSettings: $showSettings)
+@@ -149,9 +158,10 @@ struct iPhoneLayout: View {
+     private var historyTabContent: some View {
+         NavigationStack {
+             iOSHistoryView()
++                .modifier(MaktabahNativeRoutingSurface(kind: .history))
+                 .navigationTitle(iOSTab.history.title)
+                 .adaptiveReaderPush(
+-                    item: $bManager.selectedBook,
++                    item: readerSelection(in: .history),
+                     manager: bManager
+                 )
+                 .toolbar {

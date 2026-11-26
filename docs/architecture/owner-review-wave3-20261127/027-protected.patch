@@ -1,0 +1,37 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift b/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
+index 6f19264c9248b1a06c3bfa57092f90bc319965e8..b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56 100644
+--- a/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift
+@@ -60,16 +60,22 @@ struct iOSBookSearchView: View {
+                 ftsMigrationBanner()
+             }
+             .safeAreaInset(edge: .bottom, spacing: 0) {
+-                SearchProgressView(
+-                    viewModel: viewModel,
+-                    showIntegrationState: false
+-                )
+-            }
+-            .overlay(alignment: .bottom) {
+-                SearchHistoryOverlay(
+-                    viewModel: viewModel,
+-                    isVisible: .constant(nil)
+-                )
++                VStack(spacing: 0) {
++                    SearchProgressView(
++                        viewModel: viewModel,
++                        showIntegrationState: false
++                    )
++                    // These are the original book-search controls. Their
++                    // lifetime belongs to this presented search view, not the
++                    // search field's focus: tapping Near can resign that field
++                    // before its distance editor becomes first responder.
++                    // An inset also reserves space in the original result list.
++                    SearchHistoryOverlay(
++                        viewModel: viewModel,
++                        showsGlobalHistory: false,
++                        isVisible: .constant(true)
++                    )
++                }
+             }
+         }
+         .searchable(

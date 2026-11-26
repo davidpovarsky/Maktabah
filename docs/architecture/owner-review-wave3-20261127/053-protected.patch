@@ -1,0 +1,204 @@
+diff --git a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+index fa5430a8ee65318f65fbcdfd0e5d5f68a0f4b912..2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e 100644
+--- a/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
++++ b/Source/UI/iOS/Wrappers/iOSIbarotTextView.swift
+@@ -67,6 +67,26 @@ class iOSCustomIbarotTextView: UITextView {
+ 
+     private func captureViewportAnchor() -> ViewportAnchor? {
+         guard textStorage.length > 0 else { return nil }
++        // Query the active engine before touching layoutManager: that getter
++        // irreversibly switches a TextKit 2 UITextView into compatibility mode.
++        if textLayoutManager != nil {
++            let point = CGPoint(
++                x: textContainerInset.left + textContainer.lineFragmentPadding + 1,
++                y: contentOffset.y + adjustedContentInset.top + 1
++            )
++            guard let closest = closestPosition(to: textInputView.convert(point, from: self)) else { return nil }
++            let rawIndex = offset(from: beginningOfDocument, to: closest)
++            guard rawIndex >= 0, rawIndex <= textStorage.length else { return nil }
++            let characterIndex = rawIndex < textStorage.length ? rawIndex
++                : (textStorage.string as NSString).rangeOfComposedCharacterSequence(at: textStorage.length - 1).location
++            guard let position = position(from: beginningOfDocument, offset: characterIndex) else { return nil }
++            let caret = convert(caretRect(for: position), from: textInputView)
++            guard caret.minY.isFinite, caret.height.isFinite, caret.height > 0 else { return nil }
++            let sourceIndex = currentRenderResult?
++                .sourceCharacterIndex(forDisplayedIndex: characterIndex) ?? characterIndex
++            return ViewportAnchor(sourceCharacterIndex: sourceIndex,
++                                  verticalOffset: caret.minY - contentOffset.y)
++        }
+         layoutManager.ensureLayout(for: textContainer)
+ 
+         let point = CGPoint(
+@@ -98,6 +118,29 @@ class iOSCustomIbarotTextView: UITextView {
+     private func restorePendingViewportAnchor() {
+         guard let anchor = pendingViewportAnchor, textStorage.length > 0 else { return }
+         pendingViewportAnchor = nil
++        if let textLayoutManager {
++            let displayedRange = currentRenderResult?.displayedRange(
++                forSourceRange: NSRange(location: anchor.sourceCharacterIndex, length: 1)
++            ) ?? NSRange(location: anchor.sourceCharacterIndex, length: 1)
++            guard displayedRange.location != NSNotFound,
++                  displayedRange.location < textStorage.length else { return }
++            textLayoutManager.ensureLayout(for: displayedRange)
++            guard let position = position(from: beginningOfDocument, offset: displayedRange.location) else { return }
++            let caret = convert(caretRect(for: position), from: textInputView)
++            guard caret.minY.isFinite, caret.height.isFinite, caret.height > 0 else { return }
++            let proposedY = caret.minY - anchor.verticalOffset
++            let minimumY = -adjustedContentInset.top
++            let maximumY = max(
++                minimumY,
++                contentSize.height - bounds.height + adjustedContentInset.bottom
++            )
++            setContentOffset(
++                CGPoint(x: contentOffset.x, y: min(max(proposedY, minimumY), maximumY)),
++                animated: false
++            )
++            updateViewportAccessibilityMetadata()
++            return
++        }
+         layoutManager.ensureLayout(for: textContainer)
+ 
+         let displayedRange = currentRenderResult?.displayedRange(
+@@ -638,7 +681,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
+ 
+         let rendered = resolveRenderedContent(textView: textView, context: context)
+ 
+-        if let pendingTarget = viewModel.consumePendingReaderScrollTarget() {
++        #if DEBUG
++        ReaderRenderedHighlightInspector.updateDiagnostics(
++            for: textView,
++            searchRanges: rendered.searchRanges,
++            currentLocator: viewModel.currentLocator?.persistenceKey,
++            renderGeneration: context.coordinator.renderGeneration
++        )
++        #endif
++
++        if let pendingTarget = viewModel.consumePendingReaderScrollTarget(for: viewModel.currentLocator) {
+             switch pendingTarget {
+             case .top:
+                 scrollTextViewToTop(textView)
+@@ -700,6 +752,21 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         viewModel.fetchSelectedRange = { [weak textView] in
+             textView?.selectedRange
+         }
++        viewModel.isNativeReaderTextVisible = { [weak textView, weak viewModel, weak coordinator = context.coordinator] sceneID, sourceRange in
++            guard let textView, let viewModel, let coordinator,
++                  coordinator.parent.viewModel === viewModel,
++                  let key = coordinator.lastRenderKey,
++                  key.bookId == viewModel.currentBook?.id,
++                  key.contentId == viewModel.currentContentId,
++                  let rendered = textView.currentRenderResult,
++                  !textView.isRestoringScroll else { return false }
++            return ReaderNativeTextVisibility.isVisible(
++                textView: textView, sceneID: sceneID,
++                expectedSource: viewModel.contentText, renderedSource: rendered.sourceText,
++                renderedText: rendered.attributedString.string, sourceRange: sourceRange,
++                displayedRange: { rendered.displayedRange(forSourceRange: $0) }
++            )
++        }
+     }
+ 
+     private func resolveRenderedContent(
+@@ -715,6 +782,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             text: text,
+             annotations: annotations,
+             searchEventId: activeSearchEventId,
++            selectedSegmentRange: selectedSegmentRange,
++            highlightTerms: viewModel.highlightTerms,
+             showHarakat: state.showHarakat,
+             clickableAnnotation: state.clickableAnnotation,
+             enhancedUnderline: enhancedUnderline,
+@@ -731,6 +800,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             return cached
+         }
+ 
++        context.coordinator.renderGeneration += 1
+         let newlyRendered = renderAttributedContent(
+             textView: textView,
+             context: context,
+@@ -764,6 +834,8 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         let text: String
+         let annotations: [Annotation]
+         let searchEventId: UUID?
++        let selectedSegmentRange: NSRange?
++        let highlightTerms: [String]?
+         let showHarakat: Bool
+         let clickableAnnotation: Bool
+         let enhancedUnderline: Bool
+@@ -843,10 +915,10 @@ struct iOSIbarotTextView: UIViewRepresentable {
+                displayedSelected.location >= 0,
+                displayedSelected.length > 0,
+                displayedSelected.location + displayedSelected.length <= attributedString.length {
+-                attributedString.addAttribute(
+-                    .backgroundColor,
+-                    value: UIColor.systemBlue.withAlphaComponent(0.14),
+-                    range: displayedSelected
++                ReaderSelectionBackground.apply(
++                    to: attributedString, range: displayedSelected,
++                    attribute: .backgroundColor,
++                    color: UIColor.systemBlue.withAlphaComponent(0.14)
+                 )
+             }
+         }
+@@ -975,6 +1047,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         var lastRenderedContent: RenderedAttributedContent?
+         var lastBackgroundColorIndex: Int?
+         var animationTask: Task<Void, Never>?
++        var renderGeneration: Int = 0
+         private var lastSelectionChangeDate: Date?
+         private var manualDragStartOffset: CGFloat?
+         private var didClearSearchForCurrentDrag = false
+@@ -1059,6 +1132,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         // MARK: - Pull-to-Navigate Scroll Detection
+ 
+         func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, beginsDrag: true)
+             manualDragStartOffset = scrollView.contentOffset.y
+             didClearSearchForCurrentDrag = false
+         }
+@@ -1070,10 +1144,11 @@ struct iOSIbarotTextView: UIViewRepresentable {
+ 
+             (scrollView as? iOSCustomIbarotTextView)?.updateViewportAccessibilityMetadata()
+             if !didClearSearchForCurrentDrag,
+-               ReaderSearchHighlightPolicy.shouldClearAfterManualScroll(
++               ReaderSearchContextCoordinator.shouldClearAfterScroll(
+                    startOffsetY: manualDragStartOffset.map(Double.init),
+                    currentOffsetY: Double(scrollView.contentOffset.y),
+                    viewportHeight: Double(scrollView.bounds.height),
++                   isManualUserDrag: scrollView.isDragging || scrollView.isTracking,
+                    hasActiveHighlight: parent.viewModel.hasActiveSearchHighlight
+                ) {
+                 didClearSearchForCurrentDrag = true
+@@ -1092,6 +1167,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             let bottomOverscroll = offsetY - effectiveMaxOffsetY
+ 
+             let isRestoring = (scrollView as? iOSCustomIbarotTextView)?.isRestoringScroll ?? false
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel)
+             let transition = pullStateMachine.handleScroll(
+                 topOverscroll: topOverscroll,
+                 bottomOverscroll: bottomOverscroll,
+@@ -1128,6 +1204,7 @@ struct iOSIbarotTextView: UIViewRepresentable {
+         }
+ 
+         func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
++            ReaderNavigationChromeScrollReporter.report(scrollView, reader: parent.viewModel, reachedTop: true)
+             updateLastKnownScrollPosition(from: scrollView)
+         }
+ 
+@@ -1220,6 +1297,16 @@ struct iOSIbarotTextView: UIViewRepresentable {
+             }
+ 
+             var actions = suggestedActions
++            let miniAppsAction = UIAction(
++                title: String(localized: "Mini Apps"),
++                image: UIImage(systemName: "square.grid.2x2"),
++                identifier: UIAction.Identifier("otzaria-reader-miniapps")
++            ) { [weak self, weak textView] _ in
++                guard let self, let textView else { return }
++                OtzariaMiniAppsCoordinator.shared.showReader(sourceText: sourceText,
++                    range: sourceRange, reader: self.parent.viewModel, textView: textView)
++            }
++            actions.insert(miniAppsAction, at: min(1, actions.count))
+             if let shareContent = shareContent(sourceText: sourceText, sourceRange: sourceRange) {
+                 let shareAction = UIAction(
+                     title: String(localized: "Share with Reference"),

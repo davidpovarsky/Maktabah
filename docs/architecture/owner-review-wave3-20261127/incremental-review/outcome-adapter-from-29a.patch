@@ -1,0 +1,31 @@
+diff --git a/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift b/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift
+index 0cb50e208ebb1c0d5bd08a4910fdd045ec7fe6df..c29fcec023cdff4bbc287d462e5138970aff056c 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift
+@@ -7,16 +7,16 @@ public struct NativeIntentOutcome: Error, LocalizedError, Sendable, Equatable {
+     public let code: String
+     public var errorDescription: String? {
+         switch status {
+-        case .uiQueued: "Maktabah is waiting for the destination to become visible."
+-        case .requiresForeground: "Open Maktabah to continue navigation."
+-        case .requiresBackendSwitch: "Select the requested library in Maktabah before continuing."
+-        case .needsDisambiguation: "Choose the destination window in Maktabah."
+-        case .requiresConfirmation: "Confirm this request in Maktabah."
+-        case .staleState: "The destination changed. Choose it again."
+-        case .notSupported: "This destination is not available in the selected library."
+-        case .unavailable: "The destination is not ready. Try again in Maktabah."
+-        case .cancelled: "Navigation was cancelled."
+-        default: "Maktabah could not display this destination."
++        case .uiQueued: NSLocalizedString("Maktabah is waiting for the destination to become visible.", comment: "System intent navigation outcome")
++        case .requiresForeground: NSLocalizedString("Open Maktabah to continue navigation.", comment: "System intent navigation outcome")
++        case .requiresBackendSwitch: NSLocalizedString("Select the requested library in Maktabah before continuing.", comment: "System intent navigation outcome")
++        case .needsDisambiguation: NSLocalizedString("Choose the destination window in Maktabah.", comment: "System intent navigation outcome")
++        case .requiresConfirmation: NSLocalizedString("Confirm this request in Maktabah.", comment: "System intent navigation outcome")
++        case .staleState: NSLocalizedString("The destination changed. Choose it again.", comment: "System intent navigation outcome")
++        case .notSupported: NSLocalizedString("This destination is not available in the selected library.", comment: "System intent navigation outcome")
++        case .unavailable: NSLocalizedString("The destination is not ready. Try again in Maktabah.", comment: "System intent navigation outcome")
++        case .cancelled: NSLocalizedString("Navigation was cancelled.", comment: "System intent navigation outcome")
++        default: NSLocalizedString("Maktabah could not display this destination.", comment: "System intent navigation outcome")
+         }
+     }
+     public static func requireVisibleAcknowledgement(_ result: UISceneAcknowledgement) throws {

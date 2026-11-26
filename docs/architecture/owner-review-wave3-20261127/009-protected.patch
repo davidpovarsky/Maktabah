@@ -1,0 +1,10 @@
+diff --git a/Source/Features/Annotations/Models/AnnotationEvent.swift b/Source/Features/Annotations/Models/AnnotationEvent.swift
+index 42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc..6b710b32b9f10e49721ba7b7ae2e00b99288344a 100644
+--- a/Source/Features/Annotations/Models/AnnotationEvent.swift
++++ b/Source/Features/Annotations/Models/AnnotationEvent.swift
+@@ -11,4 +11,5 @@ enum AnnotationEvent: Sendable {
+     case deleted(id: Int64, annotation: Annotation?)
+     case batchUpdated([Annotation])
+     case treeInvalidated
++    case localEditorCommitted(sessionID: UUID)
+ }

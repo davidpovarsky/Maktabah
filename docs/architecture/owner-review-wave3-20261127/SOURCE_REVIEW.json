@@ -1,0 +1,103 @@
+{
+  "schema": "otzaria.wave3-owner-source-review/1",
+  "status": "PREPARED_FOR_ROOT_REVIEW_NOT_SIGNED",
+  "candidate": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+  "product_source": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+  "previous_verified_source": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "current_upstream_observed_by_ui_lane": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "release_gate_pinned_upstream": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "ownership": {
+    "Source/Features/Reader/ViewModel/BookTOCViewModel.swift": {
+      "classification": "UPSTREAM_OWNED",
+      "origins": {
+        "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4": "62e6f2dc3a78e43f28a044d6ad98ef4d265788fc",
+        "4203de5fd77beb119e5826e039be1a61325f7be0": "79f8c25e3290fe3c593cbbfa8cb87bdffe84185b"
+      },
+      "delivery_commit": "bbc68b0d8125a47f8c195653db77a7f771854837",
+      "candidate_blob_equals_delivery": true
+    },
+    "Source/Localizable.xcstrings": {
+      "classification": "UPSTREAM_OWNED",
+      "origins": {
+        "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4": "8ba5d76c26315b4649b64c24fca5fbea39b6ed33",
+        "4203de5fd77beb119e5826e039be1a61325f7be0": "bbc0c3eff843f58c9cea0ac30aa76c2a9ffcf710"
+      },
+      "delivery_commit": "4a04aeb208fd0e5408a2521f2757e97982bc258c",
+      "candidate_blob_equals_delivery": true
+    }
+  },
+  "catalog": {
+    "prior_key_count": 671,
+    "candidate_key_count": 681,
+    "all_prior_entries_unchanged": true,
+    "added_keys": [
+      "Choose the destination window in Maktabah.",
+      "Confirm this request in Maktabah.",
+      "Maktabah could not display this destination.",
+      "Maktabah is waiting for the destination to become visible.",
+      "Navigation was cancelled.",
+      "Open Maktabah to continue navigation.",
+      "Select the requested library in Maktabah before continuing.",
+      "The destination changed. Choose it again.",
+      "The destination is not ready. Try again in Maktabah.",
+      "This destination is not available in the selected library."
+    ]
+  },
+  "toc_evidence": {
+    "docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/README.md": {
+      "git": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56:docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/README.md",
+      "sha256": "ade4f5f1f31eb04edd775a46dd3ac60c5ce9c3f45b70666adbf0f8a60bdbfec7"
+    },
+    "docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/candidate/RESULT.json": {
+      "git": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56:docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/candidate/RESULT.json",
+      "sha256": "978e25e372da1f4537a85bb853a8c94ca890fdf22a515b0047f5c3f0dd1302b7"
+    },
+    "docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/candidate/INPUTS.json": {
+      "git": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56:docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/candidate/INPUTS.json",
+      "sha256": "05fd307e62a64302ee71967ccd1444e5b4d477cee0449708bb7c276bae7bdcd0"
+    },
+    "docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/baseline-registry-corrected/RESULT.json": {
+      "git": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56:docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/baseline-registry-corrected/RESULT.json",
+      "sha256": "0606b8f3f84a4a6b07f66e56c8dd58b336e97e0bce3eaaf442e8e4ba382d7b97"
+    },
+    "docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/baseline/RESULT.json": {
+      "git": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56:docs/hq-integration/wave2-20261127/reader/toc-load-lifecycle/baseline/RESULT.json",
+      "sha256": "03dd5536dbb998c1a3c2cace0062e0fe3e5ad267a2ac3da175ff3b096c4bb6ce"
+    }
+  },
+  "behavioral_scope": {
+    "localizable": {
+      "change": "Ten Hebrew system-intent noncompletion strings; original671 entries retained. Downstream outcome adapter uses NSLocalizedString without changing status/code/visible acknowledgement semantics.",
+      "downstream_alternative": "Outcome behavior remains in existing downstream UI routing adapter; existing shared catalog is the original localization resource.",
+      "actual_check": "Original portable NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors,1pass/0fail,source4a04aeb.",
+      "not_run": [
+        "Apple catalog compile by this lane",
+        "AppIntentsTesting Hebrew errors",
+        "Siri",
+        "VoiceOver",
+        "physical devices"
+      ]
+    },
+    "toc": {
+      "change": "Original TOC owner uses one load generation for callbacks/terminal state, clears stale navigation state, releases each acquired native loader, ignores late cancelled completions.",
+      "downstream_alternative": "Existing original TOC owner controls both backend and native loader lifetimes; a second wrapper would not own its callbacks and would duplicate state.",
+      "actual_check": "Same34 source-level cases: original29a20pass/14fail; complete candidate original TOC model34pass/0fail with Apple Swift6.4/strict concurrency/optimization.",
+      "not_run": [
+        "Full app native UI",
+        "Full production database",
+        "Physical iPad/iPhone"
+      ]
+    }
+  },
+  "signing_scope": {
+    "actual_protected_paths": 55,
+    "stable_historical_approval_ids": true,
+    "reuse_signatures": 53,
+    "renew_signatures": 2,
+    "unrelated_informational_records_preserved": 5,
+    "native_acceptance_claimed": false,
+    "root_review": "PENDING",
+    "private_key_accessed": false,
+    "signatures_generated": 0
+  }
+}

@@ -1,0 +1,55 @@
+diff --git a/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift b/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
+index 1ebd757b381152031e68ef2f223a9e5f91f0c716..7727f5dc3248ac315f083c3dfe4c884839e650b7 100644
+--- a/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
++++ b/Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift
+@@ -11,8 +11,9 @@ import SQLite3
+ 
+ extension BookUpdateManager {
+     func openDatabase(path: String, enableWAL: Bool = true) throws -> OpaquePointer {
++        try MaktabahBookUpdateSafety.requireExistingWritableFile(path)
+         var db: OpaquePointer?
+-        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX
++        let flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_URI
+         if sqlite3_open_v2(path, &db, flags, nil) == SQLITE_OK, let validDb = db {
+             sqlite3_busy_timeout(validDb, 30000)
+             if enableWAL {
+@@ -21,7 +22,7 @@ extension BookUpdateManager {
+             }
+             return validDb
+         } else {
+-            let error = sqliteError(db, message: "Gagal membuka database \(path)")
++            let error = sqliteError(db, message: "Unable to open the existing book update database.")
+             if let db { sqlite3_close_v2(db) }
+             throw error
+         }
+@@ -60,18 +61,18 @@ extension BookUpdateManager {
+     ) throws {
+         var stmt: OpaquePointer?
+         guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK, let stmt else {
+-            throw sqliteError(db, message: "Gagal prepare SQL statement.")
++            throw sqliteError(db, message: "Unable to prepare book update SQL.")
+         }
+         defer { sqlite3_finalize(stmt) }
+         try bind(stmt)
+         guard sqlite3_step(stmt) == SQLITE_DONE else {
+-            throw sqliteError(db, message: "Gagal eksekusi SQL statement.")
++            throw sqliteError(db, message: "Unable to apply book update SQL.")
+         }
+     }
+ 
+     func exec(_ db: OpaquePointer, _ sql: String) throws {
+         if sqlite3_exec(db, sql, nil, nil, nil) != SQLITE_OK {
+-            throw sqliteError(db, message: "SQL gagal dieksekusi.")
++            throw sqliteError(db, message: "Book update SQL failed.")
+         }
+     }
+ 
+@@ -140,7 +141,7 @@ extension BookUpdateManager {
+                 ?? "Unknown error"
+         return NSError(
+             domain: "BookUpdate",
+-            code: -5,
++            code: db.map { Int(sqlite3_extended_errcode($0)) } ?? Int(SQLITE_ERROR),
+             userInfo: [NSLocalizedDescriptionKey: "\(message) (\(detail))"]
+         )
+     }

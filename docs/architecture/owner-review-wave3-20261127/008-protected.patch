@@ -1,0 +1,13 @@
+diff --git a/Source/Features/Annotations/Database/AnnotationTreeBuilder.swift b/Source/Features/Annotations/Database/AnnotationTreeBuilder.swift
+index 5948dbf920edf2d95c619f3addc276b9945281b9..6d40f617d58f70fda0028b6469ac5a8768f142a9 100644
+--- a/Source/Features/Annotations/Database/AnnotationTreeBuilder.swift
++++ b/Source/Features/Annotations/Database/AnnotationTreeBuilder.swift
+@@ -98,7 +98,7 @@ final class AnnotationTreeBuilder: @unchecked Sendable {
+                 handleDelete(id: id, annotation: annotation)
+             case let .batchUpdated(annotations):
+                 handleBatchUpdate(annotations)
+-            case .treeInvalidated:
++            case .treeInvalidated, .localEditorCommitted:
+                 rebuildTree()
+                 diffPublisher.send(nil)
+             }

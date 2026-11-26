@@ -1,0 +1,55 @@
+diff --git a/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift b/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift
+index 39f01f0a3c86cce8b75a137aa8d5a535b5764957..3f7bb041252146dc4893d407b44f343646de4f8b 100644
+--- a/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift
++++ b/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift
+@@ -1,3 +1,4 @@
++import Foundation
+ import SwiftUI
+ import UIKit
+ 
+@@ -15,6 +16,14 @@ struct LibraryTreeItemIdentifier: Hashable, Sendable {
+     }
+ 
+     let path: [Component]
++
++    /// An occurrence belongs to its complete catalog path. Localized leaf
++    /// titles alone cannot identify repeated categories in different branches.
++    var accessibilityPathIdentifier: String {
++        let components = path.map { [$0.kind.rawValue, $0.title, String($0.siblingOccurrence)] }
++        guard let bytes = try? JSONEncoder().encode(components) else { return "library-tree-invalid" }
++        return "library-tree-path-" + bytes.base64EncodedString()
++    }
+ }
+ 
+ enum LibraryItem: Hashable, @unchecked Sendable {
+@@ -142,20 +151,25 @@ class iOSHierarchicalCollectionViewController: BaseHierarchicalListViewControlle
+         dataSource = UICollectionViewDiffableDataSource<Int, LibraryItem>(
+             collectionView: collectionView
+         ) { collectionView, indexPath, item in
++            let cell: UICollectionViewListCell
+             switch item {
+-            case let .category(_, category):
+-                collectionView.dequeueConfiguredReusableCell(
++            case let .category(identifier, category):
++                cell = collectionView.dequeueConfiguredReusableCell(
+                     using: categoryCellReg, for: indexPath, item: category
+                 )
+-            case let .book(_, book):
+-                collectionView.dequeueConfiguredReusableCell(
++                cell.accessibilityIdentifier = identifier.accessibilityPathIdentifier
++            case let .book(identifier, book):
++                cell = collectionView.dequeueConfiguredReusableCell(
+                     using: bookCellReg, for: indexPath, item: book
+                 )
++                cell.accessibilityIdentifier = identifier.accessibilityPathIdentifier
+             case .loadMore:
+-                collectionView.dequeueConfiguredReusableCell(
++                cell = collectionView.dequeueConfiguredReusableCell(
+                     using: loadMoreReg, for: indexPath, item: item
+                 )
++                cell.accessibilityIdentifier = "library-tree-load-more"
+             }
++            return cell
+         }
+         // Note: We handle expand/collapse manually since we use custom chevron instead of outlineDisclosure.
+     }

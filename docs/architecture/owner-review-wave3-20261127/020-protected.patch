@@ -1,0 +1,132 @@
+diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+index 11caf78e533c0a88b8ee2d9d0472165371da6676..2f1002c6d131211c72185796042c9e5e7f401cba 100644
+--- a/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
++++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift
+@@ -47,10 +47,19 @@ extension ReaderViewModel {
+             var hasExplicitLocator = false
+             if let initialContentId {
+                 if let initialLocator = LegacyIdentityRegistry.shared.locator(for: initialContentId) {
+-                    target = initialLocator
++                    let resolved = ReaderDestinationResolver.resolve(locator: initialLocator)
++                    target = resolved.sectionLocator
++                    if let focus = resolved.focusLocator {
++                        self.selectedSegmentLocator = focus
++                        self.currentDestination = resolved.destination
++                    }
+                     hasExplicitLocator = true
+                 } else if locator.backend == .otzaria {
+                     target = TextLocator(backend: locator.backend, workKey: locator.workKey, position: .legacyLine(initialContentId))
++                    // The original database uses zero-based line indices. An
++                    // explicit search/TOC line 0 is content, not an unspecified
++                    // work root to replace with the first navigation heading.
++                    hasExplicitLocator = true
+                 }
+             } else {
+                 if LibraryReadingUnitPolicy.isWorkRoot(locator),
+@@ -98,6 +107,9 @@ extension ReaderViewModel {
+     }
+ 
+     func loadBackendContent(_ locator: TextLocator) {
++        if let book = currentBook {
++            loadTOC(book: book)
++        }
+         if let current = currentDestination, current.sectionLocator == locator {
+             loadBackendContentInternal(locator: locator, focusLocator: current.focusLocator)
+         } else {
+@@ -106,37 +118,47 @@ extension ReaderViewModel {
+     }
+ 
+     private func loadBackendContentInternal(locator: TextLocator, focusLocator: TextLocator?) {
+-        let isExplicitSegmentFocus = focusLocator != nil && focusLocator != locator
++        if let book = currentBook {
++            loadTOC(book: book)
++        }
++        let resolved = ReaderDestinationResolver.resolve(locator: locator)
++        let effectiveSection = resolved.sectionLocator
++        let effectiveFocus = focusLocator ?? resolved.focusLocator
+         currentDestination = LibraryReaderDestination(
+-            sectionLocator: locator,
+-            focusLocator: isExplicitSegmentFocus ? focusLocator : nil
++            sectionLocator: effectiveSection,
++            focusLocator: effectiveFocus
+         )
+-        selectedSegmentLocator = isExplicitSegmentFocus ? focusLocator : nil
++        selectedSegmentLocator = effectiveFocus
+         backendLoadTask?.cancel()
+         state = .loading
+-        let expectedBookKey = locator.workKey
++        let scrollTarget: ReaderScrollTarget? = pendingReaderScrollTarget == .top ? .top : (pendingReaderScrollTarget == .bottom ? .bottom : nil)
++        let token = contentLoadCoordinator.beginRequest(
++            backend: effectiveSection.backend,
++            workKey: effectiveSection.workKey,
++            sectionLocator: effectiveSection,
++            scrollTarget: scrollTarget
++        )
+         backendLoadTask = Task { @MainActor [weak self] in
+             guard let self else { return }
+             do {
+-                let section = try await BackendCoordinator.shared.section(at: locator)
++                let section = try await BackendCoordinator.shared.section(at: effectiveSection)
++                try Task.checkCancellation()
++                guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
++                    return
++                }
++                let renderModel = try await MaktabahBackendAdapter.preparedRenderModel(from: section)
+                 try Task.checkCancellation()
+-                guard self.currentBook?.backendLocator?.workKey == expectedBookKey else { return }
++                guard self.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: self.currentBook?.backendLocator) else {
++                    return
++                }
+                 self.backendSection = section
+-                let renderModel = MaktabahBackendAdapter.renderModel(
+-                    from: section,
+-                    preferredMode: TextViewState.shared.readerTextMode
+-                )
+                 self.backendRenderModel = renderModel
+                 let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
+                 if let bookID = self.currentBook?.id {
+                     BookPageCache.shared.set(bookId: bookID, content: content)
+                 }
+                 self.updateContentState(with: content)
+-                if isExplicitSegmentFocus, let focus = self.currentDestination?.focusLocator {
+-                    self.selectedSegmentLocator = focus
+-                } else {
+-                    self.selectedSegmentLocator = nil
+-                }
++                self.selectedSegmentLocator = self.currentDestination?.focusLocator
+                 self.state = .loaded
+                 if let workLocator = self.currentBook?.backendLocator, self.navigationItems.isEmpty {
+                     let work = LibraryWork(
+@@ -146,9 +168,16 @@ extension ReaderViewModel {
+                         categories: [],
+                         description: nil
+                     )
++                    let navGen = self.contentLoadCoordinator.beginNavigationItemsRequest(for: workLocator.workKey)
+                     Task { [weak self] in
++                        guard let self else { return }
+                         if let items = try? await BackendCoordinator.shared.navigationItems(for: work) {
+-                            self?.navigationItems = items
++                            await MainActor.run {
++                                guard self.contentLoadCoordinator.isNavigationItemsRequestActive(generation: navGen, workKey: workLocator.workKey) else {
++                                    return
++                                }
++                                self.navigationItems = items
++                            }
+                         }
+                     }
+                 }
+@@ -157,10 +186,13 @@ extension ReaderViewModel {
+             } catch LibraryBackendError.staleRequest {
+                 return
+             } catch {
++                guard !Task.isCancelled, self.contentLoadCoordinator.isTokenActive(token) else { return }
+                 self.contentText = error.localizedDescription
+                 self.state = .error(error.localizedDescription)
+             }
+-            self.backendLoadTask = nil
++            if self.contentLoadCoordinator.isTokenActive(token) {
++                self.backendLoadTask = nil
++            }
+         }
+     }
+ 

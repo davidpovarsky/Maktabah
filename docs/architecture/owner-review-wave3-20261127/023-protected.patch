@@ -1,0 +1,94 @@
+diff --git a/Source/Features/Reader/ViewModel/ReaderViewModel.swift b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+index 7ab42dbf00653317dbaaa266385729353b99d323..7f57e3883b42fb6aa76a7e76ae1220a2134f3f87 100644
+--- a/Source/Features/Reader/ViewModel/ReaderViewModel.swift
++++ b/Source/Features/Reader/ViewModel/ReaderViewModel.swift
+@@ -48,7 +48,18 @@ class ReaderViewModel: ViewModelBase {
+     // MARK: - Backend Navigation & Multi-Backend State
+ 
+     var backendSection: LibraryTextSection?
+-    var currentDestination: LibraryReaderDestination?
++    var currentDestination: LibraryReaderDestination? {
++        willSet {
++            #if os(iOS)
++            if newValue != currentDestination { nativeReaderDestinationWillChange?(newValue) }
++            #endif
++        }
++    }
++    #if os(iOS)
++    // Synchronous native ownership fence; no parsing, rendering or policy here.
++    @ObservationIgnored
++    var nativeReaderDestinationWillChange: (@MainActor (LibraryReaderDestination?) -> Void)?
++    #endif
+     var searchText: String = ""
+     var currentLocator: TextLocator? { readerState.currentLocator }
+     var navigationItems: [LibraryNavigationItem] = []
+@@ -64,6 +75,7 @@ class ReaderViewModel: ViewModelBase {
+     var otzariaSourcesExpandedSourceIDs: Set<Int> = []
+     var otzariaSourcesLoadTask: Task<Void, Never>?
+     var backendLoadTask: Task<Void, Never>?
++    let contentLoadCoordinator = ReaderContentLoadCoordinator()
+ 
+     enum PendingReaderScrollTarget: Equatable {
+         case top
+@@ -73,10 +85,20 @@ class ReaderViewModel: ViewModelBase {
+     var highlightTerms: [String]? = nil
+     var searchHighlightFocusLocator: TextLocator?
+     var pendingReaderScrollTarget: PendingReaderScrollTarget?
++    var pendingReaderScrollTargetLocator: TextLocator?
++
++    func setPendingReaderScrollTarget(_ target: PendingReaderScrollTarget?, for locator: TextLocator? = nil) {
++        pendingReaderScrollTarget = target
++        pendingReaderScrollTargetLocator = locator
++    }
+ 
+-    func consumePendingReaderScrollTarget() -> PendingReaderScrollTarget? {
+-        let target = pendingReaderScrollTarget
++    func consumePendingReaderScrollTarget(for locator: TextLocator? = nil) -> PendingReaderScrollTarget? {
++        guard let target = pendingReaderScrollTarget else { return nil }
++        if let expected = pendingReaderScrollTargetLocator, let locator {
++            guard expected == locator else { return nil }
++        }
+         pendingReaderScrollTarget = nil
++        pendingReaderScrollTargetLocator = nil
+         return target
+     }
+ 
+@@ -143,6 +165,10 @@ class ReaderViewModel: ViewModelBase {
+     var fetchScrollPosition: (() -> CGPoint?)?
+     @ObservationIgnored
+     var fetchSelectedRange: (() -> NSRange?)?
++    /// Supplied only by this model's actual original TextKit view. A model
++    /// locator alone cannot attest rendered text or a visible focused segment.
++    @ObservationIgnored
++    var isNativeReaderTextVisible: (@MainActor (String, NSRange?) -> Bool)?
+     var isPopoverPresented: Bool = false
+     #endif
+ 
+@@ -287,7 +313,10 @@ class ReaderViewModel: ViewModelBase {
+         #endif
+ 
+         #if os(iOS)
+-        if let searchEvent, searchEvent.contentId != content.id {
++        if currentBook?.backendLocator == nil,
++           let searchEvent,
++           let eventContentId = searchEvent.contentId,
++           eventContentId != content.id {
+             self.searchEvent = nil
+         }
+         if let annotationEvent, annotationEvent.annotation.contentId != content.id {
+@@ -339,14 +368,7 @@ class ReaderViewModel: ViewModelBase {
+ 
+     @MainActor
+     func setReaderTextMode(_ mode: LibraryReaderTextMode) {
+-        TextViewState.shared.setReaderTextMode(mode)
+-        guard let section = backendSection else { return }
+-        let renderModel = MaktabahBackendAdapter.renderModel(from: section, preferredMode: mode)
+-        backendRenderModel = renderModel
+-        selectedSegmentLocator = nil
+-        let content = MaktabahBackendAdapter.content(from: section, renderModel: renderModel)
+-        if let bookID = currentBook?.id { BookPageCache.shared.set(bookId: bookID, content: content) }
+-        updateContentState(with: content)
++        MaktabahBackendAdapter.setReaderTextMode(mode, reader: self)
+     }
+     #endif
+ }

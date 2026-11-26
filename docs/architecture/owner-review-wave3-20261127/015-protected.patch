@@ -1,0 +1,13 @@
+diff --git a/Source/Features/Library/Updates/BookUpdateView.swift b/Source/Features/Library/Updates/BookUpdateView.swift
+index df466461353a7aea565dcb287b3a4181383fc29c..d8162f600dbc177362c6cb53152e99c5aa2a0153 100644
+--- a/Source/Features/Library/Updates/BookUpdateView.swift
++++ b/Source/Features/Library/Updates/BookUpdateView.swift
+@@ -214,7 +214,7 @@ struct UpdateView: View {
+         #endif
+         .controlSize(.large)
+         .buttonBorderShape(.capsule)
+-        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0)
++        .disabled(viewModel.isUpdating || viewModel.selectedCount == 0 || viewModel.updateFailureRequiresReview)
+     }
+ 
+     @ViewBuilder

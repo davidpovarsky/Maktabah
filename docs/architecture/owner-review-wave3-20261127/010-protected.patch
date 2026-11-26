@@ -1,0 +1,12 @@
+diff --git a/Source/Features/Annotations/iOS/AnnotationListView.swift b/Source/Features/Annotations/iOS/AnnotationListView.swift
+index 3d38295b67ebc0ab087e80e74cf7c61f39835e26..e556b0e4a6ac3735ac86797b78c5cc43e457fc76 100644
+--- a/Source/Features/Annotations/iOS/AnnotationListView.swift
++++ b/Source/Features/Annotations/iOS/AnnotationListView.swift
+@@ -324,6 +324,7 @@ private extension View {
+                         UINotificationFeedbackGenerator().notificationOccurred(.success)
+                     } catch {
+                         UINotificationFeedbackGenerator().notificationOccurred(.error)
++                        throw error
+                     }
+                 },
+                 onDelete: { id in

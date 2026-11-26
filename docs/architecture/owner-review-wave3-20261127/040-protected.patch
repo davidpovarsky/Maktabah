@@ -1,0 +1,48 @@
+diff --git a/Source/Features/Search/iOS/SearchResultsListView.swift b/Source/Features/Search/iOS/SearchResultsListView.swift
+index 1354ba65a888ad38683e1f39bf57a13a81034046..d8b91be607657bc47476ebe91e013ca7c222c7a1 100644
+--- a/Source/Features/Search/iOS/SearchResultsListView.swift
++++ b/Source/Features/Search/iOS/SearchResultsListView.swift
+@@ -15,6 +15,7 @@ struct SearchResultsListView: View {
+     var showsBookTitle: Bool = true
+     var isLoadingMore: Bool = false
+     var hasMore: Bool = false
++    var automaticallyLoadsMore: Bool = true
+     var onLoadMore: (() -> Void)? = nil
+     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
+     var query: String = ""
+@@ -125,11 +126,12 @@ struct SearchResultsListView: View {
+                         }
+                     }
+                 }
++                .listRowBackground(Color.appBackground)
+                 .listRowSeparator(.visible)
+                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                 .id(group.id)
+                 .onAppear {
+-                    if index == groups.count - 5, hasMore, !isLoadingMore {
++                    if automaticallyLoadsMore, index == groups.count - 5, hasMore, !isLoadingMore {
+                         onLoadMore?()
+                     }
+                 }
+@@ -142,6 +144,7 @@ struct SearchResultsListView: View {
+                         .padding(.vertical, 8)
+                     Spacer()
+                 }
++                .listRowBackground(Color.appBackground)
+                 .listRowSeparator(.hidden)
+             } else if hasMore {
+                 Button(action: { onLoadMore?() }) {
+@@ -155,10 +158,13 @@ struct SearchResultsListView: View {
+                     }
+                 }
+                 .buttonStyle(.plain)
++                .listRowBackground(Color.appBackground)
+                 .listRowSeparator(.hidden)
+             }
+         }
+         .listStyle(.plain)
++        .scrollContentBackground(.hidden)
++        .background(Color.appBackground)
+     }
+ }
+ 

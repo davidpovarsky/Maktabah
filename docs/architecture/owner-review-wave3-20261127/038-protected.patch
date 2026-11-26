@@ -1,0 +1,93 @@
+diff --git a/Source/Features/Search/iOS/SearchComponents.swift b/Source/Features/Search/iOS/SearchComponents.swift
+index f2d54d4ecb370af011054fa1dfe65a8350d1575f..505eb9ff52842307b8b800a0cd207e151e6416bf 100644
+--- a/Source/Features/Search/iOS/SearchComponents.swift
++++ b/Source/Features/Search/iOS/SearchComponents.swift
+@@ -7,6 +7,7 @@ struct SearchHistoryOverlay: View {
+     @Environment(\.dismissSearch) var dismissSearch
+     var session: UnifiedSearchSessionController? = nil
+     @Bindable var viewModel: SearchViewModel
++    var showsGlobalHistory = true
+     @State var inputBarHeight: CGFloat = 0
+     @Binding var isVisible: Bool?
+     @State private var showingHelp: Bool = false
+@@ -28,9 +29,9 @@ struct SearchHistoryOverlay: View {
+ 
+     var body: some View {
+         Group {
+-            if isShowing {
++            if shouldShow {
+                 VStack(spacing: 0) {
+-                    if !viewModel.searchHistory.isEmpty {
++                    if showsGlobalHistory && !viewModel.searchHistory.isEmpty {
+                         historyHeader
+                         historyList
+                     }
+@@ -53,7 +54,7 @@ struct SearchHistoryOverlay: View {
+             .interpolatingSpring(stiffness: 250, damping: 24),
+             value: isShowing
+         )
+-        .onChange(of: shouldShow) { _, newValue in
++        .onChange(of: shouldShow, initial: true) { _, newValue in
+             isShowing = newValue
+         }
+         .onAppear {
+@@ -157,6 +158,7 @@ struct SearchHistoryOverlay: View {
+ 
+             if viewModel.searchMode == .near {
+                 TextField("10", value: $viewModel.nearDistance, format: .number)
++                    .accessibilityIdentifier("book-search-near-distance")
+                     .focused($isDistanceFocused)
+                     .keyboardType(.numberPad)
+                     .multilineTextAlignment(.center)
+@@ -311,26 +313,31 @@ struct UnifiedSearchInputControls: View {
+ struct SearchInputBar: View {
+     @Binding var text: String
+     @FocusState var isFocused: Bool
++    var focusBinding: FocusState<Bool>.Binding?
+     @AppStorage("useDefaultTheme") private var useDefaultTheme: Bool = false
+     var onSubmit: () -> Void
+ 
+     init(
+         text: Binding<String>,
+         isFocused: FocusState<Bool> = FocusState(),
++        focusBinding: FocusState<Bool>.Binding? = nil,
+         onSubmit: @escaping () -> Void
+     ) {
+         self._text = text
+         self._isFocused = isFocused
++        self.focusBinding = focusBinding
+         self.onSubmit = onSubmit
+     }
+ 
+     init(
+         viewModel: SearchViewModel,
+         isFocused: FocusState<Bool> = FocusState(),
++        focusBinding: FocusState<Bool>.Binding? = nil,
+         onSubmit: @escaping () -> Void
+     ) {
+         self._text = Binding(get: { viewModel.query }, set: { viewModel.query = $0 })
+         self._isFocused = isFocused
++        self.focusBinding = focusBinding
+         self.onSubmit = onSubmit
+     }
+ 
+@@ -340,7 +347,7 @@ struct SearchInputBar: View {
+             prompt: Text(.searchInSelectedBooks)
+                 .foregroundStyle(Color(useDefaultTheme ? .secondaryLabel : .iosTint))
+         )
+-        .focused($isFocused)
++        .focused(focusBinding ?? $isFocused)
+         .submitLabel(.go)
+         .onSubmit(onSubmit)
+         .padding(.leading, 20)
+@@ -362,8 +369,8 @@ struct SearchInputBar: View {
+             .help("Start Search")
+         }
+         .shadow(
+-            color: .black.opacity(isFocused ? 0.15 : 0.1),
+-            radius: isFocused ? 8 : 15, x: 0, y: 2
++            color: .black.opacity((focusBinding?.wrappedValue ?? isFocused) ? 0.15 : 0.1),
++            radius: (focusBinding?.wrappedValue ?? isFocused) ? 8 : 15, x: 0, y: 2
+         )
+         .padding(.vertical)
+         .padding(.horizontal, 20)

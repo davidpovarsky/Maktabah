@@ -1,0 +1,21 @@
+diff --git a/Source/iOS-Info.plist b/Source/iOS-Info.plist
+index 6359948ac3c6adb449216a51f7eea2e624a61af1..9fb969d36d812ccca1bf905d46cbe6b849c60792 100644
+--- a/Source/iOS-Info.plist
++++ b/Source/iOS-Info.plist
+@@ -2,6 +2,8 @@
+ <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+ <plist version="1.0">
+ <dict>
++	<key>CompilationCondition</key>
++	<string>$(ANYTYPE_HOST_COMPILATION_CONDITION)</string>
+ 	<key>CFBundleDisplayName</key>
+ 	<string>ChavrusaText</string>
+ 	<key>CFBundleName</key>
+@@ -31,5 +33,7 @@
+ 	<array>
+ 		<string>remote-notification</string>
+ 	</array>
++	<key>RCTNewArchEnabled</key>
++	<true/>
+ </dict>
+ </plist>

@@ -1,0 +1,160 @@
+diff --git a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
+index 2338175e3d2ed5f421c91c192957135dde61d00a..cefdba7518894946196c7678a8f108e9e3bc19ae 100644
+--- a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
++++ b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
+@@ -57,6 +57,7 @@ class BookTOCViewModel {
+     var onStructureChanged: (([LibraryNavigationItem]) -> Void)?
+ 
+     private var loadingTask: Task<Void, Never>?
++    private var loadGeneration: UInt64 = 0
+ 
+     init(connFactory: @escaping @Sendable () -> BookConnection) {
+         tocLoader = TOCLoaderRefCount(connFactory: connFactory)
+@@ -64,23 +65,22 @@ class BookTOCViewModel {
+ 
+     func loadTOC(book: BooksData) {
+         loadingTask?.cancel()
++        loadGeneration &+= 1
++        let generation = loadGeneration
+         loadFailure = nil
++        isLoading = true
+         loadingStatus = .loading
+         tocNodes = []
++        tocRanges = []
++        nodeIdCache = [:]
+         navigationStructures = []
+         selectedStructureID = ""
+ 
+         if let locator = book.backendLocator {
+-            let expectedWorkKey = locator.workKey
+             loadingTask = Task { @MainActor [weak self] in
+-                guard let self else { return }
+-                self.isLoading = true
+-                self.loadingStatus = .loading
++                guard let self, !Task.isCancelled, self.loadGeneration == generation else { return }
+                 self.onTOCLoadingStateChanged?(true)
+-                defer {
+-                    self.isLoading = false
+-                    self.onTOCLoadingStateChanged?(false)
+-                }
++                defer { self.finishLoading(generation: generation) }
+                 do {
+                     let work = LibraryWork(
+                         locator: locator,
+@@ -91,7 +91,7 @@ class BookTOCViewModel {
+                     )
+                     let structures = try await BackendCoordinator.shared.navigationStructures(for: work)
+                     try Task.checkCancellation()
+-                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
++                    guard self.loadGeneration == generation else { return }
+                     self.navigationStructures = structures
+                     let activeStructure = structures.first
+                     self.selectedStructureID = activeStructure?.id ?? ""
+@@ -102,7 +102,7 @@ class BookTOCViewModel {
+                         nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                     }
+                     try Task.checkCancellation()
+-                    guard book.backendLocator?.workKey == expectedWorkKey else { return }
++                    guard self.loadGeneration == generation else { return }
+                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+@@ -124,7 +124,7 @@ class BookTOCViewModel {
+                 } catch is CancellationError {
+                     return
+                 } catch {
+-                    guard !Task.isCancelled, book.backendLocator?.workKey == expectedWorkKey else { return }
++                    guard !Task.isCancelled, self.loadGeneration == generation else { return }
+                     let failure: LoadFailure
+                     if case LibraryBackendError.unavailableOffline = error {
+                         failure = .unavailableOffline
+@@ -142,22 +142,19 @@ class BookTOCViewModel {
+         }
+ 
+         loadingTask = Task { [weak self] in
+-            guard let self else { return }
++            guard let self, !Task.isCancelled, self.loadGeneration == generation else { return }
+             self.onTOCLoadingStateChanged?(true)
+ 
+-            let taskHandle = await self.tocLoader.acquire(book: book)
++            let loader = self.tocLoader
++            let taskHandle = await loader.acquire(book: book)
+             defer {
+-                Task { [weak self] in
+-                    await self?.tocLoader.release(bookId: book.id)
+-                }
++                self.finishLoading(generation: generation)
++                Task { await loader.release(bookId: book.id) }
+             }
+ 
+             do {
+                 let tree = try await taskHandle.value
+-                guard !Task.isCancelled else {
+-                    self.onTOCLoadingStateChanged?(false)
+-                    return
+-                }
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
+ 
+                 // Heavy calculation in background detached task
+                 let (ranges, cache) = await Task.detached {
+@@ -168,24 +165,33 @@ class BookTOCViewModel {
+                     return (ranges, cache)
+                 }.value
+ 
+-                guard !Task.isCancelled else {
+-                    self.onTOCLoadingStateChanged?(false)
+-                    return
+-                }
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
+ 
+                 // Update UI back on MainActor
+                 self.tocNodes = tree
+                 self.tocRanges = ranges
+                 self.nodeIdCache = cache
++                self.loadingStatus = .loaded
+                 self.onTOCLoaded?(tree)
+-                self.onTOCLoadingStateChanged?(false)
++            } catch is CancellationError {
++                return
+             } catch {
+-                self.onTOCLoadingStateChanged?(false)
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
++                self.loadFailure = .backend
++                self.loadingStatus = .failed(.backend)
+                 Logger.reader.error("Failed to load TOC: \(error.localizedDescription, privacy: .public)")
+             }
+         }
+     }
+ 
++    /// A cancelled earlier request must not finish a newer book or retry.
++    private func finishLoading(generation: UInt64) {
++        guard loadGeneration == generation else { return }
++        loadingTask = nil
++        isLoading = false
++        onTOCLoadingStateChanged?(false)
++    }
++
+     func selectStructure(id: String) {
+         guard selectedStructureID != id,
+               let structure = navigationStructures.first(where: { $0.id == id }) else { return }
+@@ -347,11 +353,20 @@ class BookTOCViewModel {
+     }
+ 
+     func cleanUp() {
++        loadGeneration &+= 1
+         loadingTask?.cancel()
+         loadingTask = nil
+         tocNodes.removeAll()
+         tocRanges.removeAll()
+         nodeIdCache.removeAll()
++        navigationStructures.removeAll()
++        selectedStructureID = ""
++        loadFailure = nil
++        loadingStatus = .idle
++        if isLoading {
++            isLoading = false
++            onTOCLoadingStateChanged?(false)
++        }
+     }
+ 
+     deinit {

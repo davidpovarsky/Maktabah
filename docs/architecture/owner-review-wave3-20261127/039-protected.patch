@@ -1,0 +1,196 @@
+diff --git a/Source/Features/Search/iOS/SearchModeView.swift b/Source/Features/Search/iOS/SearchModeView.swift
+index 6e45959aa5f828127eeac199471f060463865c0a..d4f061293e7c8682d41320602da5692d47dce7d9 100644
+--- a/Source/Features/Search/iOS/SearchModeView.swift
++++ b/Source/Features/Search/iOS/SearchModeView.swift
+@@ -2,12 +2,14 @@ import SwiftUI
+ 
+ struct SearchModeView: View {
+     @Environment(iOSNavigationManager.self) var navigationManager: iOSNavigationManager
++    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
+     @Environment(\.isSearching) var isSearching
+     @State private var showingSaveResults = false
+     @State private var showingSavedResults = false
+     @FocusState private var isSearchFieldFocused: Bool
+     @State private var ftsManager = FtsMigrationManager.shared
+     @State private var showFtsMigrationOverlay = false
++    @State private var nativePresentationOwner = UUID()
+     @AppStorage("hideFtsMigrationBannerv5") private var hideFtsMigrationBanner = false
+ 
+     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+@@ -21,70 +23,18 @@ struct SearchModeView: View {
+         @Bindable var viewModel = navigationManager.searchViewModel
+ 
+         VStack(spacing: 0) {
+-            if !isSearching {
+-                SearchInputBar(
+-                    text: Bindable(session).query,
+-                    isFocused: _isSearchFieldFocused,
+-                    onSubmit: {
+-                        Task {
+-                            viewModel.addToHistory(session.query)
+-                            session.runSearch()
+-                            isSearchFieldFocused = false
+-                        }
+-                    }
+-                )
+-                .padding(.horizontal)
+-                .padding(.vertical, 8)
+-                .background(Color.appBackground)
+-
+-                UnifiedSearchInputControls(session: session)
++            GlobalSearchHeader(session: session, onSubmit: submitSearch)
++            GlobalSearchContent(session: session, viewModel: viewModel, onSubmit: submitSearch) {
++                searchResultsView(session: session)
+             }
+-
+-            ZStack(alignment: .top) {
+-                if !session.results.isEmpty {
+-                    searchResultsView(session: session)
+-                } else if horizontalSizeClass == .regular {
+-                    searchRegularEmptyState(session: session, viewModel: viewModel)
+-                } else {
+-                    compactFilterView(viewModel: viewModel)
+-                }
+-
+-                if !isSearching && isSearchFieldFocused {
+-                    SearchHistoryOverlay(
+-                        session: session,
+-                        viewModel: viewModel,
+-                        inputBarHeight: 0,
+-                        isVisible: .init(
+-                            get: { isSearchFieldFocused },
+-                            set: { isSearchFieldFocused = $0 ?? false }
+-                        )
+-                    )
+-                    .hideTabBarWhenKeyboardShown()
+-                    .zIndex(10)
+-                }
+-            }
+-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+         }
+-        .safeAreaInset(edge: .bottom, content: {
+-            UnifiedSearchProgressView(session: session)
+-                .transition(.asymmetric(
+-                    insertion: .move(edge: .bottom).combined(with: .opacity),
+-                    removal: .move(edge: .bottom).combined(with: .opacity)
+-                ))
+-        })
+         .safeAreaInset(edge: .bottom, spacing: 0) {
+             ftsMigrationBanner()
+         }
+         .navigationBarTitleDisplayMode(session.results.isEmpty ? .automatic : .inline)
+         .toolbar {
+-            UnifiedSearchToolbar(
++            GlobalSearchToolbar(
+                 session: session,
+-                onLeadingAction: {
+-                    session.clearResults()
+-                    session.query = ""
+-                },
+-                showSortMenu: true,
+-                showSaveMenu: true,
+                 canSaveResults: canSaveResults,
+                 onSaveResults: { showingSaveResults = true },
+                 onSavedResults: { showingSavedResults = true }
+@@ -113,7 +63,11 @@ struct SearchModeView: View {
+         .animation(.interpolatingSpring(stiffness: 300, damping: 20),
+                    value: session.isSearching)
+         .onAppear {
++            observeNativePresentation()
+             session.searchViewModel = viewModel
++            if !session.availableScopes.contains(session.scope), !session.hasSubmitted {
++                session.scope = session.availableScopes.first ?? session.scope
++            }
+             if session.selectedBookIds != viewModel.selectedBookIds {
+                 session.selectedBookIds = viewModel.selectedBookIds
+             }
+@@ -121,6 +75,12 @@ struct SearchModeView: View {
+                 ftsManager.checkNeedsMigration()
+             }
+         }
++        .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in
++            observeNativePresentation()
++        }
++        .onDisappear {
++            nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)
++        }
+         .onChange(of: viewModel.selectedBookIds) { _, newIds in
+             if session.selectedBookIds != newIds {
+                 session.selectedBookIds = newIds
+@@ -159,10 +119,34 @@ struct SearchModeView: View {
+             }
+         }
+         .animation(.easeInOut, value: showFtsMigrationOverlay)
++        .accessibilityElement(children: .contain)
++        .accessibilityIdentifier("global-search-screen")
++        .modifier(MaktabahNativeRoutingSurface(kind: .searchResults))
++        #if DEBUG
++        .task {
++            await MaktabahNativeRoutingComposition.shared.runSearchResultsAcceptanceProbe(manager: navigationManager)
++        }
++        #endif
+     }
+ 
+     // MARK: - Sub-views
+ 
++    /// Read the existing State storage at each precommit/receipt check. These
++    /// are passive blockers; the semantic action never dismisses a user's UI.
++    @MainActor private func observeNativePresentation() {
++        let saving = $showingSaveResults, saved = $showingSavedResults
++        let migration = $showFtsMigrationOverlay
++        nativeRoutingSession?.observeSearchPresentation(owner: nativePresentationOwner) {
++            saving.wrappedValue || saved.wrappedValue || migration.wrappedValue
++        }
++    }
++
++    private func submitSearch() {
++        let session = navigationManager.unifiedSearchSession
++        guard !session.query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
++        session.runSearch()
++    }
++
+     private func compactFilterView(viewModel: SearchViewModel) -> some View {
+         SearchFilterUIKitView(
+             viewModel: viewModel,
+@@ -192,34 +176,26 @@ struct SearchModeView: View {
+     }
+ 
+     private func searchResultsView(session: UnifiedSearchSessionController) -> some View {
+-        let filtered: [SearchResultItem] = session.resultKitabFilter.isEmpty
+-            ? session.results
+-            : session.results.filter {
+-                $0.bookTitle
+-                    .normalizeArabic(false)
+-                    .contains(
+-                        session.resultKitabFilter.normalizeArabic(false)
+-                )
+-            }
++        let filtered = session.filteredResults
+ 
+         return SearchResultsListView(
+             results: filtered,
+             isLoadingMore: session.isLoadingMore,
+             hasMore: session.hasMore,
++            automaticallyLoadsMore: session.allowsAutomaticPaging && session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+             onLoadMore: {
+                 session.loadNextPage()
+             },
+             onSearchInBook: { item in
+                 session.searchInBook(item)
+-            }
++            },
++            query: session.query,
++            mode: session.searchModeForReader,
++            nearDistance: session.nearDistanceForReader
+         ) { item in
+             session.openResult(item, using: navigationManager)
+         }
+-        .searchable(
+-            text: Bindable(session).resultKitabFilter,
+-            placement: .toolbar,
+-            prompt: .filterByBooks
+-        )
++        .accessibilityIdentifier("global-search-results")
+     }
+ 
+     @ViewBuilder

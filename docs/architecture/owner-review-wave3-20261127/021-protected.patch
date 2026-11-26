@@ -1,0 +1,70 @@
+diff --git a/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift b/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
+index 8584cc718dbb7888a1cde7e24fcf61b957100898..dff3cecf5510770a9cd0aff8c55b0040b69cf528 100644
+--- a/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
++++ b/Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift
+@@ -31,17 +31,61 @@ extension ReaderViewModel {
+     }
+ 
+     func goToNextPage() {
+-        guard let content = navigateToPage(direction: .next) else { return }
+-        updateContentState(with: content)
++        let action = ReaderBackendPagingCoordinator.resolvePagingAction(
++            direction: .next,
++            isBackendBook: currentBook?.backendLocator != nil,
++            currentLocator: backendSection?.locator ?? currentBook?.backendLocator,
++            backendSectionNext: backendSection?.next,
++            backendSectionPrevious: backendSection?.previous,
++            navigationItems: navigationItems
++        )
++        switch action {
++        case .loadBackendLocator(let locator, let scrollTarget):
++            #if os(iOS)
++            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
++            #endif
++            loadBackendContent(locator)
++        case .noOpBoundaryReached:
++            return
++        case .performLegacyFallback:
++            guard let content = navigateToPage(direction: .next) else { return }
++            updateContentState(with: content)
++        }
+     }
+ 
+     func goToPrevPage() {
+-        guard let content = navigateToPage(direction: .prev) else { return }
+-        updateContentState(with: content)
++        let action = ReaderBackendPagingCoordinator.resolvePagingAction(
++            direction: .previous,
++            isBackendBook: currentBook?.backendLocator != nil,
++            currentLocator: backendSection?.locator ?? currentBook?.backendLocator,
++            backendSectionNext: backendSection?.next,
++            backendSectionPrevious: backendSection?.previous,
++            navigationItems: navigationItems
++        )
++        switch action {
++        case .loadBackendLocator(let locator, let scrollTarget):
++            #if os(iOS)
++            setPendingReaderScrollTarget(scrollTarget == .top ? .top : .bottom, for: locator)
++            #endif
++            loadBackendContent(locator)
++        case .noOpBoundaryReached:
++            return
++        case .performLegacyFallback:
++            guard let content = navigateToPage(direction: .prev) else { return }
++            updateContentState(with: content)
++        }
+     }
+ 
+     func fetchContentById(_ contentId: Int) {
+         guard let currentBook else { return }
++        if let bookLocator = currentBook.backendLocator {
++            guard let resolved = ReaderDestinationResolver.resolve(
++                contentID: contentId, in: bookLocator,
++                registeredLocator: LegacyIdentityRegistry.shared.locator(for: contentId)
++            ) else { return }
++            loadBackendContent(resolved.destination)
++            return
++        }
+         if let content = bookConnection.getContent(
+             bkid: "\(currentBook.id)",
+             contentId: contentId,

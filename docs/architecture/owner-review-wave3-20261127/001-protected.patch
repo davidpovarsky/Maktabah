@@ -1,0 +1,17 @@
+diff --git a/.gitignore b/.gitignore
+index 22db52e5ee89e8caffbefd10930bcf84871b146f..13e0283e18450fefd77f87532412f30be5a3124b 100755
+--- a/.gitignore
++++ b/.gitignore
+@@ -99,3 +99,12 @@ fastlane/test_output
+ 
+ #Ignore vscode AI rules
+ .github/instructions/codacy.instructions.md
++
++# Node / React Native / CocoaPods
++node_modules/
++Pods/
++*.jsbundle
++scratch/
++tools/test_runner.exe
++tools/test_runner.exp
++tools/test_runner.lib

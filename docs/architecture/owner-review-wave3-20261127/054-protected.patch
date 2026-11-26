@@ -1,0 +1,13 @@
+diff --git a/Source/UI/macOS/TextView/IbarotTextView.swift b/Source/UI/macOS/TextView/IbarotTextView.swift
+index 7017cf0eec928c0669e06bd34b35c8458cc814f6..e3b24ec57d2dac598aa794fd63f22c28dd57bb82 100644
+--- a/Source/UI/macOS/TextView/IbarotTextView.swift
++++ b/Source/UI/macOS/TextView/IbarotTextView.swift
+@@ -919,7 +919,7 @@ class IbarotTextView: NSTextView {
+             performRemoveAttributes(forAnnotationId: id, in: ts)
+             ts.endEditing()
+ 
+-        case .batchUpdated, .treeInvalidated:
++        case .batchUpdated, .treeInvalidated, .localEditorCommitted:
+             refreshAnnotations()
+             return
+         }

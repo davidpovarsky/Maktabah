@@ -1,0 +1,33 @@
+diff --git a/Source/Features/Library/iOS/iOSLibraryView.swift b/Source/Features/Library/iOS/iOSLibraryView.swift
+index ede65ecf6d6117a1fe48c8bd51f51e229c2c3be9..46f202177491274e37e140326913cfcbf716883b 100644
+--- a/Source/Features/Library/iOS/iOSLibraryView.swift
++++ b/Source/Features/Library/iOS/iOSLibraryView.swift
+@@ -34,10 +34,10 @@ struct iOSLibraryView: View {
+                 }
+             }
+             .sheet(isPresented: $viewModel.showingUpdateSheet) {
+-                UpdateView()
++                if MaktabahBookUpdateSafety.isMaktabahActive { UpdateView() }
+             }
+             .task {
+-                viewModel.checkBookUpdatesPeriodically()
++                if MaktabahBookUpdateSafety.isMaktabahActive { viewModel.checkBookUpdatesPeriodically() }
+             }
+             .alert(.Library.importSuccess, isPresented: $viewModel.showImportSuccessAlert) {
+                 Button("OK", role: .cancel) {}
+@@ -200,6 +200,7 @@ struct iOSLibraryView: View {
+                 Label(.Library.select, systemImage: "checkmark.circle")
+             }
+ 
++            if MaktabahBookUpdateSafety.isMaktabahActive {
+             Button {
+                 viewModel.showingUpdateSheet = true
+             } label: {
+@@ -211,6 +212,7 @@ struct iOSLibraryView: View {
+                     systemImage: "arrow.triangle.2.circlepath"
+                 )
+             }
++            }
+ 
+             Button {
+                 viewModel.showingImportSheet = true

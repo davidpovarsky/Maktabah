@@ -1,0 +1,228 @@
+diff --git a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
+index 173bfe8a68fd2c6b46967f58e863fcd1e7db77f2..cefdba7518894946196c7678a8f108e9e3bc19ae 100644
+--- a/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
++++ b/Source/Features/Reader/ViewModel/BookTOCViewModel.swift
+@@ -34,11 +34,20 @@ class BookTOCViewModel {
+ 
+     private let tocLoader: TOCLoaderRefCount
+ 
++    enum TOCLoadingStatus: Equatable {
++        case idle
++        case loading
++        case loaded
++        case failed(LoadFailure)
++    }
++
+     // State
+     var tocNodes: [TOCNode] = []
+     var navigationStructures: [LibraryNavigationStructure] = []
+     var selectedStructureID: String = ""
+     var loadFailure: LoadFailure?
++    var isLoading: Bool = false
++    var loadingStatus: TOCLoadingStatus = .idle
+     private(set) var tocRanges: [TOCRange] = []
+     private var nodeIdCache: [Int: TOCNode] = [:]
+ 
+@@ -48,6 +57,7 @@ class BookTOCViewModel {
+     var onStructureChanged: (([LibraryNavigationItem]) -> Void)?
+ 
+     private var loadingTask: Task<Void, Never>?
++    private var loadGeneration: UInt64 = 0
+ 
+     init(connFactory: @escaping @Sendable () -> BookConnection) {
+         tocLoader = TOCLoaderRefCount(connFactory: connFactory)
+@@ -55,12 +65,22 @@ class BookTOCViewModel {
+ 
+     func loadTOC(book: BooksData) {
+         loadingTask?.cancel()
++        loadGeneration &+= 1
++        let generation = loadGeneration
+         loadFailure = nil
++        isLoading = true
++        loadingStatus = .loading
++        tocNodes = []
++        tocRanges = []
++        nodeIdCache = [:]
++        navigationStructures = []
++        selectedStructureID = ""
+ 
+         if let locator = book.backendLocator {
+             loadingTask = Task { @MainActor [weak self] in
+-                guard let self else { return }
++                guard let self, !Task.isCancelled, self.loadGeneration == generation else { return }
+                 self.onTOCLoadingStateChanged?(true)
++                defer { self.finishLoading(generation: generation) }
+                 do {
+                     let work = LibraryWork(
+                         locator: locator,
+@@ -70,6 +90,8 @@ class BookTOCViewModel {
+                         description: nil
+                     )
+                     let structures = try await BackendCoordinator.shared.navigationStructures(for: work)
++                    try Task.checkCancellation()
++                    guard self.loadGeneration == generation else { return }
+                     self.navigationStructures = structures
+                     let activeStructure = structures.first
+                     self.selectedStructureID = activeStructure?.id ?? ""
+@@ -79,6 +101,8 @@ class BookTOCViewModel {
+                     } else {
+                         nodes = try await BackendCoordinator.shared.tableOfContents(for: work)
+                     }
++                    try Task.checkCancellation()
++                    guard self.loadGeneration == generation else { return }
+                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+@@ -88,6 +112,7 @@ class BookTOCViewModel {
+                     }
+                     let tree = nodes.map { convert($0, level: 1) }
+                     self.tocNodes = tree
++                    self.loadingStatus = .loaded
+                     let allNodes = Self.flattenNodes(tree)
+                     self.tocRanges = allNodes.map { TOCRange(start: $0.id, end: $0.id, node: $0) }
+                     self.nodeIdCache = Self.buildNodeIdCache(allNodes)
+@@ -96,38 +121,40 @@ class BookTOCViewModel {
+                         self.onStructureChanged?(items)
+                     }
+                     self.onTOCLoaded?(tree)
++                } catch is CancellationError {
++                    return
+                 } catch {
++                    guard !Task.isCancelled, self.loadGeneration == generation else { return }
++                    let failure: LoadFailure
+                     if case LibraryBackendError.unavailableOffline = error {
+-                        self.loadFailure = .unavailableOffline
++                        failure = .unavailableOffline
+                     } else if case LibraryBackendError.corruptData(_) = error {
+-                        self.loadFailure = .corruptData
++                        failure = .corruptData
+                     } else {
+-                        self.loadFailure = .backend
++                        failure = .backend
+                     }
++                    self.loadFailure = failure
++                    self.loadingStatus = .failed(failure)
+                     Logger.reader.error("Failed to load backend TOC: \(error.localizedDescription, privacy: .public)")
+                 }
+-                self.onTOCLoadingStateChanged?(false)
+             }
+             return
+         }
+ 
+         loadingTask = Task { [weak self] in
+-            guard let self else { return }
++            guard let self, !Task.isCancelled, self.loadGeneration == generation else { return }
+             self.onTOCLoadingStateChanged?(true)
+ 
+-            let taskHandle = await self.tocLoader.acquire(book: book)
++            let loader = self.tocLoader
++            let taskHandle = await loader.acquire(book: book)
+             defer {
+-                Task { [weak self] in
+-                    await self?.tocLoader.release(bookId: book.id)
+-                }
++                self.finishLoading(generation: generation)
++                Task { await loader.release(bookId: book.id) }
+             }
+ 
+             do {
+                 let tree = try await taskHandle.value
+-                guard !Task.isCancelled else {
+-                    self.onTOCLoadingStateChanged?(false)
+-                    return
+-                }
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
+ 
+                 // Heavy calculation in background detached task
+                 let (ranges, cache) = await Task.detached {
+@@ -138,24 +165,33 @@ class BookTOCViewModel {
+                     return (ranges, cache)
+                 }.value
+ 
+-                guard !Task.isCancelled else {
+-                    self.onTOCLoadingStateChanged?(false)
+-                    return
+-                }
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
+ 
+                 // Update UI back on MainActor
+                 self.tocNodes = tree
+                 self.tocRanges = ranges
+                 self.nodeIdCache = cache
++                self.loadingStatus = .loaded
+                 self.onTOCLoaded?(tree)
+-                self.onTOCLoadingStateChanged?(false)
++            } catch is CancellationError {
++                return
+             } catch {
+-                self.onTOCLoadingStateChanged?(false)
++                guard !Task.isCancelled, self.loadGeneration == generation else { return }
++                self.loadFailure = .backend
++                self.loadingStatus = .failed(.backend)
+                 Logger.reader.error("Failed to load TOC: \(error.localizedDescription, privacy: .public)")
+             }
+         }
+     }
+ 
++    /// A cancelled earlier request must not finish a newer book or retry.
++    private func finishLoading(generation: UInt64) {
++        guard loadGeneration == generation else { return }
++        loadingTask = nil
++        isLoading = false
++        onTOCLoadingStateChanged?(false)
++    }
++
+     func selectStructure(id: String) {
+         guard selectedStructureID != id,
+               let structure = navigationStructures.first(where: { $0.id == id }) else { return }
+@@ -207,12 +243,7 @@ class BookTOCViewModel {
+         for r in roots {
+             traverse(r)
+         }
+-        return result.sorted {
+-            if $0.id != $1.id {
+-                return $0.id < $1.id
+-            }
+-            return $0.level < $1.level
+-        }
++        return result
+     }
+ 
+     nonisolated private static func computeEndIDs(for allNodes: [TOCNode]) {
+@@ -254,6 +285,15 @@ class BookTOCViewModel {
+         return allNodes.first { $0.backendLocator == locator }
+     }
+ 
++    func findMatchingNode(for locator: TextLocator) -> TOCNode? {
++        let allNodes = Self.flattenNodes(tocNodes)
++        let flattened = allNodes.map { FlattenedTOCItem(id: $0.id, title: $0.bab, level: $0.level, locator: $0.backendLocator) }
++        guard let matchingID = TOCReadingLocationTracker.findMatchingNodeID(for: locator, in: flattened) else {
++            return nil
++        }
++        return findNodeById(matchingID)
++    }
++
+     /// Mencari path lengkap dari root ke node terdalam yang mencakup contentId.
+     /// Menggunakan tocRanges (endID yang sudah benar) lalu pathToNode untuk full path.
+     func deepestPath(forContentId contentId: Int) -> [TOCNode]? {
+@@ -313,11 +353,20 @@ class BookTOCViewModel {
+     }
+ 
+     func cleanUp() {
++        loadGeneration &+= 1
+         loadingTask?.cancel()
+         loadingTask = nil
+         tocNodes.removeAll()
+         tocRanges.removeAll()
+         nodeIdCache.removeAll()
++        navigationStructures.removeAll()
++        selectedStructureID = ""
++        loadFailure = nil
++        loadingStatus = .idle
++        if isLoading {
++            isLoading = false
++            onTOCLoadingStateChanged?(false)
++        }
+     }
+ 
+     deinit {

@@ -1,0 +1,18 @@
+{
+  "source_sha": "4a04aeb208fd0e5408a2521f2757e97982bc258c",
+  "scope": "Focused original portable status/error regression; not Apple/AppIntent runtime",
+  "command": [
+    "swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-ui-contracts-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build",
+    "--filter",
+    "NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors"
+  ],
+  "exit": 0,
+  "duration_s": 64.80036568641663,
+  "log_sha256": "f6a0cc8861b6cc7d4c2ca62b28410f6ec0e383f7d75ac6321c3656c8f78654d9",
+  "log_path": "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/noncompletion-test.log"
+}

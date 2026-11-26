@@ -1,0 +1,9 @@
+{
+  "status": "REFUSED_BEFORE_PRIVATE_KEY",
+  "error": "Existing approved inventory differs",
+  "bridge_sha256": "a916ffb3fd4de27dad0713df8a44b0fe8015cf96ff086b77de88590308b88ca8",
+  "cause": "Registry has 55 authentic approval records plus five unrelated informational entries without paths. Initial draft incorrectly required only55 total entries.",
+  "correction": "Keep authentic inventory exactly55 and explicitly preserve all five known informational records unchanged.",
+  "private_key_accessed": false,
+  "sign_mode_executed": false
+}

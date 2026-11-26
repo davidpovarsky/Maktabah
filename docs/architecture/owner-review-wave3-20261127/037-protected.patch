@@ -1,0 +1,12 @@
+diff --git a/Source/Features/Search/ViewModel/SearchViewModel.swift b/Source/Features/Search/ViewModel/SearchViewModel.swift
+index e81831d421f0694ffebe6f31099ab7cf2ae9a913..566117c44bba83cffbb0664fc700b673e331eb63 100644
+--- a/Source/Features/Search/ViewModel/SearchViewModel.swift
++++ b/Source/Features/Search/ViewModel/SearchViewModel.swift
+@@ -38,6 +38,7 @@ final class SearchViewModel: ViewModelBase {
+     var backendNextOffset: Int? { paginationState.nextOffset }
+     var backendTotalResults: Int { paginationState.totalResults }
+     var isLoadingMoreBackendResults: Bool = false
++    var backendPaginationErrorMessage: String?
+     var hasMoreBackendResults: Bool { paginationState.hasMore }
+     var backendSearchGeneration: UInt64 = 0
+     let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)

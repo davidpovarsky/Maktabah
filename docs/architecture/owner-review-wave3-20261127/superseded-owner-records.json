@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.owner-review-superseded/1",
+  "candidate": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+  "registry_blob": "bc4f30808a2e7fa0ad48e406891bed5399583fc3",
+  "registry_sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a",
+  "records": [
+    {
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "patch_id": "OWNER_PATCH_017",
+      "approval_ref": "OWNER_PATCH_017",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2338175e3d2ed5f421c91c192957135dde61d00a",
+      "patch_digest_sha256": "c673664d3d9a14d1ef1886b07cd22bf508085cb50ce602e06975ddb7529b303f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_017",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2338175e3d2ed5f421c91c192957135dde61d00a",
+        "patch_digest_sha256": "c673664d3d9a14d1ef1886b07cd22bf508085cb50ce602e06975ddb7529b303f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "d21f537852b0840f4e53c43b00ed2aa3ce7a06b9f4787ed01c96142e1009c91d4c8547dcd719de0a1a51b1648ec25b624d7f0cce4946a977873e395bfe66fc0e",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "patch_id": "OWNER_PATCH_040",
+      "approval_ref": "OWNER_PATCH_040",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "e504d083d7f54b03f253592e83ad42d0cea07079",
+      "patch_digest_sha256": "a41bed7b9dc969522532dd75c1690caef4c25d2b565088120796bb06c1f3f83b",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_040",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e504d083d7f54b03f253592e83ad42d0cea07079",
+        "patch_digest_sha256": "a41bed7b9dc969522532dd75c1690caef4c25d2b565088120796bb06c1f3f83b",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "b15490b8271a7eca02e1518b0dfc9c4fbc2a25047ae0900a73cdf52deaf76fc88255406a076a33e00a823529f45d04b6e47bee907767d1390e1e0526ad23a900",
+        "signed_at": "2026-11-26T04:18:19Z",
+        "expires_at": "2027-11-26T04:18:19Z"
+      }
+    }
+  ]
+}

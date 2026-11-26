@@ -1,0 +1,54 @@
+diff --git a/Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift b/Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift
+index a485fa8df7f5b8f6cfa567cf3f895b07957b6de5..1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28 100644
+--- a/Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift
++++ b/Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift
+@@ -21,6 +21,8 @@ struct iOSBookAnnotationsView: View {
+         NavigationStack {
+             ScrollViewReader { proxy in
+                 annotationLists
++                    .accessibilityIdentifier("original-book-annotations-list")
++                    .accessibilityValue(viewModel.hasLoaded ? "loaded" : "loading")
+                     .onAppear {
+                         guard let targetId = viewModel.scrollPositionId else { return }
+                         proxy.scrollTo(targetId, anchor: .top)
+@@ -55,7 +57,7 @@ struct iOSBookAnnotationsView: View {
+                 iOSAnnotationEditorSheet(
+                     annotation: ann,
+                     onSave: { updated in
+-                        Task { await updateAnnotation(updated) }
++                        try updateAnnotation(updated)
+                     },
+                     onDelete: { _ in
+                         Task { await deleteAnnotation(ann) }
+@@ -109,12 +111,14 @@ struct iOSBookAnnotationsView: View {
+                 }
+                 .padding(.vertical, 4)
+             }
++            .accessibilityIdentifier("original-book-annotation-" + String(ann.stableId))
+             .contextMenu {
+                 Button {
+                     editingAnnotation = ann
+                 } label: {
+                     Label(String(localized: .Annotation.editAnnotation), systemImage: "pencil")
+                 }
++                .accessibilityIdentifier("original-book-annotation-edit-" + String(ann.stableId))
+ 
+                 Button(role: .destructive) {
+                     Task { await deleteAnnotation(ann) }
+@@ -128,12 +132,14 @@ struct iOSBookAnnotationsView: View {
+         .scrollPosition(id: $viewModel.scrollPositionId)
+     }
+ 
+-    private func updateAnnotation(_ updated: Annotation) async {
++    private func updateAnnotation(_ updated: Annotation) throws {
+         do {
+-            try onUpdate?(updated)
++            guard let onUpdate else { throw AnnotationLocalEditorError.noConnection }
++            try onUpdate(updated)
+             UINotificationFeedbackGenerator().notificationOccurred(.success)
+         } catch {
+             UINotificationFeedbackGenerator().notificationOccurred(.error)
++            throw error
+         }
+     }
+ 

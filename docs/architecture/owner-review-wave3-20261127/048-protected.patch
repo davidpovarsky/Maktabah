@@ -1,0 +1,25 @@
+diff --git a/Source/UI/iOS/Views/Common/ListContentView.swift b/Source/UI/iOS/Views/Common/ListContentView.swift
+index c009dfc4c93281f2e3fecbc04c17925ab06de837..df6e248cee2391caf0a9c193c2ec343ce5ab2f45 100644
+--- a/Source/UI/iOS/Views/Common/ListContentView.swift
++++ b/Source/UI/iOS/Views/Common/ListContentView.swift
+@@ -81,6 +81,7 @@ class ListContentView: UIView, UIContentView {
+ 
+         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+         label.textAlignment = .natural
++        label.adjustsFontForContentSizeCategory = true
+ 
+         leadingIcon.setContentHuggingPriority(.required, for: .horizontal)
+         leadingIcon.contentMode = .scaleAspectFit
+@@ -139,8 +140,11 @@ class ListContentView: UIView, UIContentView {
+             } else {
+                 label.font = UIFont.systemFont(ofSize: config.font.pointSize, weight: .regular)
+             }
++            if let baseFont = label.font {
++                label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont, compatibleWith: traitCollection)
++            }
+             label.textColor = config.isDownloaded ? .secondaryLabel : .label
+-            label.numberOfLines = 1
++            label.numberOfLines = 0
+             label.semanticContentAttribute = config.text.isParagraphRTL
+                 ? .forceRightToLeft
+                 : .forceLeftToRight

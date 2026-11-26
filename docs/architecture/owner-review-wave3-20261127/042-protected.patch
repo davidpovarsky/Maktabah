@@ -1,0 +1,114 @@
+diff --git a/Source/Features/Setting/SettingsView.swift b/Source/Features/Setting/SettingsView.swift
+index 47aa588f3ca41fffb303e823e44958b2627e8df1..d8488611ddfb166985a0e724bec6495a45f15b1e 100644
+--- a/Source/Features/Setting/SettingsView.swift
++++ b/Source/Features/Setting/SettingsView.swift
+@@ -114,6 +114,15 @@ extension SettingsView {
+                 .listRowBackground(Color.appCellBackground)
+             appearanceSection
+                 .listRowBackground(Color.appCellBackground)
++            Section {
++                NavigationLink {
++                    OtzariaMiniAppsPreferences()
++                } label: {
++                    Label("Mini Apps", systemImage: "square.grid.2x2")
++                }
++                .accessibilityIdentifier("settings-miniapps-preferences")
++            }
++            .listRowBackground(Color.appCellBackground)
+             zayitCreditsSection
+                 .listRowBackground(Color.appCellBackground)
+ 
+@@ -227,6 +236,7 @@ extension SettingsView {
+             Picker("Source", selection: Binding(
+                 get: { backendCoordinator.activeBackendID },
+                 set: { requestedBackend in
++                    guard !backendCoordinator.isTransitioning else { return }
+                     guard requestedBackend != backendCoordinator.activeBackendID else { return }
+                     #if os(iOS)
+                     if requestedBackend == .otzaria, !OtzariaMaktabahBridge.shared.isEnabled {
+@@ -236,10 +246,14 @@ extension SettingsView {
+                             object: BackendID.otzaria
+                         )
+                     } else {
+-                        backendCoordinator.commit(requestedBackend)
++                        Task { @MainActor in
++                            await backendCoordinator.commitAsync(requestedBackend)
++                        }
+                     }
+                     #else
+-                    backendCoordinator.commit(requestedBackend)
++                    Task { @MainActor in
++                        await backendCoordinator.commitAsync(requestedBackend)
++                    }
+                     #endif
+                 }
+             )) {
+@@ -247,11 +261,52 @@ extension SettingsView {
+                     Text(backend.displayName).tag(backend)
+                 }
+             }
++            .accessibilityIdentifier("settings-library-source-picker")
++            .disabled(backendCoordinator.isTransitioning)
++
++            #if DEBUG
++            Text(backendCoordinator.activeBackendID.rawValue)
++                .frame(width: 1, height: 1)
++                .clipped()
++                .accessibilityIdentifier("settings-active-backend-id")
++                .accessibilityValue(backendCoordinator.activeBackendID.rawValue)
++            Text(backendCoordinator.isTransitioning ? "transitioning" : "idle")
++                .frame(width: 1, height: 1)
++                .clipped()
++                .accessibilityIdentifier("settings-transition-state")
++                .accessibilityValue(backendCoordinator.isTransitioning ? "transitioning" : "idle")
++            #endif
++
++            if backendCoordinator.isTransitioning {
++                HStack(spacing: 8) {
++                    ProgressView()
++                        .controlSize(.small)
++                    Text("Switching library backend...")
++                        .font(.caption)
++                        .foregroundStyle(.secondary)
++                }
++            }
++
++            if let error = backendCoordinator.lastTransitionErrorMessage, !error.isEmpty {
++                Text(error)
++                    .font(.caption)
++                    .foregroundStyle(.red)
++            }
+ 
+             Text(backendCoordinator.activeSourceDescription)
+                 .font(.caption)
+                 .foregroundStyle(.secondary)
+ 
++            #if os(iOS)
++            if backendCoordinator.activeBackendID == .otzaria {
++                NavigationLink("otzaria.update.title") {
++                    OtzariaLibraryUpdateView()
++                }
++                .accessibilityIdentifier("settings-otzaria-library-updates")
++                .disabled(backendCoordinator.isTransitioning)
++            }
++            #endif
++
+             if backendCoordinator.activeCapabilities.contains(.offlineLibrary),
+                backendCoordinator.offlineProvider() != nil {
+                 NavigationLink("Manage Offline Library") {
+@@ -329,6 +384,15 @@ extension SettingsView {
+ 
+     private var annotationsSection: some View {
+         Section {
++            #if os(iOS)
++            NavigationLink {
++                AnnotationBackfillView()
++            } label: {
++                Text("Prepare existing notes", tableName: "AnnotationBackfill")
++            }
++            .accessibilityIdentifier("annotation-backfill-settings")
++            #endif
++
+             Toggle(isOn: $viewModel.hideMissingBookAnnotations) {
+                 VStack(alignment: .leading, spacing: 2) {
+                     Text(.Setting.hideMissingBookAnnotations)
