@@ -730,13 +730,11 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             object: app.buttons["otzaria-hanlin-stop"])
         XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
         XCTAssertEqual(links.count, 1)
-        let transcript = app.scrollViews["otzaria-hanlin-transcript"]
         let openSource = links.firstMatch
-        XCTAssertTrue(transcript.waitForExistence(timeout: 10))
-        // The real keyboard and floating composer can leave the source just
-        // above the final marker. Reveal it by scrolling the original transcript.
-        for _ in 0..<4 where !openSource.isHittable { transcript.swipeDown() }
-        XCTAssertTrue(openSource.isHittable, "The actual source must be reachable in its transcript")
+        let reachableSource = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: openSource)
+        XCTAssertEqual(XCTWaiter.wait(for: [reachableSource], timeout: 15), .completed,
+                       "The completed answer must expose its original source action")
         let sourceID = try XCTUnwrap(UUID(uuidString: String(openSource.identifier.dropFirst("otzaria-hanlin-source-".count))))
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", marker))
             .firstMatch.waitForExistence(timeout: 30), "The actual live continuation must reach the original transcript")

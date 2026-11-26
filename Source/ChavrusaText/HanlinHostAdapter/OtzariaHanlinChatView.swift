@@ -159,15 +159,6 @@ private struct OtzariaHanlinChatView: View {
                                     }
                                     .disclosureGroupStyle(HanlinMotionDisclosureStyle())
                                 }
-                                ForEach(session.sources.filter { $0.messageID == message.id }) { source in
-                                    Button {
-                                        session.requestNavigation(source.destination)
-                                    } label: {
-                                        Label(String(localized: "Open source"), systemImage: "book")
-                                    }
-                                    .disabled(session.isStreaming || session.isNavigating)
-                                    .accessibilityIdentifier("otzaria-hanlin-source-" + source.id.uuidString)
-                                }
                                 if message.content.isEmpty && session.isStreaming && message.id == session.messages.last?.id {
                                     ProgressView().accessibilityLabel(String(localized: "Thinking"))
                                 }
@@ -184,6 +175,15 @@ private struct OtzariaHanlinChatView: View {
                                             }
                                         }
                                     }
+                                ForEach(session.sources.filter { $0.messageID == message.id }) { source in
+                                    Button {
+                                        session.requestNavigation(source.destination)
+                                    } label: {
+                                        Label(String(localized: "Open source"), systemImage: "book")
+                                    }
+                                    .disabled(session.isStreaming || session.isNavigating)
+                                    .accessibilityIdentifier("otzaria-hanlin-source-" + source.id.uuidString)
+                                }
                             }
                         }
                         .id(message.id)
@@ -198,6 +198,11 @@ private struct OtzariaHanlinChatView: View {
             .accessibilityIdentifier("otzaria-hanlin-transcript")
             .onChange(of: session.messages.last?.content) { _, _ in
                 if let last = session.messages.last { reader.scrollTo(last.id, anchor: .bottom) }
+            }
+            .onChange(of: session.isStreaming) { _, isStreaming in
+                guard !isStreaming, let last = session.messages.last,
+                      session.sources.contains(where: { $0.messageID == last.id }) else { return }
+                reader.scrollTo(last.id, anchor: .bottom)
             }
         }
     }
