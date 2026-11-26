@@ -69,6 +69,7 @@ public final class UIGuideRun {
     @ObservationIgnored private let sceneID: UIStableID
     @ObservationIgnored private let clock: any ActionClock
     @ObservationIgnored private let observe: @MainActor () -> UISceneSnapshot?
+    @ObservationIgnored private let verifyVisible: (@MainActor (UISceneReceipt) -> Bool)?
     @ObservationIgnored private let open: @MainActor (PublicNavigationSpecV2, UISceneSnapshot, UInt64) async throws -> UISceneAcknowledgement
     @ObservationIgnored private var task: Task<Void, Never>?
     @ObservationIgnored private var attempt: UUID?
@@ -78,15 +79,17 @@ public final class UIGuideRun {
     @ObservationIgnored private var stepDeadline: UInt64 = 0
     @ObservationIgnored private var operations = 0
     @ObservationIgnored private var expectedScene: UISceneSnapshot?
-    @ObservationIgnored private var coachingScene: UISceneSnapshot?
+    @ObservationIgnored private var coachingReceipt: UISceneReceipt?
 
     public init(definition: UIGuideDefinition, sceneID: UIStableID, clock: any ActionClock = SystemActionClock(),
                 observe: @escaping @MainActor () -> UISceneSnapshot?,
+                verifyVisible: (@MainActor (UISceneReceipt) -> Bool)? = nil,
                 open: @escaping @MainActor (PublicNavigationSpecV2, UISceneSnapshot, UInt64) async throws -> UISceneAcknowledgement) {
         self.definition = definition
         self.sceneID = sceneID
         self.clock = clock
         self.observe = observe
+        self.verifyVisible = verifyVisible
         self.open = open
     }
 
@@ -100,13 +103,19 @@ public final class UIGuideRun {
     }
 
     public func next() {
+        revalidateCoaching()
         guard phase == .coaching else { return }
-        guard stepIndex + 1 < definition.steps.count else { phase = .completed; return }
+        guard stepIndex + 1 < definition.steps.count else {
+            coachingReceipt = nil
+            phase = .completed
+            return
+        }
         stepIndex += 1
         beginStep()
     }
 
     public func back() {
+        revalidateCoaching()
         guard stepIndex > 0, task == nil, [.coaching, .awaitingUser].contains(phase) else { return }
         stepIndex -= 1
         beginStep()
@@ -147,8 +156,12 @@ public final class UIGuideRun {
     }
 
     public func revalidateCoaching() {
-        guard phase == .coaching, let coachingScene else { return }
-        if observe() != coachingScene { phase = .blocked(.staleState) }
+        guard phase == .coaching, let coachingReceipt else { return }
+        guard let scene = observe(), confirmsPresentation(coachingReceipt, in: scene) else {
+            self.coachingReceipt = nil
+            phase = .blocked(.staleState)
+            return
+        }
     }
 
     /// Called by a mounted app action that can supply the original receipt.
@@ -163,6 +176,7 @@ public final class UIGuideRun {
     }
 
     private func beginStep() {
+        coachingReceipt = nil
         guard clock.now() < deadline, operations < 24 else { phase = .blocked(.cancelled); return }
         guard let scene = observe(), scene.sceneID == sceneID else { phase = .blocked(.requiresForeground); return }
         if let backend = step.destination.backend, backend != scene.backendSnapshot.backend {
@@ -199,7 +213,7 @@ public final class UIGuideRun {
     private func interrupt(_ target: Phase) async {
         attempt = nil
         expectedScene = nil
-        coachingScene = nil
+        coachingReceipt = nil
         phase = target
         guard let running = task, !draining else { return }
         draining = true
@@ -213,13 +227,15 @@ public final class UIGuideRun {
         guard clock.now() < stepDeadline else { phase = .blocked(.cancelled); return }
         switch result {
         case .acknowledged(let receipt):
-            guard let initial = expectedScene, let actual = observe(), actual.sceneID == sceneID,
+            guard let initial = expectedScene, let actual = observe(),
                   receipt.sceneID == sceneID, receipt.backendSnapshot == initial.backendSnapshot,
-                  actual.backendSnapshot == receipt.backendSnapshot, receipt.basedOnSceneRevision >= initial.revision,
+                  receipt.basedOnSceneRevision >= initial.revision,
                   receipt.appliedSceneRevision > receipt.basedOnSceneRevision,
-                  actual.revision == receipt.appliedSceneRevision, actual.visibleRoute == receipt.route,
-                  matchesIntent(receipt.route) else { phase = .blocked(.staleState); return }
-            coachingScene = actual
+                  matchesIntent(receipt.route), confirmsPresentation(receipt, in: actual) else {
+                phase = .blocked(.staleState)
+                return
+            }
+            coachingReceipt = receipt
             phase = .coaching
         case .queued: phase = .blocked(.uiQueued)
         case .requiresForeground: phase = .blocked(.requiresForeground)
@@ -232,6 +248,14 @@ public final class UIGuideRun {
         case .cancelled: phase = .blocked(.cancelled)
         case .failed: phase = .blocked(.failed)
         }
+    }
+
+    private func confirmsPresentation(_ receipt: UISceneReceipt, in scene: UISceneSnapshot) -> Bool {
+        guard scene.sceneID == sceneID, scene.backendSnapshot == receipt.backendSnapshot,
+              scene.revision >= receipt.appliedSceneRevision else { return false }
+        // A native host can recheck its current presentation after the request-scoped witness is retired.
+        if let verifyVisible { return verifyVisible(receipt) }
+        return scene.revision == receipt.appliedSceneRevision && scene.visibleRoute == receipt.route
     }
 
     private func matchesIntent(_ route: RouteSpec) -> Bool {

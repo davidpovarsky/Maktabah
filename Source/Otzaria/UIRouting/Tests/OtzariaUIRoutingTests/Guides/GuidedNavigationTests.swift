@@ -66,6 +66,23 @@ final class GuidedNavigationTests: XCTestCase {
         XCTAssertEqual(run.stepIndex, 0)
     }
 
+    func testRetiredRequestStillNeedsTheOriginalVisiblePresentation() async throws {
+        let host = Host()
+        host.publishVisibleRoute = false
+        host.publishPassivePresentation = true
+        let run = try host.run(verifyVisible: { host.passivePresentation == $0.route })
+        run.start(.manual)
+        run.performManualNavigation()
+        await settle(run)
+        XCTAssertNil(host.observation.visibleRoute)
+        XCTAssertEqual(run.phase, .coaching)
+
+        host.passivePresentation = nil
+        run.next()
+        XCTAssertEqual(run.phase, .blocked(.staleState))
+        XCTAssertEqual(run.stepIndex, 0)
+    }
+
     func testStopJoinsChildAndLateReceiptCannotAdvanceAReplacementRun() async throws {
         let host = Host()
         host.suspend = true
@@ -108,18 +125,21 @@ final class GuidedNavigationTests: XCTestCase {
         var calls = [UIDestinationID]()
         var requests = [UUID]()
         var publishVisibleRoute = true
+        var publishPassivePresentation = false
+        var passivePresentation: RouteSpec?
         var suspend = false
         var pending: CheckedContinuation<Void, Never>?
         var observation: UISceneSnapshot
 
         init() { observation = .init(sceneID: scene, revision: 1, backendSnapshot: backend) }
 
-        func run() throws -> UIGuideRun {
+        func run(verifyVisible: (@MainActor (UISceneReceipt) -> Bool)? = nil) throws -> UIGuideRun {
             let definition = try UIGuideDefinition(steps: [
                 .init(destination: .init(destination: Self.library), english: "Library", hebrew: "ספרייה"),
                 .init(destination: .init(destination: Self.history), english: "History", hebrew: "היסטוריה")
             ])
-            return .init(definition: definition, sceneID: scene, observe: { self.observation }) { intent, _, _ in
+            return .init(definition: definition, sceneID: scene, observe: { self.observation },
+                         verifyVisible: verifyVisible) { intent, _, _ in
                 self.calls.append(intent.destination)
                 if self.suspend { await withCheckedContinuation { self.pending = $0 } }
                 return .acknowledged(self.acknowledge(intent))
@@ -133,6 +153,10 @@ final class GuidedNavigationTests: XCTestCase {
                                   presentation: .init(kind: intent.presentation.nativeKind))
             if publishVisibleRoute {
                 observation = .init(sceneID: scene, revision: revision + 1, backendSnapshot: backend, visibleRoute: route)
+            } else if publishPassivePresentation {
+                // The transaction has already ended and the scene revision advanced.
+                observation = .init(sceneID: scene, revision: revision + 2, backendSnapshot: backend)
+                passivePresentation = route
             }
             return .init(requestId: request, route: route, backendSnapshot: backend, sceneID: scene,
                          basedOnSceneRevision: revision, appliedSceneRevision: revision + 1)

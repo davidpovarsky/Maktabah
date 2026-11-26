@@ -571,6 +571,24 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         return .init(destination: state.destination, presentation: state.presentation,
             content: state.content, state: state.state, focus: actual)
     }
+    /// Recheck the original UIKit surface after the navigation request has been retired.
+    func guidePresentationIdentity(for route: RouteSpec) throws -> NativeSceneIdentity? {
+        guard mounted, foreground, isPresentationReady, let kind = surfaceKind(route.destination),
+              let evidence = visibilityChecks[route.destination]?(), evidence.isVisible, evidence.sceneID == sceneID,
+              let actual = try surface(kind), actual == evidence.surface,
+              actual.destination == route.destination, actual.presentation == route.presentation,
+              actual.content == route.content, actual.state == route.state else { return nil }
+        if kind == .reader {
+            guard try project().hasRenderedReaderEvidence(sceneID: sceneID) else { return nil }
+        }
+        if actual.focus != route.focus {
+            guard route.destination == NativeSearchFieldVisibility.destination,
+                  route.focus == NativeSearchFieldVisibility.focus,
+                  nativeSearchField?.isFirstResponder == true, searchFieldAvailable else { return nil }
+        }
+        return try project().identity()
+    }
+
     func usesWorkspaceOwner(_ owner: MaktabahNativeWorkspaceOwner) -> Bool { workspaceProjectionSource?.uses(owner) == true }
     /// Passive independent evidence only. With the reader marker absent this
     /// stays nil even if a reader model contains the requested destination.
