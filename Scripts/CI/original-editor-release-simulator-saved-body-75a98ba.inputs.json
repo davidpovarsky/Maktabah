@@ -3,11 +3,11 @@
   "architectures": [
     "arm64"
   ],
-  "archive_bytes": 327804601,
-  "archive_path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/Release-SDK.zip",
-  "archive_sha256": "e836ea7464efc54dab7b240a2da0e33750d77704c5c0c303e620d85b0c4a5dbe",
+  "archive_bytes": 331084072,
+  "archive_path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/Release-SDK.zip",
+  "archive_sha256": "afc2c2ee0c2d937ef39e60cd934e41666e77c0125e22a67e0a2137abfd3ca3a0",
   "configuration": "Release",
-  "control_sha": "a59421adb8d60ff454298b7d2cbd4c2b45be73ac",
+  "control_sha": "4c1d04bb2c2ff807edd60226db9c79ed4389d5fa",
   "distribution_files": {
     "Bundles/Amplitude-Swift_AmplitudeSwift.bundle/Info.plist": {
       "bytes": 687,
@@ -1411,7 +1411,7 @@
     },
     "Bundles/SwiftStreamingMarkdown_SwiftStreamingMarkdown.bundle/Assets.car": {
       "bytes": 33960,
-      "sha256": "cd244d3984694776044afdbc8a20d7b86f1ebbc4ad00a3bdc54507d8de8638de"
+      "sha256": "cf81020bf164a94cc47d3fd1fa0f03c92953e6a88ff8f428d18e1c1f4e90a021"
     },
     "Bundles/SwiftStreamingMarkdown_SwiftStreamingMarkdown.bundle/Info.plist": {
       "bytes": 720,
@@ -7322,8 +7322,8 @@
       "sha256": "2f73c5436604f5584fb473ab9afa4228d48ece78ad7c96d07ef8dc8a35f8caac"
     },
     "Frameworks/AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct.framework/AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct": {
-      "bytes": 79424,
-      "sha256": "ea0c066cd8dedfc584f8733c33081563f30e28882f6bd47df8d9f2974d70e156"
+      "bytes": 96080,
+      "sha256": "b002d402d8e11b1c155f3dced8b39f497e1e359463d7edcf4503dff056c6d1c5"
     },
     "Frameworks/AnyCryptoSwift_4B7B7B8889D5B5C4_PackageProduct.framework/Info.plist": {
       "bytes": 784,
@@ -7334,8 +7334,8 @@
       "sha256": "e3d7ed2e04e00e6d997b50b11e761300ff74659be960aa34abcdc629bf2803dc"
     },
     "Frameworks/AnytypeCore.framework/AnytypeCore": {
-      "bytes": 241280,
-      "sha256": "5d52685ac50361acb4b1b9849bb8ed461c7b873617338f66b5900f0a83fe29eb"
+      "bytes": 372672,
+      "sha256": "1b7608f387b1968a5680ac5013944f36b1fb014299414ac9149017f26ac09ed3"
     },
     "Frameworks/AnytypeCore.framework/Info.plist": {
       "bytes": 739,
@@ -7354,12 +7354,12 @@
       "sha256": "90b335218dc1f845df26c4240bcce2bf9887704689d616da3970c73616bb288f"
     },
     "Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor": {
-      "bytes": 137154496,
-      "sha256": "e7fe81c8a410ab360d2256a0df4e4831b417d28f48950feb28073eedffd3710e"
+      "bytes": 137227744,
+      "sha256": "26de85fedfa4f03f0cc444beb7251ee9b55803494576ab6373c54f365c4fd62f"
     },
     "Frameworks/AnytypeOriginalEditor.framework/Assets.car": {
       "bytes": 433736,
-      "sha256": "c4fedb0ab7b8111afb2de631f23c95111e22657a0b661da3d761634970d0d046"
+      "sha256": "04b881d1d5689fd6d8eda524f126d779633b57574782c1d2082355c2c2ccab40"
     },
     "Frameworks/AnytypeOriginalEditor.framework/COLOR_SYSTEM.md": {
       "bytes": 5307,
@@ -7386,8 +7386,8 @@
       "sha256": "28dc4dd2b8d36e9a1ac8a1185d8cb87a8f9ba459f8ba41cf6aa7cd190c397b6f"
     },
     "Frameworks/AnytypeOriginalEditor.framework/Modules/AnytypeOriginalEditor.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo": {
-      "bytes": 871312,
-      "sha256": "d76c2034eed637ff93be673f836f6461dc3eb00fbacdc757156623c0c7921e42"
+      "bytes": 871324,
+      "sha256": "9348223761953393743eb5ae7dbd85e6a476b47ee72ca28f7e706835d03c071b"
     },
     "Frameworks/AnytypeOriginalEditor.framework/Modules/AnytypeOriginalEditor.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -7398,8 +7398,8 @@
       "sha256": "fe1c4aef6310363ef416a62d37b2b58450a6adb40adf6dcc1ab4418d28ba3ce3"
     },
     "Frameworks/AnytypeOriginalEditor.framework/Modules/AnytypeOriginalEditor.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 12682344,
-      "sha256": "832529f300f7313de77645516036e104ce0f7f371d42fead627355c417feea2d"
+      "bytes": 12685744,
+      "sha256": "cb4f0bb8d078485d53a574ded49e90ff7286f34e479045d2a0e43dc831e7fa89"
     },
     "Frameworks/AnytypeOriginalEditor.framework/Modules/module.modulemap": {
       "bytes": 84,
@@ -7423,7 +7423,7 @@
     },
     "Frameworks/AnytypeOriginalEditor.framework/_CodeSignature/CodeResources": {
       "bytes": 13384,
-      "sha256": "823e3ed832ec49709c09d016347181c3e4a661fd688375cc5cf3144ecc557ad7"
+      "sha256": "741791639d7402d504a76412c02f63a33ebd7788c5c9d99d52a6ed11fb07e38a"
     },
     "Frameworks/AnytypeOriginalEditor.framework/anytype-shader-S.mp4": {
       "bytes": 889039,
@@ -7510,8 +7510,8 @@
       "sha256": "7e626b0a7ec5a8cf17c434235afc78f241852c9d04b308675aedb588c8fc9e71"
     },
     "Frameworks/AppTarget_-256A0C750C206F_PackageProduct.framework/AppTarget_-256A0C750C206F_PackageProduct": {
-      "bytes": 50544,
-      "sha256": "c16ba3d6215a5c8cac4b9881a0c3deb4e71b1352695bc68fdf82cee7870b8b97"
+      "bytes": 52480,
+      "sha256": "83a1d71b42b3c033c4385e42bcd05a0b03749a2608564db3c0496e54308fa11f"
     },
     "Frameworks/AppTarget_-256A0C750C206F_PackageProduct.framework/Info.plist": {
       "bytes": 766,
@@ -7522,8 +7522,8 @@
       "sha256": "d1b30ae33067488f5b8410af6a042be668ae6a0e8bd66d75c6dae46f7e559069"
     },
     "Frameworks/BigInt_175F1397B99A03_PackageProduct.framework/BigInt_175F1397B99A03_PackageProduct": {
-      "bytes": 238464,
-      "sha256": "89f64c409cff903188f9eba66662b84c62c7ff1eed35fb48ce54c26953334583"
+      "bytes": 341088,
+      "sha256": "9f06d68d717116f91aeda0443702ed25a85a333e9a9149c8664fef1934328cac"
     },
     "Frameworks/BigInt_175F1397B99A03_PackageProduct.framework/Info.plist": {
       "bytes": 754,
@@ -7534,8 +7534,8 @@
       "sha256": "9d4d170ea4923e8f36b3f412a625e298af72d687eae6e1b00ce717335319f75b"
     },
     "Frameworks/Crypto_17A3B1FFC41E47_PackageProduct.framework/Crypto_17A3B1FFC41E47_PackageProduct": {
-      "bytes": 57024,
-      "sha256": "02edf80b06e0a55c656fd8d5c7475a8dfb9c51ce831f6e7c2ead956414add65f"
+      "bytes": 64352,
+      "sha256": "113dfeff80fa11b7664983c9fbb34a55a28296c933f968361d5466b7b5f2cfe9"
     },
     "Frameworks/Crypto_17A3B1FFC41E47_PackageProduct.framework/Info.plist": {
       "bytes": 762,
@@ -7554,8 +7554,8 @@
       "sha256": "42fb8a30dd8d7ba0900e1bf17fe64ed8c12cfdb8a9c791ab6b4e1eceb0f299c0"
     },
     "Frameworks/Factory_32A9B87E1196645F_PackageProduct.framework/Factory_32A9B87E1196645F_PackageProduct": {
-      "bytes": 165616,
-      "sha256": "15724aeb99fbd5c62ab5e0207abf0bd2a30e8c07c7975fe79ce5498b75a21f99"
+      "bytes": 230496,
+      "sha256": "f0dc5642e605cbcddc5017ceb9fca3d70b8a97e03509ba936529887c62f8e381"
     },
     "Frameworks/Factory_32A9B87E1196645F_PackageProduct.framework/Info.plist": {
       "bytes": 761,
@@ -7602,8 +7602,8 @@
       "sha256": "5a168dfa41b98aa52792d817a7196bc018a90eecfc778049fc53c701c1e0af88"
     },
     "Frameworks/Logger.framework/Logger": {
-      "bytes": 3214304,
-      "sha256": "43db2e544f2e8af144ff8f909348e6e27dcf8212f2350f1abc75232dc0eb6cc1"
+      "bytes": 5738848,
+      "sha256": "9ac5e3092b1f065fa8913fcb364839e3f9b7bce6e1c5266146754a7bc2ff5c21"
     },
     "Frameworks/Logger.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -7614,8 +7614,8 @@
       "sha256": "c4068b3d37635b58cceebe07b96b71e756e9f639df1f7d6a29b0637e7fd8979e"
     },
     "Frameworks/NotificationsCore_5AD5AD79262EBF4_PackageProduct.framework/NotificationsCore_5AD5AD79262EBF4_PackageProduct": {
-      "bytes": 110048,
-      "sha256": "8b5e16d08b72a7e1c5d5e4c04521b96584f9b2af389dd59992f2542925c9aeb0"
+      "bytes": 170960,
+      "sha256": "741115b6faad297d12d794bcb9846e539b33321fba8d89abc1b1493efdcbd6f2"
     },
     "Frameworks/NotificationsCore_5AD5AD79262EBF4_PackageProduct.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -7626,8 +7626,8 @@
       "sha256": "be4acadb0068f8e6d7ab5ee1cf6d256da5b5dd16b4824b90445dbe2c1dedfd87"
     },
     "Frameworks/OriginalEditorSharedFirebase.framework/OriginalEditorSharedFirebase": {
-      "bytes": 1422416,
-      "sha256": "558b98d20809111e897d34494a88380bf7e924b33b48e57e0147bcdff122199e"
+      "bytes": 1530048,
+      "sha256": "4579bf05c88a2292456cec75df865c018656a146bba1e9a5d9f3250a8e871030"
     },
     "Frameworks/OriginalEditorSharedFirebase.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -7638,8 +7638,8 @@
       "sha256": "29818c875eb9e9ea2711269bfb128ea1c271d5a24fd22165421848abbd20e7f2"
     },
     "Frameworks/ProtobufMessages.framework/ProtobufMessages": {
-      "bytes": 154376688,
-      "sha256": "11d6aa7c6034d1eb954745af409d9692631c0fe14aeadee4d47d86534c116dfd"
+      "bytes": 181718272,
+      "sha256": "a17f6a273606144cd94409bd44a73b2dd26864272234c3effefbf261e9552891"
     },
     "Frameworks/ProtobufMessages.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -7650,8 +7650,8 @@
       "sha256": "6e269659db9d7eae29b14be6546a11d5aa395157234d46ece7daf27d1cec1df7"
     },
     "Frameworks/SecureService.framework/SecureService": {
-      "bytes": 59344,
-      "sha256": "1fd13013b1aba24af2431ca5a7a25ca4a8900d89fc82279984471a4632209bf6"
+      "bytes": 70528,
+      "sha256": "ead5ff8013416ac5716eccfc342db6c6ca42a8cd64e0f98c8ee078f75889286f"
     },
     "Frameworks/SecureService.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -8026,8 +8026,8 @@
       "sha256": "47c489c8c99454e4ed9d1dff5edb1330d1284a88b047e6e5cd353497d2459a52"
     },
     "Frameworks/Services.framework/Services": {
-      "bytes": 1707936,
-      "sha256": "62f41cf4f760308df44ce156f281d6149b57dc6d13c9b64d742d65a3c8eb64b5"
+      "bytes": 3103968,
+      "sha256": "1fb48ec85d10472fb7bd03b9f13fd1a7bee9a3d735ae9b54cae7fabfffe2a26e"
     },
     "Frameworks/Services.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -8038,8 +8038,8 @@
       "sha256": "26f066492c3a2bd73921e1b843a9812d75698f5d15b61227d750196872dd9824"
     },
     "Frameworks/SharedContentManager.framework/SharedContentManager": {
-      "bytes": 129616,
-      "sha256": "b458abae36f628e5d2677636d318d38bbb0b2452032415022bcbdc857171d2cc"
+      "bytes": 221984,
+      "sha256": "4652857aae1a82c7b95837b3ebcd11599e3fe391eeeb740af13bd7ce466f0f59"
     },
     "Frameworks/SharedContentManager.framework/_CodeSignature/CodeResources": {
       "bytes": 1798,
@@ -8050,8 +8050,8 @@
       "sha256": "a0a8ad49678d6e57dc50a920a134d15e92b9f66d5e062f0809c5afefaba6ef38"
     },
     "Frameworks/SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct.framework/SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct": {
-      "bytes": 1463216,
-      "sha256": "26fb6141297ad5745960a16f8a6d68ac3d6a30f9e4d256c1d9d85d06f0936d58"
+      "bytes": 2837680,
+      "sha256": "09ebe8af29a460ac618cb527714bae548088232b977e400f799ca0d1586975d4"
     },
     "Frameworks/SwiftProtobuf_7CEE9AB92C12BC6B_PackageProduct.framework/SwiftProtobuf_SwiftProtobuf.bundle/Info.plist": {
       "bytes": 682,
@@ -8074,8 +8074,8 @@
       "sha256": "96bf4785ddae022fa0579b4acebbbcc0b9a5bf62b43e21c3f1cbb689ddb6121f"
     },
     "Modules/AISDKJSONSchema.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 113920,
-      "sha256": "8c5c5add6f9e988e332e1aed3c6755e6d414c29433f3c82f32010ef7916137b0"
+      "bytes": 114444,
+      "sha256": "ac9cab28b42d45f52cc449ffab80ea0b5a52cb5509b3782124f0a6fe41489c94"
     },
     "Modules/AISDKProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8086,8 +8086,8 @@
       "sha256": "c01ac1b679d827aa6b448104d2876747009bd291f7c2f5ea6aba7e7280a919c0"
     },
     "Modules/AISDKProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1547132,
-      "sha256": "58beede2f2eb41bbb702171591abd4df4445488e8f75034a674f1f6d7fdd583e"
+      "bytes": 1547588,
+      "sha256": "f40fd6e90ad31ed0db3e167afc3d414ca7fa8a9a4ce4bad1e43a5357b335f50a"
     },
     "Modules/AISDKProviderUtils.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8098,8 +8098,8 @@
       "sha256": "3b06bd56fe4baff860d32ee1b56b06810a88a631c45f6d23f60a78c81fcb528d"
     },
     "Modules/AISDKProviderUtils.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 647084,
-      "sha256": "baa4a0b2939b22cf36f769333d77c340d6c1b2d50598cbe81f2a4e606bed1cf8"
+      "bytes": 647596,
+      "sha256": "bc61c9a4eb6359312be9c0111af8beedb093caa61ca92ca37606388c6c50e84f"
     },
     "Modules/AISDKZodAdapter.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8110,8 +8110,8 @@
       "sha256": "8ed187429c84a7b04441cee19826d2b99f2a5702fb3730648943e10e40c20650"
     },
     "Modules/AISDKZodAdapter.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 246468,
-      "sha256": "64ab1e4401c80798753fcd076c33a46dff4bd882b289607820849d51602da0ca"
+      "bytes": 246952,
+      "sha256": "167a520facb3dc3450c981e5e23c2885d8ecbc3812e3db3e64f1d8db24da3bab"
     },
     "Modules/AmplitudeSwift.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8122,8 +8122,8 @@
       "sha256": "ff1404f0b6462180b14bec95325aa37f47e5f8ad570873507e2af11858c2e7f2"
     },
     "Modules/AmplitudeSwift.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1117972,
-      "sha256": "6029d2caabeec43687c2de4546613214d82e60f1bb1c33f171bf9450b9532267"
+      "bytes": 1118936,
+      "sha256": "ca43830540904294d37a7d93d06e19cd09205d1b7c6eb814b92dfdabb2a4a08e"
     },
     "Modules/AnalyticsConnector.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8134,8 +8134,8 @@
       "sha256": "e0935ba8af2ca058d120fcd5d9debe5f892dd3a676434a9682148b44fcbe00bc"
     },
     "Modules/AnalyticsConnector.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 63700,
-      "sha256": "81401ed6fb71ef4d5bf33d158947738cedc299ff5de9c06d88e6944f4a27f6d8"
+      "bytes": 64136,
+      "sha256": "5213b687c5c950b90f9456d218610b231a5e5adf0c30315768c49142fe757c59"
     },
     "Modules/AnthropicProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8146,8 +8146,8 @@
       "sha256": "c2c6c5898e7227db2b9ed9615584e0a65da9bbc3edd46a8caf22a91405d49b50"
     },
     "Modules/AnthropicProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1018048,
-      "sha256": "d5f91ee1352d312d69cac9599c3ee9ab07d96130739cc3386cb7a1b8487f02a0"
+      "bytes": 1018568,
+      "sha256": "37515786368c304849beb39cbf43d22758cc40bd3167dcb11ca6a16ed9cd0cd1"
     },
     "Modules/AnyCryptoSwift.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8158,8 +8158,8 @@
       "sha256": "37423b6d03fc176a7f7182c7cea1f8b7f79c4d9f4c67d293733180eb7f84abb5"
     },
     "Modules/AnyCryptoSwift.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 56532,
-      "sha256": "df6beb65f4bec1a400fda0ba2c33b5ca4c2a4c200bdb2c25b2b60433bb3ee481"
+      "bytes": 57016,
+      "sha256": "ff572de9ea9f24ab012e905c1989fdee623f0f56f82b7be922c548c15c8bb499"
     },
     "Modules/AnytypeCore.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8170,8 +8170,8 @@
       "sha256": "cabd82c6345fea0af8c63c7fa1a62c93487ab204f99d84a41168ef084295162f"
     },
     "Modules/AnytypeCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 347540,
-      "sha256": "1f103a314cfbd119347c99133e50e1236c7f3c884ea3835a099c7c4582fa49b2"
+      "bytes": 348620,
+      "sha256": "09b2e6fcc613022ae2afa141c30cdbb6a32402359695685ede1daa1ba3b431bd"
     },
     "Modules/AppTarget.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8182,8 +8182,8 @@
       "sha256": "00cd5b749c8c993ce1369be8cc06ab4ba71020a73acdcbe274935ea813499a7a"
     },
     "Modules/AppTarget.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 30452,
-      "sha256": "dc8825d5c202a1b052ace7c03d88ed4a615a106472a5e4be060552e5540d418b"
+      "bytes": 30588,
+      "sha256": "77b4a34ce2662231485ad0bf14534a9abc83ca79382157d0c064f729cabb71e2"
     },
     "Modules/Assets.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8194,8 +8194,8 @@
       "sha256": "4d73663ba2d88027bfb0b8a91779b11bdee31339add7f949340154832e59e80c"
     },
     "Modules/Assets.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 877492,
-      "sha256": "f03ade5a3a970a80db7308cb5afdbd85a0d2ba1b6d0bca64634f2611cddd5635"
+      "bytes": 878368,
+      "sha256": "4bd28dc6eba8cf41463caaddc66da83f248959086b381e3ae75fefa71156123c"
     },
     "Modules/AsyncAlgorithms.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8206,8 +8206,8 @@
       "sha256": "72d5bba50a1b154f23356bb782bf6e98d7b84496dafb31f9b0a24039dc29da3d"
     },
     "Modules/AsyncAlgorithms.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 520688,
-      "sha256": "860e3831ef1b0da3a3517e456803b975f5e22f923ef970a060d0e613916fdd24"
+      "bytes": 521044,
+      "sha256": "49a980c1f87e34a06e99cad77e23ef4e463ca26cca41964b3170e18f89482055"
     },
     "Modules/AsyncTools.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8218,8 +8218,8 @@
       "sha256": "64e6105df9b916fc194efc0ac0ff63dd49d4419fd8df0bbb71f9ef261076fc31"
     },
     "Modules/AsyncTools.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 88792,
-      "sha256": "b8d9bd0210d7ac5ff8d8819c92839fdbde16a07cc297cbd580b70922c4594722"
+      "bytes": 89340,
+      "sha256": "de8af69d39971887e9dc729ff82df1147778b49bad95d00549302df65379eb7e"
     },
     "Modules/BigInt.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8230,8 +8230,8 @@
       "sha256": "1d2fbcce35010121148ecc437490710d59a415971a870532f43afc1f9f52d0f2"
     },
     "Modules/BigInt.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 287456,
-      "sha256": "22b2df7448909e8ffc2182482bf5b5df93f7daf631776baaeca8ef61f313e9a7"
+      "bytes": 287892,
+      "sha256": "216058280c2daeb63a7e7bf0f6fb440ae3a7d60525b74172fd2dd6c279a7fed7"
     },
     "Modules/BitCollections.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8242,8 +8242,8 @@
       "sha256": "9ee4b1b18e895f792474496452d7de1e4b0ca93632415ffcb9b5243266361276"
     },
     "Modules/BitCollections.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 426736,
-      "sha256": "cc4e975008c668337a456834f752a0d93ed6fd39bc236a0bbf0569e867cc560c"
+      "bytes": 426892,
+      "sha256": "cbc121fdef5a40c3b9ef7eef97b205a9316ab568f9edf01cbb0a0616282fd165"
     },
     "Modules/Cache.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8254,8 +8254,8 @@
       "sha256": "b8c3f59ba6bb9e632a27538206974f1fec6b56d0a32568ff7b1ae04afa3be72f"
     },
     "Modules/Cache.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 347372,
-      "sha256": "53c33406e4bfa89a7a0b6363420d6198bdabd969d943e1b41af9f4ab1123762f"
+      "bytes": 348180,
+      "sha256": "07334a48c73986646a636e132813d7dd52fe46b082563499ed58afe85d056a9e"
     },
     "Modules/Collections.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8266,8 +8266,8 @@
       "sha256": "e434cc1d1641437ab762c51d68a36ca8e22db617ce6d230793e4b5485e3017c3"
     },
     "Modules/Collections.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 26080,
-      "sha256": "da94d4bdef9f458cd8679eecea894c00ebd01e46b39cfbfe50e95c1eb3a69aa0"
+      "bytes": 26308,
+      "sha256": "4e6e1e5d79641a5f03fe90c42d5df6eb866b4947120d2db27b42644635824e08"
     },
     "Modules/ConfettiSwiftUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8278,8 +8278,8 @@
       "sha256": "662e98913bafbde156ffddadcb75148a7aa0cfc75cf7dad9c3524ed3cb29fe14"
     },
     "Modules/ConfettiSwiftUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 180192,
-      "sha256": "23cddf35e6737b8a504d163132699985569876a12ecbaf089c1d38f2a9bfbd89"
+      "bytes": 181060,
+      "sha256": "0b681a4befef3067672727921a8ef731517a8932fa3b1d580740001884d4038b"
     },
     "Modules/Crypto.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8290,8 +8290,8 @@
       "sha256": "5bdd2a20d1313765e7f5527a67d58e641f5885a55ba2eae1173a9f1099c656bd"
     },
     "Modules/Crypto.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 55196,
-      "sha256": "6d6a288feb6fcfe1b8a39f36b742f063fceb586f15197f9da9858ae5f9611c5a"
+      "bytes": 55644,
+      "sha256": "f25477669c1183ce17f76f7a455c524b9788a9c19f4810f1061c8180b88cad1f"
     },
     "Modules/DeepLinks.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8302,8 +8302,8 @@
       "sha256": "909f72e27b94ab3f1385c200553edf89ed506042b475fc8b7ab0119c764f9af7"
     },
     "Modules/DeepLinks.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 101276,
-      "sha256": "62c1d10ff4cc3a09b01459a4d46927eb1d2def267899b8ce4c0469358ab7d524"
+      "bytes": 102116,
+      "sha256": "c0c46cbe64036587189648a5ae912c1612e45e4118f734f973906d1136121e64"
     },
     "Modules/DequeModule.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8314,8 +8314,8 @@
       "sha256": "a6fc34bebb19455a82b7453b99a1b347f7c8b197c32a4c517415cf26139c5358"
     },
     "Modules/DequeModule.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 381768,
-      "sha256": "58e10152b3b9e7dcfd7d2ed44ad1c39a161f4f887e6e78a43ee74c8269b13902"
+      "bytes": 381928,
+      "sha256": "0b16d15bda63c32d52c6557deb224ab57b080b3d1feec4c303da9d3bd26a10a6"
     },
     "Modules/DesignKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8326,8 +8326,8 @@
       "sha256": "e68ff0ff09504bbc71f68ff8f8ff7d6b3e1c89327f2a5bdee8a968b04687cefa"
     },
     "Modules/DesignKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 596336,
-      "sha256": "5167c632295a0114b941a56fb5c1be3d3e42f45252585309fce4716ef0e13f17"
+      "bytes": 597548,
+      "sha256": "35c5d8fe03247ecbef42881a44eb999ce110b15aea1af8a7e016a6eb1ac5808c"
     },
     "Modules/DeviceKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8338,8 +8338,8 @@
       "sha256": "f822cc36b14a27ed9967dcafed3a50ef37f0634483e2b125d4dd7ed76b3baf8a"
     },
     "Modules/DeviceKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 177812,
-      "sha256": "da884a72c44bdf2b45ec6c989df45eb44b0f4608f1b931672da40d23f24dece5"
+      "bytes": 178620,
+      "sha256": "a2a7704028b9c497eaa9d62d153ddf5b1d179cf076c27be47c0b7d94896e15ee"
     },
     "Modules/Equatable.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8350,8 +8350,8 @@
       "sha256": "8d8ca376edb84028973223856f152a465f049c590e4e18c1194a834f591829a4"
     },
     "Modules/Equatable.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 30416,
-      "sha256": "b44ef0a368867b413b85c4680e68eaf1d5ba8983d0ade7b2b181907117d89199"
+      "bytes": 30580,
+      "sha256": "842a081160f80fc8aa17b880f0540ef2f02143b19fe2a6b0a8c2c731c1ba7cbb"
     },
     "Modules/EventSourceParser.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8362,8 +8362,8 @@
       "sha256": "db46838795a62ff4b820404a34894d41d99fd3c7ce50bd8c3c4143cc18e7abfb"
     },
     "Modules/EventSourceParser.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 77604,
-      "sha256": "6d0456a40554fb2cb45f2b6badc474f1e9f82366350da5a3daada5c9a160a15c"
+      "bytes": 78048,
+      "sha256": "b64a7904b75afdaf4d091ddc1ab205732222c1d54ea4148d7add004828890b39"
     },
     "Modules/Factory.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8374,8 +8374,8 @@
       "sha256": "69eb7c4438b5f91e57d2805797ae1829bc13ea05eeaabc805c76be5959042b3f"
     },
     "Modules/Factory.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 203808,
-      "sha256": "34377d13718ff619a6808819e14d3cac64f4923c2dd7e2b80e3a16f56145c684"
+      "bytes": 204676,
+      "sha256": "07cc9f512a4c7c872fc1c30710b4cf055d87a35296869a30ca398aa2a58c052b"
     },
     "Modules/FirebaseCoreInternal.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8386,8 +8386,8 @@
       "sha256": "2dd9d0cc2ad8eab579eab615c01de1011d99855d7e97c67b7a36eea9d1f5b3fc"
     },
     "Modules/FirebaseCoreInternal.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 147380,
-      "sha256": "fdcd6f4d156de3377eb3bb88c1eae0c85ffa587a164e87f0c7741f2934fd999b"
+      "bytes": 147936,
+      "sha256": "bfdb668d37d608c5f04abad7820496f002ad1512d18615e70a42b5d124e9599f"
     },
     "Modules/FloatingPanel.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8398,8 +8398,8 @@
       "sha256": "3c5b9588ebb1dbc15339902d24589feec3aab0bee6f221f095d1ccf11e959d0c"
     },
     "Modules/FloatingPanel.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 538040,
-      "sha256": "0b2e40af1a590c627597643d51dee903203f1639ddc037e3a167cf6c616f2ca9"
+      "bytes": 538908,
+      "sha256": "bb0fceea81ba38883d703a4bb0178eb60bee16368112ae593479c9e7d50d8688"
     },
     "Modules/GatewayProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8410,8 +8410,8 @@
       "sha256": "787323559e9b43652e8093a336f87ed9f0d0e0581069a4c1a58a3a218780ceaa"
     },
     "Modules/GatewayProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 498732,
-      "sha256": "a6e31f05cfc69b032a8e25721f55f47f5f1c96e3ede3a9037c5da54ccd337067"
+      "bytes": 499256,
+      "sha256": "65d3e5d3f458d5e91f9ce78da7412e10003f97c7b7a0eff9419d6fbe21ee06fd"
     },
     "Modules/GoogleProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8422,8 +8422,8 @@
       "sha256": "a6360ca045ca93363902173e7babd6ce89af62532fc93851df13ffd430c24154"
     },
     "Modules/GoogleProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 592940,
-      "sha256": "299160520659765a50182c5adc14aa64683eb439fbdbccb71674f1f5758e34f8"
+      "bytes": 593464,
+      "sha256": "d77cb5f50d78b09e249c0afc7ae4b8523db091a12885ebfbd5e0d5507ac6aeb9"
     },
     "Modules/HanlinAgentCore.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8434,8 +8434,8 @@
       "sha256": "da035ac9111728d80c46e1d78ecb7614b7b45c0c80817d2776b9a6e6a972233a"
     },
     "Modules/HanlinAgentCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 218736,
-      "sha256": "ccae30735991028312f88d75e2bec622cd1b99e3846cf6cf10b4810fb7b327a4"
+      "bytes": 219596,
+      "sha256": "75d4dbb005253169ea097ed35ea9d75f57d0eef6608db066b4fd625acd1406cd"
     },
     "Modules/HanlinChatCore.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8446,8 +8446,8 @@
       "sha256": "a211b631c0ef7d786de7716c9892b2e4e6479f1abb14abaed8bb340acd6f012e"
     },
     "Modules/HanlinChatCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 632020,
-      "sha256": "a86057aca2f4258159bc673ea08136bca443f2ac53d72d57ceaae8e71db6f3f6"
+      "bytes": 632744,
+      "sha256": "4c068ce5868da65778e81d798b2ecf8198372e167a6ec7b3dc196ed386dfc545"
     },
     "Modules/HanlinChatUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8458,8 +8458,8 @@
       "sha256": "7dd8fbc1d44506fecfb2d329e3cef5c4090e5d4a27815564a09a1291c483934c"
     },
     "Modules/HanlinChatUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1050000,
-      "sha256": "05c7b4c948c85aaffdda0c0c27122a9e603ff5dab9ee6f1a9304eef2f26c28cb"
+      "bytes": 1051324,
+      "sha256": "d9cb0828bfa038707a8ccaea5541a384bb8f4c18c54153557c7a1d3c30f66528"
     },
     "Modules/HanlinExactJSONSchema.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8470,8 +8470,8 @@
       "sha256": "1bd1c3e7807c92d4fbf1266d55af1bb85d60f2d709320646b55d87694d329887"
     },
     "Modules/HanlinExactJSONSchema.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 300836,
-      "sha256": "c7e68ab327be1ad7870b218f2a053ffbf1ba0f8c52721d5836367fb0a4786260"
+      "bytes": 301316,
+      "sha256": "bf0427ea4ed0091e1ade3373c205957864faccfd043ae50e53ce8754b2f2253a"
     },
     "Modules/HanlinHostContracts.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8482,8 +8482,8 @@
       "sha256": "bc958cb91e3295ffbafcbba80453bb98bb83ad171c779c850f7bdb1cdf71b8fe"
     },
     "Modules/HanlinHostContracts.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 301852,
-      "sha256": "bde961f82abba752ba77bd796414c53005a5a87fbe73701ebdb844dd0337b6ae"
+      "bytes": 302328,
+      "sha256": "b970c4e9861d213f6e8e5edb03946bb4952038cb5a86a1ff94da22a46dc5b2be"
     },
     "Modules/HanlinLocalization.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8494,8 +8494,8 @@
       "sha256": "d354a8ed7665eecb27fe7bb5b03bdeb2d7995d51e54ee3f4a19623e4c9d46f84"
     },
     "Modules/HanlinLocalization.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 259464,
-      "sha256": "b720770ded24a54b9179d41fced2b05bfbd319365ab543e2ae3d9d343cbe548b"
+      "bytes": 260336,
+      "sha256": "1a495a6aedf4039c925e08d77f5f6a264d4938fcbd51c63e48648bb67664bbfc"
     },
     "Modules/HanlinPersistenceAdapters.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8506,8 +8506,8 @@
       "sha256": "79a12c6ac3d1ece3285e9145cf235142aa66159129b2892507802b4c029c99ae"
     },
     "Modules/HanlinPersistenceAdapters.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 108800,
-      "sha256": "225f88f0f34ac868b996e880e776cbca7267b090801093ec5370fe4e45513633"
+      "bytes": 109288,
+      "sha256": "140c4c54c192f70defe58937474733e0b7e915dc4ff79afd388a5ebf54e3fc4e"
     },
     "Modules/HanlinPlatformContracts.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8518,8 +8518,8 @@
       "sha256": "16f7931b174805b3f733c8c87af7c258b550f1f615ca63bae275a3c27ecdf9c1"
     },
     "Modules/HanlinPlatformContracts.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 2469364,
-      "sha256": "2836f26cc1bbe3756cbe8e8ceb8ac14332ff3e3b90a7389278058e69f9cb47a0"
+      "bytes": 2469800,
+      "sha256": "04aa9282a9b5321fd1b4eb5308faa51ed8e1b3fdeadbe5f48ab8baea86577ac3"
     },
     "Modules/HanlinPresentationKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8530,8 +8530,8 @@
       "sha256": "a6d289076df45135a4f40ae79370898185f361b26853ee1da0231164a293ddd6"
     },
     "Modules/HanlinPresentationKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 438172,
-      "sha256": "8f0d653b0f7293c45307105174fea803aa1be35906a2465e6055aa770f91f442"
+      "bytes": 439048,
+      "sha256": "d5a5a94bd1611d015fb166033b03e598928febfd2688be3e59f2d78b97871def"
     },
     "Modules/HanlinRichUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8542,8 +8542,8 @@
       "sha256": "a3805dae944ccedf83d4328a52a6a984f88fb59f808bf8d7f9a7b52e2879f4db"
     },
     "Modules/HanlinRichUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 208484,
-      "sha256": "8e875654a573f686a6bb7b232854fdb22708ebe066a7bf2c647b18df245e70dc"
+      "bytes": 209440,
+      "sha256": "7c85278affaa923ffc3df8977b6dd23397da3cdbfd576d4d723ceb1eb26fca86"
     },
     "Modules/HanlinScriptContracts.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8554,8 +8554,8 @@
       "sha256": "db2cc8d5ed12c8d7a5d81e6cde432d148292b7a0e478a9d9ea25fe938c71cf20"
     },
     "Modules/HanlinScriptContracts.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 520132,
-      "sha256": "7c6ceb8aaef6b3110375a2c01df1a934737db3987712bcc0886d6cf3920b5f6c"
+      "bytes": 520616,
+      "sha256": "435ffafcb9046c46faa7532954bf7d443c3cd7baaf40f47746f7f5e09a28b093"
     },
     "Modules/HanlinScriptUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8566,8 +8566,8 @@
       "sha256": "e521af9f410c1f4e0811825937eb39c8a02e6ebe3177a3b916faf1b9ee664292"
     },
     "Modules/HanlinScriptUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 383952,
-      "sha256": "2735bb763667198834a5aa9980203e9e29af105cf4f3653b22c51f28bb681087"
+      "bytes": 385092,
+      "sha256": "e26eb714e71c888d1810a6cb70ec88d660ad4dbc7652692943e3feaf49b854c4"
     },
     "Modules/HashTreeCollections.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8578,8 +8578,8 @@
       "sha256": "085ff35ac0af558280032829f831900cd88528bd10ae1e41726e3c76ebe2b68e"
     },
     "Modules/HashTreeCollections.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1259976,
-      "sha256": "8e643fce06f4e03072eed55c51a8cef4818c42bd5eca5c15221e120a6b2208f1"
+      "bytes": 1260136,
+      "sha256": "df1c2cf1c33340f15ea35bcdaa10717f23c3ac575b738ca81e61ae33325aa2a8"
     },
     "Modules/HeapModule.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8590,8 +8590,8 @@
       "sha256": "fcf9e2697b4fb3b89b016489d3eb673b0008e431014d8cc2014a10968a5f5e45"
     },
     "Modules/HeapModule.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 144556,
-      "sha256": "658ef1bfd76d1937b28290db0ffd1703c6af458833ca62011a0d798335c97452"
+      "bytes": 144712,
+      "sha256": "93409ffe841135a7569a9f45785769486f118e5ed0d5a3c8a21c1a13dbd0e9d6"
     },
     "Modules/HighlightSwift.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8602,8 +8602,8 @@
       "sha256": "68c045791587e31dfa0d9d3eccc2b4819289e9981b41613bfd05acc238c5d966"
     },
     "Modules/HighlightSwift.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 226956,
-      "sha256": "46797b00d4d713b76a549bc081e456b2102249ff77a1e2145bf033bfd6e8d104"
+      "bytes": 227836,
+      "sha256": "aaa3c8cb783bdd1ec695813f576a6728abfa118ce4ec759278477bc743187cf7"
     },
     "Modules/Highlightr.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8614,8 +8614,8 @@
       "sha256": "466b5b3f87564ec28c9ef96c01d3a8680223e872d63c262d83da7d5aca797226"
     },
     "Modules/Highlightr.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 225020,
-      "sha256": "86fabcaa89684674e1e8518edc78364c881582e825b4bbd2d4d5f6433a37ba5d"
+      "bytes": 225840,
+      "sha256": "a26b635446eeb829a1a6acbb3cbd0d29525bc423c7e37bd9b9e19a3579ef81d1"
     },
     "Modules/InternalCollectionsUtilities.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8626,8 +8626,8 @@
       "sha256": "49061f63be943a86f26cbfbca9c55163a5b5672aeaf678a78f18f57fa425b3ab"
     },
     "Modules/InternalCollectionsUtilities.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 229144,
-      "sha256": "b1fced94f20c72f5b75a5328eb2435e3a46d9c7ded6a713d840501664213082c"
+      "bytes": 229280,
+      "sha256": "ad4b0dce1bbe00fad14e23f072114c6a1a3fd2d30db8d0e50b659187a70672e8"
     },
     "Modules/JSON.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8638,8 +8638,8 @@
       "sha256": "98a1e2cac28944ad740d34510d0b821fcc75b4e57129c43aaa24c420702a9c88"
     },
     "Modules/JSON.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 590936,
-      "sha256": "00838965697071f23ec158e87ebedce752c6a822a3d1abf00cd1b198ff667da7"
+      "bytes": 591384,
+      "sha256": "fcb4e6a94734cee4624c47868cc933abf0f9828c17a5ec2218e837b67c47f437"
     },
     "Modules/JSONRegexRuntime.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8650,8 +8650,8 @@
       "sha256": "ca8099769f4eaefe2077108c12b024922bb79a68c1b257bf26cd2fd93f65306d"
     },
     "Modules/JSONRegexRuntime.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 74588,
-      "sha256": "55996c42a629b45c578d6ff55ee4a9d92416ed14a7fb330b3e003718f5e28f00"
+      "bytes": 75060,
+      "sha256": "1df2f58251a6026508894d6df508a0315986a7515a896ea0a916bcb2e091b32d"
     },
     "Modules/Kingfisher.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8662,8 +8662,8 @@
       "sha256": "64ac02556edd64b7f5a3e90405400f79f739bed5cd268415879289db676607a7"
     },
     "Modules/Kingfisher.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1068912,
-      "sha256": "e36bb3cc342792571bf7080c66f9868150d73718a6e9956c756f23638020607f"
+      "bytes": 1070032,
+      "sha256": "71cf9bd96db6b362c73381eb1d680b719f482c2cc6c7e700534746f387c7c12b"
     },
     "Modules/LayoutKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8674,8 +8674,8 @@
       "sha256": "9f517f491529ef96fbc582f8d5ad3edeab768babc101be6c36c8f5c0297297cc"
     },
     "Modules/LayoutKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 184020,
-      "sha256": "5e8a3ae59f57061a36ab69cea9f6edcfc04dd1d6f2b134f0363522c82d42fc65"
+      "bytes": 185116,
+      "sha256": "e7a9eb6c7e68062501e8d4d72389753659004e38f04a760b61efde327666b809"
     },
     "Modules/Loc.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8686,8 +8686,8 @@
       "sha256": "d3fe41ad94b5888f781e19379b46b9fe9b51e57e217895d2cec3db83c5173936"
     },
     "Modules/Loc.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1166164,
-      "sha256": "3d8da9c924d7238597c8c267338083542068474ed541b6c66803b8ed05330a70"
+      "bytes": 1166612,
+      "sha256": "a9e03613075ed8c4ed101fc2d47782c0215be9de0ea7dcc54adb324b45b84708"
     },
     "Modules/Logger.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8698,8 +8698,8 @@
       "sha256": "39ff9b20a346ef948287f685701df9219fd195dc48a9fe5782099fd14aa09019"
     },
     "Modules/Logger.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 95248,
-      "sha256": "9438ccab2358d0b53a069e9adfec1f353aeb113840898026cc333d422d7bbb63"
+      "bytes": 96292,
+      "sha256": "6d197434c609565e7574740cd2e7fa97947f32a3b5b4f377ae9f7f7b0f808595"
     },
     "Modules/Logging.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8710,8 +8710,8 @@
       "sha256": "db2e4bcb74d7ac146e4d06b68083fe12c8ac4418c92db43dba168019c0694a10"
     },
     "Modules/Logging.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 191348,
-      "sha256": "d0981aab3efa6cdd3dd5efab27c6a6d43c6aa537d00dad29a7ac6559f0bfea78"
+      "bytes": 191652,
+      "sha256": "0b85b3b960a35453446c7ec990d33d0f0ad1c0a68fe39fc0a010543754184825"
     },
     "Modules/Markdown.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8722,8 +8722,8 @@
       "sha256": "f4ed67aa87afef47aaf24417c395fbef1159af234877db33ab8f82dd01aeafdf"
     },
     "Modules/Markdown.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 777348,
-      "sha256": "0ecd4ac08f6f4e66c8175a56b376913ef39aba3285129936621536bb98e113af"
+      "bytes": 777964,
+      "sha256": "9171da7e42fafbafb7f6fdb35aab5c5648f20edfd3e7e6961fc55429f31d58b1"
     },
     "Modules/NotificationsCore.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8734,8 +8734,8 @@
       "sha256": "1c32f96c7f4fc19ee45450841ad0c3047dc6ae6e6d078d8bbbde85127b8493f8"
     },
     "Modules/NotificationsCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 127028,
-      "sha256": "5c76d151eb1bc0f4a23d422210e314eb3fe3892ceb14000f6d072bc12444d128"
+      "bytes": 128188,
+      "sha256": "8548ede43530f6a4f1d789479b5c5fad40c4ee5811df167fa102b28432419410"
     },
     "Modules/OpenAICompatibleProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8746,8 +8746,8 @@
       "sha256": "59799011d928593a55b255c683c469eed823d574879a50eea30b82f28063e172"
     },
     "Modules/OpenAICompatibleProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 458376,
-      "sha256": "54b410263e73f3b5e3e277b6afa44e4b6f8d14d56cac4c7c4d4877d89c360bee"
+      "bytes": 458900,
+      "sha256": "2a306b9c2ce3121eda1d0eedbaea6773a2efb41486369eb57c376eefb0f0e671"
     },
     "Modules/OpenAIProvider.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8758,8 +8758,8 @@
       "sha256": "a066a160246dca073ed45c2fbadbcdbf30b87b392586f94c1608f2d23399df3e"
     },
     "Modules/OpenAIProvider.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1249772,
-      "sha256": "2ceb84728283f4c0d61fd550eeff58213fc8caaaaeca66b9273b350bcde24f53"
+      "bytes": 1250296,
+      "sha256": "1920c6ddebf4b478f8d727fce7fdd99dccbd403618ce4f33206be0e7aa547355"
     },
     "Modules/OpenTelemetryApi.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8770,8 +8770,8 @@
       "sha256": "725ffb58a3c5f98720bc74b7331e7368af39c22f34002e238d15b6494f1569e3"
     },
     "Modules/OpenTelemetryApi.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 2339840,
-      "sha256": "220758712fd1bc564cef76a9ee297759a095b5d9a5a18b7cd377291deca427b2"
+      "bytes": 2340320,
+      "sha256": "4ef29195465b1a3a459188236d46558224057a0ed4c6b1f262680048767918ec"
     },
     "Modules/OpenTelemetrySdk.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8782,8 +8782,8 @@
       "sha256": "533a6d27caf17db1d8013a904e693185955d1f18883bcc916d7e24c7b8e205d8"
     },
     "Modules/OpenTelemetrySdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1238308,
-      "sha256": "28876380f749a88c7e9f83fc4686fdf75e9e0a41ddd55b9e9f3a679054d99fb9"
+      "bytes": 1238812,
+      "sha256": "4ee1741ed08bf23e6db7ef953c711e5a466d098e53396644b6a87da29bbcee0b"
     },
     "Modules/OrderedCollections.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8794,8 +8794,8 @@
       "sha256": "a545c0245916357093aee2b50b08c3604ffb298583f0acd25d941b7024e72f40"
     },
     "Modules/OrderedCollections.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 865320,
-      "sha256": "64cd4b2456e859cb7a861dc8d29601b684068d5bbb5cdc444009ab6619259704"
+      "bytes": 865476,
+      "sha256": "0527e9656abdc3c7c5119cc4c0ead70c7cd6a5af379120b6ae728a8c96522a64"
     },
     "Modules/OriginalEditorSharedFirebase.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8806,8 +8806,8 @@
       "sha256": "64c007b09ce18ae5ed702f9a596e145f072b2c4dfb0a092d7c5f1cded47a0228"
     },
     "Modules/OriginalEditorSharedFirebase.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 50064,
-      "sha256": "136f5f63face33d7e506d7d51a79acc0de54d00365ffd9597486f58dd74ad781"
+      "bytes": 51020,
+      "sha256": "9853febd04453a6c2726a19822b0a635c37c230bf31ab0b7abd882608a7f76fa"
     },
     "Modules/PinkhaKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8818,8 +8818,8 @@
       "sha256": "2e9adb22989a6879c625113aa9abd0b71708e8970f9ca6aa4cd3c7fc58db1ded"
     },
     "Modules/PinkhaKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 930540,
-      "sha256": "67d45166ff8c1cc86f21d332f404c854839c3fb5bd09fa4df8bd3c537dffee71"
+      "bytes": 931036,
+      "sha256": "97a92f6708140ae4533a29d728c3af5299ee62a5172cd33c59f8609fb53d8862"
     },
     "Modules/Promises.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8830,8 +8830,8 @@
       "sha256": "0dcef611de0532a5fa3c28f4698ed7dc70e0be5b110dbb763667477b726128dd"
     },
     "Modules/Promises.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 104308,
-      "sha256": "9511d5640aaba9a3ee57cda4a98968ea75d52983ac6d4e23b3ddcc987271735d"
+      "bytes": 104816,
+      "sha256": "e5b8049b8220e9823a49508e6b21f64c47e01e51fcc9651b2c85b69d2baf8d99"
     },
     "Modules/ProtobufMessages.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8842,8 +8842,8 @@
       "sha256": "a57a42d1822f82a6daa9c5ca939751303aca38bc16eb03260eee69d0c4408de6"
     },
     "Modules/ProtobufMessages.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 42865620,
-      "sha256": "d0b05771e21427ee94a2fed0556a6633a4dcaea41d1feb549e23592e4dda3638"
+      "bytes": 42866164,
+      "sha256": "481023c0fbd3792822c79fd46249bdd4348ad0248a41b00c0bfcc755a0264d05"
     },
     "Modules/Pulse.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8854,8 +8854,8 @@
       "sha256": "c168b56fdc885e90fa35381a74b53122b6876e2e226cd74b5ece6529f79a13de"
     },
     "Modules/Pulse.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 993068,
-      "sha256": "b6b1bcb2ea154966feabfa34ab33d05d36079fd2a283ae5ead552f14986773af"
+      "bytes": 993984,
+      "sha256": "e484cdb38e25570de6e4f7bbc5bcde475c9ef148ab0b8d3139d4ea95220f7ecd"
     },
     "Modules/PulseProxy.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8866,8 +8866,8 @@
       "sha256": "2e267460675e74fe0a6d66d26056fea3ce6a9fde3ff99dc128d88e623160d309"
     },
     "Modules/PulseProxy.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 70656,
-      "sha256": "7a09a4c266699a61924bab804d918a1fe3f3edc24ad1c6463e80e5b90cca7732"
+      "bytes": 71592,
+      "sha256": "6b49ee5639917acd9494225360c9a2b40a1606d7d7a8637d47c61e6adb96df3f"
     },
     "Modules/PulseUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8878,8 +8878,8 @@
       "sha256": "04fbf9519068dfc8352076c9d8f28c61d7e95c86d315a28c9954e4334521fb7d"
     },
     "Modules/PulseUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1249268,
-      "sha256": "505eb5e472387cd89ccc415f67fcedc222a694f069acdab3bcf9b25b8d0725f0"
+      "bytes": 1250244,
+      "sha256": "65d109300275472381bd67c88248986602dfb2bc40ffb243d48a7c9787975cd4"
     },
     "Modules/QRCode.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8890,8 +8890,8 @@
       "sha256": "588bae46f6d0ef5f813480dc50470eb98bc7a4d5d02e19bbb493004248495140"
     },
     "Modules/QRCode.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 2028272,
-      "sha256": "dbfeca7ff2cdea67b2fd228e23d499886b44fcf3388ad7c9242f14d15f302d44"
+      "bytes": 2029184,
+      "sha256": "6b15c66b37f88017252f01d286db5bb91ad8bb8c105c55ae085643f72961caf4"
     },
     "Modules/QRCodeGenerator.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8902,8 +8902,8 @@
       "sha256": "9018d0c1541516a01f1b534ecb8ee780d45272adacf1fe6d1aad1cdb9f362bc5"
     },
     "Modules/QRCodeGenerator.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 96676,
-      "sha256": "7cf53ae5662b38b21d9cb65af19a331a912982e06da5bdf881213317198bb6ee"
+      "bytes": 97112,
+      "sha256": "e068b93738b85b6f85530c47c76213f9c68126e69d56a91397484c716201e71a"
     },
     "Modules/SecureService.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8914,8 +8914,8 @@
       "sha256": "5a0552b6ed585e43769a51dfbb8d4068df7d5548263b0bc1d26f6c5f31d662d9"
     },
     "Modules/SecureService.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 57952,
-      "sha256": "66ca779c07edd871b4352906585cb0f2e07a58b64504ac7be9ccdbeb5da13efa"
+      "bytes": 58412,
+      "sha256": "f3145fb136bd10534f009929df09a9f33da8098d04761b249b6a47d18dce5ecb"
     },
     "Modules/SentryCppHelper.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8926,8 +8926,8 @@
       "sha256": "cfe1faeb77addff1e846581e1402490d67ce88d54b84782f1d97bab170fc98b8"
     },
     "Modules/SentryCppHelper.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 23736,
-      "sha256": "171c6aed30107b83a9bf21c221ebb390af3089a9a6584337b26b00b5e5a964d7"
+      "bytes": 23872,
+      "sha256": "92a0d410682d73658a751d0b2952d5799ffbd0b0bed54759cf7417b8085c832b"
     },
     "Modules/Services.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8938,8 +8938,8 @@
       "sha256": "843c9cd7c1c532544e903566d154e4bfb48643fd14c70a9e8608fec1ed07c45e"
     },
     "Modules/Services.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1901532,
-      "sha256": "556ac132bb41cb7984c3977cd0439966d0c16c6ffc9de2af61fb230ac9c303f4"
+      "bytes": 1902792,
+      "sha256": "2a421ebb1e3ec69db3af01152fa3de07aa40d868ea51e388b5203293e7fb8160"
     },
     "Modules/SharedContentManager.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8950,8 +8950,8 @@
       "sha256": "2be3ab46d42ce6e4ac804a1c161ca821bebff7c2ad843f0f7cbce35fc5e5afda"
     },
     "Modules/SharedContentManager.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 141160,
-      "sha256": "993318a9dc78feb680fafd5e854e4fde82720e0a250dff9c166f8a5ac317c34f"
+      "bytes": 142256,
+      "sha256": "84b34b80e9fd08644d82478218f0e6b17db794b88b5754a4f035942893f04414"
     },
     "Modules/Shimmer.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8962,8 +8962,8 @@
       "sha256": "7bdb9586f89592185a87419c28c23f7d1d52e182f46b258a6fc4bc6862bec548"
     },
     "Modules/Shimmer.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 86476,
-      "sha256": "31ba290c586c256edc203db1e8c83eaa30c40ce549eafd3674464951b8d267b2"
+      "bytes": 87344,
+      "sha256": "490a63cc1b88c24870600d3266da0d0542694a25df21bb997e812d0dee0d7d79"
     },
     "Modules/ShimmerSwift.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8974,8 +8974,8 @@
       "sha256": "b667e701ad7d86bb4cf52fb9e025ee3ad51b17e1024ddee6aa2b6e6a07ec249d"
     },
     "Modules/ShimmerSwift.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 122176,
-      "sha256": "9f77fed0135bbd1d9568800740a1be6c8b5ba00a1d83bc12a4470762a8b1b86e"
+      "bytes": 122984,
+      "sha256": "25f8b5a7b498bc444ed2d294edf11a299dfc2ac1c65fcf4d5a9938eb510d0d59"
     },
     "Modules/StoredHashMacro.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8986,8 +8986,8 @@
       "sha256": "8a3e70fc42ae32fbd670de1f62c068a031a050cfc18ecd3419d368aa1041032d"
     },
     "Modules/StoredHashMacro.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 24480,
-      "sha256": "d16be4af0b9b10b91dae4b01ef3cac9f83e1b5b1d24c4cd2367c70f193f5ece2"
+      "bytes": 24644,
+      "sha256": "163a74fb3c944721768da97e2639198bf4940a5ef24397f1719a00cc502afd6e"
     },
     "Modules/SwiftAISDK.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -8998,8 +8998,8 @@
       "sha256": "33ceed322c9bb189e5397fdd3ff360039d7902010506f2c669fa360b41843449"
     },
     "Modules/SwiftAISDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 3244868,
-      "sha256": "83aedafc917fc13e5cb25928d552df9ef3dfcf932d6f1cff2f03e0aa7ded6373"
+      "bytes": 3245448,
+      "sha256": "12bc4023d4050ae565850b4dc5ba7c405c17687b3aea1bf3a5526bb06f1f3718"
     },
     "Modules/SwiftEntryKit.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9010,8 +9010,8 @@
       "sha256": "772e4dfe706fa720e4348b43781544aa9d4f615c6fe70bf35a554f25711f8d91"
     },
     "Modules/SwiftEntryKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 721244,
-      "sha256": "492233a896b534463af8916fcc9088616d14fcf4f9b4f23d2c308fef7369af0d"
+      "bytes": 722052,
+      "sha256": "3649c43dcc4ce1f9e56908a4cf05521c4a2950511baf92ed13a3f0887693e24f"
     },
     "Modules/SwiftImageReadWrite.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9022,8 +9022,8 @@
       "sha256": "f948cd3ab97d5385b12057553e0b2add7dc83674f3242bc960de8fc3dc973872"
     },
     "Modules/SwiftImageReadWrite.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 184368,
-      "sha256": "1f2b98e137f6415e1f3e2d09ca29186cd3b1586232febeaa999bdeb090a47197"
+      "bytes": 185236,
+      "sha256": "9b96d255770e53d10f3df265125680c192d206667150981de7b69f91b3faa853"
     },
     "Modules/SwiftProtobuf.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9034,8 +9034,8 @@
       "sha256": "01efb20df013712152b1ea9411f325c0b7d89087a75673e91fccc52dca92b16f"
     },
     "Modules/SwiftProtobuf.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 2539528,
-      "sha256": "93ce1a1674b741f27f07dd0112613a0c849f5467196b912af42740ed2c732824"
+      "bytes": 2539964,
+      "sha256": "0edfe159ef4975d5279cba22e8426e1c27270d581dd31692777ac856671cdf93"
     },
     "Modules/SwiftStreamingMarkdown.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9046,8 +9046,8 @@
       "sha256": "05af0fbc3e216afe473c3e279dd241627e32fd24533eb69201bbdd12dcf6beb5"
     },
     "Modules/SwiftStreamingMarkdown.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 905392,
-      "sha256": "b68f5e3314cffcf43769d5593cd8dc40bb1c382811009be537942a2ececee89d"
+      "bytes": 906588,
+      "sha256": "cf46234b45ffe59f0cb2c783ee834630235c866e71646ce8799208550dbc77a2"
     },
     "Modules/TorahInspectorCore.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9058,8 +9058,8 @@
       "sha256": "f605d377bf11223bf417ce37ba0f5ba1117e951478cd94b9d5f5dde1ab6b25fb"
     },
     "Modules/TorahInspectorCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 416100,
-      "sha256": "04dd0de43432ab88f2060d3d3cac766f57c15d3ca58e7bd63bad745492f82d88"
+      "bytes": 416568,
+      "sha256": "211e2b792309ec6abcbc9cd4249460f08d135d5f18e8be50f4276592771e00ab"
     },
     "Modules/TorahInspectorUI.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9070,8 +9070,8 @@
       "sha256": "bc50ec6a42038588f5c47586cb0bc7c581f68a7e760bde383d3dbf22158bfac0"
     },
     "Modules/TorahInspectorUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 486092,
-      "sha256": "07c694ef65739d4799aed00fee93e99c53fe2f5cabfcfa5b2d3c47a48c5af4d0"
+      "bytes": 486992,
+      "sha256": "d993a331905a524866009cc9ea5b656775171bb3b0cfe258484154f63bbdebe0"
     },
     "Modules/WrappingHStack.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9082,8 +9082,8 @@
       "sha256": "5f9d191d3e12bb8b301dfa80a4a887178a289f11e78cd3092d847a463f27b842"
     },
     "Modules/WrappingHStack.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 89220,
-      "sha256": "70dd7205f088a16f8945b75498c328c7539b4ddd55e1d13e8d516d03010e1709"
+      "bytes": 90088,
+      "sha256": "e4d0cf337f3a1e25a570cd8369f06df2a014d19b7bb7091f9157e3c10d601376"
     },
     "Modules/ZIPFoundation.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9094,8 +9094,8 @@
       "sha256": "43b150cdf7cf9ae32a9f4c890e2f52ca4876972363dca25d50f4f0aa3d17d93f"
     },
     "Modules/ZIPFoundation.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 223448,
-      "sha256": "5fc606a50c3491a05675fdc4eef2e5c4a36ce50ad6fcfe1a5afd2cff3b2942dc"
+      "bytes": 223908,
+      "sha256": "a5f684ceded75e434d0ba3ac45cd63f15d9455059fbf398b3296e72fa14d0561"
     },
     "Modules/_RopeModule.swiftmodule/arm64-apple-ios-simulator.abi.json": {
       "bytes": 149,
@@ -9106,12 +9106,12 @@
       "sha256": "714a32c46a0c114808855182521f9e66952052e81719efd5921238593155ff5a"
     },
     "Modules/_RopeModule.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
-      "bytes": 1039492,
-      "sha256": "1419bb93516d28872126742b9c02780f16f843d81ce7500513f8891989aa5b0d"
+      "bytes": 1039652,
+      "sha256": "650c7d0be1fb26062466d9dc90acdad28c66fed6f45a27e98e9c87fbdbe06b31"
     },
     "QUALIFICATION.json": {
-      "bytes": 984338,
-      "sha256": "bec8431f45bcef77677374cfe2f1714a6943c8e6c00b28c0db35bfbd78caba79"
+      "bytes": 984056,
+      "sha256": "e4c7e795c73379231f7b951019ab11efcd7e792108598201b188b1110480aaad"
     },
     "SourceProvenance/Amplitude-Swift/LICENSE": {
       "bytes": 1076,
@@ -9130,8 +9130,8 @@
       "sha256": "6688f08fb25a4392fe7182baac82a4d31f820388e11c43840bf3ae1a9ce61987"
     },
     "SourceProvenance/ClangImportContext.json": {
-      "bytes": 729866,
-      "sha256": "e7a72142b0f2c21457faaa7bfdad14473e2ef6efadef75f090d2af12f4dd6346"
+      "bytes": 730607,
+      "sha256": "25dd6ed506d72b7be86fd2910ea4baeaeaf7a3e92770b681fbe90c5e6462e9e6"
     },
     "SourceProvenance/ConfettiSwiftUI/LICENSE": {
       "bytes": 1071,
@@ -9178,64 +9178,64 @@
       "sha256": "daad9eb95adc6262b07115ba2cf87cd4c64acaca4b45d48e0fd3b15a72a31dc1"
     },
     "SourceProvenance/OriginalClangModuleMaps/FirebaseCore.modulemap.txt": {
-      "bytes": 322,
-      "sha256": "74fe8cd627b13a77662a7497946bf829ca1fac2209ed60c542796a029a35b215"
+      "bytes": 335,
+      "sha256": "810934a41bfe5e7febd66c31f8297eae055ed4c5d49837d4b565caff5dbbd453"
     },
     "SourceProvenance/OriginalClangModuleMaps/FirebaseInstallations.modulemap.txt": {
-      "bytes": 365,
-      "sha256": "ed03d8f75034ee99fdc8ff95d10aabff6870aed33679b1f83d46fc5270f8ac1a"
+      "bytes": 378,
+      "sha256": "a1efc27730deaa01a8d9595e6210cd226ce611fff19dcdfa5b81228a0c8d3dc8"
     },
     "SourceProvenance/OriginalClangModuleMaps/FirebaseMessaging.modulemap.txt": {
-      "bytes": 342,
-      "sha256": "0476209f6c00e1833ebf52c31be6558f8e20166ab163685c2c18dd96abfe369d"
+      "bytes": 355,
+      "sha256": "69771d520206aa582126453ead41dd820a551f6425321580f7d0bb3d8169e18c"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleDataTransport.modulemap.txt": {
-      "bytes": 359,
-      "sha256": "2305b640bd120225978ffae8adcfb493f6e23092b8d7713b4ff807e0cbd6bfdf"
+      "bytes": 372,
+      "sha256": "b87c16a531ea637d7fcd34b59746ad6bba4a3f7f380a6020f836e2e3c8a86db2"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap.txt": {
-      "bytes": 324,
-      "sha256": "734df10d92e8c23b82a2351b731b6dc16ac09246891c2178fc5871b377750354"
+      "bytes": 337,
+      "sha256": "f76abdf1175341de2468de8bd94a5173c03274c6657b6e00cadb6cb600f72266"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-Environment.modulemap.txt": {
-      "bytes": 308,
-      "sha256": "2b0c499169aa69b6cb663322a860cbee48ee9c9749039cfa9f8ac0598b7cd0c4"
+      "bytes": 321,
+      "sha256": "7bbadf59e0604c316ff38d4951dac7ef70226fd6f1c94c9b17a66464ad82de58"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-Logger.modulemap.txt": {
-      "bytes": 298,
-      "sha256": "438349946ea91a94aac7c8f68d52738c6fc31afb8a54b45c0678565b97206570"
+      "bytes": 311,
+      "sha256": "fa93eb96ddb683ded01d931e1b5af85b53d60be77643bf00f599a54475527831"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-MethodSwizzler.modulemap.txt": {
-      "bytes": 314,
-      "sha256": "928a804f74d26921f7a6700103d0837a73c1f453bc354e71956791f116aac982"
+      "bytes": 327,
+      "sha256": "01ba6874bfa28f126d2b1c17fbbaed30f6996ac8278de36ef2e953a50529619f"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-NSData.modulemap.txt": {
-      "bytes": 303,
-      "sha256": "b5f359977e847383c5d1e490d7dcecd68219f841583110a51d3011432c962ffe"
+      "bytes": 316,
+      "sha256": "3664bf9877e4efc2ae355a32a457263f252e4eebd37dc759183063a10808ef8f"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-Network.modulemap.txt": {
-      "bytes": 300,
-      "sha256": "15e1521f17175fb6f2459b53880bc1b1cd7201ac1bf030873ea5dc4d1d9e987f"
+      "bytes": 313,
+      "sha256": "f93f514e0bfba205688c3433e08207dca7a15ff87107e7fc98e275dd6eb06985"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-Reachability.modulemap.txt": {
-      "bytes": 310,
-      "sha256": "6fbd24cb669c06631255c3cc2fc2f196155277afcdd3961b758a2ac89388ac3e"
+      "bytes": 323,
+      "sha256": "74e6f18647aa8df9c63f1a98574e5f038c5b0598969c96d30b660af16c98f57f"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-SwizzlerTestHelpers.modulemap.txt": {
-      "bytes": 324,
-      "sha256": "0cc702169e8310247fffc30e414369a45b5f44983babf003d2274b407015df9c"
+      "bytes": 337,
+      "sha256": "ec722db0fdaf264c4c65eb973b8344bf8c96fa73a2b1827cad0f9c88559d23fb"
     },
     "SourceProvenance/OriginalClangModuleMaps/GoogleUtilities-UserDefaults.modulemap.txt": {
-      "bytes": 310,
-      "sha256": "09843c8aacea3bb22cbb3f06b4021690157c71a2e3c3519e666ede9edb5c5b24"
+      "bytes": 323,
+      "sha256": "a3bd48d671966a09f2357e47f51af69c49c78225f4d0734e2ed79f91f4daf045"
     },
     "SourceProvenance/OriginalClangModuleMaps/nanopb.modulemap.txt": {
-      "bytes": 255,
-      "sha256": "5672a3b894418bc88ec20c0a341565fc8a61e51bc5ffdbf2c7c35c88be0356ac"
+      "bytes": 268,
+      "sha256": "a5410a29e15cc0ad62bed63e33ddd5a756f458a54dc1e762da5fb887654529ad"
     },
     "SourceProvenance/OriginalClangModuleMaps/third-party-IsAppEncrypted.modulemap.txt": {
-      "bytes": 306,
-      "sha256": "1ef68a318044417b43c74cde77b3e6565f82e81edde520ed427be34d1bf2a7bb"
+      "bytes": 319,
+      "sha256": "9e340583ccbeaf694b8eb2b924b3f483ec644c252f9288c25ec1c9c5f34ecbd9"
     },
     "SourceProvenance/OriginalSource.json": {
       "bytes": 13927,
@@ -9434,13 +9434,13 @@
       "sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55"
     }
   },
-  "distribution_manifest_path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/framework-distribution.json",
-  "distribution_manifest_sha256": "df18fe162644163cb2620446cacc9ebda4b78bf28538a4f66cf42b37456847a0",
-  "distribution_root": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/work/distribution",
-  "hanlin_source_path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/original-hanlin-snapshot.json",
+  "distribution_manifest_path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/framework-distribution.json",
+  "distribution_manifest_sha256": "6f0b955b1bc67f83fd48d48ff9517d18f41f082bab8209601139d42225c099dd",
+  "distribution_root": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/work/distribution",
+  "hanlin_source_path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/original-hanlin-snapshot.json",
   "hanlin_source_sha256": "9e4b8820164a95023efe23ccc2a0bdbfb9aeb24553aba3eb502e1f15a98b95cf",
   "host_pod_versions_scope": "REVIEWED_HOST_CONTRACT_NOT_INSTALLED_HOST_OBSERVATION",
-  "local_execution_sha256": "db18b158ff3f0547758fa8678174e39595490e04c9c0fafd75df79a2c270b641",
+  "local_execution_sha256": "7227b10434f136958d5a7771ef1a9eeb73e8a90a3269277be26a9920488a8240",
   "local_receipts": {
     "abi": {
       "bytes": 502,
@@ -9458,18 +9458,18 @@
       "sha256": "80522628253e9d7fdf82c15c70cbc7b1d64a2eaedd31c04f43313040ddf6c2c3"
     },
     "execution": {
-      "bytes": 16692,
-      "path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/release-execution.json",
-      "sha256": "db18b158ff3f0547758fa8678174e39595490e04c9c0fafd75df79a2c270b641"
+      "bytes": 16891,
+      "path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/release-execution.json",
+      "sha256": "7227b10434f136958d5a7771ef1a9eeb73e8a90a3269277be26a9920488a8240"
     },
     "source_after": {
       "bytes": 318230,
-      "path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/source-after.json",
+      "path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/source-after.json",
       "sha256": "80522628253e9d7fdf82c15c70cbc7b1d64a2eaedd31c04f43313040ddf6c2c3"
     },
     "source_before": {
       "bytes": 318230,
-      "path": "build/SDK-75a98ba-Original-Release-Simulator.JsGCoSUe/evidence/source-before.json",
+      "path": "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG/evidence/source-before.json",
       "sha256": "80522628253e9d7fdf82c15c70cbc7b1d64a2eaedd31c04f43313040ddf6c2c3"
     }
   },
@@ -9480,13 +9480,13 @@
   "platform": "iphonesimulator",
   "producer_kind": "local-mac",
   "public_host_contract_sha256": "6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141",
-  "qualification_sha256": "bec8431f45bcef77677374cfe2f1714a6943c8e6c00b28c0db35bfbd78caba79",
+  "qualification_sha256": "e4c7e795c73379231f7b951019ab11efcd7e792108598201b188b1110480aaad",
   "repository": "davidpovarsky/anytype-swift",
   "run_attempt": 1,
-  "run_id": "local-d7fc2fc0-1da1-4a0e-87b4-963ea93b96c3",
+  "run_id": "local-03da9ca9-d537-4266-a7e0-f9a0fa097d05",
   "schema": "otzaria.original-editor.production-input/1",
   "shared_runtime": {
-    "clang_manifest_sha256": "e7a72142b0f2c21457faaa7bfdad14473e2ef6efadef75f090d2af12f4dd6346",
+    "clang_manifest_sha256": "25dd6ed506d72b7be86fd2910ea4baeaeaf7a3e92770b681fbe90c5e6462e9e6",
     "clang_roots": {
       "header_search_paths": [
         "Clang/Packages/swift-cmark/src/include",
@@ -9560,10 +9560,6 @@
       "TorahInspectorUI",
       "ZIPFoundation"
     ],
-    "host_source_equivalence": {
-      "path": "Scripts/CI/original-editor-hanlin-equivalence-9565a9e4.json",
-      "sha256": "2116b877ddb3c4ff50daccba869dd26c39f89ba25f907cbe12500361e0d76bb4"
-    },
     "kind": "original-shared-implementations/1",
     "swift_ai_revision": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
   },
