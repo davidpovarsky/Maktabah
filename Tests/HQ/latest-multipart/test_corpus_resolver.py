@@ -20,6 +20,8 @@ class CorpusReleaseTests(unittest.TestCase):
         self.assertEqual(plan["asset_id"], 629048655)
         self.assertEqual(plan["compressed_bytes"], 1850679582)
         self.assertEqual(plan["parts"], [])
+        self.assertEqual(plan["remote_asset_sha256"], plan["compressed_sha256"])
+        self.assertEqual(plan["remote_asset_name"], plan["asset_name"])
 
     def test_v40_uses_assembled_identity_and_ordered_official_parts(self):
         release = json.loads((HERE / "official-v40-release.json").read_bytes())
@@ -33,6 +35,9 @@ class CorpusReleaseTests(unittest.TestCase):
         with patch.object(resolver, "download", write_manifest):
             plan = resolver.resolve_asset(release)
         self.assertEqual(plan["compressed_bytes"], 2129902636)
+        self.assertEqual(plan["remote_asset_name"], "seforim-schema7.db.zst.manifest.json")
+        self.assertEqual(plan["remote_asset_bytes"], 589)
+        self.assertEqual(plan["remote_asset_sha256"], "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3")
         self.assertEqual(plan["compressed_sha256"], "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587")
         self.assertEqual([part["size"] for part in plan["parts"]], [1992294400, 137608236])
 

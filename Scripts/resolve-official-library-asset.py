@@ -112,6 +112,9 @@ def resolve_asset(release: dict) -> dict:
         "compressed_bytes": int(compressed_bytes),
         "compressed_sha256": compressed_sha256,
         "browser_download_url": remote_url,
+        "remote_asset_name": selected["name"],
+        "remote_asset_bytes": int(selected["size"]),
+        "remote_asset_sha256": digest(selected),
         "parts": pieces if not monolithic else [],
     }
 
@@ -178,8 +181,10 @@ def main() -> None:
             "ASSET_ID": "asset_id", "ASSET_NAME": "asset_name",
             "ASSET_COMPRESSED_BYTES": "compressed_bytes", "ASSET_COMPRESSED_SHA256": "compressed_sha256",
             "ASSET_BROWSER_DOWNLOAD_URL": "browser_download_url", "DATABASE_ASSET_ID": "asset_id",
-            "DATABASE_ASSET_NAME": "asset_name", "DATABASE_COMPRESSED_BYTES": "compressed_bytes",
-            "DATABASE_ASSET_SHA256": "compressed_sha256", "DATABASE_ASSET_URL": "browser_download_url",
+            # The app installation manifest stores the remote asset identity.
+            # For multipart releases that is the manifest, not its assembled archive.
+            "DATABASE_ASSET_NAME": "remote_asset_name", "DATABASE_COMPRESSED_BYTES": "remote_asset_bytes",
+            "DATABASE_ASSET_SHA256": "remote_asset_sha256", "DATABASE_ASSET_URL": "browser_download_url",
         }
         for name, key in mappings.items():
             print(f"{name}={shlex.quote(str(resolved[key]))}")

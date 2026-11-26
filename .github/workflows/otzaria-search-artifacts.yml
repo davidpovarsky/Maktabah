@@ -222,7 +222,7 @@ jobs:
           python3 Scripts/resolve-official-library-asset.py \
             --release-json build/logs/source-release.json --download-dir "$RUNNER_TEMP" --format shell > build/logs/source-asset.env
           source build/logs/source-asset.env
-          echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
+          echo "DATABASE_ASSET_NAME=$DATABASE_ASSET_NAME" >> "$GITHUB_ENV"
           zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/$ASSET_NAME" -o "$RUNNER_TEMP/seforim.db"
           if [ -n "${{ inputs.existing_release_tag }}" ]; then
             python3 - "$RUNNER_TEMP/seforim.db" <<'PY'
@@ -277,7 +277,7 @@ jobs:
           python3 Scripts/package-otzaria-search-artifact.py \
             --index "$INDEX" \
             --database "$RUNNER_TEMP/seforim.db" \
-            --database-asset-name "${ASSET_NAME:-seforim-schema6.db.zst}" \
+            --database-asset-name "${DATABASE_ASSET_NAME:-seforim-schema6.db.zst}" \
             --release-json build/logs/source-release.json \
             --magic-release-json build/logs/magic-release.json \
             --acceptance-json build/logs/otzaria-corpus-acceptance.json \

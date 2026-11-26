@@ -124,7 +124,8 @@ jobs:
           DATABASE_SHA256="$(sha256sum "$RUNNER_TEMP/zayit-source/seforim.db" | cut -d' ' -f1)"
           echo "DATABASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
           echo "DATABASE_BYTES=$DATABASE_BYTES" >> "$GITHUB_ENV"
-          echo "DATABASE_ASSET_SHA256=$ASSET_COMPRESSED_SHA256" >> "$GITHUB_ENV"
+          echo "DATABASE_ASSET_SHA256=$DATABASE_ASSET_SHA256" >> "$GITHUB_ENV"
+          echo "DATABASE_ARCHIVE_SHA256=$ASSET_COMPRESSED_SHA256" >> "$GITHUB_ENV"
           echo "DATABASE_SHA256=$DATABASE_SHA256" >> "$GITHUB_ENV"
           sqlite3 "$RUNNER_TEMP/zayit-source/seforim.db" 'PRAGMA quick_check(1);' | grep -qx ok
       - name: Live Activity · refresh
@@ -301,9 +302,11 @@ jobs:
           done < "$RUNNER_TEMP/release-parts.tsv"
           python3 Scripts/resolve-official-library-asset.py \
             --release-json build/logs/source-release.json --download-dir "$RUNNER_TEMP/release-download" --format shell > "$RUNNER_TEMP/release-source-asset.env"
-          EXPECTED_ARCHIVE_SHA256="$DATABASE_ASSET_SHA256"
+          EXPECTED_ARCHIVE_SHA256="$DATABASE_ARCHIVE_SHA256"
+          EXPECTED_ASSET_SHA256="$DATABASE_ASSET_SHA256"
           source "$RUNNER_TEMP/release-source-asset.env"
           test "$ASSET_COMPRESSED_SHA256" = "$EXPECTED_ARCHIVE_SHA256"
+          test "$DATABASE_ASSET_SHA256" = "$EXPECTED_ASSET_SHA256"
           zstd -d --long=31 --no-progress "$RUNNER_TEMP/release-download/$ASSET_NAME" -o "$RUNNER_TEMP/release-download/seforim.db"
           rm "$RUNNER_TEMP/release-download/$ASSET_NAME"
           "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/release-download/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-release-index" 'לחתוך צנון בסכין בשרי' > build/logs/zayit-release-golden.json
