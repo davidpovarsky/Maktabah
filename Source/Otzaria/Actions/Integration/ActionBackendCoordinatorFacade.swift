@@ -428,6 +428,15 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let backend = invocation.snapshot.backend
         try await require("packages.status", backend: backend, invocation: invocation)
         guard let provider = coordinator.offlineProvider() else { throw ActionPortError.invalidResponse }
+        if backend == .sefariaEmbedded {
+            guard let embedded = provider as? SefariaEmbeddedDownloadAdapter else { throw ActionPortError.invalidResponse }
+            let status: SefariaEmbeddedDownloadAdapter.VerifiedInstallationStatus
+            do { status = try await embedded.verifyInstallationStatus() }
+            catch { throw safe(error) }
+            try await require("packages.status", backend: backend, invocation: invocation)
+            return .init(installedPackageIDs: status.packages.sorted(),
+                         installedWorkKeys: includeWorks ? status.books.sorted() : nil, activeOperationHandle: nil)
+        }
         let packages = await provider.installedPackageIDs().sorted()
         let active = await (provider as? SefariaPackageManager)?.activeInstallID()
         try await require("packages.status", backend: backend, invocation: invocation)

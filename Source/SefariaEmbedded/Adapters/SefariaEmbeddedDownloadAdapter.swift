@@ -71,6 +71,23 @@ actor SefariaEmbeddedDownloadAdapter: OfflineLibraryProviding, OfflineWorkProvid
         return try response.decodeResult([OfflinePackage].self)
     }
 
+    struct VerifiedInstallationStatus: Decodable, Sendable {
+        let packages: Set<String>
+        let books: Set<String>
+    }
+
+    /// The original RPC supplies package and book identities in one read.
+    /// Action callers require that complete reply, including explicit empty sets.
+    func verifyInstallationStatus() async throws -> VerifiedInstallationStatus {
+        try await SefariaRuntimeManager.shared.ensurePackagesReady()
+        let response = try await SefariaJSRPCBridge.shared.call(method: "downloads.installed")
+        guard response.isSuccess else {
+            throw response.error ?? SefariaRPCError(code: "INSTALLED_FETCH_FAILED",
+                                                    message: "Could not verify installed packages and books")
+        }
+        return try response.decodeResult(VerifiedInstallationStatus.self)
+    }
+
     func installedPackageIDs() async -> Set<String> {
         guard (try? await SefariaRuntimeManager.shared.ensurePackagesReady()) != nil else {
             return []
