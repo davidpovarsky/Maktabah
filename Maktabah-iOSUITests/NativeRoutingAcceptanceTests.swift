@@ -803,7 +803,7 @@ extension NativeRoutingAcceptanceTests {
         open.tap()
         let next = app.buttons["Next"]
         XCTAssertTrue(next.waitForExistence(timeout: 20))
-        try requireNewSystemIntentReceipt(destination: "native.library", presentation: "currentTab", before: beforeLibrary)
+        try requireNewSystemIntentReceipt(destination: "native.library", presentation: "currentTab", before: beforeLibrary, receiptSource: "guided-tour")
         XCTAssertTrue(app.staticTexts["Browse the library by topic or collection."].exists)
         next.tap()
         XCTAssertTrue(open.waitForExistence(timeout: 10))
@@ -812,7 +812,7 @@ extension NativeRoutingAcceptanceTests {
         open.tap()
         XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
         XCTAssertTrue(next.waitForExistence(timeout: 20))
-        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: beforeSearch)
+        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: beforeSearch, receiptSource: "guided-tour")
         capture("guided-tour-after-real-search-receipt")
         app.buttons["Stop"].tap()
         XCTAssertTrue(next.waitForNonExistence(timeout: 10))
@@ -955,10 +955,11 @@ extension NativeRoutingAcceptanceTests {
     }
 
     @MainActor
-    private func requireNewSystemIntentReceipt(destination: String, presentation: String, before: Set<String>) throws {
+    private func requireNewSystemIntentReceipt(destination: String, presentation: String, before: Set<String>,
+                                               receiptSource: String = "system-intent") throws {
         let after = try actualNativeReceiptLines(), added = after.subtracting(before)
         XCTAssertTrue(before.isSubset(of: after), "Original receipt evidence must not be replaced")
-        XCTAssertEqual(added.count, 1, "One system invocation must produce exactly one new native receipt")
+        XCTAssertEqual(added.count, 1, "One navigation invocation must produce exactly one new native receipt")
         let line = try XCTUnwrap(added.first), parts = line.split(separator: " ", maxSplits: 2)
         XCTAssertEqual(parts.count, 3)
         guard parts.count == 3 else { return }
@@ -987,7 +988,7 @@ extension NativeRoutingAcceptanceTests {
         let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
         XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])], "Receipt must name this app's actual scene")
         let attachment = XCTAttachment(string: line)
-        attachment.name = "actual-system-intent-native-receipt-\(destination)"
+        attachment.name = "actual-\(receiptSource)-native-receipt-\(destination)"
         attachment.lifetime = .keepAlways; add(attachment)
     }
 
