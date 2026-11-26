@@ -7,7 +7,12 @@ actor SefariaPackageManager: OfflineLibraryProviding, OfflineWorkProviding {
     private let paths: SefariaOfflinePaths
     private let updates: SefariaUpdateManager
     private let bundles: SefariaBundleDownloadService
-    private var activeInstall: Task<Void, Error>?
+    struct InstallOperation: Sendable {
+        let id: UUID
+        let task: Task<Void, Error>
+    }
+
+    private var activeInstall: InstallOperation?
     private var didCleanupStaging = false
 
     init(
@@ -84,7 +89,7 @@ actor SefariaPackageManager: OfflineLibraryProviding, OfflineWorkProviding {
         cleanupStagingIfNeeded()
         guard activeInstall == nil else { throw LibraryBackendError.invalidResponse("an install is already running") }
         let task = Task { try await performInstall(packageIDs: packageIDs, progress: progress) }
-        activeInstall = task
+        activeInstall = .init(id: UUID(), task: task)
         defer { activeInstall = nil }
         try await task.value
     }
@@ -96,7 +101,7 @@ actor SefariaPackageManager: OfflineLibraryProviding, OfflineWorkProviding {
         cleanupStagingIfNeeded()
         guard activeInstall == nil else { throw LibraryBackendError.invalidResponse("an install is already running") }
         let task = Task { try await performWorkInstall(workKeys: workKeys, progress: progress) }
-        activeInstall = task
+        activeInstall = .init(id: UUID(), task: task)
         defer { activeInstall = nil }
         try await task.value
     }
@@ -108,13 +113,21 @@ actor SefariaPackageManager: OfflineLibraryProviding, OfflineWorkProviding {
     func update(progress: @escaping @Sendable (OfflineInstallProgress) -> Void) async throws {
         guard activeInstall == nil else { throw LibraryBackendError.invalidResponse("an install is already running") }
         let task = Task { try await updates.update(progress: progress) }
-        activeInstall = task
+        activeInstall = .init(id: UUID(), task: task)
         defer { activeInstall = nil }
         try await task.value
     }
 
+    func activeInstallID() -> UUID? { installOperation(matching: nil)?.id }
+
+    func installOperation(matching expected: UUID?) -> InstallOperation? {
+        guard let activeInstall, !activeInstall.task.isCancelled,
+              expected == nil || expected == activeInstall.id else { return nil }
+        return activeInstall
+    }
+
     func cancelInstall() async {
-        activeInstall?.cancel()
+        activeInstall?.task.cancel()
         await updates.cancel()
     }
 

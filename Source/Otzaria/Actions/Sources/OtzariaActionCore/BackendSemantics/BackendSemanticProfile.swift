@@ -89,7 +89,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         let registered = (capability.map { evidence.registeredCapabilities.contains($0) } ?? false)
             && (action != "reader.openCommentary" || evidence.registeredCapabilities.contains("links"))
         let sourceSupported = sourceSupports(action)
-        let initial = ["catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.relatedSources", "reader.relatedRefs", "reader.relatedTopics", "reader.open", "reader.openCommentary", "notes.prepareDraft", "packages.list", "packages.status", "packages.checkUpdates"].contains(action)
+        let initial = ["catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.relatedSources", "reader.relatedRefs", "reader.relatedTopics", "reader.open", "reader.openCommentary", "notes.prepareDraft", "packages.list", "packages.status", "packages.checkUpdates", "packages.cancel"].contains(action)
         var unsupported: String? = sourceSupported ? nil : "source_capability_not_supported"
         if action == "search.countOccurrences" { unsupported = "exact_count_unavailable" }
         else if !initial { unsupported = "action_not_implemented" }
@@ -116,7 +116,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         case "catalog.resolveReference", "reader.open", "reader.openCommentary", "notes.prepareDraft": evidence.references
         case "search.query", "search.openResults": evidence.search
         case "packages.list": backend == .sefariaEmbedded ? evidence.embeddedPackages : evidence.network
-        case "packages.status": evidence.catalog
+        case "packages.status", "packages.cancel": evidence.catalog
         case "packages.checkUpdates": evidence.network
         default: .unknown
         }
@@ -164,7 +164,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         if action == "reader.relatedRefs" { return sourceFeatures.versionProvider }
         // The Embedded installed IDs adapter collapses RPC errors into
         // empty results. Only its throwing catalogue reader is admitted.
-        if action == "packages.status" || action == "packages.checkUpdates" { return backend == .sefaria }
+        if ["packages.status", "packages.checkUpdates", "packages.cancel"].contains(action) { return backend == .sefaria }
         if action.hasPrefix("packages.") { return sourceFeatures.packageProvider }
         if action == "reader.relatedTopics", backend == .otzaria { return false }
         return true

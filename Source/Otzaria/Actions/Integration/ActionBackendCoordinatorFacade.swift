@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort, ActionRelatedRefsPort, ActionRelatedTopicsPort, ActionOfflinePackageObservationPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort, ActionRelatedRefsPort, ActionRelatedTopicsPort, ActionOfflinePackageObservationPort, ActionOfflinePackageCancellationPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -429,12 +429,39 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         try await require("packages.status", backend: backend, invocation: invocation)
         guard let provider = coordinator.offlineProvider() else { throw ActionPortError.invalidResponse }
         let packages = await provider.installedPackageIDs().sorted()
+        let active = await (provider as? SefariaPackageManager)?.activeInstallID()
         try await require("packages.status", backend: backend, invocation: invocation)
-        guard includeWorks else { return .init(installedPackageIDs: packages, installedWorkKeys: nil) }
+        guard includeWorks else {
+            return .init(installedPackageIDs: packages, installedWorkKeys: nil, activeOperationHandle: active)
+        }
         guard let workProvider = coordinator.offlineWorkProvider() else { throw ActionPortError.invalidResponse }
         let works = await workProvider.installedWorkKeys().sorted()
         try await require("packages.status", backend: backend, invocation: invocation)
-        return .init(installedPackageIDs: packages, installedWorkKeys: works)
+        return .init(installedPackageIDs: packages, installedWorkKeys: works, activeOperationHandle: active)
+    }
+
+    func offlinePackageCancellationAvailable(invocation: ActionPortInvocation) async throws -> Bool {
+        try await require("packages.cancel", backend: .sefaria, invocation: invocation)
+        guard let manager = coordinator.offlineProvider() as? SefariaPackageManager else { return false }
+        let active = await manager.activeInstallID() != nil
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: .sefaria)
+        return active
+    }
+
+    func cancelOfflinePackage(operationHandle: UUID?, sceneID: String, invocation: ActionPortInvocation,
+                              authorization: ActionNavigationPreparation) async throws -> UUID {
+        try await require("packages.cancel", backend: .sefaria, invocation: invocation)
+        guard let manager = coordinator.offlineProvider() as? SefariaPackageManager else {
+            throw ActionPortError.notSupported
+        }
+        guard let operation = await manager.installOperation(matching: operationHandle) else {
+            throw ActionPortError.notFound
+        }
+        try authorization.authorizeCommit(invocation: invocation, sceneID: sceneID)
+        // This handle only points at the captured original task. Even if the
+        // manager has moved on, cancellation cannot affect a replacement.
+        operation.task.cancel()
+        return operation.id
     }
 
     func offlinePackageUpdates(invocation: ActionPortInvocation) async throws -> ActionOfflinePackageUpdates {

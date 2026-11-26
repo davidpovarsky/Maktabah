@@ -24,10 +24,12 @@ public struct ActionOfflinePackage: Codable, Sendable, Equatable {
 public struct ActionOfflinePackageStatus: Codable, Sendable, Equatable {
     public let installedPackageIDs: [String]
     public let installedWorkKeys: [String]?
+    public let activeOperationHandle: UUID?
 
-    public init(installedPackageIDs: [String], installedWorkKeys: [String]?) {
+    public init(installedPackageIDs: [String], installedWorkKeys: [String]?, activeOperationHandle: UUID? = nil) {
         self.installedPackageIDs = installedPackageIDs
         self.installedWorkKeys = installedWorkKeys
+        self.activeOperationHandle = activeOperationHandle
     }
 }
 
@@ -45,4 +47,11 @@ public protocol ActionOfflinePackageObservationPort: Sendable {
     func offlinePackages(forceRefresh: Bool, invocation: ActionPortInvocation) async throws -> [ActionOfflinePackage]
     func offlinePackageStatus(includeWorks: Bool, invocation: ActionPortInvocation) async throws -> ActionOfflinePackageStatus
     func offlinePackageUpdates(invocation: ActionPortInvocation) async throws -> ActionOfflinePackageUpdates
+}
+
+/// The original package owner resolves and cancels one specific task.
+public protocol ActionOfflinePackageCancellationPort: Sendable {
+    func offlinePackageCancellationAvailable(invocation: ActionPortInvocation) async throws -> Bool
+    func cancelOfflinePackage(operationHandle: UUID?, sceneID: String, invocation: ActionPortInvocation,
+                              authorization: ActionNavigationPreparation) async throws -> UUID
 }

@@ -182,6 +182,16 @@ public actor ActionExecutor {
             let searchResultsSupported = ui is any ActionSearchResultsUICommandSink
             let occurrenceSupported = search is any ActionOccurrenceCountPort
             let searchResultsReady = await searchResultsAvailable(context: context)
+            let cancellationPort = state as? any ActionOfflinePackageCancellationPort
+            let packageCancellationReady: Bool
+            if let cancellationPort, snapshot.backend == .sefaria, context.allowedWorkKeys == nil,
+               let scene = ActionPolicy.foregroundScene(context),
+               (try? await prepareNavigation(sceneID: scene, invocation: invocation, context: context)) != nil {
+                packageCancellationReady = (try? await cancellationPort.offlinePackageCancellationAvailable(invocation: invocation)) == true
+                try await recheck(snapshot, deadline: deadline)
+            } else {
+                packageCancellationReady = false
+            }
             var reports: [ActionJSON] = []
             for target in ActionBackendID.allCases {
                 let report: ActionBackendReport?
@@ -208,11 +218,13 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
                         && (descriptor.id != "catalog.listAuthors" || state is any ActionCatalogAuthorsPort)
                         && (!descriptor.id.hasPrefix("packages.") || state is any ActionOfflinePackageObservationPort)
+                        && (descriptor.id != "packages.cancel" || (cancellationPort != nil && navigationAuthority != nil))
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
                         && (descriptor.id != "notes.prepareDraft" || notesReady)
-                        && (descriptor.id != "search.openResults" || searchResultsReady)) }
+                        && (descriptor.id != "search.openResults" || searchResultsReady)
+                        && (descriptor.id != "packages.cancel" || packageCancellationReady)) }
                     if !supported { fields["reasonCode"] = .string(implemented ? "capability_unavailable" : "action_not_implemented") }
                     else if includeReadiness && target != snapshot.backend { fields["reasonCode"] = .string("backend_selection_required") }
                     else if includeReadiness && descriptor.id == "notes.prepareDraft" && !notesReady {
@@ -220,6 +232,9 @@ public actor ActionExecutor {
                     }
                     else if includeReadiness && descriptor.id == "search.openResults" && !searchResultsReady {
                         fields["reasonCode"] = .string("native_search_results_unavailable")
+                    }
+                    else if includeReadiness && descriptor.id == "packages.cancel" && !packageCancellationReady {
+                        fields["reasonCode"] = .string("package_cancellation_unavailable")
                     }
                     else if includeReadiness && raw?.availableNow != true {
                         fields["reasonCode"] = .string(ActionPolicy.safeReason(raw?.reasonCode, fallback: "backend_unavailable"))
@@ -294,6 +309,25 @@ public actor ActionExecutor {
             case .ambiguous(let candidates): result = try ambiguity(candidates, limit: 25, request: request, context: context, snapshot: snapshot)
             case .notFound: throw ActionPortError.notFound
             }
+        case "packages.cancel":
+            guard backend == .sefaria, let provider = state as? any ActionOfflinePackageCancellationPort else {
+                throw ActionEngineFailure(.notSupported, "package_cancellation_unavailable")
+            }
+            guard context.allowedWorkKeys == nil else { throw ActionEngineFailure(.failed, "permission_denied") }
+            guard let scene = ActionPolicy.foregroundScene(context) else {
+                throw ActionEngineFailure(.requiresForeground, "app_scene_unavailable")
+            }
+            let expectedHandle: UUID?
+            if let raw = request.arguments["operationHandle"]?.string {
+                guard let handle = UUID(uuidString: raw) else { throw ActionContractError.invalid("operationHandle") }
+                expectedHandle = handle
+            } else { expectedHandle = nil }
+            let authorization = try await prepareNavigation(sceneID: scene, invocation: invocation, context: context)
+            let handle = try await provider.cancelOfflinePackage(operationHandle: expectedHandle, sceneID: scene,
+                invocation: invocation, authorization: authorization)
+            guard expectedHandle == nil || expectedHandle == handle else { throw ActionPortError.invalidResponse }
+            navigationCompletion = authorization
+            result = completed(["operationHandle": .string(handle.uuidString), "cancellationRequested": .bool(true)])
         case "packages.list", "packages.status", "packages.checkUpdates":
             guard let provider = state as? any ActionOfflinePackageObservationPort else {
                 throw ActionEngineFailure(.notSupported, "offline_packages_unavailable")
