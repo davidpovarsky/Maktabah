@@ -207,7 +207,7 @@ def code_images(directory):
     return images
 
 
-def scan_binary_output(path, *, symbols):
+def scan_binary_output(path, *, symbols, xcode_preview=False):
     count, nonempty = 0, False
     with Path(path).open("rb") as stream:
         for line in stream:
@@ -216,11 +216,11 @@ def scan_binary_output(path, *, symbols):
             if re.match(rb"^\s*(?:[a-fA-F0-9]+\s+)?[A-Za-z?]\s+\S+", line):
                 count += 1
     require(nonempty, "Missing actual full binary-command output")
-    require(not symbols or count > 0, "Missing nonempty actual full symbol-table evidence")
+    require(not symbols or count > 0 or xcode_preview, "Missing nonempty actual full symbol-table evidence")
     return {"symbol_lines": count if symbols else None}
 
 
-def binary_command(argv, *, root, evidence, label, symbols=False):
+def binary_command(argv, *, root, evidence, label, symbols=False, xcode_preview=False):
     """Retain full successful output, compressed without truncation; no mocks."""
     evidence = Path(evidence)
     evidence.mkdir(parents=True, exist_ok=True)
@@ -240,9 +240,35 @@ def binary_command(argv, *, root, evidence, label, symbols=False):
     with gzip.open(destination, "rb") as zipped, tempfile.NamedTemporaryFile() as plain:
         shutil.copyfileobj(zipped, plain)
         plain.flush()
-        row.update(scan_binary_output(plain.name, symbols=symbols))
+        row.update(scan_binary_output(plain.name, symbols=symbols, xcode_preview=xcode_preview))
     write(evidence / (label + ".json"), row)
     return row
+
+
+def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
+    require(directory.suffix == ".app" and relative == "__preview.dylib"
+            and checks["symbols"].get("symbol_lines") == 0, "Unexpected symbol-free runtime image")
+    binary = directory / relative
+
+    def output(role):
+        with gzip.open(evidence / checks[role]["output"], "rt", encoding="utf-8") as stream:
+            raw = stream.read(65_537)
+        require(len(raw) <= 65_536, "Oversized Xcode preview observation")
+        return raw
+
+    require(output("symbols").strip() == str(binary) + ": no symbols",
+            "Apple nm did not report the exact Xcode preview image")
+    loads = output("loads")
+    symtab = re.findall(r"(?m)^\s*cmd LC_SYMTAB\n((?:(?!Load command)[^\n]*\n)*)", loads)
+    build = re.findall(r"(?m)^\s*cmd LC_BUILD_VERSION\n((?:(?!Load command)[^\n]*\n)*)", loads)
+    require(len(symtab) == 1 and re.search(r"(?m)^\s*nsyms 0$", symtab[0])
+            and len(build) == 1 and re.search(r"(?m)^\s*platform (?:7|IOSSIMULATOR)$", build[0])
+            and "LC_DYLD_EXPORTS_TRIE" in loads and "LC_ID_DYLIB" in loads,
+            "Xcode Simulator preview does not have a provably empty nlist")
+    exports = [line.strip() for line in output("exports").splitlines() if line.strip()]
+    require(len(exports) == 3 and exports[0] == str(binary) + " [arm64]:"
+            and exports[1] == "-exports:" and exports[2].split() == ["offset", "symbol"],
+            "Xcode preview has an export or unexpected dyld inventory")
 
 
 def runtime_absence_proof(root, directory, evidence, *, reused=None):
@@ -259,9 +285,15 @@ def runtime_absence_proof(root, directory, evidence, *, reused=None):
             continue
         binary = directory / relative
         checks = {}
+        preview = directory.suffix == ".app" and relative == "__preview.dylib"
         for name, options in [("symbols", ["nm", "-a"]), ("imports", ["otool", "-L"]), ("loads", ["otool", "-l"])]:
             checks[name] = binary_command([*options, str(binary)], root=root, evidence=evidence,
-                                          label=f"image-{number}-{name}", symbols=name == "symbols")
+                                          label=f"image-{number}-{name}", symbols=name == "symbols",
+                                          xcode_preview=preview and name == "symbols")
+        if checks["symbols"]["symbol_lines"] == 0:
+            checks["exports"] = binary_command(["xcrun", "dyld_info", "-exports", str(binary)],
+                                                root=root, evidence=evidence, label=f"image-{number}-exports")
+            verify_symbol_free_xcode_preview(directory, relative, evidence, checks)
         require(digest(binary) == image["sha256"], "Runtime image changed during symbol/import inspection")
         verified[relative] = {**image, "checks": checks}
     require(code_images(directory) == images, "Runtime image closure changed during inspection")
@@ -271,6 +303,7 @@ def runtime_absence_proof(root, directory, evidence, *, reused=None):
 
 
 def verify_absence_receipt(root, directory, proof, *, reused=None):
+    directory = Path(directory)
     require(proof.get("status") == "ACTUAL_FULL_SYMBOL_IMPORT_AND_PRODUCT_CLOSURE_PASS"
             and code_images(directory) == proof["images"], "Runtime closure proof no longer matches actual images")
     require(set(proof["verified_images"]) == set(proof["images"])
@@ -279,20 +312,30 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
     require_no_syntax_names(path.relative_to(directory).as_posix() for path in Path(directory).rglob("*"))
     evidence = Path(root) / proof["evidence"]
     by_hash = {row["sha256"]: row for row in (reused or {}).get("verified_images", {}).values()}
-    for row in proof["verified_images"].values():
+    for relative, row in proof["verified_images"].items():
+        symbol_free_preview = False
         if "reused_exact_image_proof" in row:
             require("checks" not in row and row["reused_exact_image_proof"] == by_hash.get(row["sha256"])
                     and row["reused_exact_image_proof"] is not None,
                     "Reused runtime image lacks the original exact successful source proof")
         else:
-            require(set(row.get("checks", {})) == {"symbols", "imports", "loads"}
-                    and row["checks"]["symbols"].get("symbol_lines", 0) > 0,
+            checks = row.get("checks", {})
+            symbol_lines = checks.get("symbols", {}).get("symbol_lines")
+            symbol_free_preview = (relative == "__preview.dylib" and directory.suffix == ".app"
+                                   and symbol_lines == 0)
+            expected = {"symbols", "imports", "loads"}
+            if symbol_free_preview:
+                expected.add("exports")
+            require(set(checks) == expected
+                    and (symbol_free_preview or isinstance(symbol_lines, int) and symbol_lines > 0),
                     "Missing symbol/import/load closure")
         for check in row.get("checks", {}).values():
             path = evidence / check["output"]
             require(path.is_file() and not path.is_symlink() and path.stat().st_size == check["bytes"]
                     and digest(path) == check["sha256"] and check["returncode"] == 0,
                     "Original full binary proof is missing or changed")
+        if symbol_free_preview:
+            verify_symbol_free_xcode_preview(directory, relative, evidence, row["checks"])
 
 
 def require_compiled_host_api(qualification, *, retained_original=None, admission_schema=1, production=False,
