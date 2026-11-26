@@ -68,6 +68,12 @@ public protocol ActionNavigationStructurePort: Sendable {
         async throws -> [ActionNavigationStructure]
 }
 
+/// Reads navigable units in the active provider's original order.
+public protocol ActionNavigationItemsPort: Sendable {
+    func navigationItems(for work: ActionWorkRef, structureID: String?, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry]
+}
+
 /// Reads edition metadata from the active work's original version provider.
 public protocol ActionVersionListPort: Sendable {
     func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion]

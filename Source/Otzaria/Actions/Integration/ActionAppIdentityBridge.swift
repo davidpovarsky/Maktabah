@@ -97,17 +97,20 @@ enum ActionLibraryProjection {
     /// Flatten only original provider TOC identities. Matching remains in the
     /// canonical Core resolver; the app adapter does not infer chapter numbers.
     static func sourceSections(_ roots: [LibraryTOCNode], invocation: ActionPortInvocation,
-                               maximumEntries: Int = 100_000) throws -> [ActionSourceSectionEntry] {
+                               maximumEntries: Int = 100_000, leavesOnly: Bool = false) throws -> [ActionSourceSectionEntry] {
         guard roots.count <= 100_000 else { throw ActionPortError.unavailable }
         var pending = roots.reversed().map { ($0, 0) }
-        var entries: [ActionSourceSectionEntry] = []
+        var entries: [ActionSourceSectionEntry] = [], visited = 0
         while entries.count < maximumEntries, let (node, depth) = pending.popLast() {
+            visited += 1
             try ActionBackendInvocationGuard.check(invocation, current: invocation.snapshot, target: invocation.snapshot.backend)
-            guard depth <= 64, entries.count + pending.count + 1 <= 100_000,
-                  node.children.count <= 100_000 - entries.count - pending.count - 1 else {
+            guard depth <= 64, visited + pending.count <= 100_000,
+                  node.children.count <= 100_000 - visited - pending.count else {
                 throw ActionPortError.unavailable
             }
-            entries.append(.init(locator: try ActionAppIdentityBridge.actionRef(node.locator), title: node.title))
+            if !leavesOnly || node.children.isEmpty {
+                entries.append(.init(locator: try ActionAppIdentityBridge.actionRef(node.locator), title: node.title))
+            }
             pending.append(contentsOf: node.children.reversed().map { ($0, depth + 1) })
         }
         return entries
