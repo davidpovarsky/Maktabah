@@ -1,0 +1,6 @@
+2026-11-26 23:52:25.484 sefaria-mobile-labels[89690:17430727] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-26 23:52:25.485 sefaria-mobile-labels[89690:17430727] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"backendID":"sefariaEmbedded","event":"ready"}
+2026-11-26 23:52:25.485 sefaria-mobile-labels[89690:17430727] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-26 23:52:25.765 sefaria-mobile-labels[89690:17430730] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-26 23:52:25.765 sefaria-mobile-labels[89690:17430730] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","backendID":"sefariaEmbedded","sequence":1}
+2026-11-26 23:52:25.765 sefaria-mobile-labels[89690:17430730] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!

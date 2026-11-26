@@ -1,0 +1,21 @@
+{
+  "source": "49cfd5e8d5ecebf37acf812e047fee36cf60893a",
+  "scope": "Swift iOS Simulator syntax parse only; no build/typecheck/app/UI execution",
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-D",
+    "DEBUG",
+    "-target",
+    "arm64-apple-ios17.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/native-source-parse-49cfd5e8/SefariaEmbeddedAcceptanceTests.swift",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/native-source-parse-49cfd5e8/iOSTOCView.swift"
+  ],
+  "exit": 0,
+  "time": "2026-11-26T22:55:56.855929+00:00",
+  "xcode": "Xcode 27.0\nBuild version 27A266a\n",
+  "inputsUnchanged": true
+}

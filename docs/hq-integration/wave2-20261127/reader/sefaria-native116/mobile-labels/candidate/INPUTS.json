@@ -1,0 +1,132 @@
+{
+  "source": "c1ea03786921d683a620e3800c2a9e22cd5bbfcd",
+  "files": [
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "snapshot": "LibraryBackendModels.swift",
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "bytes": 32419
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "snapshot": "LibraryBackendProtocols.swift",
+      "sha256": "de28cf7350e82b3766b6a5404e2f7e9271c48723a124d752e02e244f6de4e674",
+      "bytes": 6741
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryPresentationPolicy+Display.swift",
+      "snapshot": "LibraryPresentationPolicy+Display.swift",
+      "sha256": "2c1fb6af7a1d28add6249bde17b52695ef138fd65860f320814ed6cc638b5384",
+      "bytes": 2067
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaModels.swift",
+      "snapshot": "SefariaModels.swift",
+      "sha256": "91375a0bf1a494e14b55b7398fc2309c0c5f9ced9035429484d833b17ff54177",
+      "bytes": 12258
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "snapshot": "SefariaNavigationParser.swift",
+      "sha256": "c867b7384455f87e5bddec526f0f1c5bc9af4f7ec73707260df6de6c311e8a5f",
+      "bytes": 34785
+    },
+    {
+      "path": "Source/Sefaria/Network/SefariaDTOs.swift",
+      "snapshot": "SefariaDTOs.swift",
+      "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+      "bytes": 22303
+    },
+    {
+      "path": "Source/Sefaria/Offline/SefariaExportModels.swift",
+      "snapshot": "SefariaExportModels.swift",
+      "sha256": "2a1316aa7d0dc9a1f0bf1ee1b85d6bebe08f61ba5a867e1e8957c4adbaae2453",
+      "bytes": 16634
+    },
+    {
+      "path": "Source/ChavrusaText/Localization/ChavrusaTextLocalizationResolver.swift",
+      "snapshot": "ChavrusaTextLocalizationResolver.swift",
+      "sha256": "929cbb3052f7ef57b9ef3d2d8827f2ef5fbb8e43c81449d4210a001cf2808a17",
+      "bytes": 5433
+    },
+    {
+      "path": "Source/ChavrusaText/Localization/TalmudHebrewAddressFormatter.swift",
+      "snapshot": "TalmudHebrewAddressFormatter.swift",
+      "sha256": "8fbe763b1c4393c67c14a5b1887ac29b5531315940b5f8f6b619650647628ec2",
+      "bytes": 2831
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "snapshot": "SefariaRPCModels.swift",
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "bytes": 4566
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "snapshot": "SefariaJSRPCBridge.swift",
+      "sha256": "f5c039dd22134182e8c1eda871f6bd4ecaa6b916edf24ca7643ea72a1f907df8",
+      "bytes": 14409
+    },
+    {
+      "path": "Source/SefariaEmbedded/Adapters/SefariaEmbeddedNavigationAdapter.swift",
+      "snapshot": "SefariaEmbeddedNavigationAdapter.swift",
+      "sha256": "bb9f06fb97100295f873f3f39cc39e89229569d5550aa2aca7440ace00375594",
+      "bytes": 5319
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Boundary.swift",
+      "snapshot": "Boundary.swift",
+      "sha256": "1f83aa1970cb310fab6126b1cc4dac3da0d28141cbf0347177af05f0efadc831",
+      "bytes": 3017
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/MobileNavigationAcceptance.swift",
+      "snapshot": "MobileNavigationAcceptance.swift",
+      "sha256": "3f7e1c174e4ae3a6a5d383e34ca646e14f26e10fdf27db1125ef63bc278ef8b8",
+      "bytes": 17227
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/CASES.json",
+      "snapshot": "CASES.json",
+      "sha256": "05999ca140cdaff9632ba406063bd35c735396e2902515934d251c1874eb2ee3",
+      "bytes": 2963
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/PROVENANCE.json",
+      "snapshot": "Fixtures/PROVENANCE.json",
+      "sha256": "4b7e164db0a915f922ae678bf69354c5191aebcf24a4cb25e2ac5d301345ef79",
+      "bytes": 2257
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/Genesis.json",
+      "snapshot": "Fixtures/Genesis.json",
+      "sha256": "564cacdb5ef7e9045d0a7878fcf0b756b7875fb81e0b1217f8162b99549b8c28",
+      "bytes": 14544
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/Berakhot.json",
+      "snapshot": "Fixtures/Berakhot.json",
+      "sha256": "09ff8efde6869c5923de2bf10ac990ac86116897703f7cca55ebbb1304ce8f1f",
+      "bytes": 16468
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/Eruvin.json",
+      "snapshot": "Fixtures/Eruvin.json",
+      "sha256": "0d1344986afba38328e5b377363075e77b4e8b2730264976d6a35d0960796a7b",
+      "bytes": 18282
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/Rashi_on_Genesis.json",
+      "snapshot": "Fixtures/Rashi_on_Genesis.json",
+      "sha256": "05793f5e2576360ba832a32a094b44a79268552287ac2a8585e702e5d5e477cd",
+      "bytes": 18351
+    },
+    {
+      "path": "Tests/HQ/sefaria-mobile-navigation/Fixtures/Pesach_Haggadah.json",
+      "snapshot": "Fixtures/Pesach_Haggadah.json",
+      "sha256": "f6b7f1c23364b21bcdd08732b642d4e313f89dedf990c0bf43936500672d5c3e",
+      "bytes": 19938
+    }
+  ],
+  "boundary": "Whole original adapter, bridge, parser, models and localized-title resolver, with original retained textToc payloads. Only Hermes/UIKit startup and JavaScript transport use the existing explicit fixture boundary. Zero app UI acceptance."
+}
