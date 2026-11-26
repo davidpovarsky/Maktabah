@@ -788,6 +788,7 @@
 		F30577512FA46222005732C6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */; };
 		F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */ = {isa = PBXBuildFile; fileRef = F349073E2F3064A10036CDAF /* IconMaktabah.icon */; };
 		F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */; };
+		B52F6809C65F440284C8DE34 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 330B6889D39D42A0AAF6ED45 /* AppShortcuts.xcstrings */; };
 		F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF392EB2EFCC15700460756 /* Localizable.xcstrings */; };
 		F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3A775582FB2288E00C82F7B /* GoogleService-Info.plist */; };
 		F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305777A2FA463B1005732C6 /* iOSMainView.swift */; };
@@ -1855,6 +1856,7 @@
 		4BF392BC2EFC98E900460756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AnnotationEditorVC.xib; sourceTree = "<group>"; };
 		4BF392C02EFC9AB800460756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchSidebarVC.xib; sourceTree = "<group>"; };
 		4BF392C22EFC9AB800460756 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SearchSidebarVC.xcstrings; sourceTree = "<group>"; };
+		330B6889D39D42A0AAF6ED45 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		4BF392EB2EFCC15700460756 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4BFCD84B2F10744800E41F8A /* ScheherazadeNew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScheherazadeNew-Regular.ttf"; sourceTree = "<group>"; };
 		4BFCD84D2F10746600E41F8A /* Lateef-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lateef-Regular.ttf"; sourceTree = "<group>"; };
@@ -2758,6 +2760,7 @@
 				F3A775572FB2288E00C82F7B /* iOS-Info.plist */,
 				F3A775582FB2288E00C82F7B /* GoogleService-Info.plist */,
 				F349073E2F3064A10036CDAF /* IconMaktabah.icon */,
+				330B6889D39D42A0AAF6ED45 /* AppShortcuts.xcstrings */,
 				4BF392EB2EFCC15700460756 /* Localizable.xcstrings */,
 				4B22B2F02F7E3BD300741EEC /* PrivacyInfo.xcprivacy */,
 				F323BCA02F2EE70200EFD4F4 /* InfoPlist.strings */,
@@ -4385,6 +4388,7 @@
 				F30577992FA4BE8D005732C6 /* LaunchScreen.storyboard in Resources */,
 				F30577522FA46222005732C6 /* IconMaktabah.icon in Resources */,
 				F305775A2FA46222005732C6 /* InfoPlist.strings in Resources */,
+				B52F6809C65F440284C8DE34 /* AppShortcuts.xcstrings in Resources */,
 				F30577662FA46222005732C6 /* Localizable.xcstrings in Resources */,
 				F3A775592FB2288E00C82F7B /* GoogleService-Info.plist in Resources */,
 			);

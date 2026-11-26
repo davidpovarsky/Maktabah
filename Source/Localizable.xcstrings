@@ -1,6 +1,176 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Open destination": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת יעד"
+          }
+        }
+      }
+    },
+    "Open book": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ספר"
+          }
+        }
+      }
+    },
+    "Maktabah destination": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יעד באוצריא"
+          }
+        }
+      }
+    },
+    "Open Maktabah destination": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת יעד באוצריא"
+          }
+        }
+      }
+    },
+    "Open an available destination in the current Maktabah library.": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת יעד זמין בספריית אוצריא הפעילה."
+          }
+        }
+      }
+    },
+    "Destination": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יעד"
+          }
+        }
+      }
+    },
+    "Open ${destination}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ${destination}"
+          }
+        }
+      }
+    },
+    "Maktabah book": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספר באוצריא"
+          }
+        }
+      }
+    },
+    "Book chapter or passage": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרק או קטע בספר"
+          }
+        }
+      }
+    },
+    "Open a book at a chapter or passage": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ספר בפרק או בקטע"
+          }
+        }
+      }
+    },
+    "Choose a book and a source chapter or passage from the current library, then open it in the selected Maktabah window.": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת ספר ופרק או קטע מהספרייה הפעילה ופתיחתם בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Chapter or passage": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרק או קטע"
+          }
+        }
+      }
+    },
+    "Window": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון"
+          }
+        }
+      }
+    },
+    "Open in a new tab": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחה בכרטיסייה חדשה"
+          }
+        }
+      }
+    },
+    "Commentary book (optional)": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספר מפרשים (לא חובה)"
+          }
+        }
+      }
+    },
+    "Unsaved note proposal (with commentary)": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצעת הערה שטרם נשמרה (עם מפרשים)"
+          }
+        }
+      }
+    },
+    "Open ${book} at ${location} in ${window}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ${book} בקטע ${location} בחלון ${window}"
+          }
+        }
+      }
+    },
     "Share Mini App Files": {
       "localizations": {
         "en": {

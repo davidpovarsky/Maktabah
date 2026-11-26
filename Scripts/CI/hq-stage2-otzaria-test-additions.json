@@ -471,17 +471,17 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+    "Maktabah.xcodeproj/project.pbxproj": "5f7b779c394c0f3fce828770f20146e00db78317",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
   },
   "final_integrated_project_review": {
-    "actual_membership_receipt": "docs/hq-integration/miniapps-rich-editor-20261125/FINAL_PROJECT_MEMBERSHIP_LATEST_ORIGINAL.json",
-    "actual_membership_receipt_sha256": "50aa9ae46a9ff13623519f4e56ec489530acb62cbe6999ebe330de7ccfff5cb2",
-    "application_source_sha": "4330fe50d354e984f1f702348369aa20e0b31ec5",
+    "actual_membership_receipt": "docs/hq-integration/final-delivery-20261126/project-shortcuts-membership.json",
+    "actual_membership_receipt_sha256": "e5564456d9d2cdb96d0631ca1698cfe57cb982a4d230c7992c01bcb0a192a03d",
+    "application_source_sha": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "native_acceptance": "NOT_CLAIMED",
-    "reviewed_project_blob": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+    "reviewed_project_blob": "5f7b779c394c0f3fce828770f20146e00db78317",
     "standalone_engine_tests_not_in_app_target": true
   },
   "mac_shared_project_review": {
