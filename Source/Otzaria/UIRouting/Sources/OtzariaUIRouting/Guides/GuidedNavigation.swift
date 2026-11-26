@@ -64,8 +64,10 @@ public final class UIGuideRun {
     public private(set) var phase: Phase = .ready
     public private(set) var stepIndex = 0
     public var step: UIGuideDefinition.Step { definition.steps[stepIndex] }
+    public var stepCount: Int { definition.steps.count }
+    public var isLastStep: Bool { stepIndex + 1 == stepCount }
 
-    @ObservationIgnored private let definition: UIGuideDefinition
+    @ObservationIgnored private var definition: UIGuideDefinition
     @ObservationIgnored private let sceneID: UIStableID
     @ObservationIgnored private let clock: any ActionClock
     @ObservationIgnored private let observe: @MainActor () -> UISceneSnapshot?
@@ -93,8 +95,11 @@ public final class UIGuideRun {
         self.open = open
     }
 
-    public func start(_ mode: Mode) {
+    /// A scenario may change only after the previous native child has joined.
+    /// An active or draining run retains its exact original step/receipt binding.
+    public func start(_ mode: Mode, definition: UIGuideDefinition? = nil) {
         guard [.ready, .completed, .stopped].contains(phase), task == nil else { return }
+        if let definition { self.definition = definition }
         self.mode = mode
         stepIndex = 0
         operations = 0

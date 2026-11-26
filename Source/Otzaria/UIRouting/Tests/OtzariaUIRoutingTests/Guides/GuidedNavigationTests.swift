@@ -101,6 +101,62 @@ final class GuidedNavigationTests: XCTestCase {
         XCTAssertEqual(run.phase, .awaitingUser)
     }
 
+    func testCompletedJourneyCanSelectAnotherDefinitionWithoutReusingReceipts() async throws {
+        let host = Host()
+        let run = try host.run()
+        run.start(.automatic)
+        await settle(run)
+        run.next()
+        await settle(run)
+        run.next()
+        XCTAssertEqual(run.phase, .completed)
+        let oldRequests = host.requests
+        let replacement = try UIGuideDefinition(steps: [
+            .init(destination: .init(destination: Host.history), english: "Return", hebrew: "חזרה")
+        ])
+        run.start(.manual, definition: replacement)
+        XCTAssertEqual(run.phase, .awaitingUser)
+        XCTAssertEqual(run.stepCount, 1)
+        XCTAssertTrue(run.isLastStep)
+        XCTAssertEqual(host.requests, oldRequests, "Choosing a practice scenario must not navigate")
+        run.next()
+        XCTAssertEqual(run.phase, .awaitingUser)
+        run.performManualNavigation()
+        await settle(run)
+        XCTAssertEqual(run.phase, .coaching)
+        XCTAssertEqual(host.requests.count, oldRequests.count + 1)
+        run.next()
+        XCTAssertEqual(run.phase, .completed)
+        run.replay()
+        XCTAssertEqual(run.phase, .awaitingUser)
+        XCTAssertEqual(run.step.destination.destination, Host.history)
+    }
+
+    func testActiveAndDrainingChildrenCannotBeReboundToAnotherScenario() async throws {
+        let host = Host()
+        host.suspend = true
+        let run = try host.run()
+        let replacement = try UIGuideDefinition(steps: [
+            .init(destination: .init(destination: Host.history), english: "Return", hebrew: "חזרה")
+        ])
+        run.start(.automatic)
+        while host.pending == nil { await Task.yield() }
+        run.start(.manual, definition: replacement)
+        XCTAssertEqual(run.step.destination.destination, Host.library)
+        XCTAssertEqual(run.phase, .navigating)
+        let stop = Task { await run.stop() }
+        while run.phase != .stopped { await Task.yield() }
+        run.start(.manual, definition: replacement)
+        XCTAssertEqual(run.step.destination.destination, Host.library)
+        try XCTUnwrap(host.pending).resume()
+        host.pending = nil
+        await stop.value
+        run.start(.manual, definition: replacement)
+        XCTAssertEqual(run.step.destination.destination, Host.history)
+        XCTAssertEqual(run.phase, .awaitingUser)
+        XCTAssertEqual(host.calls, [Host.library])
+    }
+
     func testDefinitionBoundsAndLocalization() throws {
         let library = UIGuideDefinition.Step(destination: .init(destination: Host.library), english: "Library", hebrew: "ספרייה")
         XCTAssertEqual(library.coachingText(language: "he"), "ספרייה")

@@ -819,6 +819,103 @@ extension NativeRoutingAcceptanceTests {
     }
 
     @MainActor
+    func testGuidedAutomaticJourneyCompletesExploresResumesAndReplays() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.library", coaching: "Browse the library by topic or collection.") {
+            menu.tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.search", coaching: "Search for a title or words within a text.") {
+            app.buttons["Next"].tap()
+        }
+        app.buttons["Explore"].tap()
+        XCTAssertTrue(app.buttons["Next"].waitForNonExistence(timeout: 10))
+        try requireGuideStep("native.search", coaching: "Search for a title or words within a text.") {
+            menu.tap(); app.buttons["Resume"].tap()
+        }
+        try requireGuideStep("native.history", coaching: "Return to recently opened texts from the history.") {
+            app.buttons["Next"].tap()
+        }
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+        try requireGuideStep("native.library", coaching: "Browse the library by topic or collection.") {
+            menu.tap(); app.buttons["Replay"].tap()
+        }
+        capture("guided-tour-complete-resume-replay-original-receipts")
+        app.buttons["Stop"].tap()
+        XCTAssertTrue(app.buttons["Next"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testGuidedSearchJourneyUsesOriginalFocusedSearchControl() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.library", coaching: "Start with a topic or collection in the library.") {
+            menu.tap(); app.buttons["Find a text"].tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.search", coaching: "The search field is focused. Enter a title or phrase; Explore lets you try it.") {
+            app.buttons["Next"].tap()
+        }
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch.exists)
+        try requireGuideStep("native.history", coaching: "History keeps the texts you opened, so you can return to them.") {
+            app.buttons["Next"].tap()
+        }
+        capture("guided-search-focused-control-original-receipt")
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad() throws {
+        try requireGuidedStudyJourney(expectedPad: true)
+    }
+
+    @MainActor
+    func testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPhone() throws {
+        try requireGuidedStudyJourney(expectedPad: false)
+    }
+
+    @MainActor private func requireGuidedStudyJourney(expectedPad: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.reader", coaching: "Continue from the current text and position.") {
+            menu.tap()
+            let study = app.buttons["Study the current text"]
+            XCTAssertTrue(study.waitForExistence(timeout: 10))
+            XCTAssertTrue(study.isEnabled)
+            study.tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.reader.inspector", presentation: "inspector",
+                             coaching: "The original study tools show sources and commentary for this text.") {
+            app.buttons["Next"].tap()
+        }
+        XCTAssertTrue(app.otherElements["torah-inspector-panel"].exists)
+        XCTAssertTrue(app.buttons["Next"].isHittable,
+                      "Guide controls must be in the actual compact inspector presentation")
+        try requireGuideStep("native.reader", coaching: "Return to the same text after reviewing its study tools.") {
+            app.buttons["Next"].tap()
+        }
+        capture("guided-study-original-inspector-and-reader")
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor private func requireGuideStep(_ destination: String, presentation: String = "currentTab",
+                                            coaching: String, action: () -> Void) throws {
+        let before = try actualNativeReceiptLines()
+        action()
+        XCTAssertTrue(app.staticTexts[coaching].waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: destination, presentation: presentation,
+                                          before: before, receiptSource: "guided-tour")
+    }
+
+    @MainActor
     func testGlobalSearchPublicRootPreservesOriginalPrivateQuery() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
