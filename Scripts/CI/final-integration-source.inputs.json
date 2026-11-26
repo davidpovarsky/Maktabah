@@ -35,6 +35,7 @@
     "original_account_exchange_ui": "f0d541b9ace6fc473bcd02b2b50f8bcccdd48615",
     "original_catalog_authors": "0b670d7df96b1cff82d4aa84ee8fcd64fdbf06a9",
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
+    "original_file_workshop_receipt": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
     "original_license_texts": "c952ca3ebcdcf8a1fecdb900850d8ab6f9cbe5fe",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_phone_picker_acceptance": "30ea8b67f833ea40550311b38f152882ebac296e",
@@ -55,11 +56,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "bb82aaf3d7b1e8056ecc2bcdcebfdc20cd09691c",
+  "application_source_sha": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
   "application_trees": {
     "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "09adf3792e54a679e1199a851e419a0c6cf72ae3",
+    "Source": "c8a1184d7a2305656d4b61f5b896a38fb9485f53",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
@@ -438,6 +439,13 @@
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
+        "original_file_workshop_receipt": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "original_license_texts": {
           "bytes": 5988,
           "kind": "blob",
@@ -762,11 +770,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 21764,
+        "bytes": 21803,
         "kind": "blob",
         "mode": "100644",
-        "object": "12985bbc3f055f04928831130ac353a81f5df007",
-        "sha256": "fc41ed6938aa1289bf2b6aa4ab5eb5d177c6a02d0e8acb49079d53a271ec0837"
+        "object": "ddbb6687ecf723ee69cbe6532f395263b4cbac22",
+        "sha256": "ee390acacc4fe11b45007f318e42ffd3d6c2082cc6831f88a575fe530c099cc2"
       },
       "before": {
         "bytes": 14178,
@@ -775,7 +783,7 @@
         "object": "4c94af84e718647c2e5700ca33b232172a75e5cb",
         "sha256": "5d0b7b504b0019f666c15e5dd45ef7ed46986d4648a23bf33448cd6e0b6f65a1"
       },
-      "component": "original_rich_miniapps",
+      "component": "original_file_workshop_receipt",
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift"
     },
     {
@@ -1085,6 +1093,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "original_file_workshop_receipt": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "original_license_texts": {
           "bytes": 21873,
           "kind": "blob",
@@ -1268,11 +1283,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 11669,
+        "bytes": 12147,
         "kind": "blob",
         "mode": "100644",
-        "object": "9e78c5ea179a980d20b0169d87871d4d512d3602",
-        "sha256": "3cf95b660be40a918da3e015f9f17b1fb4a47010dd02eceb25c0b428278280f5"
+        "object": "8a7c456c7f09bbfc323fee10afb5df535a2266bd",
+        "sha256": "a52e773295c759bcb1e651953029899cd3d7ac2471cda4a757c4f7e97379f83a"
       },
       "before": {
         "bytes": 7749,
@@ -1281,7 +1296,7 @@
         "object": "7f53004a69848410a6b13d2f1a219f4b38cd5712",
         "sha256": "ed35c57478d84fb892541ef2a92e34f30fc6fa5d66d13101cc08abeaedefed13"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "original_file_workshop_receipt",
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"
     },
     {
@@ -1528,6 +1543,13 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "original_explicit_save": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "original_file_workshop_receipt": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -1983,6 +2005,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "original_file_workshop_receipt": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "original_license_texts": {
           "bytes": 37347,
           "kind": "blob",
@@ -2368,6 +2397,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "original_file_workshop_receipt": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "original_license_texts": {
           "bytes": 15325,
@@ -2935,6 +2971,44 @@
       },
       "component": "original_lifecycle_and_native_batch",
       "path": "Source/Features/Annotations/Database/AnnotationRepository.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 36680,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+        "sha256": "a7d64c575cc7e1ec6c59e81dc2ad7e8aca7dd10e2c7c52aa587146cbefa3e14e"
+      },
+      "before": {
+        "bytes": 36657,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "5948dbf920edf2d95c619f3addc276b9945281b9",
+        "sha256": "259b35d622b06ee2862c4714e36723b8022ca16ddf8770659644dd61e4b932dc"
+      },
+      "component": "original_file_workshop_receipt",
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 317,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+        "sha256": "72fb388dc624aa7981c80a23cfc6e0201b28582a19cf7d809e1f4a57e9beeeaa"
+      },
+      "before": {
+        "bytes": 270,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "42b8ba3d8d37d56aab4d83a4fd1354b2f3f8d7cc",
+        "sha256": "295dc73661483eeebfad003a8306aa44b335c7db6cd4eab307c434d430a16d21"
+      },
+      "component": "original_file_workshop_receipt",
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3725,6 +3799,25 @@
       },
       "component": "original_lifecycle_and_native_batch",
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 39677,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+        "sha256": "b0d711e131a81a17e302c0bca1f84ab89fb21915a5056b2adb6833c581e85947"
+      },
+      "before": {
+        "bytes": 39654,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7017cf0eec928c0669e06bd34b35c8458cc814f6",
+        "sha256": "1752e39c9b69e3d32f65222b84fd8a2ceccb89baf2fee3b9e5ffe927d7a3f44c"
+      },
+      "component": "original_file_workshop_receipt",
+      "path": "Source/UI/macOS/TextView/IbarotTextView.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",

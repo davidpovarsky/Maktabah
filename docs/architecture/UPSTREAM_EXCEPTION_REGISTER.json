@@ -247,6 +247,46 @@
       }
     },
     {
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+      "patch_id": "OWNER_PATCH_052",
+      "approval_ref": "OWNER_PATCH_052",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+      "patch_digest_sha256": "e71882308da133a99937923e8fa4d4f531cb9a09b31b18a16ec4b922318b6c35",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_052",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+        "patch_digest_sha256": "e71882308da133a99937923e8fa4d4f531cb9a09b31b18a16ec4b922318b6c35",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "7c4e46fc5cfc636daafc1b918cc4291ebeaa543e5ae8066eb27a40ac83f4b49a8d9cc910397fe0c347ea641ad11709eb785f4c8d35e4789b6b605d9afda66f0e",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "patch_id": "OWNER_PATCH_053",
+      "approval_ref": "OWNER_PATCH_053",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+      "patch_digest_sha256": "bcb9499e6ee4bc5423a33fbeab361ddb80f9029673b95334ec7bb9987cc27f99",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_053",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+        "patch_digest_sha256": "bcb9499e6ee4bc5423a33fbeab361ddb80f9029673b95334ec7bb9987cc27f99",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "8349b10ca95291806c3be56faf8fe01b25bec662034aa4a822b04ce403324d3cde1c254acfa7ce9f74abfab845e24129ede5499c1d524d2616f5fec2ff51190e",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      }
+    },
+    {
       "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
       "patch_id": "OWNER_PATCH_008",
       "approval_ref": "OWNER_PATCH_008",
@@ -1107,6 +1147,26 @@
       }
     },
     {
+      "path": "Source/UI/macOS/TextView/IbarotTextView.swift",
+      "patch_id": "OWNER_PATCH_054",
+      "approval_ref": "OWNER_PATCH_054",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+      "patch_digest_sha256": "c926a4a555de043b6d424d3eb3e135c5509c126ce8f79560b313f13f767208dc",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_054",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+        "patch_digest_sha256": "c926a4a555de043b6d424d3eb3e135c5509c126ce8f79560b313f13f767208dc",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "1ea133367d02035fa43277846ed9e473afd8b698a6de9f4cc1e91e1034834362299ff194ed5532ff5104b038d1d1edf8bede0a0e6ad3cc6b856b6e69fa0bf205",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      }
+    },
+    {
       "path": "Source/iOS-Info.plist",
       "patch_id": "OWNER_PATCH_051",
       "approval_ref": "OWNER_PATCH_051",
@@ -1389,10 +1449,10 @@
     }
   ],
   "status": "APPROVED_OWNER_SIGNED",
-  "last_signed": "2026-11-26T11:47:11Z",
+  "last_signed": "2026-11-26T11:59:29Z",
   "owner_verification_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
   "owner_review": {
-    "source_sha": "bb82aaf3d7b1e8056ecc2bcdcebfdc20cd09691c",
-    "manifest_sha256": "9e552144998e24dcdbc3a02997145f0fb2def902f9e878dd2e63ab9741722ff6"
+    "source_sha": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
+    "manifest_sha256": "25898684bd739aafecbea8a5802a29a5a53512c0d503f884e0faba592483b75c"
   }
 }
