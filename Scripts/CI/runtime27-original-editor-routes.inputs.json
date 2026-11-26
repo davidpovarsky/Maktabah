@@ -9,13 +9,13 @@
     },
     "release-device": {
       "admission_path": "Scripts/CI/original-editor-release-device-saved-body-75a98ba.inputs.json",
-      "admission_sha256": "790f899fbad3068d0e60734067d099fb39b4582ec05df941bf7e2a4f6c6ff26a",
+      "admission_sha256": "0ab156107f76674938012e83c83dcfe51fe7952a9018739f359aef097003ce26",
       "configuration": "Release",
       "platform": "iphoneos"
     },
     "release-simulator": {
       "admission_path": "Scripts/CI/original-editor-release-simulator-saved-body-75a98ba.inputs.json",
-      "admission_sha256": "d6e3b06c05d4b95f0dd92b67600bcaf9201663578c8ec8ffb015b8a2c3154c38",
+      "admission_sha256": "fa0e7a6b23072da6b8535b7c724590e9cc51ce433cad84d47cfa419003ac7bad",
       "configuration": "Release",
       "platform": "iphonesimulator"
     }
