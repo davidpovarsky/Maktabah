@@ -963,9 +963,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return (request, continuing.owner.context)
     }
 
-    private func advanceSemanticJourney(_ owner: SemanticJourneyOwner, receipt: UISceneReceipt) throws {
+    private func advanceSemanticJourney(_ owner: SemanticJourneyOwner, receipt: UISceneReceipt,
+                                        finishing pending: CommentaryInvocation) throws {
         guard let entry = scenes[owner.sceneID], entry.managerID == owner.managerID,
-              contexts[owner.sceneID] == owner.context,
+              contexts[owner.sceneID] == owner.context, pending.sceneID == owner.sceneID,
+              pending.context == owner.context, let release = pending.cleanup,
               receipt.sceneID == owner.sceneID, receipt.backendSnapshot == owner.observation.backend,
               let reader = receipt.coreReceipt, reader.destination.presentationMode == .newTab else {
             throw ActionPortError.staleState
@@ -997,7 +999,28 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             #endif
             throw ActionPortError.staleState
         }
-        owner.observation = observed
+        // This command owns the reservation's synchronous release. It advances
+        // the source epoch, even though the actual Reader and workspace remain
+        // identical. Use only that exact publication for the next admission.
+        let (nextRevision, overflow) = observed.epoch.revision.addingReportingOverflow(1)
+        guard !overflow else { throw ActionPortError.staleState }
+        let successor = HanlinSourceObservation(backend: observed.backend, source: observed.source,
+            epoch: .init(sourceID: observed.epoch.sourceID, revision: nextRevision),
+            projection: observed.projection, readerContent: observed.readerContent,
+            currentWorkReadSource: observed.currentWorkReadSource, selectedRange: observed.selectedRange,
+            locale: observed.locale)
+        pending.cleanup = nil
+        release()
+        guard let live = scenes[owner.sceneID], live.session === entry.session, live.managerID == entry.managerID,
+              contexts[owner.sceneID] == nil, let source = live.session.workspaceProjectionSource,
+              let mapping = try source.read()?.mappingOwnershipObservation(),
+              ObjectIdentifier(mapping.source) == successor.source, mapping.epoch == successor.epoch,
+              mapping.source.event.reasons == [.readerReservation],
+              try hanlinSource(sceneID: owner.sceneID, entry: live) == successor else {
+            throw ActionPortError.staleState
+        }
+        try live.session.validateCompletedJourneySurface(receipt)
+        owner.observation = successor
     }
 
     /// A count remains withheld until its read authority is checked again after
@@ -1208,7 +1231,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             guard let receipt = readerInvocations[request.requestId]?.receipt else { throw ActionPortError.invalidResponse }
             record(.acknowledged(receipt))
             if let continuing {
-                do { try advanceSemanticJourney(continuing.owner, receipt: receipt) }
+                do { try advanceSemanticJourney(continuing.owner, receipt: receipt, finishing: pending) }
                 catch { throw Self.uncertainNativeEffect(error) }
                 continuing.owner.didAcknowledge?(receipt)
             }
