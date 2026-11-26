@@ -217,9 +217,9 @@ actor OtzariaDatabaseBootstrapService {
         return finalURL
     }
 
-    func finishSuccessfulInstall(storage: OtzariaDatabaseStorage) async {
-        await Task.detached(priority: .utility) { [installer] in
-            installer.completePromotion(storage: storage)
+    func finishSuccessfulInstall(storage: OtzariaDatabaseStorage) async throws {
+        try await Task.detached(priority: .utility) { [installer] in
+            try installer.completePromotion(storage: storage)
         }.value
         await downloader.cleanupAfterSuccessfulInstall(workspaceURL: storage.downloadsRoot)
         currentStorage = nil

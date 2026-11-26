@@ -20,15 +20,24 @@ enum OtzariaBootstrapAdapter {
         ) || fileManager.fileExists(atPath: storage.previousDatabaseURL.path)
         if interruptedPromotion,
            fileManager.fileExists(atPath: storage.finalDatabaseURL.path) {
-            try OtzariaMaktabahBridge.shared.activateManagedDatabase(
-                at: storage.finalDatabaseURL
-            )
-            installer.completePromotion(storage: storage)
-            return true
+            do {
+                try OtzariaMaktabahBridge.shared.activateManagedDatabase(
+                    at: storage.finalDatabaseURL
+                )
+                try installer.completePromotion(storage: storage)
+                return true
+            } catch {
+                let commitError = error
+                OtzariaMaktabahBridge.shared.resetConnection()
+                OtzariaTantivySearchRepository.shared.closeAllEngines()
+                try installer.rollbackPromotion(storage: storage)
+                if try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible() { return true }
+                throw commitError
+            }
         }
         let restored = try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()
         if restored {
-            installer.completePromotion(storage: storage)
+            try installer.completePromotion(storage: storage)
         }
         return restored
     }
@@ -96,18 +105,25 @@ enum OtzariaBootstrapAdapter {
         OtzariaMaktabahBridge.shared.resetConnection()
         OtzariaTantivySearchRepository.shared.closeAllEngines()
 
-        let finalURL = try await service.promote(
-            prepared,
-            storage: storage,
-            progress: progress
-        )
+        let finalURL: URL
+        do {
+            finalURL = try await service.promote(prepared, storage: storage, progress: progress)
+        } catch {
+            // promote() already restored its own failed filesystem commit.
+            // Do not invoke rollback a second time and delete that old file.
+            _ = try OtzariaMaktabahBridge.shared.restoreDatabaseIfPossible()
+            throw error
+        }
         do {
             try OtzariaMaktabahBridge.shared.activateManagedDatabase(at: finalURL)
+            try await service.finishSuccessfulInstall(storage: storage)
         } catch {
             let activationError = error
             let hadPrevious = FileManager.default.fileExists(
                 atPath: storage.previousDatabaseURL.path
             )
+            OtzariaMaktabahBridge.shared.resetConnection()
+            OtzariaTantivySearchRepository.shared.closeAllEngines()
             do {
                 try await service.rollbackFailedActivation(storage: storage)
             } catch {
@@ -131,7 +147,6 @@ enum OtzariaBootstrapAdapter {
             }
             throw activationError
         }
-        await service.finishSuccessfulInstall(storage: storage)
         return OtzariaManagedDatabaseInstallResult(
             release: prepared.release,
             finalURL: finalURL,
