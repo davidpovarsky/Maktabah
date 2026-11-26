@@ -1,0 +1,113 @@
+{
+  "source_equivalence": {
+    "changed": {
+      "exit": 0,
+      "out": "M\tMaktabah-iOSUITests/NativeRoutingAcceptanceTests.swift\n",
+      "err": ""
+    },
+    "stat": {
+      "exit": 0,
+      "out": " Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift | 12 ++++++------\n 1 file changed, 6 insertions(+), 6 deletions(-)\n",
+      "err": ""
+    },
+    "code": {
+      "exit": 0,
+      "out": "",
+      "err": ""
+    },
+    "from": "31b29f8f0f35df58c064a1539aa2cf21e5b5bf39",
+    "to": "29a731e273f9a757c743c49e182fece0e8047d46",
+    "scope": "Application/dependency equivalence; old test runner is not relabeled as final source."
+  },
+  "release_app": {
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app",
+    "binary": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah",
+    "sha256": "bec95d552569790f5f34e6a81c56f0ab3c2130585925c591e78ca0b7c9014fb1",
+    "version": "1.0.0",
+    "build": "195",
+    "profile": "production",
+    "source_application": "31b29f8f0f35df58c064a1539aa2cf21e5b5bf39",
+    "prepared_checkout": "a649725022392a4212811d973827dbb0234869f2"
+  },
+  "xctestrun": [
+    "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/build/ReleaseDerivedData/Build/Products/Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun"
+  ],
+  "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/owner-verified-current-production-release.0Uv90ibO/RESULT.json",
+  "baseline_evidence_root": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd",
+  "xcresults_relocation": {
+    "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-native116-baseline-20261126\\native116-original-large-xcresults.tar.gz",
+    "archive_sha256": "04b74d9844584e92ee8e20f21ae883ce672c32c179641d6354bb33bb2efbfd66",
+    "archive_bytes": 996075520,
+    "mac_source_root": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts",
+    "paths": [
+      "result-11-window.xcresult",
+      "result-11-reader.xcresult",
+      "result-phone.xcresult",
+      "result-11.xcresult"
+    ],
+    "matching_raw_members": 13230
+  },
+  "window_log": {
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/test-simulator-11-window.log",
+    "matches": [
+      {
+        "line": 2,
+        "text": "    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -workspace Maktabah.xcworkspace -scheme Maktabah-iOS -clonedSourcePackagesDirPath build/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -destination \"platform=iOS Simulator,id=B8ECF9D7-A780-4113-A092-DB89D79E0EC2\" -derivedDataPath build/DerivedData -resultBundlePath /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/result-11-window.xcresult -test-timeouts-enabled YES -default-test-execution-time-allowance 600 -maximum-test-execution-time-allowance 600 \"-only-testing:Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector\" \"-only-testing:Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteHIDComparison\""
+      },
+      {
+        "line": 49,
+        "text": "Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector]' started."
+      },
+      {
+        "line": 300,
+        "text": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:864: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual window must expose the original Study Tools action or its native top overflow"
+      },
+      {
+        "line": 382,
+        "text": "Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapNativeWindowResizePaletteAndInspector]' failed (106.121 seconds)."
+      },
+      {
+        "line": 383,
+        "text": "Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteHIDComparison]' started."
+      },
+      {
+        "line": 609,
+        "text": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift:864: error: -[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteHIDComparison] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual window must expose the original Study Tools action or its native top overflow"
+      },
+      {
+        "line": 691,
+        "text": "Test Case '-[Maktabah_iOSUITests.R27NativePadTests testNormalBootstrapPaletteHIDComparison]' failed (86.187 seconds)."
+      },
+      {
+        "line": 706,
+        "text": "\tR27NativePadTests.testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+      },
+      {
+        "line": 707,
+        "text": "\tR27NativePadTests.testNormalBootstrapPaletteHIDComparison()"
+      }
+    ]
+  },
+  "phone_log": {
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/test-simulator-phone.log",
+    "matches": [
+      {
+        "line": 935,
+        "text": "Test Case '-[Maktabah_iOSUITests.NativeRoutingPhoneAcceptanceTests testPhoneColdHistoryWaitsForActualSceneMount]' started."
+      },
+      {
+        "line": 1105,
+        "text": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift:933: error: -[Maktabah_iOSUITests.NativeRoutingPhoneAcceptanceTests testPhoneColdHistoryWaitsForActualSceneMount] : XCTAssertTrue failed"
+      },
+      {
+        "line": 1112,
+        "text": "Test Case '-[Maktabah_iOSUITests.NativeRoutingPhoneAcceptanceTests testPhoneColdHistoryWaitsForActualSceneMount]' failed (62.043 seconds)."
+      },
+      {
+        "line": 4858,
+        "text": "\tNativeRoutingPhoneAcceptanceTests.testPhoneColdHistoryWaitsForActualSceneMount()"
+      }
+    ]
+  },
+  "physical_original_source": "b6c300f71faefa177edc132262558d627df7d58f:docs/hq-integration/core-final-20261126/DEVICE_ACCEPTANCE.md"
+}

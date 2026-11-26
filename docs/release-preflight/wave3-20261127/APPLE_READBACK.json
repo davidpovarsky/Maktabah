@@ -1,0 +1,171 @@
+{
+  "observedAt": "2026-11-26T22:30:35.959684+00:00",
+  "app": {
+    "type": "apps",
+    "id": "6809559414",
+    "attributes": {
+      "name": "ChavrusaText",
+      "bundleId": "com.davidpovarsky.chavrusatext",
+      "sku": "chavrusatext-ios"
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/apps/6809559414"
+    }
+  },
+  "builds": [
+    {
+      "type": "builds",
+      "id": "78f4cf1f-d84a-4a57-aa1d-de472790916c",
+      "attributes": {
+        "version": "11201",
+        "uploadedDate": "2026-11-09T18:40:04-08:00",
+        "expired": false,
+        "processingState": "VALID",
+        "usesNonExemptEncryption": false
+      },
+      "relationships": {
+        "preReleaseVersion": {
+          "data": {
+            "type": "preReleaseVersions",
+            "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/builds/78f4cf1f-d84a-4a57-aa1d-de472790916c/relationships/preReleaseVersion",
+            "related": "https://api.appstoreconnect.apple.com/v1/builds/78f4cf1f-d84a-4a57-aa1d-de472790916c/preReleaseVersion"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/builds/78f4cf1f-d84a-4a57-aa1d-de472790916c"
+      }
+    },
+    {
+      "type": "builds",
+      "id": "3ad95949-abf0-46d4-afa5-62609dd80dea",
+      "attributes": {
+        "version": "11001",
+        "uploadedDate": "2026-11-09T15:34:25-08:00",
+        "expired": false,
+        "processingState": "VALID",
+        "usesNonExemptEncryption": false
+      },
+      "relationships": {
+        "preReleaseVersion": {
+          "data": {
+            "type": "preReleaseVersions",
+            "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/builds/3ad95949-abf0-46d4-afa5-62609dd80dea/relationships/preReleaseVersion",
+            "related": "https://api.appstoreconnect.apple.com/v1/builds/3ad95949-abf0-46d4-afa5-62609dd80dea/preReleaseVersion"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/builds/3ad95949-abf0-46d4-afa5-62609dd80dea"
+      }
+    },
+    {
+      "type": "builds",
+      "id": "3e2f77e7-b9e5-452b-b268-84a0908b1e2a",
+      "attributes": {
+        "version": "10901",
+        "uploadedDate": "2026-11-09T12:33:24-08:00",
+        "expired": false,
+        "processingState": "VALID",
+        "usesNonExemptEncryption": false
+      },
+      "relationships": {
+        "preReleaseVersion": {
+          "data": {
+            "type": "preReleaseVersions",
+            "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/builds/3e2f77e7-b9e5-452b-b268-84a0908b1e2a/relationships/preReleaseVersion",
+            "related": "https://api.appstoreconnect.apple.com/v1/builds/3e2f77e7-b9e5-452b-b268-84a0908b1e2a/preReleaseVersion"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/builds/3e2f77e7-b9e5-452b-b268-84a0908b1e2a"
+      }
+    },
+    {
+      "type": "builds",
+      "id": "00ce1524-94dd-4fe2-bcaa-750ae1d3a5fe",
+      "attributes": {
+        "version": "10701",
+        "uploadedDate": "2026-11-09T07:09:49-08:00",
+        "expired": false,
+        "processingState": "VALID",
+        "usesNonExemptEncryption": false
+      },
+      "relationships": {
+        "preReleaseVersion": {
+          "data": {
+            "type": "preReleaseVersions",
+            "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/builds/00ce1524-94dd-4fe2-bcaa-750ae1d3a5fe/relationships/preReleaseVersion",
+            "related": "https://api.appstoreconnect.apple.com/v1/builds/00ce1524-94dd-4fe2-bcaa-750ae1d3a5fe/preReleaseVersion"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/builds/00ce1524-94dd-4fe2-bcaa-750ae1d3a5fe"
+      }
+    },
+    {
+      "type": "builds",
+      "id": "97bff7e2-0fe6-457a-9db0-bf32794e88c2",
+      "attributes": {
+        "version": "10601",
+        "uploadedDate": "2026-11-09T00:29:49-08:00",
+        "expired": false,
+        "processingState": "VALID",
+        "usesNonExemptEncryption": false
+      },
+      "relationships": {
+        "preReleaseVersion": {
+          "data": {
+            "type": "preReleaseVersions",
+            "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/builds/97bff7e2-0fe6-457a-9db0-bf32794e88c2/relationships/preReleaseVersion",
+            "related": "https://api.appstoreconnect.apple.com/v1/builds/97bff7e2-0fe6-457a-9db0-bf32794e88c2/preReleaseVersion"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/builds/97bff7e2-0fe6-457a-9db0-bf32794e88c2"
+      }
+    }
+  ],
+  "versions": [
+    {
+      "type": "preReleaseVersions",
+      "id": "66a45f87-e2f6-429a-aca5-7baf80ab9d1f",
+      "attributes": {
+        "version": "1.0.0",
+        "platform": "IOS"
+      },
+      "links": {
+        "self": "https://api.appstoreconnect.apple.com/v1/preReleaseVersions/66a45f87-e2f6-429a-aca5-7baf80ab9d1f"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "04958ecd-edac-4820-b277-8cc626e1ff64",
+      "attributes": {
+        "name": "חברותא",
+        "isInternalGroup": true,
+        "hasAccessToAllBuilds": true,
+        "publicLinkEnabled": null
+      }
+    }
+  ]
+}

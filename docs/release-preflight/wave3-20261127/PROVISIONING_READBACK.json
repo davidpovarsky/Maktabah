@@ -1,0 +1,97 @@
+{
+  "schema": "otzaria.wave3.release-preflight/1",
+  "scope": "Read-only release prerequisites and immutable historical evidence; not final acceptance",
+  "integration_source": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "observed_window_utc": "2026-11-26T22:25:58Z/2026-11-26T22:36:07Z",
+  "timezone": "Asia/Hebron",
+  "apple_app_id": "6809559414",
+  "bundle_id": "com.davidpovarsky.chavrusatext",
+  "team": "NA6HPWARQ2",
+  "profile": {
+    "uuid": "4e665d33-3317-4924-85d5-7e786f6bbd07",
+    "name": "ChavrusaText App Store Associated Domains 20261126",
+    "expiry": "2027-09-07 07:25:00",
+    "team": [
+      "NA6HPWARQ2"
+    ],
+    "entitlements": {
+      "application-identifier": "NA6HPWARQ2.com.davidpovarsky.chavrusatext",
+      "com.apple.developer.team-identifier": "NA6HPWARQ2",
+      "com.apple.security.application-groups": [
+        "group.com.davidpovarsky.itorah",
+        "group.com.davidpovarsky.chavrusatext",
+        "group.com.itorah.shared"
+      ],
+      "com.apple.developer.associated-domains": "*",
+      "get-task-allow": false,
+      "beta-reports-active": true
+    }
+  },
+  "apple_profile_state": {
+    "observedAt": "2026-11-26T22:36:07.324287+00:00",
+    "bundle": {
+      "id": "7F445975JM",
+      "attributes": {
+        "name": "ChavrusaText",
+        "identifier": "com.davidpovarsky.chavrusatext",
+        "platform": "UNIVERSAL",
+        "seedId": "NA6HPWARQ2"
+      }
+    },
+    "profile_count": 84,
+    "next": null,
+    "matches": [
+      {
+        "type": "profiles",
+        "id": "2498S5G3V2",
+        "attributes": {
+          "name": "ChavrusaText App Store Associated Domains 20261126",
+          "profileState": "ACTIVE",
+          "profileType": "IOS_APP_STORE",
+          "uuid": "4e665d33-3317-4924-85d5-7e786f6bbd07",
+          "expirationDate": "2027-09-07T07:25:00.000+00:00"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/profiles/2498S5G3V2"
+        }
+      }
+    ]
+  },
+  "distribution_identity": {
+    "sha1": "644940FCF25D1730DBD1BF7596AEBA7229E2B8FD",
+    "subject": "Apple Distribution: David Povarsky (NA6HPWARQ2)",
+    "verified_by": "security find-identity -v -p codesigning via existing pinned Oracle-to-scaleway-mac SSH as m1",
+    "valid_identities": 1,
+    "direct_sentinel_daemon_result": "0 valid identities; not the m1 SSH keychain context"
+  },
+  "export_options": {
+    "path": "/Users/m1/builds/_preflight/chavrusatext-final-internal-export-20261126.OR7qIPNh/Otzaria-InternalTestFlight-ExportOptions.plist",
+    "sha256": "8153f7871fe8c1d87dec6a7948bf4afb5928a8c4c524a5d25ca31892bc26b390",
+    "method": "app-store-connect",
+    "testFlightInternalTestingOnly": true
+  },
+  "mac": {
+    "observed_at": "2026-11-26T22:26:20.462966+00:00",
+    "xcode": "Xcode 27.0\nBuild version 27A266a",
+    "data_free_kib": 43313436,
+    "data_free_bytes": 44352958464,
+    "warning_only": true,
+    "concurrent_work_observed": "Hanlin Release simulator build; unrelated booted simulators retained",
+    "cleanup_performed": false
+  },
+  "actions": {
+    "archive": false,
+    "export_ipa": false,
+    "validation": false,
+    "upload": false,
+    "physical_tests": false,
+    "owner_gate_rerun_by_this_lane": false,
+    "code_changed": false
+  },
+  "notes": [
+    "Old profile B8A435AD has the three groups but lacks Associated Domains; retain mapping history and use current profile when final gates pass.",
+    "Installed profile decoded using openssl CMS verification without chain validation; current ACTIVE status read separately through authenticated Apple API.",
+    "Native116 and Release114+2 require final immutable candidate acceptance; this report does not award credit."
+  ],
+  "document_local_date": "2026-11-27"
+}
