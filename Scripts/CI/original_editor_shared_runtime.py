@@ -317,6 +317,23 @@ def private_linker_glue(symbol):
     return symbol.startswith(('_$s8Promises', '_$S8Promises')) and re.search(r"fA[0-9]*_$", symbol) is not None
 
 
+def protobuf_exported_symbols(binary, output):
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    require(len(lines) >= 3 and lines[0] == str(binary) + " [arm64]:"
+            and lines[1] == "-exports:" and lines[2].split() == ["offset", "symbol"],
+            "Unexpected original Protobuf export table")
+    symbols = set()
+    for line in lines[3:]:
+        fields = line.split()
+        require(len(fields) in (2, 3) and re.fullmatch(r"0x[0-9a-fA-F]+", fields[0])
+                and (len(fields) == 2 or fields[2] in ("[weak-def]", "[per-thread]")),
+                "Unexpected original Protobuf export entry")
+        if fields[1].startswith("_"):
+            symbols.add(fields[1])
+    require(symbols, "Missing original Protobuf export definitions")
+    return symbols
+
+
 def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=False, host_library_files=None):
     owner = admitted['shared_runtime']['ownership']
     images = {app.name: app / plistlib.loads((app / 'Info.plist').read_bytes())['CFBundleExecutable']}
@@ -344,9 +361,20 @@ def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=Fal
     symbols = {}
     prefix = 'after-ui-' if after_ui else ''
     for index, (name, binary) in enumerate(images.items()):
-        output = command(['xcrun', 'nm', '-gjU', str(binary)], root=root, evidence=evidence,
-                         label=prefix + 'shared-owner-' + str(index), timeout=60)
+        label = prefix + 'shared-owner-' + str(index)
+        argv = ['xcrun', 'nm', '-gjU']
+        split_protobuf = (name == 'ProtobufMessages.framework'
+                          and admitted.get('schema') == 'otzaria.original-editor.production-admission/1')
+        if split_protobuf:
+            # The original image has many dyld-only exports. Scan both complete
+            # tables without nm's expensive merged lookup against its nlist.
+            argv.extend(['--no-sort', '--no-dyldinfo'])
+        output = command([*argv, str(binary)], root=root, evidence=evidence, label=label, timeout=60)
         symbols[name] = {line.strip() for line in output.splitlines() if line.startswith('_')}
+        if split_protobuf:
+            exports = command(['xcrun', 'dyld_info', '-exports', str(binary)], root=root, evidence=evidence,
+                              label=label + '-dyld-exports', timeout=60)
+            symbols[name].update(protobuf_exported_symbols(binary, exports))
     runtime, editor = RUNTIME + '.framework', EDITOR + '.framework'
     require(runtime in symbols and editor in symbols, 'Built app lacks shared implementation images')
     namespaces = ['_$s' + str(len(m)) + m for m in PRODUCTS]
