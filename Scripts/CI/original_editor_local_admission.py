@@ -12,6 +12,8 @@ import stat
 import uuid
 import zipfile
 
+import original_editor_saved_body_abi as saved_body_abi
+
 REPOSITORY = 'davidpovarsky/anytype-swift'
 QUALIFIED = 'ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS'
 ROLES = {'execution', 'source_before', 'source_after', 'abi'}
@@ -195,7 +197,8 @@ def validate_configuration(config):
         require(re.fullmatch(r'[0-9a-f]{64}', config.get(name, '')), 'Missing local SDK digest: ' + name)
     rows = config.get('local_receipts', {})
     provenance = config.get('abi_provenance')
-    require(provenance in (None, DONOR_SCHEMA, FRESH_SCHEMA), 'Unsupported local ABI provenance route')
+    require(provenance in (None, DONOR_SCHEMA, FRESH_SCHEMA, saved_body_abi.SCHEMA),
+            'Unsupported local ABI provenance route')
     require(provenance == DONOR_SCHEMA or 'abi_donor_source_sha' not in config,
             'A native donor identity requires the explicit donor provenance route')
     scope = donor_policy_scope(config.get('abi_donor_source_sha')) if provenance == DONOR_SCHEMA else None
@@ -457,9 +460,14 @@ def validate_provenance(root, config, qualification, api):
     execution = values['execution']
     donor_route = config.get('abi_provenance') == DONOR_SCHEMA
     fresh_route = config.get('abi_provenance') == FRESH_SCHEMA
+    saved_body_route = config.get('abi_provenance') == saved_body_abi.SCHEMA
+    require(not saved_body_route or contract == FILES_MINIAPPS_CONTRACT,
+            'Saved-body ABI requires the exact complete files contract')
     require(not donor_route or contract in (MINIAPPS_CONTRACT, FILES_MINIAPPS_CONTRACT),
             'Donor reuse requires the reviewed complete MiniApps public contract')
-    if donor_route:
+    if saved_body_route:
+        branch = saved_body_abi.BRANCH
+    elif donor_route:
         branch = donor_policy_scope(config.get('abi_donor_source_sha'))['current_branch']
     elif fresh_route:
         # The independently rebuilt Collections13 SDK retains its own actual
@@ -493,10 +501,16 @@ def validate_provenance(root, config, qualification, api):
             and before.get('execution_identity') == identity
             and before.get('status') == 'SOURCE_BOUND_FRAMEWORK_RUNTIME_NOT_RUN',
             'Actual SDK source closure was not preserved through execution')
-    donor_proof = fresh_proof = None
+    donor_proof = fresh_proof = saved_body_proof = None
+    require((abi.get('schema') == saved_body_abi.SCHEMA) == saved_body_route,
+            'Saved-body ABI requires its explicit provenance route')
     require((abi.get('schema') == FRESH_SCHEMA) == fresh_route,
             'Fresh original ABI cannot silently use a historical provenance route')
-    if donor_route:
+    if saved_body_route:
+        saved_body_proof = saved_body_abi.validate(
+            config['source_sha'], config['native_source_tree'], abi,
+            config['local_receipts']['abi']['sha256'], before, execution, qualification.get('heart', {}))
+    elif donor_route:
         donor_proof = validate_donor_abi(values, config, qualification.get('heart', {}), before)
     else:
         validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
@@ -521,6 +535,7 @@ def validate_provenance(root, config, qualification, api):
             'scope': 'EXACT_LOCAL_PRODUCER_SOURCE_AND_ABI_PROVENANCE_ONLY',
             **({'abi_reuse': donor_proof} if donor_proof else {}),
             **({'fresh_abi_provenance': fresh_proof} if fresh_proof else {}),
+            **({'saved_body_abi_provenance': saved_body_proof} if saved_body_proof else {}),
             **({'public_host_contract_sha256': contract} if contract else {})}
 
 

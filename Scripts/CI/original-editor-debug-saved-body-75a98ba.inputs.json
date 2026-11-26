@@ -1,0 +1,132 @@
+{
+  "abi_provenance": "otzaria.original-saved-body-retained-abi/1",
+  "archive_bytes": 369841877,
+  "archive_path": "build/otzaria-original-sdk-debug-75a98ba/framework.zip",
+  "archive_sha256": "acc7a8cb78e1ba835066b6987d58e6aaf1879a72048adf1fdab5a8d68ff10ec6",
+  "configuration": "Debug",
+  "device_framework_qualified": false,
+  "distribution_manifest_path": "build/otzaria-original-sdk-debug-75a98ba/framework-distribution.json",
+  "distribution_manifest_sha256": "99fc0a4a8649267a1d5fce9a16fd75645b4a91d2456a24045e6955759a69709c",
+  "distribution_root": "build/otzaria-original-sdk-debug-75a98ba/distribution",
+  "hanlin_source_path": "build/otzaria-original-sdk-debug-75a98ba/original-hanlin-snapshot.json",
+  "hanlin_source_sha256": "9e4b8820164a95023efe23ccc2a0bdbfb9aeb24553aba3eb502e1f15a98b95cf",
+  "local_execution_sha256": "2faaf4ee4b4c503048061932555911c564011c9efe49e96524d01e36e352d06e",
+  "local_receipts": {
+    "abi": {
+      "bytes": 502,
+      "path": "build/otzaria-original-sdk-debug-75a98ba/qualified-import-abi.json",
+      "sha256": "36968bdc4dd8340908af203f6f8c377fe9b4a00c0aaba6ccc23329b5385f01b3"
+    },
+    "execution": {
+      "bytes": 1132,
+      "path": "build/otzaria-original-sdk-debug-75a98ba/local-execution.json",
+      "sha256": "2faaf4ee4b4c503048061932555911c564011c9efe49e96524d01e36e352d06e"
+    },
+    "source_after": {
+      "bytes": 318230,
+      "path": "build/otzaria-original-sdk-debug-75a98ba/source-after.json",
+      "sha256": "80522628253e9d7fdf82c15c70cbc7b1d64a2eaedd31c04f43313040ddf6c2c3"
+    },
+    "source_before": {
+      "bytes": 318230,
+      "path": "build/otzaria-original-sdk-debug-75a98ba/source-before.json",
+      "sha256": "80522628253e9d7fdf82c15c70cbc7b1d64a2eaedd31c04f43313040ddf6c2c3"
+    }
+  },
+  "native_source_tree": "94805c1b5ac644d3ef4e12f554b9326d54286aeb",
+  "native_stageb_qualified": false,
+  "original_source_sha256": "f943716b517f5be934be00bf47365dc5df7b7ec0ced22f06460355ee8af76bfc",
+  "platform": "iphonesimulator",
+  "producer_kind": "local-mac",
+  "public_host_contract_sha256": "6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141",
+  "qualification_sha256": "e845f9b249738c47b1b8f97744642f2ecd2647b4665e5fbb0daed495e152728c",
+  "repository": "davidpovarsky/anytype-swift",
+  "run_attempt": 1,
+  "run_id": "local-6906f5e1-01bf-451f-9545-934d8c344274",
+  "schema": 3,
+  "shared_runtime": {
+    "clang_manifest_sha256": "d68ea8b5043159b20796e08f8d60eaee7a63f2b0c010554174db9244ec24e104",
+    "clang_roots": {
+      "header_search_paths": [
+        "Clang/Packages/swift-cmark/src/include",
+        "Clang/Packages/swift-cmark/extensions/include",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include",
+        "Clang/Packages/iosMath/iosMath",
+        "Clang/Packages/firebase-ios-sdk/FirebaseInstallations/Source/Library/Public",
+        "Clang/Packages/firebase-ios-sdk/FirebaseCore/Sources/Public",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources",
+        "Clang/Packages/firebase-ios-sdk/FirebaseMessaging/Sources/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Network/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/NSData+zlib/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Reachability/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/MethodSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/SwizzlerTestHelpers/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Logger/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Environment/Public",
+        "Clang/Packages/GoogleUtilities/third_party/IsAppEncrypted/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/UserDefaults/Public",
+        "Clang/Packages/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public",
+        "Clang/Packages/promises/Sources/FBLPromises/include",
+        "Clang/Packages/nanopb/spm_headers"
+      ],
+      "module_maps": [
+        "Clang/Packages/swift-cmark/src/include/module.modulemap",
+        "Clang/Packages/swift-cmark/extensions/include/module.modulemap",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap",
+        "Clang/Packages/iosMath/iosMath/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseCore.modulemap",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseMessaging.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Network.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-NSData.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Reachability.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-MethodSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-SwizzlerTestHelpers.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Logger.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Environment.modulemap",
+        "Clang/GeneratedModuleMaps/third-party-IsAppEncrypted.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-UserDefaults.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap",
+        "Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap",
+        "Clang/GeneratedModuleMaps/nanopb.modulemap"
+      ]
+    },
+    "hanlin_revision": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+    "host_pod_versions": {
+      "FirebaseCore": "12.8.0",
+      "FirebaseCoreInternal": "12.8.0",
+      "FirebaseInstallations": "12.8.0",
+      "GoogleDataTransport": "10.1.1",
+      "GoogleUtilities": "8.1.5",
+      "PromisesObjC": "2.4.1",
+      "PromisesSwift": "2.4.1",
+      "nanopb": "3.30910.0"
+    },
+    "host_products": [
+      "HanlinHostContracts",
+      "HanlinAgentCore",
+      "HanlinChatCore",
+      "HanlinScriptUI",
+      "HanlinChatUI",
+      "HanlinPresentationKit",
+      "HanlinRichUI",
+      "HanlinPlatformContracts",
+      "FloatingPanel",
+      "TorahInspectorCore",
+      "TorahInspectorUI",
+      "ZIPFoundation"
+    ],
+    "kind": "original-shared-implementations/1",
+    "swift_ai_revision": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
+  },
+  "source_sha": "75a98ba98d6455eefc2c98113fa744b0f3c2e7bf",
+  "status": "QUALIFIED_LOCAL_SDK_SIMULATOR_INPUT_REQUIRES_COMMITTED_ADMISSION",
+  "toolchain": {
+    "sdk_version": "27.0",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "xcode": "Xcode 27.0\nBuild version 27A266a"
+  }
+}

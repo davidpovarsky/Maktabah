@@ -293,6 +293,8 @@ def prepare(producer_root, evidence, abi_path, destination):
             config['abi_donor_source_sha'] = donor_source
     if fresh_verification is not None:
         config['abi_provenance'] = LOCAL['FRESH_SCHEMA']
+    if receipts['abi']['sha256'] == LOCAL['saved_body_abi'].ABI_SHA256:
+        config['abi_provenance'] = LOCAL['saved_body_abi'].SCHEMA
     if contract:
         config['public_host_contract_sha256'] = contract
     LOCAL['validate_provenance'](ROOT, config, qualification, API)

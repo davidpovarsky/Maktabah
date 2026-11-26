@@ -4,7 +4,9 @@ from pathlib import Path
 import re
 import uuid
 
-from original_editor_local_admission import restore_archive, validate_abi_adapter, validate_public_contract
+import original_editor_saved_body_abi as saved_body_abi
+from original_editor_local_admission import (FILES_MINIAPPS_CONTRACT, restore_archive,
+                                             validate_abi_adapter, validate_public_contract)
 
 INPUT_SCHEMA = 'otzaria.original-editor.production-input/1'
 ADMISSION_SCHEMA = 'otzaria.original-editor.production-admission/1'
@@ -39,6 +41,8 @@ def validate_configuration(config):
         require(re.fullmatch(r'[a-f0-9]{64}', config.get(name, '')), 'Unfinalized Release digest: ' + name)
     require(type(config.get('archive_bytes')) is int and config['archive_bytes'] > 0,
             'Release archive size is absent')
+    require(config.get('abi_provenance') in (None, saved_body_abi.SCHEMA),
+            'Unsupported original Release ABI provenance route')
     rows = config.get('local_receipts', {})
     require(set(rows) == ROLES, 'Release execution and original ABI provenance are incomplete')
     for name, row in rows.items():
@@ -109,17 +113,27 @@ def validate_provenance(root, config, qualification, api):
     # All source facts remain identical. The current-build compiler context is
     # separately named by the producer, never substituted into these receipts.
     require(before == abi_before, 'Release compiled a different SDK source closure than the admitted ABI owner')
-    validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
-    require(abi.get('status') == 'PASS' and abi.get('producer_kind') == 'local-mac'
-            and abi.get('sdk_source_sha') == config['source_sha']
-            and abi.get('local_execution_sha256') == original_identity['local_execution_sha256']
-            and abi.get('native_qualification', {}).get('native_source_tree') == config['native_source_tree']
-            and abi.get('full_sdk_accepted') is False and abi.get('editor_ui_accepted') is False
-            and abi.get('owned_command_groups_drained') is True
-            and qualification.get('heart', {}).get('receipt_sha256') == config['local_receipts']['abi']['sha256']
-            and qualification['heart'].get('native_qualification') == abi.get('native_qualification')
-            and abi.get('native_qualification', {}).get('status') == 'PASS',
-            'Release does not consume the unchanged qualified original Import ABI')
+    saved_body_route = config.get('abi_provenance') == saved_body_abi.SCHEMA
+    require((abi.get('schema') == saved_body_abi.SCHEMA) == saved_body_route,
+            'Saved-body ABI requires its explicit Release provenance route')
+    saved_body_proof = None
+    if saved_body_route:
+        require(contract == FILES_MINIAPPS_CONTRACT, 'Saved-body Release requires the exact complete files contract')
+        saved_body_proof = saved_body_abi.validate(
+            config['source_sha'], config['native_source_tree'], abi,
+            config['local_receipts']['abi']['sha256'], abi_before, original, qualification.get('heart', {}))
+    else:
+        validate_abi_adapter(abi, qualification.get('heart', {}), config['source_sha'])
+        require(abi.get('status') == 'PASS' and abi.get('producer_kind') == 'local-mac'
+                and abi.get('sdk_source_sha') == config['source_sha']
+                and abi.get('local_execution_sha256') == original_identity['local_execution_sha256']
+                and abi.get('native_qualification', {}).get('native_source_tree') == config['native_source_tree']
+                and abi.get('full_sdk_accepted') is False and abi.get('editor_ui_accepted') is False
+                and abi.get('owned_command_groups_drained') is True
+                and qualification.get('heart', {}).get('receipt_sha256') == config['local_receipts']['abi']['sha256']
+                and qualification['heart'].get('native_qualification') == abi.get('native_qualification')
+                and abi.get('native_qualification', {}).get('status') == 'PASS',
+                'Release does not consume the unchanged qualified original Import ABI')
     expected = SIMULATOR_PASS if config['platform'] == 'iphonesimulator' else DEVICE_PASS
     require(qualification.get('status') == expected and qualification.get('phase') == 'COMPLETE'
             and qualification.get('source_sha') == config['source_sha']
@@ -144,6 +158,7 @@ def validate_provenance(root, config, qualification, api):
             'platform': config['platform'], 'architectures': ['arm64'],
             'qualification_sha256': config['qualification_sha256'],
             'signing_team_id': config.get('signing_team_id'), 'native_stageb_qualified': False,
+            **({'saved_body_abi_provenance': saved_body_proof} if saved_body_proof else {}),
             **({'public_host_contract_sha256': contract} if contract else {})}
 
 
