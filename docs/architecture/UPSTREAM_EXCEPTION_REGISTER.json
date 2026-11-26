@@ -711,19 +711,19 @@
       "patch_id": "OWNER_PATCH_031",
       "approval_ref": "OWNER_PATCH_031",
       "status": "APPROVED",
-      "expected_head_blob_sha": "99fc2356a4277703675a215a1d0502a00f8a4124",
-      "patch_digest_sha256": "ed7814d972ac29be1f9c1b7849228c06898953c62345244b8edd24685209834d",
+      "expected_head_blob_sha": "6015ba4b6ff0fff6869c21a18bf079a6a821233b",
+      "patch_digest_sha256": "e7a285a8504092e7945dae806be81c94697a2c9b01cacf830e85395aedbb7ecc",
       "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
       "owner_attestation": {
         "repo": "davidpovarsky/Maktabah",
         "approval_id": "OWNER_PATCH_031",
         "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
-        "expected_head_blob_sha": "99fc2356a4277703675a215a1d0502a00f8a4124",
-        "patch_digest_sha256": "ed7814d972ac29be1f9c1b7849228c06898953c62345244b8edd24685209834d",
+        "expected_head_blob_sha": "6015ba4b6ff0fff6869c21a18bf079a6a821233b",
+        "patch_digest_sha256": "e7a285a8504092e7945dae806be81c94697a2c9b01cacf830e85395aedbb7ecc",
         "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
-        "signature": "332425411fa768f74246acb01fea49752d62beefa78f025a91ab5d92413d706f80a1097dff16b6937b2db496e2580cb4a79115fa76611f6768e48d7f8b2d6d0c",
-        "signed_at": "2026-11-26T00:52:17Z",
-        "expires_at": "2027-11-26T00:52:17Z"
+        "signature": "4e65890e8dde053af9d71568bebbc0109da5c3fe107b8236d9ff72cd97469061f36c0f76c7b79bcc139b0385709d6bc7e614f97183a4aa2739cff53e4989d905",
+        "signed_at": "2026-11-26T09:40:54Z",
+        "expires_at": "2027-11-26T09:40:54Z"
       }
     },
     {
@@ -1389,10 +1389,10 @@
     }
   ],
   "status": "APPROVED_OWNER_SIGNED",
-  "last_signed": "2026-11-26T06:06:57Z",
+  "last_signed": "2026-11-26T09:40:54Z",
   "owner_verification_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
   "owner_review": {
-    "source_sha": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
-    "manifest_sha256": "fc39f533fc6f619a134c81aebb807c06e568b8f07170fe8d3b3a8e7827bae9ed"
+    "source_sha": "83900fb73d91d1d0b44afd0710ada9142f656e93",
+    "manifest_sha256": "ab375e13a57732232b18523e3f857ccaa38da0cc5a2663daef4ea2ebab447aa1"
   }
 }
