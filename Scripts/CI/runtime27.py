@@ -248,6 +248,10 @@ def main():
             report["reviewed_skills"].append({"repository": repository, "revision": revision, "path": subpath,
                                               "sha256": hashlib.sha256(data).hexdigest(), "runtime_tools_installed": []})
         if report["mode"] == "probe":
+            report["voiceover_toolchain_probe"] = "ISOLATED_APPLE_DIAGNOSTIC_ONLY"
+            if run_logged([sys.executable, "Scripts/CI/native-speech-toolchain-diagnostic.py"],
+                          "voiceover-toolchain-probe.log", 1000, interrupt_controller=controller):
+                raise RuntimeError("Independent Apple VoiceOver toolchain probe failed")
             report["status"] = "ENVIRONMENT_PROBE_PASS_UI_NOT_RUN"
             return 0
         if report["mode"] not in {"ui", "release"}:
