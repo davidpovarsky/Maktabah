@@ -133,17 +133,22 @@ actor OtzariaDatabaseDownloader {
 
             let outcome: OtzariaDownloadRoundOutcome
             do {
-                outcome = try await delegate.run(task: task)
+                outcome = try await withTaskCancellationHandler {
+                    try await delegate.run(task: task)
+                } onCancel: {
+                    task.cancel()
+                }
             } catch {
                 activeTask = nil
                 session.invalidateAndCancel()
-                if cancellationRequested || (error as? URLError)?.code == .cancelled {
+                if cancellationRequested || Task.isCancelled || (error as? URLError)?.code == .cancelled {
                     throw OtzariaDatabaseBootstrapError.cancelled
                 }
                 throw error
             }
             activeTask = nil
             session.finishTasksAndInvalidate()
+            try checkCancellation()
 
             switch outcome {
             case .restartFresh(let reason):

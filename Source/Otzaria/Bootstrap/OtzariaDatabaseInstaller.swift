@@ -196,13 +196,18 @@ struct OtzariaDatabaseInstaller: Sendable {
                 progress: progress
             )
             extractionElapsed = Date().timeIntervalSince(extractionStarted)
+            try Task.checkCancellation()
             try storage.excludeFromBackup(stagingURL)
             validationStarted()
             let validationStartedAt = Date()
             try OtzariaDatabaseAccessController.shared.validateDatabase(
                 at: stagingURL
             )
+            try Task.checkCancellation()
             validationElapsed = Date().timeIntervalSince(validationStartedAt)
+        } catch is CancellationError {
+            try? fileManager.removeItem(at: stagingURL)
+            throw OtzariaDatabaseBootstrapError.cancelled
         } catch let error as OtzariaDatabaseBootstrapError {
             try? fileManager.removeItem(at: stagingURL)
             throw error
@@ -261,17 +266,13 @@ struct OtzariaDatabaseInstaller: Sendable {
                     )
                 }
                 try storage.excludeFromBackup(storage.finalDatabaseURL)
-                do {
-                    try writeManifest(
-                        prepared,
-                        to: storage.pendingInstallationManifestURL,
-                        storage: storage
-                    )
-                } catch {
-                    // The pending manifest is diagnostic metadata. The validated database
-                    // and its rollback copy remain the source of truth for recovery.
-                    print("[OtzariaBootstrap] pending manifest write failed: \(error.localizedDescription)")
-                }
+                // A managed update must retain the official release identity. If the
+                // manifest cannot be recorded, the outer rollback keeps the old database.
+                try writeManifest(
+                    prepared,
+                    to: storage.pendingInstallationManifestURL,
+                    storage: storage
+                )
                 return storage.finalDatabaseURL
             } catch let error as OtzariaDatabaseBootstrapError {
                 let promotionError = error

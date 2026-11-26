@@ -219,14 +219,24 @@ final class OtzariaDatabaseAccessController: @unchecked Sendable {
     }
 
     func validateDatabase(at url: URL) throws {
+        try Task.checkCancellation()
         let database = try SQLiteDatabase(
             path: url.path,
             flags: SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX
         )
-
-        let integrity = try database.fetch(query: "PRAGMA quick_check(1)") { row in
-            row.string(at: 0) ?? ""
+        // This connection belongs exclusively to validation. SQLite invokes the
+        // callback on the same thread as quick_check, so no shared reader is interrupted.
+        sqlite3_progress_handler(database.dbPointer, 4_096, { _ in Task.isCancelled ? 1 : 0 }, nil)
+        let integrity: [String]
+        do {
+            integrity = try database.fetch(query: "PRAGMA quick_check(1)") { row in
+                row.string(at: 0) ?? ""
+            }
+        } catch {
+            try Task.checkCancellation()
+            throw error
         }
+        try Task.checkCancellation()
         guard integrity.first?.lowercased() == "ok" else {
             throw AccessError.invalidDatabase
         }
