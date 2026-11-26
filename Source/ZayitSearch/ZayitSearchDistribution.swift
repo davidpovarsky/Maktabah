@@ -444,16 +444,20 @@ private extension ZayitSearchArtifactService {
         guard bytes == manifest.requiredDatabase.bytes else {
             throw ZayitSearchDistributionError.incompatible("database size/identity mismatch")
         }
-        if let storage = try? OtzariaDatabaseStorage(),
-           let data = try? Data(contentsOf: storage.installationManifestURL),
-           let installed = try? JSONDecoder().decode(OtzariaDatabaseInstallationManifest.self, from: data) {
-            let digest = installed.digest?.replacingOccurrences(of: "sha256:", with: "").lowercased()
-            guard installed.releaseTag == manifest.requiredDatabase.releaseTag,
-                  installed.effectiveProfileID == manifest.effectiveProfileID,
-                  installed.effectiveProfileVersion == manifest.effectiveProfileVersion,
-                  digest == manifest.requiredDatabase.compressedAssetSHA256.lowercased() else {
-                throw ZayitSearchDistributionError.incompatible("the index was built for a different DB release")
-            }
+        guard let storage = try? OtzariaDatabaseStorage(),
+              databaseURL.standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL,
+              FileManager.default.fileExists(atPath: storage.installationManifestURL.path) else { return }
+        let data = try Data(contentsOf: storage.installationManifestURL)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let installed = try (try? decoder.decode(OtzariaDatabaseInstallationManifest.self, from: data))
+            ?? JSONDecoder().decode(OtzariaDatabaseInstallationManifest.self, from: data)
+        let digest = installed.digest?.replacingOccurrences(of: "sha256:", with: "").lowercased()
+        guard installed.releaseTag == manifest.requiredDatabase.releaseTag,
+              installed.effectiveProfileID == manifest.effectiveProfileID,
+              installed.effectiveProfileVersion == manifest.effectiveProfileVersion,
+              digest == manifest.requiredDatabase.compressedAssetSHA256.lowercased() else {
+            throw ZayitSearchDistributionError.incompatible("the index was built for a different DB release")
         }
     }
 
