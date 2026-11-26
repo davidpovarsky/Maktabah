@@ -62,20 +62,26 @@ private enum AnnotationOriginalEditorUIError: LocalizedError {
 }
 
 @MainActor
+struct AnnotationOriginalEditorModal: Identifiable {
+    let id = UUID()
+    let content: AnyView
+
+    init<Content: View>(@ViewBuilder content: () -> Content) {
+        self.content = AnyView(content())
+    }
+}
+
+@MainActor
 struct AnnotationOriginalEditorProductionEntry: View {
     @Environment(\.exact9401Workspace) private var workspace
     let annotation: Annotation
     let draft: @MainActor () -> AnnotationOriginalEditorEntryDraft
     @Binding var availability: AnnotationOriginalEditorAvailability
-    let closeOriginalSheet: @MainActor () -> Void
+    let present: @MainActor (AnnotationOriginalEditorModal) -> Void
 
     @State private var inspected: AnnotationLocalEditorSnapshot?
     @State private var inspection: AnnotationLocalEditorSession?
-    @State private var presentation: AnnotationOriginalEditorProductionPresentation?
     @State private var entryMessage: String?
-    @State private var sharePresentation: AnnotationOriginalEditorSharePresentation?
-    @State private var receivePresentation: AnnotationOriginalEditorReceivePresentation?
-    @State private var lifecyclePresentation: AnnotationOriginalEditorLifecyclePresentation?
 
     static var qualificationOwnsEntry: Bool {
         #if DEBUG && targetEnvironment(simulator)
@@ -104,7 +110,10 @@ struct AnnotationOriginalEditorProductionEntry: View {
                         guard let workspace, let inspected, availability.allowsExpansion else {
                             throw AnnotationOriginalEditorUIError.unavailable
                         }
-                        presentation = .init(annotation: annotation, inspected: inspected, workspace: workspace)
+                        present(.init {
+                            AnnotationOriginalEditorProductionView(model: .init(annotation: annotation,
+                                inspected: inspected, workspace: workspace))
+                        })
                     } catch { entryMessage = error.localizedDescription }
                 } label: {
                     Label {
@@ -123,8 +132,10 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            sharePresentation = .init(annotation: annotation,
-                                inspected: inspected, workspace: workspace)
+                            present(.init {
+                                AnnotationOriginalEditorShareView(model: .init(annotation: annotation,
+                                    inspected: inspected, workspace: workspace))
+                            })
                         } catch { entryMessage = error.localizedDescription }
                     } label: {
                         Label {
@@ -140,8 +151,10 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            receivePresentation = .init(annotation: annotation,
-                                inspected: inspected, workspace: workspace, operationKind: .update)
+                            present(.init {
+                                AnnotationOriginalEditorReceiveView(model: .init(annotation: annotation,
+                                    inspected: inspected, workspace: workspace, operationKind: .update))
+                            })
                         } catch { entryMessage = error.localizedDescription }
                     } label: {
                         Label {
@@ -157,8 +170,10 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            receivePresentation = .init(annotation: annotation,
-                                inspected: inspected, workspace: workspace)
+                            present(.init {
+                                AnnotationOriginalEditorReceiveView(model: .init(annotation: annotation,
+                                    inspected: inspected, workspace: workspace))
+                            })
                         } catch { entryMessage = error.localizedDescription }
                     } label: {
                         Label {
@@ -174,8 +189,10 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            lifecyclePresentation = .init(annotation: annotation,
-                                inspected: inspected, workspace: workspace)
+                            present(.init {
+                                AnnotationOriginalEditorLifecycleView(model: .init(annotation: annotation,
+                                    inspected: inspected, workspace: workspace))
+                            })
                         } catch { entryMessage = error.localizedDescription }
                     } label: {
                         Label {
@@ -205,31 +222,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                 inspection?.retire()
                 inspection = nil
             }
-            .fullScreenCover(item: $lifecyclePresentation, onDismiss: {
-                closeOriginalSheet()
-            }) { model in
-                AnnotationOriginalEditorLifecycleView(model: model)
-                    .interactiveDismissDisabled(true)
-            }
-            .fullScreenCover(item: $receivePresentation, onDismiss: {
-                closeOriginalSheet()
-            }) { model in
-                AnnotationOriginalEditorReceiveView(model: model)
-                    .interactiveDismissDisabled(true)
-            }
-            .fullScreenCover(item: $sharePresentation, onDismiss: {
-                closeOriginalSheet()
-            }) { model in
-                AnnotationOriginalEditorShareView(model: model)
-                    .interactiveDismissDisabled(true)
-            }
-            .fullScreenCover(item: $presentation, onDismiss: {
-                // Do not return to a stale plain Save action after native editing.
-                closeOriginalSheet()
-            }) { model in
-                AnnotationOriginalEditorProductionView(model: model)
-                    .interactiveDismissDisabled(true)
-            }
+
         }
     }
 

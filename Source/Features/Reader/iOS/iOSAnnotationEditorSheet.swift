@@ -22,6 +22,7 @@ struct iOSAnnotationEditorSheet: View {
     @State private var hasRetainedMiniAppFiles = false
     #if os(iOS) && canImport(AnytypeOriginalEditor)
     @State private var originalEditorAvailability: AnnotationOriginalEditorAvailability = .checking
+    @State private var originalEditorModal: AnnotationOriginalEditorModal?
     #endif
 
     private var allowsPlainEditing: Bool {
@@ -94,7 +95,7 @@ struct iOSAnnotationEditorSheet: View {
                           nativeEditorIsMounted: editorTextView?.window != nil,
                           selectedColorHex: selectedColorHex, isUnderline: isUnderline,
                           tagsText: tagsText)
-                }, availability: $originalEditorAvailability, closeOriginalSheet: { dismiss() })
+                }, availability: $originalEditorAvailability, present: { originalEditorModal = $0 })
                 #endif
 
                 ThemeSection {
@@ -256,6 +257,13 @@ struct iOSAnnotationEditorSheet: View {
                     .accessibilityLabel("Save")
                 }
             }
+            #if os(iOS) && canImport(AnytypeOriginalEditor)
+            // Own the expanded editor at the sheet root so scrolling or
+            // removing a row from the Form cannot end its presentation.
+            .fullScreenCover(item: $originalEditorModal, onDismiss: { dismiss() }) { modal in
+                modal.content.interactiveDismissDisabled(true)
+            }
+            #endif
             .onAppear {
                 OtzariaMiniAppsCoordinator.shared.registerEditor(id: miniAppsEditorID,
                     currentText: { editorTextView?.window == nil ? nil : editorTextView?.text ?? noteText },
