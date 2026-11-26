@@ -6,6 +6,27 @@ import OtzariaUIRouting
 /// codec owns all JSON, reference and static-variant validation. No fallback
 /// to v1 or private restoration; no imported local identity or grant.
 public enum NativePublicNavigationURLV2 {
+
+    private static let associatedOrigin = "https://davidpovarsky.github.io"
+    private static let associatedPath = "/chavrusatext/action"
+
+    /// Maps only the published HTTPS namespace to the existing v2 envelope.
+    /// The original decoder still verifies canonical tokens and registry rules.
+    public static func customURL(forUniversalLink url: URL, scheme: String) -> URL? {
+        guard scheme == "maktabah" || scheme == "maktabah-debug",
+              url.absoluteString.utf8.count <= NativeRouteURL.maximumURLBytes,
+              url.absoluteString.hasPrefix(associatedOrigin + associatedPath + "/v2/"),
+              let source = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              source.fragment == nil else { return nil }
+
+        var target = URLComponents()
+        target.scheme = scheme
+        target.host = "action"
+        target.percentEncodedPath = String(source.percentEncodedPath.dropFirst(associatedPath.count))
+        target.percentEncodedQuery = source.percentEncodedQuery
+        return target.url
+    }
+
     public static func decode(_ url: URL, scheme: String = "maktabah", registry: UIDestinationRegistry) throws -> PublicNavigationSpecV2 {
         guard ["maktabah", "maktabah-debug"].contains(scheme),
               url.absoluteString.utf8.count <= NativeRouteURL.maximumURLBytes,

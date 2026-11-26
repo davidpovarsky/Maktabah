@@ -29,6 +29,49 @@ final class NativePublicNavigationURLV2Tests: XCTestCase {
             }
         }
     }
+    func testUniversalLinkRoundTripUsesCanonicalDecoderForAllBackends() throws {
+        let registry = try registry()
+        for backend in ActionBackendID.allCases {
+            let original = intent(backend)
+            for scheme in ["maktabah", "maktabah-debug"] {
+                let custom = try NativePublicNavigationURLV2.encode(original, scheme: scheme, registry: registry)
+                let publicLink = try XCTUnwrap(URL(string: custom.absoluteString.replacingOccurrences(
+                    of: "\(scheme)://action", with: "https://davidpovarsky.github.io/chavrusatext/action")))
+                let mapped = try XCTUnwrap(NativePublicNavigationURLV2.customURL(forUniversalLink: publicLink, scheme: scheme))
+                XCTAssertEqual(mapped, custom)
+                XCTAssertEqual(try NativePublicNavigationURLV2.decode(mapped, scheme: scheme, registry: registry), original)
+            }
+        }
+    }
+
+    func testUniversalLinkRejectsDifferentOriginsAndUnsupportedVersions() throws {
+        let path = "/chavrusatext/action/v2/native.reader?route=x"
+        let invalid = [
+            "http://davidpovarsky.github.io" + path,
+            "https://davidpovarsky.github.io:443" + path,
+            "https://user@davidpovarsky.github.io" + path,
+            "https://davidpovarsky.github.io.example.net" + path,
+            "https://davidpovarsky.github.io" + path + "#fragment",
+            "https://davidpovarsky.github.io" + path.replacingOccurrences(of: "/v2/", with: "/v1/"),
+            "https://davidpovarsky.github.io" + path.replacingOccurrences(of: "/chavrusatext/", with: "/other/"),
+        ]
+        for text in invalid {
+            let url = try XCTUnwrap(URL(string: text))
+            XCTAssertNil(NativePublicNavigationURLV2.customURL(forUniversalLink: url, scheme: "maktabah"))
+        }
+    }
+
+    func testUniversalLinkRetainsInvalidQueryForCanonicalRejection() throws {
+        let custom = try NativePublicNavigationURLV2.encode(intent(), registry: registry())
+        let value = custom.absoluteString.replacingOccurrences(
+            of: "maktabah://action", with: "https://davidpovarsky.github.io/chavrusatext/action")
+        for invalid in [value + "&route=x", value + "&query=private", value + "="] {
+            let url = try XCTUnwrap(URL(string: invalid))
+            let mapped = try XCTUnwrap(NativePublicNavigationURLV2.customURL(forUniversalLink: url, scheme: "maktabah"))
+            XCTAssertThrowsError(try NativePublicNavigationURLV2.decode(mapped, registry: registry()))
+        }
+    }
+
     func testV1PayloadRelabelledV2RemainsRejected() throws {
         let bytes = try JSONSerialization.data(withJSONObject: ["version": 1, "requestId": UUID().uuidString,
             "destination": "native.reader", "backend": "otzaria", "presentation": "currentTab"])

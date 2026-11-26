@@ -14,10 +14,18 @@ enum MaktabahNativeURLHandler {
         #else
         let scheme = "maktabah"
         #endif
-        guard url.scheme == scheme, url.host == "action" else { return false }
+        let routeURL: URL
+        if url.scheme == scheme, url.host == "action" {
+            routeURL = url
+        } else if let universalLink = NativePublicNavigationURLV2.customURL(forUniversalLink: url, scheme: scheme) {
+            routeURL = universalLink
+        } else {
+            return false
+        }
+
         Task { @MainActor in
             do {
-                guard let result = try await MaktabahNativeRoutingComposition.shared.open(url: url, manager: manager) else { return }
+                guard let result = try await MaktabahNativeRoutingComposition.shared.open(url: routeURL, manager: manager) else { return }
                 try NativeIntentOutcome.requireVisibleAcknowledgement(result)
             } catch {
                 // Fixed error category only; never export the incoming URL,
