@@ -156,14 +156,19 @@ final class UnifiedSearchSessionController {
     }
     private let nativePublicationObservation = NativePublicationObservation()
 
-    /// Explicit disposable-fixture diagnostics. Release builds contain no hook.
-    /// Request query fields are hashed; only fixture provider metadata is retained.
-    /// No observer can alter a result or supply a response.
+    /// Explicit diagnostics for owned native acceptance runs. Release builds
+    /// contain no hook. The production observation UUID is separate from the
+    /// workspace namespace, so observing a real installation does not replace
+    /// its normal workspace or results. No observer can supply a response.
     private var nativeSearchObservationNamespace: String? {
-        guard UserDefaults.standard.bool(forKey: "GlobalSearchNativeTraceEnabled"),
-              OtzariaDataProfileRegistry.activeProfileID == "miniTest10",
-              let value = UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace"),
-              UUID(uuidString: value) != nil else { return nil }
+        guard UserDefaults.standard.bool(forKey: "GlobalSearchNativeTraceEnabled") else { return nil }
+        let key: String
+        switch OtzariaDataProfileRegistry.activeProfileID {
+        case "miniTest10": key = "studyWorkspaceTestingNamespace"
+        case "production": key = "GlobalSearchNativeTraceNamespace"
+        default: return nil
+        }
+        guard let value = UserDefaults.standard.string(forKey: key), UUID(uuidString: value) != nil else { return nil }
         return value
     }
 
@@ -242,6 +247,7 @@ final class UnifiedSearchSessionController {
         record["schemaVersion"] = 1
         record["namespace"] = namespace
         record["sessionID"] = nativeSearchObservationID.uuidString
+        record["processID"] = ProcessInfo.processInfo.processIdentifier
         record["submissionRevision"] = submissionRevision
         record["searchGeneration"] = searchGeneration
         record["backendGeneration"] = BackendCoordinator.shared.generation
