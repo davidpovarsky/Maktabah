@@ -1,0 +1,19 @@
+{
+  "base": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "parent": "618dd4d1fdabae66b4f515436e006c216734a36e",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstream_path_objects": {
+    "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "",
+    "Scripts/CI/prepare-managed-library-update-context.py": ""
+  },
+  "input_sha256": {
+    "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": "5093acece3e24a951f796f7ce238a739a25df6a71dfc7d9a73c8ae8fcd0fe504",
+    "Scripts/CI/prepare-managed-library-update-context.py": "3799cbfc76a167a5096fdff9ab6add6023520a5cda70e493a3a54959d29e419c",
+    "docs/hq-integration/wave2-20261127/library/SETTINGS_UPDATE_UI.md": "e03e81c4a290a7d8923c4c6590f9e32c828dc91ab55c47caefe79e62b36e2672"
+  },
+  "historical_v32_test_bodies_unchanged": true,
+  "context_helper_python_syntax": "PASSED",
+  "context_helper_cli_help": "PASSED",
+  "context_helper_live_simulator_execution": "NOT_RUN",
+  "diff_check": "PASSED"
+}

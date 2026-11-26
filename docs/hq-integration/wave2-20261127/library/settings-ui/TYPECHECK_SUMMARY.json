@@ -1,0 +1,12 @@
+{
+  "compiler_exit_code": 0,
+  "warning_count": 74,
+  "new_class_warning_count": 0,
+  "new_class_warnings": [],
+  "scope": "SDK typecheck only; 0 native UI tests executed",
+  "inputs": {
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "ProductionOtzariaAcceptanceTests.swift": "5093acece3e24a951f796f7ce238a739a25df6a71dfc7d9a73c8ae8fcd0fe504"
+  },
+  "receipt_sha256": "222a6558487676f3611a42c11486f5b74067db3d850b0949dfe76181ee515191"
+}
