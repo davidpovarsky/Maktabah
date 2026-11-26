@@ -6,11 +6,14 @@ acceptance remain with their original producers and consumer validators.
 """
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import runpy
 import shutil
 import subprocess
+import sys
+import tempfile
 
 MANIFEST = 'Scripts/CI/runtime27-original-editor-routes.inputs.json'
 VARIANTS = {
@@ -150,11 +153,36 @@ def stage(root, routes, *, cache_root=None):
                 require(record(destination) == actual, 'Refusing a different existing SDK input: ' + relative)
             else:
                 destination.parent.mkdir(parents=True, exist_ok=True)
-                with source.open('rb') as input_stream, destination.open('xb') as output_stream:
-                    shutil.copyfileobj(input_stream, output_stream)
+                if sys.platform == 'darwin' and source.stat().st_dev == destination.parent.stat().st_dev:
+                    with tempfile.TemporaryDirectory(dir=destination.parent) as temporary:
+                        clone = Path(temporary) / source.name
+                        subprocess.run(['/bin/cp', '-c', '-p', str(source), str(clone)], check=True, timeout=120)
+                        os.link(clone, destination)
+                else:
+                    with source.open('rb') as input_stream, destination.open('xb') as output_stream:
+                        shutil.copyfileobj(input_stream, output_stream)
                 require(record(destination) == actual, 'Staged original SDK bytes differ')
                 copied.append(relative)
+        expanded = owned(packet.parent, 'expanded-distribution', '')
+        destination = owned(root, config['distribution_root'], 'build/')
+        cloned = False
+        if sys.platform == 'darwin' and expanded.is_dir() and not destination.exists():
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            if expanded.stat().st_dev == destination.parent.stat().st_dev:
+                manifest = root / config['distribution_manifest_path']
+                files = dict(json.loads(manifest.read_bytes())['files'])
+                qualification = owned(expanded, 'QUALIFICATION.json', '')
+                files['QUALIFICATION.json'] = {'bytes': qualification.stat().st_size,
+                                               'sha256': config['qualification_sha256']}
+                with tempfile.TemporaryDirectory(dir=destination.parent) as temporary:
+                    clone = Path(temporary) / 'distribution'
+                    subprocess.run(['/bin/cp', '-c', '-p', '-R', str(expanded), str(clone)], check=True, timeout=120)
+                    require(sdk_api(root)['inventory'](clone) == files,
+                            'Cached expansion differs from the original qualified SDK')
+                    clone.rename(destination)
+                cloned = True
         result[key] = {'admission_sha256': route['admission_sha256'],
+                       'cloned_verified_expansion': cloned,
                        'archive_sha256': config['archive_sha256'], 'files': payload['files'],
                        'copied_members': copied, 'producer_identity_rewritten': False}
     return {'status': 'EXACT_ORIGINAL_SDK_VARIANTS_STAGED',
