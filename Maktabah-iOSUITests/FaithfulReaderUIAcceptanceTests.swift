@@ -772,7 +772,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         tap(readerLibraryPaletteLauncher())
         let palette = app.descendants(matching: .any)["reader-library-command-palette"]
         XCTAssertTrue(palette.waitForExistence(timeout: 20))
-        let clear = palette.buttons["Clear search"]
+        let clear = palette.buttons["נקה את החיפוש"]
         if clear.exists { tap(clear) }
         let results = palette.scrollViews.buttons
         XCTAssertTrue(results.firstMatch.waitForExistence(timeout: 30))
@@ -2022,7 +2022,8 @@ final class FaithfulReaderUIAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(input.waitForExistence(timeout: 10))
         input.typeText("בראשית")
         XCTAssertTrue(palette.buttons.matching(NSPredicate(format: "label CONTAINS %@", "בראשית")).firstMatch.waitForExistence(timeout: 30))
-        try assertSpoken(["בראשית", "Clear search"], name: "candidate-native-voiceover-palette-speech")
+        XCTAssertTrue(palette.buttons["נקה את החיפוש"].exists)
+        try assertSpoken(["בראשית", "נקה את החיפוש"], name: "candidate-native-voiceover-palette-speech")
     }
 
     func testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers() throws {

@@ -21,6 +21,78 @@
         }
       }
     },
+    "Clear search": {
+      "comment": "Accessibility label used by the shared CommandPalette package.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear search"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נקה את החיפוש"
+          }
+        }
+      }
+    },
+    "Close command palette": {
+      "comment": "Accessibility label used by the shared CommandPalette package.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close command palette"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סגור את לוח הפקודות"
+          }
+        }
+      }
+    },
+    "Command palette": {
+      "comment": "Accessibility label used by the shared CommandPalette package.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Command palette"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לוח הפקודות"
+          }
+        }
+      }
+    },
+    "Shortcut %@": {
+      "comment": "Accessibility label used by the shared CommandPalette package.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קיצור מקשים %@"
+          }
+        }
+      }
+    },
     "More Reader Actions": {
       "localizations": {
         "he": {
