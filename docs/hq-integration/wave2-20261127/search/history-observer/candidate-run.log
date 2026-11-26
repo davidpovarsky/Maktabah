@@ -1,0 +1,14 @@
+PASS small exact persisted history
+PASS valid preferences above former 1 MiB cap
+PASS original preference bytes unchanged
+PASS captured actual preference byte count
+PASS duplicate query rejected
+PASS missing submitted query rejected
+PASS changed installation metadata rejected
+PASS ambiguous original installation rejected
+PASS malformed preferences rejected
+PASS missing preferences rejected
+PASS symlink preferences rejected
+PASS new finite budget enforced
+PASS bounded reader rejects directory
+RESULT failures=0

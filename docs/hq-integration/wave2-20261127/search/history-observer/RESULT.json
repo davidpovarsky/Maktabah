@@ -1,0 +1,22 @@
+{
+  "scope": "original read-only history observer on disposable Foundation fixtures; not app or UI acceptance",
+  "base": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "runs": {
+    "baseline": {
+      "compileExit": 0,
+      "runExit": 1,
+      "sourceSHA256": "05f48bf5bcda02660dd90af28ba1c98debf64f22f07740de57bfea715928ede2",
+      "extractedBlockSHA256": "5da7675e1867cad91e0bfbdad20faa7512ecfb5265d3761389bad1653550d05e",
+      "passed": 11,
+      "failed": 2
+    },
+    "candidate": {
+      "compileExit": 0,
+      "runExit": 0,
+      "sourceSHA256": "aaf87467c939d2ab792328c001e5806ee3fdc4ef95fe3cc247183a0a55fe05d4",
+      "extractedBlockSHA256": "94aeb112c98f556482b5052696695e33060aacdb73f7e23a583e556ccc5582a9",
+      "passed": 13,
+      "failed": 0
+    }
+  }
+}
