@@ -1,0 +1,30 @@
+{
+  "source": "bbc68b0d8125a47f8c195653db77a7f771854837",
+  "files": [
+    {
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "snapshot": "BookTOCViewModel.swift",
+      "sha256": "dce77ecd59eec0456da24804ec20f871f72a053e79c3b56ba66eef03ce37e047",
+      "bytes": 14108
+    },
+    {
+      "path": "Source/Features/Reader/Models/TOCNode.swift",
+      "snapshot": "TOCNode.swift",
+      "sha256": "42c28989766ad887946c01b69a2bebb0e46d0342de8ad63f78f67a1d795f8152",
+      "bytes": 1139
+    },
+    {
+      "path": "Tests/HQ/reader/TOCLoadLifecycleSupport.swift",
+      "snapshot": "TOCLoadLifecycleSupport.swift",
+      "sha256": "1901b83d736d72792b4b9ac3a65ef54511247db2c2b2efaba7f6495ca4ec853e",
+      "bytes": 4589
+    },
+    {
+      "path": "Tests/HQ/reader/TOCLoadLifecycleTests.swift",
+      "snapshot": "TOCLoadLifecycleTests.swift",
+      "sha256": "0dd33607fb132bace03380b0efe47d8a8b57b4cfe0a2bd011edaa64bdbda5caa",
+      "bytes": 10154
+    }
+  ],
+  "boundary": "Actual complete production TOC owner and node; controlled backend transport/database/model boundaries; real Apple SwiftUI, Observation, Foundation and OSLog; zero app UI or full-corpus acceptance."
+}
