@@ -496,6 +496,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         app.launch()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
         assertReaderHasText()
+        let restartReceipt = try persistedReceipt(requestID: pending.request.id, databasePath: document.profile)
+        XCTAssertEqual(restartReceipt.annotationID, rowID)
+        XCTAssertEqual(restartReceipt.annotationUUID, document.annotationUUID)
+        XCTAssertEqual(restartReceipt.note, returnedText)
+        XCTAssertEqual(restartReceipt.count, 1)
+        attachReceipt(restartReceipt, requestID: pending.request.id, name: "miniapps-original-after-process-restart-sqlite")
         try await openAnnotations()
         XCTAssertEqual(Set(annotationRows().allElementsBoundByIndex.map(\.identifier)), priorRows.union([rowIdentifier]))
         let restored = app.buttons[rowIdentifier]
@@ -1285,7 +1291,20 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
         let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
-        let ready = try await waitUntil(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        let bodyList = host.collectionViews.firstMatch
+        // A retained keyboard can leave the original collection near its bottom.
+        // Scroll the mounted native editor until it exposes the exact body block.
+        for _ in 0..<3 {
+            if bodies.count == 1 && bodies.firstMatch.isHittable { break }
+            guard bodyList.exists && bodyList.isHittable else { break }
+            bodyList.swipeDown()
+        }
+        for _ in 0..<5 {
+            if bodies.count == 1 && bodies.firstMatch.isHittable { break }
+            guard bodyList.exists && bodyList.isHittable else { break }
+            bodyList.swipeUp()
+        }
+        let ready = try await waitUntil(timeout: 15) { bodies.count == 1 && bodies.firstMatch.isHittable }
         if !ready {
             retainScreenshot(app, named: "miniapps-original-rich-body-not-ready")
             let hierarchy = XCTAttachment(string: host.debugDescription)
@@ -1642,8 +1661,18 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertEqual(action.count, 1, "Require the unique Annotations action in the original reader popup")
         let menuAction = try XCTUnwrap(action.count == 1 ? action.allElementsBoundByIndex.first : nil)
         XCTAssertTrue(menuAction.isHittable)
-        tap(menuAction)
-        XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 15))
+        menuAction.tap()
+        let navigation = app.navigationBars["Annotations"]
+        let appeared = navigation.waitForExistence(timeout: 15)
+        if !appeared {
+            retainScreenshot(app, named: "miniapps-reader-annotations-after-original-menu-action")
+            let afterTap = XCTAttachment(string: app.debugDescription)
+            afterTap.name = "miniapps-reader-annotations-after-original-menu-action-ax"
+            afterTap.lifetime = .keepAlways
+            add(afterTap)
+        }
+        XCTAssertTrue(appeared)
+        _ = try XCTUnwrap(appeared ? navigation : nil)
         let list = app.descendants(matching: .any)["original-book-annotations-list"]
         XCTAssertTrue(list.waitForExistence(timeout: 15))
         let loaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "loaded"), object: list)
