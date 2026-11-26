@@ -1651,17 +1651,28 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         // Only fixed internal codes cross this diagnostic boundary. Never log
         // the request, source, scene identity, token, query or error description.
         let route = error as? UIRouteError
+        let journey = error as? NativeReaderIntentService.CommentaryDraftFailure
         let knownCodes: Set<String> = [
             "native_scene_busy", "native_scene_context_changed", "scene_changed_during_observation",
             "scene_lifetime_changed", "scene_not_foreground", "scene_not_mounted",
             "backend_generation_changed", "intent_source_generation_changed",
             "intent_window_no_longer_available", "intent_window_changed_during_activation",
-            "intent_entity_no_longer_available", "deadline_exceeded", "native_effect_uncertain"
+            "intent_entity_no_longer_available", "deadline_exceeded", "native_effect_uncertain",
+            "exact_note_selection_unavailable", "semantic_journey_not_completed",
+            "backend_unavailable", "capability_unavailable", "invalid_backend_response",
+            "note_draft_editor_unavailable", "scene_or_backend_changed"
         ]
-        let code = route.flatMap { knownCodes.contains($0.code) ? $0.code : nil }
+        let rawCode = route?.code ?? journey?.code
+        let code = rawCode.flatMap { knownCodes.contains($0) ? $0 : nil }
             ?? (error is CancellationError ? "cancelled" : "unclassified")
-        let status = route?.status.rawValue ?? (error is CancellationError ? "cancelled" : "unclassified")
+        let status = (route?.status ?? journey?.status)?.rawValue
+            ?? (error is CancellationError ? "cancelled" : "unclassified")
         OtzariaFileLogger.shared.log("[NativeIntentFailure] stage=\(stage) status=\(status) code=\(code)")
+        if let journey {
+            let stepStatuses = journey.journey.steps.map { $0.status.rawValue }.joined(separator: ",")
+            OtzariaFileLogger.shared.log(
+                "[NativeIntentJourneyFailure] receipts=\(journey.receipts.count) stepStatuses=\(stepStatuses)")
+        }
         #endif
     }
     func currentScene(sceneID: UIStableID, context: ActionExecutionContext, invocation: ActionPortInvocation) async throws -> UISceneSnapshot {
