@@ -943,11 +943,27 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
             backend: backend.currentBackendSnapshot())
         guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
-              current.backendSnapshot == receipt.backendSnapshot else { throw ActionPortError.staleState }
+              current.backendSnapshot == receipt.backendSnapshot else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=reader-receipt"
+                + " sameRevision=\(current.revision == receipt.appliedSceneRevision)"
+                + " sameRoute=\(current.visibleRoute == receipt.route)"
+                + " sameBackend=\(current.backendSnapshot == receipt.backendSnapshot)")
+            #endif
+            throw ActionPortError.staleState
+        }
         let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
         guard observed.backend == owner.observation.backend,
               observed.readerContent?.sectionLocator == reader.destination.sectionLocator,
-              observed.readerContent?.focusLocator == reader.destination.focusLocator else { throw ActionPortError.staleState }
+              observed.readerContent?.focusLocator == reader.destination.focusLocator else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=reader-source"
+                + " sameBackend=\(observed.backend == owner.observation.backend)"
+                + " sameSection=\(observed.readerContent?.sectionLocator == reader.destination.sectionLocator)"
+                + " sameFocus=\(observed.readerContent?.focusLocator == reader.destination.focusLocator)")
+            #endif
+            throw ActionPortError.staleState
+        }
         owner.observation = observed
     }
 
@@ -964,7 +980,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let current = try directory.synchronousScene(sceneID: owner.sceneID, context: owner.context,
             backend: backend.currentBackendSnapshot())
         guard current.revision == receipt.appliedSceneRevision, current.visibleRoute == receipt.route,
-              current.backendSnapshot == receipt.backendSnapshot else { throw ActionPortError.staleState }
+              current.backendSnapshot == receipt.backendSnapshot else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=search-receipt"
+                + " sameRevision=\(current.revision == receipt.appliedSceneRevision)"
+                + " sameRoute=\(current.visibleRoute == receipt.route)"
+                + " sameBackend=\(current.backendSnapshot == receipt.backendSnapshot)")
+            #endif
+            throw ActionPortError.staleState
+        }
         let observed = try hanlinSource(sceneID: owner.sceneID, entry: entry)
         let prior = owner.observation
         // The original Viewer -> Search mode switch does not change the mapping
@@ -979,6 +1003,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               observed.readerContent == nil || observed.readerContent == prior.readerContent,
               observed.currentWorkReadSource == nil || observed.currentWorkReadSource == prior.currentWorkReadSource,
               observed.selectedRange == nil || observed.selectedRange == prior.selectedRange else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=search-source"
+                + " sameBackend=\(observed.backend == prior.backend)"
+                + " sameMappingSource=\(observed.source == prior.source)"
+                + " sameEpoch=\(observed.epoch == prior.epoch)"
+                + " sameProjection=\(observed.projection == prior.projection)"
+                + " sameLocale=\(observed.locale == prior.locale)"
+                + " compatibleReader=\(observed.readerContent == nil || observed.readerContent == prior.readerContent)"
+                + " compatibleReadSource=\(observed.currentWorkReadSource == nil || observed.currentWorkReadSource == prior.currentWorkReadSource)"
+                + " compatibleRange=\(observed.selectedRange == nil || observed.selectedRange == prior.selectedRange)")
+            #endif
             throw ActionPortError.staleState
         }
         owner.observation = observed
