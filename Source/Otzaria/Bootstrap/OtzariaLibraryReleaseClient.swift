@@ -87,11 +87,12 @@ struct OtzariaLibraryReleaseClient: Sendable {
         }
     }
 
-    /// A native install observation may explicitly request its frozen official release.
+    /// Every phase of a native observation uses the same selected official release.
     /// Release builds and ordinary app launches always retain the latest-release lookup.
     static func releaseLookup(environment: [String: String]) throws -> (url: URL, expectedReleaseID: Int64?) {
         #if DEBUG
-        if environment["OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE"] == "install",
+        if let phase = environment["OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE"],
+           ["cancel", "install", "restore"].contains(phase),
            let rawID = environment["OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID"] {
             guard environment["OTZARIA_DATA_PROFILE"] == OtzariaDataProfileRegistry.productionID,
                   let id = Int64(rawID), id > 0, String(id) == rawID else {
