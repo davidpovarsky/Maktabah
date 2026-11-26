@@ -131,6 +131,8 @@ Things worth testing or researching before deciding whether to implement them.
 
 Important unresolved questions or uncertainties.
 
+- The Release114 manifest requires genuine VoiceOver speech on both iPad sizes. The same Apple navigation call failed with Code 3 in an independent fixture on Scaleway and with matching Xcode and iPadOS 27.2. Apple's accessibility testing guide specifies physical devices for VoiceOver. Native116 has no speech case, and the two Release114 speech cases remain required. [Apple accessibility testing](https://developer.apple.com/documentation/accessibility/performing-accessibility-testing-for-your-app) · [Matching Apple toolchain evidence](https://github.com/davidpovarsky/Maktabah/actions/runs/45805582119)
+
 ## Planned / Todo
 
 - [ ] Tighten the existing sidebar viewport UI test's swipe section: require the
