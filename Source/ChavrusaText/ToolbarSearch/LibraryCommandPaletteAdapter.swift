@@ -8,16 +8,17 @@ struct LibraryCommandPaletteAdapter: View {
     let onDismiss: () -> Void
     @Environment(\.locale) private var locale
 
+    private static let booksSection = "ספרים"
+
     private var commands: [Command] {
         // This is the original library's canonical filtered book membership, not another
         // search model or a second search-history store. IDs include the canonical locator.
         let books = manager.libraryViewModel.bookLookup.values.map(\.book)
-        let booksSection = String(localized: "Books", locale: locale)
         var seen = Set<String>()
         return books.sorted { $0.book.localizedStandardCompare($1.book) == .orderedAscending }.compactMap { book in
             let id = book.backendLocator?.persistenceKey ?? "book:\(book.id)"
             guard seen.insert(id).inserted else { return nil }
-            return Command(book.book, id: id, section: booksSection, symbol: "book.closed") {
+            return Command(book.book, id: id, section: Self.booksSection, symbol: "book.closed") {
                 manager.openBook(book)
             }
         }
@@ -36,6 +37,9 @@ struct LibraryCommandPaletteAdapter: View {
             isActive: isActive,
             drawsSurface: drawsSurface,
             queryBinding: Bindable(manager.libraryViewModel).searchQuery,
+            displaySectionTitle: { title in
+                title == Self.booksSection ? String(localized: "Books", locale: locale) : title
+            },
             onDismiss: onDismiss
         )
         .accessibilityIdentifier("reader-library-command-palette")

@@ -22,6 +22,7 @@ public struct CommandPaletteView: View {
     private let isActive: Bool
     private let drawsSurface: Bool
     private let queryBinding: Binding<String>?
+    private let displaySectionTitle: (String) -> String
     private let onDismiss: () -> Void
 
     @ObservedObject private var recents: RecentCommandsStore
@@ -43,6 +44,7 @@ public struct CommandPaletteView: View {
     ///   - autofocus: Puts the cursor in the search field when the palette appears.
     ///   - isActive: Whether a retained palette may focus, receive input, or expose accessibility children.
     ///   - drawsSurface: Uses the original background and shadow; disable only when an outer host owns that surface.
+    ///   - displaySectionTitle: Optional presentation of a section title without changing its identity.
     ///   - onDismiss: Called when the palette should close: after ⎋ and before a command runs.
     public init(
         commands: [Command],
@@ -54,6 +56,7 @@ public struct CommandPaletteView: View {
         isActive: Bool = true,
         drawsSurface: Bool = true,
         queryBinding: Binding<String>? = nil,
+        displaySectionTitle: @escaping (String) -> String = { $0 },
         onDismiss: @escaping () -> Void = {}
     ) {
         let store = recents ?? .shared
@@ -63,6 +66,7 @@ public struct CommandPaletteView: View {
         self.isActive = isActive
         self.drawsSurface = drawsSurface
         self.queryBinding = queryBinding
+        self.displaySectionTitle = displaySectionTitle
         self.onDismiss = onDismiss
         self._recents = ObservedObject(wrappedValue: store)
         self._query = State(initialValue: queryBinding?.wrappedValue ?? initialQuery)
@@ -195,7 +199,7 @@ public struct CommandPaletteView: View {
                         ForEach(selection.rows) { row in
                             switch row {
                             case .header(_, let title):
-                                SectionHeaderView(title: title)
+                                SectionHeaderView(title: displaySectionTitle(title))
                             case .command(let item):
                                 Button {
                                     run(item)
