@@ -122,14 +122,28 @@ struct StudyWorkspaceSnapshot: Codable, Equatable, Sendable {
 enum StudyWorkspaceError: Error, LocalizedError {
     case unsupportedVersion, invalidMembership, unavailableBook, backendMismatch, groupNotEmpty, lastProfile, lastGroup
     var errorDescription: String? {
-        switch self {
-        case .unsupportedVersion: "גרסת קובץ סביבת הלימוד אינה נתמכת. הנתונים נשמרו."
-        case .invalidMembership: "לא ניתן לקרוא את סביבת הלימוד. הנתונים הקיימים נשמרו."
-        case .unavailableBook: "ספר בקבוצה אינו זמין כעת. קבוצת הכרטיסיות הנוכחית נשמרה."
-        case .backendMismatch: "יש לעבור למקור הספרייה המתאים לפני פתיחת קבוצה זו."
-        case .groupNotEmpty: "הקבוצה מכילה כרטיסיות."
-        case .lastProfile: "יש להשאיר לפחות פרופיל אחד."
-        case .lastGroup: "יש להשאיר לפחות קבוצת כרטיסיות אחת בפרופיל."
+        let localized = StudyWorkspaceText(locale: .current)
+        return switch self {
+        case .unsupportedVersion: localized("This study workspace version is unsupported. Your data has been preserved.", "גרסת קובץ סביבת הלימוד אינה נתמכת. הנתונים נשמרו.")
+        case .invalidMembership: localized("The study workspace could not be read. Your existing data has been preserved.", "לא ניתן לקרוא את סביבת הלימוד. הנתונים הקיימים נשמרו.")
+        case .unavailableBook: localized("A book in this group is currently unavailable. Your current tab group has been preserved.", "ספר בקבוצה אינו זמין כעת. קבוצת הכרטיסיות הנוכחית נשמרה.")
+        case .backendMismatch: localized("Switch to the matching library source before opening this group.", "יש לעבור למקור הספרייה המתאים לפני פתיחת קבוצה זו.")
+        case .groupNotEmpty: localized("This group contains tabs.", "הקבוצה מכילה כרטיסיות.")
+        case .lastProfile: localized("Keep at least one profile.", "יש להשאיר לפחות פרופיל אחד.")
+        case .lastGroup: localized("Keep at least one tab group in this profile.", "יש להשאיר לפחות קבוצת כרטיסיות אחת בפרופיל.")
         }
+    }
+}
+
+/// Bilingual labels shared by the study workspace and its native controls.
+struct StudyWorkspaceText {
+    private let prefersHebrew: Bool
+
+    init(locale: Locale) {
+        prefersHebrew = locale.language.languageCode?.identifier == "he"
+    }
+
+    func callAsFunction(_ english: String, _ hebrew: String) -> String {
+        prefersHebrew ? hebrew : english
     }
 }

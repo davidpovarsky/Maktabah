@@ -6,11 +6,11 @@ struct ScrollableGroupsHost: UIViewRepresentable {
     let selectedID: UUID?
     var isEnabled = true
     let onSelect: (UUID) -> Void
+    @Environment(\.locale) private var locale
     func makeCoordinator() -> Coordinator { Coordinator(onSelect) }
     func makeUIView(context: Context) -> ScrollableTabBar<UUID> {
         let bar = ScrollableTabBar<UUID>()
         bar.delegate = context.coordinator
-        bar.accessibilityLabel = "קבוצות כרטיסיות"
         bar.accessibilityIdentifier = "study-group-selector"
         return bar
     }
@@ -18,6 +18,7 @@ struct ScrollableGroupsHost: UIViewRepresentable {
         context.coordinator.onSelect = onSelect
         context.coordinator.canonicalSelection = selectedID
         bar.isEnabled = isEnabled
+        bar.accessibilityLabel = StudyWorkspaceText(locale: locale)("Tab Groups", "קבוצות כרטיסיות")
         let items = groups.map { ScrollableTabBar<UUID>.Item(id: $0.id, title: $0.name) }
         bar.setItems(items, selectedID: groups.contains { $0.id == selectedID } ? selectedID : nil)
     }

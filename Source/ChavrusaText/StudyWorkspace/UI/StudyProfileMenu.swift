@@ -6,6 +6,9 @@ struct StudyProfileMenu: View {
     var compact = false
     var usesNativeToolbar = false
     let onManage: () -> Void
+    @Environment(\.locale) private var locale
+
+    private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
 
     @ViewBuilder
     var body: some View {
@@ -35,16 +38,16 @@ struct StudyProfileMenu: View {
                 .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
             }
             Divider()
-            Button("ניהול פרופילי לימוד", systemImage: "person.crop.circle.badge.plus", action: onManage)
+            Button(localized("Manage Study Profiles", "ניהול פרופילי לימוד"), systemImage: "person.crop.circle.badge.plus", action: onManage)
         } label: {
             if usesNativeToolbar {
-                Label { Text(workspace.profile?.name ?? "פרופילי לימוד") } icon: {
+                Label { Text(workspace.profile?.name ?? localized("Study Profiles", "פרופילי לימוד")) } icon: {
                     StudyProfileIcon(symbol: workspace.profile?.symbol ?? "person.crop.circle", color: workspace.profile?.color)
                 }
                     .labelStyle(.iconOnly)
             } else {
                 HStack(spacing: 5) {
-                    if !compact { Text(workspace.profile?.name ?? "אישי").font(.system(size: 15, weight: .medium)).lineLimit(1) }
+                    if !compact { Text(workspace.profile?.name ?? localized("Personal", "אישי")).font(.system(size: 15, weight: .medium)).lineLimit(1) }
                     StudyProfileIcon(symbol: workspace.profile?.symbol ?? "person.crop.circle.fill", color: workspace.profile?.color)
                         .font(.system(size: 20))
                 }
@@ -54,7 +57,7 @@ struct StudyProfileMenu: View {
             }
         }
         .disabled(workspace.isSwitching)
-        .accessibilityLabel("פרופיל לימוד")
+        .accessibilityLabel(localized("Study Profile", "פרופיל לימוד"))
         .accessibilityIdentifier("study-profile-menu")
     }
 }

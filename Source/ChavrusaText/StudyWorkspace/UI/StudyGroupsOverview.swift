@@ -6,6 +6,7 @@ struct StudyGroupsOverview: View {
     let manager: iOSNavigationManager
     let onOpenLibrary: () -> Void
     let onClose: () -> Void
+    @Environment(\.locale) private var locale
     @State private var showsNamePrompt = false
     @State private var name = ""
     @State private var copiesCurrent = false
@@ -13,6 +14,8 @@ struct StudyGroupsOverview: View {
     @State private var confirmsDelete = false
     @State private var showsProfiles = false
     @AppStorage("chavrusa.study-tabs.layout") private var tabSwitcherLayoutRaw = ReaderTabSwitcherLayout.grid.rawValue
+
+    private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
 
     private var tabSwitcherLayout: ReaderTabSwitcherLayout {
         ReaderTabSwitcherLayout(rawValue: tabSwitcherLayoutRaw) ?? .grid
@@ -22,7 +25,7 @@ struct StudyGroupsOverview: View {
         NavigationStack {
             TabSwitcherPageHost(
                 documents: (workspace.group?.tabs ?? []).map {
-                    ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? "ספר", subtitle: $0.backend.displayName)
+                    ReaderTabSwitcherDocument(id: $0.id, title: $0.session.bookTitle ?? localized("Book", "ספר"), subtitle: $0.backend.displayName)
                 },
                 selectedID: workspace.activeDocumentID,
                 layoutMode: tabSwitcherLayout,
@@ -36,13 +39,13 @@ struct StudyGroupsOverview: View {
             .overlay {
                 if workspace.group?.tabs.isEmpty != false {
                     ContentUnavailableView {
-                        Label("אין כרטיסיות בקבוצה", systemImage: "book.closed")
+                        Label(localized("No tabs in this group", "אין כרטיסיות בקבוצה"), systemImage: "book.closed")
                     } actions: {
-                        Button("פתח ספר מהספרייה") { onClose(); onOpenLibrary() }
+                        Button(localized("Open a book from the library", "פתח ספר מהספרייה")) { onClose(); onOpenLibrary() }
                     }
                 }
             }
-            .navigationTitle("כל הכרטיסיות")
+            .navigationTitle(localized("All Tabs", "כל הכרטיסיות"))
             .safeAreaInset(edge: .top) {
                 ScrollableGroupsHost(groups: workspace.groups, selectedID: workspace.selection?.groupID, isEnabled: !workspace.isSwitching) { id in
                     Task {
@@ -62,7 +65,7 @@ struct StudyGroupsOverview: View {
                     }
                     .readerSourceGlassBackground()
                 }
-                ToolbarItem(placement: .confirmationAction) { Button("סיום") { onClose() } }
+                ToolbarItem(placement: .confirmationAction) { Button(localized("Done", "סיום")) { onClose() } }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         tabSwitcherLayoutRaw = tabSwitcherLayout == .grid
@@ -70,7 +73,7 @@ struct StudyGroupsOverview: View {
                             : ReaderTabSwitcherLayout.grid.rawValue
                     } label: {
                         Label(
-                            tabSwitcherLayout == .grid ? "תצוגת רשימה" : "תצוגת רשת",
+                            tabSwitcherLayout == .grid ? localized("List view", "תצוגת רשימה") : localized("Grid view", "תצוגת רשת"),
                             systemImage: tabSwitcherLayout == .grid ? "list.bullet" : "square.grid.2x2"
                         )
                     }
@@ -78,20 +81,20 @@ struct StudyGroupsOverview: View {
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
-                        Button("קבוצה ריקה", systemImage: "plus") { prompt(copy: false) }
-                        Button("קבוצה מהכרטיסיות הנוכחיות", systemImage: "square.on.square") { prompt(copy: true) }
-                        Button("שינוי שם הקבוצה", systemImage: "pencil") {
+                        Button(localized("New empty group", "קבוצה ריקה"), systemImage: "plus") { prompt(copy: false) }
+                        Button(localized("New group from current tabs", "קבוצה מהכרטיסיות הנוכחיות"), systemImage: "square.on.square") { prompt(copy: true) }
+                        Button(localized("Rename group", "שינוי שם הקבוצה"), systemImage: "pencil") {
                             renamesCurrent = true; name = workspace.group?.name ?? ""; showsNamePrompt = true
                         }
-                        Button("מחיקת קבוצה", systemImage: "trash", role: .destructive) { confirmsDelete = true }
-                    } label: { Label("קבוצות כרטיסיות", systemImage: "ellipsis.circle") }
-                    .accessibilityLabel("פעולות בקבוצת הכרטיסיות")
+                        Button(localized("Delete group", "מחיקת קבוצה"), systemImage: "trash", role: .destructive) { confirmsDelete = true }
+                    } label: { Label(localized("Tab Groups", "קבוצות כרטיסיות"), systemImage: "ellipsis.circle") }
+                    .accessibilityLabel(localized("Tab group actions", "פעולות בקבוצת הכרטיסיות"))
                     .accessibilityIdentifier("study-group-actions-menu")
                 }
             }
-            .alert("שם קבוצת הכרטיסיות", isPresented: $showsNamePrompt) {
-                TextField("שם", text: $name)
-                Button("שמירה") {
+            .alert(localized("Tab group name", "שם קבוצת הכרטיסיות"), isPresented: $showsNamePrompt) {
+                TextField(localized("Name", "שם"), text: $name)
+                Button(localized("Save", "שמירה")) {
                     let value = name.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !value.isEmpty else { return }
                     if renamesCurrent, let id = workspace.group?.id {
@@ -99,10 +102,10 @@ struct StudyGroupsOverview: View {
                         catch { workspace.errorMessage = error.localizedDescription }
                     } else { Task { await workspace.createGroup(name: value, fromCurrent: copiesCurrent, manager: manager) } }
                 }
-                Button("ביטול", role: .cancel) {}
+                Button(localized("Cancel", "ביטול"), role: .cancel) {}
             }
-            .confirmationDialog("למחוק את הקבוצה והכרטיסיות שלה?", isPresented: $confirmsDelete, titleVisibility: .visible) {
-                Button("מחיקת קבוצה", role: .destructive) {
+            .confirmationDialog(localized("Delete this group and its tabs?", "למחוק את הקבוצה והכרטיסיות שלה?"), isPresented: $confirmsDelete, titleVisibility: .visible) {
+                Button(localized("Delete group", "מחיקת קבוצה"), role: .destructive) {
                     guard let old = workspace.group?.id, let replacement = workspace.groups.first(where: { $0.id != old }) else {
                         workspace.errorMessage = StudyWorkspaceError.lastGroup.localizedDescription; return
                     }
@@ -120,9 +123,9 @@ struct StudyGroupsOverview: View {
         .sheet(isPresented: $showsProfiles) {
             StudyProfileManagementView(workspace: workspace, manager: manager)
         }
-        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
+        .alert(localized("Unable to change the study workspace", "לא ניתן לשנות את סביבת הלימוד"), isPresented: Binding(
             get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
-            Button("אישור") { workspace.errorMessage = nil }
+            Button(localized("OK", "אישור")) { workspace.errorMessage = nil }
         } message: { Text(workspace.errorMessage ?? "") }
         .accessibilityIdentifier("study-groups-overview")
     }
@@ -168,7 +171,7 @@ struct StudyGroupsOverview: View {
     private func contextMenu(_ document: ReaderTabSwitcherDocument) -> UIMenu? {
         let targets = (workspace.store.snapshot?.groups ?? []).filter { $0.id != workspace.group?.id }
         let move = UIMenu(
-            title: "העברה לקבוצה",
+            title: localized("Move to Group", "העברה לקבוצה"),
             image: UIImage(systemName: "arrow.right.square"),
             children: targets.map { target in
                 UIAction(title: target.name) { _ in
@@ -177,7 +180,7 @@ struct StudyGroupsOverview: View {
             }
         )
         let copy = UIMenu(
-            title: "העתקה לקבוצה",
+            title: localized("Copy to Group", "העתקה לקבוצה"),
             image: UIImage(systemName: "square.on.square"),
             children: targets.map { target in
                 UIAction(title: target.name) { _ in
@@ -185,7 +188,7 @@ struct StudyGroupsOverview: View {
                 }
             }
         )
-        let close = UIAction(title: "סגירת כרטיסייה", image: UIImage(systemName: "xmark"), attributes: .destructive) { _ in
+        let close = UIAction(title: localized("Close Tab", "סגירת כרטיסייה"), image: UIImage(systemName: "xmark"), attributes: .destructive) { _ in
             closeDocument(document)
         }
         return UIMenu(children: targets.isEmpty ? [close] : [move, copy, close])

@@ -4,6 +4,8 @@ struct StudyProfileManagementView: View {
     @Bindable var workspace: StudyWorkspaceNavigationAdapter
     let manager: iOSNavigationManager
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
+    private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
     @State private var editing: StudyProfile?
     @State private var createsProfile = false
     @State private var deleting: StudyProfile?
@@ -16,16 +18,16 @@ struct StudyProfileManagementView: View {
                         Label { Text(profile.name) } icon: {
                             StudyProfileIcon(symbol: profile.symbol, color: profile.color)
                         }
-                            .accessibilityValue(profile.color?.displayName ?? "")
+                            .accessibilityValue(profile.color?.displayName(using: localized) ?? "")
                             .accessibilityIdentifier("study-profile-\(profile.id.uuidString)")
                             .accessibilityAddTraits(workspace.profile?.id == profile.id ? .isSelected : [])
                         Spacer()
                         if workspace.profile?.id == profile.id { Image(systemName: "checkmark").accessibilityHidden(true) }
                         Menu {
-                            Button("עריכה", systemImage: "pencil") { editing = profile }
-                            Button("מחיקה", systemImage: "trash", role: .destructive) { deleting = profile }
+                            Button(localized("Edit", "עריכה"), systemImage: "pencil") { editing = profile }
+                            Button(localized("Delete", "מחיקה"), systemImage: "trash", role: .destructive) { deleting = profile }
                         } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }
-                        .accessibilityLabel("פעולות בפרופיל \(profile.name)")
+                        .accessibilityLabel(localized("Actions for profile \(profile.name)", "פעולות בפרופיל \(profile.name)"))
                         .accessibilityIdentifier("study-profile-actions-\(profile.id.uuidString)")
                     }
                 }
@@ -39,21 +41,21 @@ struct StudyProfileManagementView: View {
                         }
                     } catch { workspace.errorMessage = error.localizedDescription }
                 }
-                Button("פרופיל לימוד חדש", systemImage: "plus") { createsProfile = true }
-                NavigationLink("ניהול קבוצות כרטיסיות") {
+                Button(localized("New Study Profile", "פרופיל לימוד חדש"), systemImage: "plus") { createsProfile = true }
+                NavigationLink(localized("Manage Tab Groups", "ניהול קבוצות כרטיסיות")) {
                     StudyGroupManagementView(workspace: workspace, manager: manager)
                 }
             }
-            .navigationTitle("פרופילי לימוד")
+            .navigationTitle(localized("Study Profiles", "פרופילי לימוד"))
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) { Button("סיום") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button(localized("Done", "סיום")) { dismiss() } }
                 ToolbarItem(placement: .topBarLeading) { EditButton() }
             }
             .sheet(item: $editing) { profile in profileEditor(profile) }
             .sheet(isPresented: $createsProfile) { profileEditor(nil) }
-            .confirmationDialog("למחוק את הפרופיל וקבוצות הכרטיסיות שלו?", isPresented: Binding(
+            .confirmationDialog(localized("Delete this profile and its tab groups?", "למחוק את הפרופיל וקבוצות הכרטיסיות שלו?"), isPresented: Binding(
                 get: { deleting != nil }, set: { if !$0 { deleting = nil } }), titleVisibility: .visible) {
-                Button("מחיקת פרופיל", role: .destructive) {
+                Button(localized("Delete Profile", "מחיקת פרופיל"), role: .destructive) {
                     guard let old = deleting else { return }
                     deleting = nil
                     Task {
@@ -69,9 +71,9 @@ struct StudyProfileManagementView: View {
             }
         }
         .accessibilityIdentifier("study-profile-management")
-        .alert("לא ניתן לשנות את סביבת הלימוד", isPresented: Binding(
+        .alert(localized("Unable to change the study workspace", "לא ניתן לשנות את סביבת הלימוד"), isPresented: Binding(
             get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
-            Button("אישור") { workspace.errorMessage = nil }
+            Button(localized("OK", "אישור")) { workspace.errorMessage = nil }
         } message: { Text(workspace.errorMessage ?? "") }
     }
 
@@ -89,6 +91,9 @@ struct StudyProfileManagementView: View {
 private struct StudyGroupManagementView: View {
     @Bindable var workspace: StudyWorkspaceNavigationAdapter
     let manager: iOSNavigationManager
+    @Environment(\.locale) private var locale
+    private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
+
     @State private var renaming: StudyTabGroup?
     @State private var name = ""
     var body: some View {
@@ -101,8 +106,8 @@ private struct StudyGroupManagementView: View {
                             Text(group.name)
                             Spacer()
                             Menu {
-                                Button("שינוי שם", systemImage: "pencil") { name = group.name; renaming = group }
-                                Menu("העברה לפרופיל") {
+                                Button(localized("Rename", "שינוי שם"), systemImage: "pencil") { name = group.name; renaming = group }
+                                Menu(localized("Move to Profile", "העברה לפרופיל")) {
                                     ForEach((workspace.store.snapshot?.profiles ?? []).filter { $0.id != profile.id }) { target in
                                         Button(target.name) {
                                             do { try workspace.store.moveGroup(group.id, to: target.id) }
@@ -111,7 +116,7 @@ private struct StudyGroupManagementView: View {
                                     }
                                 }
                             } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }
-                            .accessibilityLabel("פעולות בקבוצה \(group.name)")
+                            .accessibilityLabel(localized("Actions for group \(group.name)", "פעולות בקבוצה \(group.name)"))
                         }
                     }
                     .onMove { source, destination in
@@ -123,17 +128,17 @@ private struct StudyGroupManagementView: View {
                 }
             }
         }
-        .navigationTitle("קבוצות כרטיסיות")
+        .navigationTitle(localized("Tab Groups", "קבוצות כרטיסיות"))
         .toolbar { EditButton() }
-        .alert("שם קבוצת הכרטיסיות", isPresented: Binding(get: { renaming != nil }, set: { if !$0 { renaming = nil } })) {
-            TextField("שם", text: $name)
-            Button("שמירה") {
+        .alert(localized("Tab group name", "שם קבוצת הכרטיסיות"), isPresented: Binding(get: { renaming != nil }, set: { if !$0 { renaming = nil } })) {
+            TextField(localized("Name", "שם"), text: $name)
+            Button(localized("Save", "שמירה")) {
                 guard let group = renaming else { return }
                 do { try workspace.store.renameGroup(group.id, name: name.trimmingCharacters(in: .whitespacesAndNewlines)) }
                 catch { workspace.errorMessage = error.localizedDescription }
                 renaming = nil
             }
-            Button("ביטול", role: .cancel) { renaming = nil }
+            Button(localized("Cancel", "ביטול"), role: .cancel) { renaming = nil }
         }
     }
 }
@@ -142,12 +147,19 @@ private struct StudyProfileEditor: View {
     let profile: StudyProfile?
     let onSave: (String, String, StudyProfileColor?) -> Bool
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.locale) private var locale
+    private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
     @State private var name: String
     @State private var symbol: String
     @State private var color: StudyProfileColor?
     private let symbols = ["person.crop.circle", "book.closed", "books.vertical", "graduationcap", "star"]
-    private let symbolLabels = ["person.crop.circle": "אישי", "book.closed": "ספר", "books.vertical": "ספרים",
-                                "graduationcap": "לימוד", "star": "מועדף"]
+    private var symbolLabels: [String: String] {
+        ["person.crop.circle": localized("Personal", "אישי"),
+         "book.closed": localized("Book", "ספר"),
+         "books.vertical": localized("Books", "ספרים"),
+         "graduationcap": localized("Study", "לימוד"),
+         "star": localized("Favorite", "מועדף")]
+    }
     init(profile: StudyProfile?, onSave: @escaping (String, String, StudyProfileColor?) -> Bool) {
         self.profile = profile; self.onSave = onSave
         _name = State(initialValue: profile?.name ?? "")
@@ -157,29 +169,29 @@ private struct StudyProfileEditor: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("שם הפרופיל", text: $name)
-                Picker("סמל", selection: $symbol) {
+                TextField(localized("Profile name", "שם הפרופיל"), text: $name)
+                Picker(localized("Symbol", "סמל"), selection: $symbol) {
                     ForEach(symbols, id: \.self) { choice in
                         Image(systemName: choice).accessibilityLabel(symbolLabels[choice] ?? choice).tag(choice)
                     }
                 }
-                Picker("צבע", selection: $color) {
-                    Text("ברירת מחדל").tag(StudyProfileColor?.none)
+                Picker(localized("Color", "צבע"), selection: $color) {
+                    Text(localized("Default", "ברירת מחדל")).tag(StudyProfileColor?.none)
                     ForEach(StudyProfileColor.allCases, id: \.self) { choice in
-                        Label { Text(choice.displayName) } icon: {
+                        Label { Text(choice.displayName(using: localized)) } icon: {
                             StudyProfileIcon(symbol: "circle.fill", color: choice)
                         }.tag(Optional(choice))
                     }
                 }
                 .pickerStyle(.menu)
                 .accessibilityIdentifier("study-profile-color")
-                .accessibilityValue(color?.displayName ?? "ברירת מחדל")
+                .accessibilityValue(color?.displayName(using: localized) ?? localized("Default", "ברירת מחדל"))
             }
-            .navigationTitle(profile == nil ? "פרופיל חדש" : "עריכת פרופיל")
+            .navigationTitle(profile == nil ? localized("New Profile", "פרופיל חדש") : localized("Edit Profile", "עריכת פרופיל"))
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("ביטול") { dismiss() } }
+                ToolbarItem(placement: .cancellationAction) { Button(localized("Cancel", "ביטול")) { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("שמירה") { if onSave(name.trimmingCharacters(in: .whitespacesAndNewlines), symbol, color) { dismiss() } }
+                    Button(localized("Save", "שמירה")) { if onSave(name.trimmingCharacters(in: .whitespacesAndNewlines), symbol, color) { dismiss() } }
                         .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
@@ -201,14 +213,14 @@ struct StudyProfileIcon: View {
 }
 
 extension StudyProfileColor {
-    var displayName: String {
+    func displayName(using localized: StudyWorkspaceText) -> String {
         switch self {
-        case .blue: "כחול"
-        case .teal: "טורקיז"
-        case .green: "ירוק"
-        case .orange: "כתום"
-        case .red: "אדום"
-        case .purple: "סגול"
+        case .blue: localized("Blue", "כחול")
+        case .teal: localized("Teal", "טורקיז")
+        case .green: localized("Green", "ירוק")
+        case .orange: localized("Orange", "כתום")
+        case .red: localized("Red", "אדום")
+        case .purple: localized("Purple", "סגול")
         }
     }
 
