@@ -195,6 +195,7 @@ private struct OtzariaHanlinChatView: View {
             // Stack padding alone leaves source actions under the native editor.
             .safeAreaPadding(.bottom, composerHeight)
             .scrollDismissesKeyboard(.interactively)
+            .accessibilityIdentifier("otzaria-hanlin-transcript")
             .onChange(of: session.messages.last?.content) { _, _ in
                 if let last = session.messages.last { reader.scrollTo(last.id, anchor: .bottom) }
             }
