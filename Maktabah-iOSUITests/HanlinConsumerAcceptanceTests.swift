@@ -730,8 +730,14 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             object: app.buttons["otzaria-hanlin-stop"])
         XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
         XCTAssertEqual(links.count, 1)
-        XCTAssertTrue(links.firstMatch.isHittable)
-        let sourceID = try XCTUnwrap(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))))
+        let transcript = app.scrollViews["otzaria-hanlin-transcript"]
+        let openSource = links.firstMatch
+        XCTAssertTrue(transcript.waitForExistence(timeout: 10))
+        // The real keyboard and floating composer can leave the source just
+        // above the final marker. Reveal it by scrolling the original transcript.
+        for _ in 0..<4 where !openSource.isHittable { transcript.swipeDown() }
+        XCTAssertTrue(openSource.isHittable, "The actual source must be reachable in its transcript")
+        let sourceID = try XCTUnwrap(UUID(uuidString: String(openSource.identifier.dropFirst("otzaria-hanlin-source-".count))))
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", marker))
             .firstMatch.waitForExistence(timeout: 30), "The actual live continuation must reach the original transcript")
 
@@ -797,7 +803,7 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
         let beforeNavigation = try Self.readerReceiptLines(readerLog)
         XCTAssertEqual(links.count, 1)
         XCTAssertEqual(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))), sourceID)
-        for _ in 0..<4 where !links.firstMatch.isHittable { app.scrollViews.firstMatch.swipeDown() }
+        for _ in 0..<4 where !openSource.isHittable { transcript.swipeDown() }
         press(links.firstMatch)
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
             object: app.buttons["otzaria-hanlin-close"])], timeout: 30), .completed)
