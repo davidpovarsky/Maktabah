@@ -136,30 +136,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(visibleRow.waitForExistence(timeout: 15))
         let visible = visibleRow.switches.firstMatch
         XCTAssertTrue(visible.waitForExistence(timeout: 15) && visible.isHittable && visible.isEnabled)
-        if isPad {
-            // Move the visible UIKit switch thumb within the native control.
-            // Tapping its exposed center on iPadOS can leave the value unchanged.
-            let leading = visible.coordinate(withNormalizedOffset:
-                CGVector(dx: language.isRTL ? 0.78 : 0.22, dy: 0.5))
-            let trailing = visible.coordinate(withNormalizedOffset:
-                CGVector(dx: language.isRTL ? 0.22 : 0.78, dy: 0.5))
-            trailing.press(forDuration: 0.25, thenDragTo: leading)
-        } else {
-            visible.tap()
-        }
+        activateNativePickerSwitch(visible)
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
         }
         XCTAssertTrue(visible.isHittable && visible.isEnabled)
-        if isPad {
-            let leading = visible.coordinate(withNormalizedOffset:
-                CGVector(dx: language.isRTL ? 0.78 : 0.22, dy: 0.5))
-            let trailing = visible.coordinate(withNormalizedOffset:
-                CGVector(dx: language.isRTL ? 0.22 : 0.78, dy: 0.5))
-            leading.press(forDuration: 0.25, thenDragTo: trailing)
-        } else {
-            visible.tap()
-        }
+        activateNativePickerSwitch(visible)
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden == original.hidden
         }
@@ -1323,14 +1305,33 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     }
 
 
+    private func activateNativePickerSwitch(_ control: XCUIElement) {
+        if isPad {
+            // In the presented iPad sheet, give the native UISwitch its actual
+            // window coordinate. The accessibility hit point can target another layer.
+            let window = app.windows.firstMatch
+            let windowFrame = window.frame
+            let switchFrame = control.frame
+            XCTAssertTrue(windowFrame.contains(switchFrame))
+            window.coordinate(withNormalizedOffset: .zero).withOffset(
+                CGVector(dx: switchFrame.midX - windowFrame.minX,
+                         dy: switchFrame.midY - windowFrame.minY)).tap()
+        } else {
+            control.tap()
+        }
+    }
+
     @MainActor
     private func confirmOriginalMiniAppsSave() async throws {
         let identified = app.buttons["annotation-miniapps-save-confirm"]
         let nativeLabel = app.buttons["Save and open Mini Apps"]
-        try await requireNativeCondition(timeout: 15) {
-            (identified.exists && identified.isHittable) || (nativeLabel.exists && nativeLabel.isHittable)
-        }
-        tap(identified.exists && identified.isHittable ? identified : nativeLabel)
+        try await requireNativeCondition(timeout: 15) { identified.exists || nativeLabel.exists }
+        let confirm = identified.exists ? identified : nativeLabel
+        XCTAssertTrue(confirm.isEnabled)
+        // The actual iPad popover button has a visible in-window frame even
+        // while XCTest reports its default hit point covered by the editor.
+        // The subsequent original persistence and callback assertions still apply.
+        tap(confirm)
     }
 
     /// Actual original saved row and immutable versions, including a first note
