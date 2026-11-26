@@ -662,7 +662,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let firstBody = try await richBody(first, host: host)
         let keyboard = app.keyboards.firstMatch
         var activeDatabasePath = databasePath
-        if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED"] == "1" {
+        let seededThroughTextStudio = ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED"] == "1"
+        if seededThroughTextStudio {
             // Have the real MiniApp create the second original native block.
             // This checks the callback with the same product and persisted row.
             let known = Set(try records(in: shared).map { $0.request.id })
@@ -729,10 +730,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let visibleHide = hide.allElementsBoundByIndex.filter(\.isHittable)
         if visibleHide.count == 1 { visibleHide[0].tap() }
         try await assertNativeBodies([first, second], host: host)
-        // Capture a real caret from the first native block. If the original
-        // toolbar ends focus, the SDK's no-selection insertion adds a block;
-        // expected topology is derived from its actual native context below.
-        tap(try await richBody(first, host: host))
+        if !seededThroughTextStudio {
+            // The keyboard fixture exercises a real caret. The TextStudio fixture
+            // leaves the remounted editor unfocused so the native toolbar stays visible.
+            tap(try await richBody(first, host: host))
+        }
         let beforeWarm = Set(try records(in: shared).map { $0.request.id })
         let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath)
         tap(app.buttons["annotation-expanded-editor-miniapps"])
