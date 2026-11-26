@@ -1,0 +1,63 @@
+{
+  "actual_selected_case_counts": {
+    "failed": 34,
+    "passed": 82
+  },
+  "control_checkout": "ec14460748dc79818b1a7a3f269a54e3a1ddfaa9",
+  "groups": {
+    "11": {
+      "failedTests": 5,
+      "passedTests": 7,
+      "runnerStatus": "FAIL",
+      "skippedTests": 0,
+      "totalTestCount": 12
+    },
+    "11-index": {
+      "failedTests": 0,
+      "passedTests": 5,
+      "runnerStatus": "EXECUTED_PASS",
+      "skippedTests": 0,
+      "totalTestCount": 5
+    },
+    "11-reader": {
+      "failedTests": 8,
+      "passedTests": 33,
+      "runnerStatus": "FAIL",
+      "skippedTests": 0,
+      "totalTestCount": 41
+    },
+    "11-search": {
+      "failedTests": 3,
+      "passedTests": 19,
+      "runnerStatus": "FAIL",
+      "skippedTests": 0,
+      "totalTestCount": 22
+    },
+    "11-sidebar": {
+      "failedTests": 0,
+      "passedTests": 5,
+      "runnerStatus": "EXECUTED_PASS",
+      "skippedTests": 0,
+      "totalTestCount": 5
+    },
+    "11-window": {
+      "failedTests": 2,
+      "passedTests": 0,
+      "runnerStatus": "FAIL",
+      "skippedTests": 0,
+      "totalTestCount": 2
+    },
+    "phone": {
+      "failedTests": 16,
+      "passedTests": 13,
+      "runnerStatus": "FAIL",
+      "skippedTests": 0,
+      "totalTestCount": 29
+    }
+  },
+  "matrix_sha256": "12c12470056356b747fe16c66df3031de46a0df3a95fd7b366206909f492ab93",
+  "physical_device_qualification": false,
+  "release_acceptance": false,
+  "scope": "Original 116 declared baseline diagnostic selectors only",
+  "source_application": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb"
+}

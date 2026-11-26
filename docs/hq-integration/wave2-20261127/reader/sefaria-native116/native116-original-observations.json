@@ -1,0 +1,428 @@
+{
+  "originalRoot": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd",
+  "hierarchies": [
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/42DA9274-F610-4618-B527-C33AEE22829C.txt",
+      "bytes": 60482,
+      "sha256": "7ea9213275fa8506b6234fc4e7380ac2d2d11d8c35f68a24144a1e84c3431ccc",
+      "selectedOriginalLines": [
+        "                                                            SegmentedControl, 0x11800e1c0, {{16.0, 202.0}, {288.0, 31.0}}, identifier: 'toc-structure-picker'",
+        "                                                              Button, 0x11800e300, {{16.0, 202.0}, {144.0, 32.0}}, label: 'Folios', Selected",
+        "                                                              Button, 0x11800e440, {{160.0, 202.0}, {144.0, 32.0}}, label: 'Berakhot'",
+        "                                                            CollectionView, 0x11800e580, {{0.0, 241.0}, {320.0, 905.0}}, identifier: 'toc-content-list'",
+        "                                      StaticText, 0x118040000, {{134.5, 111.0}, {51.0, 14.5}}, label: 'Berakhot'",
+        "                                              Button, 0x118041cc0, {{379.0, 98.0}, {71.0, 20.5}}, identifier: 'reader-document-tab-14044E37-9431-4845-BBB6-DA796C02702F', label: 'Berakhot'",
+        "                                              StaticText, 0x118045cc0, {{576.5, 130.2}, {1.0, 20.5}}, identifier: 'reader-header-title', label: 'Berakhot'"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/D4509646-93BC-4138-9EB7-8609D87FBA48.txt",
+      "bytes": 47686,
+      "sha256": "43475ddbda6868a1d4a31eed93b114158e7fbd707083b059f11079625236076d",
+      "selectedOriginalLines": [
+        "                                                            SegmentedControl, 0x1161bc3c0, {{16.0, 202.0}, {288.0, 31.0}}, identifier: 'toc-structure-picker'",
+        "                                                              Button, 0x1161bc500, {{16.0, 202.0}, {144.0, 32.0}}, label: 'Chapters', Selected",
+        "                                                            CollectionView, 0x1161bc780, {{0.0, 241.0}, {320.0, 905.0}}, identifier: 'toc-content-list'",
+        "                                                                      Button, 0x1161bd540, {{26.0, 268.5}, {12.5, 7.5}}, identifier: 'toc-expand--16523', label: 'Collapse 1'",
+        "                                                                      Button, 0x1161bf0c0, {{0.0, 355.0}, {320.0, 52.0}}, identifier: 'toc-row--16525', label: '2', value: unselected"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/C70422FA-D69F-47CB-A756-0EE5EBD07B7F.txt",
+      "bytes": 48914,
+      "sha256": "0e6c6af71ea4af02e867c92fe75b3ce95f59ad44de82b204a18a994894b4f141",
+      "selectedOriginalLines": [
+        "                                                            SegmentedControl, 0x117d0e6c0, {{530.0, 202.0}, {288.0, 31.0}}, identifier: 'toc-structure-picker'",
+        "                                                            CollectionView, 0x117d0ea80, {{514.0, 241.0}, {320.0, 905.0}}, identifier: 'toc-content-list'",
+        "                                                                      Button, 0x117d3d540, {{541.5, 1062.0}, {7.5, 12.5}}, identifier: 'toc-expand--16548', label: 'הרחב את ⁨פרק ב׳⁩'",
+        "                                                                      Button, 0x117d3e440, {{541.5, 1124.0}, {7.5, 12.5}}, identifier: 'toc-expand--16569', label: 'הרחב את ⁨פרק ג׳⁩'",
+        "                                              Button, 0x117d352c0, {{259.5, 98.0}, {69.0, 20.5}}, identifier: 'reader-document-tab-14044E37-9431-4845-BBB6-DA796C02702F', label: 'Berakhot'"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/0883734E-9C70-44C3-B2FB-5C249E243378.txt",
+      "bytes": 58200,
+      "sha256": "0ee51253642c067b04d485fe430f0185fa8b82b8b42f5e9b6f485c3341a21fc4",
+      "selectedOriginalLines": [
+        "                                              Button, 0x117897ac0, {{259.5, 98.0}, {69.0, 20.5}}, identifier: 'reader-document-tab-14044E37-9431-4845-BBB6-DA796C02702F', label: 'Berakhot'",
+        "                            TextField, 0x10baa12c0, {{96.5, 117.0}, {506.0, 25.5}}, label: 'חפש ספר בספרייה…', placeholderValue: 'חפש ספר בספרייה…', value: ברכות, Keyboard Focused"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/26A8E596-739A-45EF-A400-982609C704EC.txt",
+      "bytes": 23514,
+      "sha256": "69166dac12aec09789ae5d44610fd125e469c30eb8ebd38cd8effa52e870e73d",
+      "selectedOriginalLines": [
+        "                                                          StaticText, 0x117d0bc00, {{64.0, 677.0}, {192.0, 18.0}}, label: 'Loading Table of Contents...'"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-11-reader/2B33D604-2DD2-46E9-A499-64AC9EA8E7C9.txt",
+      "bytes": 27495,
+      "sha256": "1a6ab970d823951a5c4ba385108feb35106b33c4af6034720eebe94dc62b8c69",
+      "selectedOriginalLines": [
+        "                                                          StaticText, 0x117431f40, {{600.8, 677.0}, {146.5, 18.0}}, label: 'טוען את תוכן העניינים…'"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/76AA54EA-233C-4792-8108-5A7E049F2793.txt",
+      "bytes": 21169,
+      "sha256": "c8978fcc49327ef123f7f12c5ee9b260e2f29f6ed797ad667c36631b520c783a",
+      "selectedOriginalLines": [
+        "                              Button, 0x1093748c0, {{16.0, 62.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Library'",
+        "                                    SegmentedControl, 0x114ba4280, {{16.0, 178.0}, {370.0, 31.0}}, identifier: 'toc-structure-picker'",
+        "                                      Button, 0x114ba43c0, {{16.0, 178.0}, {185.0, 32.0}}, label: 'Chapters', Selected",
+        "                                    CollectionView, 0x114ba4640, {{0.0, 217.0}, {402.0, 657.0}}, identifier: 'toc-content-list'"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/7B3CB2FD-A4FE-48EF-BE57-99E048EF9A05.txt",
+      "bytes": 16677,
+      "sha256": "4fc7a8499d28c5071af02505acc00c0bf1f59a14bd9f38ed0a8455e5cc4e3b27",
+      "selectedOriginalLines": [
+        "                              Button, 0x114785540, {{16.0, 62.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Library'"
+      ]
+    }
+  ],
+  "summaries": {
+    "native116-apple-summary-11-reader.json": {
+      "sha256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32",
+      "bytes": 7915,
+      "document": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "2C38BE8E-04D1-49D1-B38D-59C449B26A4D",
+              "deviceName": "Faithful 11-inch 559cfc35",
+              "modelName": "iPad Pro 11-inch (M5)",
+              "osBuildNumber": "24A434",
+              "osVersion": "27.0",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 8,
+            "passedTests": 33,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "Maktabah-iOS · Built with macOS 27.0",
+        "expectedFailures": 0,
+        "failedTests": 8,
+        "finishTime": 1795719319.316,
+        "passedTests": 33,
+        "result": "Failed",
+        "runtimeWarnings": [
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          }
+        ],
+        "skippedTests": 0,
+        "startTime": 1795717121.51,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 1,
+            "testIdentifierString": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+            "testName": "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-expand--16525",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 36,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+            "testName": "testEmbeddedEnglishChapterAndComplexTOC()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Require the original localized structure label",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 37,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+            "testName": "testEmbeddedEnglishTalmudTOCAndCanonicalNavigation()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"הרחב את ⁨פרק ב׳⁩\") is not equal to (\"הרחב את פרק ב׳\")",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 38,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+            "testName": "testEmbeddedHebrewChapterAndComplexTOC()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"Optional(\"ב\")\") is not equal to (\"Optional(\"ברכות\")\")",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 39,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+            "testName": "testEmbeddedHebrewTalmudTOCAndCanonicalNavigation()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 16,
+            "testIdentifierString": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+            "testName": "testPublicV2TOCWithoutOriginalReaderCannotAcknowledge()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 40,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+            "testName": "testRemoteEnglishLoadingFailureAndOriginalRetry()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 41,
+            "testIdentifierString": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+            "testName": "testRemoteHebrewLoadingFailureAndOriginalRetry()"
+          }
+        ],
+        "title": "Test - Maktabah-iOS",
+        "topInsights": [
+          {
+            "category": "Common Failures",
+            "impact": "25% of failures",
+            "text": "2 runs of 2 tests failed with XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading"
+          },
+          {
+            "category": "Longest Test Runs",
+            "impact": "8% of duration",
+            "text": "1 longest test run with outlier durations exceeding 158.07s (three standard deviations)"
+          }
+        ],
+        "totalTestCount": 41
+      }
+    },
+    "native116-apple-summary-phone.json": {
+      "sha256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df",
+      "bytes": 11879,
+      "document": {
+        "devicesAndConfigurations": [
+          {
+            "device": {
+              "architecture": "arm64",
+              "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+              "deviceName": "Faithful phone-inch 1f32b17f",
+              "modelName": "iPhone 18 Pro",
+              "osBuildNumber": "24A434",
+              "osVersion": "27.0",
+              "platform": "iOS Simulator"
+            },
+            "expectedFailures": 0,
+            "failedTests": 16,
+            "passedTests": 13,
+            "skippedTests": 0,
+            "testPlanConfiguration": {
+              "configurationId": "1",
+              "configurationName": "Test Scheme Action"
+            }
+          }
+        ],
+        "environmentDescription": "Maktabah-iOS · Built with macOS 27.0",
+        "expectedFailures": 0,
+        "failedTests": 16,
+        "finishTime": 1795722895.792,
+        "passedTests": 13,
+        "result": "Failed",
+        "runtimeWarnings": [
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          },
+          {
+            "issueType": "Runtime Warning",
+            "message": "[Internal] Thread running at User-interactive quality-of-service class waiting on a thread without a QoS class specified (base priority 33). Investigate ways to avoid priority inversions"
+          }
+        ],
+        "skippedTests": 0,
+        "startTime": 1795720785.516,
+        "statistics": [],
+        "testFailures": [
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 2,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+            "testName": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 3,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+            "testName": "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 4,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+            "testName": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 5,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+            "testName": "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone()"
+          },
+          {
+            "failureText": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 24,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+            "testName": "testEmbeddedEnglishChapterAndComplexTOCOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 25,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+            "testName": "testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone()"
+          },
+          {
+            "failureText": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 26,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+            "testName": "testEmbeddedHebrewChapterAndComplexTOCOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 27,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+            "testName": "testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 21,
+            "testIdentifierString": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+            "testName": "testNormalBootstrapGlobalHistoryUsesActualSubmit()"
+          },
+          {
+            "failureText": "Failed to determine hittability of \"reader-text\" TextView: Activation point invalid and no suggested hit points based on element frame",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 23,
+            "testIdentifierString": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+            "testName": "testNormalBootstrapOtzariaBackgroundAndColdRestoration()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 1,
+            "testIdentifierString": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+            "testName": "testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 6,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+            "testName": "testPhoneColdHistoryWaitsForActualSceneMount()"
+          },
+          {
+            "failureText": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 28,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone",
+            "testName": "testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone()"
+          },
+          {
+            "failureText": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 29,
+            "testIdentifierString": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+            "testName": "testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertNil failed: \"semantic_commentary_draft_failed\" - [\"probeError\": semantic_commentary_draft_failed, \"errorType\": CommentaryDraftFailure]",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 18,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+            "testName": "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone()"
+          },
+          {
+            "failureText": "XCTAssertTrue failed",
+            "targetName": "Maktabah-iOSUITests",
+            "testIdentifier": 19,
+            "testIdentifierString": "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone()",
+            "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+            "testName": "testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone()"
+          }
+        ],
+        "title": "Test - Maktabah-iOS",
+        "topInsights": [
+          {
+            "category": "Common Failures",
+            "impact": "25% of failures",
+            "text": "4 runs of 4 tests failed with Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame"
+          }
+        ],
+        "totalTestCount": 29
+      }
+    }
+  }
+}

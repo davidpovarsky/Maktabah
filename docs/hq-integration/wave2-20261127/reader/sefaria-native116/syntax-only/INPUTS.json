@@ -1,0 +1,18 @@
+{
+  "source": "49cfd5e8d5ecebf37acf812e047fee36cf60893a",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "snapshot": "SefariaEmbeddedAcceptanceTests.swift",
+      "sha256": "65145c30861efa74994edd9539c93d748d8b67dd4a77beb8332a4295960acba3",
+      "bytes": 32332
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "snapshot": "iOSTOCView.swift",
+      "sha256": "7e863a77b8121a2af88807a7854c52da0085302cd2d1e2f86d42e17850beb94c",
+      "bytes": 12332
+    }
+  ],
+  "scope": "Swift iOS Simulator syntax parse only; no build/typecheck/app/UI execution"
+}
