@@ -1,21 +1,22 @@
 import Foundation
 
+private enum OtzariaPlainTextPatterns {
+    static let lineBreaks = try! NSRegularExpression(
+        pattern: #"<br(?: ?/)?>|</(?:p|h[1-4])>"#,
+        options: .caseInsensitive
+    )
+    static let tags = try! NSRegularExpression(pattern: #"<[^>]+>"#)
+    static let repeatedNewlines = try! NSRegularExpression(pattern: #"\n{3,}"#)
+}
+
 extension String {
     var otsariaPlainText: String {
         var text = self
         // Preserve the existing transformation order. Most TOC/source rows are
         // already plain text, so do not run every replacement/regex on them.
         if text.utf8.contains(0x3C) { // <
-            text = text
-                .replacingOccurrences(of: "<br>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "<br/>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "<br />", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "</h1>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "</h2>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "</h3>", with: "\n", options: .caseInsensitive)
-                .replacingOccurrences(of: "</h4>", with: "\n", options: .caseInsensitive)
-            text = text.replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+            text = text.replacingOtzariaMatches(of: OtzariaPlainTextPatterns.lineBreaks, with: "\n")
+            text = text.replacingOtzariaMatches(of: OtzariaPlainTextPatterns.tags, with: "")
         }
 
         if text.utf8.contains(0x26) { // &
@@ -34,9 +35,17 @@ extension String {
         }
 
         if text.utf8.contains(0x0A) { // newline
-            text = text.replacingOccurrences(of: #"\n{3,}"#, with: "\n\n", options: .regularExpression)
+            text = text.replacingOtzariaMatches(of: OtzariaPlainTextPatterns.repeatedNewlines, with: "\n\n")
         }
         return text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func replacingOtzariaMatches(of pattern: NSRegularExpression, with replacement: String) -> String {
+        pattern.stringByReplacingMatches(
+            in: self,
+            range: NSRange(location: 0, length: utf16.count),
+            withTemplate: replacement
+        )
     }
 
     var otsariaLooksLikeHTMLHeading: Bool {
