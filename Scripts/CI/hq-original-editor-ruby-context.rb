@@ -27,6 +27,35 @@ module OriginalEditorRubyContext
       }.sort_by { |d| d.fetch('name') } }
   end
 
+  # Ruby's default gems may have no standalone gem directory. Resolve only
+  # their declared members within this exact Ruby installation, without
+  # requiring them or changing the original process's activated dependencies.
+  def self.default_sources(spec)
+    return [] unless spec.default_gem?
+    roots = %w[rubylibdir archdir].map { |key| RbConfig::CONFIG.fetch(key) }.
+      select { |path| File.directory?(path) }.map { |path| File.realpath(path) }.uniq
+    sources = []
+    spec.files.each do |declared|
+      raise 'Unsafe default gem member' unless declared.is_a?(String) &&
+        !declared.empty? && !declared.start_with?(File::SEPARATOR) &&
+        !declared.split(File::SEPARATOR).include?('..')
+      relative = declared
+      spec.require_paths.reject { |path| path.start_with?(File::SEPARATOR) }.each do |prefix|
+        relative = relative.delete_prefix(prefix + File::SEPARATOR) if
+          relative.start_with?(prefix + File::SEPARATOR)
+      end
+      roots.each do |root|
+        candidate = File.join(root, relative)
+        next unless File.file?(candidate)
+        resolved = File.realpath(candidate)
+        raise 'Default gem member escaped the original Ruby installation' unless
+          roots.any? { |directory| resolved.start_with?(directory + File::SEPARATOR) }
+        sources << resolved
+      end
+    end
+    sources.uniq.sort
+  end
+
   # Dependency-first order makes the later activation select the actual loaded
   # versions, including a version constrained by the original CocoaPods process.
   def self.closure(specs, features)
@@ -54,8 +83,9 @@ module OriginalEditorRubyContext
         actual = File.realpath(feature)
         files << actual if directories.any? { |directory| actual.start_with?(directory + File::SEPARATOR) }
       end
+      files.concat(default_sources(spec))
       record['files'] = files.map { |p| file(p) }.uniq { |r| r.fetch('path') }.sort_by { |r| r.fetch('path') }
-      raise 'Original gem has no retained source files' if record.fetch('files').empty?
+      raise "Original gem #{spec.name} has no retained source files" if record.fetch('files').empty?
       ordered << record
     end
     visit.call('xcodeproj')
@@ -146,6 +176,9 @@ module OriginalEditorRubyContext
         raise 'Original gem source changed' unless file(source.fetch('path')) == source
       end
       gem record.fetch('name'), "= #{record.fetch('version')}"
+      declared_defaults = default_sources(Gem.loaded_specs.fetch(record.fetch('name')))
+      raise 'Default gem runtime source membership changed' unless
+        (declared_defaults - record.fetch('files').map { |source| source.fetch('path') }).empty?
     end
     require 'xcodeproj'
     records.each do |record|

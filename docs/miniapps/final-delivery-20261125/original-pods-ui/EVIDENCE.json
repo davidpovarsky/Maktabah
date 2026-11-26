@@ -1,0 +1,316 @@
+{
+  "actual_application_build": "NOT_RUN",
+  "actual_native_acceptance": "NOT_RUN",
+  "archive": "original-pods-and-ui-proofs.zip",
+  "archive_bytes": 1023413,
+  "archive_sha256": "68d35bd7be9667fbf0e5c3914ed78de5b03fe4727eddc6be329996b698d6a8f9",
+  "embedded_manifest_files": 1,
+  "github_artifact_id": null,
+  "github_run_id": null,
+  "members": [
+    {
+      "bytes": 1246,
+      "path": "pods/actual-expo-membership-dd5c/ExpoModulesProvider-Maktabah-iOSNativeTests.swift",
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1"
+    },
+    {
+      "bytes": 1246,
+      "path": "pods/actual-expo-membership-dd5c/ExpoModulesProvider.swift",
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1"
+    },
+    {
+      "bytes": 644957,
+      "path": "pods/actual-expo-membership-dd5c/generated-Maktabah-project.pbxproj",
+      "sha256": "1a6bc2ea732096b892331b5255cc5b5b312038bfa68ba62968f1a580b75a8224"
+    },
+    {
+      "bytes": 1415,
+      "path": "pods/actual-expo-membership-dd5c/generated-expo-provider-membership.json",
+      "sha256": "2f222c4212ef1770db5fa4576863779b04453bbb2bc8c96c7214f0876bf348c2"
+    },
+    {
+      "bytes": 454357,
+      "path": "pods/actual-expo-membership-dd5c/generated-pods-project.diff",
+      "sha256": "d741f620d6e9064e8b4dec1460cf7d72a06801ca10f7a91f76fd7f2eb2dc260e"
+    },
+    {
+      "bytes": 2618,
+      "path": "pods/actual-expo-membership-dd5c/generated-privacy.diff",
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e"
+    },
+    {
+      "bytes": 877,
+      "path": "pods/actual-expo-membership-dd5c/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd"
+    },
+    {
+      "bytes": 855,
+      "path": "pods/actual-expo-membership-dd5c/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef"
+    },
+    {
+      "bytes": 1482,
+      "path": "pods/actual-expo-membership-dd5c/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38"
+    },
+    {
+      "bytes": 776,
+      "path": "pods/actual-expo-membership-dd5c/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d"
+    },
+    {
+      "bytes": 1233,
+      "path": "pods/actual-expo-membership-dd5c/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c"
+    },
+    {
+      "bytes": 1386,
+      "path": "pods/actual-expo-membership-dd5c/privacy-generated.xcprivacy",
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5"
+    },
+    {
+      "bytes": 1132,
+      "path": "pods/actual-expo-membership-dd5c/privacy-original.xcprivacy",
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1"
+    },
+    {
+      "bytes": 100298,
+      "path": "pods/actual-expo-membership-dd5c/resolved-Podfile.lock",
+      "sha256": "2a74970f5b48e4828fc915a4118af19249ef438c28971cf982cd8a8d110d3d2b"
+    },
+    {
+      "bytes": 12017,
+      "path": "pods/actual-expo-membership-dd5c/result.json",
+      "sha256": "db5b20df7830bce08dba93d9d58cf428113fcf6b014642f7509e2a69e4bb0516"
+    },
+    {
+      "bytes": 1246,
+      "path": "pods/actual-pods-41d0-default-gems-02/ExpoModulesProvider.swift",
+      "sha256": "c6ec625de1af66d390d35bfb43e4d69508597cfa246f3c939428c77295b017e1"
+    },
+    {
+      "bytes": 80810,
+      "path": "pods/actual-pods-41d0-default-gems-02/actual-ruby-declared-default-closure.json",
+      "sha256": "69d8f2eeb0fac30c4940b3eff8ec9615cee65792e2dcb38ab40048702eb73293"
+    },
+    {
+      "bytes": 0,
+      "path": "pods/actual-pods-41d0-default-gems-02/actual-ruby-declared-default-closure.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 644957,
+      "path": "pods/actual-pods-41d0-default-gems-02/generated-Maktabah-project.pbxproj",
+      "sha256": "1a6bc2ea732096b892331b5255cc5b5b312038bfa68ba62968f1a580b75a8224"
+    },
+    {
+      "bytes": 2618,
+      "path": "pods/actual-pods-41d0-default-gems-02/generated-privacy.diff",
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e"
+    },
+    {
+      "bytes": 143859,
+      "path": "pods/actual-pods-41d0-default-gems-02/hanlin-sdk-inputs.json",
+      "sha256": "f4ed28276101b7bb571f518bf330540e95b71248dadbd1f9ca2c5f8b49a63b44"
+    },
+    {
+      "bytes": 813,
+      "path": "pods/actual-pods-41d0-default-gems-02/hanlin-sdk.log",
+      "sha256": "96bf5051fd54d823b250a5174c963f86aedd6df44c894ee0eae7727bf174f131"
+    },
+    {
+      "bytes": 87392,
+      "path": "pods/actual-pods-41d0-default-gems-02/original-editor/pod-ruby-context.json",
+      "sha256": "bfb6a50ddf19522ac948f99fdb17f2f21d49872d8bc553e34948f574333b8f0d"
+    },
+    {
+      "bytes": 957,
+      "path": "pods/actual-pods-41d0-default-gems-02/original-editor/pod-ruby-request.json",
+      "sha256": "8cab0a9ac8f4a489c1ff209007dc0f9ee9972dfedc25a968b5750e513d2d9777"
+    },
+    {
+      "bytes": 25921,
+      "path": "pods/actual-pods-41d0-default-gems-02/pod-install.log",
+      "sha256": "1beb599638177049e16a526d56e96cc0ff5c021c23cfb405beae1699fcbeb862"
+    },
+    {
+      "bytes": 2618,
+      "path": "pods/actual-pods-41d0-default-gems-02/prior-actual-pods-privacy.diff",
+      "sha256": "2f496cd81580a43548668ef59cbaa0510222396bbb6c978ce0919c0faf41ae4e"
+    },
+    {
+      "bytes": 454357,
+      "path": "pods/actual-pods-41d0-default-gems-02/prior-actual-pods-project.diff",
+      "sha256": "d741f620d6e9064e8b4dec1460cf7d72a06801ca10f7a91f76fd7f2eb2dc260e"
+    },
+    {
+      "bytes": 877,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-dependency-inputs/33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd.xcprivacy",
+      "sha256": "33b0e074f273f588a64ba5632909c6a8cf1f16db8e4cd84c6978bd222dfd65bd"
+    },
+    {
+      "bytes": 855,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-dependency-inputs/5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef.xcprivacy",
+      "sha256": "5b7fe979423dede3e08afc29a42f00f6086275dc548a84c29774235863eed3ef"
+    },
+    {
+      "bytes": 1482,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-dependency-inputs/b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38.xcprivacy",
+      "sha256": "b9c360b5bb58ddb18eab5282ea4c8145e1f7ad0de14563916ab9a5a420fe4f38"
+    },
+    {
+      "bytes": 776,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-dependency-inputs/d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d.xcprivacy",
+      "sha256": "d3559c988dff940d4f758f37a0ba1863208304e33ab0b97c0e3dd5d3762f5f1d"
+    },
+    {
+      "bytes": 1233,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-dependency-inputs/f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c.xcprivacy",
+      "sha256": "f81b5cf8f043662712eca9e9785767264cf190025fe7bdb49777296c068de53c"
+    },
+    {
+      "bytes": 1386,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-generated.xcprivacy",
+      "sha256": "e6946e8876416f5a802dcad79e6c629416788175e0fa078d46accfdc73752fc5"
+    },
+    {
+      "bytes": 1132,
+      "path": "pods/actual-pods-41d0-default-gems-02/privacy-original.xcprivacy",
+      "sha256": "39380ce07cfe093fee32ef7d99c7d1cf86d3565b8fe860ecb0f8497c23c585a1"
+    },
+    {
+      "bytes": 158433,
+      "path": "pods/actual-pods-41d0-default-gems-02/result.json",
+      "sha256": "eb77fa9e3f04b381a63adf64f0f07886362f91cf946a3d210576e08643f0c20f"
+    },
+    {
+      "bytes": 143859,
+      "path": "pods/actual-pods-a8094b7e-retry-source/hanlin-sdk-inputs.json",
+      "sha256": "f4ed28276101b7bb571f518bf330540e95b71248dadbd1f9ca2c5f8b49a63b44"
+    },
+    {
+      "bytes": 813,
+      "path": "pods/actual-pods-a8094b7e-retry-source/hanlin-sdk.log",
+      "sha256": "96bf5051fd54d823b250a5174c963f86aedd6df44c894ee0eae7727bf174f131"
+    },
+    {
+      "bytes": 958,
+      "path": "pods/actual-pods-a8094b7e-retry-source/original-editor/pod-ruby-request.json",
+      "sha256": "115314d16ac26a3073d52fd045319fef3062332531b5e24773a19bf0a9012ce7"
+    },
+    {
+      "bytes": 404,
+      "path": "pods/actual-pods-a8094b7e-retry-source/owned-hanlin-update.json",
+      "sha256": "154e686f7c9dda0f91f3286e330dd3ff5f1afe3f4c5fa170fc2810ae34e14bec"
+    },
+    {
+      "bytes": 34501,
+      "path": "pods/actual-pods-a8094b7e-retry-source/pod-install.log",
+      "sha256": "f33bccb9a75c5d9bce2eafaec365ae11c4d482b7de9f8ac354a97d965f2e3d90"
+    },
+    {
+      "bytes": 152505,
+      "path": "pods/actual-pods-a8094b7e-retry-source/result.json",
+      "sha256": "38be73b5df6dcfc1ea7b3c6ab7428394bc40d44d09f743dd6aa69d491a2a02d0"
+    },
+    {
+      "bytes": 638,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/RESULT.json",
+      "sha256": "99a5f9db9f90b9a16c435ad040a84214bc0456ee6a96b97307213baa445c269c"
+    },
+    {
+      "bytes": 4221,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/source/build/artifacts/ui-acceptance-typecheck.json",
+      "sha256": "cb1f38a92c4ad89d478c3f69c6807c755aee8171574c7fc1778048df70a643ac"
+    },
+    {
+      "bytes": 2105277,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/source/build/artifacts/ui-acceptance-typecheck.log",
+      "sha256": "3c0e4b67980488518a034b5b6dd18085b4663973a0fce52969d2337202664fad"
+    },
+    {
+      "bytes": 13957,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/source/build/artifacts/xcuiautomation-voiceover-sdk.txt",
+      "sha256": "a8e893b9874bde7fa049d11fff5de74ae7b5f5c4b18504458d33738280287e13"
+    },
+    {
+      "bytes": 681,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/stderr.log",
+      "sha256": "5539fd2a7f2953c6b8bf564e65adbb6be9fe32ece1b36596911e049b104dc37a"
+    },
+    {
+      "bytes": 2109500,
+      "path": "ui/otzaria-fileworkshop-ui-ad598f39/stdout.log",
+      "sha256": "423226397b8996e7dd0be26b5caf662d42e5eab50994c867ec9679c65d14a99c"
+    },
+    {
+      "bytes": 684,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/RESULT.json",
+      "sha256": "b44d5546a2baba0dd4a45b8e2c30232d225219e77d35ef19b07ed77c6bbf52b2"
+    },
+    {
+      "bytes": 303,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/helper-materialization.json",
+      "sha256": "9f46c9352662d10a2eb33f84d29cda88f7c1f9b920564339e693096eadc8b567"
+    },
+    {
+      "bytes": 4221,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/source/build/artifacts/ui-acceptance-typecheck.json",
+      "sha256": "b0eaf43485fc326b39484bd2f68fd5597d0ee3e0a822b26f55bed25896e9ed8a"
+    },
+    {
+      "bytes": 2105277,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/source/build/artifacts/ui-acceptance-typecheck.log",
+      "sha256": "3c0e4b67980488518a034b5b6dd18085b4663973a0fce52969d2337202664fad"
+    },
+    {
+      "bytes": 13957,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/source/build/artifacts/xcuiautomation-voiceover-sdk.txt",
+      "sha256": "a8e893b9874bde7fa049d11fff5de74ae7b5f5c4b18504458d33738280287e13"
+    },
+    {
+      "bytes": 30,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/stderr.log",
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "bytes": 2109630,
+      "path": "ui/otzaria-fileworkshop-ui-dd5c5497/stdout.log",
+      "sha256": "46ba2f84cd7425f08768ada79961d00e64465d1d099b3e164cb86d51f15cf5e9"
+    },
+    {
+      "bytes": 19936,
+      "path": "MANIFEST.json",
+      "sha256": "0c3a64a779f0d64fbe628ad0cfa9ed653fef30413b69e091ea48c02fa662fb23"
+    }
+  ],
+  "official_signing": "NOT_RUN",
+  "origin": "actual-local-scaleway-mac",
+  "pod_command": {
+    "actual_exit": 0,
+    "dependencies": 120,
+    "failed_observer_receipt_preserved": true,
+    "pods": 131,
+    "source_control": "41d0bb115b10824673d7715261175fec91df3b90"
+  },
+  "proof_files": 54,
+  "schema": "otzaria.actual-local-pods-ui-evidence/1",
+  "target_provenance": {
+    "actual_consumer_source": "dd5c54973bdbe9683d10236f2ed2a033a3bf3d24",
+    "actual_result_sha256": "db5b20df7830bce08dba93d9d58cf428113fcf6b014642f7509e2a69e4bb0516",
+    "membership_sha256": "2f222c4212ef1770db5fa4576863779b04453bbb2bc8c96c7214f0876bf348c2",
+    "new_pod_installs": 0,
+    "source_control": "64782327bc0a47f4debe62b365eabce0ba3b570c",
+    "status": "PASS"
+  },
+  "testflight": "NOT_UPLOADED",
+  "ui_codegen": {
+    "aggregate": "PASS",
+    "compiler_exit": 0,
+    "native_tests_executed": 0,
+    "report_sha256": "b0eaf43485fc326b39484bd2f68fd5597d0ee3e0a822b26f55bed25896e9ed8a",
+    "source": "dd5c54973bdbe9683d10236f2ed2a033a3bf3d24",
+    "source_membership": "PASS",
+    "sources": 13
+  }
+}

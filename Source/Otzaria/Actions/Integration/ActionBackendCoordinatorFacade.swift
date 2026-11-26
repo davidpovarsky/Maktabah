@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -312,6 +312,28 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         return result
     }
 
+    func tableOfContents(for work: ActionWorkRef, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry] {
+        guard work.catalogRevision == nil, (1...101).contains(maximumEntries) else {
+            throw ActionContractError.invalid("workRef")
+        }
+        try await require("reader.getTOC", backend: work.backend, invocation: invocation)
+        let catalog = try await catalogWorks(backend: work.backend, invocation: invocation)
+        guard let sourceWork = catalog.works.first(where: { $0.locator.workKey == work.workKey }) else {
+            throw ActionPortError.notFound
+        }
+        let nodes: [LibraryTOCNode]
+        do { nodes = try await coordinator.tableOfContents(for: sourceWork) }
+        catch { throw safe(error) }
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: work.backend)
+        let task = Task.detached {
+            try ActionLibraryProjection.sourceSections(nodes, invocation: invocation, maximumEntries: maximumEntries)
+        }
+        let entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        try await require("reader.getTOC", backend: work.backend, invocation: invocation)
+        return entries
+    }
+
     func commentaryLinks(for baseLocator: ActionTextRef,
                          invocation: ActionPortInvocation) async throws -> [ActionCommentaryLink] {
         let backend = baseLocator.backend
@@ -423,15 +445,26 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         return .unique(try await validate(ref, invocation: invocation))
     }
 
+    func section(at locator: ActionTextRef, maximumSegments: Int,
+                 invocation: ActionPortInvocation) async throws -> ActionSourceTextSection {
+        guard (1...100).contains(maximumSegments) else { throw ActionContractError.invalid("maxSegments") }
+        let native = try ActionAppIdentityBridge.appLocator(locator)
+        try await require("reader.getSection", backend: locator.backend, invocation: invocation)
+        try await requireSourceWork(for: native, invocation: invocation)
+        let section = try await provenSection(at: native, invocation: invocation)
+        let segments = try section.segments.prefix(maximumSegments).map { segment in
+            ActionSourceTextSegment(locator: try ActionAppIdentityBridge.actionRef(segment.locator),
+                                    sourceText: segment.sourceText)
+        }
+        return try .init(sectionLocator: ActionAppIdentityBridge.actionRef(section.locator),
+                         displayRef: section.displayRef, segments: segments,
+                         truncated: section.segments.count > maximumSegments)
+    }
+
     func validate(_ ref: ActionTextRef, invocation: ActionPortInvocation) async throws -> ActionTextRef {
         let native = try ActionAppIdentityBridge.appLocator(ref)
         try await require("catalog.resolveReference", backend: ref.backend, invocation: invocation)
-        let works = try await catalogWorks(backend: ref.backend, invocation: invocation)
-        guard works.workKeys.contains(ref.workKey) else { throw ActionPortError.notFound }
-        if ref.backend != .otzaria {
-            guard case .canonicalRef(let value) = native.position,
-                  value == ref.workKey || value.hasPrefix(ref.workKey + " ") else { throw ActionPortError.notFound }
-        }
+        try await requireSourceWork(for: native, invocation: invocation)
         if ref.backend == .sefariaEmbedded {
             guard case .canonicalRef(let value) = ref.position, value != ref.workKey else { throw ActionPortError.notSupported }
             guard let embeddedReferenceProof else { throw ActionPortError.notSupported }
@@ -440,17 +473,36 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: ref.backend)
             return ref
         }
+        _ = try await provenSection(at: native, invocation: invocation)
+        return ref
+    }
+
+    private func requireSourceWork(for locator: TextLocator, invocation: ActionPortInvocation) async throws {
+        let backend = ActionAppIdentityBridge.actionBackend(locator.backend)
+        let works = try await catalogWorks(backend: backend, invocation: invocation)
+        guard works.workKeys.contains(locator.workKey) else { throw ActionPortError.notFound }
+        if backend != .otzaria {
+            guard case .canonicalRef(let value) = locator.position,
+                  value == locator.workKey || value.hasPrefix(locator.workKey + " ") else {
+                throw ActionPortError.notFound
+            }
+        }
+    }
+
+    private func provenSection(at native: TextLocator,
+                               invocation: ActionPortInvocation) async throws -> LibraryTextSection {
+        let backend = ActionAppIdentityBridge.actionBackend(native.backend)
         let section: LibraryTextSection
         do { section = try await coordinator.section(at: native) }
         catch LibraryBackendError.invalidLocator { throw ActionPortError.notFound }
         catch { throw safe(error) }
-        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: ref.backend)
+        try ActionBackendInvocationGuard.check(invocation, current: await snapshot(), target: backend)
         guard !section.segments.isEmpty,
               section.locator.backend == native.backend, section.locator.workKey == native.workKey,
               section.locator == native || section.segments.contains(where: { $0.locator == native }) else {
             throw ActionPortError.notFound
         }
-        return ref
+        return section
     }
 
     private func safe(_ error: any Error) -> any Error {

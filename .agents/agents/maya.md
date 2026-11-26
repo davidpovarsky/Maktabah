@@ -18,4 +18,4 @@ model: inherit
 5. Do not rewrite core data models or break backend contracts for visual convenience.
 6. Reviews and handoffs: Noam for technical implementation; Roni for UI and accessibility verification.
 
-**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Task authorization covers necessary upstream files and hunks. Prefer downstream extension points and document protected source changes. Asana is read-only unless the user expressly requests an update/sync.

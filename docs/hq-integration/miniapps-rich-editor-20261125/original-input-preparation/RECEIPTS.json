@@ -1,0 +1,56 @@
+[
+  {
+    "name": "REACT_SOURCE_RESULT.json",
+    "original_path": "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/build/miniapps-dependency-inputs-20261125/retry-ruby33/react-source-result.json",
+    "bytes": 5304,
+    "sha256": "2b766d2eede27b54476ddc093f51c042c485c6b10c614f9184c991d3832b25a8"
+  },
+  {
+    "name": "ORIGINAL_ARTIFACT_RESTORE_RESULT.json",
+    "original_path": "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/build/miniapps-dependency-inputs-20261125/artifact-restore-native-priority/result.json",
+    "bytes": 10439,
+    "sha256": "11475079f2bc2687c8ec001443e61490a9be0249df812c437ae764a5c8d07ab2"
+  },
+  {
+    "name": "IMMUTABLE_ARTIFACT_MANIFEST.json",
+    "original_path": "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah/build/immutable-artifact-inputs-20261125/manifest.json",
+    "bytes": 1659,
+    "sha256": "06323ce27ece1e3fbd928cb5a74f28ea125d077f3c61f502648111b5b013ec71"
+  },
+  {
+    "name": "AUTOMATIC_PR4_RUNS.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-source-transfer-20261125/PR4_55913BDD_FINAL_AUTOMATIC_RUNS.json",
+    "bytes": 1315,
+    "sha256": "9494bffc2fe6bb5a4b435ea357fcfd1c1362312dd977873a14931e2b0430fe5f"
+  },
+  {
+    "name": "E1_TRACE_RETIREMENT.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-storage-20261125/e1a25038-trace-duplicates/RETIRED.json",
+    "bytes": 621,
+    "sha256": "17b11fa3b623573c98b11755c2b2b50309902d027a6a715fe806179399248138"
+  },
+  {
+    "name": "E1_ARCHIVE_VERIFIED.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-storage-20261125/e1a25038-trace-duplicates/REMOTE_ARCHIVE_VERIFIED.json",
+    "bytes": 245,
+    "sha256": "7e1a7fd118a72d6a51f367e19e5a87f6229836c741d82014aa3abc116a03ad26"
+  },
+  {
+    "name": "08EF_TRACE_RETIREMENT.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-storage-20261125/08ef8741-trace-duplicates/RETIRED.json",
+    "bytes": 621,
+    "sha256": "da9a14b1a5d30c03087f936329a9f04f489553ce53594b6e698c774d62784664"
+  },
+  {
+    "name": "08EF_ARCHIVE_VERIFIED.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-storage-20261125/08ef8741-trace-duplicates/REMOTE_ARCHIVE_VERIFIED.json",
+    "bytes": 245,
+    "sha256": "2289a9ac4f8f1771f8c414904c574474c7492c88900fc324d260290c42c6f7da"
+  },
+  {
+    "name": "08EF_SIMULATOR_RETIREMENT.json",
+    "original_path": "/home/ubuntu/hanlin-delivery-evidence/otzaria-storage-20261125/completed-08ef-B372-data/RETIRED.json",
+    "bytes": 368,
+    "sha256": "16bde33473303a7e84db138849287f6a16cbb5802229d03874b22c06a3468c28"
+  }
+]

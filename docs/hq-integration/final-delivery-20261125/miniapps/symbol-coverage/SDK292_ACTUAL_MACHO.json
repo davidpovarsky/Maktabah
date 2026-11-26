@@ -1,0 +1,311 @@
+{
+  "images": {
+    "AnytypeOriginalEditor": {
+      "architectures": [
+        "arm64"
+      ],
+      "architectures_command": {
+        "command": [
+          "xcrun",
+          "lipo",
+          "-archs",
+          "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+        ],
+        "compressed_bytes": 66,
+        "deadline_seconds": 30,
+        "elapsed_seconds": 0.013604,
+        "path": "AnytypeOriginalEditor-architectures.txt.gz",
+        "pid": 45711,
+        "raw_bytes": 6,
+        "raw_sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+        "returncode": 0,
+        "sha256": "099b562377460d36eb9723e0e41919e17f85508908dc6d593fb9ee6f09983b6c",
+        "status": "PASS"
+      },
+      "binary_sha256": "a059eb4b00471aab882473b9e45de1d7d0febba7c90b3af73de05a20c68bed19",
+      "bytes": 232499808,
+      "dyld_exports_omitted": 0,
+      "local_undefined_and_debug_nlist_retained": true,
+      "original_release_split_reference": "anytype-swift/be863930733cbaa07d3e325b0406f4dcfa4d8684",
+      "slices": [
+        {
+          "architecture": "arm64",
+          "export_trie": {
+            "all_native_rows_parsed": true,
+            "command": [
+              "xcrun",
+              "dyld_info",
+              "-arch",
+              "arm64",
+              "-exports",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+            ],
+            "compressed_bytes": 2338647,
+            "deadline_seconds": 60,
+            "definitions": 173067,
+            "elapsed_seconds": 0.160873,
+            "kinds": {
+              "regular": 173066,
+              "weak-def": 1
+            },
+            "path": "AnytypeOriginalEditor-arm64-exports.txt.gz",
+            "pid": 45757,
+            "raw_bytes": 16315052,
+            "raw_sha256": "a0dbdc0572117660219e4c7df9ff152bee73904bff0babedf56515b087bfbb76",
+            "returncode": 0,
+            "sha256": "56f08e1bbbbd06da50cf2e81f7ff2bfb18c04fc9f5450e58ac7c2bf0ddd2de27",
+            "status": "PASS"
+          },
+          "load_commands": {
+            "command": [
+              "xcrun",
+              "otool",
+              "-arch",
+              "arm64",
+              "-h",
+              "-l",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+            ],
+            "compressed_bytes": 5674,
+            "deadline_seconds": 60,
+            "elapsed_seconds": 0.0194,
+            "path": "AnytypeOriginalEditor-arm64-load-commands.txt.gz",
+            "pid": 45755,
+            "raw_bytes": 39684,
+            "raw_sha256": "5cce5564c33261d613650e1d1f161b563da2e958d5a1899ab8dfa11c0d4c4f4a",
+            "returncode": 0,
+            "sha256": "f072d6ddddf5e9d73d16c2616380a145ec0b8045c3dc0f6942a277c24c468389",
+            "status": "PASS"
+          },
+          "native_export_ranges": [
+            {
+              "bytes": 5299688,
+              "command": "LC_DYLD_EXPORTS_TRIE"
+            }
+          ],
+          "nlist": {
+            "command": [
+              "xcrun",
+              "nm",
+              "--arch=arm64",
+              "-a",
+              "--no-dyldinfo",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+            ],
+            "compressed_bytes": 20691368,
+            "deadline_seconds": 150,
+            "elapsed_seconds": 4.717057,
+            "path": "AnytypeOriginalEditor-arm64-nlist.txt.gz",
+            "pid": 45712,
+            "raw_bytes": 230773689,
+            "raw_sha256": "a113403a4f73c9ef471e875fb3380cbad814dfdb9286437d38b6c3edb9212f64",
+            "returncode": 0,
+            "sha256": "173cc9cdbac2f1a8e6f23c73de04211482f65f371256243524546bfc4812efb1",
+            "status": "PASS"
+          }
+        }
+      ],
+      "status": "ALL_NLIST_AND_COMPLETE_NATIVE_EXPORT_TRIES",
+      "symbol_streams": [
+        {
+          "command": [
+            "xcrun",
+            "nm",
+            "--arch=arm64",
+            "-a",
+            "--no-dyldinfo",
+            "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+          ],
+          "compressed_bytes": 20691368,
+          "deadline_seconds": 150,
+          "elapsed_seconds": 4.717057,
+          "path": "AnytypeOriginalEditor-arm64-nlist.txt.gz",
+          "pid": 45712,
+          "raw_bytes": 230773689,
+          "raw_sha256": "a113403a4f73c9ef471e875fb3380cbad814dfdb9286437d38b6c3edb9212f64",
+          "returncode": 0,
+          "sha256": "173cc9cdbac2f1a8e6f23c73de04211482f65f371256243524546bfc4812efb1",
+          "status": "PASS"
+        },
+        {
+          "command": [
+            "xcrun",
+            "dyld_info",
+            "-arch",
+            "arm64",
+            "-exports",
+            "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/AnytypeOriginalEditor"
+          ],
+          "compressed_bytes": 2338647,
+          "deadline_seconds": 60,
+          "elapsed_seconds": 0.160873,
+          "path": "AnytypeOriginalEditor-arm64-exports.txt.gz",
+          "pid": 45757,
+          "raw_bytes": 16315052,
+          "raw_sha256": "a0dbdc0572117660219e4c7df9ff152bee73904bff0babedf56515b087bfbb76",
+          "returncode": 0,
+          "sha256": "56f08e1bbbbd06da50cf2e81f7ff2bfb18c04fc9f5450e58ac7c2bf0ddd2de27",
+          "status": "PASS"
+        }
+      ],
+      "zip_member": "Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor"
+    },
+    "ProtobufMessages": {
+      "architectures": [
+        "arm64"
+      ],
+      "architectures_command": {
+        "command": [
+          "xcrun",
+          "lipo",
+          "-archs",
+          "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+        ],
+        "compressed_bytes": 61,
+        "deadline_seconds": 30,
+        "elapsed_seconds": 0.072366,
+        "path": "ProtobufMessages-architectures.txt.gz",
+        "pid": 45620,
+        "raw_bytes": 6,
+        "raw_sha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+        "returncode": 0,
+        "sha256": "95b6be4d44fcf78f71d51abd5ba7a84a0a7ebfaea237c2945882d495b95bddfe",
+        "status": "PASS"
+      },
+      "binary_sha256": "2cf0cec72e395eb914cfeae55b8a06eb1240dde450aaf6d555617c6d20b18851",
+      "bytes": 213830832,
+      "dyld_exports_omitted": 0,
+      "local_undefined_and_debug_nlist_retained": true,
+      "original_release_split_reference": "anytype-swift/be863930733cbaa07d3e325b0406f4dcfa4d8684",
+      "slices": [
+        {
+          "architecture": "arm64",
+          "export_trie": {
+            "all_native_rows_parsed": true,
+            "command": [
+              "xcrun",
+              "dyld_info",
+              "-arch",
+              "arm64",
+              "-exports",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+            ],
+            "compressed_bytes": 1479956,
+            "deadline_seconds": 60,
+            "definitions": 116131,
+            "elapsed_seconds": 0.065288,
+            "kinds": {
+              "per-thread": 15,
+              "regular": 115689,
+              "weak-def": 427
+            },
+            "path": "ProtobufMessages-arm64-exports.txt.gz",
+            "pid": 45697,
+            "raw_bytes": 13285331,
+            "raw_sha256": "3830bacd91dc4c77fe668fdfde3026d87c7249e3c839d0616eadc7bd766beb11",
+            "returncode": 0,
+            "sha256": "cb31c5134ebb2706e2e8989d721e2ef2281b75e72cf65947557c2e4c0463f637",
+            "status": "PASS"
+          },
+          "load_commands": {
+            "command": [
+              "xcrun",
+              "otool",
+              "-arch",
+              "arm64",
+              "-h",
+              "-l",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+            ],
+            "compressed_bytes": 3573,
+            "deadline_seconds": 60,
+            "elapsed_seconds": 0.016374,
+            "path": "ProtobufMessages-arm64-load-commands.txt.gz",
+            "pid": 45692,
+            "raw_bytes": 19433,
+            "raw_sha256": "bd5807750fed0f43035f64f5e1744c2a10526e992ffb15c43a390257ce75c6b0",
+            "returncode": 0,
+            "sha256": "5a1459a61584db4f6c9c19727b9d2a2437d6b7fc8bc4624f9c5443761b63160b",
+            "status": "PASS"
+          },
+          "native_export_ranges": [
+            {
+              "bytes": 3559056,
+              "command": "LC_DYLD_EXPORTS_TRIE"
+            }
+          ],
+          "nlist": {
+            "command": [
+              "xcrun",
+              "nm",
+              "--arch=arm64",
+              "-a",
+              "--no-dyldinfo",
+              "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+            ],
+            "compressed_bytes": 11424149,
+            "deadline_seconds": 150,
+            "elapsed_seconds": 2.773872,
+            "path": "ProtobufMessages-arm64-nlist.txt.gz",
+            "pid": 45621,
+            "raw_bytes": 133040377,
+            "raw_sha256": "1d76d4809e3203433ca3b3ca34417b011ea1636b9031a8bb7d60fd74a8077dee",
+            "returncode": 0,
+            "sha256": "f0c4643e9aeaff36f42704dfec66e06b33337ef4a59941d835ff4873ef2de1fa",
+            "status": "PASS"
+          }
+        }
+      ],
+      "status": "ALL_NLIST_AND_COMPLETE_NATIVE_EXPORT_TRIES",
+      "symbol_streams": [
+        {
+          "command": [
+            "xcrun",
+            "nm",
+            "--arch=arm64",
+            "-a",
+            "--no-dyldinfo",
+            "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+          ],
+          "compressed_bytes": 11424149,
+          "deadline_seconds": 150,
+          "elapsed_seconds": 2.773872,
+          "path": "ProtobufMessages-arm64-nlist.txt.gz",
+          "pid": 45621,
+          "raw_bytes": 133040377,
+          "raw_sha256": "1d76d4809e3203433ca3b3ca34417b011ea1636b9031a8bb7d60fd74a8077dee",
+          "returncode": 0,
+          "sha256": "f0c4643e9aeaff36f42704dfec66e06b33337ef4a59941d835ff4873ef2de1fa",
+          "status": "PASS"
+        },
+        {
+          "command": [
+            "xcrun",
+            "dyld_info",
+            "-arch",
+            "arm64",
+            "-exports",
+            "/Users/m1/builds/otzaria-shared-agent1-20261126/sdk292-scanner/ProtobufMessages"
+          ],
+          "compressed_bytes": 1479956,
+          "deadline_seconds": 60,
+          "elapsed_seconds": 0.065288,
+          "path": "ProtobufMessages-arm64-exports.txt.gz",
+          "pid": 45697,
+          "raw_bytes": 13285331,
+          "raw_sha256": "3830bacd91dc4c77fe668fdfde3026d87c7249e3c839d0616eadc7bd766beb11",
+          "returncode": 0,
+          "sha256": "cb31c5134ebb2706e2e8989d721e2ef2281b75e72cf65947557c2e4c0463f637",
+          "status": "PASS"
+        }
+      ],
+      "zip_member": "Frameworks/ProtobufMessages.framework/ProtobufMessages"
+    }
+  },
+  "scanner_git_sha": "865e0ca39019d8b29d40263ae30b314d260a9a9a",
+  "scanner_sha256": "2b82b3d30251bb07dd7fb62d4e5e6c7cb04e7ffd22cc96c6c4a00eb1507be6e8",
+  "sdk_archive_sha256": "3f4ceafe9ef865bd7249dfca9160d1be530ca9f9f3a878a6aec6a14aa64649e2",
+  "sdk_git_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+  "status": "PASS",
+  "xcode": "Xcode 27.0\nBuild version 27A266a"
+}

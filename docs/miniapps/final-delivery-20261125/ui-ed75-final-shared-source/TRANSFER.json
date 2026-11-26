@@ -1,0 +1,8 @@
+{
+  "actual_ui_compiler_exit": 0,
+  "bytes": 274251,
+  "proof_files": 11,
+  "sha256": "a490720a3ee6a93bd0587279c807d2b8e14fbdab58527acc62bb65809f7b2dda",
+  "wrapper_compiler_exit_field": null,
+  "wrapper_field_note": "Original wrapper read absent exitCode; original compiler report uses compilerExitCode=0 and is retained unchanged."
+}

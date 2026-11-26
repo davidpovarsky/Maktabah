@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-25T09:20:49.863752+00:00",
+  "device": "B3722F69-97DD-4A03-9CCC-05444F6B6EB9",
+  "backup_receipt_sha256": "c317da89c61da62f89b071d9aaeeb9fcf2c42d0b29f7ea4658ad6b000ce2401b",
+  "archive_sha256": "a9583a4513f910a029be9e82f28176ae12f98a1a074b17431e8bf4cdbf002b89",
+  "free_before": 4725014528,
+  "free_after": 4750856192,
+  "net_free_delta": 25841664
+}

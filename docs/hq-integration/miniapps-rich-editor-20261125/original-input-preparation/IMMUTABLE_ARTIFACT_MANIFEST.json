@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "repository": "davidpovarsky/Maktabah",
+  "files": {
+    "14596463166.zip": {
+      "bytes": 201330360,
+      "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad"
+    },
+    "14595389912.zip": {
+      "bytes": 123727544,
+      "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7"
+    },
+    "12763481138.zip": {
+      "bytes": 229319830,
+      "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd"
+    },
+    "13658066283.zip": {
+      "bytes": 1484533,
+      "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
+    },
+    "14596463166-artifact.json": {
+      "bytes": 743,
+      "sha256": "e1376de8206d70df3c2382af81bba15e27de3909e21f463a30c502a4195109f9"
+    },
+    "44661774024-attempt-1.json": {
+      "bytes": 12701,
+      "sha256": "0444e6f5771722321f2b0709d63ffffe543ad6766c6d724c5141671be2d58856"
+    },
+    "136041463727-job.json": {
+      "bytes": 6199,
+      "sha256": "f026c8f293e95221faf51188e30d362c9913c23abc5905f1b21efb613d45f859"
+    },
+    "14595389912-artifact.json": {
+      "bytes": 741,
+      "sha256": "3be88677a7f4c562758a41d9d6d5a6b609cf957af9e78845976dff3a4227ba45"
+    },
+    "136041463406-job.json": {
+      "bytes": 5408,
+      "sha256": "1939d6bcef6c5f14c7b908ac89a63d3ac88aec54946928199136248f05323708"
+    },
+    "12763481138-artifact.json": {
+      "bytes": 749,
+      "sha256": "2a4bae32d7a47002c267615f38053190cd2ed90c5f2f80d9753f2466c6537e76"
+    },
+    "13658066283-artifact.json": {
+      "bytes": 743,
+      "sha256": "bc7fa234d9826e26ffe6def8d0b628089e8a3be208cfb0e6d0cf5c74158a6fa9"
+    }
+  }
+}

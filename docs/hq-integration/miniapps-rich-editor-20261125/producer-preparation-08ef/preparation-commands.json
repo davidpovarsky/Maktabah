@@ -1,0 +1,37 @@
+[
+  {
+    "argv": [
+      "bash",
+      "Scripts/Runtime/prepare-runtime-host.sh"
+    ],
+    "exit": 0,
+    "seconds": 71.44702545799373,
+    "log": "runtime-host-preparation.log",
+    "sha256": "f83b0b6bce283182df13b40090bb08a1b8bcd3496c5f83148c459128bcd525e2"
+  },
+  {
+    "argv": [
+      "node",
+      "Scripts/MiniApps/check-authoring-examples.mjs",
+      "--sdk-archive",
+      "build/runtime-host/RuntimeHostResources.zip",
+      "--require-sdk-docs",
+      "--report",
+      "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-08ef8741-01/miniapp-documentation-snippets.json"
+    ],
+    "exit": 0,
+    "seconds": 8.354038292003679,
+    "log": "sdk-example-check.log",
+    "sha256": "af0894c1ccfe69bee3841e4c182e6be8e992a883abcf4a7c9d9983708c3543ac"
+  },
+  {
+    "argv": [
+      "/opt/homebrew/bin/python3.12",
+      "Scripts/ProductSplit/verify_targets.py"
+    ],
+    "exit": 0,
+    "seconds": 0.3301219580025645,
+    "log": "final-source-admission.log",
+    "sha256": "4f49124a3b6c18a0b8c4540cb46c33b31c436deed0ad97c4084e189157ed9c8e"
+  }
+]

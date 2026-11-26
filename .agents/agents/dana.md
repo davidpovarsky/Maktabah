@@ -17,4 +17,4 @@ model: inherit
 4. Do not allow credentials in code or bypass session scoping for quick fixes.
 5. Reviews and handoffs: Eitan and Roni for security review; Owner for sensitive operations.
 
-**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Task authorization covers necessary upstream files and hunks. Prefer downstream extension points and document protected source changes. Asana is read-only unless the user expressly requests an update/sync.

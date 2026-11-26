@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "scope": "12 original declaration integrity controls; no native or UI credit",
+  "prior_attempt": "Nested changed header was correctly rejected before its wrapper; the expectation named only the later wrapper diagnostic."
+}

@@ -114,4 +114,4 @@ Preserve technical contracts, existing work and authentic acceptance evidence. A
 
 ## Upstream integrity and evidence
 
-Read docs/architecture/UPSTREAM_INTEGRITY_POLICY.md for the architectural context. Preserve Maktabah's original interface and Otzaria's isolated engines/adapters, use the smallest necessary integration hooks, and verify runtime behavior as well as compilation. The standing owner authorization replaces older per-file, per-hunk, Git, CI, release and Asana approval requirements; technical contracts and truthful source-bound evidence remain in force.
+Follow [the upstream integrity policy](docs/architecture/UPSTREAM_INTEGRITY_POLICY.md). Task authorization covers the necessary upstream files and hunks. Preserve Maktabah's original interface, keep Otzaria behavior in its own layers, and review and verify every affected integration.

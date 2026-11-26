@@ -198,6 +198,8 @@ public actor ActionExecutor {
                         && (descriptor.id != "notes.prepareDraft" || notesSupported)
                         && (descriptor.id != "search.openResults" || searchResultsSupported)
                         && (descriptor.id != "search.countOccurrences" || occurrenceSupported)
+                        && (descriptor.id != "reader.getTOC" || state is any ActionTableOfContentsPort)
+                        && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -284,6 +286,40 @@ public actor ActionExecutor {
             case .ambiguous(let candidates): result = try ambiguity(candidates, limit: 25, request: request, context: context, snapshot: snapshot)
             case .notFound: throw ActionPortError.notFound
             }
+        case "reader.getSection":
+            guard let rawLocator = request.arguments["sectionLocator"] else {
+                throw ActionContractError.invalid("sectionLocator")
+            }
+            let locator = try rawLocator.decoded(as: ActionTextRef.self)
+            try ActionPolicy.work(locator.workKey, backend: backend, context: context)
+            guard let reader = state as? any ActionSourceTextPort else {
+                throw ActionEngineFailure(.notSupported, "source_text_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "maxSegments", default: 20, range: 1...100)
+            let section = try await reader.section(at: locator, maximumSegments: limit, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
+            result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "reader.getTOC":
+            guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
+            let work = try rawWork.decoded(as: ActionWorkRef.self)
+            try ActionPolicy.work(work.workKey, backend: backend, context: context)
+            guard let toc = state as? any ActionTableOfContentsPort else {
+                throw ActionEngineFailure(.notSupported, "table_of_contents_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 20, range: 1...100)
+            let entries = try await toc.tableOfContents(for: work, maximumEntries: limit + 1, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard entries.count <= limit + 1 else { throw ActionPortError.invalidResponse }
+            for entry in entries {
+                do { try ActionValidation.text(entry.locator, backend: backend) }
+                catch { throw ActionPortError.invalidResponse }
+                guard entry.locator.workKey == work.workKey, ActionValidation.nonempty(entry.title, max: 512) else {
+                    throw ActionPortError.invalidResponse
+                }
+            }
+            result = completed(["workRef": try .encoded(work), "entries": try .encoded(Array(entries.prefix(limit))),
+                                "truncated": .bool(entries.count > limit)])
         case "search.query":
             guard let query = searchQuery else { throw ActionPortError.invalidResponse }
             let page = try await search.search(query, invocation: invocation)
@@ -556,6 +592,31 @@ public actor ActionExecutor {
         }
         return ActionResult(request: request, status: .needsDisambiguation, candidates: safeCandidates, backend: snapshot.backend, backendGeneration: snapshot.generation)
     }
+    private func validate(_ section: ActionSourceTextSection, requested: ActionTextRef,
+                          limit: Int, byteLimit: Int) throws {
+        guard !section.segments.isEmpty, section.segments.count <= limit,
+              !section.truncated || section.segments.count == limit,
+              ActionValidation.nonempty(section.displayRef, max: 1_000) else {
+            throw ActionPortError.invalidResponse
+        }
+        var textBytes = 0
+        var seen = Set<ActionTextRef>()
+        for segment in section.segments {
+            guard seen.insert(segment.locator).inserted else { throw ActionPortError.invalidResponse }
+            textBytes += segment.sourceText.utf8.count
+            guard textBytes <= byteLimit else { throw ActionEngineFailure(.failed, "result_budget_exceeded") }
+        }
+        for ref in [section.sectionLocator] + section.segments.map(\.locator) {
+            do { try ActionValidation.text(ref, backend: requested.backend) }
+            catch { throw ActionPortError.invalidResponse }
+            guard ref.workKey == requested.workKey,
+                  requested.catalogRevision == nil || ref.catalogRevision == requested.catalogRevision,
+                  requested.dataRevision == nil || ref.dataRevision == requested.dataRevision else {
+                throw ActionPortError.invalidResponse
+            }
+        }
+    }
+
     private func validate(_ page: ActionSearchPage, query: ActionSearchQuery, context: ActionExecutionContext) throws {
         guard page.hits.count <= query.limit, Set(page.hits.map(\.id)).count == page.hits.count,
               page.total == nil || page.total! >= 0, page.precision != .exact || page.total != nil else { throw ActionPortError.invalidResponse }

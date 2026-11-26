@@ -1,0 +1,21 @@
+test_component_substitution_is_rejected (__main__.IntegratedSourceTamperControls.test_component_substitution_is_rejected) ... ok
+test_duplicate_product_path_is_rejected (__main__.IntegratedSourceTamperControls.test_duplicate_product_path_is_rejected) ... ok
+test_exact_reviewed_source_objects_and_build_binding (__main__.IntegratedSourceTamperControls.test_exact_reviewed_source_objects_and_build_binding) ... ok
+test_merge_parent_substitution_is_rejected (__main__.IntegratedSourceTamperControls.test_merge_parent_substitution_is_rejected) ... ok
+test_missing_product_delta_is_rejected (__main__.IntegratedSourceTamperControls.test_missing_product_delta_is_rejected) ... ok
+test_native_qualification_cannot_be_claimed_by_source_manifest (__main__.IntegratedSourceTamperControls.test_native_qualification_cannot_be_claimed_by_source_manifest) ... ok
+test_original_engine_build_script_change_is_rejected (__main__.IntegratedSourceTamperControls.test_original_engine_build_script_change_is_rejected) ... ok
+test_original_engine_test_object_change_is_rejected (__main__.IntegratedSourceTamperControls.test_original_engine_test_object_change_is_rejected) ... ok
+test_path_escape_is_rejected (__main__.IntegratedSourceTamperControls.test_path_escape_is_rejected) ... ok
+test_retained_engine_artifact_change_is_rejected (__main__.IntegratedSourceTamperControls.test_retained_engine_artifact_change_is_rejected) ... ok
+test_reviewed_merge_patch_mutation_is_rejected (__main__.IntegratedSourceTamperControls.test_reviewed_merge_patch_mutation_is_rejected) ... ok
+test_source_object_digest_mutation_is_rejected (__main__.IntegratedSourceTamperControls.test_source_object_digest_mutation_is_rejected) ... ok
+test_stale_project_exclusion_is_rejected (__main__.IntegratedSourceTamperControls.test_stale_project_exclusion_is_rejected) ... ok
+test_unreviewed_build_input_is_rejected (__main__.IntegratedSourceTamperControls.test_unreviewed_build_input_is_rejected) ... ok
+test_wrong_product_source_is_rejected (__main__.IntegratedSourceTamperControls.test_wrong_product_source_is_rejected) ... ok
+test_wrong_shared_dependency_is_rejected (__main__.IntegratedSourceTamperControls.test_wrong_shared_dependency_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.439s
+
+OK

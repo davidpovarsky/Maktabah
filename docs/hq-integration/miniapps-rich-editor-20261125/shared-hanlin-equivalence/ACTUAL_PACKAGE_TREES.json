@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-25T08:40:42.486271+00:00",
+  "consumer": "08ef8741ff58241a081c908536a3b4d3917cc0e8",
+  "producer": "6f525c67f5f62587e46085da56e6a8c2a406cee4",
+  "review_sha256": "5d0b72276f27c6cbed8f41c9407f21c134bb65196b708d67f8dad88d10be3357",
+  "schema": 1,
+  "scope": "ACTUAL_COMMITTED_SOURCE_TREE_EQUIVALENCE_ONLY_NO_NATIVE_CREDIT",
+  "trees": {
+    "Packages/HanlinAgentSDK": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "c461d5a3ae420175d1f79866d822f04ce9c20515",
+      "6f525c67f5f62587e46085da56e6a8c2a406cee4": "c461d5a3ae420175d1f79866d822f04ce9c20515"
+    },
+    "Packages/HanlinMiniAppsBridge": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "98ef5d2b47c03f4ea98319a851abae183f500a40"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsBridge": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "5334065bd54293b0e9c9a6e05eab166804796e41"
+    },
+    "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "1feabd59239b4ce32b007d1ff252cc30703a8774"
+    },
+    "Packages/HanlinPlatform": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "9e5dbb4389bb4f51b26f5e93cdda8eed219c09f5",
+      "6f525c67f5f62587e46085da56e6a8c2a406cee4": "9e5dbb4389bb4f51b26f5e93cdda8eed219c09f5"
+    },
+    "Packages/HanlinPresentationSDK": {
+      "08ef8741ff58241a081c908536a3b4d3917cc0e8": "6ec3257bbf0d7ec62e95f31424549810871bb2d1",
+      "6f525c67f5f62587e46085da56e6a8c2a406cee4": "6ec3257bbf0d7ec62e95f31424549810871bb2d1"
+    }
+  }
+}

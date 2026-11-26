@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-11-25T10:47:22.192662+00:00",
+  "scope": "PORTABLE_SOURCE_AND_ADMISSION_CONTROLS_ONLY",
+  "rows": [
+    {
+      "file": "test_original_editor_miniapps_admission.py",
+      "exit": 0,
+      "output_tail": "dmission.LifecycleMiniAppsPublicContractControls.test_new_contract_missing_in_configuration_rejected) ... ok\ntest_release_rejects_leaked_debug_spi (test_original_editor_miniapps_admission.LifecycleMiniAppsPublicContractControls.test_release_rejects_leaked_debug_spi) ... ok\ntest_terminal_native_owner_constructor_cannot_become_public (test_original_editor_miniapps_admission.LifecycleMiniAppsPublicContractControls.test_terminal_native_owner_constructor_cannot_become_public) ... ok\ntest_exact_debug_and_release_graph_counts_preserve_native_not_run (test_original_editor_miniapps_admission.MiniAppsPublicContractControls.test_exact_debug_and_release_graph_counts_preserve_native_not_run) ... ok\ntest_legacy_lifecycle_or_revision_counts_cannot_admit_miniapps (test_original_editor_miniapps_admission.MiniAppsPublicContractControls.test_legacy_lifecycle_or_revision_counts_cannot_admit_miniapps) ... ok\ntest_missing_restore_or_revision_method_rejected_despite_full_count (test_original_editor_miniapps_admission.MiniAppsPublicContractControls.test_missing_restore_or_revision_method_rejected_despite_full_count) ... ok\ntest_new_contract_missing_in_configuration_rejected (test_original_editor_miniapps_admission.MiniAppsPublicContractControls.test_new_contract_missing_in_configuration_rejected) ... ok\ntest_terminal_native_owner_constructor_cannot_become_public (test_original_editor_miniapps_admission.MiniAppsPublicContractControls.test_terminal_native_owner_constructor_cannot_become_public) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.030s\n\nOK\n"
+    },
+    {
+      "file": "test_original_editor_donor_integrity.py",
+      "exit": 5,
+      "output_tail": "\n----------------------------------------------------------------------\nRan 0 tests in 0.000s\n\nNO TESTS RAN\n"
+    },
+    {
+      "file": "test_final_source_composition.py",
+      "exit": 1,
+      "output_tail": "-----------------------------------------\nTraceback (most recent call last):\n  File \"/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py\", line 97, in test_reader_bindings_keep_original_selectors_release_and_historical_provenance\n    self.assertEqual(current[\"application_source_sha\"], ROUTE[\"SOURCE\"])\nAssertionError: '3c5a57bea389f6223b4636c45705bb62f502add2' != '7d5510dd29af2b66d740de136352916868c341ed'\n- 3c5a57bea389f6223b4636c45705bb62f502add2\n+ 7d5510dd29af2b66d740de136352916868c341ed\n\n\n======================================================================\nFAIL: test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='reader-full-v32-ui-observation')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py\", line 97, in test_reader_bindings_keep_original_selectors_release_and_historical_provenance\n    self.assertEqual(current[\"application_source_sha\"], ROUTE[\"SOURCE\"])\nAssertionError: 'd3da55417a30e9a06b0255e2d0b561955034b260' != '7d5510dd29af2b66d740de136352916868c341ed'\n- d3da55417a30e9a06b0255e2d0b561955034b260\n+ 7d5510dd29af2b66d740de136352916868c341ed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.631s\n\nFAILED (failures=4, errors=1)\n"
+    },
+    {
+      "file": "test_miniapps_runtime_closure.py",
+      "exit": 0,
+      "output_tail": "test_added_runtime_in_sdk_extension_or_nested_framework_is_not_original_owner (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_added_runtime_in_sdk_extension_or_nested_framework_is_not_original_owner) ... ok\ntest_every_new_hanlin_runtime_family_is_rejected_independently (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_every_new_hanlin_runtime_family_is_rejected_independently) ... ok\ntest_original_static_and_locked_framework_owner_remain_distinct (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_original_static_and_locked_framework_owner_remain_distinct) ... ok\ntest_shared_bridge_picker_and_frozen_existing_ui_are_not_active_engine_names (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_shared_bridge_picker_and_frozen_existing_ui_are_not_active_engine_names) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    }
+  ],
+  "native_tests": 0,
+  "native_app_builds": 0
+}

@@ -13,6 +13,7 @@ import shlex
 
 from original_editor_host_clang_context import bounded_file, digest, host_module_inventory, modules, require
 from original_editor_clang_imports import read_clang_imports
+from original_editor_hanlin_equivalence import read_review, verify_hanlin_sources
 
 RUNTIME = 'OriginalEditorSharedFirebase'
 EDITOR = 'AnytypeOriginalEditor'
@@ -81,7 +82,10 @@ def validate_provider(root, config, qualification, admitted):
                       'manifest_sha256': shared['clang_manifest_sha256']}
     clang = read_clang_imports(distribution, clang_identity)
     require(clang == shared['clang_roots'], 'Reviewed complete Clang import closure differs')
+    equivalence = shared.get('host_source_equivalence')
+    equivalence = read_review(root, equivalence, shared['hanlin_revision']) if equivalence is not None else None
     return {'schema': 1, 'producer_identity': identity, 'ownership': owner,
+            **({'host_source_equivalence': equivalence} if equivalence is not None else {}),
             'host_products': PRODUCTS, 'host_pod_versions': shared['host_pod_versions'],
             'clang_context': {'producer_identity': clang_identity, **clang},
             'hanlin_revision': shared['hanlin_revision'], 'swift_ai_revision': shared['swift_ai_revision'],
@@ -91,13 +95,7 @@ def validate_provider(root, config, qualification, admitted):
 def verify_host_sources(root, admitted, report):
     shared = admitted['shared_runtime']
     owner = shared['ownership']
-    require(report['hanlin_sdk_source']['sha'] == shared['hanlin_revision'], 'Host Hanlin revision differs')
-    host_files = report['hanlin_sdk_source']['git_blobs']
-    require(host_files and all(p.startswith(HANLIN_ROOTS) for p in host_files)
-            and host_files.keys() == owner['hanlin_package_files'].keys(),
-            'Host and producer package/resource/manifest/lock memberships differ')
-    require(all(digest(root / 'Vendor/HanlinSDK' / p) == sha for p, sha in owner['hanlin_package_files'].items()),
-            'Host and producer share different Hanlin package bytes')
+    host_files, hanlin_identity = verify_hanlin_sources(root, shared, report['hanlin_sdk_source'])
     locks = {}
     for name in [
         'Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved',
@@ -133,11 +131,47 @@ def verify_host_sources(root, admitted, report):
         require(row['revision'] == owner['root_dependency_revisions'][identity]['revision']
                 and row['files'], 'Native shared dependency provenance differs')
     return {'status': 'EXACT_COMPLETE_SHARED_HOST_SOURCE_CLOSURE', 'hanlin_files': len(host_files),
+            **hanlin_identity,
             'hanlin_revision': shared['hanlin_revision'], 'swift_ai_revision': shared['swift_ai_revision'],
             'operative_lock_sha256': locks, 'podfile_lock_sha256': digest(root / 'Podfile.lock'),
             'host_pod_versions': {name: versions[name] for name in PODS},
             'pod_source_contracts': {name: dependencies[identity] for name, (identity, _) in PODS.items()},
             'native_stageb_qualified': False}
+
+
+def shared_declaration(root, distribution, sdk_root, module, sdk_map, host_headers, path):
+    """Observe original excluded/private and forwarding layouts without exporting them."""
+    relative = path.relative_to(sdk_root).as_posix()
+    expected = digest(bounded_file(path, distribution))
+    if module == 'FBLPromises' and relative == 'FBLPromisePrivate.h':
+        # Upstream deliberately excludes this header from its public module.
+        # CocoaPods preserves the same bytes in this Pod's private source tree.
+        text = sdk_map.read_text()
+        require(sum(line.strip() == 'exclude header "FBLPromisePrivate.h"' for line in text.splitlines()) == 1
+                and text.count('"FBLPromisePrivate.h"') == 1
+                and not host_headers.get(path.name),
+                'Promises private declaration is not uniquely excluded from the public module')
+        host = root / 'Pods/Headers/Private/PromisesObjC/FBLPromisePrivate.h'
+        real = bounded_file(host, root / 'Pods/PromisesObjC')
+        require(digest(real) == expected,
+                'Excluded Promises private declaration differs from the original Pod')
+        return {'sha256': expected, 'host': host.relative_to(root).as_posix(),
+                'kind': 'excluded_private', 'exported_to_host': False}
+    if module == 'nanopb' and relative in {'pb.h', 'pb_common.h', 'pb_decode.h', 'pb_encode.h'}:
+        target = 'nanopb/' + relative
+        require(path.read_bytes() == ('#include "' + target + '"\n').encode(),
+                'Unreviewed nanopb forwarding declaration')
+        actual = bounded_file(sdk_root / target, sdk_root)
+        target_hash = digest(actual)
+        matches = [p for p, sha in host_headers.get(path.name, []) if sha == target_hash]
+        require(len(matches) == 1,
+                'Host lacks an unambiguous byte-identical nanopb forwarding target: ' + relative)
+        return {'sha256': expected, 'host': matches[0].relative_to(root).as_posix(),
+                'kind': 'transparent_forwarder', 'target': target, 'target_sha256': target_hash}
+    matches = [p for p, sha in host_headers.get(path.name, []) if sha == expected]
+    require(len(matches) == 1,
+            'Host lacks an unambiguous byte-identical shared declaration: ' + path.name)
+    return {'sha256': expected, 'host': matches[0].relative_to(root).as_posix()}
 
 
 def project_clang_context(root, distribution, context):
@@ -168,11 +202,8 @@ def project_clang_context(root, distribution, context):
         for path in sorted(sdk_root.rglob('*')):
             if not path.is_file() or path.suffix not in {'.h', '.hh', '.hpp', '.hxx', '.inc', '.def'}:
                 continue
-            expected = digest(bounded_file(path, distribution))
-            matches = [p for p, sha in host_headers.get(path.name, []) if sha == expected]
-            require(len(matches) == 1, 'Host lacks an unambiguous byte-identical shared declaration: ' + path.name)
-            exact[path.relative_to(sdk_root).as_posix()] = {
-                'sha256': expected, 'host': matches[0].relative_to(root).as_posix()}
+            exact[path.relative_to(sdk_root).as_posix()] = shared_declaration(
+                root, distribution, sdk_root, name, original, host_headers, path)
         require(exact, 'Shared declaration root is empty')
         host_map = root / host_maps[name]
         bounded_file(host_map, root)

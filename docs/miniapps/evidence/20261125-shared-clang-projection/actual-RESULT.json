@@ -1,0 +1,70 @@
+{
+  "header_roots": 21,
+  "helper_sha256": "0d6d4f51dbbd54b27c9602e9023dfeb1bdb1cd8a0ac8f52bca41a8c94b4b0fe9",
+  "input_admission_sha256": "d504e1f717bcf77eacaf022380f133f2fb80b2ba8cd4501a19b6272170367732",
+  "maps": 21,
+  "modules": {
+    "FBLPromises": {
+      "declarations": 21,
+      "layouts": {
+        "FBLPromisePrivate.h": {
+          "exported_to_host": false,
+          "host": "Pods/Headers/Private/PromisesObjC/FBLPromisePrivate.h",
+          "kind": "excluded_private",
+          "sha256": "c936f11a36f9e05917d29e9acadcbb536ed6532a053d713db899e2bd44e53efe"
+        }
+      }
+    },
+    "FirebaseCore": {
+      "declarations": 7,
+      "layouts": {}
+    },
+    "FirebaseInstallations": {
+      "declarations": 4,
+      "layouts": {}
+    },
+    "GoogleDataTransport": {
+      "declarations": 10,
+      "layouts": {}
+    },
+    "nanopb": {
+      "declarations": 8,
+      "layouts": {
+        "pb.h": {
+          "host": "Pods/Headers/Public/nanopb/pb.h",
+          "kind": "transparent_forwarder",
+          "sha256": "ffb03e429cb90d2e89c56eee94464913e0d42b22b4eb5b20fab14bded1d4e73f",
+          "target": "nanopb/pb.h",
+          "target_sha256": "dcb4ae324cf8e285ded0ff8a1a20852f3f2dfddb05ec548ec3f4c4410f37893b"
+        },
+        "pb_common.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_common.h",
+          "kind": "transparent_forwarder",
+          "sha256": "8479f2612a1df0bb1c5e2010da8aae590bb5695738ed25f0df7d5e2c301ebacb",
+          "target": "nanopb/pb_common.h",
+          "target_sha256": "3ed0e7518cd2c604f2631f38ba8d3119daaeeb3c5b39cb6db968ca54032d7541"
+        },
+        "pb_decode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_decode.h",
+          "kind": "transparent_forwarder",
+          "sha256": "00c9aa27bfe36745d7902a4a4aa282b6d4ce4fee3ea77eaf2c44c512d7b972b2",
+          "target": "nanopb/pb_decode.h",
+          "target_sha256": "adfe53f3612e65c45614f129226e8b00dde7cc8f1cf7ed32eb5876598a5b2894"
+        },
+        "pb_encode.h": {
+          "host": "Pods/Headers/Public/nanopb/pb_encode.h",
+          "kind": "transparent_forwarder",
+          "sha256": "92c444291d604cd07c478c623966f66c23b3b567a18c4cbd1dd79391694851d9",
+          "target": "nanopb/pb_encode.h",
+          "target_sha256": "764aee8e79802e0755e5d29083236b144a0af09dade01eefc787fa6baa74ab84"
+        }
+      }
+    }
+  },
+  "native_build_or_ui_credit": false,
+  "projection_sha256": "6c52300912c7f9da29a8a612fdf8c681efda931b88933151fa052a6650d18e17",
+  "sdk_clang_bytes_unchanged": true,
+  "sdk_clang_files": 1411,
+  "status": "PASS_ACTUAL_QUALIFIED_SDK_AND_INSTALLED_POD_DECLARATION_PROJECTION",
+  "timestamp": "2026-11-25T16:00:20.283182+00:00"
+}

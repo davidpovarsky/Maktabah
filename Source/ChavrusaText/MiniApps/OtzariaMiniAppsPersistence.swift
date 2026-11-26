@@ -140,6 +140,50 @@ enum OtzariaMiniAppsPersistence {
         return saved.map { .init(annotation: $0, replayed: true) }
     }
 
+    struct RetainedFile {
+        let requestID: UUID
+        let content: MiniAppContent
+    }
+
+    /// Read only files belonging to committed results for this exact original
+    /// note. Arbitrary URLs typed into a note are never used as file authority.
+    static func retainedFiles(for annotation: Annotation,
+                              repository: AnnotationRepository = .shared) throws -> [RetainedFile] {
+        guard let id = annotation.id, let recordID = annotation.ckRecordId else { return [] }
+        let connection = try repository.captureLocalEditorConnection()
+        var files: [RetainedFile] = []
+        try connection.database.transaction {
+            try connection.lifetime.requireCurrent()
+            guard let saved = try read(id: id, connection: connection),
+                  saved.ckRecordId == recordID else { throw OtzariaMiniAppsError.missingDocument }
+            let exists = try connection.database.fetch(query:
+                "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = 'miniapps_result_receipts';"
+            ) { $0.int64(at: 0) }.first == 1
+            guard exists else { return }
+            let rows = try connection.database.fetch(query: """
+                SELECT request_id,result_json FROM miniapps_result_receipts
+                WHERE annotation_id = ? AND annotation_uuid = ? ORDER BY rowid;
+                """, parameters: [id, recordID]) {
+                    ($0.string(at: 0) ?? "", $0.string(at: 1) ?? "")
+                }
+            for row in rows {
+                guard let requestID = UUID(uuidString: row.0) else { throw MiniAppBridgeError.conflictingResult }
+                let result = try JSONDecoder().decode(MiniAppResult.self, from: Data(row.1.utf8))
+                guard result.requestID == requestID, result.status == .success else {
+                    throw MiniAppBridgeError.conflictingResult
+                }
+                for item in result.items where item.kind == .file {
+                    guard item.attachmentID != nil, item.text == nil, item.url == nil else {
+                        throw MiniAppBridgeError.invalidAttachment
+                    }
+                    files.append(.init(requestID: requestID, content: item))
+                }
+            }
+            try connection.lifetime.requireCurrent()
+        }
+        return files
+    }
+
     static func savedAnnotation(document: OtzariaMiniAppsDocument,
                                 repository: AnnotationRepository = .shared) throws -> Annotation {
         let connection = try repository.captureLocalEditorConnection()

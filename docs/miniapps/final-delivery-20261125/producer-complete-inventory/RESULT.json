@@ -1,0 +1,31 @@
+{
+  "controls_failed": 0,
+  "controls_passed": 28,
+  "files": {
+    "Scripts/CI/miniapps-local-producer.py": "ab0add5c7d80a11a17d625a44da49934cf0653a8250573f6f23ecce084f39cb9",
+    "tools/test-miniapps-local-producer.py": "42270335249ad420d09fb5b3d92af11a9ad1170362e24245e73562c0b1256a99"
+  },
+  "logs": {
+    "controls.stderr": "2fcd76b7dd5d92c0e0f53bc1db156582a9caf51e4c44ce924a6e57334750b552",
+    "controls.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "native_tests_executed": 0,
+  "private_git_objects": true,
+  "producer_commits": [
+    {
+      "exact_declared_source_files": 7115,
+      "full_sorted_inventory_sha256": "4c5b6cd41a5817f2096f3d3623f735ae93652d0b235475f717aee2ebf6b79885",
+      "source_script_sha256": "0070ab53ebc486c4df2a722cdd74b036bb5cf002aa72e772813ffaa434dbf23a",
+      "source_sha": "3f5c0f37af476b377be10cf8013fedb5edf67a57"
+    },
+    {
+      "exact_declared_source_files": 7693,
+      "full_sorted_inventory_sha256": "7966ec92b3cd0feff5f5eaa37fa518b76e17c8c1baf07134ef3f6964a6f929ab",
+      "source_script_sha256": "0070ab53ebc486c4df2a722cdd74b036bb5cf002aa72e772813ffaa434dbf23a",
+      "source_sha": "27381e90a11c46cf6b6864d2fb703f16f07af4ca"
+    }
+  ],
+  "rule": "Exact original four-statement declaration AST, all20 suffixes plus3 explicit paths; complete prepared-tree selected regular-file set equals recorded keys before every existing blob check.",
+  "status": "PASS_COMPLETE_SOURCE_INVENTORY_INTEGRITY_ONLY",
+  "unsupported_selected_symlinks": "REJECTED_REQUIRES_NEW_EXPLICIT_REVIEW"
+}

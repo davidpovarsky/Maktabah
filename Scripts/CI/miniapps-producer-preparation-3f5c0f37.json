@@ -1,0 +1,82 @@
+{
+  "changes": [
+    {
+      "after": {
+        "blob": "791b092b01d2887b4b4487758f69d226e145cf63",
+        "bytes": 118804,
+        "mode": "100644",
+        "sha256": "9c714286e28fa085de19f7268af474d4bc77e3919791fb1679aeca5427c42a47"
+      },
+      "before": {
+        "blob": "a6eaf27f0c6b1660104778c0078f2e8a352312fb",
+        "bytes": 118804,
+        "mode": "100644",
+        "sha256": "768731f0c748276aeab4d34f57ad3ad89fd38aa30f562ff0cc9b5ad9a3767368"
+      },
+      "path": "docs/miniapp-sdk/MANIFEST_REFERENCE.md",
+      "reason": "Canonical miniapp SDK source audit updates current source hashes, line references, target membership and explicitly incomplete evidence state from the actual frozen3f5 producer. Only these four generated audit documents differ; this review grants no native/UI/signing acceptance.",
+      "status": "M"
+    },
+    {
+      "after": {
+        "blob": "0d2527f0a7e3b27f6d2c2db3e6be26ddcbcbb28a",
+        "bytes": 153603,
+        "mode": "100644",
+        "sha256": "722797ac5616f0ef67723f04e86edf41ab0681053014a26cdac0c37300dccd57"
+      },
+      "before": {
+        "blob": "29cd74cdb109fc247a743467a8fe0a7cca7df0f0",
+        "bytes": 147521,
+        "mode": "100644",
+        "sha256": "9a9843d277a3e76ad64fc7589029801960c5c98b9aba09f3ed7746552ee3d42d"
+      },
+      "path": "docs/miniapp-sdk/extension-reachability.json",
+      "reason": "Canonical miniapp SDK source audit updates current source hashes, line references, target membership and explicitly incomplete evidence state from the actual frozen3f5 producer. Only these four generated audit documents differ; this review grants no native/UI/signing acceptance.",
+      "status": "M"
+    },
+    {
+      "after": {
+        "blob": "a38193de6b1aa6499dc230cbbd2b69c1d9e506eb",
+        "bytes": 23334,
+        "mode": "100644",
+        "sha256": "c6dce0485494c60d3cf4e071dd79383687a814dbde181bddd137917dd5928499"
+      },
+      "before": {
+        "blob": "3b67cac720d427736b03eec9e07fc99ed0127ddb",
+        "bytes": 21494,
+        "mode": "100644",
+        "sha256": "cae21720cab9b31211796a5d82309d6e779f46ddb1d946d1ec1e322f4cf952cb"
+      },
+      "path": "docs/miniapp-sdk/extension-reachability.md",
+      "reason": "Canonical miniapp SDK source audit updates current source hashes, line references, target membership and explicitly incomplete evidence state from the actual frozen3f5 producer. Only these four generated audit documents differ; this review grants no native/UI/signing acceptance.",
+      "status": "M"
+    },
+    {
+      "after": {
+        "blob": "7ef3e3b87a5f3b2788f4e78321a75649b648b2d8",
+        "bytes": 494846,
+        "mode": "100644",
+        "sha256": "397a7beb5c5e4e72b95f5783901ba8aa9789a5baf37c873ab04a3e502b6aaace"
+      },
+      "before": {
+        "blob": "d0c2299c281d32d4cc0b78c75438d5adfa5ae6d0",
+        "bytes": 493871,
+        "mode": "100644",
+        "sha256": "856bc8aca1473f8f4255b324e840ef2ebcdf5eb7352d1041d2433391e9f4bfd8"
+      },
+      "path": "docs/miniapp-sdk/source-inventory.json",
+      "reason": "Canonical miniapp SDK source audit updates current source hashes, line references, target membership and explicitly incomplete evidence state from the actual frozen3f5 producer. Only these four generated audit documents differ; this review grants no native/UI/signing acceptance.",
+      "status": "M"
+    }
+  ],
+  "git_status_porcelain": " M docs/miniapp-sdk/MANIFEST_REFERENCE.md\n M docs/miniapp-sdk/extension-reachability.json\n M docs/miniapp-sdk/extension-reachability.md\n M docs/miniapp-sdk/source-inventory.json\n",
+  "patch": {
+    "bytes": 167852,
+    "name": "source-preparation.diff",
+    "sha256": "04d646ddc24ecf489236429e71aad95a5a59fc256737d017ee480bf11b79d95e"
+  },
+  "prepared_tree": "2dedb593ef3c899368b86246b50e3916762dc30c",
+  "producer_sha": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
+  "schema": "miniapps.producer-preparation-review/1",
+  "source_tree": "99000f16491f67e2ce84e5f1c6feb148d60750b0"
+}

@@ -11,6 +11,7 @@ import plistlib
 import re
 import runpy
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -305,6 +306,60 @@ def checked_path(base, name):
     return target
 
 
+def verified_cached_input(path, size, expected_sha256):
+    """Retain immutable bytes only; no extraction, compiler or source gate is skipped."""
+    if not path.exists() and not path.is_symlink():
+        return False
+    require(path.is_file() and not path.is_symlink(), "Nonregular staged cache input: " + str(path))
+    require(path.stat().st_size == size and digest(path) == expected_sha256,
+            "Existing staged cache bytes differ: " + str(path))
+    return True
+
+
+
+def prepare_readonly_package_destinations(packed, destination, report):
+    """Restore verified SwiftPM checkout bytes without broad permission changes."""
+    checkout_root = ROOT / "build/SourcePackages/checkouts"
+    require(checkout_root.resolve() == ROOT.resolve() / "build/SourcePackages/checkouts",
+            "Read-only checkout restoration requires a canonical build path")
+    candidates = []
+    for member in packed.getmembers():
+        if not member.isfile():
+            continue
+        target = destination / member.name
+        if not target.is_relative_to(checkout_root) or not target.exists():
+            continue
+        state = target.lstat()
+        if not stat.S_ISREG(state.st_mode) or state.st_mode & stat.S_IWUSR:
+            continue
+        require(not any(parent.is_symlink() for parent in
+                        [target, *target.parents] if parent.is_relative_to(checkout_root)),
+                "Read-only checkout restoration cannot follow symbolic links")
+        require(state.st_uid == os.getuid() and state.st_nlink == 1,
+                "Read-only checkout restoration requires an owned regular file with one link")
+        # Run the original safe extraction filter before making any file writable.
+        require(tarfile.data_filter(member, str(destination)) is not None,
+                "Read-only checkout member was rejected by the original extraction filter")
+        with packed.extractfile(member) as source:
+            expected = hashlib.file_digest(source, "sha256").hexdigest()
+        require(state.st_size == member.size and digest(target) == expected,
+                "Read-only checkout differs from its verified archive: " + str(target))
+        candidates.append((target, state, expected))
+    for target, state, expected in candidates:
+        current = target.lstat()
+        require((current.st_dev, current.st_ino, current.st_size, current.st_mtime_ns,
+                 current.st_mode, current.st_uid, current.st_nlink) ==
+                (state.st_dev, state.st_ino, state.st_size, state.st_mtime_ns,
+                 state.st_mode, state.st_uid, state.st_nlink) and digest(target) == expected,
+                "Read-only checkout changed during restoration verification")
+        os.chmod(target, stat.S_IMODE(state.st_mode) | stat.S_IWUSR)
+        report.setdefault("verified_readonly_package_restoration", []).append({
+            "path": str(target.relative_to(ROOT)), "sha256": expected,
+            "mode_before": stat.S_IMODE(state.st_mode),
+            "mode_before_original_extraction": stat.S_IMODE(target.stat().st_mode),
+            "scope": "EXACT_OWNED_ARCHIVE_MEMBER_ORIGINAL_EXTRACTION_STILL_REQUIRED"})
+
+
 def restore(config, report):
     cache = OUT / "inputs"
     cache.mkdir(parents=True, exist_ok=True)
@@ -316,7 +371,13 @@ def restore(config, report):
         archive = cache / (str(item["id"]) + ".zip")
         staged = staged_input(archive.name)
         if staged is not None:
-            shutil.copyfile(staged, archive)
+            require(digest(staged) == item["sha256"], "Staged artifact differs from the frozen input")
+            if verified_cached_input(archive, staged.stat().st_size, item["sha256"]):
+                report.setdefault("verified_input_cache_reuse", []).append({
+                    "path": str(archive.relative_to(ROOT)), "origin": "EXACT_AUTHENTICATED_STAGED_ZIP",
+                    "bytes": staged.stat().st_size, "sha256": item["sha256"]})
+            else:
+                shutil.copyfile(staged, archive)
         else:
             with archive.open("wb") as output:
                 subprocess.run(["gh", "api", f"repos/davidpovarsky/Maktabah/actions/artifacts/{item['id']}/zip"],
@@ -332,8 +393,17 @@ def restore(config, report):
                 matches = [n for n in zipped.namelist() if PurePosixPath(n).name == item["tar"]]
                 require(len(matches) == 1, "Ambiguous prebuilt archive payload")
                 payload = cache / item["tar"]
-                with zipped.open(matches[0]) as src, payload.open("wb") as dst:
-                    shutil.copyfileobj(src, dst)
+                if payload.exists() or payload.is_symlink():
+                    with zipped.open(matches[0]) as src:
+                        member_sha256 = hashlib.file_digest(src, "sha256").hexdigest()
+                    verified_cached_input(payload, zipped.getinfo(matches[0]).file_size, member_sha256)
+                    report.setdefault("verified_input_cache_reuse", []).append({
+                        "path": str(payload.relative_to(ROOT)), "origin": "EXACT_VERIFIED_ARCHIVE_MEMBER",
+                        "bytes": payload.stat().st_size, "sha256": member_sha256,
+                        "archive_sha256": actual, "archive_member": matches[0]})
+                else:
+                    with zipped.open(matches[0]) as src, payload.open("wb") as dst:
+                        shutil.copyfileobj(src, dst)
                 destination = ROOT / item["destination"]
                 destination.mkdir(parents=True, exist_ok=True)
                 with tarfile.open(payload) as packed:
@@ -341,6 +411,8 @@ def restore(config, report):
                         checked_path(destination, member.name)
                         require(not member.isdev(), "Device member in input archive")
                     require("filter" in inspect.signature(packed.extractall).parameters, "Python requires safe tar extraction support")
+                    if item["name"] == "ios-build-swift-packages":
+                        prepare_readonly_package_destinations(packed, destination, report)
                     packed.extractall(destination, filter="data")
             else:
                 for entry in zipped.infolist():
@@ -449,21 +521,96 @@ def prepare_react_sources(config, report):
     logged(["chmod", "-R", "+x", str(vendor / "node_modules/.bin"), str(vendor / "node_modules/expo/bin")], "native-script-permissions.log", report)
 
 
-def inspect_generated_expo_providers(root):
-    support = root / "Pods" / "Target Support Files"
-    app = support / "Pods-Maktabah-iOS" / "ExpoModulesProvider.swift"
-    expected = {app}
-    if "target 'Maktabah-iOSNativeTests' do" in (root / "Podfile").read_text():
-        expected.add(support / "Pods-Maktabah-iOSNativeTests" / app.name)
-    providers = set((root / "Pods").rglob(app.name))
-    require(providers == expected, "Missing or unexpected target-specific Expo provider")
-    require(all(path.is_file() and not path.is_symlink() for path in providers),
-            "Generated Expo providers must be regular files")
-    records = [{"path": str(path.relative_to(root)), "sha256": digest(path)}
-               for path in sorted(providers)]
-    require(len({record["sha256"] for record in records}) == 1,
+
+def observe_generated_expo_providers(report):
+    """Bind each original Expo provider to exactly one actual native target."""
+    project = ROOT / "Maktabah.xcodeproj/project.pbxproj"
+    graph = json.loads(capture("plutil", "-convert", "json", "-o", "-", str(project)))
+    objects = graph["objects"]
+    main_group = objects[graph["rootObject"]]["mainGroup"]
+    parents = {}
+    for identifier, value in objects.items():
+        if value.get("isa") == "PBXGroup":
+            for child in value.get("children", []):
+                parents.setdefault(child, []).append(identifier)
+
+    def source_path(identifier, seen=()):
+        require(identifier not in seen, "Cyclic Expo provider source membership")
+        value = objects[identifier]
+        tree = value.get("sourceTree", "<group>")
+        require(tree in ("<group>", "SOURCE_ROOT"), "Unsupported original Expo provider source root")
+        relative = value.get("path", "")
+        require(not Path(relative).is_absolute() and ".." not in Path(relative).parts,
+                "Original Expo provider source escaped its project")
+        if identifier == main_group or tree == "SOURCE_ROOT":
+            base = ROOT
+        else:
+            owners = parents.get(identifier, [])
+            require(len(owners) == 1, "Ambiguous original Expo source group membership")
+            base = source_path(owners[0], (*seen, identifier))
+        return base / relative
+
+    providers = sorted((ROOT / "Pods").rglob("ExpoModulesProvider.swift"))
+    require(providers and all(path.is_file() and not path.is_symlink() for path in providers),
+            "Original generated Expo providers are missing or aliased")
+    actual_paths = {path.resolve(strict=True) for path in providers}
+    require(len(actual_paths) == len(providers)
+            and all(path.is_relative_to(ROOT.resolve()) for path in actual_paths),
+            "Original generated Expo providers have duplicate or external identities")
+    permitted = {
+        "Maktabah-iOS": "com.apple.product-type.application",
+        "Maktabah-iOSNativeTests": "com.apple.product-type.bundle.unit-test"}
+    members = []
+    for identifier, target in objects.items():
+        if target.get("isa") != "PBXNativeTarget":
+            continue
+        target_members = []
+        for phase_id in target.get("buildPhases", []):
+            phase = objects[phase_id]
+            if phase.get("isa") != "PBXSourcesBuildPhase":
+                continue
+            for build_file in phase.get("files", []):
+                reference = objects[build_file].get("fileRef")
+                if reference is None:
+                    continue
+                file_reference = objects[reference]
+                if Path(file_reference.get("path", "")).name != "ExpoModulesProvider.swift":
+                    continue
+                path = source_path(reference).resolve(strict=True)
+                require(path in actual_paths, "A native target compiles an unrecorded Expo provider")
+                target_members.append({"target": target["name"], "target_id": identifier,
+                    "product_type": target.get("productType"), "phase_id": phase_id,
+                    "build_file_id": build_file, "file_reference_id": reference,
+                    "path": str(path.relative_to(ROOT)), "sha256": digest(path)})
+        if target_members:
+            name = target["name"]
+            require(name in permitted and target.get("productType") == permitted[name]
+                    and len(target_members) == 1,
+                    "An original native target has missing, duplicate or foreign Expo provider membership")
+            expected = f"Pods/Target Support Files/Pods-{name}/ExpoModulesProvider.swift"
+            require(target_members[0]["path"] == expected, "Expo provider belongs to the wrong native target")
+            members.extend(target_members)
+    require({member["target"] for member in members} == set(permitted)
+            and len(members) == len(permitted)
+            and {ROOT / member["path"] for member in members} == actual_paths,
+            "The original app and NativeTests must each retain their exact generated Expo provider")
+    require(len({member["sha256"] for member in members}) == 1,
             "The hosted native test provider differs from the app provider")
-    return app, records
+    members.sort(key=lambda row: row["target"])
+    report["native_context"]["generated_expo_providers"] = [
+        {"path": member["path"], "sha256": member["sha256"]} for member in members]
+    for member in members:
+        # Retain the historical app evidence path and a distinct test-target path.
+        name = ("ExpoModulesProvider.swift" if member["target"] == "Maktabah-iOS"
+                else "ExpoModulesProvider-" + member["target"] + ".swift")
+        shutil.copyfile(ROOT / member["path"], OUT / name)
+        member["retained_path"] = str((OUT / name).relative_to(ROOT))
+    receipt = {"status": "EXACT_ORIGINAL_EXPO_PROVIDER_TARGET_MEMBERSHIP",
+               "project_sha256": digest(project), "targets": members}
+    write_path = OUT / "generated-expo-provider-membership.json"
+    write_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
+    report["native_context"]["expo_provider_membership"] = {
+        "path": str(write_path), "sha256": digest(write_path)}
 
 
 def install_real_pods(report, original_editor=False):
@@ -476,6 +623,10 @@ def install_real_pods(report, original_editor=False):
     if ruby_context:
         report["native_context"]["original_editor_pod_ruby_context"] = ruby_module["admit_pod_ruby_context"](
             ROOT, ruby_context, pod_exit)
+    observe_installed_pods(report)
+
+
+def observe_installed_pods(report):
     require((ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata").is_file(), "Real Pods workspace missing")
     require((ROOT / "Pods/Headers/Public/React-Core/React/RCTBridgeModule.h").is_file()
             or any(p.is_file() for p in (ROOT / "Pods").rglob("RCTBridgeModule.h")), "Real React header was not restored")
@@ -483,9 +634,7 @@ def install_real_pods(report, original_editor=False):
     report["native_context"]["generated_project_sha256"] = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
     shutil.copyfile(ROOT / "Maktabah.xcodeproj/project.pbxproj", OUT / "generated-Maktabah-project.pbxproj")
     report["native_context"]["workspace_sha256"] = digest(ROOT / "Maktabah.xcworkspace/contents.xcworkspacedata")
-    provider, records = inspect_generated_expo_providers(ROOT)
-    report["native_context"]["generated_expo_providers"] = records
-    shutil.copyfile(provider, OUT / "ExpoModulesProvider.swift")
+    observe_generated_expo_providers(report)
     (OUT / "generated-pods-project.diff").write_text(capture("git", "diff", "--", "Maktabah.xcodeproj/project.pbxproj") + "\n")
     shutil.copyfile(ROOT / "Podfile.lock", OUT / "resolved-Podfile.lock")
     # The generated workspace has its own SwiftPM lock location. Restore the
@@ -789,7 +938,12 @@ def main():
     ap.add_argument("--prepared-inputs-manifest",
                     help="Exact local capture from an actual successful prior app/UI-runner build")
     ap.add_argument("--prepared-inputs-sha256", help="Reviewed SHA256 of that immutable capture")
+    ap.add_argument("--compiler-capacity-plans",
+                    help="Append-only measured phase budgets; wait before the unchanged compiler command")
     args = ap.parse_args()
+    require(not args.compiler_capacity_plans or
+            (args.build_for_testing and not args.preflight_only and not args.prepare_inputs_only),
+            "Compiler capacity wait requires the actual native build route")
     require(bool(args.prepared_inputs_manifest) == bool(args.prepared_inputs_sha256),
             "Prepared input reuse requires both the capture and its reviewed SHA256")
     require(not (args.original_editor_routes and args.original_editor_admission),
@@ -887,6 +1041,14 @@ def main():
                    "RCT_NO_LAUNCH_PACKAGER=1", "SKIP_BUNDLING=1", "FAIL_ON_MISSING_BUNDLE=1"]
         if args.simulator_data_profile:
             command.append("OTZARIA_DEFAULT_DATA_PROFILE=" + args.simulator_data_profile)
+        if args.compiler_capacity_plans:
+            before_capacity_project = digest(ROOT / "Maktabah.xcodeproj/project.pbxproj")
+            capacity = runpy.run_path(str(ROOT / "Scripts/CI/compiler_phase_capacity.py"))
+            report["compiler_capacity"] = capacity["wait_for_capacity"](
+                ROOT, OUT, report["checkout_sha"], args.compiler_capacity_plans)
+            require(capture("git", "rev-parse", "HEAD") == report["checkout_sha"] and
+                    digest(ROOT / "Maktabah.xcodeproj/project.pbxproj") == before_capacity_project,
+                    "Source/project changed during the compiler capacity wait")
         logged(command, "simulator-build-for-testing.log" if args.build_for_testing else "unsigned-app-build.log", report)
         if args.simulator_data_profile:
             built_info = derived_data / "Build/Products/Debug-iphonesimulator/Maktabah.app/Info.plist"

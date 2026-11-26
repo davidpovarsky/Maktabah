@@ -12,6 +12,6 @@ At the current integration branch, downstream changes overlap original Maktabah 
 
 The upstream v4.2 merge had numerous conflicts and subsequent build/TestFlight evidence. Those are NOT proof of functional parity. The reports UPSTREAM_SYNC_CONFLICT_LEDGER.md, UPSTREAM_SYNC_CHANGE_COVERAGE.md and UPSTREAM_SYNC_VALIDATION_MATRIX.md are historical evidence, not blanket permission or full runtime acceptance.
 
-**Status: LEGACY_UNREVIEWED.** Do not add more downstream logic to these upstream-owned files. Before any future integration, enumerate ALL divergent paths and hunks against the exact pinned upstream commit; move custom behavior to fork-owned adapters when separately approved. Any genuinely unavoidable hook needs specific owner permission recorded in UPSTREAM_EXCEPTION_REGISTER.json.
+**Status: LEGACY_UNREVIEWED.** Trace divergent paths and hunks against the pinned upstream commit before extending them. Prefer fork-owned adapters. For any necessary upstream hook within the authorized task, document the delta and verify the affected behavior.
 
 Outstanding gates: full per-file provenance, review of conflict semantics, actual iPad functional regression matrix and explicit owner closure. No project code changes are authorized by this document.

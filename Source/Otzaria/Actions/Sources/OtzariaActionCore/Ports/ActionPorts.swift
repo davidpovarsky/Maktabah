@@ -49,6 +49,19 @@ public protocol ActionResolverDataPort: Sendable {
     func referenceCandidates(_ query: ActionResolveReferenceQuery, invocation: ActionPortInvocation) async throws -> ActionResolution<ActionTextRef>
     func validate(_ ref: ActionTextRef, invocation: ActionPortInvocation) async throws -> ActionTextRef
 }
+/// Reads the default table of contents from the active library provider.
+public protocol ActionTableOfContentsPort: Sendable {
+    /// Returns up to the requested number of entries in source order.
+    func tableOfContents(for work: ActionWorkRef, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry]
+}
+
+/// Bounded source-text access through the same active provider as the reader.
+public protocol ActionSourceTextPort: Sendable {
+    func section(at locator: ActionTextRef, maximumSegments: Int,
+                 invocation: ActionPortInvocation) async throws -> ActionSourceTextSection
+}
+
 public protocol ActionSearchPort: Sendable {
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage
 }
