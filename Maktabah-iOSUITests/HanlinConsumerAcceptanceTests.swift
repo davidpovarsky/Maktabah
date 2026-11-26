@@ -801,8 +801,11 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
         let beforeNavigation = try Self.readerReceiptLines(readerLog)
         XCTAssertEqual(links.count, 1)
         XCTAssertEqual(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))), sourceID)
-        for _ in 0..<4 where !openSource.isHittable { transcript.swipeDown() }
-        press(links.firstMatch)
+        let reachableAfterRevocation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: openSource)
+        XCTAssertEqual(XCTWaiter.wait(for: [reachableAfterRevocation], timeout: 15), .completed,
+                       "The saved source must remain reachable after native consent revocation")
+        press(openSource)
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
             object: app.buttons["otzaria-hanlin-close"])], timeout: 30), .completed)
         let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
