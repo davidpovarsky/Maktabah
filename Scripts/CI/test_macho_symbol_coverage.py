@@ -106,6 +106,22 @@ class FullSymbolCoverageControls(unittest.TestCase):
                     API["export_sizes"](raw)
 
 
+    def test_empty_preview_needs_both_a_zero_nlist_and_the_original_slice(self):
+        binary = Path("/actual/Maktabah.app/__preview.dylib")
+        symbols = str(binary) + ": no symbols\n"
+        loads = ("Load command 4\n cmd LC_SYMTAB\n nsyms 0\n"
+                 "Load command 5\n cmd LC_BUILD_VERSION\n platform 7\n"
+                 "Load command 6\n cmd LC_DYLD_EXPORTS_TRIE\n"
+                 "Load command 7\n cmd LC_ID_DYLIB\n")
+        exports = str(binary) + " [arm64]:\n -exports:\n offset symbol\n"
+
+        self.assertTrue(API["is_symbol_free_xcode_preview"](binary, "arm64", symbols, loads))
+        self.assertEqual(API["export_names"](exports, binary, "arm64", allow_empty_preview=True), (set(), {}))
+        self.assertFalse(API["is_symbol_free_xcode_preview"](binary, "arm64", symbols, loads.replace("nsyms 0", "nsyms 1")))
+        self.assertFalse(API["is_symbol_free_xcode_preview"](binary.with_name("ordinary.dylib"), "arm64", symbols, loads))
+        with self.assertRaises(RuntimeError):
+            API["export_names"](exports + "incomplete row", binary, "arm64", allow_empty_preview=True)
+
     def test_partial_missing_duplicate_and_size_mismatched_native_commands_fail(self):
         header = ("image:\nMach header\n magic cputype cpusubtype caps filetype ncmds sizeofcmds flags\n"
                   " 0xfeedfacf 16777228 0 0x00 6 2 48 0x00\n")

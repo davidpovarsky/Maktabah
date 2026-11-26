@@ -190,10 +190,22 @@ def export_sizes(text):
     return result
 
 
-def export_names(text, binary, arch):
+def is_symbol_free_xcode_preview(binary, arch, symbols, loads):
+    binary = Path(binary)
+    if (binary.name != "__preview.dylib" or binary.parent.suffix != ".app" or arch != "arm64"
+            or symbols.strip() != str(binary) + ": no symbols"):
+        return False
+    symtab = re.findall(r"(?m)^\s*cmd LC_SYMTAB\n((?:(?!Load command)[^\n]*\n)*)", loads)
+    build = re.findall(r"(?m)^\s*cmd LC_BUILD_VERSION\n((?:(?!Load command)[^\n]*\n)*)", loads)
+    return (len(symtab) == 1 and re.search(r"(?m)^\s*nsyms 0$", symtab[0]) is not None
+            and len(build) == 1 and re.search(r"(?m)^\s*platform (?:7|IOSSIMULATOR)$", build[0]) is not None
+            and "LC_DYLD_EXPORTS_TRIE" in loads and "LC_ID_DYLIB" in loads)
+
+
+def export_names(text, binary, arch, *, allow_empty_preview=False):
     """Original strict native export grammar, applied to every actual slice."""
     rows = text.splitlines()
-    require(len(rows) > 3 and rows[0] == str(binary) + " [" + arch + "]:"
+    require(len(rows) >= (3 if allow_empty_preview else 4) and rows[0] == str(binary) + " [" + arch + "]:"
             and rows[1].strip() == "-exports:"
             and rows[2].split() == ["offset", "symbol"],
             "Unrecognized/incomplete native export listing")
@@ -206,7 +218,7 @@ def export_names(text, binary, arch):
         require(name not in names, "Duplicate native export symbol")
         names.add(name)
         kinds[kind or "regular"] = kinds.get(kind or "regular", 0) + 1
-    require(names, "A nonempty native export range produced no symbols")
+    require(names or allow_empty_preview, "A nonempty native export range produced no symbols")
     return names, kinds
 
 
@@ -232,17 +244,22 @@ def inspect(binary, evidence, name):
         load_path = evidence / (prefix + "-load-commands.txt.gz")
         load = bounded_stream(
             ["xcrun", "otool", "-arch", arch, "-h", "-l", str(binary)], load_path, 60)
-        ranges = export_sizes("".join(lines(load_path)))
+        load_text = "".join(lines(load_path))
+        ranges = export_sizes(load_text)
         row = {"architecture": arch, "nlist": table, "load_commands": load,
                "native_export_ranges": ranges, "export_trie": None}
         if any(value["bytes"] > 0 for value in ranges):
             trie_path = evidence / (prefix + "-exports.txt.gz")
             trie = bounded_stream(
                 ["xcrun", "dyld_info", "-arch", arch, "-exports", str(binary)], trie_path, 60)
-            names, kinds = export_names("".join(lines(trie_path)), binary, arch)
+            empty_preview = (ranges == [{"command": "LC_DYLD_EXPORTS_TRIE", "bytes": 8}]
+                             and is_symbol_free_xcode_preview(binary, arch, "".join(lines(table_path)), load_text))
+            names, kinds = export_names("".join(lines(trie_path)), binary, arch,
+                                        allow_empty_preview=empty_preview)
             row["export_trie"] = {
                 **trie, "definitions": len(names), "kinds": kinds,
                 "all_native_rows_parsed": True,
+                "xcode_preview_empty_trie": empty_preview and not names,
             }
             streams.append(trie)
         slices.append(row)

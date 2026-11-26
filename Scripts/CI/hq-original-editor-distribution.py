@@ -256,19 +256,11 @@ def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
         require(len(raw) <= 65_536, "Oversized Xcode preview observation")
         return raw
 
-    require(output("symbols").strip() == str(binary) + ": no symbols",
-            "Apple nm did not report the exact Xcode preview image")
-    loads = output("loads")
-    symtab = re.findall(r"(?m)^\s*cmd LC_SYMTAB\n((?:(?!Load command)[^\n]*\n)*)", loads)
-    build = re.findall(r"(?m)^\s*cmd LC_BUILD_VERSION\n((?:(?!Load command)[^\n]*\n)*)", loads)
-    require(len(symtab) == 1 and re.search(r"(?m)^\s*nsyms 0$", symtab[0])
-            and len(build) == 1 and re.search(r"(?m)^\s*platform (?:7|IOSSIMULATOR)$", build[0])
-            and "LC_DYLD_EXPORTS_TRIE" in loads and "LC_ID_DYLIB" in loads,
+    inspector = runpy.run_path(str(Path(__file__).with_name("macho_symbol_coverage.py")))
+    require(inspector["is_symbol_free_xcode_preview"](binary, "arm64", output("symbols"), output("loads")),
             "Xcode Simulator preview does not have a provably empty nlist")
-    exports = [line.strip() for line in output("exports").splitlines() if line.strip()]
-    require(len(exports) == 3 and exports[0] == str(binary) + " [arm64]:"
-            and exports[1] == "-exports:" and exports[2].split() == ["offset", "symbol"],
-            "Xcode preview has an export or unexpected dyld inventory")
+    names, _ = inspector["export_names"](output("exports"), binary, "arm64", allow_empty_preview=True)
+    require(not names, "Xcode preview has a native export")
 
 
 def runtime_absence_proof(root, directory, evidence, *, reused=None):
