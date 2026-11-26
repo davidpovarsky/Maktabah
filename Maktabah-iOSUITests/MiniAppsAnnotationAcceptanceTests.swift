@@ -789,6 +789,15 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let newerSecond = "Newer unsaved rich Beta שלום " + UUID().uuidString
         let other = try await richBody(second, host: host)
         tap(other); other.typeKey("a", modifierFlags: .command); other.typeText(newerSecond)
+        // The original collection shrinks behind the iPad keyboard while
+        // editing. Finish keyboard interaction before checking the native block.
+        let hideEditedKeyboard = app.keyboards.buttons["Hide keyboard"]
+        try await requireNativeCondition(timeout: 15) {
+            hideEditedKeyboard.exists && hideEditedKeyboard.isHittable
+        }
+        tap(hideEditedKeyboard)
+        try await requireNativeCondition(timeout: 15) { !keyboard.exists }
+        host = try await richHost()
         _ = try await richBody(newerSecond, host: host)
         XCTAssertEqual(try richState(rowID: rowID, databasePath: warmDocument.profile), launch,
             "The newer native draft is genuinely unsaved before the callback")
@@ -817,7 +826,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
         // A second launch records a fresh native baseline, then the source is
         // terminated. No manual launch assists the callback or remount.
-        tap(try await richBody(expectedWarm[0], host: host))
+        _ = try await richBody(expectedWarm[0], host: host)
         let beforeCold = Set(try records(in: shared).map { $0.request.id })
         tap(app.buttons["annotation-expanded-editor-miniapps"])
         try await confirmOriginalMiniAppsSave()
