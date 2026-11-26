@@ -17,7 +17,8 @@ def capture(*args):
 
 sdk = capture('xcrun', '--sdk', 'iphonesimulator', '--show-sdk-version')
 runtimes = json.loads(capture('xcrun','simctl','list','runtimes','-j'))['runtimes']
-identifiers = [r['identifier'] for r in runtimes if r.get('isAvailable') and r.get('version') == sdk and r['identifier'].startswith('com.apple.CoreSimulator.SimRuntime.iOS-')]
+identifiers = [r['identifier'] for r in runtimes if r.get('isAvailable') and r.get('version') == sdk
+               and r['identifier'] == 'com.apple.CoreSimulator.SimRuntime.iOS-' + sdk.replace('.', '-')]
 device_types = json.loads(capture('xcrun','simctl','list','devicetypes','-j'))['devicetypes']
 devices = [d['identifier'] for d in device_types if d['name']=='iPad Pro 11-inch (M5)']
 assert sdk.startswith('27.') and len(identifiers) == len(devices) == 1, (sdk, identifiers, devices)
