@@ -272,23 +272,29 @@ struct MaktabahNativeRoutingSurface: ViewModifier {
         self.noteReader = noteReader; self.noteDraft = noteDraft
     }
     @Environment(\.maktabahNativeRoutingSession) private var session
+    @State private var noteDraftAppeared = false
     func body(content: Content) -> some View {
         content
-            #if DEBUG
             .onAppear {
                 guard kind == .noteDraft else { return }
+                // The original editor becomes observable after the sheet appears.
+                noteDraftAppeared = true
+                #if DEBUG
                 if let session {
                     session.diagnoseNoteDraftSurface(stage: "sheet-surface-appear",
                         reader: noteReader, draft: noteDraft)
                 } else {
                     OtzariaFileLogger.shared.log("[NativeNoteDraftDiagnostic] stage=sheet-surface-appear session=false")
                 }
+                #endif
             }
-            #endif
+            .onDisappear {
+                if kind == .noteDraft { noteDraftAppeared = false }
+            }
             .background {
             if let session,
                kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
-               kind != .noteDraft || (noteReader.flatMap { reader in
+               kind != .noteDraft || (noteDraftAppeared && noteReader.flatMap { reader in
                    noteDraft.map { session.ownsNoteEditor(reader, draft: $0) }
                } == true),
                let state = try? session.surface(kind) {
