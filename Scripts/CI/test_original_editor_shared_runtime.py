@@ -185,6 +185,87 @@ class ExactClangDeclarationControls(unittest.TestCase):
         self.assertEqual(before, {p.relative_to(self.distribution).as_posix(): shared.digest(p)
                                   for p in self.distribution.rglob('*') if p.is_file()})
 
+    def add_original_layouts(self):
+        promises = self.distribution / 'Clang/Packages' / shared.CLANG_PODS['FBLPromises'][1]
+        self.private = self.root / 'Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromisePrivate.h'
+        save(self.private, '// original private declaration\n')
+        private_link = self.root / 'Pods/Headers/Private/PromisesObjC/FBLPromisePrivate.h'
+        private_link.parent.mkdir(parents=True)
+        private_link.symlink_to(self.private)
+        save(promises / 'FBLPromisePrivate.h', self.private.read_text())
+        self.promises_map = self.distribution / 'Clang/Maps/FBLPromises.modulemap'
+        self.promises_map.write_text(self.promises_map.read_text().replace(
+            ' export * }', '\n    exclude header "FBLPromisePrivate.h"\n export * }'))
+        self.nanopb = self.distribution / 'Clang/Packages' / shared.CLANG_PODS['nanopb'][1]
+        for name in ['pb.h', 'pb_common.h', 'pb_decode.h', 'pb_encode.h']:
+            declaration = '// original ' + name + '\n'
+            save(self.nanopb / name, '#include "nanopb/' + name + '"\n')
+            save(self.nanopb / 'nanopb' / name, declaration)
+            save(self.root / 'Pods/Headers/Public/nanopb' / name, declaration)
+
+    def test_original_private_and_forwarding_layouts_preserve_all_bytes_and_public_roots(self):
+        self.add_original_layouts()
+        before = {p.relative_to(self.distribution).as_posix(): shared.digest(p)
+                  for p in self.distribution.rglob('*') if p.is_file()}
+        result = self.project()
+        reused = {r['module']: r for r in result['reused_identical_host_modules']}
+        private = reused['FBLPromises']['declarations']['FBLPromisePrivate.h']
+        self.assertEqual(private['kind'], 'excluded_private')
+        self.assertFalse(private['exported_to_host'])
+        forwarded = [v for v in reused['nanopb']['declarations'].values()
+                     if v.get('kind') == 'transparent_forwarder']
+        self.assertEqual(len(forwarded), 4)
+        self.assertTrue(all(v['target_sha256'] != v['sha256'] for v in forwarded))
+        self.assertFalse(any('/Private/' in p for p in result['header_search_paths']))
+        self.assertEqual(before, {p.relative_to(self.distribution).as_posix(): shared.digest(p)
+                                  for p in self.distribution.rglob('*') if p.is_file()})
+
+    def test_unexcluded_private_header_is_rejected(self):
+        self.add_original_layouts()
+        self.promises_map.write_text(self.promises_map.read_text().replace('exclude header', 'header'))
+        with self.assertRaisesRegex(RuntimeError, 'not uniquely excluded'):
+            self.project()
+
+    def test_changed_private_header_is_rejected(self):
+        self.add_original_layouts()
+        self.private.write_text('// different private declaration\n')
+        with self.assertRaisesRegex(RuntimeError, 'private declaration differs'):
+            self.project()
+
+    def test_private_header_alias_outside_the_original_pod_is_rejected(self):
+        self.add_original_layouts()
+        outside = self.root / 'Pods/AnotherPod/FBLPromisePrivate.h'
+        save(outside, self.private.read_text())
+        self.private.unlink()
+        self.private.symlink_to(outside)
+        with self.assertRaisesRegex(RuntimeError, 'escaping'):
+            self.project()
+
+    def test_forwarding_header_with_extra_code_or_another_target_is_rejected(self):
+        self.add_original_layouts()
+        for value in ['#include "nanopb/pb.h"\n#define EXTRA 1\n',
+                      '#include "../nanopb/pb.h"\n', '#include "nanopb/pb_common.h"\n']:
+            with self.subTest(value=value):
+                (self.nanopb / 'pb.h').write_text(value)
+                with self.assertRaisesRegex(RuntimeError, 'Unreviewed nanopb'):
+                    self.project()
+
+    def test_changed_forwarding_target_is_rejected(self):
+        self.add_original_layouts()
+        (self.nanopb / 'nanopb/pb.h').write_text('// changed nested declaration\n')
+        with self.assertRaisesRegex(RuntimeError, 'Host lacks an unambiguous byte-identical'):
+            self.project()
+
+    def test_forwarding_target_may_not_escape_its_original_root(self):
+        self.add_original_layouts()
+        target = self.nanopb / 'nanopb/pb.h'
+        outside = self.distribution / 'Clang/Packages/another/pb.h'
+        save(outside, target.read_text())
+        target.unlink()
+        target.symlink_to(outside)
+        with self.assertRaisesRegex(RuntimeError, 'escaping'):
+            self.project()
+
     def test_changed_host_header_is_rejected(self):
         save(self.host_headers['FirebaseCore'], '// changed declaration\n')
         with self.assertRaisesRegex(RuntimeError, 'byte-identical shared declaration'):

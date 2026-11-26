@@ -1,0 +1,16 @@
+{
+  "status": "EXACT_PREPARED_SOURCE_VERIFIED",
+  "producer_source": "e1a25038e55a2967b2f21c9eb48e0e29220f52fd",
+  "source_tree": "692525c6b9bb02b5cfe7a00c07c408feb11e26c2",
+  "prepared_tree": "8f37cfcddc17e24aa5887969499e91d4fbc96eac",
+  "source_inventory_count": 7088,
+  "source_identity_sha256": "62b73f4136bbfb19e46c3162bd927cf0b55cafe446a1273f917eb6bbb15b4851",
+  "review": {
+    "path": "Scripts/CI/miniapps-producer-preparation-e1a25038.json",
+    "sha256": "0298f78ab08b4b2b423b27c13425036a301e0bba21963c1fffde6db2edc01e89"
+  },
+  "reviewed_changes": 10,
+  "seconds": 1.8652660362422466,
+  "validator_commit": "6fe55fff41aa1e2588067bb5b25477a5b26723d9",
+  "scope": "Independent Git source/preparation identity verification against the actual Mac producer record. Native app acceptance and signing are separate."
+}

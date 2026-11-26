@@ -1,0 +1,22 @@
+{
+  "schema": "hanlin.peer-review/1",
+  "reviewer": "/root/native_runtime_resume",
+  "owner": "/root/otzaria_resume",
+  "utc": "2026-11-25T16:01:30.947973+00:00",
+  "repository": "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125",
+  "base_commit": "eb3ac2e190cecd30e726821ab3425d3cbe175d5a",
+  "source_sha256": {
+    "Scripts/CI/original_editor_shared_runtime.py": "0d6d4f51dbbd54b27c9602e9023dfeb1bdb1cd8a0ac8f52bca41a8c94b4b0fe9",
+    "Scripts/CI/test_original_editor_shared_runtime.py": "e296c7cfad56f744952ca92c7256c90bc2582cb4e27611efd03bd86a3d2e9578"
+  },
+  "diff_sha256": "c94aa9de68c68480c2489019662e62a2a5256ec7e89d35847b61b08d883045b3",
+  "scope": "Read-only review of narrow original Clang projection and associated integrity controls; no edits, no duplicate tests/native execution.",
+  "result": "NO_BLOCKING_SOURCE_REVIEW_FINDING",
+  "findings": [
+    "FBLPromises exception is exact module+relative path, requires one exact exclude directive and no public same-name declaration, bounds the private target to the original PromisesObjC Pod and compares its complete bytes. No private search path or public header is exported.",
+    "Nanopb exception is restricted to four exact top-level filenames and exact one-line include bytes; nested targets stay inside original SDK root and require one byte-identical original Pod public counterpart. Both wrapper and target hashes are retained.",
+    "Fallback declaration hashing and unambiguous matches are unchanged; canonical host maps, exact5-module collision set, total module/header-root cardinalities and source/runtime qualification boundaries remain unchanged.",
+    "New controls cover original private/forwarding shapes, altered private bytes/exclusion, escaping aliases, wrapper extra code/wrong targets, changed nested bytes and escaped nested targets."
+  ],
+  "validation_boundary": "Owner-reported12 controls are not rerun or independently credited here. Actual original application compile/runtime acceptance remains separately required."
+}

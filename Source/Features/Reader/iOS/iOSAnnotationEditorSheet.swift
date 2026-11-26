@@ -19,6 +19,7 @@ struct iOSAnnotationEditorSheet: View {
     @State private var operationErrorMessage: String?
     @State private var editorTextView: UITextView?
     @State private var hasInitialized: Bool = false
+    @State private var hasRetainedMiniAppFiles = false
     #if os(iOS) && canImport(AnytypeOriginalEditor)
     @State private var originalEditorAvailability: AnnotationOriginalEditorAvailability = .checking
     #endif
@@ -203,6 +204,18 @@ struct iOSAnnotationEditorSheet: View {
             .navigationTitle(.Annotation.editAnnotation)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if hasRetainedMiniAppFiles {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            OtzariaMiniAppsCoordinator.shared.shareRetainedFiles(
+                                for: annotation, sourceView: editorTextView)
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .accessibilityIdentifier("otzaria-note-share-files")
+                        .accessibilityLabel(String(localized: "Share Mini App Files"))
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,
@@ -248,10 +261,12 @@ struct iOSAnnotationEditorSheet: View {
                     currentText: { editorTextView?.window == nil ? nil : editorTextView?.text ?? noteText },
                     didCommit: { saved in
                         annotation = saved
+                        hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: saved)
                         noteText = saved.note ?? ""
                         AccessibleAutoDirectionTextView.lastEnteredText = noteText
                         editorTextView?.text = noteText
                     })
+                hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
                 guard !hasInitialized else { return }
                 hasInitialized = true
                 noteText = annotation.note ?? ""
@@ -265,6 +280,9 @@ struct iOSAnnotationEditorSheet: View {
                 #if DEBUG
                 (editorTextView as? AccessibleAutoDirectionTextView)?.checkSmokeNoteInput()
                 #endif
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .torahInspectorNotesDidChange)) { _ in
+                hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
             }
             .onDisappear {
                 OtzariaMiniAppsCoordinator.shared.unregisterEditor(id: miniAppsEditorID)

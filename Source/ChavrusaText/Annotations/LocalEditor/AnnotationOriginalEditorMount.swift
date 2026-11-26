@@ -220,6 +220,19 @@ final class AnnotationOriginalEditorMount {
         return context
     }
 
+    /// Export original native file blocks only after the launch baseline has
+    /// been saved and reopened. A stale row or retired owner cannot export data.
+    func miniAppsFiles(context: AnytypeOriginalEditorMiniAppsContext) async throws
+        -> [AnytypeOriginalEditorMiniAppsFile] {
+        _ = try await readCurrentSnapshot()
+        guard !saveAttempted, case .local(let session) = nativeOwner else {
+            throw AnnotationLocalEditorError.wrongOwner
+        }
+        let files = try await session.exportMiniAppsFiles(context: context, maximumBytes: OtzariaMiniAppsNativeFileBudget.maximumBytes)
+        _ = try await readCurrentSnapshot()
+        return files
+    }
+
     /// Save the full original native draft before another process may suspend
     /// or terminate us. Context alone cannot preserve unsaved rich formatting.
     func prepareMiniAppsLaunch(context: AnytypeOriginalEditorMiniAppsContext) async throws
@@ -270,7 +283,8 @@ final class AnnotationOriginalEditorMount {
     }
 
     func applyMiniApps(_ result: MiniAppResult, context: AnytypeOriginalEditorMiniAppsContext,
-                      text: String) async throws -> AnnotationLocalEditorOutcome {
+                      text: String, attachments: [AnytypeOriginalEditorMiniAppsAttachment]) async throws
+        -> AnnotationLocalEditorOutcome {
         guard !saveAttempted, result.status == .success,
               case .local(let session) = nativeOwner else { throw AnnotationLocalEditorError.busy }
         let action: AnytypeOriginalEditorMiniAppsAction
@@ -288,7 +302,7 @@ final class AnnotationOriginalEditorMount {
             viewController.view.isUserInteractionEnabled = false
             viewController.view.endEditing(true)
             let captured = try await session.applyMiniAppsResult(requestID: result.requestID,
-                context: context, action: action, text: text,
+                context: context, action: action, text: text, attachments: attachments,
                 maximumBodyBytes: TorahAnnotationPayloadLimits.maximumBodyBytes)
             return try await commitMiniAppsCapture(captured, mutationID: result.requestID, resultJSON: identity)
         } catch {

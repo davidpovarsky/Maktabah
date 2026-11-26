@@ -1,0 +1,65 @@
+{
+  "actual_build_log_sha256": "88304bf3db17222ba35f4c785cb88e639010bfbefeaa88ab28b9b406d5df7e03",
+  "actual_signature_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "all_git_source_file_count": 11023,
+  "app_entry_count": 6787,
+  "archive_bytes": 274777110,
+  "archive_path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-3f5c0f37-01/consumer-build/HanlinMiniApps-simulator.zip",
+  "archive_sha256": "442ef7f1da5528d416567f1fd058719e1d08b38557e3e75ad064758ec1f5a515",
+  "embedded_entitlements": {
+    "bytes": 1190,
+    "entitlements": {
+      "application-identifier": "NA6HPWARQ2.com.itorah.hanlinminiapps",
+      "aps-environment": "development",
+      "com.apple.developer.healthkit": true,
+      "com.apple.developer.homekit": true,
+      "com.apple.developer.icloud-container-identifiers": [
+        "iCloud.com.itorah.chavrusachat"
+      ],
+      "com.apple.developer.icloud-services": [
+        "CloudKit",
+        "CloudDocuments"
+      ],
+      "com.apple.developer.kernel.extended-virtual-addressing": true,
+      "com.apple.developer.usernotifications.time-sensitive": true,
+      "com.apple.developer.weatherkit": true,
+      "com.apple.security.application-groups": [
+        "group.com.itorah.chavrusachat",
+        "group.com.itorah.shared"
+      ],
+      "keychain-access-groups": [
+        "NA6HPWARQ2.com.itorah.hanlinminiapps.scriptwidget.services"
+      ]
+    },
+    "executable": "HanlinMiniApps",
+    "executable_sha256": "d54b5fb83d88f32b1c9b7e6e5ad517bc75c14de6c592ca27a6a3fb15925afa92",
+    "offset": 13458,
+    "section_sha256": "af42e6334ef63e8e48ad03e817ad36368d12292750f49d4b5c3423a5cd26200f",
+    "source": "__TEXT,__entitlements"
+  },
+  "finished_utc": "2026-11-25T10:09:59.541571+00:00",
+  "free_bytes_after": 2998779904,
+  "free_bytes_before": 2998833152,
+  "immutable_build_receipt_sha256": "99f7c1d1669a506c613b2126fb4038216d99838bde0f0bb700adf1324f637e10",
+  "manifest_path": "/Users/m1/builds/hanlin-miniapps-final-native-20261125/build/native-final-evidence/attempt-3f5c0f37-01/consumer-build/producer-manifest.json",
+  "manifest_sha256": "16d9bb26127fa7d903368d5ebf657935d3fbe5042c46e15d03f1a10625c042f6",
+  "native_acceptance_status": "NATIVE_ACCEPTANCE_RUNNING",
+  "native_tests_executed_by_admission": 0,
+  "new_app_extractions": 0,
+  "physical_signing": "NOT_VALIDATED_BY_SIMULATOR",
+  "preparation_diff_sha256": "04d646ddc24ecf489236429e71aad95a5a59fc256737d017ee480bf11b79d95e",
+  "prepared_tree": "2dedb593ef3c899368b86246b50e3916762dc30c",
+  "producer_sha": "3f5c0f37af476b377be10cf8013fedb5edf67a57",
+  "raw_source_tree": "99000f16491f67e2ce84e5f1c6feb148d60750b0",
+  "recorded_source_file_count": 7115,
+  "reviewed_preparation_paths": [
+    "docs/miniapp-sdk/MANIFEST_REFERENCE.md",
+    "docs/miniapp-sdk/extension-reachability.json",
+    "docs/miniapp-sdk/extension-reachability.md",
+    "docs/miniapp-sdk/source-inventory.json"
+  ],
+  "schema": "miniapps.cross-consumer-read-only-producer-admission/1",
+  "source_or_product_mutations": 0,
+  "started_utc": "2026-11-25T10:09:55.930604+00:00",
+  "status": "VERIFIED_COMPILED_COMPANION_READ_ONLY"
+}

@@ -1,5 +1,6 @@
 #if os(iOS)
 import Foundation
+import Darwin
 import SwiftUI
 import UIKit
 import HanlinMiniAppsBridge
@@ -7,6 +8,14 @@ import HanlinMiniAppsPicker
 #if canImport(AnytypeOriginalEditor)
 import AnytypeOriginalEditor
 #endif
+
+/// Aggregate bytes accepted by the native-file adapter. This mirrors the
+/// OriginalEditor SDK maximumExpandedBytes in OriginalAnnotationNativeArchiveLayout.
+/// It does not alter TorahAnnotationPayloadLimits.maximumArchiveBytes (1 MiB):
+/// original compressed archive and complete payload gates still run at save.
+enum OtzariaMiniAppsNativeFileBudget {
+    static let maximumBytes = 8 * 1_048_576
+}
 
 /// The only MiniApps integration owner in this app. Execution remains in Hanlin MiniApps.
 @MainActor
@@ -125,7 +134,7 @@ final class OtzariaMiniAppsCoordinator {
 
     #if canImport(AnytypeOriginalEditor)
     func showOriginalEditor(annotation: Annotation, context: AnytypeOriginalEditorMiniAppsContext,
-                            editorID: UUID, sourceView: UIView) {
+                            files: [AnytypeOriginalEditorMiniAppsFile], editorID: UUID, sourceView: UIView) {
         do {
             var range: NSRange?
             if let location = context.documentSelectionLocation, let length = context.selectionLength,
@@ -138,9 +147,23 @@ final class OtzariaMiniAppsCoordinator {
                 selection: range, isReaderSelection: false, editorID: editorID, title: annotation.resolvedBookTitle)
             let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
             let nativeContext = String(decoding: try encoder.encode(context), as: UTF8.self)
+            let store = try MiniAppBridgeStore()
+            var remaining = OtzariaMiniAppsNativeFileBudget.maximumBytes
+            var nativeFileBlocks: [String: String] = [:]
+            let fileInputs = try files.map { file -> MiniAppContent in
+                guard file.attachment.data.count <= remaining else { throw MiniAppBridgeError.invalidAttachment }
+                remaining -= file.attachment.data.count
+                let input = try store.writeAttachment(file.attachment.data,
+                    name: file.attachment.name, typeIdentifier: file.attachment.typeIdentifier)
+                guard let attachmentID = input.attachmentID else { throw MiniAppBridgeError.invalidAttachment }
+                nativeFileBlocks[attachmentID.uuidString] = file.blockID
+                return input
+            }
+            let fileContext = String(decoding: try encoder.encode(nativeFileBlocks), as: UTF8.self)
             present(document: document, inputText: context.selectedText ?? "", sourceText: context.documentText,
-                sourceSelection: document.selection, sourceView: sourceView,
-                additionalMetadata: [Self.originalEditorMetadataKey: nativeContext], sourceKind: "native-annotation",
+                sourceSelection: document.selection, sourceView: sourceView, additionalInputs: fileInputs,
+                additionalMetadata: [Self.originalEditorMetadataKey: nativeContext,
+                    "otzaria.original-editor.files.v1": fileContext], sourceKind: "native-annotation",
                 requestedOperation: (context.selectedText?.isEmpty == false) ? .replaceSelection : .insert)
         } catch { show(error: error, sourceView: sourceView) }
     }
@@ -148,6 +171,7 @@ final class OtzariaMiniAppsCoordinator {
 
     private func present(document: OtzariaMiniAppsDocument, inputText: String, sourceText: String,
                          sourceSelection: MiniAppTextSelection?, sourceView: UIView?,
+                         additionalInputs: [MiniAppContent] = [],
                          additionalMetadata: [String: String] = [:], sourceKind: String? = nil,
                          requestedOperation: MiniAppOperation? = nil) {
         do {
@@ -165,7 +189,7 @@ final class OtzariaMiniAppsCoordinator {
                 (!document.isReaderSelection && (document.selection?.length ?? 0) > 0 ? .replaceSelection : .insert)
             guard let presenter = presenter(in: scene, sourceView: sourceView) else { throw OtzariaMiniAppsError.unavailable }
             let picker = MiniAppPicker(store: store, source: source,
-                inputs: [.init(kind: .text, text: inputText, typeIdentifier: "public.plain-text")],
+                inputs: [.init(kind: .text, text: inputText, typeIdentifier: "public.plain-text")] + additionalInputs,
                 operation: operation, callbacks: callbacks, onOpen: { [weak self] url in
                     // The shared picker owns its dismissal before invoking onOpen.
                     UIApplication.shared.open(url, options: [:]) { opened in
@@ -302,18 +326,9 @@ final class OtzariaMiniAppsCoordinator {
                       let expectedNativeAnnotationUUID = model.mount?.binding.annotationUUID else {
                     throw OtzariaMiniAppsError.missingDocument
                 }
-                let files = try self.retainAttachments(result, store: store)
-                guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
-                let text = try result.items.map { item -> String in
-                    if let text = item.text { return text }
-                    if let url = item.url { return url.absoluteString }
-                    if let id = item.attachmentID {
-                        guard let url = files[id] else { throw MiniAppBridgeError.invalidAttachment }
-                        return url.absoluteString
-                    }
-                    throw OtzariaMiniAppsError.noResult
-                }.joined(separator: "\n")
-                let outcome = try await model.applyMiniApps(result, contextJSON: contextJSON, text: text)
+                let payload = try self.originalEditorPayload(result, store: store)
+                let outcome = try await model.applyMiniApps(result, contextJSON: contextJSON,
+                    text: payload.text, attachments: payload.attachments)
                 let receipt: AnnotationExchangeCommit
                 switch outcome {
                 case .committed(let saved): receipt = saved.receipt
@@ -334,6 +349,65 @@ final class OtzariaMiniAppsCoordinator {
         }
     }
 
+    /// Keep files as native attachments. Durable copies retain returned bytes if
+    /// native import or canonical save fails; the shared result stays pending.
+    private func originalEditorPayload(_ result: MiniAppResult, store: MiniAppBridgeStore) throws
+        -> (text: String, attachments: [AnytypeOriginalEditorMiniAppsAttachment]) {
+        guard !result.items.isEmpty else { throw OtzariaMiniAppsError.noResult }
+        var remaining = OtzariaMiniAppsNativeFileBudget.maximumBytes
+        var text: [String] = []
+        var attachments: [AnytypeOriginalEditorMiniAppsAttachment] = []
+        for item in result.items {
+            switch item.kind {
+            case .file:
+                guard let id = item.attachmentID, item.text == nil, item.url == nil else {
+                    throw MiniAppBridgeError.invalidAttachment
+                }
+                let source = try store.attachmentURL(id: id)
+                let bytes = try Self.readOriginalAttachment(at: source, maximumBytes: remaining)
+                remaining -= bytes.count
+                let attachment = try AnytypeOriginalEditorMiniAppsAttachment(data: bytes,
+                    name: item.name ?? source.lastPathComponent,
+                    typeIdentifier: item.typeIdentifier ?? "public.data")
+                _ = try retainAttachment(bytes, id: id, name: attachment.name, requestID: result.requestID)
+                attachments.append(attachment)
+            case .text, .json:
+                guard let value = item.text, item.attachmentID == nil else { throw OtzariaMiniAppsError.noResult }
+                text.append(value)
+            case .url:
+                guard let value = item.url, item.attachmentID == nil else { throw OtzariaMiniAppsError.noResult }
+                text.append(value.absoluteString)
+            }
+        }
+        return (text.joined(separator: "\n"), attachments)
+    }
+
+    /// Read an immutable bounded snapshot through one no-follow descriptor.
+    /// A changed/truncated file fails before any native document mutation.
+    private static func readOriginalAttachment(at url: URL, maximumBytes: Int) throws -> Data {
+        guard maximumBytes >= 0, maximumBytes <= OtzariaMiniAppsNativeFileBudget.maximumBytes else {
+            throw MiniAppBridgeError.invalidAttachment
+        }
+        let descriptor = Darwin.open(url.path, O_RDONLY | O_NOFOLLOW | O_CLOEXEC)
+        guard descriptor >= 0 else { throw MiniAppBridgeError.invalidAttachment }
+        let handle = FileHandle(fileDescriptor: descriptor, closeOnDealloc: true)
+        defer { try? handle.close() }
+        var before = stat()
+        guard fstat(descriptor, &before) == 0, (before.st_mode & S_IFMT) == S_IFREG,
+              before.st_size >= 0, before.st_size <= maximumBytes else {
+            throw MiniAppBridgeError.invalidAttachment
+        }
+        let bytes = try handle.read(upToCount: maximumBytes + 1) ?? Data()
+        var after = stat()
+        guard bytes.count <= maximumBytes, bytes.count == before.st_size,
+              fstat(descriptor, &after) == 0, before.st_size == after.st_size,
+              before.st_mtimespec.tv_sec == after.st_mtimespec.tv_sec,
+              before.st_mtimespec.tv_nsec == after.st_mtimespec.tv_nsec else {
+            throw MiniAppBridgeError.invalidAttachment
+        }
+        return bytes
+    }
+
     private func originalFailure(_ error: Error, requestID: UUID, scene: UIWindowScene?) {
         processing.remove(requestID)
         reportedFailures.insert(requestID)
@@ -341,24 +415,71 @@ final class OtzariaMiniAppsCoordinator {
     }
     #endif
 
+    func hasRetainedFiles(for annotation: Annotation) -> Bool {
+        (try? OtzariaMiniAppsPersistence.retainedFiles(for: annotation).isEmpty) == false
+    }
+
+    /// The plain note keeps its original text/URL representation. This native
+    /// action reopens committed files from the current private Documents root,
+    /// so transport ACK and a cold application launch do not remove access.
+    func shareRetainedFiles(for annotation: Annotation, sourceView: UIView?) {
+        do {
+            let references = try OtzariaMiniAppsPersistence.retainedFiles(for: annotation)
+            guard !references.isEmpty else { throw OtzariaMiniAppsError.noResult }
+            let documents = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+                appropriateFor: nil, create: false).resolvingSymlinksInPath()
+            let root = documents.appendingPathComponent("MiniApps", isDirectory: true)
+            var files: [URL] = []
+            for reference in references {
+                guard let id = reference.content.attachmentID else { throw MiniAppBridgeError.invalidAttachment }
+                let name = reference.content.name.map { URL(fileURLWithPath: $0).lastPathComponent }
+                    ?? id.uuidString.lowercased()
+                let path = root.appendingPathComponent(reference.requestID.uuidString, isDirectory: true)
+                    .appendingPathComponent(id.uuidString + "-" + name)
+                let values = try path.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+                guard values.isRegularFile == true, values.isSymbolicLink != true,
+                      path.resolvingSymlinksInPath().path.hasPrefix(root.path + "/") else {
+                    throw MiniAppBridgeError.invalidAttachment
+                }
+                if !files.contains(path) { files.append(path) }
+            }
+            let scene = sourceView?.window?.windowScene
+            guard let presenter = presenter(in: scene, sourceView: sourceView) else {
+                throw OtzariaMiniAppsError.unavailable
+            }
+            let activity = UIActivityViewController(activityItems: files, applicationActivities: nil)
+            activity.view.accessibilityIdentifier = "otzaria-note-retained-files-share"
+            if let popover = activity.popoverPresentationController {
+                popover.sourceView = sourceView ?? presenter.view
+                popover.sourceRect = (sourceView ?? presenter.view).bounds
+            }
+            presenter.present(activity, animated: true)
+        } catch { show(error: error, sourceView: sourceView) }
+    }
+
     private func retainAttachments(_ result: MiniAppResult, store: MiniAppBridgeStore) throws -> [UUID: URL] {
         let attachments = result.items.compactMap(\.attachmentID)
         guard !attachments.isEmpty else { return [:] }
-        let folder = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true).appendingPathComponent("MiniApps", isDirectory: true)
-            .appendingPathComponent(result.requestID.uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         var saved: [UUID: URL] = [:]
         for id in attachments {
             let source = try store.attachmentURL(id: id)
             let name = result.items.first(where: { $0.attachmentID == id })?.name.map {
                 URL(fileURLWithPath: $0).lastPathComponent
             } ?? source.lastPathComponent
-            let destination = folder.appendingPathComponent(id.uuidString + "-" + name)
-            try Data(contentsOf: source).write(to: destination, options: .atomic)
-            saved[id] = destination
+            saved[id] = try retainAttachment(Data(contentsOf: source), id: id,
+                name: name, requestID: result.requestID)
         }
         return saved
+    }
+
+    private func retainAttachment(_ bytes: Data, id: UUID, name: String, requestID: UUID) throws -> URL {
+        let folder = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
+            appropriateFor: nil, create: true).appendingPathComponent("MiniApps", isDirectory: true)
+            .appendingPathComponent(requestID.uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let destination = folder.appendingPathComponent(id.uuidString + "-" + URL(fileURLWithPath: name).lastPathComponent)
+        try bytes.write(to: destination, options: .atomic)
+        return destination
     }
 
     private func enqueuePresentation(requestID: UUID, scene: UIWindowScene?,

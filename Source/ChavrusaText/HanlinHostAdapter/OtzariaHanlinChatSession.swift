@@ -51,7 +51,7 @@ enum OtzariaHanlinConnectionDiagnostic {
         case denied, duplicateInvocation, otherHostError, otherError
         case unknownTool, deadlineExceeded, resultMismatch, outputLimitExceeded, unresolvedWrite
         case unsupportedProviderCapability, storeConflict, invalidRecord, storageLimitExceeded
-        case nativeProviderInjectionRequired, nativeUnsupportedContent, invalidProviderToolSchema
+        case nativeProviderInjectionRequired, nativeUnsupportedContent, nativeUnsupportedToolInput, invalidProviderToolSchema
         case invalidSDKConversation, emptyProviderResponse, incompleteProviderResponse
         case finishStop, finishToolCalls, finishLength, finishContentFilter, finishError, finishOther
     }
@@ -84,6 +84,7 @@ enum OtzariaHanlinConnectionDiagnostic {
             switch error {
             case .nativeProviderInjectionRequired: return .nativeProviderInjectionRequired
             case .nativeUnsupportedContent: return .nativeUnsupportedContent
+            case .nativeUnsupportedToolInput: return .nativeUnsupportedToolInput
             case .invalidToolSchema(_): return .invalidProviderToolSchema
             case .invalidConversation(_): return .invalidSDKConversation
             case .emptyProviderResponse(_): return .emptyProviderResponse

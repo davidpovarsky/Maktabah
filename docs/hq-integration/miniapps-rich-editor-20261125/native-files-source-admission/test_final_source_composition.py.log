@@ -1,0 +1,78 @@
+test_actual_18_product_paths_equal_accepted_ancestor_objects (test_final_source_composition.FinalCompositionControls.test_actual_18_product_paths_equal_accepted_ancestor_objects) ... ERROR
+test_changed_original_preimage_is_rejected (test_final_source_composition.FinalCompositionControls.test_changed_original_preimage_is_rejected) ... ok
+test_current_multipart_native_acceptance_cannot_be_replaced_by_v32_or_components (test_final_source_composition.FinalCompositionControls.test_current_multipart_native_acceptance_cannot_be_replaced_by_v32_or_components) ... ok
+test_dependency_leaf_stays_separate_from_full_composition (test_final_source_composition.FinalCompositionControls.test_dependency_leaf_stays_separate_from_full_composition) ... ok
+test_existing_artifact_pin_cannot_change_as_source_binding (test_final_source_composition.FinalCompositionControls.test_existing_artifact_pin_cannot_change_as_source_binding) ... FAIL
+test_forged_owner_object_is_rejected (test_final_source_composition.FinalCompositionControls.test_forged_owner_object_is_rejected) ... ok
+test_manifest_body_drift_is_rejected_before_interpretation (test_final_source_composition.FinalCompositionControls.test_manifest_body_drift_is_rejected_before_interpretation) ... ok
+test_missing_product_delta_cannot_hide_a_component (test_final_source_composition.FinalCompositionControls.test_missing_product_delta_cannot_hide_a_component) ... ok
+test_only_complete_schema_is_eligible_for_later_actual_admission (test_final_source_composition.FinalCompositionControls.test_only_complete_schema_is_eligible_for_later_actual_admission) ... ok
+test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) ... 
+  test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='reader-groups100-focused-native') ... FAIL
+  test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='library-morph-focused-native') ... FAIL
+  test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='reader-full-v32-ui-observation') ... FAIL
+test_source_binding_rejects_historical_reader_hanlin (test_final_source_composition.FinalCompositionControls.test_source_binding_rejects_historical_reader_hanlin) ... ok
+test_unreviewed_application_source_is_rejected (test_final_source_composition.FinalCompositionControls.test_unreviewed_application_source_is_rejected) ... ok
+
+======================================================================
+ERROR: test_actual_18_product_paths_equal_accepted_ancestor_objects (test_final_source_composition.FinalCompositionControls.test_actual_18_product_paths_equal_accepted_ancestor_objects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py", line 34, in test_actual_18_product_paths_equal_accepted_ancestor_objects
+    result = ROUTE["composed_product_source"]()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/runtime27-original-editor-native.py", line 154, in composed_product_source
+    subprocess.run(["git", "diff", "--quiet", SOURCE, "--", *roots],
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'diff', '--quiet', '7d5510dd29af2b66d740de136352916868c341ed', '--', 'Source', 'Vendor', 'Maktabah.xcodeproj', 'Maktabah-iOSUITests']' returned non-zero exit status 1.
+
+======================================================================
+FAIL: test_existing_artifact_pin_cannot_change_as_source_binding (test_final_source_composition.FinalCompositionControls.test_existing_artifact_pin_cannot_change_as_source_binding)
+----------------------------------------------------------------------
+RuntimeError: Build inputs do not bind the exact composed application and qualified Hanlin
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py", line 76, in test_existing_artifact_pin_cannot_change_as_source_binding
+    with self.assertRaisesRegex(RuntimeError, "Artifact or engine/resource"):
+AssertionError: "Artifact or engine/resource" does not match "Build inputs do not bind the exact composed application and qualified Hanlin"
+
+======================================================================
+FAIL: test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='reader-groups100-focused-native')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py", line 97, in test_reader_bindings_keep_original_selectors_release_and_historical_provenance
+    self.assertEqual(current["application_source_sha"], ROUTE["SOURCE"])
+AssertionError: 'd3da55417a30e9a06b0255e2d0b561955034b260' != '7d5510dd29af2b66d740de136352916868c341ed'
+- d3da55417a30e9a06b0255e2d0b561955034b260
++ 7d5510dd29af2b66d740de136352916868c341ed
+
+
+======================================================================
+FAIL: test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='library-morph-focused-native')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py", line 97, in test_reader_bindings_keep_original_selectors_release_and_historical_provenance
+    self.assertEqual(current["application_source_sha"], ROUTE["SOURCE"])
+AssertionError: '3c5a57bea389f6223b4636c45705bb62f502add2' != '7d5510dd29af2b66d740de136352916868c341ed'
+- 3c5a57bea389f6223b4636c45705bb62f502add2
++ 7d5510dd29af2b66d740de136352916868c341ed
+
+
+======================================================================
+FAIL: test_reader_bindings_keep_original_selectors_release_and_historical_provenance (test_final_source_composition.FinalCompositionControls.test_reader_bindings_keep_original_selectors_release_and_historical_provenance) (name='reader-full-v32-ui-observation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-miniapps-final-20261125/Scripts/CI/test_final_source_composition.py", line 97, in test_reader_bindings_keep_original_selectors_release_and_historical_provenance
+    self.assertEqual(current["application_source_sha"], ROUTE["SOURCE"])
+AssertionError: 'd3da55417a30e9a06b0255e2d0b561955034b260' != '7d5510dd29af2b66d740de136352916868c341ed'
+- d3da55417a30e9a06b0255e2d0b561955034b260
++ 7d5510dd29af2b66d740de136352916868c341ed
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.631s
+
+FAILED (failures=4, errors=1)

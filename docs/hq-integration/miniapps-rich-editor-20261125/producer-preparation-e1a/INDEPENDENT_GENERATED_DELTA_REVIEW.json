@@ -1,0 +1,169 @@
+{
+  "tree": "8f37cfcddc17e24aa5887969499e91d4fbc96eac",
+  "paths": [
+    {
+      "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbe.hanlinExpo",
+      "before_bytes": 325325,
+      "after_bytes": 325823,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbeA.hanlinExpo",
+      "before_bytes": 325325,
+      "after_bytes": 325823,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "AI_HLYUITests/Fixtures/ExpoSwiftUIProbeB.hanlinExpo",
+      "before_bytes": 325326,
+      "after_bytes": 325825,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbe.hanlinExpo",
+      "before_bytes": 325325,
+      "after_bytes": 325823,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbeA.hanlinExpo",
+      "before_bytes": 325325,
+      "after_bytes": 325823,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "Fixtures/ExpoSwiftUIProbe/ExpoSwiftUIProbeB.hanlinExpo",
+      "before_bytes": 325326,
+      "after_bytes": 325825,
+      "before_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "after_members": [
+        "bundle.js",
+        "package.json",
+        "script.json",
+        "widget.tsx"
+      ],
+      "member_changes": [
+        {
+          "name": "bundle.js",
+          "before_bytes": 1350940,
+          "after_bytes": 1352522
+        }
+      ]
+    },
+    {
+      "path": "docs/miniapp-sdk/MANIFEST_REFERENCE.md",
+      "before_bytes": 118804,
+      "after_bytes": 118804
+    },
+    {
+      "path": "docs/miniapp-sdk/extension-reachability.json",
+      "before_bytes": 147521,
+      "after_bytes": 153476
+    },
+    {
+      "path": "docs/miniapp-sdk/extension-reachability.md",
+      "before_bytes": 21494,
+      "after_bytes": 23334
+    },
+    {
+      "path": "docs/miniapp-sdk/source-inventory.json",
+      "before_bytes": 493871,
+      "after_bytes": 494719
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "abi_donor_source_sha": "1f90175b006be0a19a4e1804f858caaf59d6c174",
+  "abi_provenance": "otzaria.original-import-donor-sdk-input/1",
+  "archive_bytes": 369328420,
+  "archive_path": "build/original-editor-local-sdk292-collections13-8ae85a64/framework.zip",
+  "archive_sha256": "3f4ceafe9ef865bd7249dfca9160d1be530ca9f9f3a878a6aec6a14aa64649e2",
+  "configuration": "Debug",
+  "device_framework_qualified": false,
+  "distribution_manifest_path": "build/original-editor-local-sdk292-collections13-8ae85a64/framework-distribution.json",
+  "distribution_manifest_sha256": "27194c962555c976e4f0b2e3218e4659bf54614b4dee3214ce816ea774768646",
+  "distribution_root": "build/original-editor-local-sdk292-collections13-8ae85a64/distribution",
+  "hanlin_source_path": "build/original-editor-local-sdk292-collections13-8ae85a64/original-hanlin-snapshot.json",
+  "hanlin_source_sha256": "18ef472e8b1c918299146929d89c001872b5383b8f2d842affbfc29e4657e527",
+  "local_execution_sha256": "c55fb4e2e3f6e124ee6d0b059e366125f8b22029aef1a9546bb059b17b3d7c1d",
+  "local_receipts": {
+    "abi": {
+      "bytes": 493,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/qualified-import-abi.json",
+      "sha256": "a15099bd36318a4e22fc55ac40fe4243de55feb91ae220767be4829319e6673d"
+    },
+    "abi_donor_abi": {
+      "bytes": 9162,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_abi.json",
+      "sha256": "b0b0f27e426cff473d95f64e73264b3662856f4b86ffed0c0b36db17c11415c3"
+    },
+    "abi_donor_changed_swift_qualification": {
+      "bytes": 3640,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_changed_swift_qualification.json",
+      "sha256": "3a6d39373d645221378b920724554f487864db79d2f13a7b7c02d290eadabec7"
+    },
+    "abi_donor_debug_qualification": {
+      "bytes": 1025816,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_debug_qualification.json",
+      "sha256": "bcc14c232f4b62dd2202d537bbdc6cf3a2722c629e6127943217074f5529b1eb"
+    },
+    "abi_donor_execution": {
+      "bytes": 957,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_execution.json",
+      "sha256": "eea939e5dfc701c064b5d5910057192c84e84a81037596d858994e77ccfbaf8a"
+    },
+    "abi_donor_final_native_rpc_union": {
+      "bytes": 1942,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_final_native_rpc_union.json",
+      "sha256": "fff77ee2630d1e2f8a885171c5a3d8692830da81b7e1da44fcc4f96554a11dfe"
+    },
+    "abi_donor_fresh_verification": {
+      "bytes": 8092,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_fresh_verification.json",
+      "sha256": "7d9ffd18f41dcb258142d4dcefe57e3946c70dcbcf05ef275c288c6083d30a27"
+    },
+    "abi_donor_generation_qualification": {
+      "bytes": 830,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_generation_qualification.json",
+      "sha256": "10318f00832f62a851d90f7735bfc1e562b9ecf923df6f323d9f06416a2b4613"
+    },
+    "abi_donor_pinned_wrapper": {
+      "bytes": 28173,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_pinned_wrapper.json",
+      "sha256": "864d3a29bcb02f629168f8766ddcd575eb089317886a2a1a894d3ffc66231fa6"
+    },
+    "abi_donor_policy": {
+      "bytes": 2340,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_policy.json",
+      "sha256": "b9053998299a484604e1ae2d9bc7c4a52afa6df1ccd58b07b4e3cb9ccfb553e6"
+    },
+    "abi_donor_source_before": {
+      "bytes": 305765,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/abi_donor_source_before.json",
+      "sha256": "9e959db8c7a58d1d6b570a27634513690f6fad7ca6675f8275b97fdd2a424d59"
+    },
+    "execution": {
+      "bytes": 983,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/local-execution.json",
+      "sha256": "c55fb4e2e3f6e124ee6d0b059e366125f8b22029aef1a9546bb059b17b3d7c1d"
+    },
+    "source_after": {
+      "bytes": 306292,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/source-after.json",
+      "sha256": "d30c844a51b99f9a7e72e6d58a4bc5cb756d822db620774b0e2112501139bc70"
+    },
+    "source_before": {
+      "bytes": 306292,
+      "path": "build/original-editor-local-sdk292-collections13-8ae85a64/source-before.json",
+      "sha256": "d30c844a51b99f9a7e72e6d58a4bc5cb756d822db620774b0e2112501139bc70"
+    }
+  },
+  "native_source_tree": "4b1ce2b7629974eb2bff91155f66b03122548aa6",
+  "native_stageb_qualified": false,
+  "original_source_sha256": "3f8e949973398a100b33086da4dda8f2df885e62795b0271a5833fff43f72a21",
+  "platform": "iphonesimulator",
+  "producer_kind": "local-mac",
+  "public_host_contract_sha256": "6ba6e80fad98cbcf967df2866134369df3310b0b231dd462cb0a4c2e71f44141",
+  "qualification_sha256": "f2863945c4fd54bde8aeb4d9096a5a17e77c6afa4b3268242b1cb59b4ca53268",
+  "repository": "davidpovarsky/anytype-swift",
+  "run_attempt": 1,
+  "run_id": "local-74fe4306-c10d-41d8-b4ea-6391d717ffad",
+  "schema": 3,
+  "shared_runtime": {
+    "clang_manifest_sha256": "1fc857e1401f57bd040449d86a0e41ae96cb177978c4905d791dcfaea820dafe",
+    "clang_roots": {
+      "header_search_paths": [
+        "Clang/Packages/swift-cmark/src/include",
+        "Clang/Packages/swift-cmark/extensions/include",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include",
+        "Clang/Packages/iosMath/iosMath",
+        "Clang/Packages/firebase-ios-sdk/FirebaseInstallations/Source/Library/Public",
+        "Clang/Packages/firebase-ios-sdk/FirebaseCore/Sources/Public",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources",
+        "Clang/Packages/firebase-ios-sdk/FirebaseMessaging/Sources/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Network/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/NSData+zlib/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Reachability/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/MethodSwizzler/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/SwizzlerTestHelpers/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Logger/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/Environment/Public",
+        "Clang/Packages/GoogleUtilities/third_party/IsAppEncrypted/Public",
+        "Clang/Packages/GoogleUtilities/GoogleUtilities/UserDefaults/Public",
+        "Clang/Packages/GoogleDataTransport/GoogleDataTransport/GDTCORLibrary/Public",
+        "Clang/Packages/promises/Sources/FBLPromises/include",
+        "Clang/Packages/nanopb/spm_headers"
+      ],
+      "module_maps": [
+        "Clang/Packages/swift-cmark/src/include/module.modulemap",
+        "Clang/Packages/swift-cmark/extensions/include/module.modulemap",
+        "Clang/Packages/swift-markdown/Sources/CAtomic/include/module.modulemap",
+        "Clang/Packages/iosMath/iosMath/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseInstallations.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseCore.modulemap",
+        "Clang/Packages/firebase-ios-sdk/CoreOnly/Sources/module.modulemap",
+        "Clang/GeneratedModuleMaps/FirebaseMessaging.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-AppDelegateSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Network.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-NSData.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Reachability.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-MethodSwizzler.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-SwizzlerTestHelpers.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Logger.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-Environment.modulemap",
+        "Clang/GeneratedModuleMaps/third-party-IsAppEncrypted.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleUtilities-UserDefaults.modulemap",
+        "Clang/GeneratedModuleMaps/GoogleDataTransport.modulemap",
+        "Clang/Packages/promises/Sources/FBLPromises/include/module.modulemap",
+        "Clang/GeneratedModuleMaps/nanopb.modulemap"
+      ]
+    },
+    "hanlin_revision": "6f447bfc62d6bcf1043b92e12c026b321543e370",
+    "host_pod_versions": {
+      "FirebaseCore": "12.8.0",
+      "FirebaseCoreInternal": "12.8.0",
+      "FirebaseInstallations": "12.8.0",
+      "GoogleDataTransport": "10.1.1",
+      "GoogleUtilities": "8.1.5",
+      "PromisesObjC": "2.4.1",
+      "PromisesSwift": "2.4.1",
+      "nanopb": "3.30910.0"
+    },
+    "host_products": [
+      "HanlinHostContracts",
+      "HanlinAgentCore",
+      "HanlinChatCore",
+      "HanlinScriptUI",
+      "HanlinChatUI",
+      "HanlinPresentationKit",
+      "HanlinRichUI",
+      "HanlinPlatformContracts",
+      "FloatingPanel",
+      "TorahInspectorCore",
+      "TorahInspectorUI",
+      "ZIPFoundation"
+    ],
+    "host_source_equivalence": {
+      "path": "Scripts/CI/original-editor-hanlin-equivalence-fe3f75d0.json",
+      "sha256": "e47dd20f9c576716476df076d9251b1cd1af4c569d3d16252e352b66f754cc09"
+    },
+    "kind": "original-shared-implementations/1",
+    "swift_ai_revision": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
+  },
+  "source_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+  "status": "QUALIFIED_LOCAL_SDK_SIMULATOR_INPUT_REQUIRES_COMMITTED_ADMISSION",
+  "toolchain": {
+    "sdk_version": "27.0",
+    "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "xcode": "Xcode 27.0\nBuild version 27A266a"
+  }
+}

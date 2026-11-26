@@ -1,0 +1,9 @@
+test_added_runtime_in_sdk_extension_or_nested_framework_is_not_original_owner (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_added_runtime_in_sdk_extension_or_nested_framework_is_not_original_owner) ... ok
+test_every_new_hanlin_runtime_family_is_rejected_independently (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_every_new_hanlin_runtime_family_is_rejected_independently) ... ok
+test_original_static_and_locked_framework_owner_remain_distinct (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_original_static_and_locked_framework_owner_remain_distinct) ... ok
+test_shared_bridge_picker_and_frozen_existing_ui_are_not_active_engine_names (test_miniapps_runtime_closure.OriginalEngineOwnershipControls.test_shared_bridge_picker_and_frozen_existing_ui_are_not_active_engine_names) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK

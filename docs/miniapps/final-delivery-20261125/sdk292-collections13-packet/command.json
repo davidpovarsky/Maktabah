@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/homebrew/bin/python3.12",
+    "Scripts/CI/prepare-local-original-editor-input.py",
+    "--producer-root",
+    "/Users/m1/builds/anytype-miniapps-sdk-collections13-20261125",
+    "--producer-evidence",
+    "/Users/m1/builds/anytype-miniapps-sdk-collections13-20261125/build/SDK-Evidence",
+    "--abi-receipt",
+    "/Users/m1/builds/anytype-miniapps-sdk-collections13-20261125/build/ABI-Reuse/ABI_DONOR_INPUT.json",
+    "--destination",
+    "build/original-editor-local-sdk292-collections13-8ae85a64"
+  ],
+  "cwd": "/Users/m1/builds/otzaria-miniapps-final-20261125/Maktabah",
+  "consumer_control_sha": "4ad151b5ed015e248d481ce18dcaa6fd6d738937",
+  "producer_sha": "8ae85a6490c4fb763fcd01d5f93345f7e071db92",
+  "qualification_sha256": "f2863945c4fd54bde8aeb4d9096a5a17e77c6afa4b3268242b1cb59b4ca53268",
+  "started_at": "2026-11-25T15:10:37.856880+00:00"
+}
