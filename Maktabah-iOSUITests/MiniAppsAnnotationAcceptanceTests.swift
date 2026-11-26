@@ -59,7 +59,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // Localizable.strings in the installed iOS 27 runtime, not translated
         // guesses or positional substitutes for native editing controls.
         var reorder: String { self == .hebrew ? "שינוי הסדר" : "Reorder" }
-        var delete: String { self == .hebrew ? "מחיקה" : "Delete" }
+        func deletionConfirmationLabels(for title: String) -> [String] {
+            // UIKit's delete action label and both documented native AX
+            // confirmation labels occur depending on the list presentation.
+            switch self {
+            case .hebrew: ["מחיקה", "אישור מחיקה", "אישור מחיקת " + title]
+            case .english: ["Delete", "Confirm Deletion", "Confirm Deletion for " + title]
+            }
+        }
     }
 
     @MainActor
@@ -197,9 +204,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
             if !removedImmediately {
-                let confirm = cell.buttons[language.delete]
+                try snapshot("native-removal-confirmation-" + item.id)
+                let expected = language.deletionConfirmationLabels(for: item.title)
+                let matching = app.buttons.matching(NSPredicate(format: "label IN %@", expected))
+                let confirm = matching.firstMatch
                 XCTAssertTrue(confirm.waitForExistence(timeout: 5))
-                tap(confirm)
+                XCTAssertEqual(matching.count, 1)
+                XCTAssertTrue(confirm.isHittable)
+                confirm.tap()
             }
             try await requireNativeCondition(timeout: 15) {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
