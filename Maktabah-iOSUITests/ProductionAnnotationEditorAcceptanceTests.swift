@@ -553,7 +553,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let path = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_BACKFILL_NATIVE_SAMPLE_PLAN"])
         let samples = try JSONDecoder().decode([Sample].self, from: Data(contentsOf: URL(fileURLWithPath: path)))
         XCTAssertFalse(samples.isEmpty)
-        XCTAssertEqual(Set(samples.map(\\.namespace)).count, samples.count)
+        XCTAssertEqual(Set(samples.map { $0.namespace }).count, samples.count)
         for sample in samples {
             launchWithTier(.realUI, scenario: "readerDetail", backend: "otzaria", extraArgs: [
                 "-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
@@ -573,7 +573,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertTrue(search.waitForExistence(timeout: 15) && search.isHittable)
             tap(search)
             search.typeText(sample.text)
-            let row = annotationRows().matching(identifier: "original-book-annotation-\\(sample.id)").firstMatch
+            let row = annotationRows().matching(identifier: "original-book-annotation-" + String(sample.id)).firstMatch
             XCTAssertTrue(row.waitForExistence(timeout: 25))
             let keyboard = app.keyboards.firstMatch
             if keyboard.exists {
