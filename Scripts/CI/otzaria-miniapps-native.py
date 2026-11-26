@@ -428,7 +428,7 @@ def original_launch_revision(connection, context):
     rich = json.loads(payload)["richBody"]
     body = base64.b64decode(rich["bytesBase64"], validate=True)
     require(rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
-            and len(body) > 16 and body.startswith(b"ATOSNAP\\x00")
+            and len(body) > 16 and body.startswith(b"ATOSNAP\x00")
             and int.from_bytes(body[8:12], "big") == 1
             and hashlib.sha256(body).hexdigest() == baseline,
             "The launch context does not name the original saved native archive")
