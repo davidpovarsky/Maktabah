@@ -661,6 +661,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         var host = try await richHost()
         let firstBody = try await richBody(first, host: host)
         let keyboard = app.keyboards.firstMatch
+        var activeDatabasePath = databasePath
         if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED"] == "1" {
             // Have the real MiniApp create the second original native block.
             // This checks the callback with the same product and persisted row.
@@ -688,6 +689,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertEqual(saved.mutationID, seed.request.id)
             XCTAssertEqual(try persistedReceipt(requestID: seed.request.id, databasePath: document.profile).count, 1)
             attachRichState(saved, name: "miniapps-rich-second-native-block-via-textstudio")
+            // The original launch receipt names the app's current container.
+            activeDatabasePath = document.profile
         } else if ProcessInfo.processInfo.environment["MINIAPPS_RICH_ORIGINAL_PASTE_SEED"] == "1" {
             // Use the original clipboard command to create both real blocks.
             // This fixture leaves the keyboard-focus regression test available.
@@ -731,21 +734,21 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // expected topology is derived from its actual native context below.
         tap(try await richBody(first, host: host))
         let beforeWarm = Set(try records(in: shared).map { $0.request.id })
-        let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath)
+        let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath)
         tap(app.buttons["annotation-expanded-editor-miniapps"])
         let cancelLaunch = app.descendants(matching: .any).matching(NSPredicate(format:
             "identifier == %@ OR label == %@", "annotation-miniapps-save-cancel", "Continue editing"))
         try await requireNativeCondition(timeout: 15) {
             cancelLaunch.allElementsBoundByIndex.contains { $0.isHittable && $0.isEnabled }
         }
-        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Opening the MiniApps confirmation must not save or publish a private native draft")
         XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm,
             "No outgoing MiniApps request exists before explicit confirmation")
         let dismissButton = try XCTUnwrap(cancelLaunch.allElementsBoundByIndex.first { $0.isHittable && $0.isEnabled })
         tap(dismissButton)
         try await requireNativeCondition(timeout: 15) { cancelLaunch.count == 0 }
-        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
+        XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: activeDatabasePath), beforeChooser,
             "Cancelling keeps the original saved note and all canonical versions unchanged")
         host = try await richHost()
         try await assertNativeBodies([first, second], host: host)
