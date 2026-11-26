@@ -457,7 +457,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let metadataContext = context(sceneID: sceneID, origin: .internalAI, snapshot: observed.backend)
         let binding = OtzariaHanlinBinding(context: sdkContext, executionContext: metadataContext,
             backend: observed.backend, catalogRevision: .init(observed.backend.generation),
-            availableReadActions: Set(["system.listBackends", "catalog.resolveWork", "catalog.resolveReference"])
+            availableReadActions: OtzariaHanlinHostAdapter.metadataReadActions
                 .union(readScope == nil ? [] : ["search.query"]),
             searchExecutionContext: try readScope?.searchContext(from: metadataContext))
         let session = HanlinHostSession(conversationID: conversationID, context: sdkContext)
