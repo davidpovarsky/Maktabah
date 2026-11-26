@@ -111,7 +111,7 @@ struct MaktabahNativeSceneProjection {
                                           inspectorVisible: true), focus: nil)
         case .reader:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
-                  let tab = activeTab, let destination = tab.viewModel.currentDestination,
+                  let tab = activeTab, let destination = try readerWitnessDestination(includingContainingSection: true),
                   let actual = tab.viewModel.backendSection?.locator,
                   actual == destination.sectionLocator,
                   actual.backend == BackendCoordinator.shared.activeBackendID,
@@ -187,11 +187,21 @@ struct MaktabahNativeSceneProjection {
             loaded: .init(sectionLocator: section.locator, focusLocator: requested.focusLocator))
     }
 
+    private func readerWitnessDestination(includingContainingSection: Bool) throws -> LibraryReaderDestination? {
+        guard let tab = activeTab, let requested = tab.viewModel.currentDestination,
+              let loadedSection = tab.viewModel.backendSection?.locator else { return nil }
+        if requested.sectionLocator == loadedSection { return requested }
+        guard includingContainingSection else { return nil }
+        // Otzaria may have restored a line inside the currently rendered
+        // paragraph. Reuse the verified request token and segment mapping.
+        return try hanlinCurrentWorkReadSource()?.loaded
+    }
+
     /// Independently read the original rendered view. NativeSurfaceWitness
     /// separately proves container visibility, presentation and scene ownership.
-    func hasRenderedReaderEvidence(sceneID: UIStableID) -> Bool {
+    func hasRenderedReaderEvidence(sceneID: UIStableID, includingContainingSection: Bool = false) -> Bool {
         guard let tab = activeTab, let section = tab.viewModel.backendSection,
-              let destination = tab.viewModel.currentDestination,
+              let destination = try? readerWitnessDestination(includingContainingSection: includingContainingSection),
               section.locator == destination.sectionLocator,
               section.locator.backend == BackendCoordinator.shared.activeBackendID,
               tab.book.backendLocator?.workKey == section.locator.workKey,
