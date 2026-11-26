@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -310,6 +310,20 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             throw ActionPortError.invalidResponse
         }
         return result
+    }
+
+    func navigationStructures(for work: ActionWorkRef, invocation: ActionPortInvocation)
+        async throws -> [ActionNavigationStructure] {
+        try await require("reader.getNavigationStructures", backend: work.backend, invocation: invocation)
+        let catalog = try await catalogWorks(backend: work.backend, invocation: invocation)
+        guard let sourceWork = catalog.works.first(where: { $0.locator.workKey.utf8.elementsEqual(work.workKey.utf8) }) else {
+            throw ActionPortError.notFound
+        }
+        let original: [LibraryNavigationStructure]
+        do { original = try await coordinator.navigationStructures(for: sourceWork) }
+        catch { throw safe(error) }
+        try await require("reader.getNavigationStructures", backend: work.backend, invocation: invocation)
+        return original.map { .init(id: $0.id, title: $0.title) }
     }
 
     func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion] {

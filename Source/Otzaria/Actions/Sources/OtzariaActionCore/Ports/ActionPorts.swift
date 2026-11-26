@@ -62,6 +62,12 @@ public protocol ActionSourceTextPort: Sendable {
                  invocation: ActionPortInvocation) async throws -> ActionSourceTextSection
 }
 
+/// Reads the navigation structures registered by the work's original provider.
+public protocol ActionNavigationStructurePort: Sendable {
+    func navigationStructures(for work: ActionWorkRef, invocation: ActionPortInvocation)
+        async throws -> [ActionNavigationStructure]
+}
+
 /// Reads edition metadata from the active work's original version provider.
 public protocol ActionVersionListPort: Sendable {
     func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion]
