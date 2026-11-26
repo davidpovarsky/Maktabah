@@ -11,13 +11,14 @@
     "original_account_exchange_ui": "f0d541b9ace6fc473bcd02b2b50f8bcccdd48615",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
-    "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc"
+    "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
+    "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72"
   },
-  "application_source_sha": "59f48fa80884904f11c2fabaeca13c3a18241d6b",
+  "application_source_sha": "a30962719873962e18b08fa1ad7a9df6a925fc72",
   "application_trees": {
     "Maktabah-iOSUITests": "d797d519342e4e34e5a2ea2f419ab13ed2d5caef",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "cb64d35cdb1936f9debf8bb60d4d53a9afd00edc",
+    "Source": "471ce867b0da19ad50d1cf6a15b95423c72ee824",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
   "hanlin_source": "4b772b5a7f0eb826c9b9204122bba516af777592",
@@ -97,6 +98,13 @@
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
         },
         "reader_cancellation": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
+        },
+        "study_workspace_locale": {
           "bytes": 71096,
           "kind": "blob",
           "mode": "100644",
@@ -513,6 +521,13 @@
           "mode": "100644",
           "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
+        "study_workspace_locale": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         }
       },
       "patch": {
@@ -655,6 +670,13 @@
           "mode": "100644",
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "study_workspace_locale": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         }
       },
       "patch": {
@@ -738,6 +760,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 7601,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "55be705705f492b8ade9513cf8297d1a11066ec7",
+        "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+      },
+      "before": {
+        "bytes": 6658,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "234eea1153ada4fbda360c155ddae27dc8eb62fa",
+        "sha256": "da6920095961f53add1c9776e31db2efced8835dd35f6e8e0c08527af2d0ef69"
+      },
+      "component": "study_workspace_locale",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 34455,
         "kind": "blob",
         "mode": "100644",
@@ -753,6 +794,82 @@
       },
       "component": "original_lifecycle_and_native_batch",
       "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 1869,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4e6847cdbbcea72483e8c391349c4fceb9bdc6c8",
+        "sha256": "211169b4f37e3a7a55c1104c2534d68e1c4a9f1bfb9bf3c0607e4c14b48be086"
+      },
+      "before": {
+        "bytes": 1773,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "35575761a20de182fbc64c18ab6a4f96b730dd5a",
+        "sha256": "06752eaa3c446942c410aac486067fea6ad7ae33b7fb8065cb23e449cc2c7b6a"
+      },
+      "component": "study_workspace_locale",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableGroupsHost.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 10373,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7c3e1c09c2c08af0b7c6b07f40732fd0bfe32554",
+        "sha256": "2b7f20c0e56d0b2b1af45cae6e8dc9de36a83a8d3b182f5bf7d4aea2a8696439"
+      },
+      "before": {
+        "bytes": 9561,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "43717b123e6b7206b4466b1179a151fbcd2acd19",
+        "sha256": "c0fc974da17ea1d97135991e7d87ba98c5731814c90e54fadf04754d91a69b5c"
+      },
+      "component": "study_workspace_locale",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 12839,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "3fac970b1b0563a8fce00dd61401379ce3c8def6",
+        "sha256": "e0ed9175b08cb352c61764d169d6b61ba5d2cff3556b695618cb8eda1ebaaecb"
+      },
+      "before": {
+        "bytes": 11324,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "419aaeb92b3c5a7644cb087789c9827b48869c11",
+        "sha256": "b166532ca71f220d081e1ff9fb978830c6a6dc6c3b249bdc70b036e846304ede"
+      },
+      "component": "study_workspace_locale",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 2862,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7082d22a678f0f186ee98f2f1b26be80a3bd0290",
+        "sha256": "27781fc022b8cd6e818d147ddafe22bf62f3b046f26e6a013c335c5758290cce"
+      },
+      "before": {
+        "bytes": 2614,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e694f1080d0caf2011a3a6ca44fe809bb9663938",
+        "sha256": "dec666dbb22ac874a3e918bfc5013555e7e798d4b8f0e9f9ee39263067efe096"
+      },
+      "component": "study_workspace_locale",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1153,6 +1270,11 @@
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
         },
         "reader_cancellation": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
+        },
+        "study_workspace_locale": {
           "kind": "commit",
           "mode": "160000",
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
