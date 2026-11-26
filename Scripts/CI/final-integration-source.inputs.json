@@ -14,7 +14,7 @@
     "miniapps_actual_native_removal_accessory": "8da47abbaa821b1c66975a0e7093d7f727bc8cb2",
     "miniapps_native_picker_gestures": "3d04a55bb954850738ef86bfb6e037fcb815c62c",
     "miniapps_original_native_delete_confirmation": "ec8dec938bdf30789ea8b5704ef1b6c61280d5f0",
-    "native_miniapps_window_control": "5b99860f53674f61138be81f61e7a8dba997a1d6",
+    "native_miniapps_window_control": "ecece15f3b28d024f81ebfd4a831b1ee109fbb58",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
     "original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
@@ -28,9 +28,9 @@
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "5b99860f53674f61138be81f61e7a8dba997a1d6",
+  "application_source_sha": "ecece15f3b28d024f81ebfd4a831b1ee109fbb58",
   "application_trees": {
-    "Maktabah-iOSUITests": "b6e937790ff71087b4b4a2d1f394e6c02ba08ca5",
+    "Maktabah-iOSUITests": "1df50eb33a724a10d662ee432522e9848c8faf92",
     "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
     "Source": "eb62f9b41cf2f0c5a3dc8d72b4fc28b982036433",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
@@ -69,11 +69,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 102572,
+        "bytes": 102711,
         "kind": "blob",
         "mode": "100644",
-        "object": "c17baa142256df0bbf14c8b47227123309728241",
-        "sha256": "e1cc8d6a9e232ac3616b3d3358e4a46ad7a14f7cdb38a1f7d4150b6412c84600"
+        "object": "d1ead52b3755e13e37cc79e493047e3eeeb98c00",
+        "sha256": "0cf8dab6bfba97a2ef292d31a5bb6b422bf8a35a90667dc8f764abaa00d0eb0d"
       },
       "before": null,
       "component": "native_miniapps_window_control",
