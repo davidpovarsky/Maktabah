@@ -11,4 +11,5 @@ enum AnnotationEvent: Sendable {
     case deleted(id: Int64, annotation: Annotation?)
     case batchUpdated([Annotation])
     case treeInvalidated
+    case localEditorCommitted(sessionID: UUID)
 }

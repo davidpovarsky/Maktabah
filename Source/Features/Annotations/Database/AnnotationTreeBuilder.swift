@@ -98,7 +98,7 @@ final class AnnotationTreeBuilder: @unchecked Sendable {
                 handleDelete(id: id, annotation: annotation)
             case let .batchUpdated(annotations):
                 handleBatchUpdate(annotations)
-            case .treeInvalidated:
+            case .treeInvalidated, .localEditorCommitted:
                 rebuildTree()
                 diffPublisher.send(nil)
             }

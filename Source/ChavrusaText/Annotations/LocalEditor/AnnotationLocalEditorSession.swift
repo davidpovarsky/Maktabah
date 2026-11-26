@@ -159,7 +159,7 @@ extension AnnotationStore {
                 // this is not remote cancellation or rollback authority.
                 CloudKitSyncManager.shared.upload(annotations: [saved.snapshot.annotation], trackPending: false)
             }
-            events.send(.treeInvalidated)
+            events.send(.localEditorCommitted(sessionID: persistence.sessionID))
             // If publication was retired, the original sync_pending upload is
             // already durable in its own profile DB. No ACK is fabricated.
         }
