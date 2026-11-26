@@ -159,15 +159,22 @@ struct iPadLayout: View {
             }
             .environment(\.readerSidebarUsesSharedSearch, true)
         } detail: {
-            iOSReaderTabView(
-                columnVisibility: $columnVisibility,
-                preferredCompactColumn: $preferredLibraryCompactColumn
-            )
-                .background(Color.appBackground)
-                .accessibilityElement(children: .contain)
-                .accessibilityIdentifier("reader-detail-column")
-                .modifier(MaktabahNativeRoutingSurface(kind: .reader))
-                .modifier(Exact9401ViewerToolbar(manager: bManager))
+            VStack(spacing: 0) {
+                if horizontalSizeClass == .regular {
+                    WorkspaceDocumentTabStrip(manager: bManager, workspace: workspace,
+                                              chromeVisible: sidebar.navigationChrome.isVisible)
+                }
+                iOSReaderTabView(
+                    columnVisibility: $columnVisibility,
+                    preferredCompactColumn: $preferredLibraryCompactColumn,
+                    usesToolbarDocumentTabs: horizontalSizeClass != .regular
+                )
+            }
+            .background(Color.appBackground)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("reader-detail-column")
+            .modifier(MaktabahNativeRoutingSurface(kind: .reader))
+            .modifier(Exact9401ViewerToolbar(manager: bManager))
         }
         .overlay {
             ReaderLibrarySearchMorph(manager: bManager, sidebar: sidebar)
