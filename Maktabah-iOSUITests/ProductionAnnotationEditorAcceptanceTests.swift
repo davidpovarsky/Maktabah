@@ -555,10 +555,12 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(samples.isEmpty)
         XCTAssertEqual(Set(samples.map { $0.namespace }).count, samples.count)
         for sample in samples {
+            // Bind the existing reader assertions to the same retained fixture as the launch.
+            workspaceNamespace = sample.namespace.uuidString
             launchWithTier(.realUI, scenario: "readerDetail", backend: "otzaria", extraArgs: [
                 "-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
                 "-ChavrusaTextFaithfulReaderUIEnabled", "YES",
-                "-studyWorkspaceTestingNamespace", sample.namespace.uuidString
+                "-studyWorkspaceTestingNamespace", workspaceNamespace
             ], language: "en", locale: "en_US")
             XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
             assertReaderHasText()

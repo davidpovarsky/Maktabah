@@ -647,7 +647,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         add(attachment)
     }
 
-    let workspaceNamespace = UUID().uuidString
+    var workspaceNamespace = UUID().uuidString
     private var viewportURL: URL?
     var readerTestTier: TestTier { .smoke }
     private var recordsGlobalHistoryTrace = false
