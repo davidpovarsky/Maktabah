@@ -1,0 +1,22 @@
+{
+  "artifactIdentity": "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+  "manifestSHA256": "c10824ac3cc38514b64cb59e0c588c8b56d5d86ac3213bcd56bd75048cfb2b8b",
+  "source": {
+    "assetID": 782942035,
+    "assetName": "seforim-schema7.db.zst.manifest.json",
+    "bookCount": 8259,
+    "compressedBytes": 589,
+    "databaseBytes": 4355063808,
+    "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+    "documentCount": 7925185,
+    "releaseID": 455390662,
+    "releaseTag": "v40-20261123094345",
+    "repository": "Otzaria/SeforimLibrary",
+    "sourceAssetDigest": "sha256:ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+  },
+  "parts": 15,
+  "packagedBytes": 4150325346,
+  "extractedBytes": 5696232697,
+  "sourceVerifiedExistingParts": true,
+  "published": false
+}

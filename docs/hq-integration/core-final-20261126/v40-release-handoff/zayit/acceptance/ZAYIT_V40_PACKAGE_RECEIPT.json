@@ -1,0 +1,20 @@
+{
+  "artifact_identity": "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480",
+  "counts": {
+    "books": 8259,
+    "documents": 7930286,
+    "lines": 7920224,
+    "splitLines": 19
+  },
+  "verified_parts": 74,
+  "verified_reconstituted_files": 74,
+  "compressed_bytes": 3159917458,
+  "database": {
+    "bytes": 4355063808,
+    "canonicalSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+    "compressedAssetSHA256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+    "releaseTag": "v40-20261123094345"
+  },
+  "published": false,
+  "peak_build_workspace_measured": false
+}

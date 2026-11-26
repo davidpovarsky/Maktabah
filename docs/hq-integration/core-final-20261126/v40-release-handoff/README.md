@@ -14,4 +14,8 @@ Both releases bind to the SeforimLibrary production release 455390662 and its 58
 
 The Otzaria release manifest has the same artifact identity and bytes recorded by the packaging receipt and the app's verified local install and cold reopen. The Zayit manifest identifies the same archive tested by the real Swift installer, the offline readiness process and the independent comparison of all 74 installed files. Both acceptance scopes are recorded with their original receipts. [Otzaria native receipts](../native-v40-otzaria) · [Component evidence](../COMPONENT_ACCEPTANCE.md)
 
+The original packaging records and the Zayit Swift install, offline and file parity receipts are available in the per-engine acceptance directories. The Zayit folder also contains the full-corpus pagination receipt. [Otzaria packaging receipt](otzaria/acceptance/OTZARIA_V40_PACKAGE_RECEIPT.json) · [Zayit lab receipts](zayit/acceptance)
+
 Agent 3 owns both draft releases in `davidpovarsky/Maktabah`. Stage the files named in each inventory from its source directory. `RELEASE_ASSETS.json` and `SHA256SUMS` are handoff files. For each draft, compare the complete paginated GitHub asset list against the inventory by filename, uploaded state, size and SHA-256 digest. With each release ID, `GET /repos/davidpovarsky/Maktabah/releases/{release_id}/assets` returns the asset metadata. Production discovery uses the public release list and requires a manifest compatible with the installed database. Draft staging and production discovery have separate acceptance.
+
+GitHub authenticated readback confirmed draft IDs 458964363 for Otzaria and 458964380 for Zayit against the exact tags above. Asset upload verification remains with the release writer.

@@ -1,0 +1,12 @@
+{
+  "artifactIdentity" : "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480",
+  "bookCount" : 8259,
+  "cleanedParts" : true,
+  "documentCount" : 7930286,
+  "extractBytes" : 4108856448,
+  "mode" : "install",
+  "parts" : 74,
+  "passed" : true,
+  "pid" : 12834,
+  "verifiedDamagedMetadata" : false
+}
