@@ -1,9 +1,27 @@
 {
+  "native_source_tree": "94805c1b5ac644d3ef4e12f554b9326d54286aeb",
+  "routes": {
+    "debug-simulator": {
+      "admission_path": "Scripts/CI/original-editor-debug-saved-body-75a98ba.inputs.json",
+      "admission_sha256": "a0646ef5e888d29a634bb6ddf0ed646625603bf6f455c97a97282bfbcb108029",
+      "configuration": "Debug",
+      "platform": "iphonesimulator"
+    },
+    "release-device": {
+      "admission_path": "Scripts/CI/original-editor-release-device-saved-body-75a98ba.inputs.json",
+      "admission_sha256": "d14f67f98a58edc7d89126153fa030b767fa9919e8b6a52908fa868b9c5636c3",
+      "configuration": "Release",
+      "platform": "iphoneos"
+    },
+    "release-simulator": {
+      "admission_path": "Scripts/CI/original-editor-release-simulator-saved-body-75a98ba.inputs.json",
+      "admission_sha256": "1f76f2dca4e4a2385ea92a7b1dadf37a0339d25cbedb483ac14431bebd5bb78c",
+      "configuration": "Release",
+      "platform": "iphonesimulator"
+    }
+  },
   "schema": "otzaria.original-editor.build-routes/1",
-  "status": "UNFINALIZED",
-  "reason": "Requires actual Native9, original ABI, Debug Simulator SDK, Release Simulator SDK and Release device SDK qualification before source pins can be finalized.",
-  "sdk_source_sha": null,
-  "native_source_tree": null,
-  "signing_team_id": null,
-  "routes": {}
+  "sdk_source_sha": "75a98ba98d6455eefc2c98113fa744b0f3c2e7bf",
+  "signing_team_id": "NA6HPWARQ2",
+  "status": "QUALIFIED"
 }
