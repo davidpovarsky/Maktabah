@@ -556,13 +556,29 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         tap(settings)
         XCTAssertTrue(app.buttons["settings-done-button"].waitForExistence(timeout: 15))
         let entry = app.buttons["annotation-backfill-settings"]
-        for _ in 0..<8 {
-            if entry.exists && entry.isHittable { break }
-            app.swipeUp()
+        let navigation = app.navigationBars["Settings"]
+        let settingsList = app.collectionViews.containing(.button, identifier: "annotation-backfill-settings").firstMatch
+        func isVisible() -> Bool {
+            entry.exists && entry.isHittable && navigation.exists && settingsList.exists
+                && entry.frame.midY > max(navigation.frame.maxY, settingsList.frame.minY) + 12
+                && entry.frame.midY < settingsList.frame.maxY - 12
         }
-        XCTAssertTrue(entry.exists && entry.isHittable)
-        tap(entry)
-        XCTAssertTrue(app.buttons["annotation-backfill-start"].waitForExistence(timeout: 15))
+        for _ in 0..<8 {
+            if isVisible() { break }
+            if settingsList.exists && entry.exists && entry.frame.midY <= navigation.frame.maxY + 12 {
+                // The original Settings toolbar can cover a SwiftUI row that
+                // XCTest nevertheless reports as hittable.
+                let from = settingsList.coordinate(withNormalizedOffset: CGVector(dx: 0.52, dy: 0.45))
+                let to = settingsList.coordinate(withNormalizedOffset: CGVector(dx: 0.52, dy: 0.65))
+                from.press(forDuration: 0.08, thenDragTo: to)
+            } else {
+                app.swipeUp()
+            }
+        }
+        _ = try XCTUnwrap(isVisible() ? entry : nil, "The original preparation link must be visible below Settings")
+        entry.tap()
+        let prepare = app.buttons["annotation-backfill-start"]
+        XCTAssertTrue(prepare.waitForExistence(timeout: 15))
     }
 
     @MainActor
