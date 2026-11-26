@@ -321,30 +321,45 @@ struct OtzariaDatabaseInstaller: Sendable {
         if fileManager.fileExists(atPath: storage.finalDatabaseURL.path),
            fileManager.fileExists(atPath: storage.previousDatabaseURL.path) {
             do {
+                // A crash can occur after replacement but before the pending
+                // identity is written. SQLite integrity alone cannot bind that
+                // new file to the previous release's stable manifest.
+                guard fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path)
+                        || fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) else {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "interrupted replacement has no committed release identity"
+                    )
+                }
+                try validateRecoveryManifest(storage: storage)
                 try OtzariaDatabaseAccessController.shared.validateDatabase(
                     at: storage.finalDatabaseURL
                 )
             } catch {
                 try rollbackPromotionUnderLock(storage: storage)
             }
+        } else if !fileManager.fileExists(atPath: storage.finalDatabaseURL.path) {
+            try removeManagedFileIfPresent(storage.pendingInstallationManifestURL)
         }
     }
 
-    func completePromotion(storage: OtzariaDatabaseStorage) {
-        ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
+    func completePromotion(storage: OtzariaDatabaseStorage) throws {
+        try ITorahStorageLock.withLock(name: "database-mutation-\(storage.profileID)") {
+            // Metadata is part of the commit. Keep both rollback files until
+            // it succeeds, and let the caller close the active connection and
+            // restore them on failure.
+            try promotePendingManifest(storage: storage)
             do {
-                try promotePendingManifest(storage: storage)
+                try removeManagedFileIfPresent(storage.previousDatabaseURL)
             } catch {
-                // Activation already reopened the validated database. Metadata failure
-                // must not turn a safe install into an unusable one.
-                print("[OtzariaBootstrap] installation manifest finalization failed: \(error.localizedDescription)")
+                // Retain the previous manifest as the committed-state marker
+                // while the previous database awaits a later cleanup attempt.
+                print("[OtzariaBootstrap] rollback cleanup failed for \(storage.previousDatabaseURL.lastPathComponent): \(error.localizedDescription)")
+                return
             }
-            for url in [storage.previousDatabaseURL, storage.previousInstallationManifestURL] {
-                do {
-                    try removeManagedFileIfPresent(url)
-                } catch {
-                    print("[OtzariaBootstrap] rollback cleanup failed for \(url.lastPathComponent): \(error.localizedDescription)")
-                }
+            do {
+                try removeManagedFileIfPresent(storage.previousInstallationManifestURL)
+            } catch {
+                print("[OtzariaBootstrap] rollback cleanup failed for \(storage.previousInstallationManifestURL.lastPathComponent): \(error.localizedDescription)")
             }
         }
     }
@@ -357,6 +372,12 @@ struct OtzariaDatabaseInstaller: Sendable {
 
     private func rollbackPromotionUnderLock(storage: OtzariaDatabaseStorage) throws {
         let fileManager = FileManager.default
+        // If pending metadata still exists, it was not moved to the stable
+        // name. An existing stable manifest is still the old identity; a stale
+        // or unwritable .previous entry must never overwrite it on rollback.
+        let restorePreviousManifest = fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path)
+            && (!fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path)
+                || !fileManager.fileExists(atPath: storage.installationManifestURL.path))
         if fileManager.fileExists(atPath: storage.previousDatabaseURL.path) {
             try removeManagedFileIfPresent(storage.finalDatabaseURL)
             try fileManager.moveItem(
@@ -367,7 +388,7 @@ struct OtzariaDatabaseInstaller: Sendable {
             try removeManagedFileIfPresent(storage.finalDatabaseURL)
         }
         try? removeManagedFileIfPresent(storage.pendingInstallationManifestURL)
-        if fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) {
+        if restorePreviousManifest {
             try? removeManagedFileIfPresent(storage.installationManifestURL)
             try fileManager.moveItem(
                 at: storage.previousInstallationManifestURL,
@@ -382,13 +403,31 @@ private extension OtzariaDatabaseInstaller {
         let fileManager = FileManager.default
         guard !fileManager.fileExists(atPath: storage.finalDatabaseURL.path),
               fileManager.fileExists(atPath: storage.previousDatabaseURL.path) else { return }
-        try fileManager.moveItem(at: storage.previousDatabaseURL, to: storage.finalDatabaseURL)
-        if fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) {
-            try? removeManagedFileIfPresent(storage.installationManifestURL)
-            try fileManager.moveItem(
-                at: storage.previousInstallationManifestURL,
-                to: storage.installationManifestURL
-            )
+        // Roll back the identity too; an abandoned pending manifest must not
+        // be used to validate or advertise the restored previous database.
+        try rollbackPromotionUnderLock(storage: storage)
+    }
+
+    func validateRecoveryManifest(storage: OtzariaDatabaseStorage) throws {
+        let fileManager = FileManager.default
+        let url = fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path)
+            ? storage.pendingInstallationManifestURL : storage.installationManifestURL
+        let metadata = try url.resourceValues(forKeys: [.isRegularFileKey, .fileSizeKey])
+        guard metadata.isRegularFile == true,
+              let bytes = metadata.fileSize, bytes > 0, bytes <= 1_048_576 else {
+            throw OtzariaDatabaseBootstrapError.atomicInstallFailed("invalid recovery manifest")
+        }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let manifest = try decoder.decode(OtzariaDatabaseInstallationManifest.self, from: Data(contentsOf: url))
+        let size = try storage.finalDatabaseURL.resourceValues(forKeys: [.fileSizeKey]).fileSize
+        guard manifest.repository == OtzariaLibraryRelease.repository,
+              manifest.effectiveProfileID == storage.profileID,
+              manifest.databaseFileSize > 0,
+              size.map(Int64.init) == manifest.databaseFileSize,
+              storage.profileID != OtzariaDataProfileRegistry.productionID
+                || manifest.hasValidProductionArchiveIdentity else {
+            throw OtzariaDatabaseBootstrapError.atomicInstallFailed("recovery manifest does not identify the promoted database")
         }
     }
 
@@ -417,6 +456,12 @@ private extension OtzariaDatabaseInstaller {
     func promotePendingManifest(storage: OtzariaDatabaseStorage) throws {
         let fileManager = FileManager.default
         guard fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path) else {
+            guard !fileManager.fileExists(atPath: storage.previousDatabaseURL.path)
+                    || fileManager.fileExists(atPath: storage.previousInstallationManifestURL.path) else {
+                throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                    "promoted database is missing its pending release identity"
+                )
+            }
             return
         }
         if fileManager.fileExists(atPath: storage.installationManifestURL.path) {
