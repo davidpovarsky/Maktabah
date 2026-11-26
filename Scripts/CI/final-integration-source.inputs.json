@@ -14,6 +14,7 @@
     "miniapps_actual_native_removal_accessory": "8da47abbaa821b1c66975a0e7093d7f727bc8cb2",
     "miniapps_native_picker_gestures": "3d04a55bb954850738ef86bfb6e037fcb815c62c",
     "miniapps_original_native_delete_confirmation": "ec8dec938bdf30789ea8b5704ef1b6c61280d5f0",
+    "native_miniapps_ipad_toolbar": "2d41b2d373dd7309c147a340eb6adad18d5b5ad3",
     "native_miniapps_window_control": "ecece15f3b28d024f81ebfd4a831b1ee109fbb58",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -28,11 +29,11 @@
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "ecece15f3b28d024f81ebfd4a831b1ee109fbb58",
+  "application_source_sha": "2d41b2d373dd7309c147a340eb6adad18d5b5ad3",
   "application_trees": {
-    "Maktabah-iOSUITests": "1df50eb33a724a10d662ee432522e9848c8faf92",
+    "Maktabah-iOSUITests": "252558eabac7f5e29d9be0a6ef4f85c5122f6300",
     "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
-    "Source": "eb62f9b41cf2f0c5a3dc8d72b4fc28b982036433",
+    "Source": "7b4acc32a8bf1874477ad0a9e0eb99fea85363b6",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -69,14 +70,14 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 102711,
+        "bytes": 103860,
         "kind": "blob",
         "mode": "100644",
-        "object": "d1ead52b3755e13e37cc79e493047e3eeeb98c00",
-        "sha256": "0cf8dab6bfba97a2ef292d31a5bb6b422bf8a35a90667dc8f764abaa00d0eb0d"
+        "object": "f87ff5b17f69fb3fcc52a95147550408feff5f61",
+        "sha256": "869c2de8c8b2affed046d12588689129dc7dbd50cfc60eaa0c8eba623321a454"
       },
       "before": null,
-      "component": "native_miniapps_window_control",
+      "component": "native_miniapps_ipad_toolbar",
       "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
     },
     {
@@ -202,6 +203,13 @@
           "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
         },
         "miniapps_original_native_delete_confirmation": {
+          "bytes": 622132,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+          "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
+        },
+        "native_miniapps_ipad_toolbar": {
           "bytes": 622132,
           "kind": "blob",
           "mode": "100644",
@@ -416,6 +424,13 @@
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "miniapps_original_native_delete_confirmation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "native_miniapps_ipad_toolbar": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -880,6 +895,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "native_miniapps_ipad_toolbar": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "native_miniapps_window_control": {
           "bytes": 21873,
           "kind": "blob",
@@ -982,14 +1004,14 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 41825,
+        "bytes": 41829,
         "kind": "blob",
         "mode": "100644",
-        "object": "d101e66c9ee0cec480f5484d2c617a31cc806e6f",
-        "sha256": "98870d7173680a944036acb90ba742495193e0995178aa900b40650d2913fd30"
+        "object": "c2645495079b35ea00263ff2081e2dddbb0f0f55",
+        "sha256": "a74856c31340afc5802bf8b5693fc5b1437d960052ed08157ba60cd1a04edf59"
       },
       "before": null,
-      "component": "original_editor_sheet_host",
+      "component": "native_miniapps_ipad_toolbar",
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift"
     },
     {
@@ -1134,6 +1156,13 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "miniapps_original_native_delete_confirmation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "native_miniapps_ipad_toolbar": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -1393,6 +1422,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "native_miniapps_ipad_toolbar": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "native_miniapps_window_control": {
           "bytes": 37347,
           "kind": "blob",
@@ -1584,6 +1620,13 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "miniapps_original_native_delete_confirmation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "native_miniapps_ipad_toolbar": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2065,6 +2108,13 @@
           "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "miniapps_original_native_delete_confirmation": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
+        },
+        "native_miniapps_ipad_toolbar": {
           "bytes": 352039,
           "kind": "blob",
           "mode": "100644",
@@ -2567,6 +2617,11 @@
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "miniapps_original_native_delete_confirmation": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "native_miniapps_ipad_toolbar": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
