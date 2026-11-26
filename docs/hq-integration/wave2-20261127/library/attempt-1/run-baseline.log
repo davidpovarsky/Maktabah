@@ -1,0 +1,13 @@
+[OtzariaBootstrap] installation manifest finalization failed: “seforim-installation.json.previous” couldn’t be removed because you don’t have permission to access it.
+[OtzariaBootstrap] rollback cleanup failed for seforim-installation.json.previous: “seforim-installation.json.previous” couldn’t be removed because you don’t have permission to access it.
+{"case":"manifest_commit_failure_retains_rollback","error":"Metadata commit failure was reported as successful","status":"FAIL"}
+{"case":"unrecorded_replacement_restores_old_identity","error":"Previous database bytes changed","status":"FAIL"}
+{"case":"missing_final_restores_old_identity","error":"Abandoned pending identity survived rollback","status":"FAIL"}
+{"case":"malformed_pending_identity_rolls_back","error":"Previous database bytes changed","status":"FAIL"}
+{"case":"valid_pending_recovers_forward","status":"PASS"}
+{"case":"committed_manifest_recovers_forward","status":"PASS"}
+[OtzariaBootstrap] rollback cleanup failed for seforim.db.previous: “seforim.db.previous” couldn’t be removed because you don’t have permission to access it.
+{"case":"cleanup_failure_retains_commit_marker","error":"Error Domain=NSCocoaErrorDomain Code=260 \"The file “seforim-installation.json.previous” couldn’t be opened because there is no such file.\" UserInfo={NSFilePath=\/var\/folders\/gc\/cfct9cdj5y3fydcmx_32wmjc0000gn\/T\/OtzariaLibraryRecovery-D3B468EA-C714-4426-9B8A-6662D94C9DB6\/Otzaria\/seforim-installation.json.previous, NSURL=file:\/\/\/var\/folders\/gc\/cfct9cdj5y3fydcmx_32wmjc0000gn\/T\/OtzariaLibraryRecovery-D3B468EA-C714-4426-9B8A-6662D94C9DB6\/Otzaria\/seforim-installation.json.previous, NSUnderlyingError=0x76c9430c00 {Error Domain=NSPOSIXErrorDomain Code=2 \"No such file or directory\"}}","status":"FAIL"}
+{"case":"normal_update_preserves_user_store","status":"PASS"}
+{"case":"failed_pending_write_restores_old_identity","status":"PASS"}
+{"failed":5,"passed":4,"scope":"real-filesystem-SQLite-component","skipped":0,"ui_acceptance":false}

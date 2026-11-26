@@ -1,0 +1,57 @@
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:150:18: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+148 |             try fm.setAttributes([.immutable: true], ofItemAtPath: obstruction.path)
+149 |             var rejected = false
+150 |             do { try f.installer.completePromotion(storage: f.storage) } catch { rejected = true }
+    |                  `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+151 |             try require(rejected, "Metadata commit failure was reported as successful")
+152 |             try require(Data(contentsOf: f.storage.previousDatabaseURL) == f.oldBytes, "Metadata failure deleted the rollback database")
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:150:74: warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+148 |             try fm.setAttributes([.immutable: true], ofItemAtPath: obstruction.path)
+149 |             var rejected = false
+150 |             do { try f.installer.completePromotion(storage: f.storage) } catch { rejected = true }
+    |                                                                          `- warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+151 |             try require(rejected, "Metadata commit failure was reported as successful")
+152 |             try require(Data(contentsOf: f.storage.previousDatabaseURL) == f.oldBytes, "Metadata failure deleted the rollback database")
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:196:13: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+194 |             try f.promote()
+195 |             try f.installer.recoverInterruptedInstallation(storage: f.storage)
+196 |             try f.installer.completePromotion(storage: f.storage)
+    |             `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+197 |             try f.requireNew()
+198 |             try f.requireClean()
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:208:13: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+206 |             try fm.moveItem(at: f.storage.pendingInstallationManifestURL, to: f.storage.installationManifestURL)
+207 |             try f.installer.recoverInterruptedInstallation(storage: f.storage)
+208 |             try f.installer.completePromotion(storage: f.storage)
+    |             `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+209 |             try f.requireNew()
+210 |             try f.requireClean()
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:218:13: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+216 |             try f.promote()
+217 |             try fm.setAttributes([.immutable: true], ofItemAtPath: f.storage.previousDatabaseURL.path)
+218 |             try f.installer.completePromotion(storage: f.storage)
+    |             `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+219 |             try f.requireNew()
+220 |             try require(Data(contentsOf: f.storage.previousInstallationManifestURL) == f.oldManifest,
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:224:13: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+222 |             try fm.setAttributes([.immutable: false], ofItemAtPath: f.storage.previousDatabaseURL.path)
+223 |             try f.installer.recoverInterruptedInstallation(storage: f.storage)
+224 |             try f.installer.completePromotion(storage: f.storage)
+    |             `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+225 |             try f.requireNew()
+226 |             try f.requireClean()
+
+/Users/m1/builds/otzaria-wave2-library-controls-20261127/Tests/HQ/updates/LibraryRecoveryControls.swift:233:13: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+231 |         try withFixture { f in
+232 |             try f.promote()
+233 |             try f.installer.completePromotion(storage: f.storage)
+    |             `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+234 |             try f.requireNew()
+235 |             try f.requireClean()
+
+[#UnnecessaryEffectMarker]: <https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker>
