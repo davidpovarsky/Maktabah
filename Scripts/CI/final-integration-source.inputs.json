@@ -2,6 +2,7 @@
   "accepted_components": {
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
+    "library_install_cancel_rollback": "7212133b9a7366021382d2e80932c692b780b3f3",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
     "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
@@ -12,11 +13,11 @@
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc"
   },
-  "application_source_sha": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
+  "application_source_sha": "59f48fa80884904f11c2fabaeca13c3a18241d6b",
   "application_trees": {
     "Maktabah-iOSUITests": "d797d519342e4e34e5a2ea2f419ab13ed2d5caef",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "352af9a982600125b702f042ede6a18bee4eba91",
+    "Source": "cb64d35cdb1936f9debf8bb60d4d53a9afd00edc",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
   "hanlin_source": "4b772b5a7f0eb826c9b9204122bba516af777592",
@@ -44,6 +45,13 @@
       "component_objects": {
         "empty_note": null,
         "library": null,
+        "library_install_cancel_rollback": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
+        },
         "miniapps": {
           "bytes": 33785,
           "kind": "blob",
@@ -442,6 +450,13 @@
           "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
+        "library_install_cancel_rollback": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
         "miniapps": null,
         "miniapps_hebrew_rtl": {
           "bytes": 40262,
@@ -576,6 +591,13 @@
           "mode": "100644",
           "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
           "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
+        },
+        "library_install_cancel_rollback": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "miniapps": null,
         "miniapps_hebrew_rtl": {
@@ -887,11 +909,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 5835,
+        "bytes": 6436,
         "kind": "blob",
         "mode": "100644",
-        "object": "9ae300ef6b0002474b236d04356337846c5faa35",
-        "sha256": "b5732598579a5dae6302032d7c5e40a3660404806996260312ba7fa1e14ff4dc"
+        "object": "28844586ef583d5b8667b3d8f19f5bf3968a4b3a",
+        "sha256": "fbc2ff580e2ab3ddff4ec831da8fe01530f0680e9dc6a39e8f73d888f55613dc"
       },
       "before": {
         "bytes": 4740,
@@ -900,17 +922,17 @@
         "object": "92f497af1dba7086c50e1121fe0b53ec2e720c0c",
         "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "library_install_cancel_rollback",
       "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 10810,
+        "bytes": 11219,
         "kind": "blob",
         "mode": "100644",
-        "object": "1e7161ad3be532dba83c380e127bcfdea83d4be0",
-        "sha256": "7fdf24f14697de9304c30a699c454c061bda8bc515f9c366c17928ef943d0274"
+        "object": "099b26e5e7e5602363d977a57b2b1d5ff5597ac7",
+        "sha256": "c6462ef7b59ad2d43cd2b85b7fa527db62041b80e50ef07805a93f7a707b7adc"
       },
       "before": {
         "bytes": 9091,
@@ -919,8 +941,46 @@
         "object": "baca123b69f9d31f779e7bd4e024c654c6a50ea2",
         "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "library_install_cancel_rollback",
       "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 31738,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "197272a5d3aecfd16e40b686443368c140f40305",
+        "sha256": "33411f699c3131be5a027a81d4c3a2ec7c6b83d36bcd78dd3389014d5cc2aeda"
+      },
+      "before": {
+        "bytes": 31540,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4ce85765fbfb2ad7346ed5a8be3d0d9864c58583",
+        "sha256": "6882067545a02dea765414381f2aeeb4101fee930d4237f58e44554d01c0c69a"
+      },
+      "component": "library_install_cancel_rollback",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 18893,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "5ece0d4a012bd58192bff2ecadbc831b19e6a5ed",
+        "sha256": "d529968ed276250171efb24ff0c47e1381d244ae802b878dd4e7bc46a74df2f2"
+      },
+      "before": {
+        "bytes": 18852,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "b008ae8bcd4bbf6d2484005fd678f11cb83435ec",
+        "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
+      },
+      "component": "library_install_cancel_rollback",
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -934,6 +994,25 @@
       "before": null,
       "component": "original_lifecycle_and_native_batch",
       "path": "Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 13447,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "134b92952f980a0d7821b65329c452a92e64f0b6",
+        "sha256": "eb867ef684f6515c23fc539f26216c7f8c9e5167a40bd9584852434f3dde2ddf"
+      },
+      "before": {
+        "bytes": 12956,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "be4a438b05376c8d966fd6405636f6e686ba74cb",
+        "sha256": "d08aa05deb507b03c870d98f2b2e04197f32cf1c83920026b8336587fc09406f"
+      },
+      "component": "library_install_cancel_rollback",
+      "path": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1027,6 +1106,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+        },
+        "library_install_cancel_rollback": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
         },
         "miniapps": {
           "kind": "commit",

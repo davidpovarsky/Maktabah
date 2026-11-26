@@ -1,8 +1,8 @@
 {
-  "application_source_sha": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
+  "application_source_sha": "59f48fa80884904f11c2fabaeca13c3a18241d6b",
   "application_trees": {
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "352af9a982600125b702f042ede6a18bee4eba91",
+    "Source": "cb64d35cdb1936f9debf8bb60d4d53a9afd00edc",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
   "artifacts": [
@@ -72,7 +72,7 @@
   },
   "final_product_source": {
     "manifest": "Scripts/CI/final-integration-source.inputs.json",
-    "sha256": "11b0ec5f94593d20b07f80267281ba0c635d7f6e3c1db92b58b5ec1972f1874b"
+    "sha256": "ff06c14374749cfa0e6e63804413bb44a6233b004b48dac8616e33486a8673b3"
   },
   "hanlin_gitlink": "4b772b5a7f0eb826c9b9204122bba516af777592",
   "mac_shared_composition": {
