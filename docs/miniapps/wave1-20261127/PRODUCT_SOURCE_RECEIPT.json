@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-26T22:35:18.843274+00:00",
+  "status": "PRODUCT_SOURCE_READY_FOR_INTEGRATION_RUNTIME_PENDING",
+  "repository": "davidpovarsky/Maktabah",
+  "branch": "codex/otzaria-wave1-miniapps-20261127",
+  "base": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "product": "7f68307e6395b832ad294d26129f9dc6baa0639f",
+  "original_product_commits": [
+    "d1cea8e83f91d7e725d7dd04409162043da0e4ff",
+    "50caaf82d922c0ecc26642d98f9d4ab9c4aa4dbb"
+  ],
+  "upstream_reference": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "ownership": "Both changed files are downstream ChavrusaText and absent from the upstream tree. No upstream source edit.",
+  "tested_lab": "2aa8e3aa0819e74ae3e5af1056b84e73e723fa57",
+  "host_source_equivalence": [
+    {
+      "product": {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+        "git_blob": "9e3e33057f0cc6c36a13d4592adf406739762169",
+        "sha256": "fcbd4fd72c31923b2ee0ab05793678de1dc93ebf1f4c21fdc4a4f89350a6e6ff"
+      },
+      "lab": {
+        "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+        "git_blob": "749e511adc447421de6aa05dfe3ef7d5881836b0",
+        "sha256": "2ec42cc70fa099eaee9a187178ca19a26a370e547c42ab64f8ab6ad3cfa29506"
+      },
+      "same_swift_tokens_after_exact_diagnostic_removal": true,
+      "diagnostic_patch": "AnnotationOriginalEditorProductionUI-diagnostic-only.patch",
+      "diagnostic_patch_sha256": "27365a2b3a189d2fc19351c0e97d1765915853e3fad7e20e1aa37debe9036b19"
+    },
+    {
+      "product": {
+        "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+        "git_blob": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+        "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+      },
+      "lab": {
+        "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+        "git_blob": "ea5da141d0400af9115b772cae3b09923c685004",
+        "sha256": "0e990b77b93eb1ba0d2a4b2443090fb368290949a708133ac01610498d10b40f"
+      },
+      "same_swift_tokens_after_exact_diagnostic_removal": true,
+      "diagnostic_patch": "OtzariaMiniAppsCoordinator-diagnostic-only.patch",
+      "diagnostic_patch_sha256": "2dab7188d8271e2ab9d6fd83b2c6a41edcf59b007853502b70b456e403a5d81c"
+    }
+  ],
+  "receipt_lifetime_files_already_in_base": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "git_blob": "ddbb6687ecf723ee69cbe6532f395263b4cbac22",
+      "sha256": "ee390acacc4fe11b45007f318e42ffd3d6c2082cc6831f88a575fe530c099cc2"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "git_blob": "8a7c456c7f09bbfc323fee10afb5df535a2266bd",
+      "sha256": "a52e773295c759bcb1e651953029899cd3d7ac2471cda4a757c4f7e97379f83a"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+      "git_blob": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+      "sha256": "a7d64c575cc7e1ec6c59e81dc2ad7e8aca7dd10e2c7c52aa587146cbefa3e14e"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "git_blob": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+      "sha256": "72fb388dc624aa7981c80a23cfc6e0201b28582a19cf7d809e1f4a57e9beeeaa"
+    },
+    {
+      "path": "Source/UI/macOS/TextView/IbarotTextView.swift",
+      "git_blob": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+      "sha256": "b0d711e131a81a17e302c0bca1f84ab89fb21915a5056b2adb6833c581e85947"
+    }
+  ],
+  "dependencies": {
+    "standalone_miniapps_producer": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+    "tested_shared_host_hanlin": "9b3d0555275f2fc6cc53926c7bf66cb8b1516f5a",
+    "minimal_picker_on9565": "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+    "picker": {
+      "path": "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift",
+      "git_blob": "97f775753e0f24e446479687176b43071556566b",
+      "sha256": "6ebef61a6c81d4d583d4d8ee94a4657bfb1f1abd53a881bafb8bf0aef8cb9d0d"
+    },
+    "shared_bridge_delta_from9565": [
+      "Packages/HanlinMiniAppsBridge/Sources/HanlinMiniAppsPicker/MiniAppPicker.swift"
+    ],
+    "anytype_clean_product": "bfc80e5e85eabaa52f914e872f2da6c6888ca88c",
+    "anytype_tested_diagnostic": "9ebf4271954d375d1bffe4a310a772660eeb4ae0",
+    "heart": "b18e6733605deb4086ee95aa4cf755404746cf51",
+    "anytype_provider": {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotation.swift",
+      "product_blob": "877ed9e6b39e82c6e617be32cddf4821c89f8a00",
+      "product_sha256": "fc9a6bb869bb2c7929a3242cb8d62a3a83704d31027e2e1f7b3f93a4c5027e3c",
+      "lab_blob": "67079496bcfe78320c289e0ee4e8e5e1f8192559",
+      "lab_sha256": "c552e640984e46896d6ea32bdb67c25ac828523deccdf30ed5542218922f91ec",
+      "review": "Only explicit logging instrumentation and logging-local probe state differ. Full diagnostic patch retained; no native guard removed.",
+      "patch_sha256": "834f09bc41e2760675d3c1c6e981579e3ceb81d9cc7f5bf78f183226d57bf65a"
+    },
+    "anytype_framework_source_files": [
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalAnnotationImport.swift",
+        "product_blob": "3880aa8d6166560d4369d3a17669ff49b2c073f4",
+        "lab_blob": "3880aa8d6166560d4369d3a17669ff49b2c073f4",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalAnnotationLifecycle.swift",
+        "product_blob": "51db72716f638a90404a9de8b5b2bf4b8c71351b",
+        "lab_blob": "51db72716f638a90404a9de8b5b2bf4b8c71351b",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalAnnotationRevision.swift",
+        "product_blob": "0d9791b431289c3b68bea08588972a7cbc71ca03",
+        "lab_blob": "0d9791b431289c3b68bea08588972a7cbc71ca03",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorAccountSession.swift",
+        "product_blob": "0169318445a60d86b8941b6f87c2231928274db9",
+        "lab_blob": "0169318445a60d86b8941b6f87c2231928274db9",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorHost.swift",
+        "product_blob": "a48531ff005059dcbdb3793136bf0cb913740b94",
+        "lab_blob": "a48531ff005059dcbdb3793136bf0cb913740b94",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotation.swift",
+        "product_blob": "877ed9e6b39e82c6e617be32cddf4821c89f8a00",
+        "lab_blob": "67079496bcfe78320c289e0ee4e8e5e1f8192559",
+        "equal": false
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotationBatch.swift",
+        "product_blob": "861298a00bd1f79b1163114621296f7eeafefcd1",
+        "lab_blob": "861298a00bd1f79b1163114621296f7eeafefcd1",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorModule.swift",
+        "product_blob": "723ac59f33c7cd7bd87aa925d247932c4217abfe",
+        "lab_blob": "723ac59f33c7cd7bd87aa925d247932c4217abfe",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorNativeBodyReadback.swift",
+        "product_blob": "5256929a9d88e42fe964a9a4a12bc84531ca763f",
+        "lab_blob": "5256929a9d88e42fe964a9a4a12bc84531ca763f",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorNativeFixture.swift",
+        "product_blob": "ae9f7fd6062603f1a52b92f30cb8abf1300d8366",
+        "lab_blob": "ae9f7fd6062603f1a52b92f30cb8abf1300d8366",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorQualification.swift",
+        "product_blob": "462f6713e90eca7cbf1563929a490afc7599d007",
+        "lab_blob": "462f6713e90eca7cbf1563929a490afc7599d007",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorQualificationRuntime.swift",
+        "product_blob": "b35b7253a372203a815ddb1a0b7de4017414dc69",
+        "lab_blob": "b35b7253a372203a815ddb1a0b7de4017414dc69",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorRestoreQualification.swift",
+        "product_blob": "a1fecdf2f3056c17e1ed13bd7674a52e409af109",
+        "lab_blob": "a1fecdf2f3056c17e1ed13bd7674a52e409af109",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/AnytypeOriginalEditorSnapshot.swift",
+        "product_blob": "9f7749b2607bf2c267840a1aad46dcfb668cbfdb",
+        "lab_blob": "9f7749b2607bf2c267840a1aad46dcfb668cbfdb",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalAnnotationNativeArchiveComparison.swift",
+        "product_blob": "626ba1feb1582f66962e854b3d4643fa41618cfc",
+        "lab_blob": "626ba1feb1582f66962e854b3d4643fa41618cfc",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalAnnotationNativeArchiveLayout.swift",
+        "product_blob": "6cabe5e47ccf21c5a1072d076447e353cf8280ef",
+        "lab_blob": "6cabe5e47ccf21c5a1072d076447e353cf8280ef",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalAnnotationNativeMapKeyGuard.swift",
+        "product_blob": "d1b46c01dedfe1e08d0cd2b541358bdd9d7669e9",
+        "lab_blob": "d1b46c01dedfe1e08d0cd2b541358bdd9d7669e9",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalAnnotationNativeSnapshotWire.swift",
+        "product_blob": "75bbd19e7e68975e47dc9d65f6abf62426febf20",
+        "lab_blob": "75bbd19e7e68975e47dc9d65f6abf62426febf20",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalEditorAccountSessionView.swift",
+        "product_blob": "9cc87f6e188f4f1c9bb4f3115123e34484f06977",
+        "lab_blob": "9cc87f6e188f4f1c9bb4f3115123e34484f06977",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationJournal.swift",
+        "product_blob": "860d7c172726c357c0310613a6a0b7fdc1055a5f",
+        "lab_blob": "860d7c172726c357c0310613a6a0b7fdc1055a5f",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationMaterialization.swift",
+        "product_blob": "3977b6dccbe130013ce7c1066a4e451646091787",
+        "lab_blob": "3977b6dccbe130013ce7c1066a4e451646091787",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationNativeBody.swift",
+        "product_blob": "81961ace6c2f2f4c6115b34e38b9daeb26188182",
+        "lab_blob": "81961ace6c2f2f4c6115b34e38b9daeb26188182",
+        "equal": true
+      },
+      {
+        "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationRuntime.swift",
+        "product_blob": "651beba82d228de6035b869acf80f8ddf8aac53b",
+        "lab_blob": "651beba82d228de6035b869acf80f8ddf8aac53b",
+        "equal": true
+      }
+    ]
+  },
+  "historical_evidence": [
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-shared-agent1-20261126/miniapps-a5407624-original-rich-warm-cold-verified-evidence.tar.gz",
+      "sha256": "20017e02978d0cbeadcaf75c43771e4d6875029593e458021220ce9d4c08a3e3",
+      "bytes": 8659015,
+      "status": "REUSED_IMMUTABLE_PRIOR_RESULT_NOT_NEW_EXECUTION"
+    },
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-shared-agent1-20261126/miniapps-289a64d9-original-file-workshop-verified-evidence.tar.gz",
+      "sha256": "43ab4ec6b05f4f7dd884da3c8ad22f7641a7d841453cba8814508cd561a8a0fe",
+      "bytes": 10043484,
+      "status": "REUSED_IMMUTABLE_PRIOR_RESULT_NOT_NEW_EXECUTION"
+    }
+  ],
+  "remaining_gates": [
+    "Manifest fix and complete original Anytype SDK qualification",
+    "Root-selected shared Hanlin pin and source admission",
+    "Actual integrated TextStudio/File Workshop/picker runtime acceptance",
+    "Producer-current image-origin and multiwindow source equivalence owned by active producer lane",
+    "No release merge or completion claimed"
+  ]
+}
