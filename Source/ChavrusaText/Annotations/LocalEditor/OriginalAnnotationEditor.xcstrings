@@ -1895,6 +1895,54 @@
           }
         }
       }
+    },
+    "Both full saved versions are retained. Choose explicitly which version to keep here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both full saved versions are retained. Choose explicitly which version to keep here."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שתי הגרסאות השמורות המלאות נשמרות. יש לבחור במפורש איזו גרסה לשמור כאן."
+          }
+        }
+      }
+    },
+    "No shared copy of this note was found in the selected account and space. Check the selection or share the note from its original device.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No shared copy of this note was found in the selected account and space. Check the selection or share the note from its original device."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא נמצא עותק משותף של ההערה בחשבון ובמרחב שנבחרו. בדקו את הבחירה או שתפו את ההערה מהמכשיר המקורי."
+          }
+        }
+      }
+    },
+    "Refresh shared copies": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh shared copies"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רענון העותקים המשותפים"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

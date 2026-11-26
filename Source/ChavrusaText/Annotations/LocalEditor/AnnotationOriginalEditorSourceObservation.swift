@@ -123,6 +123,19 @@ final class AnnotationOriginalEditorSourceObservation {
         try requireCurrent()
     }
 
+    /// A completed read-only original search never becomes write authority.
+    /// Release only that exact lookup token before binding the separately
+    /// selected native read. The Host/session observers remain installed.
+    func finishOriginalCopyDiscovery(_ source: AnytypeOriginalEditorLocalAnnotationSourceLifetime) throws {
+        try requireCurrent()
+        guard localAnnotation === source, nativeSource == nil, nativeImport == nil else {
+            throw AnnotationLocalEditorError.wrongOwner
+        }
+        source.retire()
+        localAnnotation = nil
+        try requireCurrent()
+    }
+
     /// A pre-import saved source has no existing-object binding. Link the
     /// actual source/presentation generations before native preparation begins.
     func bindImport(_ source: AnytypeOriginalAnnotationImportSourceLifetime,

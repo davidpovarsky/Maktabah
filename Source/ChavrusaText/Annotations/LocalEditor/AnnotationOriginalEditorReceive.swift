@@ -10,7 +10,7 @@ import AnytypeOriginalEditor
 @MainActor @Observable
 final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     enum OperationKind { case receive, update }
-    enum Stage { case opening, authenticating, choosing, reading, reviewing, saving, saved, updating, updated, conflict, unverified, noMapping, changed, failed, closing, closeFailed, closed }
+    enum Stage { case opening, authenticating, discovering, choosing, reading, reviewing, saving, saved, updating, updated, conflict, unverified, noMapping, changed, failed, closing, closeFailed, closed }
     let operationKind: OperationKind
     let id = UUID()
     let annotation: Annotation
@@ -31,7 +31,25 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     private var closeTask: Task<Void, Never>?
     private var began = false
     private(set) var stage = Stage.opening
-    private(set) var mappings: [AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping] = []
+    enum CopyChoice: Identifiable {
+        case historical(AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping)
+        case discovered(AnytypeOriginalAnnotationDiscoveredCopy)
+        var accountID: String {
+            switch self { case .historical(let value): value.accountID; case .discovered(let value): value.accountID }
+        }
+        var spaceID: String {
+            switch self { case .historical(let value): value.spaceID; case .discovered(let value): value.spaceID }
+        }
+        var objectID: String {
+            switch self { case .historical(let value): value.objectID; case .discovered(let value): value.objectID }
+        }
+        var id: String { accountID + ":" + spaceID + ":" + objectID }
+        var sharedBodyDigest: String? {
+            if case .historical(let value) = self { return value.bodyDigest }
+            return nil
+        }
+    }
+    private(set) var mappings: [CopyChoice] = []
     var selectedMappingID: String?
     private(set) var retainedHistoryURL: URL?
     private(set) var localChangedSinceShare = false
@@ -73,7 +91,6 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                     annotationUUID: captured.annotationUUID, capturedDatabaseURL: captured.databaseURL)
             }.value
             try observed.requireCurrent()
-            guard !allMappings.isEmpty else { stage = .noMapping; return }
             localStopNeedsRetry = true
             try await AnytypeOriginalEditorModule.suspendLocalAnnotationRuntime(
                 appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier)
@@ -100,10 +117,60 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
             mappings = allMappings.filter {
                 $0.accountID.utf8.elementsEqual(session.identity.accountID.utf8)
                     && $0.spaceID.utf8.elementsEqual(session.identity.spaceID.utf8)
+            }.map(CopyChoice.historical)
+            if mappings.isEmpty {
+                discoverCopies(in: session)
+            } else {
+                selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
+                stage = .choosing
             }
-            selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
-            stage = mappings.isEmpty ? .noMapping : .choosing
         } catch { stage = .failed }
+    }
+
+    private func discoverCopies(in session: AnytypeOriginalEditorAccountSession) {
+        guard operation == nil, let local, let observation, let snapshot else {
+            fail(); return
+        }
+        stage = .discovering
+        operation = Task { [self] in
+            defer { operation = nil }
+            var query: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
+            do {
+                try observation.requireCurrent(); try session.validateCurrent()
+                try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
+                let descriptor = try AnytypeOriginalEditorLocalAnnotationSource(
+                    hostProfileID: observation.profileID.uuidString,
+                    annotationUUID: snapshot.annotationUUID, expectedRevision: snapshot.revision,
+                    sourceWitnessSHA256: snapshot.source.digest,
+                    payloadSHA256: snapshot.version?.payloadDigest)
+                let source = AnytypeOriginalEditorLocalAnnotationSourceLifetime(source: descriptor)
+                query = source
+                // The existing original row/session/scene/presentation owners
+                // fence this read before any original native search dispatch.
+                try observation.bindLocalAnnotation(source, local: local, snapshot: snapshot)
+                let copies = try await session.discoverOriginalAnnotationCopies(
+                    sourceLifetime: source) { [observation, local] candidate in
+                        candidate == descriptor && observation.isCurrent && local.isCurrent
+                    }
+                try observation.finishOriginalCopyDiscovery(source)
+                query = nil
+                try Task.checkCancellation()
+                try observation.requireCurrent(); try session.validateCurrent()
+                try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
+                guard stage == .discovering else { return }
+                mappings = copies.map(CopyChoice.discovered)
+                selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
+                stage = mappings.isEmpty ? .noMapping : .choosing
+            } catch {
+                query?.retire()
+                if stage != .closing && stage != .closed { stage = .failed }
+            }
+        }
+    }
+
+    func refreshSharedCopies() {
+        guard stage == .noMapping, operation == nil, let account else { return }
+        discoverCopies(in: account)
     }
 
     private func fail() {
@@ -161,7 +228,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 let current = try AnnotationOriginalEditorMount.nativeBody(in: snapshot)
                 localChangedSinceShare = current.map {
                     SHA256.hash(data: $0.bodyBytes).map { String(format: "%02x", $0) }.joined()
-                        != mapping.bodyDigest
+                        != mapping.sharedBodyDigest
                 } ?? true
                 stage = .reviewing
             } catch {
@@ -302,7 +369,7 @@ struct AnnotationOriginalEditorReceiveView: View {
         NavigationStack {
             Group {
                 switch model.stage {
-                case .opening, .reading, .saving, .updating, .closing:
+                case .opening, .discovering, .reading, .saving, .updating, .closing:
                     ProgressView { Text("Finishing the original Anytype operation…", tableName: "OriginalAnnotationEditor") }
                 case .authenticating:
                     if let controller = model.controller {
@@ -333,7 +400,7 @@ struct AnnotationOriginalEditorReceiveView: View {
                             Section {
                                 Label { Text("Both versions need review", tableName: "OriginalAnnotationEditor") }
                                     icon: { Image(systemName: "arrow.triangle.branch") }
-                                Text("Your saved note changed since it was shared. Both full versions are retained. Choose explicitly which version to keep here.", tableName: "OriginalAnnotationEditor")
+                                Text("Both full saved versions are retained. Choose explicitly which version to keep here.", tableName: "OriginalAnnotationEditor")
                             }
                         }
                         Section { Text(model.localPreview).textSelection(.enabled) }
@@ -395,7 +462,12 @@ struct AnnotationOriginalEditorReceiveView: View {
                         Label { Text("No shared copy in this space", tableName: "OriginalAnnotationEditor") }
                             icon: { Image(systemName: "square.and.arrow.down") }
                     } description: {
-                        Text("Share this saved note with Anytype first, then choose that account and space when receiving it.", tableName: "OriginalAnnotationEditor")
+                        Text("No shared copy of this note was found in the selected account and space. Check the selection or share the note from its original device.", tableName: "OriginalAnnotationEditor")
+                    } actions: {
+                        Button { model.refreshSharedCopies() } label: {
+                            Text("Refresh shared copies", tableName: "OriginalAnnotationEditor")
+                        }
+                        .accessibilityIdentifier("annotation-anytype-refresh-copies")
                     }
                 case .changed:
                     ContentUnavailableView {
