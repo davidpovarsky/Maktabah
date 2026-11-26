@@ -435,9 +435,18 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try revealPreparationControl(conversion)
         try await waitForEnabled(conversion)
         tap(conversion)
-        let confirm = app.buttons["annotation-native-backfill-confirm"]
-        XCTAssertTrue(confirm.waitForExistence(timeout: 15))
-        tap(confirm)
+        let confirmation = app.sheets.containing(.button, identifier: "annotation-native-backfill-confirm").firstMatch
+        XCTAssertTrue(confirmation.waitForExistence(timeout: 15))
+        let actions = confirmation.buttons.matching(identifier: "annotation-native-backfill-confirm")
+        XCTAssertTrue(actions.firstMatch.waitForExistence(timeout: 15))
+        let controls = actions.allElementsBoundByIndex.filter { $0.isHittable && !$0.frame.isEmpty }
+        // The iPad native sheet exposes a SwiftUI action and its UIKit button
+        // at the same point. Require a single physical confirmation target.
+        let frames = Set(controls.map { NSValue(cgRect: $0.frame) })
+        XCTAssertEqual(frames.count, 1)
+        let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil)
+        XCTAssertTrue(confirm.isEnabled)
+        confirm.tap()
         let complete = app.descendants(matching: .any)["annotation-native-backfill-complete"]
         let failure = app.descendants(matching: .any)["annotation-native-backfill-failed"]
         let closeFailure = app.descendants(matching: .any)["annotation-native-backfill-close-failed"]
