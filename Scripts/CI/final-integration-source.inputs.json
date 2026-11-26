@@ -3,16 +3,20 @@
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
+    "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
+    "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+    "original_account_exchange_ui": "f0d541b9ace6fc473bcd02b2b50f8bcccdd48615",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
-    "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
+    "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
+    "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc"
   },
-  "application_source_sha": "2e4e1e01610ecf3645ecf1a463cf8867ee804af9",
+  "application_source_sha": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
   "application_trees": {
-    "Maktabah-iOSUITests": "bda2b544b2d25028efbe76c38a6b5cc1d6722639",
+    "Maktabah-iOSUITests": "d797d519342e4e34e5a2ea2f419ab13ed2d5caef",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "865ef9c1d485e011fe34108beee7dbe126b80ca8",
+    "Source": "352af9a982600125b702f042ede6a18bee4eba91",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
   "hanlin_source": "4b772b5a7f0eb826c9b9204122bba516af777592",
@@ -30,11 +34,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 66482,
+        "bytes": 71096,
         "kind": "blob",
         "mode": "100644",
-        "object": "1159100b2082fb0b27107c44d3a10de6c88b86b5",
-        "sha256": "0767c4d2c868c8271bc6bb1ae417005b439dcbdfa9c043abfec8d85de1536359"
+        "object": "194036e27dc8df7aed29920345a13949e49e045a",
+        "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
       },
       "before": null,
       "component_objects": {
@@ -47,8 +51,29 @@
           "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
           "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
         },
+        "miniapps_hebrew_rtl": {
+          "bytes": 66482,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "1159100b2082fb0b27107c44d3a10de6c88b86b5",
+          "sha256": "0767c4d2c868c8271bc6bb1ae417005b439dcbdfa9c043abfec8d85de1536359"
+        },
+        "miniapps_save_confirmation": {
+          "bytes": 64757,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "83f3a235bd2fe14970546e1d9aaec5574c94f5df",
+          "sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae"
+        },
         "native_share": null,
         "normal_editor": null,
+        "original_account_exchange_ui": {
+          "bytes": 33785,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
+          "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
+        },
         "original_lifecycle_and_native_batch": {
           "bytes": 33785,
           "kind": "blob",
@@ -62,26 +87,33 @@
           "mode": "100644",
           "object": "de180b24b17386a0fcbea0dcf4e59d530afad4fa",
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
+        },
+        "reader_cancellation": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
         }
       },
       "patch": {
-        "bytes": 67970,
-        "sha256": "a49131697ba6d4d0e6990f288883a9e1f71fa21b95725b8203b6b1106d8ea383"
+        "bytes": 72664,
+        "sha256": "211179199c871a736b922e6229131f844e13659affe872c768f557adc81dd034"
       },
       "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
-      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here."
+      "reason": "Retain the original MiniApps callback selectors and the added Hebrew Picker journey, mirrored controls and visibility checks on the shared original target. Application execution remains pending."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 40905,
+        "bytes": 70406,
         "kind": "blob",
         "mode": "100644",
-        "object": "e0354447a154806148da0823b44305c4c72d3aee",
-        "sha256": "aa37d9c35b1b8215db36479c77bf9de9722ecd42819a4281e0f59ee9fe85d532"
+        "object": "8083e07e87c528fa8e253c0bed31a51654d25568",
+        "sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29"
       },
       "before": null,
-      "component": "original_lifecycle_and_native_batch",
+      "component": "original_account_exchange_ui",
       "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift"
     },
     {
@@ -388,11 +420,11 @@
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 40262,
+        "bytes": 42323,
         "kind": "blob",
         "mode": "100644",
-        "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
-        "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
+        "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+        "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
       },
       "before": null,
       "component_objects": {
@@ -411,6 +443,20 @@
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
         "miniapps": null,
+        "miniapps_hebrew_rtl": {
+          "bytes": 40262,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
+          "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
+        },
+        "miniapps_save_confirmation": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
         "native_share": {
           "bytes": 32498,
           "kind": "blob",
@@ -425,6 +471,13 @@
           "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
+        "original_account_exchange_ui": {
+          "bytes": 36382,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f71614cc4e6725645e2c48938b1e983c3eea266e",
+          "sha256": "9737f2785d8c5027650838a45fd72bbb51f49c981350b8c604b3ce32b642a1a9"
+        },
         "original_lifecycle_and_native_batch": {
           "bytes": 36382,
           "kind": "blob",
@@ -438,14 +491,21 @@
           "mode": "100644",
           "object": "746f7a85bce4ca0f12ba994a9c49c367a717c511",
           "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
+        },
+        "reader_cancellation": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         }
       },
       "patch": {
-        "bytes": 41557,
-        "sha256": "c39072448517d07537ed2b7d35dd3f4b298af728e3c52fb813283679dbdb1008"
+        "bytes": 43661,
+        "sha256": "24044a7a369b0dca6edf88b01953c47482f3883d1e29503c65ef065505dc4c46"
       },
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
-      "reason": "Reviewed composition retains the original lifecycle promotion/revision/cancellation/recovery UI and adds the genuine MiniApps action/launch mount. The recovery path re-enables the same editor only while original owner identity and saved row still match. Apple parsed the exact merged source; original runtime acceptance remains required."
+      "reason": "Retain the original Picker dispatcher through the saved row. A changed draft requires explicit Save before dispatch; Cancel remains local and preserves the prior saved row. Application execution remains pending."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -493,17 +553,94 @@
       "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 53217,
+        "bytes": 54697,
         "kind": "blob",
         "mode": "100644",
-        "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
-        "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+        "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+        "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
       },
       "before": null,
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"
+      "component_objects": {
+        "empty_note": {
+          "bytes": 10832,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
+          "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
+        },
+        "library": {
+          "bytes": 10832,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
+          "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
+        },
+        "miniapps": null,
+        "miniapps_hebrew_rtl": {
+          "bytes": 53217,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
+          "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+        },
+        "miniapps_save_confirmation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "native_share": {
+          "bytes": 17378,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "30bece6fddb0c8ac0597a0e924d54b6b8ea0a906",
+          "sha256": "7d5be2c54070a3676d2cf45b2ffa6290a47ba902415450b0d0c9ba6cac918605"
+        },
+        "normal_editor": {
+          "bytes": 10832,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0bb33c1579b32389f11a2bb003b76ebfad9caaf5",
+          "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 53217,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
+          "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 53217,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
+          "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+        },
+        "original_rich_miniapps": {
+          "bytes": 36042,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0d65ce897954a8e70d4a334c4d08761470e2d84a",
+          "sha256": "9b8879af22cc56e94b94b4105b95bcd5fc2dc5e2cb7d14ea3a2b56cb1ae341e1"
+        },
+        "reader_cancellation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        }
+      },
+      "patch": {
+        "bytes": 56999,
+        "sha256": "72b0064b347416bcb2aaaf6d1236e6f8da3bcf1a68a7e9bc8e32183f99126ab1"
+      },
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
+      "reason": "Retain original editor localization keys and the explicit English and Hebrew Save/Cancel confirmation copy used by the original editor."
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -712,6 +849,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 32419,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "99449ab86273bbf6e9f128bf0f5e64f4bafd0821",
+        "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+      },
+      "before": {
+        "bytes": 31937,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "fe2fbcb9f07762e0d35949b098b55d079a3c95d2",
+        "sha256": "81087d006d2baebb7c1e60640abbada0886bf5b9124c28f7a82f00fa9ea47ac0"
+      },
+      "component": "reader_cancellation",
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 351650,
         "kind": "blob",
         "mode": "100644",
@@ -877,6 +1033,16 @@
           "mode": "160000",
           "object": "a774de24926ca13d563c45c42917d03b8c04296f"
         },
+        "miniapps_hebrew_rtl": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
+        },
+        "miniapps_save_confirmation": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
+        },
         "native_share": {
           "kind": "commit",
           "mode": "160000",
@@ -887,6 +1053,11 @@
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
         },
+        "original_account_exchange_ui": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
+        },
         "original_lifecycle_and_native_batch": {
           "kind": "commit",
           "mode": "160000",
@@ -896,6 +1067,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
+        },
+        "reader_cancellation": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
         }
       },
       "patch": {
