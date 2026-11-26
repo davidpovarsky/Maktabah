@@ -8,6 +8,7 @@
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
     "original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
+    "original_editor_ios_host_deployment": "34076f32a5fa9734007eb078ca0bf99ede2b1ef9",
     "original_editor_sheet_host": "0895f7efd434d3df2da78fb76d8bf8f0c2f1827b",
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
@@ -16,11 +17,11 @@
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "438279a360b1fde6486e83fb0991d1f83c21a202",
+  "application_source_sha": "34076f32a5fa9734007eb078ca0bf99ede2b1ef9",
   "application_trees": {
     "Maktabah-iOSUITests": "0cb5ba233e55e62e649b8c5214ef1d1bf13e0cdf",
-    "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "abc5235f3acbda0b394f0cef49dd7c482486a7d3",
+    "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
+    "Source": "d0cc5d55041947a7fe0e1c30de05f36bceb8e94a",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -97,6 +98,13 @@
           "object": "06a2de328228edbcb737189e8d4e662f2dba8aa6",
           "sha256": "50ef9d2848d342b0ee58d7ffc13e826e5a3fc55f31d6f21805d59bd17333db4d"
         },
+        "original_editor_ios_host_deployment": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
         "original_editor_sheet_host": {
           "bytes": 99229,
           "kind": "blob",
@@ -169,13 +177,13 @@
       "reason": "Exact unchanged latest original-account UI acceptance source from7f956; previous editor and MiniApps production implementation retained."
     },
     {
-      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
-        "bytes": 622026,
+        "bytes": 622132,
         "kind": "blob",
         "mode": "100644",
-        "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
-        "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+        "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
       },
       "before": {
         "bytes": 602975,
@@ -184,8 +192,126 @@
         "object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
         "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa"
       },
-      "component": "original_lifecycle_and_native_batch",
-      "path": "Maktabah.xcodeproj/project.pbxproj"
+      "component_objects": {
+        "compact_inspector_note_presentation": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "empty_note": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        },
+        "hanlin_live_transcript_source": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "library": {
+          "bytes": 605376,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "5350d7c59099f332f0bc0847658c062f28c547e4",
+          "sha256": "a9678f47f6f87ae80eb908c16033e75f956d712b0c85e9d3749263d0c607f317"
+        },
+        "miniapps": {
+          "bytes": 605777,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b9e30e3b2d09635a74d0e03b3aaa1998294ffde0",
+          "sha256": "5e7962eaf13c9a1c8199fbdbd53b7b4220cc46d5d6811c82d4c1eb8306f6744f"
+        },
+        "native_share": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        },
+        "normal_editor": {
+          "bytes": 604158,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ca7eded8c0e2a6aba3a90e6d92da0e88666a44e2",
+          "sha256": "cb02f97cc8c95889a7089be5df15c003eb97260fbf5a52ac329185ee79aa2ff3"
+        },
+        "original_account_exchange_ui": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "original_editor_ios_host_deployment": {
+          "bytes": 622132,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+          "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
+        },
+        "original_editor_sheet_host": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "original_explicit_save": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "original_lifecycle_and_native_batch": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "original_rich_miniapps": {
+          "bytes": 614824,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "0f553ed0882d5148aa0ee23afefbf8b16e82b862",
+          "sha256": "155e7d2a43db05eca5cfa63bbe590e1bd90460402b24377e31d9096942b94a33"
+        },
+        "reader_annotations_presentation": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "reader_designkit_composition": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "reader_source_actions": {
+          "bytes": 622026,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+          "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        }
+      },
+      "patch": {
+        "bytes": 34586,
+        "sha256": "dbd0fa8d6c15b24c2fc318d101467014bc6b59161175ffc86f6117751fcecb02"
+      },
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "reason": "Preserves existing original SDK entries and adds only two deployment-mode build settings to the iOS host. Actual native tests previously rejected the unset host mode."
     },
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
@@ -259,6 +385,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_editor_ios_host_deployment": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "original_editor_sheet_host": {
           "bytes": 5988,
@@ -634,6 +767,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "original_editor_ios_host_deployment": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "original_editor_sheet_host": {
           "bytes": 21873,
           "kind": "blob",
@@ -810,6 +950,13 @@
           "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
           "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
         },
+        "original_editor_ios_host_deployment": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "original_editor_sheet_host": {
           "bytes": 54697,
           "kind": "blob",
@@ -940,6 +1087,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "original_editor_ios_host_deployment": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "original_editor_sheet_host": {
           "bytes": 38923,
           "kind": "blob",
@@ -1059,6 +1213,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "original_editor_ios_host_deployment": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "original_editor_sheet_host": {
           "bytes": 37347,
           "kind": "blob",
@@ -1171,6 +1332,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "original_editor_ios_host_deployment": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "original_editor_sheet_host": {
           "bytes": 15325,
@@ -1523,6 +1691,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "original_editor_ios_host_deployment": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "original_editor_sheet_host": {
           "bytes": 352039,
@@ -1881,6 +2056,25 @@
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
     },
     {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 1061,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9fb969d36d812ccca1bf905d46cbe6b849c60792",
+        "sha256": "b7c960f94454e99ba9ff43eaec8e84c2fd4b4c8c4c44050d5e82332e95c078e3"
+      },
+      "before": {
+        "bytes": 972,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "0e9b422df3c67c09309eaa19279e85705dca341e",
+        "sha256": "dfc43745124b7c5282274153338c19ca35d1066c1e1cbd90d9ff3b44fc688c0f"
+      },
+      "component": "original_editor_ios_host_deployment",
+      "path": "Source/iOS-Info.plist"
+    },
+    {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
         "kind": "commit",
@@ -1932,6 +2126,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
+        },
+        "original_editor_ios_host_deployment": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "original_editor_sheet_host": {
           "kind": "commit",
