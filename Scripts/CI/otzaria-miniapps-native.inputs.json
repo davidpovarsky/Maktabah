@@ -1,7 +1,7 @@
 {
   "local_producer_manifest": {
-    "path": "/Users/m1/builds/hanlin-miniapps-native-recovery-86a6-20261125/build/native-final-evidence/attempt-86a6dde3-build04/consumer-build/producer-manifest.json",
-    "sha256": "a46fa7e5196e2a66ad7c0126302b390d400cbc6dca84e96d697fa9bf3cb10b25"
+    "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/miniapps86-producer-packet/producer-manifest.json",
+    "sha256": "2fa60b21a153cbe7f1cb6e036d308c0d93ddb60306516989841fd98941ee47ea"
   },
   "local_producer_preparation": {
     "path": "Scripts/CI/miniapps-producer-preparation-86a6dde3.json",

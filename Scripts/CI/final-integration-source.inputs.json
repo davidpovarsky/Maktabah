@@ -8,13 +8,14 @@
     "original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
-    "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda"
+    "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
+    "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "6a458d67ff51a8146ca5fc0a0925beb60416ad1f",
+  "application_source_sha": "f38d150c8e3ea70ab3cd93a4296daa90c647a5db",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "96fb80b44a491ea0974ce23c29f23903ce434817",
+    "Source": "934981bd9a3ca3b87979d9d921b293e18484d98e",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -78,6 +79,13 @@
           "mode": "100644",
           "object": "de180b24b17386a0fcbea0dcf4e59d530afad4fa",
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
+        },
+        "reader_source_actions": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
         }
       },
       "patch": {
@@ -194,6 +202,13 @@
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
         "original_rich_miniapps": {
+          "bytes": 5427,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
+          "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "reader_source_actions": {
           "bytes": 5427,
           "kind": "blob",
           "mode": "100644",
@@ -531,6 +546,13 @@
           "mode": "100644",
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        },
+        "reader_source_actions": {
+          "bytes": 21097,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
+          "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         }
       },
       "patch": {
@@ -607,6 +629,13 @@
           "mode": "100644",
           "object": "746f7a85bce4ca0f12ba994a9c49c367a717c511",
           "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
+        },
+        "reader_source_actions": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         }
       },
       "patch": {
@@ -728,6 +757,13 @@
           "mode": "100644",
           "object": "0d65ce897954a8e70d4a334c4d08761470e2d84a",
           "sha256": "9b8879af22cc56e94b94b4105b95bcd5fc2dc5e2cb7d14ea3a2b56cb1ae341e1"
+        },
+        "reader_source_actions": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         }
       },
       "patch": {
@@ -816,6 +852,13 @@
           "mode": "100644",
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
+        },
+        "reader_source_actions": {
+          "bytes": 38814,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
+          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         }
       },
       "patch": {
@@ -893,6 +936,13 @@
           "mode": "100644",
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        },
+        "reader_source_actions": {
+          "bytes": 30093,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
+          "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         }
       },
       "patch": {
@@ -959,6 +1009,13 @@
           "sha256": "b045480aba915d9fb002de77e1b403700af25a0fd3200b0db72b5ca74680403d"
         },
         "original_rich_miniapps": {
+          "bytes": 12957,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
+          "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "reader_source_actions": {
           "bytes": 12957,
           "kind": "blob",
           "mode": "100644",
@@ -1141,6 +1198,13 @@
           "mode": "100644",
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "reader_source_actions": {
+          "bytes": 22996,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
+          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
         }
       },
       "patch": {
@@ -1267,6 +1331,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "reader_source_actions": {
+          "bytes": 351650,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
+          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
         }
       },
       "patch": {
@@ -1275,6 +1346,184 @@
       },
       "path": "Source/Localizable.xcstrings",
       "reason": " Add only English/Hebrew native file-sharing action label."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 9198,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d66c81ff87067f7a56faaf7c17589aaede01b479",
+        "sha256": "641f3ffe630f109913707427b9dab1ef0d2dd0922afe53790a0a3fa9ceaf8b34"
+      },
+      "before": {
+        "bytes": 9104,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "c247e147286e7da365e96ca4a56cca074516bdec",
+        "sha256": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 34192,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "1b7ecba66a45514af9205a510f2a8baf4582cdc0",
+        "sha256": "ec54d1c9ec8c34a9ce896bf9338d8077988653b0f26c5ccf1fceb5006fe5b43c"
+      },
+      "before": {
+        "bytes": 31084,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "64bf41582f6a360f4aff620494fc3b71b5eefbc3",
+        "sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 10424,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "bcb2637a6a36994d53aeca21b846d1c8bccbfc4a",
+        "sha256": "62248bfe369e5fe56ba2ef5b437cf99ad9711c78106e5079ad70cd55bdd3f75e"
+      },
+      "before": {
+        "bytes": 10269,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "a96c660469c7f888e7595f3c9252b57e2daa246e",
+        "sha256": "aee72c3c9d39e58b82b6eeb5939f6dcca59bcb3d8681ae087f8eef46f049c85d"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 6830,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f3f6072fd68041ae1e6af0418862f4cadf9efd50",
+        "sha256": "2ed5d4366a1d1530d1327a5da520a595b4759fb180af1d4a41452b7e58f170b7"
+      },
+      "before": {
+        "bytes": 6010,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "83bdb60b536356b034ecc71f0969777f088f56ef",
+        "sha256": "79f55666020cfdaf794f90260d600d3c2b4dbc437ccb78c48390b7ca93611cd1"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 54961,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "006f87f122f17b3a44df457f49675f5777b6acb7",
+        "sha256": "666e749e6982ec7af08c57b8bfcae728c08b5e4a4e77f5ddb483d8dfc7347313"
+      },
+      "before": {
+        "bytes": 50933,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "a62aa1b847da66894cd42fea0e3b90bb948bc452",
+        "sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7083,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "54471750ea891a208567cd5e0188302ce87cc852",
+        "sha256": "657e69db94345a2cd5caaf7f9efeef7c0d6ec614f37817b22140dc5fffa6e3ac"
+      },
+      "before": {
+        "bytes": 6420,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "786020324e2b83dad99b6201c013fb6c1506df03",
+        "sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 1872,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "14a7ba68c819b2f9761683f898a4dfa92ebd8bd9",
+        "sha256": "2fe15a50a3952884de1ddfde6a4592d06b74ca85afa55674771d70823f131bb4"
+      },
+      "before": {
+        "bytes": 1834,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d44190d2dd6d6ed634447a094ba27c7922bbb11e",
+        "sha256": "4e175d23a23c1ecdfd2c2c466e4f658dbe62be1ec078b7c7a7fee2b9188574d8"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 9569,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "1b78a52c8d0e0d6bfd7a8134ee2f5ab2a00e61c0",
+        "sha256": "54b6aaf4346c3216215d73e7df32726cb42b0a0b666d627ee296cbb4b45fa92e"
+      },
+      "before": {
+        "bytes": 9531,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "37452cc5d943a049787ac15bc27c1ec060fa034d",
+        "sha256": "43e9b63c86674cf0e8abde0db4582d68ac1638988335203854386b941a622485"
+      },
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 4582,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f35aab162e849dbe6f321d22afa5bd4ada3ea579",
+        "sha256": "f1dd79dfea5b2cddc92c8f0bff603d8cf522b4516e3418e773f69ac4453e9663"
+      },
+      "before": null,
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ReadSectionActionTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 4274,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f93aa14adf7a5b6a58bed3b25285de726fce919c",
+        "sha256": "baeba7d78ce57c736e7d0624076411c92df124632c7f6dfcc066ad3e8a03e94c"
+      },
+      "before": null,
+      "component": "reader_source_actions",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/TableOfContentsActionTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1454,6 +1703,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
+        },
+        "reader_source_actions": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
         }
       },
       "patch": {
