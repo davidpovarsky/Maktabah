@@ -1,11 +1,1133 @@
 {
   "schema_version": "1.2.0",
-  "baseline_commit": "031df35710ab2c6015efb1acd1e65154dbcd3f24",
+  "baseline_commit": "157729471b649a023a81f923be33fb7bfa6e41c9",
   "upstream_pinned_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
   "audit_date": "2026-10-26",
   "policy_authority": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
-  "approval_gate_status": "GATE_OPEN_OWNER_APPROVAL_REQUIRED",
+  "approval_gate_status": "GATE_CLOSED_OWNER_APPROVED",
   "exceptions": [
+    {
+      "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
+      "paths": [
+        "Source/Features/Search/iOS/SearchModeView.swift",
+        "Source/Features/Search/iOS/SearchResultsListView.swift",
+        "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+        "Source/Features/Search/ViewModel/SearchViewModel.swift",
+        "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+        "Source/UI/iOS/Views/iPadLayout.swift",
+        "Source/UI/iOS/Views/iPhoneLayout.swift"
+      ],
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "task_base_sha": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
+      "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
+      "approval_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_ASSIGNMENT_1220546245946205.md",
+      "paging_decision_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_PAGING_SEAM_REVIEW_20261115.md",
+      "scope_and_rollback": "docs/features/search/GLOBAL_SEARCH_OWNERSHIP_20261115.md",
+      "exact_protected_diff": "docs/features/search/selftest-20261115/PROTECTED_HUNKS.patch",
+      "verification": "42 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
+      "review_provenance": "Owner-approved A-G plan; manager explicitly authorized observed narrow paging-error hunks; manager reviews final candidate. No Reader/TOC/Library/Palette/lifecycle/project/workflow hunk implied."
+    },
+    {
+      "patch_id": "CONTINUATION_20261117_READER_OFFMAIN",
+      "paths": [
+        "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+      ],
+      "downstream_paths": [
+        "Source/LibraryBackend/LibraryBackendModels.swift",
+        "Source/LibraryBackend/MaktabahBackendAdapter.swift"
+      ],
+      "base_commit": "cf1c756c1b71681800095641f4798ae4a85df575",
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "authorization_scope": "Current owner explicitly instructs completion of all three phases including Reader performance, all builds/tests, ordinary continuation push and TestFlight after real gates. Phase-wide authorization; not a claim of prior exact-hunk review.",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "patch_digest_sha256": "831f2340406582aa8e2aa262a74b458fa80f046e8e04318621b6c685e9d1c43f",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "necessity": "The two existing original Reader call sites synchronously normalize whole sections on MainActor. Delegate them to the existing downstream adapter; pure Foundation preprocessing runs in a cancellable detached task. Preserve token/current-book and mode guards before publication.",
+      "rejected_alternatives": [
+        "No new reader or parallel render engine.",
+        "Changing only the downstream initializer cannot make a synchronous original call await its result.",
+        "Dispatching UIKit/TextKit to a background thread would violate UI isolation."
+      ],
+      "tests": {
+        "portable": "PASS on actual miniTest10 v6 data: 6081 source rows, exact all-mode text/metadata/UTF16 parity, already-cancelled request rejection; evidence reader-offmain/summary.json",
+        "apple_compilation": "NOT_RUN for these new source changes",
+        "native_runtime": "NOT_RUN for these new source changes",
+        "physical_device": "NOT_RUN"
+      },
+      "rollback": "Revert the continuation Reader-offmain commit only. No database, WAL/SHM, original worktree, original text engines, or historical branches are altered.",
+      "review": "Sole authorized developer review. No subagent or independent QA claim.",
+      "re_review": "Review these two narrow hooks against the next upstream update."
+    },
+    {
+      "patch_id": "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
+      "paths": [
+        "Source/UI/iOS/Views/iPhoneLayout.swift"
+      ],
+      "downstream_paths": [
+        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+      ],
+      "base_commit": "4d0c865a1563e2e6d9dcf1fb9c8bef815539b231",
+      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
+      "authorization_scope": "Current explicit all-three-phase implementation instruction includes native scene routing, iOS App Intents and deep links; phase-wide authorization, not an unseen exact-hunk approval.",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "patch_digest_sha256": "9edad8a25250ac5d50238e274022f4dc011c54529b999fe48a71bf6c716e6eff",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "necessity": "The native scene host was iPad-only although installed in the shared main view. Mount global History/Settings for the actual iPhone scene and add the same passive History surface witness used by iPad.",
+      "scope_limit": "Only already-supported global History/Settings. No reader/content/workspace-specific destination is advertised or enabled. No new URL parser, execution engine, permission system or synthetic receipt.",
+      "tests": "Three real iPhone XCTest wrappers retain all original visible History, same-PID, scene receipt and backend-refusal oracles. Native result pending.",
+      "rollback": "Revert this continuation phone-routing commit only; original phone layout and current iPad gates otherwise unchanged.",
+      "review": "Sole developer; preserve historical native evidence, no PASS transfer."
+    },
+    {
+      "patch_id": "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
+      "paths": [
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+        "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
+      ],
+      "base_commit": "f2f27e92e6c949b2dd4ef83c7438b049a1b898cf",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "authorization_scope": "Current owner all-three-phase native Reader/ActionCore/App Intents integration instruction; phase-wide authorization, not an unseen exact-hunk approval",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "patch_digest_sha256": "c5ff6249a7449510c58f7290e34aa81362faa2737bff93a0055ee3e5b926e450",
+      "scope_and_rollback": "docs/hq-integration/native-reader-witness-20261118/REVIEW.json",
+      "review": "Sole developer, no independent reviewer claim; exact original renderer/view retained"
+    },
+    {
+      "patch_id": "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE",
+      "paths": [
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+      ],
+      "base_commit": "2cc6b26d72eedaf40e9329ef8b535b747aaf45c1",
+      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
+      "authorization_scope": "Current owner explicitly authorizes all three phases, ordinary continuation push and real CI. Phase-wide authorization, not a previous exact-hunk review.",
+      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
+      "patch_digest_sha256": "a1acd93480729dd681a50099ff94fef475ac3642e3fcb9bcb05dcc9c5947505a",
+      "scope_and_rollback": "docs/hq-integration/native-reader-core-20261118/REVIEW.json",
+      "review": "Sole developer; no independent QA claim"
+    },
+    {
+      "path": ".gitignore",
+      "patch_id": "OWNER_PATCH_001",
+      "approval_ref": "OWNER_PATCH_001",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "13e0283e18450fefd77f87532412f30be5a3124b",
+      "patch_digest_sha256": "dadd1cc991e603b5aeb7c8cc0f9b201c2140cf836d9b960d1d65e462093b5908",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_001",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "13e0283e18450fefd77f87532412f30be5a3124b",
+        "patch_digest_sha256": "dadd1cc991e603b5aeb7c8cc0f9b201c2140cf836d9b960d1d65e462093b5908",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "cd64803499985b5546ce90314cf19f3fe6c2357a52b3b1e03582ff8750d936d8d4ce8fa2f01d470d93d0c184151d17e2c823fe060c99cff2aeeaf2cfdae3df05",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "patch_id": "OWNER_PATCH_002",
+      "approval_ref": "OWNER_PATCH_002",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+      "patch_digest_sha256": "2832622a26c4e00b6fa4ca637e939597020e964d939c2cd5c0b211fecf8a9d47",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_002",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+        "patch_digest_sha256": "2832622a26c4e00b6fa4ca637e939597020e964d939c2cd5c0b211fecf8a9d47",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "04e14b8cf2faad7e4b62f70ab2d54aaa5302515c3a5b9d20f9e3cefe5f1ab7b310f3f54e524e84162712eca856a1f2d41f8a38d90d2993fbb82674a82335c50b",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "patch_id": "OWNER_PATCH_003",
+      "approval_ref": "OWNER_PATCH_003",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+      "patch_digest_sha256": "07b8e7e2408842b82de34cefea39727e45a627cdd5027403dde3f88bd0e1cba6",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_003",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
+        "patch_digest_sha256": "07b8e7e2408842b82de34cefea39727e45a627cdd5027403dde3f88bd0e1cba6",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e48899767545c59c229a6bee068d1c310d4730b34500de36f607349e3a3aa1fd1af22f7cb43dd8937a73dbaca1d8864a3ce9c002d16cb1824cf581f76e6fa301",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "patch_id": "OWNER_PATCH_004",
+      "approval_ref": "OWNER_PATCH_004",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+      "patch_digest_sha256": "7cd65635b154e29a3566c80c1e6a8e1aabca0f95b57f631253d3161cc9d5e67d",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_004",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+        "patch_digest_sha256": "7cd65635b154e29a3566c80c1e6a8e1aabca0f95b57f631253d3161cc9d5e67d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "35b439ae3403acaf80c7977bb863bffffaa7a362793eab2294e4a434d736162288d32ceebaff6cde91284eb2759ab7ccfcdfb35b3d11e3397db546c978b33e03",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "patch_id": "OWNER_PATCH_005",
+      "approval_ref": "OWNER_PATCH_005",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "970f67f278ecf9f38070eae88fc1d5d46a6b370b",
+      "patch_digest_sha256": "69fcd805f7ff80f673dd31d0d3ee544746b0ddba02e9c8f26a8af53fdd8d1090",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_005",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "970f67f278ecf9f38070eae88fc1d5d46a6b370b",
+        "patch_digest_sha256": "69fcd805f7ff80f673dd31d0d3ee544746b0ddba02e9c8f26a8af53fdd8d1090",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "db038355df1d085dcc2fc4eba82b907e8156a45c34b92e290ce3be07a87dc7a2d88e868b24c00eb51982983d2931b6a31476a40eb70cc5143a4e3cc1702fce06",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "patch_id": "OWNER_PATCH_006",
+      "approval_ref": "OWNER_PATCH_006",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "patch_digest_sha256": "d4006e9d70a31e683d219dbd9914487bd5381e75cb635100805f711f752fc768",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_006",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+        "patch_digest_sha256": "d4006e9d70a31e683d219dbd9914487bd5381e75cb635100805f711f752fc768",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "ad0cf579aee0cc6ae04c8f2e27dcbdf4ec46a8e25b680fb4b63804fb450acb758fb97781365e88f5114fd69b0d3913e09a14e76e69ef61e3871072f6f3990409",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "patch_id": "OWNER_PATCH_007",
+      "approval_ref": "OWNER_PATCH_007",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "96fb9890aab0804090247c9b9f8f8700c56de892",
+      "patch_digest_sha256": "24efe8332dda70d6892df9275d83902981939e112e645da7b6123fc1953fb0e4",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_007",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "96fb9890aab0804090247c9b9f8f8700c56de892",
+        "patch_digest_sha256": "24efe8332dda70d6892df9275d83902981939e112e645da7b6123fc1953fb0e4",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "2c26913fc999de1e10438c995b9d86aec2e729d23e6ed4c682597e4334c4ceb10523c4a45c315e73ec001671fc55a0a78657ac9af8bdd1766741e3a249bdd80a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "patch_id": "OWNER_PATCH_008",
+      "approval_ref": "OWNER_PATCH_008",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+      "patch_digest_sha256": "b22fd121eed1779c76f7ca4e6b502b12e9e4b25275931c0ddadd7106a43706a4",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_008",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+        "patch_digest_sha256": "b22fd121eed1779c76f7ca4e6b502b12e9e4b25275931c0ddadd7106a43706a4",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "23cc2ff9ef422ebd38c7eb32bf1692d31146aa779fb0b08e673d678fd76a2f032b86b03cb6f7d936c4e7d5dd05e18b84603bae3cc87077b09f398b5abd458605",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "patch_id": "OWNER_PATCH_009",
+      "approval_ref": "OWNER_PATCH_009",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "940a67a916f76348d11ae593ba6349948bb13582",
+      "patch_digest_sha256": "9fe638191fb2a22f80a3b3061f40d4c885b875c5699738c8717829b4de3bba72",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_009",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "940a67a916f76348d11ae593ba6349948bb13582",
+        "patch_digest_sha256": "9fe638191fb2a22f80a3b3061f40d4c885b875c5699738c8717829b4de3bba72",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "49d288c2c1bad63e4b3408fc27718f0a2c28471d6d17cd736ad517b9b0c06485f5a55b3fbb85e595c55c7aa0c07a8b1e90f0df0a80bd1605a250ed71dfc0bc0a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "patch_id": "OWNER_PATCH_010",
+      "approval_ref": "OWNER_PATCH_010",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+      "patch_digest_sha256": "9fe42711bf3f05f3217cf4da65d07325180ed1fba62ba06d96a0a3014be4618a",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_010",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+        "patch_digest_sha256": "9fe42711bf3f05f3217cf4da65d07325180ed1fba62ba06d96a0a3014be4618a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "84c4d1d6e108ee92934cc03c976e896ff53dea31062039a247939be333b34d3177e93a04596d13b69a4ee15a1e0ec4056c1aaaeef902c0f67091604757a7fa0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "patch_id": "OWNER_PATCH_011",
+      "approval_ref": "OWNER_PATCH_011",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+      "patch_digest_sha256": "82717c62468e932aa8f0c6222d051c6c827febf305f20028353ba7e936aa462a",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_011",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+        "patch_digest_sha256": "82717c62468e932aa8f0c6222d051c6c827febf305f20028353ba7e936aa462a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "6bbc77cb8f8c7b1afd0367b6b8f01f114bfd1662825345a0242b0cc704f742ffdbc996568272dc5109480de2c5e5e2fb21f8ccd1e6365efff1cd175760ac7c02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "patch_id": "OWNER_PATCH_012",
+      "approval_ref": "OWNER_PATCH_012",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+      "patch_digest_sha256": "3f8b01644ba0aa34a5ab39a5acf75bc7959d315fdff4c8d1e99c1b50011c298d",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_012",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+        "patch_digest_sha256": "3f8b01644ba0aa34a5ab39a5acf75bc7959d315fdff4c8d1e99c1b50011c298d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "13e21b6139a89d37f84ce4b25e1d464d697ca05902c90bdcb83153d07d67a44d70ac5e261b5d80912461fa79cb457cf1b25a55843cf858c31e6510d9a00ae907",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "patch_id": "OWNER_PATCH_013",
+      "approval_ref": "OWNER_PATCH_013",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+      "patch_digest_sha256": "704c4bab8ee289577eec39b670b8e2441ca9ea21e36ff1043c66a4e1c8873879",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_013",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+        "patch_digest_sha256": "704c4bab8ee289577eec39b670b8e2441ca9ea21e36ff1043c66a4e1c8873879",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "fab398409bf5e29f3441b445eb2cfe7f5e9c0bab269aae250124a578ba36c6aa00ad18ac26782a86a9433e1e8f36751aa91e18353e99e8dd29c138cf8e18bc02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "patch_id": "OWNER_PATCH_014",
+      "approval_ref": "OWNER_PATCH_014",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+      "patch_digest_sha256": "a114769093c189230b75b2118c83eb390c636602a4ea4ef01438374790697f69",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_014",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+        "patch_digest_sha256": "a114769093c189230b75b2118c83eb390c636602a4ea4ef01438374790697f69",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "530c02c667915539892a2421661ddc76fef1fcb38d5e50974a7f7b9370d3b297a135384984f773ad0790f1d5b63a6dbbf87917bb0513e48712c6881ae232750a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "patch_id": "OWNER_PATCH_015",
+      "approval_ref": "OWNER_PATCH_015",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "46f202177491274e37e140326913cfcbf716883b",
+      "patch_digest_sha256": "cb89bb4dc99f965cb27ddf8b65988fe2b6b0c71403c95ffdaa8b662746625da8",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_015",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "46f202177491274e37e140326913cfcbf716883b",
+        "patch_digest_sha256": "cb89bb4dc99f965cb27ddf8b65988fe2b6b0c71403c95ffdaa8b662746625da8",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "22b4cb003b737d57b1163dc535a04295ee1f28f7962ba343ff8b778a698edaa55b4ecf5ff81babdaecc2b8b0a4cd86f3eba2461077e3ba162c199c4f9b055c07",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/Cache/BookPageCache.swift",
+      "patch_id": "OWNER_PATCH_016",
+      "approval_ref": "OWNER_PATCH_016",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+      "patch_digest_sha256": "a47d4d921bf65cc5f28a665f0775b1316bde343a5ed94acb1e51ad7777e63166",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_016",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+        "patch_digest_sha256": "a47d4d921bf65cc5f28a665f0775b1316bde343a5ed94acb1e51ad7777e63166",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "858e45131af560d1752f7f019f16815da77702614a44efcb70d7fb231537f2ad74e0b8505e27cd719d84b4ddbbfd8aa2e69f8296fbbc1a7181d28a36e6f56201",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "patch_id": "OWNER_PATCH_017",
+      "approval_ref": "OWNER_PATCH_017",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2338175e3d2ed5f421c91c192957135dde61d00a",
+      "patch_digest_sha256": "c673664d3d9a14d1ef1886b07cd22bf508085cb50ce602e06975ddb7529b303f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_017",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2338175e3d2ed5f421c91c192957135dde61d00a",
+        "patch_digest_sha256": "c673664d3d9a14d1ef1886b07cd22bf508085cb50ce602e06975ddb7529b303f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "d21f537852b0840f4e53c43b00ed2aa3ce7a06b9f4787ed01c96142e1009c91d4c8547dcd719de0a1a51b1648ec25b624d7f0cce4946a977873e395bfe66fc0e",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "patch_id": "OWNER_PATCH_018",
+      "approval_ref": "OWNER_PATCH_018",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2f1002c6d131211c72185796042c9e5e7f401cba",
+      "patch_digest_sha256": "fdbd7278af4d7491e47316abadaddaed35f0447c00203ea66c47ddcbd8894d22",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_018",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2f1002c6d131211c72185796042c9e5e7f401cba",
+        "patch_digest_sha256": "fdbd7278af4d7491e47316abadaddaed35f0447c00203ea66c47ddcbd8894d22",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "476dc37957469a7b5fa91118f84ca630b1637d1ffa048bbf15f96c4f298deeb47adef68741da496a6a400f4af387ea8b91671cf31e79199de1c2cd9a0df6c604",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+      "patch_id": "OWNER_PATCH_019",
+      "approval_ref": "OWNER_PATCH_019",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+      "patch_digest_sha256": "74dcef59f1d7d8387462c6b981958af9a5cf707d03b911d10417bf18a3370723",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_019",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+        "patch_digest_sha256": "74dcef59f1d7d8387462c6b981958af9a5cf707d03b911d10417bf18a3370723",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e347c1ffdca92302fcceda3424e8bffc6fd409f51e7327cfd48e1ccfd316fdeb723fe380aa2f0480d3c069769ad7b022c5f8765f5a286b1c35f6bae6ec51360d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "patch_id": "OWNER_PATCH_020",
+      "approval_ref": "OWNER_PATCH_020",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "patch_digest_sha256": "7a3526f4d4fa9f8f4ef3c2c158940ccd78e6ff168d643d843454a9b5ca861e7a",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_020",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+        "patch_digest_sha256": "7a3526f4d4fa9f8f4ef3c2c158940ccd78e6ff168d643d843454a9b5ca861e7a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "730aa869355a49fd750214f9bf7c6ccdcf67509030d1f34b78caae00fc24e274326b56b6548a1d61f2c1dabf9963262e2e8a437196f83bba323c31cd60b1d30e",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "patch_id": "OWNER_PATCH_021",
+      "approval_ref": "OWNER_PATCH_021",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+      "patch_digest_sha256": "79b0752ea64497ce8f73594a624e5bd90a80a7e943444d9ffe3afc5a3f3dfb6f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_021",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+        "patch_digest_sha256": "79b0752ea64497ce8f73594a624e5bd90a80a7e943444d9ffe3afc5a3f3dfb6f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "c1c01a40460609e0a096b50432f8a831b100a8ca6b85ff5f3c4d926b3fab47f5d43f3859df383e5c795dfb23eb4ae5dbc8cd47d601ccfd5823250d3aa0b5c500",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "patch_id": "OWNER_PATCH_022",
+      "approval_ref": "OWNER_PATCH_022",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+      "patch_digest_sha256": "dd5e1d915bea2a165e3a67a27667c4e00c0bf2f93c289b5944bbfeabdaf8ad8a",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_022",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+        "patch_digest_sha256": "dd5e1d915bea2a165e3a67a27667c4e00c0bf2f93c289b5944bbfeabdaf8ad8a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "f5872ca546bbf6204722799e7833b52149e42c8d7b48537f5429564121e242aa3b9f5d3fdcc6d0850d3022e4fa2f1a84fc13f2ca82b91225d107a8a28705030a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "patch_id": "OWNER_PATCH_023",
+      "approval_ref": "OWNER_PATCH_023",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+      "patch_digest_sha256": "08c4395771fdc8b00ed18c55bf3cdbc60e58c09a8b35df782c1a9a9a822252c2",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_023",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+        "patch_digest_sha256": "08c4395771fdc8b00ed18c55bf3cdbc60e58c09a8b35df782c1a9a9a822252c2",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "9c68c7c64b5c62f66bbff916dd9c512cfbdac31fad9d32e3dfe72f9be022dea7e2ce3eaab6c9585a1b7611a037faaea292a60efc1fba8b692f5623aada0b2500",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "patch_id": "OWNER_PATCH_024",
+      "approval_ref": "OWNER_PATCH_024",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+      "patch_digest_sha256": "c14e25c5b99362ae0c1d2e057e28d7cba41dd1302afd71e4e104f6f2a952aaf7",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_024",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+        "patch_digest_sha256": "c14e25c5b99362ae0c1d2e057e28d7cba41dd1302afd71e4e104f6f2a952aaf7",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "a856be67ab6adff320b7c8f7d549265d5b160625ad18ffe1f03e80e3c0d651d036793ada68f470f0d126af3e47a2718c70864f8db21087aed838674c7665190c",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "patch_id": "OWNER_PATCH_025",
+      "approval_ref": "OWNER_PATCH_025",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+      "patch_digest_sha256": "92bec49e909a51d8733106713eb9cd1f4313036434ddf281c77c65bfaadaab9d",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_025",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+        "patch_digest_sha256": "92bec49e909a51d8733106713eb9cd1f4313036434ddf281c77c65bfaadaab9d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "25f2536bb0588e8be15d35bd82a092d6f99cf74e1feba8ee2089bfd76c62001e74ce699238f56d6651b2eca0e99ad47e95cda0d7de8b5046e5545a9f03584406",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "patch_id": "OWNER_PATCH_026",
+      "approval_ref": "OWNER_PATCH_026",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+      "patch_digest_sha256": "1521988d499ef24de181afe4e0506e8ed93ab1ead913c605b0277e115f8f1f5d",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_026",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+        "patch_digest_sha256": "1521988d499ef24de181afe4e0506e8ed93ab1ead913c605b0277e115f8f1f5d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e599a5adacd87256913238662ee029120d0bc8a9ced8be1c44c8dbe2f7336945536cf791ec943079587532dc72d40ea43b4ba25c9bdf31ea682f056d6de7dc0b",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "patch_id": "OWNER_PATCH_027",
+      "approval_ref": "OWNER_PATCH_027",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "e7fdeeada1226cf42552b3b4484234e44d478293",
+      "patch_digest_sha256": "e22a523270a3b9cefdf796a6b8b943e297f0a8dbbe71fe365842d6a652124eba",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_027",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e7fdeeada1226cf42552b3b4484234e44d478293",
+        "patch_digest_sha256": "e22a523270a3b9cefdf796a6b8b943e297f0a8dbbe71fe365842d6a652124eba",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "05f57e5ccb8404051616af60e5d0e979cb3d5cb26c85c723e8b174b70bac85867d8e7ea6bb52857afd1d719a314bbc39fe648c1b1399d31aa77d43eaebfbf905",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "patch_id": "OWNER_PATCH_028",
+      "approval_ref": "OWNER_PATCH_028",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+      "patch_digest_sha256": "e10056016b2faa3607d7e43f64484a2bc16c682aea0699f935f5275281355143",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_028",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+        "patch_digest_sha256": "e10056016b2faa3607d7e43f64484a2bc16c682aea0699f935f5275281355143",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "3b5486b319e7f83e5ca1f37b30193e38d6614bef4f1c7c35abe3327cdb7b395e15033dccdc094e8f7838c92b6167091d2c2fd8ae6e3d20f034b7e65792d71f0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "patch_id": "OWNER_PATCH_029",
+      "approval_ref": "OWNER_PATCH_029",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+      "patch_digest_sha256": "8bb2c0f841576b4041369e29e059079b0a58b0f8fe6a48f7a62dfcc397df5f55",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_029",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+        "patch_digest_sha256": "8bb2c0f841576b4041369e29e059079b0a58b0f8fe6a48f7a62dfcc397df5f55",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "117008bb29a49249ba5baebcb01e06ef3a0e882bccf87c35048c4e851f3d2bf09370f84dbdcc1d06ee171c6038755ab4adc190c4797e8cc5e408cfaf5cfd6102",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "patch_id": "OWNER_PATCH_030",
+      "approval_ref": "OWNER_PATCH_030",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "3d0e3b4301b3d65b403eb4c09c01e8ab196391d5",
+      "patch_digest_sha256": "a2a16a12aae375d1c8329e65cddbd2308ad4351c7b4276bcfce5029716df496a",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_030",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "3d0e3b4301b3d65b403eb4c09c01e8ab196391d5",
+        "patch_digest_sha256": "a2a16a12aae375d1c8329e65cddbd2308ad4351c7b4276bcfce5029716df496a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "3b19704fa5460c031b5ac852a93dd3d0397602fd0273f49d7de7506429780e4e9b7d699ac43adf1791af187e7e0d7c8d0bb45e28c51154f9f62a06accf78ef0c",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "patch_id": "OWNER_PATCH_031",
+      "approval_ref": "OWNER_PATCH_031",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "99fc2356a4277703675a215a1d0502a00f8a4124",
+      "patch_digest_sha256": "ed7814d972ac29be1f9c1b7849228c06898953c62345244b8edd24685209834d",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_031",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "99fc2356a4277703675a215a1d0502a00f8a4124",
+        "patch_digest_sha256": "ed7814d972ac29be1f9c1b7849228c06898953c62345244b8edd24685209834d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "332425411fa768f74246acb01fea49752d62beefa78f025a91ab5d92413d706f80a1097dff16b6937b2db496e2580cb4a79115fa76611f6768e48d7f8b2d6d0c",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "patch_id": "OWNER_PATCH_032",
+      "approval_ref": "OWNER_PATCH_032",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+      "patch_digest_sha256": "04c91eca13bfacfbecbca6c263006521d66cfb9ef728e93b62677665aeef2e3f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_032",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+        "patch_digest_sha256": "04c91eca13bfacfbecbca6c263006521d66cfb9ef728e93b62677665aeef2e3f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "2d94882bfb456d4302e2495949e44392363c56b9a6a830c1ee6fe235a7762745ab3d1a6e0f60dd1d45781e5965752309c367185b37f3f7afa93b39bf87a5db02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "patch_id": "OWNER_PATCH_033",
+      "approval_ref": "OWNER_PATCH_033",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "0dffa1139c3492834162cdddc52fb3252223eaa8",
+      "patch_digest_sha256": "053466f4bc0891c937de61044b478563b27620d5cd7370f64127a975fcffd757",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_033",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "0dffa1139c3492834162cdddc52fb3252223eaa8",
+        "patch_digest_sha256": "053466f4bc0891c937de61044b478563b27620d5cd7370f64127a975fcffd757",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "af2c3a16b150623eb9c47bdc64a001ff27ff88418c1234b40c99d1f07da52f039c3eb746d7fbe14191db5548f202ca371b32e3e0ae4811e9dbf4b46869b29f0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "patch_id": "OWNER_PATCH_034",
+      "approval_ref": "OWNER_PATCH_034",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "566117c44bba83cffbb0664fc700b673e331eb63",
+      "patch_digest_sha256": "5992be34f0c4cf2ed60fa1e5da24164483b1009edd84b147969b4eaa26104061",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_034",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "566117c44bba83cffbb0664fc700b673e331eb63",
+        "patch_digest_sha256": "5992be34f0c4cf2ed60fa1e5da24164483b1009edd84b147969b4eaa26104061",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "d21652a76a0d0b241604a42c36098d0a5e2e328f6bbc16b3c4e5d8eea39d19cbf835ab8804e6dd2ee4fe357b6bb38fafc874786513ed624af92bbf9fb95e4106",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "patch_id": "OWNER_PATCH_035",
+      "approval_ref": "OWNER_PATCH_035",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+      "patch_digest_sha256": "078d81333a16c48af7f5614ea275e70873e1ba84f9f9f4f62db8c7d95c3a758f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_035",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+        "patch_digest_sha256": "078d81333a16c48af7f5614ea275e70873e1ba84f9f9f4f62db8c7d95c3a758f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e4df2862d922ec431003660cc7f509bd99c3565d991a1dd067e131ec8faaec216d6d2d6c3195e41f5e37bf66fb8254f8e38ccfd746451be07ea3216286dcc601",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "patch_id": "OWNER_PATCH_036",
+      "approval_ref": "OWNER_PATCH_036",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d4f061293e7c8682d41320602da5692d47dce7d9",
+      "patch_digest_sha256": "0c3e777a1d1ed29fbd02a40913dadb316eb8510802e0bda1a534e5c0eaf05cf2",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_036",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d4f061293e7c8682d41320602da5692d47dce7d9",
+        "patch_digest_sha256": "0c3e777a1d1ed29fbd02a40913dadb316eb8510802e0bda1a534e5c0eaf05cf2",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "c1ddda346f227f65e6c63d44386393a6a776e26ba7f2885dee208108917e8c8ab5ce9a1a7bbf1bed6cfbfd45b384f0f3a70c960ab2eb847b6e848817d8b2a603",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "patch_id": "OWNER_PATCH_037",
+      "approval_ref": "OWNER_PATCH_037",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+      "patch_digest_sha256": "b54d47d445c01c03828efcc798fa9cb535521ffdeca8d99e5c81816c41905453",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_037",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+        "patch_digest_sha256": "b54d47d445c01c03828efcc798fa9cb535521ffdeca8d99e5c81816c41905453",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "78fcd2048843235fdc3db2e998fa614ed50d271911392bf0ef38d1728206437f556c44acd3175cb8de2057f6ea500f8b29ac624a3e362462b4d935edffcd7a08",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "patch_id": "OWNER_PATCH_038",
+      "approval_ref": "OWNER_PATCH_038",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "05254df866e1f6a866e2807a8a5ed49561273b22",
+      "patch_digest_sha256": "e073647ab598ccf3abc4ffaa52de1f46c8ca3ce04ee27dfd0d2ed84f66230014",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_038",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "05254df866e1f6a866e2807a8a5ed49561273b22",
+        "patch_digest_sha256": "e073647ab598ccf3abc4ffaa52de1f46c8ca3ce04ee27dfd0d2ed84f66230014",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "77163f746d8b243473f4024ca6887f9859a35c34245308025328d525608f32647c8aca32dd4c2a6fb1d094dc8077a4fc46ab2112b95cfa243c9593001cdb7d01",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "patch_id": "OWNER_PATCH_039",
+      "approval_ref": "OWNER_PATCH_039",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d8488611ddfb166985a0e724bec6495a45f15b1e",
+      "patch_digest_sha256": "db5c2e734fa7408b2ce00bbafbaef3a4e5cd3c47b31b2e2ffb6bad6af6014456",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_039",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d8488611ddfb166985a0e724bec6495a45f15b1e",
+        "patch_digest_sha256": "db5c2e734fa7408b2ce00bbafbaef3a4e5cd3c47b31b2e2ffb6bad6af6014456",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "340c9f68e206fe5aecbb8e36d7c775b27d0a62737793ca0263a092fafa45e36487f8d5e4fbeb2889692f7273666a495f0aae67c714aa61f47583c84d938e6106",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "patch_id": "OWNER_PATCH_040",
+      "approval_ref": "OWNER_PATCH_040",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+      "patch_digest_sha256": "3a0440a10720771e1cc0f3a0f26cab63f603345e644d12c5c2e628a2491b9b5e",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_040",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+        "patch_digest_sha256": "3a0440a10720771e1cc0f3a0f26cab63f603345e644d12c5c2e628a2491b9b5e",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "72a9fe0e787a47058ae37a9c205ea442805809738dbda7c90d8b21ecf5c9438aeeefecc81aa4fcb608a4374086ec7003366b7ed75806a94d8aa03aaa310aa805",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "patch_id": "OWNER_PATCH_041",
+      "approval_ref": "OWNER_PATCH_041",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+      "patch_digest_sha256": "18e89b53a34aa85d0a72aa6be9a0e7883c39912d7cef6e3991445033ce704dfe",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_041",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+        "patch_digest_sha256": "18e89b53a34aa85d0a72aa6be9a0e7883c39912d7cef6e3991445033ce704dfe",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "14875beb435edfefe2e1565a3a0b0fd590aebf6c8a4ca397f568cc28bfba7581115262b9748da48099f7979a572eecfac5ff71a6eb092e71e9bddea701064b0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Managers/BootstrapManager.swift",
+      "patch_id": "OWNER_PATCH_042",
+      "approval_ref": "OWNER_PATCH_042",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+      "patch_digest_sha256": "0514df6e1d879e5e770b93a4ec3685c3a0eb180df37325e8e6caaea669d043b8",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_042",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+        "patch_digest_sha256": "0514df6e1d879e5e770b93a4ec3685c3a0eb180df37325e8e6caaea669d043b8",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "cbb6efe5428c8ce645a3c6424896b6684deffea5547c637573522acf6259a691ae3480df8e77236514a8d902475cd0493aab80ef429e77a7b92d2f742901cf09",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "patch_id": "OWNER_PATCH_043",
+      "approval_ref": "OWNER_PATCH_043",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "def39a6647946953c58d4b813fd80d53757ba22a",
+      "patch_digest_sha256": "696190dff02d97e7fa8d69c306405f93e4250b91db39f562b8b7bfaeb2191422",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_043",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "def39a6647946953c58d4b813fd80d53757ba22a",
+        "patch_digest_sha256": "696190dff02d97e7fa8d69c306405f93e4250b91db39f562b8b7bfaeb2191422",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "6c6edfe3755221ef85b4d93a0c453460f8116ff2f60b37b03039b725fccf694806870d03256b0aa3a44000cf5e55422196255ba7dc75ca75afd91bfda4ccad04",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "patch_id": "OWNER_PATCH_044",
+      "approval_ref": "OWNER_PATCH_044",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "41b29a581f9e76bd127359db94f6a804f324efdf",
+      "patch_digest_sha256": "5c783ea3489383a7f0b07f2f4f363e1cedcd3a4b1dc5107a4b50177ae28a9c0b",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_044",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "41b29a581f9e76bd127359db94f6a804f324efdf",
+        "patch_digest_sha256": "5c783ea3489383a7f0b07f2f4f363e1cedcd3a4b1dc5107a4b50177ae28a9c0b",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "26c5686f979ab50ba4bd80dc1774f6d1aecbbd57eb50a9e8aadc237bab6a8a782b20e22aacdc06b0ad2bd376e28aae26311fd528f0947d20aafb673759e7c206",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "patch_id": "OWNER_PATCH_045",
+      "approval_ref": "OWNER_PATCH_045",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "patch_digest_sha256": "2f560895adc78ca3a729581cf651a3a5f8db7c2e8f5a34f12ef7f1c69097e00c",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_045",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+        "patch_digest_sha256": "2f560895adc78ca3a729581cf651a3a5f8db7c2e8f5a34f12ef7f1c69097e00c",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "59e6eb3dd6459aa3fbe1e6441a609ca5429e8501b203d772eed26b53b0d46edf6c8a6b9ea3cd97fb26557343161a8c342de6f7bf6b2264e220d99e78629ae409",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "patch_id": "OWNER_PATCH_046",
+      "approval_ref": "OWNER_PATCH_046",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "3f7bb041252146dc4893d407b44f343646de4f8b",
+      "patch_digest_sha256": "a985ebfaed4a939cca7384f051d0bb720d85817cd2cbba0b6b5e04088022abf6",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_046",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "3f7bb041252146dc4893d407b44f343646de4f8b",
+        "patch_digest_sha256": "a985ebfaed4a939cca7384f051d0bb720d85817cd2cbba0b6b5e04088022abf6",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "c115c15cbc0d05f93191ae9d173e345aa2eb974c8c4280c25c234297bd0a6f678037e4ee03877f3aec375fe6facf60b5eefa39ce6145819ff815a9e48180a608",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "patch_id": "OWNER_PATCH_047",
+      "approval_ref": "OWNER_PATCH_047",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "ce413b580c80b2eadc15236f0488bba279d974c6",
+      "patch_digest_sha256": "f9b4561a7f139e7ec37f3f3a6e21a396a2126ef1fb1c2e39e8f1fefb45ba364f",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_047",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "ce413b580c80b2eadc15236f0488bba279d974c6",
+        "patch_digest_sha256": "f9b4561a7f139e7ec37f3f3a6e21a396a2126ef1fb1c2e39e8f1fefb45ba364f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "1f12b1eefbe0769743c1f1a4a8320287d71ff2799c7f7efacd84032a6dd168145e6700585ceb82751f2f4484d3d6a835eba9d6241a4cc02ecbc4e92d48922a00",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "patch_id": "OWNER_PATCH_048",
+      "approval_ref": "OWNER_PATCH_048",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "de46cfa4a90a8472f2c1fc5d1224eb4e8654be47",
+      "patch_digest_sha256": "f42b28ac42edab3b3a698caf09df4ab41e4ed9f6575b312413804e657f232486",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_048",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "de46cfa4a90a8472f2c1fc5d1224eb4e8654be47",
+        "patch_digest_sha256": "f42b28ac42edab3b3a698caf09df4ab41e4ed9f6575b312413804e657f232486",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "9f14b006e6f9bbe116abce507a7a6d2dba6a735b9b1a8525bef77d6c6502d6eff3a48b94be6cb203b671193c9bed7f2f3bb89760903af2cb9f21c60c2c637a00",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "patch_id": "OWNER_PATCH_049",
+      "approval_ref": "OWNER_PATCH_049",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "0f62ae7d935deb63b93c787d8f1d2177b1e4c471",
+      "patch_digest_sha256": "d6064357e1eae75ae7fdf61a8aa40d7af2680f846ecd09ac5ffb3c163106c26b",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_049",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "0f62ae7d935deb63b93c787d8f1d2177b1e4c471",
+        "patch_digest_sha256": "d6064357e1eae75ae7fdf61a8aa40d7af2680f846ecd09ac5ffb3c163106c26b",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e8a5d41a532ee17cd1f936e577111cecdac918c9328a3d3e58866c4f54ce7cd2bc621354a1c9344764cf56e7011bf491da61c98b0c0ab9d55d8087aafa13f80b",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "patch_id": "OWNER_PATCH_050",
+      "approval_ref": "OWNER_PATCH_050",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+      "patch_digest_sha256": "b949b76586ceccf0516ebc0b0e59a6738d99ce66871e76396e4a310191bc3d26",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_050",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+        "patch_digest_sha256": "b949b76586ceccf0516ebc0b0e59a6738d99ce66871e76396e4a310191bc3d26",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "f5ec58087034e38588ab59c86976b6af6784afb3ef102c0ead68a4f52e20ca35a2897d0721bdeeb77d018ba70a1a97ab46f89f2c839632c48306013302283a09",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    },
+    {
+      "path": "Source/iOS-Info.plist",
+      "patch_id": "OWNER_PATCH_051",
+      "approval_ref": "OWNER_PATCH_051",
+      "status": "APPROVED",
+      "expected_head_blob_sha": "0e9b422df3c67c09309eaa19279e85705dca341e",
+      "patch_digest_sha256": "5e72b4a182cdf597601820307238933025f49cd3da4aa956a5a84c4c46f89a44",
+      "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+      "owner_attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_051",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "0e9b422df3c67c09309eaa19279e85705dca341e",
+        "patch_digest_sha256": "5e72b4a182cdf597601820307238933025f49cd3da4aa956a5a84c4c46f89a44",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "ae2c573d695a3b88334743c916c194506a7200dc40450713161ccc48a7c1077a29e64231c15685879ebc7e3303aa70600c0c3e24062bbe047bc7ec0ffbe4d20e",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      }
+    }
+  ],
+  "superseded_unsigned_proposals": [
     {
       "patch_id": "BUILD_8401_PATCH_01",
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
@@ -189,27 +1311,6 @@
       "owner_attestation": null
     },
     {
-      "patch_id": "GLOBAL_SEARCH_1220546245946205_20261115",
-      "paths": [
-        "Source/Features/Search/iOS/SearchModeView.swift",
-        "Source/Features/Search/iOS/SearchResultsListView.swift",
-        "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
-        "Source/Features/Search/ViewModel/SearchViewModel.swift",
-        "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
-        "Source/UI/iOS/Views/iPadLayout.swift",
-        "Source/UI/iOS/Views/iPhoneLayout.swift"
-      ],
-      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
-      "task_base_sha": "13e40d1daa4a53799c94cd8ed5170f1343b9b1e8",
-      "status": "AUTHORIZED_SCOPED_IMPLEMENTATION_NATIVE_ACCEPTANCE_OPEN",
-      "approval_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_ASSIGNMENT_1220546245946205.md",
-      "paging_decision_ref": "Codex-Agent-HQ/docs/otzaria/single-manager-wave-20261115/GLOBAL_SEARCH_PAGING_SEAM_REVIEW_20261115.md",
-      "scope_and_rollback": "docs/features/search/GLOBAL_SEARCH_OWNERSHIP_20261115.md",
-      "exact_protected_diff": "docs/features/search/selftest-20261115/PROTECTED_HUNKS.patch",
-      "verification": "42 session/presentation + 18 actual paging + 191 existing engine/model wrapper + 14 cached-readiness portable assertions; native/physical NOT_RUN",
-      "review_provenance": "Owner-approved A-G plan; manager explicitly authorized observed narrow paging-error hunks; manager reviews final candidate. No Reader/TOC/Library/Palette/lifecycle/project/workflow hunk implied."
-    },
-    {
       "patch_id": "GLOBAL_SEARCH_MANAGER_REGISTRATION_DEPLOYMENT_20261115",
       "path": "Maktabah.xcodeproj/project.pbxproj",
       "status": "SCOPED_INTEGRATION_NATIVE_ACCEPTANCE_OPEN",
@@ -220,85 +1321,6 @@
       "source_and_rollback": "docs/features/search/manager-integration/INTEGRATION_REVIEW.md",
       "verification": "17 source inputs +9 actual app source graph paths verified;42presentation +18actual paging manager portable assertions; Apple/native/physical NOT_RUN",
       "preserved_baseline_duplicates": 5
-    },
-    {
-      "patch_id": "CONTINUATION_20261117_READER_OFFMAIN",
-      "paths": [
-        "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
-        "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
-      ],
-      "downstream_paths": [
-        "Source/LibraryBackend/LibraryBackendModels.swift",
-        "Source/LibraryBackend/MaktabahBackendAdapter.swift"
-      ],
-      "base_commit": "cf1c756c1b71681800095641f4798ae4a85df575",
-      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
-      "authorization_scope": "Current owner explicitly instructs completion of all three phases including Reader performance, all builds/tests, ordinary continuation push and TestFlight after real gates. Phase-wide authorization; not a claim of prior exact-hunk review.",
-      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
-      "patch_digest_sha256": "831f2340406582aa8e2aa262a74b458fa80f046e8e04318621b6c685e9d1c43f",
-      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
-      "necessity": "The two existing original Reader call sites synchronously normalize whole sections on MainActor. Delegate them to the existing downstream adapter; pure Foundation preprocessing runs in a cancellable detached task. Preserve token/current-book and mode guards before publication.",
-      "rejected_alternatives": [
-        "No new reader or parallel render engine.",
-        "Changing only the downstream initializer cannot make a synchronous original call await its result.",
-        "Dispatching UIKit/TextKit to a background thread would violate UI isolation."
-      ],
-      "tests": {
-        "portable": "PASS on actual miniTest10 v6 data: 6081 source rows, exact all-mode text/metadata/UTF16 parity, already-cancelled request rejection; evidence reader-offmain/summary.json",
-        "apple_compilation": "NOT_RUN for these new source changes",
-        "native_runtime": "NOT_RUN for these new source changes",
-        "physical_device": "NOT_RUN"
-      },
-      "rollback": "Revert the continuation Reader-offmain commit only. No database, WAL/SHM, original worktree, original text engines, or historical branches are altered.",
-      "review": "Sole authorized developer review. No subagent or independent QA claim.",
-      "re_review": "Review these two narrow hooks against the next upstream update."
-    },
-    {
-      "patch_id": "CONTINUATION_20261117_PHONE_GLOBAL_ROUTING",
-      "paths": [
-        "Source/UI/iOS/Views/iPhoneLayout.swift"
-      ],
-      "downstream_paths": [
-        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
-      ],
-      "base_commit": "4d0c865a1563e2e6d9dcf1fb9c8bef815539b231",
-      "upstream_sha": "d46af139b3a265399c16d87f5923acd8e3444024",
-      "authorization_scope": "Current explicit all-three-phase implementation instruction includes native scene routing, iOS App Intents and deep links; phase-wide authorization, not an unseen exact-hunk approval.",
-      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
-      "patch_digest_sha256": "9edad8a25250ac5d50238e274022f4dc011c54529b999fe48a71bf6c716e6eff",
-      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
-      "necessity": "The native scene host was iPad-only although installed in the shared main view. Mount global History/Settings for the actual iPhone scene and add the same passive History surface witness used by iPad.",
-      "scope_limit": "Only already-supported global History/Settings. No reader/content/workspace-specific destination is advertised or enabled. No new URL parser, execution engine, permission system or synthetic receipt.",
-      "tests": "Three real iPhone XCTest wrappers retain all original visible History, same-PID, scene receipt and backend-refusal oracles. Native result pending.",
-      "rollback": "Revert this continuation phone-routing commit only; original phone layout and current iPad gates otherwise unchanged.",
-      "review": "Sole developer; preserve historical native evidence, no PASS transfer."
-    },
-    {
-      "patch_id": "CONTINUATION_20261118_NATIVE_READER_TEXT_WITNESS",
-      "paths": [
-        "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
-        "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
-      ],
-      "base_commit": "f2f27e92e6c949b2dd4ef83c7438b049a1b898cf",
-      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
-      "authorization_scope": "Current owner all-three-phase native Reader/ActionCore/App Intents integration instruction; phase-wide authorization, not an unseen exact-hunk approval",
-      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
-      "patch_digest_sha256": "c5ff6249a7449510c58f7290e34aa81362faa2737bff93a0055ee3e5b926e450",
-      "scope_and_rollback": "docs/hq-integration/native-reader-witness-20261118/REVIEW.json",
-      "review": "Sole developer, no independent reviewer claim; exact original renderer/view retained"
-    },
-    {
-      "patch_id": "CONTINUATION_20261118_NATIVE_READER_CORE_FENCE",
-      "paths": [
-        "Source/Features/Reader/ViewModel/ReaderViewModel.swift"
-      ],
-      "base_commit": "2cc6b26d72eedaf40e9329ef8b535b747aaf45c1",
-      "status": "IMPLEMENTED_NATIVE_VALIDATION_PENDING",
-      "authorization_scope": "Current owner explicitly authorizes all three phases, ordinary continuation push and real CI. Phase-wide authorization, not a previous exact-hunk review.",
-      "approval_ref": "docs/hq-integration/CONTINUATION_20261117.md",
-      "patch_digest_sha256": "a1acd93480729dd681a50099ff94fef475ac3642e3fcb9bcb05dcc9c5947505a",
-      "scope_and_rollback": "docs/hq-integration/native-reader-core-20261118/REVIEW.json",
-      "review": "Sole developer; no independent QA claim"
     },
     {
       "patch_id": "CONTINUATION_20261118_SQLITE_ERROR_PROPAGATION",
@@ -365,5 +1387,12 @@
       "reviewer": "Independent native source review; actual Apple/native acceptance pending parent integration.",
       "re_review": "Next original Search or reader lifecycle change or upstream sync."
     }
-  ]
+  ],
+  "status": "APPROVED_OWNER_SIGNED",
+  "last_signed": "2026-11-26T00:52:17Z",
+  "owner_verification_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+  "owner_review": {
+    "source_sha": "61b36001b38835378b93ffec5e419e5917f36eb6",
+    "manifest_sha256": "8eab24c53e7c519a211022f15e6eb7e0eaa6b14b8d7d45e5bc762e9385adf8a5"
+  }
 }
