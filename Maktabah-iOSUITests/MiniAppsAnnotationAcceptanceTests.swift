@@ -126,12 +126,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         try snapshot("native-edit")
 
         let visible = app.switches["miniapps-visible-" + first.id]
-        XCTAssertTrue(visible.waitForExistence(timeout: 15))
-        tap(visible)
+        XCTAssertTrue(visible.waitForExistence(timeout: 15) && visible.isHittable && visible.isEnabled)
+        visible.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
         }
-        tap(visible)
+        XCTAssertTrue(visible.isHittable && visible.isEnabled)
+        visible.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden == original.hidden
         }
@@ -143,7 +144,6 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
                 try self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
         }
-        for _ in 0..<3 { app.swipeDown() }
         let firstCell = app.cells.containing(.staticText, identifier: first.title).firstMatch
         let secondCell = app.cells.containing(.staticText, identifier: second.title).firstMatch
         let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", language.reorder)
@@ -163,7 +163,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertGreaterThan(firstHandle.frame.midX, firstCell.frame.midX)
         }
         try snapshot("favorites-before-native-drag")
-        secondHandle.press(forDuration: 0.7, thenDragTo: firstHandle)
+        // The middle of the destination handle can leave the moved row in
+        // its old slot. Cross the actual destination cell's upper half.
+        let cell = firstCell.frame
+        let horizontal = (firstHandle.frame.midX - cell.minX) / cell.width
+        XCTAssertTrue(horizontal.isFinite && (0...1).contains(horizontal))
+        let destination = firstCell.coordinate(withNormalizedOffset: CGVector(dx: horizontal, dy: 0.25))
+        secondHandle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.7, thenDragTo: destination, withVelocity: .slow, thenHoldForDuration: 0.4)
         try await requireNativeCondition(timeout: 15) {
             let ordered = try self.pickerPreferences(in: shared).favorites
             guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
@@ -1213,9 +1220,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func requireNativeCondition(timeout: TimeInterval,
+                                        file: StaticString = #filePath, line: UInt = #line,
                                         condition: @escaping @MainActor () throws -> Bool) async throws {
         let satisfied = try await waitUntil(timeout: timeout, condition: condition)
-        XCTAssertTrue(satisfied)
+        if !satisfied {
+            retainScreenshot(app, named: "miniapps-native-condition-failure-\(line)")
+        }
+        XCTAssertTrue(satisfied, "The actual native condition did not become true", file: file, line: line)
     }
 
     @MainActor
