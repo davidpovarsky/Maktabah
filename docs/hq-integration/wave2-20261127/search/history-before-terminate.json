@@ -1,0 +1,74 @@
+{
+  "candidateContainerIDs" : [
+    "551FD8DD-E4FC-46C1-AD78-4FDF6E4E32EF"
+  ],
+  "containerID" : "551FD8DD-E4FC-46C1-AD78-4FDF6E4E32EF",
+  "historyCount" : 0,
+  "installationMatchesInitialBytes" : true,
+  "installationPinned" : true,
+  "matchingInstallationCount" : 1,
+  "metadataBundleIdentifier" : "com.davidpovarsky.chavrusatext",
+  "metadataByteCount" : 607,
+  "namespaceMatchesInstallation" : true,
+  "namespaceSidecarCount" : 1,
+  "observationError" : "original_preferences_unreadable",
+  "originalPassiveSearchTrace" : {
+    "acceptedRecordCount" : 1,
+    "admissionObservation" : "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
+    "fileRead" : {
+      "bytesRead" : 3134,
+      "maximumBytes" : 8388608,
+      "regularFile" : true,
+      "status" : "read",
+      "symbolicLink" : false
+    },
+    "historyWriterOwnerObservation" : "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
+    "inMemoryHistoryObservation" : "NOT_EXPOSED_BY_EXISTING_PASSIVE_CHANNEL",
+    "lastRecords" : [
+      {
+        "backendGeneration" : 0,
+        "engine" : "otzaria",
+        "event" : "provider",
+        "namespace" : "B9FC82BF-4DAA-4F07-84BD-0AD87426A2F6",
+        "profileID" : "miniTest10",
+        "querySHA256" : "97987991031549fd80e7481343b8c9a0bba9c1e19566446eb858cc0772a4f6ea",
+        "schemaVersion" : 1,
+        "searchGeneration" : 1,
+        "sessionID" : "AC6093AC-6FEB-45FD-8AE8-7068647DD63E",
+        "submissionRevision" : 1
+      }
+    ],
+    "rejectedRecordCount" : 0,
+    "truncatedToLastRecords" : false
+  },
+  "originalQueryFieldCount" : 1,
+  "originalQueryFieldEnabled" : true,
+  "originalQueryFieldHittable" : true,
+  "originalQueryFieldMatchesExpected" : true,
+  "originalQueryFieldValue" : "בדיקת היסטוריה 2580C7DE-79A8-448F-934A-856256A2F7F1",
+  "originalUIStates" : {
+    "cancel" : false,
+    "cancelled" : false,
+    "dirty" : false,
+    "empty" : false,
+    "error" : false,
+    "history" : false,
+    "loading" : false,
+    "missingIndex" : true
+  },
+  "preferenceFileRead" : {
+    "bytesRead" : 1048577,
+    "maximumBytes" : 1048576,
+    "reason" : "oversize",
+    "regularFile" : true,
+    "stage" : "budget",
+    "status" : "unavailable",
+    "symbolicLink" : false
+  },
+  "preferenceParse" : "NOT_ATTEMPTED_READ_UNAVAILABLE",
+  "preferenceReadable" : false,
+  "queryPersistedExactlyOnce" : false,
+  "stage" : "before-terminate",
+  "submittedQueryCount" : 0,
+  "waiterResult" : "XCTWaiterResult(rawValue: 2)"
+}
