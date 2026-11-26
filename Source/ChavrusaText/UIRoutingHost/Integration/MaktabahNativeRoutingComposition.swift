@@ -664,6 +664,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     func openWithContextTransition(_ destination: HanlinHostDestination,
         session: HanlinHostSession, binding: OtzariaHanlinBinding) async throws -> HanlinHostNavigationReceipt {
         let (sceneID, entry, active) = try hanlinRegistration(for: destination.context)
+        #if DEBUG
+        if OtzariaDataProfileRegistry.activeProfileID == "miniTest10" {
+            OtzariaFileLogger.shared.log("[HanlinSourceHandoff] stage=authority current=\(active.session == session) matching=\(active.binding == binding) pending=\(active.navigation != nil) ownerCleared=\(entry.session.studyChatPresentationID == nil) ready=\(entry.session.isPresentationReady)")
+        }
+        #endif
         guard active.session == session, active.binding == binding,
               let pending = active.navigation, pending.destination == destination,
               entry.session.studyChatPresentationID == nil, entry.session.isPresentationReady else {
@@ -781,6 +786,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             readerInvocations[invocation.requestId] = pending
             defer { readerInvocations.removeValue(forKey: invocation.requestId) }
             let coreResult = try await orchestrator.executeReaderPlan(route, originalInvocation: invocation, admitted: admitted)
+            #if DEBUG
+            if origin == .internalAI, OtzariaDataProfileRegistry.activeProfileID == "miniTest10" {
+                let allowed = ["invalid_arguments", "invalid_response", "permission_denied", "backend_unavailable",
+                    "deadline_exceeded", "native_context_changed", "native_effect_uncertain", "app_scene_unavailable",
+                    "navigation_authority_changed", "provider_error", "not_found", "invalid_locator"]
+                let code = coreResult.error.map { allowed.contains($0.code) ? $0.code : "other_fixed_failure" } ?? "none"
+                OtzariaFileLogger.shared.log("[HanlinSourceHandoff] stage=core status=\(coreResult.status.rawValue) reason=\(code) receipt=\(pending.receipt != nil)")
+            }
+            #endif
             guard coreResult.status == .completed, let receipt = pending.receipt else {
                 throw UIRouteError(.failed, "canonical_reader_not_completed")
             }

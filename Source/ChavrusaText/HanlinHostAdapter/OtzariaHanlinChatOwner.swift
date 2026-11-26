@@ -303,6 +303,11 @@ final class OtzariaHanlinChatOwner {
             return
         }
         pendingHistory = nil
+        #if DEBUG
+        if OtzariaDataProfileRegistry.activeProfileID == "miniTest10" {
+            OtzariaFileLogger.shared.log("[HanlinSourceHandoff] stage=dismissed pending=\(pendingNavigation != nil) retired=\(retired) busy=\(navigationTask != nil)")
+        }
+        #endif
         guard !retired, let handoff = pendingNavigation, navigationTask == nil else {
             pendingNavigation?.cancel(); pendingNavigation = nil; return
         }
@@ -311,6 +316,11 @@ final class OtzariaHanlinChatOwner {
             guard let self else { return }
             defer { self.navigationTask = nil }
             do {
+                #if DEBUG
+                if OtzariaDataProfileRegistry.activeProfileID == "miniTest10" {
+                    OtzariaFileLogger.shared.log("[HanlinSourceHandoff] stage=dispatch")
+                }
+                #endif
                 let receipt = try await handoff.consume()
                 try Task.checkCancellation()
                 try receipt.validate(for: handoff.destination, session: handoff.session)
@@ -322,6 +332,20 @@ final class OtzariaHanlinChatOwner {
                 if let successor = receipt.successorSession { self.composition.closeHanlinHostSession(successor) }
                 self.composition.closeHanlinHostSession(handoff.session)
             } catch {
+                #if DEBUG
+                if OtzariaDataProfileRegistry.activeProfileID == "miniTest10" {
+                    let allowed = ["canonical_reader_not_completed", "native_scene_busy", "public_variant_not_ready",
+                        "native_effect_uncertain", "permission_denied", "reader_binding_busy",
+                        "native_context_changed", "deadline_exceeded", "invalid_destination",
+                        "backend_generation_changed", "native_reader_admission_unavailable",
+                        "native_surface_not_visible", "presentation_binding_changed",
+                        "public_variant_not_supported", "scene_revision_changed", "scene_or_backend_changed"]
+                    let routeError = error as? UIRouteError
+                    let code = routeError.flatMap { allowed.contains($0.code) ? $0.code : nil }
+                        ?? OtzariaHanlinConnectionDiagnostic.reason(for: error).rawValue
+                    OtzariaFileLogger.shared.log("[HanlinSourceHandoff] stage=failed status=\(routeError?.status.rawValue ?? "none") reason=\(code)")
+                }
+                #endif
                 let observed = await handoff.host.navigationReceipt(for: handoff.requestID, session: handoff.session)
                 if let successor = observed?.successorSession { self.composition.closeHanlinHostSession(successor) }
                 self.composition.closeHanlinHostSession(handoff.session)
