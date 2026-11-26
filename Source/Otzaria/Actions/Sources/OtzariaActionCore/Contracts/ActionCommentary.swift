@@ -42,6 +42,27 @@ public protocol ActionRelatedSourcesPort: Sendable {
     func relatedSources(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionRelatedSource]
 }
 
+/// A topic returned by the source relationship provider for a passage.
+public struct ActionRelatedTopic: Codable, Sendable, Hashable {
+    public let slug: String
+    public let titleHe: String?
+    public let titleEn: String?
+
+    public init(slug: String, titleHe: String? = nil, titleEn: String? = nil) {
+        self.slug = slug
+        self.titleHe = titleHe
+        self.titleEn = titleEn
+    }
+}
+
+public protocol ActionRelatedRefsPort: Sendable {
+    func relatedRefs(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionTextRef]
+}
+
+public protocol ActionRelatedTopicsPort: Sendable {
+    func relatedTopics(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionRelatedTopic]
+}
+
 /// Optional additive ports preserve existing resolvers and source adapters.
 public protocol ActionCommentaryDataPort: Sendable {
     func commentaryLinks(for baseLocator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionCommentaryLink]
