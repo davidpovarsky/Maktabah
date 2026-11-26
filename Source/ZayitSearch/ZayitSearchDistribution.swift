@@ -698,19 +698,26 @@ final class ZayitSearchDataController: ObservableObject {
             state = .incompatible("Seforim DB is not installed")
             return
         }
-        state = discover ? .discovering : await ZayitSearchArtifactService.shared.status(databaseURL: database)
-        guard discover, !state.isReady else { return }
+        let installed = await ZayitSearchArtifactService.shared.status(databaseURL: database)
+        state = discover && !installed.isReady ? .discovering : installed
+        guard discover else { return }
         do {
             state = try await ZayitSearchArtifactService.shared.discover(databaseURL: database)
-        } catch let error as ZayitSearchDistributionError {
-            switch error {
-            case .unavailable:
+        } catch {
+            // GitHub availability does not determine whether an installed
+            // original index is usable offline. Revalidate after the await so
+            // a concurrent removal or damaged package cannot retain readiness.
+            let current = await ZayitSearchArtifactService.shared.status(databaseURL: database)
+            if current.isReady {
+                state = current
+                return
+            }
+            if let distribution = error as? ZayitSearchDistributionError,
+               case .unavailable = distribution {
                 state = .incompatible("אין עדיין חבילה תואמת לגרסת מסד זו")
-            default:
+            } else {
                 state = .failed(error.localizedDescription)
             }
-        } catch {
-            state = .failed(error.localizedDescription)
         }
     }
 

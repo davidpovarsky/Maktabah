@@ -14,6 +14,50 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) {
+            (controller: iOSSearchFilterViewController, _: UITraitCollection) in
+            controller.updateNativeSearchTypography()
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateNativeSearchTypography()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // SwiftUI attaches the sidebar's native search controller after this
+        // representable is created. Its placeholder label is also lazy.
+        updateNativeSearchTypography()
+    }
+
+    private func updateNativeSearchTypography() {
+        var controller: UIViewController? = self
+        var updated: Set<ObjectIdentifier> = []
+        func update(_ search: UISearchController?) {
+            guard let field = search?.searchBar.searchTextField,
+                  updated.insert(ObjectIdentifier(field)).inserted else { return }
+            let font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: field.traitCollection)
+            field.adjustsFontForContentSizeCategory = true
+            if field.font != font { field.font = font }
+            // Keep the book filter's native placeholder opted into Dynamic
+            // Type as well as its editable text. Only this field is visited;
+            // unrelated toolbar/navigation labels keep their own text styles.
+            guard let placeholder = field.placeholder else { return }
+            var descendants = field.subviews
+            while let view = descendants.popLast() {
+                descendants.append(contentsOf: view.subviews)
+                guard let label = view as? UILabel, label.text == placeholder else { continue }
+                label.adjustsFontForContentSizeCategory = true
+                if label.font != font { label.font = font }
+            }
+        }
+        while let current = controller {
+            update(current.navigationItem.searchController)
+            controller = current.parent
+        }
+        update(navigationController?.visibleViewController?.navigationItem.searchController)
     }
 
     /// Reset cache saat categories berubah
