@@ -1,0 +1,47 @@
+{
+  "status": "APPLE_SOURCE_CONTROLS_NOT_NATIVE_UI",
+  "source_sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786",
+  "exact_observer_and_capture_typecheck_sha256": "3ae49bfda771ce029a78995c0ffed573da8790a8a7979d1f640d7b1b1f1c13e7",
+  "native_ui_executed": 0,
+  "started_at": "2026-11-26T23:47:22.869480+00:00",
+  "commands": {
+    "full_r27_syntax_parse": [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios17.0-simulator",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-D",
+      "DEBUG",
+      "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/R27NativeInteractionAcceptanceTests.swift"
+    ],
+    "actual_xctest_observer_typecheck": [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-target",
+      "arm64-apple-ios17.0-simulator",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-D",
+      "DEBUG",
+      "-typecheck",
+      "-swift-version",
+      "6",
+      "-Xfrontend",
+      "-strict-concurrency=complete",
+      "-module-cache-path",
+      "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/module-cache",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks",
+      "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/ExactNativeObserverTypecheck.swift"
+    ]
+  },
+  "exits": {
+    "full_r27_syntax_parse": 0,
+    "actual_xctest_observer_typecheck": 1
+  },
+  "finished_at": "2026-11-26T23:47:30.955908+00:00"
+}
