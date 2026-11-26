@@ -587,7 +587,8 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
                   messages.contains(where: { ($0["role"] as? String) == "user" && ($0["content"] as? String) == prompt }) else { continue }
             matches.append(value)
         }
-        XCTAssertEqual(matches.count, 1, "Exactly one original saved conversation must contain this live challenge")
+        XCTAssertEqual(matches.count, 1,
+            "Exactly one original saved conversation must contain the submitted composer value (inspected \(count) records)")
         return try XCTUnwrap(matches.first)
     }
 
@@ -720,6 +721,9 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             + "After both real tools succeed reply with exactly " + marker + " as plain text; do not emit OpenUI."
         let editor = app.textViews["otzaria-hanlin-composer"]
         press(editor); editor.typeText(prompt)
+        let submittedPrompt = try XCTUnwrap(editor.value as? String)
+        XCTAssertTrue(submittedPrompt.contains(marker),
+                       "The actual native composer must contain the live challenge before it is sent")
         let send = app.buttons["otzaria-hanlin-send"]
         XCTAssertTrue(send.isEnabled)
         press(send)
@@ -739,7 +743,7 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", marker))
             .firstMatch.waitForExistence(timeout: 30), "The actual live continuation must reach the original transcript")
 
-        let saved = try savedConversation(prompt: prompt)
+        let saved = try savedConversation(prompt: submittedPrompt)
         let conversationID = try XCTUnwrap(saved["conversationID"] as? String)
         let history = try XCTUnwrap(saved["history"] as? [String: Any])
         let messages = try XCTUnwrap(history["messages"] as? [[String: Any]])
@@ -793,7 +797,7 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
         XCTAssertFalse(revoke.exists)
         XCTAssertEqual(editor.value as? String, draft)
         XCTAssertFalse(send.isEnabled, "Native revocation must discard the original model connection")
-        let after = try savedConversation(prompt: prompt)
+        let after = try savedConversation(prompt: submittedPrompt)
         XCTAssertEqual(after["conversationID"] as? String, conversationID)
         XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["activities"])), try json(activities))
         XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["sources"])), try json(savedSources))
