@@ -209,6 +209,27 @@ struct MobileCheck: Encodable {
         check("language.hebrew.12b", heBerakhot.first?.nodes.first(where: { ref($0) == "Berakhot 12b" })?.title ?? "", "י״ב ע״ב")
         check("language.hebrew.alt-chapter", heBerakhot.first(where: { $0.id == "Chapters" })?.nodes.first?.title ?? "", "מאימתי")
         check("language.english.alt-chapter", enBerakhot.first(where: { $0.id == "Chapters" })?.nodes.first?.title ?? "", "Chapter 1; MeEimatai")
+        check("language.hebrew.alt-structure-label", heBerakhot.first(where: { $0.id == "Chapters" })?.title ?? "", "פרקים")
+        check("language.english.alt-structure-label", enBerakhot.first(where: { $0.id == "Chapters" })?.title ?? "", "Chapters")
+        check("language.hebrew.genesis-parasha-label", heGenesis.first(where: { $0.id == "Parasha" })?.title ?? "", "פרשה")
+        check("language.english.genesis-parasha-label", enGenesis.first(where: { $0.id == "Parasha" })?.title ?? "", "Parashot")
+        let heRashi = try decoded("Rashi on Genesis", hebrew: true), enRashi = try decoded("Rashi on Genesis", hebrew: false)
+        check("language.hebrew.rashi-parasha-label", heRashi.first(where: { $0.id == "Parasha" })?.title ?? "", "פרשה")
+        check("language.english.rashi-parasha-label", enRashi.first(where: { $0.id == "Parasha" })?.title ?? "", "Parashot")
+        // The mobile-only title rule must not override the native API's
+        // explicit localized structure titles.
+        guard case .object(let berakhotObject) = try JSONDecoder().decode(
+            SefariaJSONValue.self, from: Data(dataByWork["Berakhot"]!.utf8)),
+            let schema = berakhotObject["schema"],
+            case .object(let alternates) = berakhotObject["alts"] else {
+            fatalError("Retained original Berakhot fixture changed shape")
+        }
+        let nativeHebrew = SefariaNavigationParser.structures(schema: schema,
+            alternateStructures: alternates, indexTitle: "Berakhot", prefersHebrew: true)
+        let nativeEnglish = SefariaNavigationParser.structures(schema: schema,
+            alternateStructures: alternates, indexTitle: "Berakhot", prefersHebrew: false)
+        check("language.native-api.hebrew-title-preserved", nativeHebrew.first(where: { $0.id == "Chapters" })?.title ?? "", "ברכות")
+        check("language.native-api.english-title-preserved", nativeEnglish.first(where: { $0.id == "Chapters" })?.title ?? "", "Berakhot")
         let heComplex = try decoded("Pesach Haggadah", hebrew: true)
         check("language.hebrew.complex-root", heComplex.first?.nodes.first?.title ?? "", "קדש")
         check("language.hebrew.complex-child", flatten(heComplex.first?.nodes ?? []).first(where: { ref($0) == "Pesach Haggadah, Magid, The Four Sons" })?.title ?? "", "כנגד ארבעה בנים")

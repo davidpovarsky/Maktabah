@@ -36,7 +36,8 @@ enum SefariaNavigationParser {
         baseRef: String? = nil,
         heTitle: String? = nil,
         prefersHebrew: Bool = LibraryPresentationPolicy.prefersHebrew(),
-        primaryNodesOverride: [LibraryTOCNode]? = nil
+        primaryNodesOverride: [LibraryTOCNode]? = nil,
+        alternateTitlesUseStructureKeys: Bool = false
     ) -> [LibraryNavigationStructure] {
         let primary = primaryNodesOverride ?? primaryNodes(
             shapes: shapes,
@@ -59,7 +60,12 @@ enum SefariaNavigationParser {
         for key in (alternateStructures ?? [:]).keys.sorted() {
             guard let structure = alternateStructures?[key] else { continue }
             let title: String
-            if case .object(let obj) = structure,
+            if alternateTitlesUseStructureKeys {
+                // Sefaria-Mobile's textToc "alts" roots inherit the work's
+                // title/titles (e.g. Berakhot), not the structure's name.
+                // The original dictionary key owns this picker label.
+                title = ChavrusaTextLocalizationResolver.resolveNavigationStructureTitle(for: key, prefersHebrew: prefersHebrew)
+            } else if case .object(let obj) = structure,
                let he = schemaTitle(obj, language: "he"), prefersHebrew {
                 title = he
             } else if case .object(let obj) = structure,
@@ -92,7 +98,7 @@ enum SefariaNavigationParser {
             remaining: &remaining)
         return structures(schema: schema, alternateStructures: alternateStructures,
             indexTitle: indexTitle, prefersHebrew: prefersHebrew,
-            primaryNodesOverride: primary)
+            primaryNodesOverride: primary, alternateTitlesUseStructureKeys: true)
     }
 
     private static func mobileSchemaNodes(
