@@ -219,13 +219,10 @@ jobs:
             gh api repos/Otzaria/SeforimLibrary/releases/latest > build/logs/source-release.json
           fi
           gh api repos/Otzaria/SeforimMagicIndexer/releases/latest > build/logs/magic-release.json
-          python3 Scripts/resolve-official-library-asset.py --release-json build/logs/source-release.json --format shell > build/logs/source-asset.env
+          python3 Scripts/resolve-official-library-asset.py \
+            --release-json build/logs/source-release.json --download-dir "$RUNNER_TEMP" --format shell > build/logs/source-asset.env
           source build/logs/source-asset.env
           echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
-          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/$ASSET_NAME" "$ASSET_BROWSER_DOWNLOAD_URL"
-          if [ -n "$ASSET_COMPRESSED_SHA256" ]; then
-            test "$(shasum -a 256 "$RUNNER_TEMP/$ASSET_NAME" | cut -d' ' -f1)" = "$ASSET_COMPRESSED_SHA256"
-          fi
           zstd -d --long=31 --no-progress -f "$RUNNER_TEMP/$ASSET_NAME" -o "$RUNNER_TEMP/seforim.db"
           if [ -n "${{ inputs.existing_release_tag }}" ]; then
             python3 - "$RUNNER_TEMP/seforim.db" <<'PY'
