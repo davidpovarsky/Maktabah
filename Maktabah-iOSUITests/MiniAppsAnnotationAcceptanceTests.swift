@@ -216,26 +216,41 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
         }
-        let windowRow = app.switches["miniapps-new-window"]
-        // Like the actual MiniApps producer, activate the UISwitch inside
-        // SwiftUI's labeled row. The row's center is the text label.
-        let window = windowRow.switches.firstMatch
-        for _ in 0..<6 {
-            if window.exists && window.isHittable { break }
-            app.swipeUp()
+        func scrollToWindowSwitch() -> XCUIElement {
+            // The SwiftUI row contains the actual UIKit switch. Bring the
+            // destination into the viewport before requiring its child.
+            let window = app.switches["miniapps-new-window"].switches.firstMatch
+            for _ in 0..<6 {
+                if window.exists && window.isHittable { break }
+                app.swipeUp()
+            }
+            XCTAssertTrue(window.waitForExistence(timeout: 15))
+            XCTAssertTrue(window.isHittable && window.isEnabled)
+            return window
         }
-        XCTAssertTrue(window.waitForExistence(timeout: 15))
-        XCTAssertTrue(window.isHittable)
+        let window = scrollToWindowSwitch()
         try snapshot("window-native-control-before-change")
         window.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
         }
         try snapshot("window-preference-changed")
-        window.tap()
+        tap(edit)
+        XCTAssertTrue(dismiss.waitForExistence(timeout: 15))
+        tap(dismiss)
+        let more = app.buttons["miniapps-more"]
+        XCTAssertTrue(more.waitForExistence(timeout: 15))
+        tap(more)
+        tap(edit)
+        let restoredWindow = scrollToWindowSwitch()
+        let changedState = original.opensInNewWindow ? "0" : "1"
+        XCTAssertEqual(restoredWindow.value as? String, changedState)
+        XCTAssertNotEqual(try pickerPreferences(in: shared).opensInNewWindow, original.opensInNewWindow)
+        restoredWindow.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared) == original
         }
+        try snapshot("window-preferences-restored")
         tap(edit)
         XCTAssertEqual(edit.label, language.edit)
         tap(dismiss)
