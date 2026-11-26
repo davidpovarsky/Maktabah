@@ -1,0 +1,101 @@
+{
+  "oracleArtifactDirectory": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/sefaria-source-oracles",
+  "files": {
+    "psalms-my-soul-page-0-receipt.json": {
+      "bytes": 658,
+      "sha256": "1f6063663ddde1d019ff7c87ac1e7ef512c49a900cf4102f06a2b4ee32d73ead"
+    },
+    "psalms-my-soul-page-0.json": {
+      "bytes": 106182,
+      "sha256": "65585711a01ea6b981dba49adea0d9b02f9449d4684b3b5941f4b6278b86823e"
+    },
+    "psalms-my-soul-page-100-receipt.json": {
+      "bytes": 662,
+      "sha256": "20499386e756a2e92e4ae1e80454886ac1578e83b4ef61f4b95644b4123047b9"
+    },
+    "psalms-my-soul-page-100.json": {
+      "bytes": 108492,
+      "sha256": "4bac53bb77f03ca0d7d6f0b39cbc774e9c41d00cfb6fff3658091deab6fd348c"
+    },
+    "psalms-nafshi-page-0-receipt.json": {
+      "bytes": 658,
+      "sha256": "21b7358893cd262a66b4244e3c565641d69d52332903bf2ea4b733cebd78572f"
+    },
+    "psalms-nafshi-page-0.json": {
+      "bytes": 110944,
+      "sha256": "3a5ac97ff2e99c89d0fed5a72b9149d53693d091b7fbf2eee403bb15ec93b5bb"
+    },
+    "psalms-nafshi-page-100-receipt.json": {
+      "bytes": 662,
+      "sha256": "8f89739545dd8105fbee7e58d3cd161b53a0e519fc70b975dd96d80b1f0ca26f"
+    },
+    "psalms-nafshi-page-100.json": {
+      "bytes": 113237,
+      "sha256": "3821efd432757a6e200ed96ba83140b3af8293aeea2ebc6084fe8483d59ba570"
+    },
+    "psalms-soul-page-0-receipt.json": {
+      "bytes": 652,
+      "sha256": "a0c14cb1fc5712f5b962d0dca9a45e2dd56043764023b2fbbe801e74dd9574d3"
+    },
+    "psalms-soul-page-0.json": {
+      "bytes": 105954,
+      "sha256": "744bf29af6c8a48b5ab29bde6b37086f22e45f22a3c560d20a90754b5a15224c"
+    },
+    "psalms-soul-page-100-receipt.json": {
+      "bytes": 656,
+      "sha256": "b5272bbf2e668ceb523477770c70e600c2cab748676d8368ec92826747f5683b"
+    },
+    "psalms-soul-page-100.json": {
+      "bytes": 110021,
+      "sha256": "9da898c7a48400a7527bfa14d6760e053f0bff8a7753bda7173da92fab05d92b"
+    },
+    "psalms-versions-receipt.json": {
+      "bytes": 277,
+      "sha256": "3e76ac801f876ae224de0111cc53b611a9bbe6b93d45161fc2451a6a6bc80041"
+    },
+    "psalms-versions.json": {
+      "bytes": 22222,
+      "sha256": "eecd6e6730b69068ae54366ab22744d88aa1d86b3ab7d2e1e8d90bc13dc06a2a"
+    },
+    "psalms131-default-receipt.json": {
+      "bytes": 365,
+      "sha256": "b6e2f3ce6e00161efb275aede47d4fd6af241e5ac4f09024702bbb22848bb008"
+    },
+    "psalms131-default.json": {
+      "bytes": 23041,
+      "sha256": "d7ab00f86f433101d34777e9a8367106579f40ba02b00d3280af6ab21ceab7e2"
+    },
+    "psalms131-french-receipt.json": {
+      "bytes": 393,
+      "sha256": "56d4dea6c612b3aad3f76a66147fcea02dec8f9f5c7d24e93ffcd89a0b4455bd"
+    },
+    "psalms131-french.json": {
+      "bytes": 22708,
+      "sha256": "4c61e42677908a6532e7fc0cafddc900a5628a6d29b60131d5c6c22eb2e3916a"
+    },
+    "psalms131-jps1917-receipt.json": {
+      "bytes": 419,
+      "sha256": "1ce349583825e1fcc947832ffe588a453ec3859e163709b8787f297fd7941cf5"
+    },
+    "psalms131-jps1917.json": {
+      "bytes": 23147,
+      "sha256": "992c55eb141f129f39f8a7a695ccb8e7b0ab7c97915dcfe2eb8c7ece36290bf2"
+    },
+    "psalms131-nikkud-receipt.json": {
+      "bytes": 385,
+      "sha256": "eebf70fa7dd43abf8f4b6887c6f54bd4a4738521f98d38172d240598fb37fd9f"
+    },
+    "psalms131-nikkud.json": {
+      "bytes": 21121,
+      "sha256": "ab49f556f8149783d64419225c28b4e417ca218deae29e5115a5fd8fa67aa01d"
+    },
+    "psalms131-text-only-receipt.json": {
+      "bytes": 391,
+      "sha256": "c85a14340adbb71ce8c50b86edb6374d9e2eeee5beedfbcf52b9b8d64353c5d5"
+    },
+    "psalms131-text-only.json": {
+      "bytes": 20908,
+      "sha256": "91f06351d29667c1ed6dfea121d07a66588e3e0422d535edf9d2993cff36c9cf"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import Foundation
 
-actor SefariaHybridStore: LibraryTextProviding {
+actor SefariaHybridStore: LibraryVersionedTextProviding {
     private let offline: SefariaOfflineStore
     private let remote: SefariaRemoteStore
     private let navigation: any LibraryNavigationProviding
@@ -44,6 +44,18 @@ actor SefariaHybridStore: LibraryTextProviding {
             } catch is URLError {
                 throw LibraryBackendError.unavailableOffline
             }
+        }
+    }
+
+    func section(
+        at locator: TextLocator, version: LibraryTextVersionSelection
+    ) async throws -> LibraryTextSection {
+        // The embedded package and ordinary memory cache contain default editions.
+        // Only the exact-edition remote disk cache can satisfy this explicit tuple.
+        do {
+            return try await remote.section(at: locator, version: version)
+        } catch is URLError {
+            throw LibraryBackendError.unavailableOffline
         }
     }
 

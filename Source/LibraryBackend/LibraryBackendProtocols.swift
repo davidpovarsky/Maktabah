@@ -8,6 +8,17 @@ protocol LibraryTextProviding: Sendable {
     func section(at locator: TextLocator) async throws -> LibraryTextSection
 }
 
+/// An edition belongs to a text request, not to the canonical source locator.
+/// Providers opt in so their ordinary/default section behavior stays unchanged.
+struct LibraryTextVersionSelection: Hashable, Codable, Sendable {
+    let title: String
+    let language: String
+}
+
+protocol LibraryVersionedTextProviding: LibraryTextProviding {
+    func section(at locator: TextLocator, version: LibraryTextVersionSelection) async throws -> LibraryTextSection
+}
+
 protocol LibraryNavigationProviding: Sendable {
     func normalizedLocator(for input: String) async throws -> TextLocator
     func tableOfContents(for work: LibraryWork) async throws -> [LibraryTOCNode]

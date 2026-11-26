@@ -253,6 +253,7 @@ struct SearchResultRow: View {
                                     }
                                 }
                             }
+                            .accessibilityIdentifier("search-result-version-\(ver.stableID)")
                         }
                     } label: {
                         HStack(spacing: 3) {
@@ -268,6 +269,8 @@ struct SearchResultRow: View {
                         .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityIdentifier("search-result-versions-\(item.backendLocator?.persistenceKey ?? item.stableID)")
+                    .accessibilityValue("\(versionCount)")
                 }
             }
 
@@ -313,6 +316,7 @@ struct SearchResultContextPreview: View {
     @State private var previewError: String?
     @State private var isLoading = false
     @State private var retryToken = 0
+    @AppStorage("otzaria_reader_unit_mode") private var otzariaUnitMode = "paragraph"
 
     private var isHebrewBackend: Bool {
         item.archive == "Otzaria" || item.archive == "Sefaria" || item.archive == "Zayit" || item.backendLocator != nil
@@ -327,24 +331,25 @@ struct SearchResultContextPreview: View {
             VStack(alignment: .leading, spacing: 8) {
                 if !fullSegments.isEmpty {
                     LazyVStack(alignment: .leading, spacing: 14) {
-                        let isTranslationVersion = (item.resultLanguage != nil && item.resultLanguage != "he")
                         ForEach(fullSegments) { segment in
-                            let showPrimary = isTranslationVersion
-                                ? (segment.translation == nil || segment.translation!.isEmpty)
-                                : (readerMode == .source || readerMode == .both || (readerMode == .translation && (segment.translation == nil || segment.translation!.isEmpty)))
-                            let showTranslation = isTranslationVersion
-                                ? (segment.translation != nil && !segment.translation!.isEmpty)
-                                : ((readerMode == .translation || readerMode == .both || (readerMode == .source && segment.primary.isEmpty)) && segment.translation != nil && !segment.translation!.isEmpty)
+                            let hasTranslation = segment.translation?.isEmpty == false
+                            let showPrimary = readerMode == .source || readerMode == .both
+                                || (readerMode == .translation && !hasTranslation)
+                            let showTranslation = hasTranslation
+                                && (readerMode == .translation || readerMode == .both
+                                    || (readerMode == .source && segment.primary.isEmpty))
 
                             VStack(alignment: .leading, spacing: 6) {
                                 if showPrimary && !segment.primary.isEmpty {
                                     Text(segment.primary)
+                                        .accessibilityIdentifier("search-preview-source-\(item.stableID)-\(segment.id)")
                                         .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
                                         .multilineTextAlignment(.leading)
                                         .environment(\.layoutDirection, segment.primary.isParagraphRTL ? .rightToLeft : .leftToRight)
                                 }
                                 if showTranslation, let translation = segment.translation, !translation.isEmpty {
                                     Text(translation)
+                                        .accessibilityIdentifier("search-preview-translation-\(item.stableID)-\(segment.id)")
                                         .font(.body)
                                         .multilineTextAlignment(.leading)
                                         .environment(\.layoutDirection, translation.isParagraphRTL ? .rightToLeft : .leftToRight)
@@ -357,6 +362,7 @@ struct SearchResultContextPreview: View {
                     .textSelection(.enabled)
                 } else if isLoading {
                     ProgressView(String(localized: "Loading full text…", defaultValue: "טוען טקסט מלא…"))
+                        .accessibilityIdentifier("search-preview-loading-\(item.stableID)")
                         .frame(maxWidth: .infinity, minHeight: 160)
                 } else if let previewError {
                     ContentUnavailableView {
@@ -365,7 +371,9 @@ struct SearchResultContextPreview: View {
                         Text(previewError)
                     } actions: {
                         Button(String(localized: "Retry", defaultValue: "נסה שוב")) { retryToken += 1 }
+                            .accessibilityIdentifier("search-preview-retry-\(item.stableID)")
                     }
+                    .accessibilityIdentifier("search-preview-error-\(item.stableID)")
                 } else if !item.attributedText.string.isEmpty {
                     Text(AttributedString(item.attributedText))
                         .font(isHebrewBackend ? .body : ReaderViewModel.kfgqpc)
@@ -398,7 +406,7 @@ struct SearchResultContextPreview: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
-        .task(id: "\(item.stableID):\(retryToken)") {
+        .task(id: "\(item.stableID):\(item.backendLocator?.backend == .otzaria ? otzariaUnitMode : ""):\(retryToken)") {
             guard let locator = item.backendLocator else {
                 if item.attributedText.string.isEmpty {
                     previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
@@ -407,8 +415,16 @@ struct SearchResultContextPreview: View {
             }
             isLoading = true
             previewError = nil
+            fullSegments = []
             do {
-                let section = try await BackendCoordinator.shared.section(at: locator)
+                let section: LibraryTextSection
+                if locator.backend == .sefaria, let language = item.resultLanguage,
+                   let title = item.versionTitle, !title.isEmpty {
+                    section = try await BackendCoordinator.shared.section(at: locator,
+                        version: LibraryTextVersionSelection(title: title, language: language))
+                } else {
+                    section = try await BackendCoordinator.shared.section(at: locator)
+                }
                 try Task.checkCancellation()
                 fullSegments = section.segments.compactMap { segment in
                     let primary = segment.primaryText.readerPlainText
