@@ -21,6 +21,7 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "original_sefaria_versions": "823fa496304369675f7505b93fd5bef27376d135",
+    "palette_localized_title": "2d8b09a08ba826988626f001317bf985923ca162",
     "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
     "reader_designkit_modifier": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_html_performance": "29e37d0f2092a9dfbf3ee88c42d1fbd1b5fed7d1",
@@ -30,11 +31,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "054512a97ed1119f21ac9c22cc21cc8bc190ec3d",
+  "application_source_sha": "2d8b09a08ba826988626f001317bf985923ca162",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "06dae2c2d17412730aa1d27a67de03efbc75cb82",
+    "Source": "4c4403e04daead65b9695d4b5e17ae2cba16daf5",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -177,6 +178,13 @@
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
         },
         "original_sefaria_versions": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "palette_localized_title": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -437,6 +445,13 @@
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
         "original_sefaria_versions": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "palette_localized_title": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -915,6 +930,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "palette_localized_title": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "reader_cancellation": {
           "bytes": 21097,
           "kind": "blob",
@@ -1125,6 +1147,13 @@
           "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
         },
         "original_sefaria_versions": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "palette_localized_title": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1392,6 +1421,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "palette_localized_title": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "reader_cancellation": {
           "bytes": 54697,
           "kind": "blob",
@@ -1455,6 +1491,25 @@
       },
       "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
       "reason": "Retain original editor localization keys and the explicit English and Hebrew Save/Cancel confirmation copy used by the original editor."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 21459,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "db84e7f6344dfdf3d875b36926e8839080815de9",
+        "sha256": "ff9d0053799a914f7ab14cbe76c0f01d866739fa0d24529b8e9327331579ba5e"
+      },
+      "before": {
+        "bytes": 21154,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "34ddb06b98e04141fccca99053ef1beb8447d8c7",
+        "sha256": "07bf0af9e7b0131865d4422507aef69d7330a27ce22b8ba00297c51f5e6f0931"
+      },
+      "component": "palette_localized_title",
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
     },
     {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
@@ -1614,6 +1669,13 @@
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
         "original_sefaria_versions": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
+        "palette_localized_title": {
           "bytes": 38923,
           "kind": "blob",
           "mode": "100644",
@@ -1837,6 +1899,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "palette_localized_title": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "reader_cancellation": {
           "bytes": 30093,
           "kind": "blob",
@@ -2042,6 +2111,13 @@
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
         "original_sefaria_versions": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "palette_localized_title": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2300,11 +2376,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 16271,
+        "bytes": 16413,
         "kind": "blob",
         "mode": "100644",
-        "object": "e7160307485b99c1476a18bdd008436c80199d11",
-        "sha256": "1f6c64e60836a585913c38cf9f48871f10774c77b50502578b306adc7ff15285"
+        "object": "f4a56ab8b3cc8aea66f1fbbc21aee3cf27369c5f",
+        "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a"
       },
       "before": {
         "bytes": 16002,
@@ -2313,7 +2389,7 @@
         "object": "b5634f205af4220e64621c0791bd1a5280fb02c5",
         "sha256": "5f9a1377f1ae556430027936b3f89954f466ef650bc7da60fc8b6891b5cee124"
       },
-      "component": "safari_toolbar_localization",
+      "component": "palette_localized_title",
       "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
     },
     {
@@ -2639,6 +2715,13 @@
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
         },
         "original_sefaria_versions": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "palette_localized_title": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -3389,6 +3472,11 @@
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
         },
         "original_sefaria_versions": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "palette_localized_title": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
