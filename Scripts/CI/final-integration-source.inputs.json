@@ -11,6 +11,7 @@
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
     "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
+    "native_reader_menu_label": "b15fd08ca475d9fbcb1be0f1e465da96496fd9d6",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
     "navigation_items": "cff0a5fd58333b071b5e19a77d32c470e92accc9",
     "navigation_structures": "b5852451ccbd3bd3ad14c8381e7a99f04d7596e0",
@@ -31,11 +32,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "2d8b09a08ba826988626f001317bf985923ca162",
+  "application_source_sha": "b15fd08ca475d9fbcb1be0f1e465da96496fd9d6",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "4c4403e04daead65b9695d4b5e17ae2cba16daf5",
+    "Source": "917eb142d9bef5e2da5fb5e37ce0571f6ac9fd73",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -125,6 +126,13 @@
           "mode": "100644",
           "object": "83f3a235bd2fe14970546e1d9aaec5574c94f5df",
           "sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae"
+        },
+        "native_reader_menu_label": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "native_share": null,
         "navigation_items": {
@@ -380,6 +388,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "native_reader_menu_label": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "native_share": {
           "bytes": 4432,
@@ -860,6 +875,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "native_reader_menu_label": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "native_share": {
           "bytes": 14652,
           "kind": "blob",
@@ -1082,6 +1104,13 @@
           "mode": "100644",
           "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
+        "native_reader_menu_label": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "native_share": {
           "bytes": 32498,
@@ -1351,6 +1380,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "native_reader_menu_label": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "native_share": {
           "bytes": 17378,
           "kind": "blob",
@@ -1605,6 +1641,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "native_reader_menu_label": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "native_share": {
           "bytes": 38814,
           "kind": "blob",
@@ -1841,6 +1884,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "native_reader_menu_label": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "native_share": null,
         "navigation_items": {
           "bytes": 37347,
@@ -2058,6 +2108,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "native_reader_menu_label": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "native_share": null,
         "navigation_items": {
@@ -2558,6 +2615,25 @@
       "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift"
     },
     {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7982,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "770e54ee82992daf9db718934dd6225a3e798d97",
+        "sha256": "6e308a3fe786a862c0363010e08f9fc47564787491ee59e02fbb993b623a605d"
+      },
+      "before": {
+        "bytes": 7989,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "39769ae3d8469e6713ce77b32a28937a84b3c11d",
+        "sha256": "b1873fdeaa9da48dfcdde2a622d205f616fc9f5025b121937751c1bf5c78eb39"
+      },
+      "component": "native_reader_menu_label",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
         "bytes": 24135,
@@ -2650,6 +2726,13 @@
           "mode": "100644",
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "native_reader_menu_label": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "native_share": {
           "bytes": 21637,
@@ -2871,11 +2954,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 356924,
+        "bytes": 357152,
         "kind": "blob",
         "mode": "100644",
-        "object": "2cd0066a98948aa0ce2f08f59bbda55cee675bde",
-        "sha256": "db59e2242b012e498f2c861ebf1c4309ca0e3da4d37708765ad225e3d6bfe5c4"
+        "object": "fa05ffe75192799f5770fbed3aca38a4c77ac3be",
+        "sha256": "7734bfe26f6f121fe34bcf2d39518c639ebd744d2e6c6376db18545bb98062a0"
       },
       "before": {
         "bytes": 340316,
@@ -2884,7 +2967,7 @@
         "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
         "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
       },
-      "component": "safari_toolbar_localization",
+      "component": "native_reader_menu_label",
       "path": "Source/Localizable.xcstrings"
     },
     {
@@ -3425,6 +3508,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
+        },
+        "native_reader_menu_label": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "native_share": {
           "kind": "commit",
