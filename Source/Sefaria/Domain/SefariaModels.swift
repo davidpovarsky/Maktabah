@@ -86,12 +86,15 @@ struct SefariaVersion: Codable, Hashable, Sendable {
     let isSource: Bool?
     let direction: String?
     let text: SefariaJSONValue?
+    // The legacy language bucket is only "he"/"en"; e.g. French is "en".
+    // The v3 endpoint requires this actual family name in an edition selector.
+    var languageFamilyName: String? = nil
 }
 
 extension SefariaVersion {
     private enum CodingKeys: String, CodingKey {
         case versionTitle, language, actualLanguage, versionSource, license, versionNotes
-        case priority, isPrimary, isSource, direction, text
+        case priority, isPrimary, isSource, direction, text, languageFamilyName
     }
 
     init(from decoder: Decoder) throws {
@@ -113,6 +116,7 @@ extension SefariaVersion {
         isSource = try values.decodeIfPresent(Bool.self, forKey: .isSource)
         direction = try values.decodeIfPresent(String.self, forKey: .direction)
         text = try values.decodeIfPresent(SefariaJSONValue.self, forKey: .text)
+        languageFamilyName = try values.decodeIfPresent(String.self, forKey: .languageFamilyName)
     }
 }
 

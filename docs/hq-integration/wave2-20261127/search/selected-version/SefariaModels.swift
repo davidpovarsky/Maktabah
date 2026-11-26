@@ -1,0 +1,300 @@
+import Foundation
+
+enum SefariaCatalogIdentity {
+    static func categoryID(path: [String]) -> String {
+        let encodedPath = path.map {
+            $0.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? $0
+        }.joined(separator: "/")
+        return "sefaria/category/\(encodedPath)"
+    }
+
+    static func searchPath(parentPath: [String], title: String) -> String {
+        (parentPath + [title]).joined(separator: "/")
+    }
+}
+
+enum SefariaJSONValue: Codable, Hashable, Sendable {
+    case string(String), array([SefariaJSONValue]), object([String: SefariaJSONValue])
+    case number(Double), bool(Bool), null
+
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer()
+        if value.decodeNil() { self = .null }
+        else if let result = try? value.decode(String.self) { self = .string(result) }
+        else if let result = try? value.decode([SefariaJSONValue].self) { self = .array(result) }
+        else if let result = try? value.decode([String: SefariaJSONValue].self) { self = .object(result) }
+        else if let result = try? value.decode(Bool.self) { self = .bool(result) }
+        else if let result = try? value.decode(Double.self) { self = .number(result) }
+        else { throw DecodingError.dataCorruptedError(in: value, debugDescription: "Unsupported JSON value") }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var value = encoder.singleValueContainer()
+        switch self {
+        case .string(let result): try value.encode(result)
+        case .array(let result): try value.encode(result)
+        case .object(let result): try value.encode(result)
+        case .number(let result): try value.encode(result)
+        case .bool(let result): try value.encode(result)
+        case .null: try value.encodeNil()
+        }
+    }
+
+    var flattenedStrings: [String] {
+        switch self {
+        case .string(let value): return [value]
+        case .array(let values): return values.flatMap(\.flattenedStrings)
+        default: return []
+        }
+    }
+
+    /// Section-level text while retaining null padding inserted by the iOS
+    /// exporter for address offsets.
+    var segmentStrings: [String?] {
+        switch self {
+        case .string(let value): return [value]
+        case .array(let values):
+            return values.flatMap { value -> [String?] in
+                switch value {
+                case .string(let string): return [string]
+                case .null: return [nil]
+                case .array: return value.segmentStrings
+                default: return [nil]
+                }
+            }
+        case .null: return [nil]
+        default: return []
+        }
+    }
+
+    func value(inSectionsFor reference: String) -> SefariaJSONValue? {
+        guard case .object(let object) = self,
+              case .object(let sections)? = object["sections"] else { return nil }
+        return sections[reference]
+    }
+}
+
+struct SefariaVersion: Codable, Hashable, Sendable {
+    let versionTitle: String
+    let language: String
+    let actualLanguage: String?
+    let versionSource: String?
+    let license: String?
+    let versionNotes: String?
+    let priority: Double?
+    let isPrimary: Bool?
+    let isSource: Bool?
+    let direction: String?
+    let text: SefariaJSONValue?
+    // The legacy language bucket is only "he"/"en"; e.g. French is "en".
+    // The v3 endpoint requires this actual family name in an edition selector.
+    var languageFamilyName: String? = nil
+}
+
+extension SefariaVersion {
+    private enum CodingKeys: String, CodingKey {
+        case versionTitle, language, actualLanguage, versionSource, license, versionNotes
+        case priority, isPrimary, isSource, direction, text, languageFamilyName
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        versionTitle = try values.decode(String.self, forKey: .versionTitle)
+        language = try values.decode(String.self, forKey: .language)
+        actualLanguage = try values.decodeIfPresent(String.self, forKey: .actualLanguage)
+        versionSource = try values.decodeIfPresent(String.self, forKey: .versionSource)
+        license = try values.decodeIfPresent(String.self, forKey: .license)
+        versionNotes = try values.decodeIfPresent(String.self, forKey: .versionNotes)
+        if let numeric = try? values.decode(Double.self, forKey: .priority) {
+            priority = numeric
+        } else if let string = try? values.decode(String.self, forKey: .priority) {
+            priority = Double(string)
+        } else {
+            priority = nil
+        }
+        isPrimary = try values.decodeIfPresent(Bool.self, forKey: .isPrimary)
+        isSource = try values.decodeIfPresent(Bool.self, forKey: .isSource)
+        direction = try values.decodeIfPresent(String.self, forKey: .direction)
+        text = try values.decodeIfPresent(SefariaJSONValue.self, forKey: .text)
+        languageFamilyName = try values.decodeIfPresent(String.self, forKey: .languageFamilyName)
+    }
+}
+
+struct SefariaSection: Codable, Hashable, Sendable {
+    let ref: String
+    let heRef: String?
+    let sectionRef: String
+    let indexTitle: String
+    let next: String?
+    let prev: String?
+    let versions: [SefariaVersion]
+    let linksBySegment: [[SefariaLink]]
+    let origin: LibraryTextSection.Origin
+
+    func asLibrarySection() -> LibraryTextSection {
+        let source = versions.first(where: { $0.isSource == true })
+            ?? versions.first(where: { $0.isPrimary == true })
+            ?? versions.first(where: { $0.language == "he" })
+            ?? versions.first
+        let translation = versions.first {
+            ($0.versionTitle != source?.versionTitle || $0.language != source?.language)
+                && ($0.language == "en" || $0.isSource != true)
+        }
+        let primary = source?.text?.segmentStrings ?? []
+        let translated = translation?.text?.segmentStrings ?? []
+        let count = max(primary.count, translated.count)
+        let isSegmentLevelRef = count == 1 && ref != sectionRef
+        let segments = (0..<count).map { index in
+            let segmentRef = isSegmentLevelRef ? ref : SefariaRef.segmentRef(sectionRef: sectionRef, offset: index + 1)
+            let segmentHeRef = isSegmentLevelRef
+                ? heRef
+                : heRef.map { "\($0):\(index + 1)" }
+            return LibraryTextSegment(
+                locator: TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef(segmentRef)),
+                heRef: segmentHeRef,
+                primaryText: index < primary.count ? (primary[index] ?? "") : "",
+                translation: index < translated.count ? translated[index] : nil
+            )
+        }
+        let locator = TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef(sectionRef))
+        return LibraryTextSection(
+            locator: locator,
+            displayRef: ref,
+            heRef: heRef,
+            segments: segments,
+            previous: prev.map { TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef($0)) },
+            next: next.map { TextLocator(backend: .sefaria, workKey: indexTitle, position: .canonicalRef($0)) },
+            versions: versions.map(\.metadata),
+            links: linksBySegment.flatMap { $0 }.map(\.libraryLink),
+            origin: origin
+        )
+    }
+}
+
+extension SefariaVersion {
+    var metadata: TextVersionMetadata {
+        TextVersionMetadata(
+            title: versionTitle,
+            language: language,
+            actualLanguage: actualLanguage,
+            sourceURL: versionSource.flatMap(URL.init(string:)),
+            license: license,
+            notes: versionNotes,
+            isPrimary: isPrimary == true || isSource == true
+        )
+    }
+}
+
+struct SefariaLink: Codable, Hashable, Sendable {
+    let ref: String?
+    let heRef: String?
+    let category: String?
+    let type: String?
+    let anchorRef: String?
+    let anchorRefExpanded: [String]?
+    let sourceRef: String?
+}
+
+extension SefariaLink {
+    var libraryLink: LibraryTextLink {
+        .init(ref: ref, heRef: heRef, category: category, type: type,
+            anchorRef: anchorRef, sourceRef: sourceRef)
+    }
+}
+
+enum SefariaRef {
+    static func canonicalInput(_ input: String) -> String {
+        var value = input.removingPercentEncoding ?? input
+        value = value.replacingOccurrences(of: "_", with: " ")
+        if let firstSectionDot = value.range(of: #"\.(?=\d)"#, options: .regularExpression) {
+            value.replaceSubrange(firstSectionDot, with: " ")
+            let suffix = firstSectionDot.lowerBound..<value.endIndex
+            value = value.replacingOccurrences(of: ".", with: ":", options: [], range: suffix)
+        }
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
+    }
+
+    static func segmentRef(sectionRef: String, offset: Int) -> String {
+        if sectionRef.range(of: #"\d[ab]$"#, options: .regularExpression) != nil {
+            return "\(sectionRef):\(offset)"
+        }
+        return sectionRef.contains(":") ? "\(sectionRef):\(offset)" : "\(sectionRef):\(offset)"
+    }
+
+    static func workKey(from canonicalRef: String, knownTitles: [String]) -> String? {
+        knownTitles.filter { canonicalRef == $0 || canonicalRef.hasPrefix($0 + " ") }
+            .max(by: { $0.count < $1.count })
+    }
+
+    static func talmudAddress(offset: Int) -> String {
+        "\(offset / 2 + 2)\(offset.isMultiple(of: 2) ? "a" : "b")"
+    }
+
+    static func sectionMatches(_ lhs: String, _ rhs: String) -> Bool {
+        let lhs = canonicalInput(lhs)
+        let rhs = canonicalInput(rhs)
+        return lhs == rhs || lhs.hasPrefix(rhs + ":") || rhs.hasPrefix(lhs + ":")
+    }
+
+    static func sectionAncestors(of input: String) -> [String] {
+        var current = canonicalInput(input)
+        var result = [current]
+        while let range = current.range(
+            of: #":[0-9]+[ab]?(?:-[^:\s]+)?$"#,
+            options: [.regularExpression, .caseInsensitive]
+        ) {
+            current.removeSubrange(range)
+            result.append(current)
+        }
+        return result
+    }
+
+    static func inferredWorkKey(from input: String) -> String {
+        let canonical = canonicalInput(input)
+        guard let range = canonical.range(
+            of: #"\s+[0-9]+[ab]?(?::[0-9]+[ab]?)*(?:-\S+)?$"#,
+            options: [.regularExpression, .caseInsensitive]
+        ) else { return canonical }
+        return String(canonical[..<range.lowerBound])
+    }
+
+    static func segmentOffset(in input: String, relativeTo sectionRef: String) -> Int? {
+        let input = canonicalInput(input)
+        let section = canonicalInput(sectionRef)
+        guard input.hasPrefix(section + ":") else { return nil }
+        let suffix = input.dropFirst(section.count + 1)
+        guard !suffix.contains(":"), let first = suffix.split(separator: "-").first else { return nil }
+        return Int(first)
+    }
+
+    static func anchorReference(_ anchor: String, contains requestedRef: String) -> Bool {
+        let anchor = canonicalInput(anchor)
+        let requested = canonicalInput(requestedRef)
+        if anchor == requested { return true }
+        guard let dash = anchor.lastIndex(of: "-") else { return false }
+        let startText = String(anchor[..<dash])
+        let endText = String(anchor[anchor.index(after: dash)...])
+        guard let start = finalNumericAddress(startText),
+              let requestedAddress = finalNumericAddress(requested) else { return false }
+        let end: (prefix: String, value: Int)
+        if let value = Int(endText) {
+            end = (start.prefix, value)
+        } else if let fullEnd = finalNumericAddress(endText) {
+            end = fullEnd
+        } else {
+            return false
+        }
+        guard start.prefix == requestedAddress.prefix,
+              end.prefix == requestedAddress.prefix else { return false }
+        return requestedAddress.value >= min(start.value, end.value)
+            && requestedAddress.value <= max(start.value, end.value)
+    }
+
+    private static func finalNumericAddress(_ input: String) -> (prefix: String, value: Int)? {
+        let canonical = canonicalInput(input)
+        guard let range = canonical.range(of: #"[0-9]+$"#, options: .regularExpression),
+              let value = Int(canonical[range]) else { return nil }
+        return (String(canonical[..<range.lowerBound]), value)
+    }
+}

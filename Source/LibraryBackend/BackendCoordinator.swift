@@ -683,6 +683,16 @@ final class BackendCoordinator {
         return try await perform { try await provider.section(at: locator) }
     }
 
+    func section(
+        at locator: TextLocator, version: LibraryTextVersionSelection
+    ) async throws -> LibraryTextSection {
+        guard locator.backend == activeBackendID else { throw LibraryBackendError.staleRequest }
+        guard let provider = registrations[activeBackendID]?.text as? any LibraryVersionedTextProviding else {
+            throw LibraryBackendError.capabilityUnavailable
+        }
+        return try await perform { try await provider.section(at: locator, version: version) }
+    }
+
     func normalize(_ input: String) async throws -> TextLocator {
         guard let provider = registrations[activeBackendID]?.navigation else {
             throw LibraryBackendError.capabilityUnavailable

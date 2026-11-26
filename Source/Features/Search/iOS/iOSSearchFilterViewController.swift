@@ -38,6 +38,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
         func update(_ search: UISearchController?) {
             guard let field = search?.searchBar.searchTextField,
                   updated.insert(ObjectIdentifier(field)).inserted else { return }
+            field.accessibilityIdentifier = "global-search-book-query"
             let font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: field.traitCollection)
             field.adjustsFontForContentSizeCategory = true
             if field.font != font { field.font = font }
@@ -120,6 +121,7 @@ class iOSSearchFilterViewController: iOSHierarchicalCollectionViewController {
         UICollectionView.CellRegistration { [weak self] cell, _, book in
             guard let self else { return }
             let isSelected = selectedBookIds.contains(book.id)
+            cell.accessibilityIdentifier = "search-book-\(book.backendLocator?.persistenceKey ?? String(book.id))"
             let indentationLevel = LibraryDataManager.shared.categoryLevel(for: book)
             let config = ListContentConfiguration(
                 text: book.book,
@@ -349,6 +351,7 @@ struct SearchFilterModalView: UIViewControllerRepresentable {
                 target: self,
                 action: #selector(handleDone)
             )
+            doneButton.accessibilityIdentifier = "global-search-book-done"
             vc.navigationItem.rightBarButtonItem = doneButton
 
             if !(session?.selectedBookIds.isEmpty ?? true) {
@@ -358,6 +361,7 @@ struct SearchFilterModalView: UIViewControllerRepresentable {
                     target: self,
                     action: #selector(handleClear)
                 )
+                clearButton.accessibilityIdentifier = "global-search-book-clear"
                 clearButton.tintColor = .systemRed
                 vc.navigationItem.leftBarButtonItem = clearButton
             } else {

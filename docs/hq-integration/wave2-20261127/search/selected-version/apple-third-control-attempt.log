@@ -1,0 +1,63 @@
+COMPILE baseline 0 
+RUN baseline 1 PASS independent real source has different same-ref Hebrew bodies
+FAIL selected exact body Hebrew text-only
+PASS canonical locator unchanged Hebrew text-only
+PASS genuine bilingual slots Hebrew text-only
+FAIL selected exact body Hebrew nikkud
+PASS canonical locator unchanged Hebrew nikkud
+PASS genuine bilingual slots Hebrew nikkud
+FAIL selected exact body English JPS1917
+PASS canonical locator unchanged English JPS1917
+PASS genuine bilingual slots English JPS1917
+FAIL selected exact body French legacy-en bucket
+PASS canonical locator unchanged French legacy-en bucket
+PASS genuine bilingual slots French legacy-en bucket
+FAIL switch edition changes actual text
+PASS default section behavior preserved
+FAIL cold exact edition cache
+PASS cache needs no transport fixture
+FAIL reject missing requested edition
+FAIL reject missing edition in successful response
+FAIL reject ambiguous exact tuple
+FAIL reject absent language family
+FAIL English result explicit mode source
+PASS English result explicit mode translation
+FAIL English result explicit mode both
+RESULT pass=12 fail=12
+ 
+COMPILE candidate 0 /Users/m1/builds/otzaria-wave2-search-20261127/selected-version-controls-20261126T2345/candidate/ExtractedSections.swift:162:9: warning: initialization of immutable value 'item' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+160 | func previewVisibility(mode: LibraryReaderTextMode, language: String?, primary: String, translation: String?) -> (Bool, Bool) {
+161 |     let readerMode = mode
+162 |     let item = (resultLanguage: language, unused: false)
+    |         `- warning: initialization of immutable value 'item' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+163 |     let segment = (primary: primary, translation: translation)
+164 |                             let hasTranslation = segment.translation?.isEmpty == false
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+
+RUN candidate 0 PASS independent real source has different same-ref Hebrew bodies
+PASS selected exact body Hebrew text-only
+PASS canonical locator unchanged Hebrew text-only
+PASS genuine bilingual slots Hebrew text-only
+PASS selected exact body Hebrew nikkud
+PASS canonical locator unchanged Hebrew nikkud
+PASS genuine bilingual slots Hebrew nikkud
+PASS selected exact body English JPS1917
+PASS canonical locator unchanged English JPS1917
+PASS genuine bilingual slots English JPS1917
+PASS selected exact body French legacy-en bucket
+PASS canonical locator unchanged French legacy-en bucket
+PASS genuine bilingual slots French legacy-en bucket
+PASS switch edition changes actual text
+PASS default section behavior preserved
+PASS cold exact edition cache
+PASS cache needs no transport fixture
+PASS reject missing requested edition
+PASS reject missing edition in successful response
+PASS reject ambiguous exact tuple
+PASS reject absent language family
+PASS English result explicit mode source
+PASS English result explicit mode translation
+PASS English result explicit mode both
+RESULT pass=24 fail=0
+ 
