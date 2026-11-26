@@ -1182,15 +1182,15 @@ extension NativeRoutingAcceptanceTests {
         // A fresh sidecar namespace must not erase the original restored tabs.
         // Establish the empty-reader precondition through the real profile UI.
         let originalWorkspace = try actualReaderWorkspace()
-        let emptyProfile = "בדיקת תוכן ללא ספר"
+        let emptyProfile = "TOC without an open reader"
         tap(app.buttons["study-profile-menu"])
-        tap(app.buttons["ניהול פרופילי לימוד"])
-        tap(app.buttons["פרופיל לימוד חדש"])
-        let name = app.textFields["שם הפרופיל"]
+        tap(app.buttons["Manage Study Profiles"])
+        tap(app.buttons["New Study Profile"])
+        let name = app.textFields["Profile name"]
         tap(name); name.typeText(emptyProfile)
-        tap(app.buttons["שמירה"])
+        tap(app.buttons["Save"])
         XCTAssertTrue(app.staticTexts[emptyProfile].waitForExistence(timeout: 10))
-        tap(app.buttons["סיום"])
+        tap(app.buttons["Done"])
         tap(app.buttons["study-profile-menu"])
         tap(app.buttons[emptyProfile])
         let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
