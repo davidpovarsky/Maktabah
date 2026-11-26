@@ -143,12 +143,23 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
     private let maximumInvocations = 256
     private let maximumConcurrentInvocations = 8
 
+    /// Original risk-tier-zero actions suitable for the native metadata session.
+    /// Core still decides availability for the active backend and scene.
+    public static let metadataReadActions: Set<String> = [
+        "system.listBackends", "catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference",
+    ]
+
     // Explicit transport names. Do not sanitize arbitrary untrusted identifiers.
     private static let names: [String: String] = [
         "system.list-backends": "system.listBackends",
+        "catalog.list-authors": "catalog.listAuthors",
         "catalog.resolve-work": "catalog.resolveWork",
         "catalog.resolve-reference": "catalog.resolveReference",
         "search.query": "search.query",
+        "reader.get-toc": "reader.getTOC",
+        "reader.get-navigation-structures": "reader.getNavigationStructures",
+        "reader.navigation-items": "reader.navigationItems",
+        "reader.list-versions": "reader.listVersions",
     ]
 
     public init(core: ActionExecutor, authority: any OtzariaHanlinHostAuthority) throws {

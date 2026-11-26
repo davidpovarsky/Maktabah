@@ -6,7 +6,8 @@ import HanlinAgentCore
 import OtzariaActionCore
 @testable import OtzariaHanlinHostAdapter
 
-private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort, OtzariaHanlinNavigationAuthority {
+private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchPort,
+    ActionCatalogAuthorsPort, ActionTableOfContentsPort, OtzariaHanlinNavigationAuthority {
     var binding: OtzariaHanlinBinding
     var reads = 0
     var searchReads = 0
@@ -70,6 +71,16 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
         guard serveReadActions else { throw ActionPortError.unavailable }
         metadataReads += 1
         return .unique(.init(backend: query.backend, workKey: query.workRef?.workKey ?? "book:2", position: .legacyLine(0)))
+    }
+    func catalogAuthors(backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> [ActionCatalogAuthor] {
+        metadataReads += 1
+        return [.init(id: "fixture-author", name: "Fixture author")]
+    }
+    func tableOfContents(for work: ActionWorkRef, maximumEntries: Int,
+                         invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry] {
+        metadataReads += 1
+        return [.init(locator: .init(backend: work.backend, workKey: work.workKey, position: .legacyLine(0)),
+                      title: "Fixture chapter")]
     }
     func validateDestination(_ destination: ActionReaderDestination, invocation: ActionPortInvocation) async throws -> ActionReaderDestination { throw ActionPortError.unavailable }
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage {
@@ -178,7 +189,8 @@ private actor Fixture: ActionBackendStatePort, ActionResolverPort, ActionSearchP
 // The XCTest instance has no stored mutable test state; every fixture is an actor.
 // No UI/main-thread work occurs in this portable contract suite.
 final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
-    private func setup(rights: Bool = true, foreground: Bool = true, nativeSceneID: String? = nil) async throws
+    private func setup(rights: Bool = true, foreground: Bool = true, nativeSceneID: String? = nil,
+                       additionalReadTools: Set<String> = []) async throws
         -> (Fixture, OtzariaHanlinHostAdapter, HanlinHostSession, HanlinHostCatalog) {
         let scene = UUID()
         let context = HanlinHostContext(namespace: try .init(app: "otzaria", account: "fixture-only",
@@ -190,7 +202,9 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
             foregroundSceneID: foreground ? (nativeSceneID ?? scene.uuidString) : nil, maxResultBytes: 65_536)
         let binding = OtzariaHanlinBinding(context: context, executionContext: execution,
             backend: .init(backend: .otzaria, generation: 9_007_199_254_740_993),
-            catalogRevision: .init(7), availableReadActions: ActionRegistry.implemented.union(["notes.save"]))
+            catalogRevision: .init(7), availableReadActions: ActionRegistry.implemented
+                .subtracting(["catalog.listAuthors", "reader.getTOC"])
+                .union(["notes.save"]).union(additionalReadTools))
         let fixture = Fixture(binding: binding)
         let core = try ActionExecutor(state: fixture, resolver: fixture, search: fixture)
         let adapter = try OtzariaHanlinHostAdapter(core: core, authority: fixture)
@@ -233,6 +247,34 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
         // rights protect search content, not the original public work metadata.
         XCTAssertEqual(Set(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue }),
                        ["system.list-backends", "catalog.resolve-work", "catalog.resolve-reference"])
+    }
+
+    func testAuthorizedAuthorDiscoveryUsesSameOriginalCatalogWithoutContentRights() async throws {
+        let (fixture, adapter, session, catalog) = try await setup(rights: false,
+            additionalReadTools: ["catalog.listAuthors", "reader.getTOC"])
+        let names = Set(catalog.tools.map { $0.route.logicalToolID.localToolID.rawValue })
+        XCTAssertTrue(names.contains("catalog.list-authors"))
+        XCTAssertFalse(names.contains("reader.get-toc"))
+        let request = try invocation(session, catalog, toolID: "catalog.list-authors")
+        let response = try await adapter.execute(request) { _ in }
+        let reads = await fixture.metadataReads
+        XCTAssertEqual(reads, 1)
+        guard case .completed(let output) = response.result.outcome,
+              case .text(let json) = output.first else { return XCTFail("The original author query did not complete") }
+        XCTAssertTrue(json.contains("Fixture author"))
+    }
+
+    func testExplicitContentRightsUnlockNativeTableOfContentsWithTypedWorkReference() async throws {
+        let (fixture, adapter, session, catalog) = try await setup(additionalReadTools: ["reader.getTOC"])
+        let request = try invocation(session, catalog,
+            raw: #"{"workRef":{"backend":"otzaria","workKey":"book:2"}}"#, toolID: "reader.get-toc")
+        let response = try await adapter.execute(request) { _ in }
+        let reads = await fixture.metadataReads
+        XCTAssertEqual(reads, 1)
+        guard case .completed(let output) = response.result.outcome,
+              case .text(let json) = output.first else { return XCTFail("The original table of contents did not complete") }
+        XCTAssertTrue(json.contains("Fixture chapter"))
+        XCTAssertTrue(json.contains("book:2"))
     }
 
     func testCatalogUsesSamePolicyAsOriginalCoreWithoutContentRights() async throws {
