@@ -146,3 +146,24 @@ enum ActionSourceName {
         return String(quoted).split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
     }
 }
+
+public struct ActionTextVersion: Codable, Sendable, Equatable {
+    public let title: String
+    public let language: String
+    public let actualLanguage: String?
+    public let sourceURL: String?
+    public let license: String?
+    public let notes: String?
+    public let isPrimary: Bool
+
+    public init(title: String, language: String, actualLanguage: String? = nil,
+                sourceURL: String? = nil, license: String? = nil, notes: String? = nil, isPrimary: Bool = false) {
+        self.title = title
+        self.language = language
+        self.actualLanguage = actualLanguage
+        self.sourceURL = sourceURL
+        self.license = license
+        self.notes = notes
+        self.isPrimary = isPrimary
+    }
+}

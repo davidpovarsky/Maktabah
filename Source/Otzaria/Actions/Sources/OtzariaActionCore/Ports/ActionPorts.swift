@@ -62,6 +62,11 @@ public protocol ActionSourceTextPort: Sendable {
                  invocation: ActionPortInvocation) async throws -> ActionSourceTextSection
 }
 
+/// Reads edition metadata from the active work's original version provider.
+public protocol ActionVersionListPort: Sendable {
+    func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion]
+}
+
 public protocol ActionSearchPort: Sendable {
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage
 }

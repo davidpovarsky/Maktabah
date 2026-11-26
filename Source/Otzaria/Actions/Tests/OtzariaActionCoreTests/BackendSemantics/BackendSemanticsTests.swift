@@ -74,7 +74,8 @@ final class BackendSemanticsTests: XCTestCase {
             }
             let report = try profile.report(evidence: evidence(backend))
             XCTAssertEqual(report.operations.count, 29)
-            for action in ["notes.saveDraft", "packages.install", "packages.list", "reader.listVersions", "system.selectBackend"] {
+            XCTAssertEqual(try XCTUnwrap(report.operations["reader.listVersions"]).availableNow, backend == .sefaria)
+            for action in ["notes.saveDraft", "packages.install", "packages.list", "system.selectBackend"] {
                 XCTAssertFalse(try XCTUnwrap(report.operations[action]).availableNow)
             }
         }
