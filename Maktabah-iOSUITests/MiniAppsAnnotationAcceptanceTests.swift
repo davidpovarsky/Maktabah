@@ -399,6 +399,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
+        if let originalDB = ProcessInfo.processInfo.environment["MINIAPPS_NATIVE_RICH_ONLY_ORIGINAL_DB"] {
+            XCTAssertTrue(FileManager.default.fileExists(atPath: originalDB))
+            try await verifyOriginalRichEditorRoundTrips(producer: producer, shared: shared, databasePath: originalDB)
+            return
+        }
         try await openAnnotations()
         let priorRows = Set(annotationRows().allElementsBoundByIndex.map(\.identifier))
         tap(app.navigationBars["Annotations"].buttons["Close"])
@@ -670,14 +675,18 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let beforeWarm = Set(try records(in: shared).map { $0.request.id })
         let beforeChooser = try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath)
         tap(app.buttons["annotation-expanded-editor-miniapps"])
-        let cancelLaunch = app.buttons["annotation-miniapps-save-cancel"]
-        XCTAssertTrue(cancelLaunch.waitForExistence(timeout: 15))
+        let cancelLaunch = app.descendants(matching: .any).matching(NSPredicate(format:
+            "identifier == %@ OR label == %@", "annotation-miniapps-save-cancel", "Continue editing"))
+        try await requireNativeCondition(timeout: 15) {
+            cancelLaunch.allElementsBoundByIndex.contains { $0.isHittable && $0.isEnabled }
+        }
         XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
             "Opening the MiniApps confirmation must not save or publish a private native draft")
         XCTAssertEqual(Set(try records(in: shared).map { $0.request.id }), beforeWarm,
             "No outgoing MiniApps request exists before explicit confirmation")
-        tap(cancelLaunch)
-        try await requireNativeCondition(timeout: 15) { !cancelLaunch.exists }
+        let dismissButton = try XCTUnwrap(cancelLaunch.allElementsBoundByIndex.first { $0.isHittable && $0.isEnabled })
+        tap(dismissButton)
+        try await requireNativeCondition(timeout: 15) { cancelLaunch.count == 0 }
         XCTAssertEqual(try savedMiniAppsLaunchState(rowID: rowID, databasePath: databasePath), beforeChooser,
             "Cancelling keeps the original saved note and all canonical versions unchanged")
         host = try await richHost()
