@@ -459,10 +459,17 @@ def validate_provenance(root, config, qualification, api):
     fresh_route = config.get('abi_provenance') == FRESH_SCHEMA
     require(not donor_route or contract in (MINIAPPS_CONTRACT, FILES_MINIAPPS_CONTRACT),
             'Donor reuse requires the reviewed complete MiniApps public contract')
-    branch = (donor_policy_scope(config.get('abi_donor_source_sha'))['current_branch'] if donor_route else
-              'codex/anytype-original-miniapps-facade-20261125' if fresh_route else
-              'codex/otzaria-local-annotation-sdk-20261124' if contract else
-              'codex/otzaria-sdk-mac-20261124')
+    if donor_route:
+        branch = donor_policy_scope(config.get('abi_donor_source_sha'))['current_branch']
+    elif fresh_route:
+        # The independently rebuilt Collections13 SDK retains its own actual
+        # production branch and all direct native ABI3 receipts.
+        branch = ('codex/anytype-original-sdk-collections13-20261125'
+                  if config['source_sha'] == '8ae85a6490c4fb763fcd01d5f93345f7e071db92'
+                  else 'codex/anytype-original-miniapps-facade-20261125')
+    else:
+        branch = ('codex/otzaria-local-annotation-sdk-20261124' if contract
+                  else 'codex/otzaria-sdk-mac-20261124')
     require(execution.get('schema') == 'otzaria.original-editor.local-execution/1'
             and execution.get('repository') == REPOSITORY
             and execution.get('execution_id') == config['run_id']
