@@ -71,7 +71,13 @@ def dispatch_request(request, token, udid, seen, run=subprocess.run, now=time.ti
                 or request.name != f"r27-url-{token}-{nonce}.request.json"
                 or not 0 <= now() - request.stat().st_mtime < 30
                 or not isinstance(url, str) or len(url) > 6144
-                or not re.fullmatch(r"maktabah-debug://action/(?:v[12]/native\.(?:history|search|annotations|library|reader\.toc)|v2/native\.reader(?:\.inspector)?)\?route=[A-Za-z0-9_-]+", url)):
+                or not (
+                    re.fullmatch(r"maktabah-debug://action/(?:v[12]/native\.(?:history|search|annotations|library|reader\.toc)|v2/native\.reader(?:\.inspector)?)\?route=[A-Za-z0-9_-]+", url)
+                    # Exact production-origin HTTPS roots for real Universal Link
+                    # acceptance. This remains transport-only; the app validates
+                    # the public-v2 payload and actual native receipt.
+                    or re.fullmatch(r"https://davidpovarsky\.github\.io/chavrusatext/action/v2/native\.(?:history|library)\?route=[A-Za-z0-9_-]+", url)
+                )):
             raise ValueError()
         # This is transport syntax only. The actual app's canonical parser,
         # backend/scene authority and receipt ledger still decide the outcome.
