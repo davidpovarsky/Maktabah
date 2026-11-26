@@ -56,3 +56,12 @@ The original Otzaria engine producer ran in the iPad simulator on Scaleway Mac a
 The Otzaria v40 artifact has identity `f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139`. All 15 compressed parts, totaling 4,150,325,346 bytes, were decompressed and compared byte-for-byte with their original portions of the accepted index. The manifest SHA-256 is `c10824ac3cc38514b64cb59e0c588c8b56d5d86ac3213bcd56bd75048cfb2b8b`. The first packaging invocation lacked two projected resource files after compression. Recovery used the immutable producer's files, verified their pinned digests, and reused the already-compressed parts after comparing every byte they produced. The native artifact and `OTZARIA_V40_PACKAGE_RECEIPT.json` are in `package-v40` under the producer receipt's directory.
 
 The original application installed the local artifact and promoted its staging directory after reopening and checking all 7,925,185 documents. The test report nevertheless failed after the initial searches because the additional exact-occurrence probe required a qualified original265 producer. That requirement rejected the same d5 producer and consumer already accepted by the package validator. The failed report, SHA-256 `5064e3f13f58d9db862931cc657b0158d80071fbc56244d2ce52c206485ad293`, is retained in `portable-install-native` with the app data container and index. The acceptance-only fix preserves the original265-to-d5 route and admits the exact known d5 producer to the same proof using the compiled engine's pinned upstream base. Actual source checks on the Mac accepted both expected producers and rejected five mismatched producer, consumer or resource controls. The fresh process reopen and exact counts still require the updated executable. Both local packages are available for integration handoff.
+
+## Independent full-v40 exact-occurrence oracle
+
+A read-only Oracle scan decoded all 7,925,185 original v40 SQLite rows. It verified disjoint row-ID partition coverage and ran 2,250 cross-checks against the independent scalar tokenizer. It did not load an index or the search engine. The raw `OTZARIA_V40_SQL_ORACLE.json` SHA-256 is `1284a6779de4ff6b350b49180afaff8004df677634584dcd0d5048b009c52437`.
+
+| Query | Exact token occurrences | Matching documents |
+| --- | ---: | ---: |
+| בראשית | 148,854 | 107,914 |
+| אברהם | 182,166 | 117,583 |

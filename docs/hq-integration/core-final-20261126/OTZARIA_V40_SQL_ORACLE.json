@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "sourceDatabaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+  "rows": 7925185,
+  "counts": {
+    "בראשית": {
+      "occurrences": 148854,
+      "matchingLiveDocuments": 107914
+    },
+    "אברהם": {
+      "occurrences": 182166,
+      "matchingLiveDocuments": 117583
+    }
+  },
+  "partitions": [
+    {
+      "bounds": [
+        1,
+        5443641
+      ],
+      "rows": 3351032,
+      "counts": {
+        "בראשית": {
+          "occurrences": 87597,
+          "matchingLiveDocuments": 64245
+        },
+        "אברהם": {
+          "occurrences": 93998,
+          "matchingLiveDocuments": 57375
+        }
+      },
+      "coverageSHA256": "f685b6bff237516152886463b0a4818bddad7d5330b2ceaf782cb40f232b8102",
+      "scalarControls": 1136
+    },
+    {
+      "bounds": [
+        5443642,
+        10887281
+      ],
+      "rows": 4574153,
+      "counts": {
+        "בראשית": {
+          "occurrences": 61257,
+          "matchingLiveDocuments": 43669
+        },
+        "אברהם": {
+          "occurrences": 88168,
+          "matchingLiveDocuments": 60208
+        }
+      },
+      "coverageSHA256": "d33496d62a63f2e16b7d64fff2853a196060e06058e5bdbf133abc2daec680ff",
+      "scalarControls": 1114
+    }
+  ],
+  "pdfBooks": 0,
+  "seconds": 2095.97,
+  "indexRead": false,
+  "engineLoaded": false
+}
