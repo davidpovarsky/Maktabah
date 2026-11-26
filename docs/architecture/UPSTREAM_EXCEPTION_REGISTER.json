@@ -151,19 +151,19 @@
       "patch_id": "OWNER_PATCH_003",
       "approval_ref": "OWNER_PATCH_003",
       "status": "APPROVED",
-      "expected_head_blob_sha": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
-      "patch_digest_sha256": "07b8e7e2408842b82de34cefea39727e45a627cdd5027403dde3f88bd0e1cba6",
+      "expected_head_blob_sha": "5f7b779c394c0f3fce828770f20146e00db78317",
+      "patch_digest_sha256": "b92b13abbf849bd219f8f5de05024487a7ce32fc0baa8ae1bd98a45258f06628",
       "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
       "owner_attestation": {
         "repo": "davidpovarsky/Maktabah",
         "approval_id": "OWNER_PATCH_003",
         "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
-        "expected_head_blob_sha": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
-        "patch_digest_sha256": "07b8e7e2408842b82de34cefea39727e45a627cdd5027403dde3f88bd0e1cba6",
+        "expected_head_blob_sha": "5f7b779c394c0f3fce828770f20146e00db78317",
+        "patch_digest_sha256": "b92b13abbf849bd219f8f5de05024487a7ce32fc0baa8ae1bd98a45258f06628",
         "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
-        "signature": "e48899767545c59c229a6bee068d1c310d4730b34500de36f607349e3a3aa1fd1af22f7cb43dd8937a73dbaca1d8864a3ce9c002d16cb1824cf581f76e6fa301",
-        "signed_at": "2026-11-26T00:52:17Z",
-        "expires_at": "2027-11-26T00:52:17Z"
+        "signature": "73f68ab9612204dd3cc31d9ffbc85db0e9a75ea48015c26428e8d62e8de084085b1b8e54dbe23c1c026101a79cbecdb0514f64a9271af5b0dd6fa91d5830ee0e",
+        "signed_at": "2026-11-26T01:08:33Z",
+        "expires_at": "2027-11-26T01:08:33Z"
       }
     },
     {
@@ -891,19 +891,19 @@
       "patch_id": "OWNER_PATCH_040",
       "approval_ref": "OWNER_PATCH_040",
       "status": "APPROVED",
-      "expected_head_blob_sha": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-      "patch_digest_sha256": "3a0440a10720771e1cc0f3a0f26cab63f603345e644d12c5c2e628a2491b9b5e",
+      "expected_head_blob_sha": "0a409aed3c62db9a55e4fdf04bedf84d1693b995",
+      "patch_digest_sha256": "f32ccaef64effd9ddebebb1a384a0afb419a1cfdfecea211be054106861299af",
       "upstream_sha": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
       "owner_attestation": {
         "repo": "davidpovarsky/Maktabah",
         "approval_id": "OWNER_PATCH_040",
         "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
-        "expected_head_blob_sha": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-        "patch_digest_sha256": "3a0440a10720771e1cc0f3a0f26cab63f603345e644d12c5c2e628a2491b9b5e",
+        "expected_head_blob_sha": "0a409aed3c62db9a55e4fdf04bedf84d1693b995",
+        "patch_digest_sha256": "f32ccaef64effd9ddebebb1a384a0afb419a1cfdfecea211be054106861299af",
         "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
-        "signature": "72a9fe0e787a47058ae37a9c205ea442805809738dbda7c90d8b21ecf5c9438aeeefecc81aa4fcb608a4374086ec7003366b7ed75806a94d8aa03aaa310aa805",
-        "signed_at": "2026-11-26T00:52:17Z",
-        "expires_at": "2027-11-26T00:52:17Z"
+        "signature": "072660c4f634bffb12283f3d8b462b67d6941405ed9fcb6b30b0634081035d730f62aeb3adf781fca49c66342de96270f1e4d2dc4a600b1c446c118b63e76d05",
+        "signed_at": "2026-11-26T01:08:33Z",
+        "expires_at": "2027-11-26T01:08:33Z"
       }
     },
     {
@@ -1389,10 +1389,10 @@
     }
   ],
   "status": "APPROVED_OWNER_SIGNED",
-  "last_signed": "2026-11-26T00:52:17Z",
+  "last_signed": "2026-11-26T01:08:33Z",
   "owner_verification_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
   "owner_review": {
-    "source_sha": "61b36001b38835378b93ffec5e419e5917f36eb6",
-    "manifest_sha256": "8eab24c53e7c519a211022f15e6eb7e0eaa6b14b8d7d45e5bc762e9385adf8a5"
+    "source_sha": "a2df769d4ce65c1ab6f64212e28de381237e08ac",
+    "manifest_sha256": "f9ce9299f0887a5b8515e25e1f02a6e025e5269e997bc5b134763ae8a741c5d8"
   }
 }
