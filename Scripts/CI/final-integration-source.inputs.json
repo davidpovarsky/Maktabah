@@ -1,6 +1,7 @@
 {
   "accepted_components": {
     "anytype_native_host": "fd2d0afecdb0ba1bba16d84e99445ab599e5de2e",
+    "app_intent_scoped_discovery": "0d26949822be9056add3bade87b5aa7010daffcd",
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
     "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
@@ -11,6 +12,7 @@
     "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
     "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
+    "navigation_items": "cff0a5fd58333b071b5e19a77d32c470e92accc9",
     "navigation_structures": "b5852451ccbd3bd3ad14c8381e7a99f04d7596e0",
     "normal_editor": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
     "original_account_exchange_ui": "f0d541b9ace6fc473bcd02b2b50f8bcccdd48615",
@@ -21,17 +23,18 @@
     "original_sefaria_versions": "823fa496304369675f7505b93fd5bef27376d135",
     "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
     "reader_designkit_modifier": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
+    "reader_html_performance": "29e37d0f2092a9dfbf3ee88c42d1fbd1b5fed7d1",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b",
     "safari_toolbar_localization": "104168712f060f0a21a78d27fcde98dc312d9527",
     "shared_original_account_exchange_ui": "7f956284abf4c07d00a2db5c91187eaca7bfdcc6",
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "104168712f060f0a21a78d27fcde98dc312d9527",
+  "application_source_sha": "054512a97ed1119f21ac9c22cc21cc8bc190ec3d",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "222079cb8617367058b4af47892459104212e4d4",
+    "Source": "06dae2c2d17412730aa1d27a67de03efbc75cb82",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -58,6 +61,13 @@
       "before": null,
       "component_objects": {
         "anytype_native_host": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "app_intent_scoped_discovery": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -116,6 +126,13 @@
           "sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae"
         },
         "native_share": null,
+        "navigation_items": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
         "navigation_structures": {
           "bytes": 99229,
           "kind": "blob",
@@ -174,6 +191,13 @@
           "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
         },
         "reader_designkit_modifier": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "reader_html_performance": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -279,6 +303,13 @@
           "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "empty_note": {
           "bytes": 4432,
           "kind": "blob",
@@ -349,6 +380,13 @@
           "object": "f42fca712b66fc761b5a9c05919ec37a0cc9f775",
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
         },
+        "navigation_items": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "navigation_structures": {
           "bytes": 5988,
           "kind": "blob",
@@ -413,6 +451,13 @@
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
         "reader_designkit_modifier": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "reader_html_performance": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -730,6 +775,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "empty_note": {
           "bytes": 14652,
           "kind": "blob",
@@ -800,6 +852,13 @@
           "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
           "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
         },
+        "navigation_items": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "navigation_structures": {
           "bytes": 21873,
           "kind": "blob",
@@ -870,6 +929,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "reader_html_performance": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "reader_source_actions": {
           "bytes": 21097,
           "kind": "blob",
@@ -925,6 +991,13 @@
       "before": null,
       "component_objects": {
         "anytype_native_host": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "app_intent_scoped_discovery": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -995,6 +1068,13 @@
           "object": "d85450e2eff7f4243a82f4027ccb8245db0df9ca",
           "sha256": "2538e127de364edd33b7eaa25c560fa4e6d8793ba867cfc82c2077ddd0efd9cc"
         },
+        "navigation_items": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
         "navigation_structures": {
           "bytes": 42527,
           "kind": "blob",
@@ -1059,6 +1139,13 @@
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         },
         "reader_designkit_modifier": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "reader_html_performance": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1171,6 +1258,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "empty_note": {
           "bytes": 10832,
           "kind": "blob",
@@ -1234,6 +1328,13 @@
           "mode": "100644",
           "object": "30bece6fddb0c8ac0597a0e924d54b6b8ea0a906",
           "sha256": "7d5be2c54070a3676d2cf45b2ffa6290a47ba902415450b0d0c9ba6cac918605"
+        },
+        "navigation_items": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "navigation_structures": {
           "bytes": 54697,
@@ -1305,6 +1406,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "reader_html_performance": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "reader_source_actions": {
           "bytes": 54697,
           "kind": "blob",
@@ -1366,6 +1474,13 @@
       },
       "component_objects": {
         "anytype_native_host": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
+        "app_intent_scoped_discovery": {
           "bytes": 38923,
           "kind": "blob",
           "mode": "100644",
@@ -1442,6 +1557,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "navigation_items": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "navigation_structures": {
           "bytes": 38923,
           "kind": "blob",
@@ -1506,6 +1628,13 @@
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
         "reader_designkit_modifier": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
+        "reader_html_performance": {
           "bytes": 38923,
           "kind": "blob",
           "mode": "100644",
@@ -1592,6 +1721,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "empty_note": null,
         "hebrew_highlight_utf16": {
           "bytes": 30093,
@@ -1644,6 +1780,13 @@
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
         "native_share": null,
+        "navigation_items": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "navigation_structures": {
           "bytes": 37347,
           "kind": "blob",
@@ -1702,6 +1845,13 @@
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
         "reader_designkit_modifier": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
+        "reader_html_performance": {
           "bytes": 37347,
           "kind": "blob",
           "mode": "100644",
@@ -1782,6 +1932,13 @@
           "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "empty_note": null,
         "hebrew_highlight_utf16": {
           "bytes": 12957,
@@ -1834,6 +1991,13 @@
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
         "native_share": null,
+        "navigation_items": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "navigation_structures": {
           "bytes": 15325,
           "kind": "blob",
@@ -1892,6 +2056,13 @@
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
         "reader_designkit_modifier": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "reader_html_performance": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2180,6 +2351,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 17836,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "13e31b06af0f6bc411be4c316e032dbf2dce90ba",
+        "sha256": "c8094f797bacd63dc436f04781c727d1e9e7dc5ddc0214831c1d140234f5d21d"
+      },
+      "before": {
+        "bytes": 17210,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4ac661ab2936ff7503e0af8fe99d9eae3fc9ab60",
+        "sha256": "6b67a3502b0060db50c735a6c3442fb7a5776717d01582d9c69b4746db5f568d"
+      },
+      "component": "app_intent_scoped_discovery",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 1785,
         "kind": "blob",
         "mode": "100644",
@@ -2315,6 +2505,13 @@
           "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
           "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
+        "app_intent_scoped_discovery": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "empty_note": {
           "bytes": 21637,
           "kind": "blob",
@@ -2385,6 +2582,13 @@
           "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
         },
+        "navigation_items": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "navigation_structures": {
           "bytes": 24135,
           "kind": "blob",
@@ -2449,6 +2653,13 @@
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
         },
         "reader_designkit_modifier": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "reader_html_performance": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -2596,11 +2807,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 9198,
+        "bytes": 9314,
         "kind": "blob",
         "mode": "100644",
-        "object": "d66c81ff87067f7a56faaf7c17589aaede01b479",
-        "sha256": "641f3ffe630f109913707427b9dab1ef0d2dd0922afe53790a0a3fa9ceaf8b34"
+        "object": "fb926a06364e9e05b966c2077e950d3e58384fd3",
+        "sha256": "7f2982b8f228d5a2e959ca38176969843b930c13803dca2a25658e5f165eef08"
       },
       "before": {
         "bytes": 9104,
@@ -2609,17 +2820,17 @@
         "object": "c247e147286e7da365e96ca4a56cca074516bdec",
         "sha256": "bd78a3f63e300164551411227835e108923729bbd83ed82cfea05e0e5d3dd433"
       },
-      "component": "reader_source_actions",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 36132,
+        "bytes": 38267,
         "kind": "blob",
         "mode": "100644",
-        "object": "0db3fcd39b8ab2e1734114e5ab5c76b83e180134",
-        "sha256": "a6b0a7415a461b5304536f96d88eb3a8edd95c4258b7f2784f92f0167d53390f"
+        "object": "62173b79c857ed5f89d9089b1dce25b69c83b579",
+        "sha256": "380550e323958674f99e8826212f0e2d2a38dc4ebd3211023cf6627d8c771268"
       },
       "before": {
         "bytes": 31084,
@@ -2628,17 +2839,17 @@
         "object": "64bf41582f6a360f4aff620494fc3b71b5eefbc3",
         "sha256": "90916d670e0a58623bce4c60cb09ff2678bbe4f308b50201897b278cf232aaca"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 10916,
+        "bytes": 10968,
         "kind": "blob",
         "mode": "100644",
-        "object": "e92597fe40e4e354d6a03765d8f6dd9908856115",
-        "sha256": "8dc5449f831dd02442ccba3a99a0906abc07569f618c741eb1e64695d74dc023"
+        "object": "b8119a8894fc4f82fb1454aa3b0420e27ca71032",
+        "sha256": "4e65f4a281a648094532c4c4a4f6bce8e83cdeb0257d693574a14fb92c991d35"
       },
       "before": {
         "bytes": 10269,
@@ -2647,7 +2858,7 @@
         "object": "a96c660469c7f888e7595f3c9252b57e2daa246e",
         "sha256": "aee72c3c9d39e58b82b6eeb5939f6dcca59bcb3d8681ae087f8eef46f049c85d"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift"
     },
     {
@@ -2672,11 +2883,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 57566,
+        "bytes": 59363,
         "kind": "blob",
         "mode": "100644",
-        "object": "fccc289932b48fa939ed6ea9d39386ccf2ecb953",
-        "sha256": "4960ce833da92afaf30c8051fc99083b0ac51f6be11ed0bbb9385df73b3b4805"
+        "object": "b729fa2c630326e02ec61b4ed5c19c0eb8ea9b44",
+        "sha256": "5bfeda44a7b9903f64ca94097b2e502b2dd32c9b2e8350911344d015ec2dbc63"
       },
       "before": {
         "bytes": 50933,
@@ -2685,17 +2896,17 @@
         "object": "a62aa1b847da66894cd42fea0e3b90bb948bc452",
         "sha256": "61d7627dd9c68513a3a6102b12154f2b11b1ffd4dab7cbfb226563b59ecf2252"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 7608,
+        "bytes": 7927,
         "kind": "blob",
         "mode": "100644",
-        "object": "5a04a58ca8de4998a3ce2087cd3edf3b5826364f",
-        "sha256": "e8357a4c4da3741712beecb23eac18185ce8f95776fa20042120fd83708aa6bf"
+        "object": "29270b50aad390c84aba0a89055355cc057d1bc4",
+        "sha256": "8423e9148df8e6ddb412403c188594f598cc0f19f8b7ac44b47b948b74ed77f0"
       },
       "before": {
         "bytes": 6420,
@@ -2704,17 +2915,17 @@
         "object": "786020324e2b83dad99b6201c013fb6c1506df03",
         "sha256": "f449f5be10b1e7f43a7769fa56678e699db7bd306eafe7e1bf54d4caf17b8c23"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 1929,
+        "bytes": 1955,
         "kind": "blob",
         "mode": "100644",
-        "object": "87ecefdacd6f2d7a2d0c4c8b47f63d0be806ecc6",
-        "sha256": "b7e4e0c4e0febb4d6d2f83ab1e975949296c05fe70945e9af5207ca4fda2a2cb"
+        "object": "97b0c9284c43b2c3ed8ab2e81a10b5191ccd9828",
+        "sha256": "83e8f90442884db8b3fb9814a60859856fe46ea6895f1f63fe66a8bbcfcc4970"
       },
       "before": {
         "bytes": 1834,
@@ -2723,7 +2934,7 @@
         "object": "d44190d2dd6d6ed634447a094ba27c7922bbb11e",
         "sha256": "4e175d23a23c1ecdfd2c2c466e4f658dbe62be1ec078b7c7a7fee2b9188574d8"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
     },
     {
@@ -2748,11 +2959,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 9626,
+        "bytes": 9652,
         "kind": "blob",
         "mode": "100644",
-        "object": "c5d3a1238f0fefe45590fa6dcc856c57a78542c4",
-        "sha256": "f359c9229d861e61ec3d5934301a00dd870b81e8c27f7f0f144b50c31d9ec29e"
+        "object": "fe821fa6969ac090b3a8ffd932ae3b3b259b4607",
+        "sha256": "0ba5a6344e02b48493b168f1410aea25234e93794c14939c367a974b21e17880"
       },
       "before": {
         "bytes": 9531,
@@ -2761,8 +2972,21 @@
         "object": "37452cc5d943a049787ac15bc27c1ec060fa034d",
         "sha256": "43e9b63c86674cf0e8abde0db4582d68ac1638988335203854386b941a622485"
       },
-      "component": "navigation_structures",
+      "component": "navigation_items",
       "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 3353,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "660cf7176d61d1a02d1dbfa63a2f4cbf47e15943",
+        "sha256": "845e23bf882314d1dc6c2f409b2700c2deb932c3c14cfe575c38f7cbf6ee2c47"
+      },
+      "before": null,
+      "component": "navigation_items",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NavigationItemsActionTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -2927,11 +3151,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 5258,
+        "bytes": 5243,
         "kind": "blob",
         "mode": "100644",
-        "object": "fae17316c582563f760546694fb167f1e7664d6d",
-        "sha256": "48ab8918b9e9421d2c45becf9b162bbcd3c096b2a8aab645aeddc01fc425a877"
+        "object": "2306860208660129d6e03337d03e60910a5110ee",
+        "sha256": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1"
       },
       "before": {
         "bytes": 5186,
@@ -2940,7 +3164,7 @@
         "object": "a51c076d0da77339a27b0a61e1be8f4ee45cb0e6",
         "sha256": "e62731fccc95328cb6284809e6e4b464ab83e064ed2117d7da1bf8c0ff9a826a"
       },
-      "component": "hebrew_highlight_utf16",
+      "component": "reader_html_performance",
       "path": "Source/Otzaria/Core/String+OtzariaText.swift"
     },
     {
@@ -3069,6 +3293,11 @@
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
+        "app_intent_scoped_discovery": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
         "empty_note": {
           "kind": "commit",
           "mode": "160000",
@@ -3119,6 +3348,11 @@
           "mode": "160000",
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
         },
+        "navigation_items": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
         "navigation_structures": {
           "kind": "commit",
           "mode": "160000",
@@ -3165,6 +3399,11 @@
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
         },
         "reader_designkit_modifier": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "reader_html_performance": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
