@@ -170,14 +170,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertGreaterThan(firstHandle.frame.midX, firstCell.frame.midX)
         }
         try snapshot("favorites-before-native-drag")
-        // The middle of the destination handle can leave the moved row in
-        // its old slot. Cross the actual destination cell's upper half.
-        let cell = firstCell.frame
-        let horizontal = (firstHandle.frame.midX - cell.minX) / cell.width
-        XCTAssertTrue(horizontal.isFinite && (0...1).contains(horizontal))
-        let destination = firstCell.coordinate(withNormalizedOffset: CGVector(dx: horizontal, dy: 0.25))
+        // Use the original MiniApps producer's native drag gesture. Moving
+        // into the row center crosses the reorder boundary in both directions.
+        let destination = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.15))
         secondHandle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-            .press(forDuration: 0.7, thenDragTo: destination, withVelocity: .slow, thenHoldForDuration: 0.4)
+            .press(forDuration: 1.0, thenDragTo: destination)
         try await requireNativeCondition(timeout: 15) {
             let ordered = try self.pickerPreferences(in: shared).favorites
             guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
