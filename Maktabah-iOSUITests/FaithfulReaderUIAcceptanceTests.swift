@@ -831,13 +831,14 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
 
     @MainActor
     func originalStudyToolsActionInWindow() throws -> XCUIElement {
-        let labels = ["Open Study Tools", "פתיחת כלי לימוד"]
-        let identifier = "reader-study-toggle"
+        try originalTopBarActionInWindow(identifier: "reader-study-toggle",
+            labels: ["Open Study Tools", "פתיחת כלי לימוד"])
+    }
 
-        // Native88 exposes this original toolbar action directly in the restored
-        // wide window, but moves it into UIKit's top overflow at 375pt. Resolve
-        // that same user action through the real toolbar; never synthesize a
-        // command, resize the window, or select a generic button by position.
+    @MainActor
+    func originalTopBarActionInWindow(identifier: String, labels: [String]) throws -> XCUIElement {
+        // SwiftUI can move the original action into UIKit's navigation menu
+        // when the window narrows. Resolve the same action in either location.
         func visible(_ query: XCUIElementQuery) -> [XCUIElement] {
             let bounds = app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1)
             return query.allElementsBoundByIndex.filter { element in
@@ -847,10 +848,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
         func uniqueOriginalAction(_ candidates: [XCUIElement]) throws -> XCUIElement {
             XCTAssertEqual(candidates.count, 1,
-                           "Require one visible original Study Tools action in the current native window")
+                           "Require one visible original toolbar action in the current native window")
             let action = try XCTUnwrap(candidates.count == 1 ? candidates.first : nil)
             XCTAssertTrue(labels.contains(action.label),
-                          "The original source-owned action must open Study Tools")
+                          "The original toolbar action must retain its exact label")
             return try XCTUnwrap(labels.contains(action.label) ? action : nil)
         }
 
@@ -865,7 +866,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
             }
         }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [toolbarReady], timeout: 15), .completed,
-                       "The actual window must expose the original Study Tools action or its native top overflow")
+                       "The actual window must expose the original action or its native top overflow")
         let direct = visible(directQuery)
         if !direct.isEmpty {
             return try uniqueOriginalAction(direct)
@@ -876,8 +877,7 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let overflow = try XCTUnwrap(overflows.count == 1 ? overflows.first : nil)
         overflow.tap()
 
-        // UIKit may expose the menu action by its original localized title.
-        // Both exact labels come from the unchanged source String Catalog.
+        // UIKit may expose the menu item by the action's original visible title.
         let menuQuery = app.buttons.matching(NSPredicate(
             format: "identifier == %@ OR label IN %@", identifier, labels))
         let menuReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
@@ -886,11 +886,11 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         let outcome = XCTWaiter.wait(for: [menuReady], timeout: 15)
         let evidence = XCTAttachment(string:
             "actualWindow=\(app.windows.firstMatch.frame)\n\(app.debugDescription)")
-        evidence.name = "original-study-tools-native-overflow-hierarchy"
+        evidence.name = "original-\(identifier)-native-overflow-hierarchy"
         evidence.lifetime = .keepAlways
         add(evidence)
         XCTAssertEqual(outcome, .completed,
-                       "Opening the actual native overflow must reveal the original Study Tools action")
+                       "Opening the actual native overflow must reveal the original action")
         return try uniqueOriginalAction(visible(menuQuery))
     }
 

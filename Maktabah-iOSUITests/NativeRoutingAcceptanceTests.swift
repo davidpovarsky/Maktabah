@@ -674,9 +674,9 @@ extension NativeRoutingAcceptanceTests {
         if expectedPad {
             returnToOriginalIPadReaderTab(originalTabID)
         } else {
-            let overview = app.buttons["reader-open-tabs-button"]
-            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable)
-            overview.tap()
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
             let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + originalTabID.uuidString }
             let originals = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
             XCTAssertTrue(originals.firstMatch.waitForExistence(timeout: 10))
@@ -1354,8 +1354,9 @@ extension NativeRoutingAcceptanceTests {
         if expectedPad {
             returnToOriginalIPadReaderTab(original.1)
         } else {
-            let overview = app.buttons["reader-open-tabs-button"]
-            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
             let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
             let cell = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
             XCTAssertTrue(cell.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(cell.count, 1)
@@ -2088,8 +2089,9 @@ extension NativeRoutingAcceptanceTests {
                 .matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
             XCTAssertTrue(old.waitForExistence(timeout: 10)); XCTAssertTrue(old.isHittable); old.tap()
         } else {
-            let overview = app.buttons["reader-open-tabs-button"]
-            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
             let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
             let old = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
             XCTAssertTrue(old.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(old.count, 1)
@@ -2407,8 +2409,9 @@ extension NativeRoutingAcceptanceTests {
         if expectedPad {
             returnToOriginalIPadReaderTab(original.1)
         } else {
-            let overview = app.buttons["reader-open-tabs-button"]
-            XCTAssertTrue(overview.waitForExistence(timeout: 10)); XCTAssertTrue(overview.isHittable); overview.tap()
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
             let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
             let old = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
             XCTAssertTrue(old.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(old.count, 1)
