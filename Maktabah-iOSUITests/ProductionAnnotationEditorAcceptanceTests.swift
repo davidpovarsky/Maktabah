@@ -651,10 +651,14 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func openAnnotations() async throws {
         tap(app.buttons["reader-more-menu"])
-        let action = app.buttons.matching(NSPredicate(format: "label == %@", "Annotations"))
+        let action = app.collectionViews.cells.buttons.matching(
+            NSPredicate(format: "label == %@", "Annotations")
+        )
         XCTAssertTrue(action.firstMatch.waitForExistence(timeout: 15))
-        XCTAssertEqual(action.count, 1)
-        tap(action.firstMatch)
+        let menuAction = try XCTUnwrap(action.count == 1 ? action.allElementsBoundByIndex.first : nil,
+            "Expected the reader's Annotations action in its native menu")
+        XCTAssertTrue(menuAction.isHittable)
+        tap(menuAction)
         XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 15))
         let list = app.descendants(matching: .any)["original-book-annotations-list"]
         XCTAssertTrue(list.waitForExistence(timeout: 15))
