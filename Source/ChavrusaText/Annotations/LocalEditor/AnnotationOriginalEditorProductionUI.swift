@@ -431,7 +431,8 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
                     // The restored context owns this mount and its file reads;
                     // its private object IDs can change after a cold import.
                     OtzariaMiniAppsCoordinator.shared.showOriginalEditor(annotation: annotation,
-                        context: launch.context, files: files, editorID: id, sourceView: reopened.viewController.view)
+                        context: launch.context, liveContext: restored, files: files,
+                        editorID: id, sourceView: reopened.viewController.view)
                 case .completedWithoutOwnership:
                     if !closed { stage = .saved }
                 }
@@ -443,12 +444,10 @@ final class AnnotationOriginalEditorProductionPresentation: Identifiable {
         }
     }
 
-    func applyMiniApps(_ result: MiniAppResult, contextJSON: String, text: String,
+    func applyMiniApps(_ result: MiniAppResult, context: AnytypeOriginalEditorMiniAppsContext, text: String,
                       attachments: [AnytypeOriginalEditorMiniAppsAttachment]) async throws
         -> AnnotationLocalEditorOutcome {
         guard canSave, operation == nil, let mount else { throw AnnotationLocalEditorError.busy }
-        let context = try JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self,
-            from: Data(contextJSON.utf8))
         stage = .saving
         do {
             let restored = try await mount.restoreMiniAppsContext(context)
