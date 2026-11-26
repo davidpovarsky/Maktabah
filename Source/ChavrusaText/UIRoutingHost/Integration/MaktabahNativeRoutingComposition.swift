@@ -999,28 +999,34 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             #endif
             throw ActionPortError.staleState
         }
-        // This command owns the reservation's synchronous release. It advances
-        // the source epoch, even though the actual Reader and workspace remain
-        // identical. Use only that exact publication for the next admission.
-        let (nextRevision, overflow) = observed.epoch.revision.addingReportingOverflow(1)
+        // The source owner publishes release synchronously, while the request
+        // tears down its binding. Keep the exact source alive across that
+        // boundary. The next admission observes the fresh scene again.
+        guard let workspaceSource = entry.session.workspaceProjectionSource,
+              let mapping = try workspaceSource.read()?.mappingOwnershipObservation(),
+              ObjectIdentifier(mapping.source) == observed.source, mapping.epoch == observed.epoch else {
+            throw ActionPortError.staleState
+        }
+        let (revision, overflow) = observed.epoch.revision.addingReportingOverflow(1)
         guard !overflow else { throw ActionPortError.staleState }
-        let successor = HanlinSourceObservation(backend: observed.backend, source: observed.source,
-            epoch: .init(sourceID: observed.epoch.sourceID, revision: nextRevision),
+        let expectedEpoch = StudyWorkspaceMappingEpoch(sourceID: observed.epoch.sourceID, revision: revision)
+        pending.cleanup = nil
+        release()
+        let publication = mapping.source.event
+        guard publication.phase == .available, publication.epoch == expectedEpoch,
+              publication.reasons == [.readerReservation] else {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[SemanticJourneyWitness] stage=owned-reader-release"
+                + " available=\(publication.phase == .available)"
+                + " expectedEpoch=\(publication.epoch == expectedEpoch)"
+                + " ownRelease=\(publication.reasons == [.readerReservation])")
+            #endif
+            throw ActionPortError.staleState
+        }
+        owner.observation = .init(backend: observed.backend, source: observed.source, epoch: expectedEpoch,
             projection: observed.projection, readerContent: observed.readerContent,
             currentWorkReadSource: observed.currentWorkReadSource, selectedRange: observed.selectedRange,
             locale: observed.locale)
-        pending.cleanup = nil
-        release()
-        guard let live = scenes[owner.sceneID], live.session === entry.session, live.managerID == entry.managerID,
-              contexts[owner.sceneID] == nil, let source = live.session.workspaceProjectionSource,
-              let mapping = try source.read()?.mappingOwnershipObservation(),
-              ObjectIdentifier(mapping.source) == successor.source, mapping.epoch == successor.epoch,
-              mapping.source.event.reasons == [.readerReservation],
-              try hanlinSource(sceneID: owner.sceneID, entry: live) == successor else {
-            throw ActionPortError.staleState
-        }
-        try live.session.validateCompletedJourneySurface(receipt)
-        owner.observation = successor
     }
 
     /// A count remains withheld until its read authority is checked again after
