@@ -59,7 +59,14 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         // Localizable.strings in the installed iOS 27 runtime, not translated
         // guesses or positional substitutes for native editing controls.
         var reorder: String { self == .hebrew ? "שינוי הסדר" : "Reorder" }
-        var delete: String { self == .hebrew ? "מחיקה" : "Delete" }
+        func deletionConfirmationLabels(for title: String) -> [String] {
+            // UIKit's delete action label and both documented native AX
+            // confirmation labels occur depending on the list presentation.
+            switch self {
+            case .hebrew: ["מחיקה", "אישור מחיקה", "אישור מחיקת " + title]
+            case .english: ["Delete", "Confirm Deletion", "Confirm Deletion for " + title]
+            }
+        }
     }
 
     @MainActor
@@ -125,13 +132,16 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertFalse(dismiss.exists, "Edit mode has one native Done action")
         try snapshot("native-edit")
 
-        let visible = app.switches["miniapps-visible-" + first.id]
-        XCTAssertTrue(visible.waitForExistence(timeout: 15))
-        tap(visible)
+        let visibleRow = app.switches["miniapps-visible-" + first.id]
+        XCTAssertTrue(visibleRow.waitForExistence(timeout: 15))
+        let visible = visibleRow.switches.firstMatch
+        XCTAssertTrue(visible.waitForExistence(timeout: 15) && visible.isHittable && visible.isEnabled)
+        visible.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden.contains(first.id) != original.hidden.contains(first.id)
         }
-        tap(visible)
+        XCTAssertTrue(visible.isHittable && visible.isEnabled)
+        visible.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).hidden == original.hidden
         }
@@ -143,7 +153,6 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
                 try self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
         }
-        for _ in 0..<3 { app.swipeDown() }
         let firstCell = app.cells.containing(.staticText, identifier: first.title).firstMatch
         let secondCell = app.cells.containing(.staticText, identifier: second.title).firstMatch
         let reorderPredicate = NSPredicate(format: "label BEGINSWITH %@", language.reorder)
@@ -163,7 +172,11 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
             XCTAssertGreaterThan(firstHandle.frame.midX, firstCell.frame.midX)
         }
         try snapshot("favorites-before-native-drag")
-        secondHandle.press(forDuration: 0.7, thenDragTo: firstHandle)
+        // Use the original MiniApps producer's native drag gesture. Moving
+        // into the row center crosses the reorder boundary in both directions.
+        let destination = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.15))
+        secondHandle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 1.0, thenDragTo: destination)
         try await requireNativeCondition(timeout: 15) {
             let ordered = try self.pickerPreferences(in: shared).favorites
             guard let a = ordered.firstIndex(of: first.id), let b = ordered.firstIndex(of: second.id) else { return false }
@@ -180,37 +193,64 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(edit)
         for item in [second, first] {
             let cell = app.cells.containing(.staticText, identifier: item.title).firstMatch
-            let removes = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", language.delete))
-            XCTAssertTrue(removes.firstMatch.waitForExistence(timeout: 15))
-            XCTAssertEqual(removes.count, 1)
-            tap(removes.firstMatch)
+            // UIKit exposes its edit-mode accessory as a native image.
+            // On iOS 27 the same accessory can appear twice in the AX tree.
+            let removalAccessory = cell.images["minus.circle.fill"].firstMatch
+            XCTAssertTrue(removalAccessory.waitForExistence(timeout: 15))
+            try snapshot("native-removal-accessory-" + item.id)
+            removalAccessory.tap()
             let removedImmediately = try await waitUntil(timeout: 1) {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
             if !removedImmediately {
-                let confirm = cell.buttons[language.delete]
+                try snapshot("native-removal-confirmation-" + item.id)
+                let expected = language.deletionConfirmationLabels(for: item.title)
+                let matching = app.buttons.matching(NSPredicate(format: "label IN %@", expected))
+                let confirm = matching.firstMatch
                 XCTAssertTrue(confirm.waitForExistence(timeout: 5))
-                tap(confirm)
+                XCTAssertEqual(matching.count, 1)
+                XCTAssertTrue(confirm.isHittable)
+                confirm.tap()
             }
             try await requireNativeCondition(timeout: 15) {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
         }
-        let window = app.switches["miniapps-new-window"]
-        for _ in 0..<6 {
-            if window.isHittable { break }
-            app.swipeUp()
+        func scrollToWindowSwitch() -> XCUIElement {
+            // The SwiftUI row contains the actual UIKit switch. Bring the
+            // destination into the viewport before requiring its child.
+            let window = app.switches["miniapps-new-window"].switches.firstMatch
+            for _ in 0..<6 {
+                if window.exists && window.isHittable { break }
+                app.swipeUp()
+            }
+            XCTAssertTrue(window.waitForExistence(timeout: 15))
+            XCTAssertTrue(window.isHittable && window.isEnabled)
+            return window
         }
-        XCTAssertTrue(window.isHittable)
-        tap(window)
+        let window = scrollToWindowSwitch()
+        try snapshot("window-native-control-before-change")
+        window.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
         }
         try snapshot("window-preference-changed")
-        tap(window)
+        tap(edit)
+        XCTAssertTrue(dismiss.waitForExistence(timeout: 15))
+        tap(dismiss)
+        let more = app.buttons["miniapps-more"]
+        XCTAssertTrue(more.waitForExistence(timeout: 15))
+        tap(more)
+        tap(edit)
+        let restoredWindow = scrollToWindowSwitch()
+        let changedState = original.opensInNewWindow ? "0" : "1"
+        XCTAssertEqual(restoredWindow.value as? String, changedState)
+        XCTAssertNotEqual(try pickerPreferences(in: shared).opensInNewWindow, original.opensInNewWindow)
+        restoredWindow.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared) == original
         }
+        try snapshot("window-preferences-restored")
         tap(edit)
         XCTAssertEqual(edit.label, language.edit)
         tap(dismiss)
@@ -1213,9 +1253,13 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func requireNativeCondition(timeout: TimeInterval,
+                                        file: StaticString = #filePath, line: UInt = #line,
                                         condition: @escaping @MainActor () throws -> Bool) async throws {
         let satisfied = try await waitUntil(timeout: timeout, condition: condition)
-        XCTAssertTrue(satisfied)
+        if !satisfied {
+            retainScreenshot(app, named: "miniapps-native-condition-failure-\(line)")
+        }
+        XCTAssertTrue(satisfied, "The actual native condition did not become true", file: file, line: line)
     }
 
     @MainActor
