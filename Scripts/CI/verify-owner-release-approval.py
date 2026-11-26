@@ -19,7 +19,12 @@ import sys
 import tempfile
 
 REPOSITORY = "davidpovarsky/Maktabah"
-BASELINE = "031df35710ab2c6015efb1acd1e65154dbcd3f24"
+PREVIOUS_BASELINE = "031df35710ab2c6015efb1acd1e65154dbcd3f24"
+BASELINE = "157729471b649a023a81f923be33fb7bfa6e41c9"
+POLICY_BLOBS = {
+    "Scripts/CI/verify-upstream-boundary.py": "1b40d104b261c2b86821d9681cc4b08b79fb2f9a",
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md": "8999f5329b0045f56f280c903f40a91e500fd36b",
+}
 UPSTREAM = "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4"
 VERIFIER_COMMIT = "978db8b37256d4dd2d58e91a0ea8d531798221c0"
 VERIFIER_PATH = "tools/verify_upstream_boundary.py"
@@ -51,6 +56,23 @@ def checkout_identity(repo, candidate, repository, event_sha=None):
                    cwd=repo, timeout=90, check=True)
     return {name: git(repo, "rev-parse", candidate + ":" + name).decode().strip()
             for name in APPLICATION_TREES}
+
+
+def validate_policy_baseline(repo, candidate):
+    parents = git(repo, "rev-list", "--parents", "-n", "1", BASELINE).decode().split()
+    if parents != [BASELINE, PREVIOUS_BASELINE]:
+        raise ApprovalError("Owner-approved policy baseline must descend directly from the previous baseline")
+    changed = git(repo, "diff", "--name-only", "-z", "--no-renames", PREVIOUS_BASELINE, BASELINE)
+    if set(changed.decode().split("\0")[:-1]) != POLICY_BLOBS.keys():
+        raise ApprovalError("Owner-approved policy baseline must change only the two pinned policy files")
+    if subprocess.run(["git", "merge-base", "--is-ancestor", BASELINE, candidate],
+                      cwd=repo, timeout=90).returncode != 0:
+        raise ApprovalError("Release candidate must include the owner-approved policy baseline")
+    for revision in (BASELINE, candidate):
+        actual = {path: git(repo, "rev-parse", revision + ":" + path).decode().strip()
+                  for path in POLICY_BLOBS}
+        if actual != POLICY_BLOBS:
+            raise ApprovalError("Release policy file differs from the owner-approved policy blob")
 
 
 def trusted_verifier_bytes(repo):
@@ -116,6 +138,7 @@ def audit(repo, candidate, repository, output, event_sha=None, key=None):
     try:
         before = checkout_identity(repo, candidate, repository, event_sha)
         receipt["application_trees"] = before
+        validate_policy_baseline(repo, candidate)
         key = (os.environ.get("MAKTABAH_OWNER_VERIFICATION_KEY", "") if key is None else key).strip()
         receipt["external_public_key_configured"] = bool(key)
         key_problem = None

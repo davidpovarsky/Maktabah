@@ -142,6 +142,17 @@ class OwnerReleaseControls(unittest.TestCase):
                 gate.trusted_verifier_bytes(ROOT)
         read.assert_called_once_with(ROOT, "show", gate.VERIFIER_COMMIT + ":" + gate.VERIFIER_PATH)
 
+    def test_owner_policy_baseline_only_accepts_approved_ancestry_and_blobs(self):
+        candidate = gate.git(ROOT, "rev-parse", "HEAD").decode().strip()
+        gate.validate_policy_baseline(ROOT, candidate)
+        with self.assertRaisesRegex(gate.ApprovalError, "must include"):
+            gate.validate_policy_baseline(ROOT, gate.PREVIOUS_BASELINE)
+        with mock.patch.dict(gate.POLICY_BLOBS, {
+            "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md": "f" * 40,
+        }):
+            with self.assertRaisesRegex(gate.ApprovalError, "policy blob"):
+                gate.validate_policy_baseline(ROOT, candidate)
+
     def test_pinned_immutable_verifier_matches_reviewed_bytes(self):
         self.assertTrue(gate.trusted_verifier_bytes(ROOT).startswith(b"#!/usr/bin/env python3"))
 
@@ -169,6 +180,7 @@ class OwnerReleaseControls(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             out = Path(folder)
             with mock.patch.object(gate, "checkout_identity", return_value={"Source": "fixture"}), \
+                 mock.patch.object(gate, "validate_policy_baseline"), \
                  mock.patch.object(gate, "trusted_verifier_bytes", return_value=b"# fixture, never executed"), \
                  mock.patch.object(gate.importlib.util, "spec_from_file_location", return_value=loader), \
                  mock.patch.object(gate.importlib.util, "module_from_spec", return_value=fake), \
@@ -200,6 +212,7 @@ class OwnerReleaseControls(unittest.TestCase):
                 after = before if stable else {"Source": "fixture-after"}
                 out = Path(folder)
                 with mock.patch.object(gate, "checkout_identity", side_effect=[before, after]), \
+                     mock.patch.object(gate, "validate_policy_baseline"), \
                      mock.patch.object(gate, "trusted_verifier_bytes", return_value=b"# fixture, never executed"), \
                      mock.patch.object(gate.importlib.util, "spec_from_file_location", return_value=loader), \
                      mock.patch.object(gate.importlib.util, "module_from_spec", return_value=fake), \
