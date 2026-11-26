@@ -5,6 +5,7 @@
     "command_palette_accessibility": "d50c0b84ab79611a092118c59fcc1ea806776da4",
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "full_v40_occurrence_diagnostic": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
+    "hanlin_full_history_checkpoint": "4f3e33472e5939fdfb8d2c6c7c38c58868a1002e",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
     "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
@@ -38,11 +39,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "d50c0b84ab79611a092118c59fcc1ea806776da4",
+  "application_source_sha": "4f3e33472e5939fdfb8d2c6c7c38c58868a1002e",
   "application_trees": {
     "Maktabah-iOSUITests": "fa177e95cd53657fd25ee6d4a687d8e68606b363",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "21f991356033916daca4b0566731affd8338430b",
+    "Source": "21fbad7ed44edc724b6e6ab0a26fbfcfc69218be",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -110,6 +111,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -408,6 +416,13 @@
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -942,6 +957,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "hanlin_full_history_checkpoint": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 21097,
           "kind": "blob",
@@ -1214,6 +1236,13 @@
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1537,6 +1566,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "hanlin_full_history_checkpoint": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "hebrew_highlight_utf16": {
           "bytes": 54697,
           "kind": "blob",
@@ -1783,13 +1819,13 @@
       "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 38923,
+        "bytes": 39156,
         "kind": "blob",
         "mode": "100644",
-        "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-        "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        "object": "7a618b24bb80735849df8abd6abc5e016ddabefa",
+        "sha256": "e7a1e129af84b8e1cf17db239d4cf82f0255fc491329d9391e8fb0e26b3dabb9"
       },
       "before": {
         "bytes": 38814,
@@ -1798,273 +1834,8 @@
         "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
         "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
       },
-      "component_objects": {
-        "anytype_native_host": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "app_intent_scoped_discovery": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "command_palette_accessibility": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "empty_note": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "full_v40_occurrence_diagnostic": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "hebrew_highlight_utf16": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "hebrew_shortcuts": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "library": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "library_install_cancel_rollback": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "managed_database_identity": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "miniapps": {
-          "bytes": 28736,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "f09aeeb0adb0f3dd30aaa66bdc092dd91076da14",
-          "sha256": "6cb67796a458fba8bbfee94d584b30744fb57b246d679aa4b909c2216ccd4c15"
-        },
-        "miniapps_hebrew_rtl": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "miniapps_save_confirmation": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "native_reader_menu_label": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "native_share": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "navigation_items": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "navigation_structures": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "normal_editor": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "original_account_exchange_ui": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "original_catalog_authors": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "original_explicit_save": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "original_license_texts": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "original_lifecycle_and_native_batch": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "original_rich_miniapps": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "original_sefaria_versions": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "original_toc_semantic_resolution": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "palette_localized_title": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "reader_cancellation": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "reader_designkit_modifier": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "reader_html_performance": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "reader_related_sources": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "reader_source_actions": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "safari_toolbar_localization": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "shared_original_account_exchange_ui": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "stable_native_group_segments": {
-          "bytes": 38923,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
-          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
-        },
-        "study_workspace_locale": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        },
-        "universal_link_transport": {
-          "bytes": 38814,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
-          "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
-        }
-      },
-      "patch": {
-        "bytes": 1709,
-        "sha256": "c0b2fe90ef3ef02f423c31c9d85c3b3fa26312e2166be1c0941a0a49e960436f"
-      },
-      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
-      "reason": "The actual original app compiler on94736728 reported the one missing nativeUnsupportedToolInput case from the unchanged final Hanlin SDK. Add its explicit fixed diagnostic Reason and exhaustive mapping, preserving the original provider rejection before dispatch and every action/permission/error path. The fixed-label collector vocabulary is aligned separately. No catch-all, raw provider/input payload logging, SDK implementation change or native acceptance credit. Four relevant original owner worktrees were checked for an existing/active fix; none contained this case. All prior47 product delta rows remain byte-for-byte equivalent."
+      "component": "hanlin_full_history_checkpoint",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -2119,6 +1890,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 37347,
           "kind": "blob",
           "mode": "100644",
@@ -2386,6 +2164,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -3040,6 +2825,13 @@
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "hanlin_full_history_checkpoint": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -3980,6 +3772,11 @@
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
         },
         "full_v40_occurrence_diagnostic": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "hanlin_full_history_checkpoint": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
