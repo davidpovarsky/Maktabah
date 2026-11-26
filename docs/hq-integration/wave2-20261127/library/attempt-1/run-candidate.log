@@ -1,0 +1,11 @@
+{"case":"manifest_commit_failure_retains_rollback","status":"PASS"}
+{"case":"unrecorded_replacement_restores_old_identity","status":"PASS"}
+{"case":"missing_final_restores_old_identity","status":"PASS"}
+{"case":"malformed_pending_identity_rolls_back","status":"PASS"}
+{"case":"valid_pending_recovers_forward","status":"PASS"}
+{"case":"committed_manifest_recovers_forward","status":"PASS"}
+[OtzariaBootstrap] rollback cleanup failed for seforim.db.previous: “seforim.db.previous” couldn’t be removed because you don’t have permission to access it.
+{"case":"cleanup_failure_retains_commit_marker","status":"PASS"}
+{"case":"normal_update_preserves_user_store","status":"PASS"}
+{"case":"failed_pending_write_restores_old_identity","status":"PASS"}
+{"failed":0,"passed":9,"scope":"real-filesystem-SQLite-component","skipped":0,"ui_acceptance":false}
