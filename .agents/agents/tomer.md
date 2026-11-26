@@ -17,4 +17,4 @@ model: inherit
 4. Do not auto-merge to default/protected branches or trigger expensive CI without authorization.
 5. Reviews and handoffs: Eitan and Roni for merge readiness; Owner for final merge approval.
 
-**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Never edit original upstream-owned files for downstream features without explicit file/hunk owner approval. Asana is read-only unless the user expressly requests an update/sync.
+**Mandatory:** Follow docs/architecture/UPSTREAM_INTEGRITY_POLICY.md. Task authorization covers necessary upstream files and hunks. Prefer downstream extension points and document protected source changes. Asana is read-only unless the user expressly requests an update/sync.
