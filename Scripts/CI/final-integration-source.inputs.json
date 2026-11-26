@@ -22,7 +22,9 @@
     "library_install_cancel_rollback": "7212133b9a7366021382d2e80932c692b780b3f3",
     "managed_database_identity": "295ea341e5a549a3de201c665378535e1f483ffa",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
+    "miniapps_compact_note_presentation": "82135b34b863041f906c302b7d45b12fef439c36",
     "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
+    "miniapps_original_expanded_editor": "85e7d09e694bf828dd4e9e1283eab873538e6e7b",
     "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "native_reader_menu_label": "b15fd08ca475d9fbcb1be0f1e465da96496fd9d6",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
@@ -52,11 +54,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "8555131790c5203b3dffca54f690b04885400699",
+  "application_source_sha": "85e7d09e694bf828dd4e9e1283eab873538e6e7b",
   "application_trees": {
     "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "ef60d7d8fd9f610e44ac6f71cc8d80e3c4922d2f",
+    "Source": "fa3ad6e3b450977055c74cc1f660fe4c0318e7de",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
@@ -344,12 +346,26 @@
           "object": "ca07d2417cf7da7c202a312e02632e4e6b8db63c",
           "sha256": "77588949264c8dbb694ca17681f0a318dbfcdb676ccb6b2679f7e2e3c8f6f23b"
         },
+        "miniapps_compact_note_presentation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "miniapps_hebrew_rtl": {
           "bytes": 5427,
           "kind": "blob",
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "miniapps_original_expanded_editor": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "miniapps_save_confirmation": {
           "bytes": 5427,
@@ -970,12 +986,26 @@
           "object": "d50041264cb539ff089c5842353d844f76848f54",
           "sha256": "3460e43127e69d07a917d9b28b10edd1b37046586f9d12ba91de84ab8ee4c7ca"
         },
+        "miniapps_compact_note_presentation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "miniapps_hebrew_rtl": {
           "bytes": 21097,
           "kind": "blob",
           "mode": "100644",
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        },
+        "miniapps_original_expanded_editor": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
         "miniapps_save_confirmation": {
           "bytes": 21097,
@@ -1182,374 +1212,17 @@
       "reason": "Use the actual OriginalEditor file export/apply APIs with original row and lifetime checks; preserve complete native capture, original revision CAS and exact receipt transaction. Use one documented aggregate adapter budget derived from the original 8 MiB expanded archive bound; retain the original 1 MiB compressed archive and full payload gates without a new count cap."
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 42527,
+        "bytes": 41825,
         "kind": "blob",
         "mode": "100644",
-        "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-        "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        "object": "d101e66c9ee0cec480f5484d2c617a31cc806e6f",
+        "sha256": "98870d7173680a944036acb90ba742495193e0995178aa900b40650d2913fd30"
       },
       "before": null,
-      "component_objects": {
-        "anytype_native_host": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "app_intent_scoped_discovery": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "command_palette_accessibility": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "empty_note": {
-          "bytes": 18170,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
-          "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
-        },
-        "full_v40_occurrence_diagnostic": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "guided_native_visibility": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "guided_navigation_core": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "guided_navigation_native": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "guided_navigation_receipt_source": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_containing_reader_admission": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_full_history_checkpoint": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_native_metadata_session": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_observed_source_and_history": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_original_read_adapter": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_original_source_9565": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hanlin_source_notice_9565": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "hebrew_highlight_utf16": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "hebrew_shortcuts": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "library": {
-          "bytes": 18170,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
-          "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
-        },
-        "library_install_cancel_rollback": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "managed_database_identity": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "miniapps": null,
-        "miniapps_hebrew_rtl": {
-          "bytes": 40262,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
-          "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
-        },
-        "miniapps_save_confirmation": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "native_reader_menu_label": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "native_share": {
-          "bytes": 32498,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "d85450e2eff7f4243a82f4027ccb8245db0df9ca",
-          "sha256": "2538e127de364edd33b7eaa25c560fa4e6d8793ba867cfc82c2077ddd0efd9cc"
-        },
-        "navigation_items": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "navigation_structures": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "normal_editor": {
-          "bytes": 18170,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "a79cbb5419d5ed811b9b078926ff379238bbd3ab",
-          "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
-        },
-        "offline_package_observations": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "original_account_exchange_ui": {
-          "bytes": 36382,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "f71614cc4e6725645e2c48938b1e983c3eea266e",
-          "sha256": "9737f2785d8c5027650838a45fd72bbb51f49c981350b8c604b3ce32b642a1a9"
-        },
-        "original_catalog_authors": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "original_explicit_save": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "original_license_texts": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "original_lifecycle_and_native_batch": {
-          "bytes": 36382,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "f71614cc4e6725645e2c48938b1e983c3eea266e",
-          "sha256": "9737f2785d8c5027650838a45fd72bbb51f49c981350b8c604b3ce32b642a1a9"
-        },
-        "original_phone_picker_acceptance": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "original_rich_miniapps": {
-          "bytes": 38949,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "746f7a85bce4ca0f12ba994a9c49c367a717c511",
-          "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
-        },
-        "original_sefaria_versions": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "original_toc_semantic_resolution": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "palette_localized_title": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "reader_cancellation": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "reader_designkit_modifier": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "reader_html_performance": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "reader_related_refs_topics": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "reader_related_sources": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "reader_source_actions": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "safari_toolbar_localization": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "shared_original_account_exchange_ui": {
-          "bytes": 40262,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "134f34ebbb5b398b2843c99e18f63cd7b0e2da07",
-          "sha256": "d54a0f3adb317f8b1dcafb7a834045bb599d0eef238f44ed0597ceabcfaa19bb"
-        },
-        "stable_native_group_segments": {
-          "bytes": 42527,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
-          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
-        },
-        "study_workspace_locale": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        },
-        "universal_link_transport": {
-          "bytes": 42323,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
-          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
-        }
-      },
-      "patch": {
-        "bytes": 43868,
-        "sha256": "822a20fec346359d6c826da34d154f7bfe8580eadacdc386acf3d0d973fc776c"
-      },
-      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
-      "reason": "Export original files only from the saved and reopened native launch baseline; retain the original fresh-private-draft failure/reopen boundary. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source."
+      "component": "miniapps_original_expanded_editor",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1755,12 +1428,26 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "miniapps": null,
+        "miniapps_compact_note_presentation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "miniapps_hebrew_rtl": {
           "bytes": 53217,
           "kind": "blob",
           "mode": "100644",
           "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
           "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
+        },
+        "miniapps_original_expanded_editor": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "miniapps_save_confirmation": {
           "bytes": 54697,
@@ -2195,12 +1882,26 @@
           "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
           "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
         },
+        "miniapps_compact_note_presentation": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "miniapps_hebrew_rtl": {
           "bytes": 30093,
           "kind": "blob",
           "mode": "100644",
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        },
+        "miniapps_original_expanded_editor": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
         "miniapps_save_confirmation": {
           "bytes": 30093,
@@ -2560,12 +2261,26 @@
           "object": "5a9fe577d25a5755fbd01da4aa6d78977cc27cdb",
           "sha256": "f19020e5e2f354bf0b38be66060a18826ce58db41d8f2c252c9bcf33aa8b8049"
         },
+        "miniapps_compact_note_presentation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "miniapps_hebrew_rtl": {
           "bytes": 12957,
           "kind": "blob",
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "miniapps_original_expanded_editor": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "miniapps_save_confirmation": {
           "bytes": 12957,
@@ -2771,6 +2486,25 @@
       "before": null,
       "component": "original_lifecycle_and_native_batch",
       "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 22867,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4f38c9f0836d27666183a5a8f45601b601d3ee6a",
+        "sha256": "c206773d0a798a5ab3df9ee66f456ea82815b793b044aaa9b69211253ae02aaa"
+      },
+      "before": {
+        "bytes": 22841,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "014e14471892a2f822ae349b7b9bc6f83321928a",
+        "sha256": "d6af9838d18aa21ddc069c85e815b171f71d5d55bd31b2ec59190f5285402895"
+      },
+      "component": "miniapps_compact_note_presentation",
+      "path": "Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3224,13 +2958,13 @@
       "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 24135,
+        "bytes": 24610,
         "kind": "blob",
         "mode": "100644",
-        "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-        "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        "object": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+        "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
       },
       "before": {
         "bytes": 21061,
@@ -3239,371 +2973,8 @@
         "object": "ba3b1a0bab7e08ebeebca35e18198ce0d18dbcfa",
         "sha256": "8a0efc79f67bbca9ab260beb1cb89d4c6dca12e640ff38ddbb9c88437c825ca5"
       },
-      "component_objects": {
-        "anytype_native_host": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "app_intent_scoped_discovery": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "command_palette_accessibility": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "empty_note": {
-          "bytes": 21637,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
-          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
-        },
-        "full_v40_occurrence_diagnostic": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "guided_native_visibility": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "guided_navigation_core": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "guided_navigation_native": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "guided_navigation_receipt_source": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_containing_reader_admission": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_full_history_checkpoint": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_native_metadata_session": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_observed_source_and_history": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_original_read_adapter": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_original_source_9565": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hanlin_source_notice_9565": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "hebrew_highlight_utf16": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "hebrew_shortcuts": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "library": {
-          "bytes": 22603,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
-          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
-        },
-        "library_install_cancel_rollback": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "managed_database_identity": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "miniapps": {
-          "bytes": 22369,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "04c6c9851b9d656b02849e1ea4bddf06ed079a27",
-          "sha256": "a5156ef6e707e1e04d2fe4396de70710c0dffdef528e8653176e9bf736d76b39"
-        },
-        "miniapps_hebrew_rtl": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "miniapps_save_confirmation": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "native_reader_menu_label": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "native_share": {
-          "bytes": 21637,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "74cdb0174d3903ecca6d657d436507a8dddc4d6c",
-          "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
-        },
-        "navigation_items": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "navigation_structures": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "normal_editor": {
-          "bytes": 22603,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "8dc8b070db19569da049659a8f11e402d2fe589f",
-          "sha256": "33d1f5f8e07513c36aa1539d9075fc0c59c63630fe44cb1684d8cbb20b4be655"
-        },
-        "offline_package_observations": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "original_account_exchange_ui": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "original_catalog_authors": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "original_explicit_save": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "original_license_texts": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "original_lifecycle_and_native_batch": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "original_phone_picker_acceptance": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "original_rich_miniapps": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "original_sefaria_versions": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "original_toc_semantic_resolution": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "palette_localized_title": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "reader_cancellation": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "reader_designkit_modifier": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "reader_html_performance": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "reader_related_refs_topics": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "reader_related_sources": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "reader_source_actions": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "safari_toolbar_localization": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "shared_original_account_exchange_ui": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "stable_native_group_segments": {
-          "bytes": 24135,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
-          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
-        },
-        "study_workspace_locale": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        },
-        "universal_link_transport": {
-          "bytes": 22996,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
-          "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
-        }
-      },
-      "patch": {
-        "bytes": 11237,
-        "sha256": "1bbd5b8ad45417efb58c6291cd4271e785abb8cfab56288fdb436f19191016dd"
-      },
-      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
-      "reason": " Add the original note toolbar sharing action when committed file receipts exist, refresh after actual receipt notifications, preserve Save/Cancel and original rich-body protection."
+      "component": "miniapps_original_expanded_editor",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3623,6 +2994,25 @@
       },
       "component": "reader_designkit_modifier",
       "path": "Source/Features/Reader/iOS/iOSReaderView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 43414,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6015ba4b6ff0fff6869c21a18bf079a6a821233b",
+        "sha256": "b73ee57eb0209023a15be5560e1b3e801edd3b1a0738e11d5b99649e56c892e8"
+      },
+      "before": {
+        "bytes": 42418,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "99fc2356a4277703675a215a1d0502a00f8a4124",
+        "sha256": "a966b47ebcae3c65678e35e91678a9aed2e7e0faf83e0f89e586fd5c06f460de"
+      },
+      "component": "miniapps_compact_note_presentation",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
