@@ -56,3 +56,29 @@ struct DocumentTabsHost: UIViewControllerRepresentable {
         func tabsBarDidRequestTabSwitcher(_ controller: TabsBarViewController) {}
     }
 }
+
+struct WorkspaceDocumentTabStrip: View {
+    let manager: iOSNavigationManager
+    let workspace: StudyWorkspaceNavigationAdapter?
+    let chromeVisible: Bool
+
+    private var isVisible: Bool { chromeVisible && manager.openTabs.count > 1 }
+
+    var body: some View {
+        DocumentTabsHost(
+            tabs: manager.openTabs,
+            selectedID: manager.activeTabId,
+            onSelect: { manager.selectTab(id: $0) },
+            onClose: { manager.closeTab(id: $0) },
+            onReorder: { workspace?.reorder($0, to: $1, manager: manager) },
+            backgroundColor: UIColor(Color.appBackground)
+        )
+        .frame(height: isVisible ? TabsBarViewController.Constants.buttonHeight : 0)
+        .opacity(isVisible ? 1 : 0)
+        .clipped()
+        .allowsHitTesting(isVisible)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("reader-document-tabs")
+        .accessibilityHidden(!isVisible)
+    }
+}
