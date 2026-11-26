@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "4a04aeb208fd0e5408a2521f2757e97982bc258c",
+  "boundary": "Minimum original UI04 diagnostic selection, not Native116/Release114 acceptance; no build/test started by this artifact.",
+  "owner": "root coordinated Scaleway slot after qualified current-source build",
+  "required_source_admission": [
+    "Actual built app and test bundle must match candidate source and pinned SDK receipts",
+    "Reuse the existing owned prepared workspace and canonical runner; no competing build",
+    "Keep original final Native116 and Release114+2 selectors, counts and timeouts unchanged"
+  ],
+  "ui04_original_cases": [
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsShowsOriginalSheetAndReceipt",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+    "NativeRoutingAcceptanceTests/testSystemAppIntentFocusesOriginalSearchComponent"
+  ],
+  "phone_cases_if_rebind_required": [
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemBookIntentUsesOriginalReaderOwner",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentShowsOriginalReaderInspector"
+  ],
+  "ui05_source_finding": {
+    "driver": "Scripts/CI/runtime27-url-delivery.py",
+    "current_transport": "Strict owned simctl system-openurl supports custom scheme only at snapshot source",
+    "https_delivery": "No existing original XCTest sends production HTTPS; separately approved narrowly-scoped driver extension and new native cases next",
+    "receipt_oracle": "Keep openInExistingProcess same-PID checks and requirePublicRootReceipt actual native receipt; transport ACK alone is insufficient"
+  },
+  "runtime_configuration": "Original selected NativeRouting cases configure miniTest10; final production-v40 acceptance remains separate",
+  "execution": "NOT_RUN"
+}
