@@ -725,13 +725,43 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let objectID: String
     }
 
-    private enum OrdinaryNetworkFixture {
-        static let accountID = "AA5y2wipdZPPGiMoK3hckf6DUJQHHehNPt6BgyenPamSnfQm"
-        static let spaceID = "bafyreigdy7rjfil42wczgnam5njdwy5e2pcio23p2jls4ycgtzmp3usdqa.2xu9o61hnno0b"
-        static let spaceTitle = "Otzaria original network acceptance"
-        // Reserved for the independent peer CAS regression. UI creates new notes.
-        static let protectedRoot = "bafyreiarjeh5gi2eb6cespoglsvraum4ku226iainadbhfkncyvsavgadm"
-        static let keyPath = "/Users/m1/builds/anytype-original-network-acceptance-20261125/run-1-private/development-mnemonic.private"
+    private struct OrdinaryNetworkFixture {
+        let accountID: String
+        let spaceID: String
+        let spaceTitle: String
+        let protectedRoot: String
+        let keyPath: String
+
+        private struct Pointer: Decodable {
+            let account_id: String
+            let space_id: String
+            let object_id: String
+        }
+
+        static func load() throws -> Self {
+            guard let path = ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT"] else {
+                return .init(accountID: "AA5y2wipdZPPGiMoK3hckf6DUJQHHehNPt6BgyenPamSnfQm", spaceID: "bafyreigdy7rjfil42wczgnam5njdwy5e2pcio23p2jls4ycgtzmp3usdqa.2xu9o61hnno0b",
+                             spaceTitle: "Otzaria original network acceptance", protectedRoot: "bafyreiarjeh5gi2eb6cespoglsvraum4ku226iainadbhfkncyvsavgadm", keyPath: "/Users/m1/builds/anytype-original-network-acceptance-20261125/run-1-private/development-mnemonic.private")
+            }
+            let root = URL(fileURLWithPath: path, isDirectory: true)
+            let pointerURL = root.appendingPathComponent("source-pointer.json")
+            let info = try pointerURL.resourceValues(forKeys: [.fileSizeKey, .isRegularFileKey, .isSymbolicLinkKey])
+            guard root.path == path, root.resolvingSymlinksInPath().path == path,
+                  info.isRegularFile == true, info.isSymbolicLink != true,
+                  let size = info.fileSize, (1...4096).contains(size) else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid owned Anytype network fixture")
+            }
+            let pointer = try JSONDecoder().decode(Pointer.self, from: Data(contentsOf: pointerURL))
+            let identities = [pointer.account_id, pointer.space_id, pointer.object_id]
+            guard identities.allSatisfy({ (20...180).contains($0.utf8.count)
+                && $0.utf8.allSatisfy { (48...57).contains($0) || (65...90).contains($0)
+                    || (97...122).contains($0) || $0 == 46 } }) else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid original account or Space identity")
+            }
+            return .init(accountID: pointer.account_id, spaceID: pointer.space_id,
+                         spaceTitle: "Otzaria original network acceptance", protectedRoot: pointer.object_id,
+                         keyPath: root.appendingPathComponent("development-mnemonic.private").path)
+        }
     }
 
     private enum OrdinaryNativeAcceptanceError: Error { case failed(String) }
@@ -796,9 +826,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try await waitForEnabled(app.buttons["annotation-anytype-share-open"])
         tap(app.buttons["annotation-anytype-share-open"])
         try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-original-account")
+        let fixture = try OrdinaryNetworkFixture.load()
         let selected = app.staticTexts["annotation-anytype-selected-space"]
         XCTAssertTrue(selected.waitForExistence(timeout: 120))
-        try nativeRequire(selected.label == OrdinaryNetworkFixture.spaceID,
+        try nativeRequire(selected.label == fixture.spaceID,
             "Refuse to send unless the original UI selected the exact test-owned Space")
         let send = app.buttons["annotation-anytype-share-confirm"]
         try await waitForEnabled(send)
@@ -811,8 +842,8 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let record = try XCTUnwrap(imports.values.first)
         try nativeRequire(record["status"] as? String == "LOCAL_NATIVE_IMPORT_READBACK_VERIFIED",
             "The original import must have genuine readback")
-        try nativeRequire(record["accountID"] as? String == OrdinaryNetworkFixture.accountID
-            && record["spaceID"] as? String == OrdinaryNetworkFixture.spaceID,
+        try nativeRequire(record["accountID"] as? String == fixture.accountID
+            && record["spaceID"] as? String == fixture.spaceID,
             "The receipt must belong to the genuine test-owned account and Space")
         try nativeRequire(record["annotationUUID"] as? String == saved.uuid.uuidString
             && (record["savedRevision"] as? NSNumber)?.int64Value == saved.revision
@@ -821,7 +852,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             "The actual import must bind the saved local note exactly")
         try verifyNativeResponse(record)
         let objectID = try XCTUnwrap(record["objectID"] as? String)
-        try nativeRequire(!objectID.isEmpty && objectID != OrdinaryNetworkFixture.protectedRoot,
+        try nativeRequire(!objectID.isEmpty && objectID != fixture.protectedRoot,
             "UI must create its own root and preserve the independent peer regression object")
         XCTAssertEqual(try readCanonicalRow(rowID), saved)
         tap(app.buttons["annotation-anytype-share-close"])
@@ -833,10 +864,11 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func selectOriginalDevelopmentSpace(accountViewID: String) async throws {
+        let fixture = try OrdinaryNetworkFixture.load()
         let account = app.descendants(matching: .any)[accountViewID]
         XCTAssertTrue(account.waitForExistence(timeout: 120))
         let login = account.buttons["I already have a key"]
-        let space = account.buttons.matching(NSPredicate(format: "label == %@", OrdinaryNetworkFixture.spaceTitle))
+        let space = account.buttons.matching(NSPredicate(format: "label == %@", fixture.spaceTitle))
         let ready = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
             predicate: NSPredicate { _, _ in login.exists || space.count > 0 }, object: nil)], timeout: 120)
         XCTAssertEqual(ready, .completed)
@@ -845,7 +877,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             let fields = account.textViews
             XCTAssertTrue(fields.firstMatch.waitForExistence(timeout: 30))
             try nativeRequire(fields.count == 1, "Require the original single recovery-key field")
-            let file = URL(fileURLWithPath: OrdinaryNetworkFixture.keyPath)
+            let file = URL(fileURLWithPath: fixture.keyPath)
             let values = try file.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
             let attributes = try FileManager.default.attributesOfItem(atPath: file.path)
             try nativeRequire(values.isRegularFile == true && values.isSymbolicLink != true
@@ -1062,9 +1094,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try nativeRequire(record["kind"] as? String == "verified"
             && record["objectID"] as? String == context.objectID,
             "The actual original readback must verify the same native root")
+        let fixture = try OrdinaryNetworkFixture.load()
         let source = try XCTUnwrap(record["source"] as? [String: Any])
-        try nativeRequire(source["accountID"] as? String == OrdinaryNetworkFixture.accountID
-            && source["spaceID"] as? String == OrdinaryNetworkFixture.spaceID
+        try nativeRequire(source["accountID"] as? String == fixture.accountID
+            && source["spaceID"] as? String == fixture.spaceID
             && source["annotationUUID"] as? String == context.saved.uuid.uuidString
             && (source["savedRevision"] as? NSNumber)?.int64Value == context.saved.revision,
             "The action must retain the captured real account, Space and local note")

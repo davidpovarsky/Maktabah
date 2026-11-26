@@ -50,6 +50,52 @@ for role in ROLES:
     ALL_STAGES.update(x.format(role=role) for x in LIFECYCLE)
     ALL_STAGES.add(role + "-lifecycle-cold")
 EXPECTED_OBSERVATIONS = 4 + 3 * 9
+
+def network_fixture():
+    path = os.environ.get("OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT")
+    if path is None:
+        return {"account_id": ACCOUNT, "space_id": SPACE, "object_id": PROTECTED_ROOT}
+    root = Path(path)
+    require(root.is_absolute() and root.resolve(strict=True) == root
+            and root.is_dir() and root.stat().st_uid == os.getuid() and not root.stat().st_mode & 0o077,
+            "The ordinary account must use a real, private, owned network fixture directory")
+
+    def receipt(relative):
+        file = root / relative
+        require(file.is_file() and not file.is_symlink()
+                and file.resolve(strict=True).is_relative_to(root)
+                and 0 < file.stat().st_size <= 4096,
+                "Invalid original peer fixture receipt")
+        return json.loads(file.read_bytes())
+
+    original = receipt("source-pointer.json")
+    account, space, protected = (original[key] for key in ("account_id", "space_id", "object_id"))
+    require(re.fullmatch(r"[A-Za-z0-9]{20,180}", account)
+            and re.fullmatch(r"[a-z0-9.]{20,180}", space)
+            and re.fullmatch(r"b[a-z2-7]{20,160}", protected),
+            "Original fixture metadata is invalid")
+    reverse = receipt("reverse-pointer.json")
+    require(all(reverse.get(key) == original[key] for key in ("account_id", "space_id", "object_id"))
+            and reverse.get("block_id") != original.get("block_id")
+            and hex256(original.get("text_sha256")) and hex256(reverse.get("text_sha256")),
+            "The genuine peer revision must preserve the original identity")
+    pids = set()
+    for role in ("producer", "consumer"):
+        readback = receipt(role + "-readback.json")
+        stop = receipt("evidence/" + role + "/stop.json")
+        pid = readback.get("pid")
+        expected_body = reverse["text_sha256"] if role == "producer" else original["text_sha256"]
+        require(readback.get("status") == "ACTUAL_ORIGINAL_REMOTE_BODY_READBACK"
+                and readback.get("phase") == role and readback.get("lan_sync_disabled") is True
+                and readback.get("same_account") == account and readback.get("same_space") == space
+                and readback.get("same_object") == protected and readback.get("body_sha256") == expected_body
+                and type(pid) is int and pid > 0 and pid not in pids
+                and stop == {"returned": True, "application_absent": True},
+                "Both original network processes must witness this fixture and stop")
+        pids.add(pid)
+    return {"account_id": account, "space_id": space, "object_id": protected,
+            "root": str(root), "pointer_sha256": digest(root / "source-pointer.json")}
+
 SCHEMAS = {
     ".native-import-history": "otzaria.original.annotation.native-commit.v1",
     ".native-revision-history": "otzaria.original.annotation.revision-result.v1",
@@ -118,7 +164,7 @@ def claim_matrix():
 
 
 def context():
-    return LOCAL["source_context"]()
+    return {**LOCAL["source_context"](), "original_network_fixture": network_fixture()}
 
 
 def build_context():
@@ -186,7 +232,7 @@ def validate_observation(value):
             "Missing original saved body digests")
     require(isinstance(value["native_object_id"], str)
             and re.fullmatch(r"b[a-z2-7]{20,160}", value["native_object_id"]) is not None
-            and value["native_object_id"] != PROTECTED_ROOT,
+            and value["native_object_id"] != network_fixture()["object_id"],
             "Require a distinct UI-created original native root")
 
 
@@ -201,13 +247,14 @@ def verify_response(record):
 
 def verify_source(record, note, row, nested):
     source = record.get("source") if nested else record
+    fixture = network_fixture()
     require(isinstance(source, dict)
             and source.get("namespace") == "otzaria.local.annotation"
             and source.get("annotationUUID") == note
             and source.get("savedRevision") == row["revision"]
             and source.get("payloadDigest") == row["payload_sha256"]
             and source.get("bodyDigest") == row["native_body_sha256"]
-            and source.get("accountID") == ACCOUNT and source.get("spaceID") == SPACE
+            and source.get("accountID") == fixture["account_id"] and source.get("spaceID") == fixture["space_id"]
             and record.get("objectID") == row["native_object_id"],
             "The retained native action is not bound to this exact saved note and original Space")
     verify_response(record)
@@ -242,8 +289,12 @@ class ExchangeEvidence:
         self.persist()
         # Only XCTest receives the observation path and an opt-in label.
         # The app receives no identity, credential, injected body or bypass.
-        return {"TEST_RUNNER_OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE": str(database),
-                "TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_UI": "test-owned-original-account"}
+        environment = {"TEST_RUNNER_OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE": str(database),
+                       "TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_UI": "test-owned-original-account"}
+        root = network_fixture().get("root")
+        if root is not None:
+            environment["TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT"] = root
+        return environment
 
     def redact_evidence(self, line):
         if PREFIX in line:
