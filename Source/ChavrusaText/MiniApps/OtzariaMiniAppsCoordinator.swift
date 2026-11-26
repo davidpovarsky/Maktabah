@@ -36,11 +36,20 @@ final class OtzariaMiniAppsCoordinator {
     #if canImport(AnytypeOriginalEditor)
     private struct OriginalEditorOwner {
         weak var model: AnnotationOriginalEditorProductionPresentation?
+        var pending: OriginalLiveRequest? = nil
+    }
+
+    private struct OriginalLiveRequest {
+        let id: UUID
+        let durableContextJSON: String
+        let liveContext: AnytypeOriginalEditorMiniAppsContext
     }
     private var originalEditors: [UUID: OriginalEditorOwner] = [:]
 
     func registerOriginalEditor(_ model: AnnotationOriginalEditorProductionPresentation) {
-        originalEditors[model.id] = .init(model: model)
+        if originalEditors[model.id]?.model !== model {
+            originalEditors[model.id] = .init(model: model)
+        }
     }
     func unregisterOriginalEditor(id: UUID) { originalEditors.removeValue(forKey: id) }
     #endif
@@ -134,6 +143,7 @@ final class OtzariaMiniAppsCoordinator {
 
     #if canImport(AnytypeOriginalEditor)
     func showOriginalEditor(annotation: Annotation, context: AnytypeOriginalEditorMiniAppsContext,
+                            liveContext: AnytypeOriginalEditorMiniAppsContext,
                             files: [AnytypeOriginalEditorMiniAppsFile], editorID: UUID, sourceView: UIView) {
         do {
             var range: NSRange?
@@ -164,7 +174,11 @@ final class OtzariaMiniAppsCoordinator {
                 sourceSelection: document.selection, sourceView: sourceView, additionalInputs: fileInputs,
                 additionalMetadata: [Self.originalEditorMetadataKey: nativeContext,
                     "otzaria.original-editor.files.v1": fileContext], sourceKind: "native-annotation",
-                requestedOperation: (context.selectedText?.isEmpty == false) ? .replaceSelection : .insert)
+                requestedOperation: (context.selectedText?.isEmpty == false) ? .replaceSelection : .insert,
+                onEnqueue: { [weak self] requestID in
+                    self?.originalEditors[editorID]?.pending = .init(id: requestID,
+                        durableContextJSON: nativeContext, liveContext: liveContext)
+                })
         } catch { show(error: error, sourceView: sourceView) }
     }
     #endif
@@ -173,7 +187,7 @@ final class OtzariaMiniAppsCoordinator {
                          sourceSelection: MiniAppTextSelection?, sourceView: UIView?,
                          additionalInputs: [MiniAppContent] = [],
                          additionalMetadata: [String: String] = [:], sourceKind: String? = nil,
-                         requestedOperation: MiniAppOperation? = nil) {
+                         requestedOperation: MiniAppOperation? = nil, onEnqueue: @escaping (UUID) -> Void = { _ in }) {
         do {
             let store = try MiniAppBridgeStore()
             let scene = sourceView?.window?.windowScene
@@ -192,6 +206,7 @@ final class OtzariaMiniAppsCoordinator {
                 inputs: [.init(kind: .text, text: inputText, typeIdentifier: "public.plain-text")] + additionalInputs,
                 operation: operation, callbacks: callbacks, onOpen: { [weak self] url in
                     // The shared picker owns its dismissal before invoking onOpen.
+                    if let requestID = MiniAppBridgeStore.requestID(from: url) { onEnqueue(requestID) }
                     UIApplication.shared.open(url, options: [:]) { opened in
                         if !opened {
                             Task { @MainActor in self?.show(error: OtzariaMiniAppsError.unavailable, sourceView: sourceView) }
@@ -275,8 +290,14 @@ final class OtzariaMiniAppsCoordinator {
     private func receiveOriginal(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
                                  contextJSON: String, store: MiniAppBridgeStore,
                                  manager: iOSNavigationManager, scene: UIWindowScene?) {
-        if let id = document.editorID, let model = originalEditors[id]?.model {
-            applyOriginal(result, document: document, contextJSON: contextJSON, store: store, model: model, scene: scene)
+        if let id = document.editorID, let owner = originalEditors[id], let model = owner.model {
+            // Only the issuing mount may preserve newer edits outside the captured targets.
+            let live = owner.pending.flatMap { pending in
+                pending.id == result.requestID && pending.durableContextJSON.utf8.elementsEqual(contextJSON.utf8)
+                    ? pending.liveContext : nil
+            }
+            applyOriginal(result, document: document, contextJSON: contextJSON, liveContext: live,
+                store: store, model: model, scene: scene)
             return
         }
         // A cold callback must mount the original native editor against its
@@ -314,8 +335,9 @@ final class OtzariaMiniAppsCoordinator {
     }
 
     private func applyOriginal(_ result: MiniAppResult, document: OtzariaMiniAppsDocument,
-                               contextJSON: String, store: MiniAppBridgeStore,
-                               model: AnnotationOriginalEditorProductionPresentation, scene: UIWindowScene?) {
+                               contextJSON: String, liveContext: AnytypeOriginalEditorMiniAppsContext? = nil,
+                               store: MiniAppBridgeStore, model: AnnotationOriginalEditorProductionPresentation,
+                               scene: UIWindowScene?) {
         Task { [weak self, weak model] in
             guard let self else { return }
             defer { self.processing.remove(result.requestID) }
@@ -327,7 +349,9 @@ final class OtzariaMiniAppsCoordinator {
                     throw OtzariaMiniAppsError.missingDocument
                 }
                 let payload = try self.originalEditorPayload(result, store: store)
-                let outcome = try await model.applyMiniApps(result, contextJSON: contextJSON,
+                let context = try liveContext ?? JSONDecoder().decode(AnytypeOriginalEditorMiniAppsContext.self,
+                    from: Data(contextJSON.utf8))
+                let outcome = try await model.applyMiniApps(result, context: context,
                     text: payload.text, attachments: payload.attachments)
                 let receipt: AnnotationExchangeCommit
                 switch outcome {
