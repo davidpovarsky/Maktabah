@@ -1,0 +1,8 @@
+/Users/m1/builds/otzaria-wave2-release-identity-20261127/baseline/sources/LibraryReleaseIdentityControls.swift:40:73: warning: will never be executed
+38 |             }
+39 |         }
+40 |         var report: [String: Any] = ["configuration": debug ? "Debug" : "Release", "cases": results,
+   |                                                       |                 `- warning: will never be executed
+   |                                                       `- note: condition always evaluates to true
+41 |                                     "passed": results.filter { $0["passed"] as? Bool == true }.count,
+42 |                                     "failed": results.filter { $0["passed"] as? Bool != true }.count,
