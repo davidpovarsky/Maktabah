@@ -111,13 +111,10 @@ jobs:
           else
             gh api "repos/Otzaria/SeforimLibrary/releases/tags/$TARGET_TAG" > build/logs/source-release.json
           fi
-          python3 Scripts/resolve-official-library-asset.py --release-json build/logs/source-release.json --format shell > build/logs/source-asset.env
+          python3 Scripts/resolve-official-library-asset.py \
+            --release-json build/logs/source-release.json --download-dir "$RUNNER_TEMP/zayit-source" --format shell > build/logs/source-asset.env
           source build/logs/source-asset.env
           echo "ASSET_NAME=$ASSET_NAME" >> "$GITHUB_ENV"
-          curl --fail --location --retry 5 --continue-at - --output "$RUNNER_TEMP/zayit-source/$ASSET_NAME" "$ASSET_BROWSER_DOWNLOAD_URL"
-          if [ -n "$ASSET_COMPRESSED_SHA256" ]; then
-            test "$(sha256sum "$RUNNER_TEMP/zayit-source/$ASSET_NAME" | cut -d' ' -f1)" = "$ASSET_COMPRESSED_SHA256"
-          fi
           gh release download "$LEXICAL_TAG" --repo Otzaria/SeforimMagicIndexer --pattern lexical.db --dir "$RUNNER_TEMP/zayit-source"
           test "$(stat -c %s "$RUNNER_TEMP/zayit-source/lexical.db")" = "$LEXICAL_BYTES"
           test "$(sha256sum "$RUNNER_TEMP/zayit-source/lexical.db" | cut -d' ' -f1)" = "$LEXICAL_SHA256"
@@ -302,10 +299,11 @@ jobs:
             test "$(stat -c %s "$OUT")" = $((OFFSET + UNCOMPRESSED))
             rm "$PART"
           done < "$RUNNER_TEMP/release-parts.tsv"
-          gh release download "$DATABASE_TAG" --repo Otzaria/SeforimLibrary --pattern "$ASSET_NAME" --dir "$RUNNER_TEMP/release-download"
-          if [ -n "$DATABASE_ASSET_SHA256" ]; then
-            test "$(sha256sum "$RUNNER_TEMP/release-download/$ASSET_NAME" | cut -d' ' -f1)" = "$DATABASE_ASSET_SHA256"
-          fi
+          python3 Scripts/resolve-official-library-asset.py \
+            --release-json build/logs/source-release.json --download-dir "$RUNNER_TEMP/release-download" --format shell > "$RUNNER_TEMP/release-source-asset.env"
+          EXPECTED_ARCHIVE_SHA256="$DATABASE_ASSET_SHA256"
+          source "$RUNNER_TEMP/release-source-asset.env"
+          test "$ASSET_COMPRESSED_SHA256" = "$EXPECTED_ARCHIVE_SHA256"
           zstd -d --long=31 --no-progress "$RUNNER_TEMP/release-download/$ASSET_NAME" -o "$RUNNER_TEMP/release-download/seforim.db"
           rm "$RUNNER_TEMP/release-download/$ASSET_NAME"
           "$RUNNER_TEMP/zayit-tools/zayit-query" "$RUNNER_TEMP/release-download/seforim.db" "$RUNNER_TEMP/zayit-source/lexical.db" "$RUNNER_TEMP/zayit-release-index" 'לחתוך צנון בסכין בשרי' > build/logs/zayit-release-golden.json
