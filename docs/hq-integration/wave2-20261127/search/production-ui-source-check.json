@@ -1,0 +1,9 @@
+{
+  "kind": "Syntax parse only, not UIKit typecheck or UI acceptance",
+  "exit": 0,
+  "files": {
+    "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift": "896f6ec6df2a2196afd991ad807ad547dd3595b4571d6bc2496621c8cb060568",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "b403cee7173846aa6101c7d771554304285683ec802fbd1f181f6cc6e4ac3b82",
+    "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift": "0f2542b10c1f4226f7d9b6a523650c7b6bd1294c39d73e56a1ed241606857e4f"
+  }
+}

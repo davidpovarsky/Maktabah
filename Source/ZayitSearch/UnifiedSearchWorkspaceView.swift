@@ -619,11 +619,13 @@ struct SearchDataView: View {
                     }
                 }
                 .disabled(isInstallingAll)
+                .accessibilityIdentifier("search-data-install-missing")
                 Button("המשך עם הספרייה בלבד") { dismiss() }
                     .accessibilityIdentifier("search-data-close")
                     .foregroundStyle(.secondary)
                 if let installMessage {
                     Text(installMessage)
+                        .accessibilityIdentifier("search-data-install-message")
                         .font(.footnote)
                         .foregroundStyle(installMessage.contains("מוכנים") ? Color.secondary : Color.red)
                 }

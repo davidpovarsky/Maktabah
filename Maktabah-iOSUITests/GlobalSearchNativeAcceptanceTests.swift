@@ -1,5 +1,6 @@
 import XCTest
 import CryptoKit
+import SQLite3
 
 /// Real application only. See qa-20261115/TEST_DESIGN.md for destination,
 /// fixture, held-provider and independent operation-trace requirements.
@@ -1583,4 +1584,490 @@ final class SearchDataNativeAcceptanceTests: R27NativeUIBase {
         try verifyRecoveredAndCold(value, reinstallationStartedAt: reinstallationStartedAt)
     }
 
+}
+
+
+// MARK: - Published production v40 through the original application
+
+/// These gates use the already installed, managed production v40 database.
+/// Nothing is copied into the app or substituted for an engine. The runner must
+/// keep this app installation between the install gate and the page gates.
+final class PublishedProductionSearchDataTests: MaktabahUITestBase {
+    private let traceNamespace = UUID().uuidString
+    private let v40Digest = "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+    private let otzariaArtifact = "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139"
+    private let zayitArtifact = "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480"
+
+    private struct Installation {
+        let container: URL
+        let root: URL
+        let owner: URL
+        let ownerBytes: Data
+        let manifestBytes: Data
+        var database: URL { root.appendingPathComponent("Otzaria/seforim.db") }
+        var manifest: URL { root.appendingPathComponent("Otzaria/seforim-installation.json") }
+        var otzariaManifest: URL {
+            root.appendingPathComponent("Otzaria/TantivySearchIndex/managed-library/otzaria_prebuilt_installation.json")
+        }
+        var zayitManifest: URL { root.appendingPathComponent("Otzaria/Zayit/zayit-installation.json") }
+    }
+
+    private func bytes(_ url: URL, maximum: Int = 1024 * 1024) throws -> Data {
+        let info = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try requireSearchDataFixture(info.isRegularFile == true && info.isSymbolicLink == false
+            && url.standardizedFileURL.path == url.resolvingSymlinksInPath().path
+            && (info.fileSize ?? maximum + 1) <= maximum, "Require a bounded, regular original file: \(url.lastPathComponent)")
+        return try Data(contentsOf: url)
+    }
+
+    private func object(_ url: URL) throws -> [String: Any] {
+        try XCTUnwrap(JSONSerialization.jsonObject(with: bytes(url)) as? [String: Any])
+    }
+
+    private func databaseDigest(_ url: URL) throws -> String {
+        let info = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try requireSearchDataFixture(info.isRegularFile == true && info.isSymbolicLink == false
+            && info.fileSize == 4_355_063_808
+            && url.standardizedFileURL.path == url.resolvingSymlinksInPath().path,
+            "Only the exact installed production v40 database is eligible")
+        let handle = try FileHandle(forReadingFrom: url)
+        defer { try? handle.close() }
+        var digest = SHA256()
+        var count: Int64 = 0
+        while let block = try handle.read(upToCount: 4 * 1024 * 1024), !block.isEmpty {
+            digest.update(data: block)
+            count += Int64(block.count)
+            try requireSearchDataFixture(count <= 4_355_063_808, "The database cannot grow during observation")
+        }
+        XCTAssertEqual(count, 4_355_063_808)
+        return digest.finalize().map { String(format: "%02x", $0) }.joined()
+    }
+
+    private func installation() throws -> Installation {
+        let supplied = try XCTUnwrap(ProcessInfo.processInfo.environment["PRODUCTION_SEARCH_CONTAINER_PARENT"],
+            "Runner must supply this owned Simulator's Containers/Data/Application directory")
+        let parent = URL(fileURLWithPath: supplied, isDirectory: true).standardizedFileURL
+        let simulatorData = parent.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["SIMULATOR_UDID"])
+        try requireSearchDataFixture(UUID(uuidString: udid) != nil
+            && simulatorData.lastPathComponent == "data"
+            && simulatorData.deletingLastPathComponent().lastPathComponent.lowercased() == udid.lowercased()
+            && Array(parent.pathComponents.suffix(3)) == ["Containers", "Data", "Application"],
+            "Never inspect another Simulator or an external corpus")
+        func owners(_ parent: URL, identifier: String) throws -> [(URL, URL, Data)] {
+            let children = (try? FileManager.default.contentsOfDirectory(at: parent,
+                includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])) ?? []
+            try requireSearchDataFixture(children.count <= 256, "Bound original container discovery")
+            return try children.compactMap { child in
+                let info = try child.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+                guard info.isDirectory == true, info.isSymbolicLink == false,
+                      UUID(uuidString: child.lastPathComponent) != nil else { return nil }
+                let metadata = child.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist")
+                guard let data = try? bytes(metadata, maximum: 65536),
+                      let value = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any],
+                      value["MCMMetadataIdentifier"] as? String == identifier else { return nil }
+                return (child, metadata, data)
+            }
+        }
+        let apps = try owners(parent, identifier: "com.davidpovarsky.chavrusatext")
+        try requireSearchDataFixture(apps.count == 1, "Require exactly one original app installation")
+        let appOwner = try XCTUnwrap(apps.first)
+        let groups = try owners(simulatorData.appendingPathComponent("Containers/Shared/AppGroup"),
+                                identifier: "group.com.davidpovarsky.itorah")
+        try requireSearchDataFixture(groups.count <= 1, "Ambiguous App Group ownership is a failure")
+        let owner = groups.first ?? (appOwner.0.appendingPathComponent("Library/Application Support/Maktabah-Debug"),
+                                     appOwner.1, appOwner.2)
+        let root = owner.0.standardizedFileURL
+        try requireSearchDataFixture(root.pathComponents.starts(with: simulatorData.pathComponents)
+            && root.path == root.resolvingSymlinksInPath().path, "Storage must remain inside this exact installation")
+        let manifest = root.appendingPathComponent("Otzaria/seforim-installation.json")
+        let record = try object(manifest)
+        XCTAssertEqual(record["profileID"] as? String ?? "production", "production")
+        XCTAssertEqual(record["releaseTag"] as? String, "v40-20261123094345")
+        XCTAssertEqual((record["releaseID"] as? NSNumber)?.int64Value, 455_390_662)
+        XCTAssertEqual((record["databaseFileSize"] as? NSNumber)?.int64Value, 4_355_063_808)
+        return Installation(container: appOwner.0, root: root, owner: owner.1,
+                            ownerBytes: owner.2, manifestBytes: try bytes(manifest))
+    }
+
+    private func verifyUnchanged(_ value: Installation, hashDatabase: Bool = true) throws {
+        XCTAssertEqual(try bytes(value.owner, maximum: 65536), value.ownerBytes, "Retain original storage ownership")
+        XCTAssertEqual(try bytes(value.manifest), value.manifestBytes, "Index operations must preserve the installed v40 manifest")
+        if hashDatabase { XCTAssertEqual(try databaseDigest(value.database), v40Digest) }
+    }
+
+    private func verifyPackages(_ value: Installation) throws {
+        let otzaria = try object(value.otzariaManifest)
+        let zayit = try object(value.zayitManifest)
+        XCTAssertEqual(otzaria["artifactIdentity"] as? String, otzariaArtifact)
+        XCTAssertEqual(zayit["artifactIdentity"] as? String, zayitArtifact)
+        for manifest in [otzaria, zayit] {
+            XCTAssertEqual(manifest["profileID"] as? String ?? "production", "production")
+        }
+        let source = try XCTUnwrap(otzaria["sourceDatabase"] as? [String: Any])
+        XCTAssertEqual(source["releaseTag"] as? String, "v40-20261123094345")
+        XCTAssertEqual(source["databaseSHA256"] as? String, v40Digest)
+        XCTAssertEqual((source["bookCount"] as? NSNumber)?.intValue, 8259)
+        XCTAssertEqual((source["documentCount"] as? NSNumber)?.intValue, 7_925_185)
+        let lexical = try XCTUnwrap(otzaria["lexicalArtifact"] as? [String: Any])
+        XCTAssertEqual((lexical["documentCount"] as? NSNumber)?.intValue, 7_925_185)
+        XCTAssertEqual((lexical["parts"] as? [Any])?.count, 15)
+        let required = try XCTUnwrap(zayit["requiredDatabase"] as? [String: Any])
+        XCTAssertEqual(required["releaseTag"] as? String, "v40-20261123094345")
+        XCTAssertEqual(required["canonicalSHA256"] as? String, v40Digest)
+        let counts = try XCTUnwrap(zayit["counts"] as? [String: Any])
+        XCTAssertEqual((counts["books"] as? NSNumber)?.intValue, 8259)
+        XCTAssertEqual((counts["lines"] as? NSNumber)?.intValue, 7_920_224)
+        XCTAssertEqual((counts["documents"] as? NSNumber)?.intValue, 7_930_286)
+        XCTAssertEqual((zayit["parts"] as? [Any])?.count, 74)
+        for (name, path) in [("otzaria", value.otzariaManifest), ("zayit", value.zayitManifest)] {
+            let attachment = XCTAttachment(data: try bytes(path), uniformTypeIdentifier: "public.json")
+            attachment.name = "published-v40-" + name + "-actual-installed-manifest"
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+    }
+
+    @MainActor
+    private func control(_ id: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+
+    @MainActor
+    @discardableResult
+    private func required(_ id: String, timeout: TimeInterval = 30) throws -> XCUIElement {
+        let value = control(id)
+        try requireSearchDataFixture(value.waitForExistence(timeout: timeout), "Original UI control is absent: " + id)
+        return value
+    }
+
+    @MainActor
+    private func eventually(_ reason: String, timeout: TimeInterval = 90,
+                            _ condition: @escaping @MainActor () -> Bool) {
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { condition() }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: timeout), .completed, reason)
+    }
+
+    @MainActor
+    private func capture(_ name: String) {
+        let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screenshot.name = name
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        let tree = XCTAttachment(string: app.debugDescription)
+        tree.name = name + "-hierarchy"
+        tree.lifetime = .keepAlways
+        add(tree)
+    }
+
+    @MainActor
+    private func launchProduction() throws {
+        for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH"] {
+            try requireSearchDataFixture(ProcessInfo.processInfo.environment[key] == nil,
+                "Real managed installation acceptance forbids external storage override " + key)
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "otzaria", extraArgs: [
+            "-GlobalSearchNativeTraceEnabled", "YES", "-GlobalSearchNativeTraceNamespace", traceNamespace,
+            "-lastSelectedTab", "0", "-otzaria_reader_unit_mode", "line",
+            "-ChavrusaTextFaithfulReaderUIEnabled", "YES"
+        ])
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        XCTAssertFalse(app.launchArguments.contains("-studyWorkspaceTestingNamespace"))
+        XCTAssertEqual(app.launchEnvironment["OTZARIA_DATA_PROFILE"], "production")
+        let tab = findTabButton(hebrew: "חיפוש", english: "Search")
+        try requireSearchDataFixture(tab.waitForExistence(timeout: 120), "Normal production bootstrap must expose Search")
+        tab.tap()
+        try required("global-search-screen", timeout: 60)
+        try required("global-search-query")
+    }
+
+    @MainActor
+    private func openData() throws {
+        try required("global-search-more").tap()
+        try required("global-search-data").tap()
+        try required("search-data-otzaria-status")
+        try required("search-data-zayit-status")
+    }
+
+    @MainActor
+    private func reachDataAction(_ id: String) throws -> XCUIElement {
+        for _ in 0..<8 {
+            let value = control(id)
+            if value.exists && value.isHittable { return value }
+            try required("search-data-screen").swipeUp()
+        }
+        throw SearchDataNativeFixtureError.rejected("Original action is not reachable: " + id)
+    }
+
+    @MainActor
+    private func assertReady() {
+        eventually("The original UI must recognize both actual installed v40 packages", timeout: 180) {
+            self.app.staticTexts["search-data-otzaria-status"].label == "האינדקס מוכן (7925185 מסמכים)"
+                && self.app.staticTexts["search-data-zayit-status"].label.hasPrefix("מוכן · ")
+        }
+    }
+
+    @MainActor
+    func testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen() throws {
+        try launchProduction()
+        let value = try installation()
+        try verifyUnchanged(value)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: value.otzariaManifest.path),
+                       "An existing index cannot be credited as a new UI installation")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: value.zayitManifest.path),
+                       "An existing Zayit installation cannot be credited as a new UI installation")
+        try openData()
+        XCTAssertNotEqual(try required("search-data-otzaria-status").label, "האינדקס מוכן (7925185 מסמכים)")
+        capture("published-v40-before-original-install")
+        try reachDataAction("search-data-install-missing").tap()
+        eventually("The original sequential installer must download, validate and activate both published packages",
+                   timeout: 5400) {
+            let message = self.app.staticTexts["search-data-install-message"]
+            return message.exists && message.label == "כל הרכיבים שנבחרו מוכנים."
+        }
+        try verifyPackages(value)
+        try verifyUnchanged(value)
+        try required("search-data-screen").swipeDown()
+        assertReady()
+        capture("published-v40-original-install-ready")
+        app.terminate()
+        XCTAssertEqual(app.state, .notRunning)
+        try launchProduction()
+        let reopened = try installation()
+        XCTAssertEqual(reopened.root, value.root)
+        XCTAssertEqual(reopened.container, value.container)
+        try verifyUnchanged(value, hashDatabase: false)
+        try verifyPackages(reopened)
+        try openData()
+        assertReady()
+        capture("published-v40-cold-reopen-ready")
+    }
+
+    private func events(_ value: Installation) throws -> [[String: Any]] {
+        let url = value.container.appendingPathComponent("Documents/OtzariaLogs/search-native-" + traceNamespace + ".jsonl")
+        let data = try bytes(url, maximum: 8 * 1024 * 1024)
+        let text = try XCTUnwrap(String(data: data, encoding: .utf8))
+        return try text.split(separator: "\n").map {
+            try XCTUnwrap(JSONSerialization.jsonObject(with: Data($0.utf8)) as? [String: Any])
+        }
+    }
+
+    private func canonical(_ object: Any) throws -> Data {
+        try JSONSerialization.data(withJSONObject: object, options: [.sortedKeys])
+    }
+
+    /// Reads the exact installed production database with SQLite's read-only flag.
+    /// Only the test owns this connection; it cannot write or supply app results.
+    private func sqlLine(database: OpaquePointer, book: Int, line: Int) throws -> [String: Any] {
+        var statement: OpaquePointer?
+        let query = "SELECT l.id, l.bookId, l.lineIndex, b.title, COALESCE(l.heRef, '') FROM line l JOIN book b ON b.id=l.bookId WHERE l.bookId=? AND l.lineIndex=?"
+        XCTAssertEqual(sqlite3_prepare_v2(database, query, -1, &statement, nil), SQLITE_OK)
+        let statementValue = try XCTUnwrap(statement)
+        defer { sqlite3_finalize(statementValue) }
+        XCTAssertEqual(sqlite3_bind_int64(statementValue, 1, Int64(book)), SQLITE_OK)
+        XCTAssertEqual(sqlite3_bind_int64(statementValue, 2, Int64(line)), SQLITE_OK)
+        XCTAssertEqual(sqlite3_step(statementValue), SQLITE_ROW, "Every result must address an actual SQL line")
+        let title = try XCTUnwrap(sqlite3_column_text(statementValue, 3))
+        let reference = try XCTUnwrap(sqlite3_column_text(statementValue, 4))
+        let row: [String: Any] = [
+            "lineID": sqlite3_column_int64(statementValue, 0),
+            "bookID": sqlite3_column_int64(statementValue, 1),
+            "lineIndex": sqlite3_column_int64(statementValue, 2),
+            "bookTitle": String(cString: title), "reference": String(cString: reference)
+        ]
+        XCTAssertEqual(sqlite3_step(statementValue), SQLITE_DONE, "SQL position must be unambiguous")
+        return row
+    }
+
+    @MainActor
+    private func chooseEngine(_ engine: String) throws {
+        try required("global-search-mode").tap()
+        try required("global-search-mode-" + (engine == "zayit" ? "zayit" : "advanced")).tap()
+        if engine == "zayit" {
+            try required("global-search-options").tap()
+            let picker = try required("global-search-zayit-match")
+            for _ in 0..<6 {
+                if picker.isHittable { break }
+                try required("global-search-options-content").swipeUp()
+            }
+            picker.tap()
+            let flexible = app.buttons["גמיש — מרחק 5 מילים"]
+            XCTAssertTrue(flexible.waitForExistence(timeout: 20))
+            flexible.tap()
+            try required("global-search-options-done").tap()
+        }
+    }
+
+    @MainActor
+    private func loadedCount(filtered: Bool) throws -> Int {
+        let label = try required("global-search-count").label
+        let numbers = label.split { !$0.isNumber }.compactMap { Int($0) }
+        if filtered {
+            XCTAssertGreaterThanOrEqual(numbers.count, 2)
+            XCTAssertEqual(numbers.first, 0)
+            return try XCTUnwrap(numbers.dropFirst().first)
+        }
+        return try XCTUnwrap(numbers.first)
+    }
+
+    @MainActor
+    private func assertPublishedPages(engine: String, pages: Int, pageSize: Int) throws {
+        try launchProduction()
+        let value = try installation()
+        try verifyUnchanged(value)
+        try verifyPackages(value)
+        try chooseEngine(engine)
+        let field = try required("global-search-query")
+        field.tap()
+        if let previous = field.value as? String, !previous.isEmpty && previous != field.placeholderValue {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: previous.count))
+        }
+        field.typeText("בראשית")
+        eventually("Original native field must contain the whole submitted query") { field.value as? String == "בראשית" }
+        field.typeText("\n")
+        let first = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(first.waitForExistence(timeout: 180))
+        XCTAssertEqual(try loadedCount(filtered: false), pageSize,
+                       "The first visible count must represent the actual first page")
+        capture("published-v40-" + engine + "-page-" + String(pageSize))
+        try required("global-search-result-filter-toggle").tap()
+        let filter = try required("global-search-result-filter")
+        let token = "no-production-book-" + UUID().uuidString
+        filter.tap()
+        filter.typeText(token + "\n")
+        try required("global-search-filter-empty")
+        XCTAssertEqual(try loadedCount(filtered: true), pageSize)
+        for page in 2...pages {
+            let more = app.buttons.matching(NSPredicate(format: "label == %@", "Load more results")).firstMatch
+            XCTAssertTrue(more.waitForExistence(timeout: 30))
+            XCTAssertTrue(more.isHittable)
+            more.tap()
+            eventually("Original native loaded count must advance to \(page * pageSize)", timeout: 180) {
+                (try? self.loadedCount(filtered: true)) == page * pageSize
+                    && !self.control("global-search-page-error").exists
+                    && !self.control("global-search-cancel").exists
+            }
+            capture("published-v40-" + engine + "-page-" + String(page * pageSize))
+        }
+        eventually("Published original model must settle at the visible native count") {
+            guard let event = try? self.events(value).last(where: {
+                $0["event"] as? String == "published" && $0["engine"] as? String == engine
+            }), let items = event["items"] as? [Any] else { return false }
+            return items.count == pages * pageSize
+        }
+        let observed = try events(value).filter { $0["engine"] as? String == engine }
+        XCTAssertEqual(Set(observed.compactMap { $0["sessionID"] as? String }).count, 1)
+        XCTAssertEqual(Set(observed.compactMap { ($0["processID"] as? NSNumber)?.intValue }).count, 1)
+        let provider = observed.filter { $0["event"] as? String == "provider" }
+        XCTAssertEqual(provider.count, pages)
+        var database: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(value.database.path, &database, SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX, nil), SQLITE_OK)
+        let db = try XCTUnwrap(database)
+        defer { sqlite3_close(db) }
+        var order: [String] = []
+        var source: [String: [String: Any]] = [:]
+        var sql: [String: [String: Any]] = [:]
+        var retainedItems: [String: [String: Any]] = [:]
+        for (index, event) in provider.enumerated() {
+            XCTAssertEqual(event["namespace"] as? String, traceNamespace)
+            XCTAssertEqual(event["profileID"] as? String, "production")
+            XCTAssertEqual((event["submissionRevision"] as? NSNumber)?.intValue, 1)
+            let request = try XCTUnwrap(event["request"] as? [String: Any])
+            XCTAssertEqual(request["querySHA256"] as? String, searchDataDigest(Data("בראשית".utf8)))
+            XCTAssertNil(request["query"])
+            XCTAssertEqual((request["offset"] as? NSNumber)?.intValue, index * pageSize)
+            XCTAssertEqual((request["limit"] as? NSNumber)?.intValue, pageSize)
+            let page = try XCTUnwrap(event["page"] as? [String: Any])
+            let rows = try XCTUnwrap(page[engine == "zayit" ? "hits" : "results"] as? [[String: Any]])
+            XCTAssertEqual(rows.count, pageSize)
+            for row in rows {
+                let book: Int
+                let line: Int
+                let id: String
+                if engine == "zayit" {
+                    book = try XCTUnwrap((row["book_id"] as? NSNumber)?.intValue)
+                    line = try XCTUnwrap((row["line_index"] as? NSNumber)?.intValue)
+                    id = "zayit:production:\(try XCTUnwrap((row["line_id"] as? NSNumber)?.intValue))"
+                } else {
+                    let path = try XCTUnwrap(row["filePath"] as? String)
+                    XCTAssertTrue(path.hasPrefix("otzaria-book:"))
+                    book = try XCTUnwrap(Int(path.dropFirst("otzaria-book:".count)))
+                    line = try XCTUnwrap((row["segment"] as? NSNumber)?.intValue)
+                    id = "otzaria:\(path):\(try XCTUnwrap((row["id"] as? NSNumber)?.uint64Value)):\(line)"
+                }
+                let original = try sqlLine(database: db, book: book, line: line)
+                XCTAssertEqual(row[engine == "zayit" ? "book_title" : "title"] as? String, original["bookTitle"] as? String)
+                if engine == "zayit" {
+                    XCTAssertEqual((row["line_id"] as? NSNumber)?.int64Value, (original["lineID"] as? NSNumber)?.int64Value)
+                }
+                XCTAssertEqual(row["reference"] as? String ?? "", original["reference"] as? String ?? "")
+                XCTAssertNil(source[id], "The first real pages must retain unique original identities")
+                order.append(id)
+                source[id] = row
+                sql[id] = original
+            }
+            XCTAssertEqual((event["nextOffset"] as? NSNumber)?.intValue, (index + 1) * pageSize)
+            if engine == "zayit" {
+                let accumulated = try XCTUnwrap(event["accumulatedSource"] as? [[String: Any]])
+                XCTAssertEqual(accumulated.count, order.count)
+                for (id, row) in zip(order, accumulated) {
+                    XCTAssertEqual(try canonical(try XCTUnwrap(source[id])), try canonical(row))
+                }
+            } else {
+                let records = try XCTUnwrap(event["retainedRecords"] as? [[String: Any]])
+                XCTAssertEqual(records.count, order.count)
+                for (id, record) in zip(order, records) {
+                    XCTAssertEqual(try canonical(try XCTUnwrap(source[id])), try canonical(try XCTUnwrap(record["metadata"])))
+                    let item = try XCTUnwrap(record["item"] as? [String: Any])
+                    if let prior = retainedItems[id] { XCTAssertEqual(try canonical(item), try canonical(prior)) }
+                    retainedItems[id] = item
+                }
+            }
+        }
+        let publication = try XCTUnwrap(observed.last { $0["event"] as? String == "published" })
+        let items = try XCTUnwrap(publication["items"] as? [[String: Any]])
+        XCTAssertEqual(items.compactMap { $0["id"] as? String }, order)
+        XCTAssertEqual(Set(order).count, pages * pageSize)
+        for item in items {
+            let id = try XCTUnwrap(item["id"] as? String)
+            let original = try XCTUnwrap(sql[id])
+            let raw = try XCTUnwrap(source[id])
+            let book = try XCTUnwrap((original["bookID"] as? NSNumber)?.intValue)
+            let line = try XCTUnwrap((original["lineIndex"] as? NSNumber)?.intValue)
+            XCTAssertEqual((item["bookID"] as? NSNumber)?.intValue, book)
+            XCTAssertEqual((item["lineIndex"] as? NSNumber)?.intValue, line)
+            XCTAssertEqual(item["bookTitle"] as? String, original["bookTitle"] as? String)
+            XCTAssertEqual(item["reference"] as? String, raw["reference"] as? String ?? "")
+            XCTAssertEqual(item["locator"] as? String, "otzaria|book:\(book)|line:\(line)")
+            if engine == "zayit" {
+                XCTAssertEqual(item["highlightTerms"] as? [String], raw["matched_terms"] as? [String])
+            } else {
+                XCTAssertEqual(try canonical(item), try canonical(try XCTUnwrap(retainedItems[id])))
+            }
+        }
+        let evidence = XCTAttachment(data: try canonical(["events": observed, "independentSQL": sql]),
+                                     uniformTypeIdentifier: "public.json")
+        evidence.name = "published-v40-" + engine + "-original-pages-and-independent-sql"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+        XCTAssertEqual(field.value as? String, "בראשית")
+        XCTAssertFalse(control("global-search-dirty").exists)
+        XCTAssertFalse(control("global-search-page-error").exists)
+        try required("global-search-result-filter-done").tap()
+        XCTAssertEqual(try loadedCount(filtered: false), pages * pageSize)
+        try verifyUnchanged(value, hashDatabase: false)
+    }
+
+    @MainActor
+    func testPublishedV40ZayitPages50_100_150RetainSQLIdentity() throws {
+        try assertPublishedPages(engine: "zayit", pages: 3, pageSize: 50)
+    }
+
+    @MainActor
+    func testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata() throws {
+        try assertPublishedPages(engine: "otzaria", pages: 2, pageSize: 100)
+    }
 }
