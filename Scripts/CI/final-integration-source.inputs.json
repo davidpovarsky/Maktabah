@@ -9,13 +9,14 @@
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
+    "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "f38d150c8e3ea70ab3cd93a4296daa90c647a5db",
+  "application_source_sha": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "934981bd9a3ca3b87979d9d921b293e18484d98e",
+    "Source": "a74d68ae26ed3e837ff5504a84c97f6a4e39e67b",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -79,6 +80,13 @@
           "mode": "100644",
           "object": "de180b24b17386a0fcbea0dcf4e59d530afad4fa",
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
+        },
+        "reader_designkit_composition": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "reader_source_actions": {
           "bytes": 71096,
@@ -207,6 +215,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "reader_designkit_composition": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "reader_source_actions": {
           "bytes": 5427,
@@ -547,6 +562,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "reader_designkit_composition": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "reader_source_actions": {
           "bytes": 21097,
           "kind": "blob",
@@ -629,6 +651,13 @@
           "mode": "100644",
           "object": "746f7a85bce4ca0f12ba994a9c49c367a717c511",
           "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
+        },
+        "reader_designkit_composition": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "reader_source_actions": {
           "bytes": 42323,
@@ -758,6 +787,13 @@
           "object": "0d65ce897954a8e70d4a334c4d08761470e2d84a",
           "sha256": "9b8879af22cc56e94b94b4105b95bcd5fc2dc5e2cb7d14ea3a2b56cb1ae341e1"
         },
+        "reader_designkit_composition": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "reader_source_actions": {
           "bytes": 54697,
           "kind": "blob",
@@ -853,6 +889,13 @@
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
         },
+        "reader_designkit_composition": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "reader_source_actions": {
           "bytes": 38814,
           "kind": "blob",
@@ -937,6 +980,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "reader_designkit_composition": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "reader_source_actions": {
           "bytes": 30093,
           "kind": "blob",
@@ -1014,6 +1064,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "reader_designkit_composition": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "reader_source_actions": {
           "bytes": 12957,
@@ -1199,6 +1256,13 @@
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
         },
+        "reader_designkit_composition": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "reader_source_actions": {
           "bytes": 22996,
           "kind": "blob",
@@ -1213,6 +1277,25 @@
       },
       "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
       "reason": " Add the original note toolbar sharing action when committed file receipts exist, refresh after actual receipt notifications, preserve Save/Cancel and original rich-body protection."
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 12212,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "3d0e3b4301b3d65b403eb4c09c01e8ab196391d5",
+        "sha256": "ef13f645acd1d64b0059d32aea33a2644c85eac5786a69e04fe76095c6b0e47e"
+      },
+      "before": {
+        "bytes": 12411,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "a6bfea6931dc52fe6457073be8a4490abeb99ede",
+        "sha256": "f7c4dd59cc65242faf7c7bfc3ce5d71478d40ba1acfb1e014935d0cffb68e3b5"
+      },
+      "component": "reader_designkit_composition",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1331,6 +1414,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "reader_designkit_composition": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "reader_source_actions": {
           "bytes": 351650,
@@ -1703,6 +1793,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
+        },
+        "reader_designkit_composition": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "reader_source_actions": {
           "kind": "commit",
