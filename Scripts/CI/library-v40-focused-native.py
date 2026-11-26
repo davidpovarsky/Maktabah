@@ -228,16 +228,30 @@ def main():
                                        "lane_budget_bytes": WORK_BYTES,
                                        "reserved_other_bytes": args.reserved_other_bytes}
             require(free >= minimum, "Insufficient disk reserve for authentic full v40 acceptance")
-            # Cancel phase intentionally uses the product's normal latest lookup.
-            # Refuse a changed latest release before starting its large payload.
+            # The explicitly selected official v40 is shared by cancel/install/restore.
+            # A newer public release must not change this frozen acceptance corpus.
             request = urllib.request.Request(
-                "https://api.github.com/repos/Otzaria/SeforimLibrary/releases/latest",
+                f"https://api.github.com/repos/Otzaria/SeforimLibrary/releases/{RELEASE_ID}",
                 headers={"Accept": "application/vnd.github+json", "User-Agent": "Maktabah-native-acceptance"})
             with urllib.request.urlopen(request, timeout=30) as response:
                 raw = response.read(2_000_001)
-            require(len(raw) <= 2_000_000, "Latest metadata exceeds bound")
-            require(json.loads(raw)["id"] == RELEASE_ID, "Latest release changed; requalify cancel/install identity")
-            (out / "observed-latest-release.json").write_bytes(raw)
+            require(len(raw) <= 2_000_000, "Selected release metadata exceeds bound")
+            observed = json.loads(raw)
+            require(observed["id"] == RELEASE_ID and observed["tag_name"] == TAG
+                    and not observed.get("draft") and not observed.get("prerelease"),
+                    "Selected official release identity changed")
+            frozen_assets = {asset["id"]: asset for asset in release["assets"]}
+            observed_assets = {asset["id"]: asset for asset in observed["assets"]}
+            required_names = {ARCHIVE + ".manifest.json", "library_stats.json", "build_provenance.json"}
+            required_names.update(part["name"] for part in manifest["parts"])
+            required_assets = [asset for asset in frozen_assets.values() if asset["name"] in required_names]
+            require(len(required_assets) == len(required_names), "Frozen required assets are ambiguous")
+            for asset in required_assets:
+                live = observed_assets.get(asset["id"])
+                require(live is not None and all(live.get(key) == asset.get(key)
+                        for key in ("id", "name", "size", "digest", "browser_download_url")),
+                        "Selected release asset identity changed: " + asset["name"])
+            (out / "observed-selected-release.json").write_bytes(raw)
             app = ROOT / "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app"
             report["build_before"] = qualified_build_context(app)
             info = plistlib.loads((app / "Info.plist").read_bytes())
