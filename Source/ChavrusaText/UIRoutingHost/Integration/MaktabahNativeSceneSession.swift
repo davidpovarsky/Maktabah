@@ -755,6 +755,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func validateCompletedJourneySurface(_ receipt: UISceneReceipt) throws {
+        let projection = try project()
         guard mounted, foreground, isPresentationReady, receipt.sceneID == sceneID,
               let completed = lastCompletedSurface, completed.route == receipt.route,
               completed.evidence.submissionID == receipt.requestId,
@@ -762,7 +763,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
               visible.isVisible, visible.sceneID == sceneID,
               let kind = surfaceKind(receipt.route.destination), let actual = try surface(kind),
               actual == visible.surface, actual == completed.evidence.surface,
-              kind != .reader || (try project().hasRenderedReaderEvidence(sceneID: sceneID)) else {
+              kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID) else {
             throw ActionPortError.staleState
         }
     }
