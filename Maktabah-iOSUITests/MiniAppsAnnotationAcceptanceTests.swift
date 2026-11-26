@@ -214,18 +214,22 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
         }
-        let window = app.switches["miniapps-new-window"]
+        let windowRow = app.switches["miniapps-new-window"]
+        // Like the actual MiniApps producer, activate the UISwitch inside
+        // SwiftUI's labeled row. The row's center is the text label.
+        let window = windowRow.switches.firstMatch
+        XCTAssertTrue(window.waitForExistence(timeout: 15))
         for _ in 0..<6 {
             if window.isHittable { break }
             app.swipeUp()
         }
         XCTAssertTrue(window.isHittable)
-        tap(window)
+        window.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared).opensInNewWindow != original.opensInNewWindow
         }
         try snapshot("window-preference-changed")
-        tap(window)
+        window.tap()
         try await requireNativeCondition(timeout: 15) {
             try self.pickerPreferences(in: shared) == original
         }
