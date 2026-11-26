@@ -103,6 +103,7 @@ struct iOSReaderWorkspaceView: View {
     @State private var inspectorSession: MaktabahTorahInspectorSession
     @State private var inspectorContentID = UUID()
     @State private var editingAnnotation: Annotation?
+    @State private var fallbackNoteHost: NativeStudySheetPresentationState.NoteHost = .reader
     @State private var nativeNoteEditorOwnerID = UUID()
     @State private var nativeNoteEditorPresentationID = UUID()
     @State private var noteErrorMessage: String?
@@ -552,10 +553,16 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private var compactStudyPanel: some View {
-        inspectorPanel(showsCloseButton: true, chrome: .embeddedSheet)
-        .presentationDetents([.medium, .large], selection: $compactPanelDetent)
-        .presentationDragIndicator(.visible)
-        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+        let notePresentationID = nativeNoteEditorPresentationID
+        return inspectorPanel(showsCloseButton: true, chrome: .embeddedSheet)
+            .presentationDetents([.medium, .large], selection: $compactPanelDetent)
+            .presentationDragIndicator(.visible)
+            .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+            .sheet(isPresented: annotationEditorBinding(for: .compactStudy), onDismiss: {
+                noteEditorDidDismiss(presentationID: notePresentationID)
+            }) {
+                annotationEditor
+            }
     }
 
     private var nativeStudyBinding: Binding<NativeStudySheetPresentationState.Presentation?> {
@@ -754,8 +761,13 @@ struct iOSReaderWorkspaceView: View {
         // unsaved value. Callback closures capture this value, never a live getter.
         if value != nil {
             let presentationID = UUID()
-            if usesNativeStudySheet,
-               !nativeStudyPresentation.beginNote(id: presentationID) { return }
+            if usesNativeStudySheet {
+                guard nativeStudyPresentation.beginNote(id: presentationID) else { return }
+            } else {
+                // The compact inspector is already a system sheet. Its note
+                // editor must be owned by that sheet, not a sibling presenter.
+                fallbackNoteHost = showPanelSheet ? .compactStudy : .reader
+            }
             nativeNoteEditorPresentationID = presentationID
         }
         editingAnnotation = value
@@ -765,20 +777,22 @@ struct iOSReaderWorkspaceView: View {
         annotationEditorBinding(for: .reader)
     }
 
+    private var currentNoteHost: NativeStudySheetPresentationState.NoteHost? {
+        usesNativeStudySheet ? nativeStudyPresentation.note?.host : fallbackNoteHost
+    }
+
     private func annotationEditorBinding(for host: NativeStudySheetPresentationState.NoteHost) -> Binding<Bool> {
         let presentationID = nativeNoteEditorPresentationID
         return Binding(
             get: {
-                editingAnnotation != nil && (!usesNativeStudySheet
-                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host))
+                editingAnnotation != nil && currentNoteHost == host
+                    && nativeNoteEditorPresentationID == presentationID
             },
             set: { isPresented in
-                guard !usesNativeStudySheet
-                    || nativeStudyPresentation.note == NativeStudySheetPresentationState.NotePresentation(id: presentationID, host: host) else { return }
-                if !isPresented {
-                    setEditingAnnotation(nil)
-                    pendingNotesDidChange = nil
-                }
+                guard !isPresented, currentNoteHost == host,
+                      nativeNoteEditorPresentationID == presentationID else { return }
+                setEditingAnnotation(nil)
+                pendingNotesDidChange = nil
             }
         )
     }
@@ -912,6 +926,12 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func compactPanelDidDismiss() {
+        if fallbackNoteHost == .compactStudy, editingAnnotation != nil {
+            let presentationID = nativeNoteEditorPresentationID
+            setEditingAnnotation(nil)
+            pendingNotesDidChange = nil
+            noteEditorDidDismiss(presentationID: presentationID, fromParentDismissal: true)
+        }
         if pendingCompactContentsOpen {
             pendingCompactContentsOpen = false
             presentContents()
