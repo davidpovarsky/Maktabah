@@ -22,16 +22,17 @@
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "reader_annotations_presentation": "a41d59462ff4f42b1f1c564c21402e7878c6164c",
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
-    "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
+    "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b",
+    "shared_hanlin_native_notification_ingress": "0bbfe2064ec3c594b971388973dc862aa6d9ac9f"
   },
-  "application_source_sha": "8da47abbaa821b1c66975a0e7093d7f727bc8cb2",
+  "application_source_sha": "0bbfe2064ec3c594b971388973dc862aa6d9ac9f",
   "application_trees": {
     "Maktabah-iOSUITests": "08fd4d631c077c4ca1566447f8d7237e6099616f",
     "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
     "Source": "a4228d886cb58a4e2f1e4659846d7213079a1258",
-    "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
+    "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
-  "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
+  "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
   "historical_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
   "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
   "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
@@ -266,6 +267,13 @@
           "mode": "100644",
           "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
           "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 622132,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+          "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
         }
       },
       "patch": {
@@ -452,6 +460,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         }
       },
       "patch": {
@@ -882,6 +897,13 @@
           "mode": "100644",
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         }
       },
       "patch": {
@@ -1114,6 +1136,13 @@
           "mode": "100644",
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         }
       },
       "patch": {
@@ -1308,6 +1337,13 @@
           "mode": "100644",
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         }
       },
       "patch": {
@@ -1477,6 +1513,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         }
       },
       "patch": {
@@ -1885,6 +1928,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "shared_hanlin_native_notification_ingress": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         }
       },
       "patch": {
@@ -2213,140 +2263,19 @@
       "path": "Source/iOS-Info.plist"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
         "kind": "commit",
         "mode": "160000",
-        "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        "object": "9565a9e4775901a4cee6f0402d7fd2978fab6612"
       },
       "before": {
         "kind": "commit",
         "mode": "160000",
         "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
       },
-      "component_objects": {
-        "compact_inspector_note_presentation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "empty_note": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "hanlin_completed_source_footer": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_exact_saved_conversation_revocation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_live_transcript_source": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_original_composer_history": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_preserve_persisted_history_on_reopen": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "hanlin_source_after_consent_revocation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "library": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "miniapps": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "a774de24926ca13d563c45c42917d03b8c04296f"
-        },
-        "miniapps_actual_native_removal_accessory": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "miniapps_native_picker_gestures": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "native_share": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "normal_editor": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
-        },
-        "original_account_exchange_ui": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
-        },
-        "original_editor_ios_host_deployment": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_editor_sheet_host": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "original_explicit_save": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "9ef80a6ddfc997724360a9a34bb1d05cbf7cad40"
-        },
-        "original_lifecycle_and_native_batch": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
-        },
-        "original_rich_miniapps": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
-        },
-        "reader_annotations_presentation": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_designkit_composition": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
-        },
-        "reader_source_actions": {
-          "kind": "commit",
-          "mode": "160000",
-          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
-        }
-      },
-      "patch": {
-        "bytes": 323,
-        "sha256": "099c9311846a0dc0a99bc6a23c036882fe6338bb85cde1866d3677cedd79ca1d"
-      },
-      "path": "Vendor/HanlinSDK",
-      "reason": "Use frozen actual standalone3f5 source, including corrected upstream Platform catalog/cancellation implementation; consumer Bridge/Picker remain the same single shared packages. Historical e791 SDK is not requalified by this source pin. Adopt final integrated producer27381. Complete four consumed package trees match the actual SDK6f source exactly (959 leaves), preserving original SDK producer identity. Full native acceptance remains required. Adopt standalone70eb catalog localization correction; all four shared package trees and 959 leaf objects remain exactly equal to qualified SDK6f and prior273. Standalone actual build/UI evidence is admitted separately. Adopt final fe3 producer source with original iPad orientation and import presentation fixes; every consumed package tree remains unchanged from70 and the qualified SDK. Bind the actual immutable simulator export separately; native acceptance remains required. Adopt actual built86 producer source with the reviewed package-window helper and original import presentation continuation; every consumed package tree remains unchanged fromfe3 and the qualified SDK. Bind the exact immutable simulator export separately; native batch acceptance remains required."
+      "component": "shared_hanlin_native_notification_ingress",
+      "path": "Vendor/HanlinSDK"
     }
   ],
   "product_roots": [
