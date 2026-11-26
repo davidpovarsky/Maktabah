@@ -1,0 +1,83 @@
+{
+  "cases" : [
+    {
+      "case" : "cancel-same-official-release",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "cancel-reject-noncanonical-id",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "cancel-reject-other-profile",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "cancel-without-selection-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "install-same-official-release",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "install-reject-noncanonical-id",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "install-reject-other-profile",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "install-without-selection-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "restore-same-official-release",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "restore-reject-noncanonical-id",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "restore-reject-other-profile",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "restore-without-selection-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "ordinary-launch-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "unknown-phase-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    },
+    {
+      "case" : "dictionary-phase-keeps-latest",
+      "passed" : true,
+      "url" : "https:\/\/api.github.com\/repos\/Otzaria\/SeforimLibrary\/releases\/latest"
+    }
+  ],
+  "configuration" : "Release",
+  "failed" : 0,
+  "passed" : 15,
+  "scope" : "Exact original release-client and data-profile sources; no application UI executed"
+}

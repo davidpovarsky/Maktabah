@@ -52,3 +52,19 @@ the actual availablev41 through the original UI after thev40acceptance.
 - Remaining Native116 search/Sefaria/reader regressions: in scoped workers.
 
 No product task is marked complete by this report.
+
+## Verified component milestones
+
+- Release identity: exact product 47261ccf; baseline Debug 9 PASS / 6 FAIL,
+  candidate Debug 15/15 PASS; Release 15/15 PASS before and after with an
+  identical binary digest. The actual public v40 lookup passed.
+  Receipts: release-identity/RESULT files and ARTIFACT_INDEX.json.
+- Installer transaction recovery: product 0d0a010c; evidence 618dd4d1.
+  Actual Apple filesystem/SQLite controls: baseline 4 PASS / 5 FAIL;
+  candidate 9/9 PASS, 0 skipped. Retains old database and identity until
+  final metadata commits, with recovery and cleanup failure controls.
+- Global history observation: product 0b5b9375; exact extracted Swift
+  helper baseline 11 PASS / 2 FAIL, candidate 13/13 PASS. Native UI remains
+  pending; only the bounded preference snapshot grew from 1 MiB to 8 MiB.
+- These scoped commits were combined without conflicts in the coordinator
+  branch. Combining source does not imply combined-product acceptance.
