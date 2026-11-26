@@ -1,11 +1,15 @@
 {
-  "app_source": "3da99a3f91b4066f88bef54bc733a5e164c85641",
-  "project_blob": "5f7b779c394c0f3fce828770f20146e00db78317",
+  "app_source": "104168712f060f0a21a78d27fcde98dc312d9527",
+  "project_blob": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
   "target": "Maktabah-iOS",
   "resources": [
     "ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
     "Localizable.xcstrings"
   ],
+  "anytype_host_configuration": {
+    "Debug": "DEBUG",
+    "Release": "RELEASE_ANYTYPE"
+  },
   "standalone_engine_tests_not_in_app_target": true,
   "test_count_claimed": 0
 }
