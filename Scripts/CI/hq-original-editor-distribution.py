@@ -489,6 +489,15 @@ def require_production_host_api(qualification, *, public_contract_sha256=None):
                                      public_contract_sha256=public_contract_sha256)
 
 
+def require_device_dynamic_platform(architectures, platform_output):
+    platforms = re.findall(
+        r"(?m)^[ \t]+(\S+)[ \t]+\d+(?:\.\d+){1,2}[ \t]+\d+(?:\.\d+){1,2}[ \t]*$",
+        platform_output,
+    )
+    require(architectures == ("arm64",) and platforms == ["iOS"],
+            "Release device dependency is not an actual iOS arm64 image")
+
+
 def admit(root, admission_path, evidence, *, swift=None, sdk=None):
     root, admission_path, evidence = Path(root).resolve(), Path(admission_path), Path(evidence)
     relative = admission_path.relative_to(root).as_posix() if admission_path.is_absolute() else admission_path.as_posix()
@@ -595,9 +604,11 @@ def admit(root, admission_path, evidence, *, swift=None, sdk=None):
             platform = command(["xcrun", "vtool", "-show-build", str(binary)], root=root, evidence=evidence,
                                label="sdk-platform-" + str(index))
             if production and config["platform"] == "iphoneos":
-                require(architectures == ("arm64",) and re.search(r"platform\s+IOS\b", platform)
-                        and not re.search(r"platform\s+IOSSIMULATOR\b", platform),
-                        "Release device dependency is not an actual iOS arm64 image")
+                # Apple's dyld reports the platform for both modern and legacy
+                # Mach-O version commands, including old arm64 dependencies.
+                normalized = command(["xcrun", "dyld_info", "-platform", str(binary)], root=root, evidence=evidence,
+                                     label="sdk-device-platform-" + str(index))
+                require_device_dynamic_platform(architectures, normalized)
             else:
                 require(re.search(r"platform\s+IOSSIMULATOR\b", platform), "Non-Simulator SDK dependency")
     require("AnytypeOriginalEditor.framework" in dynamic, "No actual original editor dynamic framework")

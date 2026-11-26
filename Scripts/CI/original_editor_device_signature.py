@@ -122,6 +122,9 @@ def macho_identity(path, *, expected_platform=2):
                 require(platform is None and size >= 24, "Ambiguous build platform")
                 platform, minimum, sdk, tools = struct.unpack_from("<4I", commands, offset + 8)
                 require(size == 24 + 8 * tools, "Invalid build tool bounds")
+            elif command == 0x25:  # LC_VERSION_MIN_IPHONEOS on the verified arm64 slice.
+                require(platform is None and size == 16, "Ambiguous legacy iOS build platform")
+                platform = 2
             offset += size
         require(offset == len(commands) and signature and linkedit and image_uuid
                 and platform == expected_platform, "Incomplete or wrong device Mach-O identity")
