@@ -3,19 +3,19 @@
   "routes": {
     "debug-simulator": {
       "admission_path": "Scripts/CI/original-editor-debug-saved-body-75a98ba.inputs.json",
-      "admission_sha256": "a0646ef5e888d29a634bb6ddf0ed646625603bf6f455c97a97282bfbcb108029",
+      "admission_sha256": "75b7d58e94c1ef77ac6c50277278a4ebaa39ffd24bb3b6199ac29b5efdcd5e98",
       "configuration": "Debug",
       "platform": "iphonesimulator"
     },
     "release-device": {
       "admission_path": "Scripts/CI/original-editor-release-device-saved-body-75a98ba.inputs.json",
-      "admission_sha256": "d14f67f98a58edc7d89126153fa030b767fa9919e8b6a52908fa868b9c5636c3",
+      "admission_sha256": "790f899fbad3068d0e60734067d099fb39b4582ec05df941bf7e2a4f6c6ff26a",
       "configuration": "Release",
       "platform": "iphoneos"
     },
     "release-simulator": {
       "admission_path": "Scripts/CI/original-editor-release-simulator-saved-body-75a98ba.inputs.json",
-      "admission_sha256": "1f76f2dca4e4a2385ea92a7b1dadf37a0339d25cbedb483ac14431bebd5bb78c",
+      "admission_sha256": "d6e3b06c05d4b95f0dd92b67600bcaf9201663578c8ec8ffb015b8a2c3154c38",
       "configuration": "Release",
       "platform": "iphonesimulator"
     }

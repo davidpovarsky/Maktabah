@@ -9524,6 +9524,10 @@
       "TorahInspectorUI",
       "ZIPFoundation"
     ],
+    "host_source_equivalence": {
+      "path": "Scripts/CI/original-editor-hanlin-equivalence-9565a9e4.json",
+      "sha256": "2116b877ddb3c4ff50daccba869dd26c39f89ba25f907cbe12500361e0d76bb4"
+    },
     "kind": "original-shared-implementations/1",
     "swift_ai_revision": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
   },
