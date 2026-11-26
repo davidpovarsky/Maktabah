@@ -1,0 +1,33 @@
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/BookTOCViewModel.swift:107:64: error: call to main actor-isolated instance method 'id(for:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+105 |                     guard book.backendLocator?.workKey == expectedWorkKey else { return }
+106 |                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+107 |                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+    |                                                                `- error: call to main actor-isolated instance method 'id(for:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+108 |                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+109 |                         node.backendLocator = item.locator
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/TOCLoadLifecycleSupport.swift:68:10: note: calls to instance method 'id(for:)' from outside of its actor context are implicitly asynchronous
+ 66 |     static let shared = LegacyIdentityRegistry()
+ 67 |     private var ids: [TextLocator: Int] = [:]
+ 68 |     func id(for locator: TextLocator) -> Int {
+    |          `- note: calls to instance method 'id(for:)' from outside of its actor context are implicitly asynchronous
+ 69 |         if let id = ids[locator] { return id }
+ 70 |         let id = ids.count + 1_000
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/BookTOCViewModel.swift:107:57: error: main actor-isolated static property 'shared' can not be referenced from a nonisolated context
+105 |                     guard book.backendLocator?.workKey == expectedWorkKey else { return }
+106 |                     func convert(_ item: LibraryTOCNode, level: Int) -> TOCNode {
+107 |                         let id = LegacyIdentityRegistry.shared.id(for: item.locator)
+    |                                                         `- error: main actor-isolated static property 'shared' can not be referenced from a nonisolated context
+108 |                         let node = TOCNode(backendTitle: item.title, level: level, sub: 0, id: id)
+109 |                         node.backendLocator = item.locator
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/TOCLoadLifecycleSupport.swift:66:16: note: static property declared here
+ 64 | }
+ 65 | @MainActor final class LegacyIdentityRegistry {
+ 66 |     static let shared = LegacyIdentityRegistry()
+    |                `- note: static property declared here
+ 67 |     private var ids: [TextLocator: Int] = [:]
+ 68 |     func id(for locator: TextLocator) -> Int {
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
