@@ -187,10 +187,12 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         tap(edit)
         for item in [second, first] {
             let cell = app.cells.containing(.staticText, identifier: item.title).firstMatch
-            let removes = cell.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", language.delete))
-            XCTAssertTrue(removes.firstMatch.waitForExistence(timeout: 15))
-            XCTAssertEqual(removes.count, 1)
-            tap(removes.firstMatch)
+            // UIKit exposes its edit-mode accessory as a native image.
+            // On iOS 27 the same accessory can appear twice in the AX tree.
+            let removalAccessory = cell.images["minus.circle.fill"].firstMatch
+            XCTAssertTrue(removalAccessory.waitForExistence(timeout: 15))
+            try snapshot("native-removal-accessory-" + item.id)
+            removalAccessory.tap()
             let removedImmediately = try await waitUntil(timeout: 1) {
                 try !self.pickerPreferences(in: shared).favorites.contains(item.id)
             }
