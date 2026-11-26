@@ -10,6 +10,7 @@ struct NativeStudySheetPresentationState: Equatable {
 
     enum NoteHost: Equatable {
         case reader
+        case compactStudy
         case study(UUID)
     }
 
