@@ -87,8 +87,8 @@ final class AnnotationOriginalEditorSourceObservation {
             return
         }
         localSession = session
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session] event in
-            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session, sessionID = session.id] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                 lifetime.retire()
                 session.retire()
             }
@@ -109,8 +109,8 @@ final class AnnotationOriginalEditorSourceObservation {
             throw AnnotationLocalEditorError.wrongOwner
         }
         nativeSource = source
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source] event in
-            if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source, sessionID = localSession.id] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                 lifetime.retire()
                 localSession.retire()
                 // Nonisolated SDK retirement also fences a queued native RPC
@@ -197,8 +197,8 @@ final class AnnotationOriginalEditorSourceObservation {
             try lifetime.bindLocalAnnotationRetirement(source)
             try presentationLifetime.bindLocalAnnotationRetirement(source)
             localAnnotation = source
-            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source] event in
-                if Self.affects(event, id: id, uuid: uuid, recordID: recordID) {
+            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source, sessionID = local.id] event in
+                if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                     lifetime.retire()
                     local.retire()
                     source.retire()
@@ -227,7 +227,8 @@ final class AnnotationOriginalEditorSourceObservation {
         localSession = nil
     }
 
-    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID, recordID: String) -> Bool {
+    private nonisolated static func affects(_ event: AnnotationEvent, id: Int64, uuid: UUID,
+                                            recordID: String, sessionID: UUID? = nil) -> Bool {
         func matches(_ annotation: Annotation) -> Bool {
             annotation.id == id || annotation.ckRecordId.flatMap(UUID.init(uuidString:)) == uuid
                 || annotation.ckRecordId.map({ $0.utf8.elementsEqual(recordID.utf8) }) == true
@@ -237,6 +238,10 @@ final class AnnotationOriginalEditorSourceObservation {
         case .deleted(let deletedID, let annotation): return deletedID == id || annotation.map(matches) == true
         case .batchUpdated(let annotations): return annotations.contains(where: matches)
         case .treeInvalidated: return true
+        case .localEditorCommitted(let committingSessionID):
+            // Keep the committing owner alive long enough to deliver its receipt.
+            // Other editors still observe the same source invalidation.
+            return committingSessionID != sessionID
         }
     }
 

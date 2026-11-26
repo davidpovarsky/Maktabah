@@ -919,7 +919,7 @@ class IbarotTextView: NSTextView {
             performRemoveAttributes(forAnnotationId: id, in: ts)
             ts.endEditing()
 
-        case .batchUpdated, .treeInvalidated:
+        case .batchUpdated, .treeInvalidated, .localEditorCommitted:
             refreshAnnotations()
             return
         }
