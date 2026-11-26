@@ -207,6 +207,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
                         && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
                         && (descriptor.id != "catalog.listAuthors" || state is any ActionCatalogAuthorsPort)
+                        && (!descriptor.id.hasPrefix("packages.") || state is any ActionOfflinePackageObservationPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -292,6 +293,47 @@ public actor ActionExecutor {
                 result = completed(["locator": try ActionJSON.encoded(resolved)])
             case .ambiguous(let candidates): result = try ambiguity(candidates, limit: 25, request: request, context: context, snapshot: snapshot)
             case .notFound: throw ActionPortError.notFound
+            }
+        case "packages.list", "packages.status", "packages.checkUpdates":
+            guard let provider = state as? any ActionOfflinePackageObservationPort else {
+                throw ActionEngineFailure(.notSupported, "offline_packages_unavailable")
+            }
+            guard context.allowedWorkKeys == nil else {
+                throw ActionEngineFailure(.failed, "permission_denied")
+            }
+            if let requested = request.arguments["backend"],
+               try requested.decoded(as: ActionBackendID.self) != backend { throw ActionPortError.staleState }
+            switch request.action {
+            case "packages.list":
+                let refresh = request.arguments["forceRefresh"]?.boolean ?? false
+                let packages = try await provider.offlinePackages(forceRefresh: refresh, invocation: invocation)
+                try await recheck(snapshot, deadline: deadline)
+                guard packages.count <= 10_000, Set(packages.map(\.id)).count == packages.count,
+                      packages.reduce(0, { $0 + ($1.indexTitles?.count ?? 0) }) <= 100_000,
+                      packages.allSatisfy({ package in
+                          ActionValidation.nonempty(package.id, max: 512)
+                          && ActionValidation.nonempty(package.title, max: 1_000)
+                          && (package.heTitle.map { ActionValidation.nonempty($0, max: 1_000) } ?? true)
+                          && (package.parentID.map { ActionValidation.nonempty($0, max: 512) && $0 != package.id } ?? true)
+                          && package.compressedSize >= 0
+                          && (package.indexTitles.map { $0.count <= 100_000 && $0.allSatisfy { ActionValidation.nonempty($0, max: 512) } } ?? true)
+                      }) else { throw ActionPortError.invalidResponse }
+                result = completed(["packages": try .encoded(packages)])
+            case "packages.status":
+                let includeWorks = request.arguments["includeWorks"]?.boolean ?? false
+                let status = try await provider.offlinePackageStatus(includeWorks: includeWorks, invocation: invocation)
+                try await recheck(snapshot, deadline: deadline)
+                guard validOfflineIDs(status.installedPackageIDs), (status.installedWorkKeys != nil) == includeWorks,
+                      status.installedWorkKeys.map(validOfflineIDs) ?? true else { throw ActionPortError.invalidResponse }
+                result = completed(try ActionJSON.encoded(status).object ?? [:])
+            default:
+                let updates = try await provider.offlinePackageUpdates(invocation: invocation)
+                try await recheck(snapshot, deadline: deadline)
+                guard updates.changedWorkCount >= 0,
+                      validOfflineIDs(updates.affectedPackageIDs) else { throw ActionPortError.invalidResponse }
+                result = completed(["changedWorkCount": .integer(Int64(updates.changedWorkCount)),
+                                    "affectedPackageIDs": try .encoded(updates.affectedPackageIDs),
+                                    "hasUpdates": .bool(updates.changedWorkCount > 0)])
             }
         case "reader.getSection":
             guard let rawLocator = request.arguments["sectionLocator"] else {
@@ -819,6 +861,11 @@ public actor ActionExecutor {
         guard ui is any ActionCommentaryUICommandSink,
               let commentary = resolver as? any ActionCommentaryResolverPort else { return false }
         return await commentary.canResolveCommentary()
+    }
+
+    private func validOfflineIDs(_ values: [String]) -> Bool {
+        values.count <= 100_000 && Set(values).count == values.count
+            && values.allSatisfy { ActionValidation.nonempty($0, max: 512) }
     }
 
     public func advertisedActions(for backend: ActionBackendID, context: ActionExecutionContext) async -> [ActionDescriptor] {

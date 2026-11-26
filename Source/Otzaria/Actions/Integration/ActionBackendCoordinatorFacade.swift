@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort, ActionRelatedRefsPort, ActionRelatedTopicsPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort, ActionRelatedSourcesPort, ActionRelatedRefsPort, ActionRelatedTopicsPort, ActionOfflinePackageObservationPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -406,6 +406,46 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
         let entries = try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
         try await require("reader.getTOC", backend: work.backend, invocation: invocation)
         return entries
+    }
+
+    func offlinePackages(forceRefresh: Bool, invocation: ActionPortInvocation) async throws -> [ActionOfflinePackage] {
+        let backend = invocation.snapshot.backend
+        try await require("packages.list", backend: backend, invocation: invocation)
+        guard let provider = coordinator.offlineProvider() else { throw ActionPortError.invalidResponse }
+        // The Embedded provider has no force-refresh operation.
+        guard backend != .sefariaEmbedded || !forceRefresh else { throw ActionContractError.invalid("forceRefresh") }
+        let packages: [OfflinePackage]
+        do { packages = try await provider.packages(forceRefresh: forceRefresh) }
+        catch { throw safe(error) }
+        try await require("packages.list", backend: backend, invocation: invocation)
+        return packages.map {
+            .init(id: $0.id, title: $0.title, heTitle: $0.heTitle, parentID: $0.parentID,
+                  compressedSize: $0.compressedSize, indexTitles: $0.indexTitles, isCompleteLibrary: $0.isCompleteLibrary)
+        }
+    }
+
+    func offlinePackageStatus(includeWorks: Bool, invocation: ActionPortInvocation) async throws -> ActionOfflinePackageStatus {
+        let backend = invocation.snapshot.backend
+        try await require("packages.status", backend: backend, invocation: invocation)
+        guard let provider = coordinator.offlineProvider() else { throw ActionPortError.invalidResponse }
+        let packages = await provider.installedPackageIDs().sorted()
+        try await require("packages.status", backend: backend, invocation: invocation)
+        guard includeWorks else { return .init(installedPackageIDs: packages, installedWorkKeys: nil) }
+        guard let workProvider = coordinator.offlineWorkProvider() else { throw ActionPortError.invalidResponse }
+        let works = await workProvider.installedWorkKeys().sorted()
+        try await require("packages.status", backend: backend, invocation: invocation)
+        return .init(installedPackageIDs: packages, installedWorkKeys: works)
+    }
+
+    func offlinePackageUpdates(invocation: ActionPortInvocation) async throws -> ActionOfflinePackageUpdates {
+        let backend = invocation.snapshot.backend
+        try await require("packages.checkUpdates", backend: backend, invocation: invocation)
+        guard let provider = coordinator.offlineProvider() else { throw ActionPortError.invalidResponse }
+        let updates: OfflineUpdateSummary
+        do { updates = try await provider.availableUpdates() }
+        catch { throw safe(error) }
+        try await require("packages.checkUpdates", backend: backend, invocation: invocation)
+        return .init(changedWorkCount: updates.changedWorkCount, affectedPackageIDs: updates.affectedPackageIDs.sorted())
     }
 
     func relatedRefs(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionTextRef] {
