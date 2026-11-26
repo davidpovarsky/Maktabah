@@ -30,6 +30,7 @@
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_license_texts": "c952ca3ebcdcf8a1fecdb900850d8ab6f9cbe5fe",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
+    "original_phone_picker_acceptance": "30ea8b67f833ea40550311b38f152882ebac296e",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "original_sefaria_versions": "823fa496304369675f7505b93fd5bef27376d135",
     "original_toc_semantic_resolution": "131366472aa02da4bc3d99a783fba69a4f40175c",
@@ -46,9 +47,9 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
+  "application_source_sha": "30ea8b67f833ea40550311b38f152882ebac296e",
   "application_trees": {
-    "Maktabah-iOSUITests": "e87acee2515f7649bc0ccf32a243e9ba43666c31",
+    "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
     "Source": "99701be03e0c734a077cddcbee462f8c3f78ffa9",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
@@ -104,314 +105,17 @@
       "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 99229,
+        "bytes": 101981,
         "kind": "blob",
         "mode": "100644",
-        "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-        "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        "object": "cf9d885328b105a2959ed02f02d91427fb240c4c",
+        "sha256": "d90a6f983e1078954df2f78025f3dd56922a8536b55760cb84b94284ce6e6e3a"
       },
       "before": null,
-      "component_objects": {
-        "anytype_native_host": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "app_intent_scoped_discovery": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "command_palette_accessibility": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "empty_note": null,
-        "full_v40_occurrence_diagnostic": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "guided_navigation_core": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "guided_navigation_native": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "guided_navigation_receipt_source": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "hanlin_containing_reader_admission": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "hanlin_full_history_checkpoint": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "hanlin_observed_source_and_history": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "hebrew_highlight_utf16": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "hebrew_shortcuts": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "library": null,
-        "library_install_cancel_rollback": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "managed_database_identity": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "miniapps": {
-          "bytes": 33785,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
-          "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
-        },
-        "miniapps_hebrew_rtl": {
-          "bytes": 66482,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "1159100b2082fb0b27107c44d3a10de6c88b86b5",
-          "sha256": "0767c4d2c868c8271bc6bb1ae417005b439dcbdfa9c043abfec8d85de1536359"
-        },
-        "miniapps_save_confirmation": {
-          "bytes": 64757,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "83f3a235bd2fe14970546e1d9aaec5574c94f5df",
-          "sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae"
-        },
-        "native_reader_menu_label": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "native_share": null,
-        "navigation_items": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "navigation_structures": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "normal_editor": null,
-        "offline_package_observations": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "original_account_exchange_ui": {
-          "bytes": 33785,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
-          "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
-        },
-        "original_catalog_authors": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "original_explicit_save": {
-          "bytes": 64757,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "83f3a235bd2fe14970546e1d9aaec5574c94f5df",
-          "sha256": "b153094431f1c601b00c576b20c9ffb670eedb45187b8d31427a89e1f24257ae"
-        },
-        "original_license_texts": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "original_lifecycle_and_native_batch": {
-          "bytes": 33785,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "218f558c8c14b62647881355d3cdd005283ff3ef",
-          "sha256": "c1447e8f6bf9a7674b41982836af2e8cfa7aa0119b157251559e18449e74e70d"
-        },
-        "original_rich_miniapps": {
-          "bytes": 52487,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "de180b24b17386a0fcbea0dcf4e59d530afad4fa",
-          "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
-        },
-        "original_sefaria_versions": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "original_toc_semantic_resolution": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "palette_localized_title": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "reader_cancellation": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "reader_designkit_modifier": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "reader_html_performance": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "reader_related_refs_topics": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "reader_related_sources": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "reader_source_actions": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "safari_toolbar_localization": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "shared_original_account_exchange_ui": {
-          "bytes": 60143,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "06a2de328228edbcb737189e8d4e662f2dba8aa6",
-          "sha256": "50ef9d2848d342b0ee58d7ffc13e826e5a3fc55f31d6f21805d59bd17333db4d"
-        },
-        "stable_native_group_segments": {
-          "bytes": 99229,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
-          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
-        },
-        "study_workspace_locale": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        },
-        "universal_link_transport": {
-          "bytes": 71096,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "194036e27dc8df7aed29920345a13949e49e045a",
-          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
-        }
-      },
-      "patch": {
-        "bytes": 101236,
-        "sha256": "861655a3ba7730857b5cb665a6edd4437a0a04179013b0984c54c92f4e3f4f15"
-      },
-      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
-      "reason": "Reviewed original real-app selector retains all five genuine plain/reader/rich callbacks, newer unsaved native-block preservation, cold remount and replay. Shared native Picker editing now also has a separate Hebrew phone/tablet selector using the real catalog, localized original controls, mirrored toolbar/reorder geometry and preferences changed only through actual UI. All22 exact current UI sources passed Apple Swift6.4 codegen. Locale/scene, screenshots and AX are retained by actual runs; zero native UI execution is claimed here. The acknowledged callback replay is delivered through XCUIDevice.system.open, preserving genuine OS URL delivery instead of XCUIApplication's launch-equivalent helper. Real cold terminations and all revision/archive/receipt assertions remain intact; exact22-source Apple codegen passed on4eec5cf3. Integrate original owner 5010787a explicit Save/Cancel before MiniApps and its no-canonical-mutation cancel assertions, keeping the native file API, Hebrew/RTL and warm OS replay changes. Historical source compile receipts are not credited to this merged source. Add a separate original-app File Workshop acceptance method using genuine UI import, nonce-bearing file edits, cold native reopen/export, original file uploads, distinct same-name blocks, cancellation and duplicate callback. Keep all original text/reader/privacy/RTL cases. This source addition has no native execution credit until the real two-app gate passes. Observe the real initial new-file content from the source note, then replace it through the actual UIKit word selection and visible Cut action before typing the independent file nonce. Preserve all original input/output/reopen/replay assertions; no native execution credit is granted by this source update. Extend the actual File Workshop file journey with a distinct plain note: real file creation, ACK/private bytes, cold reopen/native activity UI, unchanged legacy format and cold duplicate callback. Keep all rich-file/text/reader/privacy/RTL objectives; no native execution credit from source."
+      "component": "original_phone_picker_acceptance",
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -690,6 +394,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_phone_picker_acceptance": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "original_rich_miniapps": {
           "bytes": 5427,
@@ -1275,6 +986,13 @@
           "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
           "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
         },
+        "original_phone_picker_acceptance": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "original_rich_miniapps": {
           "bytes": 21097,
           "kind": "blob",
@@ -1602,6 +1320,13 @@
           "mode": "100644",
           "object": "f71614cc4e6725645e2c48938b1e983c3eea266e",
           "sha256": "9737f2785d8c5027650838a45fd72bbb51f49c981350b8c604b3ce32b642a1a9"
+        },
+        "original_phone_picker_acceptance": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "original_rich_miniapps": {
           "bytes": 38949,
@@ -1976,6 +1701,13 @@
           "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
           "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
         },
+        "original_phone_picker_acceptance": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "original_rich_miniapps": {
           "bytes": 36042,
           "kind": "blob",
@@ -2343,6 +2075,13 @@
           "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
           "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
         },
+        "original_phone_picker_acceptance": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "original_rich_miniapps": {
           "bytes": 30093,
           "kind": "blob",
@@ -2665,6 +2404,13 @@
           "mode": "100644",
           "object": "25b98af821b481678b81813cd8f24a1c9c37d55c",
           "sha256": "b045480aba915d9fb002de77e1b403700af25a0fd3200b0db72b5ca74680403d"
+        },
+        "original_phone_picker_acceptance": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "original_rich_miniapps": {
           "bytes": 12957,
@@ -3469,6 +3215,13 @@
           "mode": "100644",
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "original_phone_picker_acceptance": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "original_rich_miniapps": {
           "bytes": 22996,
@@ -4478,6 +4231,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
+        },
+        "original_phone_picker_acceptance": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "original_rich_miniapps": {
           "kind": "commit",
