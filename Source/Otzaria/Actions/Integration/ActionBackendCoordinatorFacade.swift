@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -310,6 +310,22 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             throw ActionPortError.invalidResponse
         }
         return result
+    }
+
+    func versions(for work: ActionWorkRef, invocation: ActionPortInvocation) async throws -> [ActionTextVersion] {
+        try await require("reader.listVersions", backend: work.backend, invocation: invocation)
+        let catalog = try await catalogWorks(backend: work.backend, invocation: invocation)
+        guard let sourceWork = catalog.works.first(where: { $0.locator.workKey.utf8.elementsEqual(work.workKey.utf8) }) else {
+            throw ActionPortError.notFound
+        }
+        let original: [TextVersionMetadata]
+        do { original = try await coordinator.versions(for: sourceWork.locator.workKey) }
+        catch { throw safe(error) }
+        try await require("reader.listVersions", backend: work.backend, invocation: invocation)
+        return original.map {
+            .init(title: $0.title, language: $0.language, actualLanguage: $0.actualLanguage,
+                  sourceURL: $0.sourceURL?.absoluteString, license: $0.license, notes: $0.notes, isPrimary: $0.isPrimary)
+        }
     }
 
     func tableOfContents(for work: ActionWorkRef, maximumEntries: Int,

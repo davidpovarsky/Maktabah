@@ -200,6 +200,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "search.countOccurrences" || occurrenceSupported)
                         && (descriptor.id != "reader.getTOC" || state is any ActionTableOfContentsPort)
                         && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
+                        && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -300,6 +301,24 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
             result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "reader.listVersions":
+            guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
+            let work = try rawWork.decoded(as: ActionWorkRef.self)
+            try ActionPolicy.work(work.workKey, backend: backend, context: context)
+            guard let provider = state as? any ActionVersionListPort else {
+                throw ActionEngineFailure(.notSupported, "version_provider_unavailable")
+            }
+            let versions = try await provider.versions(for: work, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard versions.count <= 500, versions.allSatisfy({ version in
+                ActionValidation.nonempty(version.title, max: 512)
+                    && ActionValidation.nonempty(version.language, max: 64)
+                    && (version.actualLanguage?.utf8.count ?? 0) <= 64
+                    && (version.sourceURL?.utf8.count ?? 0) <= 2_048
+                    && (version.license?.utf8.count ?? 0) <= 512
+                    && (version.notes?.utf8.count ?? 0) <= 16_384
+            }) else { throw ActionPortError.invalidResponse }
+            result = completed(["workRef": try .encoded(work), "versions": try .encoded(versions)])
         case "reader.getTOC":
             guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
             let work = try rawWork.decoded(as: ActionWorkRef.self)
