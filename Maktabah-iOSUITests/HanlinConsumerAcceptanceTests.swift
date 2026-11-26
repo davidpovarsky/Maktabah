@@ -569,11 +569,11 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
     }
 
     @MainActor
-    private func savedConversation(prompt: String) throws -> [String: Any] {
+    private func savedConversation(prompt: String) throws -> (url: URL, value: [String: Any]) {
         let root = try ownedContainer().appendingPathComponent("Library/Application Support/ChavrusaText/HanlinConversations/v1")
         let files = try XCTUnwrap(FileManager.default.enumerator(at: root,
             includingPropertiesForKeys: [.isRegularFileKey, .fileSizeKey], options: [.skipsHiddenFiles]))
-        var matches: [[String: Any]] = []
+        var matches: [(url: URL, value: [String: Any])] = []
         var count = 0
         for case let file as URL in files where file.pathExtension == "json" {
             count += 1
@@ -585,9 +585,10 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             guard let history = value["history"] as? [String: Any],
                   let messages = history["messages"] as? [[String: Any]],
                   messages.contains(where: { ($0["role"] as? String) == "user" && ($0["content"] as? String) == prompt }) else { continue }
-            matches.append(value)
+            matches.append((file, value))
         }
-        XCTAssertEqual(matches.count, 1, "Exactly one original saved conversation must contain this live challenge")
+        XCTAssertEqual(matches.count, 1,
+            "Exactly one original saved conversation must contain the submitted composer value (inspected \(count) records)")
         return try XCTUnwrap(matches.first)
     }
 
@@ -720,6 +721,9 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             + "After both real tools succeed reply with exactly " + marker + " as plain text; do not emit OpenUI."
         let editor = app.textViews["otzaria-hanlin-composer"]
         press(editor); editor.typeText(prompt)
+        let submittedPrompt = try XCTUnwrap(editor.value as? String)
+        XCTAssertTrue(submittedPrompt.contains(marker),
+                       "The actual native composer must contain the live challenge before it is sent")
         let send = app.buttons["otzaria-hanlin-send"]
         XCTAssertTrue(send.isEnabled)
         press(send)
@@ -730,12 +734,17 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
             object: app.buttons["otzaria-hanlin-stop"])
         XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
         XCTAssertEqual(links.count, 1)
-        XCTAssertTrue(links.firstMatch.isHittable)
-        let sourceID = try XCTUnwrap(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))))
+        let openSource = links.firstMatch
+        let reachableSource = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: openSource)
+        XCTAssertEqual(XCTWaiter.wait(for: [reachableSource], timeout: 15), .completed,
+                       "The completed answer must expose its original source action")
+        let sourceID = try XCTUnwrap(UUID(uuidString: String(openSource.identifier.dropFirst("otzaria-hanlin-source-".count))))
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", marker))
             .firstMatch.waitForExistence(timeout: 30), "The actual live continuation must reach the original transcript")
 
-        let saved = try savedConversation(prompt: prompt)
+        let savedRecord = try savedConversation(prompt: submittedPrompt)
+        let saved = savedRecord.value
         let conversationID = try XCTUnwrap(saved["conversationID"] as? String)
         let history = try XCTUnwrap(saved["history"] as? [String: Any])
         let messages = try XCTUnwrap(history["messages"] as? [[String: Any]])
@@ -789,16 +798,31 @@ final class HanlinLiveProviderAcceptanceTests: R27NativeUIBase {
         XCTAssertFalse(revoke.exists)
         XCTAssertEqual(editor.value as? String, draft)
         XCTAssertFalse(send.isEnabled, "Native revocation must discard the original model connection")
-        let after = try savedConversation(prompt: prompt)
+        // Consent revocation must retain this exact original persisted conversation,
+        // so follow its actual store URL and validate the complete transcript again.
+        let afterBytes = try Data(contentsOf: savedRecord.url)
+        XCTAssertLessThanOrEqual(afterBytes.count, 8 * 1024 * 1024)
+        let after = try XCTUnwrap(JSONSerialization.jsonObject(with: afterBytes) as? [String: Any])
         XCTAssertEqual(after["conversationID"] as? String, conversationID)
-        XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["activities"])), try json(activities))
-        XCTAssertEqual(try json(try XCTUnwrap((after["history"] as? [String: Any])?["sources"])), try json(savedSources))
+        let afterHistory = try XCTUnwrap(after["history"] as? [String: Any])
+        let afterMessages = try XCTUnwrap(afterHistory["messages"] as? [[String: Any]])
+        XCTAssertEqual(afterMessages.count, messages.count, "The original saved message count changed after revocation")
+        XCTAssertEqual(afterMessages.map { $0["id"] as? String }, messages.map { $0["id"] as? String },
+                       "The original message identities changed after revocation")
+        let afterContentMatches = try json(afterMessages) == json(messages)
+        XCTAssertTrue(afterContentMatches, "The original persisted transcript bytes changed after revocation")
+        XCTAssertEqual(afterHistory["draft"] as? String, draft)
+        XCTAssertEqual(try json(try XCTUnwrap(afterHistory["activities"])), try json(activities))
+        XCTAssertEqual(try json(try XCTUnwrap(afterHistory["sources"])), try json(savedSources))
         let readerLog = try ownedContainer().appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
         let beforeNavigation = try Self.readerReceiptLines(readerLog)
         XCTAssertEqual(links.count, 1)
         XCTAssertEqual(UUID(uuidString: String(links.firstMatch.identifier.dropFirst("otzaria-hanlin-source-".count))), sourceID)
-        for _ in 0..<4 where !links.firstMatch.isHittable { app.scrollViews.firstMatch.swipeDown() }
-        press(links.firstMatch)
+        let reachableAfterRevocation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "hittable == true AND enabled == true"), object: openSource)
+        XCTAssertEqual(XCTWaiter.wait(for: [reachableAfterRevocation], timeout: 15), .completed,
+                       "The saved source must remain reachable after native consent revocation")
+        press(openSource)
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
             object: app.buttons["otzaria-hanlin-close"])], timeout: 30), .completed)
         let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
