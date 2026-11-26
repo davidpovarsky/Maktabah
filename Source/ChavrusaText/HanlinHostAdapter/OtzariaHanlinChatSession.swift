@@ -334,6 +334,10 @@ final class OtzariaHanlinChatSession: Identifiable {
         let descriptor = try OpenUICatalogs.host(appID: identity.context.namespace.app, research: true)
         presentationDescriptor = descriptor
         selectedProfile = descriptor.defaultProfile
+        // Observable draft and profile setters can checkpoint. Restore the
+        // entire snapshot before either setter may write to its original file.
+        isMutatingHistory = true
+        defer { isMutatingHistory = false }
         if let (history, revision) = try store.history() {
             _ = try ProfileResolver.resolve(host: descriptor, conversationID: identity.conversationID,
                 assignment: .init(conversationID: identity.conversationID, profile: history.selectedProfile))
