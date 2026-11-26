@@ -24,6 +24,7 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "original_sefaria_versions": "823fa496304369675f7505b93fd5bef27376d135",
+    "original_toc_semantic_resolution": "131366472aa02da4bc3d99a783fba69a4f40175c",
     "palette_localized_title": "2d8b09a08ba826988626f001317bf985923ca162",
     "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
     "reader_designkit_modifier": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
@@ -35,11 +36,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
+  "application_source_sha": "15954e4389ceac5baa75a21971a67e93704f2500",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "cecc5b97c68136169c5cafc7dcaeaf8656710923",
+    "Source": "fa1321e83cc469113d91d65160f94b242b0d88d4",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -203,6 +204,13 @@
           "sha256": "edd8c182207e14233f3cccb17c5b621e8451806e613949d57578d685202115ae"
         },
         "original_sefaria_versions": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "original_toc_semantic_resolution": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -498,6 +506,13 @@
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
         "original_sefaria_versions": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "original_toc_semantic_resolution": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -1011,6 +1026,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "original_toc_semantic_resolution": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "palette_localized_title": {
           "bytes": 21873,
           "kind": "blob",
@@ -1256,6 +1278,13 @@
           "sha256": "5d7d2452c383029297f8c0cba868804ef89edda9ef8731293f4bac52d5da638c"
         },
         "original_sefaria_versions": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "original_toc_semantic_resolution": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1558,6 +1587,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "original_toc_semantic_resolution": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "palette_localized_title": {
           "bytes": 54697,
           "kind": "blob",
@@ -1840,6 +1876,13 @@
           "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
           "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
         },
+        "original_toc_semantic_resolution": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
         "palette_localized_title": {
           "bytes": 38923,
           "kind": "blob",
@@ -2092,6 +2135,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "original_toc_semantic_resolution": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "palette_localized_title": {
           "bytes": 37347,
           "kind": "blob",
@@ -2332,6 +2382,13 @@
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
         "original_sefaria_versions": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "original_toc_semantic_resolution": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2989,6 +3046,13 @@
           "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
           "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
+        "original_toc_semantic_resolution": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "palette_localized_title": {
           "bytes": 24135,
           "kind": "blob",
@@ -3298,6 +3362,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 28048,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ae41a3d0ab4489ed70838f6c802918b3f034cb82",
+        "sha256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef"
+      },
+      "before": {
+        "bytes": 23818,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6c2f6cd6736eb84fcdd1cb63163169a3b5d60a19",
+        "sha256": "653e4f9245ef7d476fde62a6d6224712bd55cc0a95559bc9548761b237a62a24"
+      },
+      "component": "original_toc_semantic_resolution",
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 15608,
         "kind": "blob",
         "mode": "100644",
@@ -3410,6 +3493,25 @@
       "before": null,
       "component": "original_sefaria_versions",
       "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/VersionListActionTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 28159,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6b2d0096daa471ab3912a0b80a470fb886d14b25",
+        "sha256": "3d6b0bfd026fe77110476df60096ef8a98970757b7a68efff26e20b3bf4d4114"
+      },
+      "before": {
+        "bytes": 25511,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "105ab11449b2334c15b454533c4e727eabfc14e7",
+        "sha256": "7f761fc50452b7c93dda2b26872edc371644ea46a30ef1334b3db90fc51b841b"
+      },
+      "component": "original_toc_semantic_resolution",
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3794,6 +3896,11 @@
           "object": "571a1ab79171d59415c85cfeea6e8e01c74596db"
         },
         "original_sefaria_versions": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "original_toc_semantic_resolution": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
