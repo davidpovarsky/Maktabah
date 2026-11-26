@@ -1,0 +1,7 @@
+Xcode 27.0
+Build version 27A266a
+2026-11-26 06:31:24.341 Smoke[89448:11510557] [OtzariaIndex] search artifact discovery candidate releaseTag=otzaria-search-data-v40-20261123094345-f8fea8efcac5 releaseID=458964363 manifestAsset=otzaria-search-manifest.json
+2026-11-26 06:31:24.754 Smoke[89448:11510567] [OtzariaIndex] search artifact manifest decoded stage=production-policy releaseTag=otzaria-search-data-v40-20261123094345-f8fea8efcac5 manifestAsset=otzaria-search-manifest.json formatVersion=1 artifactIdentity=f8fea8efcac5 parts=15 files=7 extractedBytes=5696232697 packagedBytes=4150325346
+2026-11-26 06:31:24.755 Smoke[89448:11510567] [OtzariaIndex] search artifact manifest validated stage=production-policy releaseTag=otzaria-search-data-v40-20261123094345-f8fea8efcac5 artifactIdentity=f8fea8efcac5
+PASS original Otzaria HTTPS client selected otzaria-search-data-v40-20261123094345-f8fea8efcac5
+PASS original Zayit HTTPS client selected zayit-search-data-v40-20261123094345-17cabb80e86a

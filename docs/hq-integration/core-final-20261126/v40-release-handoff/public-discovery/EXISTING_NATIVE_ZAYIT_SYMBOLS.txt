@@ -1,0 +1,5 @@
+_mzayit_engine_create
+_mzayit_engine_destroy
+_mzayit_engine_search
+_mzayit_string_free
+_mzayit_validate_paths

@@ -1,0 +1,36 @@
+{
+  "libraryAssetID" : 782942035,
+  "libraryMultipartManifestSHA256" : "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+  "libraryReleaseID" : 455390662,
+  "managedDatabaseBytes" : 4355063808,
+  "managedDatabaseManifestSHA256" : "d7fd1756a41d76144e18b6fe974550aaee68ec946c6559cc2498bfbb9dd1c384",
+  "otzaria" : {
+    "artifactIdentity" : "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+    "consumerCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "consumerNativeInstallReceiptSHA256" : "31212cc8f943ffaea0f83811a3e4a6b7571b80c1ea80eea570a993d7650c7b7c",
+    "equalsVerifiedPackageManifest" : true,
+    "generationOrder" : 5,
+    "indexSchemaVersion" : 4,
+    "releaseID" : 458964363,
+    "tag" : "otzaria-search-data-v40-20261123094345-f8fea8efcac5",
+    "verifiedManifestSHA256" : "c10824ac3cc38514b64cb59e0c588c8b56d5d86ac3213bcd56bd75048cfb2b8b",
+    "verifiedPartURLs" : 15
+  },
+  "passed" : true,
+  "performedIndexPartDownloads" : false,
+  "performedSimulatorOrUI" : false,
+  "profile" : "production",
+  "releaseListURL" : "https:\/\/api.github.com\/repos\/davidpovarsky\/Maktabah\/releases?per_page=100",
+  "scope" : "real anonymous HTTPS release discovery and native client compatibility only",
+  "sourceCommit" : "44100265611efb96a33d7f650f1b845a6a7a4e1e",
+  "zayit" : {
+    "artifactIdentity" : "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480",
+    "builderCommit" : "7212133b9a7366021382d2e80932c692b780b3f3",
+    "equalsVerifiedPackageManifest" : true,
+    "expectedIndexSchemaVersion" : 2,
+    "tag" : "zayit-search-data-v40-20261123094345-17cabb80e86a",
+    "upstreamCommit" : "c53ea7b1a034c206f6c96c86188941c64b69ad2a",
+    "verifiedManifestSHA256" : "577176375f735af240d8a1e84f0a1ad23bf18018ae4c0f716e8acb142d8d8691",
+    "verifiedPartURLs" : 74
+  }
+}
