@@ -6,6 +6,8 @@
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "full_v40_occurrence_diagnostic": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
     "guided_navigation_core": "12090cbc51d1d060055850e0dbbd6d98fb93e5ef",
+    "guided_navigation_native": "aa506ae2461792243589b106825243560074474a",
+    "guided_navigation_receipt_source": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
     "hanlin_containing_reader_admission": "7f2132b1ca67fdb3351413d54b42de9adbe1fda7",
     "hanlin_full_history_checkpoint": "4f3e33472e5939fdfb8d2c6c7c38c58868a1002e",
     "hanlin_observed_source_and_history": "e292d2c71e9584ca4e3ca52dd27158e84e6071d5",
@@ -44,11 +46,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "5ae10280298f89558eee9c9029ecd1199408f1cb",
+  "application_source_sha": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
   "application_trees": {
-    "Maktabah-iOSUITests": "ecad1894b40755fb2e2eadb70bbd7a074cc70de7",
+    "Maktabah-iOSUITests": "e87acee2515f7649bc0ccf32a243e9ba43666c31",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "ed7e2c30f481fde09831ffa184dfbd8a3b8b1ab1",
+    "Source": "99701be03e0c734a077cddcbee462f8c3f78ffa9",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -142,6 +144,20 @@
           "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "guided_navigation_core": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "guided_navigation_native": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -400,6 +416,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 162402,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "58fd0691d1fc5f0fdac96e62b942cccaec4aa920",
+        "sha256": "2b41e54ac74a5fd404d5d69cd0fecb12650554e573159b0c88427cb6b25f1b0f"
+      },
+      "before": {
+        "bytes": 160603,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
+        "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
+      },
+      "component": "guided_navigation_receipt_source",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 70406,
         "kind": "blob",
         "mode": "100644",
@@ -482,6 +517,20 @@
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "guided_navigation_core": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "guided_navigation_native": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -1058,6 +1107,20 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "guided_navigation_native": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "guided_navigation_receipt_source": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hanlin_containing_reader_admission": {
           "bytes": 21873,
           "kind": "blob",
@@ -1372,6 +1435,20 @@
           "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "guided_navigation_core": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "guided_navigation_native": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1731,6 +1808,20 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "guided_navigation_core": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "guided_navigation_native": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -2102,6 +2193,20 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "guided_navigation_native": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
+        "guided_navigation_receipt_source": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "hanlin_containing_reader_admission": {
           "bytes": 37347,
           "kind": "blob",
@@ -2405,6 +2510,20 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "guided_navigation_core": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "guided_navigation_native": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2918,6 +3037,44 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 153815,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "5a40b91b560f28d76bb66399fcb7da7a766785d1",
+        "sha256": "6f5b2fd0d27aa77b64b5e37a110605210f99254d00493d6fc72fcd649f8edb4d"
+      },
+      "before": {
+        "bytes": 152357,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "df28f34439dd0d22f1c8d5ad13326adb6ed686f7",
+        "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
+      },
+      "component": "guided_navigation_native",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 15672,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4e2da61d783d89d02356ab66f1656aa0a41be92e",
+        "sha256": "8e772ce57bccdd5242ad81c9dd65fef882d37bfaaa89f73f5ad4abce1a1fac21"
+      },
+      "before": {
+        "bytes": 10227,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "b524195aaa657a93a95ace3e78bee5a30c956f6e",
+        "sha256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89"
+      },
+      "component": "guided_navigation_native",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 20833,
         "kind": "blob",
         "mode": "100644",
@@ -3139,6 +3296,20 @@
           "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "guided_navigation_core": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "guided_navigation_native": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "guided_navigation_receipt_source": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -4027,27 +4198,27 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 9425,
+        "bytes": 10637,
         "kind": "blob",
         "mode": "100644",
-        "object": "76aa44073abd5e48956160170f99eb259763a965",
-        "sha256": "af51b992c21273fed3630b837928a8a1e07029db9ed7438b2274cd020a76fc41"
+        "object": "9c62aa2f564fce5c4682890148ce587783fd5d7d",
+        "sha256": "7b83cb747bc01268e681502080685eafb1c60a01bbadd1eb73533c909606351f"
       },
       "before": null,
-      "component": "guided_navigation_core",
+      "component": "guided_navigation_native",
       "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 5521,
+        "bytes": 6017,
         "kind": "blob",
         "mode": "100644",
-        "object": "4255fc2f69b0d7466248480fa089e55545f6265d",
-        "sha256": "8d318f6f44cf18d080bf4210ed11a230575025fcd8c0e5cf416505da786e48f2"
+        "object": "1ed432a2f1f869643eecf7618567e8eb8ec2c9b1",
+        "sha256": "a3998a0ce7c5817c523afd78574ef13e1f8d924f52dcb9adaa5d32605c94cb1e"
       },
       "before": null,
-      "component": "guided_navigation_core",
+      "component": "guided_navigation_native",
       "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift"
     },
     {
@@ -4072,11 +4243,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 33242,
+        "bytes": 33352,
         "kind": "blob",
         "mode": "100644",
-        "object": "ce413b580c80b2eadc15236f0488bba279d974c6",
-        "sha256": "68e3276192123ef08e7e2846f815be796e305c5b97c94aab572cd08d4ea0750c"
+        "object": "4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7",
+        "sha256": "124b45b93116c972894662eede46983929855e9049136e3ac91d812a1b1eed49"
       },
       "before": {
         "bytes": 32842,
@@ -4085,7 +4256,7 @@
         "object": "e7dacac1ef5755f921ad697ae54d2d066952b1ba",
         "sha256": "2f4116739648ca5fe7c0efe08888aff3494dcf4cb3405d9c0fff462e1d4fec20"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "guided_navigation_native",
       "path": "Source/UI/iOS/Views/iOSMainView.swift"
     },
     {
@@ -4184,6 +4355,16 @@
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "guided_navigation_core": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "guided_navigation_native": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "guided_navigation_receipt_source": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
