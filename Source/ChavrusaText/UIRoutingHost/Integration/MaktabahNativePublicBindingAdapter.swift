@@ -220,6 +220,14 @@ struct MaktabahNativePublicPresentation {
     }
     func assess(_ descriptor: UIDestinationDescriptor, scene: UISceneSnapshot, context: ActionExecutionContext,
                 invocation: ActionPortInvocation) async throws -> UIRouteEligibility {
+        // Generic discovery can also encounter Core-only destinations. They have
+        // no public variant to assess and must not abort discovery of other routes.
+        guard descriptor.publicNavigationV2 != nil else {
+            let current = try await currentScene(sceneID: scene.sceneID, context: context, invocation: invocation)
+            guard current == scene else { throw ActionPortError.staleState }
+            return .init(sceneID: current.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
+                         supported: false, ready: false, allowed: false)
+        }
         let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings" ? .sheet
             : descriptor.id.rawValue == "native.reader.inspector" ? .inspector : .currentTab
         return try await assessPublicVariant(.init(destination: descriptor.id, presentation: root, component: nil,
