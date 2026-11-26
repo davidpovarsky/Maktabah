@@ -1331,8 +1331,23 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func confirmOriginalMiniAppsSave() async throws {
-        let confirm = app.buttons["annotation-miniapps-save-confirm"]
-        try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }
+        let title = app.staticTexts["Save before opening Mini Apps?"]
+        let actions = app.buttons.matching(NSPredicate(format: "identifier == %@ OR label == %@",
+            "annotation-miniapps-save-confirm", "Save and open Mini Apps"))
+        try await requireNativeCondition(timeout: 15) { title.exists && actions.firstMatch.exists }
+        let controls = actions.allElementsBoundByIndex.filter {
+            $0.isEnabled && !$0.frame.isEmpty && app.windows.firstMatch.frame.contains($0.frame)
+                && $0.frame.minY > title.frame.maxY
+        }
+        let frames = Set(controls.map { NSValue(cgRect: $0.frame) })
+        if frames.count != 1 {
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "miniapps-original-save-confirmation-accessibility"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil,
+            "Require the single native confirmation below the original dialog title")
         tap(confirm)
     }
 
