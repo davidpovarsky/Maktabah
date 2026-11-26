@@ -3,8 +3,8 @@ import CryptoKit
 import SQLite3
 import UIKit
 
-/// Exercises the ordinary entry and canonical storage. It never activates the
-/// SDK qualification account, injects native bodies, or writes SQLite directly.
+/// Exercises the ordinary entry and canonical storage. The scale test seeds
+/// historical rows only while its disposable simulator’s application is stopped.
 final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
 
@@ -441,11 +441,12 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let complete = app.descendants(matching: .any)["annotation-native-backfill-complete"]
         let failure = app.descendants(matching: .any)["annotation-native-backfill-failed"]
         let closeFailure = app.descendants(matching: .any)["annotation-native-backfill-close-failed"]
+        let paused = app.descendants(matching: .any)["annotation-native-backfill-paused"]
         let deadline = Date().addingTimeInterval(12_000)
-        while !complete.exists && !failure.exists && !closeFailure.exists && Date() < deadline {
+        while !complete.exists && !failure.exists && !closeFailure.exists && !paused.exists && Date() < deadline {
             try await Task.sleep(for: .seconds(5))
         }
-        guard complete.exists && !failure.exists && !closeFailure.exists else {
+        guard complete.exists && !failure.exists && !closeFailure.exists && !paused.exists else {
             retainNativeEvidence("scale-backfill-terminal-error")
             XCTFail("The original bulk migration did not finish")
             return
