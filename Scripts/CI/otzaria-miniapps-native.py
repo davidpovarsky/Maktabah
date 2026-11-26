@@ -407,6 +407,45 @@ def expected_native_insert(record, overrides=None):
     return bodies
 
 
+def original_launch_revision(connection, context):
+    source = context["source"]
+    revision = source["revision"]
+    baseline = context.get("baselineBodySHA256")
+    if baseline is None:
+        # Earlier requests already describe the live draft restored after saving.
+        return revision
+    require(isinstance(baseline, str) and re.fullmatch("[0-9a-f]{64}", baseline),
+            "The durable launch has no valid original archive digest")
+    saved_revision = revision + 1
+    rows = connection.execute(
+        "SELECT payload_digest,payload_base64 FROM otzaria_annotation_exchange_versions "
+        "WHERE namespace='otzaria.local.annotation' AND lower(annotation_uuid)=lower(?) AND revision=?",
+        (source["annotation"], saved_revision)).fetchall()
+    require(len(rows) == 1, "The original launch baseline revision is missing or ambiguous")
+    digest_value, encoded = rows[0]
+    payload = base64.b64decode(encoded, validate=True)
+    require(hashlib.sha256(payload).hexdigest() == digest_value, "The launch envelope digest differs")
+    rich = json.loads(payload)["richBody"]
+    body = base64.b64decode(rich["bytesBase64"], validate=True)
+    require(rich["format"] == "anytype.native-protobuf-archive" and rich["formatVersion"] == 1
+            and len(body) > 16 and body.startswith(b"ATOSNAP\x00")
+            and int.from_bytes(body[8:12], "big") == 1
+            and hashlib.sha256(body).hexdigest() == baseline,
+            "The launch context does not name the original saved native archive")
+    end = 16 + int.from_bytes(body[12:16], "big")
+    require(16 < end < len(body), "The native launch frame has an invalid header")
+    provenance = json.loads(body[16:end])["provenance"]
+    require(provenance["annotationUUID"].lower() == source["annotation"].lower()
+            and provenance["hostProfileID"] == source["profile"]
+            and provenance["accountID"] == source["account"]
+            and provenance["objectID"] == source["object"]
+            and provenance["spaceID"] == source["space"]
+            and provenance["capturedAgainstRevision"] == revision
+            and provenance["sourceWitnessSHA256"] == source["witness"],
+            "The launch archive provenance differs from the original request")
+    return saved_revision
+
+
 def verify_rich_returns(records):
     require(len(records) == 2, "Two actual original-rich-editor callbacks are required")
     warm = [r for r in records if r["shared_record"]["result"]["items"][0]["text"].startswith("MiniApps rich warm שלום ")]
@@ -442,14 +481,16 @@ def verify_rich_returns(records):
             """, (cold_context["source"]["annotation"],)).fetchall()
         require(len(rows) == 1, "The actual native canonical head is missing or ambiguous")
         revision, mutation, payload_hash, encoded = rows[0]
-        require(revision == cold_context["source"]["revision"] + 1
+        require(revision == original_launch_revision(connection, cold_context) + 1
                 and mutation.lower() == cold["shared_record"]["request"]["id"].lower(),
                 "The cold native body is not the one committed with the exact callback receipt")
-        for returned in (warm, cold):
-            count = connection.execute(
-                "SELECT COUNT(*) FROM otzaria_annotation_exchange_versions WHERE lower(mutation_id)=lower(?)",
-                (returned["shared_record"]["request"]["id"],)).fetchone()[0]
-            require(count == 1, "A rich callback created zero or duplicate native revisions")
+        for returned, context in ((warm, warm_context), (cold, cold_context)):
+            callback = connection.execute(
+                "SELECT revision FROM otzaria_annotation_exchange_versions WHERE namespace='otzaria.local.annotation' "
+                "AND lower(annotation_uuid)=lower(?) AND lower(mutation_id)=lower(?)",
+                (context["source"]["annotation"], returned["shared_record"]["request"]["id"])).fetchall()
+            require(callback == [(original_launch_revision(connection, context) + 1,)],
+                    "A rich callback created zero, duplicate, or incorrectly based native revisions")
     finally:
         connection.close()
     payload = base64.b64decode(encoded, validate=True)
@@ -611,7 +652,7 @@ def verify_file_returns(records, group):
                 require(not actual, "Cancelled native file request created a canonical revision")
             else:
                 source_context_value, _ = native_context(row["shared_record"])
-                require(len(actual) == 1 and actual[0][0] == source_context_value["source"]["revision"] + 1,
+                require(len(actual) == 1 and actual[0][0] == original_launch_revision(connection, source_context_value) + 1,
                         "A file callback created zero, duplicate, or incorrectly based native revisions")
                 versions[request["id"]] = {"revision": actual[0][0], "payload_sha256": actual[0][1]}
         heads = connection.execute(
@@ -620,7 +661,7 @@ def verify_file_returns(records, group):
             "ON v.namespace=h.namespace AND v.annotation_uuid=h.annotation_uuid AND v.revision=h.revision "
             "WHERE h.namespace='otzaria.local.annotation' AND lower(h.annotation_uuid)=lower(?)",
             (context["source"]["annotation"],)).fetchall()
-        require(len(heads) == 1 and heads[0][0] == context["source"]["revision"],
+        require(len(heads) == 1 and heads[0][0] == original_launch_revision(connection, context),
                 "Cancellation or replay changed the final canonical native revision")
     finally:
         connection.close()
