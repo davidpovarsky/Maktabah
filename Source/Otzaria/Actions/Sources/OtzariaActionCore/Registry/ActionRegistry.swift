@@ -12,7 +12,7 @@ public struct ActionDescriptor: Codable, Sendable, Equatable {
 }
 
 public struct ActionRegistry: Sendable {
-    public static let implemented: Set<String> = ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.countOccurrences", "search.openResults", "reader.getTOC", "reader.open", "reader.openCommentary", "notes.prepareDraft"]
+    public static let implemented: Set<String> = ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.countOccurrences", "search.openResults", "reader.getTOC", "reader.getSection", "reader.open", "reader.openCommentary", "notes.prepareDraft"]
     public let descriptors: [ActionDescriptor]
     private let byID: [String: ActionDescriptor]
     public init() throws {

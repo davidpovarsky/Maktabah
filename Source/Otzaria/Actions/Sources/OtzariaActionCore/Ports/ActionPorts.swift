@@ -56,6 +56,12 @@ public protocol ActionTableOfContentsPort: Sendable {
                          invocation: ActionPortInvocation) async throws -> [ActionSourceSectionEntry]
 }
 
+/// Bounded source-text access through the same active provider as the reader.
+public protocol ActionSourceTextPort: Sendable {
+    func section(at locator: ActionTextRef, maximumSegments: Int,
+                 invocation: ActionPortInvocation) async throws -> ActionSourceTextSection
+}
+
 public protocol ActionSearchPort: Sendable {
     func search(_ query: ActionSearchQuery, invocation: ActionPortInvocation) async throws -> ActionSearchPage
 }

@@ -89,7 +89,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         let registered = (capability.map { evidence.registeredCapabilities.contains($0) } ?? false)
             && (action != "reader.openCommentary" || evidence.registeredCapabilities.contains("links"))
         let sourceSupported = sourceSupports(action)
-        let initial = ["catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
+        let initial = ["catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
         var unsupported: String? = sourceSupported ? nil : "source_capability_not_supported"
         if action == "search.countOccurrences" { unsupported = "exact_count_unavailable" }
         else if !initial { unsupported = "action_not_implemented" }
@@ -110,7 +110,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         }
         let readiness: ActionReadinessEvidence = switch action {
         case "catalog.resolveWork": evidence.catalog
-        case "reader.getTOC": evidence.catalog.isReady ? evidence.references : evidence.catalog
+        case "reader.getTOC", "reader.getSection": evidence.catalog.isReady ? evidence.references : evidence.catalog
         case "catalog.resolveReference", "reader.open", "reader.openCommentary", "notes.prepareDraft": evidence.references
         case "search.query", "search.openResults": evidence.search
         default: .unknown

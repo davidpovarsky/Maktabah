@@ -67,7 +67,7 @@ final class WireSecurityTests: XCTestCase {
         }
         let registry = try ActionRegistry()
         XCTAssertEqual(registry.descriptors.count, 29)
-        XCTAssertEqual(ActionRegistry.implemented, ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.countOccurrences", "search.openResults", "reader.getTOC", "reader.open", "reader.openCommentary", "notes.prepareDraft"])
+        XCTAssertEqual(ActionRegistry.implemented, ["system.listBackends", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.countOccurrences", "search.openResults", "reader.getTOC", "reader.getSection", "reader.open", "reader.openCommentary", "notes.prepareDraft"])
         let examples = try JSONDecoder().decode(ActionJSON.self, from: ActionRegistry.resource("examples.v1.json"))
         let cases = try XCTUnwrap(examples.object?["cases"]?.array)
         XCTAssertEqual(cases.count, 11)

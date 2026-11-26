@@ -103,6 +103,30 @@ public struct ActionSourceSectionEntry: Codable, Sendable, Equatable {
     }
 }
 
+public struct ActionSourceTextSegment: Codable, Sendable, Equatable {
+    public let locator: ActionTextRef
+    public let sourceText: String
+    public init(locator: ActionTextRef, sourceText: String) {
+        self.locator = locator
+        self.sourceText = sourceText
+    }
+}
+
+public struct ActionSourceTextSection: Codable, Sendable, Equatable {
+    public let sectionLocator: ActionTextRef
+    public let displayRef: String
+    public let segments: [ActionSourceTextSegment]
+    public let truncated: Bool
+
+    public init(sectionLocator: ActionTextRef, displayRef: String,
+                segments: [ActionSourceTextSegment], truncated: Bool) {
+        self.sectionLocator = sectionLocator
+        self.displayRef = displayRef
+        self.segments = segments
+        self.truncated = truncated
+    }
+}
+
 /// The same conservative name normalization used by the canonical catalog
 /// resolver. No transliteration, numerical conversion or inferred references.
 enum ActionSourceName {
