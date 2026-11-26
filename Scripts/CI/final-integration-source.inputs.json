@@ -21,16 +21,17 @@
     "original_editor_sheet_host": "0895f7efd434d3df2da78fb76d8bf8f0c2f1827b",
     "original_explicit_save": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
+    "original_reader_visible_canonical_section_and_native_picker_gesture": "f783ef49c4447c22e47f569f5d6fc4c60b1401d5",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "reader_annotations_presentation": "a41d59462ff4f42b1f1c564c21402e7878c6164c",
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "ec8dec938bdf30789ea8b5704ef1b6c61280d5f0",
+  "application_source_sha": "f783ef49c4447c22e47f569f5d6fc4c60b1401d5",
   "application_trees": {
-    "Maktabah-iOSUITests": "633e27618d7104b031ad017bf9da42d489845cfa",
+    "Maktabah-iOSUITests": "920eeadaa2a608898ec39e824a71372de4e18d25",
     "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
-    "Source": "41d24a0399b196553d556bdb6139c732130d8515",
+    "Source": "eb62f9b41cf2f0c5a3dc8d72b4fc28b982036433",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -67,14 +68,14 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 101010,
+        "bytes": 100779,
         "kind": "blob",
         "mode": "100644",
-        "object": "0351c0ea589c57052329d8042de4b33d2b725aba",
-        "sha256": "84bec5c48cd7649bcc9104342c5bf176482b167f7947604e0a777f2d9b1221a0"
+        "object": "d986888c3cd8fdfc4201ea25fe6cae381a14c589",
+        "sha256": "f39b2c54336570fe86cb76bf42ffb89f5fb063cd085bc9bb3381bb029b961bfe"
       },
       "before": null,
-      "component": "miniapps_original_native_delete_confirmation",
+      "component": "original_reader_visible_canonical_section_and_native_picker_gesture",
       "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
     },
     {
@@ -254,6 +255,13 @@
           "mode": "100644",
           "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
           "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 622132,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+          "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
         },
         "original_rich_miniapps": {
           "bytes": 614824,
@@ -454,6 +462,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "original_rich_miniapps": {
           "bytes": 5427,
@@ -899,6 +914,13 @@
           "object": "e13367ed199e31a5fa1a3b64fd2b7657c9510642",
           "sha256": "10784f7c6d55fc646ce6a8d2a1e5575f8cefbf841e64c3c806eeb930511dd5c3"
         },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "original_rich_miniapps": {
           "bytes": 21097,
           "kind": "blob",
@@ -1145,6 +1167,13 @@
           "object": "47bc2cb34ca886f1ea1d13ee88e2e440e2b14b2b",
           "sha256": "f8b94dd8a9ef110572feee250d49eba0373d145e9aedf05b3b6933c8715bb742"
         },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "original_rich_miniapps": {
           "bytes": 36042,
           "kind": "blob",
@@ -1372,6 +1401,13 @@
           "object": "e274bc2da6c5bec6462a03503e8522c9f65d7e06",
           "sha256": "1b1d8bfe4ff3c805aabbd5762e4199d81db09d651509979798b7019f80ebff8f"
         },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "original_rich_miniapps": {
           "bytes": 30093,
           "kind": "blob",
@@ -1555,6 +1591,13 @@
           "object": "25b98af821b481678b81813cd8f24a1c9c37d55c",
           "sha256": "b045480aba915d9fb002de77e1b403700af25a0fd3200b0db72b5ca74680403d"
         },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "original_rich_miniapps": {
           "bytes": 12957,
           "kind": "blob",
@@ -1660,6 +1703,44 @@
       },
       "component": "hanlin_original_source_handoff_debug",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 20833,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "931c710e82c1b2c757247781ea2d403aed74d6c0",
+        "sha256": "74d63ef3539efa7d5f97fe3b591f786f695fa86e49bbec491b0fff64934216f6"
+      },
+      "before": {
+        "bytes": 20068,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "753507570a4e619d504d9952ea2cfee640a65766",
+        "sha256": "02731f2a272d15ff7931c246178c069f5363010984e3e5994c734deb8ba94d24"
+      },
+      "component": "original_reader_visible_canonical_section_and_native_picker_gesture",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 45083,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "2dc17b5b817c15c6a3e8b80297f649968a8efc09",
+        "sha256": "74862fad996194c03bc7896109e18e8705698651d8acd4c0d98f021ba1fa5b48"
+      },
+      "before": {
+        "bytes": 45049,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "da38520df403bf4331a1811529586e82d67b528e",
+        "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f"
+      },
+      "component": "original_reader_visible_canonical_section_and_native_picker_gesture",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1995,6 +2076,13 @@
           "mode": "100644",
           "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
           "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
+        },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "original_rich_miniapps": {
           "bytes": 351650,
@@ -2467,6 +2555,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "4e921b9517f2fc28fcaebcb2ba7441ab1fb46a90"
+        },
+        "original_reader_visible_canonical_section_and_native_picker_gesture": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "original_rich_miniapps": {
           "kind": "commit",
