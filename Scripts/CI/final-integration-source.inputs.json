@@ -4,6 +4,7 @@
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "hanlin_completed_source_footer": "a13e611298028945fa57d67198adb7950e87c47e",
     "hanlin_live_transcript_source": "9007179cc4da634dfee5588b06f227927362eaf4",
+    "hanlin_source_after_consent_revocation": "955b630afbe5cd36e0bc7f906ffd8cf83bedaff0",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "native_share": "82c1bc16e49b76fd1e8cb16b5be9e0d643db8b57",
@@ -18,9 +19,9 @@
     "reader_designkit_composition": "abfb936361812a50ba19c60ad7c6ef7f7f90d668",
     "reader_source_actions": "b55dc047c29fd298a2262079724dab1712f74b2b"
   },
-  "application_source_sha": "a13e611298028945fa57d67198adb7950e87c47e",
+  "application_source_sha": "955b630afbe5cd36e0bc7f906ffd8cf83bedaff0",
   "application_trees": {
-    "Maktabah-iOSUITests": "f5f63f34120ac69a3d36939dbd3f0f17189fb4ce",
+    "Maktabah-iOSUITests": "d2216f7f038e18a79aef877608a5c0850c4ff212",
     "Maktabah.xcodeproj": "0707e3137db1e803d1f91f8c40fb85cc6d8652d7",
     "Source": "745aee0a895e776ffda8d0e628d7378f9936716b",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
@@ -40,11 +41,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 51577,
+        "bytes": 51856,
         "kind": "blob",
         "mode": "100644",
-        "object": "2f79719715707417f5bb42c4228d3b9fe1d01202",
-        "sha256": "27c49966e0903ac3bf23e5106d50bee13185cea5a4c74cd100889d4c92b398ca"
+        "object": "762824f42e90f50bff8eee149ea83be79780680d",
+        "sha256": "5e7d0d74231910224318a72186f43d3092cc11e142056e66f0e75dc3201ba371"
       },
       "before": {
         "bytes": 51279,
@@ -53,7 +54,7 @@
         "object": "0ea8241d50712b3e01f2790ae7927047df0e49a4",
         "sha256": "c8810b3f3c9ca42e71286f75dc255825b1a107f6baaf35ca45c93e7ff126b593"
       },
-      "component": "hanlin_completed_source_footer",
+      "component": "hanlin_source_after_consent_revocation",
       "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift"
     },
     {
@@ -83,6 +84,13 @@
           "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "hanlin_live_transcript_source": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "hanlin_source_after_consent_revocation": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -229,6 +237,13 @@
           "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
           "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
         },
+        "hanlin_source_after_consent_revocation": {
+          "bytes": 622132,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "7190445096984cbb5a521e3a045c5f4eff1382ce",
+          "sha256": "edb2b71ff840303257808e3749ff667e91890da251366ff0d871f13ac8482ea6"
+        },
         "library": {
           "bytes": 605376,
           "kind": "blob",
@@ -367,6 +382,13 @@
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "hanlin_live_transcript_source": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "hanlin_source_after_consent_revocation": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -761,6 +783,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "hanlin_source_after_consent_revocation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "library": {
           "bytes": 14652,
           "kind": "blob",
@@ -957,6 +986,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "hanlin_source_after_consent_revocation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "library": {
           "bytes": 10832,
           "kind": "blob",
@@ -1089,6 +1125,13 @@
           "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
         },
         "hanlin_live_transcript_source": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
+        },
+        "hanlin_source_after_consent_revocation": {
           "bytes": 38923,
           "kind": "blob",
           "mode": "100644",
@@ -1246,6 +1289,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "hanlin_source_after_consent_revocation": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "library": null,
         "miniapps": {
           "bytes": 19883,
@@ -1367,6 +1417,13 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "hanlin_live_transcript_source": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "hanlin_source_after_consent_revocation": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -1715,6 +1772,13 @@
           "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
         },
         "hanlin_live_transcript_source": {
+          "bytes": 352039,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
+          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
+        },
+        "hanlin_source_after_consent_revocation": {
           "bytes": 352039,
           "kind": "blob",
           "mode": "100644",
@@ -2167,6 +2231,11 @@
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "hanlin_live_transcript_source": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "hanlin_source_after_consent_revocation": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
