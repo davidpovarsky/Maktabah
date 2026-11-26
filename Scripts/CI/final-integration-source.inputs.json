@@ -5,6 +5,7 @@
     "command_palette_accessibility": "d50c0b84ab79611a092118c59fcc1ea806776da4",
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "full_v40_occurrence_diagnostic": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
+    "guided_navigation_core": "12090cbc51d1d060055850e0dbbd6d98fb93e5ef",
     "hanlin_containing_reader_admission": "7f2132b1ca67fdb3351413d54b42de9adbe1fda7",
     "hanlin_full_history_checkpoint": "4f3e33472e5939fdfb8d2c6c7c38c58868a1002e",
     "hanlin_observed_source_and_history": "e292d2c71e9584ca4e3ca52dd27158e84e6071d5",
@@ -43,11 +44,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "e292d2c71e9584ca4e3ca52dd27158e84e6071d5",
+  "application_source_sha": "5ae10280298f89558eee9c9029ecd1199408f1cb",
   "application_trees": {
     "Maktabah-iOSUITests": "ecad1894b40755fb2e2eadb70bbd7a074cc70de7",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "8eaf71264087df3fa1eeadb7f6bad8510addd443",
+    "Source": "ed7e2c30f481fde09831ffa184dfbd8a3b8b1ab1",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -134,6 +135,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
+        },
+        "guided_navigation_core": {
           "bytes": 99229,
           "kind": "blob",
           "mode": "100644",
@@ -467,6 +475,13 @@
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "guided_navigation_core": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -1036,6 +1051,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "guided_navigation_core": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hanlin_containing_reader_admission": {
           "bytes": 21873,
           "kind": "blob",
@@ -1343,6 +1365,13 @@
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "guided_navigation_core": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1695,6 +1724,13 @@
           "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "guided_navigation_core": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -2059,6 +2095,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "guided_navigation_core": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "hanlin_containing_reader_admission": {
           "bytes": 37347,
           "kind": "blob",
@@ -2355,6 +2398,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "guided_navigation_core": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -3082,6 +3132,13 @@
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "guided_navigation_core": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -3970,6 +4027,32 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 9425,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "76aa44073abd5e48956160170f99eb259763a965",
+        "sha256": "af51b992c21273fed3630b837928a8a1e07029db9ed7438b2274cd020a76fc41"
+      },
+      "before": null,
+      "component": "guided_navigation_core",
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 5521,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4255fc2f69b0d7466248480fa089e55545f6265d",
+        "sha256": "8d318f6f44cf18d080bf4210ed11a230575025fcd8c0e5cf416505da786e48f2"
+      },
+      "before": null,
+      "component": "guided_navigation_core",
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 44036,
         "kind": "blob",
         "mode": "100644",
@@ -4096,6 +4179,11 @@
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
         },
         "full_v40_occurrence_diagnostic": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "guided_navigation_core": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
