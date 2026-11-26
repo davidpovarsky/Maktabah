@@ -1,0 +1,11 @@
+{
+  "app_source": "3da99a3f91b4066f88bef54bc733a5e164c85641",
+  "project_blob": "5f7b779c394c0f3fce828770f20146e00db78317",
+  "target": "Maktabah-iOS",
+  "resources": [
+    "ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+    "Localizable.xcstrings"
+  ],
+  "standalone_engine_tests_not_in_app_target": true,
+  "test_count_claimed": 0
+}

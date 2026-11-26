@@ -2,6 +2,7 @@
   "accepted_components": {
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
+    "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
     "library_install_cancel_rollback": "7212133b9a7366021382d2e80932c692b780b3f3",
     "managed_database_identity": "295ea341e5a549a3de201c665378535e1f483ffa",
@@ -23,11 +24,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "c952ca3ebcdcf8a1fecdb900850d8ab6f9cbe5fe",
+  "application_source_sha": "3da99a3f91b4066f88bef54bc733a5e164c85641",
   "application_trees": {
     "Maktabah-iOSUITests": "b862fc5efecb679fa3e930b4434df83ec1942666",
-    "Maktabah.xcodeproj": "35e9feff47092409d9ea2cccb99afa8ebc3575a4",
-    "Source": "a74651ed055fcc1066be4f37048617420e7ad828",
+    "Maktabah.xcodeproj": "e42d50cadfad8880e51e20677f43c61756c0c16b",
+    "Source": "256ef82660863a4a32a7526d73d984302c1e5dc7",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -60,6 +61,13 @@
           "mode": "100644",
           "object": "194036e27dc8df7aed29920345a13949e49e045a",
           "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 99229,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b6714509fac6329bf54c8c7ed5949227f0bd730f",
+          "sha256": "f0a67267b911a30aae462205fc180d60da3c2c84bfcc79ec5f0f13d02fbbbc68"
         },
         "library": null,
         "library_install_cancel_rollback": {
@@ -207,11 +215,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 622026,
+        "bytes": 622538,
         "kind": "blob",
         "mode": "100644",
-        "object": "a7a45938d31ebf7045dbb1f101fabd025d1e9f94",
-        "sha256": "2042f386a501f2c2b132bbe8c1c233e21f27a6283bed7f7571890a52af88bbeb"
+        "object": "5f7b779c394c0f3fce828770f20146e00db78317",
+        "sha256": "d5a97698347eee4e795664bedb87d08f4af06ab804913ce7688e51d2c256495b"
       },
       "before": {
         "bytes": 602975,
@@ -220,7 +228,7 @@
         "object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
         "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "hebrew_shortcuts",
       "path": "Maktabah.xcodeproj/project.pbxproj"
     },
     {
@@ -253,6 +261,13 @@
           "mode": "100644",
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "library": {
           "bytes": 4432,
@@ -677,6 +692,13 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "hebrew_shortcuts": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "library": {
           "bytes": 14652,
           "kind": "blob",
@@ -849,6 +871,13 @@
           "mode": "100644",
           "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
         "library": {
           "bytes": 18170,
@@ -1062,6 +1091,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "hebrew_shortcuts": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "library": {
           "bytes": 10832,
           "kind": "blob",
@@ -1234,6 +1270,13 @@
           "mode": "100644",
           "object": "28167e2212c50df668df96ba8ae96fbcda69109d",
           "sha256": "249135ca8ff3936f10f7ab599d447eaab77367c55b3cddc9e6a1d31c6962d012"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 38923,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "ea44cc7e3c9b7fc0b2023e6bccd8235191f3d3a3",
+          "sha256": "60698b38a7ac3b022992f741b964d5ca2157a33e41c71e705618a7a116c1b962"
         },
         "library": {
           "bytes": 38814,
@@ -1421,6 +1464,13 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "hebrew_shortcuts": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "library": null,
         "library_install_cancel_rollback": {
           "bytes": 30093,
@@ -1582,6 +1632,13 @@
           "mode": "100644",
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "library": null,
         "library_install_cancel_rollback": {
@@ -1901,6 +1958,19 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 619,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "28f47ff375dbcb12cc3d81b68e455e4c8908740c",
+        "sha256": "db1eda45b527d1474f136ae1651c4edf14389624153d0a1e2329782dd9cef404"
+      },
+      "before": null,
+      "component": "hebrew_shortcuts",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 1785,
         "kind": "blob",
         "mode": "100644",
@@ -2042,6 +2112,13 @@
           "mode": "100644",
           "object": "e5a6166751b02e13116fdf6687f9969f2c1b3978",
           "sha256": "5c7f4d94bb5d22d104e15f17b835c73bd43e78ac50652fa3b72fd7c37758f10f"
+        },
+        "hebrew_shortcuts": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
         "library": {
           "bytes": 22603,
@@ -2268,13 +2345,13 @@
       "path": "Source/LibraryBackend/LibraryBackendModels.swift"
     },
     {
-      "adoption": "EXPLICIT_REVIEWED_MERGE",
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 352039,
+        "bytes": 356085,
         "kind": "blob",
         "mode": "100644",
-        "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-        "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
+        "object": "0a409aed3c62db9a55e4fdf04bedf84d1693b995",
+        "sha256": "3ffcfb0a83cf19c37a47c3cc7ca62c29af8a364411d5825c61460ce38fdb0a75"
       },
       "before": {
         "bytes": 340316,
@@ -2283,168 +2360,8 @@
         "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
         "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
       },
-      "component_objects": {
-        "empty_note": {
-          "bytes": 340316,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
-          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
-        },
-        "hebrew_highlight_utf16": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "library": {
-          "bytes": 348941,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "97eca39742be7e562f954f981c7e7d62b9ed23ef",
-          "sha256": "8c38ac585548480a10ba9b25b4209e7e5304e52807c43da9ddd5851b6a6ae027"
-        },
-        "library_install_cancel_rollback": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "managed_database_identity": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "miniapps": {
-          "bytes": 343025,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "654bcb64d87fe00ea3b23ffdde11f5a158a4ee92",
-          "sha256": "f4fa1d3db652ccd8e8f359471e6cbff869b436eca779b1130588d233c07f41ff"
-        },
-        "miniapps_hebrew_rtl": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "miniapps_save_confirmation": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "native_share": {
-          "bytes": 340316,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
-          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
-        },
-        "normal_editor": {
-          "bytes": 340316,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
-          "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
-        },
-        "original_account_exchange_ui": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "original_explicit_save": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "original_license_texts": {
-          "bytes": 352039,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
-        },
-        "original_lifecycle_and_native_batch": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "original_rich_miniapps": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "original_sefaria_versions": {
-          "bytes": 352039,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
-        },
-        "reader_cancellation": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "reader_designkit_modifier": {
-          "bytes": 352039,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "2c434b77756ec130f3b569a96e4bc281a9d506d6",
-          "sha256": "39400d65b2612496c5591f8ee482ec71b52f11dd94d23f03f964ec6503c03c39"
-        },
-        "reader_source_actions": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "shared_original_account_exchange_ui": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "study_workspace_locale": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        },
-        "universal_link_transport": {
-          "bytes": 351650,
-          "kind": "blob",
-          "mode": "100644",
-          "object": "9f1c478948f5493cf528c282a03e45f83a9c173b",
-          "sha256": "663eed5a14809f1ecf72897e5f3388095d317f6d8e6058b31f2bfe062ef21a24"
-        }
-      },
-      "patch": {
-        "bytes": 12607,
-        "sha256": "94d0d6356cf3c0477b06cdadbe4cf1be04de03b7a93ff81b1f392cfb7e5d04f7"
-      },
-      "path": "Source/Localizable.xcstrings",
-      "reason": " Add only English/Hebrew native file-sharing action label."
+      "component": "hebrew_shortcuts",
+      "path": "Source/Localizable.xcstrings"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -2894,6 +2811,11 @@
           "kind": "commit",
           "mode": "160000",
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
+        },
+        "hebrew_shortcuts": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
         "library": {
           "kind": "commit",
