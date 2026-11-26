@@ -19,3 +19,9 @@ The Oracle worktree started from `705097a9834736944261f79b087e6fbe39dbedbf`. The
 - Raw Apple results under `/Users/m1/builds/otzaria-core-20261126/full-reader` in `v40-acceptance/RESULT.json`, `v40-stress/RESULT.json`, and `v40-inspector-three-levels/RESULT.json`. The older stress and Inspector binaries label their status strings v32; the verified read-only URI and all SQL inputs in these executions point at the v40 fixture above.
 
 The exact original full-v32 UI case configuration and Groups100 case configuration passed source admission against `afb719bf`. The original v32 corpus is available on the Mac, with the verified DB SHA-256 `2f4dcd72e8bdb1fc5c0516ae9705e57759c017ec2981b49c35115625c3d3f765`. The source-only receipts are under `/Users/m1/builds/otzaria-core-20261126/native-binding`. Actual execution awaits the integrated app and qualified build receipts. The Settings update case, app v40 install and interruption/relaunch checks, and the device scenarios in `DEVICE_ACCEPTANCE.md` remain open.
+
+## Hebrew highlight cost on a full v40 chapter
+
+The Apple Swift 6 `-O` comparison used the same 52,332-row chapter, with 8,307,947 input UTF-16 units. Both variants returned the same ordered 49,065 ranges, SHA-256 `7523844d78a9c5e3fa21128a3cab2d141528d54b73163c0de75c301ae76cdf8f`. The original range loop took 10.23 and 10.40 s. Searching the normalized NSString with UTF-16 positions and a set for duplicate ranges took 1.77 and 1.80 s. A separate 30,000-range synthetic fixture retained identical exact offsets and decreased from about 656 ms to 69–71 ms. All 15 existing Unicode and source-position controls produced identical result bytes. These measurements cover Foundation search and range mapping, with UIKit and the physical iPad cases pending.
+
+Raw Apple run logs are under `/Users/m1/builds/otzaria-core-20261126/highlight` in `benchmark-baseline-*.log`, `benchmark-utf16-*.log`, and `utf16-controls.json`.
