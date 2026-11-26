@@ -1,0 +1,50 @@
+{
+  "catalog_targets": {
+    "books": [
+      {
+        "bookID": 103,
+        "lineCount": 2875,
+        "title": "ברכות"
+      },
+      {
+        "bookID": 28,
+        "lineCount": 2678,
+        "title": "תהילים"
+      },
+      {
+        "bookID": 3152,
+        "lineCount": 528,
+        "title": "דרשות הר\"ן"
+      }
+    ],
+    "retainedChapter": {
+      "bookID": 8042,
+      "focusLineIndex": 26166,
+      "sourceUTF16Length": 8307947,
+      "unitEndLineIndex": 52331,
+      "unitID": "toc:1948815",
+      "unitRowCount": 52332,
+      "unitStartLineIndex": 0
+    }
+  },
+  "counts": {
+    "book": 8259,
+    "line": 7925185,
+    "link": 7001824
+  },
+  "database": {
+    "bytes": 4355063808,
+    "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/v40-index-fixture/seforim.db",
+    "sha256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+  },
+  "recipe_sha256": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38",
+  "retained_chapter_title": "הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב",
+  "retained_source_length_requires_actual_swift_revalidation": true,
+  "status": "READ_ONLY_IDENTITY_SELECTION_NOT_SWIFT_OR_UI_ACCEPTANCE",
+  "execution": {
+    "started_unix": 1795735318.4002466,
+    "finished_unix": 1795735442.3859065,
+    "host": "Oracle",
+    "returncode": 0
+  }
+}

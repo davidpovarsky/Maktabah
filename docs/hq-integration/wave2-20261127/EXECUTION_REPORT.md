@@ -68,3 +68,50 @@ No product task is marked complete by this report.
   pending; only the bounded preference snapshot grew from 1 MiB to 8 MiB.
 - These scoped commits were combined without conflicts in the coordinator
   branch. Combining source does not imply combined-product acceptance.
+
+## Second source milestone and full-v40 identity
+
+Combined product source c84a95d28379069e15d2445301a6cb96714d8282 includes:
+- Sefaria Mobile structure titles: product c1ea0378, identical actual Apple
+  controls 78/84 before and 84/84 after, evidence 18877faf.
+- Original Sefaria native selectors and loading accessibility: 49cfd5e8;
+  syntax only so far. Both original Pad and Phone classes still need execution.
+- Published production search install/page tests: f54834b9; exact three test
+  selectors and environment in search/production-ui-contract.json. Only parse
+  has run, no new normal-UI package acceptance.
+- Search local readiness and native filter Dynamic Type: 4449813a;
+  original refresh method 6 PASS / 2 FAIL before, 8/8 after. Dynamic Type
+  requires the unchanged actual accessibility audit.
+
+The read-only identity recipe in v40-source-identity ran on Oracle with
+the exact full official v40 database (4,355,063,808 bytes, SHA256
+8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01).
+Counts were 8,259 books / 7,925,185 lines / 7,001,824 links.
+Actual book IDs and counts: Berakhot 103/2,875; Tehillim 28/2,678;
+Derashot HaRan 3152/528. The retained 52,332-row unit is book 8042,
+toc:1948815, source line indices 0...52331, midpoint 26166.
+The former 8,307,947 UTF16 length remains explicitly subject to real
+Swift catalog revalidation. This identity receipt is neither new UI
+acceptance nor another index-document validation.
+
+## Outstanding execution and newly confirmed gaps
+
+The existing Groups100 selector explicitly launches miniTest10; production
+coverage needs an additive source-qualified variant. Wave 3 has been asked
+to own its UI variant; Wave 2 owns actual full-data execution.
+The two original full-v32 selectors remain strict and separate from the
+new full-v40 observer profile being prepared by the reader owner.
+
+F01/F02/F04 lacked complete native oracles. While preparing them the search
+owner found that changing a search result's selected edition did not pass
+version identity into Sefaria section loading. A narrow version-aware path
+is in progress, so c84a95d2 is not asserted to solve that later defect.
+Inspector F05/F06/F09/F10 needs actual source-selection, body, author-grouping
+and commentary/quoting assertions beyond historical screenshots.
+
+Books Updates is being prepared through ordinary Settings with real note/tag,
+favorite/history and group creation. It will exercise v40 to the actual
+official v41 release, preserving prior library and logical user data.
+All native outcomes above remain pending a qualified combined build and
+actual sufficient Mac space; no task completion is inferred from source
+preparation, typechecking, fixture controls or a historical build.
