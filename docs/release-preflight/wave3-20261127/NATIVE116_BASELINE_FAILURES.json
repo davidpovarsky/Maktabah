@@ -1,0 +1,274 @@
+{
+  "source_application": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
+  "control_checkout": "ec14460748dc79818b1a7a3f269a54e3a1ddfaa9",
+  "groups": [
+    {
+      "group": "11-index",
+      "summary_sha256": "d05a7342768368bc2b8cc441f20caf4fc2507d466b5bb88a65dc70377a7b9734",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "group": "11-reader",
+      "summary_sha256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32",
+      "passed": 33,
+      "failed": 8,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": [
+        {
+          "test": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-expand--16525"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation()",
+          "message": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Require the original localized structure label"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC()",
+          "message": "XCTAssertEqual failed: (\"הרחב את ⁨פרק ב׳⁩\") is not equal to (\"הרחב את פרק ב׳\")"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation()",
+          "message": "XCTAssertEqual failed: (\"Optional(\"ב\")\") is not equal to (\"Optional(\"ברכות\")\")"
+        },
+        {
+          "test": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading"
+        },
+        {
+          "test": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading"
+        }
+      ]
+    },
+    {
+      "group": "11-search",
+      "summary_sha256": "fd908e0993f2ddc4574f1f6645887a32b0a49a3a58d9e62c4a7947ea6a04726c",
+      "passed": 19,
+      "failed": 3,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": [
+        {
+          "test": "GlobalSearchNativeAcceptanceTests/testExactAndFuzzyHideAdvancedOtzariaBindings()",
+          "message": "Failed to get matching snapshots: Application com.davidpovarsky.chavrusatext is not running"
+        },
+        {
+          "test": "GlobalSearchNativeAcceptanceTests/testHeaderAndHistoryNativeAccessibilityAudit()",
+          "message": "Dynamic Type font sizes are partially unsupported"
+        },
+        {
+          "test": "R27NativePadTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch"
+        }
+      ]
+    },
+    {
+      "group": "11-sidebar",
+      "summary_sha256": "1a41aaad1d91a5be9fa09227a801d681e87a686c53a2706af8937ea53ebd3cbb",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "group": "11-window",
+      "summary_sha256": "1e5561265e255fa2a48f333e1dcda37f34128d9db4693c2f440d62eacbecacf3",
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": [
+        {
+          "test": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual window must expose the original Study Tools action or its native top overflow"
+        },
+        {
+          "test": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The actual window must expose the original Study Tools action or its native top overflow"
+        }
+      ]
+    },
+    {
+      "group": "11",
+      "summary_sha256": "b6824da9ac87eb6961e48c405f06a8c67c140150f27805b9b932b62f908de69b",
+      "passed": 7,
+      "failed": 5,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPad Pro 11-inch (M5)",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": [
+        {
+          "test": "NativeRoutingAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "NativeRoutingAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad()",
+          "message": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")"
+        },
+        {
+          "test": "HanlinReaderConsumerAcceptanceTests/testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "NativeRoutingAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad()",
+          "message": "XCTAssertNil failed: \"semantic_commentary_draft_failed\" - [\"errorType\": CommentaryDraftFailure, \"probeError\": semantic_commentary_draft_failed]"
+        },
+        {
+          "test": "NativeRoutingAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad()",
+          "message": "XCTAssertEqual failed: (\"Optional(false)\") is not equal to (\"Optional(true)\")"
+        }
+      ]
+    },
+    {
+      "group": "phone",
+      "summary_sha256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df",
+      "passed": 13,
+      "failed": 16,
+      "skipped": 0,
+      "destinations": [
+        {
+          "model": "iPhone 18 Pro",
+          "os": "27.0",
+          "os_build": "24A434",
+          "platform": "iOS Simulator",
+          "architecture": "arm64"
+        }
+      ],
+      "failures": [
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone()",
+          "message": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone()",
+          "message": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone()",
+          "message": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit()",
+          "message": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch"
+        },
+        {
+          "test": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+          "message": "Failed to determine hittability of \"reader-text\" TextView: Activation point invalid and no suggested hit points based on element frame"
+        },
+        {
+          "test": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount()",
+          "message": "XCTAssertTrue failed"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone()",
+          "message": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame"
+        },
+        {
+          "test": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone()",
+          "message": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone()",
+          "message": "XCTAssertNil failed: \"semantic_commentary_draft_failed\" - [\"probeError\": semantic_commentary_draft_failed, \"errorType\": CommentaryDraftFailure]"
+        },
+        {
+          "test": "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone()",
+          "message": "XCTAssertTrue failed"
+        }
+      ]
+    }
+  ],
+  "original_baseline_path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/native116-actual-baseline-diagnostic.json",
+  "original_baseline_sha256": "0754ec183a78623bd2392a8250bb32e7e1e922d9c181584f0992da5090066c64",
+  "counts": {
+    "passed": 82,
+    "failed": 34,
+    "skipped": 0
+  },
+  "scope": "Original historical Native116 diagnostic; no new tests run; current remaining failures must be reconciled by integration owner"
+}
