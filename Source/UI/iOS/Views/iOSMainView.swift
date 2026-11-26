@@ -254,6 +254,9 @@ extension View {
             ToolbarItem(placement: .topBarTrailing) {
                 OtzariaHanlinChatLaunchButton(identifier: "otzaria-hanlin-global-launch")
             }
+            ToolbarItem(placement: .topBarTrailing) {
+                OtzariaGuidedTourButton()
+            }
             ToolbarItem(placement: .topBarLeading) {
                 Button { showSettings.wrappedValue = true } label: {
                     Image(systemName: "gear")

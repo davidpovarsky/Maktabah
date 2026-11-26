@@ -42,6 +42,19 @@ final class GuidedNavigationTests: XCTestCase {
         XCTAssertEqual(host.calls, [Host.library])
     }
 
+    func testManualButtonUsesTheRealPortAndAChangedSceneDropsCoaching() async throws {
+        let host = Host()
+        let run = try host.run()
+        run.start(.manual)
+        run.performManualNavigation()
+        await settle(run)
+        XCTAssertEqual(host.calls, [Host.library])
+        XCTAssertEqual(run.phase, .coaching)
+        _ = host.acknowledge(.init(destination: Host.history))
+        run.revalidateCoaching()
+        XCTAssertEqual(run.phase, .blocked(.staleState))
+    }
+
     func testReturnedReceiptCannotSubstituteForCurrentSceneObservation() async throws {
         let host = Host()
         host.publishVisibleRoute = false
@@ -106,7 +119,7 @@ final class GuidedNavigationTests: XCTestCase {
                 .init(destination: .init(destination: Self.library), english: "Library", hebrew: "ספרייה"),
                 .init(destination: .init(destination: Self.history), english: "History", hebrew: "היסטוריה")
             ])
-            return .init(definition: definition, sceneID: scene, observe: { self.observation }) { intent, _ in
+            return .init(definition: definition, sceneID: scene, observe: { self.observation }) { intent, _, _ in
                 self.calls.append(intent.destination)
                 if self.suspend { await withCheckedContinuation { self.pending = $0 } }
                 return .acknowledged(self.acknowledge(intent))

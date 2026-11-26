@@ -731,6 +731,28 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         record(result)
         return result
     }
+    func makeGuide(_ definition: UIGuideDefinition, session: MaktabahNativeSceneSession,
+                   manager: iOSNavigationManager) -> UIGuideRun {
+        let sceneID = session.sceneID, managerID = ObjectIdentifier(manager)
+        return .init(definition: definition, sceneID: sceneID, observe: { [weak self, weak session] in
+            guard let self, let session, let entry = scenes[sceneID], entry.session === session,
+                  entry.managerID == managerID, session.foreground,
+                  let snapshot = try? backend.currentBackendSnapshot() else { return nil }
+            let readContext = context(sceneID: sceneID, origin: .guide, snapshot: snapshot)
+            do {
+                try issue(readContext, sceneID: sceneID)
+                defer { finish(readContext, sceneID: sceneID) }
+                return try directory.synchronousScene(sceneID: sceneID, context: readContext, backend: snapshot)
+            } catch { return nil }
+        }) { [weak self, weak session] intent, before, deadline in
+            guard let self, let session, scenes[sceneID]?.session === session, before.sceneID == sceneID else {
+                throw UIRouteError(.staleState, "guide_scene_lifetime_changed")
+            }
+            return try await open(public: intent, sceneID: sceneID, managerID: managerID,
+                                  expectedSnapshot: before.backendSnapshot, origin: .guide, until: deadline)
+        }
+    }
+
     /// Public content uses the original current Reader or R's exact new-tab
     /// reservation. Core still authorizes the one native mutation.
     func open(public intent: PublicNavigationSpecV2, manager: iOSNavigationManager,

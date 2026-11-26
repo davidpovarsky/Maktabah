@@ -788,6 +788,37 @@ extension NativeRoutingAcceptanceTests {
     }
 
     @MainActor
+    func testGuidedPracticeRequiresOriginalNativeNavigationBeforeCoaching() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        menu.tap()
+        let practice = app.buttons["Practice"]
+        XCTAssertTrue(practice.waitForExistence(timeout: 10))
+        practice.tap()
+        let open = app.buttons["Open"]
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        let beforeLibrary = try actualNativeReceiptLines()
+        open.tap()
+        let next = app.buttons["Next"]
+        XCTAssertTrue(next.waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: "native.library", presentation: "currentTab", before: beforeLibrary)
+        XCTAssertTrue(app.staticTexts["Browse the library by topic or collection."].exists)
+        next.tap()
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        let beforeSearch = try actualNativeReceiptLines()
+        open.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        XCTAssertTrue(next.waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: beforeSearch)
+        capture("guided-tour-after-real-search-receipt")
+        app.buttons["Stop"].tap()
+        XCTAssertTrue(next.waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
     func testGlobalSearchPublicRootPreservesOriginalPrivateQuery() throws {
         configure("otzaria"); app.launch()
         XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
