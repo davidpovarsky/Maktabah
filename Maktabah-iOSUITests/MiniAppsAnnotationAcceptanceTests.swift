@@ -345,6 +345,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let producer = XCUIApplication(bundleIdentifier: "com.itorah.hanlinminiapps")
         producer.launchArguments = ["-AppleLanguages", "(he)", "-AppleLocale", "he_IL"]
         producer.launch()
+        retainImageOriginProcess(producer, bundle: "com.itorah.hanlinminiapps", phase: "producer-launch")
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
         let ready = try await waitUntil(timeout: 30) {
             guard let data = try? Data(contentsOf: shared.appendingPathComponent("catalog.json")),
@@ -390,6 +391,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let producer = XCUIApplication(bundleIdentifier: "com.itorah.hanlinminiapps")
         producer.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         producer.launch()
+        retainImageOriginProcess(producer, bundle: "com.itorah.hanlinminiapps", phase: "producer-launch")
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
         let catalog = shared.appendingPathComponent("catalog.json")
         let catalogReady = try await waitUntil(timeout: 30) {
@@ -907,6 +909,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let producer = XCUIApplication(bundleIdentifier: "com.itorah.hanlinminiapps")
         producer.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         producer.launch()
+        retainImageOriginProcess(producer, bundle: "com.itorah.hanlinminiapps", phase: "producer-launch")
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
         try await installActualFileWorkshop(producer)
 
@@ -1872,7 +1875,26 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     }
 
     @MainActor
+    private func retainImageOriginProcess(_ application: XCUIApplication, bundle: String, phase: String) {
+        let description = application.debugDescription
+        guard let range = description.range(of: #"pid:\s*[0-9]+"#, options: .regularExpression),
+              let pid = Int(description[range].dropFirst(4).trimmingCharacters(in: .whitespaces)) else {
+            XCTFail("The actual application snapshot has no process identity for image-origin evidence")
+            return
+        }
+        let marker = "OTZARIA_MINIAPPS_IMAGE_PID bundle=\(bundle) pid=\(pid) phase=\(phase)"
+        print(marker)
+        let evidence = XCTAttachment(string: marker)
+        evidence.name = "actual-image-origin-process-\(bundle)-\(pid)"
+        evidence.lifetime = .keepAlways
+        add(evidence)
+    }
+
+    @MainActor
     private func retainScreenshot(_ application: XCUIApplication, named name: String) {
+        retainImageOriginProcess(application,
+            bundle: application === app ? "com.davidpovarsky.chavrusatext" : "com.itorah.hanlinminiapps",
+            phase: name)
         let attachment = XCTAttachment(screenshot: application.screenshot())
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }

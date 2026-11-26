@@ -1,0 +1,25 @@
+0  M Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift
+ M Scripts/CI/otzaria-miniapps-native.py
+ M Scripts/CI/run-faithful-ipad-matrix.py
+?? Scripts/CI/miniapps_runtime_image_origin.py
+?? Scripts/CI/test_miniapps_runtime_image_origin.py
+?? docs/miniapps/wave1-20261127/IMAGE_ORIGIN_ADAPTATION.patch
+?? docs/miniapps/wave1-20261127/native_final_image_audit.py.original
+ 
+0  test_accepts_actual_paths_matching_artifact_hash_and_uuid (__main__.ImageOriginIntegrityTests.test_accepts_actual_paths_matching_artifact_hash_and_uuid) ... ok
+test_accepts_independent_xctest_pid_and_rejects_missing_pid (__main__.ImageOriginIntegrityTests.test_accepts_independent_xctest_pid_and_rejects_missing_pid) ... ok
+test_original_ui_loader_configuration_preserves_other_targets_and_selectors (__main__.ImageOriginIntegrityTests.test_original_ui_loader_configuration_preserves_other_targets_and_selectors) ... ok
+test_rejects_ambiguous_sample_uuid (__main__.ImageOriginIntegrityTests.test_rejects_ambiguous_sample_uuid) ... ok
+test_rejects_changed_admitted_artifact_at_collection (__main__.ImageOriginIntegrityTests.test_rejects_changed_admitted_artifact_at_collection) ... ok
+test_rejects_changed_installed_private_bytes (__main__.ImageOriginIntegrityTests.test_rejects_changed_installed_private_bytes) ... ok
+test_rejects_debug_image_relocated_to_build_directory (__main__.ImageOriginIntegrityTests.test_rejects_debug_image_relocated_to_build_directory) ... ok
+test_rejects_foreign_private_image (__main__.ImageOriginIntegrityTests.test_rejects_foreign_private_image) ... ok
+test_rejects_loaded_uuid_mismatch (__main__.ImageOriginIntegrityTests.test_rejects_loaded_uuid_mismatch) ... ok
+test_rejects_vmmap_private_image_without_sampled_uuid (__main__.ImageOriginIntegrityTests.test_rejects_vmmap_private_image_without_sampled_uuid) ... ok
+test_rejects_wrong_pid_report (__main__.ImageOriginIntegrityTests.test_rejects_wrong_pid_report) ... ok
+test_requires_independent_xctest_pid_references (__main__.ImageOriginIntegrityTests.test_requires_independent_xctest_pid_references) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.104s
+
+OK
