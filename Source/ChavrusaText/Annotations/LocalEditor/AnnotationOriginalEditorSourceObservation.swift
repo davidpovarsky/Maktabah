@@ -87,8 +87,8 @@ final class AnnotationOriginalEditorSourceObservation {
             return
         }
         localSession = session
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session] event in
-            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: session.id) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, session, sessionID = session.id] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                 lifetime.retire()
                 session.retire()
             }
@@ -109,8 +109,8 @@ final class AnnotationOriginalEditorSourceObservation {
             throw AnnotationLocalEditorError.wrongOwner
         }
         nativeSource = source
-        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source] event in
-            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: localSession.id) {
+        let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, localSession, source, sessionID = localSession.id] event in
+            if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                 lifetime.retire()
                 localSession.retire()
                 // Nonisolated SDK retirement also fences a queued native RPC
@@ -197,8 +197,8 @@ final class AnnotationOriginalEditorSourceObservation {
             try lifetime.bindLocalAnnotationRetirement(source)
             try presentationLifetime.bindLocalAnnotationRetirement(source)
             localAnnotation = source
-            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source] event in
-                if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: local.id) {
+            let next = store.events.sink { [lifetime, id = annotationID, uuid = annotationUUID, recordID = originalRecordID, local, source, sessionID = local.id] event in
+                if Self.affects(event, id: id, uuid: uuid, recordID: recordID, sessionID: sessionID) {
                     lifetime.retire()
                     local.retire()
                     source.retire()
