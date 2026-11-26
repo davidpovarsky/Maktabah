@@ -5,6 +5,7 @@
     "command_palette_accessibility": "d50c0b84ab79611a092118c59fcc1ea806776da4",
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "full_v40_occurrence_diagnostic": "4a39a8d78dc91ff246813001c33c92cd21cddd99",
+    "guided_native_visibility": "8555131790c5203b3dffca54f690b04885400699",
     "guided_navigation_core": "12090cbc51d1d060055850e0dbbd6d98fb93e5ef",
     "guided_navigation_native": "aa506ae2461792243589b106825243560074474a",
     "guided_navigation_receipt_source": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
@@ -51,11 +52,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "4e0b1cce028cf0d2cd376f133bae5ca247cdc5ae",
+  "application_source_sha": "8555131790c5203b3dffca54f690b04885400699",
   "application_trees": {
     "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "4e1b5af7b2d77c4c6e45a224f0d943da400bc9e6",
+    "Source": "ef60d7d8fd9f610e44ac6f71cc8d80e3c4922d2f",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
@@ -218,6 +219,13 @@
           "sha256": "7d3282ca0db5b3a6df20870543e648e56a52eb770f896e8928e6783e67642d28"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "guided_native_visibility": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -843,6 +851,13 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "guided_native_visibility": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "guided_navigation_core": {
           "bytes": 21873,
           "kind": "blob",
@@ -1206,6 +1221,13 @@
           "sha256": "d8bb718cb4ea62a7d7344bdde77bb43a486da301c7b02d77dc6d5203de8506fd"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "guided_native_visibility": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1614,6 +1636,13 @@
           "sha256": "fb43edb485fc2b99eae1d1a05aea667556c4c9a56c97fe3d26f3a6799193db31"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "guided_native_visibility": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -2053,6 +2082,13 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "guided_native_visibility": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "guided_navigation_core": {
           "bytes": 37347,
           "kind": "blob",
@@ -2405,6 +2441,13 @@
         },
         "empty_note": null,
         "full_v40_occurrence_diagnostic": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "guided_native_visibility": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2974,11 +3017,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 153780,
+        "bytes": 154377,
         "kind": "blob",
         "mode": "100644",
-        "object": "1ceecf8cb1e15241f8b80f66c18ba4281247ce10",
-        "sha256": "775a0aa3311791187748f04d42ee1ad5a1d7d0c8ebd9576f182c8336afcc2dfa"
+        "object": "68f751ae27e4f48f56cb59f84cd1c2b94824dd02",
+        "sha256": "1c895bdaf28686b21770884afe513c5c3544792f09ded685493dd859145d939a"
       },
       "before": {
         "bytes": 152357,
@@ -2987,7 +3030,7 @@
         "object": "df28f34439dd0d22f1c8d5ad13326adb6ed686f7",
         "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
       },
-      "component": "hanlin_native_metadata_session",
+      "component": "guided_native_visibility",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
     },
     {
@@ -3031,11 +3074,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 45083,
+        "bytes": 46232,
         "kind": "blob",
         "mode": "100644",
-        "object": "2dc17b5b817c15c6a3e8b80297f649968a8efc09",
-        "sha256": "74862fad996194c03bc7896109e18e8705698651d8acd4c0d98f021ba1fa5b48"
+        "object": "32beb6d9e7a05470ac0ec1f8d24500378b194439",
+        "sha256": "9c3dcd7bfd29cc4febfbd08fe87a132edb1f4683e7eb1693f54628953e1cc4bb"
       },
       "before": {
         "bytes": 45049,
@@ -3044,7 +3087,7 @@
         "object": "da38520df403bf4331a1811529586e82d67b528e",
         "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f"
       },
-      "component": "hanlin_containing_reader_admission",
+      "component": "guided_native_visibility",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
     },
     {
@@ -3226,6 +3269,13 @@
           "sha256": "b6e0e9bc42140fd896a20a1ee6eb2f17d65d5b6dee3854a5b6869e78dcf23f1f"
         },
         "full_v40_occurrence_diagnostic": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "guided_native_visibility": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -4170,27 +4220,27 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 10637,
+        "bytes": 11595,
         "kind": "blob",
         "mode": "100644",
-        "object": "9c62aa2f564fce5c4682890148ce587783fd5d7d",
-        "sha256": "7b83cb747bc01268e681502080685eafb1c60a01bbadd1eb73533c909606351f"
+        "object": "c88a8faf48ed53a0d392e9e96e55392a46084453",
+        "sha256": "ef8a336a1a9fa5f733cf759402f5f32fcbdb84b5881f3a4d3685a7e03aec2912"
       },
       "before": null,
-      "component": "guided_navigation_native",
+      "component": "guided_native_visibility",
       "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 6017,
+        "bytes": 7144,
         "kind": "blob",
         "mode": "100644",
-        "object": "1ed432a2f1f869643eecf7618567e8eb8ec2c9b1",
-        "sha256": "a3998a0ce7c5817c523afd78574ef13e1f8d924f52dcb9adaa5d32605c94cb1e"
+        "object": "fb3dc2641a4dc394d7444fb91bfecead5ced69b9",
+        "sha256": "72f5bca4f7614e8444258938172b69554a240c7d2fc8e135daf890b3fa39caf0"
       },
       "before": null,
-      "component": "guided_navigation_native",
+      "component": "guided_native_visibility",
       "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift"
     },
     {
