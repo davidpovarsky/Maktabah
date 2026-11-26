@@ -4,7 +4,7 @@ import OtzariaActionCore
 /// Additive facade over the real application coordinator. No automatic backend
 /// selection, app composition, UI command, private registration or new engine.
 @MainActor
-final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort {
+final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolverDataPort, ActionSearchPort, ActionCommentaryDataPort, ActionOccurrenceCountPort, ActionSearchPreparationObservationPort, ActionTableOfContentsPort, ActionSourceTextPort, ActionVersionListPort, ActionNavigationStructurePort, ActionNavigationItemsPort, ActionCatalogAuthorsPort {
     typealias ReadinessProbe = @MainActor @Sendable (ActionBackendSnapshot) async throws -> ActionBackendRuntimeEvidence
     typealias EpochProbe = @Sendable () async -> UInt64?
     typealias EmbeddedSearch = @Sendable (ActionSearchQuery, ActionPortInvocation) async throws -> ActionSearchPage
@@ -310,6 +310,15 @@ final class ActionBackendCoordinatorFacade: ActionBackendStatePort, ActionResolv
             throw ActionPortError.invalidResponse
         }
         return result
+    }
+
+    func catalogAuthors(backend: ActionBackendID, invocation: ActionPortInvocation) async throws -> [ActionCatalogAuthor] {
+        try await require("catalog.listAuthors", backend: backend, invocation: invocation)
+        let original: [LibraryAuthor]
+        do { original = try await coordinator.authors() }
+        catch { throw safe(error) }
+        try await require("catalog.listAuthors", backend: backend, invocation: invocation)
+        return original.map { .init(id: $0.id, name: $0.name) }
     }
 
     func navigationStructures(for work: ActionWorkRef, invocation: ActionPortInvocation)

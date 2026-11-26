@@ -203,6 +203,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
                         && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
                         && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
+                        && (descriptor.id != "catalog.listAuthors" || state is any ActionCatalogAuthorsPort)
                     let supported = implemented && raw?.registered == true && raw?.supported == true
                     var fields: ActionObject = ["registered": .bool(raw?.registered == true), "supported": .bool(supported)]
                     if includeReadiness { fields["availableNow"] = .bool(supported && raw?.availableNow == true && target == snapshot.backend
@@ -303,6 +304,28 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
             result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "catalog.listAuthors":
+            guard let provider = state as? any ActionCatalogAuthorsPort else {
+                throw ActionEngineFailure(.notSupported, "catalog_authors_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 25, range: 1...100)
+            let query = request.arguments["query"]?.string?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let original = try await provider.catalogAuthors(backend: backend, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard original.count <= 100_000 else { throw ActionPortError.invalidResponse }
+            let locale = Locale(identifier: "en_US_POSIX")
+            var ids = Set<String>()
+            var authors: [ActionCatalogAuthor] = []
+            var truncated = false
+            for (index, author) in original.enumerated() {
+                if index.isMultiple(of: 256) { try await recheck(snapshot, deadline: deadline) }
+                guard ActionValidation.nonempty(author.id, max: 512), ActionValidation.nonempty(author.name, max: 512),
+                      ids.insert(author.id).inserted else { throw ActionPortError.invalidResponse }
+                if let query, author.name.range(of: query, options: [.caseInsensitive, .diacriticInsensitive],
+                                                locale: locale) == nil { continue }
+                if authors.count < limit { authors.append(author) } else { truncated = true }
+            }
+            result = completed(["authors": try .encoded(authors), "truncated": .bool(truncated)])
         case "reader.getNavigationStructures":
             guard let rawWork = request.arguments["workRef"] else { throw ActionContractError.invalid("workRef") }
             let work = try rawWork.decoded(as: ActionWorkRef.self)
