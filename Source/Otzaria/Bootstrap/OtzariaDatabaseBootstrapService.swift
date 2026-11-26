@@ -23,6 +23,7 @@ actor OtzariaDatabaseBootstrapService {
         expectedRelease: OtzariaLibraryRelease? = nil,
         progress: @escaping ProgressHandler
     ) async throws -> Preparation {
+        try Task.checkCancellation()
         progress(.init(
             stage: .connecting,
             fraction: 0.01,
@@ -54,6 +55,7 @@ actor OtzariaDatabaseBootstrapService {
         do {
             release = try await releaseClient.fetchLatestRelease()
         } catch {
+            try Task.checkCancellation()
             guard pinnedReleaseID == nil,
                   OtzariaDataProfileRegistry.activeProfileID == OtzariaDataProfileRegistry.productionID,
                   let cached = try OtzariaDatabaseDownloader.resumableProductionRelease(
@@ -69,6 +71,7 @@ actor OtzariaDatabaseBootstrapService {
         }
         }
 
+        try Task.checkCancellation()
         let existingPart = OtzariaDatabaseDownloader.existingPartialSize(
             workspaceURL: storage.downloadsRoot,
             release: release
@@ -123,9 +126,9 @@ actor OtzariaDatabaseBootstrapService {
                 detail: String(localized: "bootstrap.status.verifyingDownload")
             ))
             let verificationStarted = Date()
-            actualSHA256 = try await Task.detached(priority: .utility) {
+            actualSHA256 = try await runPreparationStep {
                 try OtzariaDatabaseDownloader.verifyDownload(at: archiveURL, release: release)
-            }.value
+            }
             verificationElapsed = Date().timeIntervalSince(verificationStarted)
             print(
                 "[OtzariaBootstrap] download verified bytes=\(release.compressedSize) " +
@@ -142,7 +145,7 @@ actor OtzariaDatabaseBootstrapService {
         }
 
         do {
-            let prepared = try await Task.detached(priority: .utility) { [installer] in
+            let prepared = try await runPreparationStep { [installer] in
                 try installer.prepare(
                     archiveURL: archiveURL,
                     release: release,
@@ -166,7 +169,7 @@ actor OtzariaDatabaseBootstrapService {
                         detail: String(localized: "bootstrap.status.verifyingDatabase")
                     ))
                 }
-            }.value
+            }
             progress(.init(
                 stage: .validatingDatabase,
                 fraction: 0.94,
@@ -242,8 +245,16 @@ actor OtzariaDatabaseBootstrapService {
         currentStorage = nil
     }
 
-    func cancel() async {
-        await downloader.cancel()
+    private func runPreparationStep<T: Sendable>(
+        _ operation: @escaping @Sendable () throws -> T
+    ) async throws -> T {
+        try Task.checkCancellation()
+        let worker = Task.detached(priority: .utility, operation: operation)
+        return try await withTaskCancellationHandler {
+            try await worker.value
+        } onCancel: {
+            worker.cancel()
+        }
     }
 
     func recoverInterruptedInstallation() throws {

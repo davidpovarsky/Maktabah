@@ -3,6 +3,7 @@ import Foundation
 @MainActor
 enum OtzariaBootstrapAdapter {
     private static var installationInProgress = false
+    private static var preparationTask: Task<OtzariaDatabaseBootstrapService.Preparation, Error>?
     static func restoreForAppLaunch() async throws -> Bool {
         // A second scene must not recover/finalize another scene's live commit.
         if installationInProgress { return OtzariaMaktabahBridge.shared.isEnabled }
@@ -63,13 +64,28 @@ enum OtzariaBootstrapAdapter {
         installationInProgress = true
         defer { installationInProgress = false }
         let service = OtzariaDatabaseBootstrapService.shared
-        let preparation = try await service.prepareManagedDatabase(
-            expectedRelease: expectedRelease, progress: progress
-        )
+        let task = Task {
+            try await service.prepareManagedDatabase(expectedRelease: expectedRelease, progress: progress)
+        }
+        preparationTask = task
+        defer { preparationTask = nil }
+        let preparation: OtzariaDatabaseBootstrapService.Preparation
+        do {
+            preparation = try await withTaskCancellationHandler {
+                try await task.value
+            } onCancel: {
+                task.cancel()
+            }
+        } catch is CancellationError {
+            throw OtzariaDatabaseBootstrapError.cancelled
+        }
+        preparationTask = nil
         let prepared = preparation.prepared
         let storage = preparation.storage
         do {
-            try Task.checkCancellation()
+            guard !task.isCancelled, !Task.isCancelled else {
+                throw OtzariaDatabaseBootstrapError.cancelled
+            }
             try beforePromotion()
         } catch {
             await service.discardPrepared(prepared, storage: storage)
@@ -131,8 +147,6 @@ enum OtzariaBootstrapAdapter {
     }
 
     static func cancelManagedDatabaseDownload() {
-        Task {
-            await OtzariaDatabaseBootstrapService.shared.cancel()
-        }
+        preparationTask?.cancel()
     }
 }
