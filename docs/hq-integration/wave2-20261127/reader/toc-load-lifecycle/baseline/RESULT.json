@@ -1,0 +1,26 @@
+{
+  "source": "31b29f8f0f35df58c064a1539aa2cf21e5b5bf39",
+  "boundary": "Actual complete production TOC owner and node; controlled backend transport/database/model boundaries; real Apple SwiftUI, Observation, Foundation and OSLog; zero app UI or full-corpus acceptance.",
+  "startedAt": "2026-11-26T22:34:04.187626+00:00",
+  "toolchain": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "xcode": "Xcode 27.0\nBuild version 27A266a\n",
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-O",
+    "-parse-as-library",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/BookTOCViewModel.swift",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/TOCNode.swift",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/TOCLoadLifecycleSupport.swift",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/TOCLoadLifecycleTests.swift",
+    "-o",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/baseline/toc-load-lifecycle"
+  ],
+  "appUIExecuted": 0,
+  "compileExit": 1,
+  "status": "COMPILE_FAILED",
+  "inputsUnchanged": true,
+  "finishedAt": "2026-11-26T22:34:08.840405+00:00"
+}
