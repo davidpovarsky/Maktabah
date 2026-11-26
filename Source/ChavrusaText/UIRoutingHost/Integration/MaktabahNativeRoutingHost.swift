@@ -263,50 +263,38 @@ private func guideText(_ english: String, _ hebrew: String, language: String) ->
 /// and derives visibility from the real foreground UIKit session after layout.
 struct MaktabahNativeRoutingSurface: ViewModifier {
     let kind: MaktabahNativeSceneProjection.Surface
-    let inspectorReader: ReaderViewModel?
-    let noteReader: ReaderViewModel?
-    let noteDraft: Annotation?
-    init(kind: MaktabahNativeSceneProjection.Surface, inspectorReader: ReaderViewModel? = nil,
-         noteReader: ReaderViewModel? = nil, noteDraft: Annotation? = nil) {
-        self.kind = kind; self.inspectorReader = inspectorReader
-        self.noteReader = noteReader; self.noteDraft = noteDraft
-    }
-    @Environment(\.maktabahNativeRoutingSession) private var session
-    @State private var noteDraftAppeared = false
+    var inspectorReader: ReaderViewModel? = nil
+
     func body(content: Content) -> some View {
-        content
-            .onAppear {
-                guard kind == .noteDraft else { return }
-                // The original editor becomes observable after the sheet appears.
-                noteDraftAppeared = true
-                #if DEBUG
-                if let session {
-                    session.diagnoseNoteDraftSurface(stage: "sheet-surface-appear",
-                        reader: noteReader, draft: noteDraft)
-                } else {
-                    OtzariaFileLogger.shared.log("[NativeNoteDraftDiagnostic] stage=sheet-surface-appear session=false")
-                }
-                #endif
-            }
-            .onDisappear {
-                if kind == .noteDraft { noteDraftAppeared = false }
-            }
-            .background {
-            if let session,
-               kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
-               kind != .noteDraft || (noteDraftAppeared && noteReader.flatMap { reader in
-                   noteDraft.map { session.ownsNoteEditor(reader, draft: $0) }
-               } == true),
-               let state = try? session.surface(kind) {
-                NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
-                    observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
-                    diagnose: { flags in
-                        #if DEBUG
-                        OtzariaFileLogger.shared.log("[NativeSurfaceWitness] destination=\(state.destination.rawValue) \(flags)")
-                        #endif
-                    }) { session.observe($0) }
-                    .allowsHitTesting(false).accessibilityHidden(true)
-            }
+        content.background {
+            MaktabahNativeRoutingWitness(kind: kind, inspectorReader: inspectorReader)
+        }
+    }
+}
+
+struct MaktabahNativeRoutingWitness: View {
+    let kind: MaktabahNativeSceneProjection.Surface
+    var inspectorReader: ReaderViewModel? = nil
+    var noteReader: ReaderViewModel? = nil
+    var noteDraft: Annotation? = nil
+    @Environment(\.maktabahNativeRoutingSession) private var session
+
+    var body: some View {
+        if let session,
+           kind != .inspector || inspectorReader.map({ session.ownsInspectorReader($0) }) == true,
+           kind != .noteDraft || (noteReader.flatMap { reader in
+               noteDraft.map { session.ownsNoteEditor(reader, draft: $0) }
+           } == true),
+           let state = try? session.surface(kind) {
+            NativeSurfaceWitness(surface: state, submissionID: session.submissionID,
+                observeVisibility: { session.observeVisibility(for: state.destination, check: $0) },
+                diagnose: { flags in
+                    #if DEBUG
+                    OtzariaFileLogger.shared.log("[NativeSurfaceWitness] destination=\(state.destination.rawValue) \(flags)")
+                    #endif
+                }) { session.observe($0) }
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
         }
     }
 }

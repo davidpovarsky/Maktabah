@@ -69,6 +69,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
     @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
     private var searchFieldRevision: UInt64 = 0
+    private var noteEditorSurfaceRevision: UInt64 = 0
     @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
     @ObservationIgnored private var searchPresentationOwner: UUID?
     @ObservationIgnored private var searchPresentationBlocked: (@MainActor () -> Bool)?
@@ -176,6 +177,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {
         guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
         guard owner.observeTextView(textView, presentationID: presentationID) else { return }
+        noteEditorSurfaceRevision &+= 1
         try? nativeStateChanged()
     }
     func noteEditorDidDismiss(id: UUID, presentationID: UUID) {
@@ -184,6 +186,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try? nativeStateChanged()
     }
     func ownsNoteEditor(_ reader: ReaderViewModel, draft: Annotation) -> Bool {
+        // The sheet can appear before its UIKit editor is attached.
+        _ = noteEditorSurfaceRevision
         guard let owner = noteEditorOwner, owner.reader === reader, owner.current == draft,
               let bound = noteDraftBinding, bound.owner === owner, bound.draft == draft else { return false }
         return true

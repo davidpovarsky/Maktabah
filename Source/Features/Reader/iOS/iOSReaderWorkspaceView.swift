@@ -742,8 +742,8 @@ struct iOSReaderWorkspaceView: View {
                     #endif
                 },
                 nativeSurface: {
-                    AnyView(Color.clear.modifier(MaktabahNativeRoutingSurface(kind: .noteDraft,
-                        noteReader: viewModel, noteDraft: editingAnnotation)))
+                    AnyView(MaktabahNativeRoutingWitness(kind: .noteDraft,
+                        noteReader: viewModel, noteDraft: editingAnnotation))
                 }
             )
         }
