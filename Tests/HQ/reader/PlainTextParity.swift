@@ -7,6 +7,8 @@ import Foundation
         let edgeCases: [(String, String)] = [
             ("  plain שָׁלוֹם 😀  ", "plain שָׁלוֹם 😀"),
             ("<BR />א<br>ב", "א\nב"),
+            ("א<BR/>ב</H4>ג</P>ד", "א\nב\nג\nד"),
+            ("א<br  />ב<<br>>ג", "אבג"),
             ("&lt;b&gt;literal&lt;/b&gt;", "<b>literal</b>"),
             ("&amp;lt;", "&lt;"), ("&amp;nbsp;", "&nbsp;"),
             ("a\n\n\n\nb", "a\n\nb"), ("a{p}b", "a{p}b"),
