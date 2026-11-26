@@ -1,0 +1,32 @@
+{
+  "status": "REAL_XCTEST_SDK_TYPECHECK_ONLY_NOT_UI",
+  "source_sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786",
+  "harness_sha256": "3ae49bfda771ce029a78995c0ffed573da8790a8a7979d1f640d7b1b1f1c13e7",
+  "actual_overlay": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+    "-target",
+    "arm64-apple-ios17.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-D",
+    "DEBUG",
+    "-typecheck",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/module-cache",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks",
+    "-I",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/ExactNativeObserverTypecheck.swift"
+  ],
+  "exit": 0,
+  "native_ui_executed": 0,
+  "at": "2026-11-26T23:48:12.387551+00:00"
+}

@@ -1,0 +1,163 @@
+{
+  "status": "ORIGINAL_NATIVE116_FAILED_CASE_DIAGNOSIS_NOT_CANDIDATE_ACCEPTANCE",
+  "log": {
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/test-simulator-phone.log",
+    "bytes": 395940,
+    "sha256": "837279325be7f483a67cd0427bc4b07af3645b38f6ac5cc79b56505e33c3a985"
+  },
+  "case_attachment_manifest": {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "E34C708C-178E-4F6F-8ED7-925401ADCEF4.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "r27-final-native-screen_0_8B6D80F3-FFDD-4153-AF79-AC4DD5DAF2C1.png",
+        "timestamp": 1795721915.863
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "8896907D-7463-4150-9DD8-DDB83F84A003.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "r27-final-native-hierarchy_0_A57061C1-78A5-4103-B8F6-C0321655E14A.txt",
+        "timestamp": 1795721915.762
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "AA99324E-8046-4700-868C-AD365929BFD4.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Element Debug Description_0_9430EF17-26A6-471B-ADD5-F4EEC0FBE2D5.txt",
+        "timestamp": 1795721915.252
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "73AA734A-ED1B-4C90-BD32-506B06A199F4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-11-26 at 08.38.12 PM",
+        "timestamp": 1795721892.51
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "BFD687BA-F574-4E0F-932A-470F3CCAC313",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-11-26 at 08.38.05 PM",
+        "timestamp": 1795721885.465
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3D2F9467-56E8-4847-9CF9-ACE6BBE94CDC",
+        "deviceName": "Faithful phone-inch 1f32b17f",
+        "exportedFileName": "C31F7C17-1365-4F83-BE57-670B7EACB0DC.mp4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Screen Recording 2026-11-26 at 08.37.54 PM.mp4",
+        "timestamp": 1795721874.668
+      }
+    ],
+    "testIdentifier": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration()",
+    "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+  },
+  "attachments": [
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/E34C708C-178E-4F6F-8ED7-925401ADCEF4.png",
+      "bytes": 375385,
+      "sha256": "273216557f45bedff29b3aa8c6afef48ce25f2019a36b153eadf4bb941290eb2"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/8896907D-7463-4150-9DD8-DDB83F84A003.txt",
+      "bytes": 13583,
+      "sha256": "45981d45bfe32372b0baff0af4da8804a00eab2dcd10b7d10c9f8a5114232677"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/AA99324E-8046-4700-868C-AD365929BFD4.txt",
+      "bytes": 150,
+      "sha256": "55ca5efc9316a8b64dd5e655294ef7d1af8fcf3c93fa00f7bf771fed5bfd8bc1"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/73AA734A-ED1B-4C90-BD32-506B06A199F4",
+      "bytes": 1213,
+      "sha256": "d71172e4a032cdf2932448a785fcbc1111e2ac1cdab2065ecaa83ce8af3517a9"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/BFD687BA-F574-4E0F-932A-470F3CCAC313",
+      "bytes": 1213,
+      "sha256": "e913657b2a880a8427118f4e8e379da25c221fb238ad64f564e55eee3ecf16cb"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/Maktabah/build/artifacts/visual-phone/C31F7C17-1365-4F83-BE57-670B7EACB0DC.mp4",
+      "bytes": 18581618,
+      "sha256": "41f0cc54f99f6efdc71855d4849557e2c172ed0c50c448924afb0b6bc5e5dee3"
+    }
+  ],
+  "source_attribution": {
+    "actual_selected_case_counts": {
+      "failed": 34,
+      "passed": 82
+    },
+    "control_checkout": "ec14460748dc79818b1a7a3f269a54e3a1ddfaa9",
+    "groups": {
+      "11": {
+        "failedTests": 5,
+        "passedTests": 7,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 12
+      },
+      "11-index": {
+        "failedTests": 0,
+        "passedTests": 5,
+        "runnerStatus": "EXECUTED_PASS",
+        "skippedTests": 0,
+        "totalTestCount": 5
+      },
+      "11-reader": {
+        "failedTests": 8,
+        "passedTests": 33,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 41
+      },
+      "11-search": {
+        "failedTests": 3,
+        "passedTests": 19,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 22
+      },
+      "11-sidebar": {
+        "failedTests": 0,
+        "passedTests": 5,
+        "runnerStatus": "EXECUTED_PASS",
+        "skippedTests": 0,
+        "totalTestCount": 5
+      },
+      "11-window": {
+        "failedTests": 2,
+        "passedTests": 0,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 2
+      },
+      "phone": {
+        "failedTests": 16,
+        "passedTests": 13,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 29
+      }
+    },
+    "matrix_sha256": "12c12470056356b747fe16c66df3031de46a0df3a95fd7b366206909f492ab93",
+    "physical_device_qualification": false,
+    "release_acceptance": false,
+    "scope": "Original 116 declared baseline diagnostic selectors only",
+    "source_application": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb"
+  }
+}

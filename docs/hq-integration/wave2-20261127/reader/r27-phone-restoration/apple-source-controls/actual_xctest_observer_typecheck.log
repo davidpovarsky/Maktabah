@@ -1,0 +1,15 @@
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/r27-phone-restoration-observer/ExactNativeObserverTypecheck.swift:95:9: error: cannot find 'XCTAssertEqual' in scope
+ 93 |         evidence.name = name + "-original-phone-geometry-and-source"
+ 94 |         evidence.lifetime = .keepAlways; add(evidence)
+ 95 |         XCTAssertEqual(result, .completed,
+    |         `- error: cannot find 'XCTAssertEqual' in scope
+ 96 |                        "Require actual restored source and original compact toolbar inside the current native phone window")
+ 97 |     }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestAssertions.h:120:9: note: macro 'XCTAssertEqual' unavailable: function like macros not supported
+118 |  * @param ... An optional supplementary description of the failure. A literal NSString, optionally with string format specifiers. This parameter can be completely omitted.
+119 | */
+120 | #define XCTAssertEqual(expression1, expression2, ...) \
+    |         `- note: macro 'XCTAssertEqual' unavailable: function like macros not supported
+121 |     _XCTPrimitiveAssertEqual(nil, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
+122 | 
