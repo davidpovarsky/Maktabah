@@ -330,16 +330,7 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
             // This acceptance-only probe uses the same original engine and
             // handle after install or actual process reopen. It grants no Core
             // capability and never starts an index build or a second engine.
-            guard OtzariaLexicalIndexReadCompatibility.qualifiedContract(
-                manifest: manifest, consumer: build
-            ) == .original265ToExactOccurrencesD5 else {
-                throw OtzariaSearchArtifactError.validationFailed(
-                    "exact occurrence probe requires the qualified original265-to-d5 read contract"
-                )
-            }
-            let occurrenceSource = try OtzariaExactOccurrenceSource(
-                buildInfo: build, originalUpstreamBase: manifest.lexicalEngine.commit
-            )
+            let occurrenceSource = try exactOccurrenceSource(manifest: manifest, consumer: build)
             for occurrenceQuery in ["בראשית", "אברהם"] {
                 let request = try OtzariaExactOccurrenceRequest(
                     query: occurrenceQuery,
@@ -422,6 +413,29 @@ enum OtzariaPrebuiltSearchAcceptanceRunner {
                 error: detail
             ), path: resultPath)
         }
+    }
+
+    private static func exactOccurrenceSource(
+        manifest: OtzariaSearchArtifactManifest,
+        consumer: OtzariaSearchEngineBuildInfo
+    ) throws -> OtzariaExactOccurrenceSource {
+        let producer = manifest.lexicalEngine
+        let originalBase = "265a14ea54f959a3e266d6e8acfa3a3b98101d68"
+        let qualifiedOriginalProducer = OtzariaLexicalIndexReadCompatibility.qualifiedContract(
+            manifest: manifest, consumer: consumer
+        ) == .original265ToExactOccurrencesD5
+        // The general package validator already checks schema, versions and resource hashes.
+        let exactD5Producer = consumer.upstreamRepository == "davidpovarsky/otzaria_search_engine"
+            && consumer.upstreamCommit == "d5d59d1269bdf87fb0a6901cf31941726a0c699b"
+            && consumer.upstreamBranch == "codex/otzaria-exact-occurrences-20261120"
+            && producer.repository == consumer.upstreamRepository
+            && producer.commit == consumer.upstreamCommit
+        guard qualifiedOriginalProducer || exactD5Producer else {
+            throw OtzariaSearchArtifactError.validationFailed(
+                "exact occurrence probe requires the qualified original265-to-d5 or exact d5 producer"
+            )
+        }
+        return try OtzariaExactOccurrenceSource(buildInfo: consumer, originalUpstreamBase: originalBase)
     }
 
     private static func sampleQuery(databasePath: String) throws -> String {
