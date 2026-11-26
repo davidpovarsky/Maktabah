@@ -201,6 +201,7 @@ public actor ActionExecutor {
                         && (descriptor.id != "reader.getTOC" || state is any ActionTableOfContentsPort)
                         && (descriptor.id != "reader.getSection" || state is any ActionSourceTextPort)
                         && (descriptor.id != "reader.listVersions" || state is any ActionVersionListPort)
+                        && (descriptor.id != "reader.relatedSources" || state is any ActionRelatedSourcesPort)
                         && (descriptor.id != "reader.getNavigationStructures" || state is any ActionNavigationStructurePort)
                         && (descriptor.id != "reader.navigationItems" || state is any ActionNavigationItemsPort)
                         && (descriptor.id != "catalog.listAuthors" || state is any ActionCatalogAuthorsPort)
@@ -304,6 +305,40 @@ public actor ActionExecutor {
             try await recheck(snapshot, deadline: deadline)
             try validate(section, requested: locator, limit: limit, byteLimit: context.maxResultBytes)
             result = completed(try ActionJSON.encoded(section).object ?? [:])
+        case "reader.relatedSources":
+            guard let input = request.arguments["sourceLocator"] else {
+                throw ActionContractError.invalid("sourceLocator")
+            }
+            let locator = try input.decoded(as: ActionTextRef.self)
+            try ActionValidation.text(locator, backend: backend)
+            try ActionPolicy.work(locator.workKey, backend: backend, context: context)
+            guard let relationships = state as? any ActionRelatedSourcesPort else {
+                throw ActionEngineFailure(.notSupported, "related_sources_unavailable")
+            }
+            let limit = try ActionValidation.integer(request.arguments, key: "limit", default: 25, range: 1...100)
+            let category = request.arguments["category"]?.string?.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let category, category.isEmpty { throw ActionContractError.invalid("category") }
+            let original = try await relationships.relatedSources(for: locator, invocation: invocation)
+            try await recheck(snapshot, deadline: deadline)
+            guard original.count <= 10_000 else { throw ActionPortError.invalidResponse }
+            var results: [ActionRelatedSource] = []
+            var seen = Set<ActionRelatedSource>()
+            var truncated = false
+            for (index, link) in original.enumerated() {
+                if index.isMultiple(of: 256) { try await recheck(snapshot, deadline: deadline) }
+                do { try ActionValidation.text(link.locator, backend: backend) }
+                catch { throw ActionPortError.invalidResponse }
+                guard ActionValidation.nonempty(link.displayRef, max: 1_000),
+                      ActionValidation.nonempty(link.category, max: 80),
+                      ActionValidation.nonempty(link.relationshipType, max: 80) else {
+                    throw ActionPortError.invalidResponse
+                }
+                if let restricted = context.allowedWorkKeys, restricted[backend]?.contains(link.locator.workKey) != true { continue }
+                if let category, link.category.compare(category, options: .caseInsensitive) != .orderedSame { continue }
+                guard seen.insert(link).inserted else { continue }
+                if results.count < limit { results.append(link) } else { truncated = true }
+            }
+            result = completed(["sources": try .encoded(results), "truncated": .bool(truncated)])
         case "catalog.listAuthors":
             guard let provider = state as? any ActionCatalogAuthorsPort else {
                 throw ActionEngineFailure(.notSupported, "catalog_authors_unavailable")

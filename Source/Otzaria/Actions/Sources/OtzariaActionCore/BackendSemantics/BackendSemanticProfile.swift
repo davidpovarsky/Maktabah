@@ -89,7 +89,7 @@ public struct ActionBackendSemanticProfile: Sendable {
         let registered = (capability.map { evidence.registeredCapabilities.contains($0) } ?? false)
             && (action != "reader.openCommentary" || evidence.registeredCapabilities.contains("links"))
         let sourceSupported = sourceSupports(action)
-        let initial = ["catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
+        let initial = ["catalog.listAuthors", "catalog.resolveWork", "catalog.resolveReference", "search.query", "search.openResults", "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems", "reader.listVersions", "reader.relatedSources", "reader.open", "reader.openCommentary", "notes.prepareDraft"].contains(action)
         var unsupported: String? = sourceSupported ? nil : "source_capability_not_supported"
         if action == "search.countOccurrences" { unsupported = "exact_count_unavailable" }
         else if !initial { unsupported = "action_not_implemented" }
@@ -112,12 +112,16 @@ public struct ActionBackendSemanticProfile: Sendable {
         case "catalog.resolveWork", "catalog.listAuthors": evidence.catalog
         case "reader.getTOC", "reader.getSection", "reader.getNavigationStructures", "reader.navigationItems": evidence.catalog.isReady ? evidence.references : evidence.catalog
         case "reader.listVersions": evidence.catalog.isReady ? evidence.network : evidence.catalog
+        case "reader.relatedSources": evidence.catalog.isReady ? evidence.references : evidence.catalog
         case "catalog.resolveReference", "reader.open", "reader.openCommentary", "notes.prepareDraft": evidence.references
         case "search.query", "search.openResults": evidence.search
         default: .unknown
         }
         guard readiness.isReady else {
             return .init(registered: true, supported: true, availableNow: false, reasonCode: "operation_readiness_unverified")
+        }
+        if action == "reader.relatedSources", backend != .otzaria, !evidence.network.isReady {
+            return .init(registered: true, supported: true, availableNow: false, reasonCode: "network_unavailable")
         }
         if backend == .sefaria, ["search.query", "search.openResults"].contains(action), !evidence.network.isReady {
             return .init(registered: true, supported: true, availableNow: false, reasonCode: "search_requires_network")

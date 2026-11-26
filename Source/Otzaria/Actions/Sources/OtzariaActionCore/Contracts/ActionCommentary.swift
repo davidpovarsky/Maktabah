@@ -23,6 +23,25 @@ public struct ActionCommentaryLink: Sendable, Equatable {
     }
 }
 
+/// One link from the active library's original relationship provider.
+public struct ActionRelatedSource: Codable, Sendable, Hashable {
+    public let locator: ActionTextRef
+    public let displayRef: String
+    public let category: String
+    public let relationshipType: String
+
+    public init(locator: ActionTextRef, displayRef: String, category: String, relationshipType: String) {
+        self.locator = locator
+        self.displayRef = displayRef
+        self.category = category
+        self.relationshipType = relationshipType
+    }
+}
+
+public protocol ActionRelatedSourcesPort: Sendable {
+    func relatedSources(for locator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionRelatedSource]
+}
+
 /// Optional additive ports preserve existing resolvers and source adapters.
 public protocol ActionCommentaryDataPort: Sendable {
     func commentaryLinks(for baseLocator: ActionTextRef, invocation: ActionPortInvocation) async throws -> [ActionCommentaryLink]
