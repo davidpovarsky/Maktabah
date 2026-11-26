@@ -1,0 +1,255 @@
+{
+  "artifactIdentity" : "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+  "artifactProducer" : {
+    "adapterVersion" : "0.1.0",
+    "commit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "defaultGenerationOrder" : 5,
+    "engineVersion" : "0.1.0",
+    "indexSchemaVersion" : 4,
+    "repository" : "davidpovarsky\/otzaria_search_engine",
+    "semanticSidecarRevision" : "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "tantivyVersion" : "0.26.1"
+  },
+  "checks" : [
+    {
+      "count" : 107914,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "exact",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 107914,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "fuzzy",
+      "query" : "בראשית"
+    },
+    {
+      "count" : 107914,
+      "firstFilePath" : "otzaria-book:1",
+      "mode" : "advanced",
+      "query" : "בראשית"
+    }
+  ],
+  "consumerBuild" : {
+    "adapterVersion" : "0.1.0",
+    "defaultGenerationOrder" : 5,
+    "engineVersion" : "0.1.0",
+    "indexSchemaVersion" : 4,
+    "resourceHashes" : {
+      "Vendor\/OtzariaSearchEngine\/Resources\/Acronyms.json" : "cb101c9feb87394b133098bf569bd9af167babce0f83ab3b151e2599c665389f",
+      "Vendor\/OtzariaSearchEngine\/Resources\/dictionary.json" : "cc3d02655bd3f5a8f7581cf71623cf60b3cd6ee821686cebf149f755272e9a69"
+    },
+    "semanticEnabled" : true,
+    "semanticSidecarRevision" : "e836ea6cac05e695efdb03ef227e78cd1a624149",
+    "syncedAt" : "2026-11-20T01:36:23Z",
+    "upstreamBranch" : "codex\/otzaria-exact-occurrences-20261120",
+    "upstreamCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+    "upstreamRepository" : "davidpovarsky\/otzaria_search_engine"
+  },
+  "documentCount" : 7925185,
+  "exactOccurrences" : [
+    {
+      "query" : "בראשית",
+      "request" : {
+        "bookIds" : [
+
+        ],
+        "facets" : [
+          "\/"
+        ],
+        "limits" : {
+          "maxCandidateDocuments" : 1000000,
+          "maxPositions" : 10000000,
+          "maxPositionsPerDocument" : 262144,
+          "maxSegments" : 4096
+        },
+        "mode" : "exact",
+        "query" : "בראשית",
+        "timeoutMs" : 60000,
+        "version" : 1
+      },
+      "result" : {
+        "matchingLiveDocuments" : 107914,
+        "occurrences" : 148854,
+        "proof" : {
+          "analyzedToken" : "בראשית",
+          "countKind" : "distinctTokenPositions",
+          "engineBranch" : "codex\/otzaria-exact-occurrences-20261120",
+          "engineCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+          "enginePackageVersion" : "0.1.0",
+          "engineRepository" : "davidpovarsky\/otzaria_search_engine",
+          "exact" : true,
+          "indexSchemaVersion" : 4,
+          "liveIndexDocuments" : 7925185,
+          "originalUpstreamBase" : "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+          "requestToken" : 1,
+          "requestedFacets" : [
+            "\/"
+          ],
+          "searcherGeneration" : {
+            "generationId" : 1,
+            "segments" : [
+              {
+                "segmentId" : "334035800b4e47d1b3640990bff95f50"
+              }
+            ]
+          }
+        },
+        "work" : {
+          "inspectedPositions" : 148854,
+          "visitedCandidateDocuments" : 107914,
+          "visitedSegments" : 1
+        }
+      }
+    },
+    {
+      "query" : "אברהם",
+      "request" : {
+        "bookIds" : [
+
+        ],
+        "facets" : [
+          "\/"
+        ],
+        "limits" : {
+          "maxCandidateDocuments" : 1000000,
+          "maxPositions" : 10000000,
+          "maxPositionsPerDocument" : 262144,
+          "maxSegments" : 4096
+        },
+        "mode" : "exact",
+        "query" : "אברהם",
+        "timeoutMs" : 60000,
+        "version" : 1
+      },
+      "result" : {
+        "matchingLiveDocuments" : 117583,
+        "occurrences" : 182166,
+        "proof" : {
+          "analyzedToken" : "אברהם",
+          "countKind" : "distinctTokenPositions",
+          "engineBranch" : "codex\/otzaria-exact-occurrences-20261120",
+          "engineCommit" : "d5d59d1269bdf87fb0a6901cf31941726a0c699b",
+          "enginePackageVersion" : "0.1.0",
+          "engineRepository" : "davidpovarsky\/otzaria_search_engine",
+          "exact" : true,
+          "indexSchemaVersion" : 4,
+          "liveIndexDocuments" : 7925185,
+          "originalUpstreamBase" : "265a14ea54f959a3e266d6e8acfa3a3b98101d68",
+          "requestToken" : 2,
+          "requestedFacets" : [
+            "\/"
+          ],
+          "searcherGeneration" : {
+            "generationId" : 1,
+            "segments" : [
+              {
+                "segmentId" : "334035800b4e47d1b3640990bff95f50"
+              }
+            ]
+          }
+        },
+        "work" : {
+          "inspectedPositions" : 182166,
+          "visitedCandidateDocuments" : 117583,
+          "visitedSegments" : 1
+        }
+      }
+    }
+  ],
+  "golden" : {
+    "highlightedTopResults" : 25,
+    "normalizedQuery" : "לחתוך צנון בסכין בשרי",
+    "orderedResultIDs" : [
+      18146236838890,
+      17652315598724,
+      17652315598927,
+      17652315605169,
+      17652315605593,
+      32766305501249,
+      17652315605652,
+      17652315605785,
+      17652315599009,
+      17652315599014,
+      17652315637453,
+      17652315637526,
+      17652315640228,
+      18296560684203,
+      31958851668434,
+      29416231012202,
+      18343805322655,
+      29416231012269,
+      29416231012290,
+      9174050144278,
+      18184891531439,
+      35124242547539,
+      21560735826253,
+      18184891533624,
+      18189186503898
+    ],
+    "query" : "לחתוך צנון בסכין בשרי",
+    "references" : [
+      "כף החיים על שולחן ערוך יורה דעה, סימן צו, סעיף קטן מח",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן פ\"ט – גבינה אחר בשר ולהיפך, לג] טעם ראשון",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן פ\"ט – גבינה אחר בשר ולהיפך, לח] סכין",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן צ\"ו – דבר חריף, ו] דברים חריפים",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן צ\"ו – דבר חריף, יא] בליעות באוכל לסכין: חתך בסכין בשרי, ולאחריו בסכין פרווה",
+      "פסקי רבינו מענדל קלויזנער על מסכת חולין, פרק כל הבשר, דף קו.",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן צ\"ו – דבר חריף, יא] בליעות באוכל לסכין: חתך בסכין בשרי, ולאחריו בסכין פרווה",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן צ\"ו – דבר חריף, טז] לפת",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן פ\"ט – גבינה אחר בשר ולהיפך, לט] נעיצה",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן פ\"ט – גבינה אחר בשר ולהיפך, לט] נעיצה",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן קכ\"א – הכשר כלים - יו\"ד, י] נעיצה",
+      "דור המלקטים על יורה דעה, הלכות איסור והיתר – סימנים ס\"ו עד קכ\"ב, סימן קכ\"א – הכשר כלים - יו\"ד, יב] סקוטש: צמר פלדה (steel wool) וכדומה - במקום נעיצה",
+      "דור המלקטים על יורה דעה, הלכות סכנה – סימן קט\"ז ועוד, סימן קט\"ז סעיף ב' - סעיף ג' – סכנה בדגים, ו] נותן טעם",
+      "שפתי כהן על שולחן ערוך יורה דעה, סימן פט, סעיף כב",
+      "איזהו מקומן על חולין, פרק שמיני - כל הבשר, דף קיב., גמ'",
+      "קיצור ש\"ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן פט (בסוף) - הכשר כלים לענין בשר וחלב, סט",
+      "באר היטב יורה דעה, סימן צד",
+      "קיצור ש\"ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צ' - דין כחל, יב",
+      "קיצור ש\"ע ילקוט יוסף החדש - יורה דעה, הלכות בשר בחלב, סימן צב עד סימן צח - עוד מהלכות בשר בחלב, ו",
+      "פסקי הרא\"ש על חולין, פרק א, הלכה ט",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן י, סעיף ו",
+      "ברכי יוסף על יורה דעה, סימן פט, לט",
+      "מגיד משנה על משנה תורה, הלכות מאכלות אסורות, פרק ו, הלכה כ",
+      "פרי מגדים על יורה דעה, משבצות זהב, סימן צו, סעיף ג",
+      "אליה רבה על שלחן ערוך אורח חיים, סימן תמז"
+    ],
+    "stableSourceIDs" : [
+      "otzaria-book:3820",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:6886",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:8042",
+      "otzaria-book:3855",
+      "otzaria-book:6871",
+      "otzaria-book:5874",
+      "otzaria-book:3864",
+      "otzaria-book:5874",
+      "otzaria-book:5874",
+      "otzaria-book:2054",
+      "otzaria-book:3827",
+      "otzaria-book:8460",
+      "otzaria-book:4312",
+      "otzaria-book:3827",
+      "otzaria-book:3828"
+    ]
+  },
+  "localIndexingRan" : false,
+  "nativeDownloadRan" : false,
+  "passed" : true,
+  "phase" : "install",
+  "productionDiscoveryRan" : false,
+  "productionValidatorRan" : true,
+  "resumedDownloadBytes" : 0,
+  "sourceCount" : 8259,
+  "stagingAbsent" : true
+}

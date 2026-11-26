@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "installPID": 73398,
+  "reopenPID": 74512,
+  "engineCounts": {
+    "בראשית": {
+      "occurrences": 148854,
+      "matchingLiveDocuments": 107914
+    },
+    "אברהם": {
+      "occurrences": 182166,
+      "matchingLiveDocuments": 117583
+    }
+  },
+  "independentSQLiteCounts": {
+    "בראשית": {
+      "occurrences": 148854,
+      "matchingLiveDocuments": 107914
+    },
+    "אברהם": {
+      "occurrences": 182166,
+      "matchingLiveDocuments": 117583
+    }
+  },
+  "packageIdentity": "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139",
+  "segments": [
+    "334035800b4e47d1b3640990bff95f50"
+  ],
+  "nativeReceiptSHA256": "3328563a9aea0203a840aad1d0ff8603b6c221d47aadde90f794f6c7a5c3afc0",
+  "nativeInstallSHA256": "31212cc8f943ffaea0f83811a3e4a6b7571b80c1ea80eea570a993d7650c7b7c"
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "base": "3ffddbfe5b2f9adc2744349074b460c5c465fac5",
+  "testedCommit": "0e3fb59418f58553f4c1d299d199b1d85eb9992a",
+  "changeCommit": "f82284ddd5905c39bf4dcb912fb20a7ee8539596",
+  "changeSha256": "05867abac8ad265d79227b7a81937a31772dd5d2983b1f02fdd2defd121bd5f3",
+  "xcbuildLogSha256": "b4c47e569a68921308697ee47a901de82f4504f86920dc7098b30fde8678684c",
+  "app": {
+    "Maktabah": "a655dbf06b3b4b44c4db1c2a21f5284e92a00743c0225d78894144a6fe96e26c",
+    "Maktabah.debug.dylib": "35ca030be6b2523ffcbcbe08dfe9782c63714b98593a542502f4793f310d6215"
+  },
+  "originalSdkQualification": false,
+  "purpose": "isolated debug accept existing v40 prebuilt archive"
+}
