@@ -390,7 +390,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(catalogReady,
                        "The actual producer must publish its TextStudio catalog")
 
-        XCUIDevice.shared.orientation = .landscapeLeft
+        XCUIDevice.shared.orientation = .portrait
+
         launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
@@ -797,7 +798,8 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         XCTAssertTrue(producer.wait(for: .runningForeground, timeout: 30))
         try await installActualFileWorkshop(producer)
 
-        XCUIDevice.shared.orientation = .landscapeLeft
+        XCUIDevice.shared.orientation = .portrait
+
         launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         assertReaderHasText()
@@ -1280,13 +1282,15 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func richBody(_ text: String, host: XCUIElement) async throws -> XCUIElement {
         let bodies = host.textViews.matching(NSPredicate(format: "value == %@", text))
-        try await requireNativeCondition(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
-        if bodies.count != 1 || !bodies.firstMatch.isHittable {
+        let observed = try await waitUntil(timeout: 30) { bodies.count == 1 && bodies.firstMatch.isHittable }
+        if !observed {
             let hierarchy = XCTAttachment(string: host.debugDescription)
             hierarchy.name = "original-rich-editor-host-on-body-mismatch"
             hierarchy.lifetime = .keepAlways
             add(hierarchy)
+            retainScreenshot(app, named: "original-rich-editor-on-body-mismatch")
         }
+        XCTAssertTrue(observed, "One visible original text view must expose the full exact saved body")
         XCTAssertEqual(bodies.count, 1)
         XCTAssertFalse(bodies.firstMatch.frame.isEmpty)
         return bodies.firstMatch
