@@ -10,7 +10,9 @@
     "guided_navigation_receipt_source": "ee4d045e5e1e88d0799c7c8cd560fadebf3c2f09",
     "hanlin_containing_reader_admission": "7f2132b1ca67fdb3351413d54b42de9adbe1fda7",
     "hanlin_full_history_checkpoint": "4f3e33472e5939fdfb8d2c6c7c38c58868a1002e",
+    "hanlin_native_metadata_session": "519c0926180693cf418ba9b4195e1b2f27e04df8",
     "hanlin_observed_source_and_history": "e292d2c71e9584ca4e3ca52dd27158e84e6071d5",
+    "hanlin_original_read_adapter": "49759aa0ed9756132ab744ab4c866d83a94fc883",
     "hebrew_highlight_utf16": "ec3798b7055ac6280503f5a1f023d218d2bf86da",
     "hebrew_shortcuts": "3da99a3f91b4066f88bef54bc733a5e164c85641",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
@@ -47,11 +49,11 @@
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "30ea8b67f833ea40550311b38f152882ebac296e",
+  "application_source_sha": "519c0926180693cf418ba9b4195e1b2f27e04df8",
   "application_trees": {
     "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a",
     "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "99701be03e0c734a077cddcbee462f8c3f78ffa9",
+    "Source": "e8bd00903fd2c9012e16b92a17f5e763dcc8a4d5",
     "Vendor": "d444629a888a4abc367b56635122ca6c0d3481c6"
   },
   "hanlin_source": "86a6dde354947be9329fe1e8f4d45a433fe488c4",
@@ -255,7 +257,21 @@
           "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -846,7 +862,21 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 21873,
           "kind": "blob",
           "mode": "100644",
@@ -1187,7 +1217,21 @@
           "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
           "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 42527,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "135852cbcc3a708ffc1db7e5ab76cd3df2c57ba6",
+          "sha256": "e170094d128124a9f70bcf72032296411965af68586d58848aa447028c257831"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 42527,
           "kind": "blob",
           "mode": "100644",
@@ -1567,7 +1611,21 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -1879,6 +1937,25 @@
       "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift"
     },
     {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 25004,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "0409e7184870287fd9de265aef0c0a9ff28b2823",
+        "sha256": "20bdafd3772670d8067ad7141df8e8f233ff89bde8d002af97cc74270818815d"
+      },
+      "before": {
+        "bytes": 24385,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "66bd4dabf501e26d08e6bab22657bbc562330422",
+        "sha256": "7f762523d0cde1ba938e1f161309472090f804c2d8af48cdf3e02f1e998926c1"
+      },
+      "component": "hanlin_original_read_adapter",
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift"
+    },
+    {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
         "bytes": 37347,
@@ -1953,7 +2030,21 @@
           "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 37347,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "3fdd90a9febf5128d4cd1fff310dadc067a419c6",
+          "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 37347,
           "kind": "blob",
           "mode": "100644",
@@ -2283,7 +2374,21 @@
           "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -2783,11 +2888,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 153815,
+        "bytes": 153780,
         "kind": "blob",
         "mode": "100644",
-        "object": "5a40b91b560f28d76bb66399fcb7da7a766785d1",
-        "sha256": "6f5b2fd0d27aa77b64b5e37a110605210f99254d00493d6fc72fcd649f8edb4d"
+        "object": "1ceecf8cb1e15241f8b80f66c18ba4281247ce10",
+        "sha256": "775a0aa3311791187748f04d42ee1ad5a1d7d0c8ebd9576f182c8336afcc2dfa"
       },
       "before": {
         "bytes": 152357,
@@ -2796,7 +2901,7 @@
         "object": "df28f34439dd0d22f1c8d5ad13326adb6ed686f7",
         "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
       },
-      "component": "guided_navigation_native",
+      "component": "hanlin_native_metadata_session",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
     },
     {
@@ -3076,7 +3181,21 @@
           "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
           "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
         },
+        "hanlin_native_metadata_session": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
         "hanlin_observed_source_and_history": {
+          "bytes": 24135,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "b491fc1dbe411caf82833a66fca1aa6d74f2cda5",
+          "sha256": "0a7145a42d1953e2c88f5c1e0a5b486da712dea4aea9f16e855aa2eef61913c5"
+        },
+        "hanlin_original_read_adapter": {
           "bytes": 24135,
           "kind": "blob",
           "mode": "100644",
@@ -4132,7 +4251,17 @@
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
         },
+        "hanlin_native_metadata_session": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
         "hanlin_observed_source_and_history": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
+        },
+        "hanlin_original_read_adapter": {
           "kind": "commit",
           "mode": "160000",
           "object": "86a6dde354947be9329fe1e8f4d45a433fe488c4"
