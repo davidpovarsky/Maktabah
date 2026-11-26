@@ -282,6 +282,41 @@ def recorded_host_library_paths(root, records):
     return result
 
 
+def archive_runtime_symbols(output):
+    """Read actual Mach-O archive visibility, including private extern definitions."""
+    public, private = set(), set()
+    swift_prefixes = tuple('_$' + spelling + str(len(module)) + module
+                           for module in SWIFT_POD_MODULES for spelling in ('s', 'S'))
+    definition = re.compile(
+        r"^[0-9a-fA-F]+ \(([^)]+)\) (?:weak )?(private external|external)(?: \[[^\]]+\])* (.+)$")
+    for raw in output.splitlines():
+        line = raw.strip()
+        if not line or re.fullmatch(r"[^:]+\.o(?:\))?:", line):
+            continue
+        match = definition.fullmatch(line)
+        require(match, "Unexpected actual Host archive symbol record")
+        section, visibility, symbol = match.groups()
+        if not symbol.startswith('_') or 'PodsDummy_' in symbol:
+            continue
+        if symbol.startswith(('_$s', '_$S')) and not symbol.startswith(swift_prefixes):
+            continue
+        # Swift's private type-reference labels describe mangled metadata;
+        # linker remapping can change these names without changing a definition.
+        if (symbol.startswith(('_symbolic ', '_associated conformance ')) and visibility == 'private external'
+                and section == '__TEXT,__swift5_typeref'):
+            continue
+        require(not any(c.isspace() for c in symbol), "Unexpected actual Host archive symbol name")
+        (private if visibility == 'private external' else public).add(symbol)
+    return public, private - public
+
+
+def private_linker_glue(symbol):
+    modules = '|'.join(SWIFT_POD_MODULES)
+    if re.fullmatch(r"__swift_FORCE_LOAD_\$_swift[A-Za-z0-9]+_\$_(?:" + modules + r")", symbol):
+        return True
+    return symbol.startswith(('_$s8Promises', '_$S8Promises')) and re.search(r"fA[0-9]*_$", symbol) is not None
+
+
 def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=False, host_library_files=None):
     owner = admitted['shared_runtime']['ownership']
     images = {app.name: app / plistlib.loads((app / 'Info.plist').read_bytes())['CFBundleExecutable']}
@@ -319,6 +354,13 @@ def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=Fal
                        or s.startswith('_cmark_') or s.startswith(('_OBJC_CLASS_$_MT', '_OBJC_METACLASS_$_MT'))}
     require(required_editor and all(any(s.startswith(p) for s in required_editor) for p in namespaces),
             'Built app lost a required shared Host module implementation')
+    # A private extern from an object archive usually becomes a local
+    # definition when linked into the shared framework. Keep the external
+    # ownership assertion for ABI symbols and verify private definitions in
+    # the provider's actual complete defined nlist.
+    provider_defined = set(command(
+        ['xcrun', 'nm', '-j', '-U', '--no-dyldinfo', str(images[runtime])],
+        root=root, evidence=evidence, label='shared-provider-complete-defined-nlist', timeout=60).splitlines())
     required_runtime = set()
     library_proofs = {}
     observed_libraries = (recorded_host_library_paths(root, host_library_files)
@@ -328,23 +370,22 @@ def verify_app_ownership(root, admitted, app, evidence, command, *, after_ui=Fal
                       [p for p in app.parent.rglob('lib' + pod + '.a') if p.is_file() and not p.is_symlink()])
         require(len(candidates) == 1, 'Missing or ambiguous actual Host Pod library: ' + pod)
         library = candidates[0]
-        output = command(['xcrun', 'nm', '-gjU', str(library)], root=root, evidence=evidence,
-                         label='shared-host-library-' + pod, timeout=60)
-        selected = set()
-        for line in output.splitlines():
-            symbol = line.strip()
-            if not symbol.startswith('_') or 'PodsDummy_' in symbol:
-                continue
-            if symbol.startswith(('_$s', '_$S')):
-                if not any(symbol.startswith('_$s' + str(len(m)) + m) for m in SWIFT_POD_MODULES):
-                    continue
-            selected.add(symbol)
-        require(selected and selected <= symbols[runtime],
-                'Shared provider does not preserve every actual Host library implementation: ' + pod
-                + ': ' + repr(sorted(selected - symbols[runtime])[:20]))
-        required_runtime |= selected
+        output = command(['xcrun', 'nm', '-m', '-g', '-U', str(library)], root=root, evidence=evidence,
+                         label='shared-host-library-visibility-' + pod, timeout=60)
+        public, private = archive_runtime_symbols(output)
+        require(public and public <= symbols[runtime],
+                'Shared provider is missing an actual Host external definition: ' + pod
+                + ': ' + repr(sorted(public - symbols[runtime])[:20]))
+        missing_private = private - provider_defined
+        require(all(private_linker_glue(symbol) for symbol in missing_private)
+                and all(symbol not in exported for exported in symbols.values() for symbol in missing_private),
+                'Shared provider is missing an actual Host private definition: ' + pod
+                + ': ' + repr(sorted(s for s in missing_private if not private_linker_glue(s))[:20]))
+        required_runtime |= public
         library_proofs[pod] = {'path': library.relative_to(root).as_posix(), 'sha256': digest(library),
-                               'required_symbol_count': len(selected)}
+                               'required_symbol_count': len(public),
+                               'observed_private_symbol_count': len(private - missing_private),
+                               'private_linker_glue_not_emitted': sorted(missing_private)}
     for target, required_symbols in [(runtime, required_runtime), (editor, required_editor)]:
         for symbol in required_symbols:
             actual = sorted(name for name, values in symbols.items() if symbol in values)
