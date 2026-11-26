@@ -1,0 +1,9 @@
+PASS validated installation remains ready after transport failure
+PASS validated installation remains ready when public catalogue is unavailable
+PASS missing package never becomes ready after network failure
+PASS corrupt package cannot be made ready by fallback
+PASS successful original discovery still reports a published update
+PASS local refresh does not send a discovery request
+PASS removal during discovery cannot restore stale readiness
+PASS successful discovery retains original ready package
+RESULT passes=8 failures=0

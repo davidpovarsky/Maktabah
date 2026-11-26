@@ -1,0 +1,21 @@
+{
+  "scope": "Original controller method with service error fixtures only. No public-network or UI acceptance.",
+  "checks": {
+    "baseline": {
+      "source_sha256": "06e0d99eecd1751d807fe7f1a9f677f393942ec75ecafc445d769f796adc172f",
+      "method_sha256": "36befe9e213ef98a232f4803077a879f377619f86055c5cbacc59e72a2210be5",
+      "compile_exit": 0,
+      "run_exit": 1,
+      "passes": 6,
+      "failures": 2
+    },
+    "candidate": {
+      "source_sha256": "98429a31f01ba9db5953440cb7c48cb65f1111c8c5923105fe657fb5b49a838d",
+      "method_sha256": "06af4dc62b3be036c8eb6096895a0131ea9e458f0df55bf140217095da4bb5a4",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "passes": 8,
+      "failures": 0
+    }
+  }
+}
