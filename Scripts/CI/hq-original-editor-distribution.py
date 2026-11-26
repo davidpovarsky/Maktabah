@@ -271,6 +271,12 @@ def verify_symbol_free_xcode_preview(directory, relative, evidence, checks):
             "Xcode preview has an export or unexpected dyld inventory")
 
 
+def has_dyld_symbol_tables(path):
+    commands = {b"LC_DYLD_INFO", b"LC_DYLD_INFO_ONLY", b"LC_DYLD_CHAINED_FIXUPS", b"LC_DYLD_EXPORTS_TRIE"}
+    with gzip.open(path, "rb") as output:
+        return any(line.strip().removeprefix(b"cmd ") in commands for line in output)
+
+
 def runtime_absence_proof(root, directory, evidence, *, reused=None):
     root, directory, evidence = Path(root), Path(directory), Path(evidence)
     require_no_syntax_names(path.relative_to(directory).as_posix() for path in directory.rglob("*"))
@@ -286,20 +292,31 @@ def runtime_absence_proof(root, directory, evidence, *, reused=None):
         binary = directory / relative
         checks = {}
         preview = directory.suffix == ".app" and relative == "__preview.dylib"
-        for name, options in [("symbols", ["nm", "-a"]), ("imports", ["otool", "-L"]), ("loads", ["otool", "-l"])]:
-            checks[name] = binary_command([*options, str(binary)], root=root, evidence=evidence,
+        checks["loads"] = binary_command(["otool", "-l", str(binary)], root=root, evidence=evidence,
+                                         label=f"image-{number}-loads")
+        dyld_tables = has_dyld_symbol_tables(evidence / checks["loads"]["output"])
+        symbols = ["nm", "-a", "--no-sort"]
+        options = [("imports", ["otool", "-L"])]
+        if dyld_tables:
+            # Inspect both complete tables without nm's slow process of
+            # merging dyld entries into the nlist of large Apple outputs.
+            symbols.append("--no-dyldinfo")
+            options.extend([("dyld-imports", ["xcrun", "dyld_info", "-imports"]),
+                            ("exports", ["xcrun", "dyld_info", "-exports"])])
+        for name, argv in [("symbols", symbols), *options]:
+            checks[name] = binary_command([*argv, str(binary)], root=root, evidence=evidence,
                                           label=f"image-{number}-{name}", symbols=name == "symbols",
                                           xcode_preview=preview and name == "symbols")
         if checks["symbols"]["symbol_lines"] == 0:
-            checks["exports"] = binary_command(["xcrun", "dyld_info", "-exports", str(binary)],
-                                                root=root, evidence=evidence, label=f"image-{number}-exports")
+            require(dyld_tables, "Xcode preview is missing its expected dyld metadata")
             verify_symbol_free_xcode_preview(directory, relative, evidence, checks)
         require(digest(binary) == image["sha256"], "Runtime image changed during symbol/import inspection")
         verified[relative] = {**image, "checks": checks}
     require(code_images(directory) == images, "Runtime image closure changed during inspection")
     return {"status": "ACTUAL_FULL_SYMBOL_IMPORT_AND_PRODUCT_CLOSURE_PASS", "images": images,
             "verified_images": verified, "evidence": evidence.relative_to(root).as_posix(),
-            "forbidden_names": list(SYNTAX_NAMES), "native_execution": False}
+            "forbidden_names": list(SYNTAX_NAMES), "native_execution": False,
+            "symbol_scan": "complete-nlist-and-dyld"}
 
 
 def verify_absence_receipt(root, directory, proof, *, reused=None):
@@ -311,8 +328,15 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
                     for name, row in proof["verified_images"].items()), "Incomplete per-image binary proof")
     require_no_syntax_names(path.relative_to(directory).as_posix() for path in Path(directory).rglob("*"))
     evidence = Path(root) / proof["evidence"]
+    scan = proof.get("symbol_scan")
+    require(scan in (None, "complete-nlist-and-dyld"), "Unknown runtime symbol scan")
     by_hash = {row["sha256"]: row for row in (reused or {}).get("verified_images", {}).values()}
     for relative, row in proof["verified_images"].items():
+        for check in row.get("checks", {}).values():
+            path = evidence / check["output"]
+            require(path.is_file() and not path.is_symlink() and path.stat().st_size == check["bytes"]
+                    and digest(path) == check["sha256"] and check["returncode"] == 0,
+                    "Original full binary proof is missing or changed")
         symbol_free_preview = False
         if "reused_exact_image_proof" in row:
             require("checks" not in row and row["reused_exact_image_proof"] == by_hash.get(row["sha256"])
@@ -326,14 +350,25 @@ def verify_absence_receipt(root, directory, proof, *, reused=None):
             expected = {"symbols", "imports", "loads"}
             if symbol_free_preview:
                 expected.add("exports")
+            if scan == "complete-nlist-and-dyld":
+                loads = checks.get("loads", {})
+                require(loads.get("output"), "Missing original Mach-O load inspection")
+                if has_dyld_symbol_tables(evidence / loads["output"]):
+                    expected.update({"dyld-imports", "exports"})
+                    require(checks.get("symbols", {}).get("command", [])[:-1]
+                            == ["nm", "-a", "--no-sort", "--no-dyldinfo"],
+                            "Dyld inspection requires the complete separate nlist")
+                else:
+                    require(checks.get("symbols", {}).get("command", [])[:-1] == ["nm", "-a", "--no-sort"],
+                            "Unexpected full symbol-table command")
+                if "dyld-imports" in expected:
+                    require(checks.get("dyld-imports", {}).get("command", [])[:-1]
+                            == ["xcrun", "dyld_info", "-imports"]
+                            and checks.get("exports", {}).get("command", [])[:-1]
+                            == ["xcrun", "dyld_info", "-exports"], "Incomplete separate dyld scan")
             require(set(checks) == expected
                     and (symbol_free_preview or isinstance(symbol_lines, int) and symbol_lines > 0),
                     "Missing symbol/import/load closure")
-        for check in row.get("checks", {}).values():
-            path = evidence / check["output"]
-            require(path.is_file() and not path.is_symlink() and path.stat().st_size == check["bytes"]
-                    and digest(path) == check["sha256"] and check["returncode"] == 0,
-                    "Original full binary proof is missing or changed")
         if symbol_free_preview:
             verify_symbol_free_xcode_preview(directory, relative, evidence, row["checks"])
 
