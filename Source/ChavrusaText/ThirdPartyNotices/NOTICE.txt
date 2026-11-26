@@ -9,5 +9,5 @@ Other bundled code and its original license
 Maktabah and Sefaria Mobile are distributed under GPLv3. Their license text is in Maktabah-and-Sefaria-LICENSE.txt.
 Maktabah source is at https://github.com/davidpovarsky/Maktabah.
 The Sefaria Mobile source embedded in this version is at https://github.com/Sefaria/Sefaria-Mobile/tree/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c.
-Hanlin is distributed under the MIT License in Hanlin-LICENSE.txt. Its source is at https://github.com/davidpovarsky/hanlin-ai/tree/86a6dde354947be9329fe1e8f4d45a433fe488c4.
+Hanlin is distributed under the MIT License in Hanlin-LICENSE.txt. Its source is at https://github.com/davidpovarsky/hanlin-ai/tree/9565a9e4775901a4cee6f0402d7fd2978fab6612.
 The original Anytype code in the editor SDK is distributed under the Any Source Available License 1.0 in OriginalAnytype-LICENSE.md. Its source is at https://github.com/davidpovarsky/anytype-swift/tree/8ae85a6490c4fb763fcd01d5f93345f7e071db92.
