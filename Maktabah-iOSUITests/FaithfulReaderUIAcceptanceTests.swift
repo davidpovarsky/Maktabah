@@ -855,7 +855,10 @@ class FaithfulReaderUIBase: MaktabahUITestBase {
         }
 
         let directQuery = app.buttons.matching(identifier: identifier)
-        let overflowQuery = app.navigationBars.buttons.matching(identifier: "TopOverflowBarButtonItem")
+        // The real 375-point iOS 27 navigation bar can publish either UIKit
+        // identifier for its top overflow. Keep the search inside that bar.
+        let overflowQuery = app.navigationBars.buttons.matching(NSPredicate(
+            format: "identifier IN %@", ["TopOverflowBarButtonItem", "OverflowBarButtonItem"]))
         let toolbarReady = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated {
                 !visible(directQuery).isEmpty || !visible(overflowQuery).isEmpty
