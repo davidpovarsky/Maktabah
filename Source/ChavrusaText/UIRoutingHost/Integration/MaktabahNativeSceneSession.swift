@@ -520,7 +520,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc"].contains(command.route.route.destination.rawValue) {
+        if ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
                     guard let self, mounted, submissionID == command.invocation.requestId else { return }
