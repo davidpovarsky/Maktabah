@@ -130,7 +130,7 @@ final class SQLTrace: @unchecked Sendable {
                 .write(to: output.appendingPathComponent(window.name + ".json"))
 
             var prefetch: [[String: Any]] = []
-            for count in [500, 2_000] {
+            for count in [100, 500, 2_000] {
                 let selected = Array(full.prefix(count))
                 let requests = selected.map {
                     TorahLinkedSource(id: identity($0),

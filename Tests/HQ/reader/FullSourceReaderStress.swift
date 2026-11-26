@@ -96,6 +96,12 @@ private func waitFor(_ predicate: @Sendable () -> Bool) async throws {
     }
 }
 
+// The test deliberately holds the read until its task has been cancelled.
+// Keep the bounded synchronous wait outside the async task body on Darwin.
+private func waitForCancellationSignal(_ signal: DispatchSemaphore) throws {
+    try require(signal.wait(timeout: .now() + 10) == .success, "pre-cancellation barrier timed out")
+}
+
 private func field(_ object: Any, _ name: String) throws -> Any {
     guard let value = Mirror(reflecting: object).children.first(where: { $0.label == name })?.value else {
         throw StressFailure(description: "source cache field missing: \(name)")
@@ -309,7 +315,7 @@ private struct CacheSnapshot: Codable, Sendable {
 
             let preStart = DispatchSemaphore(value: 0)
             let preCancelled = Task.detached { () throws -> Bool in
-                _ = preStart.wait(timeout: .now() + 10)
+                try waitForCancellationSignal(preStart)
                 return try shared.reader.readingUnit(bookId: 28, containingLineIndex: 0, mode: .line) != nil
             }
             preCancelled.cancel(); preStart.signal()
