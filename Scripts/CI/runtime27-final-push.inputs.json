@@ -1,20 +1,20 @@
 {
   "schema": "otzaria-final-runtime-push-v1",
-  "state": "UNFINALIZED",
+  "state": "FINALIZED",
   "reviewed_wrapper_base": "e603d8182a1c10c4b37b14c92b5f0bc3829edea8",
-  "application_source_sha": "a0781bd2628c1311394f7da6aa1e84c17f252fa4",
-  "reviewed_r27_sha256": "b81034f6e6f83089c9a2cf6294468abfde382af156879f8a7161599539bb87ed",
+  "application_source_sha": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
+  "reviewed_r27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
   "application_trees": {
-    "Source": "7b672630a07f6798120dea948e74c6ad1f760cb6",
-    "Vendor": "4065c0e62af325e83a65fe0c70270985229807ae",
-    "Maktabah.xcodeproj": "0cb7fe0654ac1e601e2d88420f95cca0837e5699",
-    "Maktabah-iOSUITests": "646d0593ecf5aaaa801327cece03d99a879aef04"
+    "Source": "c8a1184d7a2305656d4b61f5b896a38fb9485f53",
+    "Vendor": "206715dd2022ff73184860bec183578c8799d812",
+    "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
+    "Maktabah-iOSUITests": "15ea404a920d0152c47146988c1f7f5e48b6194a"
   },
   "source_pin_sha256": {
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "61dab6cc477ec31949cb962ae18147180af2edf4a912f264844062e933057bf8",
-    "docs/hq-integration/runtime27/R27_CASES.json": "17794127a5cf50501f120652bbb2ad7cc26d9a95573b9134ef1ff9a56b2eed49",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "bcbae2085537f46c057667d39fdf7da809d1eec981a8df05da4c6253ff13914e",
+    "docs/hq-integration/runtime27/R27_CASES.json": "6538c21575ff67d5bfa08f5966968a143407ddec81a9fc51b8b847c84df9c8ed",
     "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
-    "Scripts/CI/hq-v32-prebuilt-native.py": "885706e8cc843d2b6d5ba04b0752acf8e1c23c6baae5c1e9bcccc0518d0736be"
+    "Scripts/CI/hq-v32-prebuilt-native.py": "36ef3c8369e69607912b3805d4d3646b0166e2716e2cc9d18f86b2fdf2876436"
   },
   "selection": {
     "native_cases": 116,

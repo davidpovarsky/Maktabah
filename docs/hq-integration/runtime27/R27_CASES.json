@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "source_test_commit": "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+  "source_test_commit": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
   "application_base": "94564afb043134170f27ca72f8b320c6e8a7b150",
-  "app_source": "75058d1c1abbfb0fb37fc819dcece47b853eb4da",
+  "app_source": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
   "sole_executor_thread": "01a1e20f-d054-7523-8b89-7f523fbf54d2",
   "independent_qa_thread": null,
-  "scope": "Complete original Native116 at the current source checkpoint; final product and SDK binding remains UNFINALIZED, native execution NOT_RUN.",
+  "scope": "Complete original Native116 on the exact final application and qualified SDK inputs. Native execution pending.",
   "native_cases_executed": 0,
   "required_nonzero_cases": 116,
   "expected_per_device": {
