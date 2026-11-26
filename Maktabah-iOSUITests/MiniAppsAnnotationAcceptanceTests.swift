@@ -653,13 +653,16 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         let firstBody = try await richBody(first, host: host)
         firstBody.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5)).tap()
         firstBody.typeText("\n")
-        let blanks = host.textViews.matching(NSPredicate(format: "value == %@", ""))
-        try await requireNativeCondition(timeout: 20) {
-            blanks.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
-        }
-        let blank = try XCTUnwrap(blanks.allElementsBoundByIndex.first { $0.isHittable })
-        tap(blank); blank.typeText(second)
-        _ = try await richBody(second, host: host)
+        // Use the real Return focus transfer. An empty native UITextView
+        // may not expose an AX value or a hittable element above the keyboard.
+        let keyboard = app.keyboards.firstMatch
+        try await requireNativeCondition(timeout: 20) { keyboard.exists && keyboard.isHittable }
+        app.typeText(second)
+        let hide = keyboard.buttons.matching(NSPredicate(format: "label IN %@",
+            ["Hide Keyboard", "Hide keyboard", "Dismiss Keyboard", "Dismiss keyboard"]))
+        let visibleHide = hide.allElementsBoundByIndex.filter(\.isHittable)
+        if visibleHide.count == 1 { visibleHide[0].tap() }
+        try await assertNativeBodies([first, second], host: host)
         // Capture a real caret from the first native block. If the original
         // toolbar ends focus, the SDK's no-selection insertion adds a block;
         // expected topology is derived from its actual native context below.
