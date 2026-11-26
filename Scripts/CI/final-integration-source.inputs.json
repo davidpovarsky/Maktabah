@@ -3,6 +3,7 @@
     "empty_note": "6b330a2964adf30932cfb7e86fc984068c7c5d10",
     "library": "74ae9510d90b50343e961967616e5630d1682295",
     "library_install_cancel_rollback": "7212133b9a7366021382d2e80932c692b780b3f3",
+    "managed_database_identity": "295ea341e5a549a3de201c665378535e1f483ffa",
     "miniapps": "8cdc0c0833154e71af5047983c47115db0005e35",
     "miniapps_hebrew_rtl": "6c82659e5c442768c3063abb5941e744af3dd43f",
     "miniapps_save_confirmation": "5010787a974b9fc825f2746ae1fa1bfbc6f3f132",
@@ -12,13 +13,14 @@
     "original_lifecycle_and_native_batch": "bd5df8089314fde5491cef10997d0d446cb6ca26",
     "original_rich_miniapps": "3d9d0452e7e1337b96343597c92c9af75197bbda",
     "reader_cancellation": "00612813b5dda017a61f5a5b8c37efb10d750fbc",
-    "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72"
+    "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
+    "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6"
   },
-  "application_source_sha": "a30962719873962e18b08fa1ad7a9df6a925fc72",
+  "application_source_sha": "295ea341e5a549a3de201c665378535e1f483ffa",
   "application_trees": {
     "Maktabah-iOSUITests": "d797d519342e4e34e5a2ea2f419ab13ed2d5caef",
     "Maktabah.xcodeproj": "b73c93abd95eedfb41062e7b6683e13ebc774cc3",
-    "Source": "471ce867b0da19ad50d1cf6a15b95423c72ee824",
+    "Source": "8ab68f1856af92deb61393ca5e519b98b1d4619b",
     "Vendor": "6e58b7ac171ad91f91f0357faf8e8a894a278345"
   },
   "hanlin_source": "4b772b5a7f0eb826c9b9204122bba516af777592",
@@ -47,6 +49,13 @@
         "empty_note": null,
         "library": null,
         "library_install_cancel_rollback": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
+        },
+        "managed_database_identity": {
           "bytes": 71096,
           "kind": "blob",
           "mode": "100644",
@@ -105,6 +114,13 @@
           "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
         },
         "study_workspace_locale": {
+          "bytes": 71096,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "194036e27dc8df7aed29920345a13949e49e045a",
+          "sha256": "755ca9acb195d56934b2470b4ba8bac420c4c44fce9b317aa1b9f89ac1651cb6"
+        },
+        "universal_link_transport": {
           "bytes": 71096,
           "kind": "blob",
           "mode": "100644",
@@ -186,11 +202,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 992,
+        "bytes": 1114,
         "kind": "blob",
         "mode": "100644",
-        "object": "66fb918165bddfd34b9867dcee8474ed0977b2ed",
-        "sha256": "bc3644771d2b7181653126c9cb29bfbade51ec152d22825e45b1659a9692f4cc"
+        "object": "21f4b3d34d9425dc4e96e6631ec3e4453f55ae83",
+        "sha256": "44f805d3c0cd12b86a9045eba34e9bb641bb0806364530e1e17d52f2d5efea70"
       },
       "before": {
         "bytes": 949,
@@ -199,7 +215,7 @@
         "object": "e5c758ac4be4708945e1b07706aa3813e9e05af8",
         "sha256": "97f0dfce06f41b05055bd1e2b08c0504bd44e22cb22f28925e5a5f2f4231ef2e"
       },
-      "component": "original_lifecycle_and_native_batch",
+      "component": "universal_link_transport",
       "path": "Source/ChavrusaText-iOS.entitlements"
     },
     {
@@ -465,6 +481,13 @@
           "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         },
+        "managed_database_identity": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
         "miniapps": null,
         "miniapps_hebrew_rtl": {
           "bytes": 40262,
@@ -523,6 +546,13 @@
           "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
         },
         "study_workspace_locale": {
+          "bytes": 42323,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "fcc230979b815590d1eaa0fc019ffb50221a2310",
+          "sha256": "bec4030c163db7373dafebc804d4754d1f4818059f028775a7496d200f09b67d"
+        },
+        "universal_link_transport": {
           "bytes": 42323,
           "kind": "blob",
           "mode": "100644",
@@ -614,6 +644,13 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "managed_database_identity": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "miniapps": null,
         "miniapps_hebrew_rtl": {
           "bytes": 53217,
@@ -672,6 +709,13 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "study_workspace_locale": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "universal_link_transport": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -870,6 +914,63 @@
       },
       "component": "study_workspace_locale",
       "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 1785,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "596c683bb3404a2ee4f72bb07fa881e0cbe98a7d",
+        "sha256": "0e3f598c685479d23a9bb67e6c1aecf012a1fc6291269a26f9888cc40e3e4420"
+      },
+      "before": {
+        "bytes": 1543,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "8994f0de81ab2c1cf07e9b20d5977455bd094188",
+        "sha256": "c6e98002d2a2ecce23fbeb4b8aea1057fd2c4c58f2263aea5176dc9eea0f8202"
+      },
+      "component": "universal_link_transport",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 4167,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "20d383faf6737e5c3c4655863ca4ccdfddcdf3af",
+        "sha256": "6c6d461253cb3891eef0db63bdf9c09ae12ddde133f2dc2841c5ceab8e39eff5"
+      },
+      "before": {
+        "bytes": 3109,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "845887b4df8ff63c5e893d950dc6fa6b9f59ff22",
+        "sha256": "68f4d3cefa2518ad3ee8f118be392f151a369b0fb61bf25d2b491343bd1d4dfb"
+      },
+      "component": "universal_link_transport",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7376,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d51763f998b0bc87e0d98356cf96b93c98191d24",
+        "sha256": "12a5526d31dbdb5fd6f8f69f5a9db4cb1377ac276bef1d0f7f348e4708541fb9"
+      },
+      "before": {
+        "bytes": 4820,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "e04a86fb91ecce51944b4d52f9644a961f4dd7a0",
+        "sha256": "cd1bf4b53073edda78751c06413437ae9e79e4275d9a23df535d03a96cb70647"
+      },
+      "component": "universal_link_transport",
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicNavigationURLV2Tests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -1202,6 +1303,25 @@
       "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift"
     },
     {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 35768,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "0bfd802da2f152ac74142ebd172957607790ff7d",
+        "sha256": "06e0d99eecd1751d807fe7f1a9f677f393942ec75ecafc445d769f796adc172f"
+      },
+      "before": {
+        "bytes": 35437,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "42865fa6e658aceb7f705c81968ac0560afd1bf4",
+        "sha256": "14398bf1136e858b33e44059732bfb71c4fe59d8db7cb37afd270d8924e311f8"
+      },
+      "component": "managed_database_identity",
+      "path": "Source/ZayitSearch/ZayitSearchDistribution.swift"
+    },
+    {
       "adoption": "EXPLICIT_REVIEWED_MERGE",
       "after": {
         "kind": "commit",
@@ -1225,6 +1345,11 @@
           "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
         },
         "library_install_cancel_rollback": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
+        },
+        "managed_database_identity": {
           "kind": "commit",
           "mode": "160000",
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
@@ -1275,6 +1400,11 @@
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
         },
         "study_workspace_locale": {
+          "kind": "commit",
+          "mode": "160000",
+          "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
+        },
+        "universal_link_transport": {
           "kind": "commit",
           "mode": "160000",
           "object": "4b772b5a7f0eb826c9b9204122bba516af777592"
