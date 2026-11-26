@@ -1,0 +1,3 @@
+Dynamic Type font sizes are partially unsupported
+User will not be able to change the font size of this UILabel
+element=unavailable

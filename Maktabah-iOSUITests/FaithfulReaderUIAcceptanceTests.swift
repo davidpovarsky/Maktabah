@@ -541,7 +541,12 @@ private func observeNativeGlobalHistory(
     details["installationPinned"] = pinned
     details["installationMatchesInitialBytes"] = installationMatches
     let preference = container.appendingPathComponent("Library/Preferences/" + bundleID + ".plist")
-    let preferenceRead = observeNativeGlobalHistoryFile(preference, maximum: 1024 * 1024)
+    // The same preferences file also contains the real qualified-locator
+    // registry. Native116 exceeded the former 1 MiB reader limit before the
+    // history dictionary could be observed. Keep a finite 8 MiB read budget;
+    // installation, namespace, parsing and exact history-count gates below
+    // remain unchanged. This reads the original writer; it never flushes it.
+    let preferenceRead = observeNativeGlobalHistoryFile(preference, maximum: 8 * 1024 * 1024)
     details["preferenceFileRead"] = preferenceRead.details
     var preferences: [String: Any]?
     if let bytes = preferenceRead.data {
