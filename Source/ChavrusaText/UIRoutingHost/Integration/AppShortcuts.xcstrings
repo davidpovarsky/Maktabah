@@ -1,0 +1,26 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Open ${destination} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתח את ${destination} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
+    "Open ${book} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתח את הספר ${book} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
