@@ -30,6 +30,7 @@ struct iOSReaderView: View {
 
     @State private var showingBookInfo = false
     @State private var showingAnnotationActionSheet = false
+    @State private var showingAnnotationsList = false
     @State private var tappedAnnotationId: Int64?
     @State private var isReading = false
     @ObservedObject private var annotationRefreshCoordinator = ReaderAnnotationRefreshCoordinator.shared
@@ -184,7 +185,8 @@ struct iOSReaderView: View {
                 iOSReaderBottomToolbarView(
                     viewModel: viewModel,
                     onShowTableOfContents: toggleTableOfContents,
-                    tableOfContentsIsPresented: tableOfContentsIsPresented
+                    tableOfContentsIsPresented: tableOfContentsIsPresented,
+                    onShowAnnotations: { showingAnnotationsList = true }
                 )
             }
         }
@@ -198,6 +200,26 @@ struct iOSReaderView: View {
         }
         .onDisappear {
             viewModel.saveCurrentState()
+        }
+        .sheet(isPresented: $showingAnnotationsList) {
+            if let book = viewModel.currentBook {
+                iOSBookAnnotationsView(
+                    bookId: book.id,
+                    viewModel: viewModel.bookAnnotationsViewModel,
+                    onSelect: { ann in
+                        viewModel.didSelectAnnotation(ann)
+                        showingAnnotationsList = false
+                    },
+                    onUpdate: { updated in
+                        try viewModel.updateAnnotation(updated)
+                    },
+                    onDelete: { ann in
+                        if let id = ann.id {
+                            try viewModel.deleteAnnotation(id: id)
+                        }
+                    }
+                )
+            }
         }
         .sheet(isPresented: Binding(
             get: { showingAnnotationActionSheet && tappedAnnotationId != nil },

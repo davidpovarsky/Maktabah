@@ -11,11 +11,11 @@ struct iOSReaderBottomToolbarView: View {
     @Bindable var viewModel: ReaderViewModel
     var onShowTableOfContents: (() -> Void)? = nil
     var tableOfContentsIsPresented = false
+    var onShowAnnotations: () -> Void
     var textViewState = TextViewState.shared
     @State private var showingNavigation = false
     @State private var showingOptions = false
     @State private var showingTOC = false
-    @State private var showingAnnotationsList = false
     @State private var showingSearch = false
 
     @Environment(\.layoutDirection) private var layoutDirection
@@ -103,7 +103,7 @@ struct iOSReaderBottomToolbarView: View {
 
             Button(action: {
                 DispatchQueue.main.async {
-                    showingAnnotationsList = true
+                    onShowAnnotations()
                 }
             }) {
                 Label("Annotations", systemImage: "quote.closing")
@@ -176,26 +176,7 @@ struct iOSReaderBottomToolbarView: View {
                 }
             )
         }
-        .sheet(isPresented: $showingAnnotationsList) {
-            if let book = viewModel.currentBook {
-                iOSBookAnnotationsView(
-                    bookId: book.id,
-                    viewModel: viewModel.bookAnnotationsViewModel,
-                    onSelect: { ann in
-                        viewModel.didSelectAnnotation(ann)
-                        showingAnnotationsList = false
-                    },
-                    onUpdate: { updated in
-                        try viewModel.updateAnnotation(updated)
-                    },
-                    onDelete: { ann in
-                        if let id = ann.id {
-                            try viewModel.deleteAnnotation(id: id)
-                        }
-                    }
-                )
-            }
-        }
+
     }
 
     private var nextButton: some View {
@@ -225,5 +206,5 @@ struct iOSReaderBottomToolbarView: View {
         muallif: 1
     )
     let mockViewModel = ReaderViewModel(book: mockBook)
-    return iOSReaderBottomToolbarView(viewModel: mockViewModel)
+    return iOSReaderBottomToolbarView(viewModel: mockViewModel, onShowAnnotations: {})
 }
