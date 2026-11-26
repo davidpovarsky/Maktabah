@@ -1,0 +1,24 @@
+{
+  "id": "job_90ace220a2b3",
+  "type": "job_result",
+  "source": "script_run@host_4b47bdb65d00e49d",
+  "severity": "warning",
+  "tool": "script_run",
+  "host": "host_4b47bdb65d00e49d",
+  "status": "failed",
+  "exit_code": 1,
+  "created_at": 1795736157.4345918,
+  "started_at": "2026-11-26T23:35:57.716314+00:00",
+  "finished_at": "2026-11-26T23:37:40.763519+00:00",
+  "duration_s": 103.05,
+  "error": null,
+  "output_truncated": false,
+  "timeout_s": 240,
+  "read": false,
+  "notified": {
+    "telegram": null,
+    "resend": null
+  },
+  "notify_spec": {},
+  "output": "{\n  \"status\": \"NEGATIVE_CONTROL_REPRODUCED\",\n  \"test_exit\": 1,\n  \"result\": \"/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/RESULT.json\",\n  \"result_digest\": {\n    \"bytes\": 20260,\n    \"sha256\": \"666930306b64f16ea1331c103cd8f0c63fb8c7272aa808c3f6c332f8802c111a\"\n  },\n  \"summaries\": [\n    {\n      \"failed\": 1,\n      \"passed\": 9,\n      \"scope\": \"real-filesystem-SQLite-component\",\n      \"skipped\": 0,\n      \"ui_acceptance\": false\n    }\n  ]\n}"
+}

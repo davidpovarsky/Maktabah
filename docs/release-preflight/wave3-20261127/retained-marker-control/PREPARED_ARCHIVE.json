@@ -1,0 +1,10 @@
+{
+  "archive": "/mnt/development/projects/worktrees/Maktabah-wave3-library-retained-marker-20261127/docs/release-preflight/wave3-20261127/retained-marker-control/prepared-source.tar.gz",
+  "bytes": 58582,
+  "sha256": "d6872dff98952aa6a88f03f1b97975903cce6f52b677cf3e5ab4cf025fee05e5",
+  "report": "/mnt/development/projects/worktrees/Maktabah-wave3-library-retained-marker-20261127/docs/release-preflight/wave3-20261127/retained-marker-control",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-library-retained-marker-20261127",
+  "branch": "codex/otzaria-wave3-library-retained-marker-20261127",
+  "source_files": 31,
+  "control_sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b"
+}

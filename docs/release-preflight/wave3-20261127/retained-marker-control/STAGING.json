@@ -1,0 +1,10 @@
+{
+  "root": "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127",
+  "host": "109bcd84-6a7a-475f-9c53-0cf427912d04",
+  "uid": 501,
+  "free_before_bytes": 7418286080,
+  "disk": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   482797652 429571064   7244420    99% 6881972 72444200    9%   /System/Volumes/Data\n",
+  "inputs_verified": 30,
+  "archive_sha256": "d6872dff98952aa6a88f03f1b97975903cce6f52b677cf3e5ab4cf025fee05e5",
+  "reserved_incremental_bytes": 536870912
+}

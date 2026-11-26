@@ -1,0 +1,9 @@
+{
+  "original_nine_helpers_byte_identical": true,
+  "added_cases": 1,
+  "original_control_sha256": "49c9c2e4767eaac8fe748ce2faac88ff9c9da951ad9527cd2410765aea808a6a",
+  "diagnostic_control_sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b",
+  "product_source_sha": "0d0a010c3ee1edda244f9fb37431016d12320234",
+  "product_edits": false,
+  "gate_edits": false
+}

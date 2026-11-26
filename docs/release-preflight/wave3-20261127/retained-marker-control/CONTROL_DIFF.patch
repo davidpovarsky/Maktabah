@@ -1,0 +1,78 @@
+--- original/LibraryRecoveryControls.swift
++++ diagnostic/Controls.swift
+@@ -1,0 +2 @@
++import CryptoKit
+@@ -60,0 +62 @@
++            ("consecutive_update_retained_cleanup_marker", consecutiveUpdateAfterCleanupFailure),
+@@ -250,0 +253,71 @@
++
++    /// A retained cleanup marker belongs to the completed first transaction.
++    /// It must not authenticate an interrupted replacement in a second update.
++    private static func consecutiveUpdateAfterCleanupFailure() throws {
++        try withFixture { f in
++            try f.promote()
++            try fm.setAttributes([.immutable: true], ofItemAtPath: f.storage.previousDatabaseURL.path)
++            try f.installer.completePromotion(storage: f.storage)
++            try f.requireNew()
++            let committedDatabase = try Data(contentsOf: f.storage.finalDatabaseURL)
++            let committedManifest = try Data(contentsOf: f.storage.installationManifestURL)
++            try require(Data(contentsOf: f.storage.previousInstallationManifestURL) == f.oldManifest,
++                        "First transaction did not retain its cleanup marker")
++            try fm.setAttributes([.immutable: false], ofItemAtPath: f.storage.previousDatabaseURL.path)
++
++            func fingerprint(_ data: Data) -> String {
++                SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
++            }
++            func record(_ phase: String) throws {
++                var files: [String: Any] = [:]
++                for (name, url) in [
++                    ("finalDatabase", f.storage.finalDatabaseURL),
++                    ("previousDatabase", f.storage.previousDatabaseURL),
++                    ("stableManifest", f.storage.installationManifestURL),
++                    ("pendingManifest", f.storage.pendingInstallationManifestURL),
++                    ("previousManifest", f.storage.previousInstallationManifestURL)
++                ] {
++                    if fm.fileExists(atPath: url.path) {
++                        let data = try Data(contentsOf: url)
++                        var entry: [String: Any] = ["bytes": data.count, "sha256": fingerprint(data)]
++                        if name.contains("Manifest"),
++                           let object = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
++                            entry["releaseID"] = object["releaseID"]
++                            entry["releaseTag"] = object["releaseTag"]
++                        }
++                        files[name] = entry
++                    } else {
++                        files[name] = ["exists": false]
++                    }
++                }
++                emit(["sequence": "consecutive_update_retained_cleanup_marker", "phase": phase,
++                      "expectedCommittedDatabaseSHA256": fingerprint(committedDatabase),
++                      "expectedCommittedManifestSHA256": fingerprint(committedManifest), "files": files])
++            }
++            try record("first_update_committed_cleanup_retained")
++
++            let nextStaging = f.storage.uniqueStagingDatabaseURL()
++            try database(nextStaging, label: "next snapshot")
++            let nextDatabase = try Data(contentsOf: nextStaging)
++            try require(nextDatabase.count == committedDatabase.count && nextDatabase != committedDatabase,
++                        "Second update must be distinct, same-sized valid SQLite")
++            try OtzariaDatabaseAccessController.shared.validateDatabase(at: nextStaging)
++            let next = OtzariaPreparedDatabaseInstallation(
++                release: release(41, version: 41), stagingURL: nextStaging,
++                databaseFileSize: Int64(nextDatabase.count), extractionElapsedSeconds: 0,
++                validationElapsedSeconds: 0
++            )
++            _ = try f.installer.promote(next, storage: f.storage)
++            // Identical interruption model to original unrecordedReplacement():
++            // replacement happened, but its new pending identity never persisted.
++            try fm.removeItem(at: f.storage.pendingInstallationManifestURL)
++            try record("second_replacement_before_pending_identity")
++            try f.installer.recoverInterruptedInstallation(storage: f.storage)
++            try record("after_second_update_recovery")
++            try require(Data(contentsOf: f.storage.finalDatabaseURL) == committedDatabase,
++                        "Recovery accepted the second database under the first update's stable identity")
++            try require(Data(contentsOf: f.storage.installationManifestURL) == committedManifest,
++                        "Recovery lost the current committed identity")
++        }
++    }
++

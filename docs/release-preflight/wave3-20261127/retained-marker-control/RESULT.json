@@ -1,0 +1,481 @@
+{
+  "scope": "real-filesystem-SQLite-negative-control",
+  "product_sha": "0d0a010c3ee1edda244f9fb37431016d12320234",
+  "original_evidence_sha": "618dd4d1fdabae66b4f515436e006c216734a36e",
+  "control_sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b",
+  "inputs": {
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    "Source/Core/Database/ZstdShim.swift": {
+      "bytes": 3213,
+      "sha256": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999"
+    },
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    "Tests/HQ/updates/LibraryRecoveryControls.swift": {
+      "bytes": 12617,
+      "sha256": "49c9c2e4767eaac8fe748ce2faac88ff9c9da951ad9527cd2410765aea808a6a"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 7299,
+      "sha256": "11cb7aa686fe0426724d68e28003d55cea936d2b42b9ecacfca857588b61ebf0"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 11234,
+      "sha256": "8c138198f41830eca491508e57b8c67508a580eeb36e00c0a61d7600eabbdff5"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "bytes": 31738,
+      "sha256": "33411f699c3131be5a027a81d4c3a2ec7c6b83d36bcd78dd3389014d5cc2aeda"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 22125,
+      "sha256": "1bc7ada3b324d76a57ced0f168cd2566d5948009f412e8f1a7027c0b09ce3d34"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "bytes": 2423,
+      "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift": {
+      "bytes": 8365,
+      "sha256": "e8b560ca268a943dbbfb095130773cc53a47ef7443bbc195f01c840fb7203fa9"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift": {
+      "bytes": 1897,
+      "sha256": "115fe42f62dab2da50b649307a260a0f93fd34187d8fabdc2b6531c57a22ce53"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Source/Otzaria/Storage/ITorahSharedContainer.swift": {
+      "bytes": 42358,
+      "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67"
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "bytes": 13447,
+      "sha256": "eb867ef684f6515c23fc539f26216c7f8c9e5167a40bd9584852434f3dde2ddf"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteConnection.swift": {
+      "bytes": 2291,
+      "sha256": "cd813cd219f84f3a6cabbb926cb9217197ef5c20b1bda28a36aa2df486395823"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift": {
+      "bytes": 1363,
+      "sha256": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": {
+      "bytes": 2487,
+      "sha256": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307"
+    },
+    "Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift": {
+      "bytes": 967,
+      "sha256": "f350434f0a1bb357c3b3b5c87afc4bd87b381d59d782f370bd9ef7319a5b452b"
+    },
+    "Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift": {
+      "bytes": 1546,
+      "sha256": "33c1334bec1b90ef9419006c107cbbb6cdb02dc837a0ae81c5dacaeba1f0a851"
+    },
+    "Source/Otzaria/Core/String+OtzariaText.swift": {
+      "bytes": 5243,
+      "sha256": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 18893,
+      "sha256": "d529968ed276250171efb24ff0c47e1381d244ae802b878dd4e7bc46a74df2f2"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 11219,
+      "sha256": "c6462ef7b59ad2d43cd2b85b7fa527db62041b80e50ef07805a93f7a707b7adc"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 6436,
+      "sha256": "fbc2ff580e2ab3ddff4ec831da8fe01530f0680e9dc6a39e8f73d888f55613dc"
+    },
+    "ComponentBoundary.swift": {
+      "bytes": 827,
+      "sha256": "c476a589b3afed1978bda7e279019ce431d5095bc3415f400220678a44e3e8c0"
+    },
+    "Controls.swift": {
+      "bytes": 17111,
+      "sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b"
+    },
+    "run_control.py": {
+      "bytes": 4800,
+      "sha256": "86d50c0c325138ed1982236d0b75112348aef95eef074fa320da2d077fb8a8ac"
+    },
+    "INPUTS.original.json": {
+      "bytes": 6238,
+      "sha256": "194cab94e3804909dc1b3652a9adae4a846a098769aad484e904dd95f64267c7"
+    }
+  },
+  "runner": {
+    "bytes": 4800,
+    "sha256": "86d50c0c325138ed1982236d0b75112348aef95eef074fa320da2d077fb8a8ac"
+  },
+  "started_at": "2026-11-26T23:36:02.701795+00:00",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "ui_acceptance": false,
+  "product_acceptance": false,
+  "commands": [
+    {
+      "command": [
+        "xcodebuild",
+        "-version"
+      ],
+      "exit": 0,
+      "stdout": "Xcode 27.0\nBuild version 27A266a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+      "stderr": "swift-driver version: 1.168.6 "
+    },
+    {
+      "command": [
+        "df",
+        "-k",
+        "/System/Volumes/Data"
+      ],
+      "exit": 0,
+      "stdout": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   482797652 430104180   6711304    99% 6885697 67113040    9%   /System/Volumes/Data\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-swift-version",
+        "5",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/modules",
+        "-L",
+        "/opt/homebrew/lib",
+        "-lzstd",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Core/Database/SQLiteDatabase.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Core/Database/ZstdShim.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Controls.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Storage/ITorahSharedContainer.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaDatabaseAccessController.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaSQLiteConnection.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaSQLiteError.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaSQLiteStatement.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/Source/Otzaria/Core/String+OtzariaText.swift",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/ComponentBoundary.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave3-library-retained-marker-20261127/LibraryRecoveryRetainedMarker"
+      ],
+      "exit": 0
+    }
+  ],
+  "binary": {
+    "bytes": 1696608,
+    "sha256": "3387a102367fcfa594b551ac97c127ff2c0346315ff21586be40099f568ceec1"
+  },
+  "test_exit": 1,
+  "rows": [
+    {
+      "case": "manifest_commit_failure_retains_rollback",
+      "status": "PASS"
+    },
+    {
+      "case": "unrecorded_replacement_restores_old_identity",
+      "status": "PASS"
+    },
+    {
+      "case": "missing_final_restores_old_identity",
+      "status": "PASS"
+    },
+    {
+      "case": "malformed_pending_identity_rolls_back",
+      "status": "PASS"
+    },
+    {
+      "case": "valid_pending_recovers_forward",
+      "status": "PASS"
+    },
+    {
+      "case": "committed_manifest_recovers_forward",
+      "status": "PASS"
+    },
+    {
+      "case": "cleanup_failure_retains_commit_marker",
+      "status": "PASS"
+    },
+    {
+      "case": "normal_update_preserves_user_store",
+      "status": "PASS"
+    },
+    {
+      "case": "failed_pending_write_restores_old_identity",
+      "status": "PASS"
+    },
+    {
+      "expectedCommittedDatabaseSHA256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036",
+      "expectedCommittedManifestSHA256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a",
+      "files": {
+        "finalDatabase": {
+          "bytes": 16384,
+          "sha256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036"
+        },
+        "pendingManifest": {
+          "exists": false
+        },
+        "previousDatabase": {
+          "bytes": 16384,
+          "sha256": "55f7387c3d8cda168f1b42a73f2562822e22d836f4c5490648cd076ebccf74cd"
+        },
+        "previousManifest": {
+          "bytes": 307,
+          "releaseID": 32,
+          "releaseTag": "v32-20261123094345",
+          "sha256": "740cbce8acdf2212ee88275a386522ed3a419c1c9975b2f281fe43e63588c457"
+        },
+        "stableManifest": {
+          "bytes": 353,
+          "releaseID": 40,
+          "releaseTag": "v40-20261123094345",
+          "sha256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a"
+        }
+      },
+      "phase": "first_update_committed_cleanup_retained",
+      "sequence": "consecutive_update_retained_cleanup_marker"
+    },
+    {
+      "expectedCommittedDatabaseSHA256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036",
+      "expectedCommittedManifestSHA256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a",
+      "files": {
+        "finalDatabase": {
+          "bytes": 16384,
+          "sha256": "fd8ee6438642861380e8af95e830c1a4b157edd639083c161d9d89c147d89b4e"
+        },
+        "pendingManifest": {
+          "exists": false
+        },
+        "previousDatabase": {
+          "bytes": 16384,
+          "sha256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036"
+        },
+        "previousManifest": {
+          "bytes": 307,
+          "releaseID": 32,
+          "releaseTag": "v32-20261123094345",
+          "sha256": "740cbce8acdf2212ee88275a386522ed3a419c1c9975b2f281fe43e63588c457"
+        },
+        "stableManifest": {
+          "bytes": 353,
+          "releaseID": 40,
+          "releaseTag": "v40-20261123094345",
+          "sha256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a"
+        }
+      },
+      "phase": "second_replacement_before_pending_identity",
+      "sequence": "consecutive_update_retained_cleanup_marker"
+    },
+    {
+      "expectedCommittedDatabaseSHA256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036",
+      "expectedCommittedManifestSHA256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a",
+      "files": {
+        "finalDatabase": {
+          "bytes": 16384,
+          "sha256": "fd8ee6438642861380e8af95e830c1a4b157edd639083c161d9d89c147d89b4e"
+        },
+        "pendingManifest": {
+          "exists": false
+        },
+        "previousDatabase": {
+          "bytes": 16384,
+          "sha256": "b262a2e08f145511958b70465ac4490dbec5f9f304be822bd65673ceea8e7036"
+        },
+        "previousManifest": {
+          "bytes": 307,
+          "releaseID": 32,
+          "releaseTag": "v32-20261123094345",
+          "sha256": "740cbce8acdf2212ee88275a386522ed3a419c1c9975b2f281fe43e63588c457"
+        },
+        "stableManifest": {
+          "bytes": 353,
+          "releaseID": 40,
+          "releaseTag": "v40-20261123094345",
+          "sha256": "987922a35a0fa583c34447d3ed0f0665c9b4a481cd1046cf74ea3d4359dec36a"
+        }
+      },
+      "phase": "after_second_update_recovery",
+      "sequence": "consecutive_update_retained_cleanup_marker"
+    },
+    {
+      "case": "consecutive_update_retained_cleanup_marker",
+      "error": "Recovery accepted the second database under the first update's stable identity",
+      "status": "FAIL"
+    },
+    {
+      "failed": 1,
+      "passed": 9,
+      "scope": "real-filesystem-SQLite-component",
+      "skipped": 0,
+      "ui_acceptance": false
+    }
+  ],
+  "inputs_after": {
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    "Source/Core/Database/ZstdShim.swift": {
+      "bytes": 3213,
+      "sha256": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999"
+    },
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    "Tests/HQ/updates/LibraryRecoveryControls.swift": {
+      "bytes": 12617,
+      "sha256": "49c9c2e4767eaac8fe748ce2faac88ff9c9da951ad9527cd2410765aea808a6a"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 7299,
+      "sha256": "11cb7aa686fe0426724d68e28003d55cea936d2b42b9ecacfca857588b61ebf0"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 11234,
+      "sha256": "8c138198f41830eca491508e57b8c67508a580eeb36e00c0a61d7600eabbdff5"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": {
+      "bytes": 17491,
+      "sha256": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift": {
+      "bytes": 31738,
+      "sha256": "33411f699c3131be5a027a81d4c3a2ec7c6b83d36bcd78dd3389014d5cc2aeda"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 22125,
+      "sha256": "1bc7ada3b324d76a57ced0f168cd2566d5948009f412e8f1a7027c0b09ce3d34"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaDownloadPolicy.swift": {
+      "bytes": 2423,
+      "sha256": "d51c4bfbd4e5ba85c0bb645cafe4eeb17cf3147cdc2dee35e39da776751e3b72"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift": {
+      "bytes": 14219,
+      "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+    },
+    "Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift": {
+      "bytes": 8365,
+      "sha256": "e8b560ca268a943dbbfb095130773cc53a47ef7443bbc195f01c840fb7203fa9"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaArtifactStorage.swift": {
+      "bytes": 1897,
+      "sha256": "115fe42f62dab2da50b649307a260a0f93fd34187d8fabdc2b6531c57a22ce53"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift": {
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    "Source/Otzaria/DataProfiles/OtzariaDataProfileRegistry.swift": {
+      "bytes": 2720,
+      "sha256": "b2dcb938d724eb01619e95d14a915f55de069da4b09ac007c15da92ecdd6d84d"
+    },
+    "Source/Otzaria/Storage/ITorahSharedContainer.swift": {
+      "bytes": 42358,
+      "sha256": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67"
+    },
+    "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift": {
+      "bytes": 13447,
+      "sha256": "eb867ef684f6515c23fc539f26216c7f8c9e5167a40bd9584852434f3dde2ddf"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteConnection.swift": {
+      "bytes": 2291,
+      "sha256": "cd813cd219f84f3a6cabbb926cb9217197ef5c20b1bda28a36aa2df486395823"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift": {
+      "bytes": 1363,
+      "sha256": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad"
+    },
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": {
+      "bytes": 2487,
+      "sha256": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307"
+    },
+    "Source/Otzaria/Core/OtzariaSecurityScopedAccess.swift": {
+      "bytes": 967,
+      "sha256": "f350434f0a1bb357c3b3b5c87afc4bd87b381d59d782f370bd9ef7319a5b452b"
+    },
+    "Source/Otzaria/Core/OtzariaSecurityScopedBookmarkStore.swift": {
+      "bytes": 1546,
+      "sha256": "33c1334bec1b90ef9419006c107cbbb6cdb02dc837a0ae81c5dacaeba1f0a851"
+    },
+    "Source/Otzaria/Core/String+OtzariaText.swift": {
+      "bytes": 5243,
+      "sha256": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift": {
+      "bytes": 18893,
+      "sha256": "d529968ed276250171efb24ff0c47e1381d244ae802b878dd4e7bc46a74df2f2"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift": {
+      "bytes": 11219,
+      "sha256": "c6462ef7b59ad2d43cd2b85b7fa527db62041b80e50ef07805a93f7a707b7adc"
+    },
+    "Baseline/Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift": {
+      "bytes": 6436,
+      "sha256": "fbc2ff580e2ab3ddff4ec831da8fe01530f0680e9dc6a39e8f73d888f55613dc"
+    },
+    "ComponentBoundary.swift": {
+      "bytes": 827,
+      "sha256": "c476a589b3afed1978bda7e279019ce431d5095bc3415f400220678a44e3e8c0"
+    },
+    "Controls.swift": {
+      "bytes": 17111,
+      "sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b"
+    },
+    "run_control.py": {
+      "bytes": 4800,
+      "sha256": "86d50c0c325138ed1982236d0b75112348aef95eef074fa320da2d077fb8a8ac"
+    },
+    "INPUTS.original.json": {
+      "bytes": 6238,
+      "sha256": "194cab94e3804909dc1b3652a9adae4a846a098769aad484e904dd95f64267c7"
+    }
+  },
+  "status": "NEGATIVE_CONTROL_REPRODUCED",
+  "finished_at": "2026-11-26T23:37:40.727463+00:00",
+  "disk_after": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   482797652 429977164   6838320    99% 6885617 68383200    9%   /System/Volumes/Data\n"
+}
