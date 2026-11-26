@@ -8,6 +8,10 @@ import CryptoKit
 final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
 
+    // The isolated simulator provides test isolation. An actual URL callback
+    // starts a new OS process without XCTest launch arguments.
+    override var isolatesStudyWorkspace: Bool { false }
+
 
     private struct PickerPreferences: Decodable, Equatable {
         let favorites: [String]
