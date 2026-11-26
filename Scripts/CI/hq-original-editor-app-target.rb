@@ -40,6 +40,14 @@ pod_projection_before = nil
 pod_projection_after = nil
 source_root = File.expand_path('..', File.dirname(project_file))
 
+def comparable_pod_sources(route)
+  # Each genuine producer keeps its own resolved Git object-store evidence.
+  # Source identity compares all other fields, including every file and revision.
+  route.fetch('pod_source_contracts').transform_values do |source|
+    source.reject { |key, _| key == 'git_object_resolution' }
+  end
+end
+
 release_variants = plan.fetch('release_variants', {})
 release_config = nil
 release_pod_path = nil
@@ -68,8 +76,12 @@ unless release_variants.empty?
   end
   sim_route = release_variants.fetch('release-simulator').fetch('shared_pod_link_route')
   device_route = release_variants.fetch('release-device').fetch('shared_pod_link_route')
-  raise 'Release platforms do not share exact Pod sources/link projection' unless sim_route == device_route &&
-    sim_route.fetch('pod_source_contracts') == plan.fetch('shared_pod_link_route').fetch('pod_source_contracts')
+  sim_projection = sim_route.reject { |key, _| key == 'pod_source_contracts' }
+  device_projection = device_route.reject { |key, _| key == 'pod_source_contracts' }
+  shared_pod_sources = comparable_pod_sources(sim_route)
+  raise 'Release platforms do not share exact Pod sources/link projection' unless sim_projection == device_projection &&
+    shared_pod_sources == comparable_pod_sources(device_route) &&
+    shared_pod_sources == comparable_pod_sources(plan.fetch('shared_pod_link_route'))
   path = 'Pods/Target Support Files/Pods-Maktabah-iOS/Pods-Maktabah-iOS.release.xcconfig'
   raise 'Unreviewed Release Pod configuration' unless sim_route.fetch('path') == path
   release_pod_path = File.join(source_root, path)
