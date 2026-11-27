@@ -1,0 +1,615 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T08:34:25.836338+00:00",
+  "rootBase": "54fd5d5b7c3ebacb563c713778d8df92598e79ee",
+  "packets": [
+    {
+      "donor": "c0f6371bc68d29b60faa76f643dc0a06879c11b8",
+      "files": [
+        {
+          "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "mode": "reviewed-three-way",
+          "beforeSHA256": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+          "baseSHA256": "36e4b5bb0e244484cd152de8ae92823838772d5f90cc780aa85efbf7e6b4af66",
+          "donorSHA256": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf",
+          "expectedSHA256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+          "expectedBytes": 351993
+        },
+        {
+          "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+          "mode": "exact-donor",
+          "beforeSHA256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+          "baseSHA256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+          "donorSHA256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+          "expectedSHA256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+          "expectedBytes": 7980
+        },
+        {
+          "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+          "mode": "exact-donor",
+          "beforeSHA256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+          "baseSHA256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+          "donorSHA256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+          "expectedSHA256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+          "expectedBytes": 24850
+        },
+        {
+          "path": "Scripts/CI/reader-v40-natural-inspector-catalog.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+          "expectedSHA256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+          "expectedBytes": 35424
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+          "expectedSHA256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+          "expectedBytes": 19714
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ACTUAL_INPUT_ADMISSION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "daf0c63d09fd37affc1cb7a4cb05a54357d69bca574ad3f4caf1f4dafd5b0e77",
+          "expectedSHA256": "daf0c63d09fd37affc1cb7a4cb05a54357d69bca574ad3f4caf1f4dafd5b0e77",
+          "expectedBytes": 2487
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/CHECKPOINT_SOURCE_MANIFEST.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b74f529695adf2cd2537e3f23bab4832c2a8600789971ab3933dedeac667603e",
+          "expectedSHA256": "b74f529695adf2cd2537e3f23bab4832c2a8600789971ab3933dedeac667603e",
+          "expectedBytes": 2751
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c2614ea17cd6f64dbc1a1283a70a40da62bbb1708c40f61d63b17c258671899b",
+          "expectedSHA256": "c2614ea17cd6f64dbc1a1283a70a40da62bbb1708c40f61d63b17c258671899b",
+          "expectedBytes": 2402
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ORIGINAL_REQUIREMENT_TASKS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c96c9585b1f2f05f83c01b38b49b56d9b462de68b3a557a9e1dd5a28ffc3a3dd",
+          "expectedSHA256": "c96c9585b1f2f05f83c01b38b49b56d9b462de68b3a557a9e1dd5a28ffc3a3dd",
+          "expectedBytes": 25298
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/PRE_CONTRACT_CORRECTION_SOURCE_CONTROLS_RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "fce6dd954499ead1fc8bc5855637b2f6968e52633606a8c3089ca0152c7141ce",
+          "expectedSHA256": "fce6dd954499ead1fc8bc5855637b2f6968e52633606a8c3089ca0152c7141ce",
+          "expectedBytes": 2371
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/README.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "62498bead288970df4a63fb3556ac6359dd9b6a18d1d515e82106fefc521cc50",
+          "expectedSHA256": "62498bead288970df4a63fb3556ac6359dd9b6a18d1d515e82106fefc521cc50",
+          "expectedBytes": 9603
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SELECTED_CANDIDATES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "6602ef9aaeda19f4c0734aa8858988ab0c91964b1ea304b6b5a12c984ae2053b",
+          "expectedSHA256": "6602ef9aaeda19f4c0734aa8858988ab0c91964b1ea304b6b5a12c984ae2053b",
+          "expectedBytes": 195938
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SOURCE_CONTROLS_RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "11977d526f2698a4b153c5d4f18f53f7bb91810b8b8f78e2dd8c43d757bba750",
+          "expectedSHA256": "11977d526f2698a4b153c5d4f18f53f7bb91810b8b8f78e2dd8c43d757bba750",
+          "expectedBytes": 4231
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SWIFT_PRESERVATION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e9f295051f292bc0c8612f21fb60c9f86d1fd09291410aab258868cfe6fb2aef",
+          "expectedSHA256": "e9f295051f292bc0c8612f21fb60c9f86d1fd09291410aab258868cfe6fb2aef",
+          "expectedBytes": 723
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4",
+          "expectedSHA256": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4",
+          "expectedBytes": 2319
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/collect-source-admission-stops.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "a7036bcde975487d51c7a682829d9997fcdbd022e184db049a43ef0f36e89386",
+          "expectedSHA256": "a7036bcde975487d51c7a682829d9997fcdbd022e184db049a43ef0f36e89386",
+          "expectedBytes": 3426
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialization.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "ded28621b6f21d6ee43cb8350456cc915419efeeeb3deb8ba243a032c41d54d8",
+          "expectedSHA256": "ded28621b6f21d6ee43cb8350456cc915419efeeeb3deb8ba243a032c41d54d8",
+          "expectedBytes": 341
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialize-genesis38-membership.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f7f90dfbe1c321493717a43b509abca5ec2264daeebc241d3f4f4799850ef79f",
+          "expectedSHA256": "f7f90dfbe1c321493717a43b509abca5ec2264daeebc241d3f4f4799850ef79f",
+          "expectedBytes": 9773
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialized-unit-relationships.sql",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "ae59a7dbdfb39b7fe1c1692cace320a46c4bb906480106a92f4096dd5bf9d718",
+          "expectedSHA256": "ae59a7dbdfb39b7fe1c1692cace320a46c4bb906480106a92f4096dd5bf9d718",
+          "expectedBytes": 2419
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/run-focused-apple-source-check.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+          "expectedSHA256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+          "expectedBytes": 6932
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/FullV40InspectorNaturalTargets.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392",
+          "expectedSHA256": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392",
+          "expectedBytes": 13922
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/INPUT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b67b183f7edde27a2d2d40a50369cc0f656c1eba6a7a42180d433929e9d69dcd",
+          "expectedSHA256": "b67b183f7edde27a2d2d40a50369cc0f656c1eba6a7a42180d433929e9d69dcd",
+          "expectedBytes": 3632
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "3d29eace8ddc3ef7c23dee367150d8b3495a25469d92b36956a93a9d4a59f197",
+          "expectedSHA256": "3d29eace8ddc3ef7c23dee367150d8b3495a25469d92b36956a93a9d4a59f197",
+          "expectedBytes": 4518
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/TRANSFER.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e871872add0eee2a6429e52eeb814931545db98db9e29c1fb9803d1b0c238970",
+          "expectedSHA256": "e871872add0eee2a6429e52eeb814931545db98db9e29c1fb9803d1b0c238970",
+          "expectedBytes": 7472
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/launcher.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b1dfb42a8080edb59e389f39bbaac34c7e20e11a32f87cc28bc7495b0c555e7b",
+          "expectedSHA256": "b1dfb42a8080edb59e389f39bbaac34c7e20e11a32f87cc28bc7495b0c555e7b",
+          "expectedBytes": 298
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/run-focused-apple-source-check.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a",
+          "expectedSHA256": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a",
+          "expectedBytes": 6565
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/FullV40InspectorNaturalTargets.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+          "expectedSHA256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+          "expectedBytes": 19714
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/INPUT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7e5b5c6d2dea15eaf4cd6e45466ad8fb86e4b3e7a7ff509b55667413c16a7052",
+          "expectedSHA256": "7e5b5c6d2dea15eaf4cd6e45466ad8fb86e4b3e7a7ff509b55667413c16a7052",
+          "expectedBytes": 4834
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/ORIGINAL_FORMATTING_EXTRACTION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "72e48e0f3feeea447c86fb4bd738a06aca774c8966b208d2b7e81b8f4014463d",
+          "expectedSHA256": "72e48e0f3feeea447c86fb4bd738a06aca774c8966b208d2b7e81b8f4014463d",
+          "expectedBytes": 849
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/OriginalMaktabahTorahInspectorFormatting.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "85b5c2613d4b84a61110ba5abb8d289f7669eeef198cba3e8a2f838bab1c4708",
+          "expectedSHA256": "85b5c2613d4b84a61110ba5abb8d289f7669eeef198cba3e8a2f838bab1c4708",
+          "expectedBytes": 1430
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "170e051e9563608c19299528bbe82495cf1fa14826dbcf47d3b333bc0da763bf",
+          "expectedSHA256": "170e051e9563608c19299528bbe82495cf1fa14826dbcf47d3b333bc0da763bf",
+          "expectedBytes": 15864
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/TRANSFER.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "a3930d72a11c92b1e0fe7501be5e0c023f68300a9fa13f53e028a27a49b57c68",
+          "expectedSHA256": "a3930d72a11c92b1e0fe7501be5e0c023f68300a9fa13f53e028a27a49b57c68",
+          "expectedBytes": 10172
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/launcher.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "2219aafac3c807545c8a9ff8db4aa806a04afc530e5bc11fa7afbc3dc76b2a47",
+          "expectedSHA256": "2219aafac3c807545c8a9ff8db4aa806a04afc530e5bc11fa7afbc3dc76b2a47",
+          "expectedBytes": 298
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/run-focused-apple-source-check.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+          "expectedSHA256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+          "expectedBytes": 6932
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-controls.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "5739df7e1003bac86465ff04affc6eafa4044cf3a3624e836544563384e2ece4",
+          "expectedSHA256": "5739df7e1003bac86465ff04affc6eafa4044cf3a3624e836544563384e2ece4",
+          "expectedBytes": 14541
+        }
+      ]
+    },
+    {
+      "donor": "883660701dd57c049de6da6fcf51a4027675409c",
+      "files": [
+        {
+          "path": "Scripts/CI/study-ui-offline-execution.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+          "expectedSHA256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+          "expectedBytes": 62459
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/API.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "aba139ff2dcd00e1a206ee722a979c223970b6627eb45c1856f68761e2b5f611",
+          "expectedSHA256": "aba139ff2dcd00e1a206ee722a979c223970b6627eb45c1856f68761e2b5f611",
+          "expectedBytes": 12662
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/CHECKPOINT.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "738550f01a1c70f77c8a53926a614515cb2d0244f68c3b83035de1b7117f7ed1",
+          "expectedSHA256": "738550f01a1c70f77c8a53926a614515cb2d0244f68c3b83035de1b7117f7ed1",
+          "expectedBytes": 2091
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/FILE_MANIFEST.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3774a02cc5875d3cfe6f9749921a586220441990636b4b03eb9f589efbb04ce",
+          "expectedSHA256": "e3774a02cc5875d3cfe6f9749921a586220441990636b4b03eb9f589efbb04ce",
+          "expectedBytes": 2082
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/NATIVE_SOURCE_RECEIPTS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d8286673e2448f95d815224d908ae9b4471ef57212983f215a2081e7a151d0f7",
+          "expectedSHA256": "d8286673e2448f95d815224d908ae9b4471ef57212983f215a2081e7a151d0f7",
+          "expectedBytes": 329
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "839f05c9aede1e7a4ab46a18350cd0e475068d6fe8a02b9eb5a9b78c21f46ae7",
+          "expectedSHA256": "839f05c9aede1e7a4ab46a18350cd0e475068d6fe8a02b9eb5a9b78c21f46ae7",
+          "expectedBytes": 439
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "757ecf02ae0050af5a5f62144fbee83de2a7eb0a73246ac6b8cfac3a9d1688ca",
+          "expectedSHA256": "757ecf02ae0050af5a5f62144fbee83de2a7eb0a73246ac6b8cfac3a9d1688ca",
+          "expectedBytes": 6985
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_CONTROLS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "17e017a96699be0f6d72b81820fe9d58dd7a6adec55a257bf7409362eccb6416",
+          "expectedSHA256": "17e017a96699be0f6d72b81820fe9d58dd7a6adec55a257bf7409362eccb6416",
+          "expectedBytes": 272
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_RECEIPTS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "66d628779f139d8d2918a5481a045bdb819fa1df472b01f18cec224f701234f0",
+          "expectedSHA256": "66d628779f139d8d2918a5481a045bdb819fa1df472b01f18cec224f701234f0",
+          "expectedBytes": 419
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SSH_ROUTE_READONLY.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d2271dabc74ac8d29579eb784147062a803d76ba131a4b0da7112a55218595e8",
+          "expectedSHA256": "d2271dabc74ac8d29579eb784147062a803d76ba131a4b0da7112a55218595e8",
+          "expectedBytes": 1025
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/controls.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0f1cd6b17514992785a69790778aa0a9d51b31159351d7a2959690be4ad37244",
+          "expectedSHA256": "0f1cd6b17514992785a69790778aa0a9d51b31159351d7a2959690be4ad37244",
+          "expectedBytes": 6985
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/controls.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-execution/source-controls.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "36a5f9f47731273481d5ae8b63e8673bcedc08a77519e0a68ab8e1b31f27b097",
+          "expectedSHA256": "36a5f9f47731273481d5ae8b63e8673bcedc08a77519e0a68ab8e1b31f27b097",
+          "expectedBytes": 25254
+        }
+      ]
+    },
+    {
+      "donor": "ec834a5f4fe109726c91b137bb8b7c33e2ca299e",
+      "files": [
+        {
+          "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+          "mode": "exact-donor",
+          "beforeSHA256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+          "baseSHA256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+          "donorSHA256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659",
+          "expectedSHA256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659",
+          "expectedBytes": 8117
+        },
+        {
+          "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+          "mode": "exact-donor",
+          "beforeSHA256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+          "baseSHA256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+          "donorSHA256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317",
+          "expectedSHA256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317",
+          "expectedBytes": 33328
+        },
+        {
+          "path": "Scripts/CI/study-ui-prerequisites.py",
+          "mode": "exact-donor",
+          "beforeSHA256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2",
+          "baseSHA256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2",
+          "donorSHA256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72",
+          "expectedSHA256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72",
+          "expectedBytes": 48654
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/CONTROL_ATTEMPTS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "486bb91f80e0109fce37a98dc6750591a51ad4898747f85488c821dea924eaa3",
+          "expectedSHA256": "486bb91f80e0109fce37a98dc6750591a51ad4898747f85488c821dea924eaa3",
+          "expectedBytes": 343
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/README.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7548f5525920df60527c3fe8ebc7ba5353701d8b12b0dec7ea0c97576e23169b",
+          "expectedSHA256": "7548f5525920df60527c3fe8ebc7ba5353701d8b12b0dec7ea0c97576e23169b",
+          "expectedBytes": 3885
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/ROOT_CHANGED_FILES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "817f6007c00d2137b79cdc32e3519c6c8b29712b4816783c30b93969ecd55f0f",
+          "expectedSHA256": "817f6007c00d2137b79cdc32e3519c6c8b29712b4816783c30b93969ecd55f0f",
+          "expectedBytes": 1575
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/SOURCE_API_INTAKE_FILES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "daa62f514326f64f7948f8d66a45f47659faa2239090c6549d052bf85beedf5f",
+          "expectedSHA256": "daa62f514326f64f7948f8d66a45f47659faa2239090c6549d052bf85beedf5f",
+          "expectedBytes": 22484
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/SOURCE_CONTROLS_RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "ab0b05df41ff3ad0d743e419f4ff0c91b2ecae987980f015bdc1dac031b8236b",
+          "expectedSHA256": "ab0b05df41ff3ad0d743e419f4ff0c91b2ecae987980f015bdc1dac031b8236b",
+          "expectedBytes": 4261
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/historical-exact-v40-wrapper.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+          "expectedSHA256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+          "expectedBytes": 23994
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-controls.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "eda4a0104336b2948e0f1fd4db0bf3b43c4eda61498aa50fd0deeeb5b5a61c13",
+          "expectedSHA256": "eda4a0104336b2948e0f1fd4db0bf3b43c4eda61498aa50fd0deeeb5b5a61c13",
+          "expectedBytes": 12208
+        }
+      ]
+    },
+    {
+      "donor": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+      "files": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/ADMISSION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0498c4d5b7220dd034daf352a294e6a769f9a81d5050c60cd3443ba93b91319f",
+          "expectedSHA256": "0498c4d5b7220dd034daf352a294e6a769f9a81d5050c60cd3443ba93b91319f",
+          "expectedBytes": 5576
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/INTENT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f1f3eb2695857e7b432c9a5a695c264275e20051cfd4586923b1503a0df383c6",
+          "expectedSHA256": "f1f3eb2695857e7b432c9a5a695c264275e20051cfd4586923b1503a0df383c6",
+          "expectedBytes": 2218
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/README.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "6ab6b9d85aef523cb31a19d9eb4ace1d798a412d66d57377f200da940b9632c6",
+          "expectedSHA256": "6ab6b9d85aef523cb31a19d9eb4ace1d798a412d66d57377f200da940b9632c6",
+          "expectedBytes": 1409
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "aed0368790bb2396cee4dd1a73b4d277691468e95f1a1a9b45909207288f79b4",
+          "expectedSHA256": "aed0368790bb2396cee4dd1a73b4d277691468e95f1a1a9b45909207288f79b4",
+          "expectedBytes": 1530
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/retire-exact-recovered-v40-db.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "a4e4a1a98cfb6b7918ccdfb2e2af021b8b24eac57e89fd4986d65d3ca9c4ee8b",
+          "expectedSHA256": "a4e4a1a98cfb6b7918ccdfb2e2af021b8b24eac57e89fd4986d65d3ca9c4ee8b",
+          "expectedBytes": 13017
+        }
+      ]
+    }
+  ],
+  "merges": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "commit": "c0f6371bc68d29b60faa76f643dc0a06879c11b8",
+      "root": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+      "base": "36e4b5bb0e244484cd152de8ae92823838772d5f90cc780aa85efbf7e6b4af66",
+      "donor": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf",
+      "expected": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+      "bytes": 351993
+    }
+  ],
+  "interpretation": "Selective reviewed commits, not branch merge. Original evidence retains its actual source/execution identities; no native acceptance was rerun."
+}

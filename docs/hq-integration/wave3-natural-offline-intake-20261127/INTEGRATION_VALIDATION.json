@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "head": "fbe3c10edf608c168d1094137353385abdfcae2b",
+  "productSourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+  "faithful": {
+    "integratedSHA256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+    "reconstructedRootSHA256": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+    "rootSHA256": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+    "exactReconstruction": true
+  },
+  "load_coreByteExact": true,
+  "pythonParse": [
+    {
+      "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+      "sha256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317",
+      "parse": "PASS",
+      "executed": false
+    },
+    {
+      "path": "Scripts/CI/reader-v40-natural-inspector-catalog.py",
+      "sha256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+      "parse": "PASS",
+      "executed": false
+    },
+    {
+      "path": "Scripts/CI/study-ui-prerequisites.py",
+      "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72",
+      "parse": "PASS",
+      "executed": false
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-execution.py",
+      "sha256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+      "parse": "PASS",
+      "executed": false
+    }
+  ],
+  "swiftParse": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+      "exit": 0,
+      "scope": "Linux iOS-conditional syntax only; no Apple SDK/typecheck"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift",
+      "sha256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+      "exit": 0,
+      "scope": "Linux iOS-conditional syntax only; no Apple SDK/typecheck"
+    }
+  ],
+  "nativeRuns": 0,
+  "sourceControlReruns": 0
+}

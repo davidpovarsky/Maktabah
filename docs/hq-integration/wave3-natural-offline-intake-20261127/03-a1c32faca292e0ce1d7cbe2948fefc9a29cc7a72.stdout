@@ -1,0 +1,9 @@
+[codex/otzaria-wave3-integration-20261127 fbe3c10e] docs(search): preserve exact released corpus retirement proof [skip ci]
+ Author: ChatGPT Search Agent <codex@openai.com>
+ Date: Fri Nov 27 07:59:25 2026 +0000
+ 5 files changed, 547 insertions(+)
+ create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-db-retirement/ADMISSION.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-db-retirement/INTENT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-db-retirement/README.md
+ create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-db-retirement/RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-db-retirement/retire-exact-recovered-v40-db.py

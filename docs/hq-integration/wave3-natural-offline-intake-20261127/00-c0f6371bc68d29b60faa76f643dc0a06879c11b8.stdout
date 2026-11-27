@@ -1,0 +1,37 @@
+Auto-merging Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+[codex/otzaria-wave3-integration-20261127 0ddc66c0] Add source-bound natural v40 Inspector workloads and full native identity comparison [skip ci]
+ Author: Codex <chatgpt-agent@users.noreply.github.com>
+ Date: Fri Nov 27 07:12:42 2026 +0000
+ 35 files changed, 16597 insertions(+), 2 deletions(-)
+ create mode 100644 Scripts/CI/reader-v40-natural-inspector-catalog.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ACTUAL_INPUT_ADMISSION.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/CHECKPOINT_SOURCE_MANIFEST.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ORIGINAL_REQUIREMENT_TASKS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/PRE_CONTRACT_CORRECTION_SOURCE_CONTROLS_RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/README.md
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SELECTED_CANDIDATES.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SOURCE_CONTROLS_RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SWIFT_PRESERVATION.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/collect-source-admission-stops.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialization.stdout.log
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialize-genesis38-membership.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialized-unit-relationships.sql
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/run-focused-apple-source-check.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/FullV40InspectorNaturalTargets.swift
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/INPUT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/TRANSFER.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/launcher.stdout.log
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/run-focused-apple-source-check.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/FullV40InspectorNaturalTargets.swift
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/INPUT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/ORIGINAL_FORMATTING_EXTRACTION.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/OriginalMaktabahTorahInspectorFormatting.swift
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/TRANSFER.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/launcher.stdout.log
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/run-focused-apple-source-check.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-controls.py

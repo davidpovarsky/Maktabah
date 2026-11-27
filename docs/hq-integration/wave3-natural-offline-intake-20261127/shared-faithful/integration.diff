@@ -1,0 +1,215 @@
+--- root/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
++++ integrated/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift
+@@ -5366,7 +5366,7 @@
+ 
+     @MainActor
+     func testOriginalFullV40InspectorRelationshipScalesAndReturn() throws {
+-        try observeOriginalFullCorpusInspectorRelationshipScalesAndReturn(.v40)
++        try observeOriginalFullV40NaturalInspectorRelationshipScalesAndReturn()
+     }
+ 
+     @MainActor
+@@ -5507,3 +5507,203 @@
+ 
+ }
+ // END ADDITIVE FULL-V32 ORIGINAL READER OBSERVATIONS
++
++// BEGIN ADDITIVE FULL-V40 NATURAL INSPECTOR TARGETS
++private struct FullV40NaturalInspectorScale: Decodable {
++    let requestedCount: Int
++    let originalMetadataCount: Int
++    let rawMembershipSHA256: String
++    let sourceIndicesSHA256: String
++    let nativeOrderedIdentitySHA256: String
++    let nativeIdentityHashedBytes: Int
++    let identityProjectionSHA256: String
++    let atLeastRequestedCount: Bool
++    let exactRequestedCount: Bool
++    let target: FullV32ReaderTarget
++}
++private struct FullV40NaturalInspectorCatalog: Decodable {
++    let schema: Int
++    let corpusProfile: String
++    let status: String
++    let databaseSHA256: String
++    let scales: [FullV40NaturalInspectorScale]
++    let compileInputsSHA256: String
++    let installedSQLReceiptSHA256: String
++    let nativeUIExecuted: Int
++    let nativeCacheObserved: Bool
++}
++extension FaithfulProductionReleaseTests {
++    @MainActor private func fullV40NaturalInspectorCatalog() throws -> (FullV40NaturalInspectorCatalog, String) {
++        let environment = ProcessInfo.processInfo.environment
++        let path = try XCTUnwrap(environment["FULL_V40_NATURAL_INSPECTOR_CATALOG_FILE"])
++        let expectedSHA = try XCTUnwrap(environment["FULL_V40_NATURAL_INSPECTOR_CATALOG_SHA256"])
++        let bytes = try fullV32BoundedData(URL(fileURLWithPath: path), limit: 1024 * 1024)
++        let actualSHA = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
++        try fullV32Require(actualSHA == expectedSHA && expectedSHA.count == 64,
++            "Require the exact independently generated natural-service catalog bytes")
++        let catalog = try JSONDecoder().decode(FullV40NaturalInspectorCatalog.self, from: bytes)
++        try fullV32Require(catalog.schema == 1 && catalog.corpusProfile == "full-v40"
++            && catalog.status == "ORIGINAL_NATURAL_UNIT_AND_METADATA_CATALOG_NOT_NATIVE_ACCEPTANCE"
++            && catalog.databaseSHA256 == FullReaderObservationCorpus.v40.databaseSHA256
++            && catalog.scales.map(\.requestedCount) == [100, 500, 2000]
++            && catalog.scales.allSatisfy { $0.originalMetadataCount >= $0.requestedCount
++                && $0.atLeastRequestedCount && $0.exactRequestedCount == ($0.originalMetadataCount == $0.requestedCount) }
++            && Set(catalog.scales.map { $0.target.key }).count == 3
++            && catalog.scales.allSatisfy { ![103, 28, 3152].contains($0.target.bookID)
++                && $0.target.unitMode == "chapter" && $0.rawMembershipSHA256.count == 64
++                && $0.sourceIndicesSHA256.count == 64 && $0.nativeOrderedIdentitySHA256.count == 64
++                && $0.identityProjectionSHA256.count == 64 && $0.nativeIdentityHashedBytes > 0 }
++            && catalog.nativeUIExecuted == 0 && !catalog.nativeCacheObserved,
++            "Complete natural source-oracle targets are a prerequisite; they cannot stand in for native cache/UI evidence")
++        try fullV32Attach(["catalogSHA256": actualSHA, "compileInputsSHA256": catalog.compileInputsSHA256,
++            "installedSQLReceiptSHA256": catalog.installedSQLReceiptSHA256,
++            "targetKeys": catalog.scales.map { $0.target.key },
++            "scope": "source catalog admission only; original native observations follow"],
++            "full-v40-natural-inspector-catalog-admission")
++        return (catalog, actualSHA)
++    }
++    @MainActor
++    private func observeOriginalFullV40NaturalInspectorRelationshipScalesAndReturn() throws {
++        let corpus = FullReaderObservationCorpus.v40
++        let (natural, naturalSHA256) = try fullV40NaturalInspectorCatalog()
++        let deadline = ProcessInfo.processInfo.systemUptime + 600
++        let catalog = try fullV32Catalog(corpus)
++        let basename = "full-v32-reader-" + UUID().uuidString
++        XCUIDevice.shared.orientation = .landscapeLeft
++        fullV32Launch(basename)
++        dismissAlertsIfNeeded()
++        tap(findTabButton(hebrew: "ספר", english: "Library"))
++        openProductionBook(named: catalog.targets[0].bookTitle, isFirstDocument: true)
++        tap(app.buttons["reader-more-menu"]); tap(app.buttons["Display by"]); tap(app.buttons["Chapter"])
++        var context = try fullV32Locate(basename)
++        var exploration: [[String: Any]] = []
++        var observationIDs: [String] = []
++        // Keep the nine original v40 exploration outcomes unchanged.
++        // Explore the exact first/middle/last original Berakhot, Tehillim and
++        // Derashot HaRan chapters, retaining empty/over-size outcomes. The
++        // 52,332-line stress chapter belongs to the Reader-open case; it is not
++        // silently added as an unbounded Inspector relationship workload.
++        // v32 retains the exact original identity set. v40 is admitted against
++        // its separately frozen SQL catalog; no v32 identifiers are substituted.
++        let inspectorBookIDs: [Int]
++        if corpus == .v32 { inspectorBookIDs = [103, 28, 3152] }
++        else { inspectorBookIDs = try XCTUnwrap(catalog.inspectorBookIDs) }
++        let inspectorTargets = catalog.targets.filter { inspectorBookIDs.contains($0.bookID) }
++        try fullV32Require(inspectorTargets.count == 9, "Require the original nine qualified Inspector chapter identities")
++        for target in inspectorTargets {
++            let route = try fullV32Open(target, context: context, deadline: deadline, sectionOnly: true)
++            context = try fullV32Locate(basename)
++            let before = try fullV32PostSample(target, context: context, epoch: nil, receipt: route)
++            let action = try originalStudyToolsActionInWindow()
++            let epoch = UUID().uuidString
++            _ = try fullV32Host("begin", context: context,
++                fields: ["epoch": epoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-open"])
++            let began = ProcessInfo.processInfo.systemUptime
++            tap(action)
++            let panel = try fullV32InspectorPanel()
++            try fullV32InspectorTool("commentaries", panel: panel)
++            try fullV32WaitForInspectorContent(panel, deadline: deadline)
++            let visible = ProcessInfo.processInfo.systemUptime
++            let resources = try fullV32Host("end", context: context, fields: ["epoch": epoch])
++            let (tool, rows, empty) = try fullV32RevealOriginalRows(panel, deadline: deadline)
++            let actual = try fullV32ObserveInspector(target, context: context, epoch: epoch,
++                route: route, selectedTool: tool, rows: rows, emptyState: empty)
++            let id = try XCTUnwrap(actual["requestID"] as? String)
++            observationIDs.append(id)
++            exploration.append(["targetKey": target.key, "observationID": id,
++                "actualCount": try XCTUnwrap(actual["fullCachedCount"] as? Int), "visibleRows": rows.count,
++                "openToOriginalContentUpperBoundSeconds": visible - began, "resources": resources])
++            context = try fullV32CloseOriginalInspector(context, target: target, before: before)
++        }
++        var scales: [[String: Any]] = []
++        for qualified in natural.scales {
++            let required = qualified.requestedCount
++            let target = qualified.target
++            let key = target.key
++            let route = try fullV32Open(target, context: context, deadline: deadline, sectionOnly: true)
++            context = try fullV32Locate(basename)
++            let before = try fullV32PostSample(target, context: context, epoch: nil, receipt: route)
++            let action = try originalStudyToolsActionInWindow()
++            let openEpoch = UUID().uuidString
++            _ = try fullV32Host("begin", context: context,
++                fields: ["epoch": openEpoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-open"])
++            tap(action)
++            let panel = try fullV32InspectorPanel()
++            try fullV32InspectorTool("commentaries", panel: panel)
++            try fullV32WaitForInspectorContent(panel, deadline: deadline)
++            _ = try fullV32Host("end", context: context, fields: ["epoch": openEpoch])
++            let (tool, initialRows, empty) = try fullV32RevealOriginalRows(panel, deadline: deadline)
++            try fullV32Require(!initialRows.isEmpty && empty == nil, "A qualified natural workload requires actual native source rows")
++            let reopened = try fullV32ObserveInspector(target, context: context, epoch: openEpoch,
++                route: route, selectedTool: tool, rows: initialRows, emptyState: nil)
++            try fullV32Require(reopened["fullCachedCount"] as? Int == qualified.originalMetadataCount
++                && reopened["naturalFullMembershipMatched"] as? Bool == true
++                && reopened["nativeOrderedIdentitySHA256"] as? String == qualified.nativeOrderedIdentitySHA256
++                && reopened["naturalIdentityProjectionSHA256"] as? String == qualified.identityProjectionSHA256,
++                "The entire original native cache identity array must equal its complete SQL-bound source projection before interaction")
++            observationIDs.append(try XCTUnwrap(reopened["requestID"] as? String))
++            let firstIdentifier = try XCTUnwrap(initialRows.first?["identifier"] as? String)
++            let firstRow = panel.buttons.matching(identifier: firstIdentifier)
++            try fullV32Require(firstRow.count == 1 && firstRow.firstMatch.isHittable,
++                               "Expand the actual original row identified by its independently verified source")
++            tap(firstRow.firstMatch)
++            let sourceID = String(firstIdentifier.dropFirst("torah-inspector-source-".count))
++            let expanded = panel.descendants(matching: .any)["torah-inspector-source-expanded-" + sourceID]
++            try fullV32Require(expanded.waitForExistence(timeout: 15),
++                               "The original source row expansion must produce its real native content marker")
++            let expandedImage = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
++            expandedImage.name = fullCorpusArtifactName("full-v32-original-expanded-source-" + key + "-" + String(required))
++            expandedImage.lifetime = .keepAlways; add(expandedImage)
++            try fullV32Require(firstRow.firstMatch.isHittable, "The original expanded source must remain reachable")
++            tap(firstRow.firstMatch)
++            try fullV32Require(XCTWaiter.wait(for: [XCTNSPredicateExpectation(
++                predicate: NSPredicate(format: "exists == false"), object: expanded
++            )], timeout: 15) == .completed, "The same original source row must collapse through its real action")
++            // Native scroll interaction, with actual app PID/CPU/RSS/trace
++            // accounting. Row content/identity hashing follows the ACK.
++            let scroll = panel.scrollViews.firstMatch
++            try fullV32Require(scroll.exists && scroll.isHittable, "Use the original Inspector scroll view")
++            let scrollEpoch = UUID().uuidString
++            _ = try fullV32Host("begin", context: context,
++                fields: ["epoch": scrollEpoch, "targetKey": target.key, "mode": "original-native", "kind": "inspector-scroll"])
++            let scrollStarted = ProcessInfo.processInfo.systemUptime
++            scroll.swipeUp(velocity: .slow)
++            scroll.swipeDown(velocity: .slow)
++            let scrollEnded = ProcessInfo.processInfo.systemUptime
++            let resources = try fullV32Host("end", context: context, fields: ["epoch": scrollEpoch])
++            let rows = try fullV32InspectorRows(panel)
++            try fullV32Require(!rows.isEmpty, "Original native rows must remain visible and actionable after scrolling")
++            let observed = try fullV32ObserveInspector(target, context: context, epoch: scrollEpoch,
++                route: route, selectedTool: tool, rows: rows, emptyState: nil)
++            try fullV32Require(observed["fullCachedCount"] as? Int == qualified.originalMetadataCount
++                && observed["naturalFullMembershipMatched"] as? Bool == true
++                && observed["nativeOrderedIdentitySHA256"] as? String == qualified.nativeOrderedIdentitySHA256
++                && observed["naturalIdentityProjectionSHA256"] as? String == qualified.identityProjectionSHA256,
++                "After genuine scrolling, the complete original cache order must still equal the complete natural source oracle")
++            let observationID = try XCTUnwrap(observed["requestID"] as? String)
++            observationIDs.append(observationID)
++            let scale: [String: Any] = [
++                "requestedCount": required, "actualCount": try XCTUnwrap(observed["fullCachedCount"] as? Int),
++                "naturalCatalogSHA256": naturalSHA256,
++                "originalMetadataCount": qualified.originalMetadataCount,
++                "independentCompleteMembershipSHA256": qualified.rawMembershipSHA256,
++                "nativeFullMembershipMatched": true,
++                "nativeOrderedIdentitySHA256": qualified.nativeOrderedIdentitySHA256,
++                "identityProjectionSHA256": qualified.identityProjectionSHA256,
++                "observationID": observationID, "targetKey": key,
++                "scrollGestureUpperBoundSeconds": scrollEnded - scrollStarted, "resources": resources,
++                "expandedOriginalSourceID": sourceID,
++                "atLeastRequestedCount": qualified.originalMetadataCount >= required,
++                "exactRequestedCount": qualified.originalMetadataCount == required,
++                "scope": "separate complete natural unit with actual count: full original Swift metadata plus real native cache/row/scroll; nine exploration outcomes retained independently"
++            ]
++            scales.append(scale)
++            try fullV32Attach(scale, "full-v32-inspector-natural-scale-" + String(required))
++            context = try fullV32CloseOriginalInspector(context, target: target, before: before)
++        }
++        _ = try fullV32Host("complete_inspector", context: context,
++            fields: ["observationIDs": observationIDs, "exploration": exploration, "scales": scales])
++    }
++
++}
++// END ADDITIVE FULL-V40 NATURAL INSPECTOR TARGETS

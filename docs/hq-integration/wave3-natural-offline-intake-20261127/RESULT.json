@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "SELECTIVE_INTAKE_VERIFIED",
+  "base": "54fd5d5b7c3ebacb563c713778d8df92598e79ee",
+  "head": "fbe3c10edf608c168d1094137353385abdfcae2b",
+  "sourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+  "planSHA256": "41806165154b26b18e4cffe703c99fbe3f1e5d12468f8c9e17962f12fe6938c2",
+  "receipts": [
+    {
+      "donor": "c0f6371bc68d29b60faa76f643dc0a06879c11b8",
+      "before": "54fd5d5b7c3ebacb563c713778d8df92598e79ee",
+      "startedUTC": "2026-11-27T08:34:39.030871+00:00",
+      "exit": 0,
+      "after": "0ddc66c0090197987308629749e8aa2076045e89",
+      "sourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+      "verifiedFiles": 35,
+      "completeUTC": "2026-11-27T08:34:39.264927+00:00"
+    },
+    {
+      "donor": "883660701dd57c049de6da6fcf51a4027675409c",
+      "before": "0ddc66c0090197987308629749e8aa2076045e89",
+      "startedUTC": "2026-11-27T08:34:39.265142+00:00",
+      "exit": 0,
+      "after": "d98452340185ddf0375e45e9ddafc0c40ef884fa",
+      "sourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+      "verifiedFiles": 14,
+      "completeUTC": "2026-11-27T08:34:39.470575+00:00"
+    },
+    {
+      "donor": "ec834a5f4fe109726c91b137bb8b7c33e2ca299e",
+      "before": "d98452340185ddf0375e45e9ddafc0c40ef884fa",
+      "startedUTC": "2026-11-27T08:34:39.470848+00:00",
+      "exit": 0,
+      "after": "725944dcd954487eecdd5af7a37e2ceb295dfd17",
+      "sourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+      "verifiedFiles": 10,
+      "completeUTC": "2026-11-27T08:34:39.680917+00:00"
+    },
+    {
+      "donor": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+      "before": "725944dcd954487eecdd5af7a37e2ceb295dfd17",
+      "startedUTC": "2026-11-27T08:34:39.681449+00:00",
+      "exit": 0,
+      "after": "fbe3c10edf608c168d1094137353385abdfcae2b",
+      "sourceTree": "5c1090273c110bc18dd565e8097ef99c1fc3c534",
+      "verifiedFiles": 5,
+      "completeUTC": "2026-11-27T08:34:39.886461+00:00"
+    }
+  ],
+  "clean": true,
+  "nativeTests": "NOT_RUN",
+  "historicalResultsReattributed": false,
+  "freeBytes": 4387262464
+}

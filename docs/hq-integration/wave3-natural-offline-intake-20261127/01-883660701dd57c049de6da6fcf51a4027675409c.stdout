@@ -1,0 +1,18 @@
+[codex/otzaria-wave3-integration-20261127 d9845234] test(search): join original offline pages to bounded host evidence [skip ci]
+ Author: ChatGPT Search Agent <codex@openai.com>
+ Date: Fri Nov 27 07:20:51 2026 +0000
+ 14 files changed, 1636 insertions(+)
+ create mode 100644 Scripts/CI/study-ui-offline-execution.py
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/API.md
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/CHECKPOINT.md
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/FILE_MANIFEST.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/NATIVE_SOURCE_RECEIPTS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stderr.log
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stdout.log
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_CONTROLS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_RECEIPTS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/SSH_ROUTE_READONLY.json
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/controls.stderr.log
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/controls.stdout.log
+ create mode 100644 docs/hq-integration/wave2-20261127/search/offline-execution/source-controls.py

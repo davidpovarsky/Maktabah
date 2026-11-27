@@ -1,0 +1,12 @@
+[
+  {
+    "ok": false,
+    "returncode": 1,
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 25, in <module>\nAssertionError: ('unreviewed-overlap', 'c0f6371bc68d29b60faa76f643dc0a06879c11b8', 'Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift')"
+  },
+  {
+    "ok": false,
+    "returncode": 1,
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 25, in <module>\nAssertionError: ('unreviewed-overlap', 'c0f6371bc68d29b60faa76f643dc0a06879c11b8', 'Scripts/CI/reader-full-v40-ui-observation.inputs.json')"
+  }
+]

@@ -1,0 +1,11 @@
+[codex/otzaria-wave3-integration-20261127 725944dc] fix: restore original natural Inspector workloads and compose SQLite observations [skip ci]
+ Author: Codex <chatgpt-agent@users.noreply.github.com>
+ Date: Fri Nov 27 07:39:10 2026 +0000
+ 10 files changed, 1358 insertions(+), 26 deletions(-)
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/CONTROL_ATTEMPTS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/README.md
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/ROOT_CHANGED_FILES.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/SOURCE_API_INTAKE_FILES.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/SOURCE_CONTROLS_RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/historical-exact-v40-wrapper.py
+ create mode 100644 docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-controls.py
