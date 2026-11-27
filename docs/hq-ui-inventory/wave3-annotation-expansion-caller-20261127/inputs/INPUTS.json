@@ -1,0 +1,117 @@
+[
+  {
+    "bytes": 787,
+    "path": "SOURCE.diff",
+    "sha256": "c7084bb1ae7d2c2fdff26874d61e7340a37f194c286af487d24387aac2956867"
+  },
+  {
+    "bytes": 1036,
+    "path": "SOURCE_INVERSE.json",
+    "sha256": "79addf2936c50db3471363b9bc1429bf7d4e7ca48ecd015a6227504dd301b21e"
+  },
+  {
+    "bytes": 32313,
+    "path": "baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd"
+  },
+  {
+    "bytes": 2810,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+    "sha256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966"
+  },
+  {
+    "bytes": 25322,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+    "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+  },
+  {
+    "bytes": 10885,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+    "sha256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842"
+  },
+  {
+    "bytes": 3105,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+    "sha256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c"
+  },
+  {
+    "bytes": 12050,
+    "path": "candidate/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+    "sha256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe"
+  },
+  {
+    "bytes": 14696,
+    "path": "candidate/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+  },
+  {
+    "bytes": 6232,
+    "path": "candidate/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+    "sha256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2"
+  },
+  {
+    "bytes": 32323,
+    "path": "candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c"
+  },
+  {
+    "bytes": 3486,
+    "path": "controls/ActualBindingFixture.swift",
+    "sha256": "4a1888f9f14bb0291f1069443f87536d70afdafba2281dc1684192ce57794dfa"
+  },
+  {
+    "bytes": 962,
+    "path": "controls/ActualOriginalRootPublication.swift",
+    "sha256": "af3fe5ff898cfd27f4ef17be9422994aa8f5c60aced00752d65ef2f93536f143"
+  },
+  {
+    "bytes": 924,
+    "path": "controls/ActualWindowObservation.swift",
+    "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+  },
+  {
+    "bytes": 4167,
+    "path": "controls/CallerControls.swift",
+    "sha256": "901f6c638c1d1b2e444c1264db4722235efe3ea1678ed4a3f597cf9f287589ad"
+  },
+  {
+    "bytes": 11136,
+    "path": "controls/CandidateCaller.swift",
+    "sha256": "68f0b5b1a72088ca0783e38cef5b6de4f7bbc97ca822d55999918c976ee10904"
+  },
+  {
+    "bytes": 11936,
+    "path": "controls/ExplicitAnnotationBoundary.swift",
+    "sha256": "f725543ff0b111f0a88ebffcef812a68b0a7f61201746954d05758b138fb50cb"
+  },
+  {
+    "bytes": 11126,
+    "path": "controls/OriginalCaller.swift",
+    "sha256": "47b21b2de6607c88398b5f20cb86301490fd227d6b220bc5d6f881f417051cea"
+  },
+  {
+    "bytes": 4629,
+    "path": "prepare.py",
+    "sha256": "a0a2ddcf34a2e81f4667afa6d91dd1529bcc5836b2577af9260df71f6df01a1b"
+  },
+  {
+    "bytes": 11174,
+    "path": "run.py",
+    "sha256": "6c6fdf6277dfb57c59c811f27c9cf263215075ebc2dc2156cc6e7a251cee79ff"
+  },
+  {
+    "bytes": 11193,
+    "path": "run_attempt2.py",
+    "sha256": "4e926b7a2f1dfb4754f91d782735ddee50989617bd043efe2a2d478e3bf39c40"
+  },
+  {
+    "bytes": 2810,
+    "path": "unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+    "sha256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966"
+  },
+  {
+    "bytes": 25322,
+    "path": "unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+    "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+  }
+]
