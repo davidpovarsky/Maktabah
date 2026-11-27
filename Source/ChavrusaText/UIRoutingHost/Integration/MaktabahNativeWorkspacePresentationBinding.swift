@@ -23,6 +23,19 @@ final class MaktabahNativeWorkspacePresentationBinding {
         case sidebar
     }
 
+    /// One validated setter permits one matching original publication only.
+    /// Reentrant writes cannot borrow the rest of the perform() stack frame.
+    private struct OwnedSetterAllowance {
+        let change: OwnedChange
+        private var consumed = false
+        init(change: OwnedChange) { self.change = change }
+        mutating func consume(_ actual: OwnedChange) -> Bool {
+            guard !consumed, actual == change else { return false }
+            consumed = true
+            return true
+        }
+    }
+
     struct PresentationFacets {
         let requested: Bool
         let mounted: Bool
@@ -52,7 +65,7 @@ final class MaktabahNativeWorkspacePresentationBinding {
     @ObservationIgnored private var sources: [UUID: SourceEntry] = [:]
     @ObservationIgnored private var observedProofs: [WeakProof] = []
     @ObservationIgnored private var pending: Pending?
-    @ObservationIgnored private var ownedChange: OwnedChange?
+    @ObservationIgnored private var ownedChange: OwnedSetterAllowance?
     @ObservationIgnored private var sidebarObservation: UUID?
     @ObservationIgnored private var retired = false
     @ObservationIgnored private var changed: @MainActor () -> Void = {}
@@ -120,8 +133,9 @@ final class MaktabahNativeWorkspacePresentationBinding {
         private let observation: MaktabahNativeComponentSourceObservation
         private var valid = true
 
-        init(sceneID: String, manager: iOSNavigationManager,
-             source: MaktabahNativeWorkspaceProjectionSource) throws {
+        static func inspect(sceneID: String, manager: iOSNavigationManager,
+                            source: MaktabahNativeWorkspaceProjectionSource) throws
+            -> (StudyWorkspaceNavigationAdapter, StudyWorkspaceMappingObservation, StudyWorkspaceMappingObservation) {
             guard source.isAuthoritative, let workspace = try source.read(),
                   workspace.sceneID == sceneID, workspace.attached, !workspace.isSwitching,
                   workspace.errorMessage == nil, workspace.store.loadError == nil,
@@ -134,6 +148,12 @@ final class MaktabahNativeWorkspacePresentationBinding {
                   case .liveNativeSetters = native.coverage else {
                 throw UIRouteError(.unavailable, "native_workspace_source_unavailable")
             }
+            return (workspace, stored, native)
+        }
+
+        init(sceneID: String, manager: iOSNavigationManager,
+             source: MaktabahNativeWorkspaceProjectionSource) throws {
+            let (workspace, stored, native) = try Self.inspect(sceneID: sceneID, manager: manager, source: source)
             self.workspace = workspace; self.manager = manager; self.source = source
             self.sceneID = sceneID; storeObservation = stored; nativeObservation = native
             backend = BackendCoordinator.shared.activeBackendID
@@ -185,7 +205,7 @@ final class MaktabahNativeWorkspacePresentationBinding {
             guard let self else { return }
             // Only the exact synchronous original request setter is exempt.
             // The one-shot source proof is never reset after a user state change.
-            if ownedChange != .sidebar { invalidateRetainedSources() }
+            if ownedChange?.consume(.sidebar) != true { invalidateRetainedSources() }
         }
     }
 
@@ -214,13 +234,15 @@ final class MaktabahNativeWorkspacePresentationBinding {
     func isAvailable(parent: Parent) -> Bool {
         guard !retired, ChavrusaTextReaderUI.isEnabled, let manager,
               !MaktabahApp.isIpad || sidebar != nil,
-              (try? OriginalSourceProof(sceneID: sceneID.rawValue, manager: manager,
-                                        source: workspaceSource)) != nil,
+              (try? OriginalSourceProof.inspect(sceneID: sceneID.rawValue, manager: manager,
+                                                source: workspaceSource)) != nil,
               hosts[.profiles]?.blocked() != true,
               hosts[.overview]?.blocked() != true else { return false }
         let profiles = presentationFacets(for: .profiles)
         let overview = presentationFacets(for: .overview)
-        let continuesOwnRequest = pending?.applied == true && pending?.parent == parent
+        let continuesOwnRequest = pending.map {
+            isContinuingAppliedRequest(parent: parent, requestID: $0.requestID)
+        } ?? false
         switch parent {
         case .profiles:
             if MaktabahApp.isIpad && sidebar?.overview.blocksRouting == true { return false }
@@ -234,6 +256,17 @@ final class MaktabahNativeWorkspacePresentationBinding {
             return !profiles.requested && !profiles.mounted
                 && (!overview.transitioning || continuesOwnRequest)
         }
+    }
+
+    /// A prepared command is not yet an applied original presentation. Shared
+    /// readiness may await only this exact live source AFTER canonical apply.
+    func isContinuingAppliedRequest(parent: Parent, requestID: UUID) -> Bool {
+        guard !retired, let value = pending, value.applied,
+              value.parent == parent, value.requestID == requestID,
+              let source = sources[requestID], source.parent == parent,
+              source.hosts.allSatisfy({ hosts[$0.key]?.token == $0.value }) else { return false }
+        do { try source.proof.validate(); return true }
+        catch { return false }
     }
 
     /// These facets are read from original presentation bindings and real UIKit
@@ -340,7 +373,7 @@ final class MaktabahNativeWorkspacePresentationBinding {
         guard let host = hosts[kind], host.stateOwnerID == stateOwnerID else {
             invalidateRetainedSources(); return
         }
-        if ownedChange != .host(kind, host.token, change) { invalidateRetainedSources() }
+        if ownedChange?.consume(.host(kind, host.token, change)) != true { invalidateRetainedSources() }
     }
 
     /// Called only by the original profile NavigationStack's finite reveal
@@ -366,9 +399,11 @@ final class MaktabahNativeWorkspacePresentationBinding {
         }
         try validateSource(parent: value.parent, requestID: requestID)
         try value.validate()
-        ownedChange = change
+        ownedChange = .init(change: change)
         defer { ownedChange = nil }
         perform()
+        try validateSource(parent: value.parent, requestID: requestID)
+        try value.validate()
     }
 
     func finish(requestID: UUID, completed: Bool) {

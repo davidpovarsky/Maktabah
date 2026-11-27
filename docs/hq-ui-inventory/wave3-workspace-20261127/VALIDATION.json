@@ -8,7 +8,7 @@
   "source_sha256": {
     "CompactStudyWorkspaceHostModifier.swift": "494cb9ae8088f02d6e619350c00d67c46c19fa9dc424fd8faeb765673f803da8",
     "iPadLayout.swift": "02cce381c0015638836a788515b44b4aa64f2c7b90c884762a4ba5b6b022bb78",
-    "MaktabahNativeWorkspacePresentationBinding.swift": "57fd95a2d3038e630c2b0b5cb1cb2852ebaf65cdb972def772d3d0c592d17ce4",
+    "MaktabahNativeWorkspacePresentationBinding.swift": "45ac8713b4628593016a0f779b8655acaa60f14f831a3f60ea7f69dee6254f5c",
     "ReaderSidebarPageCoordinator.swift": "c2dd78e4f6a7e75a6d622cd86ba09e32189455a071399ffbedfff3fe4e7d04c5",
     "StudyProfileManagementView.swift": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994",
     "MaktabahNativeWorkspaceComponents.swift": "d0a5edbf6f7bc1b79af45b01cd19a29c6c758ab7ab2e1ea785a82bf76495c423",
@@ -36,13 +36,32 @@
     {
       "path": "/Users/m1/builds/otzaria-wave3-workspace-bindings-controls-20261127/attempt-3/syntax-result.json",
       "sha256": "72fca0dddb88a47ef5795560dee1fbfeeb3abdcf1f6b080d37d5cf9bc6ec6df8",
+      "current_inputs": [],
+      "status": "PRESERVED_BEFORE_FOLLOWUP"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-workspace-20261127/setter-allowance/after-one-shot/RESULT.json",
+      "sha256": "f1aae3fb6a3eb1c90bcdb6610d0c39b10bd960cd1e12946d95cc59154eba5f27",
       "current_inputs": [
         "MaktabahNativeWorkspacePresentationBinding.swift"
-      ]
+      ],
+      "host": "Oracle Linux Swift frontend iOS27 syntax only"
     }
   ],
   "native_tests_run": 0,
   "device_tests_run": 0,
   "owner_signatures_added": 0,
-  "full_build_status": "PENDING_AUTHENTIC_SDK_RETAINED_INPUT_RESTORATION"
+  "full_build_status": "PENDING_AUTHENTIC_SDK_RETAINED_INPUT_RESTORATION",
+  "setter_boundary_controls": {
+    "scope": "VERBATIM_ORIGINAL_SETTER_OBSERVATION_BOUNDARY_NOT_NATIVE_ACCEPTANCE",
+    "before_source": "674a9784a52390bf20cc6b8a5c357f78dc3a1f18",
+    "before_result_sha256": "4260a08e20457088576b6c77f7d057b7fb50ceace0881b47cee68d3d57a505e0",
+    "before_exit": 1,
+    "before_callbacks": 3,
+    "before_invalidations": 0,
+    "after_result_sha256": "f1aae3fb6a3eb1c90bcdb6610d0c39b10bd960cd1e12946d95cc59154eba5f27",
+    "after_exit": 0,
+    "after_callbacks": 3,
+    "after_invalidations": 2
+  }
 }

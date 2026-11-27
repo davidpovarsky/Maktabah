@@ -1,0 +1,2 @@
+actual_original_willSet_callbacks=3 retained_source_invalidations=0
+FAIL: a second matching original setter callback reused the synchronous allowance

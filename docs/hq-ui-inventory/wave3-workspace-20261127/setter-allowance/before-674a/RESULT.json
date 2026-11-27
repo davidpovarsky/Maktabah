@@ -1,0 +1,13 @@
+{
+  "scope": "SOURCE_BOUND_ORIGINAL_SETTER_BOUNDARY_CONTROL_NOT_NATIVE_ACCEPTANCE",
+  "production_source": "674a9784a52390bf20cc6b8a5c357f78dc3a1f18",
+  "binding_sha256": "57fd95a2d3038e630c2b0b5cb1cb2852ebaf65cdb972def772d3d0c592d17ce4",
+  "coordinator_sha256": "c2dd78e4f6a7e75a6d622cd86ba09e32189455a071399ffbedfff3fe4e7d04c5",
+  "original_state_sha256": "483ae8936b6986bd156a3ac8e5d8c50a07bb2151cb490ec8d3fee0a2f270683b",
+  "control_sha256": "ea1391581c00760d52457b9d37286f8968a9fa546ebf4fad87144b9f9d8009a2",
+  "compile_exit": 0,
+  "control_exit": 1,
+  "expected_pre_correction_exit": 1,
+  "stdout": "actual_original_willSet_callbacks=3 retained_source_invalidations=0\nFAIL: a second matching original setter callback reused the synchronous allowance\n",
+  "stderr": ""
+}
