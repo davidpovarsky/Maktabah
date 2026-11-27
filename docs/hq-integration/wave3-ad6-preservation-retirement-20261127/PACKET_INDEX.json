@@ -1,0 +1,387 @@
+{
+  "files": [
+    {
+      "bytes": 12869,
+      "path": "COMPLETE_PRESERVATION_VERIFIED.json",
+      "sha256": "b93cf1bca06300066702c0d588cd14efe166e753f11f3d4fbca18e79a0d0ac68",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\COMPLETE_PRESERVATION_VERIFIED.json"
+    },
+    {
+      "bytes": 12261,
+      "lossless_original_bytes": true,
+      "path": "HEADER.json.gz",
+      "sha256": "fb256ea37fb153a23ee997cada858bfebc88c88dc96c1fbb20c7231d6273fac4",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\metadata\\HEADER.json",
+      "uncompressed_bytes": 180605,
+      "uncompressed_sha256": "0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f"
+    },
+    {
+      "bytes": 440,
+      "path": "INVENTORY_OWNER.json",
+      "sha256": "3c4e4f2090f6981fc7b9ad38d3c59fc7fa273ae4a35869f7911d155b4e979c67",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\metadata\\INVENTORY_OWNER.json"
+    },
+    {
+      "bytes": 569,
+      "path": "MAC_STREAM_OWNER.json",
+      "sha256": "b19f2d31561e1016583da2f461e9d4aaca95611a4e00d354ec3e924a8e0ceb35",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\MAC_STREAM_OWNER.json"
+    },
+    {
+      "bytes": 1390,
+      "path": "MAC_STREAM_RESULT.json",
+      "sha256": "8a2fc6136d804da83926767432fd0442fc9ff1fcf0b5bfe6af8a36c598bfd43a",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\MAC_STREAM_RESULT.json"
+    },
+    {
+      "bytes": 1827,
+      "path": "NEW_ARCHIVE_VERIFIED.json",
+      "sha256": "591e5599d05619b28427a9b9b7af43e50cfe751a281ce6930817e57abb0ad85c",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\NEW_ARCHIVE_VERIFIED.json"
+    },
+    {
+      "bytes": 11880,
+      "path": "PRIOR_MEMBERS_VERIFIED.json",
+      "sha256": "1cd29c0a43acfbfb0a61e0fc3dad87da97c1630d51b5ede3ec285793111c45ac",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\PRIOR_MEMBERS_VERIFIED.json"
+    },
+    {
+      "bytes": 2929,
+      "path": "PRIOR_ORACLE_ARCHIVES_VERIFIED.json",
+      "sha256": "63aa34d7b5e1923cdb463f0b756987c9c31498a85d609eedfdf27f43b0023f25",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\PRIOR_ORACLE_ARCHIVES_VERIFIED.json"
+    },
+    {
+      "bytes": 5694,
+      "path": "PRIOR_WINDOWS_ARCHIVES_VERIFIED.json",
+      "sha256": "df5fdcf1d3754457eac738b25200a6bec6b0d6e407a2f89c7c7486a8531dc1bf",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\prior-windows\\PRIOR_WINDOWS_ARCHIVES_VERIFIED.json"
+    },
+    {
+      "bytes": 10781,
+      "path": "README.md",
+      "sha256": "ea69c250e0c6a0776c39aa589eafb7155e56c84938b05e206fd29011a7f7b5a4",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\README.md"
+    },
+    {
+      "bytes": 32929,
+      "lossless_original_bytes": true,
+      "path": "READ_ONLY_PLAN.json.gz",
+      "sha256": "6ea96220510b3ee0259c691d9850b5b997ad221b76267b4c24aeb1138e315734",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\metadata\\READ_ONLY_PLAN.json.gz",
+      "uncompressed_bytes": 218468,
+      "uncompressed_sha256": "f7926486d1e091ed8ffff89f7fbe222cc9e2b71fea25d4c8486bfe97c305fe85"
+    },
+    {
+      "bytes": 745,
+      "path": "RECEIVER_OWNER.json",
+      "sha256": "3ba43757b7d6bab9abf7b6b038a084d051a5abff814b73c07d58e068677fb4a3",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RECEIVER_OWNER.json"
+    },
+    {
+      "bytes": 415,
+      "path": "RETIREMENT_ACK.json",
+      "sha256": "032e1f960dff3fa6ea73b15001718fda32ba2a4eb5b43668b9fb3d352b5d1efd",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_ACK.json"
+    },
+    {
+      "bytes": 279,
+      "path": "RETIREMENT_BRIDGE_OWNER.json",
+      "sha256": "1ba69b2baea0e643cf41c8af94e111ddc28ce41543e3ed1e82209c88a325f987",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_BRIDGE_OWNER.json"
+    },
+    {
+      "bytes": 445,
+      "path": "RETIREMENT_CONTROLS_STAGED.json",
+      "sha256": "2fecb135d0a4457105e3aec17a42bfd62f2ce1c5a8750d1ddc54d7b39d2f9793",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_CONTROLS_STAGED.json"
+    },
+    {
+      "bytes": 9868,
+      "path": "RETIREMENT_CURRENT_BINDINGS.json",
+      "sha256": "59f94de2a6f282b56a0743bbe066644383bc2a4430358b58ff9baebb130daea5",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_CURRENT_BINDINGS.json"
+    },
+    {
+      "bytes": 14601,
+      "path": "RETIREMENT_PREDELETE.json",
+      "sha256": "9ac5aa0191106212f7406546171fb2b54ede51450a1972fb453f98c30f9b0624",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_PREDELETE.json"
+    },
+    {
+      "bytes": 17244,
+      "path": "RETIREMENT_RESULT.json",
+      "sha256": "45556d5e873441983cc819beb46f04f5feb300f35363d5f5e1b34d5e79c13d4f",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_RESULT.json"
+    },
+    {
+      "bytes": 4535,
+      "path": "SOURCE_REVERIFIED.json",
+      "sha256": "41f3afac682426e9de31cfcb1029672817f1411819d6606d58f2f66af281bdee",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\SOURCE_REVERIFIED.json"
+    },
+    {
+      "bytes": 1377,
+      "path": "TRANSFER_RESULT.json",
+      "sha256": "837d38fe6c45f6c8b54ae29d90faa1e30c883126dcd144a17edbda49a9093213",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\TRANSFER_RESULT.json"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/PRIOR_ORACLE_REQUIRED.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\PRIOR_ORACLE_REQUIRED.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1087,
+      "lossless_original_bytes": true,
+      "path": "raw/PRIOR_ORACLE_REQUIRED.stdout.json.gz",
+      "sha256": "b5ffebd5b8e843a52c82de923110a7818c165d526b23ed4301da7fd211a87911",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\PRIOR_ORACLE_REQUIRED.stdout.json",
+      "uncompressed_bytes": 3279,
+      "uncompressed_sha256": "41588663377a9961f8cc05105d9987e8db2d392ea850f6e7dc4f175e2ba8a7d0"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_ORACLE_CURRENT.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_ORACLE_CURRENT.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1108,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_ORACLE_CURRENT.stdout.json.gz",
+      "sha256": "20d3276ef1502696bc4ac8a28047c2f9ebc72f9a45424de1e179f781bf9dd710",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_ORACLE_CURRENT.stdout.json",
+      "uncompressed_bytes": 3309,
+      "uncompressed_sha256": "e4be5d229d1e2c87e057e3b562dcb93a31b636909fd310f65495ad0f80eb2007"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_PREDELETE.json.oracle-copy.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_PREDELETE.json.oracle-copy.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 222,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_PREDELETE.json.oracle-copy.stdout.json.gz",
+      "sha256": "b49a888768a1386066e0e51e2ca986fc5e39c2a54e9b47d20c58e813aa4b0592",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_PREDELETE.json.oracle-copy.stdout.json",
+      "uncompressed_bytes": 244,
+      "uncompressed_sha256": "7145835b02b4795d9216d4df58e903f66849a78075c0b0d99d15146555f22c13"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_RESULT.json.oracle-copy.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_RESULT.json.oracle-copy.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 219,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_RESULT.json.oracle-copy.stdout.json.gz",
+      "sha256": "989fb3bc6c6e63ce3152ab01f6389ff282096ab75915579e46b33cc25783347e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_RESULT.json.oracle-copy.stdout.json",
+      "uncompressed_bytes": 241,
+      "uncompressed_sha256": "905e2754d976249176e4166e636f95610844ec6ebe2d897489c2935daf8b324d"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_SCRIPT_READBACK.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_SCRIPT_READBACK.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_SCRIPT_READBACK.stdout.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_SCRIPT_READBACK.stdout.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/RETIREMENT_STDERR.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\RETIREMENT_STDERR.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/SOURCE_REVERIFY.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\SOURCE_REVERIFY.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 346,
+      "lossless_original_bytes": true,
+      "path": "raw/SOURCE_REVERIFY.stdout.json.gz",
+      "sha256": "e413a78e2fc2b6b93ae526ab620fc879e0ec4d56b24224412bc6d978b68df630",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\SOURCE_REVERIFY.stdout.json",
+      "uncompressed_bytes": 450,
+      "uncompressed_sha256": "8df6cfaf3754ff2909f3ac4386c18249027b4d85c32f67feedaf3b81e5ccdfec"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/STREAM.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\STREAM.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/verify_ad6_archive.py.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_archive.py.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 472,
+      "lossless_original_bytes": true,
+      "path": "raw/verify_ad6_archive.py.stdout.json.gz",
+      "sha256": "a286ddd4e1fd928e96b44e9cc88559df2686c6b4dd5da903e9e3e29519fbbc00",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_archive.py.stdout.json",
+      "uncompressed_bytes": 667,
+      "uncompressed_sha256": "fa2e89e7beb59b904334ccf5e56c5f4ccc82c29ba314c898f667e92c707d2f98"
+    },
+    {
+      "bytes": 20,
+      "lossless_original_bytes": true,
+      "path": "raw/verify_ad6_prior_members.py.stderr.log.gz",
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_prior_members.py.stderr.log",
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 315,
+      "lossless_original_bytes": true,
+      "path": "raw/verify_ad6_prior_members.py.stdout.json.gz",
+      "sha256": "8fd3b81368d52dae3c040cd2a01fcb6eaa3960c829f00c94b34c2761d8c41245",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_prior_members.py.stdout.json",
+      "uncompressed_bytes": 374,
+      "uncompressed_sha256": "cb8198645b8bc0488150df65a29d47b27bd08fe4b70f32a5ea7f5d709e6a5f3a"
+    },
+    {
+      "bytes": 6604,
+      "lossless_original_bytes": true,
+      "path": "sources/ad6_preservation.py.gz",
+      "sha256": "239abf92816e4693e71696e91af57aac49eb257cdec56e2861fafe3a5d62beff",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\metadata\\ad6_preservation.py",
+      "uncompressed_bytes": 22325,
+      "uncompressed_sha256": "9bb4e8dc5ddf3661860bbc5b71245d1227c04561a2bf25cced727e7b38132f4d"
+    },
+    {
+      "bytes": 2654,
+      "lossless_original_bytes": true,
+      "path": "sources/receive_ad6_archive.py.gz",
+      "sha256": "ed87986989c16cb648cecf40f2c14f2f5ad571600a9d6d82080297977b4d346d",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\receive_ad6_archive.py",
+      "uncompressed_bytes": 7218,
+      "uncompressed_sha256": "f518336f2574631b0896b34d4b5c805422d8458267a7af94b35c28970cf71c90"
+    },
+    {
+      "bytes": 4228,
+      "lossless_original_bytes": true,
+      "path": "sources/retire_ad6.py.gz",
+      "sha256": "3f76c66e8b19b2c872944a6560094e5dccd9741c595e3d6191fb9f5206bcfba7",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\retire_ad6.py",
+      "uncompressed_bytes": 13314,
+      "uncompressed_sha256": "3ddb2ec671175c46226fa09fcfd2dea2808e4b4ef20f43710b4c079779f0b3b4"
+    },
+    {
+      "bytes": 3811,
+      "lossless_original_bytes": true,
+      "path": "sources/retire_ad6_windows.py.gz",
+      "sha256": "b8098633eb3377cabc9062f5bbb98cb717a3af654012f3990156d490fbb57644",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\retire_ad6_windows.py",
+      "uncompressed_bytes": 12064,
+      "uncompressed_sha256": "8aa58490d8def72e450157b175f25fd5729c7d4e4bfa71c1db85d36442f4a7f4"
+    },
+    {
+      "bytes": 2408,
+      "lossless_original_bytes": true,
+      "path": "sources/reverify_ad6_source.py.gz",
+      "sha256": "cee0fe67826e61c37d21f7efb082044e461c6c2e0734ef1c8b0747c6f22bc206",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\reverify_ad6_source.py",
+      "uncompressed_bytes": 6493,
+      "uncompressed_sha256": "dd794069f00c786d0c1f0dbe4820f6ac0a7fbd3985f7e25996cf30abe1907eb4"
+    },
+    {
+      "bytes": 3275,
+      "lossless_original_bytes": true,
+      "path": "sources/seal_ad6_packet.py.gz",
+      "sha256": "172713f7c37731a0ef7dd8a9a7cfc471d7f0e7dfb4c245674f8b041f1afdbf59",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\seal_ad6_packet.py",
+      "uncompressed_bytes": 8533,
+      "uncompressed_sha256": "8a65c7cf03bb003ae2ae5da7591b2211f0815544c0c5509cf73815c6586342ae"
+    },
+    {
+      "bytes": 3877,
+      "lossless_original_bytes": true,
+      "path": "sources/verify_ad6_archive.py.gz",
+      "sha256": "3963d97535313b98c30450936c0eb1033e4d943d438f37873e8d1efaa5d76c27",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_archive.py",
+      "uncompressed_bytes": 11812,
+      "uncompressed_sha256": "571d79617dc1a468aa8d36fbf33c6b471981cc504e205008ad73e824c782f7fb"
+    },
+    {
+      "bytes": 3312,
+      "lossless_original_bytes": true,
+      "path": "sources/verify_ad6_prior_members.py.gz",
+      "sha256": "42322f32c3ec0a2d1b5ab04d55f09613fffaa28303ec6c05098afa40d498f962",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_ad6_prior_members.py",
+      "uncompressed_bytes": 9704,
+      "uncompressed_sha256": "bd0192214c2f9d8a3fe96037367bc79bf7d3c86523b2a57f6afada434c007116"
+    },
+    {
+      "bytes": 912,
+      "lossless_original_bytes": true,
+      "path": "sources/verify_oracle_required_members.py.gz",
+      "sha256": "e8804d4721495ea61b595e7f3d276e2be90908de3c28053b13605bad48ae2f75",
+      "source": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\verify_oracle_required_members.py",
+      "uncompressed_bytes": 2123,
+      "uncompressed_sha256": "7e6b5c2864b47da365b9db426a46428ce8204c3ac30c97bd22cef935c5118f82"
+    }
+  ],
+  "index_excludes_itself": true,
+  "large_metadata_and_archive_stay_at_verified_original_locations": true,
+  "new_archive": {
+    "bytes": 1166562940,
+    "path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\failed-ad6-work-differential.tar.gz",
+    "sha256": "75c605727c89cb9ec8651fdec35cb852661f6702150af100ef82461e5a2ade15"
+  },
+  "new_build_or_native_runs": 0,
+  "original_failure_packet_commit": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+  "original_sdk_source": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "product_files_changed": 0,
+  "root": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterFiveScopes-20261127-Work",
+  "schema": "otzaria.failed-ad6-preservation-retirement-packet/1",
+  "utc": "2026-11-27T12:07:27.550379+00:00"
+}

@@ -1,0 +1,235 @@
+{
+  "anything_deleted": false,
+  "archive_bindings": [
+    {
+      "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\inactive-app-generated-caches.tar.gz",
+      "archive_bytes": 1699905882,
+      "archive_identity": {
+        "bytes": 1699905882,
+        "ctime_ns": 1795754031374798900,
+        "device": 5400942862240111193,
+        "inode": 26458647811059226,
+        "mtime_ns": 1795754242681846000
+      },
+      "archive_sha256": "36b384277403ef416a22150724bd857b65b5d85043c884378630e7f1c6414efb",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\VERIFIED_ARCHIVE.json",
+      "full_member_receipt_sha256": "83126774b56474c0406918f423372f75b97ccf55e67b8b3450e73fac62133606",
+      "full_member_status": "COMPLETE_ARCHIVE_AND_EVERY_MEMBER_VERIFIED_NOT_REMOVED",
+      "id": "app-generated",
+      "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\MEMBER_MANIFEST.json",
+      "manifest_counts": {
+        "entries": 47372,
+        "new_payloads": 0
+      },
+      "manifest_identity": {
+        "bytes": 16815628,
+        "ctime_ns": 1795754625640468500,
+        "device": 5400942862240111193,
+        "inode": 12384898975553784,
+        "mtime_ns": 1795754625650557700
+      },
+      "manifest_sha256": "5e6fd1ffe65b62333b6543d4b8d189109b56ae66f0d12bfda334aa11db424518",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "entries",
+      "required_members": 4652,
+      "required_members_matched": 4652
+    },
+    {
+      "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\interrupted-original-sdk-work.tar.gz",
+      "archive_bytes": 5238640114,
+      "archive_identity": {
+        "bytes": 5238640114,
+        "ctime_ns": 1795755704056118000,
+        "device": 5400942862240111193,
+        "inode": 21955048183724307,
+        "mtime_ns": 1795756294281474100
+      },
+      "archive_sha256": "2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\VERIFIED_ARCHIVE.json",
+      "full_member_receipt_sha256": "7588011139c99fd2c6bad995fd799a74cafcac1a7e8e5378e0d615cbf7792424",
+      "full_member_status": "COMPLETE_ARCHIVE_AND_EVERY_MEMBER_VERIFIED_NOT_REMOVED",
+      "id": "old-sdk-producer",
+      "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\MEMBER_MANIFEST.json",
+      "manifest_counts": {
+        "entries": 138339,
+        "new_payloads": 0
+      },
+      "manifest_identity": {
+        "bytes": 53858783,
+        "ctime_ns": 1795757184738564400,
+        "device": 5400942862240111193,
+        "inode": 52354345668480152,
+        "mtime_ns": 1795757184805191800
+      },
+      "manifest_sha256": "558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "entries",
+      "required_members": 40366,
+      "required_members_matched": 40366
+    },
+    {
+      "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\fresh-producer-differential.tar.gz",
+      "archive_bytes": 944883233,
+      "archive_identity": {
+        "bytes": 944883233,
+        "ctime_ns": 1795761459251521000,
+        "device": 5400942862240111193,
+        "inode": 12947848928777298,
+        "mtime_ns": 1795761540882596500
+      },
+      "archive_sha256": "3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\VERIFIED_DIFFERENTIAL.json",
+      "full_member_receipt_sha256": "485d1842dd531c9f6211a9498bddaa1139089fac92efee2abb436a716fced53f",
+      "full_member_status": "COMPLETE_DIFFERENTIAL_AND_ALL_REFERENCES_VERIFIED_NOT_REMOVED",
+      "id": "fresh-sdk-differential",
+      "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\MANIFEST.json",
+      "manifest_counts": {
+        "entries": 121147,
+        "new_payloads": 22521
+      },
+      "manifest_identity": {
+        "bytes": 93784007,
+        "ctime_ns": 1795761616478841200,
+        "device": 5400942862240111193,
+        "inode": 14636698789341979,
+        "mtime_ns": 1795761616693475700
+      },
+      "manifest_sha256": "d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "new_payloads",
+      "required_members": 8,
+      "required_members_matched": 8
+    },
+    {
+      "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\qualified-snapshot-differential.tar.gz",
+      "archive_bytes": 1291853917,
+      "archive_identity": {
+        "bytes": 1291853917,
+        "ctime_ns": 1795763610781859100,
+        "device": 5400942862240111193,
+        "inode": 11258999068627783,
+        "mtime_ns": 1795763696874289200
+      },
+      "archive_sha256": "f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\VERIFIED_DIFFERENTIAL.json",
+      "full_member_receipt_sha256": "1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9",
+      "full_member_status": "COMPLETE_QUALIFIED_SNAPSHOT_DIFFERENTIAL_AND_ALL_REFERENCES_VERIFIED_NOT_RETIRED",
+      "id": "qualified-snapshot-differential",
+      "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\MANIFEST.json",
+      "manifest_counts": {
+        "entries": 65204,
+        "new_payloads": 3973
+      },
+      "manifest_identity": {
+        "bytes": 49280191,
+        "ctime_ns": 1795763803024225600,
+        "device": 5400942862240111193,
+        "inode": 34902897112352880,
+        "mtime_ns": 1795763803091685200
+      },
+      "manifest_sha256": "70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "new_payloads",
+      "required_members": 0,
+      "required_members_matched": 0
+    },
+    {
+      "archive": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/session-pair-differential.tar.gz",
+      "archive_bytes": 1342747334,
+      "archive_identity": {
+        "bytes": 1342747334,
+        "ctime_ns": 1795769999699174315,
+        "device": 2064,
+        "inode": 722981,
+        "mtime_ns": 1795769999644173994
+      },
+      "archive_sha256": "d0743bef81222350ed4cae139504585c81f1592ec084e31884933e79c22a5e8d",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/NEW_ARCHIVE_VERIFIED.json",
+      "full_member_receipt_sha256": "8ec65743855d522d25f7e8b63c71d24c472b7087b3ca3c061d7529faf6e791e3",
+      "full_member_status": "COMPLETE_NEW_DIFFERENTIAL_MEMBERS_VERIFIED_PRIOR_REFERENCES_AWAIT_WINDOWS",
+      "header": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/HEADER.json",
+      "header_sha256": "ce9ebccb6c36704448b659ee5354c44391e514a78f4df08073326eff18e6cf3b",
+      "id": "session-pair-differential",
+      "new_payload_manifest": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/new-payloads.jsonl.gz",
+      "new_payload_manifest_identity": {
+        "bytes": 4419157,
+        "ctime_ns": 1795770149364046164,
+        "device": 2064,
+        "inode": 723004,
+        "mtime_ns": 1795770149364046164
+      },
+      "new_payload_manifest_sha256": "8c57a12eb797bcb6116e71a417dbe2788f774632fba91d6ef90cd0cdd252136a",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "new_payloads",
+      "physical_members": 58121,
+      "required_members": 0,
+      "required_members_matched": 0
+    },
+    {
+      "archive": "/mnt/development/projects/diagnostics/otzaria-wave3-five-scope-preservation-20261127/five-scope-differential.tar.gz",
+      "archive_bytes": 6726244,
+      "archive_identity": {
+        "bytes": 6726244,
+        "ctime_ns": 1795773394452919588,
+        "device": 2064,
+        "inode": 723158,
+        "mtime_ns": 1795773394000916947
+      },
+      "archive_sha256": "39c5145756f859ca62ca215f3ceecd084384f2303a70b7345b3e08a8b2133e49",
+      "fresh_archive_hash_verified": true,
+      "full_member_receipt": "/mnt/development/projects/diagnostics/otzaria-wave3-five-scope-preservation-20261127/NEW_ARCHIVE_VERIFIED.json",
+      "full_member_receipt_sha256": "47b941bffecfb44939c824c928efd62354a8ddb9e0555d4f151161c0609865d3",
+      "full_member_status": "COMPLETE_NEW_DIFFERENTIAL_MEMBERS_VERIFIED_PRIOR_REFERENCES_AWAIT_HOSTS",
+      "header": "/mnt/development/projects/diagnostics/otzaria-wave3-five-scope-preservation-20261127/HEADER.json",
+      "header_sha256": "8a2e85baf405350e77bebb2cab20a4f430c55ceaddc8689893b5e34d831aa007",
+      "id": "five-scope-differential",
+      "new_payload_manifest": "/mnt/development/projects/diagnostics/otzaria-wave3-five-scope-preservation-20261127/new-payloads.jsonl.gz",
+      "new_payload_manifest_identity": {
+        "bytes": 8421,
+        "ctime_ns": 1795773624464261958,
+        "device": 2064,
+        "inode": 723247,
+        "mtime_ns": 1795773624464261958
+      },
+      "new_payload_manifest_sha256": "b2dd7dc48a37cc374cba490dae3e17316d7644550a5fa7b8e7169485cf01ef24",
+      "original_full_member_proof_reused_for_identical_freshly_hashed_archive": true,
+      "physical_member_scope": "new_payloads",
+      "physical_members": 103,
+      "required_members": 0,
+      "required_members_matched": 0
+    }
+  ],
+  "archives_mutated": false,
+  "header_sha256": "0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f",
+  "new_archive_verification_sha256": "591e5599d05619b28427a9b9b7af43e50cfe751a281ce6930817e57abb0ad85c",
+  "new_sdk_or_native_runs": 0,
+  "oracle_archive_fresh_hash_receipt_sha256": "63aa34d7b5e1923cdb463f0b756987c9c31498a85d609eedfdf27f43b0023f25",
+  "oracle_required_receipt_sha256": "41588663377a9961f8cc05105d9987e8db2d392ea850f6e7dc4f175e2ba8a7d0",
+  "prior_members_verified": 45026,
+  "prior_reference_ledger": {
+    "by_archive": {
+      "app-generated": 4652,
+      "fresh-sdk-differential": 8,
+      "old-sdk-producer": 40366
+    },
+    "bytes": 2654081,
+    "members": 45026,
+    "path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\PRIOR_REFERENCES.jsonl.gz",
+    "raw_bytes": 14847718,
+    "raw_sha256": "4b5f7aae32a294aa4fc1f94eb1f93a141edb4dfa13347a66ed7e99ff1829f8f6",
+    "sha256": "f9e6bed682686a39431f72525cc3e809c5ac2f4b2ca3a44cf09bbdbbd865d32b"
+  },
+  "retirement_authorized": false,
+  "seconds": 14.01600000000326,
+  "status": "ALL_SIX_ARCHIVES_CURRENT_AND_EVERY_REQUIRED_PHYSICAL_MEMBER_BOUND",
+  "utc": "2026-11-27T11:49:12.118423+00:00",
+  "verbatim_parser_origin_sha256": "b4763615ddabc8dde73be18a806447d61e096a2fb902093c28ca9409f89119d4",
+  "verbatim_parser_sha256": "92bf529729219e35623236659d9bd80f3e2c81c964ecabb055a83e36dbfaa44d",
+  "verifier_sha256": "bd0192214c2f9d8a3fe96037367bc79bf7d3c86523b2a57f6afada434c007116",
+  "windows_archive_fresh_hash_receipt_sha256": "df5fdcf1d3754457eac738b25200a6bec6b0d6e407a2f89c7c7486a8531dc1bf"
+}

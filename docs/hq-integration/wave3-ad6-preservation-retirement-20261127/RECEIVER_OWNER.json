@@ -1,0 +1,20 @@
+{
+  "archive_limit_bytes": 4294967296,
+  "build_authorized": false,
+  "header_sha256": "0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f",
+  "mac_evidence": "/Users/m1/builds/otzaria-wave3-ad6-preservation-20261127.n155e60d",
+  "mac_script_sha256": "9bb4e8dc5ddf3661860bbc5b71245d1227c04561a2bf25cced727e7b38132f4d",
+  "owned_ssh": {
+    "creation_filetime": 134402529394028789,
+    "pid": 37112
+  },
+  "receiver": {
+    "creation_filetime": 134402529392293940,
+    "pid": 5952
+  },
+  "receiver_script_sha256": "f518336f2574631b0896b34d4b5c805422d8458267a7af94b35c28970cf71c90",
+  "source_deletion_authorized": false,
+  "timeout_seconds": 900,
+  "utc": "2026-11-27T11:35:39.409474+00:00",
+  "windows_reserve_bytes": 2415919104
+}

@@ -1,0 +1,27 @@
+{
+  "anything_deleted": false,
+  "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-ad6-preservation-20261127\\failed-ad6-work-differential.tar.gz",
+  "archive_bytes": 1166562940,
+  "archive_sha256": "75c605727c89cb9ec8651fdec35cb852661f6702150af100ef82461e5a2ade15",
+  "header_sha256": "0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f",
+  "mac_owner": {
+    "command": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/m1/builds/otzaria-wave3-ad6-preservation-20261127.n155e60d/ad6_preservation.py stream /Users/m1/builds/otzaria-wave3-ad6-preservation-20261127.n155e60d 0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f",
+    "lstart": "Fri Nov 27 12:35:40 2026",
+    "pgid": 5353,
+    "pid": 5353,
+    "ppid": 5352,
+    "script_sha256": "9bb4e8dc5ddf3661860bbc5b71245d1227c04561a2bf25cced727e7b38132f4d",
+    "utc": "2026-11-27T11:35:41.234638+00:00"
+  },
+  "new_cache_qualification": false,
+  "new_sdk_or_native_runs": 0,
+  "owned_ssh": {
+    "creation_filetime": 134402529394028789,
+    "pid": 37112
+  },
+  "seconds": 438.7970000000205,
+  "status": "EXACT_DIFFERENTIAL_TRANSFERRED_ALL_MEMBER_VERIFICATION_PENDING",
+  "utc": "2026-11-27T11:42:58.195464+00:00",
+  "windows_free_after": 8192536576,
+  "windows_free_before": 9411125248
+}
