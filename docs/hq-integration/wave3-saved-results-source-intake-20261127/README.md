@@ -1,0 +1,5 @@
+# Original Saved Results source intake
+
+Only the ten pinned product files and separate111-file evidence handoff were cherry-picked. All110 manifest rows,79 raw archive members and six original result files were verified, including equality with the actual owned raw archive. Four original preimages were joined to live integration and upstream evidence. Ten original method bodies, the exact inverse of the model/load metadata brackets and three untouched models were independently checked.
+
+The14 load,12 service and28 owner controls cover distinct source boundaries; the one targeted recatalog rerun strengthens an existing case. Explicit UIKit/database/window substitutes remain explicit. No native, Apple, production or owner approval is claimed. Shared45-hunk wiring, History modal-publication correction, translations, tenth Shortcut and app membership remain a separate root-owned combined intake. The current source supports the original mounted Search parent and warm exact node reveal; cross-root/cold node restoration remains an honest separate requirement.

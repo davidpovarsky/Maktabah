@@ -1,0 +1,56 @@
+{
+  "schema": "otzaria.wave3.saved-results-source-intake.v1",
+  "base": "43a8c10e2456a35ff985b282783fefdfdd8e71a6",
+  "sourceDonor": "86fb81e5b9231650b457daf13dbcf0d554a902cc",
+  "docsDonor": "b0fd2d88c7f51db3b2004dccd5ecef10a58d9551",
+  "sourceIntake": "e59338e4c02e88af1bce0fcd88e8f84f2dd20578",
+  "docsIntake": "9ede5f271fbe802d7d0851a930eba70ab46ffe0e",
+  "sourceFiles": 10,
+  "newFiles": 6,
+  "originalHooks": 4,
+  "documentationFiles": 111,
+  "manifestRows": 110,
+  "originalFunctionBodiesUnchanged": 10,
+  "modelAndLoadInverseExact": true,
+  "unchangedOriginalModels": 3,
+  "rawArchiveMembers": 79,
+  "rawHashedFiles": 78,
+  "rawManifestSHA256": "7ded800812ba241bc70b09eeaf3be039091ce5af41da90d7fb930ebcdf50cb52",
+  "originalResultsPreserved": 6,
+  "actualSourceControls": {
+    "load_lifetime": {
+      "passed": 14,
+      "failed": 0
+    },
+    "service": {
+      "passed": 12,
+      "failed": 0
+    },
+    "owner_original_paths": {
+      "passed": 28,
+      "failed": 0
+    },
+    "targeted_existing_completed_case": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "sourceOnlyBoundary": "Actual source with original Core/UIRouting value contracts; explicit UIKit, app, database and backend publisher fixtures. No Core effect or native execution.",
+  "firstIntakeFailurePreserved": "Before mutation: expected a self-hashed manifest row. Actual archive contains 78 pinned raw files and the exact manifest of those files, totaling 79 members.",
+  "preservedTrees": {
+    "Source/Otzaria": "61c6ce18116ba56ce7f7e3503f261453958aa51c",
+    "Source/ZayitSearch": "0ea86661d8fb55a7dabe2127d6245129c2e90ec8",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    "Scripts/CI": "21e27300cd4f4cd72f97df343190cbc9cf220687",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "sharedWiringAndRegistration": "PENDING_ROOT_COMBINED_INTAKE",
+  "scopeLimit": "Original mounted Search parent and warm exact tree reveal. Cross-root/cold node restoration is not claimed.",
+  "AppleSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "production": "NOT_RUN",
+  "ownerApproval": "NOT_GRANTED"
+}

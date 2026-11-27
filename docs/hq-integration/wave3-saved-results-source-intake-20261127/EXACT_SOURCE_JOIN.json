@@ -1,0 +1,92 @@
+[
+  {
+    "path": "Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+    "new": true,
+    "bytes": 3127,
+    "sha256": "439f61aac96a581b6b5948797c60b6c27c77b5e683271f23facf6f73a35b9975",
+    "afterBlob": "572bd30f12b32cf96f4b24f2c6e7253dbb10dc02"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+    "new": true,
+    "bytes": 38667,
+    "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54",
+    "afterBlob": "718030016164791069f127f3cadd94ef891ac818"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+    "new": true,
+    "bytes": 8996,
+    "sha256": "a62262899eb138f395b264aa557563c593fa3a0c117cbf1831d1ce598434766f",
+    "afterBlob": "a79f305ce64f77f63af2c559b4d1748ff8bafa62"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+    "new": true,
+    "bytes": 11410,
+    "sha256": "426148a7d9ea9338dc99aa398bcda1f3ec37da279746e118bfd0257ef888b9da",
+    "afterBlob": "43c4215bb92640926f2753c5e23cd9eb382f7327"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+    "new": true,
+    "bytes": 11240,
+    "sha256": "176e6943b57f410fe09d9150dbcbc29f5da2b09dd353f1df71a0fa352579de3e",
+    "afterBlob": "f425fc877e66a27b2a4a0b8da48c2e2701a9b61b"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+    "new": true,
+    "bytes": 5472,
+    "sha256": "e13f939d280885783c507a85e1b73e03f22a585aab9384a1c79dea849da241db",
+    "afterBlob": "6242762eb9e9719c8a998980d13a1d2cf3e6bdfd"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "new": false,
+    "bytes": 2168,
+    "sha256": "a51ac819587a40fe217ef5720cadf406a309c56c276a8f12f4b491129571c12e",
+    "before_bytes": 1852,
+    "before_sha256": "efc580fc5558e8a62824ae5a028d1c17a6be96a436c05a2df97d4696bd7dc1f6",
+    "upstream_ref": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "upstream_sha256": "efc580fc5558e8a62824ae5a028d1c17a6be96a436c05a2df97d4696bd7dc1f6",
+    "baseline_matches_upstream": true,
+    "afterBlob": "6f1ec0c856fffb1455591df982aee894b5f3aeed"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "new": false,
+    "bytes": 2513,
+    "sha256": "12d81887f18080deb706260b8e3adb56dc8decefd7d70603e4ed78d8d14127f7",
+    "before_bytes": 2449,
+    "before_sha256": "5115e7dd961bf93633d02ab2252f1c53a4e1d20cacbc30e7da8da6892a256d49",
+    "upstream_ref": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "upstream_sha256": "5115e7dd961bf93633d02ab2252f1c53a4e1d20cacbc30e7da8da6892a256d49",
+    "baseline_matches_upstream": true,
+    "afterBlob": "8f8d6587531cd7880b7e74377bc7bdd693a5aefa"
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "new": false,
+    "bytes": 18324,
+    "sha256": "855d11b32c07e3bdd994b26c877be90332db51aa31a87514eb0945eae8c9be01",
+    "before_bytes": 12878,
+    "before_sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
+    "upstream_ref": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "upstream_sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
+    "baseline_matches_upstream": true,
+    "afterBlob": "377563d924b9e4f30f3c97c8e676fad34344f13a"
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "new": false,
+    "bytes": 14055,
+    "sha256": "45f2a9968b2d9ef5aafaf04d38afa84de780ad0787f4551c3cf58ae1397417fd",
+    "before_bytes": 12630,
+    "before_sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e",
+    "upstream_ref": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "upstream_sha256": "ebb3505606649c629d61115d4d7cf453ad8e838813f75c656a430dc351f33ee1",
+    "baseline_matches_upstream": false,
+    "afterBlob": "0c8653f393e249350ad4908b1626a2b20a14ae37"
+  }
+]
