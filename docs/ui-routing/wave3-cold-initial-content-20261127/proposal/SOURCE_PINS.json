@@ -1,0 +1,68 @@
+{
+  "base": "ce4fe5a327168524f6f1fef1e7792a275ece0ebe",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "after": {
+        "bytes": 12268,
+        "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+      },
+      "before": {
+        "bytes": 4610,
+        "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "after": {
+        "bytes": 2841,
+        "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+      },
+      "before": null
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "after": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "before": {
+        "bytes": 77004,
+        "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "after": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "before": {
+        "bytes": 23388,
+        "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "after": {
+        "bytes": 21681,
+        "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+      },
+      "before": {
+        "bytes": 11292,
+        "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "after": {
+        "bytes": 14334,
+        "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+      },
+      "before": {
+        "bytes": 12945,
+        "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+      }
+    }
+  ]
+}

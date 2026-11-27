@@ -1,0 +1,187 @@
+{
+  "base": "ce4fe5a327168524f6f1fef1e7792a275ece0ebe",
+  "observedIntegrationHEAD": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+  "observedSourceTree": "b2fbefa18f2a1b02c64248731994be3f0b7e56c2",
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "after": {
+        "bytes": 12268,
+        "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+      },
+      "before": {
+        "bytes": 4610,
+        "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "after": {
+        "bytes": 2841,
+        "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+      },
+      "before": null
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "after": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "before": {
+        "bytes": 77004,
+        "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "after": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "before": {
+        "bytes": 23388,
+        "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "after": {
+        "bytes": 21681,
+        "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+      },
+      "before": {
+        "bytes": 11292,
+        "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "after": {
+        "bytes": 14334,
+        "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+      },
+      "before": {
+        "bytes": 12945,
+        "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+      }
+    }
+  ],
+  "sessionProposalOnly": true,
+  "newFileMembership": "Copy exact original ReaderContentLoadCoordinator target membership for ReaderInitialContentRequest.swift; root owns PBX.",
+  "counts": {
+    "firstBoundary": {
+      "originalPass": 3,
+      "originalFail": 4,
+      "candidatePass": 35,
+      "candidateFail": 0
+    },
+    "publisherIOS": {
+      "beforePass": 10,
+      "beforeFail": 7,
+      "candidatePass": 17,
+      "candidateFail": 0
+    },
+    "publisherMacOSConditionals": {
+      "beforePass": 3,
+      "beforeFail": 2,
+      "candidatePass": 5,
+      "candidateFail": 0
+    },
+    "preservedInitialPublisherFixture": {
+      "candidatePass": 14,
+      "candidateFail": 3
+    },
+    "wholeFileSyntaxOnly": 14,
+    "AppleSDK": 0,
+    "native": 0
+  },
+  "rawEvidenceFiles": 142,
+  "preservedGeneratedProducts": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/baseline",
+      "bytes": 1322080,
+      "sha256": "6d688a63511134bb0d459f41cd425aaa87ae44ed2fd10a3ba83e9c8b8010634a",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/candidate",
+      "bytes": 1603392,
+      "sha256": "ba5999fc4a19efa5a7d4ac32503f40d708db36caf2f5fe44b050fcfb67086e2a",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-1/output/ios-before",
+      "bytes": 1510760,
+      "sha256": "4763edfaee5eb6afd8a88a5f9ad2e06d518cc62fff371f1a2dd3f0c887ba55de",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-1/output/ios-candidate",
+      "bytes": 1512376,
+      "sha256": "73e1f51e57e728c06992e480762aab0084bf5f82b5cd7fb919807c810f6b05be",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-2/output/ios-before",
+      "bytes": 1510888,
+      "sha256": "6a3b2d7c6e36f889ef364a283ca884237d479de7708671bea0e243ec7da584b0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-2/output/ios-candidate",
+      "bytes": 1512496,
+      "sha256": "0f5fbfb049bcb59900211a357d0be993f80e56d0bc3ca2e2ceaca16e7d2786d5",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-2/output/macos-before",
+      "bytes": 1510096,
+      "sha256": "03ae5b4dab06a44eba8ee2bf4f02825f107fde1a76bcff742cba4fd748796671",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/publisher-followup-attempt-2/output/macos-candidate",
+      "bytes": 1511704,
+      "sha256": "886ebbe5baada6842572708432796e307ffc9001c7d9c391627202c49fa7ae8d",
+      "preserved": true
+    }
+  ],
+  "peerReview": {
+    "reviewer": "/root/navigation_fix",
+    "scope": "Read-only original pre-token invocation, one-token issuance, callback/publication and exact terminal retirement; no rerun or native claim.",
+    "firstDraft": {
+      "readerContentSHA256": "fadc9772b84b0f13ce3d9a1b563f4dc259f8cfb898f3face8e4e59b32c8daec2",
+      "findings": [
+        "The actual updateContentState continued later original fields after a synchronous replacement. The first35 fixture did not contain that original publisher body.",
+        "CancellationError or staleRequest can be thrown without Task.isCancelled; terminal returns left pending invocation metadata alive."
+      ]
+    },
+    "finalRead": {
+      "readerContentSHA256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48",
+      "readerViewModelSHA256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905",
+      "conclusion": "Both concrete source findings are closed. The same retained request/book validator fences original callback-bearing publications before further writes; terminal errors and failed exact source comparisons retire only that request. Default-nil calls retain the original sequence. No replacement-token sampling was introduced."
+    },
+    "notEstablished": [
+      "Apple SDK typing",
+      "UIKit/rendering",
+      "system intents",
+      "native acceptance"
+    ]
+  },
+  "open": [
+    "App SDK typing and actual native cold Profile/Group behavior",
+    "Actual original selected-note/ReaderTools fence integration",
+    "Full restored-document, inactive-tab, cancellation and background UI acceptance",
+    "Hidden already-active phone Group presentation remains separate"
+  ],
+  "sealedUTC": "2026-11-27T18:58:06.464733+00:00",
+  "dataFree": 8446439424,
+  "rootFree": 2369044480,
+  "publication": {
+    "initialDiffCheckExit": 2,
+    "failurePreserved": "evidence/PUBLICATION_ATTEMPT1.json",
+    "resolution": "Losslessly encode only verbatim unified-diff proof bytes; no product or Git policy edit.",
+    "timeUTC": "2026-11-27T19:00:06.963017+00:00"
+  }
+}
