@@ -1974,6 +1974,7 @@ struct TestRunner {
             let transport = MockBridgeTransport()
             let bridge = SefariaJSRPCBridge.shared
             await bridge.setTransport(transport)
+            let activeResponseEpoch = await bridge.sessionEpoch
 
             // Subtest A: Stale generation rejection
             transport.responseModifier = { env in
@@ -1988,7 +1989,7 @@ struct TestRunner {
                 )
             }
             do {
-                _ = try await bridge.call(method: "test.stale", paramsJson: nil, generation: 1, timeoutMs: 2000)
+                _ = try await bridge.call(method: "test.stale", paramsJson: nil, generation: activeResponseEpoch, timeoutMs: 2000)
                 assertCondition(false, "Should have thrown STALE_GENERATION")
             } catch let rpcErr as SefariaRPCError {
                 assertCondition(rpcErr.code == "STALE_GENERATION", "Mismatched generation rejected with STALE_GENERATION (\(rpcErr.code))")
@@ -2007,7 +2008,7 @@ struct TestRunner {
                 )
             }
             do {
-                _ = try await bridge.call(method: "test.proto", paramsJson: nil, generation: 1, timeoutMs: 2000)
+                _ = try await bridge.call(method: "test.proto", paramsJson: nil, generation: activeResponseEpoch, timeoutMs: 2000)
                 assertCondition(false, "Should have thrown PROTOCOL_VERSION_MISMATCH")
             } catch let rpcErr as SefariaRPCError {
                 assertCondition(rpcErr.code == "PROTOCOL_VERSION_MISMATCH", "Mismatched protocol rejected with PROTOCOL_VERSION_MISMATCH (\(rpcErr.code))")
@@ -2026,7 +2027,7 @@ struct TestRunner {
                 )
             }
             do {
-                _ = try await bridge.call(method: "test.backend", paramsJson: nil, generation: 1, timeoutMs: 2000)
+                _ = try await bridge.call(method: "test.backend", paramsJson: nil, generation: activeResponseEpoch, timeoutMs: 2000)
                 assertCondition(false, "Should have thrown BACKEND_MISMATCH")
             } catch let rpcErr as SefariaRPCError {
                 assertCondition(rpcErr.code == "BACKEND_MISMATCH", "Mismatched backend ID rejected with BACKEND_MISMATCH (\(rpcErr.code))")
@@ -2044,7 +2045,7 @@ struct TestRunner {
                     backendID: BackendID.sefariaEmbedded.rawValue
                 )
             }
-            let validResp = try await bridge.call(method: "test.valid", paramsJson: nil, generation: 1, timeoutMs: 2000)
+            let validResp = try await bridge.call(method: "test.valid", paramsJson: nil, generation: activeResponseEpoch, timeoutMs: 2000)
             assertCondition(validResp.isSuccess, "Valid response accepted successfully")
             assertCondition(validResp.resultJson == "{\"status\": \"verified\"}", "Valid response data matches")
 
@@ -2083,6 +2084,7 @@ struct TestRunner {
             let transport = ConcurrentEchoTransport()
             let bridge = SefariaJSRPCBridge.shared
             await bridge.setTransport(transport)
+            let activeResponseEpoch = await bridge.sessionEpoch
 
             let callCount = 20
             try await withThrowingTaskGroup(of: (Int, String).self) { group in
@@ -2092,7 +2094,7 @@ struct TestRunner {
                         let resp = try await bridge.call(
                             method: "echo",
                             paramsJson: payload,
-                            generation: 1,
+                            generation: activeResponseEpoch,
                             timeoutMs: 5000
                         )
                         return (i, resp.resultJson ?? "")

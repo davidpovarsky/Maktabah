@@ -86,6 +86,47 @@ export class ChavrusaRPCFacade {
   static activeDownloadingPackage = null;
   static activeResourceOperations = 0;
 
+  // One bounded diagnostic echo at a time. This does not replace the original
+  // RN transport or manufacture a native reply: ChavrusaRoot delivers the actual
+  // completed facade response through the existing native module.
+  static activeEchoDiagnostic = null;
+
+  static async delayDiagnosticEcho(envelope, options) {
+    const uuid = value => typeof value === 'string'
+      && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+    if (!options || options.contract !== 'chavrusa.diagnostic.late-reply.v1'
+        || !uuid(options.nonce) || !uuid(envelope.requestID)
+        || envelope.protocolVersion !== '1.0' || envelope.backendID !== 'sefariaEmbedded'
+        || !Number.isSafeInteger(envelope.sessionGeneration) || envelope.sessionGeneration < 1
+        || !Number.isInteger(options.delayMs) || options.delayMs < 1 || options.delayMs > 3000
+        || !Number.isInteger(envelope.timeoutMs) || envelope.timeoutMs <= options.delayMs
+        || envelope.timeoutMs > 10000) {
+      throw new Error('DIAGNOSTIC_DELAY_INVALID');
+    }
+    if (ChavrusaRPCFacade.activeEchoDiagnostic !== null) {
+      throw new Error('DIAGNOSTIC_DELAY_BUSY');
+    }
+    const proof = Object.freeze({
+      contract: options.contract, requestID: envelope.requestID, nonce: options.nonce,
+      sessionGeneration: envelope.sessionGeneration, delayMs: options.delayMs,
+    });
+    const record = {proof, timer: null};
+    ChavrusaRPCFacade.activeEchoDiagnostic = record;
+    try {
+      await new Promise((resolve, reject) => {
+        record.timer = setTimeout(() => { record.timer = null; resolve(); }, proof.delayMs);
+        try { ChavrusaRPCFacade.sendEventToNative('diagnostic.echo.started', proof); }
+        catch (error) { reject(error); }
+      });
+      return proof;
+    } finally {
+      if (record.timer !== null) { clearTimeout(record.timer); record.timer = null; }
+      if (ChavrusaRPCFacade.activeEchoDiagnostic === record) {
+        ChavrusaRPCFacade.activeEchoDiagnostic = null;
+      }
+    }
+  }
+
   static setDispatch(d) {
     ChavrusaRPCFacade.dispatch = d;
   }
@@ -134,6 +175,12 @@ export class ChavrusaRPCFacade {
           break;
         }
         case 'diagnostic.echo': {
+          const wantsLateReply = Object.prototype.hasOwnProperty.call(params || {}, 'lateReplyDiagnostic');
+          if (wantsLateReply && params?.injectError) {
+            throw new Error('DIAGNOSTIC_DELAY_CONFLICT');
+          }
+          const lateReplyProof = wantsLateReply
+            ? await ChavrusaRPCFacade.delayDiagnosticEcho(envelope, params.lateReplyDiagnostic) : null;
           if (params?.injectError) {
             return {
               protocolVersion: '1.0',
@@ -153,6 +200,7 @@ export class ChavrusaRPCFacade {
             echoedMessage: params?.message || '',
             timestamp: Date.now(),
             generation: sessionGeneration,
+            ...(lateReplyProof ? {lateReplyDiagnostic: lateReplyProof} : {}),
           };
           break;
         }
