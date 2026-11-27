@@ -1,0 +1,33 @@
+{
+  "base": "362f3883a16ed96dd6a08c6556534721de28253e",
+  "productDependency": "2966054d46a2610b7a4fe53eb8ac1323710f25ae (root dd4b28f4)",
+  "oldPrefixBytes": 237451,
+  "oldPrefixSHA256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8",
+  "appendBytes": 21629,
+  "appendSHA256": "5da45c405e0693847658ce1100a6bbf8582707b594387fe7caa45549e1e983f8",
+  "selectors": [
+    "testSystemTabGroupIntentReusesOriginalSavedReaders",
+    "testSystemTabGroupIntentShowsOriginalEmptyReader",
+    "testSystemStudyProfileIntentSelectsOriginalFirstGroup",
+    "testSystemTabGroupIntentRejectsActuallyDeletedCachedGroup",
+    "testPhoneSystemTabGroupIntentReusesOriginalSavedReaders",
+    "testPhoneSystemTabGroupIntentShowsOriginalEmptyLibrary",
+    "testPhoneSystemStudyProfileIntentSelectsOriginalFirstGroup",
+    "testPhoneSystemTabGroupIntentReturnsFromBackgroundToOriginalReader"
+  ],
+  "native": "NOT_RUN",
+  "sdk": "NOT_RUN",
+  "scope": "source prefix/selector/delivery inspection only",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+      "bytes": 2407,
+      "sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48"
+    }
+  ]
+}

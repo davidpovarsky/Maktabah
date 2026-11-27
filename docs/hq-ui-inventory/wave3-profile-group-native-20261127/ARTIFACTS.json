@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "path": "BASE_INPUTS.json",
+      "bytes": 861,
+      "sha256": "e7fb70d3c04fdfacb752d1d4423a2d75260cbf65b31ec9fc101f1b9aaf92a510"
+    },
+    {
+      "path": "NATIVE_SOURCE_CHECK.json",
+      "bytes": 1406,
+      "sha256": "42a3983b1aae4f1e3464ccc44767ac05df99590bc1dfb7aa7282f9f065bb8bc4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6105,
+      "sha256": "d8c9d1445e675add4da4402af11661031240350d5816f688d8e3caeb994c2e6d"
+    },
+    {
+      "path": "READ_ONLY_UI_EVIDENCE.json",
+      "bytes": 15176,
+      "sha256": "15644e4bc4d5a7331f67feba73cb98bef238b930d3f0efdb25fc612fd8c2b361"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 699,
+      "sha256": "d7cc63cbcd3ec4eea69a209638152fc392161f821f6e981a02efc000213f4b4c"
+    },
+    {
+      "path": "syntax/NativeWorkspaceSelectionHelper.swift",
+      "bytes": 21629,
+      "sha256": "5da45c405e0693847658ce1100a6bbf8582707b594387fe7caa45549e1e983f8"
+    },
+    {
+      "path": "syntax/RESULT.json",
+      "bytes": 1892,
+      "sha256": "69a0d48c1b25bf84064adf58118f5143c6b67b707036a53676d6a909f140177e"
+    },
+    {
+      "path": "syntax/parse.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "syntax/parse.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
