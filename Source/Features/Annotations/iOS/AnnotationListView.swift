@@ -2,6 +2,8 @@ import SwiftUI
 
 struct AnnotationListView: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
+    @State private var nativeRoutingOwner = UUID()
     @State private var showMissingBookAlert = false
     @State private var missingBookId: Int = 0
     @AppStorage("hideMissingBookAnnotations") private var hideMissingBookAnnotations: Bool = false
@@ -32,21 +34,34 @@ struct AnnotationListView: View {
             .task {
                 await viewModel.loadAnnotations()
             }
+            .onAppear {
+                nativeRoutingSession?.observeAnnotationPresentation(owner: nativeRoutingOwner, isBlocked: {
+                    isExporting || isImporting || showOverwriteDialog || showImportAlert
+                        || showMissingBookAlert || editingAnnotation != nil
+                })
+            }
+            .onDisappear { nativeRoutingSession?.removeAnnotationPresentation(owner: nativeRoutingOwner) }
     }
 
     private func annotationContent(_ viewModel: AnnotationViewModel) -> some View {
         AnnotationViewControllerWrapper(
             navigationManager: navigationManager,
             viewModel: viewModel,
-            onEditAnnotation: { editingAnnotation = $0 },
-            onShowBookInfo: { navigationManager.selectedBookForInfo = $0 }
+            onEditAnnotation: { nativeModalWillChange(); editingAnnotation = $0 },
+            onShowBookInfo: { navigationManager.selectedBookForInfo = $0 },
+            nativeRoutingBinding: nativeRoutingSession?.annotationSelectionBinding,
+            nativeRoutingOwner: nativeRoutingOwner,
+            nativeRoutingBlocked: {
+                isExporting || isImporting || showOverwriteDialog || showImportAlert
+                    || showMissingBookAlert || editingAnnotation != nil
+            }
         )
         .themeTint()
         .ignoresSafeArea(edges: .vertical)
         .annotationSearch(viewModel: viewModel)
         .missingBookAlert(
             missingBookId: $missingBookId,
-            showAlert: $showMissingBookAlert,
+            showAlert: nativeModalBinding($showMissingBookAlert),
             hideAnnotations: hideMissingBookAnnotations,
             onFilterChange: { viewModel.applyFilter() }
         )
@@ -57,17 +72,17 @@ struct AnnotationListView: View {
             }
         }
         .fileExportImportModifiers(
-            isExporting: $isExporting,
+            isExporting: nativeModalBinding($isExporting),
             exportDocument: exportDocument,
-            isImporting: $isImporting,
+            isImporting: nativeModalBinding($isImporting),
             handleImportResult: handleImportResult,
             onExportFailed: { error in
                 showImportAlert(title: "Export Failed".localized, message: error.localizedDescription)
             }
         )
         .importOverwriteConfirmation(
-            showDialog: $showOverwriteDialog,
-            pendingAnnotations: $pendingImportAnnotations,
+            showDialog: nativeModalBinding($showOverwriteDialog),
+            pendingAnnotations: nativeModalBinding($pendingImportAnnotations),
             onPerformImport: { overwrite in
                 performImport(overwrite: overwrite, viewModel: viewModel)
             }
@@ -75,10 +90,10 @@ struct AnnotationListView: View {
         .importResultAlert(
             title: importAlertTitle,
             message: importAlertMessage,
-            isPresented: $showImportAlert
+            isPresented: nativeModalBinding($showImportAlert)
         )
         .annotationEditorSheet(
-            editingAnnotation: $editingAnnotation,
+            editingAnnotation: nativeModalBinding($editingAnnotation),
             viewModel: viewModel
         )
     }
@@ -117,6 +132,7 @@ struct AnnotationListView: View {
             .accessibilityIdentifier("original-annotations-export-json")
 
             Button {
+                nativeModalWillChange()
                 isImporting = true
             } label: {
                 Label(String(localized: .Annotation.importAnnotationsJson), systemImage: "square.and.arrow.down")
@@ -136,11 +152,24 @@ struct AnnotationListView: View {
         .accessibilityIdentifier("original-annotations-file-menu")
     }
 
+    private func nativeModalWillChange() {
+        nativeRoutingSession?.originalAnnotationPresentationWillChange(owner: nativeRoutingOwner)
+    }
+
+    /// Preserve the exact original State setter; only publication metadata is
+    /// invalidated, including an equal write from a presentation binding.
+    private func nativeModalBinding<Value>(_ original: Binding<Value>) -> Binding<Value> {
+        Binding(get: { original.wrappedValue }, set: { value in
+            nativeModalWillChange(); original.wrappedValue = value
+        })
+    }
+
     private func exportAnnotations() {
         Task.detached(priority: .userInitiated) {
             let allAnnotations = AnnotationStore.shared.loadAnnotations()
             if let jsonString = AnnotationJsonSerializer.encode(annotations: allAnnotations) {
                 await MainActor.run {
+                    nativeModalWillChange()
                     exportDocument = AnnotationJsonDocument(jsonString: jsonString)
                     isExporting = true
                 }
@@ -166,6 +195,7 @@ struct AnnotationListView: View {
                             showImportAlert(title: String(localized: .Annotation.importAnnotations), message: String(localized: .Annotation.noAnnotationsFoundInFile))
                             return
                         }
+                        nativeModalWillChange()
                         pendingImportAnnotations = decoded
                         showOverwriteDialog = true
                     }
@@ -181,6 +211,7 @@ struct AnnotationListView: View {
     }
 
     private func showImportAlert(title: String, message: String) {
+        nativeModalWillChange()
         importAlertTitle = title
         importAlertMessage = message
         showImportAlert = true
@@ -188,11 +219,13 @@ struct AnnotationListView: View {
 
     private func performImport(overwrite: Bool, viewModel: AnnotationViewModel) {
         let annotations = pendingImportAnnotations
+        nativeModalWillChange()
         pendingImportAnnotations = []
         Task.detached(priority: .userInitiated) {
             do {
                 let count = try AnnotationStore.shared.importAnnotations(annotations, overwrite: overwrite)
                 await MainActor.run {
+                    nativeModalWillChange()
                     importAlertTitle = String(localized: .Annotation.importAnnotations)
                     importAlertMessage = String(localized: .Annotation.annotationsImportedSuccess(count))
                     showImportAlert = true
@@ -200,6 +233,7 @@ struct AnnotationListView: View {
                 await viewModel.loadAnnotations()
             } catch {
                 await MainActor.run {
+                    nativeModalWillChange()
                     importAlertTitle = "Import Failed".localized
                     importAlertMessage = error.localizedDescription
                     showImportAlert = true

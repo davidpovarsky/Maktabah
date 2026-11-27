@@ -12,6 +12,9 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
     @Bindable var viewModel: AnnotationViewModel
     var onEditAnnotation: ((Annotation) -> Void)?
     var onShowBookInfo: ((BooksData) -> Void)?
+    var nativeRoutingBinding: MaktabahNativeAnnotationSelectionBinding? = nil
+    var nativeRoutingOwner: UUID? = nil
+    var nativeRoutingBlocked: @MainActor () -> Bool = { true }
 
     func makeUIViewController(context: Context) -> iOSAnnotationViewController {
         let vc = iOSAnnotationViewController()
@@ -67,6 +70,12 @@ struct AnnotationViewControllerWrapper: UIViewControllerRepresentable {
             )
         }
         uiViewController.updateTagFilterHeader()
+        uiViewController.nativeRoutingAttach(binding: nativeRoutingBinding, owner: nativeRoutingOwner,
+                                              blocked: nativeRoutingBlocked)
+    }
+
+    static func dismantleUIViewController(_ controller: iOSAnnotationViewController, coordinator: Coordinator) {
+        controller.nativeRoutingDetach()
     }
 
     func makeCoordinator() -> Coordinator {
