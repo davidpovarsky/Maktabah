@@ -1,0 +1,328 @@
+{
+  "actualClock": {
+    "adjustable": false,
+    "implementation": "mach_absolute_time()",
+    "integerConversionBoundNs": 43,
+    "machTimebaseDenom": 3,
+    "machTimebaseNumer": 125,
+    "monotonic": true,
+    "platform": "darwin",
+    "python": "3.12.16 (main, Oct 25 2026, 18:24:37) [Clang 21.0.0 (clang-2100.3.34.2)]",
+    "resolutionSeconds": 4.166666666666667e-08,
+    "runtimeBrackets": [
+      {
+        "hostMonotonicNs": 246734207871375,
+        "machAfterTicks": 5921620988918,
+        "machBeforeTicks": 5921620988898,
+        "machLowerNs": 246734207870750,
+        "machUpperNs": 246734207871584
+      },
+      {
+        "hostMonotonicNs": 246734207873958,
+        "machAfterTicks": 5921620988979,
+        "machBeforeTicks": 5921620988969,
+        "machLowerNs": 246734207873708,
+        "machUpperNs": 246734207874125
+      },
+      {
+        "hostMonotonicNs": 246734207875500,
+        "machAfterTicks": 5921620989015,
+        "machBeforeTicks": 5921620989010,
+        "machLowerNs": 246734207875416,
+        "machUpperNs": 246734207875625
+      }
+    ],
+    "schema": 1,
+    "scope": "Actual CPython monotonic_ns bracketed by native Mach absolute time; app clock still requires a fresh request bracket"
+  },
+  "actualExportClockBracket": {
+    "epochCoverageGranted": false,
+    "lowerNanoseconds": 246734287465373,
+    "originalAppRequestProtocolExecuted": false,
+    "processID": 91505,
+    "requestID": "96FFC23E-CDAD-4C11-A47A-A6E181D632AE",
+    "snapshotNanoseconds": 246734429105458,
+    "status": "ACTUAL_EXISTING_CATALYST_EXPORTER_CLOCK_BRACKET_VALIDATED_COMPONENT_ONLY",
+    "upperNanoseconds": 246734431892127
+  },
+  "actualOptIn": {
+    "CHAVRUSA_FULL_V32_SOURCE_OBSERVATION": "1"
+  },
+  "actualRetainedCompileInputs": {
+    "AppTypeBoundaries.swift": {
+      "bytes": 745,
+      "ctimeNs": 1795756834288177010,
+      "device": 16777232,
+      "inode": 71016249,
+      "mtimeNs": 1795756834288177010,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/AppTypeBoundaries.swift",
+      "sha256": "fdb3f11840870db015a594024f347bab87b9ffcdf9907b8bee396cb2aa9aaf2f"
+    },
+    "CandidateObserver.swift": {
+      "bytes": 17268,
+      "ctimeNs": 1795756834287785678,
+      "device": 16777232,
+      "inode": 71016246,
+      "mtimeNs": 1795756834287785678,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/CandidateObserver.swift",
+      "sha256": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b"
+    },
+    "CandidateSQLiteDatabase.swift": {
+      "bytes": 28139,
+      "ctimeNs": 1795756834287432095,
+      "device": 16777232,
+      "inode": 71016245,
+      "mtimeNs": 1795756834287432095,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/CandidateSQLiteDatabase.swift",
+      "sha256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661"
+    },
+    "OriginalArabicRenderResult.swift": {
+      "bytes": 3982,
+      "ctimeNs": 1795756834288537801,
+      "device": 16777232,
+      "inode": 71016252,
+      "mtimeNs": 1795756834288537801,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/OriginalArabicRenderResult.swift",
+      "sha256": "3d5470ca7dfa34ebebc5fdf83065eb337649b757ea1952890f4bd4993eb95c01"
+    },
+    "OriginalHighlightSnapshot.swift": {
+      "bytes": 1986,
+      "ctimeNs": 1795756834288268468,
+      "device": 16777232,
+      "inode": 71016250,
+      "mtimeNs": 1795756834288268468,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/OriginalHighlightSnapshot.swift",
+      "sha256": "669b84059048ffd2088d8cc45dd5cad06ab7e0263a4471504d74255190c82546"
+    },
+    "OriginalSQLiteDatabase.swift": {
+      "bytes": 14916,
+      "ctimeNs": 1795756834287032846,
+      "device": 16777232,
+      "inode": 71016244,
+      "mtimeNs": 1795756834287032846,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/OriginalSQLiteDatabase.swift",
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    "OriginalTextDeltaEvent.swift": {
+      "bytes": 1690,
+      "ctimeNs": 1795756834288366968,
+      "device": 16777232,
+      "inode": 71016251,
+      "mtimeNs": 1795756834288366968,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/OriginalTextDeltaEvent.swift",
+      "sha256": "8919ea1f148c37b7004b904b2c8fbfdbd1bc14f1518dac0f3983495fd496bb5d"
+    },
+    "ReaderSelectionRangeMapper.swift": {
+      "bytes": 8095,
+      "ctimeNs": 1795756834288766758,
+      "device": 16777232,
+      "inode": 71016253,
+      "mtimeNs": 1795756834288766758,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/ReaderSelectionRangeMapper.swift",
+      "sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af"
+    },
+    "SQLiteFetchWaitControls.swift": {
+      "bytes": 19632,
+      "ctimeNs": 1795756834288087885,
+      "device": 16777232,
+      "inode": 71016248,
+      "mtimeNs": 1795756834288087885,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/SQLiteFetchWaitControls.swift",
+      "sha256": "45e7b87f2b442827160e6e451306457214e2b0368fe3490dfeac62f953c99170"
+    },
+    "UnusedZstdBoundary.swift": {
+      "bytes": 443,
+      "ctimeNs": 1795756834287883219,
+      "device": 16777232,
+      "inode": 71016247,
+      "mtimeNs": 1795756834287883219,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/UnusedZstdBoundary.swift",
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    }
+  },
+  "admission": {
+    "activeNativeCommands": [],
+    "freeBytes": 11494146048,
+    "processSnapshot": {
+      "bytes": 381763,
+      "ctimeNs": 1795762919431475044,
+      "device": 16777232,
+      "inode": 71950527,
+      "mtimeNs": 1795762919431475044,
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/admission.ps.txt",
+      "sha256": "46fe82fa57a27d92f978e5b81d3e88cd5dac673b11d818394e2bf76a68ffdd5b"
+    }
+  },
+  "afterActualCompanionRead": {
+    "hostMonotonicNs": 246734431891916,
+    "machAfterTicks": 5921626365410,
+    "machBeforeTicks": 5921626365381,
+    "machLowerNs": 246734431890875,
+    "machUpperNs": 246734431892084
+  },
+  "applicationUIExecuted": false,
+  "beforeNativeStart": {
+    "hostMonotonicNs": 246734287467375,
+    "machAfterTicks": 5921622899222,
+    "machBeforeTicks": 5921622899170,
+    "machLowerNs": 246734287465416,
+    "machUpperNs": 246734287467584
+  },
+  "binaryAfter": {
+    "bytes": 600512,
+    "ctimeNs": 1795756842166192113,
+    "device": 16777232,
+    "inode": 71016469,
+    "mtimeNs": 1795756842166192113,
+    "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/CatalystControls",
+    "sha256": "daa58a1b273fde2dee7c37c4965d3a9c8bfa1ef009f918cf2bde5d4c39fc4683"
+  },
+  "binaryBefore": {
+    "bytes": 600512,
+    "ctimeNs": 1795756842166192113,
+    "device": 16777232,
+    "inode": 71016469,
+    "mtimeNs": 1795756842166192113,
+    "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/CatalystControls",
+    "sha256": "daa58a1b273fde2dee7c37c4965d3a9c8bfa1ef009f918cf2bde5d4c39fc4683"
+  },
+  "childPID": 91505,
+  "companion": {
+    "bytes": 1700,
+    "ctimeNs": 1795762919683344476,
+    "device": 16777232,
+    "inode": 71950533,
+    "mtimeNs": 1795762919683262101,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/fresh-catalyst-fixture/source-request.sqlite-fetch-wait.json",
+    "sha256": "8523941a38f1a7bf73fd7ba6ae36864e10f2acafcbe19135437911084e809c03"
+  },
+  "directory": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z",
+  "epochCoverageGranted": false,
+  "fixtureDatabase": {
+    "bytes": 8192,
+    "ctimeNs": 1795762919681980437,
+    "device": 16777232,
+    "inode": 71950530,
+    "mtimeNs": 1795762919681980437,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/fresh-catalyst-fixture/original-sqlite-control.db",
+    "sha256": "64958c79e901ac5ef91c5f70011a5e58d3664e652313027ee259eff7a1679d90"
+  },
+  "freeBytesAfter": 11493736448,
+  "helper": {
+    "bytes": 58976,
+    "ctimeNs": 1795762919318255299,
+    "device": 16777232,
+    "inode": 71950525,
+    "mtimeNs": 1795762919318255299,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/study-ui-sqlite-wait.py",
+    "sha256": "4e2421361013659285c67459601bc705c2d89a2b7abe2313a0a4974b0b34dcee"
+  },
+  "helperCommit": "daccf4096eec0f1851cdb5c7bfd277916e9310c9",
+  "immediatelyBeforeNative": {
+    "activeNativeCommands": [],
+    "freeBytes": 11493761024,
+    "processSnapshot": {
+      "bytes": 381763,
+      "ctimeNs": 1795762919537578554,
+      "device": 16777232,
+      "inode": 71950528,
+      "mtimeNs": 1795762919537578554,
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/immediatelyBeforeNative.ps.txt",
+      "sha256": "d9019a57dd9cf5d6e082b2a3f11a8b4fba396e31141e211f4849053af162c3f9"
+    }
+  },
+  "nativeCommand": [
+    "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/CatalystControls",
+    "companion-export",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/fresh-catalyst-fixture"
+  ],
+  "nativeComponentResult": {
+    "case": "companion-export",
+    "checks": [
+      "actual-companion-hash-and-request",
+      "descriptor-and-file-bounds",
+      "invalid-request-and-write-failure"
+    ],
+    "processID": 91505,
+    "scope": "Original Apple SQLite fetch and bounded passive source controls. No full production corpus, Simulator or application UI.",
+    "status": "COMPONENT_CONTROL_PASS_NOT_APP_PERFORMANCE_ACCEPTANCE"
+  },
+  "nativeExit": 0,
+  "nativeInvocationCount": 1,
+  "originalCompile": {
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-Xfrontend",
+      "-strict-concurrency=complete",
+      "-module-cache-path",
+      "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/full-v40-observation-admission/module-cache",
+      "-D",
+      "DEBUG",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+      "-target",
+      "arm64-apple-ios17.0-macabi",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+      "AppTypeBoundaries.swift",
+      "OriginalHighlightSnapshot.swift",
+      "OriginalTextDeltaEvent.swift",
+      "OriginalArabicRenderResult.swift",
+      "ReaderSelectionRangeMapper.swift",
+      "UnusedZstdBoundary.swift",
+      "CandidateSQLiteDatabase.swift",
+      "CandidateObserver.swift",
+      "SQLiteFetchWaitControls.swift",
+      "-o",
+      "CatalystControls"
+    ],
+    "exit": 0,
+    "name": "whole-observer-catalyst-compile",
+    "optIn": null,
+    "seconds": 2.8984250419999995,
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "originalNativeCommit": "0b445db8a8ee5bc53a1a729c9b65693b51cc88fe",
+  "originalNativeResult": {
+    "bytes": 28767,
+    "ctimeNs": 1795756842907991063,
+    "device": 16777232,
+    "inode": 71016483,
+    "mtimeNs": 1795756842907991063,
+    "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/RESULT.json",
+    "sha256": "00a7e67662d7b3a92511be1a85d99dfad665e69f02acb80e9ece83391c37a7ee"
+  },
+  "performanceAcceptance": false,
+  "productionCorpusOpened": false,
+  "python": {
+    "executable": "/opt/homebrew/opt/python@3.12/bin/python3.12",
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "resolvedExecutable": {
+      "bytes": 34640,
+      "ctimeNs": 1795531624991297167,
+      "device": 16777232,
+      "inode": 1582905,
+      "mtimeNs": 1795531624991297167,
+      "path": "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/bin/python3.12",
+      "sha256": "ab825fde913c394f6fb8dc57da39108ad98e1827a5404119993de3d3bc6d8fb7"
+    },
+    "version": "3.12.16 (main, Oct 25 2026, 18:24:37) [Clang 21.0.0 (clang-2100.3.34.2)]"
+  },
+  "runner": {
+    "bytes": 8130,
+    "ctimeNs": 1795762919318395590,
+    "device": 16777232,
+    "inode": 71950526,
+    "mtimeNs": 1795762919318395590,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/sqlite-wait-clock-20261127T070159Z/run-clock-component.py",
+    "sha256": "3d48f72acb2a2e8a9b5819d215d204919f6fc5a84cd2931e3afe9b4762263c73"
+  },
+  "schema": 1,
+  "scope": "Actual host CPython Mach brackets plus ONE previously compiled Catalyst SQLite fixture companion export only; no original app request, MCM/corpus admission, resource epoch, native UI or PERF acceptance.",
+  "status": "ACTUAL_CLOCK_AND_EXISTING_EXPORTER_COMPONENT_PASS_NOT_UI_OR_EPOCH_COVERAGE"
+}

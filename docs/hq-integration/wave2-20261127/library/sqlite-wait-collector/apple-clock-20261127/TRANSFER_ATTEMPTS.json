@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "nativeInvocations": 1,
+  "attempts": [
+    {
+      "operation": "Read-only actual Mac evidence transfer to proposed Oracle artifact root",
+      "result": "PermissionError creating /mnt/development/projects/artifacts/Maktabah-wave2-library-20261127",
+      "nativeExecutionRepeated": false,
+      "actualMacEvidenceModified": false
+    },
+    {
+      "operation": "Read-only transfer to owned worktree build directory",
+      "result": "SUCCESS",
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-library-20261127/build/wave2-library-sqlite-wait-clock-20261127T070159Z",
+      "archiveSHA256": "a70570e347acaec843a374abf0305392e9180d2f0872814cce6dc3a2dbfd13da"
+    }
+  ]
+}
