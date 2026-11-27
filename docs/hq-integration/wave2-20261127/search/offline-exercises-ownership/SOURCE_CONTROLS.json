@@ -1,0 +1,10 @@
+{
+  "scope": "SYNTHETIC_SOURCE_CONTROLS_ONLY_NO_MAC_SUBPROCESS_PF_SSH_OR_NATIVE_EXECUTION",
+  "testsRun": 45,
+  "failures": 0,
+  "errors": 0,
+  "sourceSHA256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406",
+  "actualWatchdogExercises": 0,
+  "networkDenialWindows": 0,
+  "nativeCases": 0
+}

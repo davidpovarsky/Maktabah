@@ -1,0 +1,13 @@
+# Owned process identity and bounded stream cleanup
+
+This is a source-only follow-up to b303b0aa6238b4353eff07a1c56ced46cf1df0bf. It does not qualify an actual watchdog exercise, transport denial or native UI case. No process, signal, SSH, Mac, PF or launchd action was performed by these controls.
+
+The original whole helper had two abort paths that used a newly read process identity after an initial identity-read failure. If the original Popen had already exited and its PID was reused, that fallback could incorrectly adopt the replacement. The new `created_child_identity` binds the exact argv and parent saved before Popen. It permits a fallback only while the original Popen remains live both before and after the matching identity observation. An already reaped child with a live replacement is refused without reaching the signal helper. Initial identities are assigned only after this qualification. Existing captured identities still receive the original current PID/start/command check before any signal.
+
+The old `_close_owned_streams` also closed buffered pipes in its `finally`, even if a reader join had timed out. That could wait on a lock still held by the reader and turn a bounded cleanup failure into an unbounded close. The candidate joins all readers and requires both their exit and the original child's reap before closing any buffer. A live reader or child remains an explicit cleanup failure, with the descriptors left open for the still-running owner.
+
+`ownership-baseline-control.py` imports the whole original b303 helper, SHA bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f, and the whole candidate helper, SHA c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406. With controlled Popen/process/reader doubles, both old abort paths reach the stopper with the replacement identity and the old stream cleanup calls close with a live reader. The candidate refuses all three behaviors. The stopper and pipes are mocks; no actual signal or close is performed.
+
+The extended 45-case source-control set covers these boundaries alongside the existing no-denial admission, actual-root-receipt shape and relay nonce/terminal-response requirements. The earlier 36-case receipts and source remain unchanged in their original commit. Reader lane independently reviewed the candidate source and found the two reported defects closed; that is source review, without runtime acceptance.
+
+The same created-child identity function is available to the new Oracle coordinator. All real runs remain dependent on an explicitly coordinated actual owner window, unchanged committed source, the three real no-denial exercises, genuine Foundation probes and the original native/source/SQL evidence.
