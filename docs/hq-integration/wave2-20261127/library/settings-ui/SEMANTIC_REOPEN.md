@@ -2,9 +2,9 @@
 
 ## Status
 
-The final source in `Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift` has SHA-256 `17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c`. Only the additive `ManagedLibraryUpdateAcceptanceTests` class changed; the pre-existing classes remain byte-identical.
+The final source in `Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift` has SHA-256 `122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108`. Only the additive `ManagedLibraryUpdateAcceptanceTests` class changed; the pre-existing classes remain byte-identical.
 
-Apple SDK typecheck passed on the Scaleway Mac at 2026-11-27 02:14:28–02:14:29 UTC. `typecheck-attempt-5/RESULT.json` SHA-256 is `f74b0101a868180b83f48e8299fe942734a043bcb9e4c4b9ca1637c3ba5ec94c`. It records the exact source and base-file hashes before/after, command, exit 0, 74 existing warning diagnostics, no new-class warnings and no compiler errors.
+Apple SDK typecheck passed on the Scaleway Mac at 2026-11-27 02:44:08–02:44:09 UTC. `typecheck-attempt-6/RESULT.json` SHA-256 is `92e05043ebac84d09b0bf2c5199655fd4b4ed86edf23d1f25e1f290157fba206`. It records the exact source and base-file hashes before/after, command, exit 0, 74 existing warning diagnostics, no new-class warnings and no compiler errors.
 
 **Native application UI execution: NOT RUN by this evidence commit.** No corpus install, simulator launch, xcodebuild or application success is inferred from the compiler result.
 
@@ -22,7 +22,7 @@ Run this phase after both v40 search packages, Reader/Inspector and Groups100, b
 
 ## Real fixture setup
 
-The test requires an ordinary restored Otzaria reader and an ordinary workspace. It creates the following through existing user controls:
+The test first selects the original Library tab in the ordinary workspace. It preserves an already visible canonical reader. Otherwise it reads the real full-v40 catalog identity for Berakhot (book 103, title ברכות), opens the unique hittable Library palette, searches that actual title, taps its unique original result and requires a hittable nonempty reader with the exact canonical book ID. No namespace or database rows are seeded. It then creates the following through existing user controls:
 
 1. Open History & Favorites, identify the card for the current canonical title, and use that card's own Add Favorite star if needed. Read the actual source-qualified favorite/history identity and open the card into a hittable reader. The selected book must have one unambiguous favorite locator.
 2. Tap a real visible source paragraph to open Inspector, then create a Note with a unique body and tag through its original editor and tag field.
@@ -72,3 +72,7 @@ The quote requirement is scoped to the captured objects. It does not assert full
 The final `settings-update-installed` JSON records the observed new database SHA-256, old v40 SHA-256 and committed installation manifest. The semantic pre-update attachment captures real canonical references and source quote. Per-route attachments record each post-update source check; the saved Note editor has its own screenshot.
 
 The UI runtime remains the authority for selector behavior, original adaptive group controls and any defects found in the integrated candidate.
+
+## Ordinary Library prelude checkpoint
+
+The semantic-only source 17ef068e and successful attempt 5 remain preserved. Prelude source 122fdb0b is the current runtime contract. All saved-object and transaction assertions from the first preservation call onward remain byte-identical. Both the existing-reader and real-palette routes emit settings-update-reader-prelude-state JSON plus a settings-update-reader-prelude screenshot. The broader production test that intentionally leaves an empty group is not invoked.

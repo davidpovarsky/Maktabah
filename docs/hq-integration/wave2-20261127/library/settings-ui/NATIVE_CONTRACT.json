@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "status": "UI_NOT_RUN",
   "testIdentifier": "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState",
-  "sourceSHA256": "17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c",
+  "sourceSHA256": "122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108",
   "environmentVariable": "OTZARIA_LIBRARY_UPDATE_CONTEXT",
   "contextHelper": "Scripts/CI/prepare-managed-library-update-context.py",
   "requiredContainer": "Same owned Simulator UDID, managed-v40 installation and ordinary persisted user namespace; never seeded by controller",
@@ -39,7 +39,8 @@
     "settings-update-user-state-after",
     "settings-update-installed",
     "settings-update-semantic-saved-note-context",
-    "settings-update-semantic-saved-favorite-history"
+    "settings-update-semantic-saved-favorite-history",
+    "settings-update-reader-prelude-state"
   ],
   "dynamicJSONAttachments": [
     {
@@ -62,7 +63,8 @@
     "settings-update-reader-saved-note-context",
     "settings-update-favorite-after-cold-open",
     "settings-update-reader-saved-favorite-history",
-    "settings-update-cold-current"
+    "settings-update-cold-current",
+    "settings-update-reader-prelude"
   ],
   "dynamicScreenshots": [
     {
@@ -86,5 +88,13 @@
     "No dedicated go-to-source action exists in the original Notes editor route",
     "Segment Note context is not exact UIKit selected UTF-16 range",
     "HTTP Range response acceptance remains the separate installer gate"
-  ]
+  ],
+  "ordinaryLibraryPrelude": {
+    "selectLibraryTabFirst": true,
+    "preserveVisibleCanonicalReader": true,
+    "fallbackBookID": 103,
+    "fallbackTitle": "ברכות",
+    "requiresActualV40CatalogAndOriginalPalette": true,
+    "namespaceOrRowSeeding": false
+  }
 }
