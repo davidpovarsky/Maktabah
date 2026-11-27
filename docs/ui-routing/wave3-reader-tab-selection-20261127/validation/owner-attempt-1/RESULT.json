@@ -1,0 +1,144 @@
+{
+  "schema": "otzaria.native.reader-tab.source-controls.v1",
+  "started_utc": "2026-11-27T10:05:12.890480+00:00",
+  "status": "PASS_SOURCE_ONLY",
+  "kind": "owner",
+  "variant": "candidate",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "source_inputs": [
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "origin": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "retained": "inputs/source/Source/LibraryBackend/LibraryBackendModels.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "origin": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "retained": "inputs/source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 13081,
+      "sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift"
+    },
+    {
+      "path": "tools/workspace_mapping_native_boundary_fixture.swift",
+      "origin": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 17584,
+      "sha256": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+      "retained": "inputs/source/tools/workspace_mapping_native_boundary_fixture.swift"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 45301,
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "retained": "inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 16888,
+      "sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "retained": "inputs/source/tools/test_native_reader_tab_selection.swift"
+    }
+  ],
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/LibraryBackend/LibraryBackendModels.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/ActualOwnerBoundary.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/tools/test_native_reader_tab_selection.swift",
+        "-o",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/owner-controls"
+      ],
+      "started_utc": "2026-11-27T10:05:13.016144+00:00",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "controls",
+      "argv": [
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/owner-controls"
+      ],
+      "started_utc": "2026-11-27T10:05:23.006327+00:00",
+      "exit": 0,
+      "stdout_sha256": "e47d60056ad49cf33f681a7fa09069878e208f79e0dbc374f57fce76e52ecd87",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native": "NOT_RUN",
+  "swift_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "actual_original_select_body_sha256": "ab093bf6ca1e323b5995c440a0ccacb10f0bc2a87015f7c85d55b20b70470276",
+  "actual_producer_body_sha256": "88110a45343e3855a522998ab86eafd454adc56edf09579cb22604bb1be80d87",
+  "actual_checkpoint_body_sha256": "280599596102adad0750316d9f3c2b0b1583e0a1dbc7b7a10cf4df8641f530f5",
+  "assembled_boundary_sha256": "0c062003589c15a12b53343c1a5ce16f5b1af44689426a4593ca5a5185b36ca9",
+  "executable": {
+    "bytes": 2025176,
+    "sha256": "31a98ae334b313121633b91425b682f51b1d036872c017f5c25ce7d178277d72"
+  },
+  "controls": {
+    "failed": 0,
+    "native": "NOT_RUN",
+    "passed": 40,
+    "scope": "actual original mapping/store/persistence and extracted original selection/setter/checkpoint bodies; Apple shell boundaries"
+  },
+  "finished_utc": "2026-11-27T10:05:23.144704+00:00",
+  "free_bytes_after": 971739136
+}

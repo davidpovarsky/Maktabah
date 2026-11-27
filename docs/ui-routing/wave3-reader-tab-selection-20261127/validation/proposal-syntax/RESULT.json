@@ -1,0 +1,29 @@
+{
+  "schema": "otzaria.native.reader-tab.proposal-syntax.v1",
+  "at": "2026-11-27T10:21:28.939360+00:00",
+  "scope": "Linux Swift frontend syntax only; no Apple SDK typecheck or native execution",
+  "argv": [
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeRoutingComposition.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeIntents.swift"
+  ],
+  "inputs": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeRoutingComposition.swift",
+      "bytes": 186859,
+      "sha256": "c2d01375746d3d527028febfa2f97c3e52606a6cbf3997df6df9fa45ca1c93a8"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeIntents.swift",
+      "bytes": 1255,
+      "sha256": "dc489b2bd1733f4971fdaebfd99019096c686f8b2f4eb41eb6e4cfe7464a0803"
+    }
+  ],
+  "exit": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

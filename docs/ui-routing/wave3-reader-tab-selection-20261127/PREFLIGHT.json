@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.wave3.reader-tab.preflight.v1",
+  "utc": "2026-11-27T09:36:02.793346+00:00",
+  "tree": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127",
+  "branch": "codex/otzaria-wave3-reader-tab-intent-20261127",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "base_blob": "064193da95e25f119158af13b4999c955edd54fc",
+      "base_sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+      "upstream_path_present": false,
+      "first_add_commit": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "base_blob": "99d267d3968f160b641a7f8138ffaefbd8ce6517",
+      "base_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "upstream_path_present": false,
+      "first_add_commit": "4ba65aba0236ddce00120e3cc9b1c6a7bf66925d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "base_blob": "4efd2fe79017d665b13aadc103900bbca27d51b3",
+      "base_sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "base_blob": "00e3ff7ec095836ccb35bb8bb1af77c8e1a5d6ce",
+      "base_sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "base_blob": "d02a60dcea307f5ecaf77fc3eab4e7a4da86de2f",
+      "base_sha256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    }
+  ],
+  "space_free_bytes": 1492414464,
+  "native": "NOT_RUN"
+}

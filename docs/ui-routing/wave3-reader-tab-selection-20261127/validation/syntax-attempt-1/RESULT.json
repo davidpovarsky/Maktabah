@@ -1,0 +1,85 @@
+{
+  "schema": "otzaria.native.reader-tab.source-controls.v1",
+  "started_utc": "2026-11-27T10:07:26.623514+00:00",
+  "status": "PASS_SYNTAX_ONLY",
+  "kind": "syntax",
+  "variant": "candidate",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "source_inputs": [
+    {
+      "path": "tools/test_native_reader_tab_selection.py",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 13910,
+      "sha256": "992dc2e5b542f9cb2f360c3f6745c7f0bf0118806edfe8658c5f49f20b11356e",
+      "retained": "inputs/source/tools/test_native_reader_tab_selection.py"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "retained": "inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 15107,
+      "sha256": "4af2f80e812fcfabc5e5b54bcf09f9fae22fcc0e369bf4f342afea710f70302b",
+      "retained": "inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 98693,
+      "sha256": "3a4d4e551fe7c72f37875850a7f6905ca2018409129933cbeae930f04b6d48f4",
+      "retained": "inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 6736,
+      "sha256": "bbd3c831f642ef916f88988b2b429ce10fe9e7a79a48f83b6c762d52e2fa80ca",
+      "retained": "inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "origin": "CURRENT_ISOLATED_WORKTREE",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "retained": "inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift"
+    }
+  ],
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift"
+      ],
+      "started_utc": "2026-11-27T10:07:26.702482+00:00",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native": "NOT_RUN",
+  "swift_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "finished_utc": "2026-11-27T10:07:26.762279+00:00",
+  "free_bytes_after": 931291136
+}

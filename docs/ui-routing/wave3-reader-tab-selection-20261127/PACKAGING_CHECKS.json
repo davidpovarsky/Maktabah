@@ -1,0 +1,10 @@
+{
+  "schema": "otzaria.native.reader-tab.packaging-check.v1",
+  "initial_exit": 2,
+  "initial_stdout": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_COMPOSITION.patch:15: trailing whitespace.\n+ \ndocs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_SESSION.patch:137: trailing whitespace.\n+ \ndocs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_SESSION.patch:171: trailing whitespace.\n+ \n",
+  "reason": "Raw unified diff context lines are patch data; git diff --check flagged their single-space context markers as trailing whitespace in the added evidence files. Product source had already passed. Exact patch bytes were preserved with deterministic gzip transport; no source/test/gate edits.",
+  "source_commit": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+  "final_exit": 0,
+  "final_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "final_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
