@@ -1,0 +1,84 @@
+{
+  "bridge_source_sha256": "21a1d551febfe97690f74ce69d868975c97d869dc3e6f4041b3547a9484cf669",
+  "builds": 0,
+  "control": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr",
+  "header_sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee",
+  "mac_evidence": "/Users/m1/builds/otzaria-wave3-closed-native-preservation-20261127.o5ye8las",
+  "mac_stream_receipt_sha256": "b122ee4117355292d6d4fa385d938488aeccbdf16947fe206462febb62dd6e62",
+  "native_runs": 0,
+  "oracle_archive_verification": {
+    "archive": {
+      "bytes": 1463489048,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/closed-native-self-contained.tar.gz",
+      "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7"
+    },
+    "free_after": 34748416000,
+    "receipt": {
+      "bytes": 3117,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/ARCHIVE_VERIFIED.json",
+      "sha256": "50987d6a7daa36458322f755068f6730609ad470309ab2fa6cd4e96fdcf0720e"
+    },
+    "source_counts": {
+      "acl_entries": 0,
+      "directories": 2591,
+      "entries": 37238,
+      "files": 34647,
+      "hardlinked_files": 0,
+      "logical_bytes": 6249572185,
+      "symlinks": 0,
+      "xattr_entries": 12
+    },
+    "status": "ALL_ARCHIVE_MEMBERS_AND_FULL_METADATA_MAPPING_VERIFIED_NOT_RETIRED",
+    "unique_payload_bytes": 2764983196,
+    "unique_payloads": 6467
+  },
+  "oracle_evidence": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok",
+  "origin_deletions": 0,
+  "preflights": {
+    "mac": {
+      "free": 9927790592,
+      "header_sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee",
+      "script_sha256": "08db63301219a38ad9175702140ded020278c737216461890067f99f1dd3177c"
+    },
+    "oracle": {
+      "device": 2064,
+      "free": 36253728768,
+      "script_sha256": "132ff06ef8341d689c54c4d0d594e4fbf02ddb05307358cab39ecb68644df9bf"
+    }
+  },
+  "receiver_exit": 0,
+  "signals": [],
+  "source_exit": 0,
+  "source_identities": {
+    "receiver": {
+      "creation_filetime_100ns": 134402574469344817,
+      "observed_at": "2026-11-27T12:50:46.938047+00:00",
+      "pid": 27620,
+      "retained_popen_handle": true
+    },
+    "source": {
+      "creation_filetime_100ns": 134402574469618907,
+      "observed_at": "2026-11-27T12:50:46.965360+00:00",
+      "pid": 16356,
+      "retained_popen_handle": true
+    }
+  },
+  "source_reverification_result": {
+    "atime_changes": 25061,
+    "entries": 37238,
+    "free_after": 15196110848,
+    "receipt": {
+      "bytes": 3884,
+      "name": "SOURCE_REVERIFIED.json",
+      "path": "/Users/m1/builds/otzaria-wave3-closed-native-preservation-20261127.o5ye8las/SOURCE_REVERIFIED.json",
+      "sha256": "13fd31b5bde07fd7138ac39d9c7db2c0954b42bec0fc711b83cdf333ce790112"
+    },
+    "seconds": 14.7969825,
+    "status": "FULL_SOURCE_CONTENT_METADATA_REVERIFIED_NO_RETIREMENT"
+  },
+  "source_reverified_sha256": "13fd31b5bde07fd7138ac39d9c7db2c0954b42bec0fc711b83cdf333ce790112",
+  "status": "ARCHIVE_AND_CURRENT_SOURCE_VERIFIED_NO_RETIREMENT",
+  "utc": "2026-11-27T12:57:35.204106+00:00",
+  "windows_archive_written": false,
+  "windows_free_after": 7318433792
+}

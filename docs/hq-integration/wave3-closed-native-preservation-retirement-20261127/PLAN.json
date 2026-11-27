@@ -1,0 +1,67 @@
+{
+  "schema": "otzaria.seven-closed-native-diagnostics-preservation/1",
+  "status": "PRESERVATION_ONLY_NO_RETIREMENT",
+  "source_roots": [
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-candidate-focused-native.EeUZ35lg",
+      "device": 16777232,
+      "inode": 63374283,
+      "files": 6986,
+      "logical_bytes": 987011618
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/continued-authority-focused.4m2Xqttt",
+      "device": 16777232,
+      "inode": 64487998,
+      "files": 6604,
+      "logical_bytes": 950324425
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-narrow-application-toolbar-focus.n1VgwMQf",
+      "device": 16777232,
+      "inode": 64991034,
+      "files": 1467,
+      "logical_bytes": 964241748
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-phone-and-native-witness.Lj8qFaXi",
+      "device": 16777232,
+      "inode": 64042099,
+      "files": 6813,
+      "logical_bytes": 944025390
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/exact-standalone-reader-release-native.UperJJ5L",
+      "device": 16777232,
+      "inode": 64952991,
+      "files": 6674,
+      "logical_bytes": 931804133
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-reader-publication-note-focus.h1iNTzUP",
+      "device": 16777232,
+      "inode": 65090651,
+      "files": 4062,
+      "logical_bytes": 843969517
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127",
+      "device": 16777232,
+      "inode": 66843630,
+      "files": 2041,
+      "logical_bytes": 628195354
+    }
+  ],
+  "source_scope_read_utc": "2026-11-27T12:36:56.239568+00:00",
+  "provenance_read_utc": "2026-11-27T12:38:38.938767+00:00",
+  "provenance_no_open_use": true,
+  "original_sdk_source_sha": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "preserve_raw_failure_and_success_evidence": true,
+  "archive_cap_bytes": 8589934592,
+  "mac_reserve_bytes": 2415919104,
+  "oracle_data_reserve_bytes": 687865856,
+  "previous_archive_references": 0,
+  "no_windows_archive_staging": true,
+  "measured_kernel_private_bytes": 3012206592,
+  "capacity_is_not_acceptance": true
+}

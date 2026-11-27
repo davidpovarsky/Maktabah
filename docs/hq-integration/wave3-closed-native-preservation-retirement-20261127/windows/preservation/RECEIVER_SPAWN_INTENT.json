@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "torah-social",
+    "python3 -B /mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/receive_closed_native.py --evidence /mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok --header-sha256 d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee"
+  ],
+  "header_sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee",
+  "output_cap_bytes": 8589934592,
+  "parent_pid": 16256,
+  "script_sha256": "132ff06ef8341d689c54c4d0d594e4fbf02ddb05307358cab39ecb68644df9bf",
+  "utc": "2026-11-27T12:50:46.920919+00:00"
+}
