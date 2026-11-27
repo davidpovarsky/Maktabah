@@ -1,0 +1,47 @@
+{
+  "status": "PREPARED_SOURCE_ONLY_NOT_DISPATCHED",
+  "tools": [
+    {
+      "path": "/workspace/scratch/c1c70cc48453/private-evidence-preservation/restore_closed_native_archive.py",
+      "bytes": 23251,
+      "sha256": "1b37904c91524d856c66060a2f8c227e943d7e945beb817ef24fbdf4d759b16f",
+      "pythonAST": "PARSED_ONLY",
+      "linkOrUnlinkSites": [
+        {
+          "method": "link",
+          "line": 466,
+          "source": "os.link(temporary, LEAF, src_dir_fd=parent_fd, dst_dir_fd=parent_fd, follow_symlinks=False)"
+        },
+        {
+          "method": "unlink",
+          "line": 468,
+          "source": "os.unlink(temporary, dir_fd=parent_fd)"
+        }
+      ]
+    },
+    {
+      "path": "/workspace/scratch/c1c70cc48453/private-evidence-preservation/retire_closed_native_archive.py",
+      "bytes": 17128,
+      "sha256": "8d9cdc9b3560b586571eada9343ef0dd8d57305e8ad42146afd56f07985f610b",
+      "pythonAST": "PARSED_ONLY",
+      "linkOrUnlinkSites": [
+        {
+          "method": "unlink",
+          "line": 255,
+          "source": "os.unlink(h.LEAF, dir_fd=parent_fd)"
+        }
+      ]
+    }
+  ],
+  "pinnedActualPrivateReceipt": "c8eb38f53a7b704587523d330c1c1ac63a2dd17cf49900cebb7a9406b545c1ed",
+  "releaseID": 461088091,
+  "repositoryID": 1474927804,
+  "private": true,
+  "originalUploadControllerUnchanged": {
+    "sha256": "f366f7e4a96b26d1177bbd0dce2fc03f841663f203cdf67e8a5f55dcdb1c70d5"
+  },
+  "remoteCallsByThisPreparation": 0,
+  "capacityScans": 0,
+  "removals": 0,
+  "restorations": 0
+}

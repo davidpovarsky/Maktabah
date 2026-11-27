@@ -1,0 +1,74 @@
+{
+  "schema": "otzaria.navigation-agent.retirement-source-review.v1",
+  "reviewer": "navigation_fix",
+  "scope": "Read-only source review of exact one-leaf retirement and imported restoration helpers; no owner-policy signature, authorization grant, native or restoration execution claim",
+  "inputs": [
+    {
+      "path": "retire_closed_native_archive.py",
+      "bytes": 17239,
+      "sha256": "5ad5afd70009fbe12c7779a8ecb5c42518a30b58c181d4f786a75734e02f5784"
+    },
+    {
+      "path": "restore_closed_native_archive.py",
+      "bytes": 23364,
+      "sha256": "0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4"
+    },
+    {
+      "path": "review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py",
+      "bytes": 17128,
+      "sha256": "8d9cdc9b3560b586571eada9343ef0dd8d57305e8ad42146afd56f07985f610b"
+    },
+    {
+      "path": "review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py",
+      "bytes": 23251,
+      "sha256": "1b37904c91524d856c66060a2f8c227e943d7e945beb817ef24fbdf4d759b16f"
+    },
+    {
+      "path": "review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch",
+      "bytes": 751,
+      "sha256": "47a8144c0750e2e1ae1b9b101ba8b4395d05d03efd34a616994ae544bd99c23d"
+    },
+    {
+      "path": "review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py.patch",
+      "bytes": 446,
+      "sha256": "564cf37b1adf772d986d46517a76f27c4d737a6f008f0395bb5dbf3b829efb49"
+    },
+    {
+      "path": "OPTIMIZED_PYTHON_REFUSAL_CHECK.json",
+      "bytes": 1764,
+      "sha256": "6e67c14b3a6e2340a1a1c203f592c1a5319349a5199aba56150ee6efbc3c308a"
+    }
+  ],
+  "finding": {
+    "initial_retirement": "8d9cdc9b3560b586571eada9343ef0dd8d57305e8ad42146afd56f07985f610b",
+    "initial_helper": "1b37904c91524d856c66060a2f8c227e943d7e945beb817ef24fbdf4d759b16f",
+    "description": "Both scripts used assert for safety gates without rejecting optimized Python. -O/PYTHONOPTIMIZE removes PREDELETE/source/SHA/sibling/no-use assertions while the fixed unlink remains reachable.",
+    "resolution": "Ordinary if not __debug__: raise RuntimeError at module execution before imports/actions in both scripts; retirement helper SHA repinned. No other source delta.",
+    "status": "CLOSED_IN_REVISED_SOURCE"
+  },
+  "reviewed_boundaries": [
+    "Verified pinned helper bytes are compiled directly, without a second path-based load or bytecode cache write.",
+    "Fixed original parent is opened component-by-component without following symlinks; the source is one single-link regular leaf.",
+    "Actual source size/SHA/inode/mtime/ctime and all22 protected sibling paths/identities/hashes are checked before retirement.",
+    "Bounded /proc no-use inspection refuses on matching fd/mapping/cwd/exe, unexpected errors, permission failure, PID reuse or timeout.",
+    "Commit requires exact PREDELETE SHA and matching pointer/script/receipt/manifest hashes before exclusive durable COMMIT_STARTED.",
+    "Fresh remote checks retain the pinned private repository/release/asset identity and use prior complete authenticated payload readback honestly.",
+    "The sole unlink uses parent fd plus final parent/fd/path/member checks, with no intervening subprocess/external callback.",
+    "Imported transfer cleanup limits signals to its unreaped Popen child process group with original session/start identity checks; no foreign cleanup path.",
+    "Root must independently preserve/read back the exact pointer/scripts/receipt/manifest in Git before supplying the acknowledgement; the script does not attest a Git publication."
+  ],
+  "remaining_assumptions": [
+    "Closed exclusive ownership remains necessary. A bounded no-use inspection is not an OS lock preventing a new writer after inspection; path-based unlink is not an atomic compare-inode-and-unlink primitive.",
+    "Successful preparation is not retirement; capacity is admitted only after actual committed retirement and fresh filesystem measurement."
+  ],
+  "conclusion": "No additional demonstrated blocker in the reviewed revised source scope.",
+  "execution": {
+    "by_this_reviewer": "NONE: no script execution, filesystem/process scan, remote asset download, mutation, signal or native work",
+    "root_reported_negative_control": {
+      "path": "OPTIMIZED_PYTHON_REFUSAL_CHECK.json",
+      "sha256": "6e67c14b3a6e2340a1a1c203f592c1a5319349a5199aba56150ee6efbc3c308a",
+      "scope": "Root ran the two revised tools under python3 -O; both refused before imports/actions. Exact local result bytes independently rejoined by this reviewer."
+    }
+  },
+  "recorded_utc": "2026-11-27T22:03:08.029104+00:00"
+}

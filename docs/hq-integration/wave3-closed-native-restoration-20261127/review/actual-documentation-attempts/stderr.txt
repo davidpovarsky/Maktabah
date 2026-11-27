@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/otzaria-wave3-restoration-proof-20261127/preserve_retirement_preparation.py", line 123, in <module>
+    git('diff', '--cached', '--check')
+  File "/home/ubuntu/otzaria-wave3-restoration-proof-20261127/preserve_retirement_preparation.py", line 30, in git
+    if r.returncode: raise RuntimeError((args, r.returncode, r.stderr.decode(errors='replace')[:3000]))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: (('diff', '--cached', '--check'), 2, '')

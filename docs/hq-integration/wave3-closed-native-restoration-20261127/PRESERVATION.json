@@ -1,0 +1,227 @@
+{
+  "schema": "otzaria.pinned-restoration-git-preparation.v1",
+  "status": "RESTORATION_POINTER_AND_PREDELETE_PRESERVED_ORIGINAL_ARCHIVE_RETAINED",
+  "utc": "2026-11-27T22:06:05.023261+00:00",
+  "integrationBase": "3a665ae5d4a6ff0db78b356a5362d93e0f0fe408",
+  "allNonDocumentationRootEntries": [
+    "040000 tree 46b478d886ed159784e2c92497b2d984e62c0c50\t.agents",
+    "040000 tree bce7772eb5eb55be69f56b1cdcacc5e5a94a2075\t.codex",
+    "100644 blob a16c1454153ceaee01dbdc7f62f1c72ada757137\t.gitattributes",
+    "040000 tree 9c2a99bc3b2da6ce1e7fdda492ef2360b236597f\t.github",
+    "100755 blob 13e0283e18450fefd77f87532412f30be5a3124b\t.gitignore",
+    "100644 blob dbefe3a99b1c267817d7e95a8979554b08d8f9a8\t.gitmodules",
+    "100644 blob c719a9821dd6acc4f83d068ab856cd195968c3bb\t.swiftformat",
+    "100644 blob 7ac6889dbdee7248e61fc71e4147f41093920a5e\t.swiftlint.yml",
+    "100644 blob c4484e966f3f0b897a673c86d9b1f373f4ebf19c\tAGENTS.md",
+    "100644 blob b527e5f0dba1979adb32d4144b4d8c9e99163824\tCLAUDE.md",
+    "100644 blob 1d7e56a2bc577209712d184c3570ebfb0a7cdd3b\tCONTRIBUTING.md",
+    "040000 tree cafdd94d6b16c7dcb71ef622a5aa7f2270ce2fc7\tCloudKit",
+    "100644 blob 4c193c2178e97201b019c065de62e0b68d2f2c91\tDESIGN_LANGUAGE.md",
+    "100644 blob 0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf\tGEMINI.md",
+    "100644 blob f288702d2fa16d3cdf0035b15a9fcbc552cd88e7\tLICENSE",
+    "040000 tree 2e8b47fb335ed5b9d2b64f7e54514b4390b07f05\tMaktabah-iOSNativeTests",
+    "040000 tree 0a3d5b475c2e72d52d973a66a1e078ba2031db13\tMaktabah-iOSUITests",
+    "040000 tree 4679996b48174eccff2ae350de4c86f87495db85\tMaktabah.xcodeproj",
+    "040000 tree b4ea8d9ef86400672d68948d760d98c936efa8f7\tMaktabahTests",
+    "040000 tree 46a3fd8a407f0c7baf078e82314821024e940f63\tMiniApps",
+    "100644 blob 77952126169991d431766f44b5d62ecd2567a189\tPROJECT_AGENT_GUIDANCE.md",
+    "100644 blob 7257a506fd72fdeda16f1c6d3fb2885af79c5638\tPROJECT_BOARD.md",
+    "100644 blob 29785dbf6a16a5103afabc741ebe8fff3cac1239\tPodfile",
+    "100644 blob 03c10be552d73ce31cdb2e74735ed8116bde4dbd\tREADME.md",
+    "100644 blob 48c1821b3c9db539c3365d4e95a99c194320b438\tREADME_OTZARIA_PHASE1.md",
+    "100644 blob d95d1d2bf5bf5fa433c008346b6b9e81c5d05e54\tSECURITY.md",
+    "100644 blob 85683df893fade45b36030622aa98feb5bc1e430\tSOURCE_TO_PORT_DIFF.md",
+    "040000 tree 283cc4d5ba67ce7b0dd59341dfed707586ebd7d1\tScreenshots",
+    "040000 tree 7bc40e16e64dbc638b001dfe78450b488d15e6d6\tScripts",
+    "040000 tree c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb\tSource",
+    "040000 tree df84d029512d9be03624b14c29297d43b31b7a4e\tTests",
+    "100644 blob b19e9e90d967a30cc0177d7f8d00e398449a4cb7\tUPSTREAM_SYNC_2026-10-21_BASELINE.md",
+    "100644 blob 7d9633fea2daef74e995bf6e6c95624a70239b91\tUPSTREAM_SYNC_CHANGE_COVERAGE.md",
+    "100644 blob 13a2a0c2bf04adca517ea76ddea6326c1a979f48\tUPSTREAM_SYNC_CONFLICT_LEDGER.md",
+    "100644 blob 61a99b6e0dcc2d6d20aac5f0a960a209f3fe4223\tUPSTREAM_SYNC_DOWNSTREAM_PRESERVATION.md",
+    "100644 blob e01198a8a2c8393c08f24f809f9a301b77248a2b\tUPSTREAM_SYNC_FINAL_REPORT.md",
+    "100644 blob 49b89137c68f5c8e69b21da6965f89fd06030d2b\tUPSTREAM_SYNC_V42_FEATURE_PARITY.md",
+    "100644 blob 60f7632e4bc75b3297e256a70f96691a041f102b\tUPSTREAM_SYNC_VALIDATION_MATRIX.md",
+    "040000 tree 2fb868bdbe5d2d52735e857a24933918ff658cef\tVendor",
+    "040000 tree d8272f500d6541ef97d05903c6bda0ad48623417\tci_scripts",
+    "100644 blob f042cbe6520f47ed94743122d2be35a9d64b0892\tmaktabah_otsaria_phase1.zip",
+    "100644 blob 7ffdbe9817810c179af8e56d597dcc4b412e04e1\tmkdocs.yml",
+    "040000 tree 7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5\tscripts",
+    "040000 tree e89d698e2328ed66051db3a372a4f8eec158826c\ttools"
+  ],
+  "actualPrepareJob": "job_630724af9922",
+  "attempt": "4e93087e-2565-441f-a6cb-9d33296cc916",
+  "verifiedPins": {
+    "PREDELETE.json": "31be7ad1aeb4f672059edac8b57c04429da38f495eef0fb7aacc0401ff1486f5",
+    "RESTORATION_POINTER.json": "e89db2f5ee59d9dbc466eeffbc43beb64f145aa823a3071aa08d48424b3dbabc",
+    "restore_closed_native_archive.py": "0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4",
+    "retire_closed_native_archive.py": "5ad5afd70009fbe12c7779a8ecb5c42518a30b58c181d4f786a75734e02f5784",
+    "VERIFIED_PRIVATE_PRESERVATION.json": "c8eb38f53a7b704587523d330c1c1ac63a2dd17cf49900cebb7a9406b545c1ed",
+    "PRESERVED_ARCHIVE_MANIFEST.json": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5"
+  },
+  "protectedOriginalMetadataSiblings": 22,
+  "optimizedPythonExpectedRefusals": 2,
+  "restorationExecutions": 0,
+  "localRetirement": false,
+  "SDKBuilds": 0,
+  "nativeRuns": 0,
+  "files": [
+    {
+      "path": "prepared/01-repository.PROCESS.json",
+      "bytes": 192,
+      "sha256": "2892447ee8d8be175e205a9ffd8282801ac4507cd274c6ae222501a91b1dcabb"
+    },
+    {
+      "path": "prepared/01-repository.RESULT.json",
+      "bytes": 130,
+      "sha256": "3231131703b189fe7dfc991ff8f93854dffb6d145d180dbfadf06d23a49d3a98"
+    },
+    {
+      "path": "prepared/01-repository.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prepared/02-release.PROCESS.json",
+      "bytes": 211,
+      "sha256": "ca49f639b536e786a1a7e244352af0b9a278361a05ac4ccb3b891b530b9ae8b4"
+    },
+    {
+      "path": "prepared/02-release.RESULT.json",
+      "bytes": 130,
+      "sha256": "16676c5b5138ae168f17940910914ff718211bc969ab54c2f48b0e9af4763699"
+    },
+    {
+      "path": "prepared/02-release.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prepared/PREDELETE.json",
+      "bytes": 8024,
+      "sha256": "31be7ad1aeb4f672059edac8b57c04429da38f495eef0fb7aacc0401ff1486f5"
+    },
+    {
+      "path": "prepared/PRESERVED_ARCHIVE_MANIFEST.json",
+      "bytes": 8651,
+      "sha256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5"
+    },
+    {
+      "path": "prepared/RESTORATION_POINTER.json",
+      "bytes": 4205,
+      "sha256": "e89db2f5ee59d9dbc466eeffbc43beb64f145aa823a3071aa08d48424b3dbabc"
+    },
+    {
+      "path": "prepared/VERIFIED_PRIVATE_PRESERVATION.json",
+      "bytes": 2047,
+      "sha256": "c8eb38f53a7b704587523d330c1c1ac63a2dd17cf49900cebb7a9406b545c1ed"
+    },
+    {
+      "path": "prepared/restore_closed_native_archive.py",
+      "bytes": 23364,
+      "sha256": "0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4"
+    },
+    {
+      "path": "prepared/retire_closed_native_archive.py",
+      "bytes": 17239,
+      "sha256": "5ad5afd70009fbe12c7779a8ecb5c42518a30b58c181d4f786a75734e02f5784"
+    },
+    {
+      "path": "review/LOCAL_TOOL_PREPARATION_V2.json",
+      "bytes": 875,
+      "sha256": "53df9a84220c8cf64bef0ef2d0e489cbc404196b4143a2edb968b32c6709ef31"
+    },
+    {
+      "path": "review/NAVIGATION_RETIREMENT_SOURCE_REVIEW.json",
+      "bytes": 4700,
+      "sha256": "23212c813ea8e1b730f992778c93bbe334be218b884653697b4b00eccef8eaf6"
+    },
+    {
+      "path": "review/OPTIMIZED_PYTHON_REFUSAL_CHECK.json",
+      "bytes": 1764,
+      "sha256": "6e67c14b3a6e2340a1a1c203f592c1a5319349a5199aba56150ee6efbc3c308a"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/LOCAL_TOOL_PREPARATION.json",
+      "bytes": 1524,
+      "sha256": "777fd0b7877ef6cb8362267bdcd73705085a8d3d31fa8fa0ec8ea8c31eb27c5e"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/PRESERVATION.json",
+      "bytes": 617,
+      "sha256": "3ace4111b79005f7ddd819818235c0821f84bd72db4fdd634c0652819bfb60b0"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py",
+      "bytes": 23251,
+      "sha256": "1b37904c91524d856c66060a2f8c227e943d7e945beb817ef24fbdf4d759b16f"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py.patch",
+      "bytes": 446,
+      "sha256": "564cf37b1adf772d986d46517a76f27c4d737a6f008f0395bb5dbf3b829efb49",
+      "storedPath": "review/review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py.patch.base64",
+      "storedBytes": 604,
+      "storedSHA256": "537ddc01c5c3aed38a37591ac61f4a8f26c76ed7a33dd3c69675439c21f8d25a",
+      "encoding": "base64"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py",
+      "bytes": 17128,
+      "sha256": "8d9cdc9b3560b586571eada9343ef0dd8d57305e8ad42146afd56f07985f610b"
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch",
+      "bytes": 751,
+      "sha256": "47a8144c0750e2e1ae1b9b101ba8b4395d05d03efd34a616994ae544bd99c23d",
+      "storedPath": "review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch.base64",
+      "storedBytes": 1018,
+      "storedSHA256": "9487a851c0af98c85947a793463d9ede5bd6f2866c7c1e74ae0a32fc0c040baa",
+      "encoding": "base64"
+    },
+    {
+      "path": "transport/ACTUAL_SENTINEL_PREPARE_RESULT.json",
+      "bytes": 1748,
+      "sha256": "542c107a9246d44d79d2cf0c529cf11ff8e087992cf4b62c549d9687501c7c9e"
+    },
+    {
+      "path": "transport/PREPARE.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "transport/PREPARE.stdout",
+      "bytes": 823,
+      "sha256": "b8f9b4e69c7cc98e1432659ee7fb1ba045169f7299c7f2079a2ab169574d2189"
+    },
+    {
+      "path": "transport/STAGING.json",
+      "bytes": 476,
+      "sha256": "5cf160fc4b95c8a52be35f8f1aa2fd88e9322a6a2281765b02b054577683f005"
+    }
+  ],
+  "nextGate": "ROOT must independently read the committed pointer/PREDELETE hashes, then exact commit reruns all current source/no-use/private-asset guards before the sole leaf unlink.",
+  "rawPatchRepresentations": [
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py.patch",
+      "originalBytes": 446,
+      "originalSHA256": "564cf37b1adf772d986d46517a76f27c4d737a6f008f0395bb5dbf3b829efb49",
+      "storedPath": "review/review/initial-tools-before-optimized-python-refusal/restore_closed_native_archive.py.patch.base64",
+      "storedBytes": 604,
+      "storedSHA256": "537ddc01c5c3aed38a37591ac61f4a8f26c76ed7a33dd3c69675439c21f8d25a",
+      "encoding": "base64",
+      "decodedBytesVerified": true
+    },
+    {
+      "path": "review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch",
+      "originalBytes": 751,
+      "originalSHA256": "47a8144c0750e2e1ae1b9b101ba8b4395d05d03efd34a616994ae544bd99c23d",
+      "storedPath": "review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch.base64",
+      "storedBytes": 1018,
+      "storedSHA256": "9487a851c0af98c85947a793463d9ede5bd6f2866c7c1e74ae0a32fc0c040baa",
+      "encoding": "base64",
+      "decodedBytesVerified": true
+    }
+  ],
+  "documentationCorrection": "Raw unified-diff context whitespace is losslessly encoded; both original script drafts and the initial actual check failure remain preserved. Whitespace validation still runs."
+}

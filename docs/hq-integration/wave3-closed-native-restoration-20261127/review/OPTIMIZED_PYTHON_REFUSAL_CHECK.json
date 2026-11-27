@@ -1,0 +1,35 @@
+{
+  "schema": "otzaria.local-optimized-python-refusal.v1",
+  "utc": "2026-11-27T22:02:00.136283+00:00",
+  "cases": [
+    {
+      "script": "restore_closed_native_archive.py",
+      "sha256": "0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4",
+      "command": [
+        "/usr/bin/python3",
+        "-O",
+        "private-evidence-preservation/restore_closed_native_archive.py"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/c1c70cc48453/private-evidence-preservation/restore_closed_native_archive.py\", line 10, in <module>\n    raise RuntimeError('Optimized Python is forbidden: preservation assertions must execute')\nRuntimeError: Optimized Python is forbidden: preservation assertions must execute\n",
+      "scope": "Expected refusal before imports, arguments or filesystem actions; no remote execution."
+    },
+    {
+      "script": "retire_closed_native_archive.py",
+      "sha256": "5ad5afd70009fbe12c7779a8ecb5c42518a30b58c181d4f786a75734e02f5784",
+      "command": [
+        "/usr/bin/python3",
+        "-O",
+        "private-evidence-preservation/retire_closed_native_archive.py"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/c1c70cc48453/private-evidence-preservation/retire_closed_native_archive.py\", line 9, in <module>\n    raise RuntimeError('Optimized Python is forbidden: retirement assertions must execute')\nRuntimeError: Optimized Python is forbidden: retirement assertions must execute\n",
+      "scope": "Expected refusal before imports, arguments or filesystem actions; no remote execution."
+    }
+  ],
+  "remoteRuns": 0,
+  "archiveReads": 0,
+  "deletions": 0
+}

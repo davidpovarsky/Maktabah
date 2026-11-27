@@ -1,0 +1,18 @@
+{
+  "status": "UNEXECUTED_INITIAL_DRAFT_PRESERVED",
+  "finding": "Python optimization would remove assert guards; reject optimized execution with an ordinary module-level branch before any actions.",
+  "reviewer": "/root/navigation_fix",
+  "files": [
+    {
+      "name": "restore_closed_native_archive.py",
+      "bytes": 23251,
+      "sha256": "1b37904c91524d856c66060a2f8c227e943d7e945beb817ef24fbdf4d759b16f"
+    },
+    {
+      "name": "retire_closed_native_archive.py",
+      "bytes": 17128,
+      "sha256": "8d9cdc9b3560b586571eada9343ef0dd8d57305e8ad42146afd56f07985f610b"
+    }
+  ],
+  "runtimeExecutions": 0
+}

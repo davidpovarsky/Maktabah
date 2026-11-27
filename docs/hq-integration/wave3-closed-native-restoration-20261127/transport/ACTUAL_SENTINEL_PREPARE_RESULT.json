@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_630724af9922",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795816971.2966602,
+    "started_at": "2026-11-27T22:02:51.425875+00:00",
+    "finished_at": "2026-11-27T22:03:20.063459+00:00",
+    "duration_s": 28.64,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 270,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"attempt\": \"4e93087e-2565-441f-a6cb-9d33296cc916\", \"exit\": 0, \"stdout\": \"{\\\"status\\\": \\\"PREPARED_ORIGINAL_RETAINED\\\", \\\"predelete\\\": {\\\"path\\\": \\\"/home/ubuntu/otzaria-wave3-private-evidence-publication-20261127/retire-4e93087e-2565-441f-a6cb-9d33296cc916/PREDELETE.json\\\", \\\"bytes\\\": 8024, \\\"sha256\\\": \\\"31be7ad1aeb4f672059edac8b57c04429da38f495eef0fb7aacc0401ff1486f5\\\"}, \\\"pointer\\\": {\\\"path\\\": \\\"/home/ubuntu/otzaria-wave3-private-evidence-publication-20261127/retire-4e93087e-2565-441f-a6cb-9d33296cc916/RESTORATION_POINTER.json\\\", \\\"bytes\\\": 4205, \\\"sha256\\\": \\\"e89db2f5ee59d9dbc466eeffbc43beb64f145aa823a3071aa08d48424b3dbabc\\\"}, \\\"restorationScript\\\": {\\\"path\\\": \\\"/home/ubuntu/otzaria-wave3-private-evidence-publication-20261127/retire-4e93087e-2565-441f-a6cb-9d33296cc916/restore_closed_native_archive.py\\\", \\\"bytes\\\": 23364, \\\"sha256\\\": \\\"0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4\\\"}, \\\"removed\\\": false}\\n\", \"stderr\": \"\", \"phase\": \"prepare\", \"pythonDebug\": true}"
+  }
+}

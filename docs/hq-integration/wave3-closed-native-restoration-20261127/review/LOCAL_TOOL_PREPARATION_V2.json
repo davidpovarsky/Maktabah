@@ -1,0 +1,22 @@
+{
+  "status": "REVISED_SOURCE_ONLY_NOT_DISPATCHED",
+  "tools": [
+    {
+      "path": "/workspace/scratch/c1c70cc48453/private-evidence-preservation/restore_closed_native_archive.py",
+      "bytes": 23364,
+      "sha256": "0338bf97de4ae6c88b53b5692b0a92320ba75159b6ef88cb94b5bc77bdf050b4",
+      "ordinaryOptimizationRefusalBeforeImports": true
+    },
+    {
+      "path": "/workspace/scratch/c1c70cc48453/private-evidence-preservation/retire_closed_native_archive.py",
+      "bytes": 17239,
+      "sha256": "5ad5afd70009fbe12c7779a8ecb5c42518a30b58c181d4f786a75734e02f5784",
+      "ordinaryOptimizationRefusalBeforeImports": true
+    }
+  ],
+  "changeScope": "Only early ordinary optimized-Python refusals in both scripts and exact helper hash repin; initial drafts preserved unchanged.",
+  "ASTOnly": true,
+  "runtimeExecutions": 0,
+  "capacityScans": 0,
+  "remoteCalls": 0
+}

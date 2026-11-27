@@ -1,0 +1,7 @@
+{
+  "actualExit": 2,
+  "stdout": "docs/hq-integration/wave3-closed-native-restoration-20261127/review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch:16: trailing whitespace.\n+ \ndocs/hq-integration/wave3-closed-native-restoration-20261127/review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch:20: trailing whitespace.\n+ \ndocs/hq-integration/wave3-closed-native-restoration-20261127/review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch:21: trailing whitespace.\n+ \ndocs/hq-integration/wave3-closed-native-restoration-20261127/review/review/initial-tools-before-optimized-python-refusal/retire_closed_native_archive.py.patch:20: new blank line at EOF.\n",
+  "stderr": "",
+  "initialJob": "job_78e0a9100aa5",
+  "scope": "Raw unified-diff context whitespace; original bytes will be preserved in base64. Product/tests and the whitespace gate remain unchanged."
+}
