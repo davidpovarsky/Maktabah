@@ -1,0 +1,12 @@
+{
+  "status": "APPLE_SDK_TYPECHECK_PASSED",
+  "native_job": "job_102a06588402",
+  "source_commit": "1bcfddc949f1b004de650505dcdedd0e4cd2ab29",
+  "compiler_exit_code": 0,
+  "source_sha256": "869be2f45cae8323227ca48599aac47029277c44335bc9d917045dc1c418e139",
+  "warning_count": 74,
+  "new_class_warning_count": 0,
+  "receipt_sha256": "e46883cfccffaf37c6a52946b37ec81501e67e7dd1bfabbcf9e64342d951b447",
+  "ui_acceptance": "NOT_RUN",
+  "prior_receipts_preserved": true
+}
