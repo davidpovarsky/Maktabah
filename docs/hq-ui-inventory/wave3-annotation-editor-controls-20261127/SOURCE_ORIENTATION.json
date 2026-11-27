@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.annotation-editor.isolated-source.v1",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "head": "b463ffd03a76026cea06c79c608df97d00094152",
+  "branch": "codex/otzaria-wave3-annotation-editor-controls-20261127",
+  "repo": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/source",
+  "status": "",
+  "upstream_read_exit": 0,
+  "upstream_refs": "4203de5fd77beb119e5826e039be1a61325f7be0\tHEAD\n4203de5fd77beb119e5826e039be1a61325f7be0\trefs/heads/main\n",
+  "upstream_stderr": "",
+  "original_files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "bytes": 24610,
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "recent_history": "85e7d09e694bf828dd4e9e1283eab873538e6e7b Keep expanded annotation presentation on the original sheet root [skip ci]\n6e88c9f59ff030bfa02e0c953dc95f1dc2f6dd6f Keep legacy MiniApps files accessible through original sharing UI\nfb34edd62cbb75959754b0b84138e845fcb34cf9 Integrate shared MiniApps bridge and preserve native rich annotation ownership\n6b330a2964adf30932cfb7e86fc984068c7c5d10 Preserve empty note edits and isolate each editor window\nc7d7af56b6c8fc4dd8a48814e6a8f082f9008d4c Draft ordinary original-editor host with canonical local note ownership\n"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 14696,
+      "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+      "blob": "e2259e0a2fcd14e3a0e778b7e557f8fe2af2282b",
+      "recent_history": "59b053caf7e12cdb387b3bc63134860fcd8ce791 feat: reveal exact published original annotation records\na886a805a2270a31d9b26ed44a214f7e7e4e5bbb Identify original annotation file actions for accessible native import and export\ne069d17c04c6acefd74bd74b902a1d92e7078a58 Reject unsafe plain annotation writes inside the SQLite transaction\n68f462d56a720d53740f666b1db1948616519579 feat(library): book info context menus on macOS and iOS (#119)\nfa3a33ede8bca6b73c930d56ebc9b688f5ab821d feat(annotations): context menu to edit annotations on macOS and iOS (#117)\n"
+    }
+  ],
+  "policies": [
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "bytes": 45080,
+      "sha256": "5b36b294837af6ea3657db399789851f74ce52f22694ce672b16e5b724741e04"
+    }
+  ],
+  "free_data": 4963287040,
+  "free_root": 2321575936,
+  "created": 1795808457.4482174,
+  "receipt_sha256": "15236ed66796733e2df59a60ab5db7eb501cc30f04f34f914248075a43ba6739"
+}

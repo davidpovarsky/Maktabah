@@ -1,0 +1,1 @@
+{"status":"TRANSPORT_TRUNCATED_NOT_USED","original_bytes":289933,"delivered_bytes":124500,"source_mutation":false,"reason":"Combined raw ZIP base64 response exceeded Sentinel result limit; exact bounded chunk transfer follows."}

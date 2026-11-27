@@ -1,0 +1,1 @@
+Exact preimage guard rejected guessed adjacent Note callback hunk before any proposal source was written. Actual original source is inspected and generator corrected. No live repository mutation.

@@ -1,0 +1,6 @@
+{
+  "job_id": "job_f40d8e8e43a1",
+  "status": "failed",
+  "exit": 1,
+  "output": "fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\nTraceback (most recent call last):\n  File \"<stdin>\", line 28, in <module>\n  File \"<stdin>\", line 9, in git\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-C', '/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/source', '-c', 'remote.origin.mirror=false', '-c', 'credential.helper=!/usr/local/bin/gh auth git-credential', 'push', 'origin', 'HEAD:refs/heads/codex/otzaria-wave3-annotation-editor-controls-20261127']' returned non-zero exit status 128."
+}

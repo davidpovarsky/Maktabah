@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_7c30dd365d48\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795811251.7114692,\"started_at\":\"2026-11-27T20:27:31.988987+00:00\",\"finished_at\":\"2026-11-27T20:27:37.368334+00:00\",\"duration_s\":5.38,\"error\":null,\"output_truncated\":false,\"timeout_s\":90,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"result\\\": {\\\"schema\\\": \\\"otzaria.annotation-editor.source-publish.v1\\\", \\\"source_commit\\\": \\\"503c162f02cceb4185b3d0e5cae3d13f38b8ca2c\\\", \\\"parent\\\": \\\"b463ffd03a76026cea06c79c608df97d00094152\\\", \\\"branch\\\": \\\"codex/otzaria-wave3-annotation-editor-controls-20261127\\\", \\\"repo\\\": \\\"/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/source\\\", \\\"files\\\": [{\\\"path\\\": \\\"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\\\", \\\"bytes\\\": 23921, \\\"sha256\\\": \\\"e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa\\\", \\\"before_sha256\\\": null}, {\\\"path\\\": \\\"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift\\\", \\\"bytes\\\": 12199, \\\"sha256\\\": \\\"c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca\\\", \\\"before_sha256\\\": null}, {\\\"path\\\": \\\"Source/Features/Annotations/iOS/AnnotationListView.swift\\\", \\\"bytes\\\": 15826, \\\"sha256\\\": \\\"bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df\\\", \\\"before_sha256\\\": \\\"6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447\\\"}, {\\\"path\\\": \\\"Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift\\\", \\\"bytes\\\": 28458, \\\"sha256\\\": \\\"a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528\\\", \\\"before_sha256\\\": \\\"c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb\\\"}], \\\"remote\\\": \\\"503c162f02cceb4185b3d0e5cae3d13f38b8ca2c\\\", \\\"status\\\": \\\"SOURCE_PUBLISHED_SHARED_PROPOSALS_NOT_APPLIED\\\", \\\"native\\\": \\\"NOT_RUN\\\", \\\"created\\\": 1795811257.3494866, \\\"failed_push_job\\\": \\\"job_f40d8e8e43a1\\\", \\\"transport\\\": \\\"Verified canonical URL with existing credential helper; no persistent remote configuration\\\"}, \\\"receipt_path\\\": \\\"/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/SOURCE_DELIVERY.json\\\", \\\"receipt_sha256\\\": \\\"55eb60c1ee85cc638e00c2a5d9336d4616f4533e17a145f9b36204f1fe93c467\\\"}\\nremote: \\nremote: Create a pull request for 'codex/otzaria-wave3-annotation-editor-controls-20261127' on GitHub by visiting:        \\nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-wave3-annotation-editor-controls-20261127        \\nremote: \\nTo https://github.com/davidpovarsky/Maktabah.git\\n * [new branch]          HEAD -> codex/otzaria-wave3-annotation-editor-controls-20261127\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_7c30dd365d48",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795811251.7114692,
+      "started_at": "2026-11-27T20:27:31.988987+00:00",
+      "finished_at": "2026-11-27T20:27:37.368334+00:00",
+      "duration_s": 5.38,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 90,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"result\": {\"schema\": \"otzaria.annotation-editor.source-publish.v1\", \"source_commit\": \"503c162f02cceb4185b3d0e5cae3d13f38b8ca2c\", \"parent\": \"b463ffd03a76026cea06c79c608df97d00094152\", \"branch\": \"codex/otzaria-wave3-annotation-editor-controls-20261127\", \"repo\": \"/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/source\", \"files\": [{\"path\": \"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\", \"bytes\": 23921, \"sha256\": \"e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa\", \"before_sha256\": null}, {\"path\": \"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift\", \"bytes\": 12199, \"sha256\": \"c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca\", \"before_sha256\": null}, {\"path\": \"Source/Features/Annotations/iOS/AnnotationListView.swift\", \"bytes\": 15826, \"sha256\": \"bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df\", \"before_sha256\": \"6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447\"}, {\"path\": \"Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift\", \"bytes\": 28458, \"sha256\": \"a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528\", \"before_sha256\": \"c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb\"}], \"remote\": \"503c162f02cceb4185b3d0e5cae3d13f38b8ca2c\", \"status\": \"SOURCE_PUBLISHED_SHARED_PROPOSALS_NOT_APPLIED\", \"native\": \"NOT_RUN\", \"created\": 1795811257.3494866, \"failed_push_job\": \"job_f40d8e8e43a1\", \"transport\": \"Verified canonical URL with existing credential helper; no persistent remote configuration\"}, \"receipt_path\": \"/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-repo/SOURCE_DELIVERY.json\", \"receipt_sha256\": \"55eb60c1ee85cc638e00c2a5d9336d4616f4533e17a145f9b36204f1fe93c467\"}\nremote: \nremote: Create a pull request for 'codex/otzaria-wave3-annotation-editor-controls-20261127' on GitHub by visiting:        \nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-wave3-annotation-editor-controls-20261127        \nremote: \nTo https://github.com/davidpovarsky/Maktabah.git\n * [new branch]          HEAD -> codex/otzaria-wave3-annotation-editor-controls-20261127"
+    }
+  },
+  "isError": false
+}

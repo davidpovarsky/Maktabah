@@ -1,0 +1,43 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "upstream_observed": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "read_only": true,
+  "remote_names": [
+    "origin"
+  ],
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "base": {
+        "exit": 0,
+        "bytes": 24610,
+        "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+        "blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d"
+      },
+      "upstream": {
+        "exit": 0,
+        "bytes": 9516,
+        "sha256": "ea06835f6ece8ef7faa39314d9732e79541134b077fa9417a878ecc07b0472a3",
+        "blob": "c58c004eabbaa62b8abab636377b00eaec398b32"
+      },
+      "base_file_history": "85e7d09e694bf828dd4e9e1283eab873538e6e7b Keep expanded annotation presentation on the original sheet root [skip ci]\n6e88c9f59ff030bfa02e0c953dc95f1dc2f6dd6f Keep legacy MiniApps files accessible through original sharing UI\nfb34edd62cbb75959754b0b84138e845fcb34cf9 Integrate shared MiniApps bridge and preserve native rich annotation ownership\n6b330a2964adf30932cfb7e86fc984068c7c5d10 Preserve empty note edits and isolate each editor window\nc7d7af56b6c8fc4dd8a48814e6a8f082f9008d4c Draft ordinary original-editor host with canonical local note ownership\n"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "base": {
+        "exit": 0,
+        "bytes": 14696,
+        "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+        "blob": "e2259e0a2fcd14e3a0e778b7e557f8fe2af2282b"
+      },
+      "upstream": {
+        "exit": 0,
+        "bytes": 12492,
+        "sha256": "53470c8469e7a07821cee779774f070c7f5603d7b19c0c79e3d585773cd5f5fe",
+        "blob": "5a208c8a41944e2b91d046a5afbc124c6007e6b9"
+      },
+      "base_file_history": "59b053caf7e12cdb387b3bc63134860fcd8ce791 feat: reveal exact published original annotation records\na886a805a2270a31d9b26ed44a214f7e7e4e5bbb Identify original annotation file actions for accessible native import and export\ne069d17c04c6acefd74bd74b902a1d92e7078a58 Reject unsafe plain annotation writes inside the SQLite transaction\n68f462d56a720d53740f666b1db1948616519579 feat(library): book info context menus on macOS and iOS (#119)\nfa3a33ede8bca6b73c930d56ebc9b688f5ab821d feat(annotations): context menu to edit annotations on macOS and iOS (#117)\n"
+    }
+  ],
+  "origin_safe_url": "https://github.com/davidpovarsky/Maktabah.git"
+}
