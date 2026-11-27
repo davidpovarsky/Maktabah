@@ -1,0 +1,412 @@
+{
+  "schema": 1,
+  "scope": "PORTABLE_SOURCE_EXTRACTED_XCTEST_GUARD_CONTROL_NOT_APP_OR_UI",
+  "baseCommit": "a1e12fd377c0909df535c96d1a61f54bef5001a7",
+  "sourcePath": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+  "beforeSHA256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+  "afterSHA256": "74d27daf2acf14b3a8fac14eb80f41bb93833b4beaf17eadad4b0a43da043392",
+  "startedAt": "2026-11-27T03:46:51.278101+00:00",
+  "swiftVersion": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "appSDKCompiled": 0,
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0,
+  "boundary": "Only the verbatim two original owner-identity assertion blocks and original demand/Rejected are compiled. Actual XCTest/Corelibs executes them on Linux. Fixture values supply other unchanged request/process/TextKit flags; no app selection, source observer, simulator or gesture is executed.",
+  "cases": [
+    {
+      "variant": "baseline",
+      "fixture": "positive_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "c42a061e47180910f9e02dede6ea262dc1fd1e568685e6b0b26efca59f7d8898",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "negative_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "24364555e8a458be4f3bf19c7e72e8fdb69a0131d2dc857f30f2fd5911332e65",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "zero_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "327675f6cdd2de0736947aa13ba85e7c21c5b8e9b1582ad19b2770d20a85a707",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "both_missing",
+      "invalid": true,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": false,
+      "stdoutSHA256": "7f1f6c2bdb32237a62ff6386d42bb1753ef9548736f5f856dc926e96e18c397a",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "both_wrong_string_type",
+      "invalid": true,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": false,
+      "stdoutSHA256": "8ef3545129847eeb6f7d260e90138295ff7b36bee4be5dce488c8d0cb4a80cdb",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "selection_missing",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "0f7ed8e98be40b6ae2353008b489fb4d2c8738c5bfe658b28fcd9bcc5dbf4a57",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "viewport_missing",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "516a003cb7ef224f1fef59e5dc4fa349b5e157cc181635c0ebedf6c0c85663aa",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "different_integers",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "5f786d6552e98816ba47a0d2b6020d73a947922f9bc0616f3fa5c65b724a86e1",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "positive_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "d8a2744fbe1a4b1a4ae0f5b8c0ac224c5bced5c5f945091415b4eb4907729178",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "negative_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "8ae4efa14d72aa56453322d4fec7ae5048f1f8f5c3439c9ee1974878a605cd7e",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "zero_integer",
+      "invalid": false,
+      "exit": 0,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "passed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "passed"
+        }
+      ],
+      "accepted": true,
+      "rejected": false,
+      "guardCorrect": true,
+      "stdoutSHA256": "1484585a19686de209a9f769f182cbca2b8444327a36827f7652acaf8bfec1e7",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "both_missing",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "2ce0fa3ebbbc7e61c8d7aea966dd2cb3ffbc90dda1fd8bb119fa40916968421c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "both_wrong_string_type",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "6bb1867e6964388d0c190570ce3aa62e44b333ce5c165022e9611bf40f3c6f79",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "selection_missing",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "cc7020caca2e7a708fc30bc879c6bd3cb5ea101c7303a545525a938151e501bf",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "viewport_missing",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "ed1838c758739662a3be9b6be61bb01f61c1f1a64de11ddc5ecb5309a5e0d13f",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "different_integers",
+      "invalid": true,
+      "exit": 1,
+      "cases": [
+        {
+          "name": "IdentityGuardTests.testOriginalFreshRequestOwner",
+          "outcome": "failed"
+        },
+        {
+          "name": "IdentityGuardTests.testOriginalHeldGestureOwner",
+          "outcome": "failed"
+        }
+      ],
+      "accepted": false,
+      "rejected": true,
+      "guardCorrect": true,
+      "stdoutSHA256": "8d27579e58463891da9a05cd9cdf880a5741a81aa81f5fc3bb7027a7e8392e4f",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "compiles": [
+    {
+      "variant": "baseline",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-object-identity-20261127/docs/hq-ui-inventory/wave3-reader-object-identity-20261127/validation/attempt-1/baseline.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/baseline"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-reader-object-identity-20261127/docs/hq-ui-inventory/wave3-reader-object-identity-20261127/validation/attempt-1/candidate.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/candidate"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "extractions": {
+    "baseline": {
+      "firstBlockSHA256": "ac20f6e6d729c30c5784e3e17cd95ae3d686e6f6d03e86daab796e381b41641d",
+      "secondBlockSHA256": "8e90b5ef8495332310912452aadd60ce857f3abee5f7292f37abde243454f757",
+      "compiledHarnessSHA256": "62337e8011a8a228bc6a2b6e36280521d278ac42c14727322690831a0b13edb6",
+      "verbatimBlocks": true
+    },
+    "candidate": {
+      "firstBlockSHA256": "56b0e0ead648b05d81a1c33ef09f1401da0e40fdc1d2fd3c408c86123e616988",
+      "secondBlockSHA256": "048246539f815c0232d798f81501d545f5a100f7df1c80aa8ed2f31ed1cfd5e8",
+      "compiledHarnessSHA256": "ee78a32cff3eb8beb90b22fe5089a95ccbf6f65c6ba80afe28d66e68d26d1188",
+      "verbatimBlocks": true
+    }
+  },
+  "summary": {
+    "candidateValidPayloadsAccepted": 3,
+    "candidateInvalidPayloadsRejected": 5,
+    "baselineInvalidPayloadsIncorrectlyAccepted": 2,
+    "xctestCasesPerPayload": 2,
+    "candidateGuardContractPasses": true,
+    "baselineGuardContractFails": true
+  },
+  "finishedAt": "2026-11-27T03:47:04.031878+00:00",
+  "status": "EXPECTED_BASELINE_FALSE_ACCEPTANCE_REPRODUCED_CANDIDATE_REJECTS"
+}

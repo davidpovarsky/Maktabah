@@ -1,0 +1,15 @@
+Test Suite 'All tests' started at 2026-11-27 03:47:03.840
+Test Suite 'otzaria-wave3-reader-object-identity-20261127.xctest' started at 2026-11-27 03:47:03.842
+Test Suite 'IdentityGuardTests' started at 2026-11-27 03:47:03.842
+Test Case 'IdentityGuardTests.testOriginalFreshRequestOwner' started at 2026-11-27 03:47:03.842
+/mnt/development/projects/worktrees/Maktabah-wave3-reader-object-identity-20261127/docs/hq-ui-inventory/wave3-reader-object-identity-20261127/validation/attempt-1/candidate.swift:17: error: IdentityGuardTests.testOriginalFreshRequestOwner : XCTUnwrap failed: expected non-nil value of type "Int" - Require the original native selection's integer UITextView identity
+Test Case 'IdentityGuardTests.testOriginalFreshRequestOwner' failed (0.002 seconds)
+Test Case 'IdentityGuardTests.testOriginalHeldGestureOwner' started at 2026-11-27 03:47:03.844
+/mnt/development/projects/worktrees/Maktabah-wave3-reader-object-identity-20261127/docs/hq-ui-inventory/wave3-reader-object-identity-20261127/validation/attempt-1/candidate.swift:33: error: IdentityGuardTests.testOriginalHeldGestureOwner : XCTUnwrap failed: expected non-nil value of type "Int" - Require the original native selection's integer UITextView identity
+Test Case 'IdentityGuardTests.testOriginalHeldGestureOwner' failed (0.0 seconds)
+Test Suite 'IdentityGuardTests' failed at 2026-11-27 03:47:03.844
+	 Executed 2 tests, with 2 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'otzaria-wave3-reader-object-identity-20261127.xctest' failed at 2026-11-27 03:47:03.844
+	 Executed 2 tests, with 2 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'All tests' failed at 2026-11-27 03:47:03.844
+	 Executed 2 tests, with 2 failures (0 unexpected) in 0.002 (0.002) seconds
