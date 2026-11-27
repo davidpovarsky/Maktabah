@@ -130,6 +130,13 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 
     // MARK: - JS -> Native Callbacks
 
+    /// React invokes this blocking method on its JS thread. It only consumes a
+    /// fixed, already-admitted native ticket under closed one-way source locks.
+    /// Never dispatch synchronously to MainActor or execute JS from this method.
+    @objc func claimOriginalSemanticNavigation(_ jsonString: String) -> NSNumber {
+        NSNumber(value: SefariaEmbeddedSemanticHandoffs.shared.claim(jsonString))
+    }
+
     @objc func deliverResponse(_ jsonString: String) {
         #if DEBUG
         if jsonString.count > 300 {

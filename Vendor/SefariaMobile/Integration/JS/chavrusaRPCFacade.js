@@ -161,6 +161,16 @@ export class ChavrusaRPCFacade {
           result = await ChavrusaVisibleSurfaces.awaitVisible(params, sessionGeneration, envelope.timeoutMs);
           break;
         }
+        case 'surface.navigateOriginal': {
+          // A fixed private handoff, never a public JS selector or a new grant.
+          const nativeClaim = NativeModules.ChavrusaSefariaBridgeModule?.claimOriginalSemanticNavigation;
+          if (typeof nativeClaim !== 'function') {
+            throw Object.assign(new Error('ORIGINAL_SEMANTIC_CLAIM_UNAVAILABLE'), {code: 'ORIGINAL_SEMANTIC_CLAIM_UNAVAILABLE'});
+          }
+          result = await ChavrusaVisibleSurfaces.navigateOriginal(params, sessionGeneration,
+            envelope.timeoutMs, claimJSON => nativeClaim(claimJSON));
+          break;
+        }
         case 'runtime.actionContract': {
           // Read-only proof from the actually loaded facade, not Swift's cached
           // capability bits. Never initialize/download anything during discovery.

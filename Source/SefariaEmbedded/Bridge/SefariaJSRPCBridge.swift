@@ -79,6 +79,14 @@ fileprivate final class SefariaRPCSessionEpoch: @unchecked Sendable {
         guard state == expected, state.canPresent else { throw unavailable() }
         return value
     }
+    /// Closed native Boolean handoff only. Its fixed caller acquires source
+    /// latches and a ticket; no actor hop, JS, UIKit or user callback runs here.
+    func claimSurface(_ expected: SefariaEmbeddedSurfaceRuntimeObservation,
+                      claim: () -> Bool) -> Bool {
+        lock.lock(); defer { lock.unlock() }
+        guard state == expected, state.canPresent else { return false }
+        return claim()
+    }
     private func unavailable() -> SefariaRPCError {
         .init(code: "SURFACE_RUNTIME_CHANGED", message: "The original Sefaria runtime is not available for this retained surface.")
     }
@@ -95,6 +103,9 @@ final class SefariaEmbeddedSurfaceRuntimeToken: @unchecked Sendable {
     func validate() throws { try authority.validate(observation) }
     @MainActor func withValidRuntime<T>(_ operation: @MainActor () throws -> T) throws -> T {
         try authority.withSurface(observation, operation: operation)
+    }
+    func claimIfCurrent(_ claim: () -> Bool) -> Bool {
+        authority.claimSurface(observation, claim: claim)
     }
 }
 

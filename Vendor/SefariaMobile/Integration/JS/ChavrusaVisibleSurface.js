@@ -32,7 +32,10 @@ const OriginalVisibleReader = ({identity, registration}) => {
       const original = reader.current;
       if (!(original instanceof ReaderApp)) { return null; }
       return {loaded: original.state.loaded, completedInit: original.state._completedInit};
-    }, () => layout.current);
+    }, () => layout.current, () => {
+      const original = reader.current;
+      return original instanceof ReaderApp ? original : null;
+    });
     registration.current = token;
     return () => {
       ChavrusaVisibleSurfaces.unregister(token);
