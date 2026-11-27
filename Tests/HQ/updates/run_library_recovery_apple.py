@@ -76,7 +76,7 @@ enum AppConfig { static let appSupportDir: URL? = nil }
     candidate = result["cases"]["candidate"]
     baseline = result["cases"]["baseline"]
     summaries = [x for x in candidate["rows"] if "passed" in x]
-    require_pass = (candidate["exit"] == 0 and len(summaries) == 1 and summaries[0]["passed"] == 9
+    require_pass = (candidate["exit"] == 0 and len(summaries) == 1 and summaries[0]["passed"] == 10
                     and summaries[0]["failed"] == 0 and summaries[0]["skipped"] == 0
                     and baseline["exit"] != 0 and result["inputs_after"] == actual)
     result["status"] = "COMPONENT_PASS" if require_pass else "FAILED"

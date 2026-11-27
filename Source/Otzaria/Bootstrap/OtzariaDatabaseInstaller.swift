@@ -241,14 +241,30 @@ struct OtzariaDatabaseInstaller: Sendable {
                     )
                 }
 
+                // A pending identity with a rollback database belongs to an
+                // unfinished transaction. App-launch recovery must activate and
+                // finish it before another replacement can consume its backup.
+                guard !(fileManager.fileExists(atPath: storage.pendingInstallationManifestURL.path)
+                        && fileManager.fileExists(atPath: storage.previousDatabaseURL.path)) else {
+                    throw OtzariaDatabaseBootstrapError.atomicInstallFailed(
+                        "the previous library update must finish recovery before another replacement"
+                    )
+                }
+
                 for suffix in ["-wal", "-shm", "-journal"] {
                     try removeManagedFileIfPresent(
                         URL(fileURLWithPath: storage.finalDatabaseURL.path + suffix)
                     )
                 }
 
+                // Retire a completed transaction before reusing its backup
+                // paths. Preserve its marker if database cleanup fails. Once
+                // cleanup succeeds, no stale marker may authenticate a later
+                // replacement whose pending identity never reached disk.
+                try removeManagedFileIfPresent(storage.previousDatabaseURL)
+                try removeManagedFileIfPresent(storage.previousInstallationManifestURL)
+
                 if fileManager.fileExists(atPath: storage.finalDatabaseURL.path) {
-                    try removeManagedFileIfPresent(storage.previousDatabaseURL)
                     _ = try fileManager.replaceItemAt(
                         storage.finalDatabaseURL,
                         withItemAt: prepared.stagingURL,
