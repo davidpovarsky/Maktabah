@@ -138,14 +138,14 @@ public struct UISceneCommand: Sendable, Equatable {
                                                         current: UISceneSnapshot,
                                                         using authorization: ActionNavigationPreparation) throws
         -> ActionNavigationContinuation {
-        // Only the private, source-bound existing Reader-tab selection opts in.
+        // Only the private, source-bound original selections below opt in.
         // Public-v2, generic roots and semantic reader/note/search commands do
         // not acquire a second effect from a decoded route or a render check.
         guard route.descriptor.implementation == .implemented,
               !route.descriptor.mutatesUserData, route.descriptor.riskTier < 3,
               route.descriptor.requiredCoreActions.isEmpty, route.publicLocalBinding == nil,
               route.route.content == nil, route.route.focus == nil,
-              route.route.presentation.kind == .currentTab, route.route.presentation.tabID != nil,
+              route.route.presentation.kind == .currentTab,
               route.route.state.workspaceID != nil, route.route.state.profileID != nil,
               route.route.state == .init(workspaceID: route.route.state.workspaceID,
                                         profileID: route.route.state.profileID) else {
@@ -153,7 +153,16 @@ public struct UISceneCommand: Sendable, Equatable {
         }
         switch kind {
         case .readerTab:
+            guard route.route.presentation.tabID != nil else {
+                throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
+            }
             guard route.route.destination.rawValue == "native.reader.tab" else {
+                throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
+            }
+        case .workspaceSelection(let profileID, let workspaceID, let activeTabID):
+            guard route.route.destination.rawValue == "native.workspace.selection",
+                  route.route.state == .init(workspaceID: workspaceID, profileID: profileID),
+                  route.route.presentation == .init(kind: .currentTab, tabID: activeTabID) else {
                 throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
             }
         }

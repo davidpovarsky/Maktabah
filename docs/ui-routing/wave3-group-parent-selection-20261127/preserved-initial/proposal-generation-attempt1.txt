@@ -1,0 +1,1 @@
+Initial local proposal generator exited 1 before writing its candidate. Exact replacement preimage did not match endObservation. Assertion: candidate.count('        readerTabParentObservation = nil\n        try? nativeStateChanged()\n') == 1; actual 0. No product/shared file was changed.

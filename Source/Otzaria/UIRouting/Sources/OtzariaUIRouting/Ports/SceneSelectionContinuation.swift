@@ -2,9 +2,14 @@ import Foundation
 import OtzariaActionCore
 
 /// A trusted native-driver choice, never decoded from URL/public UI state.
-/// The only initial consumer selects an already retained ORIGINAL live tab.
+/// Each consumer retains its ORIGINAL source before the first await. This
+/// metadata carries no permission and is never decoded from a public payload.
 public enum UIOriginalParentSelectionKind: Sendable, Equatable {
     case readerTab
+    /// Nil is the exact prepared original empty group, never a generic root.
+    /// The native owner must prove that its staged readers and selected tab
+    /// are empty before it can offer this finite continuation.
+    case workspaceSelection(profileID: UIStableID, workspaceID: UIStableID, activeTabID: UIStableID?)
 }
 
 /// One immutable command and its one-use terminal Core capability. Parent

@@ -1,0 +1,219 @@
+{
+  "files": [
+    {
+      "path": "BASE.json",
+      "bytes": 1272,
+      "sha256": "030aae0de61e53f53bb12a36fd6fdd9502266d66d36d4a3a36253d736487314c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8257,
+      "sha256": "8144a1ffef0bb2f34fc6368172eb44f5e6b207d67552da44a3d03c78f5810195"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 3968,
+      "sha256": "7db29efae3ae8c6303c4039ccf07a97158fca10a30949e5f4a75d14a91fdad61"
+    },
+    {
+      "path": "SOURCE.patch.gz",
+      "bytes": 5037,
+      "sha256": "2d96ee4ea4858a4c1cd1dca4a26bf3b52b4387bf2000422ab852d9f2a385b150"
+    },
+    {
+      "path": "SOURCE.patch.gz.manifest.json",
+      "bytes": 274,
+      "sha256": "ac41ccfac547734b1b0a87aa52aa1a580258cb2ca4c79aef4c1a5a207c2a4446"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 1523,
+      "sha256": "f0eef2e0f7e4f47e20167fac3b49965be08f1eeeb4c5f47e08894338b22e8026"
+    },
+    {
+      "path": "SOURCE_REVIEW.json",
+      "bytes": 1172,
+      "sha256": "de36cf3acdf4b2a14f39bd94569e01a5a022db963ae492be4ff27a404a579184"
+    },
+    {
+      "path": "controls/ParentBoundary.swift",
+      "bytes": 6976,
+      "sha256": "ca6268e190e5198024854cff7ecdace23ee2a415de60e99c38ef26b905230a1c"
+    },
+    {
+      "path": "controls/ParentDomainControls.swift",
+      "bytes": 11825,
+      "sha256": "28acfe93ca83fed6a24351bc03991750bddd83f531ea3c5c3b90668c8e4e5160"
+    },
+    {
+      "path": "controls/PortableControls.swift.gz",
+      "bytes": 4174,
+      "sha256": "c6790f6c6a2087866f62558b902834749ee2ec2804de750ef39ed78af8b51c98"
+    },
+    {
+      "path": "controls/PortableControls.swift.gz.manifest.json",
+      "bytes": 312,
+      "sha256": "6995b180a433c92648f24e558921ebcc33781f1547dfb9fbd346524927c8cc68"
+    },
+    {
+      "path": "controls/exact_bounded_subprocess.py",
+      "bytes": 3540,
+      "sha256": "fc597b3333f830fc97f73edaa34644645956f8e35cbdcea11c26f9957d6daba8"
+    },
+    {
+      "path": "controls/generate_domain.py",
+      "bytes": 7330,
+      "sha256": "d18c942323ed31bdaa7f62a75c8718c49d3394b1b3c827c89e335d96b9066a49"
+    },
+    {
+      "path": "controls/preserved-portable-controls-attempt1.swift.gz",
+      "bytes": 4244,
+      "sha256": "7953b90bc877ef6bf1f1f6c1d8e4624a487167b5532e0c3d1ae59cfbedfd9b25"
+    },
+    {
+      "path": "controls/preserved-portable-controls-attempt1.swift.gz.manifest.json",
+      "bytes": 352,
+      "sha256": "d9273bb632cd098301382dd66460e1fe3a096512f85996b39c2c6bb8261a2998"
+    },
+    {
+      "path": "controls/run_boundaries.py",
+      "bytes": 8199,
+      "sha256": "2f547ed67e90f2da99dc16387513ac49e503c9d512c8086dc50ad9f8aeef4c47"
+    },
+    {
+      "path": "controls/run_boundaries_attempt2.py",
+      "bytes": 8809,
+      "sha256": "f89339c04517504a7c76e780def5eb501dab99780ceaf1c7eac17380d2cded65"
+    },
+    {
+      "path": "controls/run_boundaries_attempt3.py",
+      "bytes": 8894,
+      "sha256": "62c487f0da86e80ae8e673fa79ff093228b978410a1a53f3758e6c1c39b1b8d8"
+    },
+    {
+      "path": "controls/run_boundaries_attempt4.py",
+      "bytes": 8894,
+      "sha256": "9ae18c7afee26d2ea9d3d7381305a1e4080855f26d3313970d5658bbb876f7cf"
+    },
+    {
+      "path": "controls/run_portable.py",
+      "bytes": 8135,
+      "sha256": "53c0674bf69c08232405dc1ab22b21f4ddb9b362ab15c8d341e64705d87c0cfb"
+    },
+    {
+      "path": "controls/run_portable_attempt2.py",
+      "bytes": 8925,
+      "sha256": "92224dbcdef96e00374ff670ed29fae99290b92e6524e80037b6988415e88889"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz",
+      "bytes": 992652,
+      "sha256": "7725294bbb66dfc56d700aedd67d1b502de14f0dc1a31fb3095a1867479adf9c"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz.manifest.json",
+      "bytes": 82749,
+      "sha256": "7b4b3fba8e76ec30e8892f19820b983bc67947e9e5b2ea710f3cae3311cce1ce"
+    },
+    {
+      "path": "evidence/READ_ONLY_CORE.json.gz",
+      "bytes": 125174,
+      "sha256": "20c9c36b4708e9385381c287b18317eed956807d2c58c26aa95118afcfe35fe7"
+    },
+    {
+      "path": "evidence/READ_ONLY_CORE.json.gz.manifest.json",
+      "bytes": 10131,
+      "sha256": "d0f24ab74236c80bafce3da5ba89f57e6f9a2937052392216b8f16b832b650b9"
+    },
+    {
+      "path": "evidence/RESULT.json",
+      "bytes": 78722,
+      "sha256": "a0fcb555427a52298ed82d75d55c02fa90c389ad4ee4d1f195b714e02432a480"
+    },
+    {
+      "path": "preserved-initial/PUBLICATION_STOPS.json",
+      "bytes": 6284,
+      "sha256": "93bf15d62df4ccbee81d3d5a5c1eb6bf29fe6766898a66c56dc720eacc4c2e8e"
+    },
+    {
+      "path": "preserved-initial/ViewerParent-before-actor-annotation.swift",
+      "bytes": 23688,
+      "sha256": "6201e44e36f6975e2558c57483932d7e87d5ec17ab3ca474fa3f2852bf6637ca"
+    },
+    {
+      "path": "preserved-initial/proposal-generation-attempt1.txt",
+      "bytes": 289,
+      "sha256": "9a61fa1c93e389e0a69075ada7d68b18f4fdb419ccb61270d4d7f6107da7f49a"
+    },
+    {
+      "path": "preserved-initial/propose_session_attempt1.py",
+      "bytes": 9585,
+      "sha256": "bb479b2752bd96d53c47204ccbb030955bce6a89c95494181d543f21ff8dc4cc"
+    },
+    {
+      "path": "proposal/SESSION.patch.gz",
+      "bytes": 2099,
+      "sha256": "56f091c0eaafd3a910f2808c7f95a595489c8da46166ef577269aac64e6a0cdf"
+    },
+    {
+      "path": "proposal/SESSION.patch.gz.manifest.json",
+      "bytes": 294,
+      "sha256": "75193403cf63ba31664f9b8626fe91fb4fe0f57511ecfdf17c73dbcb8aa5bb72"
+    },
+    {
+      "path": "proposal/SESSION_EDITS.json",
+      "bytes": 9021,
+      "sha256": "96324728a7c09997f6c23c6a99c785ad179d8e7e42655dc79d5578fdb2068025"
+    },
+    {
+      "path": "proposal/SESSION_JOIN.json",
+      "bytes": 331,
+      "sha256": "daf42777bb3e6a99d0e9fe70f9644ef23c4943177feb14d3f909c6931a2821cc"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz",
+      "bytes": 235011,
+      "sha256": "fea32ef4140034bb4a55aa0e1334e20cc7e0a4d27d7bad8a69a7610251d4da9b"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz.manifest.json",
+      "bytes": 6849,
+      "sha256": "aacaa219ccd8f427378f1d0d3f7daf3b4eb655a5bbaf1d396f30b0b376fddbf8"
+    },
+    {
+      "path": "proposal/propose_session.py",
+      "bytes": 9663,
+      "sha256": "11d2dc5c73bf18319f7992d80d3ebf25ba36dc823ceab34a3b09805f7c652df7"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f",
+      "beforeBytes": 20823,
+      "beforeSHA256": "d25b21be0ff98eed6a663241fde17ce85df41d6b7b1b965d7432e827db89ffcd"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 23388,
+      "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50",
+      "beforeBytes": 20094,
+      "beforeSHA256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b",
+      "beforeBytes": 18186,
+      "beforeSHA256": "2814d6c1793e66c295a67d96977f757e71da0e6fd8902982d67f19c6076ff56b"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47",
+      "beforeBytes": 2168,
+      "beforeSHA256": "d9d515375ec29ce3ea3d2b574cb02627b737a253bda4361596692cc4a9ea3e72"
+    }
+  ]
+}

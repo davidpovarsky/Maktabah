@@ -1,0 +1,97 @@
+{
+  "scope": "Publication mechanics only; no source/control rerun or changed product.",
+  "firstStop": {
+    "ok": true,
+    "job": {
+      "id": "job_53ff9471797c",
+      "type": "job_result",
+      "source": "exec@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "exec",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795802060.8090036,
+      "started_at": "2026-11-27T17:54:20.890573+00:00",
+      "finished_at": "2026-11-27T17:54:21.648681+00:00",
+      "duration_s": 0.76,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 180,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\n  File \"/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-publication-transport/publish_packet.py\", line 119, in <module>\n    assert len(attempts) == 6\n           ^^^^^^^^^^^^^^^^^^\nAssertionError"
+    }
+  },
+  "secondStop": {
+    "ok": true,
+    "job": {
+      "id": "job_e498c80d10d6",
+      "type": "job_result",
+      "source": "exec@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "exec",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795802137.914342,
+      "started_at": "2026-11-27T17:55:37.999347+00:00",
+      "finished_at": "2026-11-27T17:55:39.198835+00:00",
+      "duration_s": 1.2,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 180,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\n  File \"<string>\", line 15, in <module>\n  File \"/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-publication-transport/publish_packet_resume.py\", line 179, in <module>\n    run(REPO, 'diff', '--cached', '--check')\n  File \"/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-publication-transport/publish_packet_resume.py\", line 22, in run\n    return subprocess.run(['git', '-C', str(repo), *args], input=input, text=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', '-C', '/home/ubuntu/.codex/worktrees/Maktabah-wave3-group-parent-selection-20261127', 'diff', '--cached', '--check']' returned non-zero exit status 2."
+    }
+  },
+  "rawWhitespaceCheck": {
+    "ok": true,
+    "output": "{\"HEAD\": \"37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be\", \"exit\": 2, \"stdout\": \"docs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:8: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:36: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:64: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:82: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:144: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:198: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:206: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:237: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:280: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:282: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:335: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/SOURCE.patch:347: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/controls/PortableControls.swift:223: new blank line at EOF.\\ndocs/ui-routing/wave3-group-parent-selection-20261127/controls/preserved-portable-controls-attempt1.swift:227: new blank line at EOF.\\ndocs/ui-routing/wave3-group-parent-selection-20261127/proposal/SESSION.patch:12: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/proposal/SESSION.patch:32: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/proposal/SESSION.patch:52: trailing whitespace.\\n+ \\ndocs/ui-routing/wave3-group-parent-selection-20261127/proposal/SESSION.patch:171: trailing whitespace.\\n+ \\n\", \"stderr\": \"\", \"free\": 1973497856, \"stagedCount\": 37}",
+    "duration": 0.1,
+    "returncode": 0
+  },
+  "losslessPackaging": [
+    {
+      "rawPath": "SOURCE.patch",
+      "rawBytes": 20856,
+      "rawSHA256": "7f3470b13db590d4d3f0f119bea979733a1531215c82c1d2ca7d9cc11ac85518",
+      "gzipPath": "SOURCE.patch.gz",
+      "gzipBytes": 5037,
+      "gzipSHA256": "2d96ee4ea4858a4c1cd1dca4a26bf3b52b4387bf2000422ab852d9f2a385b150"
+    },
+    {
+      "rawPath": "proposal/SESSION.patch",
+      "rawBytes": 11384,
+      "rawSHA256": "bacb785293d5eff0dd04440a3db2c8e0951e520df8c6645466158e2235475b59",
+      "gzipPath": "proposal/SESSION.patch.gz",
+      "gzipBytes": 2099,
+      "gzipSHA256": "56f091c0eaafd3a910f2808c7f95a595489c8da46166ef577269aac64e6a0cdf"
+    },
+    {
+      "rawPath": "controls/PortableControls.swift",
+      "rawBytes": 15241,
+      "rawSHA256": "eb41010d00b0dbf9151968653935b8fc82c3d0a574978f85c3c112e7ddcb5202",
+      "gzipPath": "controls/PortableControls.swift.gz",
+      "gzipBytes": 4174,
+      "gzipSHA256": "c6790f6c6a2087866f62558b902834749ee2ec2804de750ef39ed78af8b51c98"
+    },
+    {
+      "rawPath": "controls/preserved-portable-controls-attempt1.swift",
+      "rawBytes": 15686,
+      "rawSHA256": "44121a2d4e058be46916f84647e3a7cdcfaa7d8087a89abe4557dffb59f6632f",
+      "gzipPath": "controls/preserved-portable-controls-attempt1.swift.gz",
+      "gzipBytes": 4244,
+      "gzipSHA256": "7953b90bc877ef6bf1f1f6c1d8e4624a487167b5532e0c3d1ae59cfbedfd9b25"
+    }
+  ]
+}
