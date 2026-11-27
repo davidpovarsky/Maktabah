@@ -62,7 +62,8 @@ public enum UIRouteSchemas {
             "version": .object(["const": .integer(2)]), "destination": string(128, pattern: destinationPattern),
             "backend": enumeration(ActionBackendID.allCases.map(\.rawValue)), "content": try contentSchema(core: core, publicOnly: true),
             "presentation": enumeration(PublicNavigationSpecV2.Presentation.allCases.map(\.rawValue)),
-            "component": string(128, pattern: destinationPattern)
+            "component": string(128, pattern: destinationPattern),
+            "searchReference": string(36, min: 36, pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
         ], required: ["version", "destination", "presentation"])
     }
     private static func uuid() -> ActionJSON { .object(["type": .string("string"), "format": .string("uuid"), "maxLength": .integer(36), "minLength": .integer(36)]) }

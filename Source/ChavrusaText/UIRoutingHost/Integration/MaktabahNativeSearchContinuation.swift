@@ -74,6 +74,18 @@ final class MaktabahNativeSearchContinuationSource {
 
     fileprivate final class WeakList { weak var value: MaktabahSearchContinuationListView?; init(_ v: MaktabahSearchContinuationListView) { value = v } }
     fileprivate final class WeakRow { weak var value: MaktabahSearchContinuationRowView?; init(_ v: MaktabahSearchContinuationRowView) { value = v } }
+    /// Identity-only metadata for the original attached list. This deliberately
+    /// does not attest foreground/visibility or permit any operation. The
+    /// unchanged currentList predicate remains mandatory at execution/ACK.
+    fileprivate func metadataList(scene: String) throws -> MaktabahSearchContinuationListView {
+        let live = lists.values.compactMap(\.value).filter {
+            $0.window?.windowScene?.session.persistentIdentifier == scene && $0.window != nil
+        }
+        guard live.count == 1, let list = live.first, list.hasSameAttachment else {
+            throw ActionPortError.unavailable
+        }
+        return list
+    }
     fileprivate func currentList(scene: String, requiresCurrentLayout: Bool = true) throws -> MaktabahSearchContinuationListView {
         lists = lists.filter { $0.value.value != nil }
         let live = lists.values.compactMap(\.value).filter {
@@ -396,6 +408,111 @@ final class MaktabahNativeSearchContinuationBinding {
     private var retained: Retained?
     private var completed: Completed?
 
+    struct MetadataHit {
+        let title: String
+        let hit: NativeSearchContinuationIntentService.Hit
+    }
+    /// One read-only original publication. Its live closures capture the
+    /// original session/source weakly; no grant, claim token or result model is
+    /// retained. Before/foreign checks deliberately have different jobs: an
+    /// owned page may change results, but it may never change the original
+    /// query, model, backend, scene/window or user-owned inputs.
+    @MainActor final class Metadata {
+        let source: NativeSearchContinuationIntentService.Source
+        let hits: [MetadataHit]
+        let hasNextPage: Bool
+        private let before: Check
+        private let foreign: Check
+        private var active = true
+        init(source: NativeSearchContinuationIntentService.Source, hits: [MetadataHit], hasNextPage: Bool,
+             before: @escaping Check, foreign: @escaping Check) {
+            self.source = source; self.hits = hits; self.hasNextPage = hasNextPage
+            self.before = before; self.foreign = foreign
+        }
+        func validateBefore() throws {
+            guard active else { throw ActionPortError.staleState }
+            try before()
+            guard active else { throw ActionPortError.staleState }
+        }
+        func validateForeign() throws {
+            guard active else { throw ActionPortError.staleState }
+            try foreign()
+            guard active else { throw ActionPortError.staleState }
+        }
+        func retire() { active = false }
+    }
+
+    /// Capture original metadata without inventing an invocation or calling
+    /// claims.observe. The caller's check is the actual original scene/parent
+    /// identity, not a Core authorization. Foreground geometry is independently
+    /// required by the original binding after the real command is admitted.
+    static func captureMetadata(sceneID: String, session: UnifiedSearchSessionController,
+        currentSnapshot: @escaping @MainActor () throws -> ActionBackendSnapshot,
+        originalWindow: @escaping @MainActor () throws -> UIWindow,
+        validateParent: @escaping Check) throws -> Metadata {
+        try validateParent()
+        let originalSource = session.nativeSearchContinuation
+        let model = session.searchViewModel
+        let inputs = MaktabahNativeComponentSourceObservation {
+            _ = session.searchViewModel; _ = session.query; _ = session.scope
+            _ = session.requestConfiguration; _ = session.selectedBookIds; _ = session.resultKitabFilter
+            _ = session.showsBookFilterSheet; _ = session.showsSearchDataSheet; _ = session.showsAdvancedOptions
+            _ = model?.selectedBookIds; _ = model?.filterText; _ = model?.query; _ = model?.searchMode
+            _ = model?.nearDistance; _ = model?.sortKey; _ = model?.sortAscending; _ = model?.resultKitabFilter
+            _ = model?.backendSearchOptions; _ = model?.backendSearchGeneration
+        }
+        let zayitInputs = NativeComponentSourceObservation(read: {})
+        let queryChange = session.zayitSession.model.$query.dropFirst().sink { _ in zayitInputs.invalidate() }
+        let modeChange = session.zayitSession.model.$matchMode.dropFirst().sink { _ in zayitInputs.invalidate() }
+        let reader = Self(sceneID: sceneID, session: session, currentSnapshot: currentSnapshot, originalWindow: originalWindow)
+        let stamp = try reader.readStamp(metadataOnly: true)
+        // A catalog is bounded metadata. An unusually large current source is
+        // unavailable to this adapter; its actual results/UI stay unchanged.
+        guard stamp.all.reduce(0, { $0 + $1.count }) <= 8 * 1_024 * 1_024 else { throw ActionPortError.unavailable }
+        let eligible = Set(stamp.filtered)
+        let qualified = zip(session.results, stamp.all).filter { eligible.contains($0.1) }.map { item, identity in
+            MetadataHit(title: [item.bookTitle, item.locationDisplayText, item.versionTitle, item.resultLanguage]
+                .compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " — "),
+                hit: .init(stableID: item.stableID, locator: item.backendLocator?.persistenceKey,
+                           versionTitle: item.versionTitle, language: item.resultLanguage, identity: identity))
+        }
+        let value = NativeSearchContinuationIntentService.Source(sceneID: sceneID, snapshot: stamp.snapshot,
+            sessionID: originalSource.sessionID, modelID: stamp.page.ownerID, generation: stamp.page.generation,
+            sourceRevision: stamp.inputRevision, submissionRevision: stamp.submission,
+            cancellationRevision: stamp.cancellation, paginationRevision: stamp.pagination,
+            pageRevision: stamp.page.pageRevision!, configuration: stamp.configuration)
+        let foreign: Check = { [weak session, weak originalSource, weak model] in
+            _ = queryChange; _ = modeChange
+            try validateParent(); try inputs.validate(); try zayitInputs.validate()
+            guard let session, let originalSource, session.nativeSearchContinuation === originalSource,
+                  originalSource.session === session, session.searchViewModel === model,
+                  originalSource.inputRevision == stamp.inputRevision,
+                  session.nativeContinuationGeneration == stamp.unifiedGeneration,
+                  session.submissionRevision == stamp.submission,
+                  session.cancellationRevision == stamp.cancellation,
+                  let page = session.nativeContinuationPageSnapshot,
+                  page.ownerID == stamp.page.ownerID, page.generation == stamp.page.generation,
+                  try currentSnapshot() == stamp.snapshot else { throw ActionPortError.staleState }
+            let current = Self(sceneID: sceneID, session: session, currentSnapshot: currentSnapshot, originalWindow: originalWindow)
+            guard try current.configurationBytes() == stamp.configuration,
+                  let list = try? originalSource.metadataList(scene: sceneID), list.id == stamp.listID,
+                  list.window.map(ObjectIdentifier.init) == stamp.windowID,
+                  list.window === (try originalWindow()) else { throw ActionPortError.staleState }
+            try inputs.validate(); try zayitInputs.validate(); try validateParent()
+        }
+        let before: Check = { [weak session] in
+            try foreign()
+            guard let session else { throw ActionPortError.staleState }
+            let current = Self(sceneID: sceneID, session: session, currentSnapshot: currentSnapshot, originalWindow: originalWindow)
+            guard try current.readStamp(metadataOnly: true) == stamp else { throw ActionPortError.staleState }
+            try foreign()
+        }
+        try before()
+        return Metadata(source: value, hits: qualified,
+            hasNextPage: session.nativeContinuationHasMore && stamp.page.lastCommitted?.cursorAfter != nil,
+            before: before, foreign: foreign)
+    }
+
     private struct Stamp: Equatable {
         let snapshot: ActionBackendSnapshot
         let inputRevision: UInt64
@@ -700,7 +817,7 @@ final class MaktabahNativeSearchContinuationBinding {
         let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
         return try encoder.encode(submitted)
     }
-    private func readStamp() throws -> Stamp {
+    private func readStamp(metadataOnly: Bool = false) throws -> Stamp {
         guard source.session === session, session.nativeContinuationAcceptsUpdates,
               session.hasSubmitted, !session.wasCancelled, !session.resultsAreDirty,
               !session.isSearching, !session.isLoadingMore, !session.nativeContinuationIsBusy,
@@ -713,7 +830,7 @@ final class MaktabahNativeSearchContinuationBinding {
         let original = try MaktabahSearchContinuationIdentity.identities(session.nativeContinuationOriginalResults)
         guard all == original else { throw ActionPortError.staleState }
         let filtered = try MaktabahSearchContinuationIdentity.identities(session.filteredResults)
-        let list = try source.currentList(scene: sceneID)
+        let list = try (metadataOnly ? source.metadataList(scene: sceneID) : source.currentList(scene: sceneID))
         guard list.identities == filtered, list.pageRevision == page.pageRevision, let window = list.window,
               window === (try originalWindow()) else {
             throw ActionPortError.unavailable

@@ -41,6 +41,9 @@ public struct UIDestinationRegistry: Sendable {
         do { _ = try ActionJSON.encoded(route).decoded(as: RouteSpec.self) }
         catch { throw UIRouteError(.failed, "invalid_canonical_reference") }
         guard let descriptor = byID[route.destination] else { throw UIRouteError(.notSupported, "unknown_destination") }
+        guard descriptor.publicNavigationV2?.searchReferenceKind == nil else {
+            throw UIRouteError(.notSupported, "typed_search_continuation_required")
+        }
         guard !descriptor.mutatesUserData, descriptor.riskTier < 3 else { throw UIRouteError(.notSupported, "persistent_mutation_not_route") }
         guard descriptor.presentations.contains(route.presentation.kind), !descriptor.requiresContent || route.content != nil else { throw UIRouteError(.notSupported, "unsupported_variant") }
         let anchors = Set(descriptor.anchors)
@@ -111,7 +114,8 @@ public struct UIDestinationRegistry: Sendable {
         guard invocation.snapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
         if invocation.snapshot.backend == .sefariaEmbedded && invocation.snapshot.rpcEpoch == nil { throw UIRouteError(.unavailable, "rpc_epoch_unavailable") }
         guard clock.now() < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.cancelled, "deadline_exceeded") }
-        let candidates = descriptors.filter { $0.implementation == .implemented && !$0.mutatesUserData && $0.riskTier < 3 && $0.supportedBackends.contains(scene.backendSnapshot.backend) }
+        let candidates = descriptors.filter { $0.implementation == .implemented && !$0.mutatesUserData && $0.riskTier < 3 && $0.supportedBackends.contains(scene.backendSnapshot.backend)
+            && $0.publicNavigationV2?.searchReferenceKind == nil }
         guard !candidates.isEmpty else { return [] }
         return try await UIDiscoveryCancellationScope.run(until: invocation.deadlineUptimeNanoseconds, clock: clock) {
             try await discoverCurrent(candidates: candidates, scene: scene, context: context, invocation: invocation, core: core, host: host, clock: clock)
