@@ -1,0 +1,89 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0",
+      "beforeSHA256": "f201af68a761d520529f844899720c67603a3cc50b0b4c641259145bcf791bb6"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4",
+      "beforeSHA256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea",
+      "beforeSHA256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "bytes": 2785,
+      "sha256": "9ca7694119b4aa74aab2ba1b49c3bb98a190708e712631915b22d75098fcbc24",
+      "beforeSHA256": "27781fc022b8cd6e818d147ddafe22bf62f3b046f26e6a013c335c5758290cce"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 25611,
+      "sha256": "c3ca1a2917a334b779e385d4d00cba3d7f28f8e08ed98fccf2d0e3c96ad0d199",
+      "beforeSHA256": "cef63351464ee956e16c43ea41feeb9fbbddc4f4e57377abb4b840cbec297eb4"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 117778,
+      "sha256": "4853b04ebbdf3ea531ac73175edc38a65871b7cc289a83dca2ec73d8dbf08a1b",
+      "beforeSHA256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 20094,
+      "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+      "bytes": 7204,
+      "sha256": "8ca52f5ed14e9d8a01217fcc8d0e6f04e582b27e7a12afce9a208bcdd45d1dfa",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift",
+      "bytes": 4580,
+      "sha256": "cef617ef5bd54f470f6fd2f11b4cfd9827d5905491237dc29cdc8c29c5e7cb0b",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "bytes": 2591,
+      "sha256": "887a97378a9bf76422e3220d275ed1438c07d77705bf091f8ee92ad2783b62ae",
+      "beforeSHA256": "eee8aa3febd604409589dfc0330a59df0100a5aee9ed77d97eeb86b3022ff66e"
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12",
+      "beforeSHA256": "b67742f249c0f4ad4ed8e0a5fac1b45b7936bd726655ed034ac35664e3d0f955"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45702,
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+      "beforeSHA256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6"
+    }
+  ]
+}

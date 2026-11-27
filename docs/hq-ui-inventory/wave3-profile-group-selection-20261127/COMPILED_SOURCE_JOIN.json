@@ -1,0 +1,146 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "bindingRun": "binding-attempt-2",
+  "rawOriginalSourceInputs": [
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 25611,
+      "sha256": "c3ca1a2917a334b779e385d4d00cba3d7f28f8e08ed98fccf2d0e3c96ad0d199",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27583,
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4069,
+      "sha256": "087f48afc9f223e8498571e5e7dd84ba62020a8d8c50fb516bfe53ed531f2e22",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 20094,
+      "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8",
+      "source": "packet"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 1195,
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift",
+      "bytes": 1535,
+      "sha256": "aeef7deb1c948a5344542264e59b099c66bd6c53ab34d687bf415530db118a2e",
+      "source": "base"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+      "bytes": 7204,
+      "sha256": "8ca52f5ed14e9d8a01217fcc8d0e6f04e582b27e7a12afce9a208bcdd45d1dfa",
+      "source": "packet"
+    },
+    {
+      "path": "Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b",
+      "source": "base"
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12",
+      "source": "packet"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "source": "base"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45702,
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+      "source": "packet"
+    }
+  ],
+  "serviceMatchesFinal": true,
+  "ownerAttempt4Difference": "The later approved @ObservationIgnored mode-counter annotation is absent only in the historical owner32 raw Manager. The final combined56 run binds the final annotated Manager.",
+  "notWholeAppCompilation": [
+    "UIKit and SwiftUI host/views",
+    "AppIntents native delivery",
+    "full Session and Projection bodies",
+    "Apple SDK"
+  ]
+}

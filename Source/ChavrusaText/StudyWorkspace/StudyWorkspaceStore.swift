@@ -1,6 +1,15 @@
 import Foundation
 import Observation
 
+/// Passive publication metadata for an original owner retaining an inactive
+/// group's order/documents. The scene mapping intentionally omits those fields.
+/// This observer cannot veto, mutate or authorize a Store transaction.
+@MainActor protocol StudyWorkspaceSnapshotObserver: AnyObject {
+    func workspaceSnapshotWillPublish(before: StudyWorkspaceSnapshot?, after: StudyWorkspaceSnapshot)
+    func workspaceSnapshotDidPublish(_ snapshot: StudyWorkspaceSnapshot)
+    func workspaceSnapshotOwnerDidRetire()
+}
+
 @MainActor @Observable
 final class StudyWorkspaceStore {
     static let shared = StudyWorkspaceStore(persistence: StudyWorkspacePersistence(
@@ -31,6 +40,20 @@ final class StudyWorkspaceStore {
     @ObservationIgnored private var mappingSources: [String: WeakMappingSource] = [:]
     @ObservationIgnored private var isMutating = false
     @ObservationIgnored private var isPublishingMapping = false
+    private final class WeakSnapshotObserver {
+        weak var value: (any StudyWorkspaceSnapshotObserver)?
+        init(_ value: any StudyWorkspaceSnapshotObserver) { self.value = value }
+    }
+    @ObservationIgnored private var snapshotObservers: [UUID: WeakSnapshotObserver] = [:]
+
+    /// Install once for the real adapter lifetime, not once per publication.
+    func observeSnapshotPublication(_ observer: any StudyWorkspaceSnapshotObserver) -> UUID {
+        snapshotObservers = snapshotObservers.filter { $0.value.value != nil && $0.value.value !== observer }
+        let token = UUID()
+        snapshotObservers[token] = .init(observer)
+        return token
+    }
+    func removeSnapshotPublicationObserver(_ token: UUID) { snapshotObservers.removeValue(forKey: token) }
 
     /// The persisted revision includes checkpoints. Consumers must retain this
     /// fixed scene source instead of observing the broad snapshot/revision.
@@ -54,6 +77,7 @@ final class StudyWorkspaceStore {
 
     isolated deinit {
         for source in mappingSources.values { source.value?.retire() }
+        for observer in snapshotObservers.values { observer.value?.workspaceSnapshotOwnerDidRetire() }
     }
 
     init(persistence: StudyWorkspacePersistence, canonicalSessionURL: URL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("Maktabah/States/ios_reader_session.json")) {
@@ -117,6 +141,12 @@ final class StudyWorkspaceStore {
     /// fence. No observer can see the new snapshot with an old live admission.
     private func publishSnapshot(_ candidate: StudyWorkspaceSnapshot) {
         isPublishingMapping = true
+        for token in Array(snapshotObservers.keys) {
+            guard let observer = snapshotObservers[token]?.value else {
+                snapshotObservers.removeValue(forKey: token); continue
+            }
+            observer.workspaceSnapshotWillPublish(before: snapshot, after: candidate)
+        }
         mappingSources = mappingSources.filter { $0.value.value != nil }
         let beforeSources = mappingSources.compactMapValues(\.value)
         for (scene, source) in beforeSources {
@@ -128,6 +158,9 @@ final class StudyWorkspaceStore {
         isPublishingMapping = false
         for (scene, source) in mappingSources.compactMapValues(\.value) {
             source.finishChange(available: StudyWorkspaceMappingPolicy.workspace(candidate, scene: scene) != nil)
+        }
+        for token in Array(snapshotObservers.keys) {
+            snapshotObservers[token]?.value?.workspaceSnapshotDidPublish(candidate)
         }
     }
 

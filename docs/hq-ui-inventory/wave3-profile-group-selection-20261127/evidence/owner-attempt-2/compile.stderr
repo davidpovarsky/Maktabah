@@ -1,0 +1,54 @@
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/ExplicitDomainBoundary.swift:15:37: warning: when calling this function in Swift 4 or later, you must pass a '()' tuple; did you mean for the input type to be '()'?
+ 13 | }
+ 14 | @MainActor final class BoundaryPublisher {
+ 15 |     private var subscribers: [UUID: (Void) -> Void] = [:]
+    |                                     `- warning: when calling this function in Swift 4 or later, you must pass a '()' tuple; did you mean for the input type to be '()'?
+ 16 |     var beforeSend: (() -> Void)?
+ 17 |     func sink(_ receive: @escaping (Void) -> Void) -> AnyCancellable {
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/ExplicitDomainBoundary.swift:17:36: warning: when calling this function in Swift 4 or later, you must pass a '()' tuple; did you mean for the input type to be '()'?
+ 15 |     private var subscribers: [UUID: (Void) -> Void] = [:]
+ 16 |     var beforeSend: (() -> Void)?
+ 17 |     func sink(_ receive: @escaping (Void) -> Void) -> AnyCancellable {
+    |                                    `- warning: when calling this function in Swift 4 or later, you must pass a '()' tuple; did you mean for the input type to be '()'?
+ 18 |         let id = UUID(); subscribers[id] = receive
+ 19 |         return AnyCancellable { [weak self] in self?.subscribers.removeValue(forKey: id) }
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift:284:17: error: cannot find type 'PreparedBackendTransition' in scope
+282 |         incomingValidator: ((Data) throws -> [PreparedBackendTransition.StagedTabSession])? = nil,
+283 |         token: UInt64 = 0
+284 |     ) throws -> PreparedBackendTransition {
+    |                 `- error: cannot find type 'PreparedBackendTransition' in scope
+285 |         lock.lock()
+286 |         transitionState = .prepared(outgoing: outgoingBackend, incoming: incomingBackend)
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift:282:47: error: cannot find type 'PreparedBackendTransition' in scope
+280 |         outgoingSession: () throws -> Data?,
+281 |         incomingBackend: BackendID,
+282 |         incomingValidator: ((Data) throws -> [PreparedBackendTransition.StagedTabSession])? = nil,
+    |                                               `- error: cannot find type 'PreparedBackendTransition' in scope
+283 |         token: UInt64 = 0
+284 |     ) throws -> PreparedBackendTransition {
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift:315:30: error: cannot find type 'PreparedBackendTransition' in scope
+313 |         let incomingData = retrieveBackendSessionSnapshot(backend: incomingBackend)
+314 |         if let incomingData, !incomingData.isEmpty {
+315 |             var stagedTabs: [PreparedBackendTransition.StagedTabSession] = []
+    |                              `- error: cannot find type 'PreparedBackendTransition' in scope
+316 |             if let incomingValidator {
+317 |                 do {
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift:342:20: error: cannot find 'PreparedBackendTransition' in scope
+340 |                 }
+341 |             }
+342 |             return PreparedBackendTransition(
+    |                    `- error: cannot find 'PreparedBackendTransition' in scope
+343 |                 transitionToken: token,
+344 |                 outgoingBackend: outgoingBackend,
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift:353:20: error: cannot find 'PreparedBackendTransition' in scope
+351 |             )
+352 |         } else {
+353 |             return PreparedBackendTransition(
+    |                    `- error: cannot find 'PreparedBackendTransition' in scope
+354 |                 transitionToken: token,
+355 |                 outgoingBackend: outgoingBackend,

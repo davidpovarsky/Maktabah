@@ -1,0 +1,210 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "joins": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+      "expected": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+      "actual": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+      "expected": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+      "actual": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+      "expected": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "actual": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+      "expected": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d",
+      "actual": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+      "expected": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+      "actual": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+      "expected": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717",
+      "actual": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+      "expected": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+      "actual": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+      "expected": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+      "actual": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+      "expected": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "actual": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+      "expected": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+      "actual": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+      "expected": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b",
+      "actual": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+      "expected": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e",
+      "actual": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+      "expected": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "actual": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+      "expected": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+      "actual": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+      "expected": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+      "actual": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "expected": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "actual": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "expected": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "actual": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+      "expected": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+      "actual": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "expected": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "actual": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "expected": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "actual": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+      "expected": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+      "actual": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+      "expected": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+      "actual": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+      "expected": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+      "actual": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "expected": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "actual": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "expected": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15",
+      "actual": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+      "expected": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+      "actual": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+      "expected": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+      "actual": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+      "expected": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef",
+      "actual": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+      "expected": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "actual": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+      "expected": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "actual": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+      "expected": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "actual": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+      "expected": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "actual": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+      "expected": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "actual": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "exit": 0
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+      "expected": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "actual": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "exit": 0
+    }
+  ],
+  "mismatches": []
+}

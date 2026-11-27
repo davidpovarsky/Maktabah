@@ -35,9 +35,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
             }
         }
     }
-    private(set) var nativeModePresentationRevision: UInt64? = 0
+    @ObservationIgnored private(set) var nativeModePresentationRevision: UInt64? = 0
     var selectedBook: BooksData? {
         willSet {
+            StudyWorkspaceNavigationAdapter.nativeGroupBookWillChange(self, to: newValue)
             // Original presentation ownership metadata. Every setter, including
             // an equal-value write, advances; exhaustion can never recycle it.
             if let revision = selectedBookPresentationRevision, revision < .max {
@@ -46,7 +47,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
                 selectedBookPresentationRevision = nil
             }
         }
-        didSet { selectedBookPresentationMode = selectedBook.map { _ in currentMode } }
+        didSet {
+            selectedBookPresentationMode = selectedBook.map { _ in currentMode }
+            StudyWorkspaceNavigationAdapter.nativeGroupBookDidChange(self)
+        }
     }
     private(set) var selectedBookPresentationRevision: UInt64? = 0
     private(set) var selectedBookPresentationMode: AppMode?
@@ -71,7 +75,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
         willSet { StudyWorkspaceNavigationAdapter.nativeMappingSelectionWillChange(self, to: newValue) }
         didSet { StudyWorkspaceNavigationAdapter.nativeMappingDidChange(self) }
     }
-    var showingTabsList: Bool = false
+    var showingTabsList: Bool = false {
+        willSet { StudyWorkspaceNavigationAdapter.nativeGroupOverviewWillChange(self, to: newValue) }
+        didSet { StudyWorkspaceNavigationAdapter.nativeGroupOverviewDidChange(self) }
+    }
 
     var activeTab: ReaderTab? {
         openTabs.first(where: { $0.id == activeTabId }) ?? openTabs.first

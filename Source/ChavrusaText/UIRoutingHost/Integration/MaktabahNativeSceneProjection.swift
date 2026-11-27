@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded }
+    enum Surface { case library, tableOfContents, reader, emptyReader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -161,6 +161,14 @@ struct MaktabahNativeSceneProjection {
             return .init(destination: id("native.reader.inspector"), presentation: .init(kind: .inspector),
                 content: nil, state: .init(workspaceID: state.workspaceID, profileID: state.profileID,
                                           inspectorVisible: true), focus: nil)
+        case .emptyReader:
+            guard MaktabahApp.isIpad, !settingsPresented, selectedTab.canonical == .viewer,
+                  manager.currentMode == .viewer, manager.openTabs.isEmpty,
+                  manager.activeTabId == nil, manager.selectedBook == nil else { return nil }
+            // Only the existing empty Reader placeholder owns this marker.
+            // It cannot stand in for any nonempty group's rendered Reader.
+            return .init(destination: id("native.reader.empty"), presentation: .init(kind: .currentTab),
+                         content: nil, state: state, focus: nil)
         case .reader:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer,
                   let tab = activeTab, let destination = try readerWitnessDestination(includingContainingSection: true),

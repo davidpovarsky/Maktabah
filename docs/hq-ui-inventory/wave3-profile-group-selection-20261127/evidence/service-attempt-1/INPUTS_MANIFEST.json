@@ -1,0 +1,18 @@
+{
+  "rawJSONBytes": 25434,
+  "rawJSONSHA256": "aa20c7a4c74f7564fb4db32f2abf31c65985f440205968144227a109d8ee4668",
+  "gzipBytes": 8233,
+  "gzipSHA256": "7f53c12c5329db7db82dcfb30c79b1147f699c68468007e9f8f9fc661ea160f7",
+  "files": [
+    {
+      "path": "NativeWorkspaceSelectionIntentService.swift",
+      "bytes": 7204,
+      "sha256": "8ca52f5ed14e9d8a01217fcc8d0e6f04e582b27e7a12afce9a208bcdd45d1dfa"
+    },
+    {
+      "path": "WorkspaceServiceControls.swift",
+      "bytes": 11599,
+      "sha256": "0cd2bd171a2ff0c30f8112d4dd431121ac506e5c25d996653c3f353ae1556f26"
+    }
+  ]
+}

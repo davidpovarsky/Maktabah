@@ -1,0 +1,7 @@
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/binding-attempt-1/inputs/GroupBindingControls.swift:74:46: error: type 'AppMode' has no member 'history'
+ 72 |         await test("foreign global root is refused without selection or mode writes") {
+ 73 |             let f = try GroupBindingFixture(); f.bindings.selectedTab.wrappedValue = .history
+ 74 |             f.fixture.manager.currentMode = .history
+    |                                              `- error: type 'AppMode' has no member 'history'
+ 75 |             let before = f.fixture.store.snapshot
+ 76 |             try require(refuses { _ = try f.retain() } && f.fixture.store.snapshot == before, "current Viewer slice only")

@@ -155,6 +155,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     var readerBinding: MaktabahNativeReaderBinding?
     var searchResultsBinding: MaktabahNativeSearchResultsBinding?
     @ObservationIgnored private var readerTabBinding: MaktabahNativeReaderTabBinding?
+    @ObservationIgnored private var workspaceSelectionBinding: MaktabahNativeWorkspaceSelectionBinding?
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
@@ -318,6 +319,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func nativeWindowDidChange(_ source: MaktabahNativeWindowSource) {
         guard mounted, windowSource === source else { return }
         readerTabBinding?.invalidate()
+        workspaceSelectionBinding?.invalidate()
         searchEntryBinding?.retire()
         historyRecordBinding?.retire()
         sefariaRootSources.values.forEach { $0.invalidate() }
@@ -428,7 +430,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             && MaktabahNativeSefariaRootSource.isAvailable(bindings, workspace: workspacePresentation)
     }
     var isPresentationReady: Bool {
-        readerTabBinding == nil && bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface
+        readerTabBinding == nil && workspaceSelectionBinding == nil && bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface
             && studyChatPresentationID == nil
             && ((noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true)
                 || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
@@ -442,6 +444,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     /// Every unrelated modal keeps the existing blockers. A transition can be
     /// awaited only by its already-applied command, never by fresh discovery.
     func isPresentationReady(for destination: UIDestinationID) -> Bool {
+        if destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard mounted, foreground, isReaderTabSourceReady, let bound = workspaceSelectionBinding,
+                  (try? bound.validate()) != nil else { return false }
+            if bound.isApplied, submissionID == bound.requestID,
+               command?.invocation.requestId == bound.requestID,
+               command?.route.route.destination == destination { return true }
+            return windowSource?.isPresentationReady(in: sceneID) == true
+        }
+        guard workspaceSelectionBinding == nil else { return false }
         if destination == MaktabahNativeReaderTabBinding.destination {
             guard mounted, foreground, isReaderTabSourceReady, let bound = readerTabBinding,
                   (try? bound.validate()) != nil else { return false }
@@ -553,6 +564,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard mounted, let owner = noteEditorOwner,
               owner.id == id, owner.reader === reader else { return }
         readerTabBinding?.invalidate()
+        workspaceSelectionBinding?.invalidate()
         // Observe the original setter BEFORE its SwiftUI State/presentation
         // mutation. This also covers a retained source before beginObservation
         // and completed proof; final-value equality cannot revive either one.
@@ -645,7 +657,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func readerTabCatalog(windowTitle: String) throws -> [NativeReaderTabIntentService.Tab] {
-        guard mounted, readerTabBinding == nil, isReaderTabSourceReady,
+        guard mounted, readerTabBinding == nil, workspaceSelectionBinding == nil, isReaderTabSourceReady,
               bindings.selectedTab.wrappedValue == .viewer, bindings.manager.currentMode == .viewer,
               let source = workspaceProjectionSource else { return [] }
         return try MaktabahNativeReaderTabBinding.catalog(sceneID: sceneID, manager: bindings.manager,
@@ -655,7 +667,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func retainReaderTabSelection(_ target: NativeReaderTabIntentService.Tab,
                                   requestID: UUID) throws -> MaktabahNativeReaderTabBinding {
         guard mounted, target.sceneID == sceneID, command == nil,
-              readerTabBinding == nil, readerBinding == nil, searchResultsBinding == nil,
+              readerTabBinding == nil, workspaceSelectionBinding == nil, readerBinding == nil, searchResultsBinding == nil,
               isReaderTabSourceReady, let source = workspaceProjectionSource else {
             throw UIRouteError(.unavailable, "native_reader_tab_scene_busy")
         }
@@ -713,6 +725,93 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try bound.validate()
         try validateCompletedJourneySurface(receipt)
         guard readerTabBinding === bound else { throw UIRouteError(.staleState, "native_reader_tab_completed_owner_changed") }
+        try bound.validate()
+    }
+
+    func workspaceSelectionCatalog(windowTitle: String) throws -> [NativeWorkspaceSelectionIntentService.Selection] {
+        guard mounted, workspaceSelectionBinding == nil, readerTabBinding == nil, isReaderTabSourceReady,
+              bindings.selectedTab.wrappedValue == .viewer, bindings.manager.currentMode == .viewer,
+              let source = workspaceProjectionSource else { return [] }
+        return try MaktabahNativeWorkspaceSelectionBinding.catalog(sceneID: sceneID, manager: bindings.manager,
+                                                                    source: source, windowTitle: windowTitle)
+    }
+
+    func retainWorkspaceSelection(_ target: NativeWorkspaceSelectionIntentService.Selection,
+                                  requestID: UUID) throws -> MaktabahNativeWorkspaceSelectionBinding {
+        guard mounted, target.sceneID == sceneID, command == nil,
+              workspaceSelectionBinding == nil, readerTabBinding == nil, readerBinding == nil,
+              searchResultsBinding == nil, isReaderTabSourceReady, let source = workspaceProjectionSource else {
+            throw UIRouteError(.unavailable, "native_workspace_selection_scene_busy")
+        }
+        let bound = try MaktabahNativeWorkspaceSelectionBinding(requestID: requestID, target: target,
+            bindings: bindings, source: source,
+            foreignReady: { [weak self] in self?.isReaderTabSourceReady == true },
+            readForeignPresentations: { [weak self] in
+                guard let self else { return }
+                _ = workspacePresentation?.originalStateRevision
+                _ = studyChatPresentationID; _ = hasOriginalSefariaSurface
+            })
+        workspaceSelectionBinding = bound
+        return bound
+    }
+
+    func reserveWorkspaceSelection(_ bound: MaktabahNativeWorkspaceSelectionBinding) throws {
+        guard workspaceSelectionBinding === bound, mounted, foreground, command == nil,
+              isReaderTabSourceReady, windowSource?.isPresentationReady(in: sceneID) == true else {
+            throw UIRouteError(.unavailable, "native_workspace_selection_presentation_unavailable")
+        }
+        try bound.reserve()
+    }
+
+    func prepareWorkspaceSelection(_ bound: MaktabahNativeWorkspaceSelectionBinding,
+                                   validateLifetime: @escaping @MainActor () throws -> Void) async throws {
+        guard workspaceSelectionBinding === bound, command == nil, mounted, foreground else {
+            throw UIRouteError(.staleState, "native_workspace_selection_owner_changed")
+        }
+        try await bound.prepare { [weak self] in
+            try validateLifetime()
+            guard let self, self.workspaceSelectionBinding === bound, self.command == nil,
+                  self.mounted, self.foreground, self.isReaderTabSourceReady else {
+                throw UIRouteError(.staleState, "native_workspace_selection_scene_changed")
+            }
+        }
+    }
+
+    func releaseWorkspaceSelection(_ bound: MaktabahNativeWorkspaceSelectionBinding) {
+        guard workspaceSelectionBinding === bound else { return }
+        workspaceSelectionBinding = nil
+        bound.release()
+        originalPresentationStateDidChange()
+    }
+
+    func prepareWorkspaceSelectionRoute(_ bound: MaktabahNativeWorkspaceSelectionBinding,
+                                        invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard workspaceSelectionBinding === bound, bound.isPrepared, !bound.isApplied,
+              invocation.requestId == bound.requestID, scene.sceneID == sceneID,
+              invocation.snapshot.backend == bound.target.backend else {
+            throw UIRouteError(.staleState, "native_workspace_selection_request_changed")
+        }
+        try bound.validate()
+        return .init(requestId: invocation.requestId, destination: MaktabahNativeWorkspaceSelectionBinding.destination,
+            backend: invocation.snapshot.backend,
+            presentation: .init(kind: .currentTab, tabID: bound.target.activeDocumentID.flatMap { UIStableID(rawValue: $0.uuidString) }),
+            state: .init(workspaceID: UIStableID(rawValue: bound.target.groupID.uuidString),
+                         profileID: UIStableID(rawValue: bound.target.profileID.uuidString)),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+
+    func validateWorkspaceSelectionCompletion(_ bound: MaktabahNativeWorkspaceSelectionBinding,
+                                              receipt: UISceneReceipt) throws {
+        guard workspaceSelectionBinding === bound, bound.isApplied, receipt.requestId == bound.requestID,
+              receipt.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination else {
+            throw UIRouteError(.staleState, "native_workspace_selection_completed_owner_changed")
+        }
+        try bound.validate()
+        try validateCompletedJourneySurface(receipt)
+        guard workspaceSelectionBinding === bound else {
+            throw UIRouteError(.staleState, "native_workspace_selection_completed_owner_changed")
+        }
         try bound.validate()
     }
 
@@ -931,6 +1030,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let sefaria = value.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination
         let historyRecord = value.route.route.destination == MaktabahNativeHistoryRecords.destination
             && value.route.route.state.selectedItemID != nil
+        let workspaceSelection = value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination
         let parentValidation: (@MainActor () throws -> Void)?
         if workspaceParent != nil || phoneTOC || sefaria || historyRecord {
             parentValidation = try renderValidation ?? boundedRenderValidation(for: value)
@@ -944,6 +1044,21 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         } else { inspector = nil }
         try presentation.begin(value)
         do {
+            if workspaceSelection {
+                guard let bound = workspaceSelectionBinding, bound.requestID == value.invocation.requestId,
+                      let componentValidation else {
+                    throw UIRouteError(.staleState, "native_workspace_selection_owner_missing")
+                }
+                let originalLifetime = try componentValidation(value)
+                try bound.begin { [weak self, weak bound] in
+                    try originalLifetime()
+                    guard let self, let bound, self.workspaceSelectionBinding === bound,
+                          self.mounted, self.foreground, self.isReaderTabSourceReady else {
+                        throw UIRouteError(.staleState, "native_workspace_selection_lifetime_changed")
+                    }
+                    try bound.validate()
+                }
+            }
             if let workspaceParent, let parentValidation, let workspacePresentation {
                 try workspacePresentation.begin(parent: workspaceParent, requestID: value.invocation.requestId,
                                                 validate: parentValidation)
@@ -973,6 +1088,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 try component.begin(requestID: value.invocation.requestId, anchor: anchor, validate: renderValidation)
             }
         } catch {
+            if workspaceSelection { workspaceSelectionBinding?.invalidate() }
             workspacePresentation?.finish(requestID: value.invocation.requestId, completed: false)
             phoneTOCPresentation?.finish(requestID: value.invocation.requestId, completed: false)
             searchEntryBinding?.finish(requestID: value.invocation.requestId, completed: false)
@@ -1054,6 +1170,23 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let route = command.route.route, projection = try project()
         let identity = try projection.identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
         try validateParentSource(destination: route.destination, requestID: command.invocation.requestId)
+        if route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard command.scene.sceneID == sceneID, route.content == nil, route.focus == nil,
+                  let bound = workspaceSelectionBinding, bound.isReserved,
+                  bound.requestID == command.invocation.requestId,
+                  route.backend == bound.target.backend,
+                  route.presentation == .init(kind: .currentTab,
+                    tabID: bound.target.activeDocumentID.flatMap { UIStableID(rawValue: $0.uuidString) }),
+                  route.state == UIStateSpec(workspaceID: UIStableID(rawValue: bound.target.groupID.uuidString),
+                                             profileID: UIStableID(rawValue: bound.target.profileID.uuidString)) else {
+                throw UIRouteError(.staleState, "native_workspace_selection_route_changed")
+            }
+            // This private route's original one-use Store/native reservation
+            // validates BOTH sides of its authorized workspace change. Generic
+            // roots retain the unchanged-workspace guard below.
+            try bound.validate()
+            return
+        }
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
         if route.destination == MaktabahNativeHistoryRecords.destination, let itemID = route.state.selectedItemID {
@@ -1162,6 +1295,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            try validateSurface(command)
+            guard let bound = workspaceSelectionBinding else {
+                throw UIRouteError(.unavailable, "native_workspace_selection_owner_missing")
+            }
+            try bound.apply()
+            originalPresentationStateDidChange()
+            return
+        }
         if command.route.route.destination == MaktabahNativeHistoryRecords.destination,
            command.route.route.state.selectedItemID != nil {
             try validateSurface(command)
@@ -1300,7 +1442,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if retainedComponentOwner != nil || retainedHistoryRecord || ["native.reader", "native.reader.tab", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
+        if retainedComponentOwner != nil || retainedHistoryRecord || ["native.reader", "native.reader.tab", "native.workspace.selection", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
                                              "native.workspace.profiles", "native.workspace.overview", "native.sefariaEmbedded"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
@@ -1361,6 +1503,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                                                phoneTOCPresentation: phoneTOCPresentation,
                                                sefariaSurface: sefariaSurfaceBinding,
                                                historyRecord: historySource) else { return nil }
+        if let bound = workspaceSelectionBinding, kind == bound.observedSurface {
+            return try bound.selectionSurface(from: state)
+        }
         if kind == .reader, let bound = readerTabBinding {
             return try bound.selectionSurface(from: state)
         }
@@ -1393,7 +1538,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
               actual.content == route.content, actual.state == route.state else { return nil }
         if kind == .reader {
             guard try project().hasRenderedReaderEvidence(sceneID: sceneID,
-                includingContainingSection: route.destination == MaktabahNativeReaderTabBinding.destination) else { return nil }
+                includingContainingSection: route.destination == MaktabahNativeReaderTabBinding.destination
+                    || route.destination == MaktabahNativeWorkspaceSelectionBinding.destination) else { return nil }
         }
         if actual.focus != route.focus {
             let searchFocus = route.destination == NativeSearchFieldVisibility.destination
@@ -1576,6 +1722,32 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
             return
         }
+        if evidence.isVisible, evidence.surface.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            do {
+                guard let bound = workspaceSelectionBinding, bound.isApplied,
+                      evidence.submissionID == bound.requestID, submissionID == bound.requestID,
+                      command?.invocation.requestId == bound.requestID,
+                      isPresentationReady(for: evidence.surface.destination),
+                      let current = try surface(bound.observedSurface), current == evidence.surface else {
+                    throw UIRouteError(.staleState, "native_workspace_selection_report_changed")
+                }
+                if !bound.isEmpty {
+                    guard try project().hasRenderedReaderEvidence(sceneID: sceneID, includingContainingSection: true) else {
+                        throw UIRouteError(.staleState, "native_workspace_selection_reader_not_rendered")
+                    }
+                }
+                try bound.validate()
+                recordNativeObservation(evidence)
+                guard workspaceSelectionBinding === bound else {
+                    throw UIRouteError(.staleState, "native_workspace_selection_report_owner_changed")
+                }
+                try bound.validate()
+            } catch {
+                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+                presentation.revoke()
+            }
+            return
+        }
         if evidence.isVisible, evidence.surface.destination == MaktabahNativeReaderTabBinding.destination {
             do {
                 guard let bound = readerTabBinding, bound.isApplied,
@@ -1672,7 +1844,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
               let kind = surfaceKind(receipt.route.destination), let actual = try surface(kind),
               actual == visible.surface, actual == completed.evidence.surface,
               kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID,
-                includingContainingSection: receipt.route.destination == MaktabahNativeReaderTabBinding.destination) else {
+                includingContainingSection: receipt.route.destination == MaktabahNativeReaderTabBinding.destination
+                    || receipt.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination) else {
             throw ActionPortError.staleState
         }
     }
@@ -1693,6 +1866,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard mounted else { return }
         lastCompletedSurface = nil
         readerTabBinding?.release(); readerTabBinding = nil
+        workspaceSelectionBinding?.release(); workspaceSelectionBinding = nil
         forwardingWorkspaceOwner?.detachNativeRoutingSession(self); forwardingWorkspaceOwner = nil
         workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
         phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
@@ -1717,6 +1891,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         case "native.library": .library
         case "native.reader.toc": .tableOfContents
         case "native.reader", "native.reader.tab": .reader
+        case "native.workspace.selection": workspaceSelectionBinding?.observedSurface
         case "native.reader.inspector": .inspector
         case "native.reader.noteDraft": .noteDraft
         case "native.history": .history

@@ -1,0 +1,54 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "scope": "read-only exact source comparisons, no runtime assertion",
+  "checks": [
+    {
+      "name": "func selectTab(id: UUID)",
+      "preserved": true,
+      "bytes": 739,
+      "sha256": "de3ddf6eb3c885eeb262f519dcb34d0113aec37c179765c467ba5e3d121c0789"
+    },
+    {
+      "name": "func closeTab(id: UUID)",
+      "preserved": true,
+      "bytes": 1157,
+      "sha256": "21546b4de550dcaf4ada2f659f6790cdec937b5b457d0f8114d4d53d92289d88"
+    },
+    {
+      "name": "func clearAllTabs()",
+      "preserved": true,
+      "bytes": 464,
+      "sha256": "154685819bd6ebf1ea04babdfad5e88f7cf1276c54043919b460a98b5d7d79bb"
+    },
+    {
+      "name": "entire original manager after reversing only approved metadata hooks",
+      "preserved": true,
+      "bytes": 45301,
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6"
+    },
+    {
+      "name": "private func performTwoPhaseSwitch(to targetBackend: BackendID",
+      "preserved": true,
+      "bytes": 3820,
+      "sha256": "04c8f2699bca6ab0cc2c8f810073f792264d0d0ca216fa29a84513eb88440f6c"
+    },
+    {
+      "name": "func commitCheckedAsync(",
+      "preserved": true,
+      "bytes": 1329,
+      "sha256": "a3272040f44376e9f2c9a7f068410785681de620801e7c2378f1a7b1e02c926d"
+    },
+    {
+      "name": "entire changed-backend async participant body",
+      "preserved": true,
+      "bytes": 3885,
+      "sha256": "b86a2a22322046c07dbb41dd8f50c2100c396116999b4f1d7acb20d5f9956506"
+    },
+    {
+      "name": "original empty reader view after removing only passive marker",
+      "preserved": true,
+      "bytes": 2515,
+      "sha256": "eee8aa3febd604409589dfc0330a59df0100a5aee9ed77d97eeb86b3022ff66e"
+    }
+  ]
+}

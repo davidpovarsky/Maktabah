@@ -207,6 +207,7 @@ extension BackendSwitchParticipant {
 /// Neutral catalog/tool builds do not depend on the app's session adapter.
 protocol BackendSnapshotStaging: Sendable {
     @MainActor func withSnapshotRollback(_ operation: () async throws -> Void) async throws
+    @MainActor func withSynchronousSnapshotRollback(_ operation: () throws -> Void) throws
     func flushStagedSnapshots() throws
 }
 
@@ -468,6 +469,54 @@ final class BackendCoordinator {
         try await commit()
     }
 
+    /// Commits an already prepared original workspace selection without an
+    /// actor suspension between Core authorization and the original effect.
+    /// This cannot select another backend or enter participant preparation.
+    func commitPreparedSameBackend(_ backendID: BackendID, expectedGeneration: UInt64,
+                                   validate: () throws -> Void,
+                                   beforeCommit: () throws -> Void,
+                                   publish: () -> Void,
+                                   willClearPending: () -> Void,
+                                   didClearPending: () -> Void) throws {
+        func validateCurrentSource() throws {
+            try Task.checkCancellation()
+            guard !isTransitioning, pendingBackendID == nil, activeBackendID == backendID,
+                  committedBackendID == backendID, generation == expectedGeneration else {
+                throw BackendTransitionError.transitionSuperseded
+            }
+            try validate()
+        }
+        try validateCurrentSource()
+        func commit() throws {
+            try performCommittedBackendPublication(beforeCommit: {
+                // The original flush can invoke synchronous source callbacks.
+                // Revalidate before the first persistent workspace mutation.
+                try validateCurrentSource()
+                try beforeCommit()
+            }, publish: publish, willClearPending: willClearPending, didClearPending: didClearPending)
+        }
+        if let snapshots = activeSessionSnapshots {
+            try snapshots.withSynchronousSnapshotRollback(commit)
+        } else {
+            try commit()
+        }
+    }
+
+    /// The original same-backend terminal operation, shared by both checked
+    /// callers. Its rollback owner must enclose this whole synchronous body.
+    private func performCommittedBackendPublication(beforeCommit: () throws -> Void,
+                                                    publish: () -> Void,
+                                                    willClearPending: () -> Void = {},
+                                                    didClearPending: () -> Void = {}) throws {
+        try Task.checkCancellation()
+        try activeSessionSnapshots?.flushStagedSnapshots()
+        try beforeCommit()
+        publish()
+        willClearPending()
+        pendingBackendID = nil
+        didClearPending()
+    }
+
     /// Compatibility entry point for callers whose selection is immediately usable.
     func select(_ backendID: BackendID) {
         commit(backendID)
@@ -567,11 +616,7 @@ final class BackendCoordinator {
         }
         let wasCommitted = committedBackendID == targetBackend
         guard !wasCommitted || targetBackend != activeBackendID else {
-            try Task.checkCancellation()
-            try activeSessionSnapshots?.flushStagedSnapshots()
-            try beforeCommit()
-            publish()
-            pendingBackendID = nil
+            try performCommittedBackendPublication(beforeCommit: beforeCommit, publish: publish)
             return
         }
 

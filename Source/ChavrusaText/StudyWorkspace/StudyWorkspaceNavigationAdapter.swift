@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 /// Projects saved groups through the existing navigation/backend coordinators.
 /// Retains existing tab objects in memory; only cold, inactive tabs need hydration.
@@ -31,6 +32,9 @@ final class StudyWorkspaceNavigationAdapter {
     @ObservationIgnored private var reservedCheckpoint: StudyWorkspaceNativeReaderReservation?
     @ObservationIgnored private var tabSelectionReservation: StudyWorkspaceNativeTabSelectionReservation?
     @ObservationIgnored private var tabSelectionCheckpoint: StudyWorkspaceNativeTabSelectionReservation?
+    @ObservationIgnored private var groupSelectionReservation: StudyWorkspaceNativeGroupSelectionReservation?
+    @ObservationIgnored private var snapshotObservation: UUID?
+    @ObservationIgnored private(set) var nativeOverviewPublicationRevision: UInt64? = 0
     private final class WeakMappingAdapter {
         weak var value: StudyWorkspaceNavigationAdapter?
         init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
@@ -43,6 +47,8 @@ final class StudyWorkspaceNavigationAdapter {
     private static var mappingHookOwners: [ObjectIdentifier: WeakMappingManager] = [:]
 
     isolated deinit {
+        if let snapshotObservation { store.removeSnapshotPublicationObserver(snapshotObservation) }
+        groupSelectionReservation?.policy.invalidate()
         mappingSubscription?.cancel()
         mappingOwnershipSource.retire()
         Self.mappingAdapters.removeValue(forKey: ObjectIdentifier(self))
@@ -50,6 +56,7 @@ final class StudyWorkspaceNavigationAdapter {
 
     func mappingOwnershipObservation() -> StudyWorkspaceMappingObservation? {
         guard readerReservation?.policy.isPublishing != true, tabSelectionReservation?.policy.isPublishing != true,
+              groupSelectionReservation?.policy.isPublishing != true,
               let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
               let projection = currentMappingProjection(manager) else { return nil }
         return .init(source: mappingOwnershipSource, owner: ObjectIdentifier(manager), scene: sceneID, epoch: epoch,
@@ -62,10 +69,19 @@ final class StudyWorkspaceNavigationAdapter {
         mappingOwnerID = ObjectIdentifier(manager)
         Self.mappingAdapters = Self.mappingAdapters.filter { $0.value.value != nil }
         Self.mappingAdapters[ObjectIdentifier(self)] = .init(self)
+        snapshotObservation = store.observeSnapshotPublication(self)
         mappingSubscription = store.mappingSource(scene: sceneID).subscribe(owner: self) { adapter, event in
             if (event.reasons.contains(.ownerLifetime) || event.reasons.contains(.epochExhausted)) && event.phase == .unavailable {
                 adapter.tabSelectionReservation?.policy.invalidate()
+                adapter.groupSelectionReservation?.policy.invalidate()
                 adapter.mappingOwnershipSource.retire()
+            } else if let selection = adapter.groupSelectionReservation,
+                      selection.policy.ownsStorePublication {
+                // Only the exact original transaction candidate may change the
+                // saved scene mapping during this synchronous native apply.
+                if !selection.policy.observesOwnedMapping(event) {
+                    adapter.invalidateNativeGroupSelection(selection)
+                }
             } else if let checkpoint = adapter.tabSelectionCheckpoint,
                       checkpoint === adapter.tabSelectionReservation {
                 guard checkpoint.policy.observesOwnedStorePublication(event) else {
@@ -83,6 +99,7 @@ final class StudyWorkspaceNavigationAdapter {
                    checkpoint.policy.epoch == adapter.mappingOwnershipSource.event.epoch { return }
                 adapter.readerReservation?.policy.invalidate()
                 adapter.tabSelectionReservation?.policy.invalidate()
+                adapter.groupSelectionReservation?.policy.invalidate()
                 adapter.mappingOwnershipSource.beginChange(event.reasons)
             } else {
                 adapter.finishMappingPublication()
@@ -115,7 +132,37 @@ final class StudyWorkspaceNavigationAdapter {
         }
     }
 
+    private func groupNativeTabs(_ tabs: [iOSNavigationManager.ReaderTab]) -> [StudyWorkspaceGroupNativeTab] {
+        zip(tabs, mappingTabs(tabs)).map { tab, mapping in
+            .init(id: tab.id, bookOwner: ObjectIdentifier(tab.book), target: mapping.target)
+        }
+    }
+
+    private func groupNativeState(_ manager: iOSNavigationManager) -> StudyWorkspaceGroupNativeState {
+        .init(tabs: groupNativeTabs(manager.openTabs), activeID: manager.activeTabId,
+            selectedBookOwner: manager.selectedBook.map(ObjectIdentifier.init), selectedBookID: manager.selectedBook?.id,
+            selectedBookMode: manager.selectedBookPresentationMode,
+            overviewRequested: manager.showingTabsList,
+            overviewRevision: nativeOverviewPublicationRevision,
+            bookRevision: manager.selectedBookPresentationRevision, groupID: liveGroupID, backend: liveBackend)
+    }
+
     private func setMappingLiveContext(groupID: UUID, backend: BackendID, manager: iOSNavigationManager) {
+        if let selection = groupSelectionReservation,
+           !(selection.policy.phase == .committed && liveGroupID == groupID && liveBackend == backend
+                && selection.policy.matches(actual: groupNativeState(manager), snapshot: store.snapshot)) {
+            // Ordinary current-group checkpoints repeat this original private
+            // assignment. They own no identity change and no public setter.
+            if selection.policy.willPublish(.context(groupID, backend), actual: groupNativeState(manager)) {
+                liveGroupID = groupID
+                liveBackend = backend
+                if !selection.policy.didPublish(actual: groupNativeState(manager)) { invalidateNativeGroupSelection(selection) }
+                return
+            }
+            // A passive observer never suppresses an unrelated original UI
+            // action. It revokes the retained command before that action runs.
+            invalidateNativeGroupSelection(selection)
+        }
         let before = currentMappingProjection(manager)
         let after = mappingProjection(manager, tabs: manager.openTabs, activeID: manager.activeTabId,
             groupID: groupID, backend: backend)
@@ -150,6 +197,7 @@ final class StudyWorkspaceNavigationAdapter {
     static func nativeMappingOwnerWillDeinitialize(_ manager: iOSNavigationManager) {
         for adapter in mappingAdapters.values.compactMap(\.value) where adapter.mappingOwnerID == ObjectIdentifier(manager) {
             adapter.mappingOwnershipSource.retire()
+            adapter.groupSelectionReservation?.policy.invalidate()
             adapter.mappingSubscription?.cancel()
         }
         mappingHookOwners.removeValue(forKey: ObjectIdentifier(manager))
@@ -162,6 +210,12 @@ final class StudyWorkspaceNavigationAdapter {
 
     static func nativeMappingTabsWillChange(_ manager: iOSNavigationManager, to tabs: [iOSNavigationManager.ReaderTab]) {
         withMappingAdapters(manager) { adapter in
+            if let selection = adapter.groupSelectionReservation {
+                if !selection.policy.willPublish(.tabs(adapter.groupNativeTabs(tabs)), actual: adapter.groupNativeState(manager)) {
+                    adapter.invalidateNativeGroupSelection(selection)
+                }
+                return
+            }
             let before = adapter.currentMappingProjection(manager)
             let after = adapter.mappingProjection(manager, tabs: tabs, activeID: manager.activeTabId,
                 groupID: adapter.liveGroupID, backend: adapter.liveBackend)
@@ -183,6 +237,12 @@ final class StudyWorkspaceNavigationAdapter {
 
     static func nativeMappingSelectionWillChange(_ manager: iOSNavigationManager, to activeID: UUID?) {
         withMappingAdapters(manager) { adapter in
+            if let selection = adapter.groupSelectionReservation {
+                if !selection.policy.willPublish(.active(activeID), actual: adapter.groupNativeState(manager)) {
+                    adapter.invalidateNativeGroupSelection(selection)
+                }
+                return
+            }
             let before = adapter.currentMappingProjection(manager)
             let after = adapter.mappingProjection(manager, tabs: manager.openTabs, activeID: activeID,
                 groupID: adapter.liveGroupID, backend: adapter.liveBackend)
@@ -204,6 +264,12 @@ final class StudyWorkspaceNavigationAdapter {
 
     static func nativeMappingDidChange(_ manager: iOSNavigationManager) {
         withMappingAdapters(manager) { adapter in
+            if let selection = adapter.groupSelectionReservation {
+                if !selection.policy.didPublish(actual: adapter.groupNativeState(manager)) {
+                    adapter.invalidateNativeGroupSelection(selection)
+                }
+                return
+            }
             if let reservation = adapter.tabSelectionReservation, reservation.policy.isPublishing,
                !reservation.policy.didPublishSelection(actual: adapter.currentMappingProjection(manager)) {
                 adapter.mappingOwnershipSource.beginChange([.readerReservation])
@@ -216,6 +282,51 @@ final class StudyWorkspaceNavigationAdapter {
         }
     }
 
+    /// Passive hooks surround the ORIGINAL selectedBook revision and mode
+    /// assignment. An equal or nested setter must consume its own publication;
+    /// no total-count allowance or callback-wide exception is used.
+    static func nativeGroupBookWillChange(_ manager: iOSNavigationManager, to book: BooksData?) {
+        withMappingAdapters(manager) { adapter in
+            guard let selection = adapter.groupSelectionReservation else { return }
+            if !selection.policy.willPublish(.book(book.map(ObjectIdentifier.init), book?.id),
+                                             actual: adapter.groupNativeState(manager)) {
+                adapter.invalidateNativeGroupSelection(selection)
+            }
+        }
+    }
+
+    static func nativeGroupBookDidChange(_ manager: iOSNavigationManager) {
+        withMappingAdapters(manager) { adapter in
+            guard let selection = adapter.groupSelectionReservation else { return }
+            if !selection.policy.didPublish(actual: adapter.groupNativeState(manager)) {
+                adapter.invalidateNativeGroupSelection(selection)
+            }
+        }
+    }
+
+    static func nativeGroupOverviewWillChange(_ manager: iOSNavigationManager, to requested: Bool) {
+        withMappingAdapters(manager) { adapter in
+            if let selection = adapter.groupSelectionReservation,
+               !selection.policy.willPublish(.overview(requested), actual: adapter.groupNativeState(manager)) {
+                adapter.invalidateNativeGroupSelection(selection)
+            }
+            // This actual original-owner history also covers the foreground
+            // await before a reservation exists. It never resets on selection.
+            if let revision = adapter.nativeOverviewPublicationRevision, revision < .max {
+                adapter.nativeOverviewPublicationRevision = revision + 1
+            } else { adapter.nativeOverviewPublicationRevision = nil }
+        }
+    }
+
+    static func nativeGroupOverviewDidChange(_ manager: iOSNavigationManager) {
+        withMappingAdapters(manager) { adapter in
+            guard let selection = adapter.groupSelectionReservation else { return }
+            if !selection.policy.didPublish(actual: adapter.groupNativeState(manager)) {
+                adapter.invalidateNativeGroupSelection(selection)
+            }
+        }
+    }
+
     // MARK: Original native reader ownership
 
     /// Reserves an original ReaderTab/ReaderViewModel before Core admission.
@@ -223,6 +334,7 @@ final class StudyWorkspaceNavigationAdapter {
     func reserveNativeReader(requestID: UUID, book: BooksData, destination: LibraryReaderDestination,
                              manager: iOSNavigationManager) throws -> StudyWorkspaceNativeReaderReservation {
         guard attached, !isSwitching, mappingManager === manager, readerReservation == nil, tabSelectionReservation == nil,
+              groupSelectionReservation == nil,
               mappingOwnershipObservation() != nil,
               book.backendLocator?.backend == destination.sectionLocator.backend,
               book.backendLocator?.workKey == destination.sectionLocator.workKey,
@@ -300,7 +412,7 @@ final class StudyWorkspaceNavigationAdapter {
                                    manager: iOSNavigationManager) throws -> StudyWorkspaceNativeTabSelectionReservation {
         let targets = manager.openTabs.filter { $0.id == tabID }
         guard attached, !isSwitching, mappingManager === manager,
-              readerReservation == nil, tabSelectionReservation == nil,
+              readerReservation == nil, tabSelectionReservation == nil, groupSelectionReservation == nil,
               targets.count == 1, let tab = targets.first,
               tab.book.backendLocator?.backend == BackendCoordinator.shared.activeBackendID,
               mappingOwnershipObservation() != nil else { throw StudyWorkspaceError.invalidMembership }
@@ -358,6 +470,211 @@ final class StudyWorkspaceNavigationAdapter {
         // No tab closure, rollback, new admission or source-observation rearm.
         mappingOwnershipSource.beginChange([.readerReservation])
         finishMappingPublication()
+    }
+
+    // MARK: Original profile/group selection
+
+    /// Read-only captured input for native metadata/selection. This is the SAME
+    /// original staging record later retained across foreground and catalog
+    /// waits; no cached Reader is replaced by a later lookup.
+    func captureNativeGroupSelection(profileID: UUID, groupID: UUID, selectsProfile: Bool,
+                                     manager: iOSNavigationManager) throws -> StudyWorkspacePreparedGroupSelection {
+        guard attached, !isSwitching, mappingManager === manager,
+              readerReservation == nil, tabSelectionReservation == nil, groupSelectionReservation == nil,
+              store.loadError == nil, errorMessage == nil,
+              let native = mappingOwnershipObservation(), native.owner == ObjectIdentifier(manager),
+              let target = store.snapshot?.groups.first(where: { $0.id == groupID && $0.profileID == profileID }),
+              (selectsProfile ? firstGroup(in: profileID)?.id == target.id : selection?.profileID == profileID) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        return try makeGroupSelection(to: groupID, documentID: nil, manager: manager, restoringBackend: nil)
+    }
+
+    /// Retains inactive documents and original first-group selection before the
+    /// catalog await. No Store write, backend switch or Reader load occurs here.
+    func reserveNativeGroupSelection(requestID: UUID, profileID: UUID, groupID: UUID,
+                                     selectsProfile: Bool, manager: iOSNavigationManager,
+                                     backendObservation: StudyWorkspaceGroupBackendObservation,
+                                     prepared: StudyWorkspacePreparedGroupSelection) throws
+        -> StudyWorkspaceNativeGroupSelectionReservation {
+        try backendObservation.validate()
+        guard attached, !isSwitching, mappingManager === manager,
+              readerReservation == nil, tabSelectionReservation == nil, groupSelectionReservation == nil,
+              store.loadError == nil, errorMessage == nil,
+              let before = mappingOwnershipObservation(), before.owner == ObjectIdentifier(manager),
+              let target = store.snapshot?.groups.first(where: { $0.id == groupID && $0.profileID == profileID }),
+              !selectsProfile || firstGroup(in: profileID)?.id == target.id else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        let current = try makeGroupSelection(to: groupID, documentID: nil, manager: manager, restoringBackend: nil)
+        func sameReaders(_ lhs: [iOSNavigationManager.ReaderTab], _ rhs: [iOSNavigationManager.ReaderTab]) -> Bool {
+            lhs.count == rhs.count && zip(lhs, rhs).allSatisfy { left, right in
+                left.id == right.id && left.book === right.book && left.viewModel === right.viewModel
+            }
+        }
+        guard prepared.snapshot == current.snapshot, prepared.target == current.target,
+              prepared.requested == current.requested, prepared.documents == current.documents,
+              prepared.previousActive == current.previousActive, prepared.previousGroup == current.previousGroup,
+              prepared.previousGeneration == current.previousGeneration,
+              sameReaders(prepared.previousTabs, current.previousTabs), sameReaders(prepared.retained, current.retained),
+              prepared.staged.isEmpty, prepared.freshlyHydratedIDs.isEmpty else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        guard prepared.target == target, prepared.previousBackend == BackendCoordinator.shared.committedBackendID,
+              !BackendCoordinator.shared.isTransitioning else { throw StudyWorkspaceError.backendMismatch }
+        // One next native epoch, before this request is admitted by Core.
+        mappingOwnershipSource.beginChange([.readerReservation])
+        finishMappingPublication()
+        guard let native = mappingOwnershipObservation(), let stored = store.mappingObservation(scene: sceneID),
+              let snapshot = store.snapshot, snapshot == prepared.snapshot else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        let policy = try StudyWorkspaceGroupSelectionReservation(requestID: requestID, native: native,
+            workspace: stored, snapshot: snapshot, actual: groupNativeState(manager),
+            profileID: profileID, groupID: groupID, backend: prepared.desiredBackend, selectsProfile: selectsProfile)
+        let reservation = StudyWorkspaceNativeGroupSelectionReservation(policy: policy, prepared: prepared,
+            backendObservation: backendObservation)
+        do {
+            try backendObservation.bind(policy) { [weak self, weak reservation] in
+                guard let self, let reservation else { return }
+                self.invalidateNativeGroupSelection(reservation)
+            }
+            groupSelectionReservation = reservation
+            try validateNativeGroupSelection(reservation)
+            return reservation
+        } catch {
+            if groupSelectionReservation === reservation { releaseNativeGroupSelection(reservation) }
+            else { policy.release(); backendObservation.retire() }
+            throw error
+        }
+    }
+
+    func prepareNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation,
+                                     validate: @MainActor () throws -> Void) async throws {
+        try validateNativeGroupSelection(reservation)
+        guard let manager = mappingManager, !reservation.ownsSwitching else { throw StudyWorkspaceError.invalidMembership }
+        try reservation.policy.beginPreparation(actual: groupNativeState(manager), snapshot: store.snapshot)
+        reservation.ownsSwitching = true
+        isSwitching = true
+        do {
+            try await ChavrusaTextTargetBackendBookResolver.shared.withTargetCatalog(in: reservation.prepared.desiredBackend) {
+                try validate()
+                try validateNativeGroupSelection(reservation)
+                try stageOriginalGroupSelection(reservation.prepared, owner: reservation)
+                try validate()
+                try validateNativeGroupSelection(reservation)
+                try reservation.captureOriginalReaderSources()
+                try reservation.policy.finishPreparation(staged: groupNativeTabs(reservation.prepared.staged),
+                    requested: reservation.prepared.requested, actual: groupNativeState(manager), snapshot: store.snapshot)
+            }
+            try validate()
+            try validateNativeGroupSelection(reservation)
+        } catch {
+            invalidateNativeGroupSelection(reservation)
+            if reservation.ownsSwitching { reservation.ownsSwitching = false; isSwitching = false }
+            throw error
+        }
+    }
+
+    func validateNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation) throws {
+        try reservation.backendObservation.validate()
+        guard attached, groupSelectionReservation === reservation, let manager = mappingManager,
+              isSwitching == reservation.ownsSwitching, store.loadError == nil, errorMessage == nil,
+              BackendCoordinator.shared.activeBackendID == reservation.policy.backend,
+              BackendCoordinator.shared.committedBackendID == reservation.policy.backend,
+              BackendCoordinator.shared.pendingBackendID == nil,
+              BackendCoordinator.shared.generation == reservation.prepared.previousGeneration,
+              !BackendCoordinator.shared.isTransitioning,
+              reservation.policy.matches(actual: groupNativeState(manager), snapshot: store.snapshot) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        try reservation.validateOriginalReaderSources()
+    }
+
+    /// Called only inside the original synchronous Core apply. Staging and all
+    /// asynchronous work completed earlier under this same retained source.
+    func applyNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation,
+                                   validate: @MainActor () throws -> Void) throws {
+        try validateNativeGroupSelection(reservation)
+        guard let manager = mappingManager, reservation.ownsSwitching else { throw StudyWorkspaceError.invalidMembership }
+        try reservation.policy.beginApply(actual: groupNativeState(manager), snapshot: store.snapshot)
+        do {
+            try BackendCoordinator.shared.commitPreparedSameBackend(reservation.policy.backend,
+                expectedGeneration: reservation.prepared.previousGeneration, validate: {
+                    try validate()
+                    try validateNativeGroupSelection(reservation)
+                }, beforeCommit: {
+                    try persistOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation)
+                    // The Store checkpoint may call arbitrary synchronous
+                    // observers. Revalidate before the first native setter.
+                    try validate()
+                    try validateNativeGroupSelection(reservation)
+                }, publish: {
+                    publishOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation)
+                }, willClearPending: {
+                    do {
+                        try reservation.policy.beginPendingBackendClear(actual: groupNativeState(manager), snapshot: store.snapshot)
+                    } catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation) }
+                }, didClearPending: {
+                    do {
+                        try reservation.policy.finishPendingBackendClear(actual: groupNativeState(manager),
+                            snapshot: store.snapshot, pendingIsNil: BackendCoordinator.shared.pendingBackendID == nil)
+                    } catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation) }
+                })
+            // A callback failure after native publication must not extend the
+            // snapshot rollback scope into visibility, or pretend UI rollback.
+            if let failure = reservation.publicationFailure { throw failure }
+            try reservation.policy.finishApply(actual: groupNativeState(manager), snapshot: store.snapshot)
+            manager.persistCurrentSession(immediate: true)
+            reservation.ownsSwitching = false
+            isSwitching = false
+            try validate()
+            try validateNativeGroupSelection(reservation)
+        } catch {
+            invalidateNativeGroupSelection(reservation)
+            if reservation.ownsSwitching { reservation.ownsSwitching = false; isSwitching = false }
+            throw error
+        }
+    }
+
+    private func invalidateNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation) {
+        guard groupSelectionReservation === reservation, !reservation.didInvalidateNativeSource else { return }
+        reservation.didInvalidateNativeSource = true
+        reservation.policy.invalidate()
+        // Leave admission unavailable until the original publication/release
+        // finishes. Never expose old native values with a new ready epoch.
+        mappingOwnershipSource.beginChange([.readerReservation])
+    }
+
+    func releaseNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation) {
+        guard groupSelectionReservation === reservation else { return }
+        reservation.backendObservation.retire()
+        reservation.policy.release()
+        if reservation.ownsSwitching { reservation.ownsSwitching = false; isSwitching = false }
+        groupSelectionReservation = nil
+        mappingOwnershipSource.beginChange([.readerReservation])
+        finishMappingPublication()
+    }
+
+    private func performOriginalGroupOperation(_ operation: StudyWorkspaceGroupSelectionReservation.Operation,
+                                               selection: StudyWorkspacePreparedGroupSelection,
+                                               manager: iOSNavigationManager, owner: StudyWorkspaceNativeGroupSelectionReservation?,
+                                               body: () -> Void) -> Bool {
+        guard let reservation = owner else { body(); return true }
+        do {
+            guard groupSelectionReservation === reservation, reservation.prepared === selection else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            try reservation.policy.beginOperation(operation, actual: groupNativeState(manager))
+            body()
+            try reservation.policy.finishOperation(operation, actual: groupNativeState(manager))
+            try validateNativeGroupSelection(reservation)
+            return true
+        } catch {
+            reservation.recordPublicationFailure(error)
+            invalidateNativeGroupSelection(reservation)
+            return false
+        }
     }
 
     // MARK: Workspace presentation
@@ -425,6 +742,7 @@ final class StudyWorkspaceNavigationAdapter {
 
     func switchGroup(to id: UUID, documentID: UUID? = nil, manager: iOSNavigationManager, restoringBackend: BackendID? = nil) async throws {
         guard !isSwitching, store.snapshot?.groups.contains(where: { $0.id == id }) == true else { throw StudyWorkspaceError.invalidMembership }
+        if let reservation = groupSelectionReservation { invalidateNativeGroupSelection(reservation) }
         #if DEBUG
         let performance = StudyGroupSwitchPerformanceObservation.begin(
             sceneID: sceneID, fromGroupID: liveGroupID, toGroupID: id,
@@ -443,6 +761,29 @@ final class StudyWorkspaceNavigationAdapter {
         #endif
         isSwitching = true
         defer { isSwitching = false }
+        let prepared = try makeGroupSelection(to: id, documentID: documentID,
+            manager: manager, restoringBackend: restoringBackend)
+        try await ChavrusaTextTargetBackendBookResolver.shared.withTargetCatalog(in: prepared.desiredBackend) {
+            try stageOriginalGroupSelection(prepared)
+            try await BackendCoordinator.shared.commitCheckedAsync(prepared.desiredBackend, beforeCommit: {
+                try persistOriginalGroupSelection(prepared, manager: manager)
+            }, publish: {
+                publishOriginalGroupSelection(prepared, manager: manager)
+            })
+        }
+        manager.persistCurrentSession(immediate: true)
+        #if DEBUG
+        performanceReturnedNormally = true
+        #endif
+    }
+
+    /// The original first-group policy, shared by the menu and typed selection.
+    func firstGroup(in profileID: UUID) -> StudyTabGroup? {
+        store.snapshot?.groups.filter { $0.profileID == profileID }.sorted { $0.order < $1.order }.first
+    }
+
+    private func makeGroupSelection(to id: UUID, documentID: UUID?, manager: iOSNavigationManager,
+                                    restoringBackend: BackendID?) throws -> StudyWorkspacePreparedGroupSelection {
         let previousTabs = manager.openTabs
         let previousActive = manager.activeTabId
         let previousBackend = BackendCoordinator.shared.activeBackendID
@@ -450,103 +791,157 @@ final class StudyWorkspaceNavigationAdapter {
         let previousGeneration = BackendCoordinator.shared.generation
         let previousSelection = selection
         guard let target = store.snapshot?.groups.first(where: { $0.id == id }) else { throw StudyWorkspaceError.invalidMembership }
-        var requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
+        let requested = documentID ?? selection?.activeTabIDsByGroup?[id] ?? target.activeTabID
         let desiredBackend = StudyWorkspaceProjectionPolicy.backend(restoring: restoringBackend, requestedID: requested,
                                                                    documents: target.tabs, fallback: previousBackend)
+        // A study profile/group is not a library-source choice. Preserve its
+        // saved foreign documents and the outgoing scene until the user makes
+        // an explicit change through the original backend owner.
+        guard desiredBackend == previousBackend else { throw StudyWorkspaceError.backendMismatch }
         let documents = target.tabs.filter { $0.backend == desiredBackend }
         let retained = cache[id]?[desiredBackend] ?? []
-        try await ChavrusaTextTargetBackendBookResolver.shared.withTargetCatalog(in: desiredBackend) {
+        guard let snapshot = store.snapshot else { throw StudyWorkspaceError.invalidMembership }
+        return .init(target: target, requested: requested, desiredBackend: desiredBackend,
+            documents: documents, retained: retained, previousTabs: previousTabs,
+            previousActive: previousActive, previousBackend: previousBackend,
+            previousGroup: previousGroup, previousGeneration: previousGeneration,
+            previousSelection: previousSelection, restoringBackend: restoringBackend, snapshot: snapshot)
+    }
+
+    private func stageOriginalGroupSelection(_ selection: StudyWorkspacePreparedGroupSelection,
+                                             owner: StudyWorkspaceNativeGroupSelectionReservation? = nil) throws {
+        let previousBackend = selection.previousBackend, desiredBackend = selection.desiredBackend
+        let previousGeneration = selection.previousGeneration
+        let previousTabs = selection.previousTabs, documents = selection.documents, retained = selection.retained
+        guard BackendCoordinator.shared.activeBackendID == previousBackend,
+              BackendCoordinator.shared.generation == previousGeneration else {
+            throw BackendTransitionError.transitionSuperseded
+        }
+        // Every document is resolved against the target catalog while the
+        // outgoing reader and committed backend are still intact.
+        selection.staged = try documents.map { document in
+            if let owner { try validateNativeGroupSelection(owner) }
+            let resolved = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
+                id: document.session.bookId,
+                backendLocator: document.session.backendLocator?.workKey ?? document.session.locator?.workKey,
+                title: document.session.bookTitle, in: document.backend)
+            if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document),
+               existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
+            if previousBackend == desiredBackend,
+               let existing = previousTabs.first(where: { $0.id == document.id }), matches(existing, document),
+               existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
+            let hydrated = try hydrate(document)
+            selection.freshlyHydratedIDs.insert(hydrated.id)
+            return hydrated
+        }
+    }
+
+    private func persistOriginalGroupSelection(_ selection: StudyWorkspacePreparedGroupSelection,
+                                               manager: iOSNavigationManager,
+                                               owner: StudyWorkspaceNativeGroupSelectionReservation? = nil) throws {
+        if let owner { try validateNativeGroupSelection(owner) }
+        let id = selection.target.id, target = selection.target
+        let previousTabs = selection.previousTabs, previousActive = selection.previousActive
+        let previousBackend = selection.previousBackend, previousGroup = selection.previousGroup
+        let previousGeneration = selection.previousGeneration, previousSelection = selection.previousSelection
+        let desiredBackend = selection.desiredBackend, restoringBackend = selection.restoringBackend
+        var staged = selection.staged, requested = selection.requested
+        defer { selection.staged = staged; selection.requested = requested }
+        var startupDocuments: [ReaderDocumentTab]?
+        if restoringBackend != nil, previousGroup == nil {
+            try Task.checkCancellation()
             guard BackendCoordinator.shared.activeBackendID == previousBackend,
                   BackendCoordinator.shared.generation == previousGeneration else {
                 throw BackendTransitionError.transitionSuperseded
             }
-            // Every document is resolved against the target catalog while the
-            // outgoing reader and committed backend are still intact.
-            var staged: [iOSNavigationManager.ReaderTab] = try documents.map { document in
-                let resolved = try ChavrusaTextTargetBackendBookResolver.shared.resolveBook(
-                    id: document.session.bookId,
-                    backendLocator: document.session.backendLocator?.workKey ?? document.session.locator?.workKey,
-                    title: document.session.bookTitle, in: document.backend)
-                if let existing = retained.first(where: { $0.id == document.id }), matches(existing, document),
-                   existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
-                if previousBackend == desiredBackend,
-                   let existing = previousTabs.first(where: { $0.id == document.id }), matches(existing, document),
-                   existing.book.backendLocator?.workKey == resolved.backendLocator?.workKey { return existing }
-                return try hydrate(document)
+            guard self.selection == previousSelection else { throw StudyWorkspaceError.invalidMembership }
+            // A native open can finish while the initial empty restore awaits
+            // its catalog/backend. Adopt those live instances at the last
+            // throwing boundary, before publication can overwrite them.
+            if previousTabs.isEmpty, target.tabs.isEmpty, desiredBackend == previousBackend,
+               !manager.openTabs.isEmpty {
+                staged = manager.openTabs
+                requested = manager.activeTabId
+                startupDocuments = capture(staged, backend: desiredBackend)
             }
-            try await BackendCoordinator.shared.commitCheckedAsync(desiredBackend, beforeCommit: {
-                var startupDocuments: [ReaderDocumentTab]?
-                if restoringBackend != nil, previousGroup == nil {
-                    try Task.checkCancellation()
-                    guard BackendCoordinator.shared.activeBackendID == previousBackend,
-                          BackendCoordinator.shared.generation == previousGeneration else {
-                        throw BackendTransitionError.transitionSuperseded
-                    }
-                    guard selection == previousSelection else { throw StudyWorkspaceError.invalidMembership }
-                    // A native open can finish while the initial empty restore awaits
-                    // its catalog/backend. Adopt those live instances at the last
-                    // throwing boundary, before publication can overwrite them.
-                    if previousTabs.isEmpty, target.tabs.isEmpty, desiredBackend == previousBackend,
-                       !manager.openTabs.isEmpty {
-                        staged = manager.openTabs
-                        requested = manager.activeTabId
-                        startupDocuments = capture(staged, backend: desiredBackend)
-                    }
-                }
-                let outgoingDocuments = capture(previousTabs, backend: previousBackend)
-                try store.transaction { value in
-                    guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
-                          current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
-                    if let startupDocuments, let index = value.groups.firstIndex(where: { $0.id == id }) {
-                        value.groups[index].tabs = startupDocuments
-                        value.groups[index].activeTabID = (staged.first(where: { $0.id == requested }) ?? staged.first)?.id
-                    }
-                    if let previousGroup,
-                       let index = value.groups.firstIndex(where: { $0.id == previousGroup }) {
-                        let merged = StudyWorkspaceProjectionPolicy.merging(live: outgoingDocuments,
-                            into: value.groups[index].tabs, backend: previousBackend)
-                        value.groups[index].tabs = merged
-                        value.groups[index].activeTabID = previousActive.flatMap { active in merged.contains { $0.id == active } ? active : nil }
-                    }
-                    var scene = value.scenes[sceneID] ?? .init(profileID: target.profileID, groupID: id)
-                    scene.profileID = target.profileID
-                    scene.groupID = id
-                    var activeIDs = scene.activeTabIDsByGroup ?? [:]
-                    if let previousGroup, let previousActive { activeIDs[previousGroup] = previousActive }
-                    if let active = staged.first(where: { $0.id == requested }) ?? staged.first { activeIDs[id] = active.id }
-                    else { activeIDs.removeValue(forKey: id) }
-                    scene.activeTabIDsByGroup = activeIDs
-                    value.scenes[sceneID] = scene
-                    value.lastActiveSceneID = sceneID
-                }
-            }, publish: {
-                // Nonthrowing publication, before the backend notification.
-                manager.openTabs = staged
-                for document in documents {
-                    guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
-                    if let locator = document.session.locator {
-                        tab.viewModel.loadBackendContent(locator)
-                    } else {
-                        tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
-                    }
-                    tab.viewModel.loadTOC(book: tab.book)
-                }
-                if let active = staged.first(where: { $0.id == requested }) ?? staged.first {
-                    manager.selectTab(id: active.id)
-                    active.viewModel.needsScrollRestore = true
-                } else {
-                    manager.openTabs = previousTabs
-                    for tab in previousTabs { manager.closeTab(id: tab.id) }
-                }
-                if let previousGroup { cache[previousGroup, default: [:]][previousBackend] = previousTabs }
-                setMappingLiveContext(groupID: id, backend: desiredBackend, manager: manager)
-                cache[id, default: [:]][desiredBackend] = staged
-            })
         }
-        manager.persistCurrentSession(immediate: true)
-        #if DEBUG
-        performanceReturnedNormally = true
-        #endif
+        let outgoingDocuments = capture(previousTabs, backend: previousBackend)
+        try store.transaction { value in
+            guard let current = value.groups.first(where: { $0.id == id }), current.tabs == target.tabs,
+                  current.profileID == target.profileID else { throw StudyWorkspaceError.invalidMembership }
+            if let startupDocuments, let index = value.groups.firstIndex(where: { $0.id == id }) {
+                value.groups[index].tabs = startupDocuments
+                value.groups[index].activeTabID = (staged.first(where: { $0.id == requested }) ?? staged.first)?.id
+            }
+            if let previousGroup,
+               let index = value.groups.firstIndex(where: { $0.id == previousGroup }) {
+                let merged = StudyWorkspaceProjectionPolicy.merging(live: outgoingDocuments,
+                    into: value.groups[index].tabs, backend: previousBackend)
+                value.groups[index].tabs = merged
+                value.groups[index].activeTabID = previousActive.flatMap { active in merged.contains { $0.id == active } ? active : nil }
+            }
+            var scene = value.scenes[sceneID] ?? .init(profileID: target.profileID, groupID: id)
+            scene.profileID = target.profileID
+            scene.groupID = id
+            var activeIDs = scene.activeTabIDsByGroup ?? [:]
+            if let previousGroup, let previousActive { activeIDs[previousGroup] = previousActive }
+            if let active = staged.first(where: { $0.id == requested }) ?? staged.first { activeIDs[id] = active.id }
+            else { activeIDs.removeValue(forKey: id) }
+            scene.activeTabIDsByGroup = activeIDs
+            value.scenes[sceneID] = scene
+            value.lastActiveSceneID = sceneID
+            if let reservation = owner {
+                guard groupSelectionReservation === reservation, reservation.prepared === selection else {
+                    throw StudyWorkspaceError.invalidMembership
+                }
+                try reservation.policy.armStorePublication(candidate: value, before: store.snapshot,
+                    actual: groupNativeState(manager), checkpoint: false)
+            }
+        }
+    }
+
+    private func publishOriginalGroupSelection(_ selection: StudyWorkspacePreparedGroupSelection,
+                                               manager: iOSNavigationManager,
+                                               owner: StudyWorkspaceNativeGroupSelectionReservation? = nil) {
+        let id = selection.target.id, requested = selection.requested, staged = selection.staged
+        let documents = selection.documents, previousTabs = selection.previousTabs
+        let previousGroup = selection.previousGroup, previousBackend = selection.previousBackend
+        let desiredBackend = selection.desiredBackend
+        // Nonthrowing publication, before the backend notification.
+        guard performOriginalGroupOperation(.installTabs, selection: selection, manager: manager, owner: owner, body: { manager.openTabs = staged }) else { return }
+        for document in documents {
+            guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
+            if let reservation = owner {
+                do { try validateNativeGroupSelection(reservation); try reservation.willLoadOriginal(tab: tab) }
+                catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation); return }
+            }
+            if let locator = document.session.locator {
+                tab.viewModel.loadBackendContent(locator)
+            } else {
+                tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
+            }
+            tab.viewModel.loadTOC(book: tab.book)
+            if let reservation = owner {
+                do { try reservation.didLoadOriginal(tab: tab); try validateNativeGroupSelection(reservation) }
+                catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation); return }
+            }
+        }
+        if let active = staged.first(where: { $0.id == requested }) ?? staged.first {
+            guard performOriginalGroupOperation(.select(active.id), selection: selection, manager: manager, owner: owner,
+                body: { manager.selectTab(id: active.id) }) else { return }
+            active.viewModel.needsScrollRestore = true
+        } else {
+            guard performOriginalGroupOperation(.restoreClosingTabs, selection: selection, manager: manager, owner: owner,
+                body: { manager.openTabs = previousTabs }) else { return }
+            for tab in previousTabs {
+                guard performOriginalGroupOperation(.close(tab.id), selection: selection, manager: manager, owner: owner,
+                    body: { manager.closeTab(id: tab.id) }) else { return }
+            }
+        }
+        if let previousGroup { cache[previousGroup, default: [:]][previousBackend] = previousTabs }
+        guard performOriginalGroupOperation(.liveContext, selection: selection, manager: manager, owner: owner,
+            body: { setMappingLiveContext(groupID: id, backend: desiredBackend, manager: manager) }) else { return }
+        cache[id, default: [:]][desiredBackend] = staged
     }
 
     private func matches(_ tab: iOSNavigationManager.ReaderTab, _ document: ReaderDocumentTab) -> Bool {
@@ -611,6 +1006,8 @@ final class StudyWorkspaceNavigationAdapter {
         let native = mappingOwnershipObservation()
         let savedObservation = store.mappingObservation(scene: sceneID)
         var tabCheckpointCompleted = false
+        var groupCheckpoint: StudyWorkspaceNativeGroupSelectionReservation?
+        var groupCheckpointCompleted = false
         defer {
             reservedCheckpoint = nil
             if let checkpoint = tabSelectionCheckpoint, !tabCheckpointCompleted {
@@ -619,6 +1016,7 @@ final class StudyWorkspaceNavigationAdapter {
                 finishMappingPublication()
             }
             tabSelectionCheckpoint = nil
+            if let checkpoint = groupCheckpoint, !groupCheckpointCompleted { invalidateNativeGroupSelection(checkpoint) }
         }
         try store.transaction { value in
             guard let index = value.groups.firstIndex(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
@@ -643,6 +1041,12 @@ final class StudyWorkspaceNavigationAdapter {
                     candidate: StudyWorkspaceMappingPolicy.workspace(value, scene: sceneID))
                 tabSelectionCheckpoint = reservation
             }
+            if let reservation = groupSelectionReservation, reservation.policy.phase == .committed,
+               let manager = mappingManager {
+                try reservation.policy.armStorePublication(candidate: value, before: store.snapshot,
+                    actual: groupNativeState(manager), checkpoint: true)
+                groupCheckpoint = reservation
+            }
         }
         if let checkpoint = tabSelectionCheckpoint {
             guard let manager = mappingManager, let saved = store.mappingObservation(scene: sceneID) else {
@@ -650,6 +1054,10 @@ final class StudyWorkspaceNavigationAdapter {
             }
             try checkpoint.policy.finishCheckpoint(nativeProjection: currentMappingProjection(manager), workspace: saved)
             tabCheckpointCompleted = true
+        }
+        if let checkpoint = groupCheckpoint {
+            try validateNativeGroupSelection(checkpoint)
+            groupCheckpointCompleted = true
         }
         cache[groupID, default: [:]][backend] = tabs
     }
@@ -699,6 +1107,182 @@ final class StudyWorkspaceNavigationAdapter {
         vm.needsScrollRestore = true
         // Loading is deferred until this tab becomes live, after any backend commit.
         return .init(id: state.id, book: book, initialContentId: state.contentId, viewModel: vm)
+    }
+}
+
+extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
+    func workspaceSnapshotWillPublish(before: StudyWorkspaceSnapshot?, after: StudyWorkspaceSnapshot) {
+        guard let reservation = groupSelectionReservation else { return }
+        if !reservation.policy.snapshotWillPublish(before: before, after: after) {
+            invalidateNativeGroupSelection(reservation)
+        }
+    }
+
+    func workspaceSnapshotDidPublish(_ snapshot: StudyWorkspaceSnapshot) {
+        guard let reservation = groupSelectionReservation else { return }
+        if !reservation.policy.snapshotDidPublish(snapshot) { invalidateNativeGroupSelection(reservation) }
+    }
+
+    func workspaceSnapshotOwnerDidRetire() {
+        groupSelectionReservation?.policy.invalidate()
+        mappingOwnershipSource.retire()
+    }
+}
+
+/// One real backend publisher observation starts BEFORE the first activation or
+/// catalog await. Binding the later original stage never resets or resubscribes
+/// it. Only that stage's exact terminal pending-clear publication is permitted.
+@MainActor final class StudyWorkspaceGroupBackendObservation {
+    let backend: BackendID
+    let generation: UInt64
+    private let coordinator: BackendCoordinator
+    private var valid = true
+    private var changes: AnyCancellable?
+    private var policy: StudyWorkspaceGroupSelectionReservation?
+    private var invalidated: (@MainActor () -> Void)?
+
+    init() {
+        coordinator = BackendCoordinator.shared
+        backend = coordinator.activeBackendID; generation = coordinator.generation
+        changes = coordinator.objectWillChange.sink { [weak self] _ in
+            guard let self, self.valid else { return }
+            if let policy = self.policy, policy.backendWillPublish() { return }
+            self.valid = false
+            self.invalidated?()
+        }
+    }
+    func bind(_ policy: StudyWorkspaceGroupSelectionReservation,
+              invalidated: @escaping @MainActor () -> Void) throws {
+        try validate()
+        guard self.policy == nil, policy.backend == backend, policy.phase == .reserved else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        self.policy = policy; self.invalidated = invalidated
+    }
+    func validate() throws {
+        guard valid, BackendCoordinator.shared === coordinator,
+              coordinator.activeBackendID == backend, coordinator.committedBackendID == backend,
+              coordinator.generation == generation, !coordinator.isTransitioning,
+              coordinator.pendingBackendID == nil else { throw StudyWorkspaceError.invalidMembership }
+    }
+    func retire() { valid = false; changes?.cancel(); changes = nil; invalidated = nil }
+}
+
+/// A single original stage retained across async catalog preparation and the
+/// existing synchronous Core apply. It is not permission or a second store.
+@MainActor final class StudyWorkspaceNativeGroupSelectionReservation {
+    struct ReaderSource {
+        let tab: iOSNavigationManager.ReaderTab
+        let book: BooksData
+        let bookLocator: TextLocator
+        let needsLoad: Bool
+        let previousToken: ReaderContentRequestToken?
+        let expectedGeneration: UInt64?
+        var token: ReaderContentRequestToken?
+        var destination: LibraryReaderDestination?
+        var issuing = false
+        var issued = false
+    }
+    let policy: StudyWorkspaceGroupSelectionReservation
+    let prepared: StudyWorkspacePreparedGroupSelection
+    var ownsSwitching = false
+    var didInvalidateNativeSource = false
+    let backendObservation: StudyWorkspaceGroupBackendObservation
+    private(set) var readerSources: [UUID: ReaderSource] = [:]
+    private(set) var publicationFailure: Error?
+
+    init(policy: StudyWorkspaceGroupSelectionReservation, prepared: StudyWorkspacePreparedGroupSelection,
+         backendObservation: StudyWorkspaceGroupBackendObservation) {
+        self.policy = policy; self.prepared = prepared; self.backendObservation = backendObservation
+    }
+    func recordPublicationFailure(_ error: Error) { publicationFailure = publicationFailure ?? error }
+
+    func captureOriginalReaderSources() throws {
+        guard readerSources.isEmpty else { throw StudyWorkspaceError.invalidMembership }
+        for tab in prepared.staged {
+            guard let document = prepared.documents.first(where: { $0.id == tab.id }),
+                  let book = tab.book.backendLocator, book.backend == policy.backend,
+                  tab.viewModel.currentBook === tab.book,
+                  book.workKey == (document.session.backendLocator?.workKey ?? document.session.locator?.workKey) else {
+                throw StudyWorkspaceError.unavailableBook
+            }
+            let prior = tab.viewModel.contentLoadCoordinator.currentRequestToken()
+            let empty = tab.viewModel.contentText.isEmpty
+            let expectedGeneration: UInt64?
+            if empty {
+                // The legacy loadInitialContent path starts an unretained Task
+                // before issuing its original token. It remains unavailable to
+                // this bounded route; do not guess a token or read a substitute.
+                guard let locator = document.session.locator,
+                      locator.backend == policy.backend, locator.workKey == book.workKey else {
+                    throw StudyWorkspaceError.unavailableBook
+                }
+                if let prior, prior.generation < .max { expectedGeneration = prior.generation + 1 }
+                else if prior == nil, prepared.freshlyHydratedIDs.contains(tab.id) { expectedGeneration = 1 }
+                else { throw StudyWorkspaceError.unavailableBook }
+            } else {
+                guard case .loaded = tab.viewModel.state, let prior,
+                      let destination = tab.viewModel.currentDestination,
+                      prior.backend == policy.backend, prior.workKey == book.workKey,
+                      prior.sectionLocator == destination.sectionLocator,
+                      tab.viewModel.contentLoadCoordinator.canApplyContent(token: prior, currentBookLocator: book) else {
+                    throw StudyWorkspaceError.unavailableBook
+                }
+                expectedGeneration = nil
+            }
+            readerSources[tab.id] = .init(tab: tab, book: tab.book, bookLocator: book, needsLoad: empty,
+                previousToken: prior, expectedGeneration: expectedGeneration, token: prior,
+                destination: tab.viewModel.currentDestination)
+        }
+    }
+
+    func validateOriginalReaderSources() throws {
+        for source in readerSources.values {
+            let actual = prepared.staged.filter { $0.id == source.tab.id }
+            guard actual.count == 1, let tab = actual.first,
+                  tab.book === source.book, tab.viewModel === source.tab.viewModel,
+                  source.book.backendLocator == source.bookLocator,
+                  tab.viewModel.currentBook === source.book, !source.issuing,
+                  tab.viewModel.contentLoadCoordinator.currentRequestToken() == source.token,
+                  tab.viewModel.currentDestination == source.destination else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            if source.needsLoad && !source.issued {
+                guard tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.invalidMembership }
+            } else if !source.needsLoad {
+                guard case .loaded = tab.viewModel.state, !tab.viewModel.contentText.isEmpty else {
+                    throw StudyWorkspaceError.unavailableBook
+                }
+            }
+        }
+    }
+
+    func willLoadOriginal(tab: iOSNavigationManager.ReaderTab) throws {
+        guard policy.phase == .publishing, var source = readerSources[tab.id],
+              source.tab.viewModel === tab.viewModel, source.tab.book === tab.book,
+              source.needsLoad, !source.issuing, !source.issued,
+              tab.viewModel.contentLoadCoordinator.currentRequestToken() == source.previousToken,
+              tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.invalidMembership }
+        // Consumed before the original load can invoke any callback.
+        source.issuing = true; readerSources[tab.id] = source
+    }
+
+    func didLoadOriginal(tab: iOSNavigationManager.ReaderTab) throws {
+        guard policy.phase == .publishing, var source = readerSources[tab.id], source.issuing, !source.issued,
+              source.tab.viewModel === tab.viewModel, source.tab.book === tab.book,
+              let token = tab.viewModel.contentLoadCoordinator.currentRequestToken(),
+              token.generation == source.expectedGeneration, token.id != source.previousToken?.id,
+              token.backend == policy.backend, token.workKey == source.bookLocator.workKey,
+              let destination = tab.viewModel.currentDestination, destination.sectionLocator == token.sectionLocator,
+              tab.viewModel.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: source.bookLocator) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        source.token = token; source.destination = destination; source.issuing = false; source.issued = true
+        readerSources[tab.id] = source
+    }
+
+    var selectedTab: iOSNavigationManager.ReaderTab? {
+        prepared.staged.first(where: { $0.id == prepared.requested }) ?? prepared.staged.first
     }
 }
 

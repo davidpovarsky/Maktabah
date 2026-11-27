@@ -25,7 +25,7 @@ struct StudyProfileMenu: View {
         Menu {
             ForEach((workspace.store.snapshot?.profiles ?? []).sorted { $0.order < $1.order }) { profile in
                 Button {
-                    guard let group = workspace.store.snapshot?.groups.filter({ $0.profileID == profile.id }).sorted(by: { $0.order < $1.order }).first else { return }
+                    guard let group = workspace.firstGroup(in: profile.id) else { return }
                     Task {
                         do { try await workspace.switchGroup(to: group.id, manager: manager) }
                         catch { workspace.errorMessage = error.localizedDescription }

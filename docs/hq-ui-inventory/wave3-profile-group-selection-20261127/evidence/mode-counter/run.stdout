@@ -1,0 +1,62 @@
+{
+  "boundary" : "Verbatim original currentMode\/counter declarations over an explicit minimal AppMode substitute; not the app, UIKit or native acceptance.",
+  "rows" : [
+    {
+      "details" : {
+        "actualSetters" : 2,
+        "finalMode" : "history",
+        "reentered" : true,
+        "revision" : 1
+      },
+      "name" : "original.counter-observer-reentry-counts-every-setter",
+      "pass" : false
+    },
+    {
+      "details" : {
+        "actualSetters" : 1,
+        "reentered" : false,
+        "revision" : 1
+      },
+      "name" : "candidate.passive-counter-has-no-reentrant-callback",
+      "pass" : true
+    },
+    {
+      "details" : {
+        "actualSetters" : 2,
+        "revision" : 2
+      },
+      "name" : "original.actual-mode-observer-reentry-is-counted",
+      "pass" : true
+    },
+    {
+      "details" : {
+        "actualSetters" : 2,
+        "revision" : 2
+      },
+      "name" : "candidate.actual-mode-observer-reentry-is-counted",
+      "pass" : true
+    },
+    {
+      "details" : {
+        "revision" : 2
+      },
+      "name" : "original.equal-mode-publications-count",
+      "pass" : true
+    },
+    {
+      "details" : {
+        "revision" : 2
+      },
+      "name" : "candidate.equal-mode-publications-count",
+      "pass" : true
+    },
+    {
+      "details" : {
+        "revision" : 4
+      },
+      "name" : "candidate.ABA-publications-count",
+      "pass" : true
+    }
+  ],
+  "schema" : "otzaria.viewer-parent.mode-counter.source-controls.v1"
+}

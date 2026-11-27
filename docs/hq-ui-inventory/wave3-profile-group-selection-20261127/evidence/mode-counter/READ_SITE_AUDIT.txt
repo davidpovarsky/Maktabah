@@ -1,0 +1,140 @@
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-34-              let selectionRevision = rootPublications.selectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-35-              let settingsRevision = rootPublications.settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-36-              tab == tab.canonical, mode == tab.appMode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:37:              let modeRevision = manager.nativeModePresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-38-              let bookRevision = manager.selectedBookPresentationRevision else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-39-            throw UIRouteError(.unavailable, "native_history_record_parent_unavailable")
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-40-        }
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-59-              rootPublications.selectionRevision == selectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-60-              rootPublications.settingsRevision == settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-61-              bindings.selectedTab.wrappedValue == tab, manager.currentMode == mode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:62:              manager.nativeModePresentationRevision == modeRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-63-              manager.selectedBook === book, manager.selectedBookPresentationMode == bookMode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-64-              manager.selectedBookPresentationRevision == bookRevision else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-65-            throw UIRouteError(.staleState, "native_history_record_parent_changed")
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-69-    func validateAfter(_ bindings: MaktabahNativeSceneBindings, requiresPublishedMode: Bool) throws {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-70-        let manager = bindings.manager
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-71-        let published = manager.currentMode == .history
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:72:            && manager.nativeModePresentationRevision == presentedModeRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-73-        let awaitingOriginalPublisher = changesTab && !requiresPublishedMode
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:74:            && manager.currentMode == mode && manager.nativeModePresentationRevision == modeRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-75-        guard bindings.rootPublications === rootPublications,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-76-              rootPublications.selectionRevision == presentedSelectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-77-              rootPublications.settingsRevision == settingsRevision,
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-246-              bindings.rootPublications?.selectionRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-247-              bindings.rootPublications?.settingsRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-248-              workspacePresentation?.originalStateRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:249:              bindings.manager.nativeModePresentationRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-250-              bindings.manager.selectedBookPresentationRevision != nil else { return false }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-251-        guard case .liveNativeSetters = mapping.coverage else { return false }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-252-        return true
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-436-            // The original TabView's own mode publication may follow its
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-437-            // selection setter. Keep the same admission until that publication.
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-438-            guard bindings.manager.currentMode == .history,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift:439:                  bindings.manager.nativeModePresentationRevision == value.source.parent.presentedModeRevision else { return }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-440-            try validate(value.source, rendered: true)
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-441-            guard pending === value, self.root === root, value.source.valid else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift-442-                throw UIRouteError(.staleState, "native_history_record_render_changed")
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-90-              ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) == target.backend,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-91-              let root = bindings.rootPublications,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-92-              let selectionRevision = root.selectionRevision, let settingsRevision = root.settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift:93:              let modeRevision = manager.nativeModePresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-94-              let bookRevision = manager.selectedBookPresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-95-              let tab = manager.openTabs.first(where: { $0.id == target.tabID }),
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-96-              let destination = tab.viewModel.currentDestination,
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-114-            _ = workspace.attached; _ = workspace.isSwitching; _ = workspace.errorMessage
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-115-            _ = workspace.store.loadError
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-116-            _ = root.selectionRevision; _ = root.settingsRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift:117:            _ = manager.currentMode; _ = manager.nativeModePresentationRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-118-            _ = tab.viewModel.state
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-119-            _ = tab.viewModel.currentBook; _ = tab.viewModel.currentDestination
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-120-            _ = tab.viewModel.backendSection; _ = tab.viewModel.contentText
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-138-              workspace.errorMessage == nil, store.loadError == nil, foreignReady(),
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-139-              bindings.rootPublications === root,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-140-              root.selectionRevision == selectionRevision, root.settingsRevision == settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift:141:              manager.nativeModePresentationRevision == modeRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-142-              bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-143-              !bindings.showSettings.wrappedValue,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift-144-              changesTab || MaktabahApp.isIpad
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-67-                            workspace: MaktabahNativeWorkspacePresentationBinding?) -> Bool {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-68-        bindings.rootPublications?.selectionRevision != nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-69-            && bindings.rootPublications?.settingsRevision != nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift:70:            && bindings.manager.nativeModePresentationRevision != nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-71-            && bindings.manager.selectedBookPresentationRevision != nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-72-            && workspace?.originalStateRevision != nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-73-            && bindings.selectedTab.wrappedValue == bindings.selectedTab.wrappedValue.canonical
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-91-        guard Self.isAvailable(bindings, workspace: workspace),
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-92-              let root = bindings.rootPublications,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-93-              let selection = root.selectionRevision, let settings = root.settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift:94:              let mode = manager.nativeModePresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-95-              let book = manager.selectedBookPresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-96-              let workspaceRevision = workspace.originalStateRevision else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-97-            throw UIRouteError(.unavailable, "native_sefaria_original_root_unavailable")
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-114-              let workspace, workspacePresentation === workspace,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-115-              workspace.originalStateRevision == workspaceRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-116-              root.selectionRevision == selectionRevision, root.settingsRevision == settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift:117:              manager.nativeModePresentationRevision == modeRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-118-              manager.selectedBookPresentationRevision == bookRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-119-              bindings.selectedTab.wrappedValue == tab, manager.currentMode == mode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift-120-              manager.selectedBook.map(ObjectIdentifier.init) == bookID,
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-59-              let selectionRevision = rootPublications.selectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-60-              let settingsRevision = rootPublications.settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-61-              tab == tab.canonical, mode == tab.appMode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:62:              let modeRevision = manager.nativeModePresentationRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-63-              let bookRevision = manager.selectedBookPresentationRevision else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-64-            throw UIRouteError(.unavailable, "native_search_entry_parent_unavailable")
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-65-        }
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-84-              rootPublications.selectionRevision == selectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-85-              rootPublications.settingsRevision == settingsRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-86-              bindings.selectedTab.wrappedValue == tab, manager.currentMode == mode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:87:              manager.nativeModePresentationRevision == modeRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-88-              manager.selectedBook === book, manager.selectedBookPresentationMode == bookMode,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-89-              manager.selectedBookPresentationRevision == bookRevision else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-90-            throw UIRouteError(.staleState, "native_search_entry_parent_changed")
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-94-    func validateAfter(_ bindings: MaktabahNativeSceneBindings, requiresPublishedMode: Bool) throws {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-95-        let manager = bindings.manager
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-96-        let published = manager.currentMode == .search
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:97:            && manager.nativeModePresentationRevision == presentedModeRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-98-        let awaitingOriginalPublisher = changesTab && !requiresPublishedMode
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:99:            && manager.currentMode == mode && manager.nativeModePresentationRevision == modeRevision
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-100-        guard bindings.rootPublications === rootPublications,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-101-              rootPublications.selectionRevision == presentedSelectionRevision,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-102-              rootPublications.settingsRevision == settingsRevision,
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-211-              let mapping = workspace.mappingOwnershipObservation(),
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-212-              mapping.owner == ObjectIdentifier(manager), mapping.scene == sceneID.rawValue,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-213-              manager.selectedBookPresentationRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:214:              manager.nativeModePresentationRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-215-              bindings.rootPublications?.selectionRevision != nil,
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-216-              bindings.rootPublications?.settingsRevision != nil else { return false }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift-217-        guard case .liveNativeSetters = mapping.coverage else { return false }
+--
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-28-        willSet {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-29-            // Observe every original mode publication, including equal writes.
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-30-            // This metadata neither selects a mode nor replaces TabView's owner.
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift:31:            if let revision = nativeModePresentationRevision, revision < .max {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift:32:                nativeModePresentationRevision = revision + 1
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-33-            } else {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift:34:                nativeModePresentationRevision = nil
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-35-            }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-36-        }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-37-    }
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift:38:    private(set) var nativeModePresentationRevision: UInt64? = 0
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-39-    var selectedBook: BooksData? {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-40-        willSet {
+49f15cd68933b3e75ad8fe9074712c768f793566:Source/UI/iOS/Managers/iOSNavigationManager.swift-41-            // Original presentation ownership metadata. Every setter, including
+
+MANAGER_SHA 3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6

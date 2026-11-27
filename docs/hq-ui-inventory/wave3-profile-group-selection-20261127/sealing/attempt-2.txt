@@ -1,0 +1,1 @@
+Read-only final packet validation exited1 with StopIteration while looking for a RESULT prefix in the actual service log. The service writes its final JSON without that prefix. Original logs were unchanged. Readback confirmed HEADaa509 and empty index; no add/commit executed. Next attempt accepts the exact service JSON line and still asserts actual46/0.

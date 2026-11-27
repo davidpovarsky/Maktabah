@@ -1,0 +1,1 @@
+Initial setup as ubuntu failed before creating the destination: PermissionError [Errno 13] at Path.mkdir('/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127'). No copy/compile occurred. Root then created only that exact directory as uid1001/gid1001 mode0750; the shared parent was unchanged. This is setup evidence, not a compiled control result.

@@ -1,0 +1,136 @@
+{
+  "kind": "read-only-snapshot-original-Foundation-cache",
+  "utc": "2026-11-27T11:50:59.332508+00:00",
+  "source": "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+  "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache",
+  "sourceUnchanged": true,
+  "files": [
+    {
+      "path": "14ZLMHUHQ2O7Z/CDispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 732168,
+      "mode": 33188,
+      "sha256": "159e4a5da219903e5c32c05dce292b0eecafd0604d9be22c5579b8ca464ff954"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/Dispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 35000,
+      "mode": 33188,
+      "sha256": "9a0cf43884f20bbb8e7d5ddf22923310e02252835f1a2cd3e968077a43d37317"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "bytes": 2723248,
+      "mode": 33188,
+      "sha256": "3ff62ada19c525a511f8c4c01fe6d937380bf87447538d5c605a2df7ebc7580c"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 239720,
+      "mode": 33188,
+      "sha256": "1837c8e53eb70475574b1d8f9162add4e3193a32c8090595a8309f183207b751"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 164184,
+      "mode": 33188,
+      "sha256": "32971999407154b01eae2ec16209068a75a30ddfde73670adaa690978d6c8f2a"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "bytes": 37704,
+      "mode": 33188,
+      "sha256": "a7fd50868501d5c728adfc89f07c2dac97959dc456d42f6608a019274abc4817"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/_FoundationCShims-O2Q1FP8A0YE6.pcm",
+      "bytes": 11058296,
+      "mode": 33188,
+      "sha256": "9ee24215b1c9b10c99d3059f255001a65f4295150042b1c7255b3c04a9484a93"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/_FoundationICU-1Z7BBYW838GM3.pcm",
+      "bytes": 2330336,
+      "mode": 33188,
+      "sha256": "f0ce0f765c653490617a8700fe7ad484403c6e77b9cad1c6c1359457cc55641a"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 36384,
+      "mode": 33188,
+      "sha256": "3ed3dbb7161422ba0fdcee68a26e23d94c2c078d2902cc703b66991e4fd35c86"
+    },
+    {
+      "path": "14ZLMHUHQ2O7Z/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 389520,
+      "mode": 33188,
+      "sha256": "d5b6d7582fc2cafaa615d2b9376141c8863c455bce05f4999ff8fa2f15cad9e9"
+    },
+    {
+      "path": "UA7LT4M1IAF2/CDispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 731200,
+      "mode": 33188,
+      "sha256": "0c95ffa697c33008ada6644c5698faa76911ef44efbf8ed998e178d031d57cb7"
+    },
+    {
+      "path": "UA7LT4M1IAF2/Dispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 34824,
+      "mode": 33188,
+      "sha256": "e9f8b40d84f86179bc62854c3a399db7d414e555d21126379c7f49476246390f"
+    },
+    {
+      "path": "UA7LT4M1IAF2/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "bytes": 2722768,
+      "mode": 33188,
+      "sha256": "b437b67cb2c61f9c80e0666ac986bc9038400f4250e91905dc3e63f91e3bbbfe"
+    },
+    {
+      "path": "UA7LT4M1IAF2/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 239544,
+      "mode": 33188,
+      "sha256": "efd31993053d955421758beda5836b68a297498da39d3c7119e0b360a0e4594e"
+    },
+    {
+      "path": "UA7LT4M1IAF2/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 163432,
+      "mode": 33188,
+      "sha256": "5a5cdf0f0a69e67a1ce65596226864f64879cd9a8971b9cd73a0f9456dbacb1a"
+    },
+    {
+      "path": "UA7LT4M1IAF2/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "bytes": 37528,
+      "mode": 33188,
+      "sha256": "175af4df1a05ff531c338ff7bc457e2059fd7ca66646417e909ab3a833ff5462"
+    },
+    {
+      "path": "UA7LT4M1IAF2/_FoundationCShims-O2Q1FP8A0YE6.pcm",
+      "bytes": 11057688,
+      "mode": 33188,
+      "sha256": "78a31cd07866bca0608512055a5408b138026c1458893ec7f5f03e38cd91d265"
+    },
+    {
+      "path": "UA7LT4M1IAF2/_FoundationICU-1Z7BBYW838GM3.pcm",
+      "bytes": 2324904,
+      "mode": 33188,
+      "sha256": "5de9f77845bd179f9435209512f26dd8cbbc5feaca1bfffd4ab175db3dd75909"
+    },
+    {
+      "path": "UA7LT4M1IAF2/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 36200,
+      "mode": 33188,
+      "sha256": "9f8334756bf24614579894c7a0fce5e009c8a5c1925972a28cb6d4a8aa0367ac"
+    },
+    {
+      "path": "UA7LT4M1IAF2/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 389344,
+      "mode": 33188,
+      "sha256": "c01a580df7bcd88335f055823e3e1302aec9bfcf37b45132902183e0c0c0974b"
+    },
+    {
+      "path": "modules.timestamp",
+      "bytes": 0,
+      "mode": 33188,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "bytes": 35483992
+}
