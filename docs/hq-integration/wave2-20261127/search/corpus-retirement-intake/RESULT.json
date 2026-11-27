@@ -1,0 +1,61 @@
+{
+  "before": "8fbfcf710d0b221422cd40270dabd2094136720e",
+  "donor": "f77083549d98fddceab87202016bcb88feb081ce",
+  "files": [
+    {
+      "bytes": 5576,
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/ADMISSION.json",
+      "sha256": "0498c4d5b7220dd034daf352a294e6a769f9a81d5050c60cd3443ba93b91319f"
+    },
+    {
+      "bytes": 2218,
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/INTENT.json",
+      "sha256": "f1f3eb2695857e7b432c9a5a695c264275e20051cfd4586923b1503a0df383c6"
+    },
+    {
+      "bytes": 1409,
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/README.md",
+      "sha256": "6ab6b9d85aef523cb31a19d9eb4ace1d798a412d66d57377f200da940b9632c6"
+    },
+    {
+      "bytes": 1530,
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/RESULT.json",
+      "sha256": "aed0368790bb2396cee4dd1a73b4d277691468e95f1a1a9b45909207288f79b4"
+    },
+    {
+      "bytes": 13017,
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-db-retirement/retire-exact-recovered-v40-db.py",
+      "sha256": "a4e4a1a98cfb6b7918ccdfb2e2af021b8b24eac57e89fd4986d65d3ca9c4ee8b"
+    }
+  ],
+  "freshOriginalFileReadback": [
+    {
+      "bytes": 2218,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-db-retirement-20261127/INTENT.json",
+      "sha256": "f1f3eb2695857e7b432c9a5a695c264275e20051cfd4586923b1503a0df383c6"
+    },
+    {
+      "bytes": 5576,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-db-retirement-20261127/ADMISSION.json",
+      "sha256": "0498c4d5b7220dd034daf352a294e6a769f9a81d5050c60cd3443ba93b91319f"
+    },
+    {
+      "bytes": 1530,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-db-retirement-20261127/RESULT.json",
+      "sha256": "aed0368790bb2396cee4dd1a73b4d277691468e95f1a1a9b45909207288f79b4"
+    },
+    {
+      "bytes": 1700,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/RESERVATION.json",
+      "sha256": "8efd950e3b1a792390e754cfdf7f2a7e00ad9c8badfc6b9c1198f3ee8263c48d"
+    }
+  ],
+  "historicalRecoveryReceiptsUnchanged": true,
+  "mapped": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+  "observedUnix": 1795766843.191866,
+  "originalDatabaseRemainsAbsent": true,
+  "schema": "otzaria.wave2.corpus-retirement-intake/1",
+  "scope": "Read-only proof intake; no repeated hash, SQL, deletion, native acceptance or public download",
+  "sourceTreeUnchanged": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "status": "DOCUMENTED_ACTUAL_ONE_FILE_RETIREMENT_RECHECKED"
+}
