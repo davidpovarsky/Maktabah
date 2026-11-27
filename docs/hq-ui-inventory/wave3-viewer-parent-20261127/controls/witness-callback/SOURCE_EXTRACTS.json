@@ -1,0 +1,20 @@
+[
+  {
+    "control": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/controls/witness-callback/baseline.swift",
+    "control_sha256": "69fa0c5bf0eb06bcbc66526e6117c283020cfee87d6dd541fb4b3e10d65b5fdd",
+    "extracted_bytes": 2465,
+    "extracted_sha256": "73ff143095b02a8412c3fd227a3b13acbdf30f5c2377158a5fbca42149bb2f5f",
+    "source": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/controls/witness-callback/baselineWitness.swift",
+    "source_sha256": "6aaa6773834663f4d89bdb3c32db6ac405bc38f76a9a5713f526093857af0123",
+    "variant": "baseline"
+  },
+  {
+    "control": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/controls/witness-callback/candidate.swift",
+    "control_sha256": "ce66c502729861f6daeacaa8446602e3950f434242414ce89ac1f4f87f6c33ca",
+    "extracted_bytes": 3124,
+    "extracted_sha256": "dee492cdcf1eef7a3ace7d8488d88bafc4660e8b807d44c1c449097ce9de3b10",
+    "source": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift",
+    "source_sha256": "d14ef9ad32b1903b7b909185f0a4922ecfcd035d784b208527a32b19c00efa89",
+    "variant": "candidate"
+  }
+]

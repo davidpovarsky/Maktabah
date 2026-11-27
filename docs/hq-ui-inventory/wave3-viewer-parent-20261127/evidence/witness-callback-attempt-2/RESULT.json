@@ -1,0 +1,49 @@
+{
+  "free": 2785775616,
+  "own_allocated": 57270272,
+  "schema": "otzaria.viewer-parent.witness-callback-source-controls.v1",
+  "variants": [
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-Xfrontend",
+        "-debug-time-expression-type-checking",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/module-cache",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline.swift",
+        "-o",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline"
+      ],
+      "compile_exit": 0,
+      "finished": "2026-11-27T12:58:45.246998+00:00",
+      "run_exit": 1,
+      "source_sha256": "741ede4b99a00476aa78bc9c07da7e4f438852aa6d8b749e18b5aab556778497",
+      "started": "2026-11-27T12:58:43.759453+00:00",
+      "variant": "baseline"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-Xfrontend",
+        "-debug-time-expression-type-checking",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/module-cache",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate.swift",
+        "-o",
+        "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate"
+      ],
+      "compile_exit": 0,
+      "finished": "2026-11-27T12:58:45.729852+00:00",
+      "run_exit": 0,
+      "source_sha256": "05fb2675af11bc4df3de5414c5eb79f5a1035e74ea80adf68b66a1739114920d",
+      "started": "2026-11-27T12:58:45.247284+00:00",
+      "variant": "candidate"
+    }
+  ]
+}

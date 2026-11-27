@@ -1,0 +1,197 @@
+[
+  {
+    "bytes": 5065,
+    "path": "INTAKE.json",
+    "sha256": "f9940ec99ba67106734042f90837e22327ecd36824b3c394d1e434f671ed7758"
+  },
+  {
+    "bytes": 737,
+    "path": "LAYOUT_INVERSE.json",
+    "sha256": "5f9612c7c27bb57cb53093c2c566d04394102241ca31819b275bdc724ff9d6e6"
+  },
+  {
+    "bytes": 8158,
+    "path": "README.md",
+    "sha256": "d495bda68a57f9deaedffc46c786d6eff5ae2f344bcab7a42e374b7194d6b701"
+  },
+  {
+    "bytes": 3294,
+    "path": "BASE_INPUTS.json",
+    "sha256": "15b85bbf40222a2205aa7851275c81e7b74a284e37928e2927868bbcafaf2af0"
+  },
+  {
+    "bytes": 5672,
+    "path": "proposals/READER_TAB_BINDING.patch",
+    "sha256": "6d0ffd15e797ef617dda442c7860a7f5b4b395f7a0abf4de630122ccd5596739"
+  },
+  {
+    "bytes": 16862,
+    "path": "proposals/READER_TAB_BINDING.resolved.swift",
+    "sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410"
+  },
+  {
+    "bytes": 14214,
+    "path": "proposals/SESSION_ALL.patch",
+    "sha256": "5a3e2ba99f06b9f1305ee09947936334e0f48bc578a778806f85ebb468d36423"
+  },
+  {
+    "bytes": 10160,
+    "path": "proposals/SESSION_VIEWER.patch",
+    "sha256": "aa91d6cd23cc9cfdaf03dfa51d2b8d41cabfab67c31c8beaaa23181c5c0ad999"
+  },
+  {
+    "bytes": 114948,
+    "path": "proposals/SESSION_VIEWER.resolved.swift",
+    "sha256": "9812a69986659a7867fe06a5de344f0222a2e908a65723350a553e3dc1584cc1"
+  },
+  {
+    "bytes": 4379,
+    "path": "proposals/WINDOW_SOURCE_SESSION.patch",
+    "sha256": "1b86536346f401449a378c4c20593b78d1fccfe37722860882ecfa0db3d26f71"
+  },
+  {
+    "bytes": 109615,
+    "path": "proposals/WINDOW_SOURCE_SESSION.resolved.swift",
+    "sha256": "4033be074088f54e2016d76a5f33f261230361e37371cf572068ac362273eeeb"
+  },
+  {
+    "bytes": 19465,
+    "path": "controls/ContinuationControls.swift",
+    "sha256": "2ff81272da62f3e07e30ef75579e2d5e6bbd81a7be4cde4ec39bf0bcc96277f7"
+  },
+  {
+    "bytes": 13286,
+    "path": "controls/OwnerBoundaryControls.swift",
+    "sha256": "3efbacd15253fb5b334baf2acb485b06bde4de713663408c2799b634596a6377"
+  },
+  {
+    "bytes": 498,
+    "path": "controls/mode-counter/INPUTS.json",
+    "sha256": "dbd0f0ce5b5f5ea7ecd1b272270c254c9a1594adfb2c3150ddcb249d4df21d5b"
+  },
+  {
+    "bytes": 6451,
+    "path": "controls/mode-counter/ModeCounterControls.swift",
+    "sha256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40"
+  },
+  {
+    "bytes": 23626,
+    "path": "controls/mode-counter/READ_SITE_AUDIT.txt",
+    "sha256": "3d9b95cf9f1b35cbd0c746661c08830b6c0ea4b9ba856e1c1c1aa05d0462e512"
+  },
+  {
+    "bytes": 532,
+    "path": "controls/mode-counter/original-declarations.swift.txt",
+    "sha256": "18f605d7627db95e838f5df0518f2506d6fb0a2ce5b72214246e041251c763ce"
+  },
+  {
+    "bytes": 41219,
+    "path": "controls/owner-controls/OwnerControls-attempt2.swift",
+    "sha256": "8a61ce1d5c462e145f9b92f64c7f407cb82d752de71f82f59c1508c975f0a68a"
+  },
+  {
+    "bytes": 41153,
+    "path": "controls/owner-controls/OwnerControls-window-revisions-omitted.swift",
+    "sha256": "ec2411877250c04e7c80f83f19d9c54aee2ae66bd701c9e8b9cfb433a99bd517"
+  },
+  {
+    "bytes": 41134,
+    "path": "controls/owner-controls/OwnerControls.swift",
+    "sha256": "829f3648193138dde9144a5afdc636022978b4067d46d4c0a52a0a2bfab12447"
+  },
+  {
+    "bytes": 1869,
+    "path": "controls/owner-controls/SOURCE_EXTRACTS.json",
+    "sha256": "c854b077a4da9c06babd24beb45a0df37c49bfdf2d7f2523599e66a956c6426d"
+  },
+  {
+    "bytes": 7628,
+    "path": "controls/run_actual_module_controls.py",
+    "sha256": "d2ece56da58f00780fd64e76c1599e679c8f2cf9ad869e5eb9525b36dbaf8dcd"
+  },
+  {
+    "bytes": 8312,
+    "path": "controls/run_actual_module_controls_attempt2.py",
+    "sha256": "59ef4e2b5a72224180fca71b0afbd06b4a40b9af9725a3add96553bc80b2993d"
+  },
+  {
+    "bytes": 8805,
+    "path": "controls/run_actual_module_controls_attempt3.py",
+    "sha256": "382dae47bf16df08a957d2c37c9782b81fe75655f440b86405a83c70331e8504"
+  },
+  {
+    "bytes": 2256,
+    "path": "controls/run_owner_controls.py",
+    "sha256": "28605583fcd2493b6e6cf48285242be52e81e16459196f186a2ca4af06ceec2e"
+  },
+  {
+    "bytes": 4252,
+    "path": "controls/witness-callback/CallbackBoundary.swift",
+    "sha256": "f7c93a813a0bb7df7dc2953effa4653820ae99f3f0bcceafff4b3abe4d37568d"
+  },
+  {
+    "bytes": 1212,
+    "path": "controls/witness-callback/SOURCE_EXTRACTS.json",
+    "sha256": "50df426ed3851dc5734d2dd581cf9f28d26b33075a38bcdf8dde3edc86b53d20"
+  },
+  {
+    "bytes": 6860,
+    "path": "controls/witness-callback/baseline-attempt2.swift",
+    "sha256": "741ede4b99a00476aa78bc9c07da7e4f438852aa6d8b749e18b5aab556778497"
+  },
+  {
+    "bytes": 6701,
+    "path": "controls/witness-callback/baseline.swift",
+    "sha256": "69fa0c5bf0eb06bcbc66526e6117c283020cfee87d6dd541fb4b3e10d65b5fdd"
+  },
+  {
+    "bytes": 8236,
+    "path": "controls/witness-callback/baselineWitness.swift",
+    "sha256": "6aaa6773834663f4d89bdb3c32db6ac405bc38f76a9a5713f526093857af0123"
+  },
+  {
+    "bytes": 7519,
+    "path": "controls/witness-callback/candidate-attempt2.swift",
+    "sha256": "05fb2675af11bc4df3de5414c5eb79f5a1035e74ea80adf68b66a1739114920d"
+  },
+  {
+    "bytes": 7360,
+    "path": "controls/witness-callback/candidate.swift",
+    "sha256": "ce66c502729861f6daeacaa8446602e3950f434242414ce89ac1f4f87f6c33ca"
+  },
+  {
+    "bytes": 1483,
+    "path": "review-candidate-1/SOURCE_MANIFEST.json",
+    "sha256": "0afdb44cbb1343c6a71c0eed6afe173d02a4e8f191edbb1a6bbf8c45710e6b18"
+  },
+  {
+    "bytes": 1654,
+    "path": "review-candidate-1/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+    "sha256": "684dc99eae7c2bbc510532e3cb43538c4b25813e317efe7d9a47974ab53e580a"
+  },
+  {
+    "bytes": 27706,
+    "path": "review-candidate-1/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+    "sha256": "cfe1fd95b1e67d1cd9eeeb23ea0ef58f10504476f4f0ade3166bdde7671a48f3"
+  },
+  {
+    "bytes": 11630,
+    "path": "review-candidate-1/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+    "sha256": "f0dc9d0e0ad9ea00c933df057089d223bf33f8d914fd40ce756caaee77359efa"
+  },
+  {
+    "bytes": 1327,
+    "path": "review-candidate-1/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+    "sha256": "7b171d100dcf5e20c2cafca81dd7b19ec9d3dc264f0121c8f18c544445d9d7eb"
+  },
+  {
+    "bytes": 18186,
+    "path": "review-candidate-1/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+    "sha256": "2814d6c1793e66c295a67d96977f757e71da0e6fd8902982d67f19c6076ff56b"
+  },
+  {
+    "bytes": 2168,
+    "path": "review-candidate-1/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+    "sha256": "d9d515375ec29ce3ea3d2b574cb02627b737a253bda4361596692cc4a9ea3e72"
+  }
+]

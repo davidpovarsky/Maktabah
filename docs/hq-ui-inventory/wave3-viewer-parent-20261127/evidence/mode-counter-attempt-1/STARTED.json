@@ -1,0 +1,18 @@
+{
+  "schema": "otzaria.viewer-parent.mode-counter.execution.v1",
+  "startUTC": "2026-11-27T12:08:12.898121+00:00",
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/module-cache",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls.swift",
+    "-o",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls"
+  ],
+  "sourceSHA256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40",
+  "freeBefore": 3062157312,
+  "budgetBytes": 104857600,
+  "reserveBytes": 268435456,
+  "compilerPID": 540116
+}

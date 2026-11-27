@@ -1,0 +1,47 @@
+[
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+    "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+    "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+    "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+    "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+    "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+    "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+    "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaUIRouting_OtzariaUIRouting.bundle/Info.plist",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaUIRouting_OtzariaUIRouting.bundle/Info.plist",
+    "sha256": "6ad920171aa7411d45de587b80c9c349ebb4fa8f5d88113546a6113c3bac82d1"
+  },
+  {
+    "copy": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OtzariaUIRouting_OtzariaUIRouting.bundle/catalog-status.json",
+    "original": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaUIRouting_OtzariaUIRouting.bundle/catalog-status.json",
+    "sha256": "3b33f3498fb32e5af369bf040b6478f225d2e872c689fbebf9a9095598e507b2"
+  }
+]

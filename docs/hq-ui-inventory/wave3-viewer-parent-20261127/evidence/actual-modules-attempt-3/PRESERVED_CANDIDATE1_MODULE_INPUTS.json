@@ -1,0 +1,62 @@
+[
+  {
+    "bytes": 32632,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftdoc",
+    "sha256": "99eaed85ab6af3bbef6b682e073aaf4da7d8d9a0c08c5eae8b79a368fb1fc62c"
+  },
+  {
+    "bytes": 283636,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftmodule",
+    "sha256": "1123c307559890178cc45635d517c9fe7117fa14dc7991732fc7cfe8805e08db"
+  },
+  {
+    "bytes": 90428,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "sha256": "405b8d1d3dce2b073a73d0643a1c458be38e0801c748382841c7455e2a4dbde9"
+  },
+  {
+    "bytes": 35124,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftdoc",
+    "sha256": "56e348aea6d0cf82934de78d157bddf00b87216751ddd82555fb2cf71ef4a358"
+  },
+  {
+    "bytes": 651420,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftmodule",
+    "sha256": "92f4ec14bd4e691c16bea4125bacb64093c12c47b52e55a0866f6ccd25665ac8"
+  },
+  {
+    "bytes": 142868,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftsourceinfo",
+    "sha256": "e179a8a3636ba1f53fdbaccc8a8a782fa0451f41c5f0a177c4bd79eb277587a6"
+  },
+  {
+    "bytes": 24528,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftdoc",
+    "sha256": "4ebc82e70cf844bc4a0f84eda38a3a4a11cecfc9cc0393bbd124a77b0cc3d7b0"
+  },
+  {
+    "bytes": 312164,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftmodule",
+    "sha256": "ce3d8022a6301ba07b5418652d076ceb4c4deeac21329d6eecb2cd51788d854c"
+  },
+  {
+    "bytes": 72308,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftsourceinfo",
+    "sha256": "eb732aafbb65a07590c1c120dc45143636904f8962a170a8ac91361b7ec12520"
+  },
+  {
+    "bytes": 1763112,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libChavrusaUIRoutingHost.so",
+    "sha256": "bad2d20bef305a8c6aac9bbc6613c7e03ebe1b1a0db478d541f79c5d35a4ef2b"
+  },
+  {
+    "bytes": 2663736,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libOtzariaActionCore.so",
+    "sha256": "8af5c9780f08ca01f1a7814759bba974c38a0794d79f7eb79e7b66736f41fd40"
+  },
+  {
+    "bytes": 1368160,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libOtzariaUIRouting.so",
+    "sha256": "0502661dcc063d183482160893134617afe9bf245fabba3ab17e74c300a9dbef"
+  }
+]

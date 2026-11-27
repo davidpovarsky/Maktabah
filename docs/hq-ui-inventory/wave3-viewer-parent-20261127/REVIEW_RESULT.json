@@ -1,0 +1,52 @@
+{
+  "base": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "counts": {
+    "Apple_target_syntax_parse": 14,
+    "actual_Core_UIRouting_Host": {
+      "candidate1_fail": 3,
+      "candidate1_pass": 28,
+      "candidate_fail": 0,
+      "candidate_pass": 31
+    },
+    "actual_callback_source_doubles": {
+      "candidate_fail": 0,
+      "candidate_pass": 7,
+      "prior_fail": 5,
+      "prior_pass": 2
+    },
+    "mode_metadata": {
+      "original_expected_fail": 1,
+      "positive_controls": 6
+    },
+    "native_runs": 0,
+    "owner_source_doubles": {
+      "candidate_fail": 0,
+      "candidate_pass": 21,
+      "omitted_revision_fail": 4,
+      "omitted_revision_pass": 17
+    }
+  },
+  "open": [
+    "root shared three-way application and iOS project membership",
+    "original owner-signature gate for final source",
+    "actual Apple SDK typecheck/build",
+    "actual original UIKit and system AppIntent native qualification",
+    "active-but-hidden same phone tab original-owner factoring"
+  ],
+  "review": {
+    "final_witness_sha256": "d14ef9ad32b1903b7b909185f0a4922ecfcd035d784b208527a32b19c00efa89",
+    "findings_closed": [
+      "old single guard could reenter staged claim",
+      "terminal live guard could replace only local parent",
+      "old UIKit coordinator callback could publish into rebound host"
+    ],
+    "no_further_blocker_reported_in_bounded_scope": true,
+    "reviewer": "/root/release_preflight",
+    "scope": "six Core/UI/Host files plus supplied owner/witness/shared proposals; source-only"
+  },
+  "schema": "otzaria.viewer-parent.review-result.v1",
+  "sealed": "2026-11-27T13:06:03.794071+00:00",
+  "source_commit": "a7643567335f8bd24f34688d7be62f57798f1943",
+  "source_tree": "c9d8da0b68ad94f6b4174b922753eb9ad5650d67",
+  "status": "SOURCE_CHECKS_PASSED_NATIVE_PENDING"
+}

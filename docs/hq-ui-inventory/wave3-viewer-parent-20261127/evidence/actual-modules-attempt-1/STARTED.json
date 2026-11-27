@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/run.py"
+  ],
+  "before": {
+    "free_rootfs_bytes": 2933727232,
+    "own_allocated_bytes": 18161664
+  },
+  "pid": 614181,
+  "started": "2026-11-27T12:33:29.862922+00:00"
+}

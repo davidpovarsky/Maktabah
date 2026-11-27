@@ -1,0 +1,4 @@
+{"started": "2026-11-27T12:33:29.862922+00:00", "pid": 614181, "base": "49f15cd68933b3e75ad8fe9074712c768f793566", "before": {"free_rootfs_bytes": 2933727232, "own_allocated_bytes": 18161664}}
+{"step": "candidate1-OtzariaActionCore", "started": "2026-11-27T12:33:30.536714+00:00", "before": {"free_rootfs_bytes": 2932150272, "own_allocated_bytes": 19726336}}
+{"step": "candidate1-OtzariaActionCore", "exit_code": 1, "after": {"free_rootfs_bytes": 2914365440, "own_allocated_bytes": 37494784}}
+{"status": "NOT_COMPLETE", "error": "RuntimeError('candidate1-OtzariaActionCore exit 1')", "finished": "2026-11-27T12:33:35.115984+00:00", "after": {"free_rootfs_bytes": 2914365440, "own_allocated_bytes": 37494784}, "result_sha256": "03b9bb5acc3e1094c9f2f4dc93fedf4a4b13a00f72d8f68f951eb8249431c83e"}

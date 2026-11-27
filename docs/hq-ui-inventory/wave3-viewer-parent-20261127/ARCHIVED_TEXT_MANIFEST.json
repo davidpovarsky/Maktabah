@@ -1,0 +1,77 @@
+{
+  "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+  "archive_sha256": "54c6a508a48b9d2d8df7e2634503673a7a817a867c06cad444970f785ad5a11d",
+  "members": [
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 59758,
+      "path": "PRODUCT_SOURCE.diff",
+      "sha256": "984315a1c7da1a225399615cb1893292d3331c0c4249d84eefa48780d14db341"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 41219,
+      "path": "controls/owner-controls/OwnerControls-attempt2.swift",
+      "sha256": "8a61ce1d5c462e145f9b92f64c7f407cb82d752de71f82f59c1508c975f0a68a"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 41153,
+      "path": "controls/owner-controls/OwnerControls-window-revisions-omitted.swift",
+      "sha256": "ec2411877250c04e7c80f83f19d9c54aee2ae66bd701c9e8b9cfb433a99bd517"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 8312,
+      "path": "controls/run_actual_module_controls_attempt2.py",
+      "sha256": "59ef4e2b5a72224180fca71b0afbd06b4a40b9af9725a3add96553bc80b2993d"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 8805,
+      "path": "controls/run_actual_module_controls_attempt3.py",
+      "sha256": "382dae47bf16df08a957d2c37c9782b81fe75655f440b86405a83c70331e8504"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 2256,
+      "path": "controls/run_owner_controls.py",
+      "sha256": "28605583fcd2493b6e6cf48285242be52e81e16459196f186a2ca4af06ceec2e"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 5223,
+      "path": "evidence/owner-attempt-2/run.stderr",
+      "sha256": "b44ddc1f4f4891c05d930aad94108647eedb22ac7d79fbdfdadd3e6934628892"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 5672,
+      "path": "proposals/READER_TAB_BINDING.patch",
+      "sha256": "6d0ffd15e797ef617dda442c7860a7f5b4b395f7a0abf4de630122ccd5596739"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 14214,
+      "path": "proposals/SESSION_ALL.patch",
+      "sha256": "5a3e2ba99f06b9f1305ee09947936334e0f48bc578a778806f85ebb468d36423"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 10160,
+      "path": "proposals/SESSION_VIEWER.patch",
+      "sha256": "aa91d6cd23cc9cfdaf03dfa51d2b8d41cabfab67c31c8beaaa23181c5c0ad999"
+    },
+    {
+      "archive": "EXACT_PATCHES_AND_RAW_TEXT.zip",
+      "bytes": 4379,
+      "path": "proposals/WINDOW_SOURCE_SESSION.patch",
+      "sha256": "1b86536346f401449a378c4c20593b78d1fccfe37722860882ecfa0db3d26f71"
+    }
+  ],
+  "original_staged_check": {
+    "exit_code": 2,
+    "output": "docs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:795: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:797: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:818: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:959: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:1048: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:1070: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/PRODUCT_SOURCE.diff:1077: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/controls/owner-controls/OwnerControls-attempt2.swift:777: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/controls/owner-controls/OwnerControls-window-revisions-omitted.swift:775: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/controls/run_actual_module_controls_attempt2.py:120: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/controls/run_actual_module_controls_attempt3.py:127: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/controls/run_owner_controls.py:23: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/evidence/owner-attempt-2/run.stderr:75: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.patch:12: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.patch:61: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.patch:65: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.patch:100: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.patch:103: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:8: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:52: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:81: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:107: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:127: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:235: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_ALL.patch:243: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.patch:30: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.patch:50: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.patch:158: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.patch:166: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/WINDOW_SOURCE_SESSION.patch:8: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/WINDOW_SOURCE_SESSION.patch:52: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/WINDOW_SOURCE_SESSION.patch:63: trailing whitespace.\n+ \n"
+  },
+  "reason": "Preserve exact unified-patch context and raw EOF bytes without normalizing evidence or changing whitespace policy"
+}

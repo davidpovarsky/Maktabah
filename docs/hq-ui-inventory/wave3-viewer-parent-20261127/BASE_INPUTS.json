@@ -1,0 +1,95 @@
+{
+  "ref": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "exists": true,
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "exists": true,
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "exists": true,
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "exists": true,
+      "bytes": 8269,
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "exists": true,
+      "bytes": 15726,
+      "sha256": "f40ce3b90b0d0a0c7cdc1ae78b9208654673648aafa2f5bfddcb3c4dff859345"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "exists": true,
+      "bytes": 24050,
+      "sha256": "e05faf57856de89a9a88017f400ea67ce461e782b2ffd284f069dd93bf1cff0c"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "exists": true,
+      "bytes": 7315,
+      "sha256": "d8fc333818aaba074a00d8498f7b8f721274ed0db1ea15e47422b4512a9c0a8a"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "exists": true,
+      "bytes": 24054,
+      "sha256": "90151e28975fb34952aa5566980847d88dbac1ebf89c9a113c3afecab910a52f"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "exists": true,
+      "bytes": 15478,
+      "sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "exists": true,
+      "bytes": 21276,
+      "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "exists": true,
+      "bytes": 27583,
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "exists": true,
+      "bytes": 4069,
+      "sha256": "087f48afc9f223e8498571e5e7dd84ba62020a8d8c50fb516bfe53ed531f2e22"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Package.swift",
+      "exists": true,
+      "bytes": 701,
+      "sha256": "f89a4943ec3b20027ff315e99e7e20296087f414d9cbcc81e27b47f18699b4b2"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Package.swift",
+      "exists": true,
+      "bytes": 603,
+      "sha256": "8b9dcabb4f131d53675e560fb853b1a7038b9af17cc84d6adf3aafaca092bf09"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Package.swift",
+      "exists": true,
+      "bytes": 446,
+      "sha256": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944"
+    }
+  ]
+}

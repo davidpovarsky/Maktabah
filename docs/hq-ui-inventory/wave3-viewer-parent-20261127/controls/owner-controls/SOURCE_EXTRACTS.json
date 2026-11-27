@@ -1,0 +1,38 @@
+[
+  {
+    "bytes": 3420,
+    "label": "actual_window_source",
+    "sha256": "a06d0085eb00cefc0cb38331e75a212130f47273c91d7ac78e4c4c8f0fe9248a",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/proposals/SESSION_VIEWER.resolved.swift"
+  },
+  {
+    "bytes": 900,
+    "label": "actual_window_observation",
+    "sha256": "1bd47ef64466b7806f428891616970d436be916ce6b78a29f878d4bb7686cde8",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift"
+  },
+  {
+    "bytes": 944,
+    "label": "actual_original_root_setter",
+    "sha256": "d7bcedfaa028894b93d71fdc6142322b3319b92dbb42bd64258cd2144c62c68c",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift"
+  },
+  {
+    "bytes": 552,
+    "label": "original_mode_declarations_plus_approved_ignored_metadata",
+    "sha256": "06e72cfc7ebf25240361a0502da3a08948bd469f9b32d98136f1aec2be61d916",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/controls/mode-counter/original-declarations.swift.txt"
+  },
+  {
+    "bytes": 936,
+    "label": "actual_session_attach_and_capture",
+    "sha256": "c5d49c8f93d956d1e2f1d0bec357f835dd70521ead44139472883fda2529850e",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/proposals/SESSION_VIEWER.resolved.swift"
+  },
+  {
+    "bytes": 20705,
+    "label": "actual_viewer_owner_and_passive_mode_boundary",
+    "sha256": "d88cebe62c813adaf3260f2fc2e4087c60d4f2104d27d13b3fb7a292ed2a3139",
+    "source_path": "/workspace/scratch/c1c70cc48453/viewer-parent-implementation/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift"
+  }
+]

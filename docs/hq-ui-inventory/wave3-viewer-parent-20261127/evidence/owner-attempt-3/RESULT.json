@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/OwnerControls"
+  ],
+  "compile_reused_from": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/RESULT.json",
+  "copy_inputs_sha256": "cab681531f36c18dda4679996bc331976b013aa7fc085504f39189b5288e34db",
+  "exit_code": 0,
+  "finished": "2026-11-27T12:49:35.425657+00:00",
+  "free": 2833813504,
+  "own_allocated": 56111104,
+  "pid": 661929,
+  "schema": "otzaria.viewer-parent.owner-source-controls.v1",
+  "started": "2026-11-27T12:49:34.767031+00:00"
+}

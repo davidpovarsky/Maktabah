@@ -1,0 +1,352 @@
+[
+  {
+    "bytes": 32632,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftdoc",
+    "sha256": "99eaed85ab6af3bbef6b682e073aaf4da7d8d9a0c08c5eae8b79a368fb1fc62c"
+  },
+  {
+    "bytes": 283636,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftmodule",
+    "sha256": "1123c307559890178cc45635d517c9fe7117fa14dc7991732fc7cfe8805e08db"
+  },
+  {
+    "bytes": 90428,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "sha256": "405b8d1d3dce2b073a73d0643a1c458be38e0801c748382841c7455e2a4dbde9"
+  },
+  {
+    "bytes": 359448,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/ContinuationControls",
+    "sha256": "4e38b01d79d98fbf4d067ea3bdbb94361ded007c04db6ad2975b6aebb0d9a25b"
+  },
+  {
+    "bytes": 35124,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftdoc",
+    "sha256": "56e348aea6d0cf82934de78d157bddf00b87216751ddd82555fb2cf71ef4a358"
+  },
+  {
+    "bytes": 651420,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftmodule",
+    "sha256": "92f4ec14bd4e691c16bea4125bacb64093c12c47b52e55a0866f6ccd25665ac8"
+  },
+  {
+    "bytes": 142868,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaActionCore.swiftsourceinfo",
+    "sha256": "e179a8a3636ba1f53fdbaccc8a8a782fa0451f41c5f0a177c4bd79eb277587a6"
+  },
+  {
+    "bytes": 24528,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftdoc",
+    "sha256": "4ebc82e70cf844bc4a0f84eda38a3a4a11cecfc9cc0393bbd124a77b0cc3d7b0"
+  },
+  {
+    "bytes": 312164,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftmodule",
+    "sha256": "ce3d8022a6301ba07b5418652d076ceb4c4deeac21329d6eecb2cd51788d854c"
+  },
+  {
+    "bytes": 72308,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/OtzariaUIRouting.swiftsourceinfo",
+    "sha256": "eb732aafbb65a07590c1c120dc45143636904f8962a170a8ac91361b7ec12520"
+  },
+  {
+    "bytes": 1763112,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libChavrusaUIRoutingHost.so",
+    "sha256": "bad2d20bef305a8c6aac9bbc6613c7e03ebe1b1a0db478d541f79c5d35a4ef2b"
+  },
+  {
+    "bytes": 2663736,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libOtzariaActionCore.so",
+    "sha256": "8af5c9780f08ca01f1a7814759bba974c38a0794d79f7eb79e7b66736f41fd40"
+  },
+  {
+    "bytes": 1368160,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-2/candidate1/out/libOtzariaUIRouting.so",
+    "sha256": "0502661dcc063d183482160893134617afe9bf245fabba3ab17e74c300a9dbef"
+  },
+  {
+    "bytes": 32632,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/ChavrusaUIRoutingHost.swiftdoc",
+    "sha256": "99eaed85ab6af3bbef6b682e073aaf4da7d8d9a0c08c5eae8b79a368fb1fc62c"
+  },
+  {
+    "bytes": 283636,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/ChavrusaUIRoutingHost.swiftmodule",
+    "sha256": "1123c307559890178cc45635d517c9fe7117fa14dc7991732fc7cfe8805e08db"
+  },
+  {
+    "bytes": 90400,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "sha256": "a801d18bc04420fe4ff53b30182afe215a396bc47153e4c7eebf19f20801d802"
+  },
+  {
+    "bytes": 359640,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/ContinuationControls",
+    "sha256": "596e3fad3c5c61ce4d1267b23a07d0ed3d1d10f2c6f8e0680e46971566c2d00f"
+  },
+  {
+    "bytes": 35124,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore.swiftdoc",
+    "sha256": "56e348aea6d0cf82934de78d157bddf00b87216751ddd82555fb2cf71ef4a358"
+  },
+  {
+    "bytes": 651820,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore.swiftmodule",
+    "sha256": "60b307454cebb702f748922c26f1b5c1eac0920f7d1a4e94d4d9ffe9059b89a8"
+  },
+  {
+    "bytes": 142840,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaActionCore.swiftsourceinfo",
+    "sha256": "7e82c8010a38e5a6d61ad9d4f10696f00959e3a12cc8b08c217675fe3fc4ec0f"
+  },
+  {
+    "bytes": 24528,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaUIRouting.swiftdoc",
+    "sha256": "4ebc82e70cf844bc4a0f84eda38a3a4a11cecfc9cc0393bbd124a77b0cc3d7b0"
+  },
+  {
+    "bytes": 312164,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaUIRouting.swiftmodule",
+    "sha256": "ce3d8022a6301ba07b5418652d076ceb4c4deeac21329d6eecb2cd51788d854c"
+  },
+  {
+    "bytes": 72296,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/OtzariaUIRouting.swiftsourceinfo",
+    "sha256": "d42dcb9edf4ee9d81c495c81abab2e6070f1c37f673529ad310ee8041cfea088"
+  },
+  {
+    "bytes": 1763112,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/libChavrusaUIRoutingHost.so",
+    "sha256": "2490e0069d1853376cb5ea451b62c1f1951e8c41ba6197b03ea940ba72f1b59a"
+  },
+  {
+    "bytes": 2664472,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/libOtzariaActionCore.so",
+    "sha256": "af6c26a15f7a148d4e2c67c3a04473fc68aab7a4cef1fa8a34ecbf02d6a50659"
+  },
+  {
+    "bytes": 1368160,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out/libOtzariaUIRouting.so",
+    "sha256": "12a583618dbcf41cb7b27812805cc4310235b62bdb2ecbef3b8503ee24486ed3"
+  },
+  {
+    "bytes": 102808,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls",
+    "sha256": "236641c35066fdd51fc18b37eca9009935421dd5e7ce44db39e94ff073abe026"
+  },
+  {
+    "bytes": 6451,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls.swift",
+    "sha256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40"
+  },
+  {
+    "bytes": 2000,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/RESULT.json",
+    "sha256": "e3a6fc3504b617cb1f63c4440895c97213cd4cd3fe1c359b133eda2b0dcb0ab2"
+  },
+  {
+    "bytes": 801,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/STARTED.json",
+    "sha256": "f6bcac8feaae738880ad286918fb06717fd55b19f24d1e52875dc1455ce1cbb6"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/compile.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/compile.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/run.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 1491,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/run.stdout",
+    "sha256": "ade334db987480af697bf9942c2df77f6fe725221fea489e13a84c861256b0df"
+  },
+  {
+    "bytes": 471544,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/OwnerControls",
+    "sha256": "3fe5d1669e43bf8c00bec85a22b71b57ac43de66cd2fba6f46cf887e4629fcc6"
+  },
+  {
+    "bytes": 41218,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/OwnerControls.swift",
+    "sha256": "0ab45d8d2c76cc30f2531751e54e3e0fdbdde6977e6e02be6739901a7c33fc9d"
+  },
+  {
+    "bytes": 2409,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/RESULT.json",
+    "sha256": "063961859c6252667bb1fcf6d47960f769de67e7f117a98043853e2915813ab5"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/compile.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/compile.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 2255,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/run.py",
+    "sha256": "789f805087ea541cd2b06c544daf08a6e54c63cbc218b68301075e6e7d7091dd"
+  },
+  {
+    "bytes": 5223,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/run.stderr",
+    "sha256": "b44ddc1f4f4891c05d930aad94108647eedb22ac7d79fbdfdadd3e6934628892"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/run.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 5104,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/EXACT_COPY_INPUTS.json",
+    "sha256": "cab681531f36c18dda4679996bc331976b013aa7fc085504f39189b5288e34db"
+  },
+  {
+    "bytes": 471544,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/OwnerControls",
+    "sha256": "3fe5d1669e43bf8c00bec85a22b71b57ac43de66cd2fba6f46cf887e4629fcc6"
+  },
+  {
+    "bytes": 41218,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/OwnerControls.swift",
+    "sha256": "0ab45d8d2c76cc30f2531751e54e3e0fdbdde6977e6e02be6739901a7c33fc9d"
+  },
+  {
+    "bytes": 607,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/RESULT.json",
+    "sha256": "c54aec7600a333c0739f7d5ba9056d5db3f55909e109546fc43a56ddb093d150"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/run.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 1528,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-3/run.stdout",
+    "sha256": "2fc54f0e5edfa4c9f88c3ead8aa557298e3a4e5228137fbc347d4c037f7877ca"
+  },
+  {
+    "bytes": 4308,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/EXACT_BUNDLE_INPUTS.json",
+    "sha256": "08270810cffd8c9690f97864da9df23c9501e28422c3d36cb643e867ce95c454"
+  },
+  {
+    "bytes": 471568,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OwnerControls",
+    "sha256": "0f23655abec5bf94dfd71758d24901246b0250749376edfce8d6c025a9f7323a"
+  },
+  {
+    "bytes": 41152,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OwnerControls.swift",
+    "sha256": "1fa2cab8128441c7bcee34935487214632330fd1f2e65f55a56f4c15e155d24b"
+  },
+  {
+    "bytes": 2591,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/RESULT.json",
+    "sha256": "a26025df4b7bbfde5307823786a085f8afe625f69421964375b674691694c42f"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/compile.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/compile.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 2774,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/run.py",
+    "sha256": "72644b66f2b563cddb33be47cdcb6df9d89fe7e8f02f9eca56b665ba75256a38"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/run.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 1532,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/run.stdout",
+    "sha256": "990e0c471c886f499468ac388902abc10f8dc03e0d7d4eeb110ec83f4407fe35"
+  },
+  {
+    "bytes": 1964,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/RESULT.json",
+    "sha256": "4a76771d02275dda6b1b9aaef6dba9bcabe8b8b3c9e7e1a2c826d8e7285fe4f1"
+  },
+  {
+    "bytes": 100824,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline",
+    "sha256": "8fb1a309e424a876fca232c41c26b7bbad0e84d48387a56523dc744bb51574b1"
+  },
+  {
+    "bytes": 15122,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline-compile.stderr",
+    "sha256": "9ea4ce6970890edbb79b6d504945ac6851a574ae989eb6f2701ded237ca191b9"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline-compile.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline-run.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 958,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline-run.stdout",
+    "sha256": "e01fbc18a0ee9e5c515181a5a93ff067d8ec19f15dd49ee56eefe7983302cbaa"
+  },
+  {
+    "bytes": 6860,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/baseline.swift",
+    "sha256": "741ede4b99a00476aa78bc9c07da7e4f438852aa6d8b749e18b5aab556778497"
+  },
+  {
+    "bytes": 102184,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate",
+    "sha256": "16ec4fb0a0fa7a7c587e9b71824107bb8bb835e3bea36273a81bc0ef6828a713"
+  },
+  {
+    "bytes": 16847,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate-compile.stderr",
+    "sha256": "9cce6413072ac2af4373cc75bf73ad9fe4cdfa093e10058bbfb291419b457bf6"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate-compile.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate-run.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 953,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate-run.stdout",
+    "sha256": "04ca3eb335f64c2eac624a61534e15531e6d8f4cc2292fb13aee9011d554b48f"
+  },
+  {
+    "bytes": 7519,
+    "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/witness-callback-attempt-2/candidate.swift",
+    "sha256": "05fb2675af11bc4df3de5414c5eb79f5a1035e74ea80adf68b66a1739114920d"
+  }
+]

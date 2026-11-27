@@ -1,0 +1,16 @@
+{"started": "2026-11-27T12:39:00.828333+00:00", "pid": 630729, "base": "49f15cd68933b3e75ad8fe9074712c768f793566", "before": {"free_rootfs_bytes": 2888364032, "own_allocated_bytes": 45961216}}
+{"step": "candidate1-harness-compile", "started": "2026-11-27T12:39:01.080638+00:00", "before": {"free_rootfs_bytes": 2887815168, "own_allocated_bytes": 46505984}}
+{"step": "candidate1-harness-compile", "exit_code": 0, "after": {"free_rootfs_bytes": 2887450624, "own_allocated_bytes": 46866432}}
+{"step": "candidate1-controls", "started": "2026-11-27T12:39:02.654291+00:00", "before": {"free_rootfs_bytes": 2887454720, "own_allocated_bytes": 46866432}}
+{"step": "candidate1-controls", "exit_code": 0, "after": {"free_rootfs_bytes": 2887426048, "own_allocated_bytes": 46874624}}
+{"step": "candidate-OtzariaActionCore", "started": "2026-11-27T12:39:03.183390+00:00", "before": {"free_rootfs_bytes": 2887426048, "own_allocated_bytes": 46874624}}
+{"step": "candidate-OtzariaActionCore", "exit_code": 0, "after": {"free_rootfs_bytes": 2882048000, "own_allocated_bytes": 50376704}}
+{"step": "candidate-OtzariaUIRouting", "started": "2026-11-27T12:39:24.178720+00:00", "before": {"free_rootfs_bytes": 2882039808, "own_allocated_bytes": 50376704}}
+{"step": "candidate-OtzariaUIRouting", "exit_code": 0, "after": {"free_rootfs_bytes": 2880245760, "own_allocated_bytes": 52162560}}
+{"step": "candidate-ChavrusaUIRoutingHost", "started": "2026-11-27T12:39:29.766641+00:00", "before": {"free_rootfs_bytes": 2880245760, "own_allocated_bytes": 52162560}}
+{"step": "candidate-ChavrusaUIRoutingHost", "exit_code": 0, "after": {"free_rootfs_bytes": 2878029824, "own_allocated_bytes": 54341632}}
+{"step": "candidate-harness-compile", "started": "2026-11-27T12:39:36.936834+00:00", "before": {"free_rootfs_bytes": 2878029824, "own_allocated_bytes": 54341632}}
+{"step": "candidate-harness-compile", "exit_code": 0, "after": {"free_rootfs_bytes": 2877661184, "own_allocated_bytes": 54702080}}
+{"step": "candidate-controls", "started": "2026-11-27T12:39:38.474641+00:00", "before": {"free_rootfs_bytes": 2877661184, "own_allocated_bytes": 54702080}}
+{"step": "candidate-controls", "exit_code": 0, "after": {"free_rootfs_bytes": 2877652992, "own_allocated_bytes": 54710272}}
+{"status": "PASS_SOURCE_CONTROLS", "error": null, "finished": "2026-11-27T12:39:39.551845+00:00", "after": {"free_rootfs_bytes": 2877652992, "own_allocated_bytes": 54710272}, "result_sha256": "404779501b50010b67b4b3266290fe92141b6e1fbe22bf03edf61e5f386063a3"}

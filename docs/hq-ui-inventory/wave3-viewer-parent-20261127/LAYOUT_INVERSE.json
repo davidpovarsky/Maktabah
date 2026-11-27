@@ -1,0 +1,16 @@
+[
+  {
+    "base_sha256": "d8fc333818aaba074a00d8498f7b8f721274ed0db1ea15e47422b4512a9c0a8a",
+    "candidate_sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e",
+    "exact_original_restored": true,
+    "file": "Source/UI/iOS/Views/iPhoneLayout.swift",
+    "inverse_sha256": "d8fc333818aaba074a00d8498f7b8f721274ed0db1ea15e47422b4512a9c0a8a"
+  },
+  {
+    "base_sha256": "90151e28975fb34952aa5566980847d88dbac1ebf89c9a113c3afecab910a52f",
+    "candidate_sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b",
+    "exact_original_restored": true,
+    "file": "Source/UI/iOS/Views/iPadLayout.swift",
+    "inverse_sha256": "90151e28975fb34952aa5566980847d88dbac1ebf89c9a113c3afecab910a52f"
+  }
+]

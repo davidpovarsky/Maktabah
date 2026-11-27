@@ -1,0 +1,7 @@
+{
+  "archive_bytes": 144877,
+  "archive_sha256": "a2b7841a93b10f6d28fdf419333033a5c97ac874c6aa8f50ba34febcdcdc6644",
+  "files": 40,
+  "member_verification": "exact size+sha before and after",
+  "schema": "otzaria.exact.local-to-oracle-transport.v1"
+}
