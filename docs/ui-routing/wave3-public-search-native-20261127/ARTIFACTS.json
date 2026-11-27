@@ -1,0 +1,127 @@
+{
+  "files": [
+    {
+      "path": "APPEND_VALIDATION.json",
+      "bytes": 878,
+      "sha256": "7044c79bf6a554c93561db7ce82869c8c290cef5b01c09856a6dad34825eb6e4"
+    },
+    {
+      "path": "APPLE_API_EVIDENCE.json",
+      "bytes": 864,
+      "sha256": "c1face809ff9b861011377a8b2c7a2e483b220de533d1587bf2d0702d7c2478b"
+    },
+    {
+      "path": "NATIVE_HELPER_ADDITION.swift",
+      "bytes": 29295,
+      "sha256": "e3d87de5d04582471341381983c11afda7f1d1f7cd46326f83c1e22da87e510b"
+    },
+    {
+      "path": "NATIVE_INPUTS.json",
+      "bytes": 897,
+      "sha256": "e880b1a3afa0c049192d3d248d9a69919d525df8444967f39300db6d09fd88a4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9660,
+      "sha256": "b0b0b7a9ae01a132d95e2d957ecd5b66e41fc30246df36c4000881c5db32f2b8"
+    },
+    {
+      "path": "TARGET_MEMBERSHIP.json",
+      "bytes": 1401,
+      "sha256": "88d042fdd3f2fbdb92250be34aba280b0a74fa9ae849b1e850f2979f824c1afc"
+    },
+    {
+      "path": "TRANSPORT_PREREQUISITE.json",
+      "bytes": 1610,
+      "sha256": "2f2254f7a42afd8cac355479929cb94df05a904f7af30d202b8a66bc5b70d097"
+    },
+    {
+      "path": "controls/RetentionControls.swift",
+      "bytes": 8619,
+      "sha256": "f624b9f9ae3f27ae3296160ab22499d9fe3d36e2aeaaeba51a57be508d9f553e"
+    },
+    {
+      "path": "controls/run_controls.py",
+      "bytes": 8162,
+      "sha256": "0e2b7b88f18a51fa2fb57bce7d97af2c2bc07b5636754b6385deb32d012595dd"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz",
+      "bytes": 223853,
+      "sha256": "999fd62e3acc75a78411f7d8c624453aa7a63b0cef5e5e3e2d4288f47baf98a1"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz.manifest.json",
+      "bytes": 7621,
+      "sha256": "8cc532aef9fa9ca0fc2354c8a49552d9853c9f948052412c33805763a1a58408"
+    },
+    {
+      "path": "evidence/RESULT.json",
+      "bytes": 32409,
+      "sha256": "f5ae47a07ecc836149e888a76c8c19d916124d920916743a07d254b6110525b6"
+    },
+    {
+      "path": "proposal/COMPOSITION_EDITS.json.gz",
+      "bytes": 2518,
+      "sha256": "824c77bf8008e0c511f3960b942bb93d001eda96b9d03ca06b7081d34eef1964"
+    },
+    {
+      "path": "proposal/COMPOSITION_EDITS.json.manifest.json",
+      "bytes": 212,
+      "sha256": "54427d4b5297fbfbe01da25a0c47046489df3371bf0a43541bbdbc5fa8fcaf45"
+    },
+    {
+      "path": "proposal/COMPOSITION_JOIN.json",
+      "bytes": 1167,
+      "sha256": "174212d8729d3302d6a051b2bbaa72aeca47318b3ed0de85a3d745076b167a89"
+    },
+    {
+      "path": "proposal/COMPOSITION_PUBLIC_EVIDENCE.patch.gz",
+      "bytes": 3144,
+      "sha256": "9631c5e226cae0c0fac3f987b7c650a1991cdf06a2de0b2cb15b4b32484a37cf"
+    },
+    {
+      "path": "proposal/COMPOSITION_PUBLIC_EVIDENCE.patch.manifest.json",
+      "bytes": 212,
+      "sha256": "3b94f20830b39c489193588b32a6cae3838e82f3e2289c94ba10a8a8f6650d87"
+    },
+    {
+      "path": "proposal/PUBLIC_EXECUTION_ENCODER.swift",
+      "bytes": 2038,
+      "sha256": "14efb0c02b58ab7c0d2ef9c9c3174ed90f60ff8f6a5a2033b233cafcadbe732c"
+    },
+    {
+      "path": "proposal/PUBLIC_EXECUTION_RECORDER.swift",
+      "bytes": 2781,
+      "sha256": "d5b9445e5bf6faa2a25a63744c87581f8edf843e854c52251105e56b6adc4f1c"
+    },
+    {
+      "path": "proposal/PUBLIC_EXECUTION_RETENTION.swift",
+      "bytes": 2278,
+      "sha256": "a4faf079eee3832b426d1213934f12a019402867f5f77af515e57e627e951a1d"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz",
+      "bytes": 86601,
+      "sha256": "087773e94dd90ab7e42cbaa6b5f41b25dde8a7f600b5274cc32fdedcf2179f99"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz.manifest.json",
+      "bytes": 692,
+      "sha256": "532cd323d5fe610d3ede451f506ff65666486c5cc3863d3b30b51366266f568f"
+    }
+  ],
+  "testFile": {
+    "path": "Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+    "bytes": 1937,
+    "sha256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e"
+  },
+  "controlCounts": {
+    "actualRetentionPassed": 6,
+    "counterfactualExpectedFailures": 2,
+    "frontendParseOnlyPassed": 3,
+    "native": 0,
+    "AppleSDK": 0
+  },
+  "sourceDependency": "310db9a9a887b604f422581765feb902465fef99 plus exact root-owned Composition/helper integration"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "public-search-native-implementation/baseline/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 307308,
+    "sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d"
+  },
+  {
+    "path": "public-search-native-implementation/proposal/NATIVE_HELPER_ADDITION.swift",
+    "bytes": 29295,
+    "sha256": "e3d87de5d04582471341381983c11afda7f1d1f7cd46326f83c1e22da87e510b"
+  },
+  {
+    "path": "public-search-native-implementation/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 336603,
+    "sha256": "9d52d3d1b176bae51412dfd8f41198099fa6e33b75ee55d8d595722d42ae2ab2"
+  },
+  {
+    "path": "public-search-native-implementation/candidate/Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+    "bytes": 1937,
+    "sha256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e"
+  }
+]

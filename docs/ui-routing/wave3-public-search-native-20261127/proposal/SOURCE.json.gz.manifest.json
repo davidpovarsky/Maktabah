@@ -1,0 +1,18 @@
+{
+  "rawBytes": 510746,
+  "rawSHA256": "c8ec6fa0e3eb6f45ec1e1416bf9b20bff8f838f693755a2744026a7837c4f69f",
+  "gzipBytes": 86601,
+  "gzipSHA256": "087773e94dd90ab7e42cbaa6b5f41b25dde8a7f600b5274cc32fdedcf2179f99",
+  "files": [
+    {
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 246040,
+      "sha256": "eeb1b4b4758df16bacbcc5cf12d69b12a0bf08cff2ac8017aada2d8916435926"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 253472,
+      "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+    }
+  ]
+}

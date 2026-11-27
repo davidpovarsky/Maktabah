@@ -1,0 +1,813 @@
+{
+  "status": "PASS_6_RETENTION_CONTROLS_2_MEANINGFUL_NEGATIVE_FAILURES_3_SYNTAX_ONLY",
+  "steps": [
+    {
+      "name": "compile-candidate",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "-L",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "-lOtzariaUIRouting",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/inputs/candidate.swift",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2603106304,
+      "allocatedBefore": 117788672,
+      "started": "2026-11-27T16:43:31.417336+00:00",
+      "owner": {
+        "pid": 1396717,
+        "parent": 1396697,
+        "group": 1396717,
+        "startTicks": 732488325
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:33.373241+00:00",
+      "freeAfter": 2602872832,
+      "allocatedAfter": 117985280,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-checkpoint-failure-keeps-raw-partial-return",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "checkpoint-failure-keeps-raw-partial-return"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602872832,
+      "allocatedBefore": 117985280,
+      "started": "2026-11-27T16:43:33.494794+00:00",
+      "owner": {
+        "pid": 1396902,
+        "parent": 1396697,
+        "group": 1396902,
+        "startTicks": 732488533
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:33.735190+00:00",
+      "freeAfter": 2602868736,
+      "allocatedAfter": 117989376,
+      "logs": {
+        "stdout": {
+          "bytes": 240,
+          "sha256": "eda2551d3823052120c1c271428a8d36ebdf9124661bbef6039976f115e6745c"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-envelope-failure-keeps-checkpoint-and-return",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "envelope-failure-keeps-checkpoint-and-return"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602868736,
+      "allocatedBefore": 117989376,
+      "started": "2026-11-27T16:43:33.833964+00:00",
+      "owner": {
+        "pid": 1396914,
+        "parent": 1396697,
+        "group": 1396914,
+        "startTicks": 732488566
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:34.072649+00:00",
+      "freeAfter": 2602860544,
+      "allocatedAfter": 117997568,
+      "logs": {
+        "stdout": {
+          "bytes": 241,
+          "sha256": "469611e38c8ca8059ddc49e51e7e58e4bb9044a33ce103edf830945dd7f85ea6"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-duplicate-publication-never-retries-writer",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "duplicate-publication-never-retries-writer"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602860544,
+      "allocatedBefore": 117997568,
+      "started": "2026-11-27T16:43:34.183966+00:00",
+      "owner": {
+        "pid": 1396945,
+        "parent": 1396697,
+        "group": 1396945,
+        "startTicks": 732488601
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:34.423085+00:00",
+      "freeAfter": 2599624704,
+      "allocatedAfter": 118001664,
+      "logs": {
+        "stdout": {
+          "bytes": 239,
+          "sha256": "e114a7ff269b20cf92f983df05e36097cc58c2eac9806d4667025a3c1cf198c2"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-nested-callback-cannot-recapture-or-republish",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "nested-callback-cannot-recapture-or-republish"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2599624704,
+      "allocatedBefore": 118001664,
+      "started": "2026-11-27T16:43:34.520172+00:00",
+      "owner": {
+        "pid": 1396946,
+        "parent": 1396697,
+        "group": 1396946,
+        "startTicks": 732488635
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:34.762753+00:00",
+      "freeAfter": 2599616512,
+      "allocatedAfter": 118005760,
+      "logs": {
+        "stdout": {
+          "bytes": 242,
+          "sha256": "02ec6b3d7e145e32e04457cb12bcdb84b927d6d6b172a5a02e2d79b923430116"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-second-invocation-cannot-replace-first",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "second-invocation-cannot-replace-first"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2599616512,
+      "allocatedBefore": 118005760,
+      "started": "2026-11-27T16:43:34.867419+00:00",
+      "owner": {
+        "pid": 1396955,
+        "parent": 1396697,
+        "group": 1396955,
+        "startTicks": 732488670
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:35.120647+00:00",
+      "freeAfter": 2599608320,
+      "allocatedAfter": 118013952,
+      "logs": {
+        "stdout": {
+          "bytes": 235,
+          "sha256": "08a7809b2ff7d9f744d1dcc192d5f440199ab30d72550da7ce59ac2a8f143df7"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-old-or-mismatched-kind-does-not-capture",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/candidate",
+        "old-or-mismatched-kind-does-not-capture"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2599608320,
+      "allocatedBefore": 118013952,
+      "started": "2026-11-27T16:43:35.225988+00:00",
+      "owner": {
+        "pid": 1396964,
+        "parent": 1396697,
+        "group": 1396964,
+        "startTicks": 732488706
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:35.508645+00:00",
+      "freeAfter": 2599604224,
+      "allocatedAfter": 118018048,
+      "logs": {
+        "stdout": {
+          "bytes": 236,
+          "sha256": "698f793ec0d13f3496ed268d668f1e801f2bedf2d30192dac470ceece30d1012"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "compile-counterfactual",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "-L",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "-lOtzariaUIRouting",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/inputs/counterfactual.swift",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/counterfactual"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2599604224,
+      "allocatedBefore": 118018048,
+      "started": "2026-11-27T16:43:35.618941+00:00",
+      "owner": {
+        "pid": 1396984,
+        "parent": 1396697,
+        "group": 1396984,
+        "startTicks": 732488745
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:36.839650+00:00",
+      "freeAfter": 2602659840,
+      "allocatedAfter": 118202368,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "counterfactual-checkpoint-failure-keeps-raw-partial-return",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/counterfactual",
+        "checkpoint-failure-keeps-raw-partial-return"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602659840,
+      "allocatedBefore": 118202368,
+      "started": "2026-11-27T16:43:36.940122+00:00",
+      "owner": {
+        "pid": 1397044,
+        "parent": 1396697,
+        "group": 1397044,
+        "startTicks": 732488877
+      },
+      "exit": 1,
+      "finished": "2026-11-27T16:43:37.207253+00:00",
+      "freeAfter": 2602655744,
+      "allocatedAfter": 118206464,
+      "logs": {
+        "stdout": {
+          "bytes": 311,
+          "sha256": "b9bd3f17e2053b302a22acac793ca890096f456a25a1f9b4aeeb834853b52aea"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "counterfactual-second-invocation-cannot-replace-first",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/output/counterfactual",
+        "second-invocation-cannot-replace-first"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602655744,
+      "allocatedBefore": 118206464,
+      "started": "2026-11-27T16:43:37.301142+00:00",
+      "owner": {
+        "pid": 1397092,
+        "parent": 1396697,
+        "group": 1397092,
+        "startTicks": 732488913
+      },
+      "exit": 1,
+      "finished": "2026-11-27T16:43:37.562974+00:00",
+      "freeAfter": 2602651648,
+      "allocatedAfter": 118210560,
+      "logs": {
+        "stdout": {
+          "bytes": 342,
+          "sha256": "09da70f9779e29067a86dc281759cfe89bbef781fd53dd69c69a3303d1c24e16"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "syntax-MaktabahNativeRoutingComposition",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602651648,
+      "allocatedBefore": 118210560,
+      "started": "2026-11-27T16:43:37.671811+00:00",
+      "owner": {
+        "pid": 1397123,
+        "parent": 1396697,
+        "group": 1397123,
+        "startTicks": 732488950
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:37.912660+00:00",
+      "freeAfter": 2602647552,
+      "allocatedAfter": 118214656,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "syntax-NativeRoutingAcceptanceTests",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/inputs/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602647552,
+      "allocatedBefore": 118214656,
+      "started": "2026-11-27T16:43:38.014152+00:00",
+      "owner": {
+        "pid": 1397125,
+        "parent": 1396697,
+        "group": 1397125,
+        "startTicks": 732488984
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:38.255625+00:00",
+      "freeAfter": 2602643456,
+      "allocatedAfter": 118214656,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "syntax-NativePublicSearchContinuationAcceptanceTests",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-native-controls-attempt-1/inputs/candidate/Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift"
+      ],
+      "startAttempted": true,
+      "freeBefore": 2602643456,
+      "allocatedBefore": 118214656,
+      "started": "2026-11-27T16:43:38.383024+00:00",
+      "owner": {
+        "pid": 1397150,
+        "parent": 1396697,
+        "group": 1397150,
+        "startTicks": 732489022
+      },
+      "exit": 0,
+      "finished": "2026-11-27T16:43:38.633459+00:00",
+      "freeAfter": 2602643456,
+      "allocatedAfter": 118214656,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "scope": "Actual DEBUG immutable-return retention with actual Core/Host value types; reporting closures explicitly substitute encoding/I/O. Frontend syntax only for app/native proposal. No app/Core/OS execution.",
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "started": "2026-11-27T16:43:31.142257+00:00",
+  "runner": {
+    "file": {
+      "bytes": 15872,
+      "sha256": "ff27bc9c964c9a86c0869e83f679e105ff773807a73777fc32241f36538c9b0c"
+    },
+    "exactFunctionSHA256": "fc597b3333f830fc97f73edaa34644645956f8e35cbdcea11c26f9957d6daba8"
+  },
+  "sourceBindings": [
+    {
+      "path": "proposal/PUBLIC_EXECUTION_RETENTION.swift",
+      "bytes": 2278,
+      "sha256": "a4faf079eee3832b426d1213934f12a019402867f5f77af515e57e627e951a1d"
+    },
+    {
+      "path": "controls/RetentionControls.swift",
+      "bytes": 8619,
+      "sha256": "f624b9f9ae3f27ae3296160ab22499d9fe3d36e2aeaaeba51a57be508d9f553e"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 253472,
+      "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+    },
+    {
+      "path": "proposal/NATIVE_HELPER_ADDITION.swift",
+      "bytes": 29295,
+      "sha256": "e3d87de5d04582471341381983c11afda7f1d1f7cd46326f83c1e22da87e510b"
+    },
+    {
+      "path": "candidate/Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+      "bytes": 1937,
+      "sha256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e"
+    },
+    {
+      "path": "candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 336603,
+      "sha256": "9d52d3d1b176bae51412dfd8f41198099fa6e33b75ee55d8d595722d42ae2ab2",
+      "originalPrefixBytes": 307308,
+      "originalPrefixSHA256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+      "assembly": "Exact immutable Git prefix + only declared suffix"
+    }
+  ],
+  "readOnlyProducts": {
+    "actualPriorResult": {
+      "bytes": 37420,
+      "sha256": "ed10f3e1e6324c585d8b545e7f4435b631b4808ab7a44c4baf296071fb4b44df"
+    },
+    "products": [
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/ChavrusaUIRoutingHost.swiftdoc",
+        "bytes": 6848,
+        "sha256": "771b3f0768b7c527036bbc91872ef9c85dcd61e50e639e86fa44e4421bc539ad"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/ChavrusaUIRoutingHost.swiftmodule",
+        "bytes": 90484,
+        "sha256": "3d22d7ee97ee84e3ab267e25a90dfcefcc94d264f7282368a9390d27bab4a7f9"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+        "bytes": 26492,
+        "sha256": "a86632340813f739f4525d1bdb40e6ddf98b2b761dffe62750179252bd92ba21"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/OtzariaUIRouting.swiftdoc",
+        "bytes": 25408,
+        "sha256": "31aa84a7b4d879b2bc3d8b78bbfcba32ea69faf2aaae430f98c957812342cc0a"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/OtzariaUIRouting.swiftmodule",
+        "bytes": 319464,
+        "sha256": "abc11b3742a8e12c47aad860987945cf47f20e4bc9e64067637e2eca20c59c43"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/OtzariaUIRouting.swiftsourceinfo",
+        "bytes": 73152,
+        "sha256": "7ace67969771eef10cbeb17ebc3a42a71cbb0d8592270c4e90130692c824406e"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/libChavrusaUIRoutingHost.so",
+        "bytes": 452512,
+        "sha256": "29d1cd4d8976a2fd5191d0ba15bacf47511cd57efec3d3e59092181fea1bc941"
+      },
+      {
+        "path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/public-search-portable-attempt-1/output/libOtzariaUIRouting.so",
+        "bytes": 1579608,
+        "sha256": "1c78879f893337ac236a6006bde10aa57828ab880f71e1a6a48d5ec04c515771"
+      },
+      {
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+        "bytes": 708952,
+        "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103"
+      },
+      {
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+        "bytes": 3002144,
+        "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a"
+      }
+    ],
+    "originalCore31SourceJoins": [
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+        "bytes": 1618,
+        "sha256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+        "bytes": 1747,
+        "sha256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+        "bytes": 4725,
+        "sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+        "bytes": 12045,
+        "sha256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+        "bytes": 9437,
+        "sha256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+        "bytes": 3725,
+        "sha256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+        "bytes": 2619,
+        "sha256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+        "bytes": 1275,
+        "sha256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+        "bytes": 5097,
+        "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+        "bytes": 7473,
+        "sha256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+        "bytes": 1862,
+        "sha256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+        "bytes": 8009,
+        "sha256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+        "bytes": 5919,
+        "sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+        "bytes": 4589,
+        "sha256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+        "bytes": 2353,
+        "sha256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+        "bytes": 10506,
+        "sha256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+        "bytes": 5278,
+        "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+        "bytes": 9216,
+        "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+        "bytes": 3154,
+        "sha256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+        "bytes": 71880,
+        "sha256": "65285328fcb28406f6211c593a83a9dcb88493c6aa3f68ee16f4d20697592507"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+        "bytes": 14414,
+        "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+        "bytes": 1673,
+        "sha256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+        "bytes": 4844,
+        "sha256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+        "bytes": 7952,
+        "sha256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+        "bytes": 12181,
+        "sha256": "d88100268e2179bedac5eecce4941d28a8d9b64b2c525ff733cdc91b0d97afdb"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+        "bytes": 1327,
+        "sha256": "7b171d100dcf5e20c2cafca81dd7b19ec9d3dc264f0121c8f18c544445d9d7eb"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+        "bytes": 8189,
+        "sha256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift",
+        "bytes": 5039,
+        "sha256": "fadde3192ca5d03ea9537c72265e883881b0b89ecfecc42021bb81685af26903"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+        "bytes": 2110,
+        "sha256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+        "bytes": 2922,
+        "sha256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d"
+      },
+      {
+        "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+        "bytes": 28048,
+        "sha256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef"
+      }
+    ]
+  },
+  "retentionExact": {
+    "bytes": 2278,
+    "sha256": "a4faf079eee3832b426d1213934f12a019402867f5f77af515e57e627e951a1d",
+    "counterfactual": "Only omit process-lived retention; never product"
+  },
+  "cases": [
+    {
+      "variant": "candidate",
+      "case": "checkpoint-failure-keeps-raw-partial-return",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "candidate",
+      "case": "envelope-failure-keeps-checkpoint-and-return",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "candidate",
+      "case": "duplicate-publication-never-retries-writer",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "candidate",
+      "case": "nested-callback-cannot-recapture-or-republish",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "candidate",
+      "case": "second-invocation-cannot-replace-first",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "candidate",
+      "case": "old-or-mismatched-kind-does-not-capture",
+      "failures": [],
+      "pass": true,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "counterfactual",
+      "case": "checkpoint-failure-keeps-raw-partial-return",
+      "failures": [
+        "process must retain exact original partial return after I/O failure"
+      ],
+      "pass": false,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    },
+    {
+      "variant": "counterfactual",
+      "case": "second-invocation-cannot-replace-first",
+      "failures": [
+        "second capture allowed",
+        "first nonce identity must remain",
+        "first actual execution remains process-lived"
+      ],
+      "pass": false,
+      "scope": "Actual retention class and actual Core/Host value types; reporting closures are explicit I/O/encoder substitutes; no app/native/Core invocation"
+    }
+  ],
+  "freeFinal": 2602643456,
+  "allocatedFinal": 118214656,
+  "finished": "2026-11-27T16:43:38.706496+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "scope": "DEBUG observation of actual public return only; no grant/chooser/trigger/UI mutation",
+  "baselinePath": "/workspace/scratch/c1c70cc48453/wave3-all-original-entry-wiring/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "relativePath": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "baseline": {
+    "bytes": 246040,
+    "sha256": "eeb1b4b4758df16bacbcc5cf12d69b12a0bf08cff2ac8017aada2d8916435926"
+  },
+  "candidate": {
+    "bytes": 253472,
+    "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+  },
+  "inverseExact": true,
+  "preserved": {
+    "old-dispatch-loop": {
+      "bytes": 285,
+      "sha256": "e5232dfebd8830bd511836d5d44c6f8a17689500e28e8655ad47c33f0ad0304d"
+    },
+    "old-probe-executor": {
+      "bytes": 6417,
+      "sha256": "70d210544a16d20d4e4c49dde3913dddf89913b91f670c46ad2b4295956493a2"
+    },
+    "production-core-continuation": {
+      "bytes": 6160,
+      "sha256": "313d443ce20aa21dd1034b39b70724b9c06fbf7d7625f9324906f7e75b9714b7"
+    }
+  },
+  "edits": 7,
+  "native": "NOT_RUN",
+  "AppleSDK": "NOT_RUN"
+}

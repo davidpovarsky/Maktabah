@@ -1,0 +1,22 @@
+{
+  "retrievedUTCDate": "2026-11-27",
+  "scope": "Primary public API documentation only; no Apple SDK/native qualification",
+  "sources": [
+    {
+      "url": "https://developer.apple.com/documentation/appintentstesting/anyappentity",
+      "use": "Actual system-resolved entity and attributed identifier"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/appintents/attributedentityidentifier",
+      "use": "Read actual instanceIdentifier; never manufacture an entity"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/appintentstesting/resolvedintentresult",
+      "use": "Read the actual URL return using inferred value type"
+    },
+    {
+      "url": "https://developer.apple.com/documentation/appintentstesting/testing-your-app-intents-code",
+      "use": "Out-of-process system query and intent invocation"
+    }
+  ]
+}

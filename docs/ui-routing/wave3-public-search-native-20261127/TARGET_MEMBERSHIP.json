@@ -1,0 +1,10 @@
+{
+  "path": "wave3-all-original-entry-wiring/candidate/Maktabah.xcodeproj/project.pbxproj",
+  "bytes": 643968,
+  "sha256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557",
+  "targetBlock": "F30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget \"Maktabah-iOSUITests\" */;\n\t\t\tbuildPhases = (\n\t\t\t\tF30578042FA46222005732C6 /* Sources */,\n\t\t\t\tF30578052FA46222005732C6 /* Frameworks */,\n\t\t\t\tF30578062FA46222005732C6 /* Resources */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\tF30578082FA46222005732C6 /* PBXTargetDependency */,\n\t\t\t);\n\t\t\tfileSystemSynchronizedGroups = (\n\t\t\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */,\n\t\t\t);\n\t\t\tname = \"Maktabah-iOSUITests\";\n\t\t\tproductName = \"Maktabah-iOSUITests\";\n\t\t\tproductReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;\n\t\t\tproductType = \"com.apple.product-type.bundle.ui-testing\";\n\t\t};",
+  "synchronizedRootBlock": "F30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSUITests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};",
+  "testFileAutoIncluded": true,
+  "PBXMutationRequired": false,
+  "AppleSDK": "NOT_RUN"
+}
