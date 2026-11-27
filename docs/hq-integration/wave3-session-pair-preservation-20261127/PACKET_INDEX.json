@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "scope": "historical source artifact preservation and exact two-root retirement only",
+  "sdk_builds_run": 0,
+  "native_tests_run": 0,
+  "files": [
+    {
+      "path": "scripts/reverify_pair.py",
+      "bytes": 7060,
+      "sha256": "04eca70a3ba4239dca4c6fb056c4fe053934d772e472c4ba64a244f192e7b157",
+      "source": "local exact reviewed source"
+    },
+    {
+      "path": "scripts/retire_pair.py",
+      "bytes": 10386,
+      "sha256": "c804523a661d55f29a62839e9fe6036cf03a01549838d25cf1ed539080c9255d",
+      "source": "local exact reviewed source"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12951,
+      "sha256": "a148b1d47b701af075979c80b1f173610b0fc1cf4705ea5f69c9907324b1f855",
+      "source": "local exact reviewed source"
+    },
+    {
+      "path": "validation/COMPLETE_PRESERVATION_VERIFIED.json",
+      "bytes": 7243,
+      "sha256": "313e1e60aa516ae218bf709e8d106e7c5b8c64b8a72a61136a78394913e5909d",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/COMPLETE_PRESERVATION_VERIFIED.json"
+    },
+    {
+      "path": "validation/HEADER.json",
+      "bytes": 5231,
+      "sha256": "ce9ebccb6c36704448b659ee5354c44391e514a78f4df08073326eff18e6cf3b",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/HEADER.json"
+    },
+    {
+      "path": "validation/NEW_ARCHIVE_VERIFIED.json",
+      "bytes": 1718,
+      "sha256": "8ec65743855d522d25f7e8b63c71d24c472b7087b3ca3c061d7529faf6e791e3",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/NEW_ARCHIVE_VERIFIED.json"
+    },
+    {
+      "path": "validation/PRIOR_REFERENCES.json",
+      "bytes": 107952,
+      "sha256": "58987ac07e18cf5be1cb88902345e557ca14ee1a6e91a55fb34f1fa2a817fcec",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/PRIOR_REFERENCES.json"
+    },
+    {
+      "path": "validation/RECEIVE_RESULT.json",
+      "bytes": 2359,
+      "sha256": "b473e8a3a15af0c74d0d2de6681f25878070ba2f33a25ee65856d5a79337e3c2",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/RECEIVE_RESULT.json"
+    },
+    {
+      "path": "validation/RETIREMENT_PREDELETE.json",
+      "bytes": 10864,
+      "sha256": "4990f5818663f85f12e4efc71db26e635f5c2bb93278199a8a1dfb442ce027b0",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/RETIREMENT_PREDELETE.json"
+    },
+    {
+      "path": "validation/RETIREMENT_RESULT.json",
+      "bytes": 12564,
+      "sha256": "d9e57b059eddb12238581f007591f44b8054d594d9ef870f56b665c9dba22701",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/RETIREMENT_RESULT.json"
+    },
+    {
+      "path": "validation/SOURCE_REVERIFIED.json",
+      "bytes": 6145,
+      "sha256": "5834032a8d367869ccb57a251ce89c8da1daf3c8a32fae944063621b3263c2ae",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/SOURCE_REVERIFIED.json"
+    },
+    {
+      "path": "scripts/oracle_receiver_verify.py",
+      "bytes": 14047,
+      "sha256": "597683bca42bf9b4b82ff173f3a991c15b9cba949a8e749d45301bbad0353710",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/oracle_receiver_verify.py"
+    },
+    {
+      "path": "scripts/session_pair.py",
+      "bytes": 18331,
+      "sha256": "5e1f6d9f7f5a56abda50f3cdc76170fa3e4ca78d4d1d7a2ce7db7a5d8f427948",
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/session_pair.py"
+    },
+    {
+      "path": "validation/windows/BRIDGE_RESULT.json",
+      "bytes": 890,
+      "sha256": "e3ebcab2a8f7712d48109ccdbd7e863d96d0498bb6a5d488671d8fe2429fb64a",
+      "source": "Windows exact original BRIDGE_RESULT.json"
+    },
+    {
+      "path": "scripts/bridge_windows.py",
+      "bytes": 7279,
+      "sha256": "c7791d70b5254a6788a53641021b544e11d385d5b081124cab24e98f5cd256e8",
+      "source": "Windows exact original bridge_windows.py"
+    },
+    {
+      "path": "validation/windows/ORACLE_PREFLIGHT_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original ORACLE_PREFLIGHT_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/ORACLE_PREFLIGHT_STDOUT.json",
+      "bytes": 108,
+      "sha256": "bb18186e0666e079fcc99b620d57e7c972ebb85f2850d13f1aa81c0eaf801909",
+      "source": "Windows exact original ORACLE_PREFLIGHT_STDOUT.json"
+    },
+    {
+      "path": "validation/windows/PRIOR_VERIFY_ATTEMPT1_TOOL_RESULT.json",
+      "bytes": 1142,
+      "sha256": "37409958aa67cfe65feb5364989a26ef2866a2469301e76daaf868c26197c3d6",
+      "source": "Windows exact original PRIOR_VERIFY_ATTEMPT1_TOOL_RESULT.json"
+    },
+    {
+      "path": "validation/windows/PROOF_TRANSFER_mac.json",
+      "bytes": 216,
+      "sha256": "54eb868007dd461fd8b0bf9f45df6efb5d629a278ef5e7fb7392fc8984bc6311",
+      "source": "Windows exact original PROOF_TRANSFER_mac.json"
+    },
+    {
+      "path": "validation/windows/PROOF_TRANSFER_oracle.json",
+      "bytes": 228,
+      "sha256": "139a4ab50a36d2768b269009340d8105a275c9448b50f0a45e2a0f2cb668ca08",
+      "source": "Windows exact original PROOF_TRANSFER_oracle.json"
+    },
+    {
+      "path": "validation/windows/RECEIVER_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original RECEIVER_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/RECEIVER_STDOUT.json",
+      "bytes": 2735,
+      "sha256": "e1abab2edbfbf34039b050a96a8fe79470dc769e01656e20ea7bac8fb3ca1642",
+      "source": "Windows exact original RECEIVER_STDOUT.json"
+    },
+    {
+      "path": "scripts/retire_pair_windows.py",
+      "bytes": 10020,
+      "sha256": "54d5015e12364eb674e04f148c8fbc8756a1acbbc1f739731d7ff78d9706350c",
+      "source": "Windows exact original retire_pair_windows.py"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_ACK.json",
+      "bytes": 416,
+      "sha256": "8fd37004891e42f88ffc58eb7e93b8e3f928456a194428a5fc4aa422c6170c99",
+      "source": "Windows exact original RETIREMENT_ACK.json"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_CURRENT_BINDINGS.json",
+      "bytes": 6804,
+      "sha256": "ba34bbf7ede510949d9c63e7364e9f0c3104440ecb02c3ba714a74f8d327010c",
+      "source": "Windows exact original RETIREMENT_CURRENT_BINDINGS.json"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_ORACLE_CURRENT_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original RETIREMENT_ORACLE_CURRENT_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_ORACLE_CURRENT_STDOUT.json",
+      "bytes": 881,
+      "sha256": "2517cc373b368a727658e5c31d945bc0f71b055020ee7066174149a25c775462",
+      "source": "Windows exact original RETIREMENT_ORACLE_CURRENT_STDOUT.json"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_PREDELETE.json.oracle-copy.json",
+      "bytes": 219,
+      "sha256": "9c6d34a95b26f8137ed9758dfe9dca1396c6eac81c5e74168f4423840c9c5ff8",
+      "source": "Windows exact original RETIREMENT_PREDELETE.json.oracle-copy.json"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_RESULT.json.oracle-copy.json",
+      "bytes": 216,
+      "sha256": "619d006d055caa9ee0087d1d70d0a44280af2a137ec53e2c768257c594a328db",
+      "source": "Windows exact original RETIREMENT_RESULT.json.oracle-copy.json"
+    },
+    {
+      "path": "validation/windows/RETIREMENT_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original RETIREMENT_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/SOURCE_REVERIFIED_TRANSFER.json",
+      "bytes": 235,
+      "sha256": "8339fda1b89981b2b9fa69b4e991dd5722e468523e619fbafc546821f27ffffb",
+      "source": "Windows exact original SOURCE_REVERIFIED_TRANSFER.json"
+    },
+    {
+      "path": "validation/windows/SOURCE_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original SOURCE_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/STREAM_READBACK_STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "Windows exact original STREAM_READBACK_STDERR.txt"
+    },
+    {
+      "path": "validation/windows/STREAM_RESULT.json",
+      "bytes": 609,
+      "sha256": "423d954f00501632707bed2c747649ff3c668678529043693e271599809997e9",
+      "source": "Windows exact original STREAM_RESULT.json"
+    },
+    {
+      "path": "scripts/verify_prior_windows.py",
+      "bytes": 8661,
+      "sha256": "59bc6a955640efb9953376eada28de07d000902e51f43995f4b816c453ae971e",
+      "source": "Windows exact original verify_prior_windows.py"
+    },
+    {
+      "path": "scripts/verify_prior_windows_v2.py",
+      "bytes": 9792,
+      "sha256": "3a1a83666e07eff381840bb75fd84873a75e42a04434acb6f846612538c8e354",
+      "source": "Windows exact original verify_prior_windows_v2.py"
+    },
+    {
+      "path": "validation/WINDOWS_RAW_MEMORY_TRANSFER.json",
+      "bytes": 3855,
+      "sha256": "d8f826b2c8a726b45136dcaf5565eebace54363b893f246e02df3959276c39f7",
+      "source": "actual bounded readback with no Windows staging"
+    },
+    {
+      "path": "validation/WINDOWS_STAGING_RESERVE_ATTEMPT_FAILED.json",
+      "bytes": 1713,
+      "sha256": "98c1c59269382395fe56e7109ec1e8ff572a86e0e98e5279fa9020bb5eb06440",
+      "source": "actual failed reserve guard before any staging creation"
+    },
+    {
+      "path": "validation/PACKET_DIFF_CHECK.txt",
+      "bytes": 20965,
+      "sha256": "e870d09b86c7f3539d179a84789831d9280cacc2698133cd229061fbd4f47528",
+      "source": "actual packet validation capture"
+    },
+    {
+      "path": "validation/PACKET_VERIFICATION.json",
+      "bytes": 487,
+      "sha256": "8eb46e960a58878fd612db03684f7c8db66983f5dc0e3936b5b4c217fefedb0b",
+      "source": "actual packet validation capture"
+    }
+  ]
+}
