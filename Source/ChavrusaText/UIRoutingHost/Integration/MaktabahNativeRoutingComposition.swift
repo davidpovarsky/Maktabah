@@ -240,6 +240,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.reader.noteDraft"), title: "Note Draft".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
                   requiredCoreActions: ["notes.prepareDraft"]),
+            .init(id: NativeWorkspaceSelectionIntentService.destination,
+                  title: workspaceText("Study workspace selection", "בחירת סביבת לימוד"), implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: []),
             .init(id: NativeReaderTabIntentService.destination, title: "Reader tab".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: []),
             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
@@ -1357,6 +1360,109 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         try await performSearchResults(query: query, manager: manager, continuing: continuing).result
     }
 
+    /// Continue one already visible ORIGINAL search under one fixed deadline.
+    /// The selector sees metadata only; it cannot supply a query or an offset.
+    /// Retain the actual scene/window/list before the first await, then consume
+    /// Core authority and the original source token for the same operation.
+    func continueOriginalSearch(manager: iOSNavigationManager,
+        choose: @MainActor (ActionSearchContinuationObservation) throws -> ActionSearchContinuationOperation
+    ) async throws -> ActionSearchContinuationOutcome {
+        try Task.checkCancellation()
+        let end = deadline(), requestID = UUID(), managerID = ObjectIdentifier(manager)
+        let matches = scenes.filter { $0.value.managerID == managerID }
+        guard matches.count == 1, let (sceneID, entry) = matches.first,
+              entry.manager === manager, entry.session.mounted, entry.session.foreground,
+              contexts[sceneID] == nil else {
+            throw UIRouteError(.unavailable, "native_search_continuation_scene_unavailable")
+        }
+        let snapshot = try backend.currentBackendSnapshot()
+        let owner = try entry.session.retainSearchContinuation(requestID: requestID,
+            currentSnapshot: { [self] in try backend.currentBackendSnapshot() })
+        defer { entry.session.releaseSearchContinuation(owner) }
+        let context = context(sceneID: sceneID, origin: .inApp, snapshot: snapshot)
+        try issue(context, sceneID: sceneID)
+        defer { finish(context, sceneID: sceneID) }
+        let admitted = try authority.admit(context: context, sceneID: sceneID)
+        defer { authority.release(admitted) }
+        let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot,
+                                             deadlineUptimeNanoseconds: end)
+        // This is the same original authority captured BEFORE observation. It
+        // only proves freshness; it is never consumed as an operation grant.
+        let observationAuthority = try core.prepareNavigationSynchronously(sceneID: sceneID.rawValue,
+            invocation: invocation, context: context)
+        let check: NativeSearchContinuationService.Check = { [weak self, weak manager, weak owner] in
+            try Task.checkCancellation()
+            guard let self, let manager, let owner,
+                  SystemActionClock().now() < end,
+                  let current = self.scenes[sceneID], current.session === entry.session, current.lease == entry.lease,
+                  current.manager === manager, current.managerID == managerID,
+                  current.session.mounted, current.session.foreground,
+                  self.contexts[sceneID] == context,
+                  owner.requestID == requestID, owner.sceneID == sceneID,
+                  try self.backend.currentBackendSnapshot() == snapshot else {
+                throw UIRouteError(.staleState, "native_search_continuation_lifetime_changed")
+            }
+            try current.session.validateSearchContinuationOwner(owner)
+            try observationAuthority.validateFreshness()
+            try current.session.validateSearchContinuationOwner(owner)
+        }
+        var retainedCommand: ActionSearchContinuationCommand?
+        var grant: ActionSearchContinuationAuthority?
+        defer { grant?.retire() }
+        func refuse(_ command: ActionSearchContinuationCommand, _ error: any Error) -> ActionSearchContinuationOutcome {
+            let reason: ActionSearchContinuationRefusal = error is CancellationError ? .cancelled
+                : (SystemActionClock().now() >= end ? .deadlineExceeded : .staleSource)
+            return .refused(.init(requestID: command.invocation.requestId, reason: reason, effects: [],
+                                  source: command.source, operation: command.operation))
+        }
+        let service = NativeSearchContinuationService(observe: { scene, value in
+            guard Data(scene.utf8) == Data(sceneID.rawValue.utf8), value == invocation else {
+                throw ActionPortError.staleState
+            }
+            return try owner.binding.observe(invocation: value, retainAuthority: { check })
+        }, apply: { command, serviceAuthority in
+            guard retainedCommand == command, let grant else {
+                return refuse(command, ActionPortError.staleState)
+            }
+            do {
+                try check()
+                try grant.authorizeOriginalOperation(command)
+                try serviceAuthority()
+                try grant.validateExecution(for: command)
+            } catch { return refuse(command, error) }
+            // The original binding consumes its own source token and uses this
+            // SAME live callback before each mutation and after every await.
+            return await owner.binding.perform(command, validateAuthority: {
+                try serviceAuthority()
+                try grant.validateExecution(for: command)
+                try check()
+            })
+        }, validate: { command, receipt in
+            guard retainedCommand == command, let grant else { throw ActionPortError.staleState }
+            try grant.validateCompletion(for: command)
+            try owner.binding.validateCompletion(command, receipt: receipt)
+            try check()
+        }, authority: { scene, value in
+            guard Data(scene.utf8) == Data(sceneID.rawValue.utf8), value == invocation else {
+                throw ActionPortError.staleState
+            }
+            try check()
+            if let command = retainedCommand, let grant { try grant.validateFreshness(for: command) }
+        })
+        let observation = try service.observe(in: sceneID.rawValue, invocation: invocation)
+        let operation = try choose(observation)
+        try check()
+        let command = ActionSearchContinuationCommand(source: observation.source,
+            operation: operation, invocation: invocation)
+        retainedCommand = command
+        grant = try core.prepareSearchContinuationSynchronously(command, context: context)
+        try check()
+        // Service joins the exact response BEFORE late validation, preserving
+        // actual partial effects and raw unqualified responses. No outer timeout
+        // or post-effect throwing check may discard that evidence here.
+        return await service.continueSearch(command)
+    }
+
     /// System entities identify an existing original window; they do not grant
     /// authority or authorize creation/selection of some other scene.
     private func openSearchIntent(_ request: NativeSearchIntentService.OpenRequest) async throws
@@ -2179,6 +2285,92 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return result
     }
 
+    /// Metadata is taken from the original mounted scene and its current
+    /// committed library. Discovery cannot switch a profile, group or backend.
+    private func workspaceSelectionIntentEntities() throws -> [NativeWorkspaceSelectionIntentService.Selection] {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        var values: [NativeWorkspaceSelectionIntentService.Selection] = []
+        for (_, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
+            values += try entry.session.workspaceSelectionCatalog(
+                windowTitle: entry.session.windowLabel(number: entry.windowNumber))
+        }
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot,
+              values.allSatisfy({ $0.backend == snapshot.backend }) else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return values
+    }
+
+    /// Retain the exact original selection before activation. Original staging,
+    /// Core authorization and native publication share this one fixed deadline.
+    private func openWorkspaceSelectionIntent(_ target: NativeWorkspaceSelectionIntentService.Selection,
+                                             requestID: UUID) async throws -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        guard target.backend == snapshot.backend, let entry = scenes[target.sceneID],
+              entry.session.mounted, let manager = entry.manager,
+              entry.managerID == ObjectIdentifier(manager), contexts[target.sceneID] == nil else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        let bound = try entry.session.retainWorkspaceSelection(target, requestID: requestID)
+        defer { entry.session.releaseWorkspaceSelection(bound) }
+        let end = deadline()
+        func validateSource(context expectedContext: ActionExecutionContext?) throws {
+            try Task.checkCancellation()
+            guard DispatchTime.now().uptimeNanoseconds < end else {
+                throw UIRouteError(.cancelled, "deadline_exceeded")
+            }
+            guard let current = scenes[target.sceneID], current.managerID == entry.managerID,
+                  current.manager === manager, current.session === entry.session,
+                  current.session.mounted, current.session.foreground,
+                  contexts[target.sceneID] == expectedContext,
+                  try backend.currentBackendSnapshot() == snapshot else {
+                throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+            }
+            try bound.validate()
+        }
+        let mountedScene = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: entry.managerID)
+        }
+        guard mountedScene == target.sceneID else {
+            throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+        }
+        try validateSource(context: nil)
+        try entry.session.reserveWorkspaceSelection(bound)
+        try validateSource(context: nil)
+        // Use the retained record and the original owners to stage/reuse its
+        // readers. A later first-group lookup would silently retarget the intent.
+        try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { @MainActor in
+            try await entry.session.prepareWorkspaceSelection(bound) {
+                try validateSource(context: nil)
+            }
+        }
+        try validateSource(context: nil)
+        let context = context(sceneID: target.sceneID, origin: .appIntent, snapshot: snapshot)
+        try issue(context, sceneID: target.sceneID)
+        defer { finish(context, sceneID: target.sceneID) }
+        let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot,
+                                             deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: target.sceneID, context: context, invocation: invocation)
+        try validateSource(context: context)
+        let route = try entry.session.prepareWorkspaceSelectionRoute(bound, invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        if case .acknowledged(let receipt) = result {
+            do {
+                try validateSource(context: context)
+                try entry.session.validateWorkspaceSelectionCompletion(bound, receipt: receipt)
+                try validateSource(context: context)
+            } catch {
+                throw NativeWorkspaceSelectionIntentService.Failure(receipt: receipt, code: "native_effect_uncertain")
+            }
+        }
+        record(result)
+        return result
+    }
+
     func installIntentDependency() {
         guard !intentsInstalled else { return }
         let service = NativeIntentService(discover: { [self] in
@@ -2228,6 +2420,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "reader_tab_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: tabService)
+        let workspaceSelectionService = NativeWorkspaceSelectionIntentService(discover: { [self] in
+            do { return try workspaceSelectionIntentEntities() }
+            catch { logIntentFailure(error, stage: "workspace_selection_metadata"); throw error }
+        }, navigate: { [self] target, requestID in
+            do { return try await openWorkspaceSelectionIntent(target, requestID: requestID) }
+            catch { logIntentFailure(error, stage: "workspace_selection_navigation"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: workspaceSelectionService)
         let searchService = NativeSearchIntentService(snapshot: { [self] in
             try backend.currentBackendSnapshot()
         }, windows: { [self] in

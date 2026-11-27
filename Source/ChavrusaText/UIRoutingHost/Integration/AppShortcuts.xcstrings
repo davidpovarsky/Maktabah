@@ -1,6 +1,26 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Open study profile ${selection} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת פרופיל הלימוד ${selection} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
+    "Open tab group ${selection} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת קבוצת הטאבים ${selection} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
     "Open ${destination} in ${applicationName}": {
       "localizations": {
         "he": {

@@ -138,6 +138,23 @@ public actor ActionExecutor {
             context: context, destination: nil, clock: clock)
     }
 
+    /// Issue one native operation grant for the exact retained search source.
+    /// This trusted adapter seam accepts no wire query, offset or reader target.
+    /// Original UI ownership and one-use source claims remain mandatory.
+    @MainActor public func prepareSearchContinuationSynchronously(
+        _ command: ActionSearchContinuationCommand,
+        context: ActionExecutionContext
+    ) throws -> ActionSearchContinuationAuthority {
+        guard let backendAuthority = state as? any ActionSynchronousBackendStatePort else {
+            throw ActionNavigationError(.unavailable, "synchronous_navigation_authority_unavailable")
+        }
+        guard let navigationAuthority else {
+            throw ActionNavigationError(.unavailable, "navigation_context_authority_unavailable")
+        }
+        return try ActionSearchContinuationAuthority(command: command, context: context,
+            authority: navigationAuthority, backendAuthority: backendAuthority, clock: clock)
+    }
+
     /// Metadata only: verify policy AND actual live guard availability. No grant
     /// is returned/retained and no effect is authorized by discovery.
     public func checkNavigationDiscovery(sceneID: String, invocation: ActionPortInvocation,

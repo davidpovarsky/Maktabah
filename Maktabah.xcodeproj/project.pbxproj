@@ -1463,6 +1463,13 @@
 		07E7057281BEA64047ED3789 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
 		D8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */; };
 		5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */; };
+		2634054D3FBE892D00555F1C /* StudyWorkspacePreparedGroupSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B60BDBC18CE202DA6C4EA2 /* StudyWorkspacePreparedGroupSelection.swift */; };
+		5637175644C71457013A91F4 /* StudyWorkspaceGroupSelectionReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20B73611D970D1B78DC36D0 /* StudyWorkspaceGroupSelectionReservation.swift */; };
+		5FFC01EED47B7ED488106C25 /* MaktabahNativeWorkspaceSelectionBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF2FCDAA17BA6758CB76B8 /* MaktabahNativeWorkspaceSelectionBinding.swift */; };
+		8F1BFAFD9BF99D317A8CA460 /* MaktabahNativeWindowObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B5F31303AE8A6B6FA38FE /* MaktabahNativeWindowObservation.swift */; };
+		023A47731F21C35546274F3E /* MaktabahNativeViewerParentContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD326436C83506D445C32B /* MaktabahNativeViewerParentContinuation.swift */; };
+		DBBCCE2685C6433C7C3A7C2D /* MaktabahNativeViewerParentWitness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91630BAFA48B14C39ADC1931 /* MaktabahNativeViewerParentWitness.swift */; };
+		DF20795A8FDEAD410382A6B1 /* MaktabahNativeSearchContinuationOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0535A669DAD310BAAF96E /* MaktabahNativeSearchContinuationOwner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2309,6 +2316,13 @@
 		7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchContinuation/OriginalSearchPageLedger.swift"; sourceTree = "<group>"; };
 		617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchContinuation/OriginalSearchContinuationClaim.swift"; sourceTree = "<group>"; };
 		76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift"; sourceTree = "<group>"; };
+		B7B60BDBC18CE202DA6C4EA2 /* StudyWorkspacePreparedGroupSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift"; sourceTree = "<group>"; };
+		A20B73611D970D1B78DC36D0 /* StudyWorkspaceGroupSelectionReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift"; sourceTree = "<group>"; };
+		79DF2FCDAA17BA6758CB76B8 /* MaktabahNativeWorkspaceSelectionBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift"; sourceTree = "<group>"; };
+		149B5F31303AE8A6B6FA38FE /* MaktabahNativeWindowObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift"; sourceTree = "<group>"; };
+		D9FD326436C83506D445C32B /* MaktabahNativeViewerParentContinuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift"; sourceTree = "<group>"; };
+		91630BAFA48B14C39ADC1931 /* MaktabahNativeViewerParentWitness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift"; sourceTree = "<group>"; };
+		85A0535A669DAD310BAAF96E /* MaktabahNativeSearchContinuationOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSearchContinuationOwner.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2405,6 +2419,13 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				B7B60BDBC18CE202DA6C4EA2 /* StudyWorkspacePreparedGroupSelection.swift */,
+				A20B73611D970D1B78DC36D0 /* StudyWorkspaceGroupSelectionReservation.swift */,
+				79DF2FCDAA17BA6758CB76B8 /* MaktabahNativeWorkspaceSelectionBinding.swift */,
+				149B5F31303AE8A6B6FA38FE /* MaktabahNativeWindowObservation.swift */,
+				D9FD326436C83506D445C32B /* MaktabahNativeViewerParentContinuation.swift */,
+				91630BAFA48B14C39ADC1931 /* MaktabahNativeViewerParentWitness.swift */,
+				85A0535A669DAD310BAAF96E /* MaktabahNativeSearchContinuationOwner.swift */,
 				617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */,
 				76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */,
 				7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */,
@@ -5252,6 +5273,13 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				2634054D3FBE892D00555F1C /* StudyWorkspacePreparedGroupSelection.swift in Sources */,
+				5637175644C71457013A91F4 /* StudyWorkspaceGroupSelectionReservation.swift in Sources */,
+				5FFC01EED47B7ED488106C25 /* MaktabahNativeWorkspaceSelectionBinding.swift in Sources */,
+				8F1BFAFD9BF99D317A8CA460 /* MaktabahNativeWindowObservation.swift in Sources */,
+				023A47731F21C35546274F3E /* MaktabahNativeViewerParentContinuation.swift in Sources */,
+				DBBCCE2685C6433C7C3A7C2D /* MaktabahNativeViewerParentWitness.swift in Sources */,
+				DF20795A8FDEAD410382A6B1 /* MaktabahNativeSearchContinuationOwner.swift in Sources */,
 				D8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */,
 				5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */,
 				FEC56B9B4626DDFBAD6452C5 /* MaktabahNativeComponentBinding.swift in Sources */,

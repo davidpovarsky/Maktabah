@@ -32,6 +32,7 @@ final class MaktabahNativeReaderTabBinding {
     private let sourceObservation: MaktabahNativeComponentSourceObservation
     private let foreignReady: @MainActor () -> Bool
     private let changesTab: Bool
+    let viewerParent: MaktabahNativeViewerParentContinuation?
     private var reservation: StudyWorkspaceNativeTabSelectionReservation?
     private var valid = true
     private(set) var isApplied = false
@@ -77,6 +78,7 @@ final class MaktabahNativeReaderTabBinding {
 
     init(requestID: UUID, target: NativeReaderTabIntentService.Tab,
          bindings: MaktabahNativeSceneBindings, source: MaktabahNativeWorkspaceProjectionSource,
+         viewerParentHost: MaktabahNativeViewerParentHost?,
          foreignReady: @escaping @MainActor () -> Bool,
          readForeignPresentations: @escaping @MainActor () -> Void) throws {
         let manager = bindings.manager
@@ -105,6 +107,16 @@ final class MaktabahNativeReaderTabBinding {
         originalBook = manager.selectedBook; originalBookMode = manager.selectedBookPresentationMode
         changesTab = manager.activeTabId != target.tabID
         self.foreignReady = foreignReady
+        let retainedParent: MaktabahNativeViewerParentContinuation?
+        if bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer {
+            retainedParent = nil
+        } else {
+            guard let viewerParentHost else {
+                throw UIRouteError(.unavailable, "native_viewer_parent_unavailable")
+            }
+            retainedParent = try viewerParentHost.retain(requestID: requestID, tabID: target.tabID, bindings: bindings)
+        }
+        viewerParent = retainedParent
         // Native/store mapping events have a separate exact source-owned
         // reservation below. Do not install a mirror epoch or rearm this latch
         // after an owned selection. All other original source changes revoke it.
@@ -113,8 +125,15 @@ final class MaktabahNativeReaderTabBinding {
             _ = try? source.read()
             _ = workspace.attached; _ = workspace.isSwitching; _ = workspace.errorMessage
             _ = workspace.store.loadError
-            _ = root.selectionRevision; _ = root.settingsRevision
-            _ = manager.currentMode; _ = manager.nativeModePresentationRevision
+            _ = root.settingsRevision
+            if retainedParent == nil {
+                _ = root.selectionRevision
+                _ = manager.currentMode; _ = manager.nativeModePresentationRevision
+            }
+            // The foreign-parent request owns exactly its one original root
+            // publication and original onChange mode call. Its source-owned
+            // proof replaces ONLY these two unchanged-root observations.
+
             _ = tab.viewModel.state
             _ = tab.viewModel.currentBook; _ = tab.viewModel.currentDestination
             _ = tab.viewModel.backendSection; _ = tab.viewModel.contentText
@@ -124,22 +143,28 @@ final class MaktabahNativeReaderTabBinding {
             _ = DonationManager.shared.showDonationSheet; _ = bindings.sidebar?.overview.blocksRouting
             readForeignPresentations()
         }
-        try validate()
+        do { try validate() } catch { retainedParent?.release(); throw error }
     }
 
     var isReserved: Bool { reservation != nil }
-    func invalidate() { valid = false }
+    func invalidate() { valid = false; viewerParent?.invalidate() }
 
     func validate() throws {
         try sourceObservation.validate()
         let manager = bindings.manager
+        if let viewerParent { try viewerParent.validateRoot() }
+        else {
+            guard root.selectionRevision == selectionRevision,
+                  manager.nativeModePresentationRevision == modeRevision,
+                  bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer else {
+                throw UIRouteError(.staleState, "native_reader_tab_source_changed")
+            }
+        }
         guard valid, try source.read() === workspace, workspace.store === store,
               workspace.sceneID == target.sceneID.rawValue, workspace.attached, !workspace.isSwitching,
               workspace.errorMessage == nil, store.loadError == nil, foreignReady(),
               bindings.rootPublications === root,
-              root.selectionRevision == selectionRevision, root.settingsRevision == settingsRevision,
-              manager.nativeModePresentationRevision == modeRevision,
-              bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer,
+              root.settingsRevision == settingsRevision,
               !bindings.showSettings.wrappedValue,
               changesTab || MaktabahApp.isIpad
                 || (manager.selectedBook === tab.book && manager.selectedBookPresentationMode == .viewer),
@@ -217,10 +242,12 @@ final class MaktabahNativeReaderTabBinding {
         guard let reservation, !isApplied else {
             throw UIRouteError(.staleState, "native_reader_tab_already_applied")
         }
+        try viewerParent?.validateOriginalSelectionEntry()
         // The canonical orchestrator has just consumed Core's one preparation.
         // This invokes the ORIGINAL action and its actual source-owned setters.
         try workspace.applyNativeTabSelection(reservation) { bindings.manager.selectTab(id: tab.id) }
         isApplied = true
+        try viewerParent?.selectionDidApply()
         try validate()
     }
 
@@ -242,6 +269,7 @@ final class MaktabahNativeReaderTabBinding {
     }
 
     func release() {
+        viewerParent?.release()
         guard valid || reservation != nil else { return }
         valid = false
         if let reservation { workspace.releaseNativeTabSelection(reservation) }

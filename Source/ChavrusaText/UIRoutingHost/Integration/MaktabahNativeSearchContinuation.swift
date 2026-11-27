@@ -391,6 +391,8 @@ final class MaktabahNativeSearchContinuationBinding {
     private let session: UnifiedSearchSessionController
     private let source: MaktabahNativeSearchContinuationSource
     private let currentSnapshot: @MainActor () throws -> ActionBackendSnapshot
+    private let originalWindow: @MainActor () throws -> UIWindow
+    private var retired = false
     private var retained: Retained?
     private var completed: Completed?
 
@@ -428,9 +430,16 @@ final class MaktabahNativeSearchContinuationBinding {
         }
     }
     init(sceneID: String, session: UnifiedSearchSessionController,
-         currentSnapshot: @escaping @MainActor () throws -> ActionBackendSnapshot) {
+         currentSnapshot: @escaping @MainActor () throws -> ActionBackendSnapshot,
+         originalWindow: @escaping @MainActor () throws -> UIWindow) {
         self.sceneID = sceneID; self.session = session; self.source = session.nativeSearchContinuation
-        self.currentSnapshot = currentSnapshot
+        self.currentSnapshot = currentSnapshot; self.originalWindow = originalWindow
+    }
+
+    /// The exact owner retires only this binding. Original source claims and
+    /// an in-flight original page keep their own finish/cancel/effect records.
+    func retire() {
+        retired = true; retained = nil; completed = nil
     }
 
     func observe(invocation: ActionPortInvocation, retainAuthority: () throws -> Check) throws -> ActionSearchContinuationObservation {
@@ -663,6 +672,8 @@ final class MaktabahNativeSearchContinuationBinding {
         }
     }
     private func live(_ invocation: ActionPortInvocation) throws {
+        guard !retired else { throw ActionPortError.staleState }
+        _ = try originalWindow()
         try Task.checkCancellation()
         guard DispatchTime.now().uptimeNanoseconds < invocation.deadlineUptimeNanoseconds else {
             throw BindingRefusal.reason(.deadlineExceeded)
@@ -678,7 +689,8 @@ final class MaktabahNativeSearchContinuationBinding {
               session.cancellationRevision == retained.stamp.cancellation,
               try configurationBytes() == retained.stamp.configuration,
               let list = try? source.currentList(scene: sceneID, requiresCurrentLayout: false), list.id == retained.stamp.listID,
-              list.window.map(ObjectIdentifier.init) == retained.stamp.windowID else { throw ActionPortError.staleState }
+              list.window.map(ObjectIdentifier.init) == retained.stamp.windowID,
+              list.window === (try originalWindow()) else { throw ActionPortError.staleState }
     }
     private func configurationBytes() throws -> Data {
         guard let submitted = session.submittedConfiguration,
@@ -702,7 +714,8 @@ final class MaktabahNativeSearchContinuationBinding {
         guard all == original else { throw ActionPortError.staleState }
         let filtered = try MaktabahSearchContinuationIdentity.identities(session.filteredResults)
         let list = try source.currentList(scene: sceneID)
-        guard list.identities == filtered, list.pageRevision == page.pageRevision, let window = list.window else {
+        guard list.identities == filtered, list.pageRevision == page.pageRevision, let window = list.window,
+              window === (try originalWindow()) else {
             throw ActionPortError.unavailable
         }
         return Stamp(snapshot: try currentSnapshot(), inputRevision: input, resultRevision: result,

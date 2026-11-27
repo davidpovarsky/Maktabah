@@ -21,6 +21,12 @@ struct MaktabahNativeShortcuts: AppShortcutsProvider {
         AppShortcut(intent: ShowSearchResultsIntent(),
                     phrases: ["Show search results in \(.applicationName)"],
                     shortTitle: "Search", systemImageName: "magnifyingglass")
+        AppShortcut(intent: OpenStudyProfileIntent(),
+                    phrases: ["Open study profile \(\.$selection) in \(.applicationName)"],
+                    shortTitle: "Open study profile", systemImageName: "person.crop.circle")
+        AppShortcut(intent: OpenStudyTabGroupIntent(),
+                    phrases: ["Open tab group \(\.$selection) in \(.applicationName)"],
+                    shortTitle: "Open tab group", systemImageName: "rectangle.3.group")
     }
 }
 #endif

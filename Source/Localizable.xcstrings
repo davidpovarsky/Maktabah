@@ -1,6 +1,150 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Study profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Study profile"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרופיל לימוד"
+          }
+        }
+      }
+    },
+    "Tab group": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab group"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבוצת טאבים"
+          }
+        }
+      }
+    },
+    "Open a study profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a study profile"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת פרופיל לימוד"
+          }
+        }
+      }
+    },
+    "Open study profile": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open study profile"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת פרופיל לימוד"
+          }
+        }
+      }
+    },
+    "Open a tab group": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a tab group"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת קבוצת טאבים"
+          }
+        }
+      }
+    },
+    "Open tab group": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open tab group"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת קבוצת טאבים"
+          }
+        }
+      }
+    },
+    "Open ${selection}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open ${selection}"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ${selection}"
+          }
+        }
+      }
+    },
+    "Select the first tab group of an original study profile in the current library of the selected Maktabah window.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select the first tab group of an original study profile in the current library of the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת קבוצת הטאבים הראשונה בפרופיל לימוד קיים, בספרייה הנוכחית של חלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Select an original tab group in the current study profile and library of the selected Maktabah window.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select an original tab group in the current study profile and library of the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת קבוצת טאבים קיימת בפרופיל הלימוד ובספרייה הנוכחיים בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
     "Capabilities": {
       "extractionState": "manual",
       "localizations": {
