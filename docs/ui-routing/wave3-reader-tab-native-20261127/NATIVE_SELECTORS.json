@@ -1,0 +1,56 @@
+{
+  "source": "f5428b47eddac14da929c38ff2e308109607084f",
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "native_execution": "NOT_RUN",
+  "data_profile": "original realUI miniTest10 v6",
+  "selectors": [
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemReaderTabIntentReusesOriginalLiveTab",
+      "testClass": "NativeRoutingAcceptanceTests",
+      "method": "testSystemReaderTabIntentReusesOriginalLiveTab",
+      "formFactor": "iPad",
+      "expected": "Select the initially queried original tab from another live original Reader; retain scene/profile/group/tab identity and actual TextKit receipt.",
+      "status": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemReaderTabIntentDistinguishesOriginalDuplicateBookTabs",
+      "testClass": "NativeRoutingAcceptanceTests",
+      "method": "testSystemReaderTabIntentDistinguishesOriginalDuplicateBookTabs",
+      "formFactor": "iPad",
+      "expected": "Select the first original UUID when the same book has two independently created original tabs.",
+      "status": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemReaderTabIntentRejectsCachedClosedTabWithoutReceipt",
+      "testClass": "NativeRoutingAcceptanceTests",
+      "method": "testSystemReaderTabIntentRejectsCachedClosedTabWithoutReceipt",
+      "formFactor": "iPad",
+      "expected": "First succeed with the same real cached entity; close its original tab through the original context menu; require refusal with no receipt or workspace mutation.",
+      "status": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemReaderTabIntentRejectsCachedOtherGroupTabWithoutReceipt",
+      "testClass": "NativeRoutingAcceptanceTests",
+      "method": "testSystemReaderTabIntentRejectsCachedOtherGroupTabWithoutReceipt",
+      "formFactor": "iPad",
+      "expected": "First succeed with the same real cached entity; select an original new empty group while the old stored tab survives; require stale-group refusal with no receipt or workspace mutation.",
+      "status": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemReaderTabIntentReusesOriginalLiveTab",
+      "testClass": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneSystemReaderTabIntentReusesOriginalLiveTab",
+      "formFactor": "iPhone",
+      "expected": "Select the original live tab through the actual system intent from foreground; verify the real phone Reader and same process.",
+      "status": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemReaderTabIntentReturnsFromBackgroundToOriginalLiveTab",
+      "testClass": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneSystemReaderTabIntentReturnsFromBackgroundToOriginalLiveTab",
+      "formFactor": "iPhone",
+      "expected": "Background the actual process, then use the cached real entity through the system intent; require foreground, same PID and exact original Reader.",
+      "status": "NOT_RUN"
+    }
+  ]
+}
