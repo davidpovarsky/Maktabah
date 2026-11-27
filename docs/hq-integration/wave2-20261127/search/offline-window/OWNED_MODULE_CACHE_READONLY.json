@@ -1,0 +1,39 @@
+{
+  "schema": "otzaria.owned-cache-readonly-inventory/1",
+  "observedUTC": "2026-11-27T05:56:55.252194+00:00",
+  "path": "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+  "fileCount": 218,
+  "uniqueInodeCount": 218,
+  "uniqueAllocatedBytes": 130023424,
+  "logicalBytes": 129585480,
+  "symlinks": [],
+  "directoryBefore": [
+    16777232,
+    70185574,
+    1795755926083804413,
+    1795755926083804413
+  ],
+  "directoryAfter": [
+    16777232,
+    70185574,
+    1795755926083804413,
+    1795755926083804413
+  ],
+  "processReferences": [],
+  "processInventoryExit": 0,
+  "processInventoryDiagnostic": "",
+  "openReferenceCheck": {
+    "command": "sudo -n lsof -nP +D exact owned module-cache",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "mutations": 0,
+  "deletionAuthorized": false,
+  "snapshotOnly": true,
+  "fullReceipt": {
+    "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/owned-module-cache-inventory-20261127.json",
+    "bytes": 48022,
+    "sha256": "2ede05272d7c0876bf4cd8a417a272989ece218ed84a3d8093ffd5fc32368904"
+  }
+}

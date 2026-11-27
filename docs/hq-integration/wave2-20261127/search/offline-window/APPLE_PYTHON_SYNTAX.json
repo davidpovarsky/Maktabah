@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "status": "ACTUAL_APPLE_PYTHON_SYNTAX_ONLY",
+  "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "observedAt": "2026-11-27T05:33:31.471534+00:00",
+  "checks": [
+    {
+      "name": "study-ui-offline-window.py",
+      "bytes": 72089,
+      "sha256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+      "syntax": "passed"
+    },
+    {
+      "name": "study-ui-offline-heartbeat.py",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9",
+      "syntax": "passed"
+    },
+    {
+      "name": "build-offline-transport-probe.py",
+      "bytes": 5129,
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667",
+      "syntax": "passed"
+    },
+    {
+      "name": "source-controls.py",
+      "bytes": 21252,
+      "sha256": "d4ba94ec46c8e41147a214dba26f2dff52574b1143d31d30e3503a6143cfcccf",
+      "syntax": "passed"
+    }
+  ],
+  "importsExecuted": 0,
+  "PFChanges": 0,
+  "launchdOperations": 0,
+  "networkProbes": 0,
+  "nativeExecutions": 0
+}

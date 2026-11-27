@@ -1,0 +1,53 @@
+test_HTTP_failure_cancellation_TLS_and_empty_receipt_fail (__main__.Controls.test_HTTP_failure_cancellation_TLS_and_empty_receipt_fail) ... ok
+test_cached_proxy_reused_or_redirected_online_success_fails (__main__.Controls.test_cached_proxy_reused_or_redirected_online_success_fails) ... ok
+test_controller_death_rolls_back (__main__.Controls.test_controller_death_rolls_back) ... ok
+test_counter_uses_packets_not_evaluations (__main__.Controls.test_counter_uses_packets_not_evaluations) ... ok
+test_duplicate_json_cannot_replace_gate (__main__.Controls.test_duplicate_json_cannot_replace_gate) ... ok
+test_exact_owned_anchor (__main__.Controls.test_exact_owned_anchor) ... ok
+test_exact_translated_vnc_preserves_existing_control_only (__main__.Controls.test_exact_translated_vnc_preserves_existing_control_only) ... ok
+test_exit_zero_pf_diagnostic_still_fails (__main__.Controls.test_exit_zero_pf_diagnostic_still_fails) ... ok
+test_explicit_finite_bounded_coordinated_lease (__main__.Controls.test_explicit_finite_bounded_coordinated_lease) ... ok
+test_explicit_ssh_states_are_admitted (__main__.Controls.test_explicit_ssh_states_are_admitted) ... ok
+test_failed_cleanup_retries_only_owned_anchor_and_never_passes (__main__.Controls.test_failed_cleanup_retries_only_owned_anchor_and_never_passes) ... ok
+test_finish_cannot_hide_observed_drift (__main__.Controls.test_finish_cannot_hide_observed_drift) ... ok
+test_full_recursive_children_preserve_names (__main__.Controls.test_full_recursive_children_preserve_names) ... ok
+test_hard_monotonic_deadline_cannot_be_renewed_by_heartbeat (__main__.Controls.test_hard_monotonic_deadline_cannot_be_renewed_by_heartbeat) ... ok
+test_healthy_finite_window_continues (__main__.Controls.test_healthy_finite_window_continues) ... ok
+test_lsof_uses_actual_process_socket_ownership (__main__.Controls.test_lsof_uses_actual_process_socket_ownership) ... ok
+test_natural_empty_state_table_is_eligible (__main__.Controls.test_natural_empty_state_table_is_eligible) ... ok
+test_negative_request_pending_socket_only_after_active_rule (__main__.Controls.test_negative_request_pending_socket_only_after_active_rule) ... ok
+test_new_boot_cannot_reuse_old_lease (__main__.Controls.test_new_boot_cannot_reuse_old_lease) ... ok
+test_no_denial_rollback_never_loads_or_flushes_a_rule (__main__.Controls.test_no_denial_rollback_never_loads_or_flushes_a_rule) ... ok
+test_no_general_nat_or_vnc_owner_bypass (__main__.Controls.test_no_general_nat_or_vnc_owner_bypass) ... ok
+test_no_import_side_effect (__main__.Controls.test_no_import_side_effect) ... ok
+test_nonfinite_json_cannot_extend_deadline (__main__.Controls.test_nonfinite_json_cannot_extend_deadline) ... ok
+test_nonssh_process_cannot_use_control_exclusion (__main__.Controls.test_nonssh_process_cannot_use_control_exclusion) ... ok
+test_normal_finish_is_explicit (__main__.Controls.test_normal_finish_is_explicit) ... ok
+test_observation_gap_invalidates_continuity (__main__.Controls.test_observation_gap_invalidates_continuity) ... ok
+test_old_public_connection_cannot_bypass_new_filter (__main__.Controls.test_old_public_connection_cannot_bypass_new_filter) ... ok
+test_only_known_altq_diagnostics (__main__.Controls.test_only_known_altq_diagnostics) ... ok
+test_oracle_control_loss_rolls_back_even_with_live_controller (__main__.Controls.test_oracle_control_loss_rolls_back_even_with_live_controller) ... ok
+test_original_drift_and_early_restoration_are_failures (__main__.Controls.test_original_drift_and_early_restoration_are_failures) ... ok
+test_receipt_write_after_activation_failure_still_rolls_back (__main__.Controls.test_receipt_write_after_activation_failure_still_rolls_back) ... ok
+test_recursive_listing_cannot_hide_depth_or_wildcard (__main__.Controls.test_recursive_listing_cannot_hide_depth_or_wildcard) ... ok
+test_rollback_never_addresses_global_pf_or_states (__main__.Controls.test_rollback_never_addresses_global_pf_or_states) ... ok
+test_root_or_foreign_anchor_cannot_be_addressed (__main__.Controls.test_root_or_foreign_anchor_cannot_be_addressed) ... ok
+test_rules_keep_incoming_and_exact_outgoing_ssh (__main__.Controls.test_rules_keep_incoming_and_exact_outgoing_ssh) ... ok
+test_source_or_destination_port_wildcard_not_admitted (__main__.Controls.test_source_or_destination_port_wildcard_not_admitted) ... ok
+test_ssh_forward_listener_is_not_control (__main__.Controls.test_ssh_forward_listener_is_not_control) ... ok
+test_synthetic_receipt_cannot_waive_actual_watchdog_exercise (__main__.Controls.test_synthetic_receipt_cannot_waive_actual_watchdog_exercise) ... ok
+test_translated_vnc_partial_or_different_chain_fails (__main__.Controls.test_translated_vnc_partial_or_different_chain_fails) ... ok
+test_true_online_foundation_control (__main__.Controls.test_true_online_foundation_control) ... ok
+test_true_transport_error_shape (__main__.Controls.test_true_transport_error_shape) ... ok
+test_uncoordinated_or_expired_lease_fails (__main__.Controls.test_uncoordinated_or_expired_lease_fails) ... ok
+test_unknown_heartbeat_boot_is_not_a_renewal (__main__.Controls.test_unknown_heartbeat_boot_is_not_a_renewal) ... ok
+test_unowned_vnc_translation_not_exempt (__main__.Controls.test_unowned_vnc_translation_not_exempt) ... ok
+test_unqualified_counter_shape_fails (__main__.Controls.test_unqualified_counter_shape_fails) ... ok
+test_vnc_listener_without_actual_connection_is_not_admitted (__main__.Controls.test_vnc_listener_without_actual_connection_is_not_admitted) ... ok
+test_wall_clock_rollback_does_not_extend_monotonic_limit (__main__.Controls.test_wall_clock_rollback_does_not_extend_monotonic_limit) ... ok
+test_wrong_simulator_nonce_or_nonphysical_condition_fails (__main__.Controls.test_wrong_simulator_nonce_or_nonphysical_condition_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.031s
+
+OK

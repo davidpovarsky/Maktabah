@@ -1,0 +1,7 @@
+{
+  "status": "CONTROL_RUN_FINISHED_BUT_RESULT_WRITE_FAILED",
+  "cause": "Owned evidence file had uid1000; actual ubuntu is uid1001",
+  "tests": "55 controls passed, then final result write failed; wrapper retained the previous SOURCE_CONTROLS result; do not treat it as a candidate receipt",
+  "nativeExecutions": 0,
+  "networkDenial": 0
+}

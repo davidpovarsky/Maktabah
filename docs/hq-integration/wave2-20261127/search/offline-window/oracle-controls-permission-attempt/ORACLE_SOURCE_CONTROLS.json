@@ -1,0 +1,13 @@
+{
+  "exitCode": 1,
+  "result": {
+    "scope": "SYNTHETIC_SOURCE_CONTROLS_ONLY_NO_MAC_PF_NETWORK_LAUNCHD_OR_UI",
+    "testsRun": 48,
+    "failures": 0,
+    "errors": 0,
+    "success": true,
+    "nativeExecutions": 0,
+    "denialWindows": 0,
+    "sourceSHA256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96"
+  }
+}

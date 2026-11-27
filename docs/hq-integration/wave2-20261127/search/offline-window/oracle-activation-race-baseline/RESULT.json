@@ -1,0 +1,10 @@
+{
+  "scope": "SYNTHETIC_ACTUAL_WATCHDOG_SOURCE_CONTROL_NO_PF_LAUNCHD_NETWORK_OR_UI",
+  "sourceSHA256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+  "testsRun": 9,
+  "failures": 9,
+  "errors": 0,
+  "success": false,
+  "nativeExecutions": 0,
+  "denialWindows": 0
+}

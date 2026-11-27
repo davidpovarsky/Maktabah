@@ -1,0 +1,102 @@
+test_boot_changes_during_preflight_never_loads (__main__.BoundaryControls.test_boot_changes_during_preflight_never_loads) ... FAIL
+test_controller_dies_during_preflight_never_loads (__main__.BoundaryControls.test_controller_dies_during_preflight_never_loads) ... FAIL
+test_finish_arrives_during_preflight_never_loads (__main__.BoundaryControls.test_finish_arrives_during_preflight_never_loads) ... FAIL
+test_heartbeat_expires_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_expires_during_preflight_never_loads) ... FAIL
+test_heartbeat_removed_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_removed_during_preflight_never_loads) ... FAIL
+test_monotonic_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_monotonic_deadline_crossed_during_preflight_never_loads) ... FAIL
+test_slow_post_load_counters_do_not_publish_a_fresh_status (__main__.BoundaryControls.test_slow_post_load_counters_do_not_publish_a_fresh_status) ... FAIL
+test_slow_preflight_cannot_reset_observation_gap_as_fresh (__main__.BoundaryControls.test_slow_preflight_cannot_reset_observation_gap_as_fresh) ... FAIL
+test_wall_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_wall_deadline_crossed_during_preflight_never_loads) ... FAIL
+
+======================================================================
+FAIL: test_boot_changes_during_preflight_never_loads (__main__.BoundaryControls.test_boot_changes_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 106, in test_boot_changes_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: s.update(boot='other'))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_controller_dies_during_preflight_never_loads (__main__.BoundaryControls.test_controller_dies_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 96, in test_controller_dies_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: s.update(alive=False))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_finish_arrives_during_preflight_never_loads (__main__.BoundaryControls.test_finish_arrives_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 109, in test_finish_arrives_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: m.private_write(d / 'finish-request.json', {}))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_heartbeat_expires_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_expires_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 102, in test_heartbeat_expires_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: m.private_write(d / 'heartbeat.json',
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_heartbeat_removed_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_removed_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 99, in test_heartbeat_removed_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: (d / 'heartbeat.json').unlink())
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_monotonic_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_monotonic_deadline_crossed_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 90, in test_monotonic_deadline_crossed_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: s.update(mono=111, unix=1011), deadline=110)
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_slow_post_load_counters_do_not_publish_a_fresh_status (__main__.BoundaryControls.test_slow_post_load_counters_do_not_publish_a_fresh_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 118, in test_slow_post_load_counters_do_not_publish_a_fresh_status
+    self.assertIsNone(status, 'Stale observations were published with a fresh status timestamp')
+AssertionError: {'active': True, 'counters': 'counter', 'heartbeatMonotonic': 100, 'heartbeatNonce': 'initial', 'mode': 'network-denial', 'observedMonotonic': 109, 'observedUnix': 1009, 'originalUnchanged': True, 'ownRulesMatch': True, 'watchdog': {'pid': 200}, 'windowID': '0123456789abcdef0123456789abcdef'} is not None : Stale observations were published with a fresh status timestamp
+
+======================================================================
+FAIL: test_slow_preflight_cannot_reset_observation_gap_as_fresh (__main__.BoundaryControls.test_slow_preflight_cannot_reset_observation_gap_as_fresh)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 112, in test_slow_preflight_cannot_reset_observation_gap_as_fresh
+    self.rejected_before_load(lambda s, d, v: s.update(mono=109, unix=1009))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+======================================================================
+FAIL: test_wall_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_wall_deadline_crossed_during_preflight_never_loads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 93, in test_wall_deadline_crossed_during_preflight_never_loads
+    self.rejected_before_load(lambda s, d, v: s.update(mono=101, unix=1101))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py", line 86, in rejected_before_load
+    self.assertFalse(any('-f' in command for command in calls), 'Ineligible state reached the actual mutating PF call')
+AssertionError: True is not false : Ineligible state reached the actual mutating PF call
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.260s
+
+FAILED (failures=9)

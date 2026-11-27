@@ -1,0 +1,14 @@
+test_boot_changes_during_preflight_never_loads (__main__.BoundaryControls.test_boot_changes_during_preflight_never_loads) ... ok
+test_controller_dies_during_preflight_never_loads (__main__.BoundaryControls.test_controller_dies_during_preflight_never_loads) ... ok
+test_finish_arrives_during_preflight_never_loads (__main__.BoundaryControls.test_finish_arrives_during_preflight_never_loads) ... ok
+test_heartbeat_expires_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_expires_during_preflight_never_loads) ... ok
+test_heartbeat_removed_during_preflight_never_loads (__main__.BoundaryControls.test_heartbeat_removed_during_preflight_never_loads) ... ok
+test_monotonic_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_monotonic_deadline_crossed_during_preflight_never_loads) ... ok
+test_slow_post_load_counters_do_not_publish_a_fresh_status (__main__.BoundaryControls.test_slow_post_load_counters_do_not_publish_a_fresh_status) ... ok
+test_slow_preflight_cannot_reset_observation_gap_as_fresh (__main__.BoundaryControls.test_slow_preflight_cannot_reset_observation_gap_as_fresh) ... ok
+test_wall_deadline_crossed_during_preflight_never_loads (__main__.BoundaryControls.test_wall_deadline_crossed_during_preflight_never_loads) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.026s
+
+OK

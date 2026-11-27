@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "sourceFiles": [
+    {
+      "path": "offline-probe-compile/attempt1/BUILD.json",
+      "bytes": 3541,
+      "sha256": "4f138c8f7f01ad3a5a438831e5b65f159d3939de28b5958a78ae32f3da5aee0f"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/OfflineTransportProbe.swift",
+      "bytes": 7932,
+      "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/build-probes.py",
+      "bytes": 2393,
+      "sha256": "c6bc00ce2b6b7ab33b67e71b3b7f17e70f4fa99bb6ee6a9fd5cc3876fb016847"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/host.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/host.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/runner.log",
+      "bytes": 2981,
+      "sha256": "44c4f33bde36fb64ba34c3fe48cf45b8d4e60316eebae8c2d0db57cbea557b6f"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/simulator.stderr.log",
+      "bytes": 120,
+      "sha256": "2ee56c18850e1a073477efac3672630521915c2f40bd06ccc9b8e16a4a0de869"
+    },
+    {
+      "path": "offline-probe-compile/attempt1/simulator.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt2/OfflineTransportProbe.swift",
+      "bytes": 7932,
+      "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+    },
+    {
+      "path": "offline-probe-compile/attempt2/build-probes.py",
+      "bytes": 3348,
+      "sha256": "63c5dd4177e4ea2d81c6dfb9e4444206e29fbc3c17e1c8e4988022a5f0df34e9"
+    },
+    {
+      "path": "offline-probe-compile/attempt2/runner.log",
+      "bytes": 274,
+      "sha256": "da0599e59840d3dbd89df44e3db6415240ea6a7473db202e6a8b2184af03d1f0"
+    },
+    {
+      "path": "offline-probe-compile/attempt3.launch.log",
+      "bytes": 4224,
+      "sha256": "6fe1094cf6ec28a5d69e242ceec0db9c0e90a3aea2bb65237da7fe4696867571"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/BUILD.json",
+      "bytes": 4942,
+      "sha256": "b6d57c767770f9c155e036ef27ed5981115dbd81f289973a64eea8d377875703"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/OfflineTransportProbe.swift",
+      "bytes": 7932,
+      "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/host.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/host.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/simulator.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/attempt3/simulator.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "offline-probe-compile/build-offline-transport-probe.py",
+      "bytes": 5129,
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667"
+    },
+    {
+      "path": "offline-python-source-check/attempt1/RESULT.json",
+      "bytes": 1099,
+      "sha256": "a40dae6ffe0b1c8e884b02b0cc3ac7cdcc019fcddffc5c4ca16f8fa8804881fa"
+    },
+    {
+      "path": "offline-python-source-check/attempt1/build-offline-transport-probe.py",
+      "bytes": 5129,
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667"
+    },
+    {
+      "path": "offline-python-source-check/attempt1/source-controls.py",
+      "bytes": 21252,
+      "sha256": "d4ba94ec46c8e41147a214dba26f2dff52574b1143d31d30e3503a6143cfcccf"
+    },
+    {
+      "path": "offline-python-source-check/attempt1/study-ui-offline-heartbeat.py",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9"
+    },
+    {
+      "path": "offline-python-source-check/attempt1/study-ui-offline-window.py",
+      "bytes": 72089,
+      "sha256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96"
+    }
+  ],
+  "archive": {
+    "path": "apple-probe-and-python-inputs-logs.tar.gz",
+    "bytes": 33455,
+    "sha256": "8b8e51376b111c33ff8dd73454b2190e107bc046df6ddf7de020afc3b02e1ba6"
+  },
+  "scope": "Exact source/compile/parse inputs and logs only; no probe/watchdog/denial/UI execution"
+}

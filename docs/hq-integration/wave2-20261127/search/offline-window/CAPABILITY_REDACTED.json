@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "scope": "actual bounded read-only capability observations; no activation lease or offline acceptance",
+  "observedAt": "2026-11-27T05:03:17.498601+00:00",
+  "PFEnabled": true,
+  "rootDispatch": "com.apple/*",
+  "directAppleChildren": [
+    "200.AirDrop",
+    "250.ApplicationFirewall",
+    "scaleway"
+  ],
+  "otherAnchor": "f2b",
+  "stateCountAtObservation": 1,
+  "stateKind": "translated VNC TCP with three exact private endpoints",
+  "stateAtFirstObservation": [
+    "ESTABLISHED",
+    "FIN_WAIT_2"
+  ],
+  "stateAtLaterObservation": [
+    "TIME_WAIT",
+    "TIME_WAIT"
+  ],
+  "laterEstablishedVNCConnections": 0,
+  "laterObservedListenerImage": "/System/Library/CoreServices/RemoteManagement/screensharingd.bundle/Contents/MacOS/screensharingd",
+  "currentStateQualifiesForActivation": false,
+  "systemPython": {
+    "path": "/usr/bin/python3",
+    "version": "3.9.6",
+    "uid": 0,
+    "mode": "0755"
+  },
+  "privateReceipts": [
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/offline-current-readonly-20261127.json",
+      "sha256": "a2a1f6ee7ad4bd480476189a4e54e88024a6fc99ac587d8895973f064319add4"
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/offline-vnc-readonly-20261127.json",
+      "sha256": "fab2c912d7e5db51c1e6826c0869b318a01f6ac128fced2771cbadc0fd233ed8"
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/offline-parser-readonly-20261127.json",
+      "sha256": "8e25bae92aa43909afa9aa3cb589adea94965ec15dc6354e198203facef0c452"
+    }
+  ],
+  "PFMutations": 0,
+  "launchdMutations": 0,
+  "networkDenialWindows": 0,
+  "FoundationProbeExecutions": 0,
+  "laterCandidateParserObservation": {
+    "observedAt": "2026-11-27T05:35:03.594180+00:00",
+    "status": "READ_ONLY_CONFIGURATION_PARSE_COMPLETED_NOT_A_WINDOW_ADMISSION",
+    "commandsReadOnly": 31,
+    "actualAnchorNames": [
+      "",
+      "com.apple",
+      "f2b",
+      "com.apple/200.AirDrop",
+      "com.apple/250.ApplicationFirewall",
+      "com.apple/scaleway",
+      "f2b/screensharingd-jail"
+    ],
+    "statePolicy": "only-explicit-admitted-ssh-control-tuples",
+    "sourceSHA256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+    "admittedControlTuplesSupplied": 0,
+    "actualExistingPFStateCount": 0,
+    "notAnActivationLease": true
+  }
+}

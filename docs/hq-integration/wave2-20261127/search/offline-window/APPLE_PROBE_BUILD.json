@@ -1,0 +1,113 @@
+{
+  "schema": "otzaria.independent-foundation-probe-build/1",
+  "scope": "compile only; no transport requests, Simulator, PF or launchd operation",
+  "source": {
+    "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/OfflineTransportProbe.swift",
+    "bytes": 7932,
+    "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+  },
+  "sourceBeforeCopy": {
+    "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/OfflineTransportProbe.swift",
+    "bytes": 7932,
+    "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+  },
+  "compilerDriverSource": {
+    "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/build-offline-transport-probe.py",
+    "bytes": 5129,
+    "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667"
+  },
+  "builds": [
+    {
+      "kind": "host",
+      "command": [
+        "xcrun",
+        "--sdk",
+        "macosx",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-macosx27.0",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/OfflineTransportProbe.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-host"
+      ],
+      "sdkPath": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+      "sdkVersion": "27.0",
+      "exit": 0,
+      "seconds": 1.413770542,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary": {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-host",
+        "bytes": 143944,
+        "sha256": "6cb58ce1dd09d3b1d59a1c266a42cffd53c0a6e0f0cc143fb49b6567b188f1f6"
+      },
+      "codeSignVerify": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "actualMachOBuildVersion": {
+        "exit": 0,
+        "stdout": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-host:\nLoad command 11\n      cmd LC_BUILD_VERSION\n  cmdsize 32\n platform MACOS\n    minos 27.0\n      sdk 27.0\n   ntools 1\n     tool LD\n  version 27037.1\n",
+        "stderr": ""
+      },
+      "actualPlatform": "MACOS"
+    },
+    {
+      "kind": "simulator",
+      "command": [
+        "xcrun",
+        "--sdk",
+        "iphonesimulator",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/OfflineTransportProbe.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-simulator"
+      ],
+      "sdkPath": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "sdkVersion": "27.0",
+      "exit": 0,
+      "seconds": 0.4931031670000001,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary": {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-simulator",
+        "bytes": 144032,
+        "sha256": "b40574870182d4d9065f056e8cd0c42b192f2b2f36ad875523bfbc7f58dc49cb"
+      },
+      "codeSignVerify": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "actualMachOBuildVersion": {
+        "exit": 0,
+        "stdout": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-simulator:\nLoad command 11\n      cmd LC_BUILD_VERSION\n  cmdsize 32\n platform IOSSIMULATOR\n    minos 27.0\n      sdk 27.0\n   ntools 1\n     tool LD\n  version 27037.1\n",
+        "stderr": ""
+      },
+      "actualPlatform": "IOSSIMULATOR"
+    }
+  ],
+  "startedAt": "2026-11-27T05:17:41.349974+00:00",
+  "status": "COMPILED_ONLY_NO_NETWORK_OR_NATIVE_UI",
+  "completedAt": "2026-11-27T05:17:43.321361+00:00",
+  "originalSourceUnchanged": true
+}

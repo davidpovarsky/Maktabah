@@ -1,0 +1,51 @@
+{
+  "schema": "otzaria.offline-host-source-checkpoint/1",
+  "status": "SOURCE_SYNTHETIC_CONTROLS_AND_ACTUAL_APPLE_COMPILE_PARSE_ONLY",
+  "observedUTC": "2026-11-27T05:56:34.541976+00:00",
+  "candidateSHA256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2",
+  "baselineSHA256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+  "sourceControls": {
+    "scope": "SYNTHETIC_SOURCE_CONTROLS_ONLY_NO_MAC_PF_NETWORK_LAUNCHD_OR_UI",
+    "testsRun": 55,
+    "failures": 0,
+    "errors": 0,
+    "success": true,
+    "nativeExecutions": 0,
+    "denialWindows": 0,
+    "sourceSHA256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+  },
+  "baselineBoundaryControls": {
+    "scope": "SYNTHETIC_ACTUAL_WATCHDOG_SOURCE_CONTROL_NO_PF_LAUNCHD_NETWORK_OR_UI",
+    "sourceSHA256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+    "testsRun": 9,
+    "failures": 9,
+    "errors": 0,
+    "success": false,
+    "nativeExecutions": 0,
+    "denialWindows": 0
+  },
+  "candidateBoundaryControls": {
+    "scope": "SYNTHETIC_ACTUAL_WATCHDOG_SOURCE_CONTROL_NO_PF_LAUNCHD_NETWORK_OR_UI",
+    "sourceSHA256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2",
+    "testsRun": 9,
+    "failures": 0,
+    "errors": 0,
+    "success": true,
+    "nativeExecutions": 0,
+    "denialWindows": 0
+  },
+  "candidateAppleParse": {
+    "path": "APPLE_PYTHON_CANDIDATE_SYNTAX.json",
+    "sha256": "7254b7a8b50d3c477bc7fd62da85e6c975c0f70af07152df2ebc0665ca5796da"
+  },
+  "candidateAppleArchive": {
+    "path": "apple-python-candidate-inputs.tar.gz",
+    "bytes": 32169,
+    "sha256": "d2311e5260ae6c167c7e9f0b7e22e097c7d384e77b6066212777b7c762631a9f"
+  },
+  "nativeExecutions": 0,
+  "actualWatchdogExercises": 0,
+  "actualTransportProbes": 0,
+  "networkDenialWindows": 0,
+  "liveWindowRequiresFreshCoordination": true
+}

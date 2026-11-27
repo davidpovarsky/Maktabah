@@ -1,0 +1,41 @@
+{
+  "schema": "otzaria.actual-apple-python-source-parse/1",
+  "status": "ACTUAL_APPLE_PYTHON_SYNTAX_ONLY",
+  "observedUTC": "2026-11-27T05:53:33.981650+00:00",
+  "pythonExecutable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+  "pythonVersion": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "inputs": [
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/study-ui-offline-window.py",
+      "bytes": 78428,
+      "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/study-ui-offline-heartbeat.py",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/build-offline-transport-probe.py",
+      "bytes": 5129,
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/source-controls.py",
+      "bytes": 25651,
+      "sha256": "17fbafaf559f3dad20ae96503aaace6123b8c38960780024b49bdb322d262350"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/activation-boundary-controls.py",
+      "bytes": 7141,
+      "sha256": "cdae24f3ae405d81e2667a6be73f88f0b96087ebfecabad26b7787adcd4f0e35"
+    }
+  ],
+  "method": "compile(bytes, exact retained path, exec, dont_inherit=True); no source import or execution",
+  "exitCode": 0,
+  "PFChanges": 0,
+  "launchdOperations": 0,
+  "networkProbes": 0,
+  "nativeExecutions": 0
+}

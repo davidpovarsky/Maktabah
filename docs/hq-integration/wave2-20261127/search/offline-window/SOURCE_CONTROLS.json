@@ -1,0 +1,10 @@
+{
+  "scope": "SYNTHETIC_SOURCE_CONTROLS_ONLY_NO_MAC_PF_NETWORK_LAUNCHD_OR_UI",
+  "testsRun": 55,
+  "failures": 0,
+  "errors": 0,
+  "success": true,
+  "nativeExecutions": 0,
+  "denialWindows": 0,
+  "sourceSHA256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+}
