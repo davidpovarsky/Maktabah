@@ -1,0 +1,57 @@
+test_a_pid_seen_only_after_the_case_does_not_qualify_its_actions (__main__.Controls.test_a_pid_seen_only_after_the_case_does_not_qualify_its_actions) ... ok
+test_boolean_id_and_unknown_event_schema_fail (__main__.Controls.test_boolean_id_and_unknown_event_schema_fail) ... ok
+test_changed_process_namespace_session_or_profile_fails (__main__.Controls.test_changed_process_namespace_session_or_profile_fails) ... ok
+test_cleanup_deadline_or_drift_is_not_normal_success (__main__.Controls.test_cleanup_deadline_or_drift_is_not_normal_success) ... ok
+test_duplicate_real_line_id_cannot_inflate_result_count (__main__.Controls.test_duplicate_real_line_id_cannot_inflate_result_count) ... ok
+test_duplicate_root_json_cannot_replace_private_receipt_fields (__main__.Controls.test_duplicate_root_json_cannot_replace_private_receipt_fields) ... ok
+test_earlier_full_zayit_metadata_must_remain_byte_structurally_equal (__main__.Controls.test_earlier_full_zayit_metadata_must_remain_byte_structurally_equal) ... ok
+test_earlier_otzaria_full_metadata_must_remain_equal (__main__.Controls.test_earlier_otzaria_full_metadata_must_remain_equal) ... ok
+test_earlier_otzaria_native_item_cannot_change_later (__main__.Controls.test_earlier_otzaria_native_item_cannot_change_later) ... ok
+test_exact_explicit_fresh_owner_coordination_shape (__main__.Controls.test_exact_explicit_fresh_owner_coordination_shape) ... ok
+test_extra_selector_cannot_hide_in_native_command (__main__.Controls.test_extra_selector_cannot_hide_in_native_command) ... ok
+test_extra_unattributed_sql_row_fails (__main__.Controls.test_extra_unattributed_sql_row_fails) ... ok
+test_fake_full150_publication_before_second_provider_fails (__main__.Controls.test_fake_full150_publication_before_second_provider_fails) ... ok
+test_foreign_oracle_heartbeat_cannot_explain_actual_root_nonce (__main__.Controls.test_foreign_oracle_heartbeat_cannot_explain_actual_root_nonce) ... ok
+test_genuine_transport_shape_joins_original_page_process_and_window (__main__.Controls.test_genuine_transport_shape_joins_original_page_process_and_window) ... ok
+test_host_probe_binary_cannot_substitute_for_simulator (__main__.Controls.test_host_probe_binary_cannot_substitute_for_simulator) ... ok
+test_later_deadline_cannot_be_invented_from_old_owner_pause (__main__.Controls.test_later_deadline_cannot_be_invented_from_old_owner_pause) ... ok
+test_missing_actual_owner_acknowledgement_fails (__main__.Controls.test_missing_actual_owner_acknowledgement_fails) ... ok
+test_missing_actual_process_observation_fails (__main__.Controls.test_missing_actual_process_observation_fails) ... ok
+test_missing_final_or_initial_probe_round_fails (__main__.Controls.test_missing_final_or_initial_probe_round_fails) ... ok
+test_missing_intermediate_publication_fails (__main__.Controls.test_missing_intermediate_publication_fails) ... ok
+test_missing_or_unbounded_actual_host_timeout_fails (__main__.Controls.test_missing_or_unbounded_actual_host_timeout_fails) ... ok
+test_missing_watchdog_interval_never_counts_as_continuity (__main__.Controls.test_missing_watchdog_interval_never_counts_as_continuity) ... ok
+test_modified_original_xctest_allowance_fails (__main__.Controls.test_modified_original_xctest_allowance_fails) ... ok
+test_native_finished_after_window_is_never_accepted (__main__.Controls.test_native_finished_after_window_is_never_accepted) ... ok
+test_native_interval_after_rollback_is_rejected (__main__.Controls.test_native_interval_after_rollback_is_rejected) ... ok
+test_native_partial_nonzero_exit_is_not_a_pass (__main__.Controls.test_native_partial_nonzero_exit_is_not_a_pass) ... ok
+test_negative_http_error_is_not_network_denial (__main__.Controls.test_negative_http_error_is_not_network_denial) ... ok
+test_negative_request_outside_actual_window_is_rejected (__main__.Controls.test_negative_request_outside_actual_window_is_rejected) ... ok
+test_no_block_counter_increase_fails (__main__.Controls.test_no_block_counter_increase_fails) ... ok
+test_offset50_cannot_be_counted_as_offset100 (__main__.Controls.test_offset50_cannot_be_counted_as_offset100) ... ok
+test_old_probe_driver_cannot_qualify_current_closure (__main__.Controls.test_old_probe_driver_cannot_qualify_current_closure) ... ok
+test_oracle_and_mac_clock_skew_is_not_fabricated_ordering (__main__.Controls.test_oracle_and_mac_clock_skew_is_not_fabricated_ordering) ... ok
+test_oracle_terminal_reply_must_match_exact_root_cleanup (__main__.Controls.test_oracle_terminal_reply_must_match_exact_root_cleanup) ... ok
+test_original_native_interval_inside_denial (__main__.Controls.test_original_native_interval_inside_denial) ... ok
+test_original_otzaria_two_cumulative_pages_all200_sql_identities (__main__.Controls.test_original_otzaria_two_cumulative_pages_all200_sql_identities) ... ok
+test_original_probe_build_retains_its_actual_kind_and_current_source (__main__.Controls.test_original_probe_build_retains_its_actual_kind_and_current_source) ... ok
+test_original_zayit_three_pages_all150_source_sql_identities (__main__.Controls.test_original_zayit_three_pages_all150_source_sql_identities) ... ok
+test_other_query_digest_fails (__main__.Controls.test_other_query_digest_fails) ... ok
+test_other_sdk_cannot_qualify_probe_readback (__main__.Controls.test_other_sdk_cannot_qualify_probe_readback) ... ok
+test_partial_last_page_fails (__main__.Controls.test_partial_last_page_fails) ... ok
+test_preexisting_online_process_is_not_a_fresh_offline_case (__main__.Controls.test_preexisting_online_process_is_not_a_fresh_offline_case) ... ok
+test_receipt_write_failure_cannot_skip_preparation_rollback (__main__.Controls.test_receipt_write_failure_cannot_skip_preparation_rollback) ... ok
+test_replayed_negative_probe_cannot_replace_a_fresh_final_probe (__main__.Controls.test_replayed_negative_probe_cannot_replace_a_fresh_final_probe) ... ok
+test_root_mac_heartbeat_time_must_match_its_actual_remote_nonce (__main__.Controls.test_root_mac_heartbeat_time_must_match_its_actual_remote_nonce) ... ok
+test_same_udid_different_image_container_does_not_qualify (__main__.Controls.test_same_udid_different_image_container_does_not_qualify) ... ok
+test_unpaused_or_stale_owner_never_becomes_automatic_approval (__main__.Controls.test_unpaused_or_stale_owner_never_becomes_automatic_approval) ... ok
+test_wrong_actual_sql_identity_fails (__main__.Controls.test_wrong_actual_sql_identity_fails) ... ok
+test_wrong_matched_terms_fails (__main__.Controls.test_wrong_matched_terms_fails) ... ok
+test_wrong_native_locator_fails (__main__.Controls.test_wrong_native_locator_fails) ... ok
+test_wrong_native_title_on_first_page_fails_even_if_final_correct (__main__.Controls.test_wrong_native_title_on_first_page_fails_even_if_final_correct) ... ok
+test_wrong_process_namespace_and_fixture_namespace_are_rejected (__main__.Controls.test_wrong_process_namespace_and_fixture_namespace_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 0.250s
+
+OK

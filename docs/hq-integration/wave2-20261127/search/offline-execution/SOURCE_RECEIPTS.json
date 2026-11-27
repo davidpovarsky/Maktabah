@@ -1,0 +1,15 @@
+{
+  "head": "305b0b4de89a5532ee403419479cf6b9a280222d",
+  "files": [
+    {
+      "name": "Scripts/CI/production-study-v40-ui.py",
+      "bytes": 45455,
+      "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+    },
+    {
+      "name": "Scripts/CI/study-ui-prerequisites.py",
+      "bytes": 47638,
+      "sha256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2"
+    }
+  ]
+}

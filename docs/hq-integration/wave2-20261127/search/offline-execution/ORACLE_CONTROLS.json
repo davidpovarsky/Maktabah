@@ -1,0 +1,12 @@
+{
+  "scope": "ORACLE_SOURCE_VALIDATOR_ONLY_NO_MAC_PF_OR_NATIVE",
+  "startedOracleUnix": 1795764051.085457,
+  "finishedOracleUnix": 1795764051.4887276,
+  "exitCode": 0,
+  "sourceSHA256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+  "testsRun": 52,
+  "pfOperations": 0,
+  "nativeCases": 0,
+  "originalWindowSourceSHA256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2",
+  "sourceParse": "PASS"
+}
