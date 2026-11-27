@@ -76,15 +76,25 @@ import ChavrusaUIRoutingHost
     private let reader: ReaderViewModel
     private let inspector: MaktabahNativeInspectorBinding
     private let observation: MaktabahNativeComponentSourceObservation
+    private let initialContent: ReaderInitialContentSourceObservation
     private let range: NSRange
     private let source: String
 
     init(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner, locator: ActionTextRef) throws {
+        // Retain the ORIGINAL coordinator before reading renderer selection.
+        // A new initial request can exist before any loaded field changes.
+        guard let originalReader = MaktabahNativeInspectorBinding.currentReader(in: manager),
+              let initialContent = originalReader.contentLoadCoordinator.initialContentSourceObservation(),
+              initialContent.pendingRequestID == nil, initialContent.isCurrent else {
+            throw UIRouteError(.unavailable, "reader_tool_original_content_pending")
+        }
         let (reader, selected, range, text) = try MaktabahNativeNoteDraftBinding.sourceSelection(manager: manager, owner: owner)
-        guard try ActionAppIdentityBridge.actionRef(selected) == locator else {
+        guard reader === originalReader, initialContent.isCurrent,
+              try ActionAppIdentityBridge.actionRef(selected) == locator else {
             throw UIRouteError(.staleState, "reader_tool_original_selection_changed")
         }
         self.manager = manager; self.owner = owner; self.reader = reader
+        self.initialContent = initialContent
         inspector = try MaktabahNativeInspectorBinding(manager: manager)
         self.range = range; source = text
         observation = MaktabahNativeComponentSourceObservation {
@@ -99,6 +109,9 @@ import ChavrusaUIRoutingHost
         try validate()
     }
     func validate() throws {
+        guard initialContent.isCurrent else {
+            throw UIRouteError(.staleState, "reader_tool_original_content_changed")
+        }
         try observation.validate()
         try inspector.validate()
         guard owner.reader === reader,
@@ -108,6 +121,9 @@ import ChavrusaUIRoutingHost
             throw UIRouteError(.staleState, "reader_tool_original_selection_changed")
         }
         try observation.validate()
+        guard initialContent.isCurrent else {
+            throw UIRouteError(.staleState, "reader_tool_original_content_changed")
+        }
     }
 }
 #endif

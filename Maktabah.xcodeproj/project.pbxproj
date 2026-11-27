@@ -1484,6 +1484,9 @@
 		A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
 		E1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */; };
 		1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */; };
+		627097BD8AB78DEADAC8C319 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };
+		D4032B42A357852D4E98A0E6 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };
+		538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2347,6 +2350,7 @@
 		30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSemanticNavigation.swift"; sourceTree = "<group>"; };
 		F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"; sourceTree = "<group>"; };
 		14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"; sourceTree = "<group>"; };
+		0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderInitialContentRequest.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2443,6 +2447,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */,
 				14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */,
 				F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */,
 				6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */,
@@ -4574,6 +4579,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				627097BD8AB78DEADAC8C319 /* ReaderInitialContentRequest.swift in Sources */,
 				3AF217E9C4FDFAEBFB8D8E24 /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				87665F06D696E3919AB2B708 /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				AF6BB4B0292A5855233D351E /* MaktabahNativeSettingsComponents.swift in Sources */,
@@ -4940,6 +4946,7 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				D4032B42A357852D4E98A0E6 /* ReaderInitialContentRequest.swift in Sources */,
 				BAF90592723AA4B89CEB6BEC /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				F74DC3696387CBB309D0CAE0 /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				A238FAACB059319BEE1D808C /* MaktabahNativeSettingsComponents.swift in Sources */,
@@ -5311,6 +5318,7 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */,
 				1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */,
 				E1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */,
 				A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */,

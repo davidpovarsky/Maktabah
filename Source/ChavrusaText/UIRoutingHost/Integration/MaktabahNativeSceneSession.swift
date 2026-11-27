@@ -1106,6 +1106,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             throw UIRouteError(.staleState, "native_workspace_selection_completed_owner_changed")
         }
         try bound.validate()
+        try bound.didValidateCompletion()
     }
 
     /// Capture before the first catalog await. Source metadata does not open a
@@ -1448,7 +1449,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                 workspaceSelectionParentObservation = nil
                 try bound.viewerParent?.bind(value)
                 let originalLifetime = try componentValidation(value)
-                try bound.begin { [weak self, weak bound] in
+                try bound.begin(deadlineUptimeNanoseconds: value.invocation.deadlineUptimeNanoseconds) { [weak self, weak bound] in
                     try originalLifetime()
                     guard let self, let bound, self.workspaceSelectionBinding === bound,
                           self.mounted, self.foreground, self.isReaderTabSourceReady else {
