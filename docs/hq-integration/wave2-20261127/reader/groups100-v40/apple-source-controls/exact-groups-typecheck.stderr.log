@@ -1,0 +1,1110 @@
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:36:15: warning: call to main actor-isolated initializer 'init(bundleIdentifier:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 34 |     override func setUpWithError() throws {
+ 35 |         continueAfterFailure = false
+ 36 |         app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+    |               `- warning: call to main actor-isolated initializer 'init(bundleIdentifier:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 37 | 
+ 38 |         addUIInterruptionMonitor(withDescription: "Dismiss Alerts") { alert in
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:35:1: note: calls to initializer 'init(bundleIdentifier:)' from outside of its actor context are implicitly asynchronous
+ 33 |  * Returns a proxy for an application associated with the specified bundle identifier.
+ 34 |  */
+ 35 | - (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier NS_DESIGNATED_INITIALIZER;
+    | `- note: calls to initializer 'init(bundleIdentifier:)' from outside of its actor context are implicitly asynchronous
+ 36 | 
+ 37 | #if TARGET_OS_OSX || TARGET_OS_MACCATALYST
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:39:159: warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+ 37 | 
+ 38 |         addUIInterruptionMonitor(withDescription: "Dismiss Alerts") { alert in
+ 39 |             let button = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                                                                                                                                          `- warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+ 40 |             if button.exists {
+ 41 |                 button.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:105:35: note: property declared here
+103 |  * matches will not be detected.
+104 |  */
+105 | @property (readonly) XCUIElement *firstMatch;
+    |                                   `- note: property declared here
+106 | 
+107 | @end
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:39:40: warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 37 | 
+ 38 |         addUIInterruptionMonitor(withDescription: "Dismiss Alerts") { alert in
+ 39 |             let button = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                        `- warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 40 |             if button.exists {
+ 41 |                 button.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:61:1: note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+59 | 
+60 | /*! Returns a new query that applies the specified attributes or predicate to the receiver. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+61 | - (XCUIElementQuery *)matchingPredicate:(NSPredicate *)predicate;
+   | |- note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+62 | - (XCUIElementQuery *)matchingType:(XCUIElementType)elementType identifier:(nullable NSString *)identifier;
+63 | - (XCUIElementQuery *)matchingIdentifier:(NSString *)identifier;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:39:32: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+ 37 | 
+ 38 |         addUIInterruptionMonitor(withDescription: "Dismiss Alerts") { alert in
+ 39 |             let button = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+ 40 |             if button.exists {
+ 41 |                 button.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:40:23: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+ 38 |         addUIInterruptionMonitor(withDescription: "Dismiss Alerts") { alert in
+ 39 |             let button = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+ 40 |             if button.exists {
+    |                       `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+ 41 |                 button.tap()
+ 42 |                 return true
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:41:24: warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 39 |             let button = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+ 40 |             if button.exists {
+ 41 |                 button.tap()
+    |                        `- warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 42 |                 return true
+ 43 |             }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:139:1: note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+137 |  * Sends a tap event to a hittable point computed for the element.
+138 |  */
+139 | - (void)tap API_UNAVAILABLE(tvos);
+    | `- note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+140 | 
+141 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:59:29: warning: main actor-isolated property 'launchArguments' can not be referenced from a nonisolated context
+ 54 |     /// Locale is explicitly the launched app's argument, not an inferred rendering
+ 55 |     /// result. Localization/RTL correctness remains a separate native assertion.
+ 56 |     private func recordRuntime27Configuration(stage: String) {
+    |                  `- note: add '@MainActor' to make instance method 'recordRuntime27Configuration(stage:)' part of global actor 'MainActor'
+ 57 |         guard ProcessInfo.processInfo.environment["RUNTIME27_RECORD_CONFIGURATION"] == "1",
+ 58 |               let app else { return }
+ 59 |         let arguments = app.launchArguments
+    |                             `- warning: main actor-isolated property 'launchArguments' can not be referenced from a nonisolated context
+ 60 |         guard let position = arguments.lastIndex(of: "-AppleLocale"),
+ 61 |               arguments.indices.contains(position + 1) else { return }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:93:51: note: property declared here
+ 91 |  * is launched.
+ 92 |  */
+ 93 | @property (nonatomic, copy) NSArray <NSString *> *launchArguments;
+    |                                                   `- note: property declared here
+ 94 | 
+ 95 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:68:46: warning: main actor-isolated property 'orientation' can not be referenced from a nonisolated context
+ 54 |     /// Locale is explicitly the launched app's argument, not an inferred rendering
+ 55 |     /// result. Localization/RTL correctness remains a separate native assertion.
+ 56 |     private func recordRuntime27Configuration(stage: String) {
+    |                  `- note: add '@MainActor' to make instance method 'recordRuntime27Configuration(stage:)' part of global actor 'MainActor'
+ 57 |         guard ProcessInfo.processInfo.environment["RUNTIME27_RECORD_CONFIGURATION"] == "1",
+ 58 |               let app else { return }
+    :
+ 66 |             "locale": arguments[position + 1],
+ 67 |             "locale_source": "XCUIApplication.launchArguments/-AppleLocale",
+ 68 |             "orientation": XCUIDevice.shared.orientation.rawValue,
+    |                                              `- warning: main actor-isolated property 'orientation' can not be referenced from a nonisolated context
+ 69 |             "orientation_source": "XCUIDevice.shared.orientation",
+ 70 |             "foreground": app.state == .runningForeground
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIDevice.h:55:43: note: property declared here
+ 53 | #if TARGET_OS_IOS
+ 54 | /*! The orientation of the device. */
+ 55 | @property (nonatomic) UIDeviceOrientation orientation;
+    |                                           `- note: property declared here
+ 56 | /*!
+ 57 |  * Provides access to an object representing the Siri interface on the device.
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:68:39: warning: main actor-isolated class property 'shared' can not be referenced from a nonisolated context
+ 54 |     /// Locale is explicitly the launched app's argument, not an inferred rendering
+ 55 |     /// result. Localization/RTL correctness remains a separate native assertion.
+ 56 |     private func recordRuntime27Configuration(stage: String) {
+    |                  `- note: add '@MainActor' to make instance method 'recordRuntime27Configuration(stage:)' part of global actor 'MainActor'
+ 57 |         guard ProcessInfo.processInfo.environment["RUNTIME27_RECORD_CONFIGURATION"] == "1",
+ 58 |               let app else { return }
+    :
+ 66 |             "locale": arguments[position + 1],
+ 67 |             "locale_source": "XCUIApplication.launchArguments/-AppleLocale",
+ 68 |             "orientation": XCUIDevice.shared.orientation.rawValue,
+    |                                       `- warning: main actor-isolated class property 'shared' can not be referenced from a nonisolated context
+ 69 |             "orientation_source": "XCUIDevice.shared.orientation",
+ 70 |             "foreground": app.state == .runningForeground
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIDevice.h:42:41: note: class property declared here
+ 40 | 
+ 41 | /*! The current device. */
+ 42 | @property (class, readonly) XCUIDevice *sharedDevice;
+    |                                         `- note: class property declared here
+ 43 | 
+ 44 | + (instancetype)new XCUI_UNAVAILABLE("Access XCUIDevice through +sharedDevice");
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:70:31: warning: main actor-isolated property 'state' can not be referenced from a nonisolated context
+ 54 |     /// Locale is explicitly the launched app's argument, not an inferred rendering
+ 55 |     /// result. Localization/RTL correctness remains a separate native assertion.
+ 56 |     private func recordRuntime27Configuration(stage: String) {
+    |                  `- note: add '@MainActor' to make instance method 'recordRuntime27Configuration(stage:)' part of global actor 'MainActor'
+ 57 |         guard ProcessInfo.processInfo.environment["RUNTIME27_RECORD_CONFIGURATION"] == "1",
+ 58 |               let app else { return }
+    :
+ 68 |             "orientation": XCUIDevice.shared.orientation.rawValue,
+ 69 |             "orientation_source": "XCUIDevice.shared.orientation",
+ 70 |             "foreground": app.state == .runningForeground
+    |                               `- warning: main actor-isolated property 'state' can not be referenced from a nonisolated context
+ 71 |         ]
+ 72 |         guard let data = try? JSONSerialization.data(withJSONObject: observation, options: [.sortedKeys]),
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:118:43: note: property declared here
+116 |  *      XCUIApplicationStateNotRunning.
+117 |  */
+118 | @property (readonly) XCUIApplicationState state;
+    |                                           `- note: property declared here
+119 | 
+120 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:87:19: warning: call to main actor-isolated initializer 'init(bundleIdentifier:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 76 | 
+ 77 |     @discardableResult
+ 78 |     func launchWithTier(
+    |          `- note: add '@MainActor' to make instance method 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' part of global actor 'MainActor'
+ 79 |         _ tier: TestTier,
+ 80 |         scenario: String? = nil,
+    :
+ 85 |         extraEnvironment: [String: String] = [:]
+ 86 |     ) -> XCUIApplication {
+ 87 |         let app = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+    |                   `- warning: call to main actor-isolated initializer 'init(bundleIdentifier:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 88 |         var args: [String] = []
+ 89 |         var env: [String: String] = [:]
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:35:1: note: calls to initializer 'init(bundleIdentifier:)' from outside of its actor context are implicitly asynchronous
+ 33 |  * Returns a proxy for an application associated with the specified bundle identifier.
+ 34 |  */
+ 35 | - (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier NS_DESIGNATED_INITIALIZER;
+    | `- note: calls to initializer 'init(bundleIdentifier:)' from outside of its actor context are implicitly asynchronous
+ 36 | 
+ 37 | #if TARGET_OS_OSX || TARGET_OS_MACCATALYST
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:145:13: warning: main actor-isolated property 'launchArguments' can not be mutated from a nonisolated context
+ 76 | 
+ 77 |     @discardableResult
+ 78 |     func launchWithTier(
+    |          `- note: add '@MainActor' to make instance method 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' part of global actor 'MainActor'
+ 79 |         _ tier: TestTier,
+ 80 |         scenario: String? = nil,
+    :
+143 |         }
+144 | 
+145 |         app.launchArguments = args
+    |             `- warning: main actor-isolated property 'launchArguments' can not be mutated from a nonisolated context
+146 |         env.merge(extraEnvironment) { _, extra in extra }
+147 |         for (k, v) in env {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:93:51: note: mutation of this property is only permitted within the actor
+ 91 |  * is launched.
+ 92 |  */
+ 93 | @property (nonatomic, copy) NSArray <NSString *> *launchArguments;
+    |                                                   `- note: mutation of this property is only permitted within the actor
+ 94 | 
+ 95 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:148:17: warning: main actor-isolated property 'launchEnvironment' can not be mutated from a nonisolated context
+ 76 | 
+ 77 |     @discardableResult
+ 78 |     func launchWithTier(
+    |          `- note: add '@MainActor' to make instance method 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' part of global actor 'MainActor'
+ 79 |         _ tier: TestTier,
+ 80 |         scenario: String? = nil,
+    :
+146 |         env.merge(extraEnvironment) { _, extra in extra }
+147 |         for (k, v) in env {
+148 |             app.launchEnvironment[k] = v
+    |                 `- warning: main actor-isolated property 'launchEnvironment' can not be mutated from a nonisolated context
+149 |         }
+150 |         app.launch()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:102:68: note: mutation of this property is only permitted within the actor
+100 |  * is launched.
+101 |  */
+102 | @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *launchEnvironment;
+    |                                                                    `- note: mutation of this property is only permitted within the actor
+103 | 
+104 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:150:13: warning: call to main actor-isolated instance method 'launch()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 76 | 
+ 77 |     @discardableResult
+ 78 |     func launchWithTier(
+    |          `- note: add '@MainActor' to make instance method 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' part of global actor 'MainActor'
+ 79 |         _ tier: TestTier,
+ 80 |         scenario: String? = nil,
+    :
+148 |             app.launchEnvironment[k] = v
+149 |         }
+150 |         app.launch()
+    |             `- warning: call to main actor-isolated instance method 'launch()' in a synchronous nonisolated context [#ActorIsolatedCall]
+151 |         self.app = app
+152 |         recordRuntime27Configuration(stage: "launch")
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIApplication.h:54:1: note: calls to instance method 'launch()' from outside of its actor context are implicitly asynchronous
+ 52 |  * at that point.
+ 53 | */
+ 54 | - (void)launch;
+    | `- note: calls to instance method 'launch()' from outside of its actor context are implicitly asynchronous
+ 55 | 
+ 56 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:175:44: warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+    |                                            `- warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:46:1: note: subscript declared here
+44 | 
+45 | /*! Keyed subscripting is implemented as a shortcut for matching an identifier only. For example, app.descendants["Foo"] -> XCUIElement. */
+46 | - (XCUIElement *)objectForKeyedSubscript:(NSString *)key;
+   | `- note: subscript declared here
+47 | 
+48 | /*! Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:175:31: warning: main actor-isolated property 'otherElements' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+    |                               `- warning: main actor-isolated property 'otherElements' can not be referenced from a nonisolated context
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:95:46: note: property declared here
+ 93 | @property (readonly, copy) XCUIElementQuery *layoutItems;
+ 94 | @property (readonly, copy) XCUIElementQuery *handles;
+ 95 | @property (readonly, copy) XCUIElementQuery *otherElements;
+    |                                              `- note: property declared here
+ 96 | @property (readonly, copy) XCUIElementQuery *statusItems;
+ 97 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:176:24: warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+    |                        `- warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+178 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:57:1: note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+ 57 | - (BOOL)waitForExistenceWithTimeout:(NSTimeInterval)timeout XCUI_WARN_UNUSED;
+    | `- note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 58 | 
+ 59 | /*! Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:176:78: warning: main actor-isolated property 'value' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+    |                                                                              `- warning: main actor-isolated property 'value' can not be referenced from a nonisolated context
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+178 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementAttributes.h:41:35: note: property declared here
+ 39 | 
+ 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */
+ 41 | @property (readonly, nullable) id value;
+    |                                   `- note: property declared here
+ 42 | 
+ 43 | /*! The title attribute of the element. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:179:37: warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+178 |         }
+179 |         let textView = app.textViews["reader-text"]
+    |                                     `- warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+180 |         if textView.waitForExistence(timeout: 6.0), let val = textView.value as? String {
+181 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:46:1: note: subscript declared here
+44 | 
+45 | /*! Keyed subscripting is implemented as a shortcut for matching an identifier only. For example, app.descendants["Foo"] -> XCUIElement. */
+46 | - (XCUIElement *)objectForKeyedSubscript:(NSString *)key;
+   | `- note: subscript declared here
+47 | 
+48 | /*! Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:179:28: warning: main actor-isolated property 'textViews' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+177 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+178 |         }
+179 |         let textView = app.textViews["reader-text"]
+    |                            `- warning: main actor-isolated property 'textViews' can not be referenced from a nonisolated context
+180 |         if textView.waitForExistence(timeout: 6.0), let val = textView.value as? String {
+181 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:66:46: note: property declared here
+ 64 | @property (readonly, copy) XCUIElementQuery *secureTextFields;
+ 65 | @property (readonly, copy) XCUIElementQuery *datePickers;
+ 66 | @property (readonly, copy) XCUIElementQuery *textViews;
+    |                                              `- note: property declared here
+ 67 | @property (readonly, copy) XCUIElementQuery *menus;
+ 68 | @property (readonly, copy) XCUIElementQuery *menuItems;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:180:21: warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+    :
+178 |         }
+179 |         let textView = app.textViews["reader-text"]
+180 |         if textView.waitForExistence(timeout: 6.0), let val = textView.value as? String {
+    |                     `- warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+181 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+182 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:57:1: note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+ 57 | - (BOOL)waitForExistenceWithTimeout:(NSTimeInterval)timeout XCUI_WARN_UNUSED;
+    | `- note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 58 | 
+ 59 | /*! Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:180:72: warning: main actor-isolated property 'value' can not be referenced from a nonisolated context
+172 |     }
+173 | 
+174 |     func getRenderedHighlightSnapshot() -> TestRenderedHighlightSnapshot? {
+    |          `- note: add '@MainActor' to make instance method 'getRenderedHighlightSnapshot()' part of global actor 'MainActor'
+175 |         let diagnostics = app.otherElements["reader-rendered-highlight-diagnostics"]
+176 |         if diagnostics.waitForExistence(timeout: 6.0), let val = diagnostics.value as? String {
+    :
+178 |         }
+179 |         let textView = app.textViews["reader-text"]
+180 |         if textView.waitForExistence(timeout: 6.0), let val = textView.value as? String {
+    |                                                                        `- warning: main actor-isolated property 'value' can not be referenced from a nonisolated context
+181 |             return TestRenderedHighlightSnapshot.fromJSON(val)
+182 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementAttributes.h:41:35: note: property declared here
+ 39 | 
+ 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */
+ 41 | @property (readonly, nullable) id value;
+    |                                   `- note: property declared here
+ 42 | 
+ 43 | /*! The title attribute of the element. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:193:17: error: cannot find 'XCTAssertTrue' in scope
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+    |                 `- error: cannot find 'XCTAssertTrue' in scope
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+195 |             }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestAssertions.h:81:9: note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 79 |  * @param ... An optional supplementary description of the failure. A literal NSString, optionally with string format specifiers. This parameter can be completely omitted.
+ 80 | */
+ 81 | #define XCTAssertTrue(expression, ...) \
+    |         `- note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 82 |     _XCTPrimitiveAssertTrue(nil, expression, @#expression, __VA_ARGS__)
+ 83 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:196:13: error: cannot find 'XCTAssertTrue' in scope
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+195 |             }
+196 |             XCTAssertTrue(page.waitForExistence(timeout: 10))
+    |             `- error: cannot find 'XCTAssertTrue' in scope
+197 |             page.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+198 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestAssertions.h:81:9: note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 79 |  * @param ... An optional supplementary description of the failure. A literal NSString, optionally with string format specifiers. This parameter can be completely omitted.
+ 80 | */
+ 81 | #define XCTAssertTrue(expression, ...) \
+    |         `- note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 82 |     _XCTPrimitiveAssertTrue(nil, expression, @#expression, __VA_ARGS__)
+ 83 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:189:31: warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+    |                               `- warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:46:1: note: subscript declared here
+44 | 
+45 | /*! Keyed subscripting is implemented as a shortcut for matching an identifier only. For example, app.descendants["Foo"] -> XCUIElement. */
+46 | - (XCUIElement *)objectForKeyedSubscript:(NSString *)key;
+   | `- note: subscript declared here
+47 | 
+48 | /*! Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:189:24: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+    |                        `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:190:17: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+    |                 `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:191:21: warning: main actor-isolated property 'frame' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+    |                     `- warning: main actor-isolated property 'frame' can not be referenced from a nonisolated context
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementAttributes.h:38:29: note: property declared here
+ 36 | 
+ 37 | /*! The frame of the element in the screen coordinate space. */
+ 38 | @property (readonly) CGRect frame;
+    |                             `- note: property declared here
+ 39 | 
+ 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:191:44: warning: main actor-isolated property 'frame' can not be referenced from a nonisolated autoclosure
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+    |                                            `- warning: main actor-isolated property 'frame' can not be referenced from a nonisolated autoclosure
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementAttributes.h:38:29: note: property declared here
+ 36 | 
+ 37 | /*! The frame of the element in the screen coordinate space. */
+ 38 | @property (readonly) CGRect frame;
+    |                             `- note: property declared here
+ 39 | 
+ 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:191:65: warning: main actor-isolated property 'frame' can not be referenced from a nonisolated autoclosure
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+    |                                                                 `- warning: main actor-isolated property 'frame' can not be referenced from a nonisolated autoclosure
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementAttributes.h:38:29: note: property declared here
+ 36 | 
+ 37 | /*! The frame of the element in the screen coordinate space. */
+ 38 | @property (readonly) CGRect frame;
+    |                             `- note: property declared here
+ 39 | 
+ 40 | /*! The raw value attribute of the element. Depending on the element, the actual type can vary. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:192:41: warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+    |                                         `- warning: main actor-isolated subscript 'subscript(_:)' can not be referenced from a nonisolated context
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:46:1: note: subscript declared here
+44 | 
+45 | /*! Keyed subscripting is implemented as a shortcut for matching an identifier only. For example, app.descendants["Foo"] -> XCUIElement. */
+46 | - (XCUIElement *)objectForKeyedSubscript:(NSString *)key;
+   | `- note: subscript declared here
+47 | 
+48 | /*! Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:192:34: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+191 |             if page.frame.isEmpty || !page.frame.intersects(app.frame) {
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+    |                                  `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:194:85: warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+    :
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    |                                                                                     `- warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+195 |             }
+196 |             XCTAssertTrue(page.waitForExistence(timeout: 10))
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUICoordinate.h:42:1: note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+ 40 | @interface XCUICoordinate (XCUICoordinateTouchEvents)
+ 41 | 
+ 42 | - (void)tap;
+    | `- note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+ 43 | - (void)doubleTap;
+ 44 | - (void)pressForDuration:(NSTimeInterval)duration;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:194:24: warning: call to main actor-isolated instance method 'coordinate(withNormalizedOffset:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+    :
+192 |                 let toggle = app.buttons["reader-host-sidebar-toggle"]
+193 |                 XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+194 |                 toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    |                        `- warning: call to main actor-isolated instance method 'coordinate(withNormalizedOffset:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+195 |             }
+196 |             XCTAssertTrue(page.waitForExistence(timeout: 10))
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:73:1: note: calls to instance method 'coordinate(withNormalizedOffset:)' from outside of its actor context are implicitly asynchronous
+ 71 | #if !TARGET_OS_TV
+ 72 | /*! Creates and returns a new coordinate that will compute its screen point by adding the offset multiplied by the size of the element’s frame to the origin of the element’s frame. */
+ 73 | - (XCUICoordinate *)coordinateWithNormalizedOffset:(CGVector)normalizedOffset;
+    | `- note: calls to instance method 'coordinate(withNormalizedOffset:)' from outside of its actor context are implicitly asynchronous
+ 74 | #endif
+ 75 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:197:79: warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+    :
+195 |             }
+196 |             XCTAssertTrue(page.waitForExistence(timeout: 10))
+197 |             page.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    |                                                                               `- warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+198 |         }
+199 |     }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUICoordinate.h:42:1: note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+ 40 | @interface XCUICoordinate (XCUICoordinateTouchEvents)
+ 41 | 
+ 42 | - (void)tap;
+    | `- note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+ 43 | - (void)doubleTap;
+ 44 | - (void)pressForDuration:(NSTimeInterval)duration;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:197:18: warning: call to main actor-isolated instance method 'coordinate(withNormalizedOffset:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+186 |     /// Follow the actual two-page sidebar when present; original 9401 already
+187 |     /// presents its TOC in the middle column and needs no extra interaction.
+188 |     func revealTableOfContentsPageIfPresent() {
+    |          `- note: add '@MainActor' to make instance method 'revealTableOfContentsPageIfPresent()' part of global actor 'MainActor'
+189 |         let page = app.buttons["reader-sidebar-page-1"]
+190 |         if page.exists {
+    :
+195 |             }
+196 |             XCTAssertTrue(page.waitForExistence(timeout: 10))
+197 |             page.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    |                  `- warning: call to main actor-isolated instance method 'coordinate(withNormalizedOffset:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+198 |         }
+199 |     }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:73:1: note: calls to instance method 'coordinate(withNormalizedOffset:)' from outside of its actor context are implicitly asynchronous
+ 71 | #if !TARGET_OS_TV
+ 72 | /*! Creates and returns a new coordinate that will compute its screen point by adding the offset multiplied by the size of the element’s frame to the origin of the element’s frame. */
+ 73 | - (XCUICoordinate *)coordinateWithNormalizedOffset:(CGVector)normalizedOffset;
+    | `- note: calls to instance method 'coordinate(withNormalizedOffset:)' from outside of its actor context are implicitly asynchronous
+ 74 | #endif
+ 75 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:202:23: warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+    |                       `- warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:29:33: note: property declared here
+27 | 
+28 | /*! Evaluates the query at the time it is called and returns the number of matches found. */
+29 | @property (readonly) NSUInteger count;
+   |                                 `- note: property declared here
+30 | 
+31 | /*! Returns an element that will resolve to the index into the query's result set. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:202:16: warning: main actor-isolated property 'alerts' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+    |                `- warning: main actor-isolated property 'alerts' can not be referenced from a nonisolated context
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:20:46: note: property declared here
+ 18 | @property (readonly, copy) XCUIElementQuery *sheets;
+ 19 | @property (readonly, copy) XCUIElementQuery *drawers;
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+    |                                              `- note: property declared here
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:203:36: warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+    |                                    `- warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:105:35: note: property declared here
+103 |  * matches will not be detected.
+104 |  */
+105 | @property (readonly) XCUIElement *firstMatch;
+    |                                   `- note: property declared here
+106 | 
+107 | @end
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:203:29: warning: main actor-isolated property 'alerts' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+    |                             `- warning: main actor-isolated property 'alerts' can not be referenced from a nonisolated context
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:20:46: note: property declared here
+ 18 | @property (readonly, copy) XCUIElementQuery *sheets;
+ 19 | @property (readonly, copy) XCUIElementQuery *drawers;
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+    |                                              `- note: property declared here
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:204:161: warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                                                                                                                                            `- warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+205 |             if okButton.exists {
+206 |                 okButton.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:105:35: note: property declared here
+103 |  * matches will not be detected.
+104 |  */
+105 | @property (readonly) XCUIElement *firstMatch;
+    |                                   `- note: property declared here
+106 | 
+107 | @end
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:204:42: warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                          `- warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+205 |             if okButton.exists {
+206 |                 okButton.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:61:1: note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+59 | 
+60 | /*! Returns a new query that applies the specified attributes or predicate to the receiver. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+61 | - (XCUIElementQuery *)matchingPredicate:(NSPredicate *)predicate;
+   | |- note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+62 | - (XCUIElementQuery *)matchingType:(XCUIElementType)elementType identifier:(nullable NSString *)identifier;
+63 | - (XCUIElementQuery *)matchingIdentifier:(NSString *)identifier;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:204:34: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+    |                                  `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+205 |             if okButton.exists {
+206 |                 okButton.tap()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:205:25: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+    |                         `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+206 |                 okButton.tap()
+207 |             }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:206:26: warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+206 |                 okButton.tap()
+    |                          `- warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+207 |             }
+208 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:139:1: note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+137 |  * Sends a tap event to a hittable point computed for the element.
+138 |  */
+139 | - (void)tap API_UNAVAILABLE(tvos);
+    | `- note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+140 | 
+141 | /*!
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:213:38: warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    |                                      `- warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+214 |         let count = candidates.count
+215 |         if count > 1 {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:61:1: note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+59 | 
+60 | /*! Returns a new query that applies the specified attributes or predicate to the receiver. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+61 | - (XCUIElementQuery *)matchingPredicate:(NSPredicate *)predicate;
+   | |- note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+62 | - (XCUIElementQuery *)matchingType:(XCUIElementType)elementType identifier:(nullable NSString *)identifier;
+63 | - (XCUIElementQuery *)matchingIdentifier:(NSString *)identifier;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:213:30: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    |                              `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+214 |         let count = candidates.count
+215 |         if count > 1 {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:214:32: warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+214 |         let count = candidates.count
+    |                                `- warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+215 |         if count > 1 {
+216 |             for i in 0..<count {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:29:33: note: property declared here
+27 | 
+28 | /*! Evaluates the query at the time it is called and returns the number of matches found. */
+29 | @property (readonly) NSUInteger count;
+   |                                 `- note: property declared here
+30 | 
+31 | /*! Returns an element that will resolve to the index into the query's result set. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:217:44: warning: call to main actor-isolated instance method 'element(boundBy:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+215 |         if count > 1 {
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+    |                                            `- warning: call to main actor-isolated instance method 'element(boundBy:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+218 |                 if candidate.exists && candidate.isHittable {
+219 |                     return candidate
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:37:1: note: calls to instance method 'element(boundBy:)' from outside of its actor context are implicitly asynchronous
+35 | 
+36 | /*! Returns an element that will use the index into the query's results to determine which underlying accessibility element it is matched with. */
+37 | - (XCUIElement *)elementBoundByIndex:(NSUInteger)index;
+   | |- note: calls to instance method 'element(boundBy:)' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+38 | 
+39 | /*! Returns an element that matches the predicate. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:218:30: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+218 |                 if candidate.exists && candidate.isHittable {
+    |                              `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+219 |                     return candidate
+220 |                 }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:218:50: warning: main actor-isolated property 'isHittable' can not be referenced from a nonisolated autoclosure
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+218 |                 if candidate.exists && candidate.isHittable {
+    |                                                  `- warning: main actor-isolated property 'isHittable' can not be referenced from a nonisolated autoclosure
+219 |                     return candidate
+220 |                 }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:63:48: note: property declared here
+ 61 | 
+ 62 | /*! Whether or not a hit point can be computed for the element for the purpose of synthesizing events. */
+ 63 | @property (readonly, getter = isHittable) BOOL hittable;
+    |                                                `- note: property declared here
+ 64 | 
+ 65 | /*! Returns a query for all descendants of the element matching the specified type. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:223:27: warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+221 |             }
+222 |         }
+223 |         return candidates.firstMatch
+    |                           `- warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+224 |     }
+225 | 
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:105:35: note: property declared here
+103 |  * matches will not be detected.
+104 |  */
+105 | @property (readonly) XCUIElement *firstMatch;
+    |                                   `- note: property declared here
+106 | 
+107 | @end
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:233:9: error: cannot find 'XCTAssertTrue' in scope
+231 |     ) -> Bool {
+232 |         let exists = element.waitForExistence(timeout: timeout)
+233 |         XCTAssertTrue(exists, "Expected element to exist: \(element.description)", file: file, line: line)
+    |         `- error: cannot find 'XCTAssertTrue' in scope
+234 |         return exists
+235 |     }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestAssertions.h:81:9: note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 79 |  * @param ... An optional supplementary description of the failure. A literal NSString, optionally with string format specifiers. This parameter can be completely omitted.
+ 80 | */
+ 81 | #define XCTAssertTrue(expression, ...) \
+    |         `- note: macro 'XCTAssertTrue' unavailable: function like macros not supported
+ 82 |     _XCTPrimitiveAssertTrue(nil, expression, @#expression, __VA_ARGS__)
+ 83 | 
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:232:30: warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+224 |     }
+225 | 
+226 |     func waitForElement(
+    |          `- note: add '@MainActor' to make instance method 'waitForElement(_:timeout:file:line:)' part of global actor 'MainActor'
+227 |         _ element: XCUIElement,
+228 |         timeout: TimeInterval = 12.0,
+    :
+230 |         line: UInt = #line
+231 |     ) -> Bool {
+232 |         let exists = element.waitForExistence(timeout: timeout)
+    |                              `- warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+233 |         XCTAssertTrue(exists, "Expected element to exist: \(element.description)", file: file, line: line)
+234 |         return exists
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:57:1: note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+ 57 | - (BOOL)waitForExistenceWithTimeout:(NSTimeInterval)timeout XCUI_WARN_UNUSED;
+    | `- note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 58 | 
+ 59 | /*! Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing. */
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:238:26: warning: main actor-isolated property 'userInterfaceIdiom' can not be referenced from a nonisolated context
+236 | 
+237 |     var isPad: Bool {
+238 |         UIDevice.current.userInterfaceIdiom == .pad
+    |                          `- warning: main actor-isolated property 'userInterfaceIdiom' can not be referenced from a nonisolated context
+239 |     }
+240 | }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h:61:52: note: property declared here
+59 | @property(nonatomic,readonly,getter=isMultitaskingSupported) BOOL multitaskingSupported API_AVAILABLE(ios(4.0));
+60 | 
+61 | @property(nonatomic,readonly) UIUserInterfaceIdiom userInterfaceIdiom API_AVAILABLE(ios(3.2));
+   |                                                    `- note: property declared here
+62 | 
+63 | - (void)playInputClick API_AVAILABLE(ios(4.2)) API_UNAVAILABLE(visionos);  // Plays a click only if an enabling input view is on-screen and user has enabled input clicks.
+
+/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift:238:18: warning: main actor-isolated class property 'current' can not be referenced from a nonisolated context
+236 | 
+237 |     var isPad: Bool {
+238 |         UIDevice.current.userInterfaceIdiom == .pad
+    |                  `- warning: main actor-isolated class property 'current' can not be referenced from a nonisolated context
+239 |     }
+240 | }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h:37:49: note: class property declared here
+35 | @interface UIDevice : NSObject
+36 | 
+37 | @property(class, nonatomic, readonly) UIDevice *currentDevice;
+   |                                                 `- note: class property declared here
+38 | 
+39 | @property(nonatomic,readonly,strong) NSString    *name;              // Synonym for model. Prior to iOS 16, user-assigned device name (e.g. @"My iPhone").
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>

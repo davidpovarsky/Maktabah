@@ -1,0 +1,87 @@
+{
+  "scope": "Actual XCTest/UIKit SDK source parse and exact existing/new Groups helpers typecheck with whole original MaktabahUITestBase and explicit unrelated Faithful/R27 compile-only boundaries; no test execution",
+  "uiExecuted": 0,
+  "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "source_sha256": {
+    "FaithfulReaderUIAcceptanceTests.swift": "30ad15184de4acda706f0a8be292bc8c80976da2fe86a1332f54d6fe60788112",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "ExplicitTestBoundaries.swift": "a5350f7e317c4c00eca5ba475af1da702dbc762dc1c46100b25d8ec595ace85f",
+    "ExactGroupTestsAndHelpers.swift": "7e97b30432ae1f73320be2ff44ccdb9d2117f1ec9a93e6daa086f60df7cbae92"
+  },
+  "records": {
+    "whole-file-parse": {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/FaithfulReaderUIAcceptanceTests.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "whole-file-parse.stdout.log",
+      "stderr": "whole-file-parse.stderr.log"
+    },
+    "exact-groups-typecheck": {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios18.0-simulator",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-typecheck",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/ExplicitTestBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/ExactGroupTestsAndHelpers.swift"
+      ],
+      "exit_code": 1,
+      "stdout": "exact-groups-typecheck.stdout.log",
+      "stderr": "exact-groups-typecheck.stderr.log"
+    },
+    "exact-groups-qualified-sdk-typecheck": {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-typecheck",
+        "-swift-version",
+        "6",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/full-v40-observation-admission/module-cache",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/MaktabahUITestBase.swift",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/ExplicitTestBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-ui-source-20261127T004710Z/ExactGroupTestsAndHelpers.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "exact-groups-qualified-sdk-typecheck.stdout.log",
+      "stderr": "exact-groups-qualified-sdk-typecheck.stderr.log"
+    }
+  },
+  "initial_invocation_limitation": "Initial direct typecheck omitted actual SDK XCTest Swift overlay include path, yielding three missing XCTest assertion errors before checking the Groups code; command and full logs retained without treating them as product failures."
+}
