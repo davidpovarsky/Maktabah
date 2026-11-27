@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "generationObserverOutsideVisibilityBranch": false,
+    "initialAdmissionPreservesOpenActionBySource": false,
+    "path": "/tmp/wave2-library-inspector-baseline-4e_zxo3j.swift",
+    "scope": "structural admission only; whole-source Apple typecheck recorded separately; no UI execution",
+    "sha256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25"
+  },
+  "baselineGitRef": "7facfd4b167c2e3c3701dd5d40798ba8e5436844:Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+  "candidate": {
+    "generationObserverOutsideVisibilityBranch": true,
+    "initialAdmissionPreservesOpenActionBySource": true,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-library-20261127/Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+    "scope": "structural admission only; whole-source Apple typecheck recorded separately; no UI execution",
+    "sha256": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "cases" : [
+    {
+      "name" : "same-generation-reuses-original-Kit-cache",
+      "passed" : true,
+      "witness" : {
+        "providerCalls" : 1
+      }
+    },
+    {
+      "name" : "hidden-session-reopens-current-document",
+      "passed" : false,
+      "witness" : {
+        "providerCalls" : 1,
+        "text" : "generation-A"
+      }
+    },
+    {
+      "name" : "hidden-session-reopens-current-links",
+      "passed" : false,
+      "witness" : {
+        "payload" : "generation-A"
+      }
+    },
+    {
+      "name" : "hidden-session-reopens-current-topics",
+      "passed" : false,
+      "witness" : {
+        "payload" : "generation-A"
+      }
+    },
+    {
+      "name" : "hidden-session-reopens-current-notes",
+      "passed" : false,
+      "witness" : {
+        "note" : "generation-A"
+      }
+    },
+    {
+      "name" : "Otzaria-Kit-and-adapter-link-caches-retire-together",
+      "passed" : false,
+      "witness" : {
+        "after" : "generation-A",
+        "before" : "generation-A",
+        "providerCalls" : 1,
+        "sameReference" : true
+      }
+    },
+    {
+      "name" : "initial-session-admission-preserves-user-open-action",
+      "passed" : true,
+      "witness" : {
+
+      }
+    },
+    {
+      "name" : "hidden-session-reopens-current-snippets",
+      "passed" : false,
+      "witness" : {
+        "after" : "generation-B",
+        "before" : "generation-B"
+      }
+    },
+    {
+      "name" : "retired-repository-callback-cannot-read-new-generation",
+      "passed" : false,
+      "witness" : {
+        "cancelled" : false,
+        "providerCalls" : 1
+      }
+    },
+    {
+      "name" : "generation-change-during-document-cannot-publish",
+      "passed" : false,
+      "witness" : {
+        "cancelled" : false,
+        "newRepository" : false,
+        "retiredCachePopulated" : true
+      }
+    },
+    {
+      "name" : "generation-change-during-links-cannot-publish",
+      "passed" : false,
+      "witness" : {
+        "cancelled" : false,
+        "newRepository" : false,
+        "retiredCachePopulated" : true
+      }
+    },
+    {
+      "name" : "generation-change-during-topics-cannot-publish",
+      "passed" : false,
+      "witness" : {
+        "cancelled" : false,
+        "newRepository" : false,
+        "retiredCachePopulated" : true
+      }
+    }
+  ],
+  "passed" : 2,
+  "scope" : "actual unchanged adapter and pinned Kit, deterministic provider boundaries; not UI\/corpus acceptance",
+  "total" : 12
+}
