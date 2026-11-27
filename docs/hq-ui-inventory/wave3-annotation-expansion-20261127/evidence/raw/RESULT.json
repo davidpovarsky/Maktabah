@@ -1,0 +1,200 @@
+{
+  "after": {
+    "data_free": 8861310976,
+    "root_free": 2379829248,
+    "task_bytes": 25460736
+  },
+  "baseline": {
+    "failed": 8,
+    "passed": 3
+  },
+  "before": {
+    "data_free": 8884404224,
+    "root_free": 2380460032,
+    "task_bytes": 25075712
+  },
+  "boundary": "Verbatim original and candidate expansion helpers. Only private access modifier removed for invocation. Explicit UIKit/domain callback doubles, no app/SDK/UIKit/native execution. Ordinary route inverse exact.",
+  "candidate": {
+    "failed": 0,
+    "passed": 11
+  },
+  "inputs": [
+    {
+      "bytes": 2313,
+      "path": "SOURCE.diff",
+      "sha256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a"
+    },
+    {
+      "bytes": 3733,
+      "path": "SOURCE_INVERSE.json",
+      "sha256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0"
+    },
+    {
+      "bytes": 31823,
+      "path": "baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+    },
+    {
+      "bytes": 32313,
+      "path": "candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd"
+    },
+    {
+      "bytes": 1928,
+      "path": "controls/CandidateExpansion.swift",
+      "sha256": "a99feb0fc1f7129f319ca62683c84d7629e06e33c744b378655b49e72961bce2"
+    },
+    {
+      "bytes": 4063,
+      "path": "controls/ExpansionControls.swift",
+      "sha256": "40f8d18ebc84965dc2ab84d1032a6db66c39355225634feea2024d2008d860b1"
+    },
+    {
+      "bytes": 2319,
+      "path": "controls/ExplicitUIKitBoundary.swift",
+      "sha256": "6b1ac16d490e28cce7c0acb0ffd2114c87eb8bf7be11373149afe5475c162485"
+    },
+    {
+      "bytes": 1463,
+      "path": "controls/OriginalExpansion.swift",
+      "sha256": "fc4192b123e6362eb26c1a2679b2b9c345cd3bbd3f583f5ce869750afa30f704"
+    },
+    {
+      "bytes": 4911,
+      "path": "prepare.py",
+      "sha256": "80d0cdc0f76265bb658b6ec1e3ec74ffb0aefa4eba37b6fd4dec13f8ba86b5da"
+    },
+    {
+      "bytes": 5833,
+      "path": "run.py",
+      "sha256": "1720fcc758dc687f484dddc8b2bbdffbd405328bb1f01c21a5d620946bd98912"
+    }
+  ],
+  "source": {
+    "after_bytes": 32313,
+    "after_sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "base_commit": "8f7142bba6efb8f4a93c4e325ee6cdb835041bb5",
+    "before_bytes": 31823,
+    "before_sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "edits": [
+      {
+        "after": "    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool,\n                                          validating isCurrent: (@MainActor () -> Bool)? = nil) {\n        guard isCurrent?() ?? true else { return }\n        let id = node.id\n\n        if willExpand {\n            expandedGroups.insert(id)\n        } else {\n            expandedGroups.remove(id)\n        }\n\n        let groupItem = AnnotationItem.group(node)\n        var sectionSnapshot = dataSource.snapshot(for: id)\n\n        guard isCurrent?() ?? true else { return }\n        if willExpand {\n            sectionSnapshot.expand([groupItem])\n        } else {\n            sectionSnapshot.collapse([groupItem])\n        }\n\n        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)\n        guard isCurrent?() ?? true else { return }\n        if let indexPath = dataSource.indexPath(for: groupItem),\n           let cell = collectionView.cellForItem(at: indexPath)\n        {\n            guard isCurrent?() ?? true else { return }\n            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {\n                guard isCurrent?() ?? true else { return }\n                if var config = cell.contentConfiguration as? ListContentConfiguration {\n                    guard isCurrent?() ?? true else { return }\n                    config.isExpanded = willExpand\n                    cell.contentConfiguration = config\n                }\n            }\n        }\n    }",
+        "before": "    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool) {\n        let id = node.id\n\n        if willExpand {\n            expandedGroups.insert(id)\n        } else {\n            expandedGroups.remove(id)\n        }\n\n        let groupItem = AnnotationItem.group(node)\n        var sectionSnapshot = dataSource.snapshot(for: id)\n\n        if willExpand {\n            sectionSnapshot.expand([groupItem])\n        } else {\n            sectionSnapshot.collapse([groupItem])\n        }\n\n        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)\n        if let indexPath = dataSource.indexPath(for: groupItem),\n           let cell = collectionView.cellForItem(at: indexPath)\n        {\n            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {\n                if var config = cell.contentConfiguration as? ListContentConfiguration {\n                    config.isExpanded = willExpand\n                    cell.contentConfiguration = config\n                }\n            }\n        }\n    }"
+      },
+      {
+        "after": "            setOriginalGroupExpanded(row.group, willExpand: true, animated: false,\n                validating: { (try? requireCurrent()) != nil })",
+        "before": "            setOriginalGroupExpanded(row.group, willExpand: true, animated: false)"
+      }
+    ],
+    "helper_after_sha256": "1d0e18ca97c256fdb2f5e66b842fd6271b6f9d063d57be96f229782332ff4e9e",
+    "helper_before_sha256": "c6a5ca306056d5ffc625fbfb89a6b508eeee64870d3230fabd3dec5543fade18",
+    "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "scope": "Only original expansion helper and its nativeRoutingReveal call. Nil validation preserves ordinary call arguments and effects. No UIKit/native execution.",
+    "whole_file_inverse": true
+  },
+  "status": "PASS_SOURCE_CONTROLS_ONLY",
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+      ],
+      "before": {
+        "data_free": 8884203520,
+        "root_free": 2380460032,
+        "task_bytes": 25214976
+      },
+      "exit": 0,
+      "finished": 1795805458.4369488,
+      "name": "candidate-full-ios-syntax",
+      "pid": 1911203,
+      "started": 1795805457.9205184
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExplicitUIKitBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/OriginalExpansion.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExpansionControls.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/OriginalExpansion"
+      ],
+      "before": {
+        "data_free": 8880603136,
+        "root_free": 2380460032,
+        "task_bytes": 25219072
+      },
+      "exit": 0,
+      "finished": 1795805459.4792874,
+      "name": "OriginalExpansion-compile",
+      "pid": 1911214,
+      "started": 1795805458.4442153
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/OriginalExpansion"
+      ],
+      "before": {
+        "data_free": 8874930176,
+        "root_free": 2380451840,
+        "task_bytes": 25333760
+      },
+      "exit": 1,
+      "finished": 1795805460.0120866,
+      "name": "OriginalExpansion-controls",
+      "pid": 1911309,
+      "started": 1795805459.4868672
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExplicitUIKitBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/CandidateExpansion.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExpansionControls.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/CandidateExpansion"
+      ],
+      "before": {
+        "data_free": 8870928384,
+        "root_free": 2380443648,
+        "task_bytes": 25337856
+      },
+      "exit": 0,
+      "finished": 1795805461.580351,
+      "name": "CandidateExpansion-compile",
+      "pid": 1911358,
+      "started": 1795805460.0219953
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/CandidateExpansion"
+      ],
+      "before": {
+        "data_free": 8864358400,
+        "root_free": 2379829248,
+        "task_bytes": 25452544
+      },
+      "exit": 0,
+      "finished": 1795805462.1237242,
+      "name": "CandidateExpansion-controls",
+      "pid": 1911581,
+      "started": 1795805461.595419
+    }
+  ]
+}

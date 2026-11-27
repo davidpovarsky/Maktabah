@@ -1,0 +1,106 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+      ],
+      "before": {
+        "data_free": 8884203520,
+        "root_free": 2380460032,
+        "task_bytes": 25214976
+      },
+      "exit": 0,
+      "finished": 1795805458.4369488,
+      "name": "candidate-full-ios-syntax",
+      "pid": 1911203,
+      "started": 1795805457.9205184
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExplicitUIKitBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/OriginalExpansion.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExpansionControls.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/OriginalExpansion"
+      ],
+      "before": {
+        "data_free": 8880603136,
+        "root_free": 2380460032,
+        "task_bytes": 25219072
+      },
+      "exit": 0,
+      "finished": 1795805459.4792874,
+      "name": "OriginalExpansion-compile",
+      "pid": 1911214,
+      "started": 1795805458.4442153
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/OriginalExpansion"
+      ],
+      "before": {
+        "data_free": 8874930176,
+        "root_free": 2380451840,
+        "task_bytes": 25333760
+      },
+      "exit": 1,
+      "finished": 1795805460.0120866,
+      "name": "OriginalExpansion-controls",
+      "pid": 1911309,
+      "started": 1795805459.4868672
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExplicitUIKitBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/CandidateExpansion.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExpansionControls.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/CandidateExpansion"
+      ],
+      "before": {
+        "data_free": 8870928384,
+        "root_free": 2380443648,
+        "task_bytes": 25337856
+      },
+      "exit": 0,
+      "finished": 1795805461.580351,
+      "name": "CandidateExpansion-compile",
+      "pid": 1911358,
+      "started": 1795805460.0219953
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/output/CandidateExpansion"
+      ],
+      "before": {
+        "data_free": 8864358400,
+        "root_free": 2379829248,
+        "task_bytes": 25452544
+      },
+      "exit": 0,
+      "finished": 1795805462.1237242,
+      "name": "CandidateExpansion-controls",
+      "pid": 1911581,
+      "started": 1795805461.595419
+    }
+  ]
+}

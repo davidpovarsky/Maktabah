@@ -1,0 +1,124 @@
+{
+  "cases" : [
+    {
+      "name" : "ordinary nil route preserves all original effects and order",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate",
+        "config.get",
+        "config.set"
+      ]
+    },
+    {
+      "name" : "current native source expands and configures the original cell",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate",
+        "config.get",
+        "config.set"
+      ]
+    },
+    {
+      "name" : "source retired in actual diffable apply stops later configuration",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply"
+      ]
+    },
+    {
+      "name" : "apply A B A publication cannot rearm original source",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply"
+      ]
+    },
+    {
+      "name" : "apply replacement cannot configure the replacement cell",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply"
+      ]
+    },
+    {
+      "name" : "retirement during indexPath stops original configuration write",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell"
+      ]
+    },
+    {
+      "name" : "retirement during cell stops original configuration write",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell"
+      ]
+    },
+    {
+      "name" : "retirement during animate stops original configuration write",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate"
+      ]
+    },
+    {
+      "name" : "retirement during config.get stops original configuration write",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate",
+        "config.get"
+      ]
+    },
+    {
+      "name" : "retained animation closure refuses source retired after helper returns",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate"
+      ]
+    },
+    {
+      "name" : "ordinary route still executes original configuration after callback",
+      "passed" : true,
+      "trace" : [
+        "snapshot",
+        "apply",
+        "indexPath",
+        "cell",
+        "animate",
+        "config.get",
+        "config.set"
+      ]
+    }
+  ],
+  "failed" : 0,
+  "passed" : 11,
+  "scope" : "actual extracted expansion helper; explicit UIKit callback boundary; native NOT_RUN"
+}

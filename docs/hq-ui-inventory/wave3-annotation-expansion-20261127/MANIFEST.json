@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "bytes": 4122,
+      "path": "README.md",
+      "sha256": "079b983969401290c28ae0a7fd138103521c6f0a69a67d02aca161d289f80386"
+    },
+    {
+      "bytes": 2313,
+      "path": "SOURCE.diff",
+      "sha256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a"
+    },
+    {
+      "bytes": 3733,
+      "path": "SOURCE_INVERSE.json",
+      "sha256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0"
+    },
+    {
+      "bytes": 32067,
+      "path": "evidence/RAW.zip",
+      "sha256": "19a02a8e13ae2877e75336b19414bbf2e33e7ee58d07196f0e72147b1e2d4b60"
+    },
+    {
+      "bytes": 1047,
+      "path": "evidence/raw/CandidateExpansion-compile.stderr",
+      "sha256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/CandidateExpansion-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/CandidateExpansion-controls.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2676,
+      "path": "evidence/raw/CandidateExpansion-controls.stdout",
+      "sha256": "6c480608aca103be170cc4a2fba5c9099f04a2c7bd183c0fdfc56cb72f0622c4"
+    },
+    {
+      "bytes": 25523,
+      "path": "evidence/raw/INPUTS.zip",
+      "sha256": "242f25295e10ee61cd08ab1184dc226e9e4304e79bbd854385ed25397e5397ed"
+    },
+    {
+      "bytes": 1047,
+      "path": "evidence/raw/OriginalExpansion-compile.stderr",
+      "sha256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/OriginalExpansion-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/OriginalExpansion-controls.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3219,
+      "path": "evidence/raw/OriginalExpansion-controls.stdout",
+      "sha256": "a2c6af42117154e8f440be4df4c3dd954a36cc8edd4c9db269affc4b6ca3b045"
+    },
+    {
+      "bytes": 1972,
+      "path": "evidence/raw/RAW_MANIFEST.json",
+      "sha256": "463b15a45120c6df08055ce740bfb4aec65a446573b57d0bc650d7cff96bd7d6"
+    },
+    {
+      "bytes": 10319,
+      "path": "evidence/raw/RESULT.json",
+      "sha256": "1e23d72f21802c9a12e2b35d07586dec71c70cdec420e6e157e8e67f3e8e73f0"
+    },
+    {
+      "bytes": 4249,
+      "path": "evidence/raw/STATUS.json",
+      "sha256": "4dded951bb3b11a4bfeed573bdae876bcc9de6725ef426e70df0c7be09148956"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/candidate-full-ios-syntax.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "evidence/raw/candidate-full-ios-syntax.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1583,
+      "path": "inputs/INPUTS.json",
+      "sha256": "2a302c17078c91bfe6aec0997877ad12e713d7283e4ecfc0df4879e96698019d"
+    },
+    {
+      "bytes": 2313,
+      "path": "inputs/SOURCE.diff",
+      "sha256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a"
+    },
+    {
+      "bytes": 3733,
+      "path": "inputs/SOURCE_INVERSE.json",
+      "sha256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0"
+    },
+    {
+      "bytes": 31823,
+      "path": "inputs/baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+    },
+    {
+      "bytes": 32313,
+      "path": "inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd"
+    },
+    {
+      "bytes": 1928,
+      "path": "inputs/controls/CandidateExpansion.swift",
+      "sha256": "a99feb0fc1f7129f319ca62683c84d7629e06e33c744b378655b49e72961bce2"
+    },
+    {
+      "bytes": 4063,
+      "path": "inputs/controls/ExpansionControls.swift",
+      "sha256": "40f8d18ebc84965dc2ab84d1032a6db66c39355225634feea2024d2008d860b1"
+    },
+    {
+      "bytes": 2319,
+      "path": "inputs/controls/ExplicitUIKitBoundary.swift",
+      "sha256": "6b1ac16d490e28cce7c0acb0ffd2114c87eb8bf7be11373149afe5475c162485"
+    },
+    {
+      "bytes": 1463,
+      "path": "inputs/controls/OriginalExpansion.swift",
+      "sha256": "fc4192b123e6362eb26c1a2679b2b9c345cd3bbd3f583f5ce869750afa30f704"
+    },
+    {
+      "bytes": 4911,
+      "path": "inputs/prepare.py",
+      "sha256": "80d0cdc0f76265bb658b6ec1e3ec74ffb0aefa4eba37b6fd4dec13f8ba86b5da"
+    },
+    {
+      "bytes": 5833,
+      "path": "inputs/run.py",
+      "sha256": "1720fcc758dc687f484dddc8b2bbdffbd405328bb1f01c21a5d620946bd98912"
+    }
+  ]
+}

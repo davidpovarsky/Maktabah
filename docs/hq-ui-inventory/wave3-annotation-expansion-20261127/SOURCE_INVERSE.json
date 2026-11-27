@@ -1,0 +1,22 @@
+{
+  "after_bytes": 32313,
+  "after_sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+  "base_commit": "8f7142bba6efb8f4a93c4e325ee6cdb835041bb5",
+  "before_bytes": 31823,
+  "before_sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+  "edits": [
+    {
+      "after": "    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool,\n                                          validating isCurrent: (@MainActor () -> Bool)? = nil) {\n        guard isCurrent?() ?? true else { return }\n        let id = node.id\n\n        if willExpand {\n            expandedGroups.insert(id)\n        } else {\n            expandedGroups.remove(id)\n        }\n\n        let groupItem = AnnotationItem.group(node)\n        var sectionSnapshot = dataSource.snapshot(for: id)\n\n        guard isCurrent?() ?? true else { return }\n        if willExpand {\n            sectionSnapshot.expand([groupItem])\n        } else {\n            sectionSnapshot.collapse([groupItem])\n        }\n\n        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)\n        guard isCurrent?() ?? true else { return }\n        if let indexPath = dataSource.indexPath(for: groupItem),\n           let cell = collectionView.cellForItem(at: indexPath)\n        {\n            guard isCurrent?() ?? true else { return }\n            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {\n                guard isCurrent?() ?? true else { return }\n                if var config = cell.contentConfiguration as? ListContentConfiguration {\n                    guard isCurrent?() ?? true else { return }\n                    config.isExpanded = willExpand\n                    cell.contentConfiguration = config\n                }\n            }\n        }\n    }",
+      "before": "    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool) {\n        let id = node.id\n\n        if willExpand {\n            expandedGroups.insert(id)\n        } else {\n            expandedGroups.remove(id)\n        }\n\n        let groupItem = AnnotationItem.group(node)\n        var sectionSnapshot = dataSource.snapshot(for: id)\n\n        if willExpand {\n            sectionSnapshot.expand([groupItem])\n        } else {\n            sectionSnapshot.collapse([groupItem])\n        }\n\n        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)\n        if let indexPath = dataSource.indexPath(for: groupItem),\n           let cell = collectionView.cellForItem(at: indexPath)\n        {\n            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {\n                if var config = cell.contentConfiguration as? ListContentConfiguration {\n                    config.isExpanded = willExpand\n                    cell.contentConfiguration = config\n                }\n            }\n        }\n    }"
+    },
+    {
+      "after": "            setOriginalGroupExpanded(row.group, willExpand: true, animated: false,\n                validating: { (try? requireCurrent()) != nil })",
+      "before": "            setOriginalGroupExpanded(row.group, willExpand: true, animated: false)"
+    }
+  ],
+  "helper_after_sha256": "1d0e18ca97c256fdb2f5e66b842fd6271b6f9d063d57be96f229782332ff4e9e",
+  "helper_before_sha256": "c6a5ca306056d5ffc625fbfb89a6b508eeee64870d3230fabd3dec5543fade18",
+  "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+  "scope": "Only original expansion helper and its nativeRoutingReveal call. Nil validation preserves ordinary call arguments and effects. No UIKit/native execution.",
+  "whole_file_inverse": true
+}

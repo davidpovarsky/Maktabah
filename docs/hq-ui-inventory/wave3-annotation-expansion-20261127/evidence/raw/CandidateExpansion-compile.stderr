@@ -1,0 +1,14 @@
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/expansion-followup-attempt-1/inputs/controls/ExpansionControls.swift:55:19: warning: 'valid' mutated after capture by sendable closure
+49 |         }
+50 |         run("retained animation closure refuses source retired after helper returns") {
+51 |             let value = OriginalController(); var valid = true
+   |                                                   `- note: variable defined here
+52 |             Boundary.holdAnimation = true
+53 |             value.invoke(node, native: true) { valid }
+   |                                              | `- note: capturing use
+   |                                              `- note: variable captured by sendable closure
+54 |             guard let callback = Boundary.heldAnimation else { return false }
+55 |             valid = false; callback()
+   |                   `- warning: 'valid' mutated after capture by sendable closure
+56 |             return value.collectionView.cell.writes == 0
+57 |         }
