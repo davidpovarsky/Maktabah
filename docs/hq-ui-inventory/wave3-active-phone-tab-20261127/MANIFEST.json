@@ -1,0 +1,66 @@
+{
+  "files": [
+    {
+      "bytes": 13388,
+      "path": "CONTROL_RESULTS.json",
+      "sha256": "8f2f0e8e5a59495b94e4bf37aa5b0a4f77647c52e49bc894859d2ff8e03c0039"
+    },
+    {
+      "bytes": 127503,
+      "path": "EVIDENCE.zip",
+      "sha256": "ee8d8175e25083812ac128ba12aab1bf6ba11337c501a07540fabddd97188ce5"
+    },
+    {
+      "bytes": 10116,
+      "path": "EVIDENCE_MANIFEST.json",
+      "sha256": "fcb5fdc3bab13558d8f787ef3fa5e6850d126177b9c30456416741f52a4348f7"
+    },
+    {
+      "bytes": 576,
+      "path": "FINAL_INPUTS.json",
+      "sha256": "259c0994df750f37a799083317ac7118911dd018ab35ca75678e275d005ced2a"
+    },
+    {
+      "bytes": 963,
+      "path": "FINAL_ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "5284abc6638c799f904d9943bec71b077d8e0c9e66606d1f03ac0047f7e549fb"
+    },
+    {
+      "bytes": 2066,
+      "path": "INTAKE.json",
+      "sha256": "ccef2674efd6b8ecf27cbdc2f389e60266a6a446a5555096c6701ddbc2353baf"
+    },
+    {
+      "bytes": 4618,
+      "path": "NATIVE_ACCEPTANCE_PROPOSAL.md",
+      "sha256": "d52a4149cb5081c935b3e51e01c561cec74f8122699651ebc68ca857ace86a0b"
+    },
+    {
+      "bytes": 1282,
+      "path": "PEER_REVIEW.json",
+      "sha256": "a27ce289db84d2c0e82badd0f4cb96b20ec54e426e2239f0f319b6df37b44240"
+    },
+    {
+      "bytes": 6018,
+      "path": "README.md",
+      "sha256": "a9bf02e853b0b96fe867651a33f890a0e77acf50d6c2baf8b60181dbc86b4e99"
+    },
+    {
+      "bytes": 808,
+      "path": "RETAINED_ARTIFACTS.json",
+      "sha256": "0c4ae82e1c6253420bddfe1593da6aafbab19b1658644059f9bc94c8c90ad425"
+    },
+    {
+      "bytes": 1220,
+      "path": "SOURCE_PROVENANCE.json",
+      "sha256": "59c3b46e918efb3c79db98fe78e1323a4877e2396268dcb8d7fe58a9e5eb1e65"
+    },
+    {
+      "bytes": 3047,
+      "path": "TRANSFERS.json",
+      "sha256": "71f965aae3484e257282b7220ba4c3a86d6f873502dfee6b4748b0c784548a0e"
+    }
+  ],
+  "schema": "otzaria.delivery-files.v1",
+  "source_commit": "81ea1a360f027993362a9fa690e15fd2b38a4c52"
+}

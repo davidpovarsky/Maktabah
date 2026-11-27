@@ -1,0 +1,257 @@
+{
+  "attempts": {
+    "attempt-1": {
+      "after": {
+        "rootfs_free": 2424639488,
+        "task_allocated": 18186240
+      },
+      "baseline": {
+        "executable_sha256": "3568130b86bed2e9b1baf6ad701cecd7e7278e39fb58cb18e6b6433fa5a4cae5",
+        "source_sha256": "4ed26a71cee82bf6ea5215232936e7aadf50c2333a094f9449bc4cc7a7b9d8df",
+        "stdout": "PASS ordinary already-active selection remains a complete no-op\nPASS ordinary different-tab selection preserves original effects and order\nPASS ordinary invalid tab ID preserves original behavior\nFAIL counter-only retained presentation refuses nested original setter ABA: failed(\"three original setters collapsed into the apparently allowed +1\")\nRESULT passed=3 failed=1\n"
+      },
+      "cap_bytes": 104857600,
+      "error": "RuntimeError('candidate-compile exit 1')",
+      "finished": "2026-11-27T13:33:51.943589+00:00",
+      "floor_bytes": 1342177280,
+      "schema": "otzaria.active-phone.original-manager.controls.v1",
+      "scope": "actual original setter/selection/new permit bodies with explicit app-domain callbacks; UIKit/Core/app/native NOT_RUN",
+      "started": "2026-11-27T13:33:46.099430+00:00",
+      "status": "FAILED",
+      "steps": [
+        {
+          "after": {
+            "rootfs_free": 2424655872,
+            "task_allocated": 18178048
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-swift-version",
+            "6",
+            "-parse-as-library",
+            "-module-cache-path",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/module-cache",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/inputs/controls/ActualManager-baseline.swift",
+            "-o",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/controls-baseline"
+          ],
+          "before": {
+            "rootfs_free": 2442625024,
+            "task_allocated": 212992
+          },
+          "exit": 0,
+          "finished": "2026-11-27T13:33:49.926822+00:00",
+          "name": "baseline-compile",
+          "pid": 792098,
+          "started": "2026-11-27T13:33:46.416656+00:00"
+        },
+        {
+          "after": {
+            "rootfs_free": 2424647680,
+            "task_allocated": 18182144
+          },
+          "argv": [
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/controls-baseline"
+          ],
+          "before": {
+            "rootfs_free": 2424655872,
+            "task_allocated": 18178048
+          },
+          "exit": 1,
+          "finished": "2026-11-27T13:33:50.431300+00:00",
+          "name": "baseline-run",
+          "pid": 792256,
+          "started": "2026-11-27T13:33:49.927456+00:00"
+        },
+        {
+          "after": {
+            "rootfs_free": 2424639488,
+            "task_allocated": 18186240
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-swift-version",
+            "6",
+            "-parse-as-library",
+            "-module-cache-path",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/module-cache",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/inputs/controls/ActualManager-candidate.swift",
+            "-o",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/controls-candidate"
+          ],
+          "before": {
+            "rootfs_free": 2424651776,
+            "task_allocated": 18182144
+          },
+          "exit": 1,
+          "finished": "2026-11-27T13:33:51.939443+00:00",
+          "name": "candidate-compile",
+          "pid": 792277,
+          "started": "2026-11-27T13:33:50.434464+00:00"
+        }
+      ],
+      "swift_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/run.py\", line 44, in <module>\n    step(variant+'-compile',[SWIFT,'-swift-version','6','-parse-as-library','-module-cache-path',str(cache),str(source),'-o',str(executable)],[0])\n  File \"/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/run.py\", line 33, in step\n    if p.returncode not in expect: raise RuntimeError(name+' exit '+str(p.returncode))\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: candidate-compile exit 1\n"
+    },
+    "attempt-2": {
+      "after": {
+        "rootfs_free": 2422718464,
+        "task_allocated": 18391040
+      },
+      "cap_bytes": 104857600,
+      "error": "RuntimeError('candidate-compile exit 1')",
+      "finished": "2026-11-27T13:36:07.506089+00:00",
+      "floor_bytes": 1342177280,
+      "schema": "otzaria.active-phone.original-manager.controls.v1",
+      "scope": "actual original setter/selection/new permit bodies with explicit app-domain callbacks; UIKit/Core/app/native NOT_RUN",
+      "started": "2026-11-27T13:36:06.409483+00:00",
+      "status": "FAILED",
+      "steps": [
+        {
+          "after": {
+            "rootfs_free": 2422718464,
+            "task_allocated": 18391040
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-swift-version",
+            "6",
+            "-parse-as-library",
+            "-module-cache-path",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/module-cache",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-2/inputs/controls/ActualManager-candidate.swift",
+            "-o",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-2/controls-candidate"
+          ],
+          "before": {
+            "rootfs_free": 2422792192,
+            "task_allocated": 18386944
+          },
+          "exit": 1,
+          "finished": "2026-11-27T13:36:07.501419+00:00",
+          "name": "candidate-compile",
+          "pid": 799139,
+          "started": "2026-11-27T13:36:06.494077+00:00"
+        }
+      ],
+      "swift_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-2/run.py\", line 44, in <module>\n    step(variant+'-compile',[SWIFT,'-swift-version','6','-parse-as-library','-module-cache-path',str(cache),str(source),'-o',str(executable)],[0])\n  File \"/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-2/run.py\", line 33, in step\n    if p.returncode not in expect: raise RuntimeError(name+' exit '+str(p.returncode))\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: candidate-compile exit 1\n"
+    },
+    "attempt-3": {
+      "after": {
+        "rootfs_free": 2412433408,
+        "task_allocated": 18894848
+      },
+      "candidate": {
+        "executable_sha256": "069c658a5e4917d8e7748f70a152b4e5abf2f1f89116c755552f207195bbe982",
+        "source_sha256": "fef52ea866330f70e6f1efd2528a7830abce1961a40cf11bd3bf560165e9c6b7",
+        "stdout": "PASS ordinary already-active selection remains a complete no-op\nPASS ordinary different-tab selection preserves original effects and order\nPASS ordinary invalid tab ID preserves original behavior\nPASS hidden phone retains and presents exact active original tab once\nPASS duplicate book IDs retain distinct original tab and Reader identity\nPASS already-visible phone refuses the hidden-only permit\nPASS iPad refuses the phone-only presentation permit\nPASS exhausted original revision cannot issue a permit\nPASS foreign mode must reach actual Viewer before the original effect\nPASS retained owner permits the original parent mode publication without selecting it\nPASS closed and replaced original tab source cannot present\nPASS same tab UUID with replacement Reader cannot donate ownership\nPASS equal nil original setter retires a retained permit\nPASS original book nil-to-foreign-to-nil ABA cannot restore a permit\nPASS one-use setter fence rejects nested counter-only ABA\nPASS release during annotation callback stops before the next original assignment\nPASS replacement registration cannot be erased or borrowed by old owner\nPASS release inside original Group will callback cannot earn completion\nPASS original Group callbacks cannot reenter the one-use setter\nPASS reentrant apply during source validation consumes nothing twice\nPASS completed permit cannot replay presentation\nPASS source revocation after restore stops before the book setter\nPASS cancellation after original book setter preserves failure and stops later effects\nPASS source revocation during original persistence is never completion\nPASS equal original setter after completion invalidates final proof\nPASS ordinary foreign selection remains effective while retiring a retained permit\nRESULT passed=26 failed=0\n"
+      },
+      "cap_bytes": 104857600,
+      "finished": "2026-11-27T13:37:31.302021+00:00",
+      "floor_bytes": 1342177280,
+      "schema": "otzaria.active-phone.original-manager.controls.v1",
+      "scope": "actual original setter/selection/new permit bodies with explicit app-domain callbacks; UIKit/Core/app/native NOT_RUN",
+      "started": "2026-11-27T13:37:27.672180+00:00",
+      "status": "SOURCE_CONTROLS_COMPLETE",
+      "steps": [
+        {
+          "after": {
+            "rootfs_free": 2412437504,
+            "task_allocated": 18890752
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-swift-version",
+            "6",
+            "-parse-as-library",
+            "-module-cache-path",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/module-cache",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/inputs/controls/ActualManager-candidate.swift",
+            "-o",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/controls-candidate"
+          ],
+          "before": {
+            "rootfs_free": 2412736512,
+            "task_allocated": 18583552
+          },
+          "exit": 0,
+          "finished": "2026-11-27T13:37:29.784157+00:00",
+          "name": "candidate-compile",
+          "pid": 803109,
+          "started": "2026-11-27T13:37:27.773449+00:00"
+        },
+        {
+          "after": {
+            "rootfs_free": 2412433408,
+            "task_allocated": 18894848
+          },
+          "argv": [
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/controls-candidate"
+          ],
+          "before": {
+            "rootfs_free": 2412437504,
+            "task_allocated": 18890752
+          },
+          "exit": 0,
+          "finished": "2026-11-27T13:37:30.289303+00:00",
+          "name": "candidate-run",
+          "pid": 803232,
+          "started": "2026-11-27T13:37:29.785628+00:00"
+        },
+        {
+          "after": {
+            "rootfs_free": 2412433408,
+            "task_allocated": 18894848
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-frontend",
+            "-parse",
+            "-target",
+            "arm64-apple-ios27.0",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift"
+          ],
+          "before": {
+            "rootfs_free": 2412433408,
+            "task_allocated": 18894848
+          },
+          "exit": 0,
+          "finished": "2026-11-27T13:37:30.795180+00:00",
+          "name": "syntax-0",
+          "pid": 803252,
+          "started": "2026-11-27T13:37:30.291402+00:00"
+        },
+        {
+          "after": {
+            "rootfs_free": 2412433408,
+            "task_allocated": 18894848
+          },
+          "argv": [
+            "/usr/local/bin/swiftc",
+            "-frontend",
+            "-parse",
+            "-target",
+            "arm64-apple-ios27.0",
+            "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift"
+          ],
+          "before": {
+            "rootfs_free": 2412433408,
+            "task_allocated": 18894848
+          },
+          "exit": 0,
+          "finished": "2026-11-27T13:37:31.300502+00:00",
+          "name": "syntax-1",
+          "pid": 803274,
+          "started": "2026-11-27T13:37:30.796743+00:00"
+        }
+      ],
+      "swift_version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n"
+    }
+  },
+  "baseline_counter_only": "3 passed,1 intentional failure in actual original setter experiment",
+  "final_candidate": "26 passed,0 failed;2 Apple-target syntax parses",
+  "full_apple_sdk_typecheck": "NOT_RUN",
+  "native": "NOT_RUN",
+  "schema": "otzaria.active-phone-controls.collection.v1"
+}

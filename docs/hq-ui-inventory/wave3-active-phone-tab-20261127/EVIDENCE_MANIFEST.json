@@ -1,0 +1,289 @@
+{
+  "archive": "EVIDENCE.zip",
+  "bytes": 127503,
+  "members": [
+    {
+      "bytes": 4300,
+      "path": "attempt-1/RESULT.json",
+      "sha256": "7692808eee26dff62ba1f8244805452da11ac192818a1963073eb76fb610e150"
+    },
+    {
+      "bytes": 148,
+      "path": "attempt-1/STARTED.json",
+      "sha256": "04117f0c3e993dcefa5e79a88244d3eba076904a6f2177a72774b72ddf801eba"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-1/baseline-compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-1/baseline-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-1/baseline-run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 371,
+      "path": "attempt-1/baseline-run.stdout",
+      "sha256": "ae9fa9d2eb17e1d36a57ace152dad9cefb32b35334bc00ebfed29077c5f2803b"
+    },
+    {
+      "bytes": 1464,
+      "path": "attempt-1/candidate-compile.stderr",
+      "sha256": "5771411d09a0e525cc6fa53360843565877c6184de89fd827f40e1f50d56080d"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-1/candidate-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2166,
+      "path": "attempt-1/controller.log",
+      "sha256": "db641d5d00eefc6da572dba8b5d9dbd24202ae6a7abb5b4811cba6497b9d00d2"
+    },
+    {
+      "bytes": 9941,
+      "path": "attempt-1/inputs/controls/ActualManager-baseline.swift",
+      "sha256": "4ed26a71cee82bf6ea5215232936e7aadf50c2333a094f9449bc4cc7a7b9d8df"
+    },
+    {
+      "bytes": 28333,
+      "path": "attempt-1/inputs/controls/ActualManager-candidate.swift",
+      "sha256": "af4a9df64fd7dab879392fd58b02667be74982bfe7571afa0cde066ac41cc35a"
+    },
+    {
+      "bytes": 3071,
+      "path": "attempt-1/inputs/controls/EXTRACTION_MANIFEST.json",
+      "sha256": "defd362b9cbc6936702b5dece0f2193f12dc9aa868b00b6941612ffc83af47ff"
+    },
+    {
+      "bytes": 22482,
+      "path": "attempt-1/inputs/controls/make_controls.py",
+      "sha256": "50955b55817e296d05f6ff2b288f02fb4d0de7081da2ffade0b2d1b2509fe742"
+    },
+    {
+      "bytes": 654,
+      "path": "attempt-1/inputs/review/ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "58f1ef985f5ee20aa64275c76c7719db514d8f930c92a08668d2365cc1c408a1"
+    },
+    {
+      "bytes": 18354,
+      "path": "attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "bytes": 52793,
+      "path": "attempt-1/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "b1f76ce52e0874e224ca5cde84bf5286661858062f0fa0ec7212ca98b6aeae96"
+    },
+    {
+      "bytes": 3196,
+      "path": "attempt-1/run.py",
+      "sha256": "62b3bf096d872c61019ae3ced17214429cf743215296ec0b5eb3961495e1d762"
+    },
+    {
+      "bytes": 2245,
+      "path": "attempt-2/RESULT.json",
+      "sha256": "37e7f2c9ee0fc7efb54bedce3f0795eb4fcc28180091ae770f351d6cd9f1db87"
+    },
+    {
+      "bytes": 150,
+      "path": "attempt-2/STARTED.json",
+      "sha256": "bfe90f6cc3293c76c1aaff53c940f0aebc3c773317f1e41dcb910b7eb4e92493"
+    },
+    {
+      "bytes": 664,
+      "path": "attempt-2/candidate-compile.stderr",
+      "sha256": "2c6c805d4c054b5f37932fbc2d209fed3033c042834030d5e1ad10221c2f481a"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-2/candidate-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1021,
+      "path": "attempt-2/controller.log",
+      "sha256": "d7a89ee42235803c37cabc485dbc02b78824f88a965479d79ef4018f4ec608d5"
+    },
+    {
+      "bytes": 28330,
+      "path": "attempt-2/inputs/controls/ActualManager-candidate.swift",
+      "sha256": "998f3e07f929a7e04af3957c0f5c86b3db9b60549d545bed6237bb6c99f9cef3"
+    },
+    {
+      "bytes": 3071,
+      "path": "attempt-2/inputs/controls/EXTRACTION_MANIFEST.json",
+      "sha256": "ae2dc823dfc9ac3c31cec4c6b3610e6fdae8377bdcdf0183de0be3018f532a74"
+    },
+    {
+      "bytes": 22752,
+      "path": "attempt-2/inputs/controls/make_controls.py",
+      "sha256": "a32f45c70a056665ca8c264d295282d90f49797c37139bf069c43887539e482c"
+    },
+    {
+      "bytes": 18354,
+      "path": "attempt-2/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "bytes": 52790,
+      "path": "attempt-2/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "a30188fcdc332d80f67a37666959a735a9db9f7faa597087ccbcaec6a535d004"
+    },
+    {
+      "bytes": 3513,
+      "path": "attempt-2/run.py",
+      "sha256": "41e2068d42b1f92d18a1622fb417586409ef59f419f30b11b7fe569b04f179e0"
+    },
+    {
+      "bytes": 5493,
+      "path": "attempt-3/RESULT.json",
+      "sha256": "8289c18e5b87e83723f8b97a59bce4cac3ffc82316b5d52390f471564ae4d20e"
+    },
+    {
+      "bytes": 150,
+      "path": "attempt-3/STARTED.json",
+      "sha256": "a3aab93baaf65670e9f6eff2b9d6d56177cb64ed6267b9429ee27e7f5fd65475"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/candidate-compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/candidate-compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/candidate-run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1781,
+      "path": "attempt-3/candidate-run.stdout",
+      "sha256": "5df197f9b1a497af01c20f83eea4cdc353869114326ee7bbf380846c8710df4a"
+    },
+    {
+      "bytes": 2487,
+      "path": "attempt-3/controller.log",
+      "sha256": "8741133ca98f8528a78cebb9de3ef2c89db17b3edef799a62ede809286311d94"
+    },
+    {
+      "bytes": 28328,
+      "path": "attempt-3/inputs/controls/ActualManager-candidate.swift",
+      "sha256": "fef52ea866330f70e6f1efd2528a7830abce1961a40cf11bd3bf560165e9c6b7"
+    },
+    {
+      "bytes": 3071,
+      "path": "attempt-3/inputs/controls/EXTRACTION_MANIFEST.json",
+      "sha256": "8f1ad5456508a85c976e9d4cbee213fe2425eda201eeef11826f983e005c26ab"
+    },
+    {
+      "bytes": 22752,
+      "path": "attempt-3/inputs/controls/make_controls.py",
+      "sha256": "a32f45c70a056665ca8c264d295282d90f49797c37139bf069c43887539e482c"
+    },
+    {
+      "bytes": 18354,
+      "path": "attempt-3/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "bytes": 52788,
+      "path": "attempt-3/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d"
+    },
+    {
+      "bytes": 3513,
+      "path": "attempt-3/run.py",
+      "sha256": "41e2068d42b1f92d18a1622fb417586409ef59f419f30b11b7fe569b04f179e0"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/syntax-0.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/syntax-0.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/syntax-1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "attempt-3/syntax-1.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 16672,
+      "path": "git/PRODUCT_SOURCE.diff",
+      "sha256": "67ec8872c9a90ab88b291a0dee2e98cc8ea17ce4d07d7e96e9ea2cd094d3af9a"
+    },
+    {
+      "bytes": 955,
+      "path": "local/BASE_INPUTS.json",
+      "sha256": "30b7cb8ff0d07b59aa88b4f978c3992a0b71970bb33129ed76ba7e2a98840aee"
+    },
+    {
+      "bytes": 16862,
+      "path": "local/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410"
+    },
+    {
+      "bytes": 45702,
+      "path": "local/baseline/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2"
+    },
+    {
+      "bytes": 576,
+      "path": "local/review/FINAL_INPUTS.json",
+      "sha256": "259c0994df750f37a799083317ac7118911dd018ab35ca75678e275d005ced2a"
+    },
+    {
+      "bytes": 963,
+      "path": "local/review/FINAL_ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "5284abc6638c799f904d9943bec71b077d8e0c9e66606d1f03ac0047f7e549fb"
+    },
+    {
+      "bytes": 15652,
+      "path": "local/review/FINAL_SOURCE.diff",
+      "sha256": "e5e55418a691ab67aadcefdac398301c1ead2b56df7844fe694be9e59428ac62"
+    },
+    {
+      "bytes": 576,
+      "path": "local/review/INPUTS.json",
+      "sha256": "6e14c5021762539aeb5a258678e56b548eea90d093e896b99de6a2f77b97ed83"
+    },
+    {
+      "bytes": 654,
+      "path": "local/review/ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "58f1ef985f5ee20aa64275c76c7719db514d8f930c92a08668d2365cc1c408a1"
+    },
+    {
+      "bytes": 6691,
+      "path": "local/review/Source_ChavrusaText_UIRoutingHost_Integration_MaktabahNativeReaderTabBinding.diff",
+      "sha256": "326deb354c22c122dfd72613033754078d2477bac3b0885f7b9ecf674d320de2"
+    },
+    {
+      "bytes": 8966,
+      "path": "local/review/Source_UI_iOS_Managers_iOSNavigationManager.diff",
+      "sha256": "f25369fc3985e868b9b0b7e79a938d4f959453a1659d3d76f384a9c4d76cca32"
+    }
+  ],
+  "schema": "otzaria.exact-evidence-archive.v1",
+  "sha256": "ee8d8175e25083812ac128ba12aab1bf6ba11337c501a07540fabddd97188ce5",
+  "verified_byte_exact": true
+}

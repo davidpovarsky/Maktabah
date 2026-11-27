@@ -1,0 +1,17 @@
+{
+  "schema": "otzaria.original-manager-factoring.inverse.v2",
+  "base": "ec5385e863a478e368c7de47264474a440fd0734",
+  "source_commit": "81ea1a360f027993362a9fa690e15fd2b38a4c52",
+  "original_sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+  "candidate_sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d",
+  "inverse_sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+  "byte_exact": true,
+  "original_presentation_assignments": 5,
+  "reader_binding_sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+  "preserved_initial_inverse": "review/ORDINARY_MANAGER_INVERSE.json",
+  "compile_corrections": [
+    "attempt1 optional callback was escaping; real compile failed",
+    "attempt2 default throwing callback required try; real compile failed",
+    "attempt3 explicit ordinary nonthrowing callback plus nonescaping helper compiled and26 controls passed"
+  ]
+}
