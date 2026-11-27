@@ -1,0 +1,34 @@
+[
+  {
+    "path": "evidence/INDEPENDENT_BINDINGS.json.gz",
+    "bytes": 8493,
+    "sha256": "5a5dee2306c5615d2f6151b329f5ab7397b5a541a4c423ebffa1d7c89eb010e7",
+    "uncompressedBytes": 35454,
+    "uncompressedSHA256": "5086cef5079f4192d6cb5fb801f588b01eebb38a4490b540e57cbbe516892016",
+    "scope": "Saved output of independent read-only checks; no new test execution"
+  },
+  {
+    "path": "evidence/SOURCE_CLOSURE.json.gz",
+    "bytes": 4672,
+    "sha256": "b82a98d719b3e96908736df40240087bbbd4d615eefe827288b8dd4c50df79a0",
+    "uncompressedBytes": 14093,
+    "uncompressedSHA256": "48cc87b4f4040c9e32612f8344fa2c0237e405539377cc200a4da07e2b1fa263",
+    "scope": "Saved output of independent read-only checks; no new test execution"
+  },
+  {
+    "path": "evidence/COMPILED_PACKAGE_INITIAL_READ.json.gz",
+    "bytes": 369,
+    "sha256": "a618fa8a20a54a4b2d5f6b070a32b7c7cf1054c5af969257f037717753f5451c",
+    "uncompressedBytes": 756,
+    "uncompressedSHA256": "946fe368efb586f56ed7dc93fde5f1a561b7801f6a90c2114f0ecfdb1e97887c",
+    "scope": "Saved output of independent read-only checks; no new test execution"
+  },
+  {
+    "path": "evidence/COMPILED_PACKAGE_EXTRA_SOURCE_JOIN.json.gz",
+    "bytes": 515,
+    "sha256": "c876e7215ae8a297b311f8ca7e6e48738a10d57a61d3dc37e02f592fc28047da",
+    "uncompressedBytes": 1036,
+    "uncompressedSHA256": "0ec533d75b7ea051638f34ea3c2526c04944cef675fa3be84dd3833ef8ef1d27",
+    "scope": "Saved output of independent read-only checks; no new test execution"
+  }
+]
