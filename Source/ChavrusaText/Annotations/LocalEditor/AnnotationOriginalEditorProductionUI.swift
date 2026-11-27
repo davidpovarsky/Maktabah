@@ -74,6 +74,7 @@ struct AnnotationOriginalEditorModal: Identifiable {
 @MainActor
 struct AnnotationOriginalEditorProductionEntry: View {
     @Environment(\.exact9401Workspace) private var workspace
+    @Environment(\.scenePhase) private var scenePhase
     let annotation: Annotation
     let draft: @MainActor () -> AnnotationOriginalEditorEntryDraft
     @Binding var availability: AnnotationOriginalEditorAvailability
@@ -82,6 +83,9 @@ struct AnnotationOriginalEditorProductionEntry: View {
     @State private var inspected: AnnotationLocalEditorSnapshot?
     @State private var inspection: AnnotationLocalEditorSession?
     @State private var entryMessage: String?
+    @State private var linkedState: AnnotationLocalEditorLinkedState?
+    @State private var childPresented = false
+    @State private var automaticAttempt: UUID?
 
     static var qualificationOwnsEntry: Bool {
         #if DEBUG && targetEnvironment(simulator)
@@ -110,7 +114,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                         guard let workspace, let inspected, availability.allowsExpansion else {
                             throw AnnotationOriginalEditorUIError.unavailable
                         }
-                        present(.init {
+                        presentOwned(.init {
                             AnnotationOriginalEditorProductionView(model: .init(annotation: annotation,
                                 inspected: inspected, workspace: workspace))
                         })
@@ -132,7 +136,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            present(.init {
+                            presentOwned(.init {
                                 AnnotationOriginalEditorShareView(model: .init(annotation: annotation,
                                     inspected: inspected, workspace: workspace))
                             })
@@ -151,7 +155,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            present(.init {
+                            presentOwned(.init {
                                 AnnotationOriginalEditorReceiveView(model: .init(annotation: annotation,
                                     inspected: inspected, workspace: workspace, operationKind: .update))
                             })
@@ -170,7 +174,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            present(.init {
+                            presentOwned(.init {
                                 AnnotationOriginalEditorReceiveView(model: .init(annotation: annotation,
                                     inspected: inspected, workspace: workspace))
                             })
@@ -183,13 +187,23 @@ struct AnnotationOriginalEditorProductionEntry: View {
                     .accessibilityIdentifier("annotation-anytype-receive-open")
                     .disabled(entryError != nil)
 
+                    if linkedState?.links.isEmpty == false {
+                        Button { openLinkedSync() } label: {
+                            Label {
+                                Text("Synchronize linked note", tableName: "OriginalAnnotationEditor")
+                            } icon: { Image(systemName: "arrow.triangle.2.circlepath.circle") }
+                        }
+                        .accessibilityIdentifier("annotation-anytype-linked-sync-open")
+                        .disabled(entryError != nil || childPresented)
+                    }
+
                     Button {
                         do {
                             try draft().requireUnchanged(annotation)
                             guard let workspace, let inspected, availability == .rich else {
                                 throw AnnotationOriginalEditorUIError.unavailable
                             }
-                            present(.init {
+                            presentOwned(.init {
                                 AnnotationOriginalEditorLifecycleView(model: .init(annotation: annotation,
                                     inspected: inspected, workspace: workspace))
                             })
@@ -217,7 +231,13 @@ struct AnnotationOriginalEditorProductionEntry: View {
                         .accessibilityIdentifier("annotation-expanded-editor-entry-status")
                 }
             }
-            .task { await inspectSavedNote() }
+            .task { await inspectSavedNote(automaticallyResume: true) }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active && !childPresented {
+                    automaticAttempt = nil
+                    Task { await inspectSavedNote(automaticallyResume: true) }
+                }
+            }
             .onDisappear {
                 inspection?.retire()
                 inspection = nil
@@ -226,11 +246,35 @@ struct AnnotationOriginalEditorProductionEntry: View {
         }
     }
 
-    private func inspectSavedNote() async {
+    private func presentOwned(_ modal: AnnotationOriginalEditorModal) {
+        childPresented = true
+        present(.init {
+            modal.content.onDisappear {
+                childPresented = false
+                Task { await inspectSavedNote() }
+            }
+        })
+    }
+
+    private func openLinkedSync() {
+        do {
+            try draft().requireUnchanged(annotation)
+            guard !childPresented, let workspace, let inspected, availability == .rich,
+                  linkedState?.links.isEmpty == false else { throw AnnotationOriginalEditorUIError.unavailable }
+            automaticAttempt = inspected.version?.mutationID
+            presentOwned(.init {
+                AnnotationOriginalEditorReceiveView(model: .init(annotation: annotation,
+                    inspected: inspected, workspace: workspace, operationKind: .synchronize))
+            })
+        } catch { entryMessage = error.localizedDescription }
+    }
+
+    private func inspectSavedNote(automaticallyResume: Bool = false) async {
         inspection?.retire()
         inspection = nil
         inspected = nil
         entryMessage = nil
+        linkedState = nil
         guard let id = annotation.id, id > 0,
               let recordID = annotation.ckRecordId, !recordID.isEmpty else {
             availability = .plain
@@ -264,7 +308,19 @@ struct AnnotationOriginalEditorProductionEntry: View {
             }
             let native = try AnnotationOriginalEditorMount.nativeBody(in: snapshot)
             inspected = snapshot
+            linkedState = try await local.linkedState(snapshot: snapshot)
             availability = native == nil ? .plain : .rich
+            // Resume only this unchanged, visible annotation in its original
+            // scene/profile. A different editor/account owner is never stolen.
+            if automaticallyResume && scenePhase == .active && !childPresented,
+               availability == .rich, linkedState?.links.isEmpty == false,
+               automaticAttempt != snapshot.version?.mutationID,
+               !(linkedState?.deliveries.contains(where: {
+                   $0.state == .dispatchMayHaveOccurred || $0.state == .needsReview ||
+                       ($0.state == .pending && $0.notBefore > Int64(Date().timeIntervalSince1970))
+               }) ?? true) {
+                openLinkedSync()
+            }
         } catch {
             guard !Task.isCancelled else { return }
             availability = .unavailable

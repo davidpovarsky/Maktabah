@@ -117,6 +117,12 @@ final class AnnotationLocalEditorPersistence: Sendable {
     }
 
     func commit(_ intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCommitted {
+        try commit(intent, receivedOrigin: nil, enableLink: false)
+    }
+
+    private func commit(_ intent: AnnotationLocalEditorIntent,
+                        receivedOrigin: AnnotationExchangeNativeReadOrigin?,
+                        enableLink: Bool) throws -> AnnotationLocalEditorCommitted {
         try requireSnapshotOwner(intent.snapshot)
         // Recompute the command from its original snapshot, never from newer DB
         // contents. This also checks unsupported versions/formats before writes.
@@ -129,6 +135,7 @@ final class AnnotationLocalEditorPersistence: Sendable {
             try requireCurrent()
             if !(try ledger.hasInstalledSchema()) { try ledger.installSchema() }
             if let previous = try ledger.version(mutationID: intent.mutationID) {
+                try ledger.requireNativeOriginReplay(mutationID: intent.mutationID, origin: receivedOrigin, enableLink: enableLink)
                 result = try replayLocked(previous, intent: intent)
                 try requireCurrent()
                 return
@@ -171,6 +178,13 @@ final class AnnotationLocalEditorPersistence: Sendable {
             let receipt = try ledger.commitLocal(mutationID: intent.mutationID, payload: payload,
                 expectedSource: source, expectedRevision: intent.snapshot.revision)
             guard receipt.deliveries.isEmpty else { throw AnnotationLocalEditorError.corruptRecord }
+            guard let committedVersion = try ledger.version(mutationID: intent.mutationID) else {
+                throw AnnotationLocalEditorError.corruptRecord
+            }
+            if let receivedOrigin {
+                try ledger.acceptNativeOrigin(receivedOrigin, version: committedVersion, enableLink: enableLink)
+            }
+            try ledger.enqueueLinkedVersion(committedVersion, suppressing: receivedOrigin)
             let after = try snapshotLocked()
             guard after.revision == receipt.revision, after.version?.payloadDigest == receipt.payloadDigest,
                   after.annotation.note?.utf8.elementsEqual(savedNoteText.utf8) == true else {
@@ -1188,12 +1202,15 @@ final class AnnotationLocalEditorNativeRevisionPreparation: Sendable {
     fileprivate let imageDigest: String
     fileprivate let targetBase64: String
     fileprivate let targetDigest: String
+    let linkedDelivery: AnnotationExchangeLinkedDelivery?
 
     fileprivate init(original: AnnotationLocalEditorNativePreparation,
                      target: AnnotationLocalEditorNativeRevisionTarget,
                      imageBase64: String, imageDigest: String,
-                     targetBase64: String, targetDigest: String) {
+                     targetBase64: String, targetDigest: String,
+                     linkedDelivery: AnnotationExchangeLinkedDelivery?) {
         self.original = original; self.target = target
+        self.linkedDelivery = linkedDelivery
         observation = original.observation
         self.imageBase64 = imageBase64; self.imageDigest = imageDigest
         self.targetBase64 = targetBase64; self.targetDigest = targetDigest
@@ -1228,7 +1245,8 @@ extension AnnotationLocalEditorPersistence {
     func prepareNativeRevision(
         snapshot: AnnotationLocalEditorSnapshot,
         comparison: AnnotationLocalEditorNativeComparison,
-        target: AnnotationLocalEditorNativeRevisionTarget
+        target: AnnotationLocalEditorNativeRevisionTarget,
+        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil
     ) throws -> AnnotationLocalEditorNativeRevisionPreparation {
         try requireSnapshotOwner(snapshot)
         return try withNativeAttemptCommit {
@@ -1252,7 +1270,7 @@ extension AnnotationLocalEditorPersistence {
                 target: target, imageBase64: imageBytes.base64EncodedString(),
                 imageDigest: try digest.sha256(imageBytes),
                 targetBase64: targetBytes.base64EncodedString(),
-                targetDigest: try digest.sha256(targetBytes))
+                targetDigest: try digest.sha256(targetBytes), linkedDelivery: linkedDelivery)
             try connection.database.execute(query: """
                 INSERT INTO main.\(NativeRevisionTables.attempts)
                 (attempt_uuid, image_base64, image_sha256, target_base64,
@@ -1299,6 +1317,18 @@ extension AnnotationLocalEditorPersistence {
                 throw AnnotationLocalEditorNativeAttemptError.observationChanged
             }
             try requireNativeRevisionImageLocked(prepared, request: request)
+            if let linked = prepared.linkedDelivery {
+                guard linked.delivery.annotationUUID == annotationUUID,
+                      linked.delivery.revision == prepared.snapshot.revision,
+                      linked.delivery.payloadDigest == prepared.snapshot.version?.payloadDigest,
+                      linked.link.destination.account == prepared.comparison.accountID,
+                      linked.link.destination.space == prepared.comparison.spaceID,
+                      linked.link.objectID == prepared.target.objectID else {
+                    throw AnnotationExchangeError.receiptMismatch
+                }
+                try ledger.markLinkedRevisionDispatch(linked, attemptID: prepared.observation.attemptID,
+                    observedRootSHA256: prepared.target.expectedRootDigest, now: Int64(Date().timeIntervalSince1970))
+            }
             return prepared.original.image.observation(storage: self, state: .dispatchMayHaveOccurred)
         }
     }
@@ -1424,4 +1454,125 @@ extension AnnotationLocalEditorPersistence {
             throw AnnotationLocalEditorNativeAttemptError.schemaMismatch
         }
     }
+}
+
+// MARK: - Explicit original-native links on the original profile connection
+struct AnnotationLocalEditorLinkedState: Sendable {
+    let links: [AnnotationExchangeNativeLink]
+    let deliveries: [AnnotationExchangeLinkedDelivery]
+}
+
+extension AnnotationLocalEditorPersistence {
+    func linkedState(snapshot: AnnotationLocalEditorSnapshot) throws -> AnnotationLocalEditorLinkedState {
+        try requireSnapshotOwner(snapshot)
+        var result: AnnotationLocalEditorLinkedState?
+        try connection.database.transaction {
+            try requireCurrent()
+            let current = try snapshotLocked()
+            guard current.source == snapshot.source, current.version == snapshot.version else { throw AnnotationExchangeError.staleRevision }
+            let links = try ledger.nativeLinks(namespace: Self.namespace, annotationUUID: annotationUUID)
+            result = .init(links: links, deliveries: try links.flatMap { try ledger.linkedDeliveries(for: $0) })
+            try requireCurrent()
+        }
+        guard let result else { throw AnnotationLocalEditorError.corruptRecord }
+        return result
+    }
+
+    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot) throws {
+        _ = try withNativeAttemptCommit {
+            _ = try requireNativeSavedSnapshotLocked(snapshot)
+            guard link.namespace == Self.namespace, link.annotationUUID == annotationUUID else { throw AnnotationExchangeError.receiptMismatch }
+            try ledger.unlinkNativeCopy(link)
+            return true
+        }
+    }
+
+    func deferLinkedRead(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot) throws {
+        _ = try withNativeAttemptCommit {
+            _ = try requireNativeSavedSnapshotLocked(snapshot)
+            guard delivery.delivery.annotationUUID == annotationUUID, delivery.delivery.revision == snapshot.revision else { throw AnnotationExchangeError.receiptMismatch }
+            try ledger.deferLinkedRead(delivery, now: Int64(Date().timeIntervalSince1970))
+            return true
+        }
+    }
+
+    func requireLinkedReview(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot) throws {
+        _ = try withNativeAttemptCommit {
+            _ = try requireNativeSavedSnapshotLocked(snapshot)
+            guard delivery.delivery.annotationUUID == annotationUUID else { throw AnnotationExchangeError.receiptMismatch }
+            try ledger.markLinkedReviewRequired(delivery)
+            return true
+        }
+    }
+
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    /// Only a closed original read can attach an origin to a local Save. Exact
+    /// body/source binding is checked again on the actual SQLite worker.
+    func commitReceived(_ intent: AnnotationLocalEditorIntent,
+                        actual: AnytypeOriginalAnnotationReadReceipt,
+                        enableLink: Bool) throws -> AnnotationLocalEditorCommitted {
+        let snapshot = actual.capture.nativeCapture.snapshot
+        let provenance = snapshot.provenance
+        guard provenance.annotationUUID == annotationUUID,
+              provenance.capturedAgainstRevision == intent.snapshot.revision,
+              provenance.sourceWitnessSHA256 == intent.snapshot.source.digest,
+              snapshot.bodyBytes == intent.body.bytes,
+              intent.body.format == AnytypeOriginalEditorSnapshot.format,
+              intent.body.formatVersion == AnytypeOriginalEditorSnapshot.formatVersion,
+              actual.capture.textPreview == intent.textPreview,
+              try digest.sha256(actual.nativeResponseBytes) == actual.nativeResponseSHA256 else {
+            throw AnnotationExchangeError.receiptMismatch
+        }
+        let origin = AnnotationExchangeNativeReadOrigin(
+            destination: try .init(destination: "anytype.original", account: provenance.accountID, space: provenance.spaceID),
+            objectID: provenance.objectID, nativeRootSHA256: actual.observedNativeRevisionSHA256,
+            nativeResponseSHA256: actual.nativeResponseSHA256)
+        return try commit(intent, receivedOrigin: origin, enableLink: enableLink)
+    }
+
+    func acceptLinkedReview(_ delivery: AnnotationExchangeLinkedDelivery,
+                            snapshot: AnnotationLocalEditorSnapshot,
+                            actual: AnytypeOriginalAnnotationReadReceipt) throws -> AnnotationExchangeLinkedDelivery {
+        let provenance = actual.capture.nativeCapture.snapshot.provenance
+        guard provenance.annotationUUID == annotationUUID, provenance.capturedAgainstRevision == snapshot.revision,
+              provenance.sourceWitnessSHA256 == snapshot.source.digest,
+              try digest.sha256(actual.nativeResponseBytes) == actual.nativeResponseSHA256 else { throw AnnotationExchangeError.receiptMismatch }
+        let origin = AnnotationExchangeNativeReadOrigin(
+            destination: try .init(destination: "anytype.original", account: provenance.accountID, space: provenance.spaceID),
+            objectID: provenance.objectID, nativeRootSHA256: actual.observedNativeRevisionSHA256,
+            nativeResponseSHA256: actual.nativeResponseSHA256)
+        return try withNativeAttemptCommit {
+            _ = try requireNativeSavedSnapshotLocked(snapshot)
+            guard delivery.delivery.annotationUUID == annotationUUID else { throw AnnotationExchangeError.receiptMismatch }
+            return try ledger.acceptLinkedReview(delivery, origin: origin)
+        }
+    }
+
+    /// The original native drained callback may finish after presentation
+    /// retirement. It records only that exact historical delivery; an original
+    /// DB retirement prevents further writes and leaves uncertainty durable.
+    func completeLinkedRevision(_ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+                                actual: AnytypeOriginalAnnotationRevisionHistory) throws {
+        guard let linked = prepared.linkedDelivery else { return }
+        guard prepared.original.storage === self else { throw AnnotationExchangeError.receiptMismatch }
+        guard let receipt = actual.verifiedNativeReceipt else { return }
+        let source = receipt.source, observed = prepared.observation
+        guard source.attemptID == observed.attemptID, source.preparedSessionID == observed.preparedSessionID,
+              source.annotationUUID == annotationUUID, source.savedRevision == observed.savedRevision,
+              source.sourceDigest == observed.sourceDigest, source.payloadDigest == observed.payloadDigest,
+              source.bodyDigest == observed.bodyDigest, source.accountID == prepared.comparison.accountID,
+              source.spaceID == prepared.comparison.spaceID, receipt.objectID == prepared.target.objectID,
+              !receipt.nativeResponseBytes.isEmpty,
+              try digest.sha256(receipt.nativeResponseBytes) == receipt.nativeResponseSHA256 else {
+            throw AnnotationExchangeError.receiptMismatch
+        }
+        try connection.database.withSerializedAccess {
+            try connection.lifetime.withCurrent {
+                try ledger.recordLinkedNativeReadback(messageID: linked.delivery.messageID,
+                    attemptID: observed.attemptID, nativeRootSHA256: receipt.nativeRootSHA256,
+                    nativeResponseSHA256: receipt.nativeResponseSHA256)
+            }
+        }
+    }
+    #endif
 }

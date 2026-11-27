@@ -32,10 +32,13 @@ final class AnnotationOriginalEditorRevisionHistory {
     private(set) var witness: AnnotationOriginalEditorRevisionFile.Witness?
     private(set) var witnessURL: URL?
     private let databaseURL: URL
+    private let linkedCompletion: @Sendable (AnytypeOriginalAnnotationRevisionHistory) throws -> Void
     private var durableWrite: Task<AnnotationOriginalEditorRevisionOutcome, Error>?
     private var waiters: [CheckedContinuation<Void, Never>] = []
 
-    fileprivate init(_ prepared: AnnotationLocalEditorNativeRevisionPreparation) {
+    fileprivate init(_ prepared: AnnotationLocalEditorNativeRevisionPreparation,
+                     linkedCompletion: @escaping @Sendable (AnytypeOriginalAnnotationRevisionHistory) throws -> Void) {
+        self.linkedCompletion = linkedCompletion
         preparation = prepared.observation
         databaseURL = prepared.snapshot.databaseURL
     }
@@ -54,10 +57,13 @@ final class AnnotationOriginalEditorRevisionHistory {
         if let witness, let witnessURL {
             let possible = dispatch?.state == .dispatchMayHaveOccurred
             let databaseURL = self.databaseURL
+            let complete = linkedCompletion
             durableWrite = Task.detached {
-                try AnnotationOriginalEditorRevisionFile.persistHistory(actual,
+                let outcome = try AnnotationOriginalEditorRevisionFile.persistHistory(actual,
                     witness: witness, witnessURL: witnessURL,
                     capturedDatabaseURL: databaseURL, dispatched: possible)
+                if possible { try complete(actual) }
+                return outcome
             }
         }
         let pending = waiters; waiters.removeAll()
@@ -94,7 +100,7 @@ final class AnnotationOriginalEditorRevisionAttempt {
                  sourceLifetime: AnytypeOriginalAnnotationImportSourceLifetime) {
         self.local = local; self.prepared = prepared; self.observation = observation
         self.sourceLifetime = sourceLifetime
-        history = .init(prepared)
+        history = .init(prepared, linkedCompletion: local.linkedRevisionCompletion(prepared))
     }
 
     static func prepare(
@@ -104,7 +110,8 @@ final class AnnotationOriginalEditorRevisionAttempt {
         readSource: AnytypeOriginalEditorSourceLifetime,
         read: AnytypeOriginalAnnotationReadReceipt,
         retainedReadURL: URL,
-        account: AnytypeOriginalEditorAccountSession
+        account: AnytypeOriginalEditorAccountSession,
+        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil
     ) async throws -> AnnotationOriginalEditorRevisionPreparationOutcome {
         try observation.requireCurrent(); try account.validateCurrent()
         try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
@@ -115,7 +122,7 @@ final class AnnotationOriginalEditorRevisionAttempt {
         let target = try AnnotationLocalEditorNativeRevisionTarget(objectID: token.objectID,
             expectedHeads: token.nativeHeads, expectedRootDigest: token.nativeRootSHA256)
         let outcome = try await local.prepareNativeRevision(
-            snapshot: snapshot, comparison: comparison, target: target)
+            snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery)
         let prepared: AnnotationLocalEditorNativeRevisionPreparation
         switch outcome {
         case .recordedWithoutOwnership(let receipt):
