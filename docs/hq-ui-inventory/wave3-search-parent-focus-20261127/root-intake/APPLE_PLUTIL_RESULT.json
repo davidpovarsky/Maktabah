@@ -1,0 +1,24 @@
+{
+  "status": "ACTUAL_APPLE_PLUTIL_PASS",
+  "at": "2026-11-27T06:06:10.291029+00:00",
+  "source": "Maktabah.xcodeproj/project.pbxproj",
+  "sourceSHA256": "190d9d1f1eedbd0c97d58829929f3efe12189e06a42f99f5dbbcf03dc7f7a9b8",
+  "sourceBytes": 628322,
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "scaleway-mac",
+    "/usr/bin/plutil",
+    "-lint",
+    "-"
+  ],
+  "exit": 0,
+  "stdout": "<stdin>: OK\n",
+  "stderr": "",
+  "macStagedFiles": 0,
+  "appBuildPerformed": false,
+  "nativeTestsExecuted": 0
+}

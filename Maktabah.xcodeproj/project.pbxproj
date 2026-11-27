@@ -1448,6 +1448,7 @@
 		4DA52B57B2882C188F8D9999 /* MaktabahNativeWorkspaceComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFBFB77DC351F019A40143 /* MaktabahNativeWorkspaceComponents.swift */; };
 		5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */; };
 		641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */; };
+		08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2283,6 +2284,7 @@
 		A7FFBFB77DC351F019A40143 /* MaktabahNativeWorkspaceComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift; sourceTree = "<group>"; };
 		8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift; sourceTree = "<group>"; };
 		122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift; sourceTree = "<group>"; };
+		F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSearchEntry.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -4017,6 +4019,7 @@
 				A7FFBFB77DC351F019A40143 /* MaktabahNativeWorkspaceComponents.swift */,
 				8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */,
 				122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */,
+				F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */,
 				F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */,
 				346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */,
 				F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */,
@@ -5218,6 +5221,7 @@
 				4DA52B57B2882C188F8D9999 /* MaktabahNativeWorkspaceComponents.swift in Sources */,
 				5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */,
 				641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */,
+				08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */,
 				8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */,
 				24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */,
 				EC5D1D474E6FAF12EA1BBEF9 /* AnnotationOriginalEditorLifecycleUI.swift in Sources */,

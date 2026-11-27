@@ -1,0 +1,6 @@
+{
+  "firstAttempt": "NameError: name true is not defined",
+  "stage": "After empty output directory creation; before writes/commit/push",
+  "originalToolJob": "script_job_1a25be390093410c91977c34abf5c3e4",
+  "sourceOrAcceptanceChangedByFailure": false
+}

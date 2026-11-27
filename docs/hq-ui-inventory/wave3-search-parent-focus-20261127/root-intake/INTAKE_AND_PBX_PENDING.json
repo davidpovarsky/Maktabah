@@ -1,0 +1,24 @@
+{
+  "status": "SOURCE_INTAKED_PBX_APPLE_PARSE_PENDING",
+  "at": "2026-11-27T06:05:29.663318+00:00",
+  "base": "a7ee7340187ef968ed45a531bd346f63dca7163b",
+  "donor": "f8d9be6c045e29116b358999f9619183f7294e99",
+  "intakeHead": "1ef49822580574091cb7cb17afe306c68b8fc866",
+  "sourcePinsVerified": 12,
+  "evidencePinsPreviouslyVerified": 93,
+  "sourceTree": "e6400cc0b415148194e43e8e5833638b5d37a554",
+  "originalRoutingPrefixBytes": 187907,
+  "originalRoutingPrefixSHA256": "394f39cb485f61162351cdedf310ab75f566aefb56e96b3e5c664524151e228f",
+  "pbx": {
+    "beforeSHA256": "68ae7004f87bac08609dbe49e3ed3acb997f7e05fd9cf73a74057ea09ee2b6b2",
+    "afterSHA256": "190d9d1f1eedbd0c97d58829929f3efe12189e06a42f99f5dbbcf03dc7f7a9b8",
+    "bytes": 628322,
+    "fileRef": "F95F1BA3F98DDA37711CAB38",
+    "buildFile": "08EAB23AB03ED0077FDEADFD",
+    "onlyChangedSourcesPhase": "F30576E22FA46222005732C6",
+    "addedLines": 4,
+    "newUITestMembership": "Existing file-system synchronized Maktabah-iOSUITests group; no duplicate explicit build entries"
+  },
+  "appSDKBuildPerformed": false,
+  "nativeTestsExecuted": 0
+}

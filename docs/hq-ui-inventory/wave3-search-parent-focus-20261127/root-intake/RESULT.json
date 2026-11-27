@@ -1,0 +1,23 @@
+{
+  "status": "REVIEWED_SOURCE_INTAKE_AND_IOS_MEMBERSHIP_COMPLETE_NATIVE_PENDING",
+  "at": "2026-11-27T06:08:18.170653+00:00",
+  "sourceIntakeCommit": "1ef49822580574091cb7cb17afe306c68b8fc866",
+  "donorCommit": "f8d9be6c045e29116b358999f9619183f7294e99",
+  "rootBase": "a7ee7340187ef968ed45a531bd346f63dca7163b",
+  "verifiedSourceFiles": 12,
+  "verifiedEvidenceFiles": 93,
+  "evidenceManifestSHA256": "5f7d1f9a45079411817c5da0c0d5147198161a037aa97bd9ee53e49028559eda",
+  "originalTestPrefixPreserved": true,
+  "originalRoutingTestPrefixBytes": 187907,
+  "newAppSourceOnlyTarget": "Maktabah-iOS Sources F30576E22FA46222005732C6",
+  "newUITestSourceMembership": "Maktabah-iOSUITests filesystem synchronized group; no explicit duplicate",
+  "projectAfterSHA256": "190d9d1f1eedbd0c97d58829929f3efe12189e06a42f99f5dbbcf03dc7f7a9b8",
+  "actualApplePlutilExit": 0,
+  "sourceTree": "e6400cc0b415148194e43e8e5833638b5d37a554",
+  "independentSourceReview": "release_preflight reviewed 12 source pins and lifecycle membership; root read source and verified all pins",
+  "componentControls": "52 PASS; baseline41 PASS3 FAIL; weakenedone-shot42 PASS10 FAIL; explicit UIKit/Combine/domain boundaries; not native acceptance",
+  "appSDKBuildPerformed": false,
+  "nativeTestsExecuted": 0,
+  "physicalTestsPerformed": false,
+  "freshFinalOwnerAttestationRequired": true
+}
