@@ -1,0 +1,106 @@
+{
+  "schema": "otzaria.integrated-source-check/1",
+  "headBeforeRootCommit": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+  "sourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "sourceWorkingDiffEmpty": true,
+  "materializedExactHEADInputs": {
+    ".github/workflows/otzaria-reader-groups-full-v32.yml": {
+      "bytes": 12675,
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+    },
+    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": {
+      "bytes": 1426,
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    }
+  },
+  "checks": [
+    {
+      "phase": "offline-zayit",
+      "argv": [
+        "sudo",
+        "-n",
+        "-u",
+        "ubuntu",
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "offline-zayit"
+      ],
+      "cwd": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127",
+      "startedUTC": "2026-11-27T09:35:45.367537+00:00",
+      "finishedUTC": "2026-11-27T09:35:45.636335+00:00",
+      "exit": 0,
+      "stdout": {
+        "bytes": 24935,
+        "sha256": "91a85b1070af55767b709faee66a17d87a49398ea69ca78005750e12c5aaa246"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "reader-pending-sql",
+      "argv": [
+        "sudo",
+        "-n",
+        "-u",
+        "ubuntu",
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "reader-pending-sql"
+      ],
+      "cwd": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127",
+      "startedUTC": "2026-11-27T09:35:45.636352+00:00",
+      "finishedUTC": "2026-11-27T09:35:45.845692+00:00",
+      "exit": 0,
+      "stdout": {
+        "bytes": 24966,
+        "sha256": "5723b00a6d3fd8f49f3f57c903b46525ac81b0b5c3dd092581dc70bfe5a20e15"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "pythonASTOnly": {
+    "Scripts/CI/production-study-v40-ui.py": {
+      "bytes": 61274,
+      "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+    },
+    "Scripts/CI/study-ui-prerequisites.py": {
+      "bytes": 49535,
+      "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+    },
+    "Scripts/CI/study-ui-pending-execution.py": {
+      "bytes": 19358,
+      "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+    },
+    "Scripts/CI/study-ui-pending-sql.py": {
+      "bytes": 119300,
+      "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+    },
+    "Scripts/CI/study-ui-offline-oracle.py": {
+      "bytes": 66214,
+      "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+    },
+    "Scripts/CI/study-ui-offline-exercises.py": {
+      "bytes": 56645,
+      "sha256": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+    },
+    "Scripts/CI/study-ui-offline-execution.py": {
+      "bytes": 62459,
+      "sha256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202"
+    }
+  },
+  "diffCheckExit": 0,
+  "fullProfileFrozen": false,
+  "appleCommands": 0,
+  "nativeCases": 0,
+  "corpusQueries": 0,
+  "scope": "Actual Oracle integrated source checks and Python syntax only. No native, SDK, offline-window or performance acceptance."
+}

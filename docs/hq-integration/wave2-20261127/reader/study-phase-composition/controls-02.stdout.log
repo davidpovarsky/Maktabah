@@ -1,0 +1,21 @@
+{
+  "scope": "Source-only root lifecycle and real local private-file parsing with explicit synthetic device/UI/SDK/PF/relay doubles",
+  "testsRun": 22,
+  "failures": 0,
+  "errors": 0,
+  "candidate": {
+    "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+    "bytes": 61186,
+    "sha256": "f5c31f79c0c4d2f06af0a34a4ffe168a22deea70247032d2b513c2c33e1c4abc"
+  },
+  "originalControlRecipe": {
+    "path": "/workspace/scratch/ca3b32b82803/study-ui-driver-draft/test_study_ui_driver.py",
+    "bytes": 14736,
+    "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+  },
+  "nativeExecutions": 0,
+  "SSHExecutions": 0,
+  "PFChanges": 0,
+  "corpusQueries": 0,
+  "acceptanceClaimed": false
+}

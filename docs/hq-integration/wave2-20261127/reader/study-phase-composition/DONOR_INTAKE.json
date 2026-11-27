@@ -1,0 +1,235 @@
+{
+  "schema": "otzaria.wave2.pending-offline-donor-intake/1",
+  "base": "141c413501858d43d2252b5630692d22e730aac7",
+  "source": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "startedAtUTC": "2026-11-27T09:27:15.999129+00:00",
+  "mappings": [
+    {
+      "donor": "6b31db0f191ad4282628922704cd31e4dc5142b4",
+      "integration": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "files": {
+        "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": {
+          "bytes": 142688,
+          "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5"
+        },
+        "Scripts/CI/study-ui-pending-sql.py": {
+          "bytes": 119300,
+          "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/API.md": {
+          "bytes": 11613,
+          "sha256": "7c222864bcecf0267fc781c3e88dcbee7e820fca55c51ec681797e4e10826710"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/ARTIFACT_INDEX.json": {
+          "bytes": 803750,
+          "sha256": "741828c134f016e759c2b6829a4152f4c59c5fc4f4a7a526c1beef25bbc5d242"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/LOCAL_SOURCE_CHECK.json": {
+          "bytes": 739,
+          "sha256": "ba7dc13cd065e67862d3d61debc59da1612b5ee93facc8ed1c558ac7393a4cb3"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_APPLY_SOURCE_ONLY.json": {
+          "bytes": 2558,
+          "sha256": "9fddd5df25fec4c67b28fc62c534ce09b478f0c80653266dac4409e0753e99c0"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_FINAL_BEFORE.json": {
+          "bytes": 617,
+          "sha256": "e367122ffc7e2580ca6a650c9fe242e579a40cd250552aabe2ef9ddd30e12de1"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_SOURCE_BEFORE.json": {
+          "bytes": 1540,
+          "sha256": "228d0a193ba58fd32ffc9775d4c2611d592dbd076746cd1b399c656228e163f1"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/README.md": {
+          "bytes": 16501,
+          "sha256": "1b7487b75517135aad190c74035602fea166d05f53b858602ffd5f8b0907f552"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/source-controls-and-inputs.tar.gz": {
+          "bytes": 977176,
+          "sha256": "1637f4b219268eecf2c6078f2c46cfcf556cfff9db70dafc0a647fe89a73e7e2"
+        }
+      }
+    },
+    {
+      "donor": "1fde78161d6d7203e7cd83c8c026023cce1421ca",
+      "integration": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "files": {
+        "docs/hq-integration/wave2-20261127/library/pending-sql/README.md": {
+          "bytes": 16989,
+          "sha256": "bf49f966a1016921b4c93a30fdc84373f515f4c64cb3ff3fa512ff218986aa24"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/RESULT.json": {
+          "bytes": 1808,
+          "sha256": "2e4f35b2521b7b2060991db7900c54a23a20a09c257a864b34d664abbb564f46"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "donor": "1d5140c271d3e666f4c631d40876ab812563ba10",
+      "integration": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "files": {
+        "Scripts/CI/study-ui-offline-oracle.py": {
+          "bytes": 61383,
+          "sha256": "7f40ce53485a56e327f6a09012066a8ee6d97dd4f0ce65363e30de8387110c9c"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ORACLE_EXECUTION.json": {
+          "bytes": 936,
+          "sha256": "b42f8003943207d846c29d65b167ac3cfc79a7b0b79f22f1400c9aba3821370a"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ORIGINAL_ENVIRONMENT_READ.json": {
+          "bytes": 21737,
+          "sha256": "9c1b88cbd6d57faedc65ded5e427fedb112ad726c28acb0dcf2befe93029b6ae"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/README.md": {
+          "bytes": 4244,
+          "sha256": "0fadb2c897c36da4679cdd8aff086c69e50a3d96a26f27728b391b52388c0113"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ROOT_CLOSURE_INPUT.json": {
+          "bytes": 4573,
+          "sha256": "84172a21b0b2f90824b9a2bb42de252d12e95e9c417994329bf9d5c8d7f88691"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/SOURCE_CONTROLS.json": {
+          "bytes": 541,
+          "sha256": "c0cb82820ccb5baa524d1f470d91e96e373a7821bac6ac7b243680741edb1d3b"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/baseline-4cb7590.py": {
+          "bytes": 60113,
+          "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/controls.stderr.log": {
+          "bytes": 2124,
+          "sha256": "13319271ac274c328102e44c092cdb5d6dafddbc5559520d099dc172ac91f269"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/oracle-controls.stderr.log": {
+          "bytes": 2124,
+          "sha256": "d2f33eba5169f37d3bdef216218c5b9b574199542dd725131846bab348d7a4f2"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/oracle-controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/source-controls.py": {
+          "bytes": 14425,
+          "sha256": "07048297ebd14c05ff4c51772b6b9c2f6c8b771a99045aee5075a3b3af32dc01"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md": {
+          "bytes": 14360,
+          "sha256": "820d4eb1ac323bb069ea567158ab99b9197075ece05995073e2bd1ab94fa1ae4"
+        }
+      }
+    },
+    {
+      "donor": "56b8b5191b25451cf4b09d4fc3467e6a80eb6cd8",
+      "integration": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "files": {
+        "Scripts/CI/study-ui-offline-exercises.py": {
+          "bytes": 56645,
+          "sha256": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+        },
+        "Scripts/CI/study-ui-offline-oracle.py": {
+          "bytes": 66214,
+          "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/BASELINE_INPUTS.json": {
+          "bytes": 684,
+          "sha256": "7346a9b3c72a9206a7beb5eaebb9ecba9950481ed1aed7d38fd65820e2bd850a"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/ORACLE_EXECUTION.json": {
+          "bytes": 2076,
+          "sha256": "ae04355251fa70a5f12a9ec3ded7eeac8e05071ae5c0fd3a999bacd8ae5c96d5"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/ORACLE_PREREQUISITE_MATERIALIZATION.json": {
+          "bytes": 535,
+          "sha256": "917a3d768fd2102a1fd910b02cd01567e220e472cba777a53fc8a46eaa2b58a2"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/PEER_REVIEW.md": {
+          "bytes": 1257,
+          "sha256": "f5ed3777ac3b73330b7791ae689b656c36499fc153390b79a0155226d2c4b40c"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/README.md": {
+          "bytes": 4826,
+          "sha256": "d8d49d3676dfec63f9f652ab203dfe3b705c2491ece0a077a0b39d21fe610a14"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/SOURCE_CONTROLS.json": {
+          "bytes": 1447,
+          "sha256": "bdd936a46cd61bbb1bfec2fa3c69b6ec9dbb85ffe863aabc7378a9bd58b41dd3"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt1-syntax.stderr.log": {
+          "bytes": 325,
+          "sha256": "fa720f681d305b4cd4c16d31d5f06492880f458db39dfdd6c857216a56e3e712"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt2-SOURCE_CONTROLS.json": {
+          "bytes": 1447,
+          "sha256": "ceb5f061d6485649198a79d9cf924cb3b7c171915122507937a749f9c5faa97f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt2-controls.stderr.log": {
+          "bytes": 4639,
+          "sha256": "9bfb14460e3af3091c02cd1bc8e177af4ec07519c43f955006edcea3dc99cb73"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/baseline-exercises-8dba.py.gz": {
+          "bytes": 13586,
+          "sha256": "efaa2263d0748dc2a6d3b018207006c385e07ee2ea3cc1797dea41fa7ef153f7"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/baseline-oracle-1d5140.py.gz": {
+          "bytes": 16458,
+          "sha256": "a2281cd6d3663a918b612683c62d6042b323021dffc621a62c7e06689f815241"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/controls.stderr.log": {
+          "bytes": 4277,
+          "sha256": "7b009e59f78830a0b9ef40198647d055463283a788c6794d83452202c5dc797b"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-attempt1-oracle-controls.stderr.log": {
+          "bytes": 933,
+          "sha256": "0d5b84101950d2420f4a4ee865cec369a036620db1a1c0b2f05f0b1c37397f18"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-attempt1-oracle-controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-controls.stderr.log": {
+          "bytes": 4277,
+          "sha256": "7e9fc54b6b60a069adb92829d1425d275c79fe05c53293aa0b76cb4a7c815b03"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-lifecycle/source-controls.py": {
+          "bytes": 23511,
+          "sha256": "cbac8692dd5ac80ea353d9dfe9fb7fdc963497a507ea0ec719d5a43a2da64511"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md": {
+          "bytes": 15540,
+          "sha256": "a5e1bfedf65c82747bbc2fd9f745b0a51f11b97ea3ce1969f3206d44f1ab179d"
+        }
+      }
+    }
+  ],
+  "head": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+  "originalUIBytesPreserved": 102598,
+  "originalUISHA256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+  "appendedUIBytes": 40090,
+  "donorFileVersionsChecked": 48,
+  "nativeExecuted": 0,
+  "appleExecuted": 0,
+  "corpusQueried": 0,
+  "donorControlsRerun": false,
+  "freeBytes": 1541222400,
+  "finishedAtUTC": "2026-11-27T09:27:17.019455+00:00"
+}

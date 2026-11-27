@@ -1,0 +1,334 @@
+{
+  "schema": "otzaria.study-phase-composition.root-intake/1",
+  "status": "INTEGRATED_SOURCE_VERIFIED_NOT_NATIVE_ACCEPTANCE",
+  "recordedAtUTC": "2026-11-27T09:36:54.702080+00:00",
+  "lastPublishedBase": "141c413501858d43d2252b5630692d22e730aac7",
+  "headBeforeRootCommit": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+  "sourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "donorMappings": [
+    {
+      "donor": "6b31db0f191ad4282628922704cd31e4dc5142b4",
+      "integration": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c"
+    },
+    {
+      "donor": "1fde78161d6d7203e7cd83c8c026023cce1421ca",
+      "integration": "e942b06a72ec15a8769e66e631ded0ae7fec7e45"
+    },
+    {
+      "donor": "1d5140c271d3e666f4c631d40876ab812563ba10",
+      "integration": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6"
+    },
+    {
+      "donor": "56b8b5191b25451cf4b09d4fc3467e6a80eb6cd8",
+      "integration": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91"
+    }
+  ],
+  "donorFileVersionsVerified": 48,
+  "rootSourceFiles": {
+    "Scripts/CI/production-study-v40-ui.py": {
+      "before": {
+        "bytes": 45455,
+        "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+      },
+      "after": {
+        "bytes": 61274,
+        "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+      }
+    },
+    "Scripts/CI/reader-full-v40-ui-observation.inputs.json": {
+      "before": {
+        "bytes": 8117,
+        "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+      },
+      "after": {
+        "bytes": 8410,
+        "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+      }
+    },
+    "Scripts/CI/study-ui-pending-execution.py": {
+      "before": null,
+      "after": {
+        "bytes": 19358,
+        "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+      }
+    },
+    "Scripts/CI/study-ui-prerequisites.py": {
+      "before": {
+        "bytes": 48654,
+        "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72"
+      },
+      "after": {
+        "bytes": 49535,
+        "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+      }
+    }
+  },
+  "rootEvidenceFiles": {
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DOCS_TRANSFER.json": {
+      "bytes": 4931,
+      "sha256": "5222a634390538b01cc47fb43bc6bb4c57f0a8dea11a81fe4f7fad1b0eb06cfb"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DONOR_INTAKE.json": {
+      "bytes": 11673,
+      "sha256": "19a11b2d88e56f308746b84b02a033be2a5c60a08cddeba06ab9fb63aa8cd82d"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_1.stderr.log": {
+      "bytes": 3041,
+      "sha256": "6bbdcf4d93ef85e7a3b2c385f0ceba1d91a5f1648a34e864460773d0b90dc7c8"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_1.stdout.log": {
+      "bytes": 751,
+      "sha256": "6cc9744289dbe98add473be834cce72f92a9e51d35f8f0f15b5171490258b75a"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_2.stderr.log": {
+      "bytes": 3584,
+      "sha256": "b18df7c0a484ab694962d041356f46f0e792e38d76a547916cc14f23a839a7bc"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_2.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_LIBRARY_REVIEW.md": {
+      "bytes": 1481,
+      "sha256": "90e6a3b6a8957cddff7344f0eb5e1c3b58f24799d90d92fc85657959b18e95b1"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/INTEGRATION_REVIEW.md": {
+      "bytes": 5823,
+      "sha256": "33c2989f02c0255dbf3176c9eae619cffbee1a8c474c879e2a9e0680ef08a5d6"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/OFFLINE_REVIEWED_60dd.md": {
+      "bytes": 4293,
+      "sha256": "9f554ff4fa27c074debae21caa67cb0eb647b2e0c3c63f6861e9900da590c7c2"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/PRESERVATION.json": {
+      "bytes": 898,
+      "sha256": "4149a247fa1a024d1de86091569398effb3df6d82bbf382633ddac271e20a0a6"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/README.md": {
+      "bytes": 10090,
+      "sha256": "247fe06037c0e5976c3df7b5b795b37d8923ad715fec8f86c683b0ff82f1b25f"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_LOCAL_CONTROLS.json": {
+      "bytes": 7057,
+      "sha256": "7534426f1ebbb20152bc86f6fffb03ce757d5480c55a4858a66b75d42ffc0be2"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_PRESERVATION.json": {
+      "bytes": 22216,
+      "sha256": "dea1cdc513e03e049eb65d5115e06241ab657671496d415c0ed65e30c635c056"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/SOURCE_TRANSFER.json": {
+      "bytes": 1334,
+      "sha256": "38439916f90a7fe22ae69d62f636adcc8fd93d99572718dda16de269a6e9ec58"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-01.stderr.log": {
+      "bytes": 3041,
+      "sha256": "6bbdcf4d93ef85e7a3b2c385f0ceba1d91a5f1648a34e864460773d0b90dc7c8"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-01.stdout.json": {
+      "bytes": 746,
+      "sha256": "1a15435d6b1b743a079ff17a9c41f10929e44991bddcc0cca823e199681195f5"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-02.stderr.log": {
+      "bytes": 3041,
+      "sha256": "a65f58d21c2fcfb1680aee796f8f54a918ba3c2f49e2e21504bba680fa1ef623"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-02.stdout.log": {
+      "bytes": 746,
+      "sha256": "457b7f68866067fcabe6fca760e7d3d417100938e1192f7486429384b20b811b"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/MATERIALIZED_HEAD_INPUTS.json": {
+      "bytes": 343,
+      "sha256": "91f9cf1978ddc13fd2ffba54f269a39c0dc117b61ec37df25e9544a958f6d4c5"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/RESULT.json": {
+      "bytes": 3514,
+      "sha256": "789f6ae6e7cca894afeffdaf10603562ad55185829cf982c73fab8b5ac1191dc"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/git-diff-check.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/git-diff-check.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/offline-zayit.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/offline-zayit.stdout.json": {
+      "bytes": 24935,
+      "sha256": "91a85b1070af55767b709faee66a17d87a49398ea69ca78005750e12c5aaa246"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/reader-pending-sql.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/reader-pending-sql.stdout.json": {
+      "bytes": 24966,
+      "sha256": "5723b00a6d3fd8f49f3f57c903b46525ac81b0b5c3dd092581dc70bfe5a20e15"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/original-controller-controls.py": {
+      "bytes": 14736,
+      "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-01.stderr.log": {
+      "bytes": 2627,
+      "sha256": "3fc0d095d7cc260164ab474ad746148e9af02bf5c66300f45ec4b5813829f714"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-01.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-02.stderr.log": {
+      "bytes": 3584,
+      "sha256": "fa03a20acf7bd610ca073c970dd58d709549e88beecb3348c5e64e68ba593c39"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-02.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-source-controls.py": {
+      "bytes": 19596,
+      "sha256": "9d7a1a35d4fa3a9abea3156aab6507aa924dfb2290ecf18548d0ba2114154fc8"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/reviewed-offline-controller-60dd.py": {
+      "bytes": 58294,
+      "sha256": "60dd4c89e7ba872e285c14c3f7cba0077ad5f5b59a34b0d0326e8d070ebfb4d8"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-phase-composition/source-controls.py": {
+      "bytes": 12492,
+      "sha256": "1927a110e725c64eec45c1ed9a08274661aecfad5101895bf650c50ab97854b0"
+    }
+  },
+  "reusedLocalControls": {
+    "receipt": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_LOCAL_CONTROLS.json",
+    "testCounts": [
+      22,
+      23
+    ],
+    "exactInputsInIntegratedCheckout": [
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+        "integratedPath": "Scripts/CI/production-study-v40-ui.py",
+        "bytes": 61274,
+        "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-prerequisites.py",
+        "integratedPath": "Scripts/CI/study-ui-prerequisites.py",
+        "bytes": 49535,
+        "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-pending-execution.py",
+        "integratedPath": "Scripts/CI/study-ui-pending-execution.py",
+        "bytes": 19358,
+        "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/reader-full-v40-ui-observation.inputs.json",
+        "integratedPath": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+        "bytes": 8410,
+        "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/source-controls.py",
+        "integratedPath": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/source-controls.py",
+        "bytes": 12492,
+        "sha256": "1927a110e725c64eec45c1ed9a08274661aecfad5101895bf650c50ab97854b0"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/pending-source-controls.py",
+        "integratedPath": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-source-controls.py",
+        "bytes": 19596,
+        "sha256": "9d7a1a35d4fa3a9abea3156aab6507aa924dfb2290ecf18548d0ba2114154fc8"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/original-controller-controls.py",
+        "integratedPath": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/original-controller-controls.py",
+        "bytes": 14736,
+        "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/root-study-offline/input-original/runtime27_interruption.py",
+        "integratedPath": "Scripts/CI/runtime27_interruption.py",
+        "bytes": 7650,
+        "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/offline-oracle/study-ui-offline-oracle.py",
+        "integratedPath": "Scripts/CI/study-ui-offline-oracle.py",
+        "bytes": 66214,
+        "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+      },
+      {
+        "historicalPath": "/workspace/scratch/ca3b32b82803/pending-sql/candidate/Scripts/CI/study-ui-pending-sql.py",
+        "integratedPath": "Scripts/CI/study-ui-pending-sql.py",
+        "bytes": 119300,
+        "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+      }
+    ],
+    "scope": "Explicit synthetic process/kernel/device/UI doubles and real tiny local receipt files; no native, Mac, network, original corpus, live signal or production process",
+    "rootReranDonorControls": false
+  },
+  "actualOracleChecks": {
+    "receipt": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/RESULT.json",
+    "phases": [
+      "offline-zayit",
+      "reader-pending-sql"
+    ],
+    "allExitZero": true,
+    "pythonASTFiles": 7
+  },
+  "preservation": {
+    "sourceVendorProjectUnchangedSinceBase": true,
+    "protectedOriginalFiles": {
+      "Scripts/CI/reader-full-v32-ui-observation.py": {
+        "bytes": 84518,
+        "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49"
+      },
+      "Scripts/CI/runtime27_interruption.py": {
+        "bytes": 7650,
+        "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+      },
+      "Scripts/CI/runtime27-url-delivery.py": {
+        "bytes": 5818,
+        "sha256": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8"
+      },
+      "Scripts/CI/reader-full-v40-ui-observation.py": {
+        "bytes": 33328,
+        "sha256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317"
+      },
+      "Scripts/CI/runtime27-final-source-composition.inputs.json": {
+        "bytes": 22307,
+        "sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+      },
+      "tools/verify_xcresult_zero_skips.py": {
+        "bytes": 10243,
+        "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+      },
+      ".github/workflows/otzaria-reader-groups-full-v32.yml": {
+        "bytes": 12675,
+        "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+      }
+    },
+    "fullV40ProfileOnlyAddsExecutionInputs": true,
+    "originalFullV40SelectedCases": [
+      "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
+      "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn"
+    ],
+    "originalBuild8401Prefix": {
+      "bytes": 102598,
+      "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+    },
+    "appendedBuild8401Bytes": 40090,
+    "originalControllerStructuralComparison": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_PRESERVATION.json"
+  },
+  "nativeExecuted": 0,
+  "appleExecuted": 0,
+  "productionCorpusQueried": 0,
+  "performanceAcceptance": false,
+  "fullProfileFrozen": false,
+  "remaining": "Integration owner must freeze the actual composed source and qualify its App/XCTestRun; reserve shared Mac capacity, run the original native/full-corpus/three no-denial/offline/performance gates. The 09:27 Wave3 capacity report is not a reservation. Earlier actual ENOSPC and failed traces remain retained. All task acceptance remains open."
+}

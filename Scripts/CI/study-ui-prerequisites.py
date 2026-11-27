@@ -33,11 +33,6 @@ GROUPS_CASE = "StudyGroupStressNativeAcceptanceTests/testOneHundredOriginalFullV
 EXTERNAL_KEYS = {"full-v32", "full-v40", "groups100", "offline", "perf01-03"}
 MAX_RECEIPT = 16 * 1024 * 1024
 PENDING_PRODUCERS = {
-    "offline": [
-        "A genuine registered original UI producer with an explicit, observed offline/denied-network condition and its restoration/cleanup receipts.",
-        "Same current source/test trees, checkout, qualified build/SDK/runtime and retained v40 owner/install; original zero-skip executed selectors.",
-        "Actual installed Otzaria and Zayit package identities, real query/results/metadata/pages under that observed network condition; ordinary-network success is insufficient.",
-    ],
     "perf01-03": [
         "A source-qualified original producer contract for PERF01–03; the two Reader/Inspector observation cases explicitly leave performance acceptance open.",
         "Declared cold/warm first-content and p50/p95/CPU/RSS workloads with complete samples and exact source attribution; mixed ten-Chapter nearest-rank p95 is not per-book p95.",
@@ -260,7 +255,15 @@ class Evidence:
                 if isinstance(value, dict) and set(value) == {"path", "bytes", "sha256"}:
                     self.read_witness(value, maximum=64 * 1024 * 1024, json_value=False)
             verified.append(actual)
-        return {"caseExecutions": verified, "scope": "Actual original exact study phase; prerequisite only, not Settings acceptance"}
+        proof = {"caseExecutions": verified,
+                 "scope": "Actual original exact study phase; prerequisite only, not Settings acceptance"}
+        if phase == "reader-pending-sql":
+            pending = runpy.run_path(str(self.root / "Scripts/CI/study-ui-pending-sql.py"))
+            owner = runpy.run_path(str(self.root / "Scripts/CI/study-ui-pending-execution.py"))
+            proof["pendingFetchArtifacts"] = pending["validate_phase_artifacts"](report, self)
+            proof["pendingOwnedCleanup"] = owner["validate_cleanup"](report.get("pending_sql"), self, report)
+            proof["fullPerformanceAcceptance"] = False
+        return proof
 
     def suite_execution(self, directory, cases, udid, *, log_name, bundle_name):
         directory = self.settings.canonical_path(directory, directory=True)
@@ -636,6 +639,17 @@ def admit_before_settings(receipts_path, *, core, settings, udid, source, build,
                 gate["proof"] = evidence.reader_suite(receipts[key], report, key)
             elif key == "groups100":
                 gate["proof"] = evidence.groups_suite(receipts[key], report)
+            elif key == "offline":
+                # Reconstruct both complete original transport/native/root
+                # joins from their retained immutable evidence. A status,
+                # operator acknowledgement or ordinary-network case cannot
+                # substitute for this producer's observed denial/cleanup.
+                producer = Path(core.ROOT) / "Scripts/CI/study-ui-offline-execution.py"
+                require(source.get("study_ui_execution_sources", {}).get("Scripts/CI/study-ui-offline-execution.py")
+                        == settings.witness(producer), "Original offline validator is not source-bound")
+                gate["proof"] = runpy.run_path(str(producer))["validate_suite"](receipts[key], evidence=evidence)
+            else:
+                raise ValueError("Required gate has no original evidence validator")
             gate["status"] = "VERIFIED_ORIGINAL_RECEIPTS"
         except Exception as error:
             gate.update(errorType=type(error).__name__, error=str(error))

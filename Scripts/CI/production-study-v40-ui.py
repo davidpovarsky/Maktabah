@@ -16,6 +16,7 @@ import plistlib
 import re
 import runpy
 import shutil
+import stat
 import sys
 import time
 import urllib.parse
@@ -48,6 +49,14 @@ PHASES = {
                   "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"],
         "allowance": 1800, "payload_peak": 0, "inputs": set(),
     },
+    "offline-zayit": {
+        "cases": ["PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity"],
+        "allowance": 1800, "payload_peak": 0, "inputs": set(),
+    },
+    "offline-otzaria": {
+        "cases": ["PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"],
+        "allowance": 1800, "payload_peak": 0, "inputs": set(),
+    },
     "preview-hit": {
         "cases": ["PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"],
         "allowance": 1800, "payload_peak": 0, "inputs": set(),
@@ -65,6 +74,12 @@ PHASES = {
     "reader-continuous-pull": {
         "cases": ["FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"],
         "allowance": 1800, "payload_peak": 0, "inputs": PREVIEW_KEYS,
+    },
+    "reader-pending-sql": {
+        "cases": ["FullV40ReaderModeAcceptanceTests/testOriginalLargeChapterPendingFetchRemainsInteractiveAndRejectsSupersededContent"],
+        # Includes the complete source compilation/catalog and all retained
+        # pending captures. Original native output has the separate 1 GiB reserve.
+        "allowance": 1800, "payload_peak": 768 * 1024 * 1024, "inputs": set(),
     },
     "sefaria-contexts": {
         "cases": ["SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
@@ -93,7 +108,7 @@ PHASES = {
     },
 }
 PRE_UPDATE_PHASES = {key: value["cases"] for key, value in PHASES.items()
-                     if key not in {"settings-update-last", "search-after-settings"}}
+                     if key not in {"settings-update-last", "search-after-settings", "offline-zayit", "offline-otzaria"}}
 FILES = [
     "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
     "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
@@ -105,6 +120,20 @@ FILES = [
     "Scripts/CI/study-ui-settings-receipts.py",
     "Scripts/CI/study-ui-prerequisites.py",
     "Scripts/CI/study-ui-search-log.py",
+    "Scripts/CI/study-ui-offline-execution.py",
+    "Scripts/CI/study-ui-offline-exercises.py",
+    "Scripts/CI/study-ui-offline-oracle.py",
+    "Scripts/CI/study-ui-offline-window.py",
+    "Scripts/CI/study-ui-offline-heartbeat.py",
+    "Scripts/CI/OfflineTransportProbe.swift",
+    "Scripts/CI/build-offline-transport-probe.py",
+    "Scripts/CI/study-ui-pending-sql.py",
+    "Scripts/CI/study-ui-pending-execution.py",
+    "Scripts/CI/study-ui-sqlite-wait.py",
+    "Scripts/CI/runtime27_interruption.py",
+    "Scripts/CI/runtime27-url-delivery.py",
+    "Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
     "Scripts/CI/reader-continuous-pull-host.py",
     "docs/hq-integration/wave2-20261127/search/production-ui-contract.json",
     "docs/hq-integration/wave2-20261127/search/native-context/TEST_CONTRACT.md",
@@ -156,7 +185,8 @@ def input_values(phase, supplied):
 
 
 def source_context(core, phase, frozen):
-    context = core.source_context(require_frozen=frozen)
+    original = getattr(core, "study_original_source_context", core.source_context)
+    context = original(require_frozen=frozen)
     paths = [Path(__file__).resolve().relative_to(ROOT).as_posix(), *FILES]
     observed = {}
     for name in paths:
@@ -196,7 +226,20 @@ def observe_inputs(core, values):
     return records
 
 
-def run_original_case(core, test_run, udid, case, allowance, output, environment, private_values=()):
+def run_original_native_actions(core, test_run, udid, case, allowance, output, environment,
+                                private_values=(), *, host_timeout_seconds=None):
+    """Execute the unchanged selector and retain its attempt, without exporting.
+
+    A coordinated transport window may bound this host process more tightly.
+    The original XCTest allowances and command remain unchanged; expiration is
+    a failed/incomplete attempt, never permission to accept a partial case.
+    """
+    timeout = allowance + 600
+    if host_timeout_seconds is not None:
+        require(type(host_timeout_seconds) in (int, float)
+                and 0 < host_timeout_seconds <= timeout,
+                "A transport window must supply its actual positive remaining host budget")
+        timeout = host_timeout_seconds
     output.mkdir()
     bundle, log = output / "original.xcresult", output / "original-ui.log"
     command = ["xcodebuild", "test-without-building", "-xctestrun", str(test_run),
@@ -206,9 +249,10 @@ def run_original_case(core, test_run, udid, case, allowance, output, environment
                "-maximum-test-execution-time-allowance", str(allowance),
                "-resultBundlePath", str(bundle), "-only-testing:Maktabah-iOSUITests/" + case]
     result = {"case": case, "case_directory": str(output), "command": command,
-              "allowance_seconds": allowance, "started_at_unix": time.time()}
+              "allowance_seconds": allowance, "host_timeout_seconds": timeout,
+              "started_at_unix": time.time()}
     try:
-        result["xcodebuild_exit"] = core.bounded(command, log, allowance + 600, environment)
+        result["xcodebuild_exit"] = core.bounded(command, log, timeout, environment)
     finally:
         result["finished_at_unix"] = time.time()
         if log.exists() and private_values:
@@ -219,6 +263,13 @@ def run_original_case(core, test_run, udid, case, allowance, output, environment
                 content = content.replace(value, "<redacted-owned-host-token>")
             log.write_text(content)
         core.write(output / "RUN_ATTEMPT.json", result)
+    return result
+
+
+def verify_original_case(core, udid, result):
+    """Apply the original zero-skip/declaration/export checks after native work."""
+    case, output = result["case"], Path(result["case_directory"])
+    bundle, log = output / "original.xcresult", output / "original-ui.log"
     strict = [sys.executable, "tools/verify_xcresult_zero_skips.py", "--xcresult", str(bundle),
               "--log", str(log), "--scope", "focused-ui", "--expected-device", udid,
               "--expected-os-major", "27", "--min-tests", "1", "--out", str(output / "zero-skip.json"),
@@ -237,6 +288,12 @@ def run_original_case(core, test_run, udid, case, allowance, output, environment
                         and result.get("attachment_export_exit") == 0)
     core.write(output / "RESULT.json", result)
     return result
+
+
+def run_original_case(core, test_run, udid, case, allowance, output, environment, private_values=()):
+    result = run_original_native_actions(core, test_run, udid, case, allowance,
+                                         output, environment, private_values)
+    return verify_original_case(core, udid, result)
 
 
 def actual_owner(core, settings, udid):
@@ -432,6 +489,91 @@ def image_resolver(core, udid, products, build):
     return resolve
 
 
+class OfflineRendezvous:
+    """Private file exchange with the already waiting live Oracle SSH reader.
+
+    This writes actual runtime identity and waits for original coordinator
+    inputs; it never creates owner approvals, control tuples, a lease or a
+    heartbeat. The coordinator must retain and transfer its original receipts.
+    """
+    MARKER = "OTZARIA_OFFLINE_COORDINATOR_EVENT "
+
+    def __init__(self, *, core, settings, offline, report, output, wait_seconds):
+        require(type(wait_seconds) is int and 0 < wait_seconds <= 600,
+                "Bound the live coordinator wait; it does not extend a lease")
+        self.core, self.settings, self.offline = core, settings, offline
+        self.window = load_support("study-ui-offline-window.py")
+        self.report, self.wait_seconds = report, wait_seconds
+        self.directory = Path(output) / "offline-control"
+        require(not self.directory.exists(), "Use a new private runtime rendezvous")
+        self.directory.mkdir(mode=0o700)
+        require(self.directory.resolve(strict=True) == self.directory, "Private control directory is redirected")
+        self.request_id, self.sequence = uuid.uuid4().hex, 0
+
+    def emit(self, event, **payload):
+        value = {"schema": "otzaria.offline-controller-event/1", "event": event,
+                 "requestID": self.request_id, "sequence": self.sequence,
+                 "actualControllerPID": os.getpid(), "observedAtUnix": time.time(),
+                 "controlDirectory": str(self.directory), **payload}
+        self.sequence += 1
+        self.window.private_write(self.directory / (str(value["sequence"]).zfill(2) + "-" + event + ".private.json"), value)
+        # The Oracle launcher reads this live from its actual SSH child's pipe.
+        # An asynchronous Sentinel completion cannot serve as this rendezvous.
+        print(self.MARKER + json.dumps(value, separators=(",", ":")), flush=True)
+        return value
+
+    def receive(self, name, expected_keys, *, seconds=None):
+        deadline = time.monotonic() + (self.wait_seconds if seconds is None else seconds)
+        path = self.directory / name
+        while time.monotonic() < deadline:
+            if path.exists() or path.is_symlink():
+                before = path.lstat()
+                require(stat.S_ISREG(before.st_mode) and not path.is_symlink()
+                        and before.st_nlink == 1 and before.st_uid == os.geteuid()
+                        and not stat.S_IMODE(before.st_mode) & 0o077 and 0 < before.st_size <= 131072,
+                        "Coordinator input must be one bounded private file owned by this actual Mac user")
+                raw = path.read_bytes(); after = path.lstat()
+                identity = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns, s.st_mode, s.st_nlink)
+                require(identity(before) == identity(after), "Coordinator input changed during readback")
+                value = self.settings.decode_json(raw)
+                require(set(value) == {"schema", "requestID", *expected_keys}
+                        and value["schema"] == "otzaria.offline-coordinator-input/1"
+                        and value["requestID"] == self.request_id, "Coordinator response belongs to another runtime request")
+                return value
+            time.sleep(.1)
+        raise TimeoutError("Original Oracle coordinator input did not arrive: " + name)
+
+    def coordinated_inputs(self):
+        self.emit("CONTROLLER_READY", studyPhase=self.report["study_phase"],
+                  selectedCaseID="Maktabah-iOSUITests/" + self.report["selected_case_ids"][0],
+                  simulatorUDID=self.report["reused_external_owned_simulator"],
+                  sourceBefore=self.settings.witness(Path(self.core.OUT) / "source-before.json"),
+                  windowSource=self.settings.witness(ROOT / "Scripts/CI/study-ui-offline-window.py"))
+        value = self.receive("COORDINATION_INPUT.private.json", {"lease", "coordination", "hostProbe", "simulatorProbe"})
+        self.settings.verify_witness(value["lease"], 131072)
+        self.settings.verify_witness(value["coordination"], 131072)
+        return value
+
+    def prepared(self, value):
+        # Forward the original ready payload unchanged to the relay owner.
+        self.emit("WINDOW_PREPARED", rendezvous=value)
+
+    def restored(self, active):
+        identifier = active.lease["windowID"]
+        exported = self.core.command(["/usr/bin/sudo", "-n", "/usr/bin/python3", "-I", "-B", "-c",
+            self.offline.ROOT_RECEIPT_READER, json.dumps([identifier])], timeout=20)
+        require(not exported.stderr and len(exported.stdout.encode()) <= self.offline.MAX_JSON * 2,
+                "Original private cleanup receipt readback failed")
+        root_files = self.settings.decode_json(exported.stdout.encode())
+        cleanup = self.offline.root_document(root_files, identifier, "cleanup.json")
+        require(cleanup == active.transport["proof"]["cleanup"], "Actual root cleanup differs from the restored transport")
+        cleanup_sha = root_files[identifier]["cleanup.json"]["sha256"]
+        self.emit("TRANSPORT_RESTORED", windowID=identifier, cleanupSHA256=cleanup_sha)
+        returned = self.receive("ORACLE_RELAY_INPUT.private.json", {"oracleRelay"}, seconds=60)
+        self.settings.verify_witness(returned["oracleRelay"], self.offline.MAX_JSON)
+        return returned["oracleRelay"]
+
+
 def execute(args):
     require(sys.platform == "darwin", "Original native study UI requires Apple macOS/Xcode")
     require(type(args.reserved_other_bytes) is int and args.reserved_other_bytes >= 0,
@@ -440,6 +582,17 @@ def execute(args):
     settings = load_support("study-ui-settings-receipts.py")
     phase, plan = args.study_phase, PHASES[args.study_phase]
     is_update, is_post = phase == "settings-update-last", phase == "search-after-settings"
+    is_offline = phase in {"offline-zayit", "offline-otzaria"}
+    is_pending = phase == "reader-pending-sql"
+    offline = load_support("study-ui-offline-execution.py") if is_offline else None
+    pending = load_support("study-ui-pending-sql.py") if is_pending else None
+    if is_pending:
+        require(not hasattr(core, "study_original_source_context"), "Use a fresh original core for the pending phase")
+        # The passive admission compares its exact source-before bytes with
+        # core.source_context. Preserve every original check and bind the same
+        # enriched phase context; do not add out-of-profile execution inputs.
+        core.study_original_source_context = core.source_context
+        core.source_context = lambda require_frozen: source_context(core, phase, require_frozen)
     require(not is_update or (args.prerequisites and args.pages_phase_result),
             "Settings requires the completed pre-update gates and actual pages phase")
     require(not is_post or args.settings_phase_result, "Post-update search requires the actual passed Settings phase")
@@ -486,12 +639,13 @@ def execute(args):
     database = installation = managed_owner = binding = before_settings = trace_baseline = None
     target_paths = updated_record = updated_envelope = active_host = None
     failure, post_failures = None, []
-    active_kind = None
+    active_kind = offline_rendezvous = None
     cleanup_verified = True
     lifecycle_started = False
     try:
         require(budget["free_bytes"] >= required,
                 "The phase's actual images, work budget, evidence and reservations do not fit")
+        core.write(out / "source-before.json", context)
         if is_update:
             prerequisites = load_support("study-ui-prerequisites.py")
             report["prerequisites"] = prerequisites.admit_before_settings(
@@ -508,6 +662,9 @@ def execute(args):
             report["settings_phase_result"] = settings_phase_file
             report["settings_success_input"] = updated_record
             database = Path(updated_envelope["after"]["database"]["path"])
+        elif is_pending:
+            database, installation = pending.load_wait(ROOT).bind_admission(
+                core, owner, owner.admit_current_installation, config, udid, build)
         else:
             database, installation = owner.admit_current_installation(config, udid, build)
         report["installation_before"] = installation
@@ -561,7 +718,15 @@ def execute(args):
             require(source_context(core, phase, True) == context, "Source changed between original UI cases")
             case_dir = out / (str(index).zfill(2) + "-" + case.split("/")[1])
             private_values = ()
-            if phase == "reader-continuous-pull":
+            if is_pending:
+                active_kind = "pending-sql"
+                active_host = load_support("study-ui-pending-execution.py").PendingStudyCase(
+                    core=core, settings=settings, pending=pending, config=config, udid=udid,
+                    container=container, installation=installation, output=out,
+                    reserved_other_bytes=GIB + 2_000_000_000 + args.reserved_other_bytes)
+                environment.update(active_host.start())
+                private_values = active_host.private_tokens()
+            elif phase == "reader-continuous-pull":
                 def resolve_owned_installation():
                     actual = Path(core.command(["xcrun", "simctl", "get_app_container", udid, core.BUNDLE, "data"], timeout=8).stdout.strip())
                     current, _ = owner.current_database(udid)
@@ -581,14 +746,40 @@ def execute(args):
                     namespace=updated_envelope["traceBaseline"]["namespace"],
                     image_path_resolver=image_resolver(core, udid, products, build), repository_root=ROOT)
                 active_host.start()
-            result = run_original_case(core, test_run, udid, case, plan["allowance"],
-                                       case_dir, environment, private_values)
+            elif is_offline:
+                offline_rendezvous = OfflineRendezvous(core=core, settings=settings, offline=offline,
+                    report=report, output=out, wait_seconds=args.offline_coordinator_wait_seconds)
+                coordinated = offline_rendezvous.coordinated_inputs()
+                active_kind = "offline"
+                active_host = offline.OfflineStudyCase(core=core, settings=settings, retained_owner=owner,
+                    root_report=report, engine=phase.removeprefix("offline-"),
+                    case_directory=case_dir, output_directory=out / "offline-host",
+                    private_lease=Path(coordinated["lease"]["path"]), coordination_receipt=coordinated["coordination"],
+                    host_probe=coordinated["hostProbe"], simulator_probe=coordinated["simulatorProbe"],
+                    image_path_resolver=image_resolver(core, udid, products, build),
+                    on_prepared=offline_rendezvous.prepared)
+                active_host.prepare_window()
+            if is_offline:
+                attempt = active_host.run_native_actions(lambda remaining: run_original_native_actions(
+                    core, test_run, udid, case, plan["allowance"], case_dir, environment,
+                    host_timeout_seconds=remaining))
+                active_host.finish_transport()
+                relay = offline_rendezvous.restored(active_host)
+                result = verify_original_case(core, udid, attempt)
+            else:
+                result = run_original_case(active_host.runner if is_pending else core,
+                                           test_run, udid, case, plan["allowance"],
+                                           case_dir, environment, private_values)
             result["case_result"] = settings.witness(case_dir / "RESULT.json")
             report["case_results"].append(result)
             core.write(out / "PROGRESS.json", report)
             require(result["passed"], "Original native case failed or was incomplete: " + case)
             settings.verified_execution(case_dir, "Maktabah-iOSUITests/" + case, udid, repository_root=ROOT)
-            if active_kind == "continuous-pull":
+            if active_kind == "pending-sql":
+                report["pending_sql"] = active_host.stop()
+                require(active_host.cleanup_verified, "The isolated pending phase still owns active work")
+                active_host = active_kind = None
+            elif active_kind == "continuous-pull":
                 report["continuous_pull_host"] = active_host.stop()
                 active_host = active_kind = None
             elif active_kind == "search-log":
@@ -597,6 +788,12 @@ def execute(args):
                 report["post_update_host_log"] = active_host.stop_and_verify(
                     attachment["file"]["path"], expected_attachment_sha256=attachment["file"]["sha256"])
                 active_host = active_kind = None
+            elif active_kind == "offline":
+                sealed = active_host.seal_case(oracle_relay_receipt=relay,
+                    source_after=source_context(core, phase, True), build_after=core.build_identity(context)[2])
+                report["offline_case"] = sealed["witness"]
+                report["offline_host_cleanup"] = active_host.abort()
+                active_host = active_kind = None
         report["native_cases_completed"] = True
     except BaseException as error:
         failure = error
@@ -604,6 +801,11 @@ def execute(args):
         if active_host is not None and hasattr(active_host, "token"):
             message = message.replace(active_host.token, "<redacted-owned-host-token>")
         report.update(status="FAILED_OR_INCOMPLETE", error_type=type(error).__name__, error=message)
+        if active_kind == "offline" and active_host is not None:
+            try:
+                report["offline_failure"] = active_host.record_failure(error)
+            except Exception as receipt_error:
+                report["offline_failure_receipt_error"] = type(receipt_error).__name__
         if hasattr(error, "witness"):
             report["failed_prerequisites"] = error.witness
     finally:
@@ -611,7 +813,14 @@ def execute(args):
         # shutdown, even when XCTest/export or a host acceptance condition fails.
         if active_host is not None:
             try:
-                if active_kind == "search-log":
+                if active_kind == "pending-sql":
+                    report["host_abort_cleanup"] = active_host.abort()
+                    cleanup_verified = (active_host.cleanup_verified is True
+                                        and report["host_abort_cleanup"].get("verified") is True)
+                elif active_kind == "offline":
+                    report["host_abort_cleanup"] = active_host.abort()
+                    cleanup_verified = report["host_abort_cleanup"].get("verified") is True
+                elif active_kind == "search-log":
                     report["host_abort_cleanup"] = active_host.abort()
                     cleanup_verified = (report["host_abort_cleanup"].get("verified") is True
                                         and all(not t.is_alive() for t in active_host.threads)
@@ -625,8 +834,15 @@ def execute(args):
                 require(cleanup_verified, "Owned host cleanup remains unverified")
             except Exception as error:
                 post_failures.append("owned_host: " + type(error).__name__)
-                if active_kind == "search-log":
+                if active_kind in {"search-log", "offline", "pending-sql"}:
                     cleanup_verified = False
+        if offline_rendezvous is not None:
+            try:
+                offline_rendezvous.emit("CONTROLLER_POSTCHECKS_PENDING" if failure is None and cleanup_verified else "WINDOW_ABORTED",
+                    cleanupVerified=cleanup_verified, nativeCaseCompleted=report.get("native_cases_completed") is True,
+                    rootFinalResultPending=True)
+            except Exception as error:
+                post_failures.append("offline_coordinator_final_event: " + type(error).__name__)
         if database is not None and lifecycle_started:
             try:
                 if is_post:
@@ -681,7 +897,9 @@ def execute(args):
         report["free_bytes_after"] = shutil.disk_usage(ROOT).free
         report["finished_at_unix"] = time.time()
         if failure is None and not post_failures and report.get("native_cases_completed"):
-            report["status"] = POST_UPDATE_PASS if is_post else STUDY_PASS
+            report["status"] = offline.OFFLINE_PHASE_PASS if is_offline else POST_UPDATE_PASS if is_post else STUDY_PASS
+            if is_offline:
+                report["network_scope"] = offline.OFFLINE_NETWORK_SCOPE
         else:
             report["status"] = "FAILED_OR_INCOMPLETE"
         core.write(out / "RESULT.json", report)
@@ -689,9 +907,35 @@ def execute(args):
         raise failure
     require(not post_failures, "Post-execution identity, source, host or owned retention failed")
 
+
+def seal_offline(args):
+    """Read actual immutable final phase files after both windows have ended."""
+    require(args.study_phase == "offline-zayit" and args.offline_zayit_result and args.offline_otzaria_result,
+            "Seal the two original offline phases using their actual final RESULT files")
+    _, core = load_core()
+    settings = load_support("study-ui-settings-receipts.py")
+    context = source_context(core, args.study_phase, True)
+    _, _, build = core.build_identity(context)
+    prerequisites = load_support("study-ui-prerequisites.py")
+    evidence = prerequisites.Evidence(core=core, settings=settings, udid=args.owned_simulator,
+        source=context, build=build, installation_result=args.installation_result)
+    phases = {"zayit": settings.witness(args.offline_zayit_result),
+              "otzaria": settings.witness(args.offline_otzaria_result)}
+    cases = {engine: evidence.read_witness(record).get("offline_case") for engine, record in phases.items()}
+    require(all(isinstance(value, dict) for value in cases.values()), "Both actual native case witnesses are required")
+    output = args.output.absolute()
+    require(output.is_relative_to(ROOT / "build/artifacts") and ".." not in output.parts
+            and not output.exists() and output.suffix == ".json", "Use a fresh owned offline suite receipt")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    require(output.parent.resolve(strict=True) == output.parent, "Offline suite output is redirected")
+    result = load_support("study-ui-offline-execution.py").seal_suite(
+        case_receipts=cases, phase_results=phases, evidence=evidence, output=output)
+    print(json.dumps({"status": result["proof"]["status"], "witness": result["witness"]}))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("operation", choices=["source-check", "execute"])
+    parser.add_argument("operation", choices=["source-check", "execute", "seal-offline"])
     parser.add_argument("study_phase", choices=sorted(PHASES))
     parser.add_argument("--owned-simulator")
     parser.add_argument("--installation-result", type=Path)
@@ -702,6 +946,9 @@ def main():
     parser.add_argument("--pages-phase-result", type=Path)
     parser.add_argument("--settings-phase-result", type=Path)
     parser.add_argument("--reserved-other-bytes", type=int)
+    parser.add_argument("--offline-coordinator-wait-seconds", type=int, default=300)
+    parser.add_argument("--offline-zayit-result", type=Path)
+    parser.add_argument("--offline-otzaria-result", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.operation == "source-check":
@@ -712,6 +959,9 @@ def main():
     require(args.owned_simulator and args.installation_result and args.output,
             "Exact owned installation, original RESULT and new evidence directory required")
     require(str(uuid.UUID(args.owned_simulator)).upper() == args.owned_simulator, "Canonical owned Simulator UUID required")
+    if args.operation == "seal-offline":
+        seal_offline(args)
+        return
     execute(args)
 
 

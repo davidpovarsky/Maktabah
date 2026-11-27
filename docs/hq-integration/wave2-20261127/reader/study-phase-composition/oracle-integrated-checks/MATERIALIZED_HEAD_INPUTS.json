@@ -1,0 +1,10 @@
+{
+  ".github/workflows/otzaria-reader-groups-full-v32.yml": {
+    "bytes": 12675,
+    "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+  },
+  "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": {
+    "bytes": 1426,
+    "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+  }
+}

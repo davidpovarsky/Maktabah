@@ -1,0 +1,167 @@
+{
+  "schema": "otzaria.root-study-composition-source-controls/1",
+  "status": "SOURCE_CONTROLS_ONLY_PASS",
+  "observedAtUTC": "2026-11-27T09:27:59.041958+00:00",
+  "inputsBefore": [
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+      "bytes": 61274,
+      "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-prerequisites.py",
+      "bytes": 49535,
+      "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-pending-execution.py",
+      "bytes": 19358,
+      "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/reader-full-v40-ui-observation.inputs.json",
+      "bytes": 8410,
+      "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/source-controls.py",
+      "bytes": 12492,
+      "sha256": "1927a110e725c64eec45c1ed9a08274661aecfad5101895bf650c50ab97854b0"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/pending-source-controls.py",
+      "bytes": 19596,
+      "sha256": "9d7a1a35d4fa3a9abea3156aab6507aa924dfb2290ecf18548d0ba2114154fc8"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/original-controller-controls.py",
+      "bytes": 14736,
+      "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/input-original/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/offline-oracle/study-ui-offline-oracle.py",
+      "bytes": 66214,
+      "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/pending-sql/candidate/Scripts/CI/study-ui-pending-sql.py",
+      "bytes": 119300,
+      "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+    }
+  ],
+  "inputsAfter": [
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+      "bytes": 61274,
+      "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-prerequisites.py",
+      "bytes": 49535,
+      "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-pending-execution.py",
+      "bytes": 19358,
+      "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/reader-full-v40-ui-observation.inputs.json",
+      "bytes": 8410,
+      "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/source-controls.py",
+      "bytes": 12492,
+      "sha256": "1927a110e725c64eec45c1ed9a08274661aecfad5101895bf650c50ab97854b0"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/pending-source-controls.py",
+      "bytes": 19596,
+      "sha256": "9d7a1a35d4fa3a9abea3156aab6507aa924dfb2290ecf18548d0ba2114154fc8"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/original-controller-controls.py",
+      "bytes": 14736,
+      "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/input-original/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/offline-oracle/study-ui-offline-oracle.py",
+      "bytes": 66214,
+      "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/pending-sql/candidate/Scripts/CI/study-ui-pending-sql.py",
+      "bytes": 119300,
+      "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+    }
+  ],
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/source-controls.py",
+        "--candidate",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+        "--original-controls",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/original-controller-controls.py"
+      ],
+      "exit": 0,
+      "testCount": 22,
+      "stdout": {
+        "path": "/workspace/scratch/ca3b32b82803/root-study-offline/FINAL_CONTROLS_1.stdout.log",
+        "bytes": 751,
+        "sha256": "6cc9744289dbe98add473be834cce72f92a9e51d35f8f0f15b5171490258b75a"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/ca3b32b82803/root-study-offline/FINAL_CONTROLS_1.stderr.log",
+        "bytes": 3041,
+        "sha256": "6bbdcf4d93ef85e7a3b2c385f0ceba1d91a5f1648a34e864460773d0b90dc7c8"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/pending-source-controls.py",
+        "--candidate",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+        "--owner",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-pending-execution.py",
+        "--original-controls",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/original-controller-controls.py",
+        "--interruption",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/input-original/runtime27_interruption.py",
+        "--coordinator",
+        "/workspace/scratch/ca3b32b82803/offline-oracle/study-ui-offline-oracle.py",
+        "--v40-inputs",
+        "/workspace/scratch/ca3b32b82803/root-study-offline/reader-full-v40-ui-observation.inputs.json"
+      ],
+      "exit": 0,
+      "testCount": 23,
+      "stdout": {
+        "path": "/workspace/scratch/ca3b32b82803/root-study-offline/FINAL_CONTROLS_2.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/workspace/scratch/ca3b32b82803/root-study-offline/FINAL_CONTROLS_2.stderr.log",
+        "bytes": 3584,
+        "sha256": "b18df7c0a484ab694962d041356f46f0e792e38d76a547916cc14f23a839a7bc"
+      }
+    }
+  ],
+  "scope": "Explicit synthetic process/kernel/device/UI doubles and real tiny local receipt files; no native, Mac, network, original corpus, live signal or production process",
+  "nativeExecuted": 0,
+  "appleExecuted": 0,
+  "productionCorpusQueried": 0
+}

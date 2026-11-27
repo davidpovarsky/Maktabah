@@ -107,7 +107,11 @@
     "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
     "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json",
     "Scripts/CI/study-ui-settings-receipts.py",
-    "Scripts/CI/study-ui-sqlite-wait.py"
+    "Scripts/CI/study-ui-sqlite-wait.py",
+    "Scripts/CI/study-ui-pending-sql.py",
+    "Scripts/CI/study-ui-pending-execution.py",
+    "Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift"
   ],
   "input_sha256": {},
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
@@ -130,17 +134,17 @@
       {
         "bookID": 103,
         "lineCount": 2875,
-        "title": "ברכות"
+        "title": "\u05d1\u05e8\u05db\u05d5\u05ea"
       },
       {
         "bookID": 28,
         "lineCount": 2678,
-        "title": "תהילים"
+        "title": "\u05ea\u05d4\u05d9\u05dc\u05d9\u05dd"
       },
       {
         "bookID": 3152,
         "lineCount": 528,
-        "title": "דרשות הר\"ן"
+        "title": "\u05d3\u05e8\u05e9\u05d5\u05ea \u05d4\u05e8\"\u05df"
       }
     ],
     "retainedChapter": {

@@ -1,0 +1,542 @@
+{
+  "schema": "otzaria.root-integration-structural-preservation/1",
+  "status": "SOURCE_STRUCTURAL_COMPARISON_RECORDED_NOT_UI_OR_NATIVE_ACCEPTANCE",
+  "originalController": {
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf01-matrix/original/Scripts/CI/production-study-v40-ui.py",
+    "bytes": 45455,
+    "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+  },
+  "candidateController": {
+    "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+    "bytes": 61274,
+    "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+  },
+  "reviewedIntegrationSources": [
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+      "bytes": 61274,
+      "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-pending-execution.py",
+      "bytes": 19358,
+      "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+    },
+    {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/study-ui-prerequisites.py",
+      "bytes": 49535,
+      "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+    }
+  ],
+  "method": {
+    "parser": "Python ast.parse plus bounded literal-only AST evaluation; neither controller was imported or executed",
+    "phaseValues": "Constants, explicit collections, integer addition/multiplication/power, empty set() and max() only",
+    "verifierComparison": "Full original run_original_case tail beginning with strict zero-skip argv through return result compared to verify_original_case tail, by bytes and AST",
+    "testsRun": 0,
+    "appleToolsExecuted": 0,
+    "nativeExecutions": 0,
+    "corpusQueries": 0
+  },
+  "phases": {
+    "originalCount": 11,
+    "candidateCount": 14,
+    "originalEntries": [
+      {
+        "phase": "packages",
+        "original": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+          ],
+          "allowance": 6000,
+          "payload_peak": 10241792951,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+          ],
+          "allowance": 6000,
+          "payload_peak": 10241792951,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "pages",
+        "original": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+            "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+            "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "preview-hit",
+        "original": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "preview-reader",
+        "original": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+            "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "candidate": {
+          "cases": [
+            "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+            "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "reader-selection-navigation",
+        "original": {
+          "cases": [
+            "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+            "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "candidate": {
+          "cases": [
+            "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+            "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "reader-continuous-pull",
+        "original": {
+          "cases": [
+            "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "candidate": {
+          "cases": [
+            "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": [
+            "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+            "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+            "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+          ]
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "sefaria-contexts",
+        "original": {
+          "cases": [
+            "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+            "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+            "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "inspector",
+        "original": {
+          "cases": [
+            "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+          ],
+          "allowance": 3600,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "inspector-text-modes",
+        "original": {
+          "cases": [
+            "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "settings-update-last",
+        "original": {
+          "cases": [
+            "ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+          ],
+          "allowance": 7200,
+          "payload_peak": 24000000000,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+          ],
+          "allowance": 7200,
+          "payload_peak": 24000000000,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      },
+      {
+        "phase": "search-after-settings",
+        "original": {
+          "cases": [
+            "PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "candidate": {
+          "cases": [
+            "PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+          ],
+          "allowance": 1800,
+          "payload_peak": 0,
+          "inputs": []
+        },
+        "sameCases": true,
+        "sameAllowance": true,
+        "sameInputs": true,
+        "samePayloadBudget": true
+      }
+    ],
+    "allElevenOriginalEntriesExactlyEqual": true,
+    "originalRelativeOrderPreserved": true,
+    "addedEntries": {
+      "offline-zayit": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "offline-otzaria": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "reader-pending-sql": {
+        "cases": [
+          "FullV40ReaderModeAcceptanceTests/testOriginalLargeChapterPendingFetchRemainsInteractiveAndRejectsSupersededContent"
+        ],
+        "allowance": 1800,
+        "payload_peak": 805306368,
+        "inputs": []
+      }
+    },
+    "removedEntries": []
+  },
+  "preSettings": {
+    "originalPhases": {
+      "packages": [
+        "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+      ],
+      "pages": [
+        "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+        "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+      ],
+      "preview-hit": [
+        "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+      ],
+      "preview-reader": [
+        "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+        "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+      ],
+      "reader-selection-navigation": [
+        "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+        "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+      ],
+      "reader-continuous-pull": [
+        "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+      ],
+      "sefaria-contexts": [
+        "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+        "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+      ],
+      "inspector": [
+        "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+      ],
+      "inspector-text-modes": [
+        "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+      ]
+    },
+    "candidatePhases": {
+      "packages": [
+        "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+      ],
+      "pages": [
+        "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+        "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+      ],
+      "preview-hit": [
+        "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+      ],
+      "preview-reader": [
+        "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+        "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+      ],
+      "reader-selection-navigation": [
+        "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+        "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+      ],
+      "reader-continuous-pull": [
+        "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+      ],
+      "reader-pending-sql": [
+        "FullV40ReaderModeAcceptanceTests/testOriginalLargeChapterPendingFetchRemainsInteractiveAndRejectsSupersededContent"
+      ],
+      "sefaria-contexts": [
+        "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+        "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+      ],
+      "inspector": [
+        "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+      ],
+      "inspector-text-modes": [
+        "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+      ]
+    },
+    "originalPhaseSelectorsPreserved": true,
+    "addedRequiredStudyPhases": [
+      "reader-pending-sql"
+    ],
+    "offlinePhasesRemainSeparateAggregatePrerequisite": true,
+    "scope": "The original comprehension excludes only Settings/post-Settings. The candidate additionally excludes the two offline phases from this map; its separate offline suite validator admits them. No original phase is removed."
+  },
+  "originalVerifier": {
+    "completeTailByteIdentical": true,
+    "completeTailASTIdentical": true,
+    "originalTailSHA256": "2700de33fb05206104fed97f967eea1bdc28b498babdd0deb9806e9a138cf57a",
+    "candidateTailSHA256": "2700de33fb05206104fed97f967eea1bdc28b498babdd0deb9806e9a138cf57a",
+    "tailChecks": [
+      "exact required selector",
+      "original expected device",
+      "expected OS major 27",
+      "minimum one test",
+      "zero-skip verifier exit",
+      "original declaration verifier",
+      "actual attachment-export exit",
+      "same combined passed expression",
+      "same original RESULT write"
+    ],
+    "xcodebuildArgvASTIdentical": true,
+    "defaultHostTimeoutASTIdentical": true,
+    "hostTimeoutChangeScope": "The candidate may explicitly shorten only the offline host wait to its actual remaining window; ordinary default is still allowance + 600. XCTest allowances are unchanged.",
+    "ordinaryWrapperSource": "def run_original_case(core, test_run, udid, case, allowance, output, environment, private_values=()):\n    result = run_original_native_actions(core, test_run, udid, case, allowance,\n                                         output, environment, private_values)\n    return verify_original_case(core, udid, result)\n"
+  },
+  "definitions": {
+    "byteIdenticalOriginalDefinitions": [
+      "require",
+      "load_core",
+      "load_support",
+      "input_values",
+      "observe_inputs",
+      "actual_owner",
+      "install_images",
+      "prepare_context",
+      "official_metadata",
+      "verified_phase",
+      "positive_trace",
+      "updated_snapshot",
+      "admit_updated",
+      "image_resolver"
+    ],
+    "changedOriginalDefinitions": [
+      "source_context",
+      "run_original_case",
+      "execute",
+      "main"
+    ],
+    "addedDefinitions": [
+      "run_original_native_actions",
+      "verify_original_case",
+      "OfflineRendezvous",
+      "seal_offline"
+    ],
+    "sourceContextChangeScope": "The pending phase uses study_original_source_context to preserve the original validator while comparing the same enriched phase source before/after; this definition is reported changed, not falsely byte-identical."
+  },
+  "sharedAndV32": {
+    "originalCommonSnapshot": {
+      "path": "/workspace/scratch/ca3b32b82803/reader-perf01-matrix/original/Scripts/CI/reader-full-v32-ui-observation.py",
+      "bytes": 84518,
+      "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49"
+    },
+    "historicalV32InputSnapshot": {
+      "path": "/workspace/scratch/ca3b32b82803/reader-v40-draft/original/Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+      "bytes": 12610,
+      "sha256": "c326f6f6c39468941c438fe3ea7fa80ddadb7f79215dc664d7d9154cf9fce627"
+    },
+    "byteIdenticalLoadCoreDefinition": true,
+    "candidateDirectoryContainsV32OrCommonReplacement": false,
+    "newArtifactsModifySharedOrV32": false,
+    "scope": "This scoped root candidate has no common/v32 replacement and retains the byte-identical original load_core definition. The retained common/v32 snapshots are identified, not executed. This local packet is not a new whole-repository Git diff or a claim that native tests ran."
+  },
+  "fullV40Profile": {
+    "original": {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/input-original/reader-full-v40-ui-observation.inputs.json",
+      "bytes": 8117,
+      "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+    },
+    "candidate": {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/reader-full-v40-ui-observation.inputs.json",
+      "bytes": 8410,
+      "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+    },
+    "originalTwoSelectorsUnchanged": true,
+    "selectedCaseIDs": [
+      "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
+      "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn"
+    ],
+    "originalReaderWorkloadsUnchanged": true,
+    "scope": "Only direct JSON protocol/workload values are compared; current source/build freezing and actual Apple execution are separate requirements."
+  },
+  "reviewFinding": {
+    "historicalManifestLivePath": "CONFIRMED_BY_LIBRARY_FIX_PENDING_FINAL_READBACK",
+    "details": "Pending historical validator reopens the original live data-container manifest path. Retain original verified bytes as a distinct immutable artifact and bind its bytes/SHA to the original admission witness; current live-owner checks stay separate."
+  },
+  "performanceAcceptance": false,
+  "nativeAcceptance": false
+}
