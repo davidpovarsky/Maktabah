@@ -1,0 +1,10 @@
+{
+  "root_head_before_pending_shared_intake": "e33fc140c84d20f8e595e9e4f032b9f44d426be5",
+  "root_owned_frozen_native_helper": {
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 337724,
+    "sha256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f"
+  },
+  "application": "root appends exact independent suffix; no live shared edit",
+  "native": "NOT_RUN"
+}

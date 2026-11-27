@@ -1,0 +1,7 @@
+{
+  "initial_helper_sha256": "647fe31d0676fdd88ded2416e3dc412030388a27d507c9cd61db91bd72ecc2ec",
+  "reason": "Original unowned Back retires the entire catalog before deletion, confounding a deletion-specific negative. Source review only; initial never run.",
+  "correction": "Separate actual parent AppIntent ACK, require same child ID current immediately before original confirmed deletion.",
+  "product_changed": false,
+  "native_run": false
+}

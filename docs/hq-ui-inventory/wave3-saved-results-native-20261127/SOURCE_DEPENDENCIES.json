@@ -1,0 +1,82 @@
+[
+  {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "bytes": 371699,
+    "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec"
+  },
+  {
+    "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+    "bytes": 196969,
+    "sha256": "054a6cdaf282164a0b1995e89b31619def32c026e1537a177895afc201fd86da"
+  },
+  {
+    "path": "Source/Core/Configuration/AppConfig.swift",
+    "bytes": 25258,
+    "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+  },
+  {
+    "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+    "bytes": 3532,
+    "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e"
+  },
+  {
+    "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+    "bytes": 1967,
+    "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99"
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+    "bytes": 3548,
+    "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779"
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+    "bytes": 2790,
+    "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9"
+  },
+  {
+    "path": "Source/Features/Bookmarks/Database/ResultsHandler.swift",
+    "bytes": 12423,
+    "sha256": "e6788e02ebc621f26bcab164e84927c4cc99ebb3ed0431acba6e0ee15e7ff858"
+  },
+  {
+    "path": "Source/Features/Bookmarks/Database/ResultsFolders.swift",
+    "bytes": 8487,
+    "sha256": "de5e7a34522c6f9d815b529c759558fbb3eff80239503905f6e55e8716d4dbf3"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+FolderOps.swift",
+    "bytes": 6242,
+    "sha256": "1a2393682be94d9b7e7ce2be087de1ee46eb3458928eeb230797e13406f85cb6"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+ResultOps.swift",
+    "bytes": 5290,
+    "sha256": "94409b6859a0191b045ce2cbdd0e0bc98cb887e5c02249f309ae2f86307779f8"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "bytes": 2168,
+    "sha256": "a51ac819587a40fe217ef5720cadf406a309c56c276a8f12f4b491129571c12e"
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "bytes": 18324,
+    "sha256": "855d11b32c07e3bdd994b26c877be90332db51aa31a87514eb0945eae8c9be01"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+    "bytes": 38667,
+    "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+    "bytes": 5472,
+    "sha256": "e13f939d280885783c507a85e1b73e03f22a585aab9384a1c79dea849da241db"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+    "bytes": 11240,
+    "sha256": "176e6943b57f410fe09d9150dbcbc29f5da2b09dd353f1df71a0fa352579de3e"
+  }
+]

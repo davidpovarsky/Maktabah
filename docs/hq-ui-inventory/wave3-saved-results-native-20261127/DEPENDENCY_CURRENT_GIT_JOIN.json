@@ -1,0 +1,117 @@
+{
+  "ref": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 371699,
+      "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+      "git_blob": "2af4fa40f528b1811884731a68d1ba0b10e96211",
+      "matches_read_input": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "bytes": 196969,
+      "sha256": "054a6cdaf282164a0b1995e89b31619def32c026e1537a177895afc201fd86da",
+      "git_blob": "d3e08dfcc6a8a666542fff6eac2554fdc695b86d",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Core/Configuration/AppConfig.swift",
+      "bytes": 25258,
+      "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a",
+      "git_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "bytes": 3532,
+      "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e",
+      "git_blob": "f3955e1945696120f46b1293bf9e067a9e923877",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "bytes": 1967,
+      "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
+      "git_blob": "065cfdd7ed3fb47266c85146740ec0ebdd4fe494",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+      "bytes": 3548,
+      "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779",
+      "git_blob": "4d5f9f9821d85af239bcba6f5be32eda9da5fe1a",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+      "bytes": 2790,
+      "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9",
+      "git_blob": "0da3021cfbffde24f9be729a04c7c435d408ed78",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/Database/ResultsHandler.swift",
+      "bytes": 12423,
+      "sha256": "e6788e02ebc621f26bcab164e84927c4cc99ebb3ed0431acba6e0ee15e7ff858",
+      "git_blob": "6aa0be08a5a2166463f39df642d97f9671c88697",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/Database/ResultsFolders.swift",
+      "bytes": 8487,
+      "sha256": "de5e7a34522c6f9d815b529c759558fbb3eff80239503905f6e55e8716d4dbf3",
+      "git_blob": "1526f9cb369fcc90ed0a250f1cab3adadd69d47b",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+FolderOps.swift",
+      "bytes": 6242,
+      "sha256": "1a2393682be94d9b7e7ce2be087de1ee46eb3458928eeb230797e13406f85cb6",
+      "git_blob": "cf9354add67f0b4cb9b152ce3f6df42a78abb919",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+ResultOps.swift",
+      "bytes": 5290,
+      "sha256": "94409b6859a0191b045ce2cbdd0e0bc98cb887e5c02249f309ae2f86307779f8",
+      "git_blob": "424840b0ed482b04483e8433af37cf744a59f7c7",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+      "bytes": 2168,
+      "sha256": "a51ac819587a40fe217ef5720cadf406a309c56c276a8f12f4b491129571c12e",
+      "git_blob": "6f1ec0c856fffb1455591df982aee894b5f3aeed",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+      "bytes": 18324,
+      "sha256": "855d11b32c07e3bdd994b26c877be90332db51aa31a87514eb0945eae8c9be01",
+      "git_blob": "377563d924b9e4f30f3c97c8e676fad34344f13a",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+      "bytes": 38667,
+      "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54",
+      "git_blob": "718030016164791069f127f3cadd94ef891ac818",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+      "bytes": 5472,
+      "sha256": "e13f939d280885783c507a85e1b73e03f22a585aab9384a1c79dea849da241db",
+      "git_blob": "6242762eb9e9719c8a998980d13a1d2cf3e6bdfd",
+      "matches_read_input": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+      "bytes": 11240,
+      "sha256": "176e6943b57f410fe09d9150dbcbc29f5da2b09dd353f1df71a0fa352579de3e",
+      "git_blob": "f425fc877e66a27b2a4a0b8da48c2e2701a9b61b",
+      "matches_read_input": true
+    }
+  ]
+}

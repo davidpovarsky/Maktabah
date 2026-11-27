@@ -1,0 +1,19 @@
+{
+  "schema": "otzaria.exact-original-source-formatting-review.v1",
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "original_path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+  "raw_evidence_path": "docs/hq-ui-inventory/wave3-saved-results-native-20261127/original-source/Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+  "bytes": 2790,
+  "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9",
+  "git_blob": "0da3021cfbffde24f9be729a04c7c435d408ed78",
+  "observed_formatting": {
+    "line": 19,
+    "finding": "trailing whitespace",
+    "raw_bytes_hex": "202020200a"
+  },
+  "disposition": "Preserve byte-exact original evidence; original and source-copy hashes remain unchanged.",
+  "authored_files": "All newly authored source and evidence continue to require git diff --check.",
+  "exclusion_scope": "Only the one proven original raw-source copy is excluded from the authored-file formatting check.",
+  "source_test_assertions": "UNCHANGED",
+  "native": "NOT_RUN"
+}

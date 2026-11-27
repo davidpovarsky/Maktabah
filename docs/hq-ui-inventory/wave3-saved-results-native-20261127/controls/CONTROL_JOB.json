@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_d4fc305ce428",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795799545.0341747,
+    "started_at": "2026-11-27T17:12:25.139715+00:00",
+    "finished_at": "2026-11-27T17:12:26.548844+00:00",
+    "duration_s": 1.41,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 240,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"root\": \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1\", \"result\": {\"schema\": \"otzaria.saved-results-native-source-controls.v1\", \"start\": 1795799545.3901832, \"source_only\": true, \"apple_sdk_typecheck\": \"NOT_RUN\", \"native\": \"NOT_RUN\", \"free_before\": 2547601408, \"floor\": 1342177280, \"task_cap\": 26214400, \"commands\": [{\"name\": \"parse-NativeRoutingAcceptanceTests.swift\", \"argv\": [\"/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc\", \"-frontend\", \"-parse\", \"-target\", \"arm64-apple-ios27.0\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/inputs/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift\"], \"start\": 1795799545.3902254, \"stdout\": {\"path\": \"parse-NativeRoutingAcceptanceTests.swift.stdout\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"stderr\": {\"path\": \"parse-NativeRoutingAcceptanceTests.swift.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"exit_code\": 0, \"end\": 1795799545.4839923}, {\"name\": \"parse-NativeSavedResultsAcceptanceTests.swift\", \"argv\": [\"/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc\", \"-frontend\", \"-parse\", \"-target\", \"arm64-apple-ios27.0\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/inputs/candidate/Maktabah-iOSUITests/NativeSavedResultsAcceptanceTests.swift\"], \"start\": 1795799545.4840348, \"stdout\": {\"path\": \"parse-NativeSavedResultsAcceptanceTests.swift.stdout\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"stderr\": {\"path\": \"parse-NativeSavedResultsAcceptanceTests.swift.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"exit_code\": 0, \"end\": 1795799545.536333}, {\"name\": \"oracle-compile\", \"argv\": [\"/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc\", \"-swift-version\", \"6\", \"-parse-as-library\", \"-module-cache-path\", \"/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache\", \"-I\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/modules\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/inputs/controls/OriginalSQLiteOracleControls.swift\", \"-o\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/oracle-controls\"], \"start\": 1795799545.5548007, \"stdout\": {\"path\": \"oracle-compile.stdout\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"stderr\": {\"path\": \"oracle-compile.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"exit_code\": 0, \"end\": 1795799546.5030055}, {\"name\": \"oracle-execute\", \"argv\": [\"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/oracle-controls\", \"/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/attempt-1/fixtures\"], \"start\": 1795799546.5030398, \"stdout\": {\"path\": \"oracle-execute.stdout\", \"bytes\": 1068, \"sha256\": \"22bc0ae41c0031160512da48aeae0605a81285f93eefe346ff573497a8ef96b9\"}, \"stderr\": {\"path\": \"oracle-execute.stderr\", \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"exit_code\": 0, \"end\": 1795799546.5289345}], \"status\": \"PASSED_SOURCE_ONLY\", \"oracle_controls\": {\"boundary\": \"actual native-test SQLite read helper; disposable standalone fixtures, no app/UIKit/system execution\", \"cases\": [{\"name\": \"full_actual_schema_and_order\", \"passed\": true}, {\"name\": \"null_remains_distinct_from_empty_text\", \"passed\": true}, {\"name\": \"wide_integer_is_lossless\", \"passed\": true}, {\"name\": \"original_unicode_and_embedded_null_are_lossless\", \"passed\": true}, {\"name\": \"blob_and_float_type_are_retained\", \"passed\": true}, {\"name\": \"read_repetition_is_byte_stable\", \"passed\": true}, {\"name\": \"missing_database_refused_without_creation\", \"passed\": true}, {\"name\": \"missing_original_schema_is_refused\", \"passed\": true}, {\"name\": \"actual_sync_metadata_mutation_is_detected\", \"passed\": true}, {\"name\": \"actual_deleted_original_row_is_detected\", \"passed\": true}], \"failed\": 0, \"passed\": 10}, \"free_after\": 2546552832, \"task_bytes\": 658223, \"end\": 1795799546.5296717}, \"result_sha256\": \"9dd3bef6c6e4481bbf36b9c6a4f0f4a0fbc2db85643035d04bb59f18dd735c8e\"}"
+  }
+}
