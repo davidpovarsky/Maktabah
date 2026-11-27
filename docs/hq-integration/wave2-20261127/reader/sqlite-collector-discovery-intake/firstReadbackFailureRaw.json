@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_4dda825dc8ae476da4dc437227bb1c2b/script.py", line 17, in <module>
+    assert q.returncode==0,q.stderr
+           ^^^^^^^^^^^^^^^
+AssertionError: Traceback (most recent call last):
+  File "<stdin>", line 14, in <module>
+AssertionError: /Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z/AppTypeBoundaries.swift:mtimeNs

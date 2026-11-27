@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "status": "SOURCE_AND_RETAINED_COMPONENT_EVIDENCE_INTAKEN_NOT_NATIVE_UI_OR_PERFORMANCE_ACCEPTANCE",
+  "at": "2026-11-27T07:17:11.212974+00:00",
+  "parent": "dc609b080b388966e2e6ade58127c2da6d123f46",
+  "mappings": [
+    {
+      "donor": "daccf4096eec0f1851cdb5c7bfd277916e9310c9",
+      "recipient": "5aaa41505c03875af8850171cad837aa4bcee9a3",
+      "files": 8
+    },
+    {
+      "donor": "caca8113ae80711b136d8c8ea338946aad587584",
+      "recipient": "1a41a6e069cc2b42bcb26fb773f550249fd30ab9",
+      "files": 5
+    },
+    {
+      "donor": "821d6c2862437ea926a23cac15813f466ca02a76",
+      "recipient": "bbaf530f8f3b9d1810c7375be924d4deb6324fab",
+      "files": 906
+    }
+  ],
+  "sourceTreeBefore": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "sourceTreeAfter": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "canonicalFileCount": 919,
+  "clockArchiveMembersVerified": 10,
+  "liveMacFilesIndependentlyVerified": 23,
+  "collectorArchiveMembersVerified": 60,
+  "pythonASTParses": 1,
+  "sourceControlsReexecuted": false,
+  "corpusQueriesReexecuted": false,
+  "nativeComponentsReexecuted": false,
+  "applicationUIExecuted": false,
+  "fullCorpusPerformanceAcceptance": false,
+  "records": [
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-collector-discovery-intake/collectorVerificationRaw.json",
+      "bytes": 5350,
+      "sha256": "71ff2aa83e97f72f8c3e9fdb2c83afac0b25684217fba9f76f0bd0a6f6a96afa"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-collector-discovery-intake/clockVerificationRaw.json",
+      "bytes": 9062,
+      "sha256": "c0c2f47bb9637bdfd5ec7d40f3c8ed164b8a62bc417f675a229d702bb0500109"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-collector-discovery-intake/firstReadbackFailureRaw.json",
+      "bytes": 457,
+      "sha256": "6d23a92e13f3f95a863fe5ab27a66a22723ee254278d83996f2e51fc5928c704"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-collector-discovery-intake/precisionDiagnosticRaw.json",
+      "bytes": 946,
+      "sha256": "0725e5d7fe826d751a8b40c730fefbca9c0b6f99c11785a30834b93104f72173"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-collector-discovery-intake/PRESERVED_FILES.json",
+      "bytes": 259347,
+      "sha256": "b98fa672400ea5787c79d88a76cff896267b04e01b4db27af5eb9210fc5ee97c"
+    }
+  ],
+  "readbackCorrection": "First file-stat readback compared nanosecond integers rounded by a JavaScript JSON roundtrip. The raw Python integer receipts and both actual Python runtimes agreed. Corrected readback uses raw original receipt integers end-to-end; all file bytes and stored identities match. Original failure and diagnostic retained."
+}
