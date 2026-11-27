@@ -1,0 +1,236 @@
+[
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_resource_selection_preserves_exact_archive_and_excludes_same_run_engines_and_packages",
+    "bytes": 535,
+    "sha256": "96b135be7006cd13f4298e8d7eb284b79e76496bb304a95ab39222476e8a4d5a"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_ambiguous_resource_archive_is_rejected",
+    "bytes": 322,
+    "sha256": "9760b52947f5b9d776961cdea673d044916e1ceec996389676f386af50cd0d2b"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_missing_resource_archive_is_rejected",
+    "bytes": 275,
+    "sha256": "6313ba1e155157b213dd142bfbce673d2f990e22ccf3dd87c1669f529b3f9c3e"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_tar_or_destination_cannot_enter_resource_only_restore",
+    "bytes": 497,
+    "sha256": "f8c143f788cd0af37aa5cb4e65f62ec24fdda42c6c6a0f9d9b30de0164805869"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_resource_digest_and_identifier_are_required",
+    "bytes": 508,
+    "sha256": "cf96413b70bbd5da316f44e59d97c8ee0c9ba0d0834d8295e6065691ba595652"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_exact_reviewed_overlay_is_accepted",
+    "bytes": 276,
+    "sha256": "9ee52c637caa0ea4ef99182b25317fc2ac3a285dda56ce16192ba43e6bfe55e8"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_unreviewed_overlay_is_rejected",
+    "bytes": 266,
+    "sha256": "7193483aac90a32688bccf791afcb17b2353af8f6b700158398bea73ae63136d"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_unrelated_or_missing_source_delta_is_rejected",
+    "bytes": 406,
+    "sha256": "c74578affd2dc40e6dba736b02a0e44aa606d76df3314759b8c30ffcbea8cb2a"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_upstream_pin_drift_is_rejected",
+    "bytes": 204,
+    "sha256": "a598c31941b29a5f53c5f315a7aaaa83265363d076f80e5e2daf15cbc760a76b"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_unchanged_bundle_requires_full_resource_tree_equality",
+    "bytes": 408,
+    "sha256": "424d07209e802077621200cb117317aea32b2b0d83cc9beaa1522ea83f119525"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_shallow_fetch_is_exact_pinned_commit_only",
+    "bytes": 533,
+    "sha256": "9755093c7ec328e9b9b3a5214c9db657287eda969aba265f87ffa9dd02f62f00"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_existing_producer_needs_no_fetch",
+    "bytes": 284,
+    "sha256": "b8094ec814162db4c514b1fa768bca17aa4b26444791dba0ff363d0b19607d48"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_non_sha_producer_cannot_trigger_fetch",
+    "bytes": 332,
+    "sha256": "11cdee66de4250c7cece1c9c8a00dcf9409b58e7d402f77d828e66258fc65581"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_original_locks_and_workspace_are_accepted",
+    "bytes": 117,
+    "sha256": "11fc7f53fa02d33c587b3cace1ba56d933a3c62e7e2767521f747ce3a3c066ab"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_each_lock_and_generated_project_or_workspace_drift_is_rejected",
+    "bytes": 657,
+    "sha256": "2d25c2f70bb42d8f92c6771596993cae707598f49d504620fab7bab8269cb7ad"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_workspace_package_revision_drift_is_rejected",
+    "bytes": 252,
+    "sha256": "bf3e57668692d444d3dae7632de838d3c66ec8cfdc1ab059c69bd40f2329f0b8"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_installed_upstream_head_drift_is_rejected",
+    "bytes": 212,
+    "sha256": "53b70a5c3f8a9f86ef7d2ed1bc2c8d982c822b60dca2e65a657b40db9a5e37e9"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_environment_exports_only_original_build_keys",
+    "bytes": 414,
+    "sha256": "b6ed519e0e950837071fd1522fbbee56388b75716d45252588a7910abdfd364f"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_multiline_environment_is_rejected_before_any_write",
+    "bytes": 379,
+    "sha256": "f71e983006f5e3c08aa84395ca1f21da4af9f76079571e016549b60587515794"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_prepare_reuses_original_order_with_pinned_only_resolution_and_no_historical_binary_restore",
+    "bytes": 1149,
+    "sha256": "de68b41dd730c21265a6bd948df366665118a5ef33e043190c29ae5fe086e848"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_prepare_wrong_workflow_checkout_fails_before_mutation",
+    "bytes": 302,
+    "sha256": "a430a51c564db1f26277dcbc5121c5192bb874c5660d117be42763b4526b73c8"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_preparation_failure_does_not_export_environment",
+    "bytes": 471,
+    "sha256": "0e595bf133368ee15e5982e8551ba6ba9de81b8f99065596bf285b655f1122cb"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_built_app_matching_bundle_checks_original_source_and_hanlin_without_runtime_claim",
+    "bytes": 412,
+    "sha256": "214b9050453004ca8b4669ff7648cee2fc3ed764277e58691e72cde3a9e3a605"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_missing_or_nonmatching_built_bundle_is_rejected",
+    "bytes": 464,
+    "sha256": "4dd54ed017e0847066cb2523bc735e0d51a83a6bc7dcf50cbfafb64d0ded1d73"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_unprepared_or_stale_checkout_report_is_rejected",
+    "bytes": 478,
+    "sha256": "fbbfd0cc3cc7b99c82082e3ff7efd12b62e0450561385717822e207d5a47c226"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_modified_inputs_or_original_driver_are_rejected",
+    "bytes": 475,
+    "sha256": "b5ecf58ec080236257211fe0523bc60c0e25edb8d373b11864898076024d66cd"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_post_build_original_source_and_sdk_failure_propagate",
+    "bytes": 482,
+    "sha256": "3f4edaa5b306bea5f802ad1491c0294b6617cba044eb60ad0b6dd74270c41abf"
+  },
+  {
+    "path": "Scripts/CI/test-normal-ios-workspace.py",
+    "function": "test_workflow_preserves_original_gates_with_workspace_and_destination_selected_sdks",
+    "bytes": 1688,
+    "sha256": "6e7b8a2c757c30ac9ad6966ed247dfa304aba14b2be8fb11d03a3ade6cf84aeb"
+  },
+  {
+    "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+    "function": "resource_only_config",
+    "bytes": 863,
+    "sha256": "5b2261d7d0655539714fe5acc4a2746f728aefa1f46fe4eaedaa6002bfe9f24d"
+  },
+  {
+    "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+    "function": "ensure_resource_producer",
+    "bytes": 1035,
+    "sha256": "dcece517a9a1169a5fbeb610b1663d45b9f4fd0dff7abb010239358b1a9d2415"
+  },
+  {
+    "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+    "function": "verify_locks",
+    "bytes": 1005,
+    "sha256": "55af50dc33be9f4d5c8918635c121e9032bfb1540ae9bf07ff885da3ceee7c45"
+  },
+  {
+    "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+    "function": "prepare",
+    "bytes": 2365,
+    "sha256": "c23bcbebe7cc3f27b95539d28cfa3bfd6c1a2ac8dc0351f24e704966f1540c93"
+  },
+  {
+    "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+    "function": "verify_app",
+    "bytes": 1242,
+    "sha256": "87d100f5e4f5d7ee97b9d0fdad3dcb62aa01c3bee6598bef708e4fbb8ab76008"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "validate_framework_bindings",
+    "bytes": 990,
+    "sha256": "5379c35b65971cf858002fc7e21c36ddc90eb6aa5c62ab5d6e1a543c2d9982e1"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "validate_framework_metadata",
+    "bytes": 3877,
+    "sha256": "c0566060c087a269475beb1c54d328d6174bf440bb5943d6b9957d7ee20df6e5"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "verify_otzaria_test_additions",
+    "bytes": 2297,
+    "sha256": "3d4e9a7668d0607aaa12ac4bc0a71f36b7135e7b0e54145edd810db00b5aba44"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "zayit_build_plan",
+    "bytes": 1334,
+    "sha256": "e6f5799d3ea29f7d2b89720398a81953467405ee3c045841f4704b296ee32846"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "restore",
+    "bytes": 5199,
+    "sha256": "3e62fc68cabb2135703c15d1e1a1804d382aad9edc914f08acfb20b84d9b2ca7"
+  },
+  {
+    "path": "Scripts/CI/hq-stage2-focused-apple.py",
+    "function": "verify_actual_sources",
+    "bytes": 1974,
+    "sha256": "4de9e1e745102eadd37bc697f528616879b5bb75e273bc688217dc79067d32a2"
+  }
+]

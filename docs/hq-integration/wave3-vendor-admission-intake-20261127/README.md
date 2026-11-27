@@ -1,0 +1,5 @@
+# Exact reviewed Vendor source admission intake
+
+The seven source/control files and31 evidence files were independently reviewed and cherry-picked from the scoped publication. Every30 evidence hash/length, all306 archive members and the exact current source preimages were rejoined. The39 new controls and28 unchanged original controls are source-only evidence. The28 original test bodies and11 original production functions remain byte-identical, as do BINDING_FIELDS and its two original exact-binding predicates.
+
+This intake admits only the closed seven-path Vendor contract and exact one-field JS source declaration transition through the original validator entry points. The original engine, resource, artifact, build, owner, target-policy and runtime gates are not waived. A new Metro bundle, real SDK/app build and full final-candidate acceptance remain required. The old final source profile deliberately remains unchanged and must be rebound only after actual application freeze. All Source, Vendor, Xcode project, native UI tests, workflows and owner architecture trees remain unchanged.

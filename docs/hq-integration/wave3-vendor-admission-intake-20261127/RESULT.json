@@ -1,0 +1,60 @@
+{
+  "schema": "otzaria.wave3.vendor-source-admission-intake.v1",
+  "base": "1aa4732e3da0ce4385d6231821713f378010a554",
+  "donor": "a7be0e1fbe915a385c698acaef50b34cbc4b0986",
+  "donorBase": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "integrated": "96dac745d52472cddcd5b32e13abf9ec220e141d",
+  "sourcePathsVerified": 7,
+  "commitPathsVerified": 38,
+  "artifactRowsVerified": 30,
+  "archiveMembersVerified": 306,
+  "rawControlResultSHA256": "42fab4c88448475868f0cebbc44d09cc9779450e7ad9cd6a09942ae1eb925a0f",
+  "currentSourceControls": {
+    "errors": 0,
+    "failures": 0,
+    "process_exit": 0,
+    "status": "PASS",
+    "tests": 39
+  },
+  "originalSourceControls": {
+    "errors": 0,
+    "failures": 0,
+    "process_exit": 0,
+    "tests": 28
+  },
+  "originalFunctionBodiesUnchanged": 39,
+  "bindingFieldsUnchanged": [
+    "application_source_sha",
+    "application_trees",
+    "final_product_source",
+    "hanlin_gitlink",
+    "otzaria_test_additions_sha256"
+  ],
+  "protectedTreesUnchanged": {
+    "Source": "23cdfce49553927656ef79c6db10f654c889e2fc",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "finalSourceProfileUnchanged": {
+    "Scripts/CI/final-integration-source.inputs.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "c8a74947f04d8308835d27eed3fb562c517bbe8365a13ca902ae0be8d33627cf"
+    }
+  },
+  "realMetro": "NOT_RUN",
+  "newSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "ownerApproval": "NOT_GRANTED",
+  "releaseAndTestFlight": "OPEN"
+}
