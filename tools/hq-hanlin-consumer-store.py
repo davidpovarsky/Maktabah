@@ -9,10 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument("--artifacts-dir", type=Path, required=True)
 parser.add_argument("--sdk-sha", required=True)
+parser.add_argument("--sdk-repo", type=Path, help="Existing checkout with exact original SDK commit")
+parser.add_argument("--only-testing", action="append", help="Exact suite/method; default retains every declared test")
 args = parser.parse_args()
 if not re.fullmatch(r"[a-f0-9]{40}", args.sdk_sha):
     raise SystemExit("Exact SDK source SHA required")
-sdk = ROOT / "Vendor/HanlinSDK"
+sdk = args.sdk_repo or ROOT / "Vendor/HanlinSDK"
 out = args.artifacts_dir.resolve()
 out.mkdir(parents=True, exist_ok=True)
 if any(out.iterdir()):
@@ -61,15 +63,21 @@ let package = Package(name: "OtzariaHanlinStoreProof",
         .target(name: "HanlinPresentationKit"),
         .target(name: "HanlinChatCore"),
         .target(name: "OtzariaHanlinConsumerStore", dependencies:
-            ["HanlinHostContracts", "HanlinPresentationKit", "HanlinChatCore"]),
+            ["HanlinHostContracts", "HanlinPlatformContracts", "HanlinPresentationKit", "HanlinChatCore"]),
         .testTarget(name: "OtzariaHanlinConversationStoreTests", dependencies:
-            ["OtzariaHanlinConsumerStore", "HanlinHostContracts", "HanlinPresentationKit", "HanlinChatCore"])
+            ["OtzariaHanlinConsumerStore", "HanlinHostContracts", "HanlinPlatformContracts", "HanlinPresentationKit", "HanlinChatCore"])
     ], swiftLanguageModes: [.v6])
 """
 (package / "Package.swift").write_text(manifest, encoding="utf-8", newline="\n")
 (out / "inputs.json").write_text(json.dumps(inputs, indent=2) + "\n", encoding="utf-8", newline="\n")
+selections = args.only_testing or ["OtzariaHanlinConversationStoreTests"]
+if args.only_testing and any(not re.fullmatch(r"OtzariaHanlinConversationStoreTests/test[A-Za-z0-9_]+", x) for x in selections):
+    raise SystemExit("Exact existing store test methods required")
 command = [shutil.which("swift"), "test", "--scratch-path", str(ROOT / "build/hcs"),
            "-j", "1", "-Xswiftc", "-strict-concurrency=complete"]
+if args.only_testing:
+    command += ["--filter", "OtzariaHanlinConversationStoreTests/(" + "|".join(
+        selection.split("/", 1)[1] for selection in selections) + ")"]
 with (out / "swift-test.log").open("w", encoding="utf-8") as log:
     process = subprocess.Popen(command, cwd=package, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
     try:
@@ -89,20 +97,18 @@ verifier_path = ROOT / "Scripts/CI/verify-faithful-xctest.py"
 spec = importlib.util.spec_from_file_location("hanlin_store_xctest_verifier", verifier_path)
 verifier = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(verifier)
-verification = verifier.verify(log, ["OtzariaHanlinConversationStoreTests"], source_directory=fixture.parent)
-suite = next((row for row in verification["suites"]
-              if row.get("suite") == "OtzariaHanlinConversationStoreTests"), {})
-expected = sorted(suite.get("expected", []))
-passed = sorted(suite.get("passed", []))
+verification = verifier.verify(log, selections, source_directory=fixture.parent)
+expected = sorted({name for row in verification["suites"] for name in row.get("expected", [])})
+passed = sorted({name for row in verification["suites"] for name in row.get("passed", [])})
 process_exit_code = code
-if len(expected) != 11 or verification["status"] != "EXECUTED_PASS":
+if not expected or verification["status"] != "EXECUTED_PASS":
     code = code or 1
 report = {
     "observed_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     "status": "PASS_ACTUAL_SCOPED_FILESYSTEM_STORE" if code == 0 else "FAIL",
     "exit_code": code, "source_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
     "working_source_hashes": inputs, "sdk_sha": args.sdk_sha, "command": command,
-    "passed": passed, "expected": expected, "warnings": log.count("warning:"),
+    "passed": passed, "expected": expected, "selections": selections, "warnings": log.count("warning:"),
     "swift_process_exit_code": process_exit_code, "test_verification": verification,
     "xctest_verifier_sha256": hashlib.sha256(verifier_path.read_bytes()).hexdigest(),
     "swift_log_sha256": hashlib.sha256((out / "swift-test.log").read_bytes()).hexdigest(),
