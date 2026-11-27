@@ -1,0 +1,42 @@
+[
+  {
+    "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+    "bytes": 33328,
+    "sha256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317"
+  },
+  {
+    "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+    "bytes": 8117,
+    "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+  },
+  {
+    "path": "Scripts/CI/study-ui-prerequisites.py",
+    "bytes": 48654,
+    "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72"
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-controls.py",
+    "bytes": 12208,
+    "sha256": "eda4a0104336b2948e0f1fd4db0bf3b43c4eda61498aa50fd0deeeb5b5a61c13"
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/SOURCE_CONTROLS_RESULT.json",
+    "bytes": 4261,
+    "sha256": "ab0b05df41ff3ad0d743e419f4ff0c91b2ecae987980f015bdc1dac031b8236b"
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/historical-exact-v40-wrapper.py",
+    "bytes": 23994,
+    "sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10"
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/README.md",
+    "bytes": 3885,
+    "sha256": "7548f5525920df60527c3fe8ebc7ba5353701d8b12b0dec7ea0c97576e23169b"
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/CONTROL_ATTEMPTS.json",
+    "bytes": 343,
+    "sha256": "486bb91f80e0109fce37a98dc6750591a51ad4898747f85488c821dea924eaa3"
+  }
+]

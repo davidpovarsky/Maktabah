@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "status": "SYNTHETIC_CONTRACT_CONTROLS_ONLY_NOT_NATIVE_ACCEPTANCE",
+  "passed": 9,
+  "total": 9,
+  "controls": [
+    {
+      "name": "historical-extra-exact-gate-rejects-complete2006",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "Original at-least workloads do not satisfy exact 100/500/2000 cardinalities"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "original-at-least-contract-accepts-complete2006",
+      "passed": true,
+      "expectedAdmitted": true,
+      "actuallyAdmitted": true,
+      "error": null,
+      "syntheticOnly": true,
+      "actualCounts": [
+        100,
+        500,
+        2006
+      ],
+      "exactSizeCriterionMet": false
+    },
+    {
+      "name": "under-threshold-count-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "The original complete natural workloads must reach 100/500/2000 and retain truthful exact-count flags"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "false-exact-claim-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "The original complete natural workloads must reach 100/500/2000 and retain truthful exact-count flags"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "duplicate-natural-target-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "Observed full count and ordered identities must agree with their complete natural target"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "interior-projection-corruption-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "Complete projection bytes changed"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "native-array-report-change-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "The complete identity proof must bind its original visible native cache observation"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "missing-complete-membership-proof-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[Errno 2] No such file or directory: '/tmp/synthetic-natural-contract-n60sjgle/synthetic-fixture/missing-complete-membership-proof-rejected/natural-inspector-membership-proofs/B22F6FC4-12B5-42F0-9BC9-B8FCFF42D912.json'"
+      },
+      "syntheticOnly": true
+    },
+    {
+      "name": "original-postcheck-failure-rejected",
+      "passed": true,
+      "expectedAdmitted": false,
+      "actuallyAdmitted": false,
+      "error": {
+        "type": "ValueError",
+        "message": "Original full-v40 UI completion and immutable postchecks are required"
+      },
+      "syntheticOnly": true
+    }
+  ],
+  "inputs": {
+    "candidate": {
+      "path": "root-native-composition/reader-full-v40-ui-observation.py",
+      "bytes": 33328,
+      "sha256": "dbbc3bd27044417c8faee9f17583089ce2da9463a3e1715d9403164903ed1317"
+    },
+    "baseline": {
+      "path": "study-ui-driver-current/reader-full-v40-ui-observation.py",
+      "bytes": 23994,
+      "sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10"
+    },
+    "natural_helper": {
+      "path": "reader-natural-targets/reader-v40-natural-inspector-catalog.py",
+      "bytes": 35424,
+      "sha256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4"
+    },
+    "selected_candidates": {
+      "path": "root-native-composition/SELECTED_CANDIDATES.json",
+      "bytes": 195938,
+      "sha256": "6602ef9aaeda19f4c0734aa8858988ab0c91964b1ea304b6b5a12c984ae2053b"
+    }
+  },
+  "compilerExecuted": false,
+  "databaseOpened": false,
+  "nativeUIExecuted": false
+}

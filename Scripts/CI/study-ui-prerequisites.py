@@ -442,18 +442,30 @@ class Evidence:
                                           log_name="original-ui-tests.log", bundle_name="original-" + profile + ".xcresult")
         workload, scales = self.reader_workload(directory, profile)
         if profile == "full-v40":
-            exact_record, exact = self.read_path(directory / "v40-exact-inspector-final-gate.json")
-            require(exact.get("schema") == "otzaria.full-v40.exact-inspector-final-gate/1" and exact.get("status") == "MET"
-                    and exact.get("native_result") == record and exact.get("original_scales") == workload["inspectorScales"]
-                    and exact.get("simulator_udid") == self.udid and exact.get("observed_source") == report["source"]
-                    and exact.get("requested_counts") == exact.get("observed_requested_counts") == exact.get("actual_counts") == [100, 500, 2000]
-                    and scales.get("exact_size_criterion_met") is True
-                    and all(row.get("exactRequestedCount") is True and type(row.get("actualCount")) is int
-                            and row["actualCount"] == row["requestedCount"] for row in scales["scales"])
-                    and len(set(exact.get("observation_ids", []))) == 3
-                    and exact["observation_ids"] == [row["observationID"] for row in scales["scales"]],
-                    "The separate v40 exact-size gate is not genuinely MET")
-            workload["exactInspectorGate"] = exact_record
+            natural_record, natural = self.read_path(directory / "v40-natural-inspector-final-gate.json")
+            actual = [row["actualCount"] for row in scales["scales"]]
+            requested = [row["requestedCount"] for row in scales["scales"]]
+            require(natural.get("schema") == "otzaria.full-v40.natural-inspector-final-gate/1"
+                    and natural.get("status") == "MET"
+                    and natural.get("native_result") == record and natural.get("original_scales") == workload["inspectorScales"]
+                    and natural.get("simulator_udid") == self.udid and natural.get("observed_source") == report["source"]
+                    and natural.get("requested_counts") == natural.get("observed_requested_counts") == requested == [100, 500, 2000]
+                    and natural.get("actual_counts") == actual
+                    and all(type(count) is int and count >= minimum for count, minimum in zip(actual, requested))
+                    and scales.get("natural_at_least_workloads_met") is True
+                    and natural.get("exact_size_criterion_met") is scales.get("exact_size_criterion_met")
+                    and scales.get("exact_size_criterion_met") is all(a == r for a, r in zip(actual, requested))
+                    and all(row.get("exactRequestedCount") is (row["actualCount"] == row["requestedCount"])
+                            for row in scales["scales"])
+                    and len(set(natural.get("observation_ids", []))) == 3
+                    and natural["observation_ids"] == [row["observationID"] for row in scales["scales"]],
+                    "The original v40 natural workload gate is not genuinely MET")
+            validator = runpy.run_path(str(self.root / "Scripts/CI/reader-full-v40-ui-observation.py"))
+            actual_memberships = validator["natural_inspector_evidence"](directory, scales, self.read_path)
+            require(natural.get("natural_memberships") == actual_memberships,
+                    "Whole SQL/service/native memberships changed after original natural workload completion")
+            workload["naturalInspectorGate"] = natural_record
+            workload["naturalInspectorMemberships"] = actual_memberships
         return {"execution": execution, "workload": workload, "simulatorUDID": udid}
 
     def groups_suite(self, record, report):
