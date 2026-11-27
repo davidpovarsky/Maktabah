@@ -1,0 +1,28 @@
+{
+  "beforeSHA256": "7e832c642eb8fc5eca44e1f4a5296e5fe9f11fd8eee97ccfbd476867c4a2908b",
+  "afterSHA256": "6ae875fa45ca7a70b27e7f6c50f54f12192ba635bf7e0947524b69087fe48547",
+  "added": [
+    {
+      "key": "Annotation editor",
+      "en": "Annotation editor",
+      "he": "עורך הערה"
+    },
+    {
+      "key": "Annotation note body",
+      "en": "Annotation note body",
+      "he": "תוכן ההערה"
+    },
+    {
+      "key": "Annotation tags",
+      "en": "Annotation tags",
+      "he": "תגיות ההערה"
+    },
+    {
+      "key": "Annotation style",
+      "en": "Annotation style",
+      "he": "סגנון ההערה"
+    }
+  ],
+  "allExistingEntriesUnchanged": true,
+  "newShortcuts": 0
+}

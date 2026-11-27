@@ -1,0 +1,73 @@
+{
+  "beforeSHA256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab",
+  "afterSHA256": "32e0a629c5ecdb68317f0bc65baec850a51622fc80886d9316b24a27080874ad",
+  "insertions": [
+    {
+      "offset": 243413,
+      "text": "\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };\n"
+    },
+    {
+      "offset": 409410,
+      "text": "\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\"; sourceTree = \"<group>\"; };\n"
+    },
+    {
+      "offset": 413407,
+      "text": "\t\t\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,\n"
+    },
+    {
+      "offset": 555062,
+      "text": "\t\t\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,\n"
+    },
+    {
+      "offset": 243615,
+      "text": "\t\t829576B5B95B15E3487D7062 /* MaktabahNativeAnnotationEditorViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */; };\n"
+    },
+    {
+      "offset": 409857,
+      "text": "\t\t754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift\"; sourceTree = \"<group>\"; };\n"
+    },
+    {
+      "offset": 413848,
+      "text": "\t\t\t\t754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */,\n"
+    },
+    {
+      "offset": 555581,
+      "text": "\t\t\t\t829576B5B95B15E3487D7062 /* MaktabahNativeAnnotationEditorViews.swift in Sources */,\n"
+    }
+  ],
+  "newObjects": [
+    "19CC9E671ADE09B048FC6B1E",
+    "391EA830625F5FB1A8E1A6BE",
+    "754916F7F4FBFD3D12AAC9CB",
+    "829576B5B95B15E3487D7062"
+  ],
+  "newSources": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift"
+  ],
+  "target": "Maktabah-iOS",
+  "originalObjectsAndOrderPreserved": true,
+  "inheritedDuplicatesPreserved": [
+    {
+      "key": "240682637A5169A63619E577",
+      "identical": true
+    },
+    {
+      "key": "FB254BD29A50C530E907662A",
+      "identical": true
+    },
+    {
+      "key": "FDB5242B5960EB1507BD74A6",
+      "identical": true
+    },
+    {
+      "key": "3373C7B02164CDBB77BFFF48",
+      "identical": true
+    },
+    {
+      "key": "C2CCE35AFE445BF8BEF37C5F",
+      "identical": true
+    }
+  ],
+  "inverseByteExact": true
+}

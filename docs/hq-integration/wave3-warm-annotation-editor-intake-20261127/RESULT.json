@@ -1,0 +1,291 @@
+{
+  "schema": "otzaria.wave3.warm-annotation-editor-intake.v1",
+  "base": "d55f5e6a30b08f9c0a5cd0e467d07c92f0e85937",
+  "picked": [
+    {
+      "donor": "503c162f02cceb4185b3d0e5cae3d13f38b8ca2c",
+      "intake": "61aaf6a0bf8ca2ea83e4f92dd03102f8ed54266a"
+    },
+    {
+      "donor": "f8fbcf66943527367db807c964ab6265129ef804",
+      "intake": "c61efea098a31690b01355d63615bf7f416ff559"
+    }
+  ],
+  "sharedCommit": "350abd0ca4fa8628535c5db18e6ef526d7c205f6",
+  "sourceTree": "c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 23921,
+      "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa",
+      "before_sha256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift",
+      "bytes": 12199,
+      "sha256": "c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca",
+      "before_sha256": null
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 15826,
+      "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df",
+      "before_sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "bytes": 28458,
+      "sha256": "a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528",
+      "before_sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+    }
+  ],
+  "originalHookHunks": 37,
+  "sharedFiles": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before_bytes": 177649,
+      "before_sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+      "after_bytes": 189298,
+      "after_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+      "edits": 32,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before_bytes": 27361,
+      "before_sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db",
+      "after_bytes": 28434,
+      "after_sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284",
+      "edits": 5,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "before_bytes": 22875,
+      "before_sha256": "719b5ed16eb7d1712c5f539148ba2930abcf6742635daa86866a2f744dfaef8c",
+      "after_bytes": 23430,
+      "after_sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7",
+      "edits": 7,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before_bytes": 276364,
+      "before_sha256": "d311cf59e9c9c6890fa6c7121ccc1cc018d566f45257e0de520d6e896063bc00",
+      "after_bytes": 277099,
+      "after_sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde",
+      "edits": 3,
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "sharedHunks": 47,
+  "docsPaths": 85,
+  "manifestSHA256": "956eb0a5e1e1a389e7129a039921c650ae900e8b7b415d345d3003a3f0002aeb",
+  "rawMembersVerified": 211,
+  "sourceModuleCounts": {
+    "Core": 31,
+    "Host": 41,
+    "UI": 13
+  },
+  "sourceModulePathsRejoined": 85,
+  "runtimeLibraries": [
+    {
+      "attempt": "control-attempt-2",
+      "path": "actual-runtime-library-identity.stdout",
+      "sha256": "ed533b6b82838eace7251eae6146fd95b8f320552d64067eef095fce04b9de34"
+    },
+    {
+      "attempt": "editor-report-controls-attempt-1",
+      "path": "actual-runtime-library-identity.stdout",
+      "sha256": "5b0082bd75b71d06ab5ed1716e90ccffa42d874a0e32c869855fa6032a5d564a"
+    },
+    {
+      "attempt": "editor-scene-controls-attempt-1",
+      "path": "actual-runtime-library-identity.stdout",
+      "sha256": "c991192f0d1cc66b16ccf794cf8df074a32908587029bfc729618e5f7827ea07"
+    }
+  ],
+  "sourceControlScopes": [
+    {
+      "attempt": "control-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-attempt-1",
+      "status": "FAILED",
+      "passed": null,
+      "failed": null,
+      "result_sha256": "594885351da8f16b7af08044a50ebb999b0ef94afdb14a84fb93aebb9de09416",
+      "raw_bytes": 91028,
+      "raw_sha256": "a4ca5a7d5e5154ba1e23295c7618c6c95ca73fabb69602c0621321259aaf3ca5",
+      "manifest_sha256": "31d157378000f99c85662f0662862a5ba761a3a6b61ea7f95be83bb1f946f7cc",
+      "raw_files": 32,
+      "zip_members": 33,
+      "all_member_hashes_verified": true,
+      "scope": "Actual compile failure retained before correction",
+      "full_swift_syntax": 0
+    },
+    {
+      "attempt": "control-attempt-2",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-attempt-2",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 25,
+      "failed": 0,
+      "result_sha256": "66654d1650bcd81fa5aeac92ea97bbc6cfdac34ef2c6bb422d47bd3c07a1a00c",
+      "raw_bytes": 101245,
+      "raw_sha256": "acc08f6405c9276a288221ca29c026f393a069a351a74eff773e40af11bee5e1",
+      "manifest_sha256": "99cdb75a4ea9d7c994884df001f69d1a3875ab67e4a99efc0a605ceea095cee8",
+      "raw_files": 59,
+      "zip_members": 60,
+      "all_member_hashes_verified": true,
+      "scope": "Actual owner, original two setter methods, current actual component owner/source/backend/window bridge; explicit Apple/Annotation/backend/window/app admission boundaries. No Core execution, real UI, native receipt, persistence or Apple SDK.",
+      "full_swift_syntax": 8
+    },
+    {
+      "attempt": "editor-report-controls-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-report-controls-attempt-1",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 4,
+      "failed": 0,
+      "result_sha256": "5f8a7cf1ebd2f36fad8cd5910bbb33b1639ffa637b0decd62a073d22e4404458",
+      "raw_bytes": 91242,
+      "raw_sha256": "d4b42b3239025a8d9af6cc0eef4efaddefad33c7f60e3a4e4780ad2437cc5c9a",
+      "manifest_sha256": "94f94d9c7a097152a1e43573fb48c39ae26bc91a31c7da2036d10afa8f402afc",
+      "raw_files": 40,
+      "zip_members": 41,
+      "all_member_hashes_verified": true,
+      "scope": "Actual added active-report method over retained original owner/source/admission; four report completion/release/finish/reentry cases. Current actual component owner/source/backend/window bridge with explicit Apple/Annotation/backend/window/app admission boundaries. No Core execution, real UI, native receipt, persistence or Apple SDK.",
+      "full_swift_syntax": 2
+    },
+    {
+      "attempt": "editor-scene-controls-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 17,
+      "failed": 0,
+      "result_sha256": "5bcc13dc145fc5b8282aa86ab63f8ad1860abed492190ba2ae2feea179667340",
+      "raw_bytes": 220620,
+      "raw_sha256": "2e2341526295f795d9b3198383b59522796a33fd2b28838631ab36b0bcfc8213",
+      "manifest_sha256": "b78a8db1575801ae8f58618f0ffc790b19fea5d29a576d684b5352a0baf0dbc4",
+      "raw_files": 76,
+      "zip_members": 77,
+      "all_member_hashes_verified": true,
+      "scope": "Actual Session modal callbacks, exact original full window/mapping reader caller with editor-only private overload, actual editor owner and original onCreated callback with same current source modules; explicit Apple/app/Store/window/platform boundaries. No Core execution, real UIKit, persistence, native receipt or Apple SDK.",
+      "full_swift_syntax": 10
+    }
+  ],
+  "finalSessionCapsule": {
+    "session_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+    "capsule_sha256": "7b7424b156fcbbc69229feb16778c635d738cfb7153738f3e4bcae06d67f338c",
+    "actual_methods": [
+      {
+        "signature": "    func observeAnnotationPresentation(",
+        "bytes": 455,
+        "sha256": "c5cff2ed1fde542179cbe5851a063aaff080b74971ac16cee6d3645214c9bb06"
+      },
+      {
+        "signature": "    func originalAnnotationPresentationWillChange(",
+        "bytes": 279,
+        "sha256": "8c9fe9436777f4dea948825a4fa9450c1811dd312a9e1f1acf119a74efc32fe3"
+      },
+      {
+        "signature": "    func removeAnnotationPresentation(",
+        "bytes": 722,
+        "sha256": "9651bd7b2818b0f684a6f8aebc7df3551a8867845eaa2fd8d53ef4f8ce56ac45"
+      },
+      {
+        "signature": "    private func advanceOriginalAnnotationPresentationPublication(",
+        "bytes": 612,
+        "sha256": "490c704360b4da0d3d31c29406a1e56821657af2f48d2ada9e82e78915542e8c"
+      },
+      {
+        "signature": "    func retainOriginalAnnotationPresentationObservation(",
+        "bytes": 1235,
+        "sha256": "3ddf3ae2a56d030ccbd25b503e4878ac0ca20dfb71fd171031cf1ab7272af62c"
+      },
+      {
+        "signature": "    private func retainOriginalAnnotationEditorPresentationObservation(",
+        "bytes": 1607,
+        "sha256": "52e8e80e903cefa9d498edf4c9e7178956f1595aec9d10f7387a0b0fc6b95350"
+      },
+      {
+        "signature": "    func observeSearchPresentation(",
+        "bytes": 490,
+        "sha256": "c6f734e19a4f9483c335a00e6a65d2abd1200fba3534bc31cc3acaab2fab418a"
+      },
+      {
+        "signature": "    func originalSearchPresentationWillChange(",
+        "bytes": 457,
+        "sha256": "9bba2ec2db93e42fc00b993143cd0af2894513d839816ddfce9f07eab69026c8"
+      },
+      {
+        "signature": "    func removeSearchPresentation(",
+        "bytes": 711,
+        "sha256": "47988d4f4ea2d661703ca9d23d129c4ddc8cfa02cffaa9de0f065df5f9f4c18c"
+      },
+      {
+        "signature": "    private func advanceOriginalSearchPresentationPublication(",
+        "bytes": 485,
+        "sha256": "6506563a8b61a28f4c99140e970b258dc8f8da5cf5d82276179777c78e00a6e2"
+      },
+      {
+        "signature": "    private func retainHistorySearchPresentationObservation(",
+        "bytes": 1216,
+        "sha256": "56cba0d9e2e9c2ca9a05937fdd432549787b0eca5d671b16d8bb43420405907b"
+      },
+      {
+        "signature": "    private var isOriginalAnnotationEditorRootReady:",
+        "bytes": 787,
+        "sha256": "2f6b66d9753f8ef9359b92d38a6d44a90cbfdd3b7d7c1c85f159283e322f74ae"
+      },
+      {
+        "signature": "    func captureHistoryReaderWindow()",
+        "bytes": 151,
+        "sha256": "ff615514e77bbbbd7f0a1b4ed224be02adc2c3da10f025864351742c4c88f753"
+      },
+      {
+        "signature": "    private func captureHistoryReaderWindow(",
+        "bytes": 4430,
+        "sha256": "e85ea4fc80f79fc293d6fb9b8aa2614d1d269f92723caf2e454c22588279425b"
+      },
+      {
+        "signature": "    private func captureAnnotationEditorWindow(",
+        "bytes": 1308,
+        "sha256": "6624470907dbf1246e103969f6cca23f992fcc85a61a177e57148b18bf5a43d9"
+      }
+    ],
+    "created_original_sha256": "5e6878ceb179e7edf5e26b2ef98fd990aa42dd60aa6a822d3495c610d4254b97",
+    "created_candidate_sha256": "e8ecfa9965c9540fe94fc8c2e47c6b9835356d83fde69f409ff06de664a4602f",
+    "created_inverse": "EXACT_AFTER_REMOVING_ONE_PREPUBLICATION_LINE",
+    "boundary": "Full actual Session root capture and modal callbacks; explicit app/UI/store/window boundaries. Actual editor owner/source bridge is linked separately."
+  },
+  "membershipSources": 2,
+  "localizationKeys": 4,
+  "protectedTrees": {
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Source/UI": "71eb32d72958533a02a09be51dad125927a99660",
+    "Source/Core": "70ae6ec7ac428f2ff290405e88e4c6261c524cc0",
+    "Source/LibraryBackend": "bc0dae1d5f72db8b4db8a0cd70c5a9602b493994",
+    "Source/Otzaria": "51eb8282fbcd72be297e13ad5e53893a7a524052",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "Maktabah-iOSUITests": "0a3d5b475c2e72d52d973a66a1e078ba2031db13",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "admission": {
+    "rootFree": 2351009792,
+    "dataFree": 2160746496
+  },
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "sourcePeerReview": {
+    "reviewer": "ui_acceptance",
+    "afterDonorDocsCommit": true,
+    "readExactFinalOwnerViewsSheetList": true,
+    "result": "No demonstrated blocker in retained parent before component, callback membership, consumed scroll/focus/report, first exact Tags join, default-nil behavior, plain-editing gate or final onCreated prepublication. Source only; no rerun."
+  },
+  "limitations": [
+    "Warm existing global List editor only; saved-record opening and original filter/sort remain separate.",
+    "The25,4,17source control scopes remain separate, with explicit platform boundaries and preserved negative/compiler failures.",
+    "No SDK/native/production/physical result is inferred from Linux source controls or syntax parses.",
+    "Final genuine owner gate, target merge, Archive, signing and TestFlight remain open."
+  ]
+}
