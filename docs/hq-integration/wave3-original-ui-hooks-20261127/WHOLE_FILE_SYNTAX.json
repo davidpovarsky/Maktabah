@@ -1,0 +1,86 @@
+{
+  "schema": "otzaria.wave3.original-ui-hooks-syntax.v1",
+  "base": "409d28b2d5c3c72665081465ab628e53528645c6",
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "before": {
+        "bytes": 6340,
+        "sha256": "685c42f915f7cf92cb0a025c1072eb97b88276c4fb49b08e1768f73e7965435a"
+      },
+      "after": {
+        "bytes": 6774,
+        "sha256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5"
+      },
+      "candidate": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "before": {
+        "bytes": 7884,
+        "sha256": "e8c716628fac03a9d32272967d5679df9c22e88aaf86652de55676aea20d0d59"
+      },
+      "after": {
+        "bytes": 8318,
+        "sha256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b"
+      },
+      "candidate": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "before": {
+        "bytes": 14334,
+        "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+      },
+      "after": {
+        "bytes": 14792,
+        "sha256": "d0a4ca7cbd356073f2df62a30991d618baba1bcd57da04226bacbd0047783ee3"
+      },
+      "candidate": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/inspector/candidate/Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+    }
+  ],
+  "steps": [
+    {
+      "mode": "Debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/inspector/candidate/Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+      ],
+      "started": 1795809662.3197024,
+      "finished": 1795809662.3952649,
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "Release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/inspector/candidate/Source/Features/Reader/ViewModel/ReaderViewModel.swift"
+      ],
+      "started": 1795809662.3952856,
+      "finished": 1795809662.4496455,
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "wholeFileParses": 6,
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "scope": "Exact original book-info UITextView typography/alignment and original Reader visibility publication property. Syntax only; real Dynamic Type/VoiceOver/RTL and typed caller behavior remain unrun."
+}

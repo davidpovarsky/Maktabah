@@ -1,0 +1,127 @@
+{
+  "schema": "otzaria.wave3.original-ui-hooks-intake.v1",
+  "base": "f8a09c9327f7a8ad714130b2d0e89f19e10c45f6",
+  "commits": {
+    "bookInfo": "c33502df3dee5a524e460975884ede721afc68fd",
+    "inspectorPublication": "cc6bee63bd0983dc980da1e6d59ce041929ba967",
+    "annotationDeclarationOwners": "d322f4729c19dcb62f3f0baad517be512ea17361"
+  },
+  "sourceTree": "516f2edbd98ea8611b8072a4f2d431d095b15391",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "sourceFiles": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "before": {
+        "bytes": 6340,
+        "sha256": "685c42f915f7cf92cb0a025c1072eb97b88276c4fb49b08e1768f73e7965435a"
+      },
+      "after": {
+        "bytes": 6774,
+        "sha256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5"
+      },
+      "candidatePath": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "scope": "Only original UITextView alignment and dynamic font scaling; exact unchanged original load/content/selection/persistence bodies."
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "before": {
+        "bytes": 7884,
+        "sha256": "e8c716628fac03a9d32272967d5679df9c22e88aaf86652de55676aea20d0d59"
+      },
+      "after": {
+        "bytes": 8318,
+        "sha256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b"
+      },
+      "candidatePath": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/bookinfo/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "scope": "Only original UITextView alignment and dynamic font scaling; exact unchanged original load/content/selection/persistence bodies."
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "before": {
+        "bytes": 14334,
+        "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+      },
+      "after": {
+        "bytes": 14792,
+        "sha256": "d0a4ca7cbd356073f2df62a30991d618baba1bcd57da04226bacbd0047783ee3"
+      },
+      "candidatePath": "/mnt/development/projects/diagnostics/otzaria-wave3-shared-ui-original-hooks-20261127/input/inspector/candidate/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "scope": "One original visibility property plus nullable non-Observable monotonic metadata. No setter call, callback, authority, selection, load, backend or state reset."
+    }
+  ],
+  "wholeFileInverse": true,
+  "bookInfoOriginalHunks": 4,
+  "inspectorOriginalPropertyHunks": 1,
+  "wholeFileSyntaxParses": 8,
+  "sourceSyntaxEvidenceSHA256": "af44179a1284763defea5d9eb7d29259a671e861e39dca6784c11c3cc6428365",
+  "annotationRegistration": {
+    "base": "f8a09c9327f7a8ad714130b2d0e89f19e10c45f6",
+    "path": "Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift",
+    "before": {
+      "bytes": 1664,
+      "sha256": "2f7e720a2cd85112158553816d3fa1ac5ffb12861d9475767eefecc46bd472d2"
+    },
+    "after": {
+      "bytes": 1669,
+      "sha256": "4fef5e674660d333aa43908c436b225a1404de219d6656280b89300684940968"
+    },
+    "methods": [
+      {
+        "name": "testOriginalIPadAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+        "sha256": "19751adff1b153db39880602310aa5997eb0ae9fbe4b6e485031c9cc35b7a699",
+        "declarationOwner": "NativeRoutingAcceptanceTests"
+      },
+      {
+        "name": "testOriginalIPadAnnotationRecordForegroundsSameOriginalList",
+        "sha256": "a304ea595d87f6a45bad7f1628d591b9a0318bcd78d53c6c93dbe97df402a89d",
+        "declarationOwner": "NativeRoutingAcceptanceTests"
+      },
+      {
+        "name": "testOriginalIPhoneAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+        "sha256": "c746837d3b72aa879f04c595d2f6c94feb679041c60eb80c143db7cd3aa3caac",
+        "declarationOwner": "NativeRoutingPhoneAcceptanceTests"
+      },
+      {
+        "name": "testOriginalIPhoneAnnotationRecordForegroundsSameOriginalList",
+        "sha256": "4254351e9173de8745841b5e420dfd710efa2e4514ec5608c136193a306b7c4c",
+        "declarationOwner": "NativeRoutingPhoneAcceptanceTests"
+      },
+      {
+        "name": "testOriginalIPadCachedAnnotationRefusesOriginalSearchABAWithoutMutation",
+        "sha256": "da946a9cab0b2c4d4d85abb6135df5d51f7d291389e4dea9e8050d38bd1c8fed",
+        "declarationOwner": "NativeRoutingAcceptanceTests"
+      },
+      {
+        "name": "testOriginalIPhoneCachedAnnotationRefusesSearchABAFromBackgroundWithoutMutation",
+        "sha256": "707b8a1aeaff19bc6bd9040b8992b5c69cf84746294fade4a80d2952a269afa6",
+        "declarationOwner": "NativeRoutingPhoneAcceptanceTests"
+      }
+    ],
+    "allSixMethodBodiesUnchanged": true,
+    "originalClassReconstructionExact": true,
+    "nativeRuns": 0,
+    "reason": "Reuse established original Pad/Phone declaration owners and avoid adding a new subclass that inherits the original concrete test methods. Original test bodies/selection gates unchanged."
+  },
+  "nativeHelperUnchangedSHA256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46",
+  "protectedTrees": {
+    "Source/Otzaria": "51eb8282fbcd72be297e13ad5e53893a7a524052",
+    "Source/ChavrusaText": "63f08f2507a0e7c7541322d1927f268ce8cb70c3",
+    "Source/Core": "70ae6ec7ac428f2ff290405e88e4c6261c524cc0",
+    "Source/UI": "71eb32d72958533a02a09be51dad125927a99660",
+    "Source/LibraryBackend": "bc0dae1d5f72db8b4db8a0cd70c5a9602b493994",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1"
+  },
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "open": [
+    "Actual UIKit Dynamic Type, natural direction and VoiceOver verification",
+    "Inspector typed caller integration, exact warm/cold parent and current visibility proof",
+    "Actual platform discovery and six Annotation system journeys",
+    "Full original Native116/Release114+2 production acceptance, genuine owner signatures, final target merge and TestFlight"
+  ],
+  "asanaUpdate": "Pending verified readback after connector Internal errors"
+}

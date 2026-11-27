@@ -1,0 +1,9 @@
+{
+  "state": "WRITE_OUTCOME_UNCONFIRMED",
+  "toolError": "Asana add_comment and readback get_task returned MCP -32603 Internal error on both tasks. Check existing comments before resubmission.",
+  "taskIDs": [
+    "1220103384037482",
+    "1220763167870295"
+  ],
+  "milestone": "409d28b2d5c3c72665081465ab628e53528645c6: original hidden-active-phone Group/Profile correction integrated;22/0 on current31Core13UI41Host; baseline0/4 andnegative0/3 retained;proof21e26d08. Later native selector joinf8a09c9327f7a8ad714130b2d0e89f19e10c45f6,proof6e92007a,6declarations notrun. All original native/production/owner/TestFlight gates remain open."
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "mode": "Debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0",
+      "-D",
+      "DEBUG",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-original-ui-hooks-intake-20261127/registration/candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift"
+    ],
+    "started": 1795810115.9929376,
+    "finished": 1795810116.7595308,
+    "exit": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "mode": "Release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-original-ui-hooks-intake-20261127/registration/candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift"
+    ],
+    "started": 1795810116.7597957,
+    "finished": 1795810116.8164537,
+    "exit": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
