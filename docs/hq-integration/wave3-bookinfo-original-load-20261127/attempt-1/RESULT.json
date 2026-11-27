@@ -1,0 +1,72 @@
+{
+  "schema": "otzaria.wave3.original-bookinfo-load-controls.v1",
+  "base": "e2ffdb5cc82f7b2c571ff093867bfe22a56fb546",
+  "status": "FAILED",
+  "started": "2026-11-27T20:27:53.527290+00:00",
+  "steps": [
+    {
+      "name": "compile-original-methods",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/module-cache",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/inputs/controls/ActualOriginalMethods.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/inputs/controls/BookInfoControls.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/inputs/controls/ExplicitBoundary.swift",
+        "-o",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/output/bookinfo-controls"
+      ],
+      "started": 1795811273.9444108,
+      "freeBefore": {
+        "root": 2272739328,
+        "data": 2892488704
+      },
+      "allocatedBefore": 155648,
+      "owner": {
+        "pid": 2300879,
+        "parent": 2300851,
+        "group": 2300879,
+        "startTicks": 733834577
+      },
+      "exit": 1,
+      "finished": 1795811276.5593636,
+      "freeAfter": {
+        "root": 2254954496,
+        "data": 2892488704
+      },
+      "allocatedAfter": 17932288,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/compile-original-methods.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-1/compile-original-methods.stderr",
+          "bytes": 9577,
+          "sha256": "01ea725ee5ca6254b847b2376cd17f3229a06d687cd9cae73aa967335db45d78"
+        }
+      ]
+    }
+  ],
+  "appleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "scope": "Full original BookInfo load/cancel methods with explicit completion instrumentation, original synchronous DB callback method, explicit SwiftUI storage/provider/domain boundaries. No app navigation, rendering, database integration or production acceptance.",
+  "input": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-inputs-20261127.zip",
+    "bytes": 20404,
+    "sha256": "4e9864d9ea830fe2401c0dabc50a13cee719da61e381cebef1e94e560db9da9e"
+  },
+  "error": "AssertionError('compile-original-methods failed')",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-controls-runner-20261127.py\", line 82, in <module>\n    run('compile-original-methods',args,120)\n  File \"/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-controls-runner-20261127.py\", line 54, in run\n    assert row.get('exit')==0 and not row.get('interruption'),name+' failed'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: compile-original-methods failed\n",
+  "finished": "2026-11-27T20:27:56.564624+00:00",
+  "freeAfter": {
+    "root": 2254954496,
+    "data": 2892488704
+  },
+  "allocatedAfter": 17932288
+}

@@ -1,0 +1,18 @@
+{
+  "files": [
+    {
+      "source": "/var/lib/sentinelx/uploads/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-inputs-20261127.zip",
+      "target": "/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-inputs-20261127.zip",
+      "bytes": 20404,
+      "sha256": "4e9864d9ea830fe2401c0dabc50a13cee719da61e381cebef1e94e560db9da9e"
+    },
+    {
+      "source": "/var/lib/sentinelx/uploads/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-controls-runner-20261127.py",
+      "target": "/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-controls-runner-20261127.py",
+      "bytes": 7672,
+      "sha256": "2f2fbfb589c01af290e23f8fbd568a30190591bfa39043ceae3f7c88e5a18c1a"
+    }
+  ],
+  "preservedPriorDispatch": "job_e9f399e3fa70",
+  "cause": "Upload tool returns path under upload base; first wrapper referenced unstaged final path and stopped before any source/compiler action."
+}

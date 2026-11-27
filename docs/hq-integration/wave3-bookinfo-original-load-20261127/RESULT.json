@@ -1,0 +1,79 @@
+{
+  "schema": "otzaria.wave3.bookinfo-original-load-intake.v1",
+  "base": "e2ffdb5cc82f7b2c571ff093867bfe22a56fb546",
+  "commits": {
+    "source": "20e256e8ec45e659ee711e9eab7c9e1c2d2e5a3d",
+    "hebrew": "69c2a474a45398340272d6e410cd3b4628e66707"
+  },
+  "sourceTree": "3944bce7be8b7aa7fa2931f31f98e5ba0253df39",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "sourceFiles": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "beforeBytes": 6774,
+      "beforeSHA256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5",
+      "afterBytes": 8805,
+      "afterSHA256": "b58550a3b13107270767ef79f9c355694d9b818a7552e1d49e0bd5f69d3849e4",
+      "edits": 3,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "beforeBytes": 8318,
+      "beforeSHA256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b",
+      "afterBytes": 10430,
+      "afterSHA256": "4609284891b03a36881fbf6a095b8bfc5234186e4c1cec9e7b6efde2a466ce93",
+      "edits": 4,
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "originalHunks": 7,
+  "sourceControlResultSHA256": "a7879e7f34c307a55c53f3a76ab152f1e398188a195005018baa16c207914c26",
+  "baseline": {
+    "pass": 4,
+    "fail": 14
+  },
+  "candidate": {
+    "pass": 18,
+    "fail": 0
+  },
+  "scenarioCount": 9,
+  "originalViews": 2,
+  "wholeFileParses": 4,
+  "rawMembersVerified": 41,
+  "sourceMethodInverse": true,
+  "wholeFileInverse": true,
+  "catalog": {
+    "path": "Source/Localizable.xcstrings",
+    "beforeSHA256": "dc50c1391659e8093faa0f71b9a1ad8da93cdbb6e36cf8c58ad69cb784a9b6c0",
+    "afterSHA256": "7e832c642eb8fc5eca44e1f4a5296e5fe9f11fd8eee97ccfbd476867c4a2908b",
+    "hebrewKeys": [
+      "بطاقة الكتاب",
+      "عن المصنف",
+      "عن الكتاب"
+    ],
+    "otherContentUnchanged": true
+  },
+  "protectedTrees": {
+    "Source/ChavrusaText": "63f08f2507a0e7c7541322d1927f268ce8cb70c3",
+    "Source/UI": "71eb32d72958533a02a09be51dad125927a99660",
+    "Source/Core": "70ae6ec7ac428f2ff290405e88e4c6261c524cc0",
+    "Source/LibraryBackend": "bc0dae1d5f72db8b4db8a0cd70c5a9602b493994",
+    "Source/Otzaria": "51eb8282fbcd72be297e13ad5e53893a7a524052",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1",
+    "Maktabah-iOSUITests": "0a3d5b475c2e72d52d973a66a1e078ba2031db13",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "peerReview": "Navigation agent read exact b58550a3/46092848 plus original coordinator generation cancellation and synchronous DB callback; no scoped blocker found; no execution by reviewer.",
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "limitations": [
+    "State storage/provider/domain controls do not establish real SwiftUI lifecycle timing or app/DB integration.",
+    "No generic no-transition/epoch fence or BookInfo navigation/ACK added.",
+    "Actual Dynamic Type/RTL/VoiceOver/44pt hit testing and native UI acceptance remain required.",
+    "All production/owner/target merge/signing/TestFlight gates remain open."
+  ]
+}

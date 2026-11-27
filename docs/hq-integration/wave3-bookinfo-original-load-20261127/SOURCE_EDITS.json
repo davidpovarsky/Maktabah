@@ -1,0 +1,64 @@
+{
+  "base": "e2ffdb5cc82f7b2c571ff093867bfe22a56fb546",
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "beforeBytes": 6774,
+      "beforeSHA256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5",
+      "afterBytes": 8805,
+      "afterSHA256": "b58550a3b13107270767ef79f9c355694d9b818a7552e1d49e0bd5f69d3849e4",
+      "edits": 3,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "beforeBytes": 8318,
+      "beforeSHA256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b",
+      "afterBytes": 10430,
+      "afterSHA256": "4609284891b03a36881fbf6a095b8bfc5234186e4c1cec9e7b6efde2a466ce93",
+      "edits": 4,
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "edits": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "old": "    @State private var author: Muallif?\n",
+      "new": "    @State private var author: Muallif?\n    @State private var bookInfoTask: Task<Void, Never>?\n    @State private var bookInfoLoadID: UUID?\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "old": "            .onAppear {\n                loadBookInfo()\n            }",
+      "new": "            .onAppear {\n                loadBookInfo()\n            }\n            .onChange(of: ObjectIdentifier(book)) { _, _ in\n                loadBookInfo()\n            }\n            .onDisappear {\n                cancelBookInfoLoad()\n            }"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "old": "    private func loadBookInfo() {\n        let workKey = book.backendLocator?.workKey ?? \"book:\\(book.id)\"\n        Task {\n            if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {\n                await MainActor.run {\n                    self.workMetadata = meta\n                }\n                return\n            }\n            if book.backendLocator == nil {\n                await MainActor.run {\n                    let dm = LibraryDataManager.shared\n                    author = DatabaseManager.shared.getAuthor(book.muallif)\n                    fullBookInfo = dm.getBook([book.id]).first ?? book\n\n                    dm.loadBookInfo(book.id) {\n                        if let updatedBook = dm.getBook([book.id]).first {\n                            fullBookInfo = updatedBook\n                        }\n                    }\n                }\n            }\n        }\n    }",
+      "new": "    private func cancelBookInfoLoad() {\n        // Retire this exact presentation before cancelling its original task.\n        bookInfoLoadID = nil\n        let previous = bookInfoTask\n        bookInfoTask = nil\n        previous?.cancel()\n    }\n\n    private func loadBookInfo() {\n        cancelBookInfoLoad()\n        let loadID = UUID()\n        bookInfoLoadID = loadID\n        let sourceBook = book\n        let sourceLocator = book.backendLocator\n        let sourceBackend = BackendCoordinator.shared.activeBackendID\n        let sourceGeneration = BackendCoordinator.shared.generation\n        let workKey = book.backendLocator?.workKey ?? \"book:\\(book.id)\"\n        let isCurrent: @MainActor () -> Bool = {\n            bookInfoLoadID == loadID && !Task.isCancelled\n                && book === sourceBook && book.backendLocator == sourceLocator\n                && BackendCoordinator.shared.activeBackendID == sourceBackend\n                && BackendCoordinator.shared.generation == sourceGeneration\n        }\n        bookInfoTask = Task {\n            guard isCurrent() else { return }\n            if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {\n                await MainActor.run {\n                    guard isCurrent() else { return }\n                    self.workMetadata = meta\n                }\n                return\n            }\n            // The original provider may finish with a stale/cancelled error.\n            // Such a result cannot fall through into another backend's DB.\n            guard isCurrent() else { return }\n            if book.backendLocator == nil {\n                await MainActor.run {\n                    guard isCurrent() else { return }\n                    let dm = LibraryDataManager.shared\n                    let loadedAuthor = DatabaseManager.shared.getAuthor(book.muallif)\n                    guard isCurrent() else { return }\n                    author = loadedAuthor\n                    guard isCurrent() else { return }\n                    let loadedBook = dm.getBook([book.id]).first ?? book\n                    guard isCurrent() else { return }\n                    fullBookInfo = loadedBook\n                    guard isCurrent() else { return }\n\n                    dm.loadBookInfo(book.id) {\n                        guard isCurrent() else { return nil }\n                        if let updatedBook = dm.getBook([book.id]).first {\n                            guard isCurrent() else { return nil }\n                            fullBookInfo = updatedBook\n                        }\n                        return ()\n                    }\n                }\n            }\n        }\n    }"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "old": "    @State private var author: Muallif?\n",
+      "new": "    @State private var author: Muallif?\n    @State private var bookInfoTask: Task<Void, Never>?\n    @State private var bookInfoLoadID: UUID?\n"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "old": "        .onAppear {\n            loadBookInfo()\n        }",
+      "new": "        .onAppear {\n            loadBookInfo()\n        }\n        .onChange(of: ObjectIdentifier(book)) { _, _ in\n            loadBookInfo()\n        }\n        .onDisappear {\n            cancelBookInfoLoad()\n        }"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "old": "    private func loadBookInfo() {\n        let workKey = book.backendLocator?.workKey ?? \"book:\\(book.id)\"\n        Task {\n            if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {\n                await MainActor.run {\n                    self.workMetadata = meta\n                }\n                return\n            }\n            if book.backendLocator == nil {\n                await MainActor.run {\n                    let dm = LibraryDataManager.shared\n                    author = DatabaseManager.shared.getAuthor(book.muallif)\n                    fullBookInfo = dm.getBook([book.id]).first ?? book\n\n                    dm.loadBookInfo(book.id) {\n                        if let updatedBook = dm.getBook([book.id]).first {\n                            fullBookInfo = updatedBook\n                        }\n                    }\n                }\n            }\n        }\n    }",
+      "new": "    private func cancelBookInfoLoad() {\n        // Retire this exact presentation before cancelling its original task.\n        bookInfoLoadID = nil\n        let previous = bookInfoTask\n        bookInfoTask = nil\n        previous?.cancel()\n    }\n\n    private func loadBookInfo() {\n        cancelBookInfoLoad()\n        let loadID = UUID()\n        bookInfoLoadID = loadID\n        let sourceBook = book\n        let sourceLocator = book.backendLocator\n        let sourceBackend = BackendCoordinator.shared.activeBackendID\n        let sourceGeneration = BackendCoordinator.shared.generation\n        let workKey = book.backendLocator?.workKey ?? \"book:\\(book.id)\"\n        let isCurrent: @MainActor () -> Bool = {\n            bookInfoLoadID == loadID && !Task.isCancelled\n                && book === sourceBook && book.backendLocator == sourceLocator\n                && BackendCoordinator.shared.activeBackendID == sourceBackend\n                && BackendCoordinator.shared.generation == sourceGeneration\n        }\n        bookInfoTask = Task {\n            guard isCurrent() else { return }\n            if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {\n                await MainActor.run {\n                    guard isCurrent() else { return }\n                    self.workMetadata = meta\n                }\n                return\n            }\n            // The original provider may finish with a stale/cancelled error.\n            // Such a result cannot fall through into another backend's DB.\n            guard isCurrent() else { return }\n            if book.backendLocator == nil {\n                await MainActor.run {\n                    guard isCurrent() else { return }\n                    let dm = LibraryDataManager.shared\n                    let loadedAuthor = DatabaseManager.shared.getAuthor(book.muallif)\n                    guard isCurrent() else { return }\n                    author = loadedAuthor\n                    guard isCurrent() else { return }\n                    let loadedBook = dm.getBook([book.id]).first ?? book\n                    guard isCurrent() else { return }\n                    fullBookInfo = loadedBook\n                    guard isCurrent() else { return }\n\n                    dm.loadBookInfo(book.id) {\n                        guard isCurrent() else { return nil }\n                        if let updatedBook = dm.getBook([book.id]).first {\n                            guard isCurrent() else { return nil }\n                            fullBookInfo = updatedBook\n                        }\n                        return ()\n                    }\n                }\n            }\n        }\n    }"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "old": "                            in: Circle()\n                        )\n",
+      "new": "                            in: Circle()\n                        )\n                        .frame(width: 44, height: 44)\n                        .contentShape(Rectangle())\n"
+    }
+  ],
+  "scope": "Original two BookInfo task lifetimes and original card Close hit target; no route or authority added.",
+  "originalProviderAndDatabaseBodiesUnchanged": true,
+  "sdkRuns": 0,
+  "nativeRuns": 0
+}

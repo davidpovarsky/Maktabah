@@ -1,0 +1,72 @@
+{
+  "sourceMethods": [
+    {
+      "view": "OriginalSheet",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "variant": "before",
+      "fullFileSHA256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5",
+      "originalLoadBodySHA256": "e9489431a60e45fcbaf0e515968acc843f79f240ef4685ad91e5a061315a82cb",
+      "compiledLoadBodySHA256": "6a3ed8c80b5dcbad641154d74cc755391ff9d6eff00520d3cafc0d501d3ac435",
+      "compiledCancelBodySHA256": null,
+      "instrumentation": "Only invocation/defer completion observations; stripping both restores full original method bytes. No predicate or effect rewritten.",
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "view": "OriginalCard",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "variant": "before",
+      "fullFileSHA256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b",
+      "originalLoadBodySHA256": "e9489431a60e45fcbaf0e515968acc843f79f240ef4685ad91e5a061315a82cb",
+      "compiledLoadBodySHA256": "6a3ed8c80b5dcbad641154d74cc755391ff9d6eff00520d3cafc0d501d3ac435",
+      "compiledCancelBodySHA256": null,
+      "instrumentation": "Only invocation/defer completion observations; stripping both restores full original method bytes. No predicate or effect rewritten.",
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "view": "CurrentSheet",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "variant": "candidate",
+      "fullFileSHA256": "b58550a3b13107270767ef79f9c355694d9b818a7552e1d49e0bd5f69d3849e4",
+      "originalLoadBodySHA256": "206db270f27c13ed9f91e5309183c3603bc62f4901065fc1e5e75c65ea0c0c25",
+      "compiledLoadBodySHA256": "1dcf43cfa3c79057ba5ff7101e2c43ee7acecc1ff226b5039aa43e516499d134",
+      "compiledCancelBodySHA256": "fc005eb5d3834f33c62b91199d917ba09efb28eda4e67662dd22fe31fc4f4df0",
+      "instrumentation": "Only invocation/defer completion observations; stripping both restores full original method bytes. No predicate or effect rewritten.",
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "view": "CurrentCard",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "variant": "candidate",
+      "fullFileSHA256": "4609284891b03a36881fbf6a095b8bfc5234186e4c1cec9e7b6efde2a466ce93",
+      "originalLoadBodySHA256": "206db270f27c13ed9f91e5309183c3603bc62f4901065fc1e5e75c65ea0c0c25",
+      "compiledLoadBodySHA256": "1dcf43cfa3c79057ba5ff7101e2c43ee7acecc1ff226b5039aa43e516499d134",
+      "compiledCancelBodySHA256": "fc005eb5d3834f33c62b91199d917ba09efb28eda4e67662dd22fe31fc4f4df0",
+      "instrumentation": "Only invocation/defer completion observations; stripping both restores full original method bytes. No predicate or effect rewritten.",
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "originalDBPath": "library-fine-controls-analysis/extra-original-source/Source/Features/Library/Database/LibraryDataManager.swift",
+  "originalDBFileSHA256": "05653a3a9e7f86bd0825f65961afe39f8e34d54e5ff137317d14504b788dfa17",
+  "originalDBMethodSHA256": "b83279d77006d41e16c0c63a5c7ba70c2c00f28aa859a0a415b1558ea5030aec",
+  "controls": 9,
+  "views": 2,
+  "compiledSources": [
+    {
+      "path": "ActualOriginalMethods.swift",
+      "bytes": 9910,
+      "sha256": "a4a0d6b0549eb9a39a02417ab18f64868b0f8dd556dc72cbb9240e148799f671"
+    },
+    {
+      "path": "BookInfoControls.swift",
+      "bytes": 4740,
+      "sha256": "c70f14fc41bee0ad234a3ffe2aa40a8dc44526356fabebfc7f74884d5fb1ea87"
+    },
+    {
+      "path": "ExplicitBoundary.swift",
+      "bytes": 3865,
+      "sha256": "24c25bce0c40644a4eedd2bcad38348791ba18bb597677c2fa8fe9aea3e092e6"
+    }
+  ],
+  "sdk": 0,
+  "native": 0
+}

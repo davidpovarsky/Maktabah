@@ -1,0 +1,780 @@
+{
+  "schema": "otzaria.wave3.original-bookinfo-load-controls.v1",
+  "base": "e2ffdb5cc82f7b2c571ff093867bfe22a56fb546",
+  "priorFailedAttempt1Result": "9a88c2a1ab672690eab6866f5e5bceeea1266845335175c086dfba8403315bc9",
+  "fixtureCorrection": "TestView protocol declares Sendable, already provided by every global-MainActor concrete wrapper; no product or assertion changes.",
+  "status": "PASS_SOURCE_ONLY",
+  "started": "2026-11-27T20:29:08.392389+00:00",
+  "steps": [
+    {
+      "name": "compile-original-methods",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/module-cache",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/controls/ActualOriginalMethods.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/controls/BookInfoControls.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/controls/ExplicitBoundary.swift",
+        "-o",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/output/bookinfo-controls"
+      ],
+      "started": 1795811348.5223966,
+      "freeBefore": {
+        "root": 2254401536,
+        "data": 2891776000
+      },
+      "allocatedBefore": 155648,
+      "owner": {
+        "pid": 2304244,
+        "parent": 2304181,
+        "group": 2304244,
+        "startTicks": 733842035
+      },
+      "exit": 0,
+      "finished": 1795811351.9475932,
+      "freeAfter": {
+        "root": 2236313600,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18214912,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/compile-original-methods.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/compile-original-methods.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "run-original-methods",
+      "argv": [
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/output/bookinfo-controls"
+      ],
+      "started": 1795811351.9507008,
+      "freeBefore": {
+        "root": 2236313600,
+        "data": 2891776000
+      },
+      "allocatedBefore": 18214912,
+      "owner": {
+        "pid": 2304423,
+        "parent": 2304181,
+        "group": 2304423,
+        "startTicks": 733842378
+      },
+      "exit": 0,
+      "finished": 1795811352.1550713,
+      "freeAfter": {
+        "root": 2236305408,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18223104,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/run-original-methods.stdout",
+          "bytes": 6268,
+          "sha256": "43dd55053a255d53fa43b50d92bc60346abb0691fa0e32735e196cd336be0be7"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/run-original-methods.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "parse-0-Debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios26.0",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift"
+      ],
+      "started": 1795811352.1579375,
+      "freeBefore": {
+        "root": 2236301312,
+        "data": 2891776000
+      },
+      "allocatedBefore": 18227200,
+      "owner": {
+        "pid": 2304429,
+        "parent": 2304181,
+        "group": 2304429,
+        "startTicks": 733842399
+      },
+      "exit": 0,
+      "finished": 1795811352.3621237,
+      "freeAfter": {
+        "root": 2236293120,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18235392,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-0-Debug.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-0-Debug.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "parse-0-Release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios26.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/candidate/Source/Features/Reader/iOS/iOSBookInfoView.swift"
+      ],
+      "started": 1795811352.3652499,
+      "freeBefore": {
+        "root": 2236289024,
+        "data": 2891776000
+      },
+      "allocatedBefore": 18239488,
+      "owner": {
+        "pid": 2304431,
+        "parent": 2304181,
+        "group": 2304431,
+        "startTicks": 733842419
+      },
+      "exit": 0,
+      "finished": 1795811352.5696402,
+      "freeAfter": {
+        "root": 2236284928,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18239488,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-0-Release.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-0-Release.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "parse-1-Debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios26.0",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift"
+      ],
+      "started": 1795811352.5728161,
+      "freeBefore": {
+        "root": 2236284928,
+        "data": 2891776000
+      },
+      "allocatedBefore": 18239488,
+      "owner": {
+        "pid": 2304433,
+        "parent": 2304181,
+        "group": 2304433,
+        "startTicks": 733842440
+      },
+      "exit": 0,
+      "finished": 1795811352.7773714,
+      "freeAfter": {
+        "root": 2236284928,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18239488,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-1-Debug.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-1-Debug.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "parse-1-Release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios26.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/candidate/Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift"
+      ],
+      "started": 1795811352.780686,
+      "freeBefore": {
+        "root": 2236284928,
+        "data": 2891776000
+      },
+      "allocatedBefore": 18239488,
+      "owner": {
+        "pid": 2304435,
+        "parent": 2304181,
+        "group": 2304435,
+        "startTicks": 733842461
+      },
+      "exit": 0,
+      "finished": 1795811352.985179,
+      "freeAfter": {
+        "root": 2236280832,
+        "data": 2891776000
+      },
+      "allocatedAfter": 18243584,
+      "logs": [
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-1-Release.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/parse-1-Release.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "appleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "scope": "Full original BookInfo load/cancel methods with explicit completion instrumentation, original synchronous DB callback method, explicit SwiftUI storage/provider/domain boundaries. No app navigation, rendering, database integration or production acceptance.",
+  "input": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-inputs-attempt2-20261127.zip",
+    "bytes": 20405,
+    "sha256": "1ff00adad6b3cb3a28e0e4e81c7d7990eb28038e85b92a1e3fdbf0f103eaae62"
+  },
+  "actual": {
+    "baseline": [
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "currentMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "current",
+        "pass": true,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissBeforeMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "late",
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "replaceLoad",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "obsolete",
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "staleProviderCannotUseNewDB",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "sameBackendGeneration",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "backendABA",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "ordinaryLegacyOrder",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInAuthorRead",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInOriginalDBCompletion",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "currentMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "current",
+        "pass": true,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissBeforeMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "late",
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "replaceLoad",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "obsolete",
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "staleProviderCannotUseNewDB",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "sameBackendGeneration",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "backendABA",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "ordinaryLegacyOrder",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInAuthorRead",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInOriginalDBCompletion",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": false,
+        "view": "OriginalCard"
+      }
+    ],
+    "baselineFail": 14,
+    "baselinePass": 4,
+    "candidate": [
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "currentMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "current",
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissBeforeMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "replaceLoad",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "replacement",
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "staleProviderCannotUseNewDB",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "sameBackendGeneration",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "backendABA",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "ordinaryLegacyOrder",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissInAuthorRead",
+        "dbCalls": [
+          "author"
+        ],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInOriginalDBCompletion",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentSheet"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "currentMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "current",
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissBeforeMetadata",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "replaceLoad",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": "replacement",
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "staleProviderCannotUseNewDB",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "sameBackendGeneration",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "backendABA",
+        "dbCalls": [],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "ordinaryLegacyOrder",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get",
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": false,
+        "bookLoaded": false,
+        "case": "dismissInAuthorRead",
+        "dbCalls": [
+          "author"
+        ],
+        "libraryCalls": [],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      },
+      {
+        "authorLoaded": true,
+        "bookLoaded": true,
+        "case": "dismissInOriginalDBCompletion",
+        "dbCalls": [
+          "author",
+          "fetch"
+        ],
+        "libraryCalls": [
+          "get"
+        ],
+        "metadata": null,
+        "pass": true,
+        "view": "CurrentCard"
+      }
+    ],
+    "candidateFail": 0,
+    "candidatePass": 18,
+    "scope": "Exact original BookInfo load/cancel function bodies, original synchronous loadBookInfo callback body; explicit SwiftUI storage/provider/domain boundary. No Apple SDK/native/render/production acceptance."
+  },
+  "sourceEdits": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "beforeBytes": 6774,
+      "beforeSHA256": "645c101adbc8935d3922dde1b8ec36ea49486119f3cbf43403297fc8f47cf3a5",
+      "afterBytes": 8805,
+      "afterSHA256": "b58550a3b13107270767ef79f9c355694d9b818a7552e1d49e0bd5f69d3849e4",
+      "edits": 3,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "beforeBytes": 8318,
+      "beforeSHA256": "de8cef0998024714ef15716a6d5a540b8734879eab3acb90a0e596598238b72b",
+      "afterBytes": 10430,
+      "afterSHA256": "4609284891b03a36881fbf6a095b8bfc5234186e4c1cec9e7b6efde2a466ce93",
+      "edits": 4,
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "extraction": {
+    "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/inputs/controls/EXTRACTION.json",
+    "bytes": 3695,
+    "sha256": "875e4395465e06e2c5e2f948c9889d3f4c53fe2a7eb3819fc9ee3ff9c5a2ebde"
+  },
+  "product": {
+    "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/bookinfo-original-load-controls-20261127/attempt-2/output/bookinfo-controls",
+    "bytes": 293272,
+    "sha256": "f71c21a852aa6bd72e712bf789c8df4c09ee4bc60e61771b8189dd2f47bf12be"
+  },
+  "finished": "2026-11-27T20:29:13.033806+00:00",
+  "freeAfter": {
+    "root": 2236276736,
+    "data": 2891776000
+  },
+  "allocatedAfter": 18243584
+}

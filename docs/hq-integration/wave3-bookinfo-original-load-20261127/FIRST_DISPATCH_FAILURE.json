@@ -1,0 +1,7 @@
+{
+  "job": "job_e9f399e3fa70",
+  "exit": 1,
+  "beforeSourceAndCompiler": true,
+  "error": "FileNotFoundError: '/mnt/development/projects/diagnostics/otzaria-wave3-bookinfo-original-load-controls-runner-20261127.py'",
+  "reason": "Upload tool normalized target under its upload base; verified exact bytes were then explicitly staged at the declared final path."
+}
