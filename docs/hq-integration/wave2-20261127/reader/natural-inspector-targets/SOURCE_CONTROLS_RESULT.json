@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CONTROLS_PASS",
+  "scope": "Synthetic admission and SQLite fixture controls plus canonical source-byte comparison; no production corpus, Apple compilation, app or native UI",
+  "nativeUIExecuted": 0,
+  "productionDatabaseRead": false,
+  "cases": [
+    {
+      "name": "Complete synthetic exact set admits only to source-input validation",
+      "pass": true
+    },
+    {
+      "name": "Missing natural 2000 remains blocked",
+      "pass": true
+    },
+    {
+      "name": "Claimed 2006 with only a 2000-prefix cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Pending discovery status cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Wrong corpus hash cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Duplicate source index cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Altered full source membership cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Original three-book exploration cannot be replaced",
+      "pass": true
+    },
+    {
+      "name": "Whole relationship prefix cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Duplicate relationship membership cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Relationship identity change cannot pass digest",
+      "pass": true
+    },
+    {
+      "name": "Bool SQL identifier cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Omitted original discovery identity cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Reading mode fallback cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Complete natural2006 satisfies requested2000 while preserving actual count and every member",
+      "pass": true
+    },
+    {
+      "name": "Actual SQLite synthetic fixture covers holes/inverse/coverage/suppression/full identity dedup",
+      "pass": true
+    },
+    {
+      "name": "All eight actual retained Core files match canonical pinned Git SHA1 and SHA256",
+      "pass": true
+    },
+    {
+      "name": "Changed actual Core source cannot use a pinned manifest",
+      "pass": true
+    },
+    {
+      "name": "Wrong canonical Git commit is rejected",
+      "pass": true
+    },
+    {
+      "name": "Missing natural scale stops before original catalog compile or database access",
+      "pass": true
+    },
+    {
+      "name": "v32 cannot receive the natural v40 integration hook",
+      "pass": true
+    },
+    {
+      "name": "Complete actual original Formatting enum extraction retains exact bytes and offsets",
+      "pass": true
+    },
+    {
+      "name": "Changed original conditional tail fails closed instead of rewriting helper",
+      "pass": true
+    },
+    {
+      "name": "Ambiguous duplicate original Formatting enum fails closed",
+      "pass": true
+    },
+    {
+      "name": "Full ordered projection bytes independently rederive length-prefixed identity digest",
+      "pass": true
+    },
+    {
+      "name": "One changed interior identity rejects even when count and endpoints agree",
+      "pass": true
+    },
+    {
+      "name": "Reordered complete metadata array rejects without silently sorting",
+      "pass": true
+    },
+    {
+      "name": "Synthetic post-super matching retains actual-count versus requested-count distinction",
+      "pass": true
+    },
+    {
+      "name": "Equal count cannot admit a mismatched native complete-array digest",
+      "pass": true
+    },
+    {
+      "name": "Different original native digest encoding cannot be accepted",
+      "pass": true
+    }
+  ],
+  "passed": 30,
+  "failed": 0,
+  "helperSHA256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+  "controlSHA256": "5739df7e1003bac86465ff04affc6eafa4044cf3a3624e836544563384e2ece4",
+  "actualInputPaths": {
+    "helper": "/workspace/scratch/ca3b32b82803/reader-natural-targets/reader-v40-natural-inspector-catalog.py",
+    "core_source": "/workspace/scratch/ca3b32b82803/inspector-generation-control/kit/Sources/TorahInspectorCore",
+    "manifest": "/workspace/scratch/ca3b32b82803/reader-natural-targets/torah-inspector-core-canonical-blobs.json",
+    "adapter_source": "/workspace/scratch/ca3b32b82803/reader-natural-targets/own-original/Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift"
+  }
+}

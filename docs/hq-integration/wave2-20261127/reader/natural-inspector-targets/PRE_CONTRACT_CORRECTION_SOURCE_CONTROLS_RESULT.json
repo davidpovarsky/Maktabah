@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CONTROLS_PASS",
+  "scope": "Synthetic admission and SQLite fixture controls plus canonical source-byte comparison; no production corpus, Apple compilation, app or native UI",
+  "nativeUIExecuted": 0,
+  "productionDatabaseRead": false,
+  "cases": [
+    {
+      "name": "Complete synthetic exact set admits only to source-input validation",
+      "pass": true
+    },
+    {
+      "name": "Missing natural 2000 remains blocked",
+      "pass": true
+    },
+    {
+      "name": "Larger 2006 cannot stand in for 2000",
+      "pass": true
+    },
+    {
+      "name": "Pending discovery status cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Wrong corpus hash cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Duplicate source index cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Altered full source membership cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Original three-book exploration cannot be replaced",
+      "pass": true
+    },
+    {
+      "name": "Whole relationship prefix cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Duplicate relationship membership cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Relationship identity change cannot pass digest",
+      "pass": true
+    },
+    {
+      "name": "Bool SQL identifier cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Omitted original discovery identity cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Reading mode fallback cannot pass",
+      "pass": true
+    },
+    {
+      "name": "Actual SQLite synthetic fixture covers holes/inverse/coverage/suppression/full identity dedup",
+      "pass": true
+    },
+    {
+      "name": "All eight actual retained Core files match canonical pinned Git SHA1 and SHA256",
+      "pass": true
+    },
+    {
+      "name": "Changed actual Core source cannot use a pinned manifest",
+      "pass": true
+    },
+    {
+      "name": "Wrong canonical Git commit is rejected",
+      "pass": true
+    },
+    {
+      "name": "Missing natural scale stops before original catalog compile or database access",
+      "pass": true
+    },
+    {
+      "name": "v32 cannot receive the natural v40 integration hook",
+      "pass": true
+    }
+  ],
+  "passed": 20,
+  "failed": 0,
+  "helperSHA256": "6782e5990dc5932189134fb6ef9ccb14befe0faa9e4d72a757aab5006b9bb535"
+}

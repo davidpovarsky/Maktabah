@@ -1,0 +1,1 @@
+{"status": "SOURCE_CHECK_STOPPED_OR_FAILED_NO_NATIVE_ACCEPTANCE", "directory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T065711Z", "error": "AssertionError('Another SDK/App/compiler process is active; do not consume its reservation')"}

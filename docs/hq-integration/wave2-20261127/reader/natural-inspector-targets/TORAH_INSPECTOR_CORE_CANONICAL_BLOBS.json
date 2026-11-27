@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "repository": "TorahInspectorKit",
+  "commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "tree": "39941eb7cebab6cf834c206c4317295b9c30761a",
+  "oracleGitDirectory": "/mnt/development/projects/git-mirrors/TorahInspectorKit.git",
+  "command": "git --git-dir <existing-mirror> show <full-commit>:<path>",
+  "sources": {
+    "Sources/TorahInspectorCore/Models.swift": {
+      "gitBlob": "aeb7cc4215456c2db9bda284f7e947c643507408",
+      "bytes": 24592,
+      "sha256": "59a0c8639c8c778c67ff9c60db4b979e3ba7a39dff4c3fb669a54ae23dc113a0"
+    },
+    "Sources/TorahInspectorCore/ProviderProtocols.swift": {
+      "gitBlob": "d5c478fbe89c8d269d49c7b9818888dcd7ef39d0",
+      "bytes": 510,
+      "sha256": "9f5f28f1d71a97831827dce5dfe2324a60460fc7760137b9527e4c3815d20273"
+    },
+    "Sources/TorahInspectorCore/TorahInspectorCoordinator.swift": {
+      "gitBlob": "da439bb1cf8019e31bc172986de5b8eecaf30bb0",
+      "bytes": 461,
+      "sha256": "fccfc25ee56e165c6559aba52a1ccec39d10db6fd6a94a91c867cd38dc693116"
+    },
+    "Sources/TorahInspectorCore/TorahInspectorRepository.swift": {
+      "gitBlob": "e1f57e96079f5d93be37e1c014760763bc8d1bc7",
+      "bytes": 17499,
+      "sha256": "519828f3d602811758d2698e00a06567b41d31d465b143175441f08873300040"
+    },
+    "Sources/TorahInspectorCore/TorahReaderScrollStateMachine.swift": {
+      "gitBlob": "c67c042941bc3cbfda802b705ceebe5dff6c559a",
+      "bytes": 3444,
+      "sha256": "90173f3198133c6a746d00c9a6af9ad8cd854f5643f924d98e9095133da5bbdc"
+    },
+    "Sources/TorahInspectorCore/TorahRelatedDocumentsAccessError.swift": {
+      "gitBlob": "7e2e810e4af9e2f9d848efc52739199e645b249d",
+      "bytes": 355,
+      "sha256": "0ff22bb5a56ddff0235e7b6c5188c737b110cb2848d7e17dcaefc3ca1d6df2e6"
+    },
+    "Sources/TorahInspectorCore/TorahSourceTransfer.swift": {
+      "gitBlob": "17e72f52d4cdbd2355e04b384967f6f1b29c25de",
+      "bytes": 3410,
+      "sha256": "994da5da2cb6b163083c7f3dea20cfe74c781211eea0f144b394a6d047affc97"
+    },
+    "Sources/TorahInspectorCore/TorahToolSelectorStateMachine.swift": {
+      "gitBlob": "64eabfd80cce2a21e403a8adcf887799c16fc738",
+      "bytes": 2005,
+      "sha256": "34dda44a571764ea98e43449422340ad7a00dbe4b0d43c0036d7d48ad8119729"
+    }
+  },
+  "scope": "Original canonical Git blobs, no build or native acceptance"
+}

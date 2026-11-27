@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECK_STOPPED_OR_FAILED_NO_NATIVE_ACCEPTANCE",
+  "steps": [],
+  "sourceCommit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+  "sourceHashes": {
+    "FullV40InspectorNaturalTargets.swift": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392",
+    "FaithfulReaderUIAcceptanceTests.swift": "7af689805998e75f0db1fde303f6052385765f79f6f532c22489c661a4b386da",
+    "TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4",
+    "run-focused-apple-source-check.py": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a",
+    "Source/Core/Database/SQLiteDatabase.swift": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661",
+    "Source/Core/Database/ZstdShim.swift": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999",
+    "Source/Otzaria/Core/OtzariaSQLiteError.swift": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad",
+    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307",
+    "Source/Otzaria/Core/String+OtzariaText.swift": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1",
+    "Source/Otzaria/Data/OtzariaSchema.swift": "feabd62c4a170d5762bcc6bef09b27d1e736f122aa385dd5c2a148acb24829ad",
+    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1",
+    "Source/Otzaria/Domain/OtzariaModels.swift": "12ad63da275f52eb98b8c89fae7b71c0189756fb482e5d461106a64af44e9c68",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+    "Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift": "ba469fd3bda902397b4170ffe79d341591354e737bae3b6845ce1e8d099d759f",
+    "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift": "97197c59f64f96073bae1b99154dbef788464a1485d80e9c68a9494cb0534ae5",
+    "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "uiExecuted": 0,
+  "catalogExecuted": 0,
+  "scope": "Complete original Core and database services compile; whole registered Faithful XCTest typecheck. No app/SDK build, corpus read, simulator or native UI.",
+  "freeBytesBefore": 6836011008,
+  "activeBuildAdmissionMatches": [
+    "76806 76696 /Users/m1/builds/hanlin-two-wave-root-20261126/tool-bin/node --test --test-concurrency=2 Tests/archive-resources.test.mjs Tests/cli-entry-resolution.test.mjs Tests/compatibility.test.mjs Tests/execution-input.test.mjs Tests/execution-jobs.test.mjs Tests/fetch-compatibility.test.mjs Tests/fetch-conformance.test.mjs Tests/host-dependency-patches.test.mjs Tests/host-operations.test.mjs Tests/host.test.mjs Tests/job-terminal-publication.test.mjs Tests/mcp-install-lifecycle.test.mjs Tests/mcp-large-probe.test.mjs Tests/mcp-large-transport.test.mjs Tests/mcp-package-generations.test.mjs Tests/miniapp-assistant-tools.test.mjs Tests/miniapp-authoring.test.mjs Tests/miniapp-editor.test.mjs Tests/miniapp-sdk-resolution.test.mjs Tests/native-commands.test.mjs Tests/network-diagnostics.test.mjs Tests/optional-lifecycle.test.mjs Tests/package-lifecycle.test.mjs Tests/package-validation.test.mjs Tests/portable-shell.test.mjs Tests/runtime-capabilities.test.mjs Tests/runtime-command-broker.test.mjs Tests/runtime-package-target.test.mjs Tests/runtime.test.mjs Tests/typescript-jobs.test.mjs Tests/warning-diagnostics.test.mjs Tests/workspace-io.test.mjs",
+    "76812 76806 /Users/m1/builds/hanlin-two-wave-root-20261126/tools/node-v24.5.0-darwin-arm64/bin/node --test-concurrency=2 Tests/execution-jobs.test.mjs"
+  ],
+  "error": "AssertionError('Another SDK/App/compiler process is active; do not consume its reservation')",
+  "freeBytesAfter": 6835400704,
+  "finishedUTC": "2026-11-27T06:26:14.815974+00:00"
+}

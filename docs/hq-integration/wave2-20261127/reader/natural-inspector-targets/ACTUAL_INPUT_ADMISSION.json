@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "status": "ACTUAL_COMPLETE_SOURCE_INPUTS_ADMITTED_NO_SWIFT_OR_NATIVE_EXECUTION",
+  "helperSHA256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+  "selectedCandidatesSHA256": "6602ef9aaeda19f4c0734aa8858988ab0c91964b1ea304b6b5a12c984ae2053b",
+  "requestedCounts": [
+    100,
+    500,
+    2000
+  ],
+  "actualCompleteCounts": [
+    100,
+    500,
+    2006
+  ],
+  "completeRawTriples": 2606,
+  "targets": [
+    {
+      "bookID": 107,
+      "unitID": "toc:2448",
+      "sourceIndicesSHA256": "2e1e61d1846962e592a068de575af99e77613cf590185fcf86d06fea385627cd",
+      "rawMembershipSHA256": "eff5c916c09e3e195c5a10806f4b3085ab13cb19ebc721b0c22f3f19dd14aa2e",
+      "requestedCount": 100,
+      "candidateRawRelationshipCount": 100,
+      "discoveryReceipt": {
+        "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
+        "sha256": "5ad7a7d05ed0dfce0b8d334f59f80a9dd31ba7ce9ea38cdfbb7cfd4d2b9c548a"
+      }
+    },
+    {
+      "bookID": 6,
+      "unitID": "toc:199",
+      "sourceIndicesSHA256": "213cc336087603499e5b2d4a87c61688b44ae6b0aca47a1ce02532e398cbf152",
+      "rawMembershipSHA256": "16c0e819068590b1f97d9d3d76c8a6c912c2c8dab066e16c9311077df0e0e83d",
+      "requestedCount": 500,
+      "candidateRawRelationshipCount": 500,
+      "discoveryReceipt": {
+        "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
+        "sha256": "efd18aad0afa12b31355c5b449bc96cec3c2a0249bfa48e6286935859a73c01e"
+      }
+    },
+    {
+      "bookID": 1,
+      "unitID": "toc:39",
+      "sourceIndicesSHA256": "bf7de276503c295b5097bcd74d1bcaf93686ed7795b92f4031fb8dd79c4d3ad0",
+      "rawMembershipSHA256": "66e81fc0c19a813ae5171dc045206898d2be6393be385f5bb6e62ba9966820c2",
+      "requestedCount": 2000,
+      "candidateRawRelationshipCount": 2006,
+      "discoveryReceipt": {
+        "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
+        "sha256": "efd18aad0afa12b31355c5b449bc96cec3c2a0249bfa48e6286935859a73c01e"
+      }
+    }
+  ],
+  "databaseReadsPerformed": 0,
+  "originalSwiftExecuted": false,
+  "nativeUIExecuted": 0,
+  "materializationChildExitCodeObserved": null,
+  "materializationExitScope": "Detached producer reached and wrote its final assertions/receipt; launcher did not capture its child return code. This separate source-input admission performs no SQL."
+}
