@@ -1,0 +1,123 @@
+{
+  "bytes": 6071,
+  "sha256": "e461c65920f2d65cfd221f310f36341f973350d61a08f200a8cda2fe7da6172c",
+  "files": [
+    {
+      "path": "INPUTS_MANIFEST.json",
+      "bytes": 2145,
+      "sha256": "b6c08788b45664c0e80aefe9d831621bb6b945dd0d08e7a8c8e81e847a983e56"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 6121,
+      "sha256": "4faaf2f3c647a2cac66d46c565b0767032afee7898290dcc92501ed46aceed3f"
+    },
+    {
+      "path": "STATUS.json",
+      "bytes": 4111,
+      "sha256": "39dfadc3b193085b2a080b15806827c38ea8077e4edb0f70ab71c866478d4699"
+    },
+    {
+      "path": "baseline-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline-run.stdout",
+      "bytes": 1381,
+      "sha256": "e65e7d512b6268d6104574e2296c90fea1168e0fe46cd9b32c073f2f6e4a0858"
+    },
+    {
+      "path": "candidate-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-run.stdout",
+      "bytes": 1381,
+      "sha256": "6f0f647f227ee70155d3d4a4ccd86e8b260cd78afc53c4ddb0692ff3a322a48f"
+    },
+    {
+      "path": "intermediate-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "intermediate-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "intermediate-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "intermediate-run.stdout",
+      "bytes": 1381,
+      "sha256": "3be2bb269f1dbca75b54680f7b8a2f91d2f0092495b2d0697f70c9959d8ef39f"
+    }
+  ],
+  "result_sha256": "4faaf2f3c647a2cac66d46c565b0767032afee7898290dcc92501ed46aceed3f",
+  "results": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "passed": 6,
+      "failed": 15,
+      "failures": [
+        "FAIL actual will callback detects original Saved open-close ABA",
+        "FAIL actual will callback detects equal original State publication",
+        "FAIL actual observe callback detects owner A-B-A",
+        "FAIL actual disappearance and same-owner return remain retired",
+        "FAIL actual caller rejects already blocked original presentation",
+        "FAIL blocker callback cannot publish equal State then return false",
+        "FAIL blocker callback cannot replace owner A-B-A then return false",
+        "FAIL will metadata is revoked before original entry callback",
+        "FAIL owner replacement is revoked before original retirement callback",
+        "FAIL disappearance is revoked before original retirement callback",
+        "FAIL full original unmount revokes before its FIRST retirement callback",
+        "FAIL publication exhaustion is terminal across later original callbacks",
+        "FAIL actual caller retains Search history BEFORE window capture callback",
+        "FAIL actual caller rechecks Search AFTER final window callback",
+        "FAIL actual caller rechecks Search AFTER original readiness callback"
+      ]
+    },
+    {
+      "variant": "intermediate",
+      "exit": 1,
+      "passed": 20,
+      "failed": 1,
+      "failures": [
+        "FAIL full original unmount revokes before its FIRST retirement callback"
+      ]
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "passed": 21,
+      "failed": 0,
+      "failures": []
+    }
+  ]
+}

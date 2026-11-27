@@ -1,0 +1,133 @@
+{
+  "sources": [
+    {
+      "variant": "baseline",
+      "original": "baseline/OriginalSession.swift",
+      "original_bytes": 148572,
+      "original_sha256": "5d3c30b6a119ce445cc343b17ff7c3aad7e70a0bb49b9d56622007d6d3da91f8",
+      "capsule": "baseline/SessionCapsule.swift",
+      "capsule_sha256": "2bece3b0fcc598685ac254739cf60b6be0aa86d1ba2ab5c80d56e37164639392",
+      "methods": [
+        {
+          "name": "observeSearchPresentation",
+          "bytes": 431,
+          "sha256": "beb6d4dc5ec1116190fd443cce6b164e6f576a55f9a86594e3541b7040ef3e50"
+        },
+        {
+          "name": "originalSearchPresentationWillChange",
+          "bytes": 362,
+          "sha256": "c3f145ddb0609bd29b27ddcc22827f134d7022619458774567a60178c0999572"
+        },
+        {
+          "name": "removeSearchPresentation",
+          "bytes": 656,
+          "sha256": "31d5f6546f6d5d6608d9847751399e58966b2680c9b05145b250cdceb84140f1"
+        },
+        {
+          "name": "captureHistoryReaderWindow",
+          "bytes": 3829,
+          "sha256": "d39c348a0b37ed558b8f0cbcfd9e1c78928140c9d965c8957c5bc195889435fc"
+        },
+        {
+          "name": "unmount",
+          "bytes": 1959,
+          "sha256": "68211cae75075732b0a86ba62c74c223e2f4d894d5d391d0bf21f5e4a0c27eda"
+        }
+      ],
+      "baseline_note": "Actual old caller has no new helper; no synthetic baseline helper is compiled."
+    },
+    {
+      "variant": "intermediate",
+      "original": "intermediate/OriginalSession.swift",
+      "original_bytes": 150931,
+      "original_sha256": "bbf93e364f006428f1db86de7845ab1f6ecb4a2bfca0366c3ea00246c65e3ea7",
+      "capsule": "intermediate/SessionCapsule.swift",
+      "capsule_sha256": "5c0f180b1cb27b7fa67dbc97751ba4078549ce995128fcc8e84141310366b04d",
+      "methods": [
+        {
+          "name": "observeSearchPresentation",
+          "bytes": 490,
+          "sha256": "c6f734e19a4f9483c335a00e6a65d2abd1200fba3534bc31cc3acaab2fab418a"
+        },
+        {
+          "name": "originalSearchPresentationWillChange",
+          "bytes": 457,
+          "sha256": "9bba2ec2db93e42fc00b993143cd0af2894513d839816ddfce9f07eab69026c8"
+        },
+        {
+          "name": "removeSearchPresentation",
+          "bytes": 711,
+          "sha256": "47988d4f4ea2d661703ca9d23d129c4ddc8cfa02cffaa9de0f065df5f9f4c18c"
+        },
+        {
+          "name": "captureHistoryReaderWindow",
+          "bytes": 3985,
+          "sha256": "9042efadd29476e0834e352043aaa243bb7a05a8dcc3edee28bcb03c5cf6f43f"
+        },
+        {
+          "name": "unmount",
+          "bytes": 2014,
+          "sha256": "3e66a593be70bb4f8baa56c38a941486fafb40958ed62a8ab5bffb96ee06ec78"
+        },
+        {
+          "name": "advanceOriginalSearchPresentationPublication",
+          "bytes": 308,
+          "sha256": "03c382cbe537c9049c04b46bed4c312403bffc0d2655c1c890f8ce0f47374e9c"
+        },
+        {
+          "name": "retainHistorySearchPresentationObservation",
+          "bytes": 1216,
+          "sha256": "56cba0d9e2e9c2ca9a05937fdd432549787b0eca5d671b16d8bb43420405907b"
+        }
+      ],
+      "baseline_note": "Exact source helper and actual full caller/unmount."
+    },
+    {
+      "variant": "candidate",
+      "original": "candidate/OriginalSession.swift",
+      "original_bytes": 150931,
+      "original_sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+      "capsule": "candidate/SessionCapsule.swift",
+      "capsule_sha256": "ad4d8466b38e6cd0d1e41435cefded72a0cd75af6f7791f08f880041f7fb78ad",
+      "methods": [
+        {
+          "name": "observeSearchPresentation",
+          "bytes": 490,
+          "sha256": "c6f734e19a4f9483c335a00e6a65d2abd1200fba3534bc31cc3acaab2fab418a"
+        },
+        {
+          "name": "originalSearchPresentationWillChange",
+          "bytes": 457,
+          "sha256": "9bba2ec2db93e42fc00b993143cd0af2894513d839816ddfce9f07eab69026c8"
+        },
+        {
+          "name": "removeSearchPresentation",
+          "bytes": 711,
+          "sha256": "47988d4f4ea2d661703ca9d23d129c4ddc8cfa02cffaa9de0f065df5f9f4c18c"
+        },
+        {
+          "name": "captureHistoryReaderWindow",
+          "bytes": 3985,
+          "sha256": "9042efadd29476e0834e352043aaa243bb7a05a8dcc3edee28bcb03c5cf6f43f"
+        },
+        {
+          "name": "unmount",
+          "bytes": 2014,
+          "sha256": "19b04c502db3f28b2cf85c59736a3638ee109f7db8d56d05454abf55b9e8feaa"
+        },
+        {
+          "name": "advanceOriginalSearchPresentationPublication",
+          "bytes": 308,
+          "sha256": "03c382cbe537c9049c04b46bed4c312403bffc0d2655c1c890f8ce0f47374e9c"
+        },
+        {
+          "name": "retainHistorySearchPresentationObservation",
+          "bytes": 1216,
+          "sha256": "56cba0d9e2e9c2ca9a05937fdd432549787b0eca5d671b16d8bb43420405907b"
+        }
+      ],
+      "baseline_note": "Exact source helper and actual full caller/unmount."
+    }
+  ],
+  "boundary": "Exact Session helper/original callbacks/full captureHistoryReaderWindow/full unmount over explicit stable app/UIKit/window/store/model boundaries. No synthesized old helper; no native or Core effect."
+}

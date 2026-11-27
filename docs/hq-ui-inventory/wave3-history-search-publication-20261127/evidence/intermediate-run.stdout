@@ -1,0 +1,22 @@
+PASS actual caller allows stable absent Search owner
+PASS actual caller allows stable original Search owner
+PASS same-owner original observation preserves a stable proof
+PASS wrong owner State notification does not revoke exact owner
+PASS wrong owner disappearance does not remove exact owner
+PASS actual will callback detects original Saved open-close ABA
+PASS actual will callback detects equal original State publication
+PASS actual observe callback detects owner A-B-A
+PASS actual disappearance and same-owner return remain retired
+PASS actual caller rejects already blocked original presentation
+PASS blocker callback cannot publish equal State then return false
+PASS blocker callback cannot replace owner A-B-A then return false
+PASS will metadata is revoked before original entry callback
+PASS owner replacement is revoked before original retirement callback
+PASS disappearance is revoked before original retirement callback
+FAIL full original unmount revokes before its FIRST retirement callback
+PASS publication exhaustion is terminal across later original callbacks
+PASS actual caller retains Search history BEFORE window capture callback
+PASS actual caller rechecks Search AFTER final window callback
+PASS actual caller rechecks Search AFTER original readiness callback
+PASS original callback order remains unchanged after metadata publication
+RESULT passed=20 failed=1

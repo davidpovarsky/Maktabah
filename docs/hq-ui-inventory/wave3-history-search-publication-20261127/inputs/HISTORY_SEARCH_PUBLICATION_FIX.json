@@ -1,0 +1,13 @@
+{
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+  "beforeBytes": 148572,
+  "beforeSHA256": "5d3c30b6a119ce445cc343b17ff7c3aad7e70a0bb49b9d56622007d6d3da91f8",
+  "afterBytes": 150931,
+  "afterSHA256": "bbf93e364f006428f1db86de7845ab1f6ecb4a2bfca0366c3ea00246c65e3ea7",
+  "exactEditGroups": 9,
+  "inverseRestoresCombinedSavedHistorySearch": true,
+  "reason": "Actual existing Saved Search-state open/close can leave the same window/root/mapping. The original exact-owner callback now retires the captured publication history before existing callbacks; original UI assignments and callback order are preserved.",
+  "controls": "PENDING",
+  "AppleSDK": "NOT_RUN",
+  "native": "NOT_RUN"
+}
