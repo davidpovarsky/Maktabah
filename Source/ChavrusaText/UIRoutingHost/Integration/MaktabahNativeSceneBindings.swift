@@ -83,8 +83,9 @@ struct MaktabahNativeSceneBindings {
             // Pop the presented reader without closing its tab or replacing
             // its model; original onDisappear persists the reading position.
             if !MaktabahApp.isIpad { manager.selectedBook = nil }
+            // The original TabView selection observer owns mode publication.
+            // Use the same selection transition as an original native tab tap.
             selectedTab.wrappedValue = root.tab
-            manager.switchToMode(root.tab.appMode)
         case "native.reader":
             if let reservedTab {
                 guard let content = command.route.route.content, content.presentationMode == .newTab,
