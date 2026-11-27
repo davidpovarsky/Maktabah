@@ -56,7 +56,8 @@ struct MaktabahNativeSceneProjection {
     /// Only return states which can actually be observed from this host. Unknown
     /// compact-column visibility, unread content or source mismatch stays nil.
     func surface(_ surface: Surface,
-                 workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil) throws -> NativeSurfaceState? {
+                 workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
+                 phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
@@ -97,7 +98,13 @@ struct MaktabahNativeSceneProjection {
             return .init(destination: id(root.rawValue), presentation: .init(), content: nil, state: state, focus: nil)
         case .library, .tableOfContents:
             guard !settingsPresented, selectedTab.canonical == .viewer, manager.currentMode == .viewer else { return nil }
-            if let sidebar {
+            if !MaktabahApp.isIpad && surface == .tableOfContents {
+                guard let phoneTOCPresentation, phoneTOCPresentation.isPresented,
+                      !phoneTOCPresentation.blocksRouting, !phoneTOCPresentation.isTransitioning else { return nil }
+                // The original pushed Reader owns this TOC column. Its state is
+                // not a receipt: the independent actual tocColumn witness still
+                // must appear in this scene before a currentTab ACK is possible.
+            } else if let sidebar {
                 let page: ReaderSidebarPageCoordinator.Page = surface == .library ? .library : .contents
                 guard sidebar.page == page,
                       columnVisibility == .all || columnVisibility == .doubleColumn else { return nil }

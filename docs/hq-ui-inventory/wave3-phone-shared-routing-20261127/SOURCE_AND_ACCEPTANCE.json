@@ -1,0 +1,89 @@
+{
+  "created_at": "2026-11-27T03:04:48.060809+00:00",
+  "base_with_feature_dependencies": "3f2d1f1a6b207ce302b3ec41dd45335fee2de5e1",
+  "scope": "Five existing shared native routing integration files. Original phone TOC presentation remains currentTab, with the exact retained original Reader/tab/book and one canonical route admission.",
+  "source_hashes": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "69ad8543ded3642c0eda05e133457abb9b3bf34ae1429d67cb4b13d543293f72",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "2fead2b6584cc8f066dad38c21a68c8a32ca47f34463386c295c5833dd9aae40",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "a62f41d6b6af4c63eac3f8e248d2aaa5570bb539714f90d2f8dd47a1aadbf0fb",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "b157b4a4be79f549640ddddc6e224d8ab345bce51a32ff7faaca25d36f928ef1"
+  },
+  "feature_dependency_commits": [
+    "dd2e7bf73b1716cdb9723a7de3e5bf51681a9d85",
+    "095ce34b3f0d5b5c60a61faa573ff4b9d99bb585"
+  ],
+  "required_feature_sources": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad"
+  },
+  "workspace_shared_predecessors": [
+    "26ebcfe9f264a7513b46049417bc2dd1bf510848",
+    "a80cea2256235d824bb7c17efc289a0c1aecc250"
+  ],
+  "review": {
+    "peer": "/root/release_preflight",
+    "result": "Read-only review found no blocker in parent-before-component capture, same request/deadline forwarding, exact +0/+1 original setter, foreign Settings preservation, read-only own-push continuation facet, and mandatory actual tocColumn witness.",
+    "scope": "Source review, not runtime acceptance"
+  },
+  "actual_validation": {
+    "syntax": {
+      "passed": 5,
+      "failed": 0,
+      "app_sdk_typecheck": false,
+      "receipt": "SYNTAX_ATTEMPT_1.json"
+    },
+    "mac_component_controls": {
+      "passed": 29,
+      "failed": 0,
+      "scope": "Actual phone source, actual portable one-shot Observation, actual selectedBook and switchToMode setters, and VERBATIM shared phone Reader setter. Explicit synthetic app-domain/Binding/root-capability/Core-validator boundary. No UIKit/app SDK/native evidence.",
+      "receipt": "validation/shared-parent-setter-attempt-1/MAC_RESULT.json"
+    },
+    "negative_settings_guard_removal": {
+      "passed": 28,
+      "failed": 1,
+      "expected_exit": 1,
+      "log": "validation/shared-parent-setter-attempt-1/NegativeForeignSettings.log"
+    },
+    "integrity": "All recorded harness and raw log hashes rechecked; verbatim original mode setter/shared phone setter and exact current peer phone class verified.",
+    "native_ui_tests_executed": 0,
+    "full_application_sdk_compile": "NOT_RUN",
+    "physical_qa": "NOT_RUN",
+    "raw_capture_formatting": "Five verbatim Swift captures retain trailing blank lines; full staged warning and clean product check are preserved in RAW_CAPTURE_FORMATTING.json."
+  },
+  "membership": {
+    "shared_files": "All five changed files already belong to the original iOS app target.",
+    "root_action": "Register peer MaktabahNativePhoneTOCPresentation.swift as a real PBXFileReference/PBXBuildFile in the original Native Routing Host group and iOS Sources phase. This packet does not edit the shared project."
+  },
+  "pending_acceptance": [
+    "Actual integrated app and UI test target SDK compile.",
+    "Actual cold and warm phone TOC root/component routes through system App Intents, v1/v2 URL admission, and independent original tocColumn/row witnesses.",
+    "Existing Native116 and Release114+2 on the final integrated production candidate; no selectors or counts changed here.",
+    "Owner physical iPad/iPhone QA after beta availability."
+  ],
+  "artifacts": {
+    "MaktabahNativePublicBindingAdapter.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "MaktabahNativeRoutingComposition.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "MaktabahNativeSceneBindings.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "MaktabahNativeSceneProjection.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "MaktabahNativeSceneSession.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "RAW_CAPTURE_FORMATTING.json": "5ea57e0f76ff8d504461d4b5593730ac19aadfc4451f980866012b21d7f51afa",
+    "README.md": "ca33e6fb50df0ab828f17d323aed192f9cf0adf78bee83804c0591a8044c3c40",
+    "SYNTAX_ATTEMPT_1.json": "94f01ae430cf7a65e537a204ef02e00b5f09596b32959721ccffe0e22fafb35f",
+    "validation/shared-parent-setter-attempt-1/ActualContracts.swift": "64979a504ce46be21ff961d6c06a4a9c9fdef8898df8ca96a7124dafce53aedb",
+    "validation/shared-parent-setter-attempt-1/ActualObservation.swift": "cff7ccdb91cc07c1da4a8c7078e56d7eba3b3c490663f12c23bedfaa0def1341",
+    "validation/shared-parent-setter-attempt-1/ActualOriginalModeSetter.swift": "1e29d2e5de505772d9ff1fb4084d4976decd00cd560cf842f59c3ac7e829d200",
+    "validation/shared-parent-setter-attempt-1/ActualPhone.swift": "263f0e5d2ae28b18be648446f9632a76238041432e1ea5439066fe52b21de06a",
+    "validation/shared-parent-setter-attempt-1/ActualSharedSetter.swift": "20d06789c552659ace187bb9b2f56825a1b47da2040eab59c248cb9569576b2f",
+    "validation/shared-parent-setter-attempt-1/Boundary.swift": "57f8c810b3440c8825e8cc256da6ae68ac2d1d7dcc561b6fbeb9118295ac7b73",
+    "validation/shared-parent-setter-attempt-1/Combined.log": "bbd0f25bd93929770ff781cb192cdc08d61a4fd0ac5c63227753f300047de264",
+    "validation/shared-parent-setter-attempt-1/Combined.swift": "eae9eb2d4f6fe6763c94baf03043f9457dc09edc415c3f6f48a35809414921f9",
+    "validation/shared-parent-setter-attempt-1/Controls.swift": "1223d12b879cb11d8b14c906d72bbab3220afcefe27737740a4dc24d68ef1b83",
+    "validation/shared-parent-setter-attempt-1/MAC_RESULT.json": "c1460345ea40b6d2b9066effd3d08ea3c6750a8364b9ed9a794ba0f6bd87fca4",
+    "validation/shared-parent-setter-attempt-1/NegativeForeignSettings.log": "7c0b9fa13e6dfc17fed8b2d03756062b9c42d2a31a90617103d6d2caf55b9b29",
+    "validation/shared-parent-setter-attempt-1/NegativeForeignSettings.swift": "5fe98477346ed6690667ca69920424d48290b78d5c2a52c8fcff96cc56fa316c",
+    "validation/shared-parent-setter-attempt-1/SOURCE.json": "5a09a99220965befcbcdbced27a712eddf9ed565f7da55ad29b62b91066e6bd8",
+    "validation/shared-parent-setter-attempt-1/WINDOWS_TRANSPORT_FAILURE.json": "446b9766150fa18a86908aa33731f7048b23f47152a0a2160d70706ea43b5966"
+  }
+}

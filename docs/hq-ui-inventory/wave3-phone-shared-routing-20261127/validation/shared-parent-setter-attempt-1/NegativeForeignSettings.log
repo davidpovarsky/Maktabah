@@ -1,0 +1,30 @@
+PASS cold canonical apply has no original contents callback before mount
+PASS first exact original cold mount renders once and retains source
+PASS ordinary original close permanently retires completed source
+PASS same Viewer-owned book permits exactly zero book setter writes
+PASS same book owned by another stack needs exactly one original setter write
+PASS selectedBook ABA before apply prevents original navigation
+PASS original TOC source ABA cannot be restored
+PASS workspace transition ABA permanently revokes original source
+PASS blocking original overlay ABA prevents late navigation
+PASS expired original admission prevents canonical apply
+PASS reentrant admission retirement prevents canonical setter
+PASS reentrant extra book writes cannot hide inside canonical apply
+PASS released request cannot join a late first mount
+PASS same exact attachment refresh does not loop publication
+PASS one original contents callback per retained request
+PASS replacement original view token revokes old request
+PASS stale detach cannot remove another exact mounted owner
+PASS exact original detach prevents late contents callback
+PASS reentrant render validation cannot mutate original UI
+PASS reentrant user event during original callback cannot preserve source
+PASS uncompleted original transaction cannot retain component proof
+PASS scene unmount drops original registration and prevents callback
+PASS wrong original scene is unavailable
+PASS duplicate actual active tabs are unavailable
+PASS original Group child change preserves exact workspace lifetime
+PASS actual stack ownership departure detaches original workspace
+FAIL actual shared setter preserves foreign Settings and performs no book assignment
+PASS reentrant original selection callback cannot borrow declared book revision
+PASS actual shared setter never replaces an unrelated original selected book
+RESULT passed=28 failed=1

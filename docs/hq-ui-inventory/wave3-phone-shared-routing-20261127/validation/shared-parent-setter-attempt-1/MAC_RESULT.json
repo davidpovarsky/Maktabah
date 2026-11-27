@@ -1,0 +1,70 @@
+{
+  "transport_returncode": 0,
+  "transport_stderr": "",
+  "result": {
+    "created_at": "2026-11-27T02:52:34.431606+00:00",
+    "directory": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01",
+    "cache": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+    "source_inputs": {
+      "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/UI/iOS/Managers/iOSNavigationManager.swift": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d"
+    },
+    "scope": "Actual phone source, actual portable one-shot Observation, actual selectedBook and switchToMode setters, and VERBATIM shared phone Reader setter. Explicit synthetic app-domain/Binding/root-capability/Core-validator boundary. No UIKit/app SDK/native evidence.",
+    "swift_version": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+    "available_before": 10996322304,
+    "available_after": 10994610176,
+    "directory_bytes": 1028630,
+    "results": [
+      {
+        "variant": "Combined",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/Combined.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/Combined"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 0,
+        "elapsed_seconds": 1.475,
+        "source_sha256": "eae9eb2d4f6fe6763c94baf03043f9457dc09edc415c3f6f48a35809414921f9",
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/Combined.log",
+        "log_sha256": "bbd0f25bd93929770ff781cb192cdc08d61a4fd0ac5c63227753f300047de264",
+        "output": "PASS cold canonical apply has no original contents callback before mount\nPASS first exact original cold mount renders once and retains source\nPASS ordinary original close permanently retires completed source\nPASS same Viewer-owned book permits exactly zero book setter writes\nPASS same book owned by another stack needs exactly one original setter write\nPASS selectedBook ABA before apply prevents original navigation\nPASS original TOC source ABA cannot be restored\nPASS workspace transition ABA permanently revokes original source\nPASS blocking original overlay ABA prevents late navigation\nPASS expired original admission prevents canonical apply\nPASS reentrant admission retirement prevents canonical setter\nPASS reentrant extra book writes cannot hide inside canonical apply\nPASS released request cannot join a late first mount\nPASS same exact attachment refresh does not loop publication\nPASS one original contents callback per retained request\nPASS replacement original view token revokes old request\nPASS stale detach cannot remove another exact mounted owner\nPASS exact original detach prevents late contents callback\nPASS reentrant render validation cannot mutate original UI\nPASS reentrant user event during original callback cannot preserve source\nPASS uncompleted original transaction cannot retain component proof\nPASS scene unmount drops original registration and prevents callback\nPASS wrong original scene is unavailable\nPASS duplicate actual active tabs are unavailable\nPASS original Group child change preserves exact workspace lifetime\nPASS actual stack ownership departure detaches original workspace\nPASS actual shared setter preserves foreign Settings and performs no book assignment\nPASS reentrant original selection callback cannot borrow declared book revision\nPASS actual shared setter never replaces an unrelated original selected book\nRESULT passed=29 failed=0\n"
+      },
+      {
+        "variant": "NegativeForeignSettings",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/NegativeForeignSettings.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/NegativeForeignSettings"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 1,
+        "elapsed_seconds": 1.111,
+        "source_sha256": "5fe98477346ed6690667ca69920424d48290b78d5c2a52c8fcff96cc56fa316c",
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/phone-shared-setter-01/NegativeForeignSettings.log",
+        "log_sha256": "7c0b9fa13e6dfc17fed8b2d03756062b9c42d2a31a90617103d6d2caf55b9b29",
+        "output": "PASS cold canonical apply has no original contents callback before mount\nPASS first exact original cold mount renders once and retains source\nPASS ordinary original close permanently retires completed source\nPASS same Viewer-owned book permits exactly zero book setter writes\nPASS same book owned by another stack needs exactly one original setter write\nPASS selectedBook ABA before apply prevents original navigation\nPASS original TOC source ABA cannot be restored\nPASS workspace transition ABA permanently revokes original source\nPASS blocking original overlay ABA prevents late navigation\nPASS expired original admission prevents canonical apply\nPASS reentrant admission retirement prevents canonical setter\nPASS reentrant extra book writes cannot hide inside canonical apply\nPASS released request cannot join a late first mount\nPASS same exact attachment refresh does not loop publication\nPASS one original contents callback per retained request\nPASS replacement original view token revokes old request\nPASS stale detach cannot remove another exact mounted owner\nPASS exact original detach prevents late contents callback\nPASS reentrant render validation cannot mutate original UI\nPASS reentrant user event during original callback cannot preserve source\nPASS uncompleted original transaction cannot retain component proof\nPASS scene unmount drops original registration and prevents callback\nPASS wrong original scene is unavailable\nPASS duplicate actual active tabs are unavailable\nPASS original Group child change preserves exact workspace lifetime\nPASS actual stack ownership departure detaches original workspace\nFAIL actual shared setter preserves foreign Settings and performs no book assignment\nPASS reentrant original selection callback cannot borrow declared book revision\nPASS actual shared setter never replaces an unrelated original selected book\nRESULT passed=28 failed=1\n"
+      }
+    ]
+  },
+  "production_inputs_unchanged": true
+}
