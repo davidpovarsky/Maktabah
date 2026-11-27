@@ -2,6 +2,7 @@ import Foundation
 import XCTest
 import HanlinChatCore
 import HanlinHostContracts
+import HanlinPlatformContracts
 import HanlinPresentationKit
 @testable import OtzariaHanlinConsumerStore
 #if os(Windows)
@@ -274,5 +275,91 @@ final class OtzariaHanlinConversationStoreTests: XCTestCase {
         XCTAssertEqual(saved.0.presentations[id]?.values["fieldB"], .string("React value"))
         XCTAssertEqual(saved.0.presentations[id]?.expandedActivityIDs, ["reasoning"])
         XCTAssertEqual(saved.0.messages, history.messages)
+    }
+}
+
+
+// Value-only fixtures: these tests do not execute MCP, Skills or a model provider.
+extension OtzariaHanlinConversationStoreTests {
+    private func selectedCapability() -> HanlinCapabilityAttachment {
+        .init(reference: .init(kind: .mcp, sourceID: "explicit-history-fixture",
+            capabilityID: "echo", revision: "original-revision"),
+            title: "Stored capability value", configuration: .object(["query": .string("שלום")]))
+    }
+
+    func testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem() async throws {
+        let (root, identity, history) = try fixture()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = OtzariaHanlinConversationStore(rootURL: root)
+        let scoped = OtzariaHanlinScopedConversationStore(identity: identity, store: store, validateOwner: {})
+        _ = try scoped.saveHistory(history, replacing: nil)
+        let bytes = try Data(contentsOf: file(root, identity))
+        let document = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        let prior = try XCTUnwrap(document["history"] as? [String: Any])
+        XCTAssertNil(prior["draftCapabilities"]); XCTAssertNil(prior["messageCapabilities"])
+        let reopened = OtzariaHanlinConversationStore(rootURL: root)
+        let restored = try XCTUnwrap(reopened.history(identity.conversationID, namespace: identity.context.namespace))
+        XCTAssertEqual(restored.0, history)
+        XCTAssertNil(restored.0.draftCapabilities); XCTAssertNil(restored.0.messageCapabilities)
+        XCTAssertEqual(try Data(contentsOf: file(root, identity)), bytes)
+    }
+
+    func testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen() async throws {
+        let (root, identity, original) = try fixture()
+        defer { try? FileManager.default.removeItem(at: root) }
+        var history = original
+        let user = try XCTUnwrap(history.messages.first { $0.role == "user" })
+        let selection = selectedCapability()
+        history.draftCapabilities = [selection]; history.messageCapabilities = [user.id: [selection]]
+        let store = OtzariaHanlinConversationStore(rootURL: root)
+        let scoped = OtzariaHanlinScopedConversationStore(identity: identity, store: store, validateOwner: {})
+        let revision = try scoped.saveHistory(history, replacing: nil)
+        var edited = selection; edited.configuration = .object(["query": .string("טיוטה אחרת")])
+        history.draftCapabilities = [edited]
+        XCTAssertEqual(try scoped.saveHistory(history, replacing: revision), revision + 1)
+        let reopened = OtzariaHanlinConversationStore(rootURL: root)
+        let restored = try XCTUnwrap(reopened.history(identity.conversationID, namespace: identity.context.namespace))
+        XCTAssertEqual(restored.0.draftCapabilities, [edited])
+        XCTAssertEqual(restored.0.messageCapabilities?[user.id], [selection])
+        XCTAssertNil(try reopened.loadMetadata(identity.conversationID, namespace: identity.context.namespace),
+                     "Selection values must not fabricate SDK metadata or execution authority")
+    }
+
+    func testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk() async throws {
+        let (root, identity, history) = try fixture()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = OtzariaHanlinConversationStore(rootURL: root)
+        let scoped = OtzariaHanlinScopedConversationStore(identity: identity, store: store, validateOwner: {})
+        let revision = try scoped.saveHistory(history, replacing: nil)
+        let bytes = try Data(contentsOf: file(root, identity))
+        let selected = selectedCapability()
+        var cases: [OtzariaHanlinHistory] = []
+        var invalid = history; invalid.messageCapabilities = [UUID(): [selected]]; cases.append(invalid)
+        invalid = history
+        let assistant = try XCTUnwrap(history.messages.first { $0.role == "assistant" })
+        invalid.messageCapabilities = [assistant.id: [selected]]; cases.append(invalid)
+        invalid = history; invalid.draftCapabilities = [selected, selected]; cases.append(invalid)
+        var duplicate = selected; duplicate.id = UUID()
+        invalid = history; invalid.draftCapabilities = [selected, duplicate]; cases.append(invalid)
+        for value in cases {
+            XCTAssertThrowsError(try scoped.saveHistory(value, replacing: revision))
+            XCTAssertEqual(try Data(contentsOf: file(root, identity)), bytes)
+        }
+    }
+
+    func testCapabilityHistoryCannotBypassExistingStoreByteLimit() async throws {
+        let (root, identity, original) = try fixture()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let store = OtzariaHanlinConversationStore(rootURL: root)
+        let scoped = OtzariaHanlinScopedConversationStore(identity: identity, store: store, validateOwner: {})
+        let revision = try scoped.saveHistory(original, replacing: nil)
+        let bytes = try Data(contentsOf: file(root, identity))
+        var oversized = original; var value = selectedCapability()
+        value.configuration = .object(["query": .string(String(repeating: "a", count: OtzariaHanlinConversationStore.maximumBytes))])
+        oversized.draftCapabilities = [value]
+        XCTAssertThrowsError(try scoped.saveHistory(oversized, replacing: revision)) { error in
+            XCTAssertEqual(error as? HanlinHostError, .storageLimitExceeded)
+        }
+        XCTAssertEqual(try Data(contentsOf: file(root, identity)), bytes)
     }
 }
