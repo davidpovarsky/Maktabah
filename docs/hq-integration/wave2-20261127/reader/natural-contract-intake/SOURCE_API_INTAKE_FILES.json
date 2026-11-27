@@ -1,0 +1,443 @@
+[
+  {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "2bbf3c5bbc7c5d810f86df66202f06a7ffb90764",
+    "integratedBlob": "895637756a68b3b003935f604bb2592927d2cd28",
+    "bytes": 351920,
+    "sha256": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf",
+    "mergedPreservingRootPrefix": true
+  },
+  {
+    "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "cd8a83f78a364ca5890788a71f5d18fe8360ba89",
+    "integratedBlob": "cd8a83f78a364ca5890788a71f5d18fe8360ba89",
+    "bytes": 7980,
+    "sha256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "4337876bc105cc2f58ba837acf15d001d940cce1",
+    "integratedBlob": "4337876bc105cc2f58ba837acf15d001d940cce1",
+    "bytes": 24850,
+    "sha256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "Scripts/CI/reader-v40-natural-inspector-catalog.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "45fac92d01be23470aa0d1a305ec9bfeec79e206",
+    "integratedBlob": "45fac92d01be23470aa0d1a305ec9bfeec79e206",
+    "bytes": 35424,
+    "sha256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "30ae9a3573159a0481d3a07b9c21ff6b6c3cf8d7",
+    "integratedBlob": "30ae9a3573159a0481d3a07b9c21ff6b6c3cf8d7",
+    "bytes": 19714,
+    "sha256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ACTUAL_INPUT_ADMISSION.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "b6283bcedeb9782c1cafba6bd91bbc1bf5a37ff4",
+    "integratedBlob": "b6283bcedeb9782c1cafba6bd91bbc1bf5a37ff4",
+    "bytes": 2487,
+    "sha256": "daf0c63d09fd37affc1cb7a4cb05a54357d69bca574ad3f4caf1f4dafd5b0e77",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/CHECKPOINT_SOURCE_MANIFEST.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "339ee19a66ce9d85845f3e904734fd3d82049e7d",
+    "integratedBlob": "339ee19a66ce9d85845f3e904734fd3d82049e7d",
+    "bytes": 2751,
+    "sha256": "b74f529695adf2cd2537e3f23bab4832c2a8600789971ab3933dedeac667603e",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "00525a8def93e6b3ad9304ed07a98131c3f903c6",
+    "integratedBlob": "00525a8def93e6b3ad9304ed07a98131c3f903c6",
+    "bytes": 2402,
+    "sha256": "c2614ea17cd6f64dbc1a1283a70a40da62bbb1708c40f61d63b17c258671899b",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ORIGINAL_REQUIREMENT_TASKS.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "84e635592f09a6637196fd89d4e1a4912b2b38a1",
+    "integratedBlob": "84e635592f09a6637196fd89d4e1a4912b2b38a1",
+    "bytes": 25298,
+    "sha256": "c96c9585b1f2f05f83c01b38b49b56d9b462de68b3a557a9e1dd5a28ffc3a3dd",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/PRE_CONTRACT_CORRECTION_SOURCE_CONTROLS_RESULT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "80dac1f59c13cc6e5e24bc5b3f7870dad90e6506",
+    "integratedBlob": "80dac1f59c13cc6e5e24bc5b3f7870dad90e6506",
+    "bytes": 2371,
+    "sha256": "fce6dd954499ead1fc8bc5855637b2f6968e52633606a8c3089ca0152c7141ce",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/README.md",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "64b678b28760b511e26970e9f8877f5658f8cc5f",
+    "integratedBlob": "64b678b28760b511e26970e9f8877f5658f8cc5f",
+    "bytes": 9603,
+    "sha256": "62498bead288970df4a63fb3556ac6359dd9b6a18d1d515e82106fefc521cc50",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SELECTED_CANDIDATES.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "d2f6db59afbf47f19f0bb41852a5ef2fac563f7b",
+    "integratedBlob": "d2f6db59afbf47f19f0bb41852a5ef2fac563f7b",
+    "bytes": 195938,
+    "sha256": "6602ef9aaeda19f4c0734aa8858988ab0c91964b1ea304b6b5a12c984ae2053b",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SOURCE_CONTROLS_RESULT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "c400a757c77b76fbc7e7837ee5d31f0d7bace66e",
+    "integratedBlob": "c400a757c77b76fbc7e7837ee5d31f0d7bace66e",
+    "bytes": 4231,
+    "sha256": "11977d526f2698a4b153c5d4f18f53f7bb91810b8b8f78e2dd8c43d757bba750",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SWIFT_PRESERVATION.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "bd420eced9c957a183027912ffa8507c8a676070",
+    "integratedBlob": "bd420eced9c957a183027912ffa8507c8a676070",
+    "bytes": 723,
+    "sha256": "e9f295051f292bc0c8612f21fb60c9f86d1fd09291410aab258868cfe6fb2aef",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "ae1b78975bb5706258e53cd4be941bb087695d21",
+    "integratedBlob": "ae1b78975bb5706258e53cd4be941bb087695d21",
+    "bytes": 2319,
+    "sha256": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/collect-source-admission-stops.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "414a78e45e0ea98d8dc2e4c7613182cbb44c2d47",
+    "integratedBlob": "414a78e45e0ea98d8dc2e4c7613182cbb44c2d47",
+    "bytes": 3426,
+    "sha256": "a7036bcde975487d51c7a682829d9997fcdbd022e184db049a43ef0f36e89386",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialization.stdout.log",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "1c0dc51202b3b55792b5493df99118261dfb18d4",
+    "integratedBlob": "1c0dc51202b3b55792b5493df99118261dfb18d4",
+    "bytes": 341,
+    "sha256": "ded28621b6f21d6ee43cb8350456cc915419efeeeb3deb8ba243a032c41d54d8",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialize-genesis38-membership.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "a3fcefad8e70dc82a9c5f03ae5200c065e399254",
+    "integratedBlob": "a3fcefad8e70dc82a9c5f03ae5200c065e399254",
+    "bytes": 9773,
+    "sha256": "f7f90dfbe1c321493717a43b509abca5ec2264daeebc241d3f4f4799850ef79f",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/materialized-unit-relationships.sql",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "03d229b6910a704f7b5f7640cb164714d9babc2a",
+    "integratedBlob": "03d229b6910a704f7b5f7640cb164714d9babc2a",
+    "bytes": 2419,
+    "sha256": "ae59a7dbdfb39b7fe1c1692cace320a46c4bb906480106a92f4096dd5bf9d718",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/run-focused-apple-source-check.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "a61d5761868fd34ce84054374fa4fdac75674a4d",
+    "integratedBlob": "a61d5761868fd34ce84054374fa4fdac75674a4d",
+    "bytes": 6932,
+    "sha256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/FullV40InspectorNaturalTargets.swift",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "839874b11136b39e46e43d21714b7520c54a1436",
+    "integratedBlob": "839874b11136b39e46e43d21714b7520c54a1436",
+    "bytes": 13922,
+    "sha256": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/INPUT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "6a7891ef54e65b9a0b137e3377b8cc59db0e868c",
+    "integratedBlob": "6a7891ef54e65b9a0b137e3377b8cc59db0e868c",
+    "bytes": 3632,
+    "sha256": "b67b183f7edde27a2d2d40a50369cc0f656c1eba6a7a42180d433929e9d69dcd",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/RESULT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "076dafca9fc1ff2ea25276bfbb89571518a8a8a4",
+    "integratedBlob": "076dafca9fc1ff2ea25276bfbb89571518a8a8a4",
+    "bytes": 4518,
+    "sha256": "3d29eace8ddc3ef7c23dee367150d8b3495a25469d92b36956a93a9d4a59f197",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/TRANSFER.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "bfceeed474516d10d8ac789c67ad8424bc5b9c61",
+    "integratedBlob": "bfceeed474516d10d8ac789c67ad8424bc5b9c61",
+    "bytes": 7472,
+    "sha256": "e871872add0eee2a6429e52eeb814931545db98db9e29c1fb9803d1b0c238970",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/launcher.stdout.log",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "c5a27f492016cf6ff06ec639127a249890397bb3",
+    "integratedBlob": "c5a27f492016cf6ff06ec639127a249890397bb3",
+    "bytes": 298,
+    "sha256": "b1dfb42a8080edb59e389f39bbaac34c7e20e11a32f87cc28bc7495b0c555e7b",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T062614Z/run-focused-apple-source-check.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "bbf5089ad56adb3bdc8ad72e7d0a4cc89c7340b5",
+    "integratedBlob": "bbf5089ad56adb3bdc8ad72e7d0a4cc89c7340b5",
+    "bytes": 6565,
+    "sha256": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/FullV40InspectorNaturalTargets.swift",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "30ae9a3573159a0481d3a07b9c21ff6b6c3cf8d7",
+    "integratedBlob": "30ae9a3573159a0481d3a07b9c21ff6b6c3cf8d7",
+    "bytes": 19714,
+    "sha256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/INPUT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "318d6727539ade9a20af9cd445c07b1a9cd4747b",
+    "integratedBlob": "318d6727539ade9a20af9cd445c07b1a9cd4747b",
+    "bytes": 4834,
+    "sha256": "7e5b5c6d2dea15eaf4cd6e45466ad8fb86e4b3e7a7ff509b55667413c16a7052",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/ORIGINAL_FORMATTING_EXTRACTION.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "45a1f98344edc40ebc32a8bebb590271b5b36a87",
+    "integratedBlob": "45a1f98344edc40ebc32a8bebb590271b5b36a87",
+    "bytes": 849,
+    "sha256": "72e48e0f3feeea447c86fb4bd738a06aca774c8966b208d2b7e81b8f4014463d",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/OriginalMaktabahTorahInspectorFormatting.swift",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "1cff4891ae035bd49400fd38e3405e2088baaf81",
+    "integratedBlob": "1cff4891ae035bd49400fd38e3405e2088baaf81",
+    "bytes": 1430,
+    "sha256": "85b5c2613d4b84a61110ba5abb8d289f7669eeef198cba3e8a2f838bab1c4708",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/RESULT.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "003e8f904275a1a697c5163a8dbfa3d82fbfd9ed",
+    "integratedBlob": "003e8f904275a1a697c5163a8dbfa3d82fbfd9ed",
+    "bytes": 15864,
+    "sha256": "170e051e9563608c19299528bbe82495cf1fa14826dbcf47d3b333bc0da763bf",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/TRANSFER.json",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "a7e979ae2c488313fb969c86ef31ef587bebaaf4",
+    "integratedBlob": "a7e979ae2c488313fb969c86ef31ef587bebaaf4",
+    "bytes": 10172,
+    "sha256": "a3930d72a11c92b1e0fe7501be5e0c023f68300a9fa13f53e028a27a49b57c68",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/launcher.stdout.log",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "264ac5f24266524b6c559695ec772871d00f59e8",
+    "integratedBlob": "264ac5f24266524b6c559695ec772871d00f59e8",
+    "bytes": 298,
+    "sha256": "2219aafac3c807545c8a9ff8db4aa806a04afc530e5bc11fa7afbc3dc76b2a47",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-admission-attempts/natural-inspector-catalog-sourcecheck-20261127T065711Z/run-focused-apple-source-check.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "a61d5761868fd34ce84054374fa4fdac75674a4d",
+    "integratedBlob": "a61d5761868fd34ce84054374fa4fdac75674a4d",
+    "bytes": 6932,
+    "sha256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-controls.py",
+    "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+    "donorBlob": "5b61eb2c2b406843bae1ee452bfb34750b30f5d4",
+    "integratedBlob": "5b61eb2c2b406843bae1ee452bfb34750b30f5d4",
+    "bytes": 14541,
+    "sha256": "5739df7e1003bac86465ff04affc6eafa4044cf3a3624e836544563384e2ece4",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "Scripts/CI/study-ui-offline-execution.py",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "470fe057b3d99d3cb5c0f1fc48a4f5aa9a6a0e66",
+    "integratedBlob": "470fe057b3d99d3cb5c0f1fc48a4f5aa9a6a0e66",
+    "bytes": 62459,
+    "sha256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/API.md",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "0c41b6b5c338e6280fb2b29a43c4b80503b907cb",
+    "integratedBlob": "0c41b6b5c338e6280fb2b29a43c4b80503b907cb",
+    "bytes": 12662,
+    "sha256": "aba139ff2dcd00e1a206ee722a979c223970b6627eb45c1856f68761e2b5f611",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/CHECKPOINT.md",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "79ca7b1625982725d35435fdbaa8875404be448a",
+    "integratedBlob": "79ca7b1625982725d35435fdbaa8875404be448a",
+    "bytes": 2091,
+    "sha256": "738550f01a1c70f77c8a53926a614515cb2d0244f68c3b83035de1b7117f7ed1",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/FILE_MANIFEST.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "5eac8c73fced2e93087f1a3642349ae37992fa7d",
+    "integratedBlob": "5eac8c73fced2e93087f1a3642349ae37992fa7d",
+    "bytes": 2082,
+    "sha256": "e3774a02cc5875d3cfe6f9749921a586220441990636b4b03eb9f589efbb04ce",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/NATIVE_SOURCE_RECEIPTS.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "80ea4e413b806f08e1c2a423fbecc56765fe0c18",
+    "integratedBlob": "80ea4e413b806f08e1c2a423fbecc56765fe0c18",
+    "bytes": 329,
+    "sha256": "d8286673e2448f95d815224d908ae9b4471ef57212983f215a2081e7a151d0f7",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "bdeb26093d801910184638ae1e0a1770780ad13a",
+    "integratedBlob": "bdeb26093d801910184638ae1e0a1770780ad13a",
+    "bytes": 439,
+    "sha256": "839f05c9aede1e7a4ab46a18350cd0e475068d6fe8a02b9eb5a9b78c21f46ae7",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stderr.log",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "b8a30af21adac232b40c6ed81b21185d96aa5d30",
+    "integratedBlob": "b8a30af21adac232b40c6ed81b21185d96aa5d30",
+    "bytes": 6985,
+    "sha256": "757ecf02ae0050af5a5f62144fbee83de2a7eb0a73246ac6b8cfac3a9d1688ca",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/ORACLE_CONTROLS.stdout.log",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_CONTROLS.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "5e116822044271dafa97c0cbbb0e428e2823e355",
+    "integratedBlob": "5e116822044271dafa97c0cbbb0e428e2823e355",
+    "bytes": 272,
+    "sha256": "17e017a96699be0f6d72b81820fe9d58dd7a6adec55a257bf7409362eccb6416",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SOURCE_RECEIPTS.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "99117d19646dfb509daea2861fa1f1e9b8e8f50b",
+    "integratedBlob": "99117d19646dfb509daea2861fa1f1e9b8e8f50b",
+    "bytes": 419,
+    "sha256": "66d628779f139d8d2918a5481a045bdb819fa1df472b01f18cec224f701234f0",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/SSH_ROUTE_READONLY.json",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "2118f41b2b173edfdd375df93b880aba36425194",
+    "integratedBlob": "2118f41b2b173edfdd375df93b880aba36425194",
+    "bytes": 1025,
+    "sha256": "d2271dabc74ac8d29579eb784147062a803d76ba131a4b0da7112a55218595e8",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/controls.stderr.log",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "68ebaaf0765a48e1827d0945a7666396a2803ca4",
+    "integratedBlob": "68ebaaf0765a48e1827d0945a7666396a2803ca4",
+    "bytes": 6985,
+    "sha256": "0f1cd6b17514992785a69790778aa0a9d51b31159351d7a2959690be4ad37244",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/controls.stdout.log",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mergedPreservingRootPrefix": false
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/search/offline-execution/source-controls.py",
+    "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+    "donorBlob": "65a2d399c8fb1c18e9b656531495aa44f6be81e6",
+    "integratedBlob": "65a2d399c8fb1c18e9b656531495aa44f6be81e6",
+    "bytes": 25254,
+    "sha256": "36a5f9f47731273481d5ae8b63e8673bcedc08a77519e0a68ab8e1b31f27b097",
+    "mergedPreservingRootPrefix": false
+  }
+]

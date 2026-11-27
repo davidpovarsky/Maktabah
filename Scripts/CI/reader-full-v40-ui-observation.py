@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import plistlib
 import re
+import runpy
 import sqlite3
 import sys
 import uuid
@@ -276,22 +277,113 @@ def load_core():
     core.source_context = source_context
     return core
 
-def require_exact_inspector_scales(core):
-    """Keep authentic at-least observations; separately gate exact v40 sizes.
+def natural_inspector_evidence(directory, completion, read_path):
+    """Re-read whole natural memberships; usable by the later Settings gate.
+
+    read_path returns (immutable FileWitness, decoded JSON). The prerequisite
+    reader additionally keeps every witness for its final readback. No SQL,
+    compiler, native request, original receipt or shared v32 body is changed.
+    """
+    directory = Path(directory)
+    root = directory / "natural-inspector-catalog"
+    catalog_record, catalog = read_path(root / "natural-inspector-targets.json", maximum=1024 * 1024)
+    _, inputs = read_path(INPUTS)
+    declaration = inputs.get("natural_inspector_catalog", {})
+    name = declaration.get("candidates_file")
+    require(isinstance(name, str) and not Path(name).is_absolute() and ".." not in Path(name).parts,
+            "The current frozen natural candidate source is required")
+    candidates_record, candidates_doc = read_path(ROOT / name, maximum=4 * 1024 * 1024)
+    helper = runpy.run_path(str(ROOT / "Scripts/CI/reader-v40-natural-inspector-catalog.py"))
+    candidates = helper["admit_candidates"](candidates_doc)
+    sql_record, sql = read_path(root / "installed-sql-memberships.json", maximum=16 * 1024 * 1024)
+    compile_record, _ = read_path(root / "compile-inputs.json")
+    rows, scales = completion.get("scales"), catalog.get("scales")
+    require(catalog.get("schema") == 1 and catalog.get("corpusProfile") == "full-v40"
+            and catalog.get("status") == "ORIGINAL_NATURAL_UNIT_AND_METADATA_CATALOG_NOT_NATIVE_ACCEPTANCE"
+            and catalog.get("databaseSHA256") == SOURCE["databaseSHA256"]
+            and catalog.get("candidateReceiptSHA256") == candidates_record["sha256"]
+            and catalog.get("installedSQLReceiptSHA256") == sql_record["sha256"]
+            and catalog.get("compileInputsSHA256") == compile_record["sha256"]
+            and isinstance(rows, list) and len(rows) == 3
+            and isinstance(scales, list) and len(scales) == 3
+            and [r.get("requestedCount") for r in scales] == [100, 500, 2000],
+            "The original installed SQL and complete natural service catalog must remain bound")
+    require(sql.get("status") == "EXACT_INSTALLED_SQL_MEMBERSHIP_NOT_SWIFT_OR_NATIVE_ACCEPTANCE"
+            and sql.get("databaseSHA256") == SOURCE["databaseSHA256"]
+            and sql.get("databaseBefore") == sql.get("databaseAfter")
+            and isinstance(sql.get("targets"), list) and len(sql["targets"]) == 3,
+            "The original bounded installed SQL membership receipt is incomplete")
+    proofs, targets = [], set()
+    for row, scale, candidate, sql_target in zip(rows, scales, candidates, sql["targets"]):
+        target = scale.get("target", {})
+        key, request_id = target.get("key"), row.get("observationID")
+        require(isinstance(key, str) and key and key not in targets
+                and isinstance(request_id, str) and str(uuid.UUID(request_id)).upper() == request_id,
+                "Distinct original natural units and fresh canonical observations are required")
+        targets.add(key)
+        actual, requested = row.get("actualCount"), row.get("requestedCount")
+        require(type(actual) is int and type(requested) is int and actual >= requested
+                and requested == scale.get("requestedCount") == candidate["requestedCount"]
+                and actual == scale.get("originalMetadataCount") == candidate["candidateRawRelationshipCount"]
+                and row.get("targetKey") == key
+                and (target.get("bookID"), target.get("unitID")) == (candidate["bookID"], candidate["unitID"])
+                and row.get("atLeastRequestedCount") is True
+                and row.get("exactRequestedCount") is (actual == requested)
+                and row.get("nativeFullMembershipMatched") is True
+                and row.get("naturalCatalogSHA256") == catalog_record["sha256"]
+                and row.get("nativeOrderedIdentitySHA256") == scale.get("nativeOrderedIdentitySHA256")
+                and row.get("identityProjectionSHA256") == scale.get("identityProjectionSHA256")
+                and row.get("independentCompleteMembershipSHA256") == scale.get("rawMembershipSHA256")
+                == candidate["rawMembershipSHA256"],
+                "Observed full count and ordered identities must agree with their complete natural target")
+        require((sql_target.get("bookID"), sql_target.get("unitID")) == (candidate["bookID"], candidate["unitID"])
+                and sql_target.get("sourceLineIndices") == candidate["sourceLineIndices"]
+                and sql_target.get("completeMembership") == candidate["candidateRawMembership"]
+                and sql_target.get("membershipSHA256") == candidate["rawMembershipSHA256"],
+                "Every independently observed installed relationship must remain present; no prefix is accepted")
+        name = scale.get("identityProjectionFile")
+        require(isinstance(name, str) and Path(name).name == name, "Projection must stay beside its original catalog")
+        projection_record, projection = read_path(root / name, maximum=16 * 1024 * 1024)
+        require(projection_record["bytes"] == scale.get("identityProjectionBytes")
+                and projection_record["sha256"] == scale["identityProjectionSHA256"], "Complete projection bytes changed")
+        helper["check_projection"](scale, projection)
+        observed_record, observed = read_path(directory / "inspector-proofs" / (request_id + ".json"))
+        proof_record, proof = read_path(directory / "natural-inspector-membership-proofs" / (request_id + ".json"))
+        native_ref = observed.get("native_report_file", {})
+        require(isinstance(native_ref.get("path"), str), "The original raw native array report is absent")
+        native_record, native = read_path(Path(native_ref["path"]))
+        require(native_record == native_ref and native == observed.get("native_report")
+                and observed.get("request_id") == request_id and observed.get("target_key") == key
+                and observed.get("full_cached_count") == actual and observed.get("actual_visible_rows"),
+                "The complete identity proof must bind its original visible native cache observation")
+        expected = helper["match_native_projection"](scale, observed, {
+            "fullCachedCount": actual, "nativeOrderedIdentitySHA256": row["nativeOrderedIdentitySHA256"]})
+        expected["naturalCatalog"] = catalog_record
+        require(proof == expected, "The natural full-array proof changed after its original native validation")
+        proofs.append({"requestedCount": requested, "actualCount": actual,
+            "exactRequestedCount": actual == requested, "observationID": request_id, "targetKey": key,
+            "projection": projection_record, "originalObservation": observed_record,
+            "rawNativeReport": native_record, "fullMembershipProof": proof_record})
+    return {"catalog": catalog_record, "selectedCandidates": candidates_record,
+        "installedSQL": sql_record, "compileInputs": compile_record, "memberships": proofs}
+
+
+def require_natural_inspector_scales(core):
+    """Enforce the original at-least workload contract and complete identities.
 
     Called only by this wrapper's native execute entry point. The shared v32
     host, its historical results, and other load_core consumers are unchanged.
-    Exact cardinality does not qualify row bodies or any performance metric.
+    Exact cardinality remains a reported observation, not an added requirement.
     """
     receipt = {
-        "schema": "otzaria.full-v40.exact-inspector-final-gate/1",
+        "schema": "otzaria.full-v40.natural-inspector-final-gate/1",
         "status": "NOT_MET",
         "requested_counts": [100, 500, 2000],
         "full_performance_acceptance": False,
         "full_row_rendering_acceptance": False,
-        "scope": "Exact natural cached cardinality of three original native UI observations only",
+        "scope": "Original at-least workloads with complete natural SQL/service/native identities; exact equality is reported separately",
     }
-    destination = core.OUT / "v40-exact-inspector-final-gate.json"
+    destination = core.OUT / "v40-natural-inspector-final-gate.json"
     require(not destination.exists(), "Never overwrite a prior final-gate receipt")
     failure = None
     try:
@@ -319,18 +411,24 @@ def require_exact_inspector_scales(core):
         selected = [row.get("observationID") for row in scales]
         require(all(isinstance(value, str) and value in ids for value in selected)
                 and len(set(selected)) == 3,
-                "Each exact scale needs its own original native observation")
+                "Each natural scale needs its own original native observation")
         actual = [row.get("actualCount") for row in scales]
         requested = [row.get("requestedCount") for row in scales]
         receipt.update(actual_counts=actual, observed_requested_counts=requested,
                        observation_ids=selected, simulator_udid=udid,
                        observed_source=report.get("source"))
         require(all(type(value) is int for value in actual + requested)
-                and requested == actual == [100, 500, 2000]
-                and all(row.get("exactRequestedCount") is True for row in scales)
-                and completion.get("exact_size_criterion_met") is True
+                and requested == [100, 500, 2000]
+                and all(count >= minimum for count, minimum in zip(actual, requested))
+                and all(row.get("atLeastRequestedCount") is True
+                        and row.get("exactRequestedCount") is (row["actualCount"] == row["requestedCount"]) for row in scales)
+                and completion.get("exact_size_criterion_met") is all(a == r for a, r in zip(actual, requested))
                 and completion.get("natural_at_least_workloads_met") is True,
-                "Original at-least workloads do not satisfy exact 100/500/2000 cardinalities")
+                "The original complete natural workloads must reach 100/500/2000 and retain truthful exact-count flags")
+        def read_path(path, *, maximum=8_000_000):
+            return core.witness(path), core.bounded_json(path, maximum)
+        receipt["natural_memberships"] = natural_inspector_evidence(core.OUT, completion, read_path)
+        receipt["exact_size_criterion_met"] = completion["exact_size_criterion_met"]
         receipt["status"] = "MET"
     except Exception as error:
         failure = error
@@ -366,10 +464,20 @@ def main():
         # Execute-only: other study/Groups controllers keep the strict original
         # load_core()/ten-target catalog even while a natural scale is missing.
         natural.install(core, core_source=args.inspector_core_source)
+        wait_path = ROOT / "Scripts/CI/study-ui-sqlite-wait.py"
+        wait_spec = importlib.util.spec_from_file_location("full_v40_sqlite_wait_collector", wait_path)
+        require(wait_spec is not None and wait_spec.loader is not None, "Passive SQLite collector is unavailable")
+        wait = importlib.util.module_from_spec(wait_spec)
+        wait_spec.loader.exec_module(wait)
+        retained = core.REUSED_INSTALLATION
+        original_admission = retained.admit_current_installation
+        retained.admit_current_installation = lambda config, udid, build: wait.bind_admission(
+            core, retained, original_admission, config, udid, build)
+        core.ObservationHost = wait.observation_host(core.ObservationHost, core)
     sys.argv = [sys.argv[0], args.phase]
     core.main()
     if args.phase == "execute":
-        require_exact_inspector_scales(core)
+        require_natural_inspector_scales(core)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,17 @@
+{
+  "scope": "Synthetic source controls only",
+  "attempts": [
+    {
+      "exit": 1,
+      "controlsStarted": false,
+      "error": "FileNotFoundError",
+      "path": "reader-natural-targets/SELECTED_CANDIDATES.json"
+    },
+    {
+      "exit": 0,
+      "passed": 9,
+      "total": 9,
+      "result": "SOURCE_CONTROLS_RESULT.json"
+    }
+  ]
+}

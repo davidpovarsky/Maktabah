@@ -105,7 +105,9 @@
     "Source/LibraryBackend/LibraryBackendProtocols.swift",
     "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
     "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
-    "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json"
+    "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json",
+    "Scripts/CI/study-ui-settings-receipts.py",
+    "Scripts/CI/study-ui-sqlite-wait.py"
   ],
   "input_sha256": {},
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
@@ -120,7 +122,7 @@
     500,
     2000
   ],
-  "exact_inspector_count_policy": "Actual original counts only; natural at-least exploration does not satisfy missing exact sizes; no truncation",
+  "exact_inspector_count_policy": "Report exact cardinality separately; complete natural workloads must reach at least100/500/2000 and match full SQL/service/native memberships; no truncation",
   "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics",
   "installation_policy": "REUSE_EXPLICIT_ROOT_OWNED_VERIFIED_V40_INSTALL",
   "catalog_targets": {
