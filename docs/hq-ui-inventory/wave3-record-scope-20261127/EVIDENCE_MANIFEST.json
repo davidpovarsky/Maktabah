@@ -1,0 +1,81 @@
+{
+  "audited_source": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+  "boundary": "Source audit only; historical source literal reconciliation is preserved in attempt-1 artifacts; no app or native runs.",
+  "artifacts": [
+    {
+      "path": "AUDIT_CONTRACT.json",
+      "bytes": 51212,
+      "sha256": "31e723819418f87263c1eb82ab60ed54d55bc818093175806485194ce888867a"
+    },
+    {
+      "path": "COMPONENTS.md",
+      "bytes": 52250,
+      "sha256": "01a2715271cfd92cf429e0457e4e9cb28483937d237a2139dc64871500cb2121"
+    },
+    {
+      "path": "COMPONENT_RECONCILIATION.json",
+      "bytes": 767154,
+      "sha256": "d4d555724a4abeb09d0505293d58400de65c874f43a7f7fd703410534ee5c3a6"
+    },
+    {
+      "path": "DECLARED_NATIVE_TESTS.json",
+      "bytes": 54105,
+      "sha256": "c62fdaec1f6a4f7c815ff9fd42f0b63003213abd83343fcd01f7e52c1ef7f9a5"
+    },
+    {
+      "path": "NATIVE_FOCUSED_SELECTION.json",
+      "bytes": 22995,
+      "sha256": "e421e0ea2bb151066b27ace8b7e37170e17b36bd248ab009181a15607893d412"
+    },
+    {
+      "path": "QA_51_RECONCILIATION.json",
+      "bytes": 33289,
+      "sha256": "e9060a33fb11e019f275cfafc70e8a5ad3282596bea4fa941d658066c31d97ae"
+    },
+    {
+      "path": "README.md",
+      "bytes": 13822,
+      "sha256": "5fb52670aef85aeb16c63050592209775e1c8139730a8b9ae9417bb0edb5842b"
+    },
+    {
+      "path": "RECONCILIATION.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "RECONCILIATION.stdout.log",
+      "bytes": 4585,
+      "sha256": "9fa0441637d0926e5dd1e363a29e0d688578d7a1eaf1f5b1c9c5dbda14d74016"
+    },
+    {
+      "path": "SOURCE_PROVENANCE.json",
+      "bytes": 82273,
+      "sha256": "3b60f37715f2b5926f92a053887511e4bcd8a76625b5dbe06d739c7c9eabc2dc"
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 4849,
+      "sha256": "e368b11e60daefd86ceab7396d9ab2a2ef9e8c9375fc5ce3f92a1e05227d0e77"
+    },
+    {
+      "path": "attempt-1-RECONCILIATION.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-1-RECONCILIATION.stdout.log",
+      "bytes": 4591,
+      "sha256": "68c85334ea7b24f1662b33c123cd20df124d4947f1b61c95d09b9d63319309a2"
+    },
+    {
+      "path": "attempt-1-SUMMARY.json",
+      "bytes": 4855,
+      "sha256": "c1282f352e696d5a1bac7a404f47df93d804489912f487cde7ef1522bfb28aa0"
+    },
+    {
+      "path": "reconcile.py",
+      "bytes": 19952,
+      "sha256": "3a729e0cd282e1b1c981e28aabf56d92ae5bb95bd4ec6bb58ce888e524d5abbd"
+    }
+  ]
+}
