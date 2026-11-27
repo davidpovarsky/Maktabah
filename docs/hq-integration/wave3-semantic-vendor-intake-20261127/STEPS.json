@@ -1,0 +1,27 @@
+[
+  {
+    "name": "actual-integrated-vendor-source-check",
+    "argv": [
+      "/usr/bin/python3",
+      "-c",
+      "import json,pathlib,runpy,sys; r=pathlib.Path(sys.argv[1]); m=runpy.run_path(str(r/'Scripts/CI/final_integration_source.py')); v=m['verify_reviewed_vendor'](r,sys.argv[2],{'manifest':m['SEMANTIC_REVIEW_PATH'],'sha256':m['SEMANTIC_REVIEW_SHA256']}); print(json.dumps(v,sort_keys=True))",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+      "b463ffd03a76026cea06c79c608df97d00094152"
+    ],
+    "started": 1795808245.87433,
+    "pid": 2159003,
+    "startTicks": "733531770",
+    "exit": 0,
+    "finished": 1795808249.377829,
+    "logs": {
+      ".stdout": {
+        "bytes": 15377,
+        "sha256": "bb1f872a1495cd74cfa36013158345f0aed218c3600f64a8393c95a313e397e7"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

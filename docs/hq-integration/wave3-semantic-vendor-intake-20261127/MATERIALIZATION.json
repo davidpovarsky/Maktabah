@@ -1,0 +1,63 @@
+{
+  "source": "4a02ca900c2ae989681cb89c6068fa06c9fc43c3",
+  "paths": [
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "bytes": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+      "committedObject": "cac6a68cfbcf7c652f60a25889e2f8625b4e8f82",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js",
+      "bytes": 3491,
+      "sha256": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817",
+      "committedObject": "b2a183355e23b8f79e75f6b94642b6e6f7f74ca1",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "bytes": 3673,
+      "sha256": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6",
+      "committedObject": "8d84e3037ce76e16da02b4aefa0749effd52776c",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "bytes": 11442,
+      "sha256": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc",
+      "committedObject": "c026f8c43ecef9235ba625c493989db3d577f071",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "bytes": 24141,
+      "sha256": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290",
+      "committedObject": "0a5d2c844bb47738590bfc07c50d448d1fc6fc9b",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m",
+      "bytes": 851,
+      "sha256": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4",
+      "committedObject": "c2e1413388c4f30acdb155a020a0a937b7306b0f",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "bytes": 8465,
+      "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4",
+      "committedObject": "e5de21268c550a1575396b9b78dfb0e6cda57086",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "bytes": 5942,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df",
+      "committedObject": "3c09ba0da39ac8e32f59b24c20133d12bf80efea",
+      "previouslySparseAbsent": true
+    }
+  ],
+  "sparsePolicyUnchangedSHA256": "b67c77f892f05d25d46fb4c536d3cea538b6be4c78b79d63cbe88772f307939c",
+  "gitClean": true
+}

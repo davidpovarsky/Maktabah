@@ -1,0 +1,721 @@
+{
+  "schema": "otzaria.wave3.semantic-vendor-intake.v1",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "donor": "6eb250e863877fb9ae49c52cf860a50c6ffbb360",
+  "picked": "4a02ca900c2ae989681cb89c6068fa06c9fc43c3",
+  "sourceTree": "2e2ec2280ea76e2d8fede90658d854c038c42a9a",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "productPaths": 3,
+  "docsPaths": 22,
+  "artifactRowsVerifiedBeforeFirstAttempt": 21,
+  "rawArchiveMembersVerifiedBeforeFirstAttempt": 110,
+  "sourcePreservation": {
+    "source": "a0e3b05df9d914cc886b843524915c509f70a852",
+    "accepted_vendor_tree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "delivery_parent": "947f6f531b5a927919d60e365f806286ce564ca4",
+    "files": [
+      {
+        "path": "Scripts/CI/final_integration_source.py",
+        "before": {
+          "bytes": 27814,
+          "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+          "git_blob": "3fb8a8b71b3daa93111e50ce7532a697993ef8af"
+        },
+        "after": {
+          "bytes": 41693,
+          "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079",
+          "git_blob": "d76c8d80a1ced3a54d5be6924802f40696e1f353"
+        }
+      },
+      {
+        "path": "Scripts/CI/reviewed-vendor-semantics.inputs.json",
+        "before": null,
+        "after": {
+          "bytes": 44186,
+          "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208",
+          "git_blob": "5e33f9b37f0048b72c774814acbf53e68bfa39ae"
+        }
+      },
+      {
+        "path": "Scripts/CI/test-reviewed-semantic-vendor-source.py",
+        "before": null,
+        "after": {
+          "bytes": 28789,
+          "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea",
+          "git_blob": "2e4f60947ed72560142f43399fdf8997bbb49167"
+        }
+      }
+    ],
+    "unchanged_files": {
+      "Scripts/CI/hq-stage2-focused-apple.py": {
+        "bytes": 70942,
+        "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4",
+        "git_blob": "f1d71ad3a827d98b4f67eee239afe618c0ae57e6"
+      },
+      "Scripts/CI/prepare-normal-ios-workspace.py": {
+        "bytes": 10923,
+        "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4",
+        "git_blob": "c6f127e90a49f655dc809058205e049e658192fb"
+      },
+      "Scripts/CI/reviewed-vendor-source.inputs.json": {
+        "bytes": 25409,
+        "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "git_blob": "461666a5480479a1ee544d078f0478bd57ccaddf"
+      },
+      "Scripts/CI/test-reviewed-vendor-source.py": {
+        "bytes": 24977,
+        "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828",
+        "git_blob": "a24d5e82ffd760f655940f0b7ce5d1d9d9662bb8"
+      },
+      "Scripts/CI/test-normal-ios-workspace.py": {
+        "bytes": 22434,
+        "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77",
+        "git_blob": "b9ac42d4018dd3d88dbbdb5bab725ba524f259ad"
+      },
+      "Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json": {
+        "bytes": 4889,
+        "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+        "git_blob": "a4bf1227b869efa62ba211daa7af8bc7a8f3a2b5"
+      }
+    },
+    "original_function_count": 24,
+    "unchanged_original_functions": [
+      "require",
+      "sha",
+      "canonical",
+      "git",
+      "text",
+      "relative_file",
+      "committed_bytes",
+      "source_object",
+      "strict_json",
+      "source_is_ancestor",
+      "requires_reviewed_vendor",
+      "vendor_entries",
+      "vendor_patch",
+      "regular_source_bytes",
+      "load_vendor_review",
+      "verify_vendor_scope",
+      "verify_shape",
+      "verify_rows",
+      "verify_build_binding",
+      "verify_additions",
+      "verify"
+    ],
+    "changed_original_functions": [
+      "verify_reviewed_vendor",
+      "verify_reviewed_build_inputs",
+      "reviewed_vendor_source_plan"
+    ],
+    "new_functions": [
+      "requires_semantic_vendor",
+      "verify_vendor_snapshot",
+      "load_semantic_vendor_review",
+      "verify_semantic_vendor",
+      "verify_semantic_build_inputs",
+      "reviewed_vendor_consumer_paths"
+    ],
+    "BINDING_FIELDS_unchanged": true,
+    "all_previous_test_assertions_unchanged": true,
+    "root_rebind_production_function_bodies_equal_donor": true,
+    "protected_trees_before": {
+      "Source": "fecd5475208cc75f3ba8683045b513b7c4a747fd",
+      "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+      "Maktabah.xcodeproj": "e8f08a3e8be4a79a577c70d0819875be2fee1d1b",
+      "Maktabah-iOSUITests": "1a01fdfe54e13e66c83c03da2405a1f2a56ecf0d",
+      ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+      "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+    },
+    "native": "NOT_RUN",
+    "metro": "NOT_RUN",
+    "final_application_freeze": false
+  },
+  "observedSourceTests": {
+    "status": "SOURCE_TRANSITION_REVIEW_READY_NOT_FINAL_APP_ACCEPTANCE",
+    "original39": {
+      "tests": 39,
+      "failures": 0,
+      "errors": 0
+    },
+    "actual_root50_preserved": {
+      "tests": 50,
+      "failures": 2,
+      "errors": 0,
+      "failing_method_count": 1
+    },
+    "focused_original3": {
+      "methods": 1,
+      "routes": 3,
+      "failures": 0,
+      "errors": 0,
+      "controller_exit": 0
+    },
+    "full_final50_rerun": false,
+    "production_bytes_equal_actual_root_full_run": true,
+    "only_test_change": "Install exact original validator at actual ROOT dynamic load site before unchanged refusal assertions.",
+    "archive_members": 110,
+    "archive_bytes": 483328,
+    "native": "NOT_RUN",
+    "metro": "NOT_RUN",
+    "app_sdk": "NOT_RUN",
+    "final_manifest": "NOT_GENERATED"
+  },
+  "actualCurrentCheckoutSourceVerification": {
+    "application_source_sha": "b463ffd03a76026cea06c79c608df97d00094152",
+    "build_inputs": {
+      "accepted_canonical_sha256": "54cdc06aebc60bd2e6c769ddc1e01c88ba3a79462f27d801b04a2eaaec4380c9",
+      "after": [
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "baseline_canonical_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+      "baseline_common": {
+        "artifacts": [
+          {
+            "destination": "Vendor/OtzariaSearchEngine",
+            "id": 14596463166,
+            "name": "ios-build-otzaria-xcframework",
+            "producer_attempt": 1,
+            "producer_job": 136041463727,
+            "producer_job_name": "Build or restore Otzaria framework",
+            "producer_required_steps": [
+              "Build Otzaria production semantic XCFramework",
+              "Verify Otzaria framework and semantic host build",
+              "Confirm exact pinned and pristine upstream checkout",
+              "Run actions/upload-artifact@v4"
+            ],
+            "producer_run": 44661774024,
+            "producer_run_conclusion": "failure",
+            "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+            "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+            "size_in_bytes": 201330360,
+            "tar": "OtzariaSearchEngine.xcframework.tar"
+          },
+          {
+            "destination": "Vendor/ZayitSearchPort/build",
+            "id": 14595389912,
+            "name": "ios-build-zayit-xcframework",
+            "producer_attempt": 1,
+            "producer_job": 136041463406,
+            "producer_job_name": "Build or restore Zayit framework",
+            "producer_required_steps": [
+              "Build Zayit XCFramework",
+              "Verify Zayit framework",
+              "Run actions/upload-artifact@v4"
+            ],
+            "producer_run": 44661774024,
+            "producer_run_conclusion": "failure",
+            "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+            "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+            "size_in_bytes": 123727544,
+            "tar": "MaktabahZayitSearch.xcframework.tar"
+          },
+          {
+            "destination": "build",
+            "id": 12763481138,
+            "name": "ios-build-swift-packages",
+            "producer_run": 40566258679,
+            "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+            "tar": "SourcePackages.tar"
+          },
+          {
+            "id": 13658066283,
+            "name": "sefaria-embedded-validation-manifests",
+            "producer_run": 42577170165,
+            "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
+          }
+        ],
+        "embedded_js_overlay_paths": [
+          "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+        ],
+        "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+        "engine_trees": {
+          "Vendor/OtzariaSearchEngine": "5a6c6501c021ffadcde31254239617f10cd1a362",
+          "Vendor/ZayitSearchPort": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+          "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+          "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
+        },
+        "mac_shared_composition": {
+          "historic_receipts_preserved": true,
+          "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+          "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+          "new_runtime_acceptance_required": true,
+          "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+        },
+        "rebuild_zayit_framework": false,
+        "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+        "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+        "resources": {
+          "sources/calendar.json": {
+            "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7",
+            "size": 1651059
+          },
+          "sources/hebrew_categories.json": {
+            "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d",
+            "size": 16121
+          },
+          "sources/packages.json": {
+            "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba",
+            "size": 238990
+          },
+          "sources/people.json": {
+            "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4",
+            "size": 52354
+          },
+          "sources/search_toc.json": {
+            "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05",
+            "size": 829599
+          },
+          "sources/toc.json": {
+            "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963",
+            "size": 4172545
+          },
+          "sources/topic_toc.json": {
+            "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c",
+            "size": 1810962
+          }
+        },
+        "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+      },
+      "before": [
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "single_reviewed_field": "embedded_js_overlay_paths"
+    },
+    "manifest": "Scripts/CI/reviewed-vendor-semantics.inputs.json",
+    "manifest_sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208",
+    "native_qualified": false,
+    "new_app_build_required": true,
+    "new_metro_bundle_required": true,
+    "physical_source_sha256": {
+      "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+      "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817",
+      "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6",
+      "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc",
+      "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290",
+      "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4",
+      "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4",
+      "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    "preserved_historical_vendor_entries": 194,
+    "previous_review": {
+      "manifest": "Scripts/CI/reviewed-vendor-source.inputs.json",
+      "object": {
+        "bytes": 25409,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "461666a5480479a1ee544d078f0478bd57ccaddf",
+        "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+      },
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+      "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+      "vendor_tree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+    },
+    "producer_scopes": {
+      "sefaria": {
+        "current_tree": "8eedf5d60f76d2efc37cac0620e45910619f2469",
+        "preserved_producer_entries": 7,
+        "producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+        "producer_tree": "d1f16ed47a5809e9cfc9a0e33c7fb5e7533a0f51",
+        "reviewed_changed_paths": [
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+          "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+          "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m",
+          "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+        ]
+      },
+      "zayit": {
+        "current_tree": "716ee730970cebd1a8826b11a695c731430aabe2",
+        "preserved_producer_entries": 42,
+        "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+        "producer_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+        "reviewed_changed_paths": [
+          "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+        ]
+      }
+    },
+    "reviewed_product_source": "a0e3b05df9d914cc886b843524915c509f70a852",
+    "reviewed_vendor_changes": 9,
+    "scope": "EXACT_DOWNSTREAM_SOURCE_IDENTITY_AND_PRODUCER_ATTRIBUTION_ONLY",
+    "source_transition": {
+      "after": [
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "after_common_sha256": "54cdc06aebc60bd2e6c769ddc1e01c88ba3a79462f27d801b04a2eaaec4380c9",
+      "before": [
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+      ],
+      "before_common_sha256": "b17e95aa3a0b9488e8f00923d882ce61a6978148dee1acf183ea0edff39794f8",
+      "entries": [
+        {
+          "after": {
+            "bytes": 3491,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "b2a183355e23b8f79e75f6b94642b6e6f7f74ca1",
+            "sha256": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817"
+          },
+          "before": null,
+          "component_step": {
+            "after": {
+              "bytes": 3491,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "b2a183355e23b8f79e75f6b94642b6e6f7f74ca1",
+              "sha256": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817"
+            },
+            "before": null,
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 3925,
+              "sha256": "249c104717b0e5af10dc5aedaa9b24473b51e9357d802df2f22da64358e1e173"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 3925,
+            "sha256": "249c104717b0e5af10dc5aedaa9b24473b51e9357d802df2f22da64358e1e173"
+          },
+          "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js"
+        },
+        {
+          "after": {
+            "bytes": 3673,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "8d84e3037ce76e16da02b4aefa0749effd52776c",
+            "sha256": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6"
+          },
+          "before": {
+            "bytes": 3557,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "d37aca66489afb5b1268fe183b5adc17aa120535",
+            "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+          },
+          "component_step": {
+            "after": {
+              "bytes": 3673,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "8d84e3037ce76e16da02b4aefa0749effd52776c",
+              "sha256": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6"
+            },
+            "before": {
+              "bytes": 3557,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "d37aca66489afb5b1268fe183b5adc17aa120535",
+              "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+            },
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 933,
+              "sha256": "63a009e3b7391679d453418456ef38eb4cc52d383e5e23a54bd92730c0e8368d"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 933,
+            "sha256": "63a009e3b7391679d453418456ef38eb4cc52d383e5e23a54bd92730c0e8368d"
+          },
+          "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js"
+        },
+        {
+          "after": {
+            "bytes": 11442,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "c026f8c43ecef9235ba625c493989db3d577f071",
+            "sha256": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc"
+          },
+          "before": {
+            "bytes": 6556,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "e06994f58e3e68376fe785fdcd875d5c4508b6ad",
+            "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+          },
+          "component_step": {
+            "after": {
+              "bytes": 11442,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "c026f8c43ecef9235ba625c493989db3d577f071",
+              "sha256": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc"
+            },
+            "before": {
+              "bytes": 6556,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "e06994f58e3e68376fe785fdcd875d5c4508b6ad",
+              "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+            },
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 8044,
+              "sha256": "3770ad0e5628735cd970a7b00a7285224b284c11d0adef4db406eb02e1c6dc4c"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 8044,
+            "sha256": "3770ad0e5628735cd970a7b00a7285224b284c11d0adef4db406eb02e1c6dc4c"
+          },
+          "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js"
+        },
+        {
+          "after": {
+            "bytes": 24141,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "0a5d2c844bb47738590bfc07c50d448d1fc6fc9b",
+            "sha256": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290"
+          },
+          "before": {
+            "bytes": 23528,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "db369aaf2b896b759660705524a5c0d9fcf1dc3e",
+            "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+          },
+          "component_step": {
+            "after": {
+              "bytes": 24141,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "0a5d2c844bb47738590bfc07c50d448d1fc6fc9b",
+              "sha256": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290"
+            },
+            "before": {
+              "bytes": 23528,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "db369aaf2b896b759660705524a5c0d9fcf1dc3e",
+              "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+            },
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 1376,
+              "sha256": "e981f5bdf99cf55d5e75f06369b27934455c79a799497fc807b9040f27474b96"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 1376,
+            "sha256": "e981f5bdf99cf55d5e75f06369b27934455c79a799497fc807b9040f27474b96"
+          },
+          "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+        },
+        {
+          "after": {
+            "bytes": 851,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "c2e1413388c4f30acdb155a020a0a937b7306b0f",
+            "sha256": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4"
+          },
+          "before": {
+            "bytes": 755,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "9d6c2840673d5a1250d979d84bcde86069e98033",
+            "sha256": "6f59be52fb5bf22b13925d8b008d466053161cbc34a4b514257216cd8d75ddb2"
+          },
+          "component_step": {
+            "after": {
+              "bytes": 851,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "c2e1413388c4f30acdb155a020a0a937b7306b0f",
+              "sha256": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4"
+            },
+            "before": {
+              "bytes": 755,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "9d6c2840673d5a1250d979d84bcde86069e98033",
+              "sha256": "6f59be52fb5bf22b13925d8b008d466053161cbc34a4b514257216cd8d75ddb2"
+            },
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 786,
+              "sha256": "0349452b29bccfa20f35cbe9f0873eafbf6b3055d41952032050acd226229206"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 786,
+            "sha256": "0349452b29bccfa20f35cbe9f0873eafbf6b3055d41952032050acd226229206"
+          },
+          "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m"
+        },
+        {
+          "after": {
+            "bytes": 8465,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "e5de21268c550a1575396b9b78dfb0e6cda57086",
+            "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4"
+          },
+          "before": {
+            "bytes": 8050,
+            "kind": "blob",
+            "mode": "100644",
+            "object": "62a8d564a24352037d2ef26e22385cd74bc6a8e1",
+            "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "component_step": {
+            "after": {
+              "bytes": 8465,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "e5de21268c550a1575396b9b78dfb0e6cda57086",
+              "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4"
+            },
+            "before": {
+              "bytes": 8050,
+              "kind": "blob",
+              "mode": "100644",
+              "object": "62a8d564a24352037d2ef26e22385cd74bc6a8e1",
+              "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+            },
+            "parent": "db764d51080102504ee296d43aebe261793b8163",
+            "patch": {
+              "bytes": 1086,
+              "sha256": "0477a31793a1e3c5f5ad12f603818d403c0f2d78991a86b89b8aabf1f4f1eeaf"
+            },
+            "source": "a0e3b05df9d914cc886b843524915c509f70a852"
+          },
+          "patch": {
+            "bytes": 1086,
+            "sha256": "0477a31793a1e3c5f5ad12f603818d403c0f2d78991a86b89b8aabf1f4f1eeaf"
+          },
+          "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+        }
+      ],
+      "single_reviewed_field": "embedded_js_overlay_paths",
+      "unchanged_previous_entries": 197,
+      "unchanged_previous_entries_sha256": "404bb568c5282e33f9ff4c142f22c00b5594d011b048984652e03b9ca370a9d0"
+    },
+    "vendor_tree": "2fb868bdbe5d2d52735e857a24933918ff658cef"
+  },
+  "steps": [
+    {
+      "name": "actual-integrated-vendor-source-check",
+      "argv": [
+        "/usr/bin/python3",
+        "-c",
+        "import json,pathlib,runpy,sys; r=pathlib.Path(sys.argv[1]); m=runpy.run_path(str(r/'Scripts/CI/final_integration_source.py')); v=m['verify_reviewed_vendor'](r,sys.argv[2],{'manifest':m['SEMANTIC_REVIEW_PATH'],'sha256':m['SEMANTIC_REVIEW_SHA256']}); print(json.dumps(v,sort_keys=True))",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+        "b463ffd03a76026cea06c79c608df97d00094152"
+      ],
+      "started": 1795808245.87433,
+      "pid": 2159003,
+      "startTicks": "733531770",
+      "exit": 0,
+      "finished": 1795808249.377829,
+      "logs": {
+        ".stdout": {
+          "bytes": 15377,
+          "sha256": "bb1f872a1495cd74cfa36013158345f0aed218c3600f64a8393c95a313e397e7"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "sparseMaterialization": [
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "bytes": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+      "committedObject": "cac6a68cfbcf7c652f60a25889e2f8625b4e8f82",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js",
+      "bytes": 3491,
+      "sha256": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817",
+      "committedObject": "b2a183355e23b8f79e75f6b94642b6e6f7f74ca1",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "bytes": 3673,
+      "sha256": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6",
+      "committedObject": "8d84e3037ce76e16da02b4aefa0749effd52776c",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "bytes": 11442,
+      "sha256": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc",
+      "committedObject": "c026f8c43ecef9235ba625c493989db3d577f071",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "bytes": 24141,
+      "sha256": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290",
+      "committedObject": "0a5d2c844bb47738590bfc07c50d448d1fc6fc9b",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m",
+      "bytes": 851,
+      "sha256": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4",
+      "committedObject": "c2e1413388c4f30acdb155a020a0a937b7306b0f",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "bytes": 8465,
+      "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4",
+      "committedObject": "e5de21268c550a1575396b9b78dfb0e6cda57086",
+      "previouslySparseAbsent": true
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "bytes": 5942,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df",
+      "committedObject": "3c09ba0da39ac8e32f59b24c20133d12bf80efea",
+      "previouslySparseAbsent": true
+    }
+  ],
+  "preservedFirstFailureSHA256": "ccefe47bf9f566ce2c5d5a49b48163106d3715a4db78391e30ae64877f8acf93",
+  "firstFailureReason": "Actual source verifier correctly rejected absent sparse physical source; exact eight already committed blobs materialized before the same verifier rerun. No gate or source change.",
+  "newTestExecutions": 0,
+  "protectedTrees": {
+    "Source": "2e2ec2280ea76e2d8fede90658d854c038c42a9a",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "Metro": "NOT_RUN",
+  "finalManifest": "NOT_GENERATED",
+  "open": [
+    "Fresh original Metro and native bridge build",
+    "Final app source/build/test manifest and all original production entry points",
+    "Actual app/production/native/owner/target merge/TestFlight"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "originalCount": 24,
+  "unchanged": [
+    "require",
+    "sha",
+    "canonical",
+    "git",
+    "text",
+    "relative_file",
+    "committed_bytes",
+    "source_object",
+    "strict_json",
+    "source_is_ancestor",
+    "requires_reviewed_vendor",
+    "vendor_entries",
+    "vendor_patch",
+    "regular_source_bytes",
+    "load_vendor_review",
+    "verify_vendor_scope",
+    "verify_shape",
+    "verify_rows",
+    "verify_build_binding",
+    "verify_additions",
+    "verify"
+  ],
+  "changed": [
+    "verify_reviewed_vendor",
+    "verify_reviewed_build_inputs",
+    "reviewed_vendor_source_plan"
+  ],
+  "new": [
+    "requires_semantic_vendor",
+    "verify_vendor_snapshot",
+    "load_semantic_vendor_review",
+    "verify_semantic_vendor",
+    "verify_semantic_build_inputs",
+    "reviewed_vendor_consumer_paths"
+  ],
+  "BINDING_FIELDS": "byte-identical; verified before the preserved first actual-checkout attempt"
+}
