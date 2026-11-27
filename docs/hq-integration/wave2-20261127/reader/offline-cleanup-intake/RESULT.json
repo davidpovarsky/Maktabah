@@ -1,0 +1,742 @@
+{
+  "schema": "otzaria.wave2.offline-cleanup-intake/1",
+  "scope": "Source/evidence intake and fresh actual artifact readback only; no live offline, network-denial, native UI or performance acceptance",
+  "base": "305b0b4de89a5532ee403419479cf6b9a280222d",
+  "intakeHead": "ce01583f69b7ea8df8bf9bd227128ea945b8574a",
+  "sourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "mappings": [
+    {
+      "donor": "84a3de944b9197521f15fdb975d45a7b1f73f2c3",
+      "integrated": "28ab7e6765688f2efbffe79fa1e79cf279663ad5"
+    },
+    {
+      "donor": "bd83fa15878410804662fe76c4eb2dbea997e8f2",
+      "integrated": "9313d5412e4a56ac689e9cd6554b45250d325d74"
+    },
+    {
+      "donor": "1141f528521c9638d3e309b3921db5b7a83d16be",
+      "integrated": "8b8b03f83f71aeb8314367c34339919f73eda2ae"
+    },
+    {
+      "donor": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+      "integrated": "ce01583f69b7ea8df8bf9bd227128ea945b8574a"
+    }
+  ],
+  "liveMacVerification": {
+    "observedUTC": "2026-11-27T06:21:35.227160+00:00",
+    "scope": "Fresh read-only actual Mac artifact hashes, no test or workload execution",
+    "matched": 40,
+    "files": [
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/BUILD.json",
+        "bytes": 3541,
+        "sha256": "4f138c8f7f01ad3a5a438831e5b65f159d3939de28b5958a78ae32f3da5aee0f",
+        "device": 16777232,
+        "inode": 70806102
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/OfflineTransportProbe.swift",
+        "bytes": 7932,
+        "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9",
+        "device": 16777232,
+        "inode": 70805972
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/build-probes.py",
+        "bytes": 2393,
+        "sha256": "c6bc00ce2b6b7ab33b67e71b3b7f17e70f4fa99bb6ee6a9fd5cc3876fb016847",
+        "device": 16777232,
+        "inode": 70805973
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/host.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70806101
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/host.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70806100
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/runner.log",
+        "bytes": 2981,
+        "sha256": "44c4f33bde36fb64ba34c3fe48cf45b8d4e60316eebae8c2d0db57cbea557b6f",
+        "device": 16777232,
+        "inode": 70805974
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/simulator.stderr.log",
+        "bytes": 120,
+        "sha256": "2ee56c18850e1a073477efac3672630521915c2f40bd06ccc9b8e16a4a0de869",
+        "device": 16777232,
+        "inode": 70806109
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt1/simulator.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70806108
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt2/OfflineTransportProbe.swift",
+        "bytes": 7932,
+        "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9",
+        "device": 16777232,
+        "inode": 70846697
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt2/build-probes.py",
+        "bytes": 3348,
+        "sha256": "63c5dd4177e4ea2d81c6dfb9e4444206e29fbc3c17e1c8e4988022a5f0df34e9",
+        "device": 16777232,
+        "inode": 70846698
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt2/runner.log",
+        "bytes": 274,
+        "sha256": "da0599e59840d3dbd89df44e3db6415240ea6a7473db202e6a8b2184af03d1f0",
+        "device": 16777232,
+        "inode": 70846699
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3.launch.log",
+        "bytes": 4224,
+        "sha256": "6fe1094cf6ec28a5d69e242ceec0db9c0e90a3aea2bb65237da7fe4696867571",
+        "device": 16777232,
+        "inode": 70886350
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/BUILD.json",
+        "bytes": 4942,
+        "sha256": "b6d57c767770f9c155e036ef27ed5981115dbd81f289973a64eea8d377875703",
+        "device": 16777232,
+        "inode": 70887000
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/OfflineTransportProbe.swift",
+        "bytes": 7932,
+        "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9",
+        "device": 16777232,
+        "inode": 70886510
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/host.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70886999
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/host.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70886998
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/simulator.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70887010
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/simulator.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 70887009
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/build-offline-transport-probe.py",
+        "bytes": 5129,
+        "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667",
+        "device": 16777232,
+        "inode": 70886348
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt1/RESULT.json",
+        "bytes": 1099,
+        "sha256": "a40dae6ffe0b1c8e884b02b0cc3ac7cdcc019fcddffc5c4ca16f8fa8804881fa",
+        "device": 16777232,
+        "inode": 71188543
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt1/build-offline-transport-probe.py",
+        "bytes": 5129,
+        "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667",
+        "device": 16777232,
+        "inode": 71188541
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt1/source-controls.py",
+        "bytes": 21252,
+        "sha256": "d4ba94ec46c8e41147a214dba26f2dff52574b1143d31d30e3503a6143cfcccf",
+        "device": 16777232,
+        "inode": 71188542
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt1/study-ui-offline-heartbeat.py",
+        "bytes": 3946,
+        "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9",
+        "device": 16777232,
+        "inode": 71188540
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt1/study-ui-offline-window.py",
+        "bytes": 72089,
+        "sha256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96",
+        "device": 16777232,
+        "inode": 71188539
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/study-ui-offline-window.py",
+        "bytes": 78428,
+        "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2",
+        "device": 16777232,
+        "inode": 71461200
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/study-ui-offline-heartbeat.py",
+        "bytes": 3946,
+        "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9",
+        "device": 16777232,
+        "inode": 71461201
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/build-offline-transport-probe.py",
+        "bytes": 5129,
+        "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667",
+        "device": 16777232,
+        "inode": 71461202
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/source-controls.py",
+        "bytes": 25651,
+        "sha256": "17fbafaf559f3dad20ae96503aaace6123b8c38960780024b49bdb322d262350",
+        "device": 16777232,
+        "inode": 71461203
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/activation-boundary-controls.py",
+        "bytes": 7141,
+        "sha256": "cdae24f3ae405d81e2667a6be73f88f0b96087ebfecabad26b7787adcd4f0e35",
+        "device": 16777232,
+        "inode": 71461204
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-python-source-check/attempt2/RESULT.json",
+        "bytes": 1853,
+        "sha256": "7254b7a8b50d3c477bc7fd62da85e6c975c0f70af07152df2ebc0665ca5796da",
+        "device": 16777232,
+        "inode": 71461205
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-host",
+        "bytes": 143944,
+        "sha256": "6cb58ce1dd09d3b1d59a1c266a42cffd53c0a6e0f0cc143fb49b6567b188f1f6",
+        "device": 16777232,
+        "inode": 70886997
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/offline-probe-compile/attempt3/probe-simulator",
+        "bytes": 144032,
+        "sha256": "b40574870182d4d9065f056e8cd0c42b192f2b2f36ad875523bfbc7f58dc49cb",
+        "device": 16777232,
+        "inode": 70887008
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/cache-retirement-20261127/RESULT.json",
+        "bytes": 11849,
+        "sha256": "143485e3b9e46bfbb344b65fcea5418b7e37baccb66ad7eb25f50de047c06b16",
+        "device": 16777232,
+        "inode": 71522870
+      },
+      {
+        "bytes": 61442,
+        "path": "/Users/m1/builds/otzaria-wave2-search-20261127/cache-retirement-20261127/BEFORE.json",
+        "sha256": "05f865a9adb8d2a9f6dad5fad6d67e5c0e1d467c4cf0f76c6e454db2bc70653d",
+        "device": 16777232,
+        "inode": 71522861
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060246Z/RESULT.json",
+        "bytes": 752,
+        "sha256": "09b961e7a2aefc8681d7256c9a6fe15aea2505a738075abf044f2cca83ccbfb6",
+        "device": 16777232,
+        "inode": 71522545
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060449Z/RESULT.json",
+        "bytes": 1358,
+        "sha256": "6081f0cd111c1fd023f580f209ea1298eeba243069ecdebd534d9b8ff6a92e24",
+        "device": 16777232,
+        "inode": 71529591
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060449Z/BEFORE.json",
+        "bytes": 250488,
+        "sha256": "4cfb1f1def0a63e1cd40ca569ec708c53f62f39794e3ff7c3683db84c687edf0",
+        "device": 16777232,
+        "inode": 71529590
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/released-module-cache-retirement-20261127/RESULT.json",
+        "bytes": 503985,
+        "sha256": "004948fa0e4380a8ad0575d3ada7a1dc12a61ec8e66b1a10a190e5868c670031",
+        "device": 16777232,
+        "inode": 71529589
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/retire-owned-reader-module-caches.py",
+        "bytes": 5810,
+        "sha256": "96462d9a7f7ec9b8c45ef31233e397e9bb3321671ad72c3cef9f8e04e40cb3c7",
+        "device": 16777232,
+        "inode": 71529586
+      },
+      {
+        "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/cache-retirement.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "device": 16777232,
+        "inode": 71529587
+      }
+    ]
+  },
+  "review": {
+    "offline": "Root read complete window, heartbeat, Foundation probe and build driver; independent reader review found activation race, corrected fresh checkpoints bind preflight and immediately-before-load/status deadlines. Original safety preconditions remain.",
+    "sourceControls": "55 synthetic source controls; nine identical activation-boundary controls baseline9 failures/candidate0. Retained original evidence only, not rerun by this intake.",
+    "apple": "Actual probe compile and Python syntax receipts verified from original Mac files. Old7476 parser/parse evidence stays separately attributed; candidate7916 Apple syntax only. Binaries never executed.",
+    "cleanup": "Root-authorized six released reproducible compiler caches only; owner receipts and before/after preservation proofs retained. No source, evidence, binary, corpus, SDK or other-owner output deleted.",
+    "allocatedBytesRetired": 848437248,
+    "freeSpaceCaveat": "Live shared-volume free-space changes include concurrent activity and are not substituted for allocated bytes retired."
+  },
+  "pending": [
+    "Actual three no-denial watchdog exercises with current source and boot",
+    "Coordinated independent fresh SSH heartbeat and original native offline pages/source/build/SQL/package join",
+    "Qualified SDK/App/XCTestRun and full-corpus original UI/PERF execution"
+  ],
+  "canonicalDonorFiles": [
+    {
+      "path": "Scripts/CI/OfflineTransportProbe.swift",
+      "gitBlob": "8fbba59454bfe4a6fe70de057fb9ed3503cfabde",
+      "bytes": 7932,
+      "sha256": "bd955e006469b6053f4d509a9cd3e2018cb80ecc8bcaa9e3e4fbc675d5f793c9"
+    },
+    {
+      "path": "Scripts/CI/build-offline-transport-probe.py",
+      "gitBlob": "6fb4771a3f0edc8ca4452be5701a44877425528c",
+      "bytes": 5129,
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-heartbeat.py",
+      "gitBlob": "4ae92f896accfcfd802092c44374a3fecd3f8851",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-window.py",
+      "gitBlob": "38227917796876b0cd2287d51cbb7f45f80ffe39",
+      "bytes": 78428,
+      "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_PROBE_BUILD.json",
+      "gitBlob": "15f4393ae94690880d3a4fb8f0ed1838f554b7d0",
+      "bytes": 4942,
+      "sha256": "b6d57c767770f9c155e036ef27ed5981115dbd81f289973a64eea8d377875703"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_PYTHON_CANDIDATE_SYNTAX.json",
+      "gitBlob": "0cf8f35f2cc08c4212233307be5fe059be68d2fe",
+      "bytes": 1853,
+      "sha256": "7254b7a8b50d3c477bc7fd62da85e6c975c0f70af07152df2ebc0665ca5796da"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_PYTHON_CANDIDATE_SYNTAX.stderr.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_PYTHON_CANDIDATE_SYNTAX.stdout.log",
+      "gitBlob": "d26e824e6951df34746e3ef22dc17087d86503a5",
+      "bytes": 1681,
+      "sha256": "190628b72f61f6421c0edb8235a1e63c62fe1167e15ac6bcf044708b724ec8a8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_PYTHON_SYNTAX.json",
+      "gitBlob": "ab1404bb92b7489f8a4eb5d4ba2dd51f8ca105d4",
+      "bytes": 1099,
+      "sha256": "a40dae6ffe0b1c8e884b02b0cc3ac7cdcc019fcddffc5c4ca16f8fa8804881fa"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/APPLE_SOURCE_RECEIPTS.json",
+      "gitBlob": "3575b56db6e03eba9ef872caaa682dda26460cad",
+      "bytes": 4760,
+      "sha256": "0cfbe2ae09297a63f16397bf1e755f1b50ca99fc5b94356e35fcdf879db94840"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/CAPABILITY_REDACTED.json",
+      "gitBlob": "3494d6493423afb43f03fd0b89b94baef1572d12",
+      "bytes": 2401,
+      "sha256": "e372939c25cb4bb4241c18d314290b7cd959d791200acf79d95be0f72b96e924"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/CHECKPOINT.json",
+      "gitBlob": "2c40d1910865323f1c6353403075a71003e1b38f",
+      "bytes": 1874,
+      "sha256": "33fb9afcb3738f9d5ab2250dd26e8788b7131d0a486e185d6c26409a9d8ffa1c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_ACTIVATION_BASELINE.stderr.log",
+      "gitBlob": "3f8110640f4b3e9ce0f6c0e327552a0f329e3204",
+      "bytes": 10773,
+      "sha256": "52a7d8fcdbda2de9d3d2a5b56fc3e312419fbccd8b4a5d1a1e6df1bbcd8d82a0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_ACTIVATION_BASELINE.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_ACTIVATION_CANDIDATE.stderr.log",
+      "gitBlob": "b228e1423ff36f969aaef75cdfd191950c11b2e4",
+      "bytes": 1381,
+      "sha256": "878cb140e7c167e5bf644650b347f3f4700aad3a381e26929e977cf4247d988a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_ACTIVATION_CANDIDATE.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_SOURCE_CONTROLS.json",
+      "gitBlob": "cb126737331e2c65314f9174357d64fe89f2db4b",
+      "bytes": 333,
+      "sha256": "5ede7918f660acd29ae63415097214f05a1c09ee21d2200b553ab3bba9aa7bc8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_SOURCE_CONTROLS.stderr.log",
+      "gitBlob": "60312f41179aaca300dab582dc1e842463ca461f",
+      "bytes": 6874,
+      "sha256": "198f4ea7e958d6d4b7e664d83c6e9e3d2f5e1e9db091c06eb92bb42f04b2fe3d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/ORACLE_SOURCE_CONTROLS.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/OWNED_MODULE_CACHE_READONLY.json",
+      "gitBlob": "68186c9865aae9b35a6abe3972470eaf5df9d93a",
+      "bytes": 1113,
+      "sha256": "ef9f1ffa61ebdc124f719a05878075bf504630300e92895ed3ea079393292f38"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/README.md",
+      "gitBlob": "c20a50cdeb24490058f96b92336b591becdf36c0",
+      "bytes": 14910,
+      "sha256": "9a749beec494e7f3a51727abd18cec80178155824314429a4b6e7d63500a8659"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/SOURCE_CONTROLS.json",
+      "gitBlob": "2f76593ad92fa54d05b93381b55331528e723be6",
+      "bytes": 282,
+      "sha256": "4bb14d0f142f6592b6f677ddd41c9d960d042b98fdbd79535b2279e17efbea48"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-boundary-controls.py",
+      "gitBlob": "24f16408654ac8b25f06923200c64e58b7f4a1a2",
+      "bytes": 7141,
+      "sha256": "cdae24f3ae405d81e2667a6be73f88f0b96087ebfecabad26b7787adcd4f0e35"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/ORACLE_SOURCE_CONTROLS.json",
+      "gitBlob": "8885331b5493ba5e2c264bdcf9814519ec850f15",
+      "bytes": 501,
+      "sha256": "ed4667fa7d16c1df8d194b81bee852df5d06536db7b016054309c29f7e7edec8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/ORACLE_SOURCE_CONTROLS.stderr.log",
+      "gitBlob": "03a28079e28c828c9c544b4988559294a398a901",
+      "bytes": 5869,
+      "sha256": "5a90b1f2cfe220a7b54a3bea6ebb62d25b88afd6005afbd5fbe1649fb366d000"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/ORACLE_SOURCE_CONTROLS.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/RESULT.json",
+      "gitBlob": "eb258053c616dd4a1bceca313d04dbfe17e01ce8",
+      "bytes": 288,
+      "sha256": "43da416246d0d5113b84fe6ab0d011305976cef295cdb860b9b0ecf78daa664c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/SOURCE_CONTROLS.json",
+      "gitBlob": "110d43b0576974103bdeb513a0e05de3ba93b5ad",
+      "bytes": 282,
+      "sha256": "d3d4ddef1b47ab03086ada603a44c600ff644495a1a73e0a4226393b08c11d2b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/controls.stderr.log",
+      "gitBlob": "9958e24e0c7606c6c4e8c7777a7e3492eacf28ae",
+      "bytes": 9430,
+      "sha256": "42c9d3218718b513d5c20e330a54bcf2a81b2060c9d0c0c58f7fa91af6cbbbda"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/controls.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/source-controls.py",
+      "gitBlob": "79e0224f26f3c106ca0e1693d28ccddb0046dfe9",
+      "bytes": 21252,
+      "sha256": "d4ba94ec46c8e41147a214dba26f2dff52574b1143d31d30e3503a6143cfcccf"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-baseline/study-ui-offline-window.py",
+      "gitBlob": "bcc2312d546d95a548687e332016578fd0f2c77c",
+      "bytes": 72089,
+      "sha256": "7476c82b406911e7811e11266d3db1a68a79a0c4f31917dd0d87a3f4076a6b96"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-candidate.stderr.log",
+      "gitBlob": "432cb3940ee32fb383a9245bc1ba5b899d49bf31",
+      "bytes": 1381,
+      "sha256": "27430dbce1148e6897ac22f426d8a281d6af32880950473e3d3825af3d622706"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-candidate.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/activation-race-candidate/RESULT.json",
+      "gitBlob": "5c7eacd3e2b915c210f643e472719bd64a0b4c8f",
+      "bytes": 287,
+      "sha256": "b96e7a9fff938665b8172e354375ebe3e448ce8433cefdfb18af7ad9a2859c8f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/apple-probe-and-python-inputs-logs.tar.gz",
+      "gitBlob": "1f22ce60b8d550044420ecf7f413e37c2c5a9e56",
+      "bytes": 33455,
+      "sha256": "8b8e51376b111c33ff8dd73454b2190e107bc046df6ddf7de020afc3b02e1ba6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/apple-python-candidate-inputs.tar.gz",
+      "gitBlob": "9edfdeb5efb63d73ef34bf3700c3dea31616b892",
+      "bytes": 32169,
+      "sha256": "d2311e5260ae6c167c7e9f0b7e22e097c7d384e77b6066212777b7c762631a9f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-activation-race-baseline/RESULT.json",
+      "gitBlob": "eb258053c616dd4a1bceca313d04dbfe17e01ce8",
+      "bytes": 288,
+      "sha256": "43da416246d0d5113b84fe6ab0d011305976cef295cdb860b9b0ecf78daa664c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-activation-race-candidate/RESULT.json",
+      "gitBlob": "5c7eacd3e2b915c210f643e472719bd64a0b4c8f",
+      "bytes": 287,
+      "sha256": "b96e7a9fff938665b8172e354375ebe3e448ce8433cefdfb18af7ad9a2859c8f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-controls-permission-attempt/ORACLE_SOURCE_CONTROLS.json",
+      "gitBlob": "ae10b23add7e00745aa316bdfc510b0ac8e6b736",
+      "bytes": 333,
+      "sha256": "4e2cb15923f45dacc0d6da6e4dabf309a4f69780207e07e06260cc7839651542"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-controls-permission-attempt/ORACLE_SOURCE_CONTROLS.stderr.log",
+      "gitBlob": "2b3f85a676789818b806296327c6174725da5912",
+      "bytes": 7792,
+      "sha256": "17306d51db9751d9045ad7718051ba41cc30fc9ce3caad73b229aaa2db321970"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-controls-permission-attempt/ORACLE_SOURCE_CONTROLS.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/oracle-controls-permission-attempt/SCOPE.json",
+      "gitBlob": "9a92cb63401caceb2880d345108db52056b3820a",
+      "bytes": 341,
+      "sha256": "4ef16cf6061797d7808c6c23b038bf5108492e815778c82521eb3e0ee8bfa7d6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/offline-window/source-controls.py",
+      "gitBlob": "2d9ee5423e2ebf5918ddf5d404b126527c1b7585",
+      "bytes": 25651,
+      "sha256": "17fbafaf559f3dad20ae96503aaace6123b8c38960780024b49bdb322d262350"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/BEFORE.json",
+      "gitBlob": "b5fc9ed6d2b16d9bd90696a255838aed033fc9de",
+      "bytes": 61442,
+      "sha256": "05f865a9adb8d2a9f6dad5fad6d67e5c0e1d467c4cf0f76c6e454db2bc70653d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/DISPATCH.json",
+      "gitBlob": "a2207466a27353d4b24e71195b4c85f7dada356b",
+      "bytes": 499,
+      "sha256": "570a7552094ba8fdd5ef089574fa2061b0d70d7d252dfdfc28f8884b48c7dd48"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/MAC_RESULT.json",
+      "gitBlob": "01344a90161bcfbc3e20249f7c61462ebbfd2104",
+      "bytes": 11849,
+      "sha256": "143485e3b9e46bfbb344b65fcea5418b7e37baccb66ad7eb25f50de047c06b16"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/ORIGINAL_INVENTORY.json",
+      "gitBlob": "f6ee1bb8fbd06d32335a1fdeeb632405f4f8f1d2",
+      "bytes": 48022,
+      "sha256": "2ede05272d7c0876bf4cd8a417a272989ece218ed84a3d8093ffd5fc32368904"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/README.md",
+      "gitBlob": "909cdd21d798c3c2115b0b23d0033490e1c76520",
+      "bytes": 2034,
+      "sha256": "6143098b9e43fb80e5cca3cdaa61ee96a00c2972cbd0337ea4666381d6d1358b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/RESULT.json",
+      "gitBlob": "9ed8c2ce6eb12307e88e9d9e5d83c8b7fc9b1651",
+      "bytes": 11849,
+      "sha256": "9ab01cb0a115c95592c195a7d8f663f054cc6e3abedad0e3df7ca156c405a55c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/RUN.json",
+      "gitBlob": "ebcc0f3e662e28a8155cd25d6a4c86494a16f884",
+      "bytes": 106,
+      "sha256": "1ffad6afe1dcf4a6e47750de593185ec89c9a61725afa3446a8f0fa5bbd43405"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/RUN.stderr.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/RUN.stdout.log",
+      "gitBlob": "f8e4ad44f58d36a2484e9a62523497fb23a24d6b",
+      "bytes": 10915,
+      "sha256": "b4622f62786b25f3291bc236ca9dcf23ce8201bfbca82a327beaf0c65781304e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/owned-cache-retirement/retire-owned-module-cache.py",
+      "gitBlob": "2a6646c38045de6d4f6958f199775c57fc9e40a0",
+      "bytes": 7033,
+      "sha256": "1f4b637b6ef3cb4e414dd5d4e949773dd9f57ca4280f6291622e46b2fa9cec1f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/RAW_INPUTS.json",
+      "gitBlob": "e0b7765e118796b41b7b95f78416bed8f1c0d717",
+      "bytes": 1153,
+      "sha256": "407fb2f1514647ded244583a722ff78eee9f018d66fc25c0fe24136649405cd2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/README.md",
+      "gitBlob": "676d193990623ea2c3ef7ac436878ecd20f9f311",
+      "bytes": 3125,
+      "sha256": "af92da50501624b1917ccedd516d74f46921e0859dd40500d35a296639db7c89"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/attempt-1-RESULT.json",
+      "gitBlob": "666f07f3a448353d7fd2c24c7709b4ba41b241e3",
+      "bytes": 752,
+      "sha256": "09b961e7a2aefc8681d7256c9a6fe15aea2505a738075abf044f2cca83ccbfb6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/attempt-2-RESULT.json",
+      "gitBlob": "7f6ec7aef436cd137e44ab4f4f32c5cb6c6ade66",
+      "bytes": 1358,
+      "sha256": "6081f0cd111c1fd023f580f209ea1298eeba243069ecdebd534d9b8ff6a92e24"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/before-inventory.json.gz",
+      "gitBlob": "2d305f1dc5c58d00186ba61255b64025723f6db5",
+      "bytes": 26871,
+      "sha256": "37e756dc9450673ab012fa42873906ca3bf50a290fdceb9cdde62daf1bd55fed"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/retire-owned-module-caches-attempt-1.py",
+      "gitBlob": "31c0f05368936338917ad719181aa33f6a74238c",
+      "bytes": 7184,
+      "sha256": "c471b3d4019c5f7a391253f4ef5f9396fca7aab6179a8f9ca45944d369761a52"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/cache-retirement-20261127/retire-owned-module-caches.py",
+      "gitBlob": "212102a79e8104ae304f529be57ebe3599d8c7ec",
+      "bytes": 7322,
+      "sha256": "33f6e1bbd264fd4ce505aa1def387d221238d252345074a9066d24259ec80503"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/released-module-cache-retirement/README.md",
+      "gitBlob": "d9beec544a74877b07b1ba0f6a6e342770b21fe6",
+      "bytes": 1204,
+      "sha256": "46c2c506606e25c18c4852e03f3798158d119025e8cbffa4991e577d9f8939be"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/released-module-cache-retirement/RESULT.json",
+      "gitBlob": "844093c0865b9f68ede34632db678460f53e916a",
+      "bytes": 503985,
+      "sha256": "004948fa0e4380a8ad0575d3ada7a1dc12a61ec8e66b1a10a190e5868c670031"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/released-module-cache-retirement/TRANSFER.json",
+      "gitBlob": "82df5e927e6615146f4a37924429325c1d5046bf",
+      "bytes": 1060,
+      "sha256": "2be3c54f76e683cc1cf338f0bbcee1d8bc6062df55cfc8f6adcf60f3fc9876dd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/released-module-cache-retirement/cache-retirement.stdout.log",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/released-module-cache-retirement/retire-owned-reader-module-caches.py",
+      "gitBlob": "0c961021c68902a1133d25bd4f3475f97a5ba03f",
+      "bytes": 5810,
+      "sha256": "96462d9a7f7ec9b8c45ef31233e397e9bb3321671ad72c3cef9f8e04e40cb3c7"
+    }
+  ],
+  "canonicalDonorFilesMatched": 66,
+  "pythonSyntaxChecks": [
+    {
+      "path": "Scripts/CI/study-ui-offline-window.py",
+      "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2",
+      "status": "PARSED_ONLY_NO_EXECUTION"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-heartbeat.py",
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9",
+      "status": "PARSED_ONLY_NO_EXECUTION"
+    },
+    {
+      "path": "Scripts/CI/build-offline-transport-probe.py",
+      "sha256": "2915b36a34d79a64c262ccb6e685ea59d2392c365f9a249baad53d9b95dd6667",
+      "status": "PARSED_ONLY_NO_EXECUTION"
+    }
+  ],
+  "verifiedAtUTC": "2026-11-27T06:23:33.494834+00:00"
+}
