@@ -41,7 +41,8 @@
     "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
     "Source/Otzaria/Reading/OtzariaLineAnchor.swift",
     "Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
-    "Tests/HQ/sqlite/UnusedZstdBoundary.swift"
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+    "Source/LibraryBackend/LibraryBackendModels.swift"
   ],
   "execution_input_paths": [
     ".github/workflows/otzaria-reader-groups-full-v32.yml",
@@ -92,7 +93,8 @@
     "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
     "Scripts/CI/library-v40-focused-native.py",
     "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
-    "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py"
+    "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py",
+    "Source/LibraryBackend/LibraryBackendModels.swift"
   ],
   "input_sha256": {},
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",

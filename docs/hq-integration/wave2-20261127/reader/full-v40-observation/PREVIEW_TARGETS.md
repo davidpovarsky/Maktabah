@@ -23,6 +23,11 @@ Add these fields, using real observed values:
     {"bookID": "ACTUAL_RESULT_BOOK_ID_AS_INTEGER", "focusLineIndex": "ACTUAL_RESULT_LINE_INDEX_AS_INTEGER", "mode": "paragraph"},
     {"bookID": "ACTUAL_RESULT_BOOK_ID_AS_INTEGER", "focusLineIndex": "ACTUAL_RESULT_LINE_INDEX_AS_INTEGER", "mode": "chapter"}
   ],
+  "presentationSource": {
+    "path": "ACTUAL_COMPILED_PATH/Source/LibraryBackend/LibraryBackendModels.swift",
+    "sha256": "ACTUAL_SHA256_FROM_SAME_RETAINED_CATALOG_COMPILE_INPUTS",
+    "compileInputsPath": "ACTUAL_CATALOG_OUTPUT/compile-inputs.json"
+  },
   "sourceService": {
     "path": "ACTUAL_COMPILED_PATH/Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
     "sha256": "ACTUAL_SHA256_FROM_RETAINED_CATALOG_COMPILE_INPUTS",
@@ -46,6 +51,7 @@ Top-level `preview-targets.json` fields are:
 | `corpusProfile` | `full-v40` |
 | `databaseSHA256` | Independently admitted full database identity |
 | `sourceServiceSHA256` | Rehashed original service file, bound to retained compile inputs |
+| `presentationSourceSHA256` | Whole original LibraryBackendModels.swift, including ordered readerPlainText handling and canonical segment IDs |
 | `catalogCompileInputsSHA256` | Exact compile-input receipt digest |
 | `targets` | One complete original reading unit per actual requested tuple/mode |
 | `uiExecuted` / `searchProviderExecuted` | `0` / `false`; source generation never supplies those acceptance results |
@@ -53,7 +59,9 @@ Top-level `preview-targets.json` fields are:
 Each target retains the existing complete-unit identity fields: book ID and actual canonical title, requested focus index, mode, unit ID, TOC ID, start/end source indices, row count, section/focus locators, UTF8 byte count, UTF16 length, full source SHA256 and source file, all-anchor identity hash, and exact focused-anchor range/hash. It additionally contains:
 
 - `sourceUTF8`: the entire original `unit.plainText`, without truncation or normalization.
-- `anchors`: every source row in order, each with actual `lineID`, `bookID`, `lineIndex`, nullable `heRef`, UTF16 `rangeLocation` / `rangeLength`, exact `text`, and `textSHA256`.
+- `anchors`: every source row in order, each with actual `lineID`, `bookID`, `lineIndex`, nullable `heRef`, UTF16 `rangeLocation` / `rangeLength`, exact `text`, and `textSHA256`. Each anchor also exposes the original `LibraryTextSegment.id` as `segmentID`, and the actual `primaryText.readerPlainText` result as `previewPlainText`, `previewPlainTextSHA256`, and `previewUTF16Length`.
+
+The original `OtzariaInspectorDocumentMapper.section` assigns `anchor.text` directly to each segment primary text. The Search preview then applies `readerPlainText`. That helper strips HTML, processes entities in a fixed order, handles paragraph markers and trims whitespace. It is not generally an identity or idempotent transform. The oracle compiles the **whole unchanged** `Source/LibraryBackend/LibraryBackendModels.swift` and calls its real helper; native tests must compare the `previewPlainText` fields without applying another normalization. The input requires `presentationSource`, tied to the same actual compiler command and rehashed source map as `sourceService`.
 
 The oracle calls the unchanged production `OtzariaReadingUnitService.descriptor` and `readingUnit` with the requested mode, and rejects a fallback mode. It checks every original anchor against immutable SQL `id` / `lineIndex` / `heRef`, exact UTF16 boundaries, exact UTF8 source slices and the final complete-source boundary. SQLite/Zstd decoding comes from the actual original service and its existing compatibility code, not a rewritten decoder.
 
@@ -62,3 +70,7 @@ The oracle calls the unchanged production `OtzariaReadingUnitService.descriptor`
 Actual Apple Swift compilation of the whole unchanged service/SQLite/Zstd closure with this optional path passed (exit 0). Exact source SHA256 is `1ecd1336ef0f353d14bfdf857a71f3ee9c37d56fe3a47dd541ca86959fa2a86c`; native binary SHA256 is `34dce24d689df3c52875492df996b30762d9b8d231da395a80c1ce16925f1bb2`. The Mac retains `/Users/m1/builds/otzaria-wave2-reader-controls-20261127/full-v40-preview-catalog`. `apple-preview-source-controls/RESULT.json` and `compile.log` preserve the command and result.
 
 No selected search hit, full database generation, original preview UI, mode transition, focus, selection or performance acceptance is claimed by that compilation. The integration owner must generate this receipt from the real installed provider hit and the final qualified source before the corresponding native cases execute.
+
+## Exact presentation increment
+
+Actual Apple whole-source compilation on 2026-11-27 passed (exit 0) with the original presentation model included. Catalog SHA256 `a85772ad89a8789ca8bb7453cd373bd647b0900b162534e4bd3867b910d0061c`; unchanged presentation model SHA256 `b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d`; binary SHA256 `e70fa662b35e5743d8696abf90f71e5a04b0fbc82d765fce79459ef47e9db296`. See `apple-preview-presentation-controls/RESULT.json` and `compile.log`. No full database or UI executed in this compile control. The v32 compile closure remains unchanged.
