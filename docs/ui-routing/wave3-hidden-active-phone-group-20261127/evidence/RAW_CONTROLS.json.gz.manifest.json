@@ -1,0 +1,2282 @@
+{
+  "rawBytes": 12740594,
+  "rawSHA256": "618b24ee52ff15ee997596e6cc7591def5a29edcfe38dd0281e4bebf59bc4b97",
+  "gzipBytes": 3757480,
+  "gzipSHA256": "977e2ee2aa8eca7bfee86df7abda1e6026f9cbe8e2aaa180bba0f848fd182ece",
+  "files": [
+    {
+      "path": "publication/publish_packet.py",
+      "bytes": 177272,
+      "sha256": "bbdb427c2a2df8174aad7cb7c6316a1deee7d722d2c2a35b3c6f7e9f54d8566d"
+    },
+    {
+      "path": "publication/publish_resume.py",
+      "bytes": 179089,
+      "sha256": "58f4ab7beae4030e3aafeeeb32d1c2cff5dcc8b4b9edc0f7fab6f516085c6ef7"
+    },
+    {
+      "path": "publication/PUBLISH_ATTEMPT1.json",
+      "bytes": 919,
+      "sha256": "650277da34efac6b53c354016fc71990138b169759172702ac1b107eef2d206d"
+    },
+    {
+      "path": "publication/publish-resume-delta.json",
+      "bytes": 3925,
+      "sha256": "8769da82a121eb81d932fb709d1024ce4734427531ffc6abd58973651862cb07"
+    },
+    {
+      "path": "attempt-1/RESULT.json",
+      "bytes": 72045,
+      "sha256": "96577891d75abc805e150956f83b23de101389ca228372d9ce173399c4095489"
+    },
+    {
+      "path": "attempt-1/failure.txt",
+      "bytes": 574,
+      "sha256": "b3f388e0013a53de070e7d4c97a2676efab1afd90039b7df1e0744e09d7ffc4d"
+    },
+    {
+      "path": "attempt-1/inputs/ORIGINAL_SOURCE_INPUTS.json",
+      "bytes": 7060,
+      "sha256": "8d05ab1d4128f8ac5018240581591243008d042cf5cb9fe94855e114fd03d86c"
+    },
+    {
+      "path": "attempt-1/inputs/SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "attempt-1/inputs/SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "attempt-1/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-1/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-1/inputs/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-1/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-1/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    },
+    {
+      "path": "attempt-1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    },
+    {
+      "path": "attempt-1/inputs/controls/SOURCE_INPUTS.json",
+      "bytes": 12082,
+      "sha256": "b045fc159df706f1d0bfd8de12074cac420da66b83bd0e76723bdf84b009a664"
+    },
+    {
+      "path": "attempt-1/inputs/controls/baseline/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24632,
+      "sha256": "b84e1ef862fbcb7fd5fc78ffe7e0fdf281720eee497cef0ba1568900bf3b4108"
+    },
+    {
+      "path": "attempt-1/inputs/controls/baseline/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-1/inputs/controls/baseline/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80789,
+      "sha256": "8aa3cf94fb696ab9f9149d12aeb9db4fb29279dd8c7eeb8be4917bf4751900c7"
+    },
+    {
+      "path": "attempt-1/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "attempt-1/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-1/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 15158,
+      "sha256": "1bdda4231f94f138ed38a834aaaa30112f0851d7c515c08f3f99b37dd1b3472c"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-1/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 27361,
+      "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21681,
+      "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 14334,
+      "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47"
+    },
+    {
+      "path": "attempt-1/inputs/original/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52990,
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+    },
+    {
+      "path": "attempt-2/CORE_POLICY_READBACK.json",
+      "bytes": 487,
+      "sha256": "e21917bbf18526c861b0c47ffa09e115ca9d08b49159ba61189e94688e6b48ce"
+    },
+    {
+      "path": "attempt-2/RESULT.json",
+      "bytes": 88769,
+      "sha256": "a086c6aa0c50ccb7c5d3f55a8522a34c0da5353ab849792b71e17997301ea988"
+    },
+    {
+      "path": "attempt-2/compile-baseline.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/compile-baseline.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/compile-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/compile-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/failure.txt",
+      "bytes": 729,
+      "sha256": "76b4b3a28d38bccf6a17056a9fe1035fed71767726b38e1b89a3f34981d98866"
+    },
+    {
+      "path": "attempt-2/inputs/ORIGINAL_SOURCE_INPUTS.json",
+      "bytes": 7060,
+      "sha256": "8d05ab1d4128f8ac5018240581591243008d042cf5cb9fe94855e114fd03d86c"
+    },
+    {
+      "path": "attempt-2/inputs/SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "attempt-2/inputs/SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "attempt-2/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-2/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-2/inputs/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-2/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-2/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    },
+    {
+      "path": "attempt-2/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    },
+    {
+      "path": "attempt-2/inputs/controls/SOURCE_INPUTS.json",
+      "bytes": 12082,
+      "sha256": "b045fc159df706f1d0bfd8de12074cac420da66b83bd0e76723bdf84b009a664"
+    },
+    {
+      "path": "attempt-2/inputs/controls/baseline/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24632,
+      "sha256": "b84e1ef862fbcb7fd5fc78ffe7e0fdf281720eee497cef0ba1568900bf3b4108"
+    },
+    {
+      "path": "attempt-2/inputs/controls/baseline/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-2/inputs/controls/baseline/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80789,
+      "sha256": "8aa3cf94fb696ab9f9149d12aeb9db4fb29279dd8c7eeb8be4917bf4751900c7"
+    },
+    {
+      "path": "attempt-2/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "attempt-2/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-2/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 15158,
+      "sha256": "1bdda4231f94f138ed38a834aaaa30112f0851d7c515c08f3f99b37dd1b3472c"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-2/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 27361,
+      "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21681,
+      "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 14334,
+      "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47"
+    },
+    {
+      "path": "attempt-2/inputs/original/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52990,
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+    },
+    {
+      "path": "attempt-2/run-baseline.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/run-baseline.stdout",
+      "bytes": 846,
+      "sha256": "30972e796cd0bc3a5e9a13d52728c73cbaf5c1f8a203bffb7960eb5aa42f347b"
+    },
+    {
+      "path": "attempt-2/run-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-2/run-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-3/RESULT.json",
+      "bytes": 88910,
+      "sha256": "4109373074edeb49bf79003c6d76e324c42c44165cee97a9351f1fb728c4cd93"
+    },
+    {
+      "path": "attempt-3/compile-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-3/compile-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-3/compile-original-fixture-diagnostic.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-3/compile-original-fixture-diagnostic.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-3/failure.txt",
+      "bytes": 680,
+      "sha256": "10eb3a690b816d73b1a07249ac1343424374ee1c59c27e14c15fd1612f1ed52b"
+    },
+    {
+      "path": "attempt-3/inputs/ORIGINAL_SOURCE_INPUTS.json",
+      "bytes": 7060,
+      "sha256": "8d05ab1d4128f8ac5018240581591243008d042cf5cb9fe94855e114fd03d86c"
+    },
+    {
+      "path": "attempt-3/inputs/SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "attempt-3/inputs/SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "attempt-3/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-3/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-3/inputs/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-3/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-3/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    },
+    {
+      "path": "attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    },
+    {
+      "path": "attempt-3/inputs/controls/SOURCE_INPUTS.json",
+      "bytes": 12082,
+      "sha256": "b045fc159df706f1d0bfd8de12074cac420da66b83bd0e76723bdf84b009a664"
+    },
+    {
+      "path": "attempt-3/inputs/controls/baseline/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24632,
+      "sha256": "b84e1ef862fbcb7fd5fc78ffe7e0fdf281720eee497cef0ba1568900bf3b4108"
+    },
+    {
+      "path": "attempt-3/inputs/controls/baseline/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-3/inputs/controls/baseline/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80789,
+      "sha256": "8aa3cf94fb696ab9f9149d12aeb9db4fb29279dd8c7eeb8be4917bf4751900c7"
+    },
+    {
+      "path": "attempt-3/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "attempt-3/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-3/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 15975,
+      "sha256": "b5020058854f01bd39e40109f493b22f6ce1460fab04c04a02866e5231616632"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-3/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-3/inputs/diagnostic/DiagnosticUnboundedHookControls.swift",
+      "bytes": 15431,
+      "sha256": "6787fba56db49509980b5dd539a5d94a049e3aeebd1bfbb789ae24f029df7e83"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 27361,
+      "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21681,
+      "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 14334,
+      "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47"
+    },
+    {
+      "path": "attempt-3/inputs/original/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52990,
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+    },
+    {
+      "path": "attempt-3/run-original-fixture-diagnostic.stderr",
+      "bytes": 66,
+      "sha256": "52577a1db8774dc224e7f0255f0697d07974ff31df373e39ebdae97b815872dd"
+    },
+    {
+      "path": "attempt-3/run-original-fixture-diagnostic.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-4/RESULT.json",
+      "bytes": 82568,
+      "sha256": "2be81eea6375a202a2610a2b6abc246eecf8c9a1ad083b0233e2b713992ecda4"
+    },
+    {
+      "path": "attempt-4/compile-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-4/compile-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-4/failure.txt",
+      "bytes": 727,
+      "sha256": "19895eaaa835f2c50bb864df4eddff084e1d1d9f40676e40eace0265d769af57"
+    },
+    {
+      "path": "attempt-4/inputs/ORIGINAL_SOURCE_INPUTS.json",
+      "bytes": 7060,
+      "sha256": "8d05ab1d4128f8ac5018240581591243008d042cf5cb9fe94855e114fd03d86c"
+    },
+    {
+      "path": "attempt-4/inputs/SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "attempt-4/inputs/SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "attempt-4/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-4/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-4/inputs/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-4/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-4/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    },
+    {
+      "path": "attempt-4/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    },
+    {
+      "path": "attempt-4/inputs/controls/SOURCE_INPUTS.json",
+      "bytes": 12082,
+      "sha256": "b045fc159df706f1d0bfd8de12074cac420da66b83bd0e76723bdf84b009a664"
+    },
+    {
+      "path": "attempt-4/inputs/controls/baseline/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24632,
+      "sha256": "b84e1ef862fbcb7fd5fc78ffe7e0fdf281720eee497cef0ba1568900bf3b4108"
+    },
+    {
+      "path": "attempt-4/inputs/controls/baseline/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-4/inputs/controls/baseline/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80789,
+      "sha256": "8aa3cf94fb696ab9f9149d12aeb9db4fb29279dd8c7eeb8be4917bf4751900c7"
+    },
+    {
+      "path": "attempt-4/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "attempt-4/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-4/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 15975,
+      "sha256": "b5020058854f01bd39e40109f493b22f6ce1460fab04c04a02866e5231616632"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-4/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-4/inputs/diagnostic/DiagnosticUnboundedHookControls.swift",
+      "bytes": 15431,
+      "sha256": "6787fba56db49509980b5dd539a5d94a049e3aeebd1bfbb789ae24f029df7e83"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 27361,
+      "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21681,
+      "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 14334,
+      "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47"
+    },
+    {
+      "path": "attempt-4/inputs/original/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52990,
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+    },
+    {
+      "path": "attempt-4/run-candidate.stderr",
+      "bytes": 2626,
+      "sha256": "c461d6333fb4b4694dafd6a47c97a3d3e16f484dce07311907cdf39e49287999"
+    },
+    {
+      "path": "attempt-4/run-candidate.stdout",
+      "bytes": 2285,
+      "sha256": "c1b4d6237b9b125313880ae0d57b4d60d7ba36641991547cd5feefc6d8769ffc"
+    },
+    {
+      "path": "attempt-5/RESULT.json",
+      "bytes": 107310,
+      "sha256": "1f3ff09b4dac620220c1764300345effa407c07ddc6ee71ea53921422280d070"
+    },
+    {
+      "path": "attempt-5/compile-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/compile-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/compile-source-counterfactual.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/compile-source-counterfactual.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/inputs/ORIGINAL_SOURCE_INPUTS.json",
+      "bytes": 7060,
+      "sha256": "8d05ab1d4128f8ac5018240581591243008d042cf5cb9fe94855e114fd03d86c"
+    },
+    {
+      "path": "attempt-5/inputs/SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "attempt-5/inputs/SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "attempt-5/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-5/inputs/baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-5/inputs/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-5/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-5/inputs/candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    },
+    {
+      "path": "attempt-5/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    },
+    {
+      "path": "attempt-5/inputs/controls/CounterfactualAdapter.swift",
+      "bytes": 85362,
+      "sha256": "14140e507a5742a1eaa234004e79be437fd447e815e4f602ac28c6964f046930"
+    },
+    {
+      "path": "attempt-5/inputs/controls/SOURCE_INPUTS.json",
+      "bytes": 12082,
+      "sha256": "b045fc159df706f1d0bfd8de12074cac420da66b83bd0e76723bdf84b009a664"
+    },
+    {
+      "path": "attempt-5/inputs/controls/baseline/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24632,
+      "sha256": "b84e1ef862fbcb7fd5fc78ffe7e0fdf281720eee497cef0ba1568900bf3b4108"
+    },
+    {
+      "path": "attempt-5/inputs/controls/baseline/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-5/inputs/controls/baseline/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80789,
+      "sha256": "8aa3cf94fb696ab9f9149d12aeb9db4fb29279dd8c7eeb8be4917bf4751900c7"
+    },
+    {
+      "path": "attempt-5/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "attempt-5/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "attempt-5/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 17024,
+      "sha256": "ac881027f4d725614aa056da8b7e753de7de5470f476dd93269ae1ccbf5b7a56"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-5/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-5/inputs/diagnostic/DiagnosticUnboundedHookControls.swift",
+      "bytes": 15431,
+      "sha256": "6787fba56db49509980b5dd539a5d94a049e3aeebd1bfbb789ae24f029df7e83"
+    },
+    {
+      "path": "attempt-5/inputs/diagnostic/PreservedAttempt4HiddenGroupControls.swift",
+      "bytes": 15975,
+      "sha256": "b5020058854f01bd39e40109f493b22f6ce1460fab04c04a02866e5231616632"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 27361,
+      "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21681,
+      "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 14334,
+      "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47"
+    },
+    {
+      "path": "attempt-5/inputs/original/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52990,
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+    },
+    {
+      "path": "attempt-5/run-annotation-fixture.stderr",
+      "bytes": 250,
+      "sha256": "30756b75322f72e2aad5cacd6304a4e9962e7930d82d3a0b3c575f0e7400b323"
+    },
+    {
+      "path": "attempt-5/run-annotation-fixture.stdout",
+      "bytes": 470,
+      "sha256": "73f1e21f338647f8dfce7b2fab160876b4c809df1a7c2f8f9929bd1485a369de"
+    },
+    {
+      "path": "attempt-5/run-candidate.stderr",
+      "bytes": 2626,
+      "sha256": "c461d6333fb4b4694dafd6a47c97a3d3e16f484dce07311907cdf39e49287999"
+    },
+    {
+      "path": "attempt-5/run-candidate.stdout",
+      "bytes": 2019,
+      "sha256": "cf82cde2b301af9ba72b305d7b6e34a7e53d608cf2ad277ccf43f97ffa35faa5"
+    },
+    {
+      "path": "attempt-5/run-source-counterfactual.stderr",
+      "bytes": 400,
+      "sha256": "00e3128daed79c61aeb3bdab3f861120615fd5c83f85573695fe023533e6b623"
+    },
+    {
+      "path": "attempt-5/run-source-counterfactual.stdout",
+      "bytes": 843,
+      "sha256": "12082db01789b0a6420c1447cce1bb0dacf626e7f1c4f4c4fe82657d35d4ecfc"
+    },
+    {
+      "path": "attempt-5/syntax-MaktabahNativeWorkspaceSelectionBinding-debug.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-MaktabahNativeWorkspaceSelectionBinding-debug.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-MaktabahNativeWorkspaceSelectionBinding-release.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-MaktabahNativeWorkspaceSelectionBinding-release.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceGroupSelectionReservation-debug.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceGroupSelectionReservation-debug.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceGroupSelectionReservation-release.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceGroupSelectionReservation-release.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceNavigationAdapter-debug.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceNavigationAdapter-debug.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceNavigationAdapter-release.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "attempt-5/syntax-StudyWorkspaceNavigationAdapter-release.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runners/run_attempt1.py",
+      "bytes": 200733,
+      "sha256": "b654c6d8ae798ea14c87396c5326318b93c5d349fb24b4ab12f43672f3cebc67"
+    },
+    {
+      "path": "runners/run_attempt2.py",
+      "bytes": 200855,
+      "sha256": "6e2fd588377b448701ea2d55d3116367f0f8bd19588ee436a8ad0ac2ae446551"
+    },
+    {
+      "path": "runners/run_attempt3.py",
+      "bytes": 212925,
+      "sha256": "2b129fe472ce1df89a6a46efbe7d9be9e277ca1776c7f597991131b6a75a34e4"
+    },
+    {
+      "path": "runners/run_attempt4.py",
+      "bytes": 212877,
+      "sha256": "6b39fe520952a18f6cf20de582030d873aabdc199f070ed0ccdad08e40a34be1"
+    },
+    {
+      "path": "runners/run_attempt5.py",
+      "bytes": 219975,
+      "sha256": "de1c5cefe3e0e773d6946d5db3307778fad53ecf7fdc8985a61e5ba298a7b450"
+    },
+    {
+      "path": "runners/attempt5-delta.json",
+      "bytes": 10171,
+      "sha256": "8253edd3083ace3ec3992af5a9258be64cf4d4956a221777681be151253ba7ed"
+    }
+  ],
+  "preservedProducts": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/baseline-controls",
+      "bytes": 3690200,
+      "sha256": "c87541a156b3e250b4a6bd81507f49b5f9c0673b77a15cdb686b94a2a846d2e6",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/candidate-controls",
+      "bytes": 3696536,
+      "sha256": "d70fc85cd5dd2fd1f962a71650f8924942fe547d2583bb8f97e9939b9bfbc2d1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/fixture-diagnostic",
+      "bytes": 3698096,
+      "sha256": "93d457f050faac798b2f6ca312d1374a89c32dfe3d64ace007715207a87c4357",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/candidate-controls",
+      "bytes": 3699912,
+      "sha256": "a94c3be8446b0e6d0ca734f1ab91e2117faedac11c609c58d76a128b6673d5fb",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/candidate-controls",
+      "bytes": 3702464,
+      "sha256": "4fd19fe2cbe0b96f3e03ab4b9b4138ec650c2eb0b518f65aef3996eb89848019",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/negative-controls",
+      "bytes": 3702480,
+      "sha256": "faf35f730b9d447bb05662fd6be8fdbebfa6447898a12d08036f07b5af47ff52",
+      "preserved": true
+    }
+  ],
+  "scope": "Actual complete three product files and original source chain over declared platform/domain/renderer boundaries; no app SDK or native result."
+}

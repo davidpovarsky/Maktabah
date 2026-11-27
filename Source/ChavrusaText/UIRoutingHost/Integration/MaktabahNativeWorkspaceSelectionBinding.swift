@@ -32,6 +32,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
     private let foreignObservation: NativeComponentSourceObservation
     private let foreignReady: @MainActor () -> Bool
     let viewerParent: MaktabahNativeViewerParentContinuation?
+    private let activePresentation: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation?
     private var stagedForeignObservation: NativeComponentSourceObservation?
     private var reservation: StudyWorkspaceNativeGroupSelectionReservation?
     private var canonicalLifetime: (@MainActor () throws -> Void)?
@@ -58,12 +59,10 @@ final class MaktabahNativeWorkspaceSelectionBinding {
                         selectsProfile: kind == .profile, manager: manager),
                   stage.snapshot == snapshot, canStageOriginalDocuments(stage) else { return }
             let selected = stage.documents.first(where: { $0.id == stage.requested }) ?? stage.documents.first
-            // Original selectTab is a no-op for the already active tab. Do not
-            // advertise that it pushes a hidden compact Reader as a side effect.
-            if !MaktabahApp.isIpad, let selected, manager.activeTabId == selected.id {
-                guard let tab = manager.openTabs.first(where: { $0.id == selected.id }),
-                      manager.selectedBook === tab.book, manager.selectedBookPresentationMode == .viewer else { return }
-            }
+            // The same-active hidden phone case uses the ORIGINAL retained
+            // presentation. Discovery checks feasibility without acquiring it.
+            do { _ = try activePhoneTabRequiringPresentation(stage, manager: manager) }
+            catch { return }
             result.append(.init(kind: kind, sceneID: sceneID,
                 backend: ActionAppIdentityBridge.actionBackend(stage.desiredBackend),
                 profileID: profile.id, groupID: group.id, activeDocumentID: selected?.id,
@@ -83,6 +82,20 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             throw UIRouteError(.staleState, "native_workspace_selection_catalog_changed")
         }
         return result
+    }
+
+    private static func activePhoneTabRequiringPresentation(_ stage: StudyWorkspacePreparedGroupSelection,
+                                                            manager: iOSNavigationManager) throws -> iOSNavigationManager.ReaderTab? {
+        let selected = stage.documents.first(where: { $0.id == stage.requested }) ?? stage.documents.first
+        guard !MaktabahApp.isIpad, let selected, manager.activeTabId == selected.id else { return nil }
+        let matches = manager.openTabs.filter { $0.id == selected.id }
+        guard matches.count == 1, let tab = matches.first else { throw StudyWorkspaceError.invalidMembership }
+        if manager.selectedBook === tab.book, manager.selectedBookPresentationMode == .viewer { return nil }
+        guard manager.selectedBook == nil, manager.selectedBookPresentationMode == nil,
+              let revision = manager.selectedBookPresentationRevision, revision < .max else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        return tab
     }
 
     /// Read-only feasibility from the ORIGINAL saved documents/cache. Actual
@@ -171,6 +184,14 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             } catch { backendObservation.retire(); throw error }
         }
         viewerParent = retainedParent
+        let retainedActive: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation?
+        do {
+            if let tab = try Self.activePhoneTabRequiringPresentation(stage, manager: manager) {
+                retainedActive = .init(tab: tab,
+                    original: try manager.retainActiveReaderTabPresentation(requestID: requestID, tab: tab))
+            } else { retainedActive = nil }
+        } catch { retainedParent?.release(); backendObservation.retire(); throw error }
+        activePresentation = retainedActive
         // Do not observe owned Store/native/isSwitching mutations through a
         // generic latch. Their original setters have exact one-use permissions.
         // Warm original Reader source fields and all unrelated UI remain one-shot.
@@ -198,7 +219,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             readForeignPresentations()
         }
         do { try validate() }
-        catch { retainedParent?.release(); backendObservation.retire(); throw error }
+        catch { retainedActive?.original.release(); retainedParent?.release(); backendObservation.retire(); throw error }
     }
 
     var isReserved: Bool { reservation != nil }
@@ -214,6 +235,9 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         try foreignObservation.validate()
         try stagedForeignObservation?.validate()
         try backendObservation.validate()
+        // This is called at original effect boundaries, not from Group's
+        // intermediate will/did hooks while Manager's book phase is publishing.
+        try activePresentation?.original.validate()
         let manager = bindings.manager
         if let viewerParent {
             try viewerParent.validateRoot()
@@ -236,6 +260,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         }
         if let reservation {
             guard reservation.prepared === prepared, reservation.backendObservation === backendObservation,
+                  reservation.activePresentation?.original === activePresentation?.original,
                   reservation.policy.requestID == requestID,
                   reservation.policy.groupID == target.groupID, reservation.policy.profileID == target.profileID,
                   !isApplied || reservation.policy.phase == .committed else {
@@ -264,7 +289,8 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         }
         let retained = try workspace.reserveNativeGroupSelection(requestID: requestID,
             profileID: target.profileID, groupID: target.groupID, selectsProfile: target.kind == .profile,
-            manager: bindings.manager, backendObservation: backendObservation, prepared: prepared)
+            manager: bindings.manager, backendObservation: backendObservation, prepared: prepared,
+            activePresentation: activePresentation)
         reservation = retained
         guard retained.policy.source === originalNative.source,
               retained.policy.epoch.sourceID == originalNative.epoch.sourceID,
@@ -406,6 +432,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         valid = false; canonicalLifetime = nil
         if !validatedCompletion { reservation?.invalidateOriginalLoads() }
         viewerParent?.release()
+        activePresentation?.original.release()
         if let reservation { workspace.releaseNativeGroupSelection(reservation) }
         else { backendObservation.retire() }
         reservation = nil

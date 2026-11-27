@@ -25,7 +25,7 @@ struct StudyWorkspaceGroupNativeState: Equatable {
 final class StudyWorkspaceGroupSelectionReservation {
     enum Phase: Equatable { case reserved, preparing, prepared, persisting, publishing, committed, invalid, released }
     enum Operation: Equatable {
-        case installTabs, restoreClosingTabs, select(UUID), close(UUID), liveContext
+        case installTabs, restoreClosingTabs, select(UUID), presentActive(UUID), close(UUID), liveContext
     }
     enum Mutation: Equatable {
         case tabs([StudyWorkspaceGroupNativeTab])
@@ -154,7 +154,8 @@ final class StudyWorkspaceGroupSelectionReservation {
     /// Build the finite sequence from the actual original selectTab/closeTab
     /// behavior. Each step is armed only around that exact original call.
     func finishPreparation(staged: [StudyWorkspaceGroupNativeTab], requested: UUID?,
-                           actual: StudyWorkspaceGroupNativeState, snapshot: StudyWorkspaceSnapshot?) throws {
+                           actual: StudyWorkspaceGroupNativeState, snapshot: StudyWorkspaceSnapshot?,
+                           presentingActiveTab: StudyWorkspaceGroupNativeTab? = nil) throws {
         guard phase == .preparing, matches(actual: actual, snapshot: snapshot),
               Set(staged.map(\.id)).count == staged.count,
               staged.allSatisfy({ $0.target.backend == backend }) else { throw invalid() }
@@ -169,7 +170,18 @@ final class StudyWorkspaceGroupSelectionReservation {
             let changes: [Mutation] = state.activeID == selected.id ? []
                 : [.active(selected.id), .book(selected.bookOwner, selected.target.bookID)]
             try append(.select(selected.id), changes)
+            if let presentingActiveTab {
+                // Only the retained ORIGINAL same-active phone presentation
+                // supplies this exact tab. The ordinary select call stays a
+                // no-op; its separate original presentation owns one setter.
+                guard presentingActiveTab == selected, changes.isEmpty,
+                      actual.tabs.filter({ $0.id == selected.id }) == [selected],
+                      actual.activeID == selected.id, actual.selectedBookOwner == nil,
+                      actual.selectedBookID == nil, actual.selectedBookMode == nil else { throw invalid() }
+                try append(.presentActive(selected.id), [.book(selected.bookOwner, selected.target.bookID)])
+            }
         } else {
+            guard presentingActiveTab == nil else { throw invalid() }
             try append(.restoreClosingTabs, [.tabs(actual.tabs)])
             for closing in actual.tabs {
                 let remaining = state.tabs.filter { $0.id != closing.id }

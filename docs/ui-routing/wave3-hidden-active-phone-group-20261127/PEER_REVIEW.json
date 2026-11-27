@@ -1,0 +1,14 @@
+{
+  "reviewer": "/root/navigation_fix",
+  "scope": "Bounded source-only read; no runs or app/native qualification",
+  "readPins": {
+    "policy": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5",
+    "binding": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5",
+    "initialAdapterPrefix": "d59e4b28"
+  },
+  "conclusion": "No additional demonstrated lifetime blocker in exact staged/live tab/book/Reader, one declared book publication, captured reservation across callbacks, release, or unchanged default branches.",
+  "concreteFinding": "Outer apply validator was nonescaping but private optional validator escaped. Syntax-only checks could not establish the complete call chain.",
+  "correction": "Private publisher uses nonoptional nonescaping validation; sole ordinary UI caller passes {}. Complete candidate call chain compiled in actual source capsule.",
+  "finalAdapterSHA256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955",
+  "limits": "Peer did not rerun controls or claim full app SDK/native acceptance. Existing Manager Group/active helper will/did phase ordering remains unchanged."
+}

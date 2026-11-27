@@ -1,0 +1,159 @@
+{
+  "files": [
+    {
+      "path": "PEER_REVIEW.json",
+      "bytes": 1153,
+      "sha256": "7830771f5bdfeb8fc63bd738df89dd2ab4f3476300e7108f6f73371767a12d80"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7009,
+      "sha256": "87e736999d0530466ac11839b34916a6dedca2dc78feed7f769ede4e55bdd61d"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 27874,
+      "sha256": "07b5711ca92e56fe3850de1e0e702f73a91cb2a47b51ab0c7e03ce6fc5f457d4"
+    },
+    {
+      "path": "SOURCE.diff.gz",
+      "bytes": 4574,
+      "sha256": "281bbfb8f9ea7fabfe8f0742152832fdc8c07163c234e405f5698760e58187a8"
+    },
+    {
+      "path": "SOURCE_EDITS.json",
+      "bytes": 16793,
+      "sha256": "ee9bdef0b0bd8485a1f90cd7bcb7502554b20e8b244517fafc71a3f5435664b9"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 1083,
+      "sha256": "32c9532177b19bd7d763980e22bb9459d89047fa3060b5ca8c4c2dbfaa214a09"
+    },
+    {
+      "path": "controls/DiagnosticUnboundedHookControls.swift",
+      "bytes": 15431,
+      "sha256": "6787fba56db49509980b5dd539a5d94a049e3aeebd1bfbb789ae24f029df7e83"
+    },
+    {
+      "path": "controls/HiddenGroupControls.swift",
+      "bytes": 17024,
+      "sha256": "ac881027f4d725614aa056da8b7e753de7de5470f476dd93269ae1ccbf5b7a56"
+    },
+    {
+      "path": "controls/PreservedAttempt4HiddenGroupControls.swift",
+      "bytes": 15975,
+      "sha256": "b5020058854f01bd39e40109f493b22f6ce1460fab04c04a02866e5231616632"
+    },
+    {
+      "path": "controls/PreservedInitialHiddenGroupControls.swift",
+      "bytes": 15158,
+      "sha256": "1bdda4231f94f138ed38a834aaaa30112f0851d7c515c08f3f99b37dd1b3472c"
+    },
+    {
+      "path": "controls/attempt3-runner-edits.json",
+      "bytes": 12619,
+      "sha256": "0b2f5f13b2856928748b288da9244e4fb6cc8ed8ab4cfc7d09ad6da31c3a9e5e"
+    },
+    {
+      "path": "controls/attempt4-runner-edits.json",
+      "bytes": 1727,
+      "sha256": "f18e35bcb98ec80f4723260dcb6dddc8b76a7351c535a7428256e4504e1e7e33"
+    },
+    {
+      "path": "controls/attempt5-delta.json",
+      "bytes": 10172,
+      "sha256": "859c108a9f3b8e814bdd93938fa117704595288a94df2bc808898938e3fc8556"
+    },
+    {
+      "path": "controls/exact_bounded_subprocess.py",
+      "bytes": 3540,
+      "sha256": "fc597b3333f830fc97f73edaa34644645956f8e35cbdcea11c26f9957d6daba8"
+    },
+    {
+      "path": "controls/generate.py",
+      "bytes": 9183,
+      "sha256": "524dd04ed3595bb5cd4381f294cdfb7f4bc9d1c7b06311c893e02977ff96ab31"
+    },
+    {
+      "path": "controls/prepare_attempt3.py",
+      "bytes": 3030,
+      "sha256": "1625867d4c7399eee3b5974e4527f3b96e70601a30bd7617800f77e0a2275941"
+    },
+    {
+      "path": "controls/prepare_attempt5.py",
+      "bytes": 5384,
+      "sha256": "dfde51a1362c9c216187381ff6993f220037825340bd818660c5badcfe7f9455"
+    },
+    {
+      "path": "evidence/ATTEMPT4_19PASS_3FAIL.json",
+      "bytes": 2285,
+      "sha256": "c1b4d6237b9b125313880ae0d57b4d60d7ba36641991547cd5feefc6d8769ffc"
+    },
+    {
+      "path": "evidence/FINAL_RESULT.json",
+      "bytes": 107310,
+      "sha256": "1f3ff09b4dac620220c1764300345effa407c07ddc6ee71ea53921422280d070"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz",
+      "bytes": 3757480,
+      "sha256": "977e2ee2aa8eca7bfee86df7abda1e6026f9cbe8e2aaa180bba0f848fd182ece"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz.manifest.json",
+      "bytes": 98613,
+      "sha256": "e54b4828427aa93f741add09a061953c71f61add66972ba7f1d9c3eae04b2caf"
+    },
+    {
+      "path": "prepare_candidate.py",
+      "bytes": 16255,
+      "sha256": "a75408104f40c71b828ceada503b4edc6e066ec7295d801e95b39956c9d38301"
+    },
+    {
+      "path": "preserved/OPTIONAL_VALIDATOR_DRAFT.json.gz",
+      "bytes": 41997,
+      "sha256": "f13cdc58e58f6d2b06b1e0bd2c66d030d810389e8739d202531dd0bff7039b13"
+    },
+    {
+      "path": "publish_packet.py",
+      "bytes": 9773,
+      "sha256": "ef273f7fdd6776763988bb727d060e6e528e1a7c1db85502e99ec2566ecf71aa"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": {
+        "bytes": 17686,
+        "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+      },
+      "after": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "after": {
+        "bytes": 84493,
+        "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "after": {
+        "bytes": 26559,
+        "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+      }
+    }
+  ]
+}
