@@ -1,0 +1,111 @@
+{
+  "archives_of_source_created": 0,
+  "builds": 0,
+  "capacity_sufficient_not_established": true,
+  "compact_entries_excluding_root": 160377,
+  "compact_inode": 61610714,
+  "compact_logical_bytes": 11947125221,
+  "compact_per_file_kernel_private_bytes": 3013525504,
+  "compact_regular_files": 128191,
+  "compact_source_head": "6935f7fdd0f5e982a8deb44fc438bcfecb2cb8a6",
+  "compact_unique_allocated_bytes": 12307562496,
+  "complete_preservation_performed": false,
+  "created_at": "2026-11-27T16:25:33.190070+00:00",
+  "current_sdk_source": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "deletions": 0,
+  "external_registered_worktrees_exist": 2,
+  "headers_and_selected_historical_metadata_read": true,
+  "held_executable_payload_bytes_read": 0,
+  "held_unique_allocated_bytes": 220790784,
+  "held_unique_inodes": [
+    65257836,
+    60649716,
+    60745183
+  ],
+  "held_unique_logical_bytes": 220786256,
+  "known_tracked_changes": [
+    "Maktabah.xcodeproj/project.pbxproj",
+    "Source/PrivacyInfo.xcprivacy"
+  ],
+  "mac_writes": 0,
+  "native_runs": 0,
+  "observations": [
+    {
+      "gzip_bytes": 10726,
+      "gzip_path": "evidence/HELD_PROCESS_AND_HEADERS.json.gz",
+      "gzip_sha256": "0304dc1e3dc1eb3eae7fc54b587b2c9cbdaa1314b0b01c48aebca8d1ba39c39d",
+      "label": "HELD_PROCESS_AND_HEADERS",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/held-executable-h1ci6nxa/stdout.json",
+      "raw_bytes": 96190,
+      "raw_sha256": "f90eb4f0e24dcc6231d1b37fe2573fc0668c958400fa8e974436605a752d4fa2",
+      "script_sha256": "110b3dbbf577422a8c92782eb41d35fbfb8f084b9317339f2d6e48739add3366"
+    },
+    {
+      "gzip_bytes": 2695,
+      "gzip_path": "evidence/HELD_VNODE_AND_ORIGINAL_LOGS.json.gz",
+      "gzip_sha256": "f3c268810130e4b60866467aab7140a72e7e1c36d108bd7343bb09c53675fd68",
+      "label": "HELD_VNODE_AND_ORIGINAL_LOGS",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/held-vnode-8iuvajqh/stdout.json",
+      "raw_bytes": 9691,
+      "raw_sha256": "51c28bf78ef6255f13459137a8b3002ea082e2adea5cdcf58b3927b24fc64478",
+      "script_sha256": "0ea4ebcaeab270b0d3132f78d403225ad5a04cdc9030ffba609a34e7ba43cc16"
+    },
+    {
+      "gzip_bytes": 3621,
+      "gzip_path": "evidence/BUILD_CLOSURE_AND_COMPACT_LOCATORS.json.gz",
+      "gzip_sha256": "d819846160f515e8881cdcfc8a4503067494d03b1af7d072a7a8a790d7a3237a",
+      "label": "BUILD_CLOSURE_AND_COMPACT_LOCATORS",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/build-closure-l_nw8fj_/stdout.json",
+      "raw_bytes": 23310,
+      "raw_sha256": "dd73376ea71caa9879138c71cc628dd85bfb51e5c42323b2b9af47e4bb9b690d",
+      "script_sha256": "8f3b490079f871c27a76ab41b7c8496a4fb3ceb7f84d4403cc08aee28744546e"
+    },
+    {
+      "gzip_bytes": 2046,
+      "gzip_path": "evidence/LATER_BUILD_CLOSURE.json.gz",
+      "gzip_sha256": "0d7e7cc9bc0408a49c69a1c54d5fc1966882fe9a08b36572964568e92910248b",
+      "label": "LATER_BUILD_CLOSURE",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/build-final-closure-0zbn228n/stdout.json",
+      "raw_bytes": 10114,
+      "raw_sha256": "d4dc9493a2e8a4e2e4b2d4a50f680ba78c7d160358d642bf94ae6e88b4897999",
+      "script_sha256": "a6d69ad15d2aed4553dd3db49a2001e34bf5061456e58fef4a13357bca472ada"
+    },
+    {
+      "gzip_bytes": 132922,
+      "gzip_path": "evidence/WHOLE_COMPACT_METADATA.json.gz",
+      "gzip_sha256": "e9af57f0c8d6c105351429e1367cfba2c5d0eb5e062b388752970a6518f455aa",
+      "label": "WHOLE_COMPACT_METADATA",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/compact-root-3_e4z6xr/stdout.json",
+      "raw_bytes": 3701857,
+      "raw_sha256": "c2b252aa0409bf35b108da632a1050d8f3c3746339cbc51242219e2eccceb035",
+      "script_sha256": "6dce3f27593bfabaadd21fff69f91972674a9ba30652542ee17c1bbc910406dd"
+    },
+    {
+      "gzip_bytes": 1793,
+      "gzip_path": "evidence/EXTERNAL_WORKTREES.json.gz",
+      "gzip_sha256": "97b1b80b12a05fb55dc14c149be8bac47f0b77ddc96c1024c9f5f0a10075c79b",
+      "label": "EXTERNAL_WORKTREES",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/compact-external-u_lsoqjd/stdout.json",
+      "raw_bytes": 10322,
+      "raw_sha256": "08a75a44ec9bd1fde1114125da75c195ddd66fc4a8c593e262a23dabaef5952f",
+      "script_sha256": "f8d0d1df1b8e6e39a79a903fbfdca42c1af8a3c95aa4f3bf97f3e0a68497536c"
+    },
+    {
+      "gzip_bytes": 4935,
+      "gzip_path": "evidence/EXACT_RECOVERY_INPUTS.json.gz",
+      "gzip_sha256": "f46cb9f433c38a70aa5e3b5dc50105541485facaeb7140f8e88ed2f02aa3a1ca",
+      "label": "EXACT_RECOVERY_INPUTS",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/exact-inputs-2raxwtxb/stdout.json",
+      "raw_bytes": 36490,
+      "raw_sha256": "2b4dc4291ce8e37a046112c0b96bc6ac5d1829d0dc08af04d552120ffe2db90d",
+      "script_sha256": "118741dab4cf529f4676ca8d3d89f4b68771d2a71af86faeb0ba9cd587fd2549"
+    }
+  ],
+  "process_signals": 0,
+  "retirement_authorized": false,
+  "schema": "otzaria.held-symbol-compact-closure-review/1",
+  "scope": "READ_ONLY_METADATA_AND_ORIGINAL_RECEIPTS",
+  "source_base": "279b5f62674ccc1cb54a48f6a0ba04b34b267e55",
+  "sourcepackages_alternates_inside_scope": 23,
+  "symlinks_resolved_outside_scope": 0
+}

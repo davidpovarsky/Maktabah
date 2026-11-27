@@ -1,0 +1,8 @@
+{
+  "cause": "The first packaging attempt had created the exact new own untracked evidence directory before its schema assertion. A clean-worktree precondition correctly refused that partial directory.",
+  "correction": "Keep exact parent/branch assertions and allow only that exact own untracked packet directory; every other status path remains forbidden. Retain both original failures. No source/evidence changes or inspection reruns.",
+  "job": "job_b4c9b0173845",
+  "raw_bytes": 423,
+  "raw_sha256": "121c37918e2ebd2e2a750a82e67fe1c53a06354928ff829dae8dd6753f4907dc",
+  "schema": "otzaria.packaging-recovery/1"
+}

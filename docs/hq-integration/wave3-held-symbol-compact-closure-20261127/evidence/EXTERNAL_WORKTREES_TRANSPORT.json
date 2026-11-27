@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "finished": "2026-11-27T16:18:34.739287+00:00",
+  "mac_writes": 0,
+  "output": {
+    "bytes": 10322,
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/compact-external-u_lsoqjd/stdout.json",
+    "sha256": "08a75a44ec9bd1fde1114125da75c195ddd66fc4a8c593e262a23dabaef5952f"
+  },
+  "schema": "otzaria.three-runner-transport/1",
+  "script_sha256": "f8d0d1df1b8e6e39a79a903fbfdca42c1af8a3c95aa4f3bf97f3e0a68497536c",
+  "started": "2026-11-27T16:18:32.909234+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/compact-external-u_lsoqjd/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
