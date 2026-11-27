@@ -8,7 +8,10 @@ p = argparse.ArgumentParser()
 p.add_argument("--hanlin-repo", type=Path, required=True)
 p.add_argument("--hanlin-sha", default="e00498e33f106cc43be0476ffa2e09329c8ca300")
 p.add_argument("--artifacts-dir", type=Path, required=True)
+p.add_argument("--test-prefix", help="Execute only declarations with this exact method prefix; default retains the full suite")
 a = p.parse_args()
+if a.test_prefix is not None:
+    assert re.fullmatch(r"test[A-Za-z0-9_]+", a.test_prefix), "Invalid focused method prefix"
 repo = Path(__file__).resolve().parents[1]
 out = a.artifacts_dir.resolve(); out.mkdir(parents=True, exist_ok=True)
 build = out / "package"; build.mkdir(exist_ok=True)
@@ -56,6 +59,8 @@ if not (build / "Package.swift").exists() or (build / "Package.swift").read_byte
     (build / "Package.swift").write_bytes(manifest.encode())
 (out / "inputs.json").write_text(json.dumps(inputs, indent=2) + "\n", encoding="utf-8")
 command = ["swift", "test", "--scratch-path", str(repo / "build/hh"), "-j", "1", "-Xswiftc", "-strict-concurrency=complete"]
+if a.test_prefix:
+    command.extend(["--filter", "OtzariaHanlinHostAdapterTests/" + a.test_prefix])
 with (out / "swift-test.log").open("w", encoding="utf-8") as log:
     process = subprocess.Popen(command, cwd=build, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
     try:
@@ -70,11 +75,13 @@ with (out / "swift-test.log").open("w", encoding="utf-8") as log:
 r = subprocess.CompletedProcess(command, exit_code)
 log_text = (out / "swift-test.log").read_text(encoding="utf-8", errors="replace")
 expected_tests = sorted(set(re.findall(r"func (test[A-Za-z0-9_]+)\(", (build / "Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift").read_text(encoding="utf-8"))))
+if a.test_prefix:
+    expected_tests = [name for name in expected_tests if name.startswith(a.test_prefix)]
 passed_tests = sorted(set(re.findall(
     r"Test Case '.*OtzariaHanlinHostAdapterTests[ .](test[A-Za-z0-9_]+)[\]'].*passed", log_text)))
 if r.returncode == 0 and (not expected_tests or passed_tests != expected_tests):
     r = subprocess.CompletedProcess(command, 1)
-report = dict(expected_tests=expected_tests, passed_tests=passed_tests, warnings=log_text.count("warning:"),
+report = dict(test_prefix=a.test_prefix, expected_tests=expected_tests, passed_tests=passed_tests, warnings=log_text.count("warning:"),
 status="PASS" if r.returncode == 0 else "FAIL", exit_code=r.returncode,
     hanlin_sha=a.hanlin_sha, adapter_sha256=inputs["Sources/OtzariaHanlinHostAdapter/OtzariaHanlinHostAdapter.swift"]["sha256"],
     inputs=len(inputs), command=command, boundary="Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance.")

@@ -872,3 +872,239 @@ final class OtzariaHanlinHostAdapterTests: XCTestCase, @unchecked Sendable {
     }
 
 }
+
+
+/// Explicit capability-owner double for composition integrity only. Native MCP,
+/// Skills, provider and application acceptance remain separate original tests.
+private actor CapabilityCompositionFixture: HanlinHostIntegration, HanlinHostCapabilitySource {
+    nonisolated let apiVersion = HanlinAPIVersion(major: 1, minor: 1)
+    let identity: HanlinHostSession
+    var tools: [HanlinHostTool]
+    var revision: UInt64 = 101
+    var activeAliases: [String]?
+    var received: [HanlinHostInvocation] = []
+    var cancelled = Set<HanlinToolInvocationID>()
+    var catalogHeld = false
+    var catalogEntered = false
+    var catalogContinuation: CheckedContinuation<Void, Never>?
+    var executionHeld = false
+    var executionEntered = false
+    var executionContinuation: CheckedContinuation<Void, Never>?
+
+    init(identity: HanlinHostSession) throws {
+        self.identity = identity
+        let logical = try HanlinLogicalToolID(providerInstanceID: .init(validating: "fixture.original-mcp"),
+                                              localToolID: .init(validating: "echo"))
+        let schemaBytes = Data(#"{"type":"object","properties":{"value":{"type":"string"}}}"#.utf8)
+        let schema = try HanlinJSONSchemaDocument.decodeCanonicalJSON(schemaBytes, defaultDialect: .draft2020_12)
+        let descriptor = try HanlinToolDescriptor(logicalID: logical, descriptorRevision: .init(3),
+            owner: .system, title: .init(["en": "Original fixture capability"]),
+            summary: .init(["en": "Explicit component double"]), inputSchema: schema, risk: .read)
+        tools = [.init(route: .init(alias: "mcp__fixture__echo", logicalToolID: logical, descriptorRevision: .init(3)),
+                       descriptor: descriptor, writeGuarantee: .hostManagedMutation, originalInputSchemaJSON: schemaBytes)]
+    }
+
+    func context(for session: HanlinHostSession) async throws -> HanlinHostContext {
+        guard session == identity else { throw HanlinHostError.staleContext }
+        return identity.context
+    }
+    func catalog(for context: HanlinHostContext) async throws -> HanlinHostCatalog {
+        guard context == identity.context else { throw HanlinHostError.staleContext }
+        if catalogHeld {
+            catalogHeld = false; catalogEntered = true
+            await withCheckedContinuation { catalogContinuation = $0 }
+        }
+        return .init(apiVersion: apiVersion, revision: .init(revision), context: context, tools: tools)
+    }
+    func prepareStep(_ step: Int, session: HanlinHostSession) async throws -> HanlinHostStepPreparation {
+        _ = try await context(for: session)
+        return .init(activeAliases: activeAliases ?? tools.map(\.route.alias),
+                     skillIDs: ["original.skill"], instructions: ["Original instruction bytes"])
+    }
+    func execute(_ invocation: HanlinHostInvocation,
+                 progress: @escaping HanlinHostProgressHandler) async throws -> HanlinHostExecutionResult {
+        guard invocation.session == identity, invocation.request.routingTableRevision == .init(revision) else {
+            throw HanlinHostError.staleContext
+        }
+        received.append(invocation)
+        if executionHeld {
+            executionHeld = false; executionEntered = true
+            await withCheckedContinuation { executionContinuation = $0 }
+        }
+        let uncertain = cancelled.contains(invocation.request.id)
+        return .init(result: .init(invocationID: invocation.request.id, logicalToolID: invocation.request.logicalToolID,
+            outcome: uncertain ? .failed(.init(code: .nativeFailure, userMessage: "Original uncertain outcome"))
+                               : .completed([.text("Original capability result")]),
+            completedAt: .now), effectState: uncertain ? .uncertain : .confirmedCommitted,
+            context: identity.context, reconciliationReference: "original-owner-receipt")
+    }
+    func cancel(_ invocation: HanlinToolInvocationID) async { cancelled.insert(invocation) }
+    func open(_ destination: HanlinHostDestination) async throws -> HanlinHostNavigationResult {
+        throw HanlinHostError.unsupportedProviderCapability
+    }
+    func replaceTools(_ value: [HanlinHostTool]) { tools = value }
+    func bumpRevision() { revision += 1 }
+    func setActiveAliases(_ value: [String]) { activeAliases = value }
+    func holdCatalog() { catalogHeld = true }
+    func releaseCatalog() { catalogContinuation?.resume(); catalogContinuation = nil }
+    func holdExecution() { executionHeld = true }
+    func releaseExecution() { executionContinuation?.resume(); executionContinuation = nil }
+    func waitForEntry(catalog: Bool) async throws {
+        let deadline = ContinuousClock.now + .seconds(5)
+        while catalog ? !catalogEntered : !executionEntered {
+            guard ContinuousClock.now < deadline else { throw HanlinHostError.deadlineExceeded }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+    }
+}
+
+extension OtzariaHanlinHostAdapterTests {
+    private func compositionSetup() async throws ->
+        (Fixture, OtzariaHanlinHostAdapter, CapabilityCompositionFixture, OtzariaHanlinComposedHost,
+         HanlinHostSession, HanlinHostCatalog) {
+        let (native, library, identity, _) = try await setup()
+        let assistant = try CapabilityCompositionFixture(identity: identity)
+        let composed = OtzariaHanlinComposedHost(identity: identity, library: library, assistant: assistant)
+        let catalog = try await composed.catalog(for: identity.context)
+        return (native, library, assistant, composed, identity, catalog)
+    }
+
+    private func compositionInvocation(_ identity: HanlinHostSession, _ catalog: HanlinHostCatalog) throws -> HanlinHostInvocation {
+        let tool = try XCTUnwrap(catalog.tools.first { $0.route.alias == "mcp__fixture__echo" })
+        let request = HanlinToolInvocationRequest(id: try .init(validating: "composition-" + UUID().uuidString.lowercased()),
+            logicalToolID: tool.route.logicalToolID, aliasUsed: tool.route.alias, descriptorRevision: tool.route.descriptorRevision,
+            routingTableRevision: catalog.revision, arguments: .object(["value": .string("9007199254740993")]),
+            origin: .assistantModel, appSessionID: try .init(validating: "original-app-session"),
+            runtimeSessionID: try .init(validating: "original-runtime-session"),
+            grantIDs: [try .init(validating: "original-grant")], idempotencyKey: "original-idempotency",
+            deadline: Date(timeIntervalSinceNow: 30), limits: try .init(maximumOutputBytes: 65536))
+        return .init(request: request, session: identity, runID: UUID(), step: 4,
+            providerCallID: "original-provider-call", writeGuarantee: tool.writeGuarantee,
+            originalArgumentsJSON: Data("{ \"value\" : \"9007199254740993\" }\n".utf8), resultID: UUID())
+    }
+
+    func testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt() async throws {
+        let (_, library, assistant, composed, identity, catalog) = try await compositionSetup()
+        let libraryCatalog = try await library.catalog(for: identity.context)
+        XCTAssertEqual(catalog.tools.count, libraryCatalog.tools.count + 1)
+        let stable = try await composed.catalog(for: identity.context)
+        XCTAssertEqual(stable.revision, catalog.revision)
+        let call = try compositionInvocation(identity, catalog)
+        let result = try await composed.execute(call) { _ in }
+        let calls = await assistant.received
+        let forwarded = try XCTUnwrap(calls.first)
+        XCTAssertEqual(calls.count, 1)
+        XCTAssertEqual(forwarded.request.routingTableRevision, .init(101))
+        XCTAssertNotEqual(forwarded.request.routingTableRevision, call.request.routingTableRevision)
+        XCTAssertEqual(forwarded.request.id, call.request.id)
+        XCTAssertEqual(forwarded.request.logicalToolID, call.request.logicalToolID)
+        XCTAssertEqual(forwarded.request.aliasUsed, call.request.aliasUsed)
+        XCTAssertEqual(forwarded.request.descriptorRevision, call.request.descriptorRevision)
+        XCTAssertEqual(forwarded.request.arguments, call.request.arguments)
+        XCTAssertEqual(forwarded.request.origin, call.request.origin)
+        XCTAssertEqual(forwarded.request.appSessionID, call.request.appSessionID)
+        XCTAssertEqual(forwarded.request.runtimeSessionID, call.request.runtimeSessionID)
+        XCTAssertEqual(forwarded.request.grantIDs, call.request.grantIDs)
+        XCTAssertEqual(forwarded.request.idempotencyKey, call.request.idempotencyKey)
+        XCTAssertEqual(forwarded.request.deadline, call.request.deadline)
+        XCTAssertEqual(forwarded.request.limits, call.request.limits)
+        XCTAssertEqual(forwarded.originalArgumentsJSON, call.originalArgumentsJSON)
+        XCTAssertEqual(forwarded.session, call.session)
+        XCTAssertEqual(forwarded.runID, call.runID)
+        XCTAssertEqual(forwarded.resultID, call.resultID)
+        XCTAssertEqual(forwarded.providerCallID, call.providerCallID)
+        XCTAssertEqual(forwarded.step, call.step)
+        XCTAssertEqual(forwarded.writeGuarantee, call.writeGuarantee)
+        XCTAssertEqual(forwarded.expectedRevision, call.expectedRevision)
+        XCTAssertEqual(result.effectState, .confirmedCommitted)
+        XCTAssertEqual(result.reconciliationReference, "original-owner-receipt")
+    }
+
+    func testCapabilityCompositionKeepsLibraryExecutionInOriginalCore() async throws {
+        let (_, _, assistant, composed, identity, catalog) = try await compositionSetup()
+        let result = try await composed.execute(invocation(identity, catalog)) { _ in }
+        let original = try completedAction(result)
+        XCTAssertEqual(original.status, .completed)
+        let calls = await assistant.received
+        XCTAssertTrue(calls.isEmpty)
+        XCTAssertEqual(result.effectState, .confirmedNoEffect)
+    }
+
+    func testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch() async throws {
+        let (_, _, assistant, composed, identity, catalog) = try await compositionSetup()
+        let call = try compositionInvocation(identity, catalog)
+        await assistant.bumpRevision()
+        do { _ = try await composed.execute(call) { _ in }; XCTFail("Stale aggregate route dispatched") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+        let calls = await assistant.received
+        XCTAssertTrue(calls.isEmpty)
+    }
+
+    func testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity() async throws {
+        for duplicateAlias in [true, false] {
+            let (_, library, assistant, composed, identity, _) = try await compositionSetup()
+            let local = try await library.catalog(for: identity.context)
+            let first = try XCTUnwrap(local.tools.first)
+            let route = HanlinToolRoute(alias: duplicateAlias ? first.route.alias : "different_fixture_alias",
+                logicalToolID: first.route.logicalToolID, descriptorRevision: first.route.descriptorRevision)
+            await assistant.replaceTools([.init(route: route, descriptor: first.descriptor,
+                writeGuarantee: first.writeGuarantee, originalInputSchemaJSON: first.originalInputSchemaJSON)])
+            do { _ = try await composed.catalog(for: identity.context); XCTFail("Duplicate original authority accepted") }
+            catch let error as HanlinHostError { XCTAssertEqual(error, .duplicateAlias) }
+        }
+    }
+
+    func testCapabilityCompositionRevocationCannotDispatchAnAssistantCall() async throws {
+        for revokeNative in [true, false] {
+            let (native, _, assistant, composed, identity, catalog) = try await compositionSetup()
+            let call = try compositionInvocation(identity, catalog)
+            if revokeNative { await native.revokeAuthority() } else { await composed.revoke() }
+            do { _ = try await composed.execute(call) { _ in }; XCTFail("Revoked owner dispatched") }
+            catch let error as HanlinHostError { XCTAssertEqual(error, .staleContext) }
+            let calls = await assistant.received
+            XCTAssertTrue(calls.isEmpty)
+        }
+    }
+
+    func testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias() async throws {
+        let (_, library, assistant, composed, identity, _) = try await compositionSetup()
+        let local = try await library.catalog(for: identity.context)
+        let prepared = try await composed.prepareStep(2, session: identity)
+        XCTAssertEqual(Set(prepared.activeAliases), Set(local.tools.map(\.route.alias) + ["mcp__fixture__echo"]))
+        XCTAssertEqual(prepared.skillIDs, ["original.skill"])
+        XCTAssertEqual(prepared.instructions, ["Original instruction bytes"])
+        await assistant.setActiveAliases(["unknown_alias"])
+        do { _ = try await composed.prepareStep(3, session: identity); XCTFail("Unadvertised capability exposed") }
+        catch let error as HanlinHostError { XCTAssertEqual(error, .unknownTool) }
+    }
+
+    func testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner() async throws {
+        let (_, _, assistant, composed, identity, catalog) = try await compositionSetup()
+        let call = try compositionInvocation(identity, catalog)
+        await assistant.holdCatalog()
+        let task = Task { try await composed.execute(call) { _ in } }
+        try await assistant.waitForEntry(catalog: true)
+        await composed.cancel(call.request.id)
+        await assistant.releaseCatalog()
+        do { _ = try await task.value; XCTFail("Cancelled admission dispatched") }
+        catch is CancellationError { }
+        let calls = await assistant.received
+        XCTAssertTrue(calls.isEmpty)
+    }
+
+    func testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt() async throws {
+        let (_, _, assistant, composed, identity, catalog) = try await compositionSetup()
+        let call = try compositionInvocation(identity, catalog)
+        await assistant.holdExecution()
+        let task = Task { try await composed.execute(call) { _ in } }
+        try await assistant.waitForEntry(catalog: false)
+        await composed.cancel(call.request.id)
+        await assistant.releaseExecution()
+        let result = try await task.value
+        XCTAssertEqual(result.effectState, .uncertain)
+        XCTAssertEqual(result.reconciliationReference, "original-owner-receipt")
+        XCTAssertEqual(result.result.invocationID, call.request.id)
+        let cancellations = await assistant.cancelled
+        XCTAssertEqual(cancellations, [call.request.id])
+    }
+}
