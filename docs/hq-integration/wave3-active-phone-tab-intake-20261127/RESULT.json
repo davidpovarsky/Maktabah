@@ -1,0 +1,35 @@
+{
+  "schema": "otzaria.wave3.active-phone-reader-tab-root-intake.v1",
+  "utc": "2026-11-27T13:50:46.035251+00:00",
+  "base": "e27ab8e46aad2dcaa42942a3bc600febe45e9602",
+  "mapping": [
+    {
+      "source": "81ea1a360f027993362a9fa690e15fd2b38a4c52",
+      "integrated": "d54889b02abaf479b8af3b4616ae3f2e3c1af82e"
+    },
+    {
+      "source": "2fb86a871331791f2d95ad3938c58939223cd89d",
+      "integrated": "3ef6aa197119fda323631ddf83d1e81707efee04"
+    }
+  ],
+  "sourceTree": "1e36b8942c4f43e551f5b1eb814139fac651e56b",
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "productFiles": 2,
+  "docFiles": 13,
+  "manifestRows": 12,
+  "archiveMembersVerified": 56,
+  "actualSourceControls": {
+    "passed": 26,
+    "failed": 0,
+    "kind": "Actual Manager/setter/helper/permit with explicit application, Group and persistence boundary fixtures"
+  },
+  "retainedOriginalCounterOnlyExperiment": {
+    "passed": 3,
+    "failed": 1
+  },
+  "AppleTargetSyntaxParses": 2,
+  "fullAppleSDKTypecheck": "NOT_RUN",
+  "nativeUI": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "planSHA256": "f1f0320fa3458fd930caf0b5f02a4b4101ba16366c3997be499bb546694054b4"
+}

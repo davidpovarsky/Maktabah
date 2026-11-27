@@ -1,0 +1,48 @@
+{
+  "base": "e27ab8e46aad2dcaa42942a3bc600febe45e9602",
+  "donorBase": "ec5385e863a478e368c7de47264474a440fd0734",
+  "productInputs": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "before_sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410",
+      "after_sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+      "bytes": 18354
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "before_sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+      "after_sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d",
+      "bytes": 52788
+    }
+  ],
+  "protected": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "902b93bfdc8beea69779b7fa5f0acb85d65bcf8178600c3b2d6e38ea0c4201e5"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "sha256": "d88100268e2179bedac5eecce4941d28a8d9b64b2c525ff733cdc91b0d97afdb"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc"
+    }
+  ],
+  "docManifestSHA256": "045227c4644bd7c910481539431b9b925cdfae0730b11520ed7556f5151510ae",
+  "archiveSHA256": "ee8d8175e25083812ac128ba12aab1bf6ba11337c501a07540fabddd97188ce5",
+  "archiveMembers": 56,
+  "actualControlsResultSHA256": "8289c18e5b87e83723f8b97a59bce4cac3ffc82316b5d52390f471564ae4d20e"
+}
