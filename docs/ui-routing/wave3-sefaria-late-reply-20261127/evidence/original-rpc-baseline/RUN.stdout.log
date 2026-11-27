@@ -1,0 +1,16 @@
+
+--- 36. Testing SefariaJSRPCBridge Generation Epoch & Call Validation ---
+PASS sessionEpoch starts at 1
+PASS bumpSessionEpoch increments to 2
+PASS sessionEpoch reflects incremented value
+PASS setSessionEpoch sets epoch to 42
+
+--- 37. Testing SefariaJSRPCBridge Strict Response Verification ---
+PASS Mismatched generation rejected with STALE_GENERATION (STALE_GENERATION)
+FAIL Mismatched protocol rejected with PROTOCOL_VERSION_MISMATCH (STALE_GENERATION)
+FAIL Mismatched backend ID rejected with BACKEND_MISMATCH (STALE_GENERATION)
+FAIL Strict response verification failed: SefariaRPCError(code: "STALE_GENERATION", message: "RPC session changed", retryable: true, details: nil)
+
+--- 38. Testing SefariaJSRPCBridge Concurrent Parallel In-Flight Calls ---
+FAIL Concurrent calls test failed: SefariaRPCError(code: "STALE_GENERATION", message: "RPC session changed", retryable: true, details: nil)
+ORIGINAL_RPC_COUNTS passed=5 failed=4

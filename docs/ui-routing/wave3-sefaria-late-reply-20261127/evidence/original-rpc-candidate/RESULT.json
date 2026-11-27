@@ -1,0 +1,23 @@
+{
+  "label": "candidate",
+  "argv": [
+    "swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/SefariaJSRPCBridge.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/SefariaRPCModels.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/OriginalSuites.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/controls"
+  ],
+  "compileExit": 0,
+  "harnessSHA256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+  "extractedBodySHA256": "a667f65fda1360ee600b5db334ad84de841d1d1aa3a4bb1d986625430634d306",
+  "runExit": 0,
+  "summary": "ORIGINAL_RPC_COUNTS passed=30 failed=0",
+  "failLines": []
+}

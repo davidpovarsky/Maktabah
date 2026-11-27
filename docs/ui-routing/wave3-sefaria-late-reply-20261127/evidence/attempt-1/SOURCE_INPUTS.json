@@ -1,0 +1,36 @@
+{
+  "inputs": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "1f5d393266ce775058cdba36d92ea6f4f730c381e4f3f6772f8d0a5ccf764b11",
+      "size": 31337,
+      "compiledCopy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaJSRPCBridge.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+      "size": 11797,
+      "compiledCopy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaRuntimeManager.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "size": 4566,
+      "compiledCopy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaRPCModels.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "sha256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+      "size": 24671,
+      "compiledCopy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "testAppendix": "same-file private helper access only; no source body replacement"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+      "size": 3692,
+      "compiledCopy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaEmbeddedSurfaceContract.swift"
+    }
+  ],
+  "boundary": "actual complete product files + explicit library/native/transport doubles; no Hermes/Apple/native result"
+}

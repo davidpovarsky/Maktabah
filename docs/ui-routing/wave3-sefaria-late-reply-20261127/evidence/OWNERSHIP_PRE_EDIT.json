@@ -1,0 +1,46 @@
+{
+  "createdAt": "2026-11-27T08:30:13.433864+00:00",
+  "base": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "inputs": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "upstreamCommit": "4203de5fd77beb119e5826e039be1a61325f7be0",
+      "upstreamEntryAbsent": true,
+      "origin": "b13aabcd300d91aae13d152875163e33906bcb7e feat(sefaria): embed genuine Sefaria-Mobile runtime alongside legacy Swift backend",
+      "baseSHA256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+      "baseGitBlob": "a54df1e4e48e50d87388585c8005351ee06fc8fe"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "classification": "DOWNSTREAM_OWNED",
+      "upstreamCommit": "4203de5fd77beb119e5826e039be1a61325f7be0",
+      "upstreamEntryAbsent": true,
+      "origin": "b13aabcd300d91aae13d152875163e33906bcb7e feat(sefaria): embed genuine Sefaria-Mobile runtime alongside legacy Swift backend",
+      "baseSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+      "baseGitBlob": "f925caa6e80e715678d1a99e755f1fb316bc49c1"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "upstreamCommit": "4203de5fd77beb119e5826e039be1a61325f7be0",
+      "upstreamEntryAbsent": true,
+      "origin": "7be24ab648de8539afdb161c0551d605ce3c1e18 fix(sefaria-embedded): truthful text provenance, strict epoch validation, safe delegate KVC, and 15-stage diagnostic runner",
+      "baseSHA256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+      "baseGitBlob": "d3a338a0d6c77bef994624008f31144c9668f1c8"
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "upstreamCommit": "4203de5fd77beb119e5826e039be1a61325f7be0",
+      "upstreamEntryAbsent": true,
+      "origin": "7a8d06cc3b96cb4a20d01b6f72e98d96f6424419 ci(validation): candidate Maktabah Batch B package on macOS 27 / Xcode 27 [unapproved-candidate-branch]",
+      "baseSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+      "baseGitBlob": "58b66089ff5959e77efb28f5cec9c58a6739d353"
+    }
+  ],
+  "sourceEditsBeforeReceipt": false,
+  "scope": "Original delayed diagnostic echo, strictly observational bridge metadata, Runner stage4 and original generation controls; original runtime reset and nativeReaderProvider unchanged"
+}

@@ -1,0 +1,28 @@
+{
+  "label": "baseline",
+  "argv": [
+    "swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/SefariaJSRPCBridge.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/SefariaRPCModels.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/OriginalSuites.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/controls"
+  ],
+  "compileExit": 0,
+  "harnessSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+  "extractedBodySHA256": "57cbb700341f9bc4ba97f3f1061b5d037cd5cfaf8e885058bb5b86b1ac710053",
+  "runExit": 1,
+  "summary": "ORIGINAL_RPC_COUNTS passed=5 failed=4",
+  "failLines": [
+    "FAIL Mismatched protocol rejected with PROTOCOL_VERSION_MISMATCH (STALE_GENERATION)",
+    "FAIL Mismatched backend ID rejected with BACKEND_MISMATCH (STALE_GENERATION)",
+    "FAIL Strict response verification failed: SefariaRPCError(code: \"STALE_GENERATION\", message: \"RPC session changed\", retryable: true, details: nil)",
+    "FAIL Concurrent calls test failed: SefariaRPCError(code: \"STALE_GENERATION\", message: \"RPC session changed\", retryable: true, details: nil)"
+  ]
+}

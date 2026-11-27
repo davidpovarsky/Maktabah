@@ -1,0 +1,9 @@
+/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/tools/test_sefaria_late_reply_diagnostic.swift:216:17: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+214 |         struct Report: Codable {
+215 |             let boundary: String; let caseCount: Int; let passed: Int; let failed: Int; let cases: [Row]
+216 |             let nativeAppAcceptance = "NOT_RUN"
+    |                 |- warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten
+    |                 |- note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'nativeAppAcceptance' case to silence this warning
+    |                 `- note: make the property mutable instead
+217 |         }
+218 |         let report = Report(boundary: "actual original bridge/runtime/full diagnostic helper compiled; controllable transport and library/native-domain doubles",

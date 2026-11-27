@@ -1,0 +1,55 @@
+{
+  "reason": "Preserve pre-existing original source whitespace and valid diff context bytes without disabling product whitespace checks or normalizing evidence",
+  "files": [
+    {
+      "originalPath": "evidence/final-source.diff",
+      "storedPath": "evidence/final-source.diff.gz",
+      "encoding": "gzip",
+      "rawSize": 28893,
+      "rawSHA256": "c18407918a26aa1d3ef128615bade5b4de56aca9a31ea557426804a635a29beb",
+      "storedSize": 6616,
+      "storedSHA256": "c5f4e340d75ac4085d8638c0e0c4b58447e47292f2d58882c3f8c81ee484c76d",
+      "rawOriginalRetained": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/final-source.diff"
+    },
+    {
+      "originalPath": "evidence/original-inputs/tools/test_chavrusa_text_components.swift",
+      "storedPath": "evidence/original-inputs/tools/test_chavrusa_text_components.swift.gz",
+      "encoding": "gzip",
+      "rawSize": 131605,
+      "rawSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+      "storedSize": 24043,
+      "storedSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+      "rawOriginalRetained": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-inputs/tools/test_chavrusa_text_components.swift"
+    },
+    {
+      "originalPath": "evidence/original-rpc-baseline/HarnessInput.swift",
+      "storedPath": "evidence/original-rpc-baseline/HarnessInput.swift.gz",
+      "encoding": "gzip",
+      "rawSize": 131605,
+      "rawSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+      "storedSize": 24043,
+      "storedSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+      "rawOriginalRetained": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/HarnessInput.swift"
+    },
+    {
+      "originalPath": "evidence/original-rpc-candidate/HarnessInput.swift",
+      "storedPath": "evidence/original-rpc-candidate/HarnessInput.swift.gz",
+      "encoding": "gzip",
+      "rawSize": 131823,
+      "rawSHA256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+      "storedSize": 24054,
+      "storedSHA256": "de6ae51b3552df2b6ff605bf9747d0218859c5ac3cadd073db55949ec4bbed7d",
+      "rawOriginalRetained": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/HarnessInput.swift"
+    },
+    {
+      "originalPath": "evidence/source-attempt1.diff",
+      "storedPath": "evidence/source-attempt1.diff.gz",
+      "encoding": "gzip",
+      "rawSize": 28750,
+      "rawSHA256": "382200ff195065999ce189f59ec5bc86b88d06259472353f6c9a9ee1180af9f8",
+      "storedSize": 6562,
+      "storedSHA256": "1591d88a80e9967239be923de43d722c4e47d61a039e0004e6a000e005c51644",
+      "rawOriginalRetained": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/source-attempt1.diff"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+2026-11-27 08:38:16.745 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.747 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.747 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.750 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"2A65BF29-030E-4EFC-9CE0-77E5BB44091A\",\"requestID\":\"52569BB6-E4A0-41B0-A265-25028FCA4319\",\"delayMs\":1,\"sessionGeneration\":3,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.750 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.750 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.750 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.752 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"F12CBF4B-BEA9-47CA-BE89-8CC6FC1C479F\",\"requestID\":\"97E58AAD-BBB6-4DF7-A29B-01150F56C8E6\",\"delayMs\":1,\"sessionGeneration\":6,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.752 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.752 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.752 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.754 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"8C85E50B-F95C-4B43-966C-2C973E420808\",\"requestID\":\"DD00CB1A-1077-4D74-913A-F5667A0A66CC\",\"delayMs\":1,\"sessionGeneration\":8,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.754 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.754 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.754 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.755 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"delayMs\":1,\"sessionGeneration\":11,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"2696FF5D-60F3-4386-B742-E3493993DEF8\",\"nonce\":\"BA5D2D03-AA9C-4EDC-A0D2-8CF0EB9E3485\"}"}
+2026-11-27 08:38:16.755 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.755 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.755 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.756 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"payloadJson":"{\"delayMs\":3000,\"sessionGeneration\":12,\"requestID\":\"1657EC3E-81DC-45CC-88B3-7BC047918383\",\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"nonce\":\"00051E9F-F7F3-41C6-AB21-0FC158EAC5B6\"}","sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.757 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.757 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.757 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.758 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"otzaria","payloadJson":"{\"delayMs\":1,\"sessionGeneration\":14,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"18B3DD52-FE4A-4A8D-ABFF-72E4E2C1D132\",\"nonce\":\"4BECFB52-0C2C-491E-AAA8-5D2D9878901E\"}"}
+2026-11-27 08:38:16.758 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.758 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.758 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.760 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"payloadJson":"{\"delayMs\":1,\"sessionGeneration\":16,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"0DC5967C-8801-4E2D-9C7A-16104855FCB8\",\"nonce\":\"A90ED2F1-15AA-4181-B539-DBC60E9579C4\"}","sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.760 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"delayMs\":1,\"sessionGeneration\":16,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"0DC5967C-8801-4E2D-9C7A-16104855FCB8\",\"nonce\":\"A90ED2F1-15AA-4181-B539-DBC60E9579C4\"}"}
+2026-11-27 08:38:16.760 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.760 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.760 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.762 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"delayMs\":1,\"sessionGeneration\":18,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"60C00717-B386-40F8-A514-F05A9709D98E\",\"nonce\":\"9E6E1F18-5278-4B6F-AC8B-B54720DA927B\"}"}
+2026-11-27 08:38:16.762 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.762 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.762 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.764 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"payloadJson":"{\"delayMs\":1,\"sessionGeneration\":20,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"14C7BCFC-0A3D-4A88-A947-EC3AD3F0FD59\",\"nonce\":\"BBE3093F-4F40-4876-9CEF-863E94B409BC\"}","sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.764 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.764 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.764 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.765 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"3EBA5F93-1853-469F-B6CC-0747DADF17EB\",\"requestID\":\"C685B70D-8507-4740-9758-5CADA29559B0\",\"delayMs\":1,\"sessionGeneration\":22,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.765 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.765 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.765 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.766 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"82132EF1-548B-48BC-8408-0D2B1C53509E\",\"requestID\":\"CDB7D196-ADD4-4C35-BEB7-B2179BCB06C2\",\"delayMs\":1,\"sessionGeneration\":25,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.766 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.766 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.766 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.767 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"34C575B6-15E3-465C-92F9-64FD66C9013E\",\"requestID\":\"1C768D45-18F6-48DA-8AAB-25E95664FA3D\",\"delayMs\":1,\"sessionGeneration\":28,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.768 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.768 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.768 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.769 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"E9FAA112-A5D9-4CD2-8028-5C822419814E\",\"requestID\":\"06BA48F9-CB93-4D34-8520-65327C2646B5\",\"delayMs\":1,\"sessionGeneration\":31,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.769 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.769 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.770 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.771 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"4E41C076-3F65-4C8F-8870-972B3DDCD44C\",\"requestID\":\"56C6B3E1-D888-4AF9-B7B6-B6F5CFB7239B\",\"delayMs\":1,\"sessionGeneration\":34,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.771 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.771 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.771 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.772 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"payloadJson":"{\"delayMs\":1,\"sessionGeneration\":37,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"03EB6C72-0AC9-4694-8287-CA2E43C89AAC\",\"nonce\":\"1E8AD07C-60E6-418F-99E5-365947F8572D\"}","sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.772 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.772 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.772 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.773 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"payloadJson":"{\"delayMs\":1,\"sessionGeneration\":40,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"DC5E093A-C793-4E96-B4C4-82B857738C79\",\"nonce\":\"24AEE3B5-DCCF-4E48-90ED-723E5B463669\"}","sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.774 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.774 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.774 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.775 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"delayMs\":1,\"sessionGeneration\":43,\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"requestID\":\"8AEEC41F-7126-45A7-8CF0-1F8A9229A299\",\"nonce\":\"77C31F9E-840A-4563-B0CB-33FC0FA3B5E9\"}","sequence":1}
+2026-11-27 08:38:16.776 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.776 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.776 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.857 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.857 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.857 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.858 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"AA02382E-0CAF-4C82-8D3B-61AF99C9382F\",\"requestID\":\"3E1AEE2B-7795-4F0E-8380-FE7957AF1C8C\",\"delayMs\":1,\"sessionGeneration\":48,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:16.939 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:16.939 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:16.939 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:16.941 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","sequence":1,"backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"269A832D-7CE9-4219-A816-B4F7944F4833\",\"requestID\":\"278305B0-C733-41EA-B662-87FB4D75C791\",\"delayMs\":1,\"sessionGeneration\":51,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:17.022 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.022 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:17.022 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.023 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"E8CECCE1-CCF7-4D24-994E-7C5952415441\",\"requestID\":\"C96C6CD4-F493-4CBE-8181-DF042D3EF8E0\",\"delayMs\":1,\"sessionGeneration\":54,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:17.023 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.023 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:17.023 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.025 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"nonce\":\"E9002107-36AB-413D-8FF0-6A4FB7AF78D0\",\"requestID\":\"E45EEB16-464F-4EE5-AE11-75B4B71DBA34\",\"delayMs\":1,\"sessionGeneration\":58,\"contract\":\"chavrusa.diagnostic.late-reply.v1\"}"}
+2026-11-27 08:38:17.025 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.025 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:17.025 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.026 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.026 controls[4084962:27fff0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 08:38:17.026 controls[4084962:27fff0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","backendID":"sefariaEmbedded","sequence":1}
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 08:38:17.028 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 08:38:17.029 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"diagnostic.echo.started","backendID":"sefariaEmbedded","payloadJson":"{\"delayMs\":1500,\"sessionGeneration\":68,\"requestID\":\"D96C4861-723B-47D9-9558-0B773F5DEFD7\",\"contract\":\"chavrusa.diagnostic.late-reply.v1\",\"nonce\":\"AA4E5374-1A2A-425C-9F00-233393CDC8EB\"}","sequence":1}
+2026-11-27 08:38:17.049 controls[4084962:2d25f0e0] [SefariaJSRPCBridge] waitForReady: already ready with active transport and listeners

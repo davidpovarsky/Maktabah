@@ -1,0 +1,425 @@
+{
+  "sourceCommit": "f03802af54b36bed1a326c6c0b197f60a6a04d34",
+  "files": [
+    {
+      "path": "DIFF_CHECK_ATTEMPT2.json",
+      "size": 4198,
+      "sha256": "45c25489246df28bbfd7a4ed399662997df0ff780e82c3b5ccae4e29fdb1e8ad"
+    },
+    {
+      "path": "EVIDENCE_MANIFEST_ATTEMPT2.json",
+      "size": 14211,
+      "sha256": "0d2d01cc63c9a0c3a36fa6e97984059a70cbe78b8e91dfaa0260f975d6089483"
+    },
+    {
+      "path": "EVIDENCE_PUBLICATION_ATTEMPT3_FAILURE.json",
+      "size": 392,
+      "sha256": "dce763c33c6052dfe432363de0f409a448a59ba1b3542efa436dbb5512d4cb61"
+    },
+    {
+      "path": "INTAKE.json",
+      "size": 2584,
+      "sha256": "2a144dd4abb5e953210aa98bc500c36ec9d02c11a724c16341d046ac0b7162c8"
+    },
+    {
+      "path": "INTAKE_ATTEMPT2.json",
+      "size": 2549,
+      "sha256": "5b80e6bee3600874d526aa78e3dc55c89fbbeb5d4cf567fd1435e60e53763c92"
+    },
+    {
+      "path": "LOSSLESS_RAW_EVIDENCE.json",
+      "size": 3162,
+      "sha256": "45f7d559fc8007fe167079dd6b7e260f82dc62c9e42d56131bbc8b0f706ff66c"
+    },
+    {
+      "path": "PEER_SOURCE_REVIEW.json",
+      "size": 894,
+      "sha256": "6e195aba15d61ddb71b9c8cc078f21dc7ab706d4042111f387ae9a4dc054a456"
+    },
+    {
+      "path": "README.md",
+      "size": 7007,
+      "sha256": "d3f49f529ab8a05b13710b8949f5625d5fba9025349aa4ae326c2544d3d07881"
+    },
+    {
+      "path": "RETAINED_BINARIES.json",
+      "size": 1400,
+      "sha256": "df8c12cdd89fef04e8420c246a04bc88a9fc946bc036f3580599cd852002ea08"
+    },
+    {
+      "path": "evidence/EVIDENCE_PUBLICATION_ATTEMPT1_FAILURE.json",
+      "size": 342,
+      "sha256": "b2fec7770ada03f39c18b4442ec912fd329dc794a14c29cf7706611376306c30"
+    },
+    {
+      "path": "evidence/OWNERSHIP_PRE_EDIT.json",
+      "size": 2657,
+      "sha256": "c020bbc6babb4fc5c883fc9d55cf767899a2ae57123805f2f1366d0e635f87d8"
+    },
+    {
+      "path": "evidence/PRESERVATION_AND_FINAL_PINS.json",
+      "size": 2026,
+      "sha256": "b4f124802c250352cbb9765bed18af98a5740d52df3f05abf5d8395ada19a375"
+    },
+    {
+      "path": "evidence/SOURCE_EDIT_ATTEMPT1.json",
+      "size": 1052,
+      "sha256": "b6a4da5dd92e35f7d8729d9e18fdcc6cf4ba9e0c460cd8c5acc35c20f013eec0"
+    },
+    {
+      "path": "evidence/SOURCE_WRITE_ATTEMPT1_FAILURE.json",
+      "size": 447,
+      "sha256": "00b6776cb89290a878dac421c7e7434a6ad36243bd2434d5bcea2334f28102c4"
+    },
+    {
+      "path": "evidence/attempt-1/BoundaryDoubles.swift",
+      "size": 3982,
+      "sha256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4"
+    },
+    {
+      "path": "evidence/attempt-1/COMPILE.stderr.log",
+      "size": 1029,
+      "sha256": "93c409f95c79bdc9854004df4674f175ed63f7132e53a043300ee28937970e54"
+    },
+    {
+      "path": "evidence/attempt-1/COMPILE.stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/attempt-1/OriginalCompiledControls.swift",
+      "size": 14303,
+      "sha256": "195db7932435c29f1207a20446f52662c711ad525cab649537267a3a71478e09"
+    },
+    {
+      "path": "evidence/attempt-1/RESULT.json",
+      "size": 6554,
+      "sha256": "3a01637217f1abdb7cd84e8114e897a0c82b1e6084ccb6739c1989f633d05a9c"
+    },
+    {
+      "path": "evidence/attempt-1/RUN.stderr.log",
+      "size": 18707,
+      "sha256": "e512b22e132486a12463f96503037dcfb1acdcc58d0e66708c6a8d07e1a2abc2"
+    },
+    {
+      "path": "evidence/attempt-1/RUN.stdout.log",
+      "size": 2587,
+      "sha256": "7167e62f4f3b5439d2cbc1f34f02b6e2171802998bc794acafe0b5d9ae495bda"
+    },
+    {
+      "path": "evidence/attempt-1/SOURCE_INPUTS.json",
+      "size": 2151,
+      "sha256": "1f82fbf0ae00e4120448acbbd25462c41c7cf762751d8b70e632ec5e164d1fc6"
+    },
+    {
+      "path": "evidence/attempt-1/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "size": 24971,
+      "sha256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9"
+    },
+    {
+      "path": "evidence/attempt-1/SefariaEmbeddedSurfaceContract.swift",
+      "size": 3692,
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+    },
+    {
+      "path": "evidence/attempt-1/SefariaJSRPCBridge.swift",
+      "size": 31337,
+      "sha256": "1f5d393266ce775058cdba36d92ea6f4f730c381e4f3f6772f8d0a5ccf764b11"
+    },
+    {
+      "path": "evidence/attempt-1/SefariaRPCModels.swift",
+      "size": 4566,
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": "evidence/attempt-1/SefariaRuntimeManager.swift",
+      "size": 11797,
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634"
+    },
+    {
+      "path": "evidence/attempt-2/BoundaryDoubles.swift",
+      "size": 3982,
+      "sha256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4"
+    },
+    {
+      "path": "evidence/attempt-2/COMPILE.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/attempt-2/COMPILE.stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/attempt-2/Controls.swift",
+      "size": 17527,
+      "sha256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775"
+    },
+    {
+      "path": "evidence/attempt-2/RESULT.json",
+      "size": 6274,
+      "sha256": "f0cdecb99c45ecf2bcb5b0c9146cc10d15da65f4eef262743d05ee3c1e4cbd7b"
+    },
+    {
+      "path": "evidence/attempt-2/RUN.stderr.log",
+      "size": 21350,
+      "sha256": "5f58e48f37b698e9dcd65074eacb3073b8640dec3b07a1b4d26e47079031cb52"
+    },
+    {
+      "path": "evidence/attempt-2/RUN.stdout.log",
+      "size": 3131,
+      "sha256": "b73bfe950d9a9155f29ff1966057f9e1ef9af9170b7edc6d64385a9f3dc1d49f"
+    },
+    {
+      "path": "evidence/attempt-2/SOURCE_INPUTS.json",
+      "size": 2893,
+      "sha256": "d3ba023919351cdd74258bd93f9108e07aefd274f92844b3df966cd2eabe1257"
+    },
+    {
+      "path": "evidence/attempt-2/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "size": 24971,
+      "sha256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9"
+    },
+    {
+      "path": "evidence/attempt-2/SefariaEmbeddedSurfaceContract.swift",
+      "size": 3692,
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+    },
+    {
+      "path": "evidence/attempt-2/SefariaJSRPCBridge.swift",
+      "size": 31396,
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6"
+    },
+    {
+      "path": "evidence/attempt-2/SefariaRPCModels.swift",
+      "size": 4566,
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": "evidence/attempt-2/SefariaRuntimeManager.swift",
+      "size": 11797,
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634"
+    },
+    {
+      "path": "evidence/final-source.diff.gz",
+      "size": 6616,
+      "sha256": "c5f4e340d75ac4085d8638c0e0c4b58447e47292f2d58882c3f8c81ee484c76d"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-1/OriginalExecutedControls.mjs",
+      "size": 9079,
+      "sha256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-1/RESULT.json",
+      "size": 4158,
+      "sha256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-1/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-1/stdout.log",
+      "size": 4158,
+      "sha256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/ExecutedControls.mjs",
+      "size": 9517,
+      "sha256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/RESULT.json",
+      "size": 4868,
+      "sha256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/inputs/ChavrusaRoot.js",
+      "size": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/inputs/chavrusaRPCFacade.js",
+      "size": 21034,
+      "sha256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/js-baseline-attempt-2/stdout.log",
+      "size": 4868,
+      "sha256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-1/OriginalExecutedControls.mjs",
+      "size": 9079,
+      "sha256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-1/RESULT.json",
+      "size": 3034,
+      "sha256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-1/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-1/stdout.log",
+      "size": 3034,
+      "sha256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/ExecutedControls.mjs",
+      "size": 9517,
+      "sha256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/RESULT.json",
+      "size": 3404,
+      "sha256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/inputs/ChavrusaRoot.js",
+      "size": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/inputs/chavrusaRPCFacade.js",
+      "size": 23528,
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/js-candidate-attempt-2/stdout.log",
+      "size": 3404,
+      "sha256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2"
+    },
+    {
+      "path": "evidence/original-inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "size": 20518,
+      "sha256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9"
+    },
+    {
+      "path": "evidence/original-inputs/Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "size": 21971,
+      "sha256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4"
+    },
+    {
+      "path": "evidence/original-inputs/Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "size": 21034,
+      "sha256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f"
+    },
+    {
+      "path": "evidence/original-inputs/tools/test_chavrusa_text_components.swift.gz",
+      "size": 24043,
+      "sha256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/COMPILE.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/COMPILE.stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/HarnessInput.swift.gz",
+      "size": 24043,
+      "sha256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/OriginalSuites.swift",
+      "size": 9084,
+      "sha256": "aac55c0a8bcf562291b4890c06750ba7b45dc44bf63bd685b3fbae8478bb2d6d"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/RESULT.json",
+      "size": 1731,
+      "sha256": "5f16c93c4d762ef8ba6952ca0512776c08cff447fb2079f21afb045ff3453778"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/RUN.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/RUN.stdout.log",
+      "size": 934,
+      "sha256": "3327fd08b71aab25ee8b588c04d1297928dd0b1b6b81097f8f48372d37c31046"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/SefariaJSRPCBridge.swift",
+      "size": 31396,
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6"
+    },
+    {
+      "path": "evidence/original-rpc-baseline/SefariaRPCModels.swift",
+      "size": 4566,
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/COMPILE.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/COMPILE.stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/HarnessInput.swift.gz",
+      "size": 24054,
+      "sha256": "de6ae51b3552df2b6ff605bf9747d0218859c5ac3cadd073db55949ec4bbed7d"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/OriginalSuites.swift",
+      "size": 9302,
+      "sha256": "172ceb135a02c7ceac754b4fa3ea141ad648f9809311d7ac5aa86bfc341b7ffe"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/RESULT.json",
+      "size": 1251,
+      "sha256": "6263016bf1831205b70997e2e6cf2acfad95ee8bd828749abef962ac3ee7fcaa"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/RUN.stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/RUN.stdout.log",
+      "size": 1953,
+      "sha256": "69e0cdad44ab6e30e18f465c3fa78e9cb8483037131dda29e7cb44170566eba8"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/SefariaJSRPCBridge.swift",
+      "size": 31396,
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6"
+    },
+    {
+      "path": "evidence/original-rpc-candidate/SefariaRPCModels.swift",
+      "size": 4566,
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": "evidence/source-attempt1.diff.gz",
+      "size": 6562,
+      "sha256": "1591d88a80e9967239be923de43d722c4e47d61a039e0004e6a000e005c51644"
+    }
+  ]
+}

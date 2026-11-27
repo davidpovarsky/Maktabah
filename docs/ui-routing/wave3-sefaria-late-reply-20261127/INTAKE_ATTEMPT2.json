@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "createdAt": "2026-11-27T08:49:42.005088+00:00",
+  "sourceCommit": "f03802af54b36bed1a326c6c0b197f60a6a04d34",
+  "baseCommit": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+  "sourceTree": "73bdb7c5f258c118c806d185edf9cbe47825ade2",
+  "status": "SOURCE_VALIDATED_NATIVE_PENDING",
+  "scope": "real-transport late reply diagnostic; original runtime/source/engines/corpus/nativeReaderProvider preserved",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "sourceFiles": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+      "size": 31396
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+      "size": 23528
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "sha256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+      "size": 24671
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "sha256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+      "size": 131823
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic.swift",
+      "sha256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+      "size": 17527
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic_js.mjs",
+      "sha256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+      "size": 9517
+    }
+  ],
+  "newApplicationPBXMembers": [],
+  "requiresOriginalMetroBundleRebuild": true,
+  "tests": {
+    "swiftActualSources": {
+      "passed": 31,
+      "failed": 0,
+      "boundary": "explicit controlled transport and app-domain doubles"
+    },
+    "jsActualSources": {
+      "passed": 26,
+      "failed": 0,
+      "boundary": "explicit native/timer/engine doubles"
+    },
+    "originalRPCAssertions": {
+      "baseline": {
+        "passed": 5,
+        "failed": 4
+      },
+      "corrected": {
+        "passed": 30,
+        "failed": 0
+      }
+    },
+    "originalJSBaseline": {
+      "passed": 3,
+      "failed": 23
+    },
+    "freshNative": 0,
+    "Hermes": "NOT_RUN",
+    "physical": "NOT_RUN"
+  },
+  "cacheLeaseReleasedAtUTC": "2026-11-27T08:42:43Z",
+  "cacheDeletion": false,
+  "macJobs": 0,
+  "rawCopiedFiles": 71,
+  "preservationReceiptSHA256": "b4f124802c250352cbb9765bed18af98a5740d52df3f05abf5d8395ada19a375"
+}

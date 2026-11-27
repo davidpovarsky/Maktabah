@@ -1,0 +1,165 @@
+{
+  "startedAt": "2026-11-27T08:38:10.233167+00:00",
+  "argv": [
+    "swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaJSRPCBridge.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaRuntimeManager.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaRPCModels.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/SefariaEmbeddedSurfaceContract.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/BoundaryDoubles.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/tools/test_sefaria_late_reply_diagnostic.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/controls"
+  ],
+  "compileExit": 0,
+  "compileStderr": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/tools/test_sefaria_late_reply_diagnostic.swift:216:17: warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten\n214 |         struct Report: Codable {\n215 |             let boundary: String; let caseCount: Int; let passed: Int; let failed: Int; let cases: [Row]\n216 |             let nativeAppAcceptance = \"NOT_RUN\"\n    |                 |- warning: immutable property will not be decoded because it is declared with an initial value which cannot be overwritten\n    |                 |- note: set the initial value via the initializer or explicitly define a CodingKeys enum including a 'nativeAppAcceptance' case to silence this warning\n    |                 `- note: make the property mutable instead\n217 |         }\n218 |         let report = Report(boundary: \"actual original bridge/runtime/full diagnostic helper compiled; controllable transport and library/native-domain doubles\",\n",
+  "free": 4179042304,
+  "runExit": 0,
+  "run": {
+    "caseCount": 26,
+    "nativeAppAcceptance": "NOT_RUN",
+    "passed": 26,
+    "cases": [
+      {
+        "passed": true,
+        "name": "actual bridge reset and late discard",
+        "observed": "PASS"
+      },
+      {
+        "passed": true,
+        "name": "wrongStartedNonce",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongStartedID",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongStartedEpoch",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongStartedDelay",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongStartedBackend",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "duplicateStarted",
+        "observed": "DIAGNOSTIC_JS_RECEIPT_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "earlyResponse",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "noReset",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateNonce",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateProofEpoch",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateProofID",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateProtocol",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateEpoch",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateBackend",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "errorLate",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "duplicateLate",
+        "observed": "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"
+      },
+      {
+        "passed": true,
+        "name": "missingStarted",
+        "observed": "DIAGNOSTIC_DEADLINE_EXCEEDED"
+      },
+      {
+        "passed": true,
+        "name": "missingLate",
+        "observed": "DIAGNOSTIC_DEADLINE_EXCEEDED"
+      },
+      {
+        "passed": true,
+        "name": "wrongLateID",
+        "observed": "DIAGNOSTIC_DEADLINE_EXCEEDED"
+      },
+      {
+        "passed": true,
+        "name": "double original reset invalidates exact new epoch",
+        "observed": "DIAGNOSTIC_RESET_NOT_OBSERVED"
+      },
+      {
+        "passed": true,
+        "name": "foreign original transport invalidates observation",
+        "observed": "DIAGNOSTIC_TRANSPORT_CHANGED"
+      },
+      {
+        "passed": true,
+        "name": "ended token cannot wait or rearm",
+        "observed": "DIAGNOSTIC_RETIRED"
+      },
+      {
+        "passed": true,
+        "name": "cancelled observation returns and drains original RPC",
+        "observed": "CANCELLED_TASK"
+      },
+      {
+        "passed": true,
+        "name": "only one active diagnostic observer",
+        "observed": "DIAGNOSTIC_UNAVAILABLE"
+      },
+      {
+        "passed": true,
+        "name": "exact source helper executes actual reset and fresh echo",
+        "observed": "PASS"
+      }
+    ],
+    "failed": 0,
+    "boundary": "actual original bridge/runtime/full diagnostic helper compiled; controllable transport and library/native-domain doubles"
+  },
+  "finishedAt": "2026-11-27T08:38:17.052847+00:00"
+}

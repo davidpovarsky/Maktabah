@@ -1,0 +1,146 @@
+{
+  "boundary": "actual original JS facade and extracted unchanged original RN forwarding; explicit native/timer/engine doubles; no Hermes/app acceptance",
+  "inputs": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-inputs/Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    }
+  ],
+  "originalRootBodySHA256": "f0d7739dc1c0135c982253da7c0cb98a6dbe87e237f4190e93bf44a608ae8227",
+  "caseCount": 26,
+  "passed": 3,
+  "failed": 23,
+  "cases": [
+    {
+      "name": "ordinary Hebrew echo preserves original behavior",
+      "passed": true
+    },
+    {
+      "name": "original error injection remains exact",
+      "passed": true
+    },
+    {
+      "name": "actual JS-start receipt precedes delayed completion",
+      "passed": false,
+      "error": "Error: response completed before controlled timer"
+    },
+    {
+      "name": "unchanged original RN function delivers actual delayed response",
+      "passed": false,
+      "error": "Error: original forwarding bypassed delay"
+    },
+    {
+      "name": "negative delay fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "zero delay fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "fractional delay fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "oversized delay fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "missing nonce fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "malformed nonce fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "wrong contract fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "unsafe generation fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "zero generation fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "foreign backend fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "wrong protocol fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "invalid request ID fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "delay reaches timeout fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "oversized request deadline fails before timer or receipt",
+      "passed": false,
+      "error": "Error: invalid diagnostic accepted"
+    },
+    {
+      "name": "explicit invalid diagnostic presence null",
+      "passed": false,
+      "error": "Error: invalid requested diagnostic silently became ordinary echo"
+    },
+    {
+      "name": "explicit invalid diagnostic presence false",
+      "passed": false,
+      "error": "Error: invalid requested diagnostic silently became ordinary echo"
+    },
+    {
+      "name": "explicit invalid diagnostic presence 0",
+      "passed": false,
+      "error": "Error: invalid requested diagnostic silently became ordinary echo"
+    },
+    {
+      "name": "explicit invalid diagnostic presence \"\"",
+      "passed": false,
+      "error": "Error: invalid requested diagnostic silently became ordinary echo"
+    },
+    {
+      "name": "original injected error cannot mix with delayed proof",
+      "passed": false,
+      "error": "Error: conflicting diagnostic not refused"
+    },
+    {
+      "name": "second held echo cannot replace first original identity",
+      "passed": false,
+      "error": "Error: second echo replaced pending identity"
+    },
+    {
+      "name": "native event failure releases exact timer and record",
+      "passed": false,
+      "error": "Error: native event error swallowed"
+    },
+    {
+      "name": "ordinary echo remains independent during held diagnostic",
+      "passed": true
+    }
+  ]
+}
