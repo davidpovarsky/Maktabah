@@ -1,0 +1,518 @@
+{
+  "baseline": {
+    "cases": [
+      {
+        "name": "same-generation-reuses-original-Kit-cache",
+        "passed": true,
+        "witness": {
+          "providerCalls": 1
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-document",
+        "passed": false,
+        "witness": {
+          "providerCalls": 1,
+          "text": "generation-A"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-links",
+        "passed": false,
+        "witness": {
+          "payload": "generation-A"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-topics",
+        "passed": false,
+        "witness": {
+          "payload": "generation-A"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-notes",
+        "passed": false,
+        "witness": {
+          "note": "generation-A"
+        }
+      },
+      {
+        "name": "Otzaria-Kit-and-adapter-link-caches-retire-together",
+        "passed": false,
+        "witness": {
+          "after": "generation-A",
+          "before": "generation-A",
+          "providerCalls": 1,
+          "sameReference": true
+        }
+      },
+      {
+        "name": "initial-session-admission-preserves-user-open-action",
+        "passed": true,
+        "witness": {}
+      },
+      {
+        "name": "hidden-session-reopens-current-snippets",
+        "passed": false,
+        "witness": {
+          "after": "generation-B",
+          "before": "generation-B"
+        }
+      },
+      {
+        "name": "retired-repository-callback-cannot-read-new-generation",
+        "passed": false,
+        "witness": {
+          "cancelled": false,
+          "providerCalls": 1
+        }
+      },
+      {
+        "name": "generation-change-during-document-cannot-publish",
+        "passed": false,
+        "witness": {
+          "cancelled": false,
+          "newRepository": false,
+          "retiredCachePopulated": true
+        }
+      },
+      {
+        "name": "generation-change-during-links-cannot-publish",
+        "passed": false,
+        "witness": {
+          "cancelled": false,
+          "newRepository": false,
+          "retiredCachePopulated": true
+        }
+      },
+      {
+        "name": "generation-change-during-topics-cannot-publish",
+        "passed": false,
+        "witness": {
+          "cancelled": false,
+          "newRepository": false,
+          "retiredCachePopulated": true
+        }
+      }
+    ],
+    "passed": 2,
+    "scope": "actual unchanged adapter and pinned Kit, deterministic provider boundaries; not UI/corpus acceptance",
+    "total": 12
+  },
+  "candidate": {
+    "cases": [
+      {
+        "name": "same-generation-reuses-original-Kit-cache",
+        "passed": true,
+        "witness": {
+          "providerCalls": 1
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-document",
+        "passed": true,
+        "witness": {
+          "providerCalls": 2,
+          "text": "generation-B"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-links",
+        "passed": true,
+        "witness": {
+          "payload": "generation-B"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-topics",
+        "passed": true,
+        "witness": {
+          "payload": "generation-B"
+        }
+      },
+      {
+        "name": "hidden-session-reopens-current-notes",
+        "passed": true,
+        "witness": {
+          "note": "generation-B"
+        }
+      },
+      {
+        "name": "Otzaria-Kit-and-adapter-link-caches-retire-together",
+        "passed": true,
+        "witness": {
+          "after": "generation-B",
+          "before": "generation-A",
+          "providerCalls": 2,
+          "sameReference": true
+        }
+      },
+      {
+        "name": "initial-session-admission-preserves-user-open-action",
+        "passed": true,
+        "witness": {}
+      },
+      {
+        "name": "hidden-session-reopens-current-snippets",
+        "passed": true,
+        "witness": {
+          "after": "generation-C",
+          "before": "generation-B"
+        }
+      },
+      {
+        "name": "retired-repository-callback-cannot-read-new-generation",
+        "passed": true,
+        "witness": {
+          "cancelled": true,
+          "providerCalls": 0
+        }
+      },
+      {
+        "name": "generation-change-during-document-cannot-publish",
+        "passed": true,
+        "witness": {
+          "cancelled": true,
+          "newRepository": true,
+          "retiredCachePopulated": false
+        }
+      },
+      {
+        "name": "generation-change-during-links-cannot-publish",
+        "passed": true,
+        "witness": {
+          "cancelled": true,
+          "newRepository": true,
+          "retiredCachePopulated": false
+        }
+      },
+      {
+        "name": "generation-change-during-topics-cannot-publish",
+        "passed": true,
+        "witness": {
+          "cancelled": true,
+          "newRepository": true,
+          "retiredCachePopulated": false
+        }
+      }
+    ],
+    "passed": 12,
+    "scope": "actual unchanged adapter and pinned Kit, deterministic provider boundaries; not UI/corpus acceptance",
+    "total": 12
+  },
+  "finishedUTC": "2026-11-27T01:55:49.596544+00:00",
+  "scope": "Mac Catalyst component controls plus whole-source host typecheck, not iPhone/simulator UI or corpus acceptance",
+  "sources": {
+    "BundleModuleBoundary.swift": "1c6b9aa4b53f69c55ee359d29ee74c73c39e8fd42f3be937c58ac0986c3f196d",
+    "InspectorGenerationBoundaries.swift": "c298c5bb0b4a57cab24cbb044c302f118383e8a66704e0db9acfd2082a72c02d",
+    "InspectorGenerationControls.swift": "ce6e0e05af750c1b32295de13c638cc78ba64033e84850913aa064d207e2e465",
+    "Source/LibraryBackend/LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
+    "baseline-adapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
+    "baseline-host.swift": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+    "candidate-adapter.swift": "b9b64795eee6afdb204fde4f31d96e38a2513c8caf4929dee1acfd03410e4c4b",
+    "candidate-host.swift": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7",
+    "kit/Sources/TorahInspectorCore/Models.swift": "59a0c8639c8c778c67ff9c60db4b979e3ba7a39dff4c3fb669a54ae23dc113a0",
+    "kit/Sources/TorahInspectorCore/ProviderProtocols.swift": "9f5f28f1d71a97831827dce5dfe2324a60460fc7760137b9527e4c3815d20273",
+    "kit/Sources/TorahInspectorCore/TorahInspectorCoordinator.swift": "fccfc25ee56e165c6559aba52a1ccec39d10db6fd6a94a91c867cd38dc693116",
+    "kit/Sources/TorahInspectorCore/TorahInspectorRepository.swift": "519828f3d602811758d2698e00a06567b41d31d465b143175441f08873300040",
+    "kit/Sources/TorahInspectorCore/TorahReaderScrollStateMachine.swift": "90173f3198133c6a746d00c9a6af9ad8cd854f5643f924d98e9095133da5bbdc",
+    "kit/Sources/TorahInspectorCore/TorahRelatedDocumentsAccessError.swift": "0ff22bb5a56ddff0235e7b6c5188c737b110cb2848d7e17dcaefc3ca1d6df2e6",
+    "kit/Sources/TorahInspectorCore/TorahSourceTransfer.swift": "994da5da2cb6b163083c7f3dea20cfe74c781211eea0f144b394a6d047affc97",
+    "kit/Sources/TorahInspectorCore/TorahToolSelectorStateMachine.swift": "34dda44a571764ea98e43449422340ad7a00dbe4b0d43c0036d7d48ad8119729",
+    "kit/Sources/TorahInspectorUI/TorahInspectorAppearance.swift": "b6721610c9d7cdc9d7dd8b2bd67b62250cefb8780eb04b602b9d6d58ee0a6391",
+    "kit/Sources/TorahInspectorUI/TorahInspectorHostActions.swift": "3d40b9315146e6f5e0c611fddc2ad6f3216796346189819b58d0cd5ca3792edf",
+    "kit/Sources/TorahInspectorUI/TorahInspectorPresentation.swift": "3b82fb35602991e6291ca8b982ca7e213a1d517ab9c4114a3c35c408f724253e",
+    "kit/Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift": "74cd8e58df5076d3754009529f434dbfcb5aaedd40e020589d3e3d26852f843c",
+    "kit/Sources/TorahInspectorUI/TorahInspectorRoute.swift": "837f7e9b025f0116bbe56b95fe4ccad628041df13c4089e04b0611f610370890",
+    "kit/Sources/TorahInspectorUI/TorahInspectorSheetPresenter.swift": "ddf02a36ff95ebd328541d56a46df22cc4705cab707b0a72907a40696c4ac07e",
+    "kit/Sources/TorahInspectorUI/TorahInspectorView.swift": "92295e1d372d393309fc03d15ea2cd2ea51997acf22a065ec865dea72ed89c33",
+    "kit/Sources/TorahInspectorUI/TorahPanelLoadState.swift": "c8696cce4327712b339ae3028ced4e3c9e5e844d7631a69644371f35533044b7",
+    "kit/Sources/TorahInspectorUI/TorahPlatformSupport.swift": "d18af67058d664aea1bc80752fc92241017286bc408f7c044cb742add0443e12",
+    "kit/Sources/TorahInspectorUI/TorahReaderSessionState.swift": "aad8efcd8a619b23f8e0ae107373364b5ab4853eb7b5678e70821c35465d1861",
+    "kit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift": "cf23dec33df1df00d85e3fd333a838a60befa7a22a6ea2daed53dc86158df823",
+    "kit/Sources/TorahInspectorUI/TorahSourceReaderView.swift": "5b0e3044c299242f701af6e6d48d4b7222337432cafc6a0e774f3398e5c49517",
+    "kit/Sources/TorahInspectorUI/TorahStrings.swift": "2f4ab857ef68bf222592023f95e1fb80c157ec57441fa2a158a69d6f39c41200"
+  },
+  "startedUTC": "2026-11-27T01:55:23.630929+00:00",
+  "status": "COMPLETE",
+  "steps": [
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:24.139033+00:00",
+      "name": "compiler-version",
+      "startedUTC": "2026-11-27T01:55:23.632907+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-emit-module",
+        "-emit-library",
+        "-module-name",
+        "TorahInspectorCore",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/Models.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/ProviderProtocols.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahInspectorCoordinator.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahInspectorRepository.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahReaderScrollStateMachine.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahRelatedDocumentsAccessError.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahSourceTransfer.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/TorahToolSelectorStateMachine.swift",
+        "-emit-module-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/TorahInspectorCore.swiftmodule",
+        "-Xlinker",
+        "-install_name",
+        "-Xlinker",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/libTorahInspectorCore.dylib",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/libTorahInspectorCore.dylib"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:28.232117+00:00",
+      "name": "core-build",
+      "startedUTC": "2026-11-27T01:55:24.139485+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-I",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "-emit-module",
+        "-module-name",
+        "TorahInspectorUI",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorAppearance.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorHostActions.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorPresentation.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorPresentationOptions.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorRoute.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorSheetPresenter.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorView.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahPanelLoadState.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahPlatformSupport.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahReaderSessionState.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahSourceReaderView.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahStrings.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/BundleModuleBoundary.swift",
+        "-emit-module-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/TorahInspectorUI.swiftmodule"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:37.489879+00:00",
+      "name": "ui-module",
+      "startedUTC": "2026-11-27T01:55:28.232785+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-typecheck",
+        "-D",
+        "INSPECTOR_HOST_TYPECHECK",
+        "-I",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/LibraryBackend/LibraryBackendModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-adapter.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-host.swift"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:39.539407+00:00",
+      "name": "baseline-host-typecheck",
+      "startedUTC": "2026-11-27T01:55:37.490590+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-I",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "-L",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "-lTorahInspectorCore",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/LibraryBackend/LibraryBackendModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-adapter.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationControls.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-controls"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:43.279012+00:00",
+      "name": "baseline-compile",
+      "startedUTC": "2026-11-27T01:55:39.540086+00:00"
+    },
+    {
+      "command": [
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-controls",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/baseline-cases.json"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:43.729916+00:00",
+      "name": "baseline-run",
+      "startedUTC": "2026-11-27T01:55:43.279474+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-typecheck",
+        "-D",
+        "INSPECTOR_HOST_TYPECHECK",
+        "-I",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/LibraryBackend/LibraryBackendModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-adapter.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-host.swift"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:45.739602+00:00",
+      "name": "candidate-host-typecheck",
+      "startedUTC": "2026-11-27T01:55:43.730532+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "-I",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "-L",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2",
+        "-lTorahInspectorCore",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/LibraryBackend/LibraryBackendModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationBoundaries.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-adapter.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/InspectorGenerationControls.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-controls"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:49.332350+00:00",
+      "name": "candidate-compile",
+      "startedUTC": "2026-11-27T01:55:45.740299+00:00"
+    },
+    {
+      "command": [
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-controls",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/candidate-cases.json"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T01:55:49.595555+00:00",
+      "name": "candidate-run",
+      "startedUTC": "2026-11-27T01:55:49.332971+00:00"
+    }
+  ]
+}

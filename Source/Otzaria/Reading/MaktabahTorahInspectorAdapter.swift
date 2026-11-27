@@ -6,6 +6,8 @@ import TorahInspectorCore
 final class MaktabahTorahInspectorSession {
     private let coordinator: BackendCoordinator
     private let otzaria: OtzariaMaktabahBridge
+    private var resourceGeneration: UInt64
+    private var cachedRepository: TorahInspectorRepository?
     private let preferredMode: LibraryReaderTextMode
     private weak var readerViewModel: ReaderViewModel?
     private var locatorsByReference: [String: TextLocator] = [:]
@@ -43,37 +45,69 @@ final class MaktabahTorahInspectorSession {
     ) {
         self.coordinator = coordinator
         self.otzaria = otzaria
+        self.resourceGeneration = coordinator.generation
         self.preferredMode = preferredMode
         self.readerViewModel = viewModel
     }
 
-    lazy var repository = TorahInspectorRepository(
-        textFetcher: { [weak self] reference, providerID in
-            guard let self else { throw TorahError.missingProvider }
-            return try await self.document(for: reference, providerID: providerID)
-        },
-        linksFetcher: { [weak self] reference, providerID in
-            guard let self else { throw TorahError.missingProvider }
-            return try await self.links(for: reference, providerID: providerID)
-        },
-        topicsFetcher: { [weak self] reference, providerID in
-            guard let self else { throw TorahError.missingProvider }
-            return try await self.topics(for: reference, providerID: providerID)
-        },
-        notesFetcher: { [weak self] selection in
-            guard let self else { throw TorahError.missingProvider }
-            return try await self.notes(for: selection)
-        },
-        snippetsFetcher: { [weak self] sources in
-            guard let self else { return [:] }
-            return try await self.fetchSnippets(for: sources)
+    /// A workspace retains this session while its Inspector is hidden. Rebind
+    /// both cache owners before handing a repository or selection to a new view.
+    /// All state is MainActor-owned; no storage/cache locks are acquired here.
+    @discardableResult
+    func refreshForCurrentGeneration() -> Bool {
+        guard resourceGeneration != coordinator.generation else { return false }
+        resourceGeneration = coordinator.generation
+        cachedRepository = nil
+        locatorsByReference.removeAll()
+        otzariaUnitsByReference.removeAll()
+        otzariaUnitsLRU.removeAll()
+        otzariaUnitLinksByReference.removeAll()
+        otzariaUnitLinksLRU.removeAll()
+        return true
+    }
+
+    var repository: TorahInspectorRepository {
+        refreshForCurrentGeneration()
+        if let cachedRepository { return cachedRepository }
+        let generation = resourceGeneration
+        let repository = TorahInspectorRepository(
+            textFetcher: { [weak self] reference, providerID in
+                guard let self else { throw TorahError.missingProvider }
+                return try await self.document(for: reference, providerID: providerID, generation: generation)
+            },
+            linksFetcher: { [weak self] reference, providerID in
+                guard let self else { throw TorahError.missingProvider }
+                return try await self.links(for: reference, providerID: providerID, generation: generation)
+            },
+            topicsFetcher: { [weak self] reference, providerID in
+                guard let self else { throw TorahError.missingProvider }
+                return try await self.topics(for: reference, providerID: providerID, generation: generation)
+            },
+            notesFetcher: { [weak self] selection in
+                guard let self else { throw TorahError.missingProvider }
+                return try await self.notes(for: selection, generation: generation)
+            },
+            snippetsFetcher: { [weak self] sources in
+                guard let self else { return [:] }
+                return try await self.fetchSnippets(for: sources, generation: generation)
+            }
+        )
+        cachedRepository = repository
+        return repository
+    }
+
+    private func requireCurrentGeneration(_ generation: UInt64) throws {
+        try Task.checkCancellation()
+        guard resourceGeneration == generation, coordinator.generation == generation else {
+            throw CancellationError()
         }
-    )
+    }
 
     func selection(
         sefariaLocator: TextLocator?,
         otzariaLine: OtzariaLineAnchor?
     ) -> TorahInspectorSelection? {
+        refreshForCurrentGeneration()
         if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             if let locator = sefariaLocator,
                locator.backend == coordinator.activeBackendID,
@@ -152,7 +186,8 @@ final class MaktabahTorahInspectorSession {
     }
 
     func locator(for selection: TorahInspectorSelection) -> TextLocator? {
-        locator(
+        refreshForCurrentGeneration()
+        return locator(
             for: selection.preferredSegmentRef ?? selection.canonicalRef,
             providerID: selection.providerID
         )
@@ -240,12 +275,14 @@ final class MaktabahTorahInspectorSession {
         }
     }
 
-    private func document(for reference: String, providerID: String?) async throws -> TorahTextDocument {
+    private func document(for reference: String, providerID: String?, generation: UInt64) async throws -> TorahTextDocument {
+        try requireCurrentGeneration(generation)
         let locator = try activeLocator(for: reference, providerID: providerID)
         switch locator.backend {
         case .sefaria, .sefariaEmbedded:
             do {
                 let section = try await coordinator.section(at: locator)
+                try requireCurrentGeneration(generation)
                 return try map(section, requestedReference: reference)
             } catch LibraryBackendError.unavailableOffline {
                 throw TorahError.storage(String(localized: "This source is unavailable offline."))
@@ -255,7 +292,8 @@ final class MaktabahTorahInspectorSession {
         }
     }
 
-    private func links(for reference: String, providerID: String?) async throws -> [TorahLinkedSource] {
+    private func links(for reference: String, providerID: String?, generation: UInt64) async throws -> [TorahLinkedSource] {
+        try requireCurrentGeneration(generation)
         let locator = try activeLocator(for: reference, providerID: providerID)
         let preferredMode = self.preferredMode
         let key = cacheKey(providerID: locator.backend.rawValue, reference: reference)
@@ -265,6 +303,7 @@ final class MaktabahTorahInspectorSession {
 
         if locator.backend == .sefaria || locator.backend == .sefariaEmbedded {
             let sources = try await coordinator.links(for: locator)
+            try requireCurrentGeneration(generation)
             let mappedSources: [TorahLinkedSource] = sources.map { source in
                 let sourceReference = Self.reference(for: source.locator)
                 remember(source.locator, for: sourceReference)
@@ -451,7 +490,8 @@ final class MaktabahTorahInspectorSession {
         return backgroundResult.sources
     }
 
-    private func fetchSnippets(for sources: [TorahLinkedSource]) async throws -> [TorahLinkedSource.ID: String] {
+    private func fetchSnippets(for sources: [TorahLinkedSource], generation: UInt64) async throws -> [TorahLinkedSource.ID: String] {
+        try requireCurrentGeneration(generation)
         if coordinator.activeBackendID == .sefaria || coordinator.activeBackendID == .sefariaEmbedded {
             var snippets: [TorahLinkedSource.ID: String] = [:]
             for source in sources {
@@ -482,15 +522,18 @@ final class MaktabahTorahInspectorSession {
         return results
     }
 
-    private func topics(for reference: String, providerID: String?) async throws -> [TorahLinkedTopic] {
+    private func topics(for reference: String, providerID: String?, generation: UInt64) async throws -> [TorahLinkedTopic] {
+        try requireCurrentGeneration(generation)
         let locator = try activeLocator(for: reference, providerID: providerID)
-        return try await coordinator.topics(for: locator).map {
+        let topics = try await coordinator.topics(for: locator)
+        try requireCurrentGeneration(generation)
+        return topics.map {
             TorahLinkedTopic(slug: $0.slug, titleHe: $0.titleHe, titleEn: $0.titleEn)
         }
     }
 
-    private func notes(for selection: TorahInspectorSelection) async throws -> [TorahInspectorNote] {
-        try Task.checkCancellation()
+    private func notes(for selection: TorahInspectorSelection, generation: UInt64) async throws -> [TorahInspectorNote] {
+        try requireCurrentGeneration(generation)
         guard let viewModel = readerViewModel,
               let selectedLocator = locator(for: selection),
               selectedLocator.backend == coordinator.activeBackendID else { return [] }
@@ -821,7 +864,7 @@ final class MaktabahTorahInspectorSession {
     }
 
     private func activeLocator(for reference: String, providerID: String?) throws -> TextLocator {
-        try Task.checkCancellation()
+        try requireCurrentGeneration(resourceGeneration)
         guard let providerID,
               let backend = BackendID(rawValue: providerID),
               backend == coordinator.activeBackendID else {

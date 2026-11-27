@@ -26,26 +26,31 @@ struct OtzariaReaderSourcesInspectorHost: View {
     var body: some View {
         @Bindable var viewModel = viewModel
 
-        if viewModel.readerInspectorVisible,
-           let selection = inspectorSession.selection(
-                sefariaLocator: viewModel.selectedSegmentLocator,
-                otzariaLine: viewModel.otzariaSelectedLineAnchor
-           ) {
-            presentedInspector(selection: selection)
-            .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
-            .modifier(MaktabahNativeRoutingSurface(kind: .inspector, inspectorReader: viewModel))
-            .onChange(of: backendCoordinator.generation) { _, _ in
-                inspectorSession = MaktabahTorahInspectorSession(viewModel: viewModel)
-                viewModel.closeReaderInspector()
+        Group {
+            if viewModel.readerInspectorVisible,
+               let selection = inspectorSession.selection(
+                    sefariaLocator: viewModel.selectedSegmentLocator,
+                    otzariaLine: viewModel.otzariaSelectedLineAnchor
+               ) {
+                presentedInspector(selection: selection)
+                    .id("\(backendCoordinator.generation):\(viewModel.currentReaderTextMode.rawValue):\(contentID)")
+                    .modifier(MaktabahNativeRoutingSurface(kind: .inspector, inspectorReader: viewModel))
+            } else {
+                EmptyView()
             }
-            .onChange(of: viewModel.currentReaderTextMode) { _, mode in
-                inspectorSession = MaktabahTorahInspectorSession(
-                    viewModel: viewModel,
-                    preferredMode: mode
-                )
-            }
-        } else {
-            EmptyView()
+        }
+        .onChange(of: backendCoordinator.generation, initial: true) { previous, current in
+            // This observer belongs to the host, including its hidden branch.
+            // Initial admission refreshes a retained session without consuming
+            // the user's open action when the host itself has just remounted.
+            inspectorSession.refreshForCurrentGeneration()
+            if previous != current { viewModel.closeReaderInspector() }
+        }
+        .onChange(of: viewModel.currentReaderTextMode) { _, mode in
+            inspectorSession = MaktabahTorahInspectorSession(
+                viewModel: viewModel,
+                preferredMode: mode
+            )
         }
     }
 
