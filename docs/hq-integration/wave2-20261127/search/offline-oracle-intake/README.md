@@ -1,0 +1,5 @@
+# Original offline coordination source intake
+
+Three donor commits are mapped byte-for-byte in DONOR_INTAKE.json, including both reproduced ownership defects and their follow-up. All34 donor file versions were checked; the original36, corrected45 and coordinator43 source controls remain attributed to their actual sources and runs. No SSH, Mac, PF, denied window, probe, simulator, app, corpus or native case was executed by this intake. The currently published root controller is still the earlier ordinary phase implementation; its source-check passing does not claim the local offline integration has run.
+
+The separate reader/root-trace-failed-readback packet preserves the actual failed host-only trace attempt and both stopped export attempts. The original outer transport exit0 does not replace the inner driver exit1 or its unknown recorder exit; no TOC/metric/product acceptance exists. All eleven files were transferred byte-exact. Mac ENOSPC remains a runtime blocker pending an assigned shared storage window.

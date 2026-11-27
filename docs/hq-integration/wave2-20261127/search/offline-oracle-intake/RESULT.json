@@ -1,0 +1,116 @@
+{
+  "schema": "otzaria.wave2.offline-oracle-source-intake/1",
+  "status": "SOURCE_ONLY_INTAKE_CHECKED",
+  "donorIntake": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/offline-oracle-intake/DONOR_INTAKE.json",
+    "bytes": 8572,
+    "sha256": "457155ab7eefb12b22df9a723552c85fc3d2a29ef01289eddf8d789e0734f205"
+  },
+  "parsedNewHelpers": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-offline-exercises.py",
+      "bytes": 54090,
+      "sha256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-offline-oracle.py",
+      "bytes": 60113,
+      "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+    }
+  ],
+  "sourceCheck": {
+    "exit": 0,
+    "stdout": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/offline-oracle-intake/SOURCE_CHECK.stdout.json",
+      "bytes": 20160,
+      "sha256": "021239d32e58912059c6642db780d9c392f3f6300f2292cc8a88f91a09a0285a"
+    },
+    "stderr": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/offline-oracle-intake/SOURCE_CHECK.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "materializedUnchangedHEADPaths": [
+    {
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "bytes": 12675,
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+    },
+    {
+      "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+      "bytes": 1426,
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    }
+  ],
+  "rootReviewed": "Exact ownership follow-up diff, complete launch/event/RPC/finalization and cleanup boundaries. Reader independently reviewed ownership follow-up; no donor test rerun.",
+  "controlEvidenceReused": {
+    "exerciseOriginal": 36,
+    "exerciseFollowup": 45,
+    "oracleCoordinator": 43,
+    "scope": "Synthetic source controls; same sets repeated by donor on Oracle, not independent native acceptance"
+  },
+  "rootMainOfflineComposition": "Local draft, not yet integrated by this checkpoint",
+  "actualOfflineWindows": 0,
+  "actualNativeExecutions": 0,
+  "appleCompilations": 0,
+  "retainedActualTraceFailures": {
+    "owned-subject.py": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/owned-subject.py",
+      "bytes": 573,
+      "sha256": "72eb2e987be6bc400208a1eef956ea5c27063ae9e56d447894f72f9eff09492c"
+    },
+    "ORIGINAL_RECORD_JOB.json": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/ORIGINAL_RECORD_JOB.json",
+      "bytes": 1907,
+      "sha256": "02d4784361316fefe149f07454ed92d0a3e2ab27b120776b75651f691a36d500"
+    },
+    "README.md": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/README.md",
+      "bytes": 2434,
+      "sha256": "4e7f4265d05853f5db8fb1c6af2a278ccc76858e8b125aa130e891c9772073ba"
+    },
+    "runner.stdout.log": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/runner.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runner.stderr.log": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/runner.stderr.log",
+      "bytes": 898,
+      "sha256": "590189907599fb560b87b0dc85db02eeefc6df1b3c95a0cffd4ffec83e3cbdce"
+    },
+    "record.log": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/record.log",
+      "bytes": 298,
+      "sha256": "c0d4cde58e3bb8c782f78433550679b6ece2ce697865fcfa746e4f614ba93b90"
+    },
+    "run-owned-schema-control.py": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/run-owned-schema-control.py",
+      "bytes": 8430,
+      "sha256": "9d515600d35be03a828763ca173d7e55189080e0fa1351142f3117c30f0ce390"
+    },
+    "READ_ONLY_EXPORT_0750_TRANSPORT.json": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/READ_ONLY_EXPORT_0750_TRANSPORT.json",
+      "bytes": 1886,
+      "sha256": "5c0d9993b934bb133854582fa9b5a25d5686ba36ce482ce0e833036e677c6a4f"
+    },
+    "READ_ONLY_EXPORT_0810_JOB.json": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/READ_ONLY_EXPORT_0810_JOB.json",
+      "bytes": 1094,
+      "sha256": "c84fb8fad9d3f02959dc6e4731d8dde4c9721e613d97a30482959e8edaaa6228"
+    },
+    "ACTUAL_FAILURE_FILES_READBACK.json": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/ACTUAL_FAILURE_FILES_READBACK.json",
+      "bytes": 12919,
+      "sha256": "6d562f87ee76356803df31eff3e8d769c8c1f37f7c2f0ad0835d31cc0e53c59f"
+    },
+    "subject.stdout.log": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/subject.stdout.log",
+      "bytes": 269,
+      "sha256": "1c1723f7940e0a1c396cf0c3beb43f84aa3d0ccff591c66477422c068497ded4"
+    }
+  },
+  "macRuntimeBlocker": "08:10:03 UTC ENOSPC before mkdir/export; no Apple execution after that failure in this lane",
+  "observedAtUTC": "2026-11-27T08:52:32.829350+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_8c8919cb5228",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795762370.0803266,
+    "started_at": "2026-11-27T06:52:50.163238+00:00",
+    "finished_at": "2026-11-27T06:53:27.587284+00:00",
+    "duration_s": 37.42,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 150,
+    "read": true,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"exit\": 0, \"stdout\": \"{\\\"path\\\": \\\"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502\\\", \\\"exit\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py\\\\\\\", line 168, in <module>\\\\n    main()\\\\n  File \\\\\\\"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py\\\\\\\", line 159, in main\\\\n    report['artifacts'] = [witness(p) for p in sorted(OUT.rglob('*'))\\\\n                           ^^^^^^^^^^\\\\n  File \\\\\\\"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py\\\\\\\", line 41, in witness\\\\n    require(before == after, 'File changed during final readback')\\\\n  File \\\\\\\"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py\\\\\\\", line 31, in require\\\\n    raise ValueError(message)\\\\nValueError: File changed during final readback\\\\n\\\", \\\"resultSHA256\\\": null}\\n\", \"stderr\": \"\"}"
+  }
+}
