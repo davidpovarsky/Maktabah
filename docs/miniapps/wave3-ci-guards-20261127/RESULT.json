@@ -1,0 +1,107 @@
+{
+  "status": "PASS_SOURCE_INTEGRITY_CONTROLS_ONLY",
+  "utc": "2026-11-27T02:56:05.353162+00:00",
+  "base": "4e057e453bc837f54e176f8160a3bc7446bac9ad",
+  "source": {
+    "Scripts/CI/miniapps_runtime_image_origin.py": "491fd2e958350771b0c55037ad5256149b4b3a0654d01db95c6fa6aed8b061bc",
+    "Scripts/CI/otzaria-miniapps-native.py": "a1f84e7118d18192026eb7acea4f7e725cf2a77ccda4ae9f28005cfdd1cdb382",
+    "Scripts/CI/test_miniapps_acceptance_guards.py": "69711536f8235ae143a7d61e961b96058aec7a7e247b95cafbea61b69d0a57af"
+  },
+  "before": {
+    "exit_code": 1,
+    "test_methods": 8,
+    "failing_negative_subcases": 85,
+    "actual_optimized_wrong_uuid_fixture_accepted": true
+  },
+  "after": {
+    "new_guard_methods_passed": 8,
+    "unchanged_image_origin_methods_passed": 12,
+    "failures": 0,
+    "actual_optimized_import_refused": true
+  },
+  "native_tests_executed": 0,
+  "production_acceptance": "OPEN; unchanged miniTest10 gate cannot qualify production",
+  "evidence": [
+    {
+      "path": "OWNERSHIP_PRE_EDIT.json",
+      "bytes": 1451,
+      "sha256": "efd0dbcdc515ae22972f1e0d5ea143ec2af3b70272f0c4b64678c87a4ffed1ff"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4985,
+      "sha256": "3c0d4680fa7dcacaf469c4b64d71dd85b6e883a1e2bc21431acc81a2c71760ea"
+    },
+    {
+      "path": "after-correction/PRESERVATION.json",
+      "bytes": 2325,
+      "sha256": "d8a1b51e6b8d135eff43b2854e61422fe088ff9f0aad61fed5215a2108a73754"
+    },
+    {
+      "path": "after-correction/actual-optimized-subprocess/EXECUTION.json",
+      "bytes": 533,
+      "sha256": "94e0d33259408d922a69d1c50a749885bcc53cae8f291f5ac6a4159745f6e7e5"
+    },
+    {
+      "path": "after-correction/actual-optimized-subprocess/stderr.log",
+      "bytes": 580,
+      "sha256": "233345d7da8d8f3737eb2663e2b863c3a7a6dfbe875f534e783504d7e3068a1c"
+    },
+    {
+      "path": "after-correction/actual-optimized-subprocess/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-correction/canonical-guards/EXECUTION.json",
+      "bytes": 742,
+      "sha256": "3855f256466ffcaf8ef7daea89b5791501d438056f205f1ee812b60b5485383c"
+    },
+    {
+      "path": "after-correction/canonical-guards/stderr.log",
+      "bytes": 1514,
+      "sha256": "2fdfdf75b0c50749ff7ec6a5e64ddb4e8bc5341f4a78fe5efdf2c66ccf67e148"
+    },
+    {
+      "path": "after-correction/canonical-guards/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "after-correction/original-image-origin/EXECUTION.json",
+      "bytes": 745,
+      "sha256": "934a313935f69512b41fb7af14f1d1ff64debaaeced936be8c94140aa294ea1f"
+    },
+    {
+      "path": "after-correction/original-image-origin/stderr.log",
+      "bytes": 1791,
+      "sha256": "361c22104f1c223f81a858f262ab7eb44fed0ca4abf3d49491640aeb5496cc20"
+    },
+    {
+      "path": "after-correction/original-image-origin/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before-4e057e45/EXECUTION.json",
+      "bytes": 1160,
+      "sha256": "410cd11526c7987a778846e826989aa9e8c914edfc456d5c723fd2834f374620"
+    },
+    {
+      "path": "before-4e057e45/stderr.log.gz",
+      "bytes": 2320,
+      "sha256": "5135b260ef4118f50295ce70031ffaf7682f8577dbcc6559397ba794bcb0d0e1"
+    },
+    {
+      "path": "before-4e057e45/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "raw_log_packaging": {
+    "path": "before-4e057e45/stderr.log.gz",
+    "decoded_sha256": "6ea2739af9859bb899d2a47e426d7fb0533878693862976f85f3164e85aec363",
+    "decoded_bytes": 103677,
+    "byte_identity_verified": true
+  }
+}

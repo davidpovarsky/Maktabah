@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-I",
+    "-O",
+    "-B",
+    "-c",
+    "import runpy,sys; runpy.run_path(sys.argv[1])",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-miniapps-ci-guards-20261127/Scripts/CI/miniapps_runtime_image_origin.py"
+  ],
+  "exit_code": 1,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "233345d7da8d8f3737eb2663e2b863c3a7a6dfbe875f534e783504d7e3068a1c",
+  "required_refusal": "optimized Python",
+  "native_tests_executed": 0
+}

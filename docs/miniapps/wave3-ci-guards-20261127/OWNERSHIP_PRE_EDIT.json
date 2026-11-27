@@ -1,0 +1,27 @@
+{
+  "utc": "2026-11-27T02:52:03.458545+00:00",
+  "base": "4e057e453bc837f54e176f8160a3bc7446bac9ad",
+  "branch": "codex/otzaria-wave3-miniapps-ci-guards-20261127",
+  "upstream_pin": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstream_pin_source": "Root live upstream review; local object verified. This lane's independent ls-remote attempt timed out, no sync performed.",
+  "ownership": [
+    {
+      "path": "Scripts/CI/miniapps_runtime_image_origin.py",
+      "classification": "DOWNSTREAM_OWNED",
+      "last_change": "0e450c9ce777f766e99c2dad356b3cb6416d5646",
+      "upstream_member": false,
+      "sha256": "7e86d43f84334313de9c270b68f17d42e1b4a2737787d176704124cb6398fe52"
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "classification": "DOWNSTREAM_OWNED",
+      "last_change": "0e450c9ce777f766e99c2dad356b3cb6416d5646",
+      "upstream_member": false,
+      "sha256": "39c663ca6ec02b831bc35cdfc12c702ca127cddd59e86501db8164066a8568f1"
+    }
+  ],
+  "scope": "Ordinary optimized-Python rejection and rejection of four exact diagnostic flags plus TEST_RUNNER aliases at canonical configuration and final xctestrun. Preserve original tests, selectors, assertions, miniTest10 gate, image-origin proofs and producer/consumer pinning.",
+  "test_path": "Scripts/CI/test_miniapps_acceptance_guards.py",
+  "test_sha256": "69711536f8235ae143a7d61e961b96058aec7a7e247b95cafbea61b69d0a57af",
+  "native_tests_executed": 0
+}
