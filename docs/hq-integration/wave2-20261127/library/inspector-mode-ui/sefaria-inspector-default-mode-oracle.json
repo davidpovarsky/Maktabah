@@ -1,0 +1,635 @@
+{
+  "canonicalLocator" : "sefaria|Psalms|ref:Psalms 35",
+  "canonicalReference" : "Psalms 35",
+  "hebrewReference" : "תהילים ל״ה",
+  "kitRevision" : "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "modes" : {
+    "both" : {
+      "displayReferenceInHebrewUI" : "תהילים ל״ה",
+      "readerModelBody" : {
+        "sha256" : "b4901acd21ab18fcf216329eedc66bb9ef853f5e3f9ead620d1478f573252425",
+        "utf8Bytes" : 7202
+      },
+      "selectedUnitQuote" : {
+        "sha256" : "a59b7b01e6083637f8a55f10ac37e12546fa8b5321d7c92d6726c9684b9bb25e",
+        "utf8Bytes" : 6839
+      },
+      "sourceVersionLanguage" : "he",
+      "sourceVersionLicense" : "CC-BY-SA",
+      "sourceVersionTitle" : "Miqra according to the Masorah",
+      "versionScope" : "qualified-source-metadata; Kit has no displayed version field"
+    },
+    "source" : {
+      "displayReferenceInHebrewUI" : "תהילים ל״ה",
+      "readerModelBody" : {
+        "sha256" : "e5f1bc264d3b38b0700f6f8a3ac9c1eb54456524077d0d4917a4bde42827117a",
+        "utf8Bytes" : 4482
+      },
+      "selectedUnitQuote" : {
+        "sha256" : "23c544cfa71059abdb7b9bd09f3722a88e7ff6e45abfe17438e48f96227f6d9b",
+        "utf8Bytes" : 4287
+      },
+      "sourceVersionLanguage" : "he",
+      "sourceVersionLicense" : "CC-BY-SA",
+      "sourceVersionTitle" : "Miqra according to the Masorah",
+      "versionScope" : "qualified-source-metadata; Kit has no displayed version field"
+    },
+    "translation" : {
+      "displayReferenceInHebrewUI" : "Psalms 35",
+      "readerModelBody" : {
+        "sha256" : "2953b3a8783b6a1645f86ba5eced933990a9c41e954fb1e04e572024c9ac8ac3",
+        "utf8Bytes" : 2746
+      },
+      "selectedUnitQuote" : {
+        "sha256" : "53d771ed8a0e44a2f028ca9de25d58b714114fea82a979cdcd7a44d7ce851d25",
+        "utf8Bytes" : 2551
+      },
+      "sourceVersionLanguage" : "en",
+      "sourceVersionLicense" : "CC-BY-NC",
+      "sourceVersionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition",
+      "versionScope" : "qualified-source-metadata; Kit has no displayed version field"
+    }
+  },
+  "requestURL" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only",
+  "response" : {
+    "bytes" : 29198,
+    "relativePath" : "psalms35-default-response.json",
+    "sha256" : "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90"
+  },
+  "responseReceipt" : {
+    "bytes" : 1277,
+    "relativePath" : "psalms35-default-response-receipt.json",
+    "sha256" : "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19"
+  },
+  "schema" : 1,
+  "segments" : [
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "71e7274d09a260d384e07f70feb7277f72bbaa44191de59f92ff9792d4027a56",
+          "utf8Bytes" : 199
+        },
+        "source" : {
+          "sha256" : "2248df1e12672108d492681c8b6b921a8f5b05d817563bb967894f5bc9bb6537",
+          "utf8Bytes" : 122
+        },
+        "translation" : {
+          "sha256" : "843cc6d31227865da271a72e3e57d6790ea7e30de721476e178f97f620adf28a",
+          "utf8Bytes" : 76
+        }
+      },
+      "canonicalRef" : "Psalms 35:1",
+      "heRef" : "תהילים ל״ה:1",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:1"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "3f0d97cb08f7a8f9c76df8de5754b3e35f62662a83d3321d1651cba58df92f76",
+          "utf8Bytes" : 150
+        },
+        "source" : {
+          "sha256" : "16f5f870103d348ad64b90ccd15c67b6f6289e7f11df41527a31dcab38670946",
+          "utf8Bytes" : 98
+        },
+        "translation" : {
+          "sha256" : "8334ca5099985f6a84616e04bb569cc4d167b9976e83d7cbd18c624e1a2966e0",
+          "utf8Bytes" : 51
+        }
+      },
+      "canonicalRef" : "Psalms 35:2",
+      "heRef" : "תהילים ל״ה:2",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:2"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "b5b76e1338783edbdaa65fec27a2276b48c8ba9283d18b388adb93fbc446bac4",
+          "utf8Bytes" : 253
+        },
+        "source" : {
+          "sha256" : "e42133792ce0ae755b76a155d6fec3fed691e5ee88006b7c69bf6df6ea45e6d3",
+          "utf8Bytes" : 166
+        },
+        "translation" : {
+          "sha256" : "711fdf5b1e95beb84a282c1c04de642e84d51ac898d30a87f2d495cbfc9dac28",
+          "utf8Bytes" : 86
+        }
+      },
+      "canonicalRef" : "Psalms 35:3",
+      "heRef" : "תהילים ל״ה:3",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:3"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "894671962e2ca28e8066ab0153982b4bca9a038544ec3d7081f8c58f44c6f852",
+          "utf8Bytes" : 302
+        },
+        "source" : {
+          "sha256" : "c078817bea043243a6d39b1dab805dc05c5ebb85ea184003e21e9bbe2654027f",
+          "utf8Bytes" : 190
+        },
+        "translation" : {
+          "sha256" : "9d0e9100b39bf651e3832da773e43888c89b77a5609bc526f041addadb7e0604",
+          "utf8Bytes" : 111
+        }
+      },
+      "canonicalRef" : "Psalms 35:4",
+      "heRef" : "תהילים ל״ה:4",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:4"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "a15d9bf4adbcff8174ff4419f637dedcf6319be3882d53dfe060d7e31de46f7a",
+          "utf8Bytes" : 186
+        },
+        "source" : {
+          "sha256" : "699e9b25b8febba37ffefc6d2bf076561eb5f7b4dfceea90c7318ea5a8a07a84",
+          "utf8Bytes" : 121
+        },
+        "translation" : {
+          "sha256" : "1e61c1034fb0ef8c0818ed74f1e42181c954b2e5154e8114e9a0dc3135151e2f",
+          "utf8Bytes" : 64
+        }
+      },
+      "canonicalRef" : "Psalms 35:5",
+      "heRef" : "תהילים ל״ה:5",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:5"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "9a558491b8acc59477a48b96cb7899506fcf0d4f3d42bb5b7636af29b88697f9",
+          "utf8Bytes" : 209
+        },
+        "source" : {
+          "sha256" : "0965c6ed6cb1b968c252d11569d928e47f7704ea4d4f5a1c7b3625978125ac37",
+          "utf8Bytes" : 141
+        },
+        "translation" : {
+          "sha256" : "f088862de6c9c2548b97778d34e935447a2d126f21edf945bf2d630f5b0d2b13",
+          "utf8Bytes" : 67
+        }
+      },
+      "canonicalRef" : "Psalms 35:6",
+      "heRef" : "תהילים ל״ה:6",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:6"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "abe96d0bf23be7121f9e33a293d0997a2ebc13dece791018a99188fb537ce700",
+          "utf8Bytes" : 230
+        },
+        "source" : {
+          "sha256" : "abfea1f568861e12a0a6c07da4a474e9af2664d6c97febc09bc8be0d255b793d",
+          "utf8Bytes" : 148
+        },
+        "translation" : {
+          "sha256" : "daaab57ad08c0758eeea5a612bc20d4afc9998762d6b5b71c67d9b5b5c4598ff",
+          "utf8Bytes" : 81
+        }
+      },
+      "canonicalRef" : "Psalms 35:7",
+      "heRef" : "תהילים ל״ה:7",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:7"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "c060b0aa6b1208fc9963e0a28209bbe51b2f652ae894d7b5744c1cb82e0de89a",
+          "utf8Bytes" : 314
+        },
+        "source" : {
+          "sha256" : "69d109a1422bcabf1ed8f6e01359b8c73664a5caaf5d7a6995b6760c6e442a93",
+          "utf8Bytes" : 197
+        },
+        "translation" : {
+          "sha256" : "682562fc18c8a614659e2aa1c69372d234d63286e48f410816e73c156ffb1007",
+          "utf8Bytes" : 116
+        }
+      },
+      "canonicalRef" : "Psalms 35:8",
+      "heRef" : "תהילים ל״ה:8",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:8"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "929d6f300f0c380e86e27eb2d5dc3d5780ad8ac6c814883dd84549d16298e26c",
+          "utf8Bytes" : 175
+        },
+        "source" : {
+          "sha256" : "fd5bfab2a1801ef23a8dab6ef48252077b9c99bd70c4f36d2fcdce7c60fef7d6",
+          "utf8Bytes" : 114
+        },
+        "translation" : {
+          "sha256" : "8e648e2e1ddb593e1b4a7006327f3400c2940cfb2df90fa50457b38d543cf88e",
+          "utf8Bytes" : 60
+        }
+      },
+      "canonicalRef" : "Psalms 35:9",
+      "heRef" : "תהילים ל״ה:9",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:9"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "10c4d759748c80f2b2ea3856b6ac1651eef908103139dd493eedd4c1d77c1822",
+          "utf8Bytes" : 381
+        },
+        "source" : {
+          "sha256" : "24e32b97251ca0db46ed377492efe8748c40cc8d56ad73f6a6b0fe7d94c00960",
+          "utf8Bytes" : 247
+        },
+        "translation" : {
+          "sha256" : "ddd9cc83eb33aa03097800ce5d3f4262de66f42edbdb7bda24fe11038b09645b",
+          "utf8Bytes" : 133
+        }
+      },
+      "canonicalRef" : "Psalms 35:10",
+      "heRef" : "תהילים ל״ה:10",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:10"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "36b7571402c833e34c621d19491fc9bcc6b27a9fc5386294d2b0c6c6fc962dfd",
+          "utf8Bytes" : 198
+        },
+        "source" : {
+          "sha256" : "b56e276edb2d9c2938d7f1818bee109e2c363437111a85d5972764b5f6f33d3e",
+          "utf8Bytes" : 127
+        },
+        "translation" : {
+          "sha256" : "87dc912f367f1d500632170a25bc2ee0fff4347dc59df4e8dd6e7a2e1bc880af",
+          "utf8Bytes" : 70
+        }
+      },
+      "canonicalRef" : "Psalms 35:11",
+      "heRef" : "תהילים ל״ה:11",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:11"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "523fe7dc408f75b38b94b8d90bde4512490e6b9d48c2a2cae7fe5def177d0016",
+          "utf8Bytes" : 170
+        },
+        "source" : {
+          "sha256" : "16eb1d42786f316c674ccdfd314a7ddf80aa952d624d67ed8bcb99a57b9fc9c8",
+          "utf8Bytes" : 115
+        },
+        "translation" : {
+          "sha256" : "72e28c91765f983591ab34cafa459c16813e560aa4c836e4f8dee86ef6229265",
+          "utf8Bytes" : 54
+        }
+      },
+      "canonicalRef" : "Psalms 35:12",
+      "heRef" : "תהילים ל״ה:12",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:12"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "86171990fbf4d5348d1b2e18af33aedd46354c75a7325d0f4e0c505050fe3823",
+          "utf8Bytes" : 308
+        },
+        "source" : {
+          "sha256" : "1867726d5cf331db0952fa150152c781bd1d711bab311565cec0a46ecd532bf4",
+          "utf8Bytes" : 206
+        },
+        "translation" : {
+          "sha256" : "bd93dea85654076df86802404b1d49ad4850325ea5ccd52164a42fea45e94188",
+          "utf8Bytes" : 101
+        }
+      },
+      "canonicalRef" : "Psalms 35:13",
+      "heRef" : "תהילים ל״ה:13",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:13"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "7b8a47d0024d1aa3932af24c8f47c2814f11bbc6f5c5cda8173b9ba8dd4d9080",
+          "utf8Bytes" : 247
+        },
+        "source" : {
+          "sha256" : "e029a6d25436429654400625836f0533b98a8406137a3a74d5bda2b2083ec456",
+          "utf8Bytes" : 137
+        },
+        "translation" : {
+          "sha256" : "0a8aee5f2396677e7f86d10226e036040d3f7c22cf66de44d21ebfb07d791426",
+          "utf8Bytes" : 109
+        }
+      },
+      "canonicalRef" : "Psalms 35:14",
+      "heRef" : "תהילים ל״ה:14",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:14"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "accb7f5f96a88e092c67e857962ef108dbb25d257e5b5cf69d50f9d9eff5e575",
+          "utf8Bytes" : 319
+        },
+        "source" : {
+          "sha256" : "3922b8f230fdfadc9c1d464f6fc95bf866c71a3740c5970703c4a8b761a68206",
+          "utf8Bytes" : 203
+        },
+        "translation" : {
+          "sha256" : "99b09f5dfc6c32939acb5dc2e82c57f80797efc07fdf39f3edf0fe6eb702b73c",
+          "utf8Bytes" : 115
+        }
+      },
+      "canonicalRef" : "Psalms 35:15",
+      "heRef" : "תהילים ל״ה:15",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:15"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "d26e0953f7f7e8620f3415baccd832a624f7d5c6b5bbb9ab751582e20c89bf8d",
+          "utf8Bytes" : 165
+        },
+        "source" : {
+          "sha256" : "4808f0dd3bd8173833e75666ffda58757007483b7ab070cfb5914fe1e2685543",
+          "utf8Bytes" : 105
+        },
+        "translation" : {
+          "sha256" : "cec4c5b28fd47f574532a8283f88ab54c2713f762cd1189ca2490ec9c1076c04",
+          "utf8Bytes" : 59
+        }
+      },
+      "canonicalRef" : "Psalms 35:16",
+      "heRef" : "תהילים ל״ה:16",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:16"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "1963a0ca30df32b3c90f17c1b246ce179040a6918f0c8fcec1a287289fe3d607",
+          "utf8Bytes" : 280
+        },
+        "source" : {
+          "sha256" : "57c1eef51d555eb3674a518cf2e3a147ffaa3df2790c670ee9303cd19658d555",
+          "utf8Bytes" : 173
+        },
+        "translation" : {
+          "sha256" : "0f367e3f0405d82365606ebc7aa16daea54dae720a8ad4d137033fca5a39c900",
+          "utf8Bytes" : 106
+        }
+      },
+      "canonicalRef" : "Psalms 35:17",
+      "heRef" : "תהילים ל״ה:17",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:17"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "da44257062fa0229ac6c47e31506b315a399f277ae105c286f5c4c90ebd81735",
+          "utf8Bytes" : 180
+        },
+        "source" : {
+          "sha256" : "8737f947f1df5d9c43aa94d7f2e0bf058a2be5b90a4088b6fbfe9bf2f790e77a",
+          "utf8Bytes" : 101
+        },
+        "translation" : {
+          "sha256" : "44c8fa6ecdf0c3f7400a3c882600584aa5490c6048545a889f0440e878b7ea3b",
+          "utf8Bytes" : 78
+        }
+      },
+      "canonicalRef" : "Psalms 35:18",
+      "heRef" : "תהילים ל״ה:18",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:18"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "7dabd14a91edf22d7bdfe71c35feaf76af2a4fdd7c6380668e247df6df66c149",
+          "utf8Bytes" : 244
+        },
+        "source" : {
+          "sha256" : "47b5025cecab2bb4ac31107bacc728bd15c3565bd7e8ff1511601fc06d94e388",
+          "utf8Bytes" : 143
+        },
+        "translation" : {
+          "sha256" : "e8db2ec99117c51d781d133f5c63536f988edce33b71106c54a4bc4d40ee8b4a",
+          "utf8Bytes" : 100
+        }
+      },
+      "canonicalRef" : "Psalms 35:19",
+      "heRef" : "תהילים ל״ה:19",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:19"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "e82ff7d8c497e28948ae2810144d01b248f22a31611c78032a12d62036c0c2b3",
+          "utf8Bytes" : 252
+        },
+        "source" : {
+          "sha256" : "6e97e20c16a8df9264e82d82d27fb26f52c27c0ce3e55a9fc2812ef8ac8eb235",
+          "utf8Bytes" : 170
+        },
+        "translation" : {
+          "sha256" : "ecd34ca7f8c54263345d04ec54ed965547e492fdb078dc042da7e10d937c3add",
+          "utf8Bytes" : 81
+        }
+      },
+      "canonicalRef" : "Psalms 35:20",
+      "heRef" : "תהילים ל״ה:20",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:20"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "7180cf878acc495efa92777cad6701f2cfe453c40115bbf78cdec4d6eacfa8df",
+          "utf8Bytes" : 224
+        },
+        "source" : {
+          "sha256" : "a34b6ea00892e300f435f865ee008d1f82a47ac6e0e02850eb9218795424de48",
+          "utf8Bytes" : 148
+        },
+        "translation" : {
+          "sha256" : "c17de303281ac85e78b97b9047c75bc6eb43be66d14118dd4d3579ff1f494a45",
+          "utf8Bytes" : 75
+        }
+      },
+      "canonicalRef" : "Psalms 35:21",
+      "heRef" : "תהילים ל״ה:21",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:21"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "2762ac9bf586589caa6ca6454f6fc14f4aa738418ebbff04bdcae1e5e26b0ac1",
+          "utf8Bytes" : 223
+        },
+        "source" : {
+          "sha256" : "567bec7cf6ea7d19148e7ff5d596c43a8a6f1a13ac18ba97480b8266738514c3",
+          "utf8Bytes" : 135
+        },
+        "translation" : {
+          "sha256" : "6d482e1a9f8bed3ae61e2263dc0563bf5b063c180acb99c0ce3c0d41bab2c95b",
+          "utf8Bytes" : 87
+        }
+      },
+      "canonicalRef" : "Psalms 35:22",
+      "heRef" : "תהילים ל״ה:22",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:22"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "b03c2539252a6e542411d46da24c494cf836195e86ac37df2dca754738ae8918",
+          "utf8Bytes" : 203
+        },
+        "source" : {
+          "sha256" : "c74f9bfab4bad1a5955e12c2feb0c8d759fb5acc33194099d01d5926ae2ea51c",
+          "utf8Bytes" : 127
+        },
+        "translation" : {
+          "sha256" : "fb697e67a0241bf8e85e0fc061797efb2db15486af0a6a62027cbe7c7f57fd5e",
+          "utf8Bytes" : 75
+        }
+      },
+      "canonicalRef" : "Psalms 35:23",
+      "heRef" : "תהילים ל״ה:23",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:23"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "bf0bef96c290a867970c6e919545c86cf71e4cff3cb7665e7ac3fb9da5798312",
+          "utf8Bytes" : 217
+        },
+        "source" : {
+          "sha256" : "c92ed7a5365c6ead18c4e33600046ca6867c042f2401b60a644c5043477f8c3a",
+          "utf8Bytes" : 124
+        },
+        "translation" : {
+          "sha256" : "a8c7be5ccb0f67dfe73150ac8a762c429c61af2037dc272b7c36437e44ea4399",
+          "utf8Bytes" : 92
+        }
+      },
+      "canonicalRef" : "Psalms 35:24",
+      "heRef" : "תהילים ל״ה:24",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:24"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "5d2f0be0f29bd5ef0be1cfa0bed0d1a679048a56361de2ff4da3b92d920f3af4",
+          "utf8Bytes" : 244
+        },
+        "source" : {
+          "sha256" : "385e0802186aa4a7bd3a862149a15b338fc1994eef454d44306ecdbe7ff1e2f1",
+          "utf8Bytes" : 145
+        },
+        "translation" : {
+          "sha256" : "ab0debdb679ed3042d41d4aae78caf2ff7da2d3812b420a9bcb298795d547b05",
+          "utf8Bytes" : 98
+        }
+      },
+      "canonicalRef" : "Psalms 35:25",
+      "heRef" : "תהילים ל״ה:25",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:25"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "51d6e9820513a454cd7f8ed280e10568361cecec1a76e3454ea4f527782b57f3",
+          "utf8Bytes" : 372
+        },
+        "source" : {
+          "sha256" : "ed6843ca8540d0ed31bd2bf8cd87190ba02c4025f4f033cc887c36b1f3697be0",
+          "utf8Bytes" : 223
+        },
+        "translation" : {
+          "sha256" : "78be9c70460690e23e1e0202e2492076742080e0ad7c631312d726e100a514d9",
+          "utf8Bytes" : 148
+        }
+      },
+      "canonicalRef" : "Psalms 35:26",
+      "heRef" : "תהילים ל״ה:26",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:26"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "03ba68de6ab63677ab9dd991bbb50bd2e85d6994e47ccdcabcf4bbe1cdf61472",
+          "utf8Bytes" : 367
+        },
+        "source" : {
+          "sha256" : "041bc0fb690d12eeec63a7a490b9d54e43ca7523cc28b06522179b07fbcd8717",
+          "utf8Bytes" : 212
+        },
+        "translation" : {
+          "sha256" : "8deaff12f989441b8c81b05aa11ff725682d61c992ee3f60e5277002f71b2388",
+          "utf8Bytes" : 154
+        }
+      },
+      "canonicalRef" : "Psalms 35:27",
+      "heRef" : "תהילים ל״ה:27",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:27"
+    },
+    {
+      "bodies" : {
+        "both" : {
+          "sha256" : "2789aad4418e158c41fa9edeefb18317f9412478784605e07ec7c76bb1c6fe4a",
+          "utf8Bytes" : 200
+        },
+        "source" : {
+          "sha256" : "ca13262dfbdeade08a8b611299ef76e62c44f6249c0dec37afa8b1a2ec358545",
+          "utf8Bytes" : 122
+        },
+        "translation" : {
+          "sha256" : "73bcbb413950c1219acd017551cce998a82fb15ee945ab86ca683ea5ee88463f",
+          "utf8Bytes" : 77
+        }
+      },
+      "canonicalRef" : "Psalms 35:28",
+      "heRef" : "תהילים ל״ה:28",
+      "locator" : "sefaria|Psalms|ref:Psalms 35:28"
+    }
+  ],
+  "sourceContractRevision" : "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+  "sourceReceipt" : {
+    "bytes" : 29198,
+    "finalURL" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only",
+    "headers" : {
+      "Accept-Ranges" : "bytes",
+      "access-control-allow-origin" : "*",
+      "access-control-expose-headers" : "x-sefaria-key-status",
+      "Age" : "0",
+      "cf-cache-status" : "DYNAMIC",
+      "CF-RAY" : "a60e4ce9fefa7d9b-TLV",
+      "Connection" : "close",
+      "content-language" : "en",
+      "Content-Length" : "29198",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Date" : "Fri, 27 Nov 2026 04:13:28 GMT",
+      "Server" : "cloudflare",
+      "Strict-Transport-Security" : "max-age=2592000",
+      "url" : "/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only",
+      "vary" : "Accept-Language, Cookie",
+      "via" : "1.1 varnish (Varnish/6.5)",
+      "x-varnish" : "1045791986"
+    },
+    "observedAt" : "2026-11-27T04:13:28.367838+00:00",
+    "schema" : 1,
+    "scope" : "actual-public-source-response-not-UI",
+    "sha256" : "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90",
+    "status" : 200,
+    "url" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only"
+  },
+  "sourceVersionTitle" : "Miqra according to the Masorah",
+  "status" : "ACTUAL_DEFAULT_SEFARIA_SOURCE_ORACLE_ONLY_NOT_UI",
+  "translationVersionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition",
+  "uiExecuted" : false,
+  "uiScope" : "future original selected-unit quote accessibility label is complete; its visual Text is capped at two lines; no invisible version-field claim",
+  "workKey" : "Psalms"
+}

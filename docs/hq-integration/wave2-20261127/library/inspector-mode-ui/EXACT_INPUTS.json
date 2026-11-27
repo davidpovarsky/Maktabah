@@ -1,0 +1,28 @@
+{
+  "LibraryBackendModels.swift": {
+    "gitPath": "Source/LibraryBackend/LibraryBackendModels.swift",
+    "gitRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+    "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+  },
+  "MaktabahUITestBase.swift": {
+    "gitPath": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+    "gitRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+    "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "SefariaDTOs.swift": {
+    "gitPath": "Source/Sefaria/Network/SefariaDTOs.swift",
+    "gitRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+    "sha256": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71"
+  },
+  "SefariaModels.swift": {
+    "gitPath": "Source/Sefaria/Domain/SefariaModels.swift",
+    "gitRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+    "sha256": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81"
+  },
+  "psalms35-default-response-receipt.json": {
+    "sha256": "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19"
+  },
+  "psalms35-default-response.json": {
+    "sha256": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90"
+  }
+}

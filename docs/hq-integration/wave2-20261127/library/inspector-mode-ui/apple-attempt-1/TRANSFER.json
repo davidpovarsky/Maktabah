@@ -1,0 +1,14 @@
+{
+  "DeepLinkedCommentaryAcceptanceTests.swift": "647849d0ea624451e05ed3d3fcefddb6233a3fed759fdb2d6706cbb731401d81",
+  "EXACT_INPUTS.json": "9a5f7a6836a9559d2543a5083da047745218c7903cda1a0c6ea72da656c9f683",
+  "HELPER_EXTRACTION.json": "25b86e78c9e103b307a03fbad24d1e818b3c899b9664c842a9a1e1ccc2005375",
+  "InspectorModeSourceOracle.swift": "172dd6972cc86359851b861a1ce1826102d470e3bc1fca3f7a9995601a608f91",
+  "LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+  "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+  "OriginalSearchContextUI.swift": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+  "SefariaDTOs.swift": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+  "SefariaModels.swift": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81",
+  "psalms35-default-response-receipt.json": "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19",
+  "psalms35-default-response.json": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90",
+  "run_control.py": "9d58994d9318710719cca192a900d0d960eaaff5d61dbe3185f8d90ce2179908"
+}

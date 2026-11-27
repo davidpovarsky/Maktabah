@@ -1,0 +1,29 @@
+{
+  "bytes": 29198,
+  "finalURL": "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only",
+  "headers": {
+    "Accept-Ranges": "bytes",
+    "Age": "0",
+    "CF-RAY": "a60e4ce9fefa7d9b-TLV",
+    "Connection": "close",
+    "Content-Length": "29198",
+    "Content-Type": "application/json; charset=utf-8",
+    "Date": "Fri, 27 Nov 2026 04:13:28 GMT",
+    "Server": "cloudflare",
+    "Strict-Transport-Security": "max-age=2592000",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "x-sefaria-key-status",
+    "cf-cache-status": "DYNAMIC",
+    "content-language": "en",
+    "url": "/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only",
+    "vary": "Accept-Language, Cookie",
+    "via": "1.1 varnish (Varnish/6.5)",
+    "x-varnish": "1045791986"
+  },
+  "observedAt": "2026-11-27T04:13:28.367838+00:00",
+  "schema": 1,
+  "scope": "actual-public-source-response-not-UI",
+  "sha256": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90",
+  "status": 200,
+  "url": "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only"
+}

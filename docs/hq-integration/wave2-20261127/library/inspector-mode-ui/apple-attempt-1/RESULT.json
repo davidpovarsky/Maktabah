@@ -1,0 +1,142 @@
+{
+  "errors": [],
+  "finishedUTC": "2026-11-27T04:26:10.159198+00:00",
+  "freeBytesAfter": 5994786816,
+  "freeBytesBefore": 5996863488,
+  "inputs": {
+    "DeepLinkedCommentaryAcceptanceTests.swift": "647849d0ea624451e05ed3d3fcefddb6233a3fed759fdb2d6706cbb731401d81",
+    "EXACT_INPUTS.json": "9a5f7a6836a9559d2543a5083da047745218c7903cda1a0c6ea72da656c9f683",
+    "HELPER_EXTRACTION.json": "25b86e78c9e103b307a03fbad24d1e818b3c899b9664c842a9a1e1ccc2005375",
+    "InspectorModeSourceOracle.swift": "172dd6972cc86359851b861a1ce1826102d470e3bc1fca3f7a9995601a608f91",
+    "LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "OriginalSearchContextUI.swift": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+    "PID.json": "c864018d565e426efb10d91831e02281588a6b3964d3ef78d89135d40d50b14f",
+    "SefariaDTOs.swift": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+    "SefariaModels.swift": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81",
+    "TRANSFER.json": "49f6d1232f42eb628e548a7f1368f9c1810e3ac5b788e115ab5f9317a29a89c8",
+    "psalms35-default-response-receipt.json": "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19",
+    "psalms35-default-response.json": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90"
+  },
+  "scope": "Actual retained default Sefaria API source conversion with unchanged original models; Apple SDK UI-source typecheck only. No application or simulator UI execution.",
+  "sourceContractRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+  "sourceInputsAfter": {
+    "DeepLinkedCommentaryAcceptanceTests.swift": "647849d0ea624451e05ed3d3fcefddb6233a3fed759fdb2d6706cbb731401d81",
+    "EXACT_INPUTS.json": "9a5f7a6836a9559d2543a5083da047745218c7903cda1a0c6ea72da656c9f683",
+    "HELPER_EXTRACTION.json": "25b86e78c9e103b307a03fbad24d1e818b3c899b9664c842a9a1e1ccc2005375",
+    "InspectorModeSourceOracle.swift": "172dd6972cc86359851b861a1ce1826102d470e3bc1fca3f7a9995601a608f91",
+    "LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "OriginalSearchContextUI.swift": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+    "PID.json": "c864018d565e426efb10d91831e02281588a6b3964d3ef78d89135d40d50b14f",
+    "SefariaDTOs.swift": "26ead1f0adfc7d5e0acf920a5dda3937140ca8aab7f5b72a46465f2352c4be71",
+    "SefariaModels.swift": "9db878b285dc69a0c86f4b7a97eab923860bd9d6aa07b2b3d6f572a0dce8ac81",
+    "TRANSFER.json": "49f6d1232f42eb628e548a7f1368f9c1810e3ac5b788e115ab5f9317a29a89c8",
+    "psalms35-default-response-receipt.json": "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19",
+    "psalms35-default-response.json": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90"
+  },
+  "sourceOracle": {
+    "bytes": 21902,
+    "modeCount": 3,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/sefaria-inspector-default-mode-oracle.json",
+    "segmentCount": 28,
+    "sha256": "288876d0fcb903298bc0b4c9bcfe95047f4f520ea0ce9476fe008650baa3e224",
+    "uiExecuted": false
+  },
+  "sourceParentCommit": "b5f4cb26cb7540f47871816bb1d10187792ab605",
+  "startedUTC": "2026-11-27T04:26:06.010755+00:00",
+  "status": "COMPLETE_SOURCE_ONLY",
+  "steps": [
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "--version"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T04:26:06.155751+00:00",
+      "name": "compiler-version",
+      "startedUTC": "2026-11-27T04:26:06.012378+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "-target",
+        "arm64-apple-ios17.0-macabi",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/iOSSupport/System/Library/Frameworks",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/LibraryBackendModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/SefariaModels.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/SefariaDTOs.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/InspectorModeSourceOracle.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T04:26:08.578802+00:00",
+      "name": "source-oracle-compile",
+      "startedUTC": "2026-11-27T04:26:06.156126+00:00"
+    },
+    {
+      "command": [
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/sefaria-inspector-default-mode-oracle.json"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T04:26:08.836545+00:00",
+      "name": "source-oracle-conversion",
+      "startedUTC": "2026-11-27T04:26:08.579370+00:00"
+    },
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-typecheck",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+        "-module-name",
+        "Maktabah_iOSUITests",
+        "-D",
+        "DEBUG",
+        "-enable-upcoming-feature",
+        "NonisolatedNonsendingByDefault",
+        "-enable-upcoming-feature",
+        "InferIsolatedConformances",
+        "-enable-upcoming-feature",
+        "MemberImportVisibility",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/MaktabahUITestBase.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/OriginalSearchContextUI.swift",
+        "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/DeepLinkedCommentaryAcceptanceTests.swift"
+      ],
+      "exitCode": 0,
+      "finishedUTC": "2026-11-27T04:26:10.157729+00:00",
+      "name": "whole-ui-file-typecheck",
+      "startedUTC": "2026-11-27T04:26:08.837239+00:00"
+    }
+  ],
+  "warningDiagnosticCount": 140
+}

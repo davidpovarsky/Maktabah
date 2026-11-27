@@ -1,0 +1,191 @@
+{
+  "apple-attempt-1/DeepLinkedCommentaryAcceptanceTests.swift.gz": {
+    "compressed": true,
+    "originalBytes": 55921,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/DeepLinkedCommentaryAcceptanceTests.swift",
+    "originalSHA256": "647849d0ea624451e05ed3d3fcefddb6233a3fed759fdb2d6706cbb731401d81",
+    "storedSHA256": "723ba8fa427e26a1f2fa487fefd939a2d35b69bbbc6d6c2dd26033f9e8961540"
+  },
+  "apple-attempt-1/OriginalSearchContextUI.swift.gz": {
+    "compressed": true,
+    "originalBytes": 13619,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/OriginalSearchContextUI.swift",
+    "originalSHA256": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+    "storedSHA256": "9378a475c01b8909ea5ed149ce18cdebd4b56cfc21b1e5e200da4ee51208ecc5"
+  },
+  "apple-attempt-1/PID.json": {
+    "compressed": false,
+    "originalBytes": 191,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/PID.json",
+    "originalSHA256": "c864018d565e426efb10d91831e02281588a6b3964d3ef78d89135d40d50b14f",
+    "storedSHA256": "c864018d565e426efb10d91831e02281588a6b3964d3ef78d89135d40d50b14f"
+  },
+  "apple-attempt-1/RESULT.json": {
+    "compressed": false,
+    "originalBytes": 7621,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/RESULT.json",
+    "originalSHA256": "09dbcf8bc4c5c9dd033001675285b59954099b6e577cfeb814f89673ca440030",
+    "storedSHA256": "09dbcf8bc4c5c9dd033001675285b59954099b6e577cfeb814f89673ca440030"
+  },
+  "apple-attempt-1/TRANSFER.json": {
+    "compressed": false,
+    "originalBytes": 1199,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/TRANSFER.json",
+    "originalSHA256": "49f6d1232f42eb628e548a7f1368f9c1810e3ac5b788e115ab5f9317a29a89c8",
+    "storedSHA256": "49f6d1232f42eb628e548a7f1368f9c1810e3ac5b788e115ab5f9317a29a89c8"
+  },
+  "apple-attempt-1/compiler-version.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 30,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/compiler-version.stderr.log",
+    "originalSHA256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+    "storedSHA256": "8d30ad20a84536a2346d0e1894290e46709e5c2d11f0695c59ffb77355e589b0"
+  },
+  "apple-attempt-1/compiler-version.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 98,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/compiler-version.stdout.log",
+    "originalSHA256": "04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83",
+    "storedSHA256": "5feacb82297d3d434afe970fe49c26468bcd98ae7dd8f6d8e1ffdf7f3878a017"
+  },
+  "apple-attempt-1/launcher.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/launcher.stderr.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-1/launcher.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/launcher.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-1/run_control.py": {
+    "compressed": false,
+    "originalBytes": 4502,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/run_control.py",
+    "originalSHA256": "9d58994d9318710719cca192a900d0d960eaaff5d61dbe3185f8d90ce2179908",
+    "storedSHA256": "9d58994d9318710719cca192a900d0d960eaaff5d61dbe3185f8d90ce2179908"
+  },
+  "apple-attempt-1/source-oracle-compile.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle-compile.stderr.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-1/source-oracle-compile.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle-compile.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-1/source-oracle-conversion.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle-conversion.stderr.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-1/source-oracle-conversion.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 91,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/source-oracle-conversion.stdout.log",
+    "originalSHA256": "046a8d5090d049a645b0beaed6cf6c730db568fc1f326a74abffcebbd6a3debf",
+    "storedSHA256": "a94f7e3ce689e6a038c88c1a71ab793bf2f7b16b912bae880baaf9eb499383d6"
+  },
+  "apple-attempt-1/whole-ui-file-typecheck.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 106470,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/whole-ui-file-typecheck.stderr.log",
+    "originalSHA256": "c2241ab7ff4007bc391a0efe7decdecfefc91a38408f76ac0ec3e33deaf335e7",
+    "storedSHA256": "ea464a4dcd70a28130f4f601a2dbc1540849c45da09ecf97cbff58842ac48916"
+  },
+  "apple-attempt-1/whole-ui-file-typecheck.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/whole-ui-file-typecheck.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-2/DeepLinkedCommentaryAcceptanceTests.swift.gz": {
+    "compressed": true,
+    "originalBytes": 55933,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-2/DeepLinkedCommentaryAcceptanceTests.swift",
+    "originalSHA256": "165837c7f03785e29eb343e0a81fa7b3573ddb88a6faa0c5b61e792a99291fce",
+    "storedSHA256": "2138f6d27048cd106a52ff51e4d4512717295cdf089e8dc7e022bff3e380cd3f"
+  },
+  "apple-attempt-2/OriginalSearchContextUI.swift.gz": {
+    "compressed": true,
+    "originalBytes": 13619,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-2/OriginalSearchContextUI.swift",
+    "originalSHA256": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+    "storedSHA256": "9378a475c01b8909ea5ed149ce18cdebd4b56cfc21b1e5e200da4ee51208ecc5"
+  },
+  "apple-attempt-2/RESULT.json": {
+    "compressed": false,
+    "originalBytes": 2950,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-2/RESULT.json",
+    "originalSHA256": "c17c7512359f44b9cc256524d03790ed314d38a543c53c7384187c48a83a1599",
+    "storedSHA256": "c17c7512359f44b9cc256524d03790ed314d38a543c53c7384187c48a83a1599"
+  },
+  "apple-attempt-2/typecheck.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 107756,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-2/typecheck.stderr.log",
+    "originalSHA256": "47d5999a4cdae7d6d6172fca8997d818a73ea4f1b95e24b753fe07e63e4ff2e1",
+    "storedSHA256": "44a7237659e9c8a725c1407ba3c0504390a1a30ddc48b5888b07e4467aa0e87a"
+  },
+  "apple-attempt-2/typecheck.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-2/typecheck.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "apple-attempt-3/DeepLinkedCommentaryAcceptanceTests.swift.gz": {
+    "compressed": true,
+    "originalBytes": 55496,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/DeepLinkedCommentaryAcceptanceTests.swift",
+    "originalSHA256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7",
+    "storedSHA256": "8153324d4694d15970d1146ae30bf92166a4570b8b1bf6725ce2f546f823eb90"
+  },
+  "apple-attempt-3/OriginalSearchContextUI.swift.gz": {
+    "compressed": true,
+    "originalBytes": 13619,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/OriginalSearchContextUI.swift",
+    "originalSHA256": "954f0c9a99b55e6b74e99e20763c17f0a3183e760604b55c0b5041ad13246e05",
+    "storedSHA256": "9378a475c01b8909ea5ed149ce18cdebd4b56cfc21b1e5e200da4ee51208ecc5"
+  },
+  "apple-attempt-3/RESULT.json": {
+    "compressed": false,
+    "originalBytes": 2868,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/RESULT.json",
+    "originalSHA256": "2cc2b0f86d436b4cc70707ea0f47cf9ee19f9520e9efd915da0e1a5367545bf6",
+    "storedSHA256": "2cc2b0f86d436b4cc70707ea0f47cf9ee19f9520e9efd915da0e1a5367545bf6"
+  },
+  "apple-attempt-3/typecheck.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 104946,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/typecheck.stderr.log",
+    "originalSHA256": "33ef20ea3fb5bf7c669eaaacc29aa0256b2a53fe4815d17bfd17e8880735f1d7",
+    "storedSHA256": "f6dd2c42ea1766231476654db80904f8c337cc14b22d36f504aeb251836b0979"
+  },
+  "apple-attempt-3/typecheck.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/typecheck.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  },
+  "sefaria-inspector-default-mode-oracle.json": {
+    "compressed": false,
+    "originalBytes": 21902,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-1/sefaria-inspector-default-mode-oracle.json",
+    "originalSHA256": "288876d0fcb903298bc0b4c9bcfe95047f4f520ea0ce9476fe008650baa3e224",
+    "storedSHA256": "288876d0fcb903298bc0b4c9bcfe95047f4f520ea0ce9476fe008650baa3e224"
+  }
+}
