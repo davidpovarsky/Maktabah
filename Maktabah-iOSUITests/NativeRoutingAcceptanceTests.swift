@@ -3409,3 +3409,244 @@ extension NativeRoutingAcceptanceTests {
         capture("original-filtered-\(kind)-record-system-intent")
     }
 }
+
+
+// Reader-tab selection is tested through Apple's real out-of-process system
+// Intent API. The existing helpers above remain byte-exact. URL delivery and
+// ordinary controls below are setup only; neither can satisfy the target ACK.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func selectOriginalReaderTabForSetup(_ tabID: UUID, expectedPad: Bool,
+                                                 locator: String) throws {
+        if expectedPad {
+            returnToOriginalIPadReaderTab(tabID)
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + tabID.uuidString }
+            let cells = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(cells.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(cells.count, 1)
+            XCTAssertTrue(cells.firstMatch.isHittable)
+            cells.firstMatch.tap()
+        }
+        try requireReaderLocator(locator)
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (try? self.actualReaderWorkspace().current().1) == tabID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                       "Require the original UI selection's actual Store checkpoint")
+    }
+
+    /// A refused cached entity may not alter any persisted workspace semantic.
+    /// The Store's monotonically increasing checkpoint revision is bookkeeping;
+    /// all other actual JSON fields, including reading state, stay compared.
+    private func originalReaderTabWorkspaceSemantics() throws -> Data {
+        let bytes = try Data(contentsOf: workspaceSidecarURL())
+        var original = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        _ = try XCTUnwrap(original["revision"] as? NSNumber)
+        original.removeValue(forKey: "revision")
+        return try JSONSerialization.data(withJSONObject: original, options: [.sortedKeys])
+    }
+
+    @MainActor
+    func runOriginalReaderTabSystemIntent(expectedPad: Bool, duplicateBook: Bool = false,
+                                          fromBackground: Bool = false,
+                                          refusal: OriginalReaderTabRefusal? = nil) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let title = try XCTUnwrap(readerSourceMetadata().books[String(initial.bookId)])
+        XCTAssertFalse(title.isEmpty)
+        let originalLocator = "otzaria|\(work)|line:\(initial.lineIndex)"
+        let originalWorkspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(originalWorkspace.lastActiveSceneID)
+        let original = try originalWorkspace.current()
+        XCTAssertEqual(original.0.tabs.count, 1, "Require the original fresh single-Reader fixture")
+        XCTAssertEqual(try XCTUnwrap(original.0.tabs.first).session.id, original.1)
+        XCTAssertEqual(try XCTUnwrap(original.0.tabs.first).session.bookId, initial.bookId)
+        let pid = try targetProcessIdentifier()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+
+        // Retain the actual query result while exactly this original tab exists.
+        // No generated identifier, makeReference(), direct perform(), or product
+        // service import supplies the entity used by the target system invocation.
+        let initialMatches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        guard initialMatches.count == 1 else {
+            XCTFail("Real Reader-tab discovery must resolve exactly the initial original tab")
+            return
+        }
+        let cachedTab = try XCTUnwrap(initialMatches.first)
+        let other = try XCTUnwrap(oracle.rows.first {
+            $0.lineIndex > 0 && (duplicateBook
+                ? $0.bookId == initial.bookId && $0.lineIndex != initial.lineIndex
+                : $0.bookId != initial.bookId)
+        })
+        let otherLocator = "otzaria|book:\(other.bookId)|line:\(other.lineIndex)"
+        let setupReceipts = try readerReceiptLines()
+        try openInExistingProcess(readerURL(bookID: other.bookId, lineIndex: other.lineIndex, newTab: true))
+        try requireReaderLocator(otherLocator)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+        try requireNewReaderReceipt(after: setupReceipts, presentation: "newTab")
+        let added = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.id == original.0.id && current.0.profileID == original.0.profileID
+                && current.0.tabs.count == original.0.tabs.count + 1 && current.1 != original.1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [added], timeout: 15), .completed)
+        let second = try actualReaderWorkspace().current()
+        let otherTabID = second.1
+        XCTAssertEqual(try XCTUnwrap(second.0.tabs.first { $0.session.id == otherTabID }).session.bookId, other.bookId)
+        XCTAssertTrue(second.0.tabs.contains { $0.session.id == original.1 && $0.session.bookId == initial.bookId })
+        XCTAssertNotEqual(otherTabID, original.1)
+
+        // Both live Readers take their ordinary original selection/checkpoint
+        // path before the measured system action. This does not manufacture an
+        // ACK; it settles legitimate source/geometry persistence from setup.
+        let beforeOrdinarySelection = try actualNativeReceiptLines()
+        try selectOriginalReaderTabForSetup(original.1, expectedPad: expectedPad, locator: originalLocator)
+        try selectOriginalReaderTabForSetup(otherTabID, expectedPad: expectedPad, locator: otherLocator)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeOrdinarySelection)
+        let available = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(available.count, duplicateBook ? 2 : 1,
+                       "Duplicate books are distinct original tab entities, not one title-based identity")
+        let documents = try actualSiriReaderDocuments(groupID: original.0.id)
+        let before = try actualNativeReceiptLines()
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let backgrounded = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [backgrounded], timeout: 15), .completed)
+        }
+
+        // Sole tested positive delivery. This exact real entity is reused again
+        // after the original UI closes it or leaves its group in negative cases.
+        _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid, "Selection must reuse the actual original process")
+        try requireReaderLocator(originalLocator)
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.id == original.0.id && current.0.profileID == original.0.profileID
+                && current.1 == original.1 && current.0.tabs.count == second.0.tabs.count
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed)
+        let completed = try actualReaderWorkspace().current()
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        XCTAssertEqual(completed.0.tabs.map { $0.session.id }, second.0.tabs.map { $0.session.id })
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents,
+                       "Selecting an original tab must preserve every retained document's source and location")
+        try requireNewSystemIntentReceipt(destination: "native.reader.tab", presentation: "currentTab", before: before)
+        let completedReceipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        XCTAssertTrue(completedReceipt.split(separator: " ").contains(Substring("scene=" + originalScene)))
+        try attachWorkspaceSnapshot("system-reader-tab-selected-original")
+        capture("system-reader-tab-selected-original")
+
+        guard let refusal else { return }
+        XCTAssertTrue(expectedPad, "These original close/group controls are the declared iPad negative setup")
+        XCTAssertFalse(duplicateBook)
+        let successfulReceipts = try actualNativeReceiptLines()
+        let expectedLocatorAfterRefusal: String?
+        switch refusal {
+        case .closed:
+            let originalControl = app.descendants(matching: .any)
+                .matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
+            XCTAssertTrue(originalControl.exists && originalControl.isHittable)
+            originalControl.press(forDuration: 1)
+            // This exact caption belongs to the original UIKit tab context menu.
+            let close = app.buttons.matching(NSPredicate(format: "label == %@", "סגור כרטיסייה"))
+            XCTAssertTrue(close.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(close.count, 1); XCTAssertTrue(close.firstMatch.isHittable)
+            close.firstMatch.tap()
+            let removed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let current = try? self.actualReaderWorkspace().current() else { return false }
+                return current.0.id == original.0.id && current.1 == otherTabID
+                    && current.0.tabs.count == second.0.tabs.count - 1
+                    && !current.0.tabs.contains { $0.session.id == original.1 }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed)
+            try requireReaderLocator(otherLocator)
+            expectedLocatorAfterRefusal = otherLocator
+        case .previousGroup:
+            try originalTopBarActionInWindow(identifier: "reader-tabs-overview", labels: ["All Tabs"]).tap()
+            let overview = app.descendants(matching: .any).matching(identifier: "study-groups-overview").firstMatch
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
+            let actions = app.buttons["study-group-actions-menu"]
+            XCTAssertTrue(actions.exists && actions.isHittable); actions.tap()
+            let create = app.buttons["New empty group"]
+            XCTAssertTrue(create.waitForExistence(timeout: 10)); XCTAssertTrue(create.isHittable); create.tap()
+            let prompt = app.alerts["Tab group name"]
+            XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+            let name = prompt.textFields["Name"]
+            XCTAssertTrue(name.isHittable); name.tap(); name.typeText("Reader tab intent " + UUID().uuidString)
+            let save = prompt.buttons["Save"]
+            XCTAssertTrue(save.isHittable); save.tap()
+            let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let workspace = try? self.actualReaderWorkspace(),
+                      let sceneID = workspace.lastActiveSceneID, sceneID == originalScene,
+                      let scene = workspace.scenes[sceneID],
+                      let group = workspace.groups.first(where: { $0.id == scene.groupID }) else { return false }
+                return scene.profileID == original.0.profileID && group.profileID == original.0.profileID
+                    && group.id != original.0.id && group.tabs.isEmpty
+                    && scene.activeTabIDsByGroup?[group.id] == nil && group.activeTabID == nil
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 15), .completed)
+            XCTAssertTrue(app.staticTexts["No tabs in this group"].waitForExistence(timeout: 15))
+            let done = app.buttons["Done"]
+            XCTAssertTrue(done.isHittable); done.tap()
+            let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: overview)
+            XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed)
+            let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                         object: app.staticTexts["reader-current-locator"])
+            XCTAssertEqual(XCTWaiter.wait(for: [emptyReader], timeout: 15), .completed)
+            let oldGroup = try XCTUnwrap(actualReaderWorkspace().groups.first { $0.id == original.0.id })
+            XCTAssertTrue(oldGroup.tabs.contains { $0.session.id == original.1 },
+                          "The cached entity is foreign to the current group, not deleted from storage")
+            expectedLocatorAfterRefusal = nil
+        }
+        XCTAssertEqual(try actualNativeReceiptLines(), successfulReceipts,
+                       "Ordinary close/group controls must not manufacture a canonical native receipt")
+        let noLongerAvailable = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertTrue(noLongerAvailable.isEmpty)
+        let stableWorkspace = try originalReaderTabWorkspaceSemantics()
+        let beforeRefusal = try actualNativeReceiptLines()
+        try attachWorkspaceSnapshot("system-reader-tab-" + refusal.rawValue + "-before-refusal")
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        } catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "system-reader-tab-" + refusal.rawValue + "-actual-error"
+            evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "The same previously successful cached entity must now be refused")
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+
+        // The canonical operation has one five-second deadline. Observe for
+        // that whole bound so a deferred stale mutation/ACK cannot pass after
+        // the system returned an error. No retry, delay-based success or regrant.
+        let staleEffect = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let receipts = try? self.actualNativeReceiptLines(),
+                  let state = try? self.originalReaderTabWorkspaceSemantics() else { return true }
+            return receipts != beforeRefusal || state != stableWorkspace
+        }, object: nil)
+        staleEffect.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [staleEffect], timeout: 5), .completed,
+                       "Refusal must leave the original workspace and native receipt log unchanged")
+        if let expectedLocatorAfterRefusal {
+            try requireReaderLocator(expectedLocatorAfterRefusal)
+        } else {
+            XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        }
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        try attachWorkspaceSnapshot("system-reader-tab-" + refusal.rawValue + "-refused")
+        capture("system-reader-tab-" + refusal.rawValue + "-refused")
+    }
+}
