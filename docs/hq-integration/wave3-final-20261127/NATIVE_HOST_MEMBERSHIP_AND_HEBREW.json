@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-27T03:22:59.236967+00:00",
+  "source_base": "d596a7e57c51e84fe28f26d89bae3a19bbb20f6f",
+  "prepared": {
+    "base": "d596a7e57c51e84fe28f26d89bae3a19bbb20f6f",
+    "at": "2026-11-27T03:11:49.409082+00:00",
+    "membership": [
+      {
+        "name": "MaktabahNativeWorkspacePresentationBinding.swift",
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+        "reference": "31F7AC1E87182A10E6AB4D16",
+        "build": "962C7A3EFCFC2107FEE2F067"
+      },
+      {
+        "name": "MaktabahNativeWorkspaceComponents.swift",
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+        "reference": "A7FFBFB77DC351F019A40143",
+        "build": "4DA52B57B2882C188F8D9999"
+      },
+      {
+        "name": "MaktabahNativePhoneTOCPresentation.swift",
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+        "reference": "8BE06AC18C74083897E6428B",
+        "build": "5C12DC5FD970F6D82B213DE0"
+      }
+    ],
+    "pbx_before_sha256": "c2035c013669c81872fbe9c8da6b15f974432d4a8e4c2803e25a3d73aa1ade86",
+    "pbx_after_sha256": "68ae7004f87bac08609dbe49e3ed3acb997f7e05fd9cf73a74057ea09ee2b6b2",
+    "catalog_before_sha256": "afef44734a8df8877e61c1fc28f66177bd202b37da3fb551e8f8ef3da9a4fa23",
+    "catalog_after_sha256": "9f6d3083c526e3c7a685ea340a11538c2d30efb7778d4a1e8c0e369590d9bd11",
+    "catalog_original_entries": 684,
+    "catalog_preserved_entries": 684,
+    "catalog_added": {
+      "Capabilities": "יכולות",
+      "Tools and skills": "כלים ומיומנויות",
+      "MCP servers for this chat": "שרתי MCP לשיחה זו",
+      "Assistant settings": "הגדרות העוזר",
+      "Choose capability": "בחירת יכולת",
+      "Capabilities are unavailable for the current conversation.": "היכולות אינן זמינות בשיחה הנוכחית.",
+      "This capability changed or could not be added. Open the picker again.": "יכולת זו השתנתה או שלא ניתן היה להוסיף אותה. יש לפתוח שוב את רשימת היכולות.",
+      "The capability could not be updated in this conversation.": "לא ניתן היה לעדכן את היכולת בשיחה זו.",
+      "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Book selections are not shared.": "שיחה זו משתמשת בהודעות שלך ובנתוני הקטלוג המורשים. החיפוש בספר כבוי עד לאישור גישה לספר המוצג. טקסט שסומן בספר אינו משותף."
+    },
+    "catalog_total": 693,
+    "source_check_exit": 0,
+    "apple_plutil": "PENDING"
+  },
+  "apple_validation_sha256": "1614592f071581aa9a44e234a056863138b23515a37fac5d904cb1b3f353e4cf",
+  "validation_scope": "Actual Apple PBX parse/membership plus original Apple xcstringstool English/Hebrew compile; not app SDK typecheck, UI or physical acceptance",
+  "all_684_prior_catalog_entries_preserved": true,
+  "new_hebrew_keys": 9,
+  "registered_app_sources": 3,
+  "new_dependencies": 0,
+  "full_app_compilation": "PENDING",
+  "historical_format_probe": "plutil rejects JSON xcstrings; exact failed probe retained, then actual xcstringstool compilation passed"
+}

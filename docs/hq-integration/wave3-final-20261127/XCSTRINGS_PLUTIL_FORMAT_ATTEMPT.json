@@ -1,0 +1,10 @@
+{
+  "command": [
+    "plutil",
+    "-lint",
+    "/Users/m1/builds/otzaria-wave3-membership-d596a7e5-20261127/Localizable.xcstrings"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "/Users/m1/builds/otzaria-wave3-membership-d596a7e5-20261127/Localizable.xcstrings: (Unexpected character { at line 1)\n"
+}

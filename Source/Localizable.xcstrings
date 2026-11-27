@@ -1,6 +1,105 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Capabilities": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יכולות"
+          }
+        }
+      }
+    },
+    "Tools and skills": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כלים ומיומנויות"
+          }
+        }
+      }
+    },
+    "MCP servers for this chat": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שרתי MCP לשיחה זו"
+          }
+        }
+      }
+    },
+    "Assistant settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הגדרות העוזר"
+          }
+        }
+      }
+    },
+    "Choose capability": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת יכולת"
+          }
+        }
+      }
+    },
+    "Capabilities are unavailable for the current conversation.": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "היכולות אינן זמינות בשיחה הנוכחית."
+          }
+        }
+      }
+    },
+    "This capability changed or could not be added. Open the picker again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יכולת זו השתנתה או שלא ניתן היה להוסיף אותה. יש לפתוח שוב את רשימת היכולות."
+          }
+        }
+      }
+    },
+    "The capability could not be updated in this conversation.": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לעדכן את היכולת בשיחה זו."
+          }
+        }
+      }
+    },
+    "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Book selections are not shared.": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיחה זו משתמשת בהודעות שלך ובנתוני הקטלוג המורשים. החיפוש בספר כבוי עד לאישור גישה לספר המוצג. טקסט שסומן בספר אינו משותף."
+          }
+        }
+      }
+    },
     "Current Table of Contents Entry": {
       "extractionState": "manual",
       "localizations": {

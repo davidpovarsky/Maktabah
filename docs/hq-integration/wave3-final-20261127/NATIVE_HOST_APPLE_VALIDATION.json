@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-27T03:20:09.334853+00:00",
+  "base": "d596a7e57c51e84fe28f26d89bae3a19bbb20f6f",
+  "pbx_sha256": "68ae7004f87bac08609dbe49e3ed3acb997f7e05fd9cf73a74057ea09ee2b6b2",
+  "catalog_sha256": "9f6d3083c526e3c7a685ea340a11538c2d30efb7778d4a1e8c0e369590d9bd11",
+  "apple_plutil": [
+    {
+      "file": "project.pbxproj",
+      "exit": 0,
+      "output": "/Users/m1/builds/otzaria-wave3-membership-d596a7e5-20261127/project.pbxproj: OK\n"
+    },
+    {
+      "file": "Localizable.xcstrings",
+      "command": [
+        "xcrun",
+        "xcstringstool",
+        "compile",
+        "/Users/m1/builds/otzaria-wave3-membership-d596a7e5-20261127/Localizable.xcstrings",
+        "--output-directory",
+        "/Users/m1/builds/otzaria-wave3-membership-d596a7e5-20261127/compiled-localizations",
+        "--language",
+        "en",
+        "--language",
+        "he"
+      ],
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "source_target_owners": {
+    "MaktabahNativeWorkspacePresentationBinding.swift": [
+      "Maktabah-iOS"
+    ],
+    "MaktabahNativeWorkspaceComponents.swift": [
+      "Maktabah-iOS"
+    ],
+    "MaktabahNativePhoneTOCPresentation.swift": [
+      "Maktabah-iOS"
+    ]
+  },
+  "configurations": [
+    {
+      "name": "Debug",
+      "profile": "production",
+      "interop": "objcxx",
+      "cxx": "gnu++20"
+    },
+    {
+      "name": "Release",
+      "profile": "production",
+      "interop": "objcxx",
+      "cxx": "gnu++20"
+    }
+  ],
+  "catalog_entries": 693,
+  "compiled_localizations": [
+    {
+      "path": "compiled-localizations/he.lproj/Localizable.strings",
+      "bytes": 56651,
+      "sha256": "91986bd1914101c621a3cbd814e0c06c98c57652a9f60a2c496c06748a0647ac"
+    },
+    {
+      "path": "compiled-localizations/en.lproj/Localizable.strings",
+      "bytes": 38970,
+      "sha256": "3eba656ece92bbcaa2bc838a5dd230bce3da0fd585cae27b5456c15ad91dcb3c"
+    }
+  ],
+  "prior_catalog_plutil_failure": "Preserved separately; plutil does not parse JSON xcstrings",
+  "app_build_executed": false,
+  "native_tests_executed": 0
+}
