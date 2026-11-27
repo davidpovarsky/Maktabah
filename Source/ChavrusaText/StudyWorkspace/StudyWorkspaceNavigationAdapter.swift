@@ -29,6 +29,8 @@ final class StudyWorkspaceNavigationAdapter {
     @ObservationIgnored private var mappingSubscription: StudyWorkspaceMappingSubscription?
     @ObservationIgnored private var readerReservation: StudyWorkspaceNativeReaderReservation?
     @ObservationIgnored private var reservedCheckpoint: StudyWorkspaceNativeReaderReservation?
+    @ObservationIgnored private var tabSelectionReservation: StudyWorkspaceNativeTabSelectionReservation?
+    @ObservationIgnored private var tabSelectionCheckpoint: StudyWorkspaceNativeTabSelectionReservation?
     private final class WeakMappingAdapter {
         weak var value: StudyWorkspaceNavigationAdapter?
         init(_ value: StudyWorkspaceNavigationAdapter) { self.value = value }
@@ -47,7 +49,7 @@ final class StudyWorkspaceNavigationAdapter {
     }
 
     func mappingOwnershipObservation() -> StudyWorkspaceMappingObservation? {
-        guard readerReservation?.policy.isPublishing != true,
+        guard readerReservation?.policy.isPublishing != true, tabSelectionReservation?.policy.isPublishing != true,
               let manager = mappingManager, let epoch = mappingOwnershipSource.event.epoch,
               let projection = currentMappingProjection(manager) else { return nil }
         return .init(source: mappingOwnershipSource, owner: ObjectIdentifier(manager), scene: sceneID, epoch: epoch,
@@ -62,7 +64,16 @@ final class StudyWorkspaceNavigationAdapter {
         Self.mappingAdapters[ObjectIdentifier(self)] = .init(self)
         mappingSubscription = store.mappingSource(scene: sceneID).subscribe(owner: self) { adapter, event in
             if (event.reasons.contains(.ownerLifetime) || event.reasons.contains(.epochExhausted)) && event.phase == .unavailable {
+                adapter.tabSelectionReservation?.policy.invalidate()
                 adapter.mappingOwnershipSource.retire()
+            } else if let checkpoint = adapter.tabSelectionCheckpoint,
+                      checkpoint === adapter.tabSelectionReservation {
+                guard checkpoint.policy.observesOwnedStorePublication(event) else {
+                    adapter.mappingOwnershipSource.beginChange([.readerReservation])
+                    adapter.finishMappingPublication()
+                    return
+                }
+                if event.phase == .available { adapter.finishMappingPublication() }
             } else if event.phase == .changing {
                 // Only the exact already committed native reservation's own
                 // normal checkpoint preserves this native owner epoch.
@@ -71,6 +82,7 @@ final class StudyWorkspaceNavigationAdapter {
                    checkpoint.policy.phase == .committed,
                    checkpoint.policy.epoch == adapter.mappingOwnershipSource.event.epoch { return }
                 adapter.readerReservation?.policy.invalidate()
+                adapter.tabSelectionReservation?.policy.invalidate()
                 adapter.mappingOwnershipSource.beginChange(event.reasons)
             } else {
                 adapter.finishMappingPublication()
@@ -155,6 +167,13 @@ final class StudyWorkspaceNavigationAdapter {
                 groupID: adapter.liveGroupID, backend: adapter.liveBackend)
             let reasons = StudyWorkspaceMappingPolicy.changes(from: before, to: after)
                 .union(StudyWorkspaceMappingPolicy.nativeTargetChanges(from: adapter.mappingTabs(manager.openTabs), to: adapter.mappingTabs(tabs)))
+            if let reservation = adapter.tabSelectionReservation {
+                // Existing-tab selection owns no array publication, even an
+                // equal-value setter or a reentrant replacement with the same IDs.
+                reservation.policy.invalidate()
+                adapter.mappingOwnershipSource.beginChange(reasons.union([.tabMembership]))
+                return
+            }
             guard !reasons.isEmpty else { return }
             if let reservation = adapter.readerReservation,
                reservation.policy.permitsTabsPublication(from: before, to: after) { return }
@@ -169,6 +188,13 @@ final class StudyWorkspaceNavigationAdapter {
                 groupID: adapter.liveGroupID, backend: adapter.liveBackend)
             var reasons = StudyWorkspaceMappingPolicy.changes(from: before, to: after)
             if manager.activeTabId != activeID { reasons.insert(.selection) }
+            if let reservation = adapter.tabSelectionReservation {
+                guard reservation.policy.permitsSelectionPublication(from: before, to: after) else {
+                    adapter.mappingOwnershipSource.beginChange(reasons.union([.selection]))
+                    return
+                }
+                return
+            }
             guard !reasons.isEmpty else { return }
             if let reservation = adapter.readerReservation,
                reservation.policy.permitsSelectionPublication(from: before, to: after) { return }
@@ -178,6 +204,10 @@ final class StudyWorkspaceNavigationAdapter {
 
     static func nativeMappingDidChange(_ manager: iOSNavigationManager) {
         withMappingAdapters(manager) { adapter in
+            if let reservation = adapter.tabSelectionReservation, reservation.policy.isPublishing,
+               !reservation.policy.didPublishSelection(actual: adapter.currentMappingProjection(manager)) {
+                adapter.mappingOwnershipSource.beginChange([.readerReservation])
+            }
             if let reservation = adapter.readerReservation, reservation.policy.isPublishing,
                !reservation.policy.didPublish(actual: adapter.currentMappingProjection(manager)) {
                 adapter.mappingOwnershipSource.beginChange([.readerReservation])
@@ -192,7 +222,7 @@ final class StudyWorkspaceNavigationAdapter {
     /// This does not load, select, persist or authorize content.
     func reserveNativeReader(requestID: UUID, book: BooksData, destination: LibraryReaderDestination,
                              manager: iOSNavigationManager) throws -> StudyWorkspaceNativeReaderReservation {
-        guard attached, !isSwitching, mappingManager === manager, readerReservation == nil,
+        guard attached, !isSwitching, mappingManager === manager, readerReservation == nil, tabSelectionReservation == nil,
               mappingOwnershipObservation() != nil,
               book.backendLocator?.backend == destination.sectionLocator.backend,
               book.backendLocator?.workKey == destination.sectionLocator.workKey,
@@ -260,6 +290,72 @@ final class StudyWorkspaceNavigationAdapter {
         readerReservation = nil
         // Never remove a tab or undo user state, including a partially applied
         // command. The original orchestrator records uncertain native effects.
+        mappingOwnershipSource.beginChange([.readerReservation])
+        finishMappingPublication()
+    }
+
+    // MARK: Existing original Reader-tab selection
+
+    func reserveNativeTabSelection(requestID: UUID, tabID: UUID,
+                                   manager: iOSNavigationManager) throws -> StudyWorkspaceNativeTabSelectionReservation {
+        let targets = manager.openTabs.filter { $0.id == tabID }
+        guard attached, !isSwitching, mappingManager === manager,
+              readerReservation == nil, tabSelectionReservation == nil,
+              targets.count == 1, let tab = targets.first,
+              tab.book.backendLocator?.backend == BackendCoordinator.shared.activeBackendID,
+              mappingOwnershipObservation() != nil else { throw StudyWorkspaceError.invalidMembership }
+        // Retire prior requests before admitting the new, existing-tab contract.
+        mappingOwnershipSource.beginChange([.readerReservation])
+        finishMappingPublication()
+        guard let native = mappingOwnershipObservation(), let saved = store.mappingObservation(scene: sceneID) else {
+            throw StudyWorkspaceError.invalidMembership
+        }
+        let policy = try StudyWorkspaceTabSelectionReservation(requestID: requestID,
+            observation: native, workspace: saved, targetID: tabID)
+        let reservation = StudyWorkspaceNativeTabSelectionReservation(policy: policy, tab: tab)
+        tabSelectionReservation = reservation
+        return reservation
+    }
+
+    func validateNativeTabSelection(_ reservation: StudyWorkspaceNativeTabSelectionReservation) throws {
+        guard attached, !isSwitching, tabSelectionReservation === reservation,
+              let manager = mappingManager, let native = mappingOwnershipObservation(),
+              let saved = store.mappingObservation(scene: sceneID),
+              reservation.policy.matches(native, workspace: saved) else { throw StudyWorkspaceError.invalidMembership }
+        let tabs = manager.openTabs.filter { $0.id == reservation.tab.id }
+        guard tabs.count == 1, let tab = tabs.first, tab.book === reservation.tab.book,
+              tab.viewModel === reservation.tab.viewModel else { throw StudyWorkspaceError.invalidMembership }
+    }
+
+    func applyNativeTabSelection(_ reservation: StudyWorkspaceNativeTabSelectionReservation,
+                                 operation: () throws -> Void) throws {
+        try validateNativeTabSelection(reservation)
+        guard let manager = mappingManager, let native = mappingOwnershipObservation(),
+              let saved = store.mappingObservation(scene: sceneID) else { throw StudyWorkspaceError.invalidMembership }
+        do {
+            try reservation.policy.beginApply(native, workspace: saved)
+            // The caller invokes only the original manager.selectTab action.
+            // Its real willSet/didSet consumes the exact one-shot allowance.
+            try operation()
+            try persistProjection(manager.openTabs, activeID: manager.activeTabId,
+                groupID: reservation.policy.original.groupID, backend: reservation.policy.target.target.backend)
+            guard let actual = mappingOwnershipObservation(), let persisted = store.mappingObservation(scene: sceneID) else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            try reservation.policy.finishApply(actual, workspace: persisted)
+        } catch {
+            reservation.policy.invalidate()
+            mappingOwnershipSource.beginChange([.readerReservation])
+            finishMappingPublication()
+            throw error
+        }
+    }
+
+    func releaseNativeTabSelection(_ reservation: StudyWorkspaceNativeTabSelectionReservation) {
+        guard tabSelectionReservation === reservation else { return }
+        reservation.policy.release()
+        tabSelectionReservation = nil
+        // No tab closure, rollback, new admission or source-observation rearm.
         mappingOwnershipSource.beginChange([.readerReservation])
         finishMappingPublication()
     }
@@ -513,7 +609,17 @@ final class StudyWorkspaceNavigationAdapter {
         let merged = StudyWorkspaceProjectionPolicy.merging(live: capture(tabs, backend: backend), into: saved.tabs, backend: backend)
         let before = StudyWorkspaceMappingPolicy.workspace(store.snapshot, scene: sceneID)
         let native = mappingOwnershipObservation()
-        defer { reservedCheckpoint = nil }
+        let savedObservation = store.mappingObservation(scene: sceneID)
+        var tabCheckpointCompleted = false
+        defer {
+            reservedCheckpoint = nil
+            if let checkpoint = tabSelectionCheckpoint, !tabCheckpointCompleted {
+                checkpoint.policy.invalidate()
+                mappingOwnershipSource.beginChange([.readerReservation])
+                finishMappingPublication()
+            }
+            tabSelectionCheckpoint = nil
+        }
         try store.transaction { value in
             guard let index = value.groups.firstIndex(where: { $0.id == groupID }) else { throw StudyWorkspaceError.invalidMembership }
             value.groups[index].tabs = merged
@@ -531,6 +637,19 @@ final class StudyWorkspaceNavigationAdapter {
                    to: StudyWorkspaceMappingPolicy.workspace(value, scene: sceneID), actual: native) {
                 reservedCheckpoint = reservation
             }
+            if let reservation = tabSelectionReservation, reservation.policy.phase == .selected,
+               let native, let savedObservation {
+                try reservation.policy.beginCheckpoint(native: native, workspace: savedObservation,
+                    candidate: StudyWorkspaceMappingPolicy.workspace(value, scene: sceneID))
+                tabSelectionCheckpoint = reservation
+            }
+        }
+        if let checkpoint = tabSelectionCheckpoint {
+            guard let manager = mappingManager, let saved = store.mappingObservation(scene: sceneID) else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            try checkpoint.policy.finishCheckpoint(nativeProjection: currentMappingProjection(manager), workspace: saved)
+            tabCheckpointCompleted = true
         }
         cache[groupID, default: [:]][backend] = tabs
     }
@@ -589,6 +708,17 @@ final class StudyWorkspaceNavigationAdapter {
     let policy: StudyWorkspaceReaderReservation
     let tab: iOSNavigationManager.ReaderTab
     init(policy: StudyWorkspaceReaderReservation, tab: iOSNavigationManager.ReaderTab) {
+        self.policy = policy; self.tab = tab
+    }
+}
+
+
+/// Original existing objects, retained only for their single source-bound
+/// selection. No replacement Book/ReaderViewModel or copied reader state.
+@MainActor final class StudyWorkspaceNativeTabSelectionReservation {
+    let policy: StudyWorkspaceTabSelectionReservation
+    let tab: iOSNavigationManager.ReaderTab
+    init(policy: StudyWorkspaceTabSelectionReservation, tab: iOSNavigationManager.ReaderTab) {
         self.policy = policy; self.tab = tab
     }
 }
