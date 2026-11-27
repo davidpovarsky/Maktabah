@@ -1,0 +1,45 @@
+{
+  "scope": "READ_ONLY_EVIDENCE_COLLECTION_NOT_PRODUCT_TESTS",
+  "attempts": [
+    {
+      "job_id": "job_f57253ef7aa9",
+      "outcome": "Inline Sentinel output truncation made the large source JSON unparsable; no source mutation."
+    },
+    {
+      "job_id": "job_e0a685ba91ba",
+      "outcome": "Whole compressed source-output size assertion failed before returning data; no source mutation."
+    },
+    {
+      "job_id": "job_7fcbae82e92a",
+      "outcome": "Completed exact-filename lookup of retained artifact area; no sign-reviewed-delta.py match."
+    },
+    {
+      "job_id": "job_229f6cd1eed0",
+      "outcome": "Completed immutable workflow and current admission metadata read; own checkout clean."
+    },
+    {
+      "job_id": "job_50289c800538",
+      "outcome": "Completed immutable runtime gate, driver and admission input read."
+    },
+    {
+      "job_id": "job_2efee5433c00",
+      "outcome": "Completed immutable Vendor delta and four-tree identity read."
+    },
+    {
+      "hub_request_id": "hreq_faa2662abf614e86",
+      "outcome": "Sentinel Windows agent offline; requested next filename lookup and Python module checks did not execute."
+    },
+    {
+      "job_id": "job_2f471a3185b6",
+      "outcome": "Existing ubuntu david-win alias metadata read only; strict host verification and pinned account confirmed."
+    },
+    {
+      "job_id": "job_fa7ac9c3ec08",
+      "outcome": "One identity-only existing pinned SSH attempt timed out connecting to port22; no remote command executed."
+    },
+    {
+      "local_attempt": "packet-precheck-1",
+      "outcome": "An incorrect packaging assertion expected exit0 from git diff --no-index against /dev/null; Git returned exit1 for all newly added files with empty stdout/stderr. No source/product change or test result. Corrected packaging check accepts the documented difference exit and the actual staged diff check remains required."
+    }
+  ]
+}

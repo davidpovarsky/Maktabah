@@ -1,0 +1,2715 @@
+{
+  "scope": "READ_ONLY_IMMUTABLE_GIT_SOURCE_INVENTORY_NOT_FINAL_RELEASE_GATE",
+  "candidate": "ec5385e863a478e368c7de47264474a440fd0734",
+  "baseline": "157729471b649a023a81f923be33fb7bfa6e41c9",
+  "gate_upstream": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "reviewed_current_upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "retained_integration": "29a731e273f9a757c743c49e182fece0e8047d46",
+  "verifier_sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+  "registry_sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a",
+  "original_approved_records": 55,
+  "informational_records": 5,
+  "counts": {
+    "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING": 34,
+    "RENEW_EXISTING_SIGNATURE": 21,
+    "NEW_PROTECTED_RECORD_REQUIRED": 5
+  },
+  "protected_rows": [
+    {
+      "path": ".gitignore",
+      "status": "M",
+      "current_blob": "13e0283e18450fefd77f87532412f30be5a3124b",
+      "canonical_full_baseline_patch_sha256": "dadd1cc991e603b5aeb7c8cc0f9b201c2140cf836d9b960d1d65e462093b5908",
+      "canonical_patch_bytes": 429,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_001",
+      "approval_blob": "13e0283e18450fefd77f87532412f30be5a3124b",
+      "approval_patch_sha256": "dadd1cc991e603b5aeb7c8cc0f9b201c2140cf836d9b960d1d65e462093b5908",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "CLAUDE.md",
+      "status": "M",
+      "current_blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+      "canonical_full_baseline_patch_sha256": "2832622a26c4e00b6fa4ca637e939597020e964d939c2cd5c0b211fecf8a9d47",
+      "canonical_patch_bytes": 7202,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_002",
+      "approval_blob": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+      "approval_patch_sha256": "2832622a26c4e00b6fa4ca637e939597020e964d939c2cd5c0b211fecf8a9d47",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "current_blob": "85e7c4d78198e5aaa6f9f9a484ad842577822c3c",
+      "canonical_full_baseline_patch_sha256": "6669ae27e3dd93b1fe70f719e73e062319a15f33c2f9835d0003f7b1428f796e",
+      "canonical_patch_bytes": 161205,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_003",
+      "approval_blob": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
+      "approval_patch_sha256": "87bfea6d75826c164fe3012a0eb23856359ed0bb522465a6040ade407c3043cc",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T02:05:55Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "status": "M",
+      "current_blob": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+      "canonical_full_baseline_patch_sha256": "7cd65635b154e29a3566c80c1e6a8e1aabca0f95b57f631253d3161cc9d5e67d",
+      "canonical_patch_bytes": 7251,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_004",
+      "approval_blob": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+      "approval_patch_sha256": "7cd65635b154e29a3566c80c1e6a8e1aabca0f95b57f631253d3161cc9d5e67d",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "status": "M",
+      "current_blob": "970f67f278ecf9f38070eae88fc1d5d46a6b370b",
+      "canonical_full_baseline_patch_sha256": "69fcd805f7ff80f673dd31d0d3ee544746b0ddba02e9c8f26a8af53fdd8d1090",
+      "canonical_patch_bytes": 4857,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_005",
+      "approval_blob": "970f67f278ecf9f38070eae88fc1d5d46a6b370b",
+      "approval_patch_sha256": "69fcd805f7ff80f673dd31d0d3ee544746b0ddba02e9c8f26a8af53fdd8d1090",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "current_blob": "78b84bd9f41177a4a4139cd7f7ff3d46269b548c",
+      "canonical_full_baseline_patch_sha256": "e96ec955516eacb6e604b859a7a50d1352f94c273e59f1111ea1977e595115e0",
+      "canonical_patch_bytes": 18652,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_006",
+      "approval_blob": "a7d7180ef1b7ba77a40a98d32592365206c1e41f",
+      "approval_patch_sha256": "d4006e9d70a31e683d219dbd9914487bd5381e75cb635100805f711f752fc768",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "status": "M",
+      "current_blob": "96fb9890aab0804090247c9b9f8f8700c56de892",
+      "canonical_full_baseline_patch_sha256": "24efe8332dda70d6892df9275d83902981939e112e645da7b6123fc1953fb0e4",
+      "canonical_patch_bytes": 7606,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_007",
+      "approval_blob": "96fb9890aab0804090247c9b9f8f8700c56de892",
+      "approval_patch_sha256": "24efe8332dda70d6892df9275d83902981939e112e645da7b6123fc1953fb0e4",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+      "status": "M",
+      "current_blob": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+      "canonical_full_baseline_patch_sha256": "e71882308da133a99937923e8fa4d4f531cb9a09b31b18a16ec4b922318b6c35",
+      "canonical_patch_bytes": 800,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_052",
+      "approval_blob": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+      "approval_patch_sha256": "e71882308da133a99937923e8fa4d4f531cb9a09b31b18a16ec4b922318b6c35",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T11:59:29Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "status": "M",
+      "current_blob": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+      "canonical_full_baseline_patch_sha256": "bcb9499e6ee4bc5423a33fbeab361ddb80f9029673b95334ec7bb9987cc27f99",
+      "canonical_patch_bytes": 570,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_053",
+      "approval_blob": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+      "approval_patch_sha256": "bcb9499e6ee4bc5423a33fbeab361ddb80f9029673b95334ec7bb9987cc27f99",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T11:59:29Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "status": "M",
+      "current_blob": "d05245bd9f92e2d03058d6f5db01f8e085b29fa9",
+      "canonical_full_baseline_patch_sha256": "8ea8cd1823737fdf0b96b4bcc627e2aa8882fa5388cd496a0d31698af59e6c26",
+      "canonical_patch_bytes": 1580,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_008",
+      "approval_blob": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+      "approval_patch_sha256": "b22fd121eed1779c76f7ca4e6b502b12e9e4b25275931c0ddadd7106a43706a4",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "status": "M",
+      "current_blob": "a85c5ce333dd72a81a42ba93c7c9e54928591557",
+      "canonical_full_baseline_patch_sha256": "95f25c62b6fd088745e4bfdfc59b06c3d21ab995a417d057942a6cd93f357bc1",
+      "canonical_patch_bytes": 2146,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": null,
+      "approval_blob": null,
+      "approval_patch_sha256": null,
+      "approval_patch_archive": null,
+      "expiry": null,
+      "source_binding": "NEW_PROTECTED_RECORD_REQUIRED"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "status": "M",
+      "current_blob": "5c0d31feaeff2f89427fcf0decddd767f693f854",
+      "canonical_full_baseline_patch_sha256": "72e8d61d343072d4869227ec4c6a5b8fb123b5477925effb49830f0acadd4d45",
+      "canonical_patch_bytes": 6596,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": null,
+      "approval_blob": null,
+      "approval_patch_sha256": null,
+      "approval_patch_archive": null,
+      "expiry": null,
+      "source_binding": "NEW_PROTECTED_RECORD_REQUIRED"
+    },
+    {
+      "path": "Source/Features/History/iOS/HistoryComponents.swift",
+      "status": "M",
+      "current_blob": "ae21646a1c95af7d1fe90010d2df3574d48191c9",
+      "canonical_full_baseline_patch_sha256": "6e2a66a6cf7e37ff3a957a44c2fa2ac10c3f830095cfe84f8fc40e98f9ea9249",
+      "canonical_patch_bytes": 6432,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": null,
+      "approval_blob": null,
+      "approval_patch_sha256": null,
+      "approval_patch_archive": null,
+      "expiry": null,
+      "source_binding": "NEW_PROTECTED_RECORD_REQUIRED"
+    },
+    {
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "status": "M",
+      "current_blob": "40ede7f1d15673a3caec5ef6668a194e86b49166",
+      "canonical_full_baseline_patch_sha256": "fdec9a7108437ef8d43880e9c4ae5e4e742897ed4efe74e8113d5b03a7afc48a",
+      "canonical_patch_bytes": 1135,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": null,
+      "approval_blob": null,
+      "approval_patch_sha256": null,
+      "approval_patch_archive": null,
+      "expiry": null,
+      "source_binding": "NEW_PROTECTED_RECORD_REQUIRED"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "status": "M",
+      "current_blob": "940a67a916f76348d11ae593ba6349948bb13582",
+      "canonical_full_baseline_patch_sha256": "9fe638191fb2a22f80a3b3061f40d4c885b875c5699738c8717829b4de3bba72",
+      "canonical_patch_bytes": 4274,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_009",
+      "approval_blob": "940a67a916f76348d11ae593ba6349948bb13582",
+      "approval_patch_sha256": "9fe638191fb2a22f80a3b3061f40d4c885b875c5699738c8717829b4de3bba72",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "status": "M",
+      "current_blob": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+      "canonical_full_baseline_patch_sha256": "9fe42711bf3f05f3217cf4da65d07325180ed1fba62ba06d96a0a3014be4618a",
+      "canonical_patch_bytes": 6187,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_010",
+      "approval_blob": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+      "approval_patch_sha256": "9fe42711bf3f05f3217cf4da65d07325180ed1fba62ba06d96a0a3014be4618a",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "status": "M",
+      "current_blob": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+      "canonical_full_baseline_patch_sha256": "82717c62468e932aa8f0c6222d051c6c827febf305f20028353ba7e936aa462a",
+      "canonical_patch_bytes": 10908,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_011",
+      "approval_blob": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+      "approval_patch_sha256": "82717c62468e932aa8f0c6222d051c6c827febf305f20028353ba7e936aa462a",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "status": "M",
+      "current_blob": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+      "canonical_full_baseline_patch_sha256": "3f8b01644ba0aa34a5ab39a5acf75bc7959d315fdff4c8d1e99c1b50011c298d",
+      "canonical_patch_bytes": 2658,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_012",
+      "approval_blob": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+      "approval_patch_sha256": "3f8b01644ba0aa34a5ab39a5acf75bc7959d315fdff4c8d1e99c1b50011c298d",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "status": "M",
+      "current_blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+      "canonical_full_baseline_patch_sha256": "704c4bab8ee289577eec39b670b8e2441ca9ea21e36ff1043c66a4e1c8873879",
+      "canonical_patch_bytes": 679,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_013",
+      "approval_blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+      "approval_patch_sha256": "704c4bab8ee289577eec39b670b8e2441ca9ea21e36ff1043c66a4e1c8873879",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "status": "M",
+      "current_blob": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+      "canonical_full_baseline_patch_sha256": "a114769093c189230b75b2118c83eb390c636602a4ea4ef01438374790697f69",
+      "canonical_patch_bytes": 5387,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_014",
+      "approval_blob": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+      "approval_patch_sha256": "a114769093c189230b75b2118c83eb390c636602a4ea4ef01438374790697f69",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "current_blob": "c3d3854cc5069e512f6dddfefd47e2d439ef8047",
+      "canonical_full_baseline_patch_sha256": "fc35f6ede15dc5c07a61438915a46e007d69ab2e08bde431b480b267b114223d",
+      "canonical_patch_bytes": 3320,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_015",
+      "approval_blob": "46f202177491274e37e140326913cfcbf716883b",
+      "approval_patch_sha256": "cb89bb4dc99f965cb27ddf8b65988fe2b6b0c71403c95ffdaa8b662746625da8",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/Cache/BookPageCache.swift",
+      "status": "M",
+      "current_blob": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+      "canonical_full_baseline_patch_sha256": "a47d4d921bf65cc5f28a665f0775b1316bde343a5ed94acb1e51ad7777e63166",
+      "canonical_patch_bytes": 10684,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_016",
+      "approval_blob": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+      "approval_patch_sha256": "a47d4d921bf65cc5f28a665f0775b1316bde343a5ed94acb1e51ad7777e63166",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "status": "M",
+      "current_blob": "cefdba7518894946196c7678a8f108e9e3bc19ae",
+      "canonical_full_baseline_patch_sha256": "56ce55811f160d8712d37fa6adcca0cd8ced8c04f3851d13fbb7d8ef49493f84",
+      "canonical_patch_bytes": 9594,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_017",
+      "approval_blob": "2338175e3d2ed5f421c91c192957135dde61d00a",
+      "approval_patch_sha256": "c673664d3d9a14d1ef1886b07cd22bf508085cb50ce602e06975ddb7529b303f",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "status": "M",
+      "current_blob": "2f1002c6d131211c72185796042c9e5e7f401cba",
+      "canonical_full_baseline_patch_sha256": "fdbd7278af4d7491e47316abadaddaed35f0447c00203ea66c47ddcbd8894d22",
+      "canonical_patch_bytes": 7158,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_018",
+      "approval_blob": "2f1002c6d131211c72185796042c9e5e7f401cba",
+      "approval_patch_sha256": "fdbd7278af4d7491e47316abadaddaed35f0447c00203ea66c47ddcbd8894d22",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+      "status": "M",
+      "current_blob": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+      "canonical_full_baseline_patch_sha256": "74dcef59f1d7d8387462c6b981958af9a5cf707d03b911d10417bf18a3370723",
+      "canonical_patch_bytes": 3252,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_019",
+      "approval_blob": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+      "approval_patch_sha256": "74dcef59f1d7d8387462c6b981958af9a5cf707d03b911d10417bf18a3370723",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "status": "M",
+      "current_blob": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "canonical_full_baseline_patch_sha256": "7a3526f4d4fa9f8f4ef3c2c158940ccd78e6ff168d643d843454a9b5ca861e7a",
+      "canonical_patch_bytes": 1826,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_020",
+      "approval_blob": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+      "approval_patch_sha256": "7a3526f4d4fa9f8f4ef3c2c158940ccd78e6ff168d643d843454a9b5ca861e7a",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "status": "M",
+      "current_blob": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+      "canonical_full_baseline_patch_sha256": "79b0752ea64497ce8f73594a624e5bd90a80a7e943444d9ffe3afc5a3f3dfb6f",
+      "canonical_patch_bytes": 4324,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_021",
+      "approval_blob": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+      "approval_patch_sha256": "79b0752ea64497ce8f73594a624e5bd90a80a7e943444d9ffe3afc5a3f3dfb6f",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "status": "M",
+      "current_blob": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+      "canonical_full_baseline_patch_sha256": "dd5e1d915bea2a165e3a67a27667c4e00c0bf2f93c289b5944bbfeabdaf8ad8a",
+      "canonical_patch_bytes": 2264,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_022",
+      "approval_blob": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+      "approval_patch_sha256": "dd5e1d915bea2a165e3a67a27667c4e00c0bf2f93c289b5944bbfeabdaf8ad8a",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "current_blob": "1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4",
+      "canonical_full_baseline_patch_sha256": "88b8796573c90027fd888fe3dbf48cd354f7bae389d7351ea6dfb05b82f02215",
+      "canonical_patch_bytes": 1339,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_023",
+      "approval_blob": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+      "approval_patch_sha256": "08c4395771fdc8b00ed18c55bf3cdbc60e58c09a8b35df782c1a9a9a822252c2",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "status": "M",
+      "current_blob": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+      "canonical_full_baseline_patch_sha256": "c14e25c5b99362ae0c1d2e057e28d7cba41dd1302afd71e4e104f6f2a952aaf7",
+      "canonical_patch_bytes": 2633,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_024",
+      "approval_blob": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+      "approval_patch_sha256": "c14e25c5b99362ae0c1d2e057e28d7cba41dd1302afd71e4e104f6f2a952aaf7",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "status": "M",
+      "current_blob": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+      "canonical_full_baseline_patch_sha256": "92bec49e909a51d8733106713eb9cd1f4313036434ddf281c77c65bfaadaab9d",
+      "canonical_patch_bytes": 1757,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_025",
+      "approval_blob": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+      "approval_patch_sha256": "92bec49e909a51d8733106713eb9cd1f4313036434ddf281c77c65bfaadaab9d",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "current_blob": "f96646f4b645aaa6e9a2312b3347ba80f162272f",
+      "canonical_full_baseline_patch_sha256": "216232253ab6db7a1adb93829379c2fc2620d54773e61a587e12ae07f930a814",
+      "canonical_patch_bytes": 5870,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_026",
+      "approval_blob": "3e2c3600ab4f17a8570944777c8a26e5e158eb00",
+      "approval_patch_sha256": "14b9173027194687c2371dd5d77f5b2b112f50522db1df14c14648b410097844",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T11:47:11Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "status": "M",
+      "current_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
+      "canonical_full_baseline_patch_sha256": "e22a523270a3b9cefdf796a6b8b943e297f0a8dbbe71fe365842d6a652124eba",
+      "canonical_patch_bytes": 2627,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_027",
+      "approval_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
+      "approval_patch_sha256": "e22a523270a3b9cefdf796a6b8b943e297f0a8dbbe71fe365842d6a652124eba",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "current_blob": "6f56802eef2fba13c9ac82de5a5b5895912eb730",
+      "canonical_full_baseline_patch_sha256": "64c07745b552ab92c196f0164352286764f117a0cd144b99c610c02e6ae9e780",
+      "canonical_patch_bytes": 13636,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_028",
+      "approval_blob": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+      "approval_patch_sha256": "e10056016b2faa3607d7e43f64484a2bc16c682aea0699f935f5275281355143",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "status": "M",
+      "current_blob": "2e1f2118885db8df17d8aaa95e0c5dde6d690ea8",
+      "canonical_full_baseline_patch_sha256": "14bf67df802ff3411402fa558b8279b633f865f439e4faa4b7affa19e62a4f4a",
+      "canonical_patch_bytes": 1242,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": null,
+      "approval_blob": null,
+      "approval_patch_sha256": null,
+      "approval_patch_archive": null,
+      "expiry": null,
+      "source_binding": "NEW_PROTECTED_RECORD_REQUIRED"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "status": "M",
+      "current_blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "canonical_full_baseline_patch_sha256": "e5634dd95e871686763a3ab452f7a521d7d61830f9bd06b20068f96b26186b33",
+      "canonical_patch_bytes": 13356,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_029",
+      "approval_blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "approval_patch_sha256": "e5634dd95e871686763a3ab452f7a521d7d61830f9bd06b20068f96b26186b33",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T09:50:45Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "status": "M",
+      "current_blob": "f5bb1c2f0e4f98927cf977d5d575aabe2a9ec9ac",
+      "canonical_full_baseline_patch_sha256": "d6204b7565bf31e0cc5da8fdd66148fe661413cdf1a0277bd447117609efef97",
+      "canonical_patch_bytes": 2509,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_055",
+      "approval_blob": "705fd35132951a10e101aaa16f4b1d835e392288",
+      "approval_patch_sha256": "8733d5c27c7e67f5b7e561bdf425671e587e743b92fb002d2b22fe8cc3fe5d63",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "status": "M",
+      "current_blob": "d7df4a7e272ec2d48d2b6b1089410af4c9025fd2",
+      "canonical_full_baseline_patch_sha256": "6f0dd7ef45859dfbffa32875dcc362dbc8cbbf3222ef256a27d7b22f05f0b0c0",
+      "canonical_patch_bytes": 4287,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_030",
+      "approval_blob": "d7df4a7e272ec2d48d2b6b1089410af4c9025fd2",
+      "approval_patch_sha256": "6f0dd7ef45859dfbffa32875dcc362dbc8cbbf3222ef256a27d7b22f05f0b0c0",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "current_blob": "435ba8dd16ca45036f60767fc9285cfa346b9c69",
+      "canonical_full_baseline_patch_sha256": "90734eeac444d226e3eab83705a32249cd6b6f62cb5b877f70a56ec007ccd903",
+      "canonical_patch_bytes": 37225,
+      "in_baseline": true,
+      "in_gate_upstream": false,
+      "in_actual_reviewed_upstream": false,
+      "approval_id": "OWNER_PATCH_031",
+      "approval_blob": "43a07288ea75141aa38ab12498344f5b28d13928",
+      "approval_patch_sha256": "707b0c5db9712864e31346f8717e5592acb962b6c976b0a3dbc4ef9d8bc8ab08",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "status": "M",
+      "current_blob": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+      "canonical_full_baseline_patch_sha256": "04c91eca13bfacfbecbca6c263006521d66cfb9ef728e93b62677665aeef2e3f",
+      "canonical_patch_bytes": 3452,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_032",
+      "approval_blob": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+      "approval_patch_sha256": "04c91eca13bfacfbecbca6c263006521d66cfb9ef728e93b62677665aeef2e3f",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "status": "M",
+      "current_blob": "e73621623ecf79e2166a9020677e2cef64ef15db",
+      "canonical_full_baseline_patch_sha256": "6b39d83e7cefd16fcf34569c1cb1f5312765a462c8c380006ef941d1615f7239",
+      "canonical_patch_bytes": 8876,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_033",
+      "approval_blob": "0dffa1139c3492834162cdddc52fb3252223eaa8",
+      "approval_patch_sha256": "053466f4bc0891c937de61044b478563b27620d5cd7370f64127a975fcffd757",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "status": "M",
+      "current_blob": "2c4283bd58af31cb17d081e7e549cef6b8ce22e1",
+      "canonical_full_baseline_patch_sha256": "bc1b166c68caceee4102ea32cf22bb6bc5c33aff2aede9829ec2c521984bc85d",
+      "canonical_patch_bytes": 899,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_034",
+      "approval_blob": "566117c44bba83cffbb0664fc700b673e331eb63",
+      "approval_patch_sha256": "5992be34f0c4cf2ed60fa1e5da24164483b1009edd84b147969b4eaa26104061",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "status": "M",
+      "current_blob": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+      "canonical_full_baseline_patch_sha256": "078d81333a16c48af7f5614ea275e70873e1ba84f9f9f4f62db8c7d95c3a758f",
+      "canonical_patch_bytes": 3812,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_035",
+      "approval_blob": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+      "approval_patch_sha256": "078d81333a16c48af7f5614ea275e70873e1ba84f9f9f4f62db8c7d95c3a758f",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "current_blob": "13b33e6864cdaf83710e819e58e0972fa72ff75b",
+      "canonical_full_baseline_patch_sha256": "afb8b5f61be051c92cf26bb4b3703d87542345a80b6fa35f93c17dc990310ee8",
+      "canonical_patch_bytes": 11544,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_036",
+      "approval_blob": "d4f061293e7c8682d41320602da5692d47dce7d9",
+      "approval_patch_sha256": "0c3e777a1d1ed29fbd02a40913dadb316eb8510802e0bda1a534e5c0eaf05cf2",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "status": "M",
+      "current_blob": "f1ae6a7839ee8915b78757f8b0fe1637612b86eb",
+      "canonical_full_baseline_patch_sha256": "8473487ababd2dabc70d630bba6f0ea840c53f4e393b0d4b1a983acc5839cce7",
+      "canonical_patch_bytes": 12804,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_037",
+      "approval_blob": "d8b91be607657bc47476ebe91e013ca7c222c7a1",
+      "approval_patch_sha256": "b54d47d445c01c03828efcc798fa9cb535521ffdeca8d99e5c81816c41905453",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "status": "M",
+      "current_blob": "88159e1ce914ed5b081e72223d3fe85b4896c11c",
+      "canonical_full_baseline_patch_sha256": "3c37334ba416305536dd8eb5684397bbaa2b66f2fe4545aae35c8572ab2722ad",
+      "canonical_patch_bytes": 4771,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_038",
+      "approval_blob": "05254df866e1f6a866e2807a8a5ed49561273b22",
+      "approval_patch_sha256": "e073647ab598ccf3abc4ffaa52de1f46c8ca3ce04ee27dfd0d2ed84f66230014",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "status": "M",
+      "current_blob": "6de6dc461eb148525e001c7e2ddcf9ba3581b14c",
+      "canonical_full_baseline_patch_sha256": "8b86c34a7b986f42d1755b5f30337cc09fd035b31275d5a3928ea48fd15f4aee",
+      "canonical_patch_bytes": 10908,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_039",
+      "approval_blob": "d8488611ddfb166985a0e724bec6495a45f15b1e",
+      "approval_patch_sha256": "db5c2e734fa7408b2ce00bbafbaef3a4e5cd3c47b31b2e2ffb6bad6af6014456",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "current_blob": "324373e806a0d1ce9e7a01df8414c5ab08f07719",
+      "canonical_full_baseline_patch_sha256": "5c3e249d7fa861f64a39ed4efa7b005aab5526639f0957490318e8d5f9da563b",
+      "canonical_patch_bytes": 557149,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_040",
+      "approval_blob": "e504d083d7f54b03f253592e83ad42d0cea07079",
+      "approval_patch_sha256": "a41bed7b9dc969522532dd75c1690caef4c25d2b565088120796bb06c1f3f83b",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T04:18:19Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "status": "M",
+      "current_blob": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+      "canonical_full_baseline_patch_sha256": "18e89b53a34aa85d0a72aa6be9a0e7883c39912d7cef6e3991445033ce704dfe",
+      "canonical_patch_bytes": 7589,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_041",
+      "approval_blob": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+      "approval_patch_sha256": "18e89b53a34aa85d0a72aa6be9a0e7883c39912d7cef6e3991445033ce704dfe",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/BootstrapManager.swift",
+      "status": "M",
+      "current_blob": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+      "canonical_full_baseline_patch_sha256": "0514df6e1d879e5e770b93a4ec3685c3a0eb180df37325e8e6caaea669d043b8",
+      "canonical_patch_bytes": 2469,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_042",
+      "approval_blob": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+      "approval_patch_sha256": "0514df6e1d879e5e770b93a4ec3685c3a0eb180df37325e8e6caaea669d043b8",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "status": "M",
+      "current_blob": "118cd7a6cca38b2eef52757637011fd68683c270",
+      "canonical_full_baseline_patch_sha256": "898545694b4bf2fb6dded2a02f56947c956fe16fb7aa396019bcf5b276ee1e6d",
+      "canonical_patch_bytes": 14005,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_043",
+      "approval_blob": "fa9a8aac0e1efafc2ce0e50c85cce43f5cf099fd",
+      "approval_patch_sha256": "db75b51148430d890d20f11c6931f914818a75e88b28defeba8c1852a0f16e0a",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "status": "M",
+      "current_blob": "41b29a581f9e76bd127359db94f6a804f324efdf",
+      "canonical_full_baseline_patch_sha256": "5c783ea3489383a7f0b07f2f4f363e1cedcd3a4b1dc5107a4b50177ae28a9c0b",
+      "canonical_patch_bytes": 3665,
+      "in_baseline": true,
+      "in_gate_upstream": false,
+      "in_actual_reviewed_upstream": false,
+      "approval_id": "OWNER_PATCH_044",
+      "approval_blob": "41b29a581f9e76bd127359db94f6a804f324efdf",
+      "approval_patch_sha256": "5c783ea3489383a7f0b07f2f4f363e1cedcd3a4b1dc5107a4b50177ae28a9c0b",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "status": "M",
+      "current_blob": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "canonical_full_baseline_patch_sha256": "2f560895adc78ca3a729581cf651a3a5f8db7c2e8f5a34f12ef7f1c69097e00c",
+      "canonical_patch_bytes": 1367,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_045",
+      "approval_blob": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "approval_patch_sha256": "2f560895adc78ca3a729581cf651a3a5f8db7c2e8f5a34f12ef7f1c69097e00c",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "status": "M",
+      "current_blob": "3f7bb041252146dc4893d407b44f343646de4f8b",
+      "canonical_full_baseline_patch_sha256": "a985ebfaed4a939cca7384f051d0bb720d85817cd2cbba0b6b5e04088022abf6",
+      "canonical_patch_bytes": 2775,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_046",
+      "approval_blob": "3f7bb041252146dc4893d407b44f343646de4f8b",
+      "approval_patch_sha256": "a985ebfaed4a939cca7384f051d0bb720d85817cd2cbba0b6b5e04088022abf6",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "status": "M",
+      "current_blob": "f0efb094d1009116b498fee07bf89c25a8d49366",
+      "canonical_full_baseline_patch_sha256": "8aac90c8ef8444444b1144a85a8de080aa8db029bd5ef0d548afd08ba99900db",
+      "canonical_patch_bytes": 16538,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_047",
+      "approval_blob": "4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7",
+      "approval_patch_sha256": "b2ed9e6f953e43cc72dc73aea80abe88f517ece3ba275cd757552c9ea9ab8c04",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T06:06:57Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "current_blob": "c8dfca5f276c595974048001876b16ec08c7657a",
+      "canonical_full_baseline_patch_sha256": "e22a5fae1c0156672741ba01fd2cdfd0dab0800c62510c097bd7f19cde374136",
+      "canonical_patch_bytes": 19356,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_048",
+      "approval_blob": "8ae501fe792d354f2a3813de146763fcfb7dcf48",
+      "approval_patch_sha256": "3e5595113b84d40a712a071b3c991f14829e42d1360b5c04efb04efaee451523",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "status": "M",
+      "current_blob": "737d991d089e6663b71e2150953da7a46a0d7b4c",
+      "canonical_full_baseline_patch_sha256": "44870ed420c564a2565bec5979414789071211cd1eb7163617b7d252269cd0ce",
+      "canonical_patch_bytes": 4959,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_049",
+      "approval_blob": "fb1aa1edf7f52369edbfe999801b70d3fdc6cca3",
+      "approval_patch_sha256": "a519b5de6dd6001e5abaef967ccff6791a80a61f75a4610e0575239a743fa988",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T20:06:18Z",
+      "source_binding": "RENEW_EXISTING_SIGNATURE"
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "status": "M",
+      "current_blob": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+      "canonical_full_baseline_patch_sha256": "b949b76586ceccf0516ebc0b0e59a6738d99ce66871e76396e4a310191bc3d26",
+      "canonical_patch_bytes": 11031,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_050",
+      "approval_blob": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+      "approval_patch_sha256": "b949b76586ceccf0516ebc0b0e59a6738d99ce66871e76396e4a310191bc3d26",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T00:52:17Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/UI/macOS/TextView/IbarotTextView.swift",
+      "status": "M",
+      "current_blob": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+      "canonical_full_baseline_patch_sha256": "c926a4a555de043b6d424d3eb3e135c5509c126ce8f79560b313f13f767208dc",
+      "canonical_patch_bytes": 641,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_054",
+      "approval_blob": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+      "approval_patch_sha256": "c926a4a555de043b6d424d3eb3e135c5509c126ce8f79560b313f13f767208dc",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T11:59:29Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    },
+    {
+      "path": "Source/iOS-Info.plist",
+      "status": "M",
+      "current_blob": "9fb969d36d812ccca1bf905d46cbe6b849c60792",
+      "canonical_full_baseline_patch_sha256": "7920c08cd13f40b10f369355b88153926bf60cdbda5d3da4f0d050ff51dc23a2",
+      "canonical_patch_bytes": 683,
+      "in_baseline": true,
+      "in_gate_upstream": true,
+      "in_actual_reviewed_upstream": true,
+      "approval_id": "OWNER_PATCH_051",
+      "approval_blob": "9fb969d36d812ccca1bf905d46cbe6b849c60792",
+      "approval_patch_sha256": "7920c08cd13f40b10f369355b88153926bf60cdbda5d3da4f0d050ff51dc23a2",
+      "approval_patch_archive": null,
+      "expiry": "2027-11-26T02:05:55Z",
+      "source_binding": "UNCHANGED_SIGNED_RECORD_SOURCE_BINDING"
+    }
+  ],
+  "wave3_changed_paths": [
+    {
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "SHARED_PROJECT"
+    },
+    {
+      "path": "Scripts/CI/final-integration-source.inputs.json",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-otzaria-test-additions.json",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/library-v40-focused-native.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/miniapps-source-equivalence-9565-7ee.json",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/miniapps-source-equivalence-9565-9bcdecfc.json",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/miniapps_runtime_image_origin.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/ordinary-native-exchange-ui.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/ordinary-native-two-full-apps.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/original_editor_hanlin_equivalence.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/prepare-managed-library-update-context.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/prepare-production-inspector-oracle.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/prepare-production-search-preview-oracle.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/production-study-v40-ui.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-continuous-pull-host.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.inputs.json",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v40-ui-observation.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-groups100-v40-focused-native.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-v40-natural-inspector-catalog.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/runtime27-final-push.inputs.json",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/runtime27.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-execution.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-exercises.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-oracle.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-pending-execution.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-pending-sql.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-prerequisites.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-search-log.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-sqlite-wait.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/study-ui-trace-exports.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-url-delivery.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/test_miniapps_acceptance_guards.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/test_miniapps_runtime_image_origin.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Scripts/CI/test_original_editor_hanlin_equivalence.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationOwner.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentSourceObservationTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeFeatureIntentServiceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeHistoryRecordIntentServiceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/History/iOS/HistoryComponents.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": false,
+      "kind": "PROTECTED_FORK_COLOCATION"
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendProtocols.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaModels.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Sefaria/Network/SefariaRemoteStore.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/Sefaria/Reading/SefariaHybridStore.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "status": "M",
+      "gate_protected": true,
+      "in_actual_reviewed_upstream": true,
+      "kind": "ORIGINAL_UPSTREAM"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchDistribution.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Source/ZayitSearch/ZayitSearchSessionController.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "VENDOR_REQUIRES_OWN_PROVENANCE"
+    },
+    {
+      "path": "tools/hq-annotation-exchange-acceptance.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-f07-annotation-cycles.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-hanlin-consumer-store.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-hanlin-host-contracts.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-library-release-identity.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-otzaria-read-compatibility.py",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-reader-full-corpus-admission.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-sefaria-mobile-labels.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/hq-toc-load-lifecycle.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/run_sefaria_visible_surface_source_controls.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "status": "M",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_native_reader_tab_intent_service.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_paired_production_swift_source.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic_js.mjs",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_visible_surface_membership.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_visible_surface_native_lifecycle.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_visible_surface_registry.mjs",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_visible_surface_runtime.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_sefaria_visible_surface_workspace_revision.swift",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    },
+    {
+      "path": "tools/test_two_full_apps_controller.py",
+      "status": "A",
+      "gate_protected": false,
+      "in_actual_reviewed_upstream": false,
+      "kind": "DOWNSTREAM_OR_TEST_OR_TOOL"
+    }
+  ],
+  "prior_boundary_report_sha256": "ecddd27bb371135fecac7ecbc6db36a707284ffa7d9b8bfa40238562c78353f9",
+  "prior_violations": [
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "message": "Modified upstream file differs from approved exception blob (actual 7a40baf6b5888e8fe62354e56ddd85643226da26 != expected f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08): Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 78b84bd9f41177a4a4139cd7f7ff3d46269b548c != expected a7d7180ef1b7ba77a40a98d32592365206c1e41f): Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual d05245bd9f92e2d03058d6f5db01f8e085b29fa9 != expected e556b0e4a6ac3735ac86797b78c5cc43e457fc76): Source/Features/Annotations/iOS/AnnotationListView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/History/ViewModel/Extensions/History+Database.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/History/ViewModel/HistoryViewModel.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/History/iOS/HistoryComponents.swift",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/History/iOS/HistoryComponents.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/History/iOS/iOSHistoryView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual c3d3854cc5069e512f6dddfefd47e2d439ef8047 != expected 46f202177491274e37e140326913cfcbf716883b): Source/Features/Library/iOS/iOSLibraryView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual cefdba7518894946196c7678a8f108e9e3bc19ae != expected 2338175e3d2ed5f421c91c192957135dde61d00a): Source/Features/Reader/ViewModel/BookTOCViewModel.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4 != expected 850dcefe3c8726da93cd3a73414bbced244aea4d): Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual f96646f4b645aaa6e9a2312b3347ba80f162272f != expected 3e2c3600ab4f17a8570944777c8a26e5e158eb00): Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 6f56802eef2fba13c9ac82de5a5b5895912eb730 != expected d8386c58093527a0f81e3ac1bf4fac739e5ab966): Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/ViewOptionsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 435ba8dd16ca45036f60767fc9285cfa346b9c69 != expected 43a07288ea75141aa38ab12498344f5b28d13928): Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 13d09fdd09e18aa829b2f09a373793afeae04579 != expected d4f061293e7c8682d41320602da5692d47dce7d9): Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 1f2289e80e0cca6454c2234c456ece75306b3b6f != expected d8b91be607657bc47476ebe91e013ca7c222c7a1): Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 88159e1ce914ed5b081e72223d3fe85b4896c11c != expected 05254df866e1f6a866e2807a8a5ed49561273b22): Source/Features/Search/iOS/iOSSearchFilterViewController.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 6de6dc461eb148525e001c7e2ddcf9ba3581b14c != expected d8488611ddfb166985a0e724bec6495a45f15b1e): Source/Features/Setting/SettingsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Localizable.xcstrings",
+      "message": "Modified upstream file differs from approved exception blob (actual 2005556e6971c87e9ebafa4a01c9308f4d8e88c6 != expected e504d083d7f54b03f253592e83ad42d0cea07079): Source/Localizable.xcstrings"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual f1e65158e962bb0ea8a5d18917f4ecdf4225aba7 != expected fa9a8aac0e1efafc2ce0e50c85cce43f5cf099fd): Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual f0efb094d1009116b498fee07bf89c25a8d49366 != expected 4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7): Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "message": "Modified upstream file differs from approved exception blob (actual 5df9e71251ea0a2ecf9d838eb7d8ae4268186b4e != expected 8ae501fe792d354f2a3813de146763fcfb7dcf48): Source/UI/iOS/Views/iPadLayout.swift"
+    }
+  ],
+  "private_key_accessed": false,
+  "signing_performed": false,
+  "final_gate_run": false,
+  "worktree_preserved": true
+}

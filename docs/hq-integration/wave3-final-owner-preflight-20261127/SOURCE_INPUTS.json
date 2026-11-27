@@ -1,0 +1,150 @@
+{
+  "candidate": "ec5385e863a478e368c7de47264474a440fd0734",
+  "files": [
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "bytes": 61764,
+      "sha256": "0eb140364a65a8e11451a5843d437919396f0f1d6f84b6d9f23c015585f786b3"
+    },
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "bytes": 2756,
+      "sha256": "717080cb78f128094de92b29ce69bbd5fcb3b3c4baf812e1f63140bbd2bfdb43"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "bytes": 45080,
+      "sha256": "5b36b294837af6ea3657db399789851f74ce52f22694ce672b16e5b724741e04"
+    },
+    {
+      "path": "Scripts/CI/final-integration-source.inputs.json",
+      "bytes": 209079,
+      "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
+    },
+    {
+      "path": "Scripts/CI/final_integration_source.py",
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+    },
+    {
+      "path": "Scripts/CI/verify-owner-release-approval.py",
+      "bytes": 9969,
+      "sha256": "ab0da734ad6328da65da410e4d09d4e2911e423c82d7808df452fe8dae90aaaa"
+    },
+    {
+      "path": "Scripts/CI/verify-runtime27-release-gate.py",
+      "bytes": 21381,
+      "sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a"
+    },
+    {
+      "path": "Scripts/CI/verify-upstream-boundary.py",
+      "bytes": 38157,
+      "sha256": "70cf39a26e0010122467c9775d9290a93da2a82dcc792c48b679251a4e93baca"
+    },
+    {
+      "path": "Source/ChavrusaText/ThirdPartyNotices/Hanlin-LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "2bdf2973d798073b983a9068a8e328400068c18d962e2059bfcde4042129f294"
+    },
+    {
+      "path": "Source/ChavrusaText/ThirdPartyNotices/NOTICE.txt",
+      "bytes": 1251,
+      "sha256": "663ab8b92a95e53065d9e27e1a5a60afceb4a6a50cfb484e0195e5e98f6db0e3"
+    },
+    {
+      "path": "Source/ChavrusaText/ThirdPartyNotices/OriginalAnytype-LICENSE.md",
+      "bytes": 2576,
+      "sha256": "daad9eb95adc6262b07115ba2cf87cd4c64acaca4b45d48e0fd3b15a72a31dc1"
+    },
+    {
+      "path": "docs/architecture/BATCH_B_TRUSTED_OWNER_APPROVAL_GATE.md",
+      "bytes": 7342,
+      "sha256": "d189e0c4647c917bf06a7af78e7dabc76471606ce23a862d42dcac033cc644a3"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.json",
+      "bytes": 88477,
+      "sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_EXCEPTION_REGISTER.md",
+      "bytes": 19614,
+      "sha256": "c214278d5377e39ca0bc7c224734a2f268b601482a2e39e32a43c3d5ac7a450d"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_LEGACY_DEBT.md",
+      "bytes": 1493,
+      "sha256": "1974bb3f1489fea8716a541f6f8b46819074131053bfee967c9088ce1cab4085"
+    },
+    {
+      "path": "docs/hq-integration/owner-release-gate-20261122/README.md",
+      "bytes": 5460,
+      "sha256": "2b80419777156f4b90df70cf2cb93eefcffd17daee1b1acc2cd8dce924f062be"
+    },
+    {
+      "path": "docs/hq-integration/wave3-oracle-capacity-and-owner-gate-20261127/README.md",
+      "bytes": 2066,
+      "sha256": "bf4c619ab34267f438fc75bb040b5223073c66059869b0a7f38c698e894dc6c6"
+    },
+    {
+      "path": "docs/hq-integration/wave3-oracle-capacity-and-owner-gate-20261127/owner-eb532/boundary-guard-report.json.gz",
+      "bytes": 9414,
+      "sha256": "ac8ac8f19bbc1440891a1cbfcda01329967363a55a0206f37072731e79a5ce85"
+    },
+    {
+      "path": "docs/hq-integration/wave3-oracle-capacity-and-owner-gate-20261127/owner-eb532/owner-approval-gate.json.gz",
+      "bytes": 1513,
+      "sha256": "d726767f97860ce400473cbe97800f81ba0bebe7e963a3aee9e50a7dc2129a65"
+    },
+    {
+      "path": "docs/hq-integration/wave3-owner-current-9c6d-20261127/owner-approval-gate.json",
+      "bytes": 4625,
+      "sha256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b"
+    },
+    {
+      "path": "docs/qa/BUILD_8401_OWNER_SIGNING_HANDOFF.md",
+      "bytes": 11381,
+      "sha256": "60e18542c2cd50db29f2fa321fda99db7621126d292d4230e3cf2bd59eaaa40b"
+    },
+    {
+      "path": "tools/generate_owner_patch_manifest.py",
+      "bytes": 4018,
+      "sha256": "dd2d52b8da6c637d123bd6024d364fad60c3d671e37fc2b6e723699c9d451f6b"
+    },
+    {
+      "path": "tools/sign_owner_approvals.py",
+      "bytes": 16642,
+      "sha256": "07e94cbb190d28d1a0f086f77d47bd8d921cea69bc87a130bd36829cfc0d0006"
+    },
+    {
+      "path": "tools/verify_upstream_boundary.py",
+      "bytes": 41334,
+      "sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676"
+    }
+  ]
+}
