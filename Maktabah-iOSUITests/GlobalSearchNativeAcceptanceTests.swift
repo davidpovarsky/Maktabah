@@ -1,6 +1,7 @@
 import XCTest
 import CryptoKit
 import SQLite3
+import Darwin
 
 /// Real application only. See qa-20261115/TEST_DESIGN.md for destination,
 /// fixture, held-provider and independent operation-trace requirements.
@@ -2730,5 +2731,480 @@ extension PublishedProductionSearchDataTests {
         receipt.lifetime = .keepAlways; add(receipt)
         XCTAssertEqual(try required("global-search-query").value as? String, "נפשי")
         try verifyUnchanged(value, hashDatabase: false)
+    }
+}
+
+
+// MARK: - R08: retained v40 indexes after the original Settings update to v41
+
+/// This is a cold, post-update gate. The controller must separately validate the
+/// Settings case and the active app-process log interval. A missing success-only
+/// JSONL trace is never an accepted negative observation.
+private struct ProductionSearchPostUpdateReceipt: Decodable {
+    struct FileWitness: Decodable {
+        let path: String
+        let bytes: Int64
+        let sha256: String
+    }
+    struct RawManifest: Decodable {
+        let sourcePath: String
+        let rawBase64: String
+        let bytes: Int64
+        let sha256: String
+    }
+    struct Database: Decodable {
+        let path: String
+        let bytes: Int64
+        let sha256: String
+    }
+    struct IndexFile: Codable, Equatable {
+        let relativePath: String
+        let bytes: Int64
+        let inode: Int64
+        let mtimeNs: Int64
+        let ctimeNs: Int64
+    }
+    struct Index: Decodable {
+        let engine: String
+        let storageRoot: String
+        let artifactID: String
+        let manifest: RawManifest
+        let files: [IndexFile]
+    }
+    struct Snapshot: Decodable {
+        let database: Database
+        let installationManifest: RawManifest
+        let indexes: [Index]
+    }
+    struct SettingsExecution: Decodable {
+        let caseID: String
+        let caseStatus: String
+        let executedTests: Int
+        let skippedTests: Int
+        let caseResult: FileWitness
+        let zeroSkipResult: FileWitness
+        let xcresultPath: String
+        let installedAttachment: FileWitness
+        let officialTargetAttachment: FileWitness
+    }
+    struct OfficialTarget: Decodable {
+        let releaseID: Int64
+        let releaseTag: String
+        let repository: String
+    }
+    struct TraceBaseline: Decodable {
+        let namespace: String
+        let relativePath: String
+        let bytes: Int64
+        let sha256: String
+        let inode: Int64
+        let mtimeNs: Int64
+        let ctimeNs: Int64
+        let processID: Int
+        let caseID: String
+        let caseStatus: String
+        let xcresultPath: String
+        let caseResult: FileWitness
+        let sourceAttachment: FileWitness
+        let sourceDatabaseManifestSHA256: String
+    }
+    let schemaVersion: Int
+    let status: String
+    let simulatorUDID: String
+    let bundleID: String
+    let checkoutSHA: String
+    let dataContainerBefore: String
+    let dataContainerAfter: String
+    let originalInstallationResult: FileWitness
+    let settingsExecution: SettingsExecution
+    let before: Snapshot
+    let after: Snapshot
+    let officialTarget: OfficialTarget
+    let traceBaseline: TraceBaseline
+}
+
+final class PublishedProductionSearchAfterBooksUpdateTests: MaktabahUITestBase {
+    private typealias Receipt = ProductionSearchPostUpdateReceipt
+    private let v40Digest = "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+    private let bundleID = "com.davidpovarsky.chavrusatext"
+    private let otzariaArtifact = "f8fea8efcac5fc06b272a061b44f0e0ee66d16ae12f1e864f9510e437e929139"
+    private let zayitArtifact = "17cabb80e86ac8c2d1a3ce16a4e1457d4351709798f2b91a84120d4dd0c6c480"
+    @MainActor private var ui: OriginalSearchContextUI { .init(app: app, test: self) }
+
+    private struct FileIdentity: Codable, Equatable {
+        let device: Int64
+        let inode: Int64
+        let bytes: Int64
+        let mtimeNs: Int64
+        let ctimeNs: Int64
+    }
+
+    private func identity(_ url: URL) throws -> FileIdentity {
+        try requireSearchDataFixture(url.isFileURL && url.path.hasPrefix("/")
+            && url.standardizedFileURL.path == url.resolvingSymlinksInPath().path,
+            "Observe only canonical original files, without symbolic-link substitution")
+        var value = Darwin.stat()
+        let result = url.path.withCString { Darwin.lstat($0, &value) }
+        try requireSearchDataFixture(result == 0 && value.st_mode & mode_t(S_IFMT) == mode_t(S_IFREG),
+            "Require a present regular file, including the existing positive trace")
+        try requireSearchDataFixture(value.st_ino <= UInt64(Int64.max), "Bound the original inode representation")
+        return FileIdentity(device: Int64(value.st_dev), inode: Int64(value.st_ino), bytes: value.st_size,
+            mtimeNs: Int64(value.st_mtimespec.tv_sec) * 1_000_000_000 + Int64(value.st_mtimespec.tv_nsec),
+            ctimeNs: Int64(value.st_ctimespec.tv_sec) * 1_000_000_000 + Int64(value.st_ctimespec.tv_nsec))
+    }
+
+    private func bytes(_ url: URL, maximum: Int = 8 * 1024 * 1024) throws -> Data {
+        let before = try identity(url)
+        try requireSearchDataFixture(before.bytes >= 0 && before.bytes <= maximum, "Bound acceptance metadata reads")
+        let data = try Data(contentsOf: url)
+        try requireSearchDataFixture(Int64(data.count) == before.bytes && before == identity(url),
+            "Reject metadata changed during the read")
+        return data
+    }
+
+    private func verified(_ witness: Receipt.FileWitness) throws -> Data {
+        let data = try bytes(URL(fileURLWithPath: witness.path))
+        try requireSearchDataFixture(Int64(data.count) == witness.bytes && searchDataDigest(data) == witness.sha256,
+            "Require exact retained controller/XCTest evidence: " + URL(fileURLWithPath: witness.path).lastPathComponent)
+        return data
+    }
+
+    private func raw(_ manifest: Receipt.RawManifest) throws -> Data {
+        let data = try XCTUnwrap(Data(base64Encoded: manifest.rawBase64), "Require original manifest bytes")
+        try requireSearchDataFixture(data.count <= 1024 * 1024 && Int64(data.count) == manifest.bytes
+            && searchDataDigest(data) == manifest.sha256, "Manifest object equality cannot replace exact source bytes")
+        return data
+    }
+
+    private func object(_ data: Data) throws -> [String: Any] {
+        try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+    }
+
+    private func canonical(_ value: Any) throws -> Data {
+        try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
+    }
+
+    private func inventory(_ root: URL) throws -> [Receipt.IndexFile] {
+        try requireSearchDataFixture(root.standardizedFileURL.path == root.resolvingSymlinksInPath().path,
+            "The retained package must stay in the original storage root")
+        let enumerator = try XCTUnwrap(FileManager.default.enumerator(at: root,
+            includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey], options: []))
+        var rows: [Receipt.IndexFile] = []
+        var visited = 0
+        for case let file as URL in enumerator {
+            visited += 1
+            try requireSearchDataFixture(visited <= 2048 && rows.count <= 1024, "Bound the original package inventory")
+            let info = try file.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            try requireSearchDataFixture(info.isSymbolicLink == false, "A retained package cannot hide a substituted symbolic link")
+            if info.isDirectory == true { continue }
+            try requireSearchDataFixture(file.pathComponents.starts(with: root.pathComponents), "Keep every package member inside its root")
+            let relative = file.pathComponents.dropFirst(root.pathComponents.count).joined(separator: "/")
+            let value = try identity(file)
+            rows.append(.init(relativePath: relative, bytes: value.bytes, inode: value.inode,
+                              mtimeNs: value.mtimeNs, ctimeNs: value.ctimeNs))
+        }
+        try requireSearchDataFixture(!rows.isEmpty && rows.count <= 1024, "An empty or partial package is not retained production data")
+        return rows.sorted { $0.relativePath < $1.relativePath }
+    }
+
+    private func receipt() throws -> (Receipt, String) {
+        let data = try originalSearchOracleBytes(pathKey: "PRODUCTION_SEARCH_POST_UPDATE_RECEIPT",
+                                                digestKey: "PRODUCTION_SEARCH_POST_UPDATE_RECEIPT_SHA256")
+        let value = try JSONDecoder().decode(Receipt.self, from: data)
+        try requireSearchDataFixture(value.schemaVersion == 1 && value.status == "ORIGINAL_SETTINGS_UPDATE_VERIFIED"
+            && value.bundleID == bundleID && value.checkoutSHA.count == 40,
+            "Only the original controller's completed Settings update is eligible")
+        try requireSearchDataFixture(value.settingsExecution.caseID == "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+            && value.settingsExecution.caseStatus == "Passed"
+            && value.settingsExecution.executedTests == 1 && value.settingsExecution.skippedTests == 0,
+            "Settings must have one actual passing test and no skip")
+        _ = try verified(value.originalInstallationResult)
+        _ = try verified(value.settingsExecution.caseResult)
+        _ = try verified(value.settingsExecution.zeroSkipResult)
+        let installed = try object(verified(value.settingsExecution.installedAttachment))
+        let target = try object(verified(value.settingsExecution.officialTargetAttachment))
+        let before = try object(raw(value.before.installationManifest))
+        let after = try object(raw(value.after.installationManifest))
+        try requireSearchDataFixture((before["profileID"] as? String ?? "production") == "production"
+            && (after["profileID"] as? String ?? "production") == "production", "Do not substitute miniTest10 or another profile")
+        try requireSearchDataFixture(before["releaseTag"] as? String == "v40-20261123094345"
+            && (before["releaseID"] as? NSNumber)?.int64Value == 455_390_662
+            && value.before.database.sha256 == v40Digest && value.before.database.bytes == 4_355_063_808,
+            "Both retained packages must come from the previously admitted full v40 installation")
+        try requireSearchDataFixture(value.officialTarget.repository == "Otzaria/SeforimLibrary"
+            && value.officialTarget.releaseID == 459_809_828
+            && value.officialTarget.releaseTag == "v41-20261126162443"
+            && after["releaseTag"] as? String == value.officialTarget.releaseTag
+            && (after["releaseID"] as? NSNumber)?.int64Value == value.officialTarget.releaseID
+            && value.after.database.sha256.count == 64 && value.after.database.sha256 != v40Digest
+            && value.after.database.bytes > 0
+            && (after["databaseFileSize"] as? NSNumber)?.int64Value == value.after.database.bytes,
+            "This separate gate requires the real v41 installed by Settings; a relabelled v40 is ineligible")
+        try requireSearchDataFixture(installed["old_database_sha256"] as? String == value.before.database.sha256
+            && installed["new_database_sha256"] as? String == value.after.database.sha256,
+            "Bind the database hashes to the actual Settings XCTest attachment")
+        XCTAssertEqual(try canonical(try XCTUnwrap(installed["installed_manifest"])), try canonical(after))
+        try requireSearchDataFixture((target["release_id"] as? NSNumber)?.int64Value == value.officialTarget.releaseID
+            && target["tag"] as? String == value.officialTarget.releaseTag, "Bind the actual official target attachment")
+        return (value, searchDataDigest(data))
+    }
+
+    private func installation(_ receipt: Receipt) throws -> (container: URL, root: URL) {
+        let environment = ProcessInfo.processInfo.environment
+        let supplied = try XCTUnwrap(environment["PRODUCTION_SEARCH_CONTAINER_PARENT"])
+        let parent = URL(fileURLWithPath: supplied, isDirectory: true).standardizedFileURL
+        let simulatorData = parent.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let udid = try XCTUnwrap(environment["SIMULATOR_UDID"])
+        try requireSearchDataFixture(UUID(uuidString: udid) != nil && udid.lowercased() == receipt.simulatorUDID.lowercased()
+            && Array(parent.pathComponents.suffix(3)) == ["Containers", "Data", "Application"]
+            && simulatorData.lastPathComponent == "data"
+            && simulatorData.deletingLastPathComponent().lastPathComponent.lowercased() == udid.lowercased(),
+            "Only this controller-owned Simulator may supply the updated installation")
+        func owners(_ parent: URL, identifier: String) throws -> [URL] {
+            let children = try FileManager.default.contentsOfDirectory(at: parent,
+                includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            try requireSearchDataFixture(children.count <= 256, "Bound original container discovery")
+            return try children.filter { child in
+                let info = try child.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+                guard info.isDirectory == true && info.isSymbolicLink == false
+                    && UUID(uuidString: child.lastPathComponent) != nil else { return false }
+                let metadata = child.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist")
+                guard let data = try? bytes(metadata, maximum: 65536),
+                      let object = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else { return false }
+                return object["MCMMetadataIdentifier"] as? String == identifier
+            }
+        }
+        let apps = try owners(parent, identifier: bundleID)
+        try requireSearchDataFixture(apps.count == 1, "Require the sole original app owner")
+        let appContainer = try XCTUnwrap(apps.first).standardizedFileURL
+        try requireSearchDataFixture(appContainer.path == receipt.dataContainerAfter, "The controller must bind any actual container relocation before this gate")
+        let groupParent = simulatorData.appendingPathComponent("Containers/Shared/AppGroup")
+        let groups = FileManager.default.fileExists(atPath: groupParent.path)
+            ? try owners(groupParent, identifier: "group.com.davidpovarsky.itorah") : []
+        try requireSearchDataFixture(groups.count <= 1, "Ambiguous App Group ownership cannot pass")
+        let root = (groups.first ?? appContainer.appendingPathComponent("Library/Application Support/Maktabah-Debug")).standardizedFileURL
+        try requireSearchDataFixture(root.pathComponents.starts(with: simulatorData.pathComponents)
+            && root.path == root.resolvingSymlinksInPath().path, "Keep normal managed storage ownership")
+        try requireSearchDataFixture(receipt.after.installationManifest.sourcePath == root.appendingPathComponent("Otzaria/seforim-installation.json").path
+            && receipt.after.database.path == root.appendingPathComponent("Otzaria/seforim.db").path,
+            "Bind the actual managed database and receipt paths")
+        return (appContainer, root)
+    }
+
+    private func verifyRetained(_ receipt: Receipt, root: URL) throws {
+        XCTAssertEqual(try bytes(URL(fileURLWithPath: receipt.after.installationManifest.sourcePath), maximum: 1024 * 1024),
+                       try raw(receipt.after.installationManifest))
+        XCTAssertEqual(try identity(URL(fileURLWithPath: receipt.after.database.path)).bytes, receipt.after.database.bytes)
+        try requireSearchDataFixture(Set(receipt.before.indexes.map(\.engine)) == ["otzaria", "zayit"]
+            && Set(receipt.after.indexes.map(\.engine)) == ["otzaria", "zayit"]
+            && receipt.before.indexes.count == 2 && receipt.after.indexes.count == 2, "Require both actual retained packages")
+        for index in receipt.after.indexes {
+            let original = try XCTUnwrap(receipt.before.indexes.first { $0.engine == index.engine })
+            let artifact = index.engine == "otzaria" ? otzariaArtifact : zayitArtifact
+            let suffix = index.engine == "otzaria" ? "Otzaria/TantivySearchIndex/managed-library" : "Otzaria/Zayit"
+            let expectedRoot = root.appendingPathComponent(suffix, isDirectory: true)
+            let manifestName = index.engine == "otzaria" ? "otzaria_prebuilt_installation.json" : "zayit-installation.json"
+            try requireSearchDataFixture(index.storageRoot == expectedRoot.path
+                && index.manifest.sourcePath == expectedRoot.appendingPathComponent(manifestName).path
+                && index.artifactID == artifact && original.artifactID == artifact,
+                "A replacement v41 package cannot count as retained v40")
+            let metadata = try raw(index.manifest)
+            XCTAssertEqual(metadata, try raw(original.manifest), "Settings must preserve each exact original v40 manifest")
+            XCTAssertEqual(try bytes(URL(fileURLWithPath: index.manifest.sourcePath), maximum: 1024 * 1024), metadata)
+            let manifest = try object(metadata)
+            XCTAssertEqual(manifest["artifactIdentity"] as? String, artifact)
+            let source = try XCTUnwrap(manifest[index.engine == "otzaria" ? "sourceDatabase" : "requiredDatabase"] as? [String: Any])
+            XCTAssertEqual(source["releaseTag"] as? String, "v40-20261123094345")
+            XCTAssertEqual(source[index.engine == "otzaria" ? "databaseSHA256" : "canonicalSHA256"] as? String, v40Digest)
+            let beforeFiles = original.files.sorted { $0.relativePath < $1.relativePath }
+            let afterFiles = index.files.sorted { $0.relativePath < $1.relativePath }
+            try requireSearchDataFixture(Set(afterFiles.map(\.relativePath)).count == afterFiles.count
+                && !afterFiles.isEmpty && afterFiles.count <= 1024, "Reject duplicate or unbounded retained inventories")
+            XCTAssertEqual(afterFiles, beforeFiles, "The Settings update cannot remove or replace old package members")
+            XCTAssertEqual(try inventory(expectedRoot), afterFiles, "Require the full actual retained inventory, not only its manifest")
+        }
+    }
+
+    private func trace(_ receipt: Receipt, container: URL) throws -> (identity: FileIdentity, data: Data) {
+        let source = receipt.traceBaseline
+        try requireSearchDataFixture(UUID(uuidString: source.namespace) != nil
+            && source.relativePath == "Documents/OtzariaLogs/search-native-" + source.namespace + ".jsonl"
+            && source.caseStatus == "Passed" && source.processID > 0
+            && source.sourceDatabaseManifestSHA256 == receipt.before.installationManifest.sha256,
+            "Reuse only the observation namespace of an actual passed v40 page case")
+        let expectedEngine: String
+        switch source.caseID {
+        case "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata": expectedEngine = "otzaria"
+        case "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity": expectedEngine = "zayit"
+        default: throw SearchDataNativeFixtureError.rejected("The trace prefix must come from an exact original v40 page selector")
+        }
+        _ = try verified(source.caseResult)
+        let priorEvidence = try object(verified(source.sourceAttachment))
+        let url = container.appendingPathComponent(source.relativePath)
+        let data = try bytes(url)
+        let observed = try identity(url)
+        try requireSearchDataFixture(observed.bytes == source.bytes && observed.inode == source.inode
+            && observed.mtimeNs == source.mtimeNs && observed.ctimeNs == source.ctimeNs
+            && searchDataDigest(data) == source.sha256, "Bind the existing positive trace's exact identity, bytes and end offset")
+        let text = try XCTUnwrap(String(data: data, encoding: .utf8))
+        try requireSearchDataFixture(text.hasSuffix("\n"), "Do not admit a truncated original trace")
+        let events = try text.split(separator: "\n").map { try object(Data($0.utf8)) }
+        try requireSearchDataFixture(!events.isEmpty && events.count <= 4096
+            && events.contains { $0["event"] as? String == "provider" }
+            && events.contains { $0["event"] as? String == "published" }, "A missing or unexercised trace is never negative proof")
+        for event in events {
+            try requireSearchDataFixture(event["namespace"] as? String == source.namespace
+                && (event["schemaVersion"] as? NSNumber)?.intValue == 1
+                && event["profileID"] as? String == "production"
+                && event["engine"] as? String == expectedEngine
+                && (event["processID"] as? NSNumber)?.intValue == source.processID,
+                "Every existing prefix event must retain the actual qualified v40 source identity")
+        }
+        XCTAssertEqual(try canonical(events), try canonical(try XCTUnwrap(priorEvidence["events"])),
+                       "Bind the prefix to the actual page case attachment, not just broad event names")
+        return (observed, data)
+    }
+
+    @MainActor
+    private func launch(_ receipt: Receipt) throws {
+        for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH"] {
+            try requireSearchDataFixture(ProcessInfo.processInfo.environment[key] == nil, "No external storage override is eligible")
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "otzaria", extraArgs: [
+            "-GlobalSearchNativeTraceEnabled", "YES", "-GlobalSearchNativeTraceNamespace", receipt.traceBaseline.namespace,
+            "-lastSelectedTab", "0", "-ChavrusaTextFaithfulReaderUIEnabled", "YES"
+        ])
+        try requireSearchDataFixture(!app.launchArguments.contains("-smokeBypassBootstrap")
+            && !app.launchArguments.contains("-studyWorkspaceTestingNamespace")
+            && app.launchEnvironment["OTZARIA_DATA_PROFILE"] == "production", "Keep the original production workspace and provider")
+        try ui.wait("Normal production bootstrap must expose the original root tabs", timeout: 120) { self.app.tabBars.firstMatch.exists }
+        try ui.returnToOriginalSearch()
+        try ui.require("global-search-query")
+    }
+
+    @MainActor
+    private func reachDataControl(_ id: String) throws -> XCUIElement {
+        for _ in 0..<8 {
+            let value = ui.control(id)
+            if value.exists && value.isHittable { return value }
+            try ui.require("search-data-screen").swipeUp()
+        }
+        throw SearchDataNativeFixtureError.rejected("The original Search Data control is not reachable: " + id)
+    }
+
+    @MainActor
+    private func rejectQuery(engine: String, receipt: Receipt, container: URL) throws -> [String: Any] {
+        try ui.require("global-search-mode").tap()
+        try ui.require("global-search-mode-" + (engine == "zayit" ? "zayit" : "exact")).tap()
+        if engine == "zayit" {
+            try ui.require("global-search-options").tap()
+            for _ in 0..<6 {
+                if ui.control("global-search-zayit-match").isHittable { break }
+                try ui.require("global-search-options-content").swipeUp()
+            }
+            try ui.require("global-search-zayit-match").tap()
+            let choice = app.buttons["גמיש — מרחק 5 מילים"]
+            try requireSearchDataFixture(choice.waitForExistence(timeout: 15) && choice.isHittable, "Choose an original valid Zayit query option")
+            choice.tap()
+            try ui.require("global-search-options-done").tap()
+        }
+        let field = try ui.require("global-search-query")
+        field.tap()
+        if let old = field.value as? String, old != field.placeholderValue && !old.isEmpty {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+        }
+        let query = "בראשית"
+        field.typeText(query)
+        try ui.wait("Require the exact original entered query") { field.value as? String == query }
+        let before = try trace(receipt, container: container)
+        let started = Date().timeIntervalSince1970
+        field.typeText("\n")
+        let submitted = Date().timeIntervalSince1970
+        let mismatch = receipt.after.database.bytes == 4_355_063_808
+            ? "the index was built for a different DB release" : "database size/identity mismatch"
+        let expected = engine == "otzaria" ? "חבילת חיפוש Otzaria אינה תואמת לספרייה זו."
+            : "The Zayit index failed validation: The Zayit index is incompatible: " + mismatch
+        let error = try ui.require("global-search-error", timeout: 180)
+        let text = error.descendants(matching: .staticText).matching(NSPredicate(format: "label == %@", expected)).firstMatch
+        try ui.wait("The original error must disclose this actual library/index mismatch", timeout: 30) {
+            text.exists && text.isHittable && !self.ui.control("global-search-loading").exists
+        }
+        let rejected = Date().timeIntervalSince1970
+        let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "search-result-preview-toggle-"))
+        let stale = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { rows.count > 0 || self.ui.control("global-search-count").exists
+                || self.ui.control("global-search-page-error").exists || !text.exists }
+        }, object: nil)
+        stale.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [stale], timeout: 3), .completed,
+                       "The settled rejection must not be replaced by an old page")
+        XCTAssertEqual(field.value as? String, query)
+        XCTAssertFalse(ui.control("global-search-dirty").exists)
+        XCTAssertTrue(ui.control("global-search-retry").isHittable)
+        XCTAssertEqual(rows.count, 0)
+        let after = try trace(receipt, container: container)
+        XCTAssertEqual(after.identity, before.identity)
+        XCTAssertEqual(after.data, before.data, "No provider/published page may append after the bound original offset")
+        ui.capture("r08-after-books-update-" + engine + "-original-rejection")
+        return ["engine": engine, "querySHA256": searchDataDigest(Data(query.utf8)),
+                "expectedLogScope": engine == "otzaria" ? "exact" : "zayit",
+                "expectedSubmissionRevision": engine == "otzaria" ? 1 : 2,
+                "startedAtUnix": started, "submittedAtUnix": submitted, "rejectedAtUnix": rejected,
+                "finishedAtUnix": Date().timeIntervalSince1970, "visibleError": expected,
+                "traceOffsetBefore": before.identity.bytes, "traceOffsetAfter": after.identity.bytes,
+                "traceSHA256Before": searchDataDigest(before.data), "traceSHA256After": searchDataDigest(after.data)]
+    }
+
+    @MainActor
+    func testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries() throws {
+        let (receipt, digest) = try receipt()
+        let launchStarted = Date().timeIntervalSince1970
+        try launch(receipt)
+        let installed = try installation(receipt)
+        try verifyRetained(receipt, root: installed.root)
+        let baseline = try trace(receipt, container: installed.container)
+        try ui.require("global-search-more").tap()
+        try ui.require("global-search-data").tap()
+        let otzaria = try ui.require("search-data-otzaria-status")
+        let zayit = try ui.require("search-data-zayit-status")
+        let originalMismatch = "זהות האינדקס אינה תואמת למסד, למנוע או למשאבים הפעילים."
+        let zayitMismatch = receipt.after.database.bytes == 4_355_063_808
+            ? "the index was built for a different DB release" : "database size/identity mismatch"
+        try ui.wait("Both original package statuses must reject the retained v40 source", timeout: 180) {
+            otzaria.label == "נדרש תיקון לאינדקס: " + originalMismatch
+                && (zayit.label == "אין עדיין חבילה תואמת לגרסת מסד זו"
+                    || zayit.label == "נדרש תיקון · The Zayit index is incompatible: " + zayitMismatch)
+        }
+        XCTAssertEqual(try ui.require("search-data-books-status").label, "מוכן")
+        let statusLabels = ["otzaria": otzaria.label, "zayit": zayit.label]
+        ui.capture("r08-after-books-update-original-search-data-rejects-v40")
+        try reachDataControl("search-data-close").tap()
+        try ui.wait("Close original Search Data before using the original query field") { self.ui.control("global-search-query").isHittable }
+        var attempts: [[String: Any]] = []
+        for engine in ["otzaria", "zayit"] { attempts.append(try rejectQuery(engine: engine, receipt: receipt, container: installed.container)) }
+        try verifyRetained(receipt, root: installed.root)
+        let final = try trace(receipt, container: installed.container)
+        XCTAssertEqual(final.identity, baseline.identity)
+        XCTAssertEqual(final.data, baseline.data)
+        let proof: [String: Any] = [
+            "schemaVersion": 1, "scope": "cold post-Settings original UI; active host process-log verification additionally required",
+            "settingsReceiptSHA256": digest, "simulatorUDID": receipt.simulatorUDID, "dataContainer": installed.container.path,
+            "storageRoot": installed.root.path, "namespace": receipt.traceBaseline.namespace,
+            "sourceProcessID": receipt.traceBaseline.processID, "sourceCaseID": receipt.traceBaseline.caseID,
+            "sourceXcresult": receipt.traceBaseline.xcresultPath, "sourceAttachmentSHA256": receipt.traceBaseline.sourceAttachment.sha256,
+            "tracePath": installed.container.appendingPathComponent(receipt.traceBaseline.relativePath).path,
+            "traceIdentity": try object(JSONEncoder().encode(final.identity)), "traceSHA256": searchDataDigest(final.data),
+            "beforeManifestSHA256": receipt.before.installationManifest.sha256,
+            "afterManifestSHA256": receipt.after.installationManifest.sha256,
+            "launchStartedAtUnix": launchStarted, "finishedAtUnix": Date().timeIntervalSince1970,
+            "launchArguments": app.launchArguments, "launchEnvironment": app.launchEnvironment,
+            "searchDataLabels": statusLabels, "attempts": attempts,
+            "warmSameProcessUpdateVerified": false, "hostProcessLogGateRequired": true
+        ]
+        let evidence = XCTAttachment(data: try canonical(proof), uniformTypeIdentifier: "public.json")
+        evidence.name = "production-search-after-books-update-original-ui-and-trace-boundary"
+        evidence.lifetime = .keepAlways
+        add(evidence)
     }
 }
