@@ -1,0 +1,197 @@
+{
+  "actualChildProcessesStarted": 0,
+  "actualSignalsSent": 0,
+  "appleToolsExecuted": 0,
+  "baseline": {
+    "bytes": 33219,
+    "path": "/workspace/scratch/ca3b32b82803/reader-trace-exports/baseline-study-ui-trace-exports.py",
+    "sha256": "53cc03862f1fe406701a8b64f6d97466638f34523359fd8e0c96b37955d0d01f"
+  },
+  "baselineCommit": "4f3b3e21305cb7bab1e629378dd720c143c28c22",
+  "baselineComparisons": [
+    {
+      "actual_mocked_result": {
+        "error": "KeyboardInterrupt",
+        "launches": [
+          {
+            "argv": [
+              "xcrun",
+              "xctrace",
+              "export",
+              "--input",
+              "synthetic-owned-input"
+            ],
+            "start_new_session": true
+          }
+        ],
+        "row": {
+          "child_scope": "NO_CHILD_CREATED",
+          "command": [
+            "xcrun",
+            "xctrace",
+            "export",
+            "--input",
+            "synthetic-owned-input"
+          ],
+          "error": "Synthetic Popen interruption; created handle unknown",
+          "error_type": "KeyboardInterrupt",
+          "finished_monotonic_ns": 38416632913659,
+          "finished_unix_ns": 1795770099675348834,
+          "owned_cleanup_verified": true,
+          "started_monotonic_ns": 38416632664536,
+          "started_unix_ns": 1795770099675099741,
+          "status": "FAILED_OR_INCOMPLETE_EXPORT"
+        },
+        "signals": [],
+        "stops": []
+      },
+      "boundary": "spawn-interrupted-before-handle",
+      "fixed_contract_rejected_baseline": true
+    },
+    {
+      "actual_mocked_result": {
+        "error": "ValueError",
+        "launches": [
+          {
+            "argv": [
+              "xcrun",
+              "xctrace",
+              "export",
+              "--input",
+              "synthetic-owned-input"
+            ],
+            "start_new_session": true
+          }
+        ],
+        "row": {
+          "actual_exit_observed_after_cleanup": 0,
+          "cleanup_error_type": "ValueError",
+          "command": [
+            "xcrun",
+            "xctrace",
+            "export",
+            "--input",
+            "synthetic-owned-input"
+          ],
+          "exit": 0,
+          "finished_monotonic_ns": 38416634133319,
+          "finished_unix_ns": 1795770099676568573,
+          "original_owned_cleanup": {
+            "group_state": "STILL_PRESENT_UNVERIFIED",
+            "owned_pgid": 8765
+          },
+          "owned_cleanup_verified": false,
+          "owned_pid": 8765,
+          "started_monotonic_ns": 38416633834783,
+          "started_unix_ns": 1795770099676270068,
+          "status": "FAILED_OR_INCOMPLETE_EXPORT"
+        },
+        "signals": [
+          2,
+          0,
+          9,
+          0
+        ],
+        "stops": [
+          8765
+        ]
+      },
+      "boundary": "reused-pid-after-reap",
+      "fixed_contract_rejected_baseline": true
+    }
+  ],
+  "candidate": {
+    "bytes": 37661,
+    "path": "/workspace/scratch/ca3b32b82803/reader-trace-exports/study-ui-trace-exports.py",
+    "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+  },
+  "controls": [
+    {
+      "name": "candidate-synthetic-completed-group-absent",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-live-child-cap",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-spawn-interrupted-before-handle",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-reused-pid-after-reap",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-leader-absent-group-present",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-replacement-after-first-signal",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-parent-change",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-start-change",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-group-change",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-exec-transition",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-expired-before-start",
+      "passed": true
+    },
+    {
+      "name": "candidate-synthetic-identity-read-fails-once",
+      "passed": true
+    },
+    {
+      "name": "same-boundary-reproduces-baseline-defect-spawn-interrupted-before-handle",
+      "passed": true
+    },
+    {
+      "name": "same-boundary-reproduces-baseline-defect-reused-pid-after-reap",
+      "passed": true
+    },
+    {
+      "name": "synthetic-bounded-actual-ps-shape-parser",
+      "passed": true
+    },
+    {
+      "name": "synthetic-explicit-empty-ps-means-no-current-PID",
+      "passed": true
+    },
+    {
+      "name": "synthetic-ps-duplicate-PID-rejected",
+      "passed": true
+    },
+    {
+      "name": "synthetic-ps-wrong-PID-rejected",
+      "passed": true
+    },
+    {
+      "name": "synthetic-ps-diagnostic-rejected",
+      "passed": true
+    },
+    {
+      "name": "synthetic-ps-oversized-command-rejected",
+      "passed": true
+    }
+  ],
+  "corpusQueries": 0,
+  "nativeExecutions": 0,
+  "passed": 20,
+  "performanceAcceptance": false,
+  "schema": "otzaria.trace-export-owned-child-source-controls/1",
+  "status": "SOURCE_CONTROLS_PASSED_NOT_PERF_ACCEPTANCE",
+  "total": 20
+}

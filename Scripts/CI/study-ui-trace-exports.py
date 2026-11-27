@@ -32,6 +32,7 @@ MAX_TOC = 8 * 1024 * 1024
 MAX_TRACE_FILES = 20000
 MAX_TRACE_BYTES = 16 * 1024**3
 MAX_TABLES = 32
+PS_ROW = re.compile(r"\s*(\d+)\s+(\d+)\s+([A-Za-z]{3}\s+[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\s+\d{4})\s+(.+)\Z")
 COMMON = "Scripts/CI/reader-full-v32-ui-observation.py"
 SELF = "Scripts/CI/study-ui-trace-exports.py"
 MISSING = {
@@ -436,9 +437,83 @@ def inspect_raw_xml(path, byte_limit):
             "row_definition": "Unnamespaced XML elements named row only; actual Apple schema, references, event absence and units remain unqualified"}
 
 
+def kernel_process(pid):
+    """Bounded actual Darwin identity; argv changes across xcrun exec are retained."""
+    require(type(pid) is int and pid > 0, "A directly created positive PID is required")
+    value = subprocess.run(["/bin/ps", "-ww", "-p", str(pid), "-o", "pid=,ppid=,lstart=,command="],
+        capture_output=True, text=True, timeout=2, env={**os.environ, "LC_ALL": "C"})
+    require(value.returncode in (0, 1) and not value.stderr and len(value.stdout.encode()) <= 32768,
+            "Actual process identity is failed, diagnostic or outside its bound")
+    rows = [line for line in value.stdout.splitlines() if line.strip()]
+    if not rows:
+        return None
+    require(len(rows) == 1, "Ambiguous actual PID identity")
+    match = PS_ROW.fullmatch(rows[0])
+    require(match is not None and int(match[1]) == pid, "Malformed actual process identity")
+    return {"pid": pid, "parentPID": int(match[2]), "startUTC": match[3], "command": match[4]}
+
+
+def created_export_identity(child, row):
+    """A reaped Popen may never acquire a later process with the same PID."""
+    original_exit = child.poll()
+    actual = kernel_process(child.pid)
+    if original_exit is not None:
+        require(actual is None, "Refuse a live reused PID after the original exporter was reaped")
+        return None
+    if actual is None:
+        require(child.poll() is not None and kernel_process(child.pid) is None,
+                "The original exporter has no verifiable live identity or observed exit")
+        return None
+    require(actual.get("pid") == child.pid and actual.get("parentPID") == row["parent_pid"],
+            "Actual exporter PID or parent differs from its recorded creation")
+    previous = row["original_kernel_identity"]
+    if previous is not None:
+        require(all(actual.get(key) == previous.get(key) for key in ("pid", "parentPID", "startUTC")),
+                "Refuse a replaced original exporter kernel identity")
+    try:
+        require(os.getpgid(child.pid) == child.pid, "Actual exporter is outside its created process group")
+    except ProcessLookupError:
+        require(child.poll() is not None and kernel_process(child.pid) is None,
+                "Exporter group vanished without an observed original exit")
+        return None
+    if child.poll() is not None:
+        require(kernel_process(child.pid) is None, "A live PID replaced the exporter during identity observation")
+        return None
+    # xcrun may exec the selected tool without changing the actual process.
+    # Its command observations are evidence, not a brittle equality to relative
+    # launch argv. Parent/start/group and the unreaped direct Popen bind it.
+    if previous is None:
+        row["original_kernel_identity"] = dict(actual)
+    row["last_verified_kernel_identity"] = dict(actual)
+    return actual
+
+
+def stop_created_export(child, row, interruption):
+    def guarded_killpg(pgid, kind):
+        require(pgid == child.pid, "Only the directly created exporter group may be examined")
+        current = created_export_identity(child, row)
+        if current is None:
+            # A recycled group can outlive its replacement leader. Absence of
+            # that leader therefore permits only a read-only absence probe,
+            # never adopting any remaining group as ours and signaling it.
+            os.killpg(pgid, 0)
+            raise ValueError("A remaining group without its verifiable original leader is unowned")
+        return os.killpg(pgid, kind)
+    cleanup = interruption["stop_owned_process_group"](
+        child, grace_seconds=1, kill_wait_seconds=.5, killpg_fn=guarded_killpg)
+    row["original_owned_cleanup"] = cleanup
+    row["actual_exit_observed_after_cleanup"] = child.poll()
+    row["owned_cleanup_verified"] = (row["actual_exit_observed_after_cleanup"] is not None
+        and cleanup.get("group_state") == "GONE_CHECKED" and cleanup.get("owned_pgid") == child.pid
+        and not cleanup.get("probe_errors") and not cleanup.get("send_errors")
+        and kernel_process(child.pid) is None)
+    require(row["owned_cleanup_verified"], "Original exporter or created group exit remains unverified")
+
+
 def export_child(command, *, directory, stem, timeout, hard_deadline, output_budget, free_reserve, interruption):
     require(command[:3] == ["xcrun", "xctrace", "export"], "Only an actual existing trace export may be launched")
-    row = {"command": command, "status": "EXPORT_STARTED_NOT_QUALIFIED", "owned_cleanup_verified": False,
+    row = {"command": list(command), "status": "EXPORT_STARTED_NOT_QUALIFIED", "owned_cleanup_verified": False,
+           "spawn_attempted": False, "parent_pid": os.getpid(), "original_kernel_identity": None,
            "started_monotonic_ns": time.monotonic_ns(), "started_unix_ns": time.time_ns()}
     child, failure = None, None
     try:
@@ -447,8 +522,11 @@ def export_child(command, *, directory, stem, timeout, hard_deadline, output_bud
                 "Explicit export storage reservation does not fit")
         with (directory / (stem + ".stdout.log")).open("xb") as stdout, (directory / (stem + ".stderr.log")).open("xb") as stderr:
             require(time.monotonic() < hard_deadline, "Whole export-command deadline expired before launch")
+            row["spawn_attempted"] = True
             child = subprocess.Popen(command, stdout=stdout, stderr=stderr, start_new_session=True)
             row["owned_pid"] = child.pid
+            require(created_export_identity(child, row) is not None,
+                    "Exporter ended before actual kernel identity qualification; preserve raw output without admission")
             deadline = min(hard_deadline, time.monotonic() + timeout)
             while child.poll() is None:
                 require(time.monotonic() < deadline, "Owned exporter exceeded its explicit child/whole-session lifetime")
@@ -468,17 +546,15 @@ def export_child(command, *, directory, stem, timeout, hard_deadline, output_bud
     finally:
         if child is not None:
             try:
-                cleanup = interruption["stop_owned_process_group"](child)
-                row["original_owned_cleanup"] = cleanup
-                row["owned_cleanup_verified"] = cleanup.get("group_state") == "GONE_CHECKED" and cleanup.get("owned_pgid") == child.pid
-                require(row["owned_cleanup_verified"], "Owned exporter group exit is unverified")
+                stop_created_export(child, row, interruption)
             except BaseException as error:
                 failure = failure or error
                 row.update(status="FAILED_OR_INCOMPLETE_EXPORT", cleanup_error_type=type(error).__name__)
             row["actual_exit_observed_after_cleanup"] = child.poll()
         else:
-            row["owned_cleanup_verified"] = True
-            row["child_scope"] = "NO_CHILD_CREATED"
+            row["owned_cleanup_verified"] = not row["spawn_attempted"]
+            row["child_scope"] = ("SPAWN_ATTEMPT_WITHOUT_HANDLE_UNVERIFIED" if row["spawn_attempted"]
+                                  else "SPAWN_NOT_ATTEMPTED")
         row.update(finished_monotonic_ns=time.monotonic_ns(), finished_unix_ns=time.time_ns())
         write_new(directory / (stem + ".execution.json"), row)
     if failure is not None:
