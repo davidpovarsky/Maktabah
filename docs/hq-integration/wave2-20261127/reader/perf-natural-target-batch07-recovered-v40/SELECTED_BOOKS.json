@@ -1,0 +1,125 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 369 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 370,
+      "bookTitle": "משנה תורה, הלכות מטמאי משכב ומושב",
+      "declaredTotalLines": 158,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 371,
+      "bookTitle": "משנה תורה, הלכות טומאת אוכלים",
+      "declaredTotalLines": 277,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 372,
+      "bookTitle": "משנה תורה, הלכות פרה אדומה",
+      "declaredTotalLines": 183,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 373,
+      "bookTitle": "משנה תורה, הלכות מקואות",
+      "declaredTotalLines": 170,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 374,
+      "bookTitle": "משנה תורה, הלכות כלים",
+      "declaredTotalLines": 439,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 375,
+      "bookTitle": "משנה תורה, הלכות סנהדרין והעונשין המסורין להם",
+      "declaredTotalLines": 282,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 376,
+      "bookTitle": "משנה תורה, הלכות עדות",
+      "declaredTotalLines": 197,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 378,
+      "bookTitle": "משנה תורה, הלכות אבל",
+      "declaredTotalLines": 199,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 379,
+      "bookTitle": "משנה תורה, הלכות מלכים ומלחמות",
+      "declaredTotalLines": 145,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 380,
+      "bookTitle": "טור",
+      "declaredTotalLines": 7874,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 382,
+      "bookTitle": "שולחן ערוך, אורח חיים",
+      "declaredTotalLines": 5554,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 383,
+      "bookTitle": "שולחן ערוך, יורה דעה",
+      "declaredTotalLines": 4507,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 384,
+      "bookTitle": "שולחן ערוך, אבן העזר",
+      "declaredTotalLines": 2349,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 385,
+      "bookTitle": "שולחן ערוך, חושן משפט",
+      "declaredTotalLines": 4545,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 5847,
+      "bookTitle": "מדרש זוטא",
+      "declaredTotalLines": 869,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

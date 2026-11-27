@@ -1,0 +1,507 @@
+{
+  "bookID": 694,
+  "bookTitle": "שערי תורת בבל על משנה כלים",
+  "declaredTotalLines": 121,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.0056114718317985535,
+  "resolvedAnchorRows": 86,
+  "units": [
+    {
+      "unitID": "toc:76556",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "5cfc4211e4918b07c75c1ec51a90d9f5423607c3fb588a14a3bd8d0d415f8886",
+      "rawMembershipSHA256": "a056f521943d66d3d056a8355d8044f706ae36b331bedc08759f01dac24f883f"
+    },
+    {
+      "unitID": "toc:76560",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 13,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "087a9b5be095bdc65c6cad9b3a857e9efa2915754000b7072436bfddbd20f9f1",
+      "rawMembershipSHA256": "1b7f0ff6c8968c75ca40e5ca5d93941c2ea02f97501bab0f9c0f8a9e69454507"
+    },
+    {
+      "unitID": "toc:76563",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 14,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "3310c861aaa733a330def724e280dd44b11d3ec40374a51c4bad18e6073897cf",
+      "rawMembershipSHA256": "235acebe6ad1f72d8745f39fc133ac4ca9ef570c096d571c036605d4171f4ea9"
+    },
+    {
+      "unitID": "toc:76567",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        21,
+        22,
+        23
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 23,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "a9e21884f5dbdb8d6b78b7e7df3763f14a58d8a672b311f73efcf9fa05cd4b46",
+      "rawMembershipSHA256": "d51e7e4d30e265616b7493f78ac1cba98a86557d00cd832adbefad0cae6e9ddd"
+    },
+    {
+      "unitID": "toc:76569",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 24,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "ba09eb6f6a0ce42e9075a72f57b3fd37deb0274e3b449f17102a877fa39ca0d7",
+      "rawMembershipSHA256": "33305af9e9ee7a99abce6e932f354ca4a722fab416e0f26de65382a0de82454e"
+    },
+    {
+      "unitID": "toc:76572",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        29,
+        30,
+        31
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "883502c789e37b7936eed66684b1d5808107b5bba1ad554c5203c0d46b695ed3",
+      "rawMembershipSHA256": "6d052a393838a3339a7e702f8b307305f854c60e2f7f458cd0c057297bce85d2"
+    },
+    {
+      "unitID": "toc:76574",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 40,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "73d887c710f81d31a8974a22598be51f1bd304837359feab92047343d867300b",
+      "rawMembershipSHA256": "b35dcf11ee6a6ac24bfe1dd763a8bbd8b58ed8373a0da3a8d6b6ed3f990d9cc6"
+    },
+    {
+      "unitID": "toc:76579",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 41,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "b7a89965ed9837bf1b3ffd27a3efe2b6b68916bd6adb8d3c46d991f142e42383",
+      "rawMembershipSHA256": "5f1fcf29c47b8a83928dfe3bc9a00f5bc185a9c2c8d9334ec66e6bfdc4eaaf62"
+    },
+    {
+      "unitID": "toc:76582",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        46,
+        47,
+        48
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 46,
+      "unitEndLineIndex": 48,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "7117b35e014df94ab366ecb4d432d50f84ff8c422c18d3ee572257661b6b9e78",
+      "rawMembershipSHA256": "c888de699e8f916c7b36948c69f44f75206238414dce1dfe7aef3fc9bbcea963"
+    },
+    {
+      "unitID": "toc:76584",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        49,
+        50,
+        51
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 49,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "8e098d97dc29e7930f38c91b81bfd96339f3489f0dae1e2c3e806519f7247cdc",
+      "rawMembershipSHA256": "f22ba57f956dcf66b7a689546992010225668f56a725624fa05ec41c2c342f07"
+    },
+    {
+      "unitID": "toc:76586",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        52,
+        53,
+        54
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "1b7cf9bd87a7baf9bb8bf2b3cf2a481ed43040c4df4722943895cd39996da3df",
+      "rawMembershipSHA256": "b173da5f899d289266ec0ff0df292a5a0ea3fcc5009500f11a836adc0ac4e632"
+    },
+    {
+      "unitID": "toc:76588",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        55,
+        56,
+        57
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "37846507e58bdc53c97724ab3af52dd647db3e7d8dc4a31f3667deb38341a24f",
+      "rawMembershipSHA256": "6b468663687aca7f97c2267624439b3e646da5f7014a73d62df4288e4367c65d"
+    },
+    {
+      "unitID": "toc:76590",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        58,
+        59,
+        60
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "4b802d7bea0e811ec2ec269c1adbb85f45da5e0b022a04877edd0ea3f10d16bf",
+      "rawMembershipSHA256": "cc14ae208bce3f4910bf5a44a2243aa56589b22364359efeef6ae09942b2748e"
+    },
+    {
+      "unitID": "toc:76592",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 67,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "e905ed729d253b872b18d389cfb4f133fa30a6addf20bcc5d963de8f058a74c2",
+      "rawMembershipSHA256": "bb96cf2d121c8527f9963ba102f97fde1981a07f141faf30b0bdf83597faea04"
+    },
+    {
+      "unitID": "toc:76596",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 68,
+      "unitEndLineIndex": 74,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "5f39c132c7857409629cb3e9ac57e731b1e63a1aeea07a1ccbcb5f4f383fb890",
+      "rawMembershipSHA256": "fc0d098f9c67abc9d2a7ed54c7dbf9f826a4578c6b02498d3f81128449b00089"
+    },
+    {
+      "unitID": "toc:76600",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        75,
+        76,
+        77
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 75,
+      "unitEndLineIndex": 77,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "0bfd454056ca74a77837914c4d8c6df5c24226e1138f3c59672b489e9076d3ed",
+      "rawMembershipSHA256": "d33ad10a35d5c53a65ffe24e4691637a439a9c6e3a0d68758dcfcc4636a63cff"
+    },
+    {
+      "unitID": "toc:76602",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        78,
+        79,
+        80,
+        81,
+        82
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 78,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "348c99a18377210fc3e3b59e9a37292783e91da2e33f1fc41167b1d5340a3247",
+      "rawMembershipSHA256": "941539d72b6e21ed8b6f8233b51dedefb3f5d2079b35e7cca9f67ff26a4b4920"
+    },
+    {
+      "unitID": "toc:76605",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        83,
+        84,
+        85
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 85,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "fe56aa0c3794a1aa70058068ef1155b577035b9741315359d3c3491d6b8bb8e2",
+      "rawMembershipSHA256": "f570934b62aab5eddc014664f64854f44cd7cc4978b94c27e955017088c96901"
+    },
+    {
+      "unitID": "toc:76607",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        86,
+        87,
+        88
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "38255e1acd1fc8c2284f7858a3e163206090d5cae2b45d7dbe6889d496563683",
+      "rawMembershipSHA256": "5d3c623681311aacfbda73f8c35dff0b20151b7fdfa5cd96c628f3158bbcdf3e"
+    },
+    {
+      "unitID": "toc:76609",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        89,
+        90,
+        91,
+        92,
+        93
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 93,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "9b42b951dd4d9227ba11b423addbf351a98a3fb99f2dc4fe6973c0062dbab75c",
+      "rawMembershipSHA256": "edda78256d411d30a76b49236588872c83546c7ec0669fb88668e78b6917611e"
+    },
+    {
+      "unitID": "toc:76612",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        94,
+        95,
+        96
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 94,
+      "unitEndLineIndex": 96,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "48548a65e8de3187556a0a9529f24d74122729cef92c0daf361853c5aa7882eb",
+      "rawMembershipSHA256": "c24d5ad97c6af8c2f2d14b55892a1b768d0702b987052387b89138f7c616637e"
+    },
+    {
+      "unitID": "toc:76614",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 97,
+      "unitEndLineIndex": 105,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "4d13949090a78537ef56efbb2cf5587016d4065f0d96de32c9802a3d00727fcf",
+      "rawMembershipSHA256": "681b9ff2a77a14ddfdae5b542ce4ed8284ff1eeb5ba693b9a40ef420a5e950af"
+    },
+    {
+      "unitID": "toc:76619",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 106,
+      "unitEndLineIndex": 110,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "21b37937641eda9b16ab1a429c149b3bd1cc49d24620a81adc3b60553d15ab44",
+      "rawMembershipSHA256": "6c48292474900fd223912827063334a7fd5354240bb849f882a16ae08ba779a0"
+    },
+    {
+      "unitID": "toc:76622",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 111,
+      "unitEndLineIndex": 115,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "926764e5ae7480c5161566d73bf3743978300c5a1a273648f0112d48ec13b6b8",
+      "rawMembershipSHA256": "a0c1d617bd74a8b1687d7a3730a9e2f78a8a5514ba749cd5cae9e37198d1abe3"
+    },
+    {
+      "unitID": "toc:76625",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        116,
+        117,
+        118,
+        119,
+        120
+      ],
+      "bookID": 694,
+      "bookTitle": "שערי תורת בבל על משנה כלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 116,
+      "unitEndLineIndex": 120,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "15581250ae1cdc1592fc0702fbc7bf1da98e3fbef2bd087eb924c9e66592d421",
+      "rawMembershipSHA256": "bf19199609267421a15d87ee64f78d80d983bdd0c94b6fd3d0ddc775cba88543"
+    }
+  ]
+}

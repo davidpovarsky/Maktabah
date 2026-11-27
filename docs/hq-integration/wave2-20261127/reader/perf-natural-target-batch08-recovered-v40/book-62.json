@@ -1,0 +1,83 @@
+{
+  "bookID": 62,
+  "bookTitle": "משנה חגיגה",
+  "declaredTotalLines": 27,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.04503942094743252,
+  "resolvedAnchorRows": 1260,
+  "units": [
+    {
+      "unitID": "toc:1152",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bookID": 62,
+      "bookTitle": "משנה חגיגה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 407,
+      "sourceIndicesSHA256": "6c301cda718f48575f1c55c0f3ae8b643bad3d8a7967046ce3f8fad0abde4343",
+      "rawMembershipSHA256": "0fce5a02be3e9ba386eb73aba7d7a0f560799b65a66670aa6cf80b1feb30820a"
+    },
+    {
+      "unitID": "toc:1153",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "bookID": 62,
+      "bookTitle": "משנה חגיגה",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 17,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 399,
+      "sourceIndicesSHA256": "324a428b2f3d507400a501c1575a9d5a1aa0db681b9970e8b79513e1cd32f3ed",
+      "rawMembershipSHA256": "7655c68afbc5edc6624349ec28e136b26f10110692779a1a08d43129f8d90e96"
+    },
+    {
+      "unitID": "toc:1154",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "bookID": 62,
+      "bookTitle": "משנה חגיגה",
+      "mode": "chapter",
+      "unitStartLineIndex": 18,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 446,
+      "sourceIndicesSHA256": "5e5229c9b6c12ea42fefa1e432d764b642226008d2f42f1223d4dd166ddcdabd",
+      "rawMembershipSHA256": "a97c52ca42c66bb316deae4fa3ea295e674e5a76806da96b0788a5438cfab594"
+    }
+  ]
+}

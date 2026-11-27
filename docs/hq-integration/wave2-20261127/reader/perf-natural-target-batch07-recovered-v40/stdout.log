@@ -1,0 +1,16 @@
+{"bookID": 370, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.3741667605936527, "totalRows": 1473, "completedUnits": 13, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 371, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.41506071761250496, "totalRows": 3335, "completedUnits": 29, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 372, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.24577381927520037, "totalRows": 4928, "completedUnits": 44, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 373, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.2390571404248476, "totalRows": 6301, "completedUnits": 55, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 374, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.18494730908423662, "totalRows": 8540, "completedUnits": 83, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 375, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.674070693552494, "totalRows": 13961, "completedUnits": 109, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 376, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.3381436737254262, "totalRows": 17735, "completedUnits": 131, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 378, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.29785196110606194, "totalRows": 21192, "completedUnits": 145, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 379, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.37363531813025475, "totalRows": 24962, "completedUnits": 157, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 380, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 1.5040629291906953, "totalRows": 93380, "completedUnits": 161, "exactCandidates": {"100": 0, "500": 0, "2000": 0}}
+{"bookID": 382, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 1.6859817001968622, "totalRows": 267071, "completedUnits": 858, "exactCandidates": {"100": 1, "500": 1, "2000": 0}}
+{"bookID": 383, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.9548251964151859, "totalRows": 348975, "completedUnits": 1260, "exactCandidates": {"100": 2, "500": 2, "2000": 0}}
+{"bookID": 384, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.35794466733932495, "totalRows": 386644, "completedUnits": 1440, "exactCandidates": {"100": 2, "500": 2, "2000": 0}}
+{"bookID": 385, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 1.0739290844649076, "totalRows": 510307, "completedUnits": 1867, "exactCandidates": {"100": 7, "500": 3, "2000": 0}}
+{"bookID": 5847, "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY", "seconds": 0.022478170692920685, "totalRows": 511292, "completedUnits": 1890, "exactCandidates": {"100": 7, "500": 3, "2000": 0}}
+{"path": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch07-recovered-v40/DISCOVERY.json", "seconds": 8.935764903202653, "stopReason": "selected_book_batch_exhausted", "completeUnits": 1890, "exactCandidateCounts": {"100": 7, "500": 3, "2000": 0}, "actualMaxResidentBytes": 79773696}

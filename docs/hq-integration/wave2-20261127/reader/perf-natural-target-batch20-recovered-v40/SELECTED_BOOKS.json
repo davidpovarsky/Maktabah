@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 946 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 947,
+      "bookTitle": "תוספות יום טוב על משנה כריתות",
+      "declaredTotalLines": 206,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 948,
+      "bookTitle": "תוספות יום טוב על משנה מדות",
+      "declaredTotalLines": 214,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 949,
+      "bookTitle": "תוספות יום טוב על משנה מעילה",
+      "declaredTotalLines": 183,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 950,
+      "bookTitle": "תוספות יום טוב על משנה מנחות",
+      "declaredTotalLines": 483,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 951,
+      "bookTitle": "תוספות יום טוב על משנה בכורות",
+      "declaredTotalLines": 387,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 952,
+      "bookTitle": "תוספות יום טוב על משנה תמורה",
+      "declaredTotalLines": 173,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 954,
+      "bookTitle": "מדרש שמואל על אבות",
+      "declaredTotalLines": 1633,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 960,
+      "bookTitle": "יש סדר למשנה על משנה שבת",
+      "declaredTotalLines": 132,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1004,
+      "bookTitle": "הגר\"א על פרקי אבות",
+      "declaredTotalLines": 374,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1005,
+      "bookTitle": "אליהו רבא על משנה כלים",
+      "declaredTotalLines": 502,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1007,
+      "bookTitle": "אליהו רבא על משנה טהרות",
+      "declaredTotalLines": 197,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1008,
+      "bookTitle": "אליהו רבא על משנה אהלות",
+      "declaredTotalLines": 322,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1010,
+      "bookTitle": "אליהו רבא על משנה פרה",
+      "declaredTotalLines": 189,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1011,
+      "bookTitle": "אליהו רבא על משנה נגעים",
+      "declaredTotalLines": 199,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1013,
+      "bookTitle": "אליהו רבא על משנה מקואות",
+      "declaredTotalLines": 102,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1017,
+      "bookTitle": "עיקר תוספות יום טוב על משנה ביצה",
+      "declaredTotalLines": 186,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1018,
+      "bookTitle": "עיקר תוספות יום טוב על משנה ראש השנה",
+      "declaredTotalLines": 154,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1019,
+      "bookTitle": "עיקר תוספות יום טוב על משנה עירובין",
+      "declaredTotalLines": 368,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1020,
+      "bookTitle": "עיקר תוספות יום טוב על משנה תענית",
+      "declaredTotalLines": 173,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1022,
+      "bookTitle": "עיקר תוספות יום טוב על משנה פסחים",
+      "declaredTotalLines": 329,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1023,
+      "bookTitle": "עיקר תוספות יום טוב על משנה סוכה",
+      "declaredTotalLines": 268,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1024,
+      "bookTitle": "עיקר תוספות יום טוב על משנה שקלים",
+      "declaredTotalLines": 180,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1025,
+      "bookTitle": "עיקר תוספות יום טוב על משנה יומא",
+      "declaredTotalLines": 237,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1026,
+      "bookTitle": "עיקר תוספות יום טוב על משנה מגילה",
+      "declaredTotalLines": 204,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1027,
+      "bookTitle": "עיקר תוספות יום טוב על משנה שבת",
+      "declaredTotalLines": 479,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1028,
+      "bookTitle": "עיקר תוספות יום טוב על משנה מועד קטן",
+      "declaredTotalLines": 127,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1029,
+      "bookTitle": "עיקר תוספות יום טוב על משנה גיטין",
+      "declaredTotalLines": 397,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1030,
+      "bookTitle": "עיקר תוספות יום טוב על משנה כתובות",
+      "declaredTotalLines": 505,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1031,
+      "bookTitle": "עיקר תוספות יום טוב על משנה קידושין",
+      "declaredTotalLines": 292,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1032,
+      "bookTitle": "עיקר תוספות יום טוב על משנה נדרים",
+      "declaredTotalLines": 446,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1033,
+      "bookTitle": "עיקר תוספות יום טוב על משנה סוטה",
+      "declaredTotalLines": 306,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1034,
+      "bookTitle": "עיקר תוספות יום טוב על משנה יבמות",
+      "declaredTotalLines": 547,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1035,
+      "bookTitle": "עיקר תוספות יום טוב על משנה נזיר",
+      "declaredTotalLines": 275,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1036,
+      "bookTitle": "עיקר תוספות יום טוב על משנה עדיות",
+      "declaredTotalLines": 182,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1037,
+      "bookTitle": "עיקר תוספות יום טוב על משנה שבועות",
+      "declaredTotalLines": 270,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1038,
+      "bookTitle": "עיקר תוספות יום טוב על משנה אבות",
+      "declaredTotalLines": 387,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1039,
+      "bookTitle": "עיקר תוספות יום טוב על משנה בבא בתרא",
+      "declaredTotalLines": 547,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1040,
+      "bookTitle": "עיקר תוספות יום טוב על משנה סנהדרין",
+      "declaredTotalLines": 460,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1041,
+      "bookTitle": "עיקר תוספות יום טוב על משנה בבא מציעא",
+      "declaredTotalLines": 504,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1042,
+      "bookTitle": "עיקר תוספות יום טוב על משנה עבודה זרה",
+      "declaredTotalLines": 250,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

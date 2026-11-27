@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 1152 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 1153,
+      "bookTitle": "מלאכת שלמה על משנה שבת",
+      "declaredTotalLines": 850,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1154,
+      "bookTitle": "מלאכת שלמה על משנה מגילה",
+      "declaredTotalLines": 201,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1155,
+      "bookTitle": "מלאכת שלמה על משנה עירובין",
+      "declaredTotalLines": 520,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1156,
+      "bookTitle": "מלאכת שלמה על משנה סוכה",
+      "declaredTotalLines": 315,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1157,
+      "bookTitle": "מלאכת שלמה על משנה ראש השנה",
+      "declaredTotalLines": 190,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1158,
+      "bookTitle": "מלאכת שלמה על משנה תענית",
+      "declaredTotalLines": 185,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1159,
+      "bookTitle": "מלאכת שלמה על משנה ביצה",
+      "declaredTotalLines": 242,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1160,
+      "bookTitle": "מלאכת שלמה על משנה מועד קטן",
+      "declaredTotalLines": 136,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1161,
+      "bookTitle": "מלאכת שלמה על משנה כתובות",
+      "declaredTotalLines": 589,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1162,
+      "bookTitle": "מלאכת שלמה על משנה גיטין",
+      "declaredTotalLines": 466,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1163,
+      "bookTitle": "מלאכת שלמה על משנה יבמות",
+      "declaredTotalLines": 603,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1164,
+      "bookTitle": "מלאכת שלמה על משנה קידושין",
+      "declaredTotalLines": 268,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1165,
+      "bookTitle": "מלאכת שלמה על משנה סוטה",
+      "declaredTotalLines": 372,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1166,
+      "bookTitle": "מלאכת שלמה על משנה נדרים",
+      "declaredTotalLines": 479,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1167,
+      "bookTitle": "מלאכת שלמה על משנה נזיר",
+      "declaredTotalLines": 311,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1168,
+      "bookTitle": "מלאכת שלמה על משנה בבא בתרא",
+      "declaredTotalLines": 539,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1169,
+      "bookTitle": "מלאכת שלמה על משנה סנהדרין",
+      "declaredTotalLines": 488,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1170,
+      "bookTitle": "מלאכת שלמה על משנה עבודה זרה",
+      "declaredTotalLines": 292,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1171,
+      "bookTitle": "מלאכת שלמה על משנה בבא מציעא",
+      "declaredTotalLines": 522,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1172,
+      "bookTitle": "מלאכת שלמה על משנה שבועות",
+      "declaredTotalLines": 326,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1173,
+      "bookTitle": "מלאכת שלמה על משנה הוריות",
+      "declaredTotalLines": 107,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1174,
+      "bookTitle": "מלאכת שלמה על משנה עדיות",
+      "declaredTotalLines": 375,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1175,
+      "bookTitle": "מלאכת שלמה על משנה אבות",
+      "declaredTotalLines": 279,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1176,
+      "bookTitle": "מלאכת שלמה על משנה בבא קמא",
+      "declaredTotalLines": 420,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1177,
+      "bookTitle": "מלאכת שלמה על משנה מכות",
+      "declaredTotalLines": 197,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1178,
+      "bookTitle": "מלאכת שלמה על משנה שביעית",
+      "declaredTotalLines": 395,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1179,
+      "bookTitle": "מלאכת שלמה על משנה מעשר שני",
+      "declaredTotalLines": 259,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1180,
+      "bookTitle": "מלאכת שלמה על משנה חלה",
+      "declaredTotalLines": 167,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1181,
+      "bookTitle": "מלאכת שלמה על משנה מעשרות",
+      "declaredTotalLines": 239,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1182,
+      "bookTitle": "מלאכת שלמה על משנה פאה",
+      "declaredTotalLines": 270,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1183,
+      "bookTitle": "מלאכת שלמה על משנה ביכורים",
+      "declaredTotalLines": 176,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1184,
+      "bookTitle": "מלאכת שלמה על משנה דמאי",
+      "declaredTotalLines": 192,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1185,
+      "bookTitle": "מלאכת שלמה על משנה כלאים",
+      "declaredTotalLines": 305,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1186,
+      "bookTitle": "מלאכת שלמה על משנה ערלה",
+      "declaredTotalLines": 151,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1187,
+      "bookTitle": "מלאכת שלמה על משנה ברכות",
+      "declaredTotalLines": 297,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1188,
+      "bookTitle": "מלאכת שלמה על משנה תרומות",
+      "declaredTotalLines": 410,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1189,
+      "bookTitle": "מלאכת שלמה על משנה נגעים",
+      "declaredTotalLines": 469,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1191,
+      "bookTitle": "מלאכת שלמה על משנה נדה",
+      "declaredTotalLines": 329,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1192,
+      "bookTitle": "מלאכת שלמה על משנה פרה",
+      "declaredTotalLines": 373,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1193,
+      "bookTitle": "מלאכת שלמה על משנה מקואות",
+      "declaredTotalLines": 304,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

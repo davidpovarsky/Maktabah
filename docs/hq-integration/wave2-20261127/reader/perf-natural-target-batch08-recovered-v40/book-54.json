@@ -1,0 +1,192 @@
+{
+  "bookID": 54,
+  "bookTitle": "משנה שקלים",
+  "declaredTotalLines": 61,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.1598870437592268,
+  "resolvedAnchorRows": 3123,
+  "units": [
+    {
+      "unitID": "toc:1103",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 502,
+      "sourceIndicesSHA256": "5cfc4211e4918b07c75c1ec51a90d9f5423607c3fb588a14a3bd8d0d415f8886",
+      "rawMembershipSHA256": "39aa566832839e95016897582a028e1bf1c3ebc02e9f99d04e71754503704ccb"
+    },
+    {
+      "unitID": "toc:1104",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 372,
+      "sourceIndicesSHA256": "56a1701412adcc3513e764f00b6647759e07468f25ff186ea9e7a3d523bfedc4",
+      "rawMembershipSHA256": "99194ad16b6a2f508182026e226811c79c4343f74adf150368e1e912769e2d68"
+    },
+    {
+      "unitID": "toc:1105",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 19,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 238,
+      "sourceIndicesSHA256": "da23d4e87d1b953ea2fbf03eda4abc7206efe6e48b0c4201a7c767424e6b3716",
+      "rawMembershipSHA256": "d7aae1a50aadaa736849fd367852b7753ff076698f69629d53467505d6566b36"
+    },
+    {
+      "unitID": "toc:1106",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 20,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 573,
+      "sourceIndicesSHA256": "0bd484f86a7293d36e411f11bf98cb2b27db77335bcbff222508991626106491",
+      "rawMembershipSHA256": "4337987b0c3c31d988840cfdade856649b5c2b511323782ddfb99b93947f71ba"
+    },
+    {
+      "unitID": "toc:1107",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 36,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 342,
+      "sourceIndicesSHA256": "6043ea34d415920c27926e4df3c604a4628042f61e0b72bf3355a1f8bc3c411d",
+      "rawMembershipSHA256": "0eb38cbcfe9207036ecafc073e3f34a7954d145f5e0dd9ad432b063cbd17874d"
+    },
+    {
+      "unitID": "toc:1108",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 37,
+      "unitEndLineIndex": 43,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 368,
+      "sourceIndicesSHA256": "af3dfea0d4fdfec076d1cedd8151a47c7462f9690c1d41ea298d4276cfe86240",
+      "rawMembershipSHA256": "a848b2ffd66bf3f24a45f6b6309fd3138e0a11991c72d90ae5f49c473862247f"
+    },
+    {
+      "unitID": "toc:1109",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 44,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 361,
+      "sourceIndicesSHA256": "bbcee238fa1c053857a31e1d99c7ad07ff78051238e6d3341a278f77c3da13a6",
+      "rawMembershipSHA256": "9e8bdf58e650af5e36457fa3fe4e85d189775c7f871987665e71d819c139ad00"
+    },
+    {
+      "unitID": "toc:1110",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 334,
+      "sourceIndicesSHA256": "f06b965eaf854424a8067c541c27e4a6dba33430e79e407f0a71140707d10f24",
+      "rawMembershipSHA256": "eb6c2e1d0eefae16824568f28ad20d6344bb3d82a19af136d66d4e38ac893790"
+    }
+  ]
+}

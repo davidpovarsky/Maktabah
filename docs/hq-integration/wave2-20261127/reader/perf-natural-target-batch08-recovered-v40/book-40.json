@@ -1,0 +1,213 @@
+{
+  "bookID": 40,
+  "bookTitle": "משנה ברכות",
+  "declaredTotalLines": 67,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.3819090882316232,
+  "resolvedAnchorRows": 3141,
+  "units": [
+    {
+      "unitID": "toc:970",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 6,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 561,
+      "sourceIndicesSHA256": "d71a595b6e83e7180caf80e813a0e1b08c48963fd436c20da78927c8f489902a",
+      "rawMembershipSHA256": "9adf6d74d8d81f84b48e1715348edfe44b9e8208db432d6112f2a92fd3042519"
+    },
+    {
+      "unitID": "toc:971",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 7,
+      "unitEndLineIndex": 15,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 397,
+      "sourceIndicesSHA256": "66c0a1046c8e56a0daab32172fe3d32686c49bb8c3eeefcc3d6a830610b9b538",
+      "rawMembershipSHA256": "6bf8513f65cd4acfb2a715dd5943a40361f147126734f18994db96e25d39a061"
+    },
+    {
+      "unitID": "toc:972",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 16,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 325,
+      "sourceIndicesSHA256": "7e13eb23137729feed27644204647f8dffe592f2918deb9306d3f5b4543d3e43",
+      "rawMembershipSHA256": "315ee12b1a4cbf297fe469ad2b70505e79a0272aed2303b62850a497a21976f4"
+    },
+    {
+      "unitID": "toc:973",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 268,
+      "sourceIndicesSHA256": "69005f0fac8da983adf1c723ae907d77b56d20f4754a3097c07bbe142d28ae2d",
+      "rawMembershipSHA256": "191b52af16b2e11d6e816f71151335b3331d5fd2309159a135a97dde9e97d6fb"
+    },
+    {
+      "unitID": "toc:974",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 36,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 265,
+      "sourceIndicesSHA256": "b788f5bcbe903799ab9432ab515b321e02bafa49c8bcea202f4f53c38dac9ece",
+      "rawMembershipSHA256": "02057d37ca8df02195daf8923b093960ffd5efed8a4d2e29254904ca6c15a471"
+    },
+    {
+      "unitID": "toc:975",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 37,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 324,
+      "sourceIndicesSHA256": "e1f832abe979e9837b362087f4a1b89b2cde42cdd07a0aa9fda23a1a53aea5ab",
+      "rawMembershipSHA256": "4e6eb78b6e685dfc1b4626dcef7a9bf12ef8d8e0d3a7280aea4f3f9ae20a02b5"
+    },
+    {
+      "unitID": "toc:976",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 46,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 265,
+      "sourceIndicesSHA256": "19eb71e1c7732ba2e1552adc05f01364e8b7a0e764a95dedd8ba4a69c10e2f32",
+      "rawMembershipSHA256": "64dd3676636a1c17c40141176138db5346850c07ce23afd555b676d9eb4587d6"
+    },
+    {
+      "unitID": "toc:977",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 294,
+      "sourceIndicesSHA256": "f06b965eaf854424a8067c541c27e4a6dba33430e79e407f0a71140707d10f24",
+      "rawMembershipSHA256": "7ed8f0367d595363d2d7efd05fd911785a0548bce1fd5d9afd50777037246568"
+    },
+    {
+      "unitID": "toc:978",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 412,
+      "sourceIndicesSHA256": "63bb0c3abca5c6b3bc5e457fd4bc87ca809a9d775997c374f126bfe37dd4c923",
+      "rawMembershipSHA256": "225202694d6c0b040a5111c99ba26f15fd0d92099f0b3536cedee003a20fe86e"
+    }
+  ]
+}

@@ -1,0 +1,3731 @@
+{
+  "bookID": 426,
+  "bookTitle": "שבחי הבעש\"ט",
+  "declaredTotalLines": 555,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.013793518766760826,
+  "resolvedAnchorRows": 5,
+  "units": [
+    {
+      "unitID": "toc:49414",
+      "rawUnitTitle": "הקדמה",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7f2c5f390b0c7e30e5a644380decea0554bbb62cfc03eff193d13a8c1a117708",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49415",
+      "rawUnitTitle": "סיפור א",
+      "sourceLineIndices": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "cff1e21b4c94a8b9e348a83067427d6e31a3fea7c059f79ec722b0a6c76c3977",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49416",
+      "rawUnitTitle": "סיפור ב",
+      "sourceLineIndices": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 17,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0dd0150d72c94c65644947cf2effcf8e99b4dd5aaf515524829982d7c0225fcc",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49417",
+      "rawUnitTitle": "סיפור ג",
+      "sourceLineIndices": [
+        18,
+        19,
+        20
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 18,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "81b192094ccceee372618a24960a9870e699fced68479128638bc9614e583f94",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49418",
+      "rawUnitTitle": "סיפור ד",
+      "sourceLineIndices": [
+        21,
+        22,
+        23
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 23,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "a9e21884f5dbdb8d6b78b7e7df3763f14a58d8a672b311f73efcf9fa05cd4b46",
+      "rawMembershipSHA256": "d160615734d6b13a88a742537ec87a3b6517d45c06fbd12119b17c7201c62e87"
+    },
+    {
+      "unitID": "toc:49419",
+      "rawUnitTitle": "סיפור ה",
+      "sourceLineIndices": [
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 24,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ba09eb6f6a0ce42e9075a72f57b3fd37deb0274e3b449f17102a877fa39ca0d7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49420",
+      "rawUnitTitle": "סיפור ו",
+      "sourceLineIndices": [
+        29,
+        30
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8195aa19b2860c12ecd1600d71b1464c7d78613b4732e54d1d8289d94d7e5956",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49421",
+      "rawUnitTitle": "סיפור ז",
+      "sourceLineIndices": [
+        31,
+        32
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 32,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "548e49f2adc8c7db5148842e7ce3ebd153854a45593caa8098fec884a076558c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49422",
+      "rawUnitTitle": "סיפור ח",
+      "sourceLineIndices": [
+        33,
+        34,
+        35
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 33,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f3b42167a19f6420d77a1154c75a54e4d2bded2b3241bd02178d196dda76e8de",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49423",
+      "rawUnitTitle": "סיפור ט",
+      "sourceLineIndices": [
+        36,
+        37
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 36,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0419710be814ea74d5894c3bc184c565ad771cd958218713ef84edb43dc91e6c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49424",
+      "rawUnitTitle": "סיפור י",
+      "sourceLineIndices": [
+        38,
+        39
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 39,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "44051911f835e863c905fecf91a2d2cbab24ed83d2043a357618949880fb1910",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49425",
+      "rawUnitTitle": "סיפור יא",
+      "sourceLineIndices": [
+        40,
+        41
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 40,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "cc2ed1b68368c5bccb02092f73f9687a4b8ff6adec23587e4ff37ebae58897a8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49426",
+      "rawUnitTitle": "סיפור יב",
+      "sourceLineIndices": [
+        42,
+        43
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 43,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "15ebe975f8c4a7644923d3b82dee039760a07438f1b021eb90e7edeab8cf6e3e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49427",
+      "rawUnitTitle": "סיפור יג",
+      "sourceLineIndices": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 44,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8632c4307218e3298f014b15f4128610570c7d46163fc254dd94029cd84dbc85",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49428",
+      "rawUnitTitle": "סיפור יד",
+      "sourceLineIndices": [
+        48,
+        49,
+        50
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 50,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b10a19707aff61be3604e203d499a1acb9c6d7382bbfe54a7ad37de4d8fc3446",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49429",
+      "rawUnitTitle": "סיפור טו",
+      "sourceLineIndices": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 51,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "aaf2bebd450dcc49f25c3c2324f63d5a5a14e28ea3992bc0ac9030d80caff958",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49430",
+      "rawUnitTitle": "סיפור טז",
+      "sourceLineIndices": [
+        55,
+        56,
+        57
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "37846507e58bdc53c97724ab3af52dd647db3e7d8dc4a31f3667deb38341a24f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49431",
+      "rawUnitTitle": "סיפור יז",
+      "sourceLineIndices": [
+        58,
+        59,
+        60
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4b802d7bea0e811ec2ec269c1adbb85f45da5e0b022a04877edd0ea3f10d16bf",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49432",
+      "rawUnitTitle": "סיפור יח",
+      "sourceLineIndices": [
+        61,
+        62
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "384b88c1aeec78f8cfb80907012f68bcc2fba913bd4863b72134e09c40952783",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49433",
+      "rawUnitTitle": "סיפור יט",
+      "sourceLineIndices": [
+        63,
+        64
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e7812173fe1fd0cc36fa630876e68718ed74d452ad69100aff9948415e2488c8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49434",
+      "rawUnitTitle": "סיפור כ",
+      "sourceLineIndices": [
+        65,
+        66
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "44f65a6052fe627180092b01e155115b4e4cd4764e28c025cae892f3bec835ae",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49435",
+      "rawUnitTitle": "סיפור כא",
+      "sourceLineIndices": [
+        67,
+        68
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0e1b0dfa2323dce336b99189db29844694241142538a04b2377a3b9313d5db0c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49436",
+      "rawUnitTitle": "סיפור כב",
+      "sourceLineIndices": [
+        69,
+        70,
+        71
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d2014bee7816b00f6d31eb7d05c30bfa80fe9a423e9ba3f19bd9a6f23e8921c5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49437",
+      "rawUnitTitle": "סיפור כג",
+      "sourceLineIndices": [
+        72,
+        73,
+        74
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 74,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6938a570584f2b25ecf9f6930098b1c4574bca24662f2b835d86fb4026575264",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49438",
+      "rawUnitTitle": "סיפור כד",
+      "sourceLineIndices": [
+        75,
+        76
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 75,
+      "unitEndLineIndex": 76,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "fb299af5efc4fb37df00bc1a6e9a1fda9abd6670b62b2460c62ce2326acb9d49",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49439",
+      "rawUnitTitle": "סיפור כה",
+      "sourceLineIndices": [
+        77,
+        78
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 77,
+      "unitEndLineIndex": 78,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0047fce5ed8c38aa65514e989fe1a5cda586b6ce9ac40f20b864090810c58c2e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49440",
+      "rawUnitTitle": "סיפור כו",
+      "sourceLineIndices": [
+        79,
+        80
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 79,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "48822fc5c23ad543d016e2db2fcfb2e2a8c61980d957af7b919a953edc802a83",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49441",
+      "rawUnitTitle": "סיפור כז",
+      "sourceLineIndices": [
+        81,
+        82
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "fd9b3391e05daff42f0a20cf579b049d88b473e7cbb9120b8e36d859eece2e20",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49442",
+      "rawUnitTitle": "סיפור כח",
+      "sourceLineIndices": [
+        83,
+        84
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 84,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d931b7221739c41a0e26e44011f03d4439db9e6647bbeef3e6a3817d23ea0eb5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49443",
+      "rawUnitTitle": "סיפור כט",
+      "sourceLineIndices": [
+        85,
+        86
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 85,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8154f7f6aa97f0e7d84eb8eeb5a704948dc1c13c7f4568448ecdd6a0d2e072c5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49444",
+      "rawUnitTitle": "סיפור ל",
+      "sourceLineIndices": [
+        87,
+        88
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 87,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "743b2a08658e9f6493f1288e1dc5adcbd2cae15a370524ccaea4ba4be74ae129",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49445",
+      "rawUnitTitle": "סיפור לא",
+      "sourceLineIndices": [
+        89,
+        90,
+        91
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 91,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "69f2e15c67d0c8ab1f25753135c2f43749aa8aecf4f3a8ceb6f877afcb9ab3d8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49446",
+      "rawUnitTitle": "סיפור לב",
+      "sourceLineIndices": [
+        92,
+        93,
+        94
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 92,
+      "unitEndLineIndex": 94,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "bcf73a798a8d80064f5c02e578e3a0945a4ade40cc5e9b19218b1a833139a9f3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49447",
+      "rawUnitTitle": "סיפור לג",
+      "sourceLineIndices": [
+        95,
+        96
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 95,
+      "unitEndLineIndex": 96,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1100901ef003f9694661409c6a346c6a90e2f7875871ce8785772c6bd65c0ba3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49448",
+      "rawUnitTitle": "סיפור לד",
+      "sourceLineIndices": [
+        97,
+        98,
+        99,
+        100
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 97,
+      "unitEndLineIndex": 100,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "75df853817ee064798a00d9bbf81f35fd9a3dc167ea3b08253e11af2d2e6e262",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49449",
+      "rawUnitTitle": "סיפור לה",
+      "sourceLineIndices": [
+        101,
+        102,
+        103
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 101,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6251b266c29efaa1b7377992b2bde7fd92eb600e6eec9bd11745c33866e854a0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49450",
+      "rawUnitTitle": "סיפור לו",
+      "sourceLineIndices": [
+        104,
+        105,
+        106
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 104,
+      "unitEndLineIndex": 106,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1e26de4b724760f9706045a0610d1c5c0b11b0c6e950e4bb555c4676c56707f8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49451",
+      "rawUnitTitle": "סיפור לז",
+      "sourceLineIndices": [
+        107,
+        108
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 107,
+      "unitEndLineIndex": 108,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c0dde9b0845814e404a179bc1fd46190d457cb328abb9226f43c61b6eab10386",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49452",
+      "rawUnitTitle": "סיפור לח",
+      "sourceLineIndices": [
+        109,
+        110,
+        111
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 109,
+      "unitEndLineIndex": 111,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e981cd188f957166fe52352ac749c3338e12a20d80c6e953179a898eddd3d240",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49453",
+      "rawUnitTitle": "סיפור לט",
+      "sourceLineIndices": [
+        112,
+        113
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 112,
+      "unitEndLineIndex": 113,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "27d3c4e811974576f151071d6358d3a21d700fbbd0e0dc7e88df865cf2458f93",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49454",
+      "rawUnitTitle": "סיפור מ",
+      "sourceLineIndices": [
+        114,
+        115
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 114,
+      "unitEndLineIndex": 115,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1984d8e71637fd79d7d787bbba1dc90b0b382388515c3349f0769f035bede2ae",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49455",
+      "rawUnitTitle": "סיפור מא",
+      "sourceLineIndices": [
+        116,
+        117
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 116,
+      "unitEndLineIndex": 117,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "baed3ab89e3e927ac362c330385206eb5bf608fad4049d3a1da00b915afb2e73",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49456",
+      "rawUnitTitle": "סיפור מב",
+      "sourceLineIndices": [
+        118,
+        119
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 118,
+      "unitEndLineIndex": 119,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7c3720486f796c809272cf53a9b3fde3d2860143dc4515c36411e92e3ad44dac",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49457",
+      "rawUnitTitle": "סיפור מג",
+      "sourceLineIndices": [
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 120,
+      "unitEndLineIndex": 126,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8c15aae1311b69d401239c648c6b18772a23812b87b3272234a0ce3e4c1bf64b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49458",
+      "rawUnitTitle": "סיפור מד",
+      "sourceLineIndices": [
+        127,
+        128,
+        129
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 127,
+      "unitEndLineIndex": 129,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5a880d56cc424064ad96112bbb8a7c7605d2dcd6edd69261ab4682cc04eb2ea4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49459",
+      "rawUnitTitle": "סיפור מה",
+      "sourceLineIndices": [
+        130,
+        131,
+        132,
+        133
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 130,
+      "unitEndLineIndex": 133,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "600dd8675a8014c0d2cb3afecf765115128bf5def2bb693f05d87fd54271edbb",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49460",
+      "rawUnitTitle": "סיפור מו",
+      "sourceLineIndices": [
+        134,
+        135
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 134,
+      "unitEndLineIndex": 135,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a423e084635291997fb585756480b79803f27d455bd3da4df15d3e30d3f2674c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49461",
+      "rawUnitTitle": "סיפור מז",
+      "sourceLineIndices": [
+        136,
+        137
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 136,
+      "unitEndLineIndex": 137,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "26f8ac8d78e4fa73abbb2c40f6841d8db135ac3a6b2597c5ff5a81bcb9db54ba",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49462",
+      "rawUnitTitle": "סיפור מח",
+      "sourceLineIndices": [
+        138,
+        139,
+        140,
+        141
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 138,
+      "unitEndLineIndex": 141,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7cf789efcf1ee0b55ec603a4d7bf67fc7f10535b7a21966e12d21bc3af0ff698",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49463",
+      "rawUnitTitle": "סיפור מט",
+      "sourceLineIndices": [
+        142,
+        143
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 142,
+      "unitEndLineIndex": 143,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "28df8b016f574b123d9720979948d547fd4e67f2d72fde3ff33608fbc0f7e61d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49464",
+      "rawUnitTitle": "סיפור נ",
+      "sourceLineIndices": [
+        144,
+        145,
+        146
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 144,
+      "unitEndLineIndex": 146,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "617ce70fce6959c367afbb01a59cbd50b15a7be679fc51b00234a61a1ee12ca6",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49465",
+      "rawUnitTitle": "סיפור נא",
+      "sourceLineIndices": [
+        147,
+        148
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 147,
+      "unitEndLineIndex": 148,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d07e62a7d5347c7de1379e15c8d8a2af988ac388e5b096b655d356110f71b04f",
+      "rawMembershipSHA256": "7c6e9955d45832bd3409c5f28f9e9d28cec30ab8d69ffd41a1b6c36d2592a952"
+    },
+    {
+      "unitID": "toc:49466",
+      "rawUnitTitle": "סיפור נב",
+      "sourceLineIndices": [
+        149,
+        150
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 149,
+      "unitEndLineIndex": 150,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "21cc6dce8e40541e3da62ffad49f87149757894881863e1c1a1eb5a01663faa1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49467",
+      "rawUnitTitle": "סיפור נג",
+      "sourceLineIndices": [
+        151,
+        152
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 151,
+      "unitEndLineIndex": 152,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f4b860f6312beef09bc32c75b93e7cac6e6e3fbad060481cf4b14ca92f82fa15",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49468",
+      "rawUnitTitle": "סיפור נד",
+      "sourceLineIndices": [
+        153,
+        154
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 153,
+      "unitEndLineIndex": 154,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "664112f9ee2401ad2fa2417d9cbd029b9cdae3097be454dca8319924e441eca2",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49469",
+      "rawUnitTitle": "סיפור נה",
+      "sourceLineIndices": [
+        155,
+        156
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 155,
+      "unitEndLineIndex": 156,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8b994aa01c8f8d0630751e57e8839a49a3155fd8c23a7bedee25555a04e96523",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49470",
+      "rawUnitTitle": "סיפור נו",
+      "sourceLineIndices": [
+        157,
+        158
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 157,
+      "unitEndLineIndex": 158,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1152d1a66844be725f6acef9cb895265043c9d9c6b1b8777ee7288bf7a227a93",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49471",
+      "rawUnitTitle": "סיפור נז",
+      "sourceLineIndices": [
+        159,
+        160,
+        161,
+        162
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 159,
+      "unitEndLineIndex": 162,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ad9c929fd4d5dcc303442c8ed331166f7d9ca535d5e8094d4d879d6e10104e23",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49472",
+      "rawUnitTitle": "סיפור נח",
+      "sourceLineIndices": [
+        163,
+        164
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 163,
+      "unitEndLineIndex": 164,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c9312ea087f6c5caf9366982a6b10dbd43921033ee0b7e03427d3d8dfa410aae",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49473",
+      "rawUnitTitle": "סיפור נט",
+      "sourceLineIndices": [
+        165,
+        166
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 165,
+      "unitEndLineIndex": 166,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6347a1bc6f91470241515fce2064d16630a34af5e900cdc7d7028e6e11163744",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49474",
+      "rawUnitTitle": "סיפור ס",
+      "sourceLineIndices": [
+        167,
+        168,
+        169,
+        170,
+        171
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 167,
+      "unitEndLineIndex": 171,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f00e6aafd7b4071eb61684a15b166956d6e9ac3325a956ac7493d0af41f6cba0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49475",
+      "rawUnitTitle": "סיפור סא",
+      "sourceLineIndices": [
+        172,
+        173
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 172,
+      "unitEndLineIndex": 173,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "480951f17aa5ebda193149032834bb01a81773078c68977b6a0930f010e3e340",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49476",
+      "rawUnitTitle": "סיפור סב",
+      "sourceLineIndices": [
+        174,
+        175
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 174,
+      "unitEndLineIndex": 175,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "52abac3636b1fadfb45afa5d0f6bc01a822f163b8dd20491eb81e75c95a7105b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49477",
+      "rawUnitTitle": "סיפור סג",
+      "sourceLineIndices": [
+        176,
+        177
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 176,
+      "unitEndLineIndex": 177,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5dfff61de98e4d965e1f320d6e65729307f0d317110604a4a2f10c4e5be42a75",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49478",
+      "rawUnitTitle": "סיפור סד",
+      "sourceLineIndices": [
+        178,
+        179
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 178,
+      "unitEndLineIndex": 179,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "526949df9f93851061bf8bd37bba623a18ff6ab32588fed7287826ec0f911488",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49479",
+      "rawUnitTitle": "סיפור סה",
+      "sourceLineIndices": [
+        180,
+        181
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 180,
+      "unitEndLineIndex": 181,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "221731384d15712cb70fe26963de39016463a8f27d1c6e41423b89d39ed21fea",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49480",
+      "rawUnitTitle": "סיפור סו",
+      "sourceLineIndices": [
+        182,
+        183
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 182,
+      "unitEndLineIndex": 183,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "be07c1b66c12ab80f48bcb803d04ce628048e1970aecf01aaed2e8dbcd6cc5b3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49481",
+      "rawUnitTitle": "סיפור סז",
+      "sourceLineIndices": [
+        184,
+        185,
+        186
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 184,
+      "unitEndLineIndex": 186,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dd45fd196fa460e4701dcffb47062cc386d109b25650c7b517dc859fd091dc9d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49482",
+      "rawUnitTitle": "סיפור סח",
+      "sourceLineIndices": [
+        187,
+        188
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 187,
+      "unitEndLineIndex": 188,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6effa6dff3a4c3eb12560cff005666641e62c5625c4927c48349cf926ac5012d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49483",
+      "rawUnitTitle": "סיפור סט",
+      "sourceLineIndices": [
+        189,
+        190
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 189,
+      "unitEndLineIndex": 190,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9bf83dabec9cb9c48a5e7242b3e54aa47794100bf69b7c2bfa3b7b6294b16728",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49484",
+      "rawUnitTitle": "סיפור ע",
+      "sourceLineIndices": [
+        191,
+        192
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 191,
+      "unitEndLineIndex": 192,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "607709150d3b8408a2e63669ed53274013cdd2ee6237d51e191b09811ea25baf",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49485",
+      "rawUnitTitle": "סיפור עא",
+      "sourceLineIndices": [
+        193,
+        194
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 193,
+      "unitEndLineIndex": 194,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4eaf5eaeddcda7912d142e0749a7dd867a1be954b40008e3408e147a7ed89cf9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49486",
+      "rawUnitTitle": "סיפור עב",
+      "sourceLineIndices": [
+        195,
+        196
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 195,
+      "unitEndLineIndex": 196,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "95d74d71ce794e1cda4aa1fcaadf5847b309b9aed9c7abe3ca6ae058d7eb7978",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49487",
+      "rawUnitTitle": "סיפור עג",
+      "sourceLineIndices": [
+        197,
+        198
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 197,
+      "unitEndLineIndex": 198,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dfcdc636cbd166716584f08e07c2371ede001e26836958ea429cea271aa5e979",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49488",
+      "rawUnitTitle": "סיפור עד",
+      "sourceLineIndices": [
+        199,
+        200
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 199,
+      "unitEndLineIndex": 200,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "658d32cc2b0f323d22a257be28ee691d1d74eb3c6c771f8622986917b4a56e03",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49489",
+      "rawUnitTitle": "סיפור עה",
+      "sourceLineIndices": [
+        201,
+        202
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 201,
+      "unitEndLineIndex": 202,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0b9ce9017b1205184bf54dfdbe44aee4afcc5ba53b9da260459b094718fd3d7c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49490",
+      "rawUnitTitle": "סיפור עו",
+      "sourceLineIndices": [
+        203,
+        204
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 203,
+      "unitEndLineIndex": 204,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c3fa2ffc21a22500540d9c65d2f9d22ba1ede2f9052d536cd1316317da324b84",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49491",
+      "rawUnitTitle": "סיפור עז",
+      "sourceLineIndices": [
+        205,
+        206
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 205,
+      "unitEndLineIndex": 206,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "bc1fbe09ed5d816853f27dd9a42f839c805498a7df0629e524fbf16952be315f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49492",
+      "rawUnitTitle": "סיפור עח",
+      "sourceLineIndices": [
+        207,
+        208
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 207,
+      "unitEndLineIndex": 208,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8d4572434def92d7f6966eb427e0fbfe9e302e57251488b1312a307c8509b5b3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49493",
+      "rawUnitTitle": "סיפור עט",
+      "sourceLineIndices": [
+        209,
+        210
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 209,
+      "unitEndLineIndex": 210,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4cd35dd5d342189a1a4323dd29a309880f8101a23256c8a33d9cf6314915e1c0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49494",
+      "rawUnitTitle": "סיפור פ",
+      "sourceLineIndices": [
+        211,
+        212
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 211,
+      "unitEndLineIndex": 212,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "84fc467b75eda38bd0002fa69439caee0c6b621ed0d177c08a5996433ecec631",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49495",
+      "rawUnitTitle": "סיפור פא",
+      "sourceLineIndices": [
+        213,
+        214
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 213,
+      "unitEndLineIndex": 214,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "30799448ce2fa53b71c9eb27662603d08ca44a09580316952fdd516843b7e6ce",
+      "rawMembershipSHA256": "4f5dd965b7d05f9b9b347105bfb9f395af30c062e3a0eafef4a6a58c00caf0ed"
+    },
+    {
+      "unitID": "toc:49496",
+      "rawUnitTitle": "סיפור פב",
+      "sourceLineIndices": [
+        215,
+        216
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 215,
+      "unitEndLineIndex": 216,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "865ed48fbbd1dbff997d931a96affbf0bddc33b7e1022cd56757321c13bf3158",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49497",
+      "rawUnitTitle": "סיפור פג",
+      "sourceLineIndices": [
+        217,
+        218
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 217,
+      "unitEndLineIndex": 218,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5b8eb78498789af3d09528d3486043538aa6c3e1c9c23617c690f7287f30d141",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49498",
+      "rawUnitTitle": "סיפור פד",
+      "sourceLineIndices": [
+        219,
+        220,
+        221,
+        222
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 219,
+      "unitEndLineIndex": 222,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5878dcd99dd277bb006bc5ab9a8cdff40ca8dd17b8384c77a4a4e70c330302ed",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49499",
+      "rawUnitTitle": "סיפור פה",
+      "sourceLineIndices": [
+        223,
+        224
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 223,
+      "unitEndLineIndex": 224,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "73869e8ad9273a0a5ebd96709a20f12251f89cf05b2566cd3cf5e26a6ec99ac7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49500",
+      "rawUnitTitle": "סיפור פו",
+      "sourceLineIndices": [
+        225,
+        226,
+        227,
+        228,
+        229
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 225,
+      "unitEndLineIndex": 229,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3169af9aada7570c25f8d140d574f1d5bf366817415ed673cef5f27057ad0f0a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49501",
+      "rawUnitTitle": "סיפור פז",
+      "sourceLineIndices": [
+        230,
+        231,
+        232,
+        233
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 230,
+      "unitEndLineIndex": 233,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "21bb8a33f30ae94e6c5ba071d7f44cdb607b6cd1489a4db7c676cb2749bd9b62",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49502",
+      "rawUnitTitle": "סיפור פח",
+      "sourceLineIndices": [
+        234,
+        235,
+        236,
+        237
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 234,
+      "unitEndLineIndex": 237,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3e8abb1c372573a5242c1843918db71d73e965d779a970f48c9c9384e36d8e4b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49503",
+      "rawUnitTitle": "סיפור פט",
+      "sourceLineIndices": [
+        238,
+        239,
+        240,
+        241
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 238,
+      "unitEndLineIndex": 241,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8c78b36a087f483d1e6616ce3589de2080cb74e7c9ea1b966e0787bb248520d8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49504",
+      "rawUnitTitle": "סיפור צ",
+      "sourceLineIndices": [
+        242,
+        243
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 242,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6858d98139cda5a8c5d7fdc68d585a43fced11ec782571e7fdb0c8816f7c73af",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49505",
+      "rawUnitTitle": "סיפור צא",
+      "sourceLineIndices": [
+        244,
+        245,
+        246
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c4d68c6741728e668ead210674e113b8c8aa18f57b4755c5dc7c6cecb1d7877b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49506",
+      "rawUnitTitle": "סיפור צב",
+      "sourceLineIndices": [
+        247,
+        248,
+        249,
+        250
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 247,
+      "unitEndLineIndex": 250,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "31db34ccc8ca72a701d57a644303df114a3cadd7df99c1b9ca328be05eab3ee8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49507",
+      "rawUnitTitle": "סיפור צג",
+      "sourceLineIndices": [
+        251,
+        252
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 251,
+      "unitEndLineIndex": 252,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7e41ae9c164a1b5c910c9bf552c9f29ccff7f0111726c9d36fb5021d49883f33",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49508",
+      "rawUnitTitle": "סיפור צד",
+      "sourceLineIndices": [
+        253,
+        254
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 253,
+      "unitEndLineIndex": 254,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5ce494965bcf39fad3d8775e6a31510e82451452d83cccec6962f1f947976537",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49509",
+      "rawUnitTitle": "סיפור צה",
+      "sourceLineIndices": [
+        255,
+        256
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 255,
+      "unitEndLineIndex": 256,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6a88aff13183b7050fa302bd063719ca03baedd5a7c4b6bf67677c455a5cfaa7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49510",
+      "rawUnitTitle": "סיפור צו",
+      "sourceLineIndices": [
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 257,
+      "unitEndLineIndex": 265,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8eb0899f9f38f308c1b53e31ce3966ea55da2d084eaae8b76ef5a6fecb8a24e0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49511",
+      "rawUnitTitle": "סיפור צז",
+      "sourceLineIndices": [
+        266,
+        267,
+        268,
+        269
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 266,
+      "unitEndLineIndex": 269,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5ce405595651353590b0a69c315055224939f29e7e493a5e73461a6039c9e2cb",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49512",
+      "rawUnitTitle": "סיפור צח",
+      "sourceLineIndices": [
+        270,
+        271
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 270,
+      "unitEndLineIndex": 271,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a4591655752e14cce4ace6f5c9c0ecd3f4702c7024a269aaf4a065f05cf5120b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49513",
+      "rawUnitTitle": "סיפור צט",
+      "sourceLineIndices": [
+        272,
+        273,
+        274
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 272,
+      "unitEndLineIndex": 274,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "423f4db45c20b3c1a5fca03f16295d84705aac776f356212c6dc79942a6165e4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49514",
+      "rawUnitTitle": "סיפור ק",
+      "sourceLineIndices": [
+        275,
+        276
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 275,
+      "unitEndLineIndex": 276,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "af6269033362c02ccd6a9b1604090d278527f0ebafa934ac28045dbe47d03544",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49515",
+      "rawUnitTitle": "סיפור קא",
+      "sourceLineIndices": [
+        277,
+        278,
+        279
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 277,
+      "unitEndLineIndex": 279,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "2435d96dfa971d22af0fed2ae4ea09e699e165806678e6f40023f06a65fd9308",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49516",
+      "rawUnitTitle": "סיפור קב",
+      "sourceLineIndices": [
+        280,
+        281
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 280,
+      "unitEndLineIndex": 281,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e7fba19df49a2a96971f3243bff349d323bc15f1da787ab871ace5d2a39e1c39",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49517",
+      "rawUnitTitle": "סיפור קג",
+      "sourceLineIndices": [
+        282,
+        283
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 282,
+      "unitEndLineIndex": 283,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6194b56856ae279c73276892dcb72ebf6a6b258725696326dc5fde837d58fba2",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49518",
+      "rawUnitTitle": "סיפור קד",
+      "sourceLineIndices": [
+        284,
+        285
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 284,
+      "unitEndLineIndex": 285,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b6709c0d5d5fe75477234da0214c119e13083a445f57ceea873b4c58d23223b5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49519",
+      "rawUnitTitle": "סיפור קה",
+      "sourceLineIndices": [
+        286,
+        287
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 286,
+      "unitEndLineIndex": 287,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1b3439960d3648b18b6bf0017e6315d6c9ccb0a0d5bb0c958df2adc7491d0bc3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49520",
+      "rawUnitTitle": "סיפור קו",
+      "sourceLineIndices": [
+        288,
+        289
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 288,
+      "unitEndLineIndex": 289,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5dbe7b1f6b37cd60cd6f20799f95957185b4a83da7b6efe46758e440b6208e5e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49521",
+      "rawUnitTitle": "סיפור קז",
+      "sourceLineIndices": [
+        290,
+        291
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 290,
+      "unitEndLineIndex": 291,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4faa5cec7f598296d73eb3329bc43ade6ab5fd663c08b7975516055e35ef9a2d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49522",
+      "rawUnitTitle": "סיפור קח",
+      "sourceLineIndices": [
+        292,
+        293
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 292,
+      "unitEndLineIndex": 293,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "2f4f9714df832b85dcbccf82335fb70534a6442797f3b0f142042dc42ab94f94",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49523",
+      "rawUnitTitle": "סיפור קט",
+      "sourceLineIndices": [
+        294,
+        295
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 294,
+      "unitEndLineIndex": 295,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "775e5fde940cbb7aff917c0cf14888b5e692e5b40889c5fe5a0ab648bc5047d8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49524",
+      "rawUnitTitle": "סיפור קי",
+      "sourceLineIndices": [
+        296,
+        297,
+        298
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 296,
+      "unitEndLineIndex": 298,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "21c4a1ae0dc42f1c48a9fbe98da6426b0a3ee7128ddaf489257bcfd85feb4bad",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49525",
+      "rawUnitTitle": "סיפור קיא",
+      "sourceLineIndices": [
+        299,
+        300
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 299,
+      "unitEndLineIndex": 300,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dff31a882bce55c4d559b4fd5eaabdf15eb6eb21f5b5b7a3375172abdc590496",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49526",
+      "rawUnitTitle": "סיפור קיב",
+      "sourceLineIndices": [
+        301,
+        302,
+        303,
+        304
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 301,
+      "unitEndLineIndex": 304,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "daf5e00b733f7abc74fe3c39e029a01a8cefa447a36e3a4394730bc2fb53461f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49527",
+      "rawUnitTitle": "סיפור קיג",
+      "sourceLineIndices": [
+        305,
+        306
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 305,
+      "unitEndLineIndex": 306,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9ddd4c184a9b9534f9ff1624bb665cec10c63421d4fd05a485d445da6e8ff135",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49528",
+      "rawUnitTitle": "סיפור קיד",
+      "sourceLineIndices": [
+        307,
+        308
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 307,
+      "unitEndLineIndex": 308,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b44be2f18fc256f20710ecd2f3f02beb574a8d5ae23577dc236bba1e5d2c0ee4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49529",
+      "rawUnitTitle": "סיפור קטו",
+      "sourceLineIndices": [
+        309,
+        310
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 309,
+      "unitEndLineIndex": 310,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1cf033abbcbcac2e79aba06fc2a5c2d02416c2c819441bfc954162ceade9517f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49530",
+      "rawUnitTitle": "סיפור קטז",
+      "sourceLineIndices": [
+        311,
+        312
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 311,
+      "unitEndLineIndex": 312,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5662d85cc42326e21bfddb2b55d7ae3bfab334b5314879148fd93de7d32fe6be",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49531",
+      "rawUnitTitle": "סיפור קיז",
+      "sourceLineIndices": [
+        313,
+        314
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 313,
+      "unitEndLineIndex": 314,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "92a315a9494f4fbea8018449b0d0506ce949458bc11854ee0d17f81e56807f29",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49532",
+      "rawUnitTitle": "סיפור קיח",
+      "sourceLineIndices": [
+        315,
+        316
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 315,
+      "unitEndLineIndex": 316,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "64af82e6e1e008a156fb56c4bd4a6b26e84c01bfef28c950861142eae68f5070",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49533",
+      "rawUnitTitle": "סיפור קיט",
+      "sourceLineIndices": [
+        317,
+        318
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 317,
+      "unitEndLineIndex": 318,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "89e9d53c36092db51c5477ffd9c297360ce3545af942902f763b7fa74683347a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49534",
+      "rawUnitTitle": "סיפור קכ",
+      "sourceLineIndices": [
+        319,
+        320
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 319,
+      "unitEndLineIndex": 320,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dfb28f4b279993a1503dd4e21f1e9a8990ce9d149a8dbda3754f3487ad3843ef",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49535",
+      "rawUnitTitle": "סיפור קכא",
+      "sourceLineIndices": [
+        321,
+        322
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 321,
+      "unitEndLineIndex": 322,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ea428babf0ce800d8cdc6b34312d9063065bc0677b10a8969069eddec98f86cc",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49536",
+      "rawUnitTitle": "סיפור קכב",
+      "sourceLineIndices": [
+        323,
+        324
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 323,
+      "unitEndLineIndex": 324,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "39f6723a190cbb23bb5570a8c892ef7c1f598524744376b10d4bebb6d155c5a2",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49537",
+      "rawUnitTitle": "סיפור קכג",
+      "sourceLineIndices": [
+        325,
+        326,
+        327
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 325,
+      "unitEndLineIndex": 327,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "2d3f43f03d31e41e22f5e5cb89486bcce59d4db50b551ed667398ec43a522d8d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49538",
+      "rawUnitTitle": "סיפור קכד",
+      "sourceLineIndices": [
+        328,
+        329
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 328,
+      "unitEndLineIndex": 329,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "da280c03c5baa6b75ff3609cf1cf50d31ea8c20817d28d450c1d6cb8b280bdc1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49539",
+      "rawUnitTitle": "סיפור קכה",
+      "sourceLineIndices": [
+        330,
+        331
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 330,
+      "unitEndLineIndex": 331,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "16ec0a2f08145720052a44de1818e99de99ea1f1120ef272d94029a6af36e3f1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49540",
+      "rawUnitTitle": "סיפור קכו",
+      "sourceLineIndices": [
+        332,
+        333
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 332,
+      "unitEndLineIndex": 333,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c26e0c39fa21a468c7434fcab5111d82af5108c289d80d7762fd87dae924301e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49541",
+      "rawUnitTitle": "סיפור קכז",
+      "sourceLineIndices": [
+        334,
+        335
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 334,
+      "unitEndLineIndex": 335,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "57ee3044a038a5b72c05da3c26bf4c27815ffdc903d81ea4c4c6e8ecdef31255",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49542",
+      "rawUnitTitle": "סיפור קכח",
+      "sourceLineIndices": [
+        336,
+        337
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 336,
+      "unitEndLineIndex": 337,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3f301b83712f2863c3c4937f083ad26a80efe141e798a0b4a372fe41c9ca14f8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49543",
+      "rawUnitTitle": "סיפור קכט",
+      "sourceLineIndices": [
+        338,
+        339
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 338,
+      "unitEndLineIndex": 339,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8ffb2f8674d8bf8fb348790ab4e3e5487fdd3d0cf4ddf97fce83991355df7e3c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49544",
+      "rawUnitTitle": "סיפור קל",
+      "sourceLineIndices": [
+        340,
+        341
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 340,
+      "unitEndLineIndex": 341,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "346bbf1b9d71e8fb94ad68cb65a48a867617fcd1602d230976b9525edcba7498",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49545",
+      "rawUnitTitle": "סיפור קלא",
+      "sourceLineIndices": [
+        342,
+        343
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 342,
+      "unitEndLineIndex": 343,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e6cb84a3e60ee28e85c03147ccd3a1b3125dbc5798d26de6cbadd14959f42011",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49546",
+      "rawUnitTitle": "סיפור קלב",
+      "sourceLineIndices": [
+        344,
+        345
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 344,
+      "unitEndLineIndex": 345,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "48a354234378d2e030cf18d7db80efa0985ab0a51df1c5288426c8b033348964",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49547",
+      "rawUnitTitle": "סיפור קלג",
+      "sourceLineIndices": [
+        346,
+        347,
+        348
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 346,
+      "unitEndLineIndex": 348,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "00a50799f66b33c54fb24bc48b25129091a794ea8fcce7354441df7eebd6fd59",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49548",
+      "rawUnitTitle": "סיפור קלד",
+      "sourceLineIndices": [
+        349,
+        350
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 349,
+      "unitEndLineIndex": 350,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "99973e4c41f98a3094058384d3099c46b0edd3ce63fbfb5877b90b08515e7ba8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49549",
+      "rawUnitTitle": "סיפור קלה",
+      "sourceLineIndices": [
+        351,
+        352,
+        353
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 351,
+      "unitEndLineIndex": 353,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "944d050a2370022ba73ec3cad8a1097e48ef8f5971415e024d93ebc31405e5ca",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49550",
+      "rawUnitTitle": "סיפור קלו",
+      "sourceLineIndices": [
+        354,
+        355
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 354,
+      "unitEndLineIndex": 355,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ff463b4d8d63ad2218635839cdd7cf9f013ab6a8bfbc8db24e243948f7080418",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49551",
+      "rawUnitTitle": "סיפור קלז",
+      "sourceLineIndices": [
+        356,
+        357
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 356,
+      "unitEndLineIndex": 357,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c5df2db1b56912056103232f75d51bedc6f4ce6ef12a84f4d5cabbce3257ecda",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49552",
+      "rawUnitTitle": "סיפור קלח",
+      "sourceLineIndices": [
+        358,
+        359,
+        360
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 358,
+      "unitEndLineIndex": 360,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "aef3565c2629a954c7e36344962518a7e60a58557bf315444ff7884db8b76171",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49553",
+      "rawUnitTitle": "סיפור קלט",
+      "sourceLineIndices": [
+        361,
+        362
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 361,
+      "unitEndLineIndex": 362,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ae2d469f550b89e9fbec8867a7375f64e844da725369ca3e873dd4169a7c9179",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49554",
+      "rawUnitTitle": "סיפור קמ",
+      "sourceLineIndices": [
+        363,
+        364
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 363,
+      "unitEndLineIndex": 364,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7b87213b1278ba8106b90ad3f971699c7f56b0a9b8da3eb568084e34e18682e8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49555",
+      "rawUnitTitle": "סיפור קמא",
+      "sourceLineIndices": [
+        365,
+        366
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 365,
+      "unitEndLineIndex": 366,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d9c46a96feb309f9f1e5ee00ab1b99a3c852b9bff367aa6c5f3bc26d62d7068c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49556",
+      "rawUnitTitle": "סיפור קמב",
+      "sourceLineIndices": [
+        367,
+        368
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 367,
+      "unitEndLineIndex": 368,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3cfcae3302bdc3dd32be200bc6053841abbf13764efcc2fec52aeaecf09459b0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49557",
+      "rawUnitTitle": "סיפור קמג",
+      "sourceLineIndices": [
+        369,
+        370
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 369,
+      "unitEndLineIndex": 370,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "08282e81f93508dfd7a4a2605ab1a2ad1f979ac7798ab5b9ce6b32288f5279fb",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49558",
+      "rawUnitTitle": "סיפור קמד",
+      "sourceLineIndices": [
+        371,
+        372
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 371,
+      "unitEndLineIndex": 372,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8dbf2bf5b3630892c0431b47442e29f833f5b52276db8822f934198c47b6e24e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49559",
+      "rawUnitTitle": "סיפור קמה",
+      "sourceLineIndices": [
+        373,
+        374
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 373,
+      "unitEndLineIndex": 374,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9d2bb1a64c6271d325e6cf40bc5f38fb4fdd17937dfc51b3d85b3d9fb5185e00",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49560",
+      "rawUnitTitle": "סיפור קמו",
+      "sourceLineIndices": [
+        375,
+        376
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 375,
+      "unitEndLineIndex": 376,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "cc1c058689ca917c92a0c13046be7e1276ce1b5fb78a7dba1517501fba978c14",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49561",
+      "rawUnitTitle": "סיפור קמז",
+      "sourceLineIndices": [
+        377,
+        378,
+        379
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 377,
+      "unitEndLineIndex": 379,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "fc953ec21571732d736dbcff9bec4d173d66235ad011ecbe451a37acc0a894f2",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49562",
+      "rawUnitTitle": "סיפור קמח",
+      "sourceLineIndices": [
+        380,
+        381
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 380,
+      "unitEndLineIndex": 381,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0fd57b528fdf117866fd7db98752fdf64a8a04cbffa0a8b502626f3348ed0da4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49563",
+      "rawUnitTitle": "סיפור קמט",
+      "sourceLineIndices": [
+        382,
+        383
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 382,
+      "unitEndLineIndex": 383,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dd9a33c9f621f41cbdbf8500b8de0ab658f9d50be2445324a1387424cde4ef7b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49564",
+      "rawUnitTitle": "סיפור קנ",
+      "sourceLineIndices": [
+        384,
+        385
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 384,
+      "unitEndLineIndex": 385,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "752e4c8a06be5065057a7adcddcb37090f13321bc32088eccf33d44f0ec0be6e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49565",
+      "rawUnitTitle": "סיפור קנא",
+      "sourceLineIndices": [
+        386,
+        387
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 386,
+      "unitEndLineIndex": 387,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e0f54f4d969a607a9c1644e1cfe5bf91e0e9ca4cd5e858dcc8d6901c2607bfbe",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49566",
+      "rawUnitTitle": "סיפור קנב",
+      "sourceLineIndices": [
+        388,
+        389
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 388,
+      "unitEndLineIndex": 389,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0af512666b9fa4d8342b9c8234a64afc800ff864535041aeab32ed3921cad6f1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49567",
+      "rawUnitTitle": "סיפור קנג",
+      "sourceLineIndices": [
+        390,
+        391
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 390,
+      "unitEndLineIndex": 391,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "99528d485d421de739f85d06a5978916531e981e4f505a2e1e636ee14e5cb754",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49568",
+      "rawUnitTitle": "סיפור קנד",
+      "sourceLineIndices": [
+        392,
+        393
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 392,
+      "unitEndLineIndex": 393,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5c9e95b262682c6cb8816d3ebdbbb6771de5de65abd53dee1e2b625541c91423",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49569",
+      "rawUnitTitle": "סיפור קנה",
+      "sourceLineIndices": [
+        394,
+        395
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 394,
+      "unitEndLineIndex": 395,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "20624b27e1a982ba69a35d410c4f1c4844a82c82c68b135a33ff8ea55fd82dc8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49570",
+      "rawUnitTitle": "סיפור קנו",
+      "sourceLineIndices": [
+        396,
+        397,
+        398
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 396,
+      "unitEndLineIndex": 398,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0f9d786bcaf3800ec23c359e6fa1e45939028093411984ad3b15cebffc9a38bd",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49571",
+      "rawUnitTitle": "סיפור קנז",
+      "sourceLineIndices": [
+        399,
+        400,
+        401
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 399,
+      "unitEndLineIndex": 401,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "57a26c650eb00799b71948b76a38e3c78f03c0ecb820ef18b4327550a91b2571",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49572",
+      "rawUnitTitle": "סיפור קנח",
+      "sourceLineIndices": [
+        402,
+        403
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 402,
+      "unitEndLineIndex": 403,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6e5c7f0e0c72f2a59538fdb5044eddaa8ceec8cd6b7127da09f97466e5faf0ce",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49573",
+      "rawUnitTitle": "סיפור קנט",
+      "sourceLineIndices": [
+        404,
+        405
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 404,
+      "unitEndLineIndex": 405,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "201781fe41dd7988eafc303184564e0e4b89638d50528343e0e7954158797b11",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49574",
+      "rawUnitTitle": "סיפור קס",
+      "sourceLineIndices": [
+        406,
+        407,
+        408
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 406,
+      "unitEndLineIndex": 408,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a84275bdafe3ced7df6650b4471d712ce7ae630b1e2bbab895bde73cca21c9f0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49575",
+      "rawUnitTitle": "סיפור קסא",
+      "sourceLineIndices": [
+        409,
+        410
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 409,
+      "unitEndLineIndex": 410,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3d05c515979c9ef2b21ec6987d19416ef921f913b17e78e607ce669b1e1e4cf9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49576",
+      "rawUnitTitle": "סיפור קסב",
+      "sourceLineIndices": [
+        411,
+        412
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 411,
+      "unitEndLineIndex": 412,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5cad34acaff672f640eaa8ae930621c984de341256b5ddb8adb42273bb7d696b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49577",
+      "rawUnitTitle": "סיפור קסג",
+      "sourceLineIndices": [
+        413,
+        414
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 413,
+      "unitEndLineIndex": 414,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dbdd2b43b6e8551a7674be36623defaf5b9a8f7967a6b62cc0f32b13d6227aa4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49578",
+      "rawUnitTitle": "סיפור קסד",
+      "sourceLineIndices": [
+        415,
+        416
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 415,
+      "unitEndLineIndex": 416,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "88b2da397baeafdeb7f57f2eff9e51101891e8ec64ad7a015aef31c25de44c14",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49579",
+      "rawUnitTitle": "סיפור קסה",
+      "sourceLineIndices": [
+        417,
+        418
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 417,
+      "unitEndLineIndex": 418,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7f9af1d60a9fcb1acced883599cb6c23a681420a8f0118d7fb7a82a5fb75c752",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49580",
+      "rawUnitTitle": "סיפור קסו",
+      "sourceLineIndices": [
+        419,
+        420
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 419,
+      "unitEndLineIndex": 420,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "afc555c70c01c94d4d3f83be3176e317d2b1167c6e91191c6358c9517ef697ea",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49581",
+      "rawUnitTitle": "סיפור קסז",
+      "sourceLineIndices": [
+        421,
+        422
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 421,
+      "unitEndLineIndex": 422,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "fe44c42f7707a5004039416627b57774ae684ffee97f4049bce62207fba50138",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49582",
+      "rawUnitTitle": "סיפור קסח",
+      "sourceLineIndices": [
+        423,
+        424
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 423,
+      "unitEndLineIndex": 424,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3f31058c09e55705ff243fa5f3ee8175989ec9c84211bc6bd66851687f897496",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49583",
+      "rawUnitTitle": "סיפור קסט",
+      "sourceLineIndices": [
+        425,
+        426
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 425,
+      "unitEndLineIndex": 426,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e95d2d7b0da487305ebe1f2b3df8708eb5dc31dfcb31ad746338294d4d3547e1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49584",
+      "rawUnitTitle": "סיפור קע",
+      "sourceLineIndices": [
+        427,
+        428,
+        429,
+        430,
+        431
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 427,
+      "unitEndLineIndex": 431,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5633f914e912f72a21fe6f33cb9e8f2c62a8db7d07687e27a028c90bd7c4c289",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49585",
+      "rawUnitTitle": "סיפור קעא",
+      "sourceLineIndices": [
+        432,
+        433
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 432,
+      "unitEndLineIndex": 433,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "be5fd35eb7d93d031693d17edd146b5f989f342a9ef7cc54ea0639e7922b061b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49586",
+      "rawUnitTitle": "סיפור קעב",
+      "sourceLineIndices": [
+        434,
+        435,
+        436,
+        437,
+        438,
+        439
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 434,
+      "unitEndLineIndex": 439,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a6aaca0d69c6de21438be74a6fe2e4a00b51d3737d8653f507f4b488aa274cac",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49587",
+      "rawUnitTitle": "סיפור קעג",
+      "sourceLineIndices": [
+        440,
+        441,
+        442,
+        443,
+        444,
+        445
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 440,
+      "unitEndLineIndex": 445,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8382dbe0445655c7b80a6cd1a3aaf92324dff018b99a1cf5d99b5fa8fe14bc40",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49588",
+      "rawUnitTitle": "סיפור קעד",
+      "sourceLineIndices": [
+        446,
+        447,
+        448
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 446,
+      "unitEndLineIndex": 448,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "67b14e8dd49f007b16c773023735cc92900f6aaec667b906f0f3a32acbaa156d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49589",
+      "rawUnitTitle": "סיפור קעה",
+      "sourceLineIndices": [
+        449,
+        450
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 449,
+      "unitEndLineIndex": 450,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8658c6d78d87a243023e765dd30d6126fe326c70185bdbd30e586e1efe5dcb3d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49590",
+      "rawUnitTitle": "סיפור קעו",
+      "sourceLineIndices": [
+        451,
+        452
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 451,
+      "unitEndLineIndex": 452,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c70717ee64874d31d144dfd58682ec46828f8fed0bdd7cf0e713b8ea9d496377",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49591",
+      "rawUnitTitle": "סיפור קעז",
+      "sourceLineIndices": [
+        453,
+        454
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 453,
+      "unitEndLineIndex": 454,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e95231f36c4b54e1a46d2dc086dc5e802b46cae50ba0a07567a01b4481d87a2f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49592",
+      "rawUnitTitle": "סיפור קעח",
+      "sourceLineIndices": [
+        455,
+        456
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 455,
+      "unitEndLineIndex": 456,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dc36ce971e0d6dc5cb264a0d1f0b70e8809db7d9b2c977793f074bff6e625156",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49593",
+      "rawUnitTitle": "סיפור קעט",
+      "sourceLineIndices": [
+        457,
+        458
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 457,
+      "unitEndLineIndex": 458,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "81ec164e47dd54c83688de5395e2c9dcb2ff49c347df548beb7c668e7250bbf3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49594",
+      "rawUnitTitle": "סיפור קפ",
+      "sourceLineIndices": [
+        459,
+        460,
+        461
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 459,
+      "unitEndLineIndex": 461,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "671f49580776b9ecbbf1b734cc26150f4c16cf8257146fdc15c8885fa0614b5f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49595",
+      "rawUnitTitle": "סיפור קפא",
+      "sourceLineIndices": [
+        462,
+        463,
+        464
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 462,
+      "unitEndLineIndex": 464,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b6ae398f802a0323f324b936053d7aa72d93bacc789b487c3ead03ecf65ee7a8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49596",
+      "rawUnitTitle": "סיפור קפב",
+      "sourceLineIndices": [
+        465,
+        466
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 465,
+      "unitEndLineIndex": 466,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "69e58cbbb1248a99ce5811eb86e0ef8377a8f092c539d1ab8223d48e350dbc85",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49597",
+      "rawUnitTitle": "סיפור קפג",
+      "sourceLineIndices": [
+        467,
+        468,
+        469
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 467,
+      "unitEndLineIndex": 469,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "650d02dcc3f6f890ff31239ad2906db7cfef8460d024283e28459d43b9561acb",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49598",
+      "rawUnitTitle": "סיפור קפד",
+      "sourceLineIndices": [
+        470,
+        471,
+        472,
+        473,
+        474,
+        475
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 470,
+      "unitEndLineIndex": 475,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b293c332283c2de97b07aa889587c4055f2d16de72987635a3a1f22cbf374b1b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49599",
+      "rawUnitTitle": "סיפור קפה",
+      "sourceLineIndices": [
+        476,
+        477
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 476,
+      "unitEndLineIndex": 477,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5e926a5956e0a3d5ce9aaa89f8b6b0965265b990164564eb5aa0e885e4894a66",
+      "rawMembershipSHA256": "a8f06e11a69b36438ed5931a18b9e1938898157a31c21fd94e7f25631f2ae13b"
+    },
+    {
+      "unitID": "toc:49600",
+      "rawUnitTitle": "סיפור קפו",
+      "sourceLineIndices": [
+        478,
+        479,
+        480
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 478,
+      "unitEndLineIndex": 480,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1f18817ce224df19f00f9e8125b8e2d59fa5e002a10a2b7932dd661d3460be3c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49601",
+      "rawUnitTitle": "סיפור קפז",
+      "sourceLineIndices": [
+        481,
+        482,
+        483,
+        484,
+        485
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 481,
+      "unitEndLineIndex": 485,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "69129bdd3c11819d2328acea70bfa7ef900364683d04bddceb7369d9b2aea0da",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49602",
+      "rawUnitTitle": "סיפור קפח",
+      "sourceLineIndices": [
+        486,
+        487,
+        488
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 486,
+      "unitEndLineIndex": 488,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4dd217e42422cc8eed67b1e856895d0bf2121f604d8c498c4eac41792611c3c7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49603",
+      "rawUnitTitle": "סיפור קפט",
+      "sourceLineIndices": [
+        489,
+        490
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 489,
+      "unitEndLineIndex": 490,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "620cd3703cae6a72530c4a82d3accd3196d480d9e6dda50f245612312dae4701",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49604",
+      "rawUnitTitle": "סיפור קצ",
+      "sourceLineIndices": [
+        491,
+        492
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 491,
+      "unitEndLineIndex": 492,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5ea465e8b28b9c39381896402dd5e26f74295fa824df234be5bfdd4473079259",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49605",
+      "rawUnitTitle": "סיפור קצא",
+      "sourceLineIndices": [
+        493,
+        494
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 493,
+      "unitEndLineIndex": 494,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "93b2fec16d77c566b18e5b7a156d0e0398642a490b2015ae2e543974a53cad9e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49606",
+      "rawUnitTitle": "סיפור קצב",
+      "sourceLineIndices": [
+        495,
+        496,
+        497,
+        498
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 495,
+      "unitEndLineIndex": 498,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5ca52a0b8194a83955097f566c7058bfd2c8900d16266138c3947e13595f9ffa",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49607",
+      "rawUnitTitle": "סיפור קצג",
+      "sourceLineIndices": [
+        499,
+        500
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 499,
+      "unitEndLineIndex": 500,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a226d2ee791f8b556c30f502d1b9e59c8bf27325377c6ae40c965ae9d006f4a2",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49608",
+      "rawUnitTitle": "סיפור קצד",
+      "sourceLineIndices": [
+        501,
+        502
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 501,
+      "unitEndLineIndex": 502,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "785682d8196105ea330abd602bf74660c4d8ea87d4c24737a5d0fcb2e99363ca",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49609",
+      "rawUnitTitle": "סיפור קצה",
+      "sourceLineIndices": [
+        503,
+        504
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 503,
+      "unitEndLineIndex": 504,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1bd73b1e7a28d35b21223f9ad6d2e3ee87b2407c1fe1c0564aeb6da52b808508",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49610",
+      "rawUnitTitle": "סיפור קצו",
+      "sourceLineIndices": [
+        505,
+        506
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 505,
+      "unitEndLineIndex": 506,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dc45cccd33b99d9df1072b4e653e7737f7db21e69d47564db7badcfb638a0e4f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49611",
+      "rawUnitTitle": "סיפור קצז",
+      "sourceLineIndices": [
+        507,
+        508,
+        509,
+        510,
+        511,
+        512
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 507,
+      "unitEndLineIndex": 512,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "95cc0685db7917bb385bd23c77e751b1ac72f09d4e04e68882bd53d2717aac4e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49612",
+      "rawUnitTitle": "סיפור קצח",
+      "sourceLineIndices": [
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 513,
+      "unitEndLineIndex": 519,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e81eed2d76dc161cc7c00f6afed979de4210ad7b5e7e8136cf4df8a7ce479b52",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49613",
+      "rawUnitTitle": "סיפור קצט",
+      "sourceLineIndices": [
+        520,
+        521
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 520,
+      "unitEndLineIndex": 521,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "eda0b10158cb98084b6e45588e7f400f15e719dd0199b966d04ec5e262ecb926",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49614",
+      "rawUnitTitle": "סיפור ר",
+      "sourceLineIndices": [
+        522,
+        523
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 522,
+      "unitEndLineIndex": 523,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3c81d0f2fe9dc18b78e166f7e6a81f6018607ca68a3f079a1f77d632d3574279",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49615",
+      "rawUnitTitle": "סיפור רא",
+      "sourceLineIndices": [
+        524,
+        525,
+        526
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 524,
+      "unitEndLineIndex": 526,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c73bb8097795d505a25ecddae4389079b7702394eb5d11229ed59c337f0a25ed",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49616",
+      "rawUnitTitle": "סיפור רב",
+      "sourceLineIndices": [
+        527,
+        528
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 527,
+      "unitEndLineIndex": 528,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9b80fca52e19934ba4c0a4fec3943a94a50485aa38ded0657c42f23c52c0c81f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49617",
+      "rawUnitTitle": "סיפור רג",
+      "sourceLineIndices": [
+        529,
+        530,
+        531
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 529,
+      "unitEndLineIndex": 531,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "83bc2cfec1647cbe355f886dc6b5bbd4b4b4b80d6ab03285ade6de810101283c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49618",
+      "rawUnitTitle": "סיפור רד",
+      "sourceLineIndices": [
+        532,
+        533
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 532,
+      "unitEndLineIndex": 533,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8f1a1788912fcaf396c7a7f255c33a23da8d0e937c1233c884e139f7ea69ac47",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49619",
+      "rawUnitTitle": "סיפור רה",
+      "sourceLineIndices": [
+        534,
+        535
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 534,
+      "unitEndLineIndex": 535,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "84801e47f393ab67d64f5c7f7ca1e0a02037cda4c26d227885cbabb5cd86f607",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49620",
+      "rawUnitTitle": "סיפור רו",
+      "sourceLineIndices": [
+        536,
+        537
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 536,
+      "unitEndLineIndex": 537,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "94c4bb4b308fd751e63106188f3b2e294a18f732bf8c79d371c24c383f8287c5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49621",
+      "rawUnitTitle": "סיפור רז",
+      "sourceLineIndices": [
+        538,
+        539,
+        540,
+        541,
+        542,
+        543
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 538,
+      "unitEndLineIndex": 543,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9b9e08b013223e315aabf0e78be9d05812a6419d9ce2fe04dd9dfedf2bfc17cf",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49622",
+      "rawUnitTitle": "סיפור רח",
+      "sourceLineIndices": [
+        544,
+        545
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 544,
+      "unitEndLineIndex": 545,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e8e8da53f3c97b9368020a5be0c03793cb8c79d07f8230bd9497cc75fb95ad6e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49623",
+      "rawUnitTitle": "סיפור רט",
+      "sourceLineIndices": [
+        546,
+        547,
+        548,
+        549
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 546,
+      "unitEndLineIndex": 549,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "71b02949273c0dd2113e1c4e79061fa7fa854a747d6fc2e2f5815b89bc893275",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:49624",
+      "rawUnitTitle": "סיפור רי",
+      "sourceLineIndices": [
+        550,
+        551,
+        552,
+        553,
+        554
+      ],
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "mode": "chapter",
+      "unitStartLineIndex": 550,
+      "unitEndLineIndex": 554,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "238ef836ebc43fce8db5440c357e069bd3edaa401939fb44c198b9a686c00a57",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

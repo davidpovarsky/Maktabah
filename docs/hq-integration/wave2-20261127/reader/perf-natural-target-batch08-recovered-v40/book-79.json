@@ -1,0 +1,80 @@
+{
+  "bookID": 79,
+  "bookTitle": "משנה הוריות",
+  "declaredTotalLines": 24,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.02520198654383421,
+  "resolvedAnchorRows": 1002,
+  "units": [
+    {
+      "unitID": "toc:1314",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "bookID": 79,
+      "bookTitle": "משנה הוריות",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 6,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 308,
+      "sourceIndicesSHA256": "d71a595b6e83e7180caf80e813a0e1b08c48963fd436c20da78927c8f489902a",
+      "rawMembershipSHA256": "fbb6ad73afeadffcec293234abbb72691038afec2941107e6bb54b0751cdb4f2"
+    },
+    {
+      "unitID": "toc:1315",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "bookID": 79,
+      "bookTitle": "משנה הוריות",
+      "mode": "chapter",
+      "unitStartLineIndex": 7,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 341,
+      "sourceIndicesSHA256": "dd6f3ae29ce79743652d9e3cf1e09e26fb9310b48e6ab840a69e77853a3def70",
+      "rawMembershipSHA256": "d4edc77d2a1e20c685d4c56d2e2a2564d7d64a697c6f64838f95251cc9a98bdc"
+    },
+    {
+      "unitID": "toc:1316",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "bookID": 79,
+      "bookTitle": "משנה הוריות",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 23,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 344,
+      "sourceIndicesSHA256": "6fe1ee632f029f6603dce01ee426b64d65c0fca7dac6c9ede6471bebad16f2e8",
+      "rawMembershipSHA256": "eecfe0a1f481651ca6b0a1b435d8d4ef2ca32cfc09797050eb9f669ab41f4500"
+    }
+  ]
+}

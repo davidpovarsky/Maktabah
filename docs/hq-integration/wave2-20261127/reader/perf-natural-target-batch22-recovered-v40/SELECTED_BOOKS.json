@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 1098 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 1099,
+      "bookTitle": "לחם שמים על משנה קידושין",
+      "declaredTotalLines": 141,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1100,
+      "bookTitle": "לחם שמים על משנה יבמות",
+      "declaredTotalLines": 251,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1101,
+      "bookTitle": "לחם שמים על משנה כתובות",
+      "declaredTotalLines": 223,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1103,
+      "bookTitle": "לחם שמים על משנה נדרים",
+      "declaredTotalLines": 142,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1104,
+      "bookTitle": "לחם שמים על משנה גיטין",
+      "declaredTotalLines": 176,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1105,
+      "bookTitle": "לחם שמים על משנה מכות",
+      "declaredTotalLines": 116,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1106,
+      "bookTitle": "לחם שמים על משנה שבועות",
+      "declaredTotalLines": 112,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1107,
+      "bookTitle": "לחם שמים על פרקי אבות",
+      "declaredTotalLines": 499,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1108,
+      "bookTitle": "לחם שמים על משנה עדיות",
+      "declaredTotalLines": 116,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1110,
+      "bookTitle": "לחם שמים על משנה בבא בתרא",
+      "declaredTotalLines": 183,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1111,
+      "bookTitle": "לחם שמים על משנה סנהדרין",
+      "declaredTotalLines": 258,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1113,
+      "bookTitle": "לחם שמים על משנה בבא מציעא",
+      "declaredTotalLines": 282,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1114,
+      "bookTitle": "לחם שמים על משנה בבא קמא",
+      "declaredTotalLines": 215,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1115,
+      "bookTitle": "לחם שמים על משנה ברכות",
+      "declaredTotalLines": 350,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1116,
+      "bookTitle": "לחם שמים על משנה פאה",
+      "declaredTotalLines": 408,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1119,
+      "bookTitle": "לחם שמים על משנה מעשר שני",
+      "declaredTotalLines": 120,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1121,
+      "bookTitle": "לחם שמים על משנה תרומות",
+      "declaredTotalLines": 374,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1122,
+      "bookTitle": "לחם שמים על משנה שביעית",
+      "declaredTotalLines": 291,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1123,
+      "bookTitle": "לחם שמים על משנה מעשרות",
+      "declaredTotalLines": 188,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1124,
+      "bookTitle": "לחם שמים על משנה כלאים",
+      "declaredTotalLines": 143,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1125,
+      "bookTitle": "לחם שמים על משנה דמאי",
+      "declaredTotalLines": 199,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1126,
+      "bookTitle": "לחם שמים על משנה מקואת",
+      "declaredTotalLines": 131,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1128,
+      "bookTitle": "לחם שמים על משנה טהרות",
+      "declaredTotalLines": 136,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1130,
+      "bookTitle": "לחם שמים על משנה פרה",
+      "declaredTotalLines": 211,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1131,
+      "bookTitle": "לחם שמים על משנה אהלות",
+      "declaredTotalLines": 225,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1132,
+      "bookTitle": "לחם שמים על משנה כלים",
+      "declaredTotalLines": 422,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1133,
+      "bookTitle": "לחם שמים על משנה נגעים",
+      "declaredTotalLines": 243,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1135,
+      "bookTitle": "לחם שמים על משנה מכשירין",
+      "declaredTotalLines": 117,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1136,
+      "bookTitle": "לחם שמים על משנה נדה",
+      "declaredTotalLines": 173,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1139,
+      "bookTitle": "לחם שמים על משנה ערכין",
+      "declaredTotalLines": 139,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1140,
+      "bookTitle": "לחם שמים על משנה תמיד",
+      "declaredTotalLines": 206,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1142,
+      "bookTitle": "לחם שמים על משנה מנחות",
+      "declaredTotalLines": 132,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1145,
+      "bookTitle": "לחם שמים על משנה מידות",
+      "declaredTotalLines": 125,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1146,
+      "bookTitle": "לחם שמים על משנה חולין",
+      "declaredTotalLines": 166,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1147,
+      "bookTitle": "לחם שמים על משנה זבחים",
+      "declaredTotalLines": 144,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1148,
+      "bookTitle": "לחם שמים על משנה בכורות",
+      "declaredTotalLines": 150,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1149,
+      "bookTitle": "מלאכת שלמה על משנה חגיגה",
+      "declaredTotalLines": 106,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1150,
+      "bookTitle": "מלאכת שלמה על משנה פסחים",
+      "declaredTotalLines": 466,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1151,
+      "bookTitle": "מלאכת שלמה על משנה יומא",
+      "declaredTotalLines": 345,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1152,
+      "bookTitle": "מלאכת שלמה על משנה שקלים",
+      "declaredTotalLines": 306,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

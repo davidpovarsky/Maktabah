@@ -1,0 +1,697 @@
+{
+  "bookID": 460,
+  "bookTitle": "עירין קדישין תניינא",
+  "declaredTotalLines": 161,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.002136772498488426,
+  "resolvedAnchorRows": 13,
+  "units": [
+    {
+      "unitID": "toc:60655",
+      "rawUnitTitle": "הקדמה",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7f2c5f390b0c7e30e5a644380decea0554bbb62cfc03eff193d13a8c1a117708",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60656",
+      "rawUnitTitle": "בראשית",
+      "sourceLineIndices": [
+        5,
+        6,
+        7
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 7,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "419f49e7575753b9756af1bf43941cae34f9a35fed91a9a0303483b242ae61f1",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60657",
+      "rawUnitTitle": "לך לך",
+      "sourceLineIndices": [
+        8,
+        9,
+        10
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 8,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "092b8c64dd8e4a5c6d9ff65830ec6de56193bf15a5e92d7c3ce25b24febaa1e5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60658",
+      "rawUnitTitle": "וירא",
+      "sourceLineIndices": [
+        11,
+        12,
+        13
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 13,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "45ef248d6c30f780aaaa04cf2a10745ea5ed3cc337ab0ea4ff90e7e0253fc042",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60659",
+      "rawUnitTitle": "חיי שרה",
+      "sourceLineIndices": [
+        14,
+        15,
+        16
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 14,
+      "unitEndLineIndex": 16,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "2e3b84281e2c8c88f5dcf84c70c838b670fdea45b6977af0d3e9cc5e9873e6b6",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60660",
+      "rawUnitTitle": "תולדות",
+      "sourceLineIndices": [
+        17,
+        18,
+        19
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 17,
+      "unitEndLineIndex": 19,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "924ed47a799146c5bc7c1b28b5fe1b94d103517463250872d57387e479499b29",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60661",
+      "rawUnitTitle": "ויצא",
+      "sourceLineIndices": [
+        20,
+        21,
+        22
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 20,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "2d894fb978a241f1563f5db977726f3bd67e8547b89c2985995b3b4e681041a5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60662",
+      "rawUnitTitle": "וישב",
+      "sourceLineIndices": [
+        23,
+        24,
+        25
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 25,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e63a1346afb5ce666696ca9f61f0d4b84a3ff5d61aa4e02a68232dc6c32d8fb7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60663",
+      "rawUnitTitle": "מקץ",
+      "sourceLineIndices": [
+        26,
+        27
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 26,
+      "unitEndLineIndex": 27,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "032f5277c0a5356608ef005590b59a7b580c4139109ec3646496f659cba4739c",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60664",
+      "rawUnitTitle": "ויגש",
+      "sourceLineIndices": [
+        28,
+        29,
+        30,
+        31
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 28,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "49e344e617372c3b3dc0bb2b52731264a7d8fdaab18b4adf9c98b1ca42fa23fe",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60665",
+      "rawUnitTitle": "שמות",
+      "sourceLineIndices": [
+        32,
+        33,
+        34
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 34,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e5c26913235c836e581abdb9d165aba947622755aeb224c1c19e102958a69e0b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60666",
+      "rawUnitTitle": "וארא",
+      "sourceLineIndices": [
+        35,
+        36,
+        37,
+        38
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 35,
+      "unitEndLineIndex": 38,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c6e9d3e1a9e1b1dbcd3acc96b91174f785494d7db102d8367aa380881e22ea3a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60667",
+      "rawUnitTitle": "בשלח",
+      "sourceLineIndices": [
+        39,
+        40
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 39,
+      "unitEndLineIndex": 40,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5872b00edeffaec86c3442c936a657cccb70fe852d98194d109e8b7f68b5ef52",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60668",
+      "rawUnitTitle": "יתרו",
+      "sourceLineIndices": [
+        41,
+        42
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 41,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3beeee5787f850dd0de404ae4972f02cf353a6c3ea882ec293543c19ca1c96d0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60669",
+      "rawUnitTitle": "תרומה",
+      "sourceLineIndices": [
+        43,
+        44,
+        45,
+        46
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 46,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "866664b6d9470a43fda90a691d5bb13b4c1640e0e9ff9ba50052faa49bb6c077",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60670",
+      "rawUnitTitle": "ויקרא",
+      "sourceLineIndices": [
+        47,
+        48
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 47,
+      "unitEndLineIndex": 48,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8a63a90c1b7258c2a838017f93418c58f3e50a532e419918d22d6186410be1fa",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60671",
+      "rawUnitTitle": "צו",
+      "sourceLineIndices": [
+        49,
+        50
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 49,
+      "unitEndLineIndex": 50,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "73e2f935c623ad7dc1a376377fea137c64097d765f415e996289924a308b0b5b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60672",
+      "rawUnitTitle": "במדבר",
+      "sourceLineIndices": [
+        51,
+        52
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 51,
+      "unitEndLineIndex": 52,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e8ddb1a4d528f6e3867557f8bd88cb8925ee02d4fd4fc77b6ac1b993080db359",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60673",
+      "rawUnitTitle": "נשא",
+      "sourceLineIndices": [
+        53,
+        54,
+        55
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 53,
+      "unitEndLineIndex": 55,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9d0a86d64e54a6df25b90b3b8e24b59271ea5d6a84791c1e47f0618ffe3f4dff",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60674",
+      "rawUnitTitle": "מסעי",
+      "sourceLineIndices": [
+        56,
+        57
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 56,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1d5a97f9b72ec6f345beaec1dc97854ab8fd54ad8e12e03ed15ea532fd96b097",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60675",
+      "rawUnitTitle": "ואתחנן",
+      "sourceLineIndices": [
+        58,
+        59
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 59,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c61af223d3c897245c0a20358552f827ed2ed4bf60223d14419c68c913a00533",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60676",
+      "rawUnitTitle": "עקב",
+      "sourceLineIndices": [
+        60,
+        61,
+        62
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 60,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e1f8c6585e46e58a491c74d684740d52ef5a5a372db7505c77fa031685b8cb7f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60677",
+      "rawUnitTitle": "כי תצא",
+      "sourceLineIndices": [
+        63,
+        64
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e7812173fe1fd0cc36fa630876e68718ed74d452ad69100aff9948415e2488c8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60678",
+      "rawUnitTitle": "כי תבוא",
+      "sourceLineIndices": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "549a086a86880c23e2f37a085d8ff17634b14359c22e2637b621e9fdac6d1e9a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60679",
+      "rawUnitTitle": "ראש השנה",
+      "sourceLineIndices": [
+        72,
+        73
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 73,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "994536fe07517ee44a29b5a44e4d0d9f80d50c2ed20fe2c0de104a100aab31e3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60680",
+      "rawUnitTitle": "חנוכה",
+      "sourceLineIndices": [
+        74,
+        75
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 74,
+      "unitEndLineIndex": 75,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "db6cf2e8caf9ff1c10063172da1a84b5d00ce08abea778a8900577d7c41652ee",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60681",
+      "rawUnitTitle": "ט\"ו בשבט",
+      "sourceLineIndices": [
+        76,
+        77,
+        78
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 76,
+      "unitEndLineIndex": 78,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "bb615bcfc49cc6ae3effc51446ce4189dd4fb2468e79af6e97523259782f71c3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60682",
+      "rawUnitTitle": "פורים",
+      "sourceLineIndices": [
+        79,
+        80
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 79,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "48822fc5c23ad543d016e2db2fcfb2e2a8c61980d957af7b919a953edc802a83",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60683",
+      "rawUnitTitle": "פסח",
+      "sourceLineIndices": [
+        81,
+        82
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "fd9b3391e05daff42f0a20cf579b049d88b473e7cbb9120b8e36d859eece2e20",
+      "rawMembershipSHA256": "1f3ec14cdb5ec67aeb625a4f7f635be27d089f824494d61c66959cf1cfc88e17"
+    },
+    {
+      "unitID": "toc:60684",
+      "rawUnitTitle": "שבועות",
+      "sourceLineIndices": [
+        83,
+        84
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 84,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d931b7221739c41a0e26e44011f03d4439db9e6647bbeef3e6a3817d23ea0eb5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60685",
+      "rawUnitTitle": "קינות",
+      "sourceLineIndices": [
+        85,
+        86
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 85,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8154f7f6aa97f0e7d84eb8eeb5a704948dc1c13c7f4568448ecdd6a0d2e072c5",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60686",
+      "rawUnitTitle": "ליקוטי נ\"ך",
+      "sourceLineIndices": [
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 87,
+      "unitEndLineIndex": 101,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "1fd58be28b0db8932c5ec8df3fee7ba926524e9713f7627055069a75fb659af9",
+      "rawMembershipSHA256": "8cd35b2ee7b0e674f63422ce4213cd31e48560092176db4540551629b827071d"
+    },
+    {
+      "unitID": "toc:60687",
+      "rawUnitTitle": "ליקוטי ש\"ס",
+      "sourceLineIndices": [
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 102,
+      "unitEndLineIndex": 112,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "5c2ffa58309b6f331480a4f9e2435c65279a1d43aeaa8b0e723d67af867f1aa0",
+      "rawMembershipSHA256": "69660bacf2fabfba170392e0c256de37cb70c869e1c968c4c183449a7c776b51"
+    },
+    {
+      "unitID": "toc:60688",
+      "rawUnitTitle": "ליקוטים",
+      "sourceLineIndices": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 113,
+      "unitEndLineIndex": 155,
+      "unitRowCount": 43,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "cefb66285b9b355e70df7135bcaf5881c58e6893215640b8528c74fefde5ed0b",
+      "rawMembershipSHA256": "54b1e9495644dc3d23dcc3a1baba84343ed023946b5009c4e7030b90c50b6094"
+    },
+    {
+      "unitID": "toc:60689",
+      "rawUnitTitle": "מכתבי קודש",
+      "sourceLineIndices": [
+        156,
+        157,
+        158,
+        159,
+        160
+      ],
+      "bookID": 460,
+      "bookTitle": "עירין קדישין תניינא",
+      "mode": "chapter",
+      "unitStartLineIndex": 156,
+      "unitEndLineIndex": 160,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "231db13f1112398899bb62961fc14831fb84ce4a550fa8a4e8db2ace0f582c1b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

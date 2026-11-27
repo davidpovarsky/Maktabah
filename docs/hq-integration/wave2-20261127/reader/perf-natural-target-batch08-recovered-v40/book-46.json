@@ -1,0 +1,132 @@
+{
+  "bookID": 46,
+  "bookTitle": "משנה מעשרות",
+  "declaredTotalLines": 46,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.09225933346897364,
+  "resolvedAnchorRows": 2273,
+  "units": [
+    {
+      "unitID": "toc:1030",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 725,
+      "sourceIndicesSHA256": "6c301cda718f48575f1c55c0f3ae8b643bad3d8a7967046ce3f8fad0abde4343",
+      "rawMembershipSHA256": "4366b42ace0ad3fe9f689a50d7e82b29f0760aaca0bfe9d26ed1807f56bc8b18"
+    },
+    {
+      "unitID": "toc:1031",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 339,
+      "sourceIndicesSHA256": "893586c33cb5701692297792929e5db5bf4562df6c2e836f0549ea4acf1c997b",
+      "rawMembershipSHA256": "a75a4d473d9ae42930599bd5522e0954f48822290190b3704e5707b49288eb97"
+    },
+    {
+      "unitID": "toc:1032",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 511,
+      "sourceIndicesSHA256": "1389371847dbbfcef127bb020bee0c851a3b920a66149103ba9a6b39efeecc5f",
+      "rawMembershipSHA256": "81e765787204f9740d92f7336667ad201ebeebd1d5835f087552915cee0018f2"
+    },
+    {
+      "unitID": "toc:1033",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 36,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 325,
+      "sourceIndicesSHA256": "6043ea34d415920c27926e4df3c604a4628042f61e0b72bf3355a1f8bc3c411d",
+      "rawMembershipSHA256": "899a36e702401ad9981fcbeb497b58b904622cf0558560e28cad140f3793350c"
+    },
+    {
+      "unitID": "toc:1034",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "mode": "chapter",
+      "unitStartLineIndex": 37,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 349,
+      "sourceIndicesSHA256": "e1f832abe979e9837b362087f4a1b89b2cde42cdd07a0aa9fda23a1a53aea5ab",
+      "rawMembershipSHA256": "b346645431185bb09578174625f83efa771db93858747e971bba15523440167f"
+    }
+  ]
+}

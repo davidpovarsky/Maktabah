@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 818 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 819,
+      "bookTitle": "יכין מדות",
+      "declaredTotalLines": 700,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 820,
+      "bookTitle": "יכין כריתות",
+      "declaredTotalLines": 686,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 821,
+      "bookTitle": "יכין קינים",
+      "declaredTotalLines": 339,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 822,
+      "bookTitle": "יכין תמורה",
+      "declaredTotalLines": 502,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 823,
+      "bookTitle": "יכין מעילה",
+      "declaredTotalLines": 563,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 824,
+      "bookTitle": "פרקי משה על אבות",
+      "declaredTotalLines": 924,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 825,
+      "bookTitle": "דרך חיים",
+      "declaredTotalLines": 1814,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 828,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה שבת",
+      "declaredTotalLines": 293,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 830,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה עירובין",
+      "declaredTotalLines": 122,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 836,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה פסחים",
+      "declaredTotalLines": 100,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 839,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה יבמות",
+      "declaredTotalLines": 220,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 842,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה כתובות",
+      "declaredTotalLines": 180,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 843,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה נדרים",
+      "declaredTotalLines": 118,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 844,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה גיטין",
+      "declaredTotalLines": 167,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 847,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה בבא מציעא",
+      "declaredTotalLines": 139,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 849,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה בבא קמא",
+      "declaredTotalLines": 136,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 856,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה פאה",
+      "declaredTotalLines": 140,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 857,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה דמאי",
+      "declaredTotalLines": 123,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 863,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה תרומות",
+      "declaredTotalLines": 107,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 872,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה כלים",
+      "declaredTotalLines": 114,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 880,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה זבחים",
+      "declaredTotalLines": 191,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 884,
+      "bookTitle": "תוספות רבי עקיבא איגר על משנה חולין",
+      "declaredTotalLines": 109,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 887,
+      "bookTitle": "זרוע ימין על משנה אבות",
+      "declaredTotalLines": 280,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 889,
+      "bookTitle": "נחלת אבות על אבות",
+      "declaredTotalLines": 1692,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 890,
+      "bookTitle": "תוספות יום טוב על משנה מגילה",
+      "declaredTotalLines": 209,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 891,
+      "bookTitle": "תוספות יום טוב על משנה עירובין",
+      "declaredTotalLines": 403,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 892,
+      "bookTitle": "תוספות יום טוב על משנה חגיגה",
+      "declaredTotalLines": 118,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 893,
+      "bookTitle": "תוספות יום טוב על משנה שקלים",
+      "declaredTotalLines": 233,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 894,
+      "bookTitle": "תוספות יום טוב על משנה שבת",
+      "declaredTotalLines": 590,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 895,
+      "bookTitle": "תוספות יום טוב על משנה ראש השנה",
+      "declaredTotalLines": 183,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 896,
+      "bookTitle": "תוספות יום טוב על משנה ביצה",
+      "declaredTotalLines": 201,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 897,
+      "bookTitle": "תוספות יום טוב על משנה מועד קטן",
+      "declaredTotalLines": 134,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 898,
+      "bookTitle": "תוספות יום טוב על משנה יומא",
+      "declaredTotalLines": 285,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 899,
+      "bookTitle": "תוספות יום טוב על משנה סוכה",
+      "declaredTotalLines": 297,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 900,
+      "bookTitle": "תוספות יום טוב על משנה תענית",
+      "declaredTotalLines": 193,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 901,
+      "bookTitle": "תוספות יום טוב על משנה פסחים",
+      "declaredTotalLines": 385,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 903,
+      "bookTitle": "תוספות יום טוב על משנה גיטין",
+      "declaredTotalLines": 440,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 904,
+      "bookTitle": "תוספות יום טוב על משנה קידושין",
+      "declaredTotalLines": 290,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 905,
+      "bookTitle": "תוספות יום טוב על משנה נזיר",
+      "declaredTotalLines": 311,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 906,
+      "bookTitle": "תוספות יום טוב על משנה כתובות",
+      "declaredTotalLines": 563,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}
