@@ -1,0 +1,20 @@
+{
+  "all_expected_source_properties": true,
+  "cases": {
+    "baseline_mode_observer_has_no_initial_admission": true,
+    "candidate_assigns_only_actual_replacement": true,
+    "candidate_mode_observer_admits_initial_mount": true,
+    "generation_admission_and_conditional_close_unchanged": true,
+    "matching_mode_returns_no_replacement": true,
+    "outer_host_identity_includes_mode": true,
+    "owner_retains_session_in_state": true,
+    "replacement_uses_current_mode_and_original_provider_owners": true
+  },
+  "scope": "Read-only source admission: proves retained-state/remount boundary and new conditional initial callback; does not execute SwiftUI lifecycle",
+  "sha256": {
+    "baseline_host": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7",
+    "candidate_adapter": "722c3e6dae328a217944d5298f60a2d6afc5125fdced02821cf34f2621d3b9e4",
+    "candidate_host": "b5166743145329783d5650aed8caffeb6fc755b599987ae7629cb75893a6d006",
+    "workspace": "fa5c00a3544b2543e1e482d6f1fb97b8a2a12f87c8cae6bd67c536c1b8d7fb38"
+  }
+}
