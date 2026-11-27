@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-27T02:18:47.363202+00:00",
+  "scope": "Actual phone lifecycle source + actual shared Observation + exact original manager setter; explicit app-domain storage/source/transport boundaries; NOT Apple SDK/UI/backend test",
+  "product_source_sha256": "bad53e1755a413999c5408cc2f3bdb7238dc4e681bce135488074d845232597a",
+  "parts": {
+    "ActualPhone.swift": "ca448de5c57c2c4763b5f473b7c791d2dfcfca8b23eef0db6f7e0c75e89d84c5",
+    "ActualObservation.swift": "cff7ccdb91cc07c1da4a8c7078e56d7eba3b3c490663f12c23bedfaa0def1341",
+    "ActualContracts.swift": "64979a504ce46be21ff961d6c06a4a9c9fdef8898df8ca96a7124dafce53aedb",
+    "ActualOriginalSetter.swift": "d00385a7ac831b20aa8a600481ef8716aa264672c0de026b3385c62b859311f2",
+    "Boundary.swift": "d1b7468afdf87271f13f5b32f4d6cf7327cd448809f1a3382908e701b585ba1b",
+    "Controls.swift": "2112350d635464d3b46d2d7815c9e9650092b6f6ac9adb5e4e27c8bd0b05f735"
+  },
+  "transformations": [
+    "remove outer iOS conditional on Oracle",
+    "remove OtzariaUIRouting import; exact contracts compiled in same source",
+    "app-domain collaborators explicitly provided by Boundary.swift; actual original TOC source has separate proof"
+  ],
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/phone-lifecycle-attempt-1/Combined.swift",
+    "-o",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/phone-lifecycle-phone-lifecycle-attempt-1"
+  ],
+  "compileExit": 1,
+  "runExit": null,
+  "output": "",
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}

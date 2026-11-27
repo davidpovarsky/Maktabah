@@ -1,0 +1,85 @@
+{
+  "boundary" : "Synthetic AppMode\/BooksData\/error and manager shell; exact actual original setter plus actual policy",
+  "controls" : [
+    {
+      "name" : "cold original nil declares exactly one setter",
+      "passed" : true
+    },
+    {
+      "name" : "canonical cold transition preserves didSet presentation owner",
+      "passed" : true
+    },
+    {
+      "name" : "canonical exact +1 passes",
+      "passed" : true
+    },
+    {
+      "name" : "equal-value original setter still advances metadata",
+      "passed" : true
+    },
+    {
+      "name" : "unexpected equal-value write is rejected after canonical apply",
+      "passed" : true
+    },
+    {
+      "name" : "same original viewer book declares zero setters",
+      "passed" : true
+    },
+    {
+      "name" : "true canonical no-op is accepted",
+      "passed" : true
+    },
+    {
+      "name" : "redundant assignment is not a permitted no-op",
+      "passed" : true
+    },
+    {
+      "name" : "nil-other-nil before apply cannot inherit source",
+      "passed" : true
+    },
+    {
+      "name" : "one intended setter plus reentrant ABA is rejected",
+      "passed" : true
+    },
+    {
+      "name" : "same book in another original stack requires exactly one setter",
+      "passed" : true
+    },
+    {
+      "name" : "mode assignment alone cannot silently repair original presentation ownership",
+      "passed" : true
+    },
+    {
+      "name" : "same book owning-stack correction matches +1 and original didSet",
+      "passed" : true
+    },
+    {
+      "name" : "another existing selected book is unavailable",
+      "passed" : true
+    },
+    {
+      "name" : "required assignment at exhausted counter is refused before mutation",
+      "passed" : true
+    },
+    {
+      "name" : "overflow becomes permanent unavailable instead of wrapping",
+      "passed" : true
+    },
+    {
+      "name" : "original overflow setter still preserves original didSet behavior",
+      "passed" : true
+    },
+    {
+      "name" : "subsequent assignments never reset exhausted ownership metadata",
+      "passed" : true
+    },
+    {
+      "name" : "exhausted same-book route also fails closed",
+      "passed" : true
+    }
+  ],
+  "failed" : 0,
+  "native_ui_executed" : 0,
+  "passed" : 19,
+  "status" : "VERBATIM_ORIGINAL_SETTER_AND_PRESENTATION_POLICY_CONTROLS_ONLY"
+}

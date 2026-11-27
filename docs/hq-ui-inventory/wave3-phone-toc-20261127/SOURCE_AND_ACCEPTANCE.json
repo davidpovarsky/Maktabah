@@ -1,0 +1,108 @@
+{
+  "at": "2026-11-27T02:22:42.131715+00:00",
+  "parent": "2cd8f255ac581d4739af68ab2e7775aa85d7855a",
+  "dependencies": {
+    "root_base": "0c93d1de3b4ba9734c3341e3b088ca41818fb619",
+    "bounded_selected_row": "28fc012929c53210758c9af12bb0cd25c69a9faa",
+    "shared_bounded_api": "49e334a96cdd336e331650ad755e607908256e84",
+    "integration_note": "Root already intaked bounded dependencies; cherry-pick only final phone/iPad delta. Shared phone routing still owned/delivered separately by ui_acceptance."
+  },
+  "required_runtime": "iOS/iPadOS27 ONLY",
+  "product_and_test_sha256": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": "bad53e1755a413999c5408cc2f3bdb7238dc4e681bce135488074d845232597a",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift": "bcd89a1db89cb881cf5b5649e5f04e91c2cef008be4866a6dd7b288bd80cbf24",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "3fb9431099f39cd4024b24938c8628d5367112676fafdf019be47bad83d6d281",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+    "Source/UI/iOS/Views/iPadLayout.swift": "b34172e6fa48c31ba69ad7654e5321cc9255016d19e419467612eab25543cff9",
+    "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+    "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json": "9bc6fda67bbc4dc438753d9926c2c928562482f17ba234e17f7e09d0aab54905"
+  },
+  "preserved_original_sources": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": {
+      "sha256": "8ae179e3204b31fcf28bd0f55c7e4dcd790355337b0b13813ac04d7c4f40bf44",
+      "base_blob": "269d09e3a977dae5546fce8109a7cd08e8ba89bf",
+      "byte_identical": true
+    },
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+      "sha256": "b3b0ce08588b3c30586d2b379bbdbf4c30c06bac9b449a8b79a16e5c5c257f8c",
+      "base_blob": "7c8fb91379cb9b6d8d6ea403738230d07e30c1df",
+      "byte_identical": true
+    },
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift": {
+      "sha256": "44bfa60ac7aa6c59d87fe2f9215461574166dd5e77457ab9f6937366266f45bf",
+      "base_blob": "6f56802eef2fba13c9ac82de5a5b5895912eb730",
+      "byte_identical": true
+    },
+    "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift": {
+      "sha256": "3fdf0665d909d769cf31d88f353df7c3aef860fa556e23fa570b79637d7f36e6",
+      "base_blob": "1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4",
+      "byte_identical": true
+    },
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift": {
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "byte_identical": true
+    },
+    "Source/Localizable.xcstrings": {
+      "sha256": "d24d0b3bd53289859a6a30953d26a515385fc66e93149d56354d742eccd76769",
+      "byte_identical": true
+    }
+  },
+  "validation": {
+    "actual_original_book_setter_and_exact_transition_policy": {
+      "passed": 19,
+      "failed": 0,
+      "evidence": "validation/book-transition-attempt-1/RESULT.json"
+    },
+    "actual_phone_lifecycle_with_actual_shared_observation_and_explicit_domain_boundaries": {
+      "passed": 26,
+      "failed": 0,
+      "evidence": "validation/phone-lifecycle-attempt-2/RESULT.json"
+    },
+    "initial_lifecycle_harness_error": {
+      "scope": "Control harness whitespace at tab initializer, not product source; preserved before correction",
+      "evidence": "validation/phone-lifecycle-attempt-1/RESULT.json"
+    },
+    "actual_original_matcher_registry_model_methods_and_iPad_hunk_on_sealed_SQL": {
+      "passed": 12,
+      "failed": 0,
+      "nodes": 616,
+      "evidence": "validation/original-matcher-attempt-1/RESULT.json"
+    },
+    "negative_same_controls_with_unchanged_old_iPad_selector": {
+      "passed": 8,
+      "failed": 4,
+      "exit": 1,
+      "expected_negative": true,
+      "evidence": "validation/original-matcher-attempt-1/NegativeOriginalSelector-execution.log"
+    },
+    "iOS27_syntax": {
+      "passed": 8,
+      "failed": 0,
+      "evidence": "validation/ios27-syntax-attempt-2/RESULT.json"
+    },
+    "native_ui_tests_executed": 0,
+    "Apple_SDK_typecheck": false,
+    "physical_tests_executed": 0
+  },
+  "behavior": [
+    "One original phone Reader/TOC/workspace proof retained before Core await; reused by component; no Reader creation/book opening",
+    "Canonical selectedBook original setter expected exactly +0 or +1, counting equal writes and permanently failing overflow; original didSet unchanged",
+    "Only first exact original cold workspace mount can join an applied request; original presentContents guarded by request and mount identity; stale detach/replacement/release/ABA/expiry fails",
+    "Original iPad selectedTOCNode first uses existing original findMatchingNode, preserving existing exact/range fallbacks and unchanged3891/523 fixture",
+    "Native tests derive exact private selected-row identity from sealed SQL ancestry and original persisted registry; actual selected Button/value/label/receipt plus unchanged TextKit and locator required"
+  ],
+  "integration_required": [
+    "Register new MaktabahNativePhoneTOCPresentation.swift in existing app PBX target (root owns PBX)",
+    "Intake ui_acceptance shared phone Session/Projection/PublicBinding/Composition separately; exact same .currentTab and original presentReader +0/+1 predicate",
+    "Include canonical-miniTest10-toc-current-selection.json in synchronized UI test resources",
+    "Refresh authentic ownership approvals against final changed protected blobs, including original iPadLayout/manager; no historical signatures claimed"
+  ],
+  "pending_native_acceptance": [
+    "Apple27 SDK build/typecheck of combined source",
+    "Actual cold iPad selected row from History and phone original cold contents/current row from History/background",
+    "Actual warm collapsed/offscreen selected-row reveal, original ScrollViewReader identity and geometry publication",
+    "Original source/scene retirement under real window lifecycle/resize/keyboard/VoiceOver/RTL",
+    "Final Native116, Release114+2 and production-v40 integrated gates owned by root; miniTest oracle is not production acceptance"
+  ],
+  "peer_review": "Requested ui_acceptance review of actual phone class and workspace hooks; awaiting recorded result before final publication"
+}

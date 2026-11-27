@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-27T02:19:07.644219+00:00",
+  "scope": "Actual phone lifecycle source + actual shared Observation + exact original manager setter; explicit app-domain storage/source/transport boundaries; NOT Apple SDK/UI/backend test",
+  "product_source_sha256": "bad53e1755a413999c5408cc2f3bdb7238dc4e681bce135488074d845232597a",
+  "parts": {
+    "ActualPhone.swift": "ca448de5c57c2c4763b5f473b7c791d2dfcfca8b23eef0db6f7e0c75e89d84c5",
+    "ActualObservation.swift": "cff7ccdb91cc07c1da4a8c7078e56d7eba3b3c490663f12c23bedfaa0def1341",
+    "ActualContracts.swift": "64979a504ce46be21ff961d6c06a4a9c9fdef8898df8ca96a7124dafce53aedb",
+    "ActualOriginalSetter.swift": "d00385a7ac831b20aa8a600481ef8716aa264672c0de026b3385c62b859311f2",
+    "Boundary.swift": "d1b7468afdf87271f13f5b32f4d6cf7327cd448809f1a3382908e701b585ba1b",
+    "Controls.swift": "34dc3b4429b716707f20f24a487da561c172fd96f43cef2f712c5e95cdcb4ac8"
+  },
+  "transformations": [
+    "remove outer iOS conditional on Oracle",
+    "remove OtzariaUIRouting import; exact contracts compiled in same source",
+    "app-domain collaborators explicitly provided by Boundary.swift; actual original TOC source has separate proof"
+  ],
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/phone-lifecycle-attempt-2/Combined.swift",
+    "-o",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/phone-lifecycle-phone-lifecycle-attempt-2"
+  ],
+  "compileExit": 0,
+  "runExit": 0,
+  "output": "PASS cold canonical apply has no original contents callback before mount\nPASS first exact original cold mount renders once and retains source\nPASS ordinary original close permanently retires completed source\nPASS same Viewer-owned book permits exactly zero book setter writes\nPASS same book owned by another stack needs exactly one original setter write\nPASS selectedBook ABA before apply prevents original navigation\nPASS original TOC source ABA cannot be restored\nPASS workspace transition ABA permanently revokes original source\nPASS blocking original overlay ABA prevents late navigation\nPASS expired original admission prevents canonical apply\nPASS reentrant admission retirement prevents canonical setter\nPASS reentrant extra book writes cannot hide inside canonical apply\nPASS released request cannot join a late first mount\nPASS same exact attachment refresh does not loop publication\nPASS one original contents callback per retained request\nPASS replacement original view token revokes old request\nPASS stale detach cannot remove another exact mounted owner\nPASS exact original detach prevents late contents callback\nPASS reentrant render validation cannot mutate original UI\nPASS reentrant user event during original callback cannot preserve source\nPASS uncompleted original transaction cannot retain component proof\nPASS scene unmount drops original registration and prevents callback\nPASS wrong original scene is unavailable\nPASS duplicate actual active tabs are unavailable\nPASS original Group child change preserves exact workspace lifetime\nPASS actual stack ownership departure detaches original workspace\nRESULT passed=26 failed=0\n",
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}
