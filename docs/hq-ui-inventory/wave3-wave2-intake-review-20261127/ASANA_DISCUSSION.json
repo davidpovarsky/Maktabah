@@ -1,0 +1,9 @@
+{
+  "task": "1220939536336523",
+  "parentInbox": "1220547779919596",
+  "comment": "1220942579613897",
+  "createdAt": "2026-11-27T02:50:48.898Z",
+  "scope": "Exact source-visible existing preferredMode parent lifetime risk sent to Wave2; native reproduction pending; no new regression or stronger close requirement asserted",
+  "readerAndInspectorRecommendation": "Selective source intake; original app native acceptance remains pending",
+  "noPeerMutations": true
+}

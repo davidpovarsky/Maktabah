@@ -1,0 +1,7 @@
+{
+  "at": "2026-11-27T02:39:08.975510+00:00",
+  "status": "INTERRUPTED_BEFORE_COMPILER_RECEIPT",
+  "reason": "Outer synchronous Python runner timed out after24seconds; preserved generated inputs, no compiler/test result; subsequent readback found no surviving exact process. No passing claim.",
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}

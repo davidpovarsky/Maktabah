@@ -1,0 +1,4 @@
+FAIL original annotation setter ABA keeps original Notes behavior and retires source
+FAIL original error alert set-clear ABA cannot regain pending source
+FAIL equal original annotation setter cannot preserve a captured callback
+RESULT passed=0 failed=3

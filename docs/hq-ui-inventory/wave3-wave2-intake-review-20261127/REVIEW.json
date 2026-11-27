@@ -1,0 +1,115 @@
+{
+  "at": "2026-11-27T02:44:24.845021+00:00",
+  "reviewer": "release_preflight",
+  "reviewType": "Read-only source/evidence review; no builds/test reruns or peer mutations",
+  "rootReference": "0de2755595e7f1b57a33be99d36119783b432574",
+  "sourceIdentities": {
+    "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": {
+      "sourceCommit": "9d4c6ded641fad00cb9e0ca6fd0b931731e5c3fd",
+      "baselineSHA256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
+      "root0deSHA256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
+      "candidateSHA256": "b9b64795eee6afdb204fde4f31d96e38a2513c8caf4929dee1acfd03410e4c4b"
+    },
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": {
+      "sourceCommit": "9d4c6ded641fad00cb9e0ca6fd0b931731e5c3fd",
+      "baselineSHA256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "root0deSHA256": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
+      "candidateSHA256": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7"
+    },
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": {
+      "sourceCommit": "9e38d9ac087a6a301299045b8d3114e2c801d81f",
+      "baselineSHA256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "root0deSHA256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+      "candidateSHA256": "742d3e9dec8c432c8bfebea5f6e8d31b0188202f786501d24057556fb93f9bd2"
+    }
+  },
+  "aggregateIdentity": {
+    "9d4c6ded641fad00cb9e0ca6fd0b931731e5c3fd": {
+      "aggregate": "cb684f5e998592d9689cf9775f11ce2651a3c943",
+      "changedFilesCompared": 46,
+      "mismatches": 0
+    },
+    "9e38d9ac087a6a301299045b8d3114e2c801d81f": {
+      "aggregate": "827acac91251fdbe5cbe4c414bc55e6b9823ab83",
+      "changedFilesCompared": 22,
+      "mismatches": 0
+    }
+  },
+  "inspector": {
+    "conclusion": "No newly introduced blocking defect found for stated generation-cache repair; suitable for selective source intake with native acceptance pending",
+    "generation": "Entry points synchronously replace repository identity and clear all adapter locator/unit/link dictionaries+LRUs on canonical generation changes. New closures capture generation, Sefaria document/link/topic responses recheck after await; original Otzaria detached cancellation/generation guards remain.",
+    "coordinator": "Original same-backend exclusive update increments generation at both begin and defer completion; observed resource-witness changes also increment it. Reviewed source at0de; no generation-gate modification in delivery.",
+    "scope": {
+      "candidate": {
+        "passed": 12,
+        "total": 12
+      },
+      "baseline": {
+        "passed": 2,
+        "total": 12
+      },
+      "actualSDK": "MacOSX27.0",
+      "target": "arm64-apple-ios17.0-macabi",
+      "strictConcurrency": true,
+      "actualPinnedKit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+      "explicitBoundaries": "Provider payloads, Reader state, annotations/routing and Bundle.module accessor",
+      "MaktabahUIExecuted": 0,
+      "required_iOS27_native_acceptance": false
+    },
+    "receiptSHA256": "949a8d016e0b0937887e5eeed6405655768bebb5ebfc4f9d2b95b087d43188ad",
+    "receipt": "docs/hq-integration/wave2-20261127/library/inspector-generation/attempt-2/RESULT.json",
+    "allEvidenceManifestRecordsVerified": 38,
+    "manifestMismatches": [],
+    "knownLimit": "The pinned Kit has no general cache revoke API. An external retained OLD repository can still read its already-cached snapshot; delivery explicitly documents this. New host admission and new repository identity are required; no global revocation claim.",
+    "remainingExistingModeRisk": {
+      "classification": "Source-visible pre-existing lifecycle risk; not a demonstrated native regression, not a reason to reject the generation-cache improvement",
+      "ownership": [
+        "Workspace stores @State inspectorSession at103 and initializes only at141",
+        "Workspace passes $inspectorSession into Inspector at531-535",
+        "Parent workspace identity is activeTab.id in iOSReaderTabView38 and tab.id in iOSMainView247",
+        "Only child Inspector .id atworkspace552 contains generation/currentReaderTextMode/contentID",
+        "Session preferredMode is immutable atadapter11/49 and directly controls mapped text/references at654-656,794-796",
+        "Child host currentReaderTextMode observer has no initial admission; parent has no other inspectorSession reassignment"
+      ],
+      "inference": "A same-tab mode change can replace the child while retaining the parent's existing session and preferredMode. A child .id alone does not establish a fresh parent State value. Native same-tab mode switch/reopen must establish actual behavior before a corrective product change is claimed necessary.",
+      "notAnAddedRequirement": "No stronger close-on-generation rule is invented; structural host witness does not prove callbacks across parent rehosting."
+    }
+  },
+  "readerObservation": {
+    "conclusion": "No blocking defect found; additive bounded DEBUG-only observer suitable for selective intake, without native acceptance credit",
+    "originalRecoveredByteForByte": true,
+    "originalSHA256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+    "originalFullV32SamplePreserved": true,
+    "allInputHashesVerified": 9,
+    "wholeObserverIOS27SDKTypecheck": {
+      "target": "arm64-apple-ios27.0-simulator",
+      "strictConcurrency": true,
+      "exit": 0,
+      "explicitAppTypeBoundaries": true
+    },
+    "actualUIKitComponent": {
+      "passed": 12,
+      "failed": 0,
+      "target": "arm64-apple-ios17.0-macabi",
+      "SDK": "MacOSX27.0",
+      "seededViewAndIdentityInputs": true,
+      "MaktabahUIExecuted": 0
+    },
+    "observation": "Only actual existing UIKit selectedRange/selectedTextRange, original render mapping, diagnostics and request/process identity. No selection/responder/layout mutation or synthetic acceptance response.",
+    "bounds": {
+      "displayUTF16": 2048,
+      "sourceUTF16": 4096,
+      "displayUTF8": 8192,
+      "sourceUTF8": 16384,
+      "JSONBytes": 32768
+    },
+    "remainingAcceptance": "Original app text selection -> native edit menu -> annotation creation -> actual Annotations.sqlite verification remains pending; report is not full-body rendering/first-pixel proof",
+    "receipt": "docs/hq-integration/wave2-20261127/reader/native-selection-observer/apple-source-controls/RESULT.json",
+    "receiptSHA256": "69c75067fed30ca28695b8aacceb5c926036f77aa2d316bf70e8a0fcb26dd1fd"
+  },
+  "TOCConflictReview": {
+    "changedSourceOverlapWithDd2e": false,
+    "phoneRelationship": "New TOC source observes real Reader inspector/popover state and original backend transition events; Inspector generation changes revoke captured TOC source. New read-only selection observer does not mutate those fields.",
+    "noChangesMadeToPeerFiles": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-27T02:44:47.190077+00:00",
+  "attempt": 3,
+  "classification": "Control fixture lifetime error, preserved",
+  "cause": "Facet test discarded OriginalWorkspaceStateBoundary with tuple underscore; its real attachment deinit correctly detached and retired request before apply. Retain actual original view attachment across the test, matching production @State lifetime.",
+  "productChangedForCorrection": false,
+  "nativeUIExecuted": 0
+}

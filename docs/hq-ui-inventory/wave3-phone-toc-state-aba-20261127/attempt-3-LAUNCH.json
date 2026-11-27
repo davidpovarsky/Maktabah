@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-27T02:42:12.689718+00:00",
+  "pid": 2877309,
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "180s",
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/run-local-state-controls.py",
+    "--root",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127",
+    "--out",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3"
+  ],
+  "scope": "Final exact phone facet + three local State source controls, no app/simulator"
+}
