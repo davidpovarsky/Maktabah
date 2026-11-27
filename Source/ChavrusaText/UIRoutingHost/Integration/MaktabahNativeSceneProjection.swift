@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, emptyReader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded }
+    enum Surface { case library, tableOfContents, reader, emptyReader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -28,7 +28,8 @@ struct MaktabahNativeSceneProjection {
     private func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
 
     func identity(workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
-                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil) throws -> NativeSceneIdentity {
+                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,
+                  savedResults: MaktabahNativeSavedResultsBinding? = nil) throws -> NativeSceneIdentity {
         let reader = activeTab?.viewModel
         let section = try reader?.currentLocator.map(ActionAppIdentityBridge.actionRef)
         var selection: UIUTF16Range?
@@ -47,6 +48,8 @@ struct MaktabahNativeSceneProjection {
             originalSheet = MaktabahNativeWorkspacePresentationBinding.Parent.overview.destination
         } else if sefariaSurface?.presentationFacets.requested == true {
             originalSheet = MaktabahNativeSefariaSurfaceBinding.destination
+        } else if savedResults?.isRequestedOrMounted == true {
+            originalSheet = MaktabahNativeSavedResultsBinding.destination
         } else { originalSheet = nil }
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID), profileID: stable(workspace?.selection?.profileID),
                                selectedItemID: sidebar?.page == .contents ? stable(activeTab?.id) : nil,
@@ -62,10 +65,20 @@ struct MaktabahNativeSceneProjection {
                  workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
                  phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil,
                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,
-                 historyRecord: MaktabahNativeHistoryRecordBinding? = nil) throws -> NativeSurfaceState? {
+                 historyRecord: MaktabahNativeHistoryRecordBinding? = nil,
+                 savedResults: MaktabahNativeSavedResultsBinding? = nil,
+                 savedResultsRequestID: UUID? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
+        case .savedResults:
+            guard !settingsPresented, selectedTab.canonical == .search, manager.currentMode == .search,
+                  let original = savedResults, let requestID = savedResultsRequestID,
+                  original.hasVisibleSurface(requestID: requestID) else { return nil }
+            return .init(destination: MaktabahNativeSavedResultsBinding.destination,
+                presentation: .init(kind: .sheet), content: nil,
+                state: .init(workspaceID: state.workspaceID, profileID: state.profileID,
+                             selectedItemID: original.observedItem(requestID: requestID)), focus: nil)
         case .sefariaEmbedded:
             guard !settingsPresented, let workspace, let binding = sefariaSurface,
                   binding.owns(workspace, manager: manager), binding.isAvailable else { return nil }

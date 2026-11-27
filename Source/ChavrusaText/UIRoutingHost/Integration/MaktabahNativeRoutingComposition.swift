@@ -100,6 +100,21 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
     private var mountWaiters: [ObjectIdentifier: MountWaiter] = [:]
     private var intentsInstalled = false
+    private var historyReaderCatalog: MaktabahNativeHistoryReaderCatalog?
+    private lazy var searchContinuationIntentService: NativeSearchContinuationIntentService = {
+        #if DEBUG
+        let scheme = "maktabah-debug"
+        #else
+        let scheme = "maktabah"
+        #endif
+        return NativeSearchContinuationIntentService(snapshot: { [self] in
+            try backend.currentBackendSnapshot()
+        }, catalog: { [self] in
+            try publicSearchContinuationTargets($0)
+        }, navigate: { [self] in
+            try await openPublicSearchContinuation($0)
+        }, registry: registry, urlScheme: scheme)
+    }()
     #if DEBUG
     private var acceptanceReaderIntentService: NativeReaderIntentService?
     private var semanticIntentAcceptanceObserver: (@MainActor (NativeReaderIntentService.OpenRequest, ActionSemanticJourneyResult, [UISceneReceipt]) -> Void)?
@@ -210,9 +225,21 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab,
                       components: [id("native.search.query")] + MaktabahNativeSearchEntryBinding.descriptors.map(\.anchor))])),
+            .init(id: MaktabahNativeSavedResultsBinding.destination, title: "Saved Results".localized,
+                  implementation: .implemented, supportedBackends: [.otzaria], presentations: [.sheet],
+                  requiredCoreActions: [], allowsPublicRoute: true,
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
             .init(id: id("native.search.results"), title: "Search results".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
                   requiredCoreActions: ["search.openResults"]),
+            .init(id: UIPublicSearchReferenceKindV2.result.destination, title: "Loaded search result".localized,
+                  implementation: .implemented, supportedBackends: ActionBackendID.allCases,
+                  presentations: [.currentTab], publicNavigationV2: .init(
+                    rules: [.init(presentation: .currentTab, allowsRoot: false)], searchReferenceKind: .result)),
+            .init(id: UIPublicSearchReferenceKindV2.nextPage.destination, title: "Next search page".localized,
+                  implementation: .implemented, supportedBackends: ActionBackendID.allCases,
+                  presentations: [.currentTab], publicNavigationV2: .init(
+                    rules: [.init(presentation: .currentTab, allowsRoot: false)], searchReferenceKind: .nextPage)),
             .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
@@ -782,6 +809,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if destination.component != nil || destination.destination.rawValue == "native.reader.inspector"
             || (!MaktabahApp.isIpad && destination.destination == MaktabahNativeTOCComponents.destination)
             || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination
+            || destination.destination == MaktabahNativeSavedResultsBinding.destination
             || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
@@ -790,7 +818,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                 presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector
                     : (destination.destination.rawValue == "native.settings"
                     || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil
-                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination) ? .sheet : .currentTab,
+                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination
+                    || destination.destination == MaktabahNativeSavedResultsBinding.destination) ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }
@@ -805,6 +834,89 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         record(result)
         return result
     }
+    private func savedResultsCatalog() throws -> NativeSavedResultIntentService.Catalog {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        guard snapshot.backend == .otzaria else { return .init(snapshot: snapshot, records: []) }
+        var records: [NativeSavedResultIntentService.Record] = []
+        for (id, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
+            guard entry.session.sceneID == id, let original = entry.session.savedResultsBinding,
+                  original.sceneID == id else { continue }
+            records += try original.catalog()
+        }
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot else { throw ActionPortError.staleState }
+        return .init(snapshot: snapshot, records: records)
+    }
+    private func savedResultsWindows() throws -> [NativeIntentService.Destination] {
+        try intentRootEntities().filter {
+            $0.backend == .otzaria && $0.destination == MaktabahNativeSavedResultsBinding.destination
+                && $0.component == nil
+        }
+    }
+    private func revealSavedResult(_ request: NativeSavedResultIntentService.OpenRequest) async throws
+        -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        let window = request.window, end = deadline()
+        let matches = try savedResultsWindows().filter { $0 == window }
+        guard matches.count == 1, request.record.sceneID == window.sceneID,
+              window.backend == .otzaria, let original = scenes[window.sceneID],
+              original.session.mounted, let manager = original.manager,
+              ObjectIdentifier(manager) == original.managerID,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "native_saved_results_window_changed")
+        }
+        let retained = try original.session.retainSavedResult(request.record, requestID: request.requestID)
+        defer { retained.releaseSource(requestID: request.requestID) }
+        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: original.managerID)
+        }
+        try Task.checkCancellation()
+        guard activated == window.sceneID, let current = scenes[window.sceneID],
+              current.session === original.session, current.managerID == original.managerID,
+              current.manager === manager, current.session.mounted, current.session.foreground,
+              current.session.savedResultsBinding === retained,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "native_saved_results_activation_changed")
+        }
+        try retained.validateSource(requestID: request.requestID)
+        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)
+        try issue(context, sceneID: window.sceneID)
+        defer { finish(context, sceneID: window.sceneID) }
+        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,
+                                             deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)
+        try retained.validateSource(requestID: request.requestID)
+        guard scenes[window.sceneID]?.session === original.session,
+              original.session.savedResultsBinding === retained,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "native_saved_results_source_changed")
+        }
+        let route = try original.session.prepareSavedResult(invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        record(result)
+        if case .acknowledged(let receipt) = result {
+            do {
+                try Task.checkCancellation()
+                guard scenes[window.sceneID]?.session === original.session,
+                      original.session.savedResultsBinding === retained,
+                      try backend.currentBackendSnapshot() == request.expectedSnapshot,
+                      SystemActionClock().now() < end else {
+                    throw UIRouteError(.staleState, "native_saved_results_completion_changed")
+                }
+                try original.session.validateCompletedSavedResult(receipt, original: retained)
+                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,
+                      receipt.route.state.selectedItemID == request.record.itemID else {
+                    throw UIRouteError(.failed, "native_effect_uncertain")
+                }
+            } catch {
+                throw NativeSavedResultIntentService.Failure(acknowledgement: result, underlying: error)
+            }
+        }
+        return result
+    }
+
     /// One typed local record, one exact existing window, one original Core
     /// commit. Neither discovery nor the caller's entity is navigation authority.
     private func revealHistoryRecord(_ request: NativeHistoryRecordIntentService.OpenRequest) async throws
@@ -1029,7 +1141,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
 
     private func open(public intent: PublicNavigationSpecV2, sceneID: UIStableID, managerID: ObjectIdentifier,
                       expectedSnapshot: ActionBackendSnapshot?, origin: ActionOrigin,
-                      until end: UInt64, requestID: UUID = UUID()) async throws -> UISceneAcknowledgement {
+                      until end: UInt64, requestID: UUID = UUID(),
+                      historySource: MaktabahNativeHistoryReaderSource? = nil,
+                      didObserveReader: (@MainActor (ActionResult?, UISceneReceipt?) -> Void)? = nil) async throws -> UISceneAcknowledgement {
         guard let entry = scenes[sceneID], entry.managerID == managerID,
               entry.session.foreground, let binding = entry.publicBinding else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
@@ -1039,6 +1153,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
         guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
         let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        if let historySource {
+            try historySource.validate()
+            guard historySource.request.invocation.requestId == requestID,
+                  historySource.request.invocation.snapshot == snapshot,
+                  historySource.request.invocation.deadlineUptimeNanoseconds == end,
+                  historySource.request.window.sceneID == sceneID,
+                  intent.destination.rawValue == "native.reader" else {
+                throw UIRouteError(.staleState, "history_reader_invocation_changed")
+            }
+        }
         // Retain the exact ORIGINAL parent first; a component must inherit
         // that same proof. Neither operation grants authority or changes UI.
         try entry.session.retainParentSource(destination: intent.destination, requestID: requestID)
@@ -1055,7 +1179,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         // Reserve actual native ownership before issuing/admitting authority;
         // R advances its epoch and invalidates any older mapping context.
         let retainedReader = try intent.content.map { content in
-            try entry.session.retainReader(content, requestID: invocation.requestId) { [weak self, weak session = entry.session] in
+            try entry.session.retainReader(content, requestID: invocation.requestId,
+                historySource: historySource) { [weak self, weak session = entry.session] in
                 guard let self, let session else { return }
                 try? invalidateContext(session)
             }
@@ -1071,6 +1196,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let result: UISceneAcknowledgement
         switch plan {
         case .surface(let prepared):
+            guard historySource == nil else {
+                throw UIRouteError(.failed, "history_reader_plan_not_reader")
+            }
             result = await orchestrator.commitPrepared(prepared, admitted: admitted)
         case .reader(let route):
             guard retainedReader != nil, readerInvocations.count < 16, readerInvocations[invocation.requestId] == nil else {
@@ -1078,8 +1206,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             }
             let pending = ReaderInvocation(route: route, context: context, sceneID: sceneID)
             readerInvocations[invocation.requestId] = pending
-            defer { readerInvocations.removeValue(forKey: invocation.requestId) }
+            var observedCoreResult: ActionResult?
+            defer {
+                // The actual Core return and native receipt survive a later
+                // refusal or thrown cancellation. This callback grants nothing.
+                didObserveReader?(observedCoreResult, pending.receipt)
+                readerInvocations.removeValue(forKey: invocation.requestId)
+            }
             let coreResult = try await orchestrator.executeReaderPlan(route, originalInvocation: invocation, admitted: admitted)
+            observedCoreResult = coreResult
             guard coreResult.status == .completed, let receipt = pending.receipt else {
                 throw UIRouteError(.failed, "canonical_reader_not_completed")
             }
@@ -1382,19 +1517,42 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let owner = try entry.session.retainSearchContinuation(requestID: requestID,
             currentSnapshot: { [self] in try backend.currentBackendSnapshot() })
         defer { entry.session.releaseSearchContinuation(owner) }
-        let context = context(sceneID: sceneID, origin: .inApp, snapshot: snapshot)
+        let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot,
+                                             deadlineUptimeNanoseconds: end)
+        return try await performOriginalSearchContinuation(manager: manager, entry: entry, sceneID: sceneID,
+            owner: owner, invocation: invocation, origin: .inApp, selection: nil, choose: choose).outcome
+    }
+
+    /// Shared original Core/source executor. The caller has already retained
+    /// the exact owner before this await. Public metadata only adds liveness
+    /// checks and the finite chooser; the original grant and operation remain.
+    private func performOriginalSearchContinuation(manager: iOSNavigationManager,
+        entry: Registration, sceneID: UIStableID, owner: MaktabahNativeSearchContinuationOwner,
+        invocation: ActionPortInvocation, origin: ActionOrigin,
+        selection: MaktabahNativeSearchContinuationCatalog.Selection?,
+        choose: @MainActor (ActionSearchContinuationObservation) throws -> ActionSearchContinuationOperation
+    ) async throws -> NativeSearchContinuationIntentService.Execution {
+        let end = invocation.deadlineUptimeNanoseconds, requestID = invocation.requestId
+        let snapshot = invocation.snapshot, managerID = ObjectIdentifier(manager)
+        try selection?.validateBefore()
+        try entry.session.validateSearchContinuationOwner(owner)
+        guard SystemActionClock().now() < end, contexts[sceneID] == nil,
+              let live = scenes[sceneID], live.manager === manager, live.session === entry.session,
+              live.lease == entry.lease, live.managerID == managerID,
+              live.session.mounted, live.session.foreground,
+              try backend.currentBackendSnapshot() == snapshot else { throw ActionPortError.staleState }
+        let context = context(sceneID: sceneID, origin: origin, snapshot: snapshot)
         try issue(context, sceneID: sceneID)
         defer { finish(context, sceneID: sceneID) }
         let admitted = try authority.admit(context: context, sceneID: sceneID)
         defer { authority.release(admitted) }
-        let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot,
-                                             deadlineUptimeNanoseconds: end)
         // This is the same original authority captured BEFORE observation. It
         // only proves freshness; it is never consumed as an operation grant.
         let observationAuthority = try core.prepareNavigationSynchronously(sceneID: sceneID.rawValue,
             invocation: invocation, context: context)
         let check: NativeSearchContinuationService.Check = { [weak self, weak manager, weak owner] in
             try Task.checkCancellation()
+            try selection?.validate()
             guard let self, let manager, let owner,
                   SystemActionClock().now() < end,
                   let current = self.scenes[sceneID], current.session === entry.session, current.lease == entry.lease,
@@ -1408,6 +1566,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             try current.session.validateSearchContinuationOwner(owner)
             try observationAuthority.validateFreshness()
             try current.session.validateSearchContinuationOwner(owner)
+            try selection?.validate()
         }
         var retainedCommand: ActionSearchContinuationCommand?
         var grant: ActionSearchContinuationAuthority?
@@ -1463,7 +1622,92 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         // Service joins the exact response BEFORE late validation, preserving
         // actual partial effects and raw unqualified responses. No outer timeout
         // or post-effect throwing check may discard that evidence here.
-        return await service.continueSearch(command)
+        let outcome = await service.continueSearch(command)
+        return .init(command: command, outcome: outcome)
+    }
+
+    private func publicSearchContinuationTargets(_ query: NativeSearchContinuationIntentService.Query)
+        throws -> [NativeSearchContinuationIntentService.Target] {
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == query.snapshot else { throw ActionPortError.staleState }
+        var values: [NativeSearchContinuationIntentService.Target] = []
+        for (sceneID, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue })
+            where entry.session.mounted && contexts[sceneID] == nil {
+            let current = try entry.session.publicSearchContinuationTargets(query,
+                windowTitle: entry.session.windowLabel(number: entry.windowNumber),
+                currentSnapshot: { [self] in try backend.currentBackendSnapshot() })
+            guard current.allSatisfy({ $0.source.sceneID == sceneID.rawValue && $0.source.snapshot == query.snapshot }) else {
+                throw ActionPortError.invalidResponse
+            }
+            values.append(contentsOf: current.prefix(query.maximumResults - values.count))
+            if values.count == query.maximumResults { break }
+        }
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == query.snapshot else { throw ActionPortError.staleState }
+        return values
+    }
+
+    /// Retain the genuine original metadata/source BEFORE foreground waiting.
+    /// No public scene/source/operation token can replace this retained owner.
+    private func openPublicSearchContinuation(_ request: NativeSearchContinuationIntentService.OpenRequest)
+        async throws -> NativeSearchContinuationIntentService.Execution {
+        try Task.checkCancellation()
+        guard let sceneID = UIStableID(rawValue: request.target.source.sceneID),
+              let entry = scenes[sceneID], let manager = entry.manager,
+              entry.managerID == ObjectIdentifier(manager), entry.session.mounted, contexts[sceneID] == nil,
+              try backend.currentBackendSnapshot() == request.invocation.snapshot else { throw ActionPortError.staleState }
+        let selection = try entry.session.retainPublicSearchContinuation(request)
+        defer { selection.finish() }
+        try selection.validateBefore()
+        let mountedScene = try await NativeObservationDeadline.run(
+            until: request.invocation.deadlineUptimeNanoseconds, clock: SystemActionClock()) { [self] in
+                try await waitForMount(managerID: entry.managerID)
+            }
+        guard mountedScene == sceneID, let current = scenes[sceneID], current.session === entry.session,
+              current.lease == entry.lease, current.manager === manager, current.managerID == entry.managerID,
+              current.session.mounted, current.session.foreground, contexts[sceneID] == nil,
+              try backend.currentBackendSnapshot() == request.invocation.snapshot else { throw ActionPortError.staleState }
+        try selection.validateBefore()
+        let owner = try entry.session.retainSearchContinuation(requestID: request.invocation.requestId,
+            currentSnapshot: { [self] in try backend.currentBackendSnapshot() })
+        defer { entry.session.releaseSearchContinuation(owner) }
+        let origin: ActionOrigin
+        switch request.origin { case .appIntent: origin = .appIntent; case .deepLink: origin = .deepLink }
+        let execution = try await performOriginalSearchContinuation(manager: manager, entry: entry, sceneID: sceneID,
+            owner: owner, invocation: request.invocation, origin: origin, selection: selection,
+            choose: { try selection.choose($0) })
+        #if DEBUG
+        recordPublicSearchContinuationEvidence(request, execution: execution)
+        #endif
+        return execution
+    }
+
+    /// Called by the one original URL handler AFTER canonical v2 decoding.
+    /// Return the real continuation receipt, never a generic surface receipt.
+    func openPublicSearchContinuation(_ intent: PublicNavigationSpecV2,
+        manager: iOSNavigationManager) async throws -> ActionSearchContinuationReceipt {
+        let matches = scenes.filter { $0.value.managerID == ObjectIdentifier(manager) }
+        guard matches.count == 1, let (sceneID, entry) = matches.first,
+              entry.manager === manager, entry.session.mounted else { throw ActionPortError.staleState }
+        return try await searchContinuationIntentService.open(public: intent, receivingSceneID: sceneID)
+    }
+
+    /// A single typed branch inside the original URL handoff. False means only
+    /// "not this finite destination" BEFORE decoding/effects. Once recognized,
+    /// malformed/stale/refused input throws and cannot fall back to a root.
+    func handlePublicSearchContinuationURL(_ url: URL, manager: iOSNavigationManager) async throws -> Bool {
+        let path = URLComponents(url: url, resolvingAgainstBaseURL: false)?.percentEncodedPath
+        guard UIPublicSearchReferenceKindV2.allCases.contains(where: { path == "/v2/" + $0.destination.rawValue }) else {
+            return false
+        }
+        #if DEBUG
+        let scheme = "maktabah-debug"
+        #else
+        let scheme = "maktabah"
+        #endif
+        let intent = try NativePublicNavigationURLV2.decode(url, scheme: scheme, registry: registry)
+        _ = try await openPublicSearchContinuation(intent, manager: manager)
+        return true
     }
 
     /// System entities identify an existing original window; they do not grant
@@ -2097,6 +2341,93 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         // The caller must still discover and authorize the current destination.
     }
 
+
+    private func originalHistoryReaderCatalog() -> MaktabahNativeHistoryReaderCatalog {
+        if let historyReaderCatalog { return historyReaderCatalog }
+        let value = MaktabahNativeHistoryReaderCatalog(snapshot: { [weak self] in
+            guard let self else { throw ActionPortError.unavailable }
+            return try backend.currentBackendSnapshot()
+        })
+        historyReaderCatalog = value
+        return value
+    }
+
+    private func openHistoryReading(_ request: NativeHistoryReaderIntentService.OpenRequest) async throws
+        -> NativeHistoryReaderIntentService.Execution {
+        try Task.checkCancellation()
+        let window = request.window, invocation = request.invocation
+        let matches = try intentRootEntities().filter { $0 == window }
+        guard matches.count == 1, window.destination.rawValue == "native.library",
+              window.component == nil, window.backend == invocation.snapshot.backend,
+              let original = scenes[window.sceneID], original.session.mounted,
+              let manager = original.manager, ObjectIdentifier(manager) == original.managerID,
+              try backend.currentBackendSnapshot() == invocation.snapshot else {
+            throw UIRouteError(.staleState, "history_reader_window_no_longer_available")
+        }
+        let catalog = originalHistoryReaderCatalog()
+        let source = try catalog.retain(request)
+        defer { catalog.finish(source) }
+        let validateWindow = try original.session.captureHistoryReaderWindow()
+        try source.validate()
+        let activated = try await NativeObservationDeadline.run(
+            until: invocation.deadlineUptimeNanoseconds, clock: SystemActionClock()) { [self] in
+                try await waitForMount(managerID: original.managerID)
+            }
+        try source.validate(); try validateWindow()
+        guard activated == window.sceneID, let current = scenes[window.sceneID],
+              current.session === original.session, current.manager === manager,
+              current.managerID == original.managerID, current.session.mounted, current.session.foreground,
+              try backend.currentBackendSnapshot() == invocation.snapshot else {
+            throw UIRouteError(.staleState, "history_reader_window_changed_during_activation")
+        }
+        let locator = try ActionAppIdentityBridge.appLocator(source.locator)
+        let resolved = ReaderDestinationResolver.resolve(locator: locator)
+        let content = ActionReaderDestination(
+            sectionLocator: try ActionAppIdentityBridge.actionRef(resolved.sectionLocator),
+            focusLocator: try resolved.focusLocator.map(ActionAppIdentityBridge.actionRef),
+            presentationMode: request.newTab ? .newTab : .sameTab)
+        let intent = PublicNavigationSpecV2(destination: UIDestinationID(rawValue: "native.reader")!,
+            backend: invocation.snapshot.backend, content: content,
+            presentation: request.newTab ? .newTab : .currentTab)
+        var execution: NativeHistoryReaderIntentService.Execution?
+        var repeatedReport = false
+        do {
+            // No await separates the frozen original window check above from
+            // the existing public binder's retained Reader/mapping reservation.
+            let acknowledgement = try await open(public: intent, sceneID: window.sceneID,
+                managerID: original.managerID, expectedSnapshot: invocation.snapshot, origin: .appIntent,
+                until: invocation.deadlineUptimeNanoseconds, requestID: invocation.requestId,
+                historySource: source, didObserveReader: { core, receipt in
+                    if execution != nil { repeatedReport = true; return }
+                    execution = .init(coreResult: core, acknowledgement: nil, nativeReceipt: receipt)
+                })
+            // Only the existing binder's actual returned acknowledgement is
+            // authoritative. A pending native receipt alone cannot become ACK.
+            execution = .init(coreResult: execution?.coreResult, acknowledgement: acknowledgement,
+                nativeReceipt: execution?.nativeReceipt)
+            guard let actual = execution, !repeatedReport else {
+                throw UIRouteError(.failed, "native_effect_uncertain")
+            }
+            if case .acknowledged(let receipt) = acknowledgement {
+                guard source.didApply, let current = scenes[window.sceneID],
+                      current.session === original.session, current.manager === manager,
+                      current.managerID == original.managerID,
+                      try backend.currentBackendSnapshot() == invocation.snapshot else {
+                    throw UIRouteError(.staleState, "history_reader_completion_owner_changed")
+                }
+                // The original Reader/TextKit witness must belong to this
+                // exact request; a visible unrelated Reader is not evidence.
+                try current.session.validateCompletedJourneySurface(receipt)
+            }
+            return actual
+        } catch {
+            if let execution {
+                throw NativeHistoryReaderIntentService.Failure(execution: execution, underlying: error)
+            }
+            throw error
+        }
+    }
+
     private func openReaderIntent(_ request: NativeReaderIntentService.OpenRequest) async throws -> UISceneAcknowledgement {
         let identities = try intentRootEntities().filter {
             $0.destination.rawValue == "native.library" && $0.id == request.windowIdentifier
@@ -2407,6 +2738,26 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "history_record"); throw error }
         })
         AppDependencyManager.shared.add(dependency: historyService)
+        let savedService = NativeSavedResultIntentService(read: { [self] in
+            try savedResultsCatalog()
+        }, windows: { [self] in
+            try savedResultsWindows()
+        }, navigate: { [self] in
+            do { return try await revealSavedResult($0) }
+            catch { logIntentFailure(error, stage: "saved_result"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: savedService)
+        let historyReaderService = NativeHistoryReaderIntentService(snapshot: { [self] in
+            try backend.currentBackendSnapshot()
+        }, catalog: { [self] in
+            try originalHistoryReaderCatalog().records($0)
+        }, windows: { [self] in
+            try intentRootEntities()
+        }, navigate: { [self] in
+            do { return try await openHistoryReading($0) }
+            catch { logIntentFailure(error, stage: "history_reader"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: historyReaderService)
         let readerService = NativeReaderIntentService(execute: { [self] in
             do { return try await readerIntentMetadata($0) }
             catch { logIntentFailure(error, stage: "reader_metadata"); throw error }
@@ -2440,6 +2791,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "search_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: searchService)
+        AppDependencyManager.shared.add(dependency: searchContinuationIntentService)
         #if DEBUG
         acceptanceReaderIntentService = readerService
         #endif
@@ -2572,7 +2924,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     init?(kind: String) {
         guard ["notes", "search", "commentary", "count", "journey-count-results",
                "journey-commentary-draft", "journey-catalog-stop",
-               "search-continuation-hit", "search-continuation-page"].contains(kind) else { return nil }
+               "search-continuation-hit", "search-continuation-page",
+               "search-public-hit", "search-public-page"].contains(kind) else { return nil }
         let args = ProcessInfo.processInfo.arguments
         func value(_ key: String) -> String? {
             guard let i = args.firstIndex(of: key), args.indices.contains(i + 1) else { return nil }
@@ -3181,6 +3534,90 @@ private final class MaktabahNativeSearchContinuationProbeReturn {
     }
 }
 
+// DEBUG evidence only. This single process-lived slot stores an immutable
+// return from the REAL public caller. It has no chooser, grant, source owner,
+// trigger or executable fallback. Capture precedes all fallible projection.
+@MainActor
+private final class MaktabahNativePublicSearchProbeReturn {
+    private static var retained: MaktabahNativePublicSearchProbeReturn?
+    private enum RetentionError: Error { case invalidKind, alreadyCaptured, alreadyPublished }
+    static var hasCaptured: Bool { retained != nil }
+    let kind: String
+    let token: UUID
+    let request: NativeSearchContinuationIntentService.OpenRequest
+    let execution: NativeSearchContinuationIntentService.Execution
+    private(set) var checkpointReference: [String: Any]?
+    private var attemptedPublication = false
+
+    private init(kind: String, token: UUID, request: NativeSearchContinuationIntentService.OpenRequest,
+                 execution: NativeSearchContinuationIntentService.Execution) {
+        self.kind = kind; self.token = token; self.request = request; self.execution = execution
+    }
+
+    static func capture(kind: String, token: UUID, request: NativeSearchContinuationIntentService.OpenRequest,
+                        execution: NativeSearchContinuationIntentService.Execution) throws -> MaktabahNativePublicSearchProbeReturn {
+        let expected = request.target.reference.kind == .result ? "search-public-hit" : "search-public-page"
+        guard kind == expected else { throw RetentionError.invalidKind }
+        guard retained == nil else { throw RetentionError.alreadyCaptured }
+        let value = MaktabahNativePublicSearchProbeReturn(kind: kind, token: token, request: request, execution: execution)
+        retained = value
+        return value
+    }
+
+    func publish(checkpoint: (NativeSearchContinuationIntentService.OpenRequest,
+                              NativeSearchContinuationIntentService.Execution) throws -> [String: Any],
+                 envelope: ([String: Any]) throws -> Void) throws {
+        guard !attemptedPublication else { throw RetentionError.alreadyPublished }
+        attemptedPublication = true
+        let reference = try checkpoint(request, execution)
+        checkpointReference = reference
+        try envelope(reference)
+    }
+}
+
+extension MaktabahNativeRoutingComposition {
+    // This observer is reached ONLY after the actual public entry has returned
+    // its typed execution. The old probe dispatcher never invokes these kinds.
+    // A diagnostic failure must neither erase that return nor change it.
+    private func recordPublicSearchContinuationEvidence(
+        _ request: NativeSearchContinuationIntentService.OpenRequest,
+        execution: NativeSearchContinuationIntentService.Execution
+    ) {
+        let kind = request.target.reference.kind == .result ? "search-public-hit" : "search-public-page"
+        guard let probe = MaktabahNativeActionAcceptanceProbe(kind: kind),
+              !probe.hasResult, !MaktabahNativePublicSearchProbeReturn.hasCaptured else { return }
+        var captured: MaktabahNativePublicSearchProbeReturn?
+        do {
+            let retained = try MaktabahNativePublicSearchProbeReturn.capture(kind: kind, token: probe.token,
+                request: request, execution: execution)
+            captured = retained
+            let evidence = MaktabahNativeSearchContinuationProbeEvidence(probe)
+            try retained.publish(checkpoint: { request, actualExecution in
+                try probe.writeSearchContinuationCheckpoint([
+                    "schemaVersion": 1, "diagnosticToken": probe.token.uuidString, "probeKind": probe.kind,
+                    "processID": ProcessInfo.processInfo.processIdentifier,
+                    "publicRequest": try evidence.publicRequest(request),
+                    "execution": try evidence.publicExecution(actualExecution)
+                ])
+            }, envelope: { checkpoint in
+                try probe.write(payload: ["schemaVersion": 1, "diagnosticToken": probe.token.uuidString,
+                    "probeKind": probe.kind, "processID": ProcessInfo.processInfo.processIdentifier,
+                    "outcomeCheckpoint": checkpoint, "actualExecutionRetained": true,
+                    "delivery": "original-public-entry-return", "triggerConsumed": false])
+            })
+        } catch {
+            var failure: [String: Any] = ["schemaVersion": 1, "diagnosticToken": probe.token.uuidString,
+                "probeKind": probe.kind, "processID": ProcessInfo.processInfo.processIdentifier,
+                "probeError": "public_search_evidence_failed", "triggerConsumed": false,
+                "actualExecutionRetained": captured != nil,
+                "errorType": String(describing: type(of: error))]
+            if let checkpoint = captured?.checkpointReference { failure["outcomeCheckpoint"] = checkpoint }
+            else if captured != nil { failure["outcomeCheckpointError"] = "actual_execution_retained_but_checkpoint_incomplete" }
+            try? probe.write(payload: failure)
+        }
+    }
+}
+
 // DEBUG acceptance projection only. It serializes the actual returned value;
 // it cannot issue a grant, alter an original search or construct a UI witness.
 @MainActor
@@ -3197,7 +3634,7 @@ private final class MaktabahNativeSearchContinuationProbeEvidence {
     // Original Data is retained losslessly outside the bounded JSON envelope.
     // Both filename and size are code-owned; no path is supplied by a caller.
     private func data(_ value: Data) throws -> [String: Any] {
-        guard ["search-continuation-hit", "search-continuation-page"].contains(probe.kind) else {
+        guard ["search-continuation-hit", "search-continuation-page", "search-public-hit", "search-public-page"].contains(probe.kind) else {
             throw EvidenceError.invalidKind
         }
         guard value.count <= 4 * 1024 * 1024 else { throw EvidenceError.budget }
@@ -3271,6 +3708,39 @@ private final class MaktabahNativeSearchContinuationProbeEvidence {
                         "deadlineUptimeNanoseconds": value.invocation.deadlineUptimeNanoseconds]]
     }
 
+    // Immutable public metadata is evidence, never a substitute source token.
+    func publicRequest(_ request: NativeSearchContinuationIntentService.OpenRequest) throws -> [String: Any] {
+        let target = request.target, value = target.source
+        let origin: [String: Any]
+        switch request.origin {
+        case .appIntent: origin = ["kind": "appIntent"]
+        case .deepLink(let scene): origin = ["kind": "deepLink", "receivingSceneID": scene.rawValue]
+        }
+        var result: [String: Any] = [
+            "referenceID": target.id, "kind": target.reference.kind.rawValue, "title": target.title,
+            "origin": origin,
+            "invocation": ["requestID": request.invocation.requestId.uuidString,
+                "snapshot": try probe.json(request.invocation.snapshot),
+                "deadlineUptimeNanoseconds": request.invocation.deadlineUptimeNanoseconds],
+            "source": ["sceneID": value.sceneID, "snapshot": try probe.json(value.snapshot),
+                "sessionID": value.sessionID.uuidString, "modelID": value.modelID.uuidString,
+                "generation": value.generation, "sourceRevision": value.sourceRevision,
+                "submissionRevision": value.submissionRevision, "cancellationRevision": value.cancellationRevision,
+                "paginationRevision": value.paginationRevision, "pageRevision": value.pageRevision,
+                "configuration": try data(value.configuration)]
+        ]
+        if let selected = target.hit {
+            result["hit"] = ["stableID": selected.stableID, "locator": optional(selected.locator),
+                "versionTitle": optional(selected.versionTitle), "language": optional(selected.language),
+                "identity": try data(selected.identity)]
+        } else { result["hit"] = NSNull() }
+        return result
+    }
+
+    func publicExecution(_ value: NativeSearchContinuationIntentService.Execution) throws -> [String: Any] {
+        ["command": try command(value.command), "outcome": try outcome(value.outcome)]
+    }
+
     func outcome(_ value: ActionSearchContinuationOutcome, depth: Int = 0) throws -> [String: Any] {
         guard depth < 64 else { throw EvidenceError.budget }
         switch value {
@@ -3299,7 +3769,7 @@ private final class MaktabahNativeSearchContinuationProbeEvidence {
 
 extension MaktabahNativeActionAcceptanceProbe {
     fileprivate func writeSearchContinuationCheckpoint(_ payload: [String: Any]) throws -> [String: Any] {
-        guard ["search-continuation-hit", "search-continuation-page"].contains(kind) else {
+        guard ["search-continuation-hit", "search-continuation-page", "search-public-hit", "search-public-page"].contains(kind) else {
             throw CocoaError(.coderInvalidValue)
         }
         let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
@@ -3313,7 +3783,7 @@ extension MaktabahNativeActionAcceptanceProbe {
     }
 
     fileprivate func writeSearchContinuationBlob(_ bytes: Data, digest: String) throws {
-        guard ["search-continuation-hit", "search-continuation-page"].contains(kind),
+        guard ["search-continuation-hit", "search-continuation-page", "search-public-hit", "search-public-page"].contains(kind),
               bytes.count <= 4 * 1024 * 1024, digest.count == 64,
               digest.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }),
               SHA256.hash(data: bytes).map({ String(format: "%02x", $0) }).joined() == digest else {

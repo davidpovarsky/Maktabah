@@ -27,6 +27,18 @@ struct MaktabahNativeShortcuts: AppShortcutsProvider {
         AppShortcut(intent: OpenStudyTabGroupIntent(),
                     phrases: ["Open tab group \(\.$selection) in \(.applicationName)"],
                     shortTitle: "Open tab group", systemImageName: "rectangle.3.group")
+        AppShortcut(intent: ResumeHistoryReadingIntent(),
+                    phrases: ["Resume reading \(\.$entry) in \(.applicationName)"],
+                    shortTitle: "Resume reading", systemImageName: "clock.arrow.circlepath")
+        AppShortcut(intent: RevealLoadedSearchResultIntent(),
+                    phrases: ["Show search result \(\.$result) in \(.applicationName)"],
+                    shortTitle: "Show search result", systemImageName: "text.magnifyingglass")
+        AppShortcut(intent: LoadNextOriginalSearchPageIntent(),
+                    phrases: ["Load next search page in \(.applicationName)"],
+                    shortTitle: "Next search page", systemImageName: "arrow.down.doc")
+        AppShortcut(intent: RevealSavedResultIntent(),
+                    phrases: ["Show saved search result in \(.applicationName)"],
+                    shortTitle: "Saved search result", systemImageName: "bookmark")
     }
 }
 #endif

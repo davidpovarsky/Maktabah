@@ -1,6 +1,438 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Saved results folder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved results folder"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תיקיית תוצאות שמורות"
+          }
+        }
+      }
+    },
+    "Saved search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוצאת חיפוש שמורה"
+          }
+        }
+      }
+    },
+    "Saved results window": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved results window"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון תוצאות שמורות"
+          }
+        }
+      }
+    },
+    "Show a saved results folder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a saved results folder"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תיקיית תוצאות שמורות"
+          }
+        }
+      }
+    },
+    "Show a saved search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a saved search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאת חיפוש שמורה"
+          }
+        }
+      }
+    },
+    "Show an existing folder in Saved Results.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show an existing folder in Saved Results."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תיקייה קיימת בתוצאות השמורות."
+          }
+        }
+      }
+    },
+    "Show a saved result without running its search.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a saved result without running its search."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאה שמורה בלי להריץ את החיפוש שלה."
+          }
+        }
+      }
+    },
+    "Saved reading position": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved reading position"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מיקום קריאה שמור"
+          }
+        }
+      }
+    },
+    "Resume reading from history": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume reading from history"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המשך קריאה מההיסטוריה"
+          }
+        }
+      }
+    },
+    "Resume reading": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume reading"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המשך קריאה"
+          }
+        }
+      }
+    },
+    "Reader window": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reader window"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון הקריאה"
+          }
+        }
+      }
+    },
+    "Open the original Reader at an existing saved history position in the selected Maktabah window.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the original Reader at an existing saved history position in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת הקורא במיקום הקריאה השמור בהיסטוריה, בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Search target": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search target"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יעד בחיפוש"
+          }
+        }
+      }
+    },
+    "Show a loaded search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a loaded search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאת חיפוש שנטענה"
+          }
+        }
+      }
+    },
+    "Show search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאת חיפוש"
+          }
+        }
+      }
+    },
+    "Loaded search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loaded search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוצאת חיפוש שנטענה"
+          }
+        }
+      }
+    },
+    "Reveal an existing result in its original search window. The current query and filters are preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal an existing result in its original search window. The current query and filters are preserved."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאה קיימת בחלון החיפוש שלה, תוך שמירת השאילתה והסינון הנוכחיים."
+          }
+        }
+      }
+    },
+    "Search result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search result"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוצאת חיפוש"
+          }
+        }
+      }
+    },
+    "Show ${result}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show ${result}"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת ${result}"
+          }
+        }
+      }
+    },
+    "Load the next search page": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load the next search page"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טעינת עמוד החיפוש הבא"
+          }
+        }
+      }
+    },
+    "Next search page": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next search page"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עמוד החיפוש הבא"
+          }
+        }
+      }
+    },
+    "Load the next page of the selected existing search. The original search determines the next page.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load the next page of the selected existing search. The original search determines the next page."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טעינת העמוד הבא בחיפוש הקיים שנבחר. העמוד נקבע לפי מצב החיפוש הנוכחי."
+          }
+        }
+      }
+    },
+    "Search page": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search page"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עמוד חיפוש"
+          }
+        }
+      }
+    },
+    "Load ${page}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load ${page}"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טעינת ${page}"
+          }
+        }
+      }
+    },
+    "Get a search link": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get a search link"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלת קישור לחיפוש"
+          }
+        }
+      }
+    },
+    "Create a link to a current search result or next page. The link contains no query text and expires when the original search changes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a link to a current search result or next page. The link contains no query text and expires when the original search changes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצירת קישור לתוצאת חיפוש קיימת או לעמוד הבא. הקישור אינו מכיל את השאילתה ותוקפו פג כאשר החיפוש משתנה."
+          }
+        }
+      }
+    },
+    "Get a link to ${target}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get a link to ${target}"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבלת קישור אל ${target}"
+          }
+        }
+      }
+    },
     "Study profile": {
       "localizations": {
         "en": {

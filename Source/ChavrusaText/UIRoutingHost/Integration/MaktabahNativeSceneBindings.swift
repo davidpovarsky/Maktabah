@@ -200,6 +200,7 @@ struct MaktabahNativeSceneBindings {
     private let destination: LibraryReaderDestination
     private let workspace: StudyWorkspaceNavigationAdapter?
     private let reservation: StudyWorkspaceNativeReaderReservation?
+    private let historySource: MaktabahNativeHistoryReaderSource?
     private let revoke: @MainActor () -> Void
     private(set) var valid = true
     private var applying = false
@@ -211,7 +212,16 @@ struct MaktabahNativeSceneBindings {
 
     init(manager: iOSNavigationManager, currentTabID: UIStableID?,
          workspace: StudyWorkspaceNavigationAdapter?, requestID: UUID, content: ActionReaderDestination,
+         historySource: MaktabahNativeHistoryReaderSource? = nil,
          revoke: @escaping @MainActor () -> Void) throws {
+        if let historySource {
+            try historySource.validate()
+            guard historySource.request.invocation.requestId == requestID,
+                  (content.focusLocator ?? content.sectionLocator) == historySource.locator,
+                  (content.presentationMode == .newTab) == historySource.request.newTab else {
+                throw UIRouteError(.staleState, "history_reader_request_changed")
+            }
+        }
         let destination = try Self.appDestination(content)
         let tab: iOSNavigationManager.ReaderTab
         let reserved: StudyWorkspaceNativeReaderReservation?
@@ -238,6 +248,7 @@ struct MaktabahNativeSceneBindings {
         self.manager = manager; reader = tab.viewModel; tabID = tab.id
         self.destination = destination; self.revoke = revoke
         self.workspace = workspace; reservation = reserved
+        self.historySource = historySource
         reader.nativeReaderDestinationWillChange = { [weak self] next in
             guard let self, valid else { return }
             // Only this synchronous, already authorized native apply may
@@ -263,6 +274,7 @@ struct MaktabahNativeSceneBindings {
     }
     func validate() throws {
         guard valid, installed else { throw UIRouteError(.staleState, "reader_binding_revoked") }
+        try historySource?.validate()
         if let reservation {
             guard let workspace, reservation.tab.viewModel === reader,
                   reservation.tab.id == tabID,
@@ -286,12 +298,18 @@ struct MaktabahNativeSceneBindings {
         guard !applying else { throw UIRouteError(.failed, "reader_apply_reentered") }
         applying = true
         defer { applying = false }
-        if let reservation {
-            guard let workspace else { throw ActionPortError.staleState }
-            try workspace.applyNativeReader(reservation, operation: operation)
-        } else { try operation() }
+        try withHistorySource {
+            if let reservation {
+                guard let workspace else { throw ActionPortError.staleState }
+                try workspace.applyNativeReader(reservation, operation: operation)
+            } else { try operation() }
+        }
         try validate()
         guard reader.currentDestination == destination else { throw ActionPortError.invalidResponse }
+    }
+    private func withHistorySource(_ operation: () throws -> Void) throws {
+        if let historySource { try historySource.performOriginalApply(operation) }
+        else { try operation() }
     }
     func release() {
         guard installed else { return }

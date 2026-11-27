@@ -1,6 +1,46 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Show saved search result in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוצאת חיפוש שמורה ב־${applicationName}"
+          }
+        }
+      }
+    },
+    "Resume reading ${entry} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המשך לקרוא את ${entry} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
+    "Show search result ${result} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצג את תוצאת החיפוש ${result} באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
+    "Load next search page in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טען את עמוד החיפוש הבא באפליקציה ${applicationName}"
+          }
+        }
+      }
+    },
     "Open study profile ${selection} in ${applicationName}": {
       "localizations": {
         "he": {
