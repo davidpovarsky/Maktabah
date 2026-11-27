@@ -2800,3 +2800,121 @@ extension NativeRoutingPhoneAcceptanceTests {
             presentation: "sheet")
     }
 }
+
+
+// UI-04 Siri delivery is separate from direct system Intent execution and the
+// historical Native116 / Release114 selections. No product route is added.
+extension NativeRoutingAcceptanceTests {
+    /// Read original persisted document semantics. Geometry checkpoints and the
+    /// workspace revision are not reading-state identities; all retained tabs'
+    /// source, location, search and highlight state must stay unchanged.
+    private func actualSiriReaderDocuments(groupID: UUID) throws -> Data {
+        let bytes = try Data(contentsOf: workspaceSidecarURL())
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        let groups = try XCTUnwrap(workspace["groups"] as? [[String: Any]])
+        let matches = groups.filter { ($0["id"] as? String).flatMap(UUID.init(uuidString:)) == groupID }
+        XCTAssertEqual(matches.count, 1)
+        let group = try XCTUnwrap(matches.first)
+        let tabs = try XCTUnwrap(group["tabs"] as? [[String: Any]])
+        XCTAssertFalse(tabs.isEmpty)
+        let fields: Set<String> = [
+            "id", "bookId", "bookTitle", "backendLocator", "locator", "contentId",
+            "page", "part", "searchText", "searchModeRaw", "nearDistance", "highlightTerms"
+        ]
+        let documents: [[String: Any]] = try tabs.map { tab in
+            let backend = try XCTUnwrap(tab["backend"] as? String)
+            let session = try XCTUnwrap(tab["session"] as? [String: Any])
+            _ = try XCTUnwrap((session["id"] as? String).flatMap(UUID.init(uuidString:)))
+            _ = try XCTUnwrap(session["bookId"] as? Int)
+            return ["backend": backend, "session": session.filter { fields.contains($0.key) }]
+        }
+        return try JSONSerialization.data(withJSONObject: documents, options: [.sortedKeys])
+    }
+
+    @MainActor
+    func runOriginalSiriHistory(expectedPad: Bool, fromBackground: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let originalWorkspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(originalWorkspace.lastActiveSceneID)
+        let original = try originalWorkspace.current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(locator.isEmpty)
+        XCTAssertFalse(history.exists && history.isHittable,
+                       "Siri must navigate from the original Reader to another original page")
+        let originalDocuments = try actualSiriReaderDocuments(groupID: original.0.id)
+        let before = try actualNativeReceiptLines()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let evidenceName = expectedPad ? "siri-ipad-history" : "siri-phone-history"
+        defer {
+            let siriTree = XCTAttachment(string: XCUIDevice.shared.siriService.debugDescription)
+            siriTree.name = evidenceName + "-actual-siri-hierarchy"
+            siriTree.lifetime = .keepAlways; add(siriTree)
+            captureSystemDialogEvidence(evidenceName + "-outcome", springboard: springboard)
+        }
+
+        // This is the existing AppShortcut phrase from MaktabahNativeShortcuts,
+        // using the actual English root title and iOS CFBundleDisplayName.
+        let phrase = "Open History in ChavrusaText"
+        let input: [String: Any] = [
+            "api": "XCUIDevice.shared.siriService.activate(voiceRecognitionText:)",
+            "phrase": phrase, "background": fromBackground,
+            "formFactor": expectedPad ? "iPad" : "iPhone",
+            "originalLocator": locator, "originalNativeReceiptCount": before.count,
+            "expectedDestination": "native.history", "expectedPresentation": "currentTab"
+        ]
+        let inputEvidence = XCTAttachment(
+            data: try JSONSerialization.data(withJSONObject: input, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        inputEvidence.name = evidenceName + "-actual-siri-input"
+        inputEvidence.lifetime = .keepAlways; add(inputEvidence)
+        let savedBefore = XCTAttachment(data: originalDocuments, uniformTypeIdentifier: "public.json")
+        savedBefore.name = evidenceName + "-original-reading-state"
+        savedBefore.lifetime = .keepAlways; add(savedBefore)
+        captureSystemDialogEvidence(evidenceName + "-before", springboard: springboard)
+
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [background], timeout: 15), .completed)
+            XCTAssertEqual(try actualNativeReceiptLines(), before,
+                           "Backgrounding alone cannot acknowledge native navigation")
+        } else {
+            XCTAssertEqual(app.state, .runningForeground)
+        }
+        XCTContext.runActivity(named: "Invoke existing History App Shortcut through real Siri") { _ in
+            XCUIDevice.shared.siriService.activate(voiceRecognitionText: phrase)
+        }
+        // No activate(), direct perform()/run(), URL, decoder, confirmation
+        // bypass or skip follows Siri. A setup/disambiguation failure remains a failure.
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            self.history.exists && self.history.isHittable && !self.history.frame.isEmpty
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "Siri must reveal the original History & Favorites screen")
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.history", presentation: "currentTab",
+                                          before: before, receiptSource: "siri")
+        let receipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let receiptScene = receipt.split(separator: " ").first { $0.hasPrefix("scene=") }.map(String.init)
+        XCTAssertEqual(receiptScene, "scene=" + originalScene,
+                       "Siri must acknowledge this exact original scene")
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        try requirePreservedOriginalWorkspace(original)
+        let currentDocuments = try actualSiriReaderDocuments(groupID: original.0.id)
+        XCTAssertEqual(currentDocuments, originalDocuments,
+                       "Siri root navigation must preserve every original document's reading state")
+        let savedAfter = XCTAttachment(data: currentDocuments, uniformTypeIdentifier: "public.json")
+        savedAfter.name = evidenceName + "-retained-reading-state"
+        savedAfter.lifetime = .keepAlways; add(savedAfter)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        capture(evidenceName + "-original-history-and-receipt")
+    }
+}
