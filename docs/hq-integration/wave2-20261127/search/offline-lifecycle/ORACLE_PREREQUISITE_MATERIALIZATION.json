@@ -1,0 +1,11 @@
+{
+  "scope": "EXACT_UNCHANGED_TRACKED_BLOB_MATERIALIZED_IN_OWN_SPARSE_WORKTREE_ONLY",
+  "path": "Scripts/CI/runtime27_interruption.py",
+  "checkoutSHA": "1d5140c271d3e666f4c631d40876ab812563ba10",
+  "gitBlob": "1fb612721275dc2f3109a955ec97403789e7f7c6",
+  "bytes": 7650,
+  "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+  "sourceModified": false,
+  "priorAttempt": "oracle-attempt1-oracle-controls.stderr.log",
+  "priorAttemptSHA256": "0d5b84101950d2420f4a4ee865cec369a036620db1a1c0b2f05f0b1c37397f18"
+}

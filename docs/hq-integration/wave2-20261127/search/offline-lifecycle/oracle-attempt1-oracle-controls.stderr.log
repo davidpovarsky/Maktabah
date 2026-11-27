@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-lifecycle/source-controls.py", line 51, in <module>
+    original = load('actual_original_interruption', INTERRUPTION)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/offline-lifecycle/source-controls.py", line 32, in load
+    spec.loader.exec_module(result)
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1128, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1186, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/Scripts/CI/runtime27_interruption.py'

@@ -1,0 +1,4 @@
+  File "/workspace/scratch/ca3b32b82803/offline-lifecycle/source-controls.py", line 170
+    with patch.object(old_m.subprocess, 'Popen', side_effect=KeyboardInterrupt('synthetic RPC spawn')),
+                                                                                                       ^
+SyntaxError: invalid syntax
