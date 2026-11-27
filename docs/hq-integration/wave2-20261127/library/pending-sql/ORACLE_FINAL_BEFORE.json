@@ -1,0 +1,16 @@
+{
+  "availableSwiftFrontend": null,
+  "availableSwiftc": "/usr/local/bin/swiftc",
+  "branch": "codex/otzaria-wave2-pending-sql-20261127",
+  "head": "883660701dd57c049de6da6fcf51a4027675409c",
+  "host": "tora-social-oracle",
+  "nativePrefix": {
+    "bytes": 102598,
+    "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+  },
+  "observedUTC": "2026-11-27T09:18:57.919043+00:00",
+  "schema": 1,
+  "scope": "ACTUAL_READ_ONLY_ORACLE_SOURCE_AND_TOOL_DISCOVERY_NO_SWIFT_EXECUTION",
+  "statusPorcelain": "",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127"
+}

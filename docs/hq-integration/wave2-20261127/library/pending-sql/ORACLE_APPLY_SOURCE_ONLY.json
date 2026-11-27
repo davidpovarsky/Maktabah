@@ -1,0 +1,66 @@
+{
+  "base": "883660701dd57c049de6da6fcf51a4027675409c",
+  "branch": "codex/otzaria-wave2-pending-sql-20261127",
+  "files": [
+    {
+      "bytes": 119300,
+      "path": "Scripts/CI/study-ui-pending-sql.py",
+      "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+    },
+    {
+      "bytes": 142688,
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5"
+    },
+    {
+      "bytes": 11613,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/API.md",
+      "sha256": "7c222864bcecf0267fc781c3e88dcbee7e820fca55c51ec681797e4e10826710"
+    },
+    {
+      "bytes": 803750,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ARTIFACT_INDEX.json",
+      "sha256": "741828c134f016e759c2b6829a4152f4c59c5fc4f4a7a526c1beef25bbc5d242"
+    },
+    {
+      "bytes": 739,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/LOCAL_SOURCE_CHECK.json",
+      "sha256": "ba7dc13cd065e67862d3d61debc59da1612b5ee93facc8ed1c558ac7393a4cb3"
+    },
+    {
+      "bytes": 617,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_FINAL_BEFORE.json",
+      "sha256": "e367122ffc7e2580ca6a650c9fe242e579a40cd250552aabe2ef9ddd30e12de1"
+    },
+    {
+      "bytes": 1540,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_SOURCE_BEFORE.json",
+      "sha256": "228d0a193ba58fd32ffc9775d4c2611d592dbd076746cd1b399c656228e163f1"
+    },
+    {
+      "bytes": 16501,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/README.md",
+      "sha256": "1b7487b75517135aad190c74035602fea166d05f53b858602ffd5f8b0907f552"
+    },
+    {
+      "bytes": 977176,
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/source-controls-and-inputs.tar.gz",
+      "sha256": "1637f4b219268eecf2c6078f2c46cfcf556cfff9db70dafc0a647fe89a73e7e2"
+    }
+  ],
+  "nativePrefix": {
+    "bytes": 102598,
+    "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+  },
+  "nativeUIExecuted": 0,
+  "package": {
+    "bytes": 1132705,
+    "path": "/var/lib/sentinelx/uploads/wave2-library-20261127/pending-sql-checkpoint-20261127T0920.tar.gz",
+    "sha256": "1d108cd3dd9a22d80cb020fab5022fb36d3706a2e73aec672f3de60047d2f5ac"
+  },
+  "pythonSyntax": "PASS",
+  "schema": 1,
+  "scope": "ORACLE_GUARDED_SOURCE_APPLY_AND_PYTHON_SYNTAX_ONLY_NOT_SWIFT_UI_OR_PERFORMANCE",
+  "swiftCompiles": 0,
+  "utc": "2026-11-27T09:22:05.842764+00:00"
+}

@@ -1,0 +1,45 @@
+{
+  "observedUTC": "2026-11-27T08:41:08.560637+00:00",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127",
+  "branch": "codex/otzaria-wave2-pending-sql-20261127",
+  "head": "883660701dd57c049de6da6fcf51a4027675409c",
+  "status": "",
+  "baseSource": {
+    "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "bytes": 102598,
+    "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+  },
+  "instructions": {
+    "AGENTS.md": {
+      "readExit": 0,
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    "PROJECT_AGENT_GUIDANCE.md": {
+      "readExit": 0,
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md": {
+      "readExit": 0,
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    }
+  },
+  "upstreamCommit": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "affectedUpstreamPaths": {
+    "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": {
+      "existsAtExactUpstream": false,
+      "gitExit": 128
+    },
+    "Scripts/CI/study-ui-pending-sql.py": {
+      "existsAtExactUpstream": false,
+      "gitExit": 128
+    },
+    "docs/hq-integration/wave2-20261127/library/pending-sql": {
+      "existsAtExactUpstream": false,
+      "gitExit": 128
+    }
+  }
+}
