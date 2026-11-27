@@ -1,0 +1,39 @@
+{
+  "schema": "otzaria.wave3.original-history-test-caller-repair.v1",
+  "utc": "2026-11-27T13:56:57.501719+00:00",
+  "base": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+  "beforeBytes": 259080,
+  "beforeSHA256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad",
+  "afterBytes": 259040,
+  "afterSHA256": "6fb46c9fc02d8abdd29a6926490f231a4cb891948ecd6d5a44d369b3832893f8",
+  "changes": [
+    {
+      "line": 2679,
+      "before": "            try openInExistingProcess(publicRootURL(\"native.history\", request: historyRequest))",
+      "after": "            try openInExistingProcess(historyURL(\"otzaria\", request: historyRequest))"
+    },
+    {
+      "line": 2949,
+      "before": "            try openInExistingProcess(publicRootURL(\"native.history\", request: historyRequest))",
+      "after": "            try openInExistingProcess(historyURL(\"otzaria\", request: historyRequest))"
+    },
+    {
+      "line": 3154,
+      "before": "        try openInExistingProcess(publicRootURL(\"native.history\", request: historySetup))",
+      "after": "        try openInExistingProcess(historyURL(\"otzaria\", request: historySetup))"
+    },
+    {
+      "line": 3305,
+      "before": "        try openInExistingProcess(publicRootURL(\"native.history\", request: setup))",
+      "after": "        try openInExistingProcess(historyURL(\"otzaria\", request: setup))"
+    }
+  ],
+  "sameAssertionsAndReceiptCalls": true,
+  "exactInverseRestoresAllOriginalBytes": true,
+  "sourceTree": "1e36b8942c4f43e551f5b1eb814139fac651e56b",
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "cause": "Four setup callers passed native.history to the original Search/Annotations-only URL helper. They now use the original dedicated historyURL with the same otzaria backend, request UUID, version1 route and currentTab presentation. The restrictive assertion is unchanged.",
+  "nativeExecution": "NOT_RUN",
+  "historicalFailureReclassification": false
+}

@@ -2676,7 +2676,7 @@ extension NativeRoutingAcceptanceTests {
             // Cold cases start on another original page. Warm cases explicitly
             // retain the original surface reached by their preceding real action.
             let historyRequest = UUID()
-            try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
             XCTAssertTrue(history.waitForExistence(timeout: 15))
             try requireRootReceipt(historyRequest, destination: "native.history")
         }
@@ -2946,7 +2946,7 @@ extension NativeRoutingAcceptanceTests {
             expectedMode = try XCTUnwrap(mode.value as? String)
             expectedBooks = books.label
             let historyRequest = UUID()
-            try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
             XCTAssertTrue(history.waitForExistence(timeout: 15) && history.isHittable)
             try requireRootReceipt(historyRequest, destination: "native.history")
         }
@@ -3151,7 +3151,7 @@ extension NativeRoutingAcceptanceTests {
         let originalScene = try XCTUnwrap(actualReaderWorkspace().lastActiveSceneID)
         let pid = try targetProcessIdentifier()
         let historySetup = UUID()
-        try openInExistingProcess(publicRootURL("native.history", request: historySetup))
+        try openInExistingProcess(historyURL("otzaria", request: historySetup))
         XCTAssertTrue(history.waitForExistence(timeout: 15))
         try requireRootReceipt(historySetup, destination: "native.history")
         let historySource = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
@@ -3302,7 +3302,7 @@ extension NativeRoutingAcceptanceTests {
         let originalScene = try XCTUnwrap(actualReaderWorkspace().lastActiveSceneID)
         let pid = try targetProcessIdentifier()
         let setup = UUID()
-        try openInExistingProcess(publicRootURL("native.history", request: setup))
+        try openInExistingProcess(historyURL("otzaria", request: setup))
         try requireRootReceipt(setup, destination: "native.history")
         let historySource = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
             line: initial.lineIndex, title: title)

@@ -1,0 +1,3 @@
+# Original History setup helper correction
+
+Exactly four existing native-test setup callers now use the original dedicated History URL helper. The Search/Annotations-only helper retains its existing restrictive assertion. The History payload, backend, request UUID, URL scheme, path and presentation match the original intended route; all UI expectations and receipt assertions remain byte-identical. This fixes a source-visible test setup inconsistency, not a demonstrated app runtime defect. No native result is reclassified and no assertion, expectation, skip or timeout changed. The entire original test source and exact four-line inverse are retained. Pending additive test suffixes are integrated explicitly against this corrected prefix.
