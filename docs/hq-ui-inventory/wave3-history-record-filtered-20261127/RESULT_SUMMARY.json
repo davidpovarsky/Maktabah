@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "method": "actual original generic metadata provider replay",
+    "tests": 1,
+    "expectedFailures": 3,
+    "exit": 1
+  },
+  "candidate": {
+    "tests": 10,
+    "failures": 0,
+    "exit": 0
+  },
+  "syntaxParses": 4,
+  "nativeExecuted": 0,
+  "historical27BodiesCompiledUnchangedButNotRerun": true,
+  "scope": "real portable modules/verbatim source with explicit scene/UI/domain/Core lifetime boundaries"
+}

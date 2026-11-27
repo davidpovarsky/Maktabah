@@ -1,0 +1,11 @@
+{
+  "status": "NOT_RUN",
+  "selectors": [
+    "NativeHistoryRecordAcceptanceTests/testFilteredHistoryRecordFromLibraryPreservesOriginalQueryAndExactCard",
+    "NativeHistoryRecordPhoneAcceptanceTests/testPhoneFilteredFavoriteRecordFromBackgroundPreservesOriginalQueryAndExactCard"
+  ],
+  "data": "original miniTest10 fixture",
+  "previousSixPreserved": true,
+  "appSDK": "NOT_RUN",
+  "physicalQA": "NOT_RUN"
+}

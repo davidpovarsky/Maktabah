@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_5c85735d5275",
+    "type": "job_result",
+    "source": "exec@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "exec",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795772981.4759865,
+    "started_at": "2026-11-27T09:49:41.554421+00:00",
+    "finished_at": "2026-11-27T09:50:11.769604+00:00",
+    "duration_s": 30.22,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"phase\": \"baseline\", \"exit\": 1, \"stoppedForReserve\": false, \"start\": \"2026-11-27T09:49:41.716760+00:00\", \"end\": \"2026-11-27T09:49:59.722786+00:00\", \"packageInputSha256\": \"12244d84e571aee309b680f62946fc16b15e5f040cc24defaa204adb9e7e58bf\", \"generatedSourceSha256\": \"811acb955f237452ee43b378f57ab3e4fd94c64f9a839ec81184b66e52b0ee99\", \"rawSha256\": \"9a918a38bcb6deb0e75f4933cc4570335711f9657c883f7042345205624e98c1\", \"freeAfter\": 1272172544, \"scope\": \"source controls only; explicit scene/UI/domain/Core lifetime boundaries, no app SDK/native claim\"}\n/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/HistoryRecordBindingSourceTests.swift:1707: error: HistoryRecordWindowMetadataSourceTests.testFilteredMetadataPreservesGenericRootContract : XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - \n/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/HistoryRecordBindingSourceTests.swift:1708: error: HistoryRecordWindowMetadataSourceTests.testFilteredMetadataPreservesGenericRootContract : XCTAssertEqual failed: (\"nil\") is not equal to (\"Optional(OtzariaUIRouting.UIStableID(rawValue: \"original-scene\"))\") - \n/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/HistoryRecordBindingSourceTests.swift:1709: error: HistoryRecordWindowMetadataSourceTests.testFilteredMetadataPreservesGenericRootContract : XCTAssertEqual failed: (\"nil\") is not equal to (\"Optional(OtzariaUIRouting.UIDestinationID(rawValue: \"native.history\"))\") - \nTest Case 'HistoryRecordWindowMetadataSourceTests.testFilteredMetadataPreservesGenericRootContract' failed (0.038 seconds)\nTest Suite 'HistoryRecordWindowMetadataSourceTests' failed at 2026-11-27 09:49:58.763\n\t Executed 1 test, with 3 failures (0 unexpected) in 0.038 (0.038) seconds\nTest Suite 'Selected tests' failed at 2026-11-27 09:49:58.764\n\t Executed 1 test, with 3 failures (0 unexpected) in 0.038 (0.038) seconds\n{\"phase\": \"candidate\", \"exit\": 0, \"stoppedForReserve\": false, \"start\": \"2026-11-27T09:49:59.746923+00:00\", \"end\": \"2026-11-27T09:50:11.755916+00:00\", \"packageInputSha256\": \"a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9\", \"generatedSourceSha256\": \"421fbe58d0c20ba366d2c5bfda86d4d429f9f427091eac2ed5dd65177172e7c8\", \"rawSha256\": \"099fd97c8c6087af632805d649af5a1a5007d209da61c21da6241552dc1b857d\", \"freeAfter\": 1271373824, \"scope\": \"source controls only; explicit scene/UI/domain/Core lifetime boundaries, no app SDK/native claim\"}\n\t Executed 10 tests, with 0 failures (0 unexpected) in 0.393 (0.393) seconds\n\t Executed 10 tests, with 0 failures (0 unexpected) in 0.393 (0.393) seconds"
+  }
+}

@@ -237,7 +237,8 @@ extension MaktabahNativeSceneBindings {
     }
 
     var isAvailable: Bool {
-        guard commonReady(), !bindings.showSettings.wrappedValue, bindings.isPresentationReady,
+        guard iOSTab.history.isAvailable(for: BackendCoordinator.shared.activeCapabilities),
+              commonReady(), !bindings.showSettings.wrappedValue, bindings.isPresentationReady,
               bindings.manager.alertMessage == nil, workspaceSource.isAuthoritative,
               let workspace = try? workspaceSource.read(), workspace.attached, !workspace.isSwitching,
               workspace.sceneID == sceneID.rawValue, let mapping = workspace.mappingOwnershipObservation(),

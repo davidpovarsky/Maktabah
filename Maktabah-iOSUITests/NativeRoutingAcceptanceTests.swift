@@ -3286,3 +3286,126 @@ extension NativeRoutingAcceptanceTests {
         capture("original-\(kind)-record-system-intent")
     }
 }
+
+// Typed record-window metadata with the ORIGINAL History query left intact.
+// Separate selectors preserve every previously declared record/native case.
+extension NativeRoutingAcceptanceTests {
+    @MainActor func runOriginalFilteredHistoryRecordSystemIntent(expectedPad: Bool, favorite: Bool,
+                                                                 fromBackground: Bool) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        XCTAssertFalse(title.isEmpty)
+        let original = try actualReaderWorkspace().current()
+        let originalScene = try XCTUnwrap(actualReaderWorkspace().lastActiveSceneID)
+        let pid = try targetProcessIdentifier()
+        let setup = UUID()
+        try openInExistingProcess(publicRootURL("native.history", request: setup))
+        try requireRootReceipt(setup, destination: "native.history")
+        let historySource = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
+            line: initial.lineIndex, title: title)
+        if favorite && !historySource.isFavorite {
+            let originalCard = try requireOriginalHistoryCard(historySource)
+            let addFavorite = originalCard.buttons["Add Favorite"]
+            XCTAssertTrue(addFavorite.isHittable); addFavorite.tap()
+        }
+        let kind = favorite ? "favorite" : "history"
+        let source = try requireOriginalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        // Cache a real original window before filtering. Execution must resolve
+        // it afresh through the record-specific query; no window is fabricated.
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertEqual(windows.count, 1)
+        let window = try XCTUnwrap(windows.first)
+        let filter = app.searchFields["Search History & Favorites"]
+        XCTAssertTrue(filter.waitForExistence(timeout: 15), "Require the original History search control")
+        XCTAssertTrue(filter.isHittable); filter.tap(); filter.typeText(title)
+        let queryChanged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            filter.value as? String == title
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [queryChanged], timeout: 10), .completed)
+        let submit = app.keyboards.buttons["Search"]
+        XCTAssertTrue(submit.isHittable); submit.tap()
+        let keyboardGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                     object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardGone], timeout: 10), .completed)
+        XCTAssertEqual(filter.value as? String, title)
+        let genericWindows = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertTrue(genericWindows.isEmpty, "The original generic History root keeps its empty-query contract")
+        let type = favorite ? "NativeFavoriteRecordEntity" : "NativeHistoryRecordEntity"
+        let records = try await system.entities[type].entities(matching: title)
+        XCTAssertEqual(records.count, 1, "Resolve an actual qualified card under the existing filter")
+        let reference = system.entities[type].makeReference(identifier: source.entityID)
+        if !favorite {
+            let librarySetup = UUID()
+            try openInExistingProcess(publicRootURL("native.library", request: librarySetup))
+            try requireRootReceipt(librarySetup, destination: "native.library")
+            XCTAssertFalse(history.exists && history.isHittable)
+        }
+        let before = try actualNativeReceiptLines(), recordBefore = try originalHistoryRecordReceiptLines()
+        let documentsBefore = try actualSiriReaderDocuments(groupID: original.0.id)
+        let storeBefore = try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let backgrounded = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [backgrounded], timeout: 15), .completed)
+        }
+        // Sole target delivery: the real system intent. No decoder/direct
+        // perform(), query clearing, synthetic ACK or root fallback follows.
+        if favorite {
+            _ = try await system.intents["RevealFavoriteRecordIntent"].makeIntent(favorite: reference, window: window).run()
+        } else {
+            _ = try await system.intents["RevealHistoryEntryIntent"].makeIntent(entry: reference, window: window).run()
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let card = try requireOriginalHistoryCard(source)
+        XCTAssertTrue(filter.waitForExistence(timeout: 15))
+        XCTAssertEqual(filter.value as? String, title, "The original query must survive the parent/card reveal")
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let native = try? self.actualNativeReceiptLines(),
+                  let record = try? self.originalHistoryRecordReceiptLines() else { return false }
+            return before.isSubset(of: native) && native.subtracting(before).count == 1
+                && recordBefore.isSubset(of: record) && record.subtracting(recordBefore).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.history", presentation: "currentTab", before: before)
+        let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let nativeFields = native.split(separator: " ")
+        let request = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("request=") }).dropFirst(8))
+        let scene = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("scene=") }).dropFirst(6))
+        XCTAssertEqual(scene, originalScene)
+        let actualRecord = try XCTUnwrap(originalHistoryRecordReceiptLines().subtracting(recordBefore).first)
+        let parts = actualRecord.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        guard parts.count == 3 else { throw OriginalHistoryRecordError.receipt }
+        XCTAssertEqual(parts[1], "[NativeHistoryRecordReceipt]")
+        XCTAssertEqual(parts[2], "request=\(request) scene=\(scene) item=\(source.itemID)")
+        let proof = XCTAttachment(string: actualRecord)
+        proof.name = "actual-filtered-record-selected-item-receipt"; proof.lifetime = .keepAlways; add(proof)
+        let frame = card.frame
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            !card.exists || !card.isHittable || card.frame != frame || !card.label.contains(title)
+                || filter.value as? String != title
+        }, object: nil)
+        changed.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 2), .completed)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        XCTAssertEqual(try originalHistoryRecordReceiptLines().subtracting(recordBefore).count, 1)
+        let genericAfter = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertTrue(genericAfter.isEmpty)
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documentsBefore)
+        XCTAssertEqual(try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore, storeBefore)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("original-filtered-\(kind)-record-system-intent")
+    }
+}

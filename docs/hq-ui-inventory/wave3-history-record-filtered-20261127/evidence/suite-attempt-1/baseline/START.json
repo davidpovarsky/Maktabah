@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch",
+    "--jobs",
+    "2",
+    "--filter",
+    "HistoryRecordWindowMetadataSourceTests/testFilteredMetadataPreservesGenericRootContract"
+  ],
+  "pid": 107320,
+  "pgid": 107320,
+  "utc": "2026-11-27T09:49:41.716760+00:00",
+  "free": 1273647104,
+  "reserveStopBytes": 838860800
+}
