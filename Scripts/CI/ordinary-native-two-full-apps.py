@@ -117,6 +117,7 @@ def main():
     if localized.exists():
         display_name = plistlib.loads(localized.read_bytes()).get("CFBundleDisplayName", display_name)
     fixture_root = Path(inputs["networkFixtureRoot"])
+    network_configuration = check_pin(inputs["networkConfiguration"]) if "networkConfiguration" in inputs else None
     pointer = check_pin(inputs["networkFixturePointer"])
     require(pointer.parent == fixture_root and pointer.name == "source-pointer.json",
             "Require the preserved original account fixture pointer")
@@ -147,6 +148,12 @@ def main():
             run("xcrun", "simctl", "install", udid, app)
             container = Path(run("xcrun", "simctl", "get_app_container", udid, BUNDLE, "data"))
             require(udid in container.parts, "The app container must belong to its independent simulator")
+            if network_configuration is not None:
+                document = container / "Documents/otzaria-original-anysync.yaml"
+                document.parent.mkdir(exist_ok=True)
+                require(not document.exists(), "The new app must have no prior configuration document")
+                shutil.copy2(network_configuration, document)
+                require(digest(document) == inputs["networkConfiguration"]["sha256"], "Client configuration transfer changed bytes")
             (directory / "sim_udid.txt").write_text(udid + "\n")
             with (directory / "library-fixture.log").open("w") as log:
                 installed = subprocess.run([sys.executable, str(fixture_helper), "--artifact-label", "11-reader"],
@@ -192,6 +199,8 @@ def main():
                 "TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT": str(fixture_root),
                 "TEST_RUNNER_OTZARIA_ANYTYPE_PAIRED_PHASE_ROOT": str(directory),
                 "TEST_RUNNER_OTZARIA_ANYTYPE_PAIRED_APP_NAME": display_name})
+            if network_configuration is not None:
+                environment["TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_FILENAME"] = "otzaria-original-anysync.yaml"
             command = ["xcodebuild", "test-without-building", "-xctestrun", str(test_run),
                        "-parallel-testing-enabled", "NO", "-destination", "platform=iOS Simulator,id=" + udid,
                        "-resultBundlePath", str(directory / "Native.xcresult"),
@@ -203,7 +212,7 @@ def main():
             with (directory / "actual-xctest-private.log").open("w") as log:
                 completed = subprocess.run(command, env=environment, stdout=log, stderr=subprocess.STDOUT, timeout=1200)
             summary = json.loads(run("xcrun", "xcresulttool", "get", "test-results", "summary",
-                                     "--path", directory / "Native.xcresult", "--format", "json"))
+                                     "--path", directory / "Native.xcresult"))
             write(directory / "actual-summary.json", summary)
             observed = {"name": name, "replica": replica, "selector": SELECTOR, "appleExit": completed.returncode,
                         "passedTests": summary.get("passedTests"), "failedTests": summary.get("failedTests"),

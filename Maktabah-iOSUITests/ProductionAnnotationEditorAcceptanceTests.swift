@@ -736,6 +736,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             let account_id: String
             let space_id: String
             let object_id: String
+            let space_title: String?
         }
 
         static func load() throws -> Self {
@@ -758,8 +759,13 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
                     || (97...122).contains($0) || $0 == 46 } }) else {
                 throw OrdinaryNativeAcceptanceError.failed("Invalid original account or Space identity")
             }
+            let title = pointer.space_title ?? "Otzaria original network acceptance"
+            guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  title.utf8.count <= 256 else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid original Space display name")
+            }
             return .init(accountID: pointer.account_id, spaceID: pointer.space_id,
-                         spaceTitle: "Otzaria original network acceptance", protectedRoot: pointer.object_id,
+                         spaceTitle: title, protectedRoot: pointer.object_id,
                          keyPath: root.appendingPathComponent("development-mnemonic.private").path)
         }
     }
@@ -873,6 +879,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             predicate: NSPredicate { _, _ in login.exists || space.count > 0 }, object: nil)], timeout: 120)
         XCTAssertEqual(ready, .completed)
         if login.exists {
+            try await selectOriginalDevelopmentNetworkIfNeeded(account)
             tap(login)
             let fields = account.textViews
             XCTAssertTrue(fields.firstMatch.waitForExistence(timeout: 30))
@@ -1464,6 +1471,32 @@ extension ProductionAnnotationEditorAcceptanceTests {
             tap(refresh)
         }
         try nativeRequire(false, "The original remote copy did not become selectable through real product discovery")
+    }
+
+    @MainActor
+    private func selectOriginalDevelopmentNetworkIfNeeded(_ account: XCUIElement) async throws {
+        guard let filename = ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_FILENAME"] else { return }
+        try nativeRequire(filename == "otzaria-original-anysync.yaml", "Use the pinned original AnySync client configuration")
+        let gear = account.buttons["original-anytype-auth-network"]
+        XCTAssertTrue(gear.waitForExistence(timeout: 15)); tap(gear)
+        let settings = app.descendants(matching: .any)["original-anytype-network-settings"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 15))
+        let installed = app.buttons[filename]
+        if !installed.exists {
+            tap(app.buttons["original-anytype-add-network"])
+            try peerChooseDocumentsInFilePicker()
+            let file = app.cells.matching(NSPredicate(format: "label CONTAINS %@", "otzaria-original-anysync"))
+            XCTAssertTrue(file.firstMatch.waitForExistence(timeout: 15))
+            try nativeRequire(file.count == 1, "Select the actual original client YAML once through Files")
+            tap(file.firstMatch)
+            XCTAssertTrue(installed.waitForExistence(timeout: 15))
+        }
+        if !installed.isSelected { tap(installed) }
+        XCTAssertTrue(installed.isSelected, "Original network storage must select the actual imported configuration")
+        settings.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.02))
+            .press(forDuration: 0.1, thenDragTo: settings.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)))
+        try await waitForAbsence(settings)
+        XCTAssertTrue(account.buttons["I already have a key"].waitForExistence(timeout: 15))
     }
 
     @MainActor

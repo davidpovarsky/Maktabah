@@ -12,6 +12,9 @@ from contextlib import closing, redirect_stderr, redirect_stdout
 import hashlib
 import json
 import os
+import plistlib
+import shutil
+import subprocess
 from pathlib import Path
 import re
 import runpy
@@ -294,6 +297,27 @@ class ExchangeEvidence:
         root = network_fixture().get("root")
         if root is not None:
             environment["TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT"] = root
+        configuration = os.environ.get("OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_PATH")
+        if configuration is not None:
+            original = Path(configuration)
+            require(original.is_absolute() and original.is_file() and not original.is_symlink()
+                    and 0 < original.stat().st_size <= 1024 * 1024
+                    and digest(original) == os.environ.get("OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_SHA256"),
+                    "The original network configuration requires its exact witnessed source digest")
+            destination = actual / "Documents/otzaria-original-anysync.yaml"
+            require(not destination.exists(), "Retain an existing app document instead of overwriting it")
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(original, destination)
+            require(digest(destination) == digest(original), "Original configuration transfer changed bytes")
+            app_path = Path(subprocess.check_output([
+                "xcrun", "simctl", "get_app_container", udid,
+                "com.davidpovarsky.chavrusatext", "app"], text=True).strip())
+            info = plistlib.loads((app_path / "Info.plist").read_bytes())
+            environment["TEST_RUNNER_OTZARIA_ANYTYPE_PAIRED_APP_NAME"] = info.get("CFBundleDisplayName", info["CFBundleName"])
+            environment["TEST_RUNNER_OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_FILENAME"] = destination.name
+            self.state["original_network_configuration"] = {
+                "sha256": digest(destination), "transformation": "none", "selection": "original UI"}
+            self.persist()
         return environment
 
     def redact_evidence(self, line):
