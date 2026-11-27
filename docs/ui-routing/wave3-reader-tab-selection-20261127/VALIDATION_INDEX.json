@@ -1,0 +1,144 @@
+{
+  "schema": "otzaria.native.reader-tab.validation-index.v1",
+  "owner_candidate": {
+    "passed": 40,
+    "failed": 0
+  },
+  "service_candidate": {
+    "passed": 38,
+    "failed": 0
+  },
+  "attempts": [
+    {
+      "attempt": "owner-attempt-1",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1",
+      "result_sha256": "149176735b81287875464aa4dd68b801df0a854fa8bc0b502621bc1f255456c1",
+      "status": "PASS_SOURCE_ONLY",
+      "exit": null,
+      "controls": {
+        "failed": 0,
+        "native": "NOT_RUN",
+        "passed": 40,
+        "scope": "actual original mapping/store/persistence and extracted original selection/setter/checkpoint bodies; Apple shell boundaries"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "owner-original-hooks",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks",
+      "result_sha256": "ae9198c18506d07c414f6cc2f3466ba2a827e35d882e518e3d3bf738a5350c65",
+      "status": "CONTROLS_FAILED",
+      "exit": null,
+      "controls": {
+        "failed": 3,
+        "native": "NOT_RUN",
+        "passed": 27,
+        "scope": "actual original mapping/store/persistence and extracted original selection/setter/checkpoint bodies; Apple shell boundaries"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "owner-reusable-allowance",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance",
+      "result_sha256": "c18b193aa05461ba91b76bc92a30f4828c110339fb1470d922025f122e6518e4",
+      "status": "CONTROLS_FAILED",
+      "exit": null,
+      "controls": {
+        "failed": 3,
+        "native": "NOT_RUN",
+        "passed": 37,
+        "scope": "actual original mapping/store/persistence and extracted original selection/setter/checkpoint bodies; Apple shell boundaries"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "service-attempt-1",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1",
+      "result_sha256": "d3b6ee5a9bbec7b4e7dda557c670e934ef1640f16fef52752ac6074a677492d7",
+      "status": "CONTROLS_FAILED",
+      "exit": null,
+      "controls": null,
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "service-attempt-2",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2",
+      "result_sha256": "dd711cddcb27fa575e9767e91b144f2dd2f211674199acd028f52c4f44e95b8b",
+      "status": "PASS_SOURCE_ONLY",
+      "exit": null,
+      "controls": {
+        "failed": 0,
+        "native": "NOT_RUN",
+        "passed": 37,
+        "scope": "actual new service with exact original Core/UIRouting modules; explicit native callback boundary"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "service-original-ack-cancellation",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation",
+      "result_sha256": "19bf062ed9348efe1e1d2809dbac8f5428d17d51fa43c651ef536ecd35d66300",
+      "status": "CONTROLS_FAILED",
+      "exit": null,
+      "controls": {
+        "failed": 1,
+        "native": "NOT_RUN",
+        "passed": 37,
+        "scope": "actual new service with exact original Core/UIRouting modules; explicit native callback boundary"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "service-final",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final",
+      "result_sha256": "245b8c1edb3fbc9f859491f206124da869e106c3dae9df800f1a1e5886834e03",
+      "status": "PASS_SOURCE_ONLY",
+      "exit": null,
+      "controls": {
+        "failed": 0,
+        "native": "NOT_RUN",
+        "passed": 38,
+        "scope": "actual new service with exact original Core/UIRouting modules; explicit native callback boundary"
+      },
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "syntax-attempt-1",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1",
+      "result_sha256": "7093ef1932dd04fa5d54ec5e13cee4daa802601de099c4987a414a241f5c6758",
+      "status": "PASS_SYNTAX_ONLY",
+      "exit": null,
+      "controls": null,
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "syntax-final",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final",
+      "result_sha256": "ab90bec7dbab056524279f74512f6ec7bd07c0dc9450c0a13d09d7a3a427659a",
+      "status": "PASS_SYNTAX_ONLY",
+      "exit": null,
+      "controls": null,
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "proposal-syntax",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax",
+      "result_sha256": "e5d8578bb3e93fcf87bc95eed28d16b6c6bef123ec3c36ae26420282ee8f53ee",
+      "status": null,
+      "exit": 0,
+      "controls": null,
+      "native": "NOT_RUN"
+    },
+    {
+      "attempt": "proposal-syntax-explicit-tab",
+      "original_path": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax-explicit-tab",
+      "result_sha256": "1be73ddd2d84378011ee1b9537846c752bf50e90376ab0d41b2d855d75a4ed0c",
+      "status": null,
+      "exit": 0,
+      "controls": null,
+      "native": "NOT_RUN"
+    }
+  ],
+  "apple_sdk_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}

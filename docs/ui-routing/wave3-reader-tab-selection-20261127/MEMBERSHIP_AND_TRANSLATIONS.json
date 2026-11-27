@@ -1,0 +1,63 @@
+{
+  "schema": "otzaria.native.reader-tab.membership-and-literals.v1",
+  "root_owns_application": true,
+  "new_app_files": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "membership": "same application target/platform membership as original StudyWorkspaceMappingOwnership.swift; portable owner source"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "membership": "iOS-only application source; #if os(iOS), same integration target as NativeSceneSession"
+    }
+  ],
+  "automatic_swiftpm_files": [
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift"
+  ],
+  "additional_resources": "None. Existing original UIKit witness, TextKit, resource bundles and workspace files are reused.",
+  "literals": [
+    {
+      "source_literal": "Reader tab",
+      "en": "Reader tab",
+      "he": "כרטיסיית קריאה",
+      "use": "AppEntity type / intent parameter / private descriptor"
+    },
+    {
+      "source_literal": "Open a reader tab",
+      "en": "Open a reader tab",
+      "he": "פתיחת כרטיסיית קריאה",
+      "use": "AppIntent title"
+    },
+    {
+      "source_literal": "Open reader tab",
+      "en": "Open reader tab",
+      "he": "פתיחת כרטיסיית קריאה",
+      "use": "Proposed AppShortcut shortTitle"
+    },
+    {
+      "source_literal": "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window.",
+      "en": "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window.",
+      "he": "בחירת כרטיסיית קריאה קיימת בפרופיל הלימוד, בקבוצה ובספרייה הנוכחיים בחלון אוצריא שנבחר.",
+      "use": "AppIntent description"
+    },
+    {
+      "source_literal": "Open \\(\\.$tab)",
+      "en": "Open \\(\\.$tab)",
+      "he": "פתיחת \\(\\.$tab)",
+      "use": "ParameterSummary literal; preserve compiler-generated parameter identity"
+    },
+    {
+      "source_literal": "Open reader tab \\(\\.$tab) in \\(.applicationName)",
+      "en": "Open reader tab \\(\\.$tab) in \\(.applicationName)",
+      "he": "פתיחת כרטיסיית הקריאה \\(\\.$tab) ב־\\(.applicationName)",
+      "use": "Proposed AppShortcut phrase; preserve parameter and applicationName tokens"
+    }
+  ],
+  "catalog_observed": {
+    "root": "2acdeb502e58ac56d8eb6e171a9d6d53a7bd8745",
+    "path": "Source/Localizable.xcstrings",
+    "sha256": "be1cbda45c744b8409f6f7c85060720f3b01c0a7e96f67f902bc9092f56b13f4"
+  },
+  "apple_metadata": "NOT_RUN. Root must use original Apple extraction to bind interpolated AppIntents/shortcut localization keys; do not invent successful generated metadata."
+}

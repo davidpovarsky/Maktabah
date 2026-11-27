@@ -1,0 +1,64 @@
+{
+  "schema": "otzaria.native.reader-tab.source-commit.v1",
+  "utc": "2026-11-27T10:25:12.029069+00:00",
+  "source_commit": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "git_blob": "63192638bd8159673e6d1c58f6615458a0934f5c"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "git_blob": "88ed8daaa6951bb9f4477c781945d571cd54813d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 15478,
+      "sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa",
+      "git_blob": "cfaa9e023cf4e974ed49ea8b771377cd458121d0"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 98832,
+      "sha256": "a0cca077448d72b25cb3027e18cfa2b185b0fffd5be347323d7b1e8a3bb8fef1",
+      "git_blob": "b165969b61652de19e7c8b45de24501e8fad29f3"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "bytes": 6946,
+      "sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "git_blob": "772c738e826aabdc22c4fd9a2e1083a3e7aad00b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "git_blob": "6c161747e134f3a6e7248fc0f817b5adaf7e77b7"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.py",
+      "bytes": 16587,
+      "sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "git_blob": "973d5d5f2f3298b19a24965c3b1d986cc9f5058a"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.swift",
+      "bytes": 16888,
+      "sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "git_blob": "030d2965ca59633daa07ff5cd55af913ecea5895"
+    },
+    {
+      "path": "tools/test_native_reader_tab_intent_service.swift",
+      "bytes": 10449,
+      "sha256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b",
+      "git_blob": "f57aed0d382ca827c5c71fec88b0d39fb8d84eca"
+    }
+  ],
+  "composition": "Root must apply separately reviewed proposed narrow patch; live Composition untouched",
+  "native": "NOT_RUN"
+}

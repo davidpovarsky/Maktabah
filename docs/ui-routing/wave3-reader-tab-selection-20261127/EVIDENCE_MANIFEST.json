@@ -1,0 +1,1209 @@
+{
+  "schema": "otzaria.native.reader-tab.evidence-manifest.v1",
+  "source_commit": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+  "rows": [
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PREFLIGHT.json",
+      "original_bytes": 2336,
+      "original_sha256": "16c2b3ac540918a747c5cb4b1c81492fa0e89fc8846d5568c9f63535ecb9cf75",
+      "stored": "PREFLIGHT.json",
+      "stored_bytes": 2336,
+      "stored_sha256": "16c2b3ac540918a747c5cb4b1c81492fa0e89fc8846d5568c9f63535ecb9cf75",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/SOURCE_COMMIT.json",
+      "original_bytes": 2783,
+      "original_sha256": "996fd18ae03e41a8ad916f67860990bfed0bb4ac35213e7bd091f2afc2d8c2bc",
+      "stored": "SOURCE_COMMIT.json",
+      "stored_bytes": 2783,
+      "stored_sha256": "996fd18ae03e41a8ad916f67860990bfed0bb4ac35213e7bd091f2afc2d8c2bc",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_SESSION.patch",
+      "original_bytes": 16380,
+      "original_sha256": "8b4a562f48a003edcb3e0a8aed698c64750bb29f8fd29a1b206f6390a621afd9",
+      "stored": "proposals/PROPOSED_SESSION.patch.gz",
+      "stored_bytes": 3671,
+      "stored_sha256": "755270dd1378a8d64de7bda0de911206e9133cfefc9259bfe6d25ebc1a422521",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_COMPOSITION.patch",
+      "original_bytes": 6930,
+      "original_sha256": "d3b5c44f468c5d487ef7c1424245888ad525fa70f30f39b8e6cab56334eb2d6c",
+      "stored": "proposals/PROPOSED_COMPOSITION.patch.gz",
+      "stored_bytes": 2063,
+      "stored_sha256": "c2021d9f5ccb105852b0d1bfaedd0ecfcc4066dcfcbdeb509274d78adc171be0",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_SHORTCUT_EXPLICIT.patch",
+      "original_bytes": 824,
+      "original_sha256": "b09290b5170ef18e85af6c0f105057f46a3ee6f538d403557857f6fca17a55a1",
+      "stored": "proposals/PROPOSED_SHORTCUT.patch.gz",
+      "stored_bytes": 323,
+      "stored_sha256": "a183b2c7bf577f218e1fb5904fcfec72c089cfc72a3bbf60a5f026d208f6fb77",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeSceneSession.swift",
+      "original_bytes": 98832,
+      "original_sha256": "a0cca077448d72b25cb3027e18cfa2b185b0fffd5be347323d7b1e8a3bb8fef1",
+      "stored": "proposals/PROPOSED_MaktabahNativeSceneSession.swift.gz",
+      "stored_bytes": 17561,
+      "stored_sha256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeRoutingComposition.swift",
+      "original_bytes": 186859,
+      "original_sha256": "c2d01375746d3d527028febfa2f97c3e52606a6cbf3997df6df9fa45ca1c93a8",
+      "stored": "proposals/PROPOSED_MaktabahNativeRoutingComposition.swift.gz",
+      "stored_bytes": 32540,
+      "stored_sha256": "fa91ea6dda489fee2362884aba96948afb317e384feaafec7d1150e73e403e22",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeIntents_ExplicitTab.swift",
+      "original_bytes": 1266,
+      "original_sha256": "23404297c83bce209dc710e0ffb22e28d767d224c37ca4ae602eb84aad5836a4",
+      "stored": "proposals/PROPOSED_MaktabahNativeIntents_ExplicitTab.swift.gz",
+      "stored_bytes": 455,
+      "stored_sha256": "24879a93194c1b5878675ac853129b53c90b200e4d0038888a6ee4df6403d43e",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_SHORTCUT.patch",
+      "original_bytes": 813,
+      "original_sha256": "a46d0c07fe86aced2285ddcdcd59b8fcc040c5b30d5f37400c026d7246bb605a",
+      "stored": "proposals/previous-shortcut-phrase.patch.gz",
+      "stored_bytes": 320,
+      "stored_sha256": "ab67dae53a85ab2c8f957b4dc9248d5d668d08e517ccb423bbd52984b128c119",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/PROPOSED_MaktabahNativeIntents.swift",
+      "original_bytes": 1255,
+      "original_sha256": "dc489b2bd1733f4971fdaebfd99019096c686f8b2f4eb41eb6e4cfe7464a0803",
+      "stored": "proposals/previous-shortcut-phrase.swift.gz",
+      "stored_bytes": 451,
+      "stored_sha256": "b19fe39cca3a16e6e4e7a33e95e7a9e6ebec86a86c133a589c0bd9b8ba00313e",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/RESULT.json",
+      "original_bytes": 8187,
+      "original_sha256": "149176735b81287875464aa4dd68b801df0a854fa8bc0b502621bc1f255456c1",
+      "stored": "validation/owner-attempt-1/RESULT.json",
+      "stored_bytes": 8187,
+      "stored_sha256": "149176735b81287875464aa4dd68b801df0a854fa8bc0b502621bc1f255456c1",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/compile.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-attempt-1/raw/001-compile.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-attempt-1/raw/002-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/controls.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-attempt-1/raw/003-controls.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/controls.stdout",
+      "original_bytes": 2775,
+      "original_sha256": "e47d60056ad49cf33f681a7fa09069878e208f79e0dbc374f57fce76e52ecd87",
+      "stored": "validation/owner-attempt-1/raw/004-controls.stdout.gz",
+      "stored_bytes": 1097,
+      "stored_sha256": "bc7a301349f3ac6b66ba55a37c9d639b18f688a98e92063644ae074fe1a928ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/ActualOwnerBoundary.swift",
+      "original_bytes": 30290,
+      "original_sha256": "0c062003589c15a12b53343c1a5ce16f5b1af44689426a4593ca5a5185b36ca9",
+      "stored": "validation/owner-attempt-1/raw/006-ActualOwnerBoundary.swift.gz",
+      "stored_bytes": 5950,
+      "stored_sha256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "original_bytes": 6794,
+      "original_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "stored": "validation/owner-attempt-1/raw/011-BackendSessionIntegrityRepair.swift.gz",
+      "stored_bytes": 1981,
+      "stored_sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "original_bytes": 16626,
+      "original_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "stored": "validation/owner-attempt-1/raw/013-StudyWorkspaceMappingOwnership.swift.gz",
+      "stored_bytes": 4110,
+      "stored_sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "original_bytes": 7601,
+      "original_sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "stored": "validation/owner-attempt-1/raw/014-StudyWorkspaceModels.swift.gz",
+      "stored_bytes": 2564,
+      "stored_sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 42094,
+      "original_sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "stored": "validation/owner-attempt-1/raw/015-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 8002,
+      "stored_sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "original_bytes": 2974,
+      "original_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "stored": "validation/owner-attempt-1/raw/016-StudyWorkspacePersistence.swift.gz",
+      "stored_bytes": 1060,
+      "stored_sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "original_bytes": 13081,
+      "original_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "stored": "validation/owner-attempt-1/raw/017-StudyWorkspaceStore.swift.gz",
+      "stored_bytes": 3045,
+      "stored_sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "original_bytes": 10040,
+      "original_sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "stored": "validation/owner-attempt-1/raw/018-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "stored_bytes": 2316,
+      "stored_sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/LibraryBackend/LibraryBackendModels.swift",
+      "original_bytes": 32419,
+      "original_sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "stored": "validation/owner-attempt-1/raw/020-LibraryBackendModels.swift.gz",
+      "stored_bytes": 7560,
+      "stored_sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "original_bytes": 45301,
+      "original_sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "stored": "validation/owner-attempt-1/raw/024-iOSNavigationManager.swift.gz",
+      "stored_bytes": 8342,
+      "stored_sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/tools/test_native_reader_tab_selection.swift",
+      "original_bytes": 16888,
+      "original_sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "stored": "validation/owner-attempt-1/raw/026-test_native_reader_tab_selection.swift.gz",
+      "stored_bytes": 4108,
+      "stored_sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/inputs/source/tools/workspace_mapping_native_boundary_fixture.swift",
+      "original_bytes": 17584,
+      "original_sha256": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+      "stored": "validation/owner-attempt-1/raw/027-workspace_mapping_native_boundary_fixture.swift.gz",
+      "stored_bytes": 4651,
+      "stored_sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/owner-controls",
+      "original_bytes": 2025176,
+      "original_sha256": "31a98ae334b313121633b91425b682f51b1d036872c017f5c25ce7d178277d72",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/RESULT.json",
+      "original_bytes": 9073,
+      "original_sha256": "ae9198c18506d07c414f6cc2f3466ba2a827e35d882e518e3d3bf738a5350c65",
+      "stored": "validation/owner-original-hooks/RESULT.json",
+      "stored_bytes": 9073,
+      "stored_sha256": "ae9198c18506d07c414f6cc2f3466ba2a827e35d882e518e3d3bf738a5350c65",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/compile.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-original-hooks/raw/001-compile.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-original-hooks/raw/002-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/controls.stderr",
+      "original_bytes": 3488,
+      "original_sha256": "2a55e1c4374d6e1c4e547a1e1cb8195feef69a665b7025c157f0489e297ed62a",
+      "stored": "validation/owner-original-hooks/raw/003-controls.stderr.gz",
+      "stored_bytes": 1506,
+      "stored_sha256": "67ebdd10f9bcb04a7f7632c8752bd56b3ad9010d7c7f2a416f1891dbef9cb3ad",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/controls.stdout",
+      "original_bytes": 2093,
+      "original_sha256": "ec706e294116cb853e3da1c629492a66ad0af02391dbde1834ee3258c332721a",
+      "stored": "validation/owner-original-hooks/raw/004-controls.stdout.gz",
+      "stored_bytes": 891,
+      "stored_sha256": "e3451167d040214366c1f3b7ac691dfea8efb1056cbc914a8abe0110a43afff1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/ActualOwnerBoundary.swift",
+      "original_bytes": 29646,
+      "original_sha256": "4c778d4caddfd433f5006fcbef12fea4217b05b7f4fdfde7f35d7a8af05be40a",
+      "stored": "validation/owner-original-hooks/raw/006-ActualOwnerBoundary.swift.gz",
+      "stored_bytes": 5910,
+      "stored_sha256": "7b5580e1f7afc4dac87489eb8f3518c5e1c610707515c68c8e920732d394a4ed",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/historical/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 34455,
+      "original_sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+      "stored": "validation/owner-original-hooks/raw/011-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 7062,
+      "stored_sha256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "original_bytes": 6794,
+      "original_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "stored": "validation/owner-original-hooks/raw/016-BackendSessionIntegrityRepair.swift.gz",
+      "stored_bytes": 1981,
+      "stored_sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "original_bytes": 16626,
+      "original_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "stored": "validation/owner-original-hooks/raw/018-StudyWorkspaceMappingOwnership.swift.gz",
+      "stored_bytes": 4110,
+      "stored_sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "original_bytes": 7601,
+      "original_sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "stored": "validation/owner-original-hooks/raw/019-StudyWorkspaceModels.swift.gz",
+      "stored_bytes": 2564,
+      "stored_sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 42094,
+      "original_sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "stored": "validation/owner-original-hooks/raw/020-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 8002,
+      "stored_sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "original_bytes": 2974,
+      "original_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "stored": "validation/owner-original-hooks/raw/021-StudyWorkspacePersistence.swift.gz",
+      "stored_bytes": 1060,
+      "stored_sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "original_bytes": 13081,
+      "original_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "stored": "validation/owner-original-hooks/raw/022-StudyWorkspaceStore.swift.gz",
+      "stored_bytes": 3045,
+      "stored_sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "original_bytes": 10040,
+      "original_sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "stored": "validation/owner-original-hooks/raw/023-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "stored_bytes": 2316,
+      "stored_sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/LibraryBackend/LibraryBackendModels.swift",
+      "original_bytes": 32419,
+      "original_sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "stored": "validation/owner-original-hooks/raw/025-LibraryBackendModels.swift.gz",
+      "stored_bytes": 7560,
+      "stored_sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "original_bytes": 45301,
+      "original_sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "stored": "validation/owner-original-hooks/raw/029-iOSNavigationManager.swift.gz",
+      "stored_bytes": 8342,
+      "stored_sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 13910,
+      "original_sha256": "992dc2e5b542f9cb2f360c3f6745c7f0bf0118806edfe8658c5f49f20b11356e",
+      "stored": "validation/owner-original-hooks/raw/031-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 4520,
+      "stored_sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/tools/test_native_reader_tab_selection.swift",
+      "original_bytes": 16888,
+      "original_sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "stored": "validation/owner-original-hooks/raw/032-test_native_reader_tab_selection.swift.gz",
+      "stored_bytes": 4108,
+      "stored_sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/inputs/source/tools/workspace_mapping_native_boundary_fixture.swift",
+      "original_bytes": 17584,
+      "original_sha256": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+      "stored": "validation/owner-original-hooks/raw/033-workspace_mapping_native_boundary_fixture.swift.gz",
+      "stored_bytes": 4651,
+      "stored_sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/owner-controls",
+      "original_bytes": 2025176,
+      "original_sha256": "28ba183229c974333520da869449a9ca227f557abf656fe19784426dbb0ef718",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/RESULT.json",
+      "original_bytes": 8689,
+      "original_sha256": "c18b193aa05461ba91b76bc92a30f4828c110339fb1470d922025f122e6518e4",
+      "stored": "validation/owner-reusable-allowance/RESULT.json",
+      "stored_bytes": 8689,
+      "stored_sha256": "c18b193aa05461ba91b76bc92a30f4828c110339fb1470d922025f122e6518e4",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/compile.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-reusable-allowance/raw/001-compile.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/owner-reusable-allowance/raw/002-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/controls.stderr",
+      "original_bytes": 3477,
+      "original_sha256": "07e089e0c0c5cf1b1ac4237e9aa3d0c1e984efbb0a1221c6ca9640202aa225ba",
+      "stored": "validation/owner-reusable-allowance/raw/003-controls.stderr.gz",
+      "stored_bytes": 1503,
+      "stored_sha256": "f5ca074834aebf7a0ea6abc4c0e76215f958a464886469860cf38a40a2c9874c",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/controls.stdout",
+      "original_bytes": 2775,
+      "original_sha256": "9b445d5af177e5aa30c09f9693d31269c851b5b2a73abf8d6c97fa3367cfcd3c",
+      "stored": "validation/owner-reusable-allowance/raw/004-controls.stdout.gz",
+      "stored_bytes": 1107,
+      "stored_sha256": "13532048e71275ff8c63ca16634ce7e8f6a6d874aa0523646b0d5a90e4fb0cf0",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/ActualOwnerBoundary.swift",
+      "original_bytes": 30290,
+      "original_sha256": "0c062003589c15a12b53343c1a5ce16f5b1af44689426a4593ca5a5185b36ca9",
+      "stored": "validation/owner-reusable-allowance/raw/006-ActualOwnerBoundary.swift.gz",
+      "stored_bytes": 5950,
+      "stored_sha256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/MutantReusableAllowance.swift",
+      "original_bytes": 10005,
+      "original_sha256": "973322ecf2b29c0e004d8b8cb242a13a22b18da42f2193c39d0e90a66faa5f4e",
+      "stored": "validation/owner-reusable-allowance/raw/007-MutantReusableAllowance.swift.gz",
+      "stored_bytes": 2310,
+      "stored_sha256": "db139af9d6aa5169d59dcc1acbbed61cc71de6bab2e2e13b591dbc1a878134b1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "original_bytes": 6794,
+      "original_sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "stored": "validation/owner-reusable-allowance/raw/012-BackendSessionIntegrityRepair.swift.gz",
+      "stored_bytes": 1981,
+      "stored_sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "original_bytes": 16626,
+      "original_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "stored": "validation/owner-reusable-allowance/raw/014-StudyWorkspaceMappingOwnership.swift.gz",
+      "stored_bytes": 4110,
+      "stored_sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "original_bytes": 7601,
+      "original_sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "stored": "validation/owner-reusable-allowance/raw/015-StudyWorkspaceModels.swift.gz",
+      "stored_bytes": 2564,
+      "stored_sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 42094,
+      "original_sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "stored": "validation/owner-reusable-allowance/raw/016-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 8002,
+      "stored_sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "original_bytes": 2974,
+      "original_sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "stored": "validation/owner-reusable-allowance/raw/017-StudyWorkspacePersistence.swift.gz",
+      "stored_bytes": 1060,
+      "stored_sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "original_bytes": 13081,
+      "original_sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+      "stored": "validation/owner-reusable-allowance/raw/018-StudyWorkspaceStore.swift.gz",
+      "stored_bytes": 3045,
+      "stored_sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "original_bytes": 10040,
+      "original_sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "stored": "validation/owner-reusable-allowance/raw/019-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "stored_bytes": 2316,
+      "stored_sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/LibraryBackend/LibraryBackendModels.swift",
+      "original_bytes": 32419,
+      "original_sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "stored": "validation/owner-reusable-allowance/raw/021-LibraryBackendModels.swift.gz",
+      "stored_bytes": 7560,
+      "stored_sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "original_bytes": 45301,
+      "original_sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "stored": "validation/owner-reusable-allowance/raw/025-iOSNavigationManager.swift.gz",
+      "stored_bytes": 8342,
+      "stored_sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 13910,
+      "original_sha256": "992dc2e5b542f9cb2f360c3f6745c7f0bf0118806edfe8658c5f49f20b11356e",
+      "stored": "validation/owner-reusable-allowance/raw/027-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 4520,
+      "stored_sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/tools/test_native_reader_tab_selection.swift",
+      "original_bytes": 16888,
+      "original_sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "stored": "validation/owner-reusable-allowance/raw/028-test_native_reader_tab_selection.swift.gz",
+      "stored_bytes": 4108,
+      "stored_sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/inputs/source/tools/workspace_mapping_native_boundary_fixture.swift",
+      "original_bytes": 17584,
+      "original_sha256": "035cf3180f74222fdd26e0fd0f8638074d5d51d3af9d8af2c27cf7e3f17906e0",
+      "stored": "validation/owner-reusable-allowance/raw/029-workspace_mapping_native_boundary_fixture.swift.gz",
+      "stored_bytes": 4651,
+      "stored_sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/owner-controls",
+      "original_bytes": 2025144,
+      "original_sha256": "a47f6695c26168f05f5a4c57b7563ac514b78f721501534bd3a96a8daeb523a3",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/ORIGINAL_PACKAGE_INPUTS.json",
+      "original_bytes": 30728,
+      "original_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "stored": "validation/service-attempt-1/ORIGINAL_PACKAGE_INPUTS.json",
+      "stored_bytes": 30728,
+      "stored_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/RESULT.json",
+      "original_bytes": 25719,
+      "original_sha256": "d3b6ee5a9bbec7b4e7dda557c670e934ef1640f16fef52752ac6074a677492d7",
+      "stored": "validation/service-attempt-1/RESULT.json",
+      "stored_bytes": 25719,
+      "stored_sha256": "d3b6ee5a9bbec7b4e7dda557c670e934ef1640f16fef52752ac6074a677492d7",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/compile.stderr",
+      "original_bytes": 3127,
+      "original_sha256": "902c41347172fe4ed6164aba5cb5e858f7d7f13ea7fa3277f9f2a51d0d84f8ce",
+      "stored": "validation/service-attempt-1/raw/002-compile.stderr.gz",
+      "stored_bytes": 958,
+      "stored_sha256": "04750024cd144f692c8b083da91ec2bf6035a49d24e5bcbd4ac7de83b5a5867f",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-attempt-1/raw/003-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/controls.stderr",
+      "original_bytes": 6133,
+      "original_sha256": "b17f85522e8f3d2127ff04a3911567d06fb708ed02b821df3038e389e6d5fc81",
+      "stored": "validation/service-attempt-1/raw/004-controls.stderr.gz",
+      "stored_bytes": 1993,
+      "stored_sha256": "c73616603838e6e4f6a84aeaddcf4acf97f3c46c149c6127584198a43309c31e",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/controls.stdout",
+      "original_bytes": 1261,
+      "original_sha256": "38a07503b15f547ffd8ef437fa77edefb70a9e53889e9a3cb6b05cf4a3157fed",
+      "stored": "validation/service-attempt-1/raw/005-controls.stdout.gz",
+      "stored_bytes": 422,
+      "stored_sha256": "0073c967b9e47074cb753d7dcd225f65ac9c22ead4e0ec0acef4bf4e89658fe8",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6736,
+      "original_sha256": "bbd3c831f642ef916f88988b2b429ce10fe9e7a79a48f83b6c762d52e2fa80ca",
+      "stored": "validation/service-attempt-1/raw/013-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2106,
+      "stored_sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/inputs/source/tools/test_native_reader_tab_intent_service.swift",
+      "original_bytes": 9501,
+      "original_sha256": "6ddf69138816a861100fcfe5f7eeb26d228f1e75ebdb9531e13b8816bfc096e7",
+      "stored": "validation/service-attempt-1/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "stored_bytes": 2906,
+      "stored_sha256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 13910,
+      "original_sha256": "992dc2e5b542f9cb2f360c3f6745c7f0bf0118806edfe8658c5f49f20b11356e",
+      "stored": "validation/service-attempt-1/raw/016-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 4520,
+      "stored_sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/service-controls",
+      "original_bytes": 7937168,
+      "original_sha256": "8e6de31e841d9a1ad6da75acb81fc45ea00252d2dafdb3d39b1a0cc9f67ac59d",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/ORIGINAL_PACKAGE_INPUTS.json",
+      "original_bytes": 30728,
+      "original_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "stored": "validation/service-attempt-2/ORIGINAL_PACKAGE_INPUTS.json",
+      "stored_bytes": 30728,
+      "stored_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/RESULT.json",
+      "original_bytes": 29548,
+      "original_sha256": "dd711cddcb27fa575e9767e91b144f2dd2f211674199acd028f52c4f44e95b8b",
+      "stored": "validation/service-attempt-2/RESULT.json",
+      "stored_bytes": 29548,
+      "stored_sha256": "dd711cddcb27fa575e9767e91b144f2dd2f211674199acd028f52c4f44e95b8b",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/compile.stderr",
+      "original_bytes": 3127,
+      "original_sha256": "ca2359bc351fe400fbd1e6b361888beb02532662fd4bb54027aeae14698418ef",
+      "stored": "validation/service-attempt-2/raw/002-compile.stderr.gz",
+      "stored_bytes": 957,
+      "stored_sha256": "f6ef54c517d60a4c2c7f48825fb285644c7318018ccea744b4fa0311f0c63f37",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-attempt-2/raw/003-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/controls.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-attempt-2/raw/004-controls.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/controls.stdout",
+      "original_bytes": 2618,
+      "original_sha256": "3dbb29254fd9379b8ec99064345745512ba3b4744db1b87cb8bf5681021f5ad5",
+      "stored": "validation/service-attempt-2/raw/005-controls.stdout.gz",
+      "stored_bytes": 708,
+      "stored_sha256": "faab210ece764a964429c537c18992e6ba392e2b07b764df9ef675d12fd5bf78",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6736,
+      "original_sha256": "bbd3c831f642ef916f88988b2b429ce10fe9e7a79a48f83b6c762d52e2fa80ca",
+      "stored": "validation/service-attempt-2/raw/013-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2106,
+      "stored_sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/inputs/source/tools/test_native_reader_tab_intent_service.swift",
+      "original_bytes": 9501,
+      "original_sha256": "6ddf69138816a861100fcfe5f7eeb26d228f1e75ebdb9531e13b8816bfc096e7",
+      "stored": "validation/service-attempt-2/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "stored_bytes": 2906,
+      "stored_sha256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 15267,
+      "original_sha256": "97b74d24fdcacdff577e194e715b9d56954edc29857948a0426e02e91102817b",
+      "stored": "validation/service-attempt-2/raw/016-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 4890,
+      "stored_sha256": "f5852ec8a5566b69de740d31ba85e066ed2b5f864e252bf45ccf1ae0378c1573",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/service-controls",
+      "original_bytes": 7937168,
+      "original_sha256": "6360da6833cb3fae632459b7476be669b728f5dbe1ecf2eba2e4bd9f28c9bc2b",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/ORIGINAL_PACKAGE_INPUTS.json",
+      "original_bytes": 30728,
+      "original_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "stored": "validation/service-original-ack-cancellation/ORIGINAL_PACKAGE_INPUTS.json",
+      "stored_bytes": 30728,
+      "stored_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/RESULT.json",
+      "original_bytes": 30112,
+      "original_sha256": "19bf062ed9348efe1e1d2809dbac8f5428d17d51fa43c651ef536ecd35d66300",
+      "stored": "validation/service-original-ack-cancellation/RESULT.json",
+      "stored_bytes": 30112,
+      "stored_sha256": "19bf062ed9348efe1e1d2809dbac8f5428d17d51fa43c651ef536ecd35d66300",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/compile.stderr",
+      "original_bytes": 3159,
+      "original_sha256": "7b8748d4ce27cd0dd855196a942952dfc1b9058e26258c67aec98ed6b7db82e8",
+      "stored": "validation/service-original-ack-cancellation/raw/002-compile.stderr.gz",
+      "stored_bytes": 961,
+      "stored_sha256": "fb1e07ad7b8c9a9472d7e144db45ddaa7c5456a3724fc8fd9157692fd9282684",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-original-ack-cancellation/raw/003-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/controls.stderr",
+      "original_bytes": 5831,
+      "original_sha256": "548c076eb9b4b0974809baca67df6fd2eec34944201e6b69ea86d57de27eedf9",
+      "stored": "validation/service-original-ack-cancellation/raw/004-controls.stderr.gz",
+      "stored_bytes": 2022,
+      "stored_sha256": "53c11c0acad3140004002af27b70ef247f1d4e2d4ba93f2d2b792f76b6109550",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/controls.stdout",
+      "original_bytes": 2719,
+      "original_sha256": "80f6097f73ad23fb5416cd3f655a172aea3be99d706bda76774575dd60968ee4",
+      "stored": "validation/service-original-ack-cancellation/raw/005-controls.stdout.gz",
+      "stored_bytes": 754,
+      "stored_sha256": "f28796a9600e0316453bec71e805d7dc46803f4ff75efa969798eaab000b986b",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/inputs/OriginalServiceBeforeAckCancellation.swift",
+      "original_bytes": 6736,
+      "original_sha256": "bbd3c831f642ef916f88988b2b429ce10fe9e7a79a48f83b6c762d52e2fa80ca",
+      "stored": "validation/service-original-ack-cancellation/raw/007-OriginalServiceBeforeAckCancellation.swift.gz",
+      "stored_bytes": 2106,
+      "stored_sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6946,
+      "original_sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "stored": "validation/service-original-ack-cancellation/raw/014-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2146,
+      "stored_sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/inputs/source/tools/test_native_reader_tab_intent_service.swift",
+      "original_bytes": 10449,
+      "original_sha256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b",
+      "stored": "validation/service-original-ack-cancellation/raw/016-test_native_reader_tab_intent_service.swift.gz",
+      "stored_bytes": 3109,
+      "stored_sha256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 16587,
+      "original_sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "stored": "validation/service-original-ack-cancellation/raw/017-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 5317,
+      "stored_sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/service-controls",
+      "original_bytes": 7941064,
+      "original_sha256": "794ca7f7314a086547ba889ba1c971b49d2d1cc5b3ecfe619312188ef44f1ac8",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/ORIGINAL_PACKAGE_INPUTS.json",
+      "original_bytes": 30728,
+      "original_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "stored": "validation/service-final/ORIGINAL_PACKAGE_INPUTS.json",
+      "stored_bytes": 30728,
+      "stored_sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/RESULT.json",
+      "original_bytes": 29533,
+      "original_sha256": "245b8c1edb3fbc9f859491f206124da869e106c3dae9df800f1a1e5886834e03",
+      "stored": "validation/service-final/RESULT.json",
+      "stored_bytes": 29533,
+      "stored_sha256": "245b8c1edb3fbc9f859491f206124da869e106c3dae9df800f1a1e5886834e03",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/compile.stderr",
+      "original_bytes": 3119,
+      "original_sha256": "1c82afa6e6206f04ec56332900a0770c5f2e014b16e1dc57fd3dd5196d8fe74c",
+      "stored": "validation/service-final/raw/002-compile.stderr.gz",
+      "stored_bytes": 955,
+      "stored_sha256": "b3230a4678901b717e873b8fc22333d22b0ea728b04df6b4912a58c2867c9365",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-final/raw/003-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/controls.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/service-final/raw/004-controls.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/controls.stdout",
+      "original_bytes": 2719,
+      "original_sha256": "5f74b6e87973cf17366f3a5bccf8cb749e40836101e4aa01419650edd8a2b301",
+      "stored": "validation/service-final/raw/005-controls.stdout.gz",
+      "stored_bytes": 749,
+      "stored_sha256": "386bfcd31af6d70390dda57ada424e30ff22c7c09bd667904f9aefaeddbabe61",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6946,
+      "original_sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "stored": "validation/service-final/raw/013-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2146,
+      "stored_sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/inputs/source/tools/test_native_reader_tab_intent_service.swift",
+      "original_bytes": 10449,
+      "original_sha256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b",
+      "stored": "validation/service-final/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "stored_bytes": 3109,
+      "stored_sha256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 16587,
+      "original_sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "stored": "validation/service-final/raw/016-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 5317,
+      "stored_sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/service-controls",
+      "original_bytes": 7941056,
+      "original_sha256": "fbefc2fc2b4d58fe15aeabe5dbebd0d79b8a1d2c529eb1468feaa4b5ae866597",
+      "stored": null,
+      "retention": "Original executable retained in isolated build folder; no app/native qualification"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/RESULT.json",
+      "original_bytes": 4985,
+      "original_sha256": "7093ef1932dd04fa5d54ec5e13cee4daa802601de099c4987a414a241f5c6758",
+      "stored": "validation/syntax-attempt-1/RESULT.json",
+      "stored_bytes": 4985,
+      "stored_sha256": "7093ef1932dd04fa5d54ec5e13cee4daa802601de099c4987a414a241f5c6758",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/compile.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/syntax-attempt-1/raw/001-compile.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/syntax-attempt-1/raw/002-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 42094,
+      "original_sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "stored": "validation/syntax-attempt-1/raw/008-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 8002,
+      "stored_sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "original_bytes": 10040,
+      "original_sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "stored": "validation/syntax-attempt-1/raw/009-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "stored_bytes": 2316,
+      "stored_sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "original_bytes": 15107,
+      "original_sha256": "4af2f80e812fcfabc5e5b54bcf09f9fae22fcc0e369bf4f342afea710f70302b",
+      "stored": "validation/syntax-attempt-1/raw/012-MaktabahNativeReaderTabBinding.swift.gz",
+      "stored_bytes": 3532,
+      "stored_sha256": "4998868e8544cb4fc543a8516324cb90b2fe56baed2c9156015c7e28c952ad58",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "original_bytes": 98693,
+      "original_sha256": "3a4d4e551fe7c72f37875850a7f6905ca2018409129933cbeae930f04b6d48f4",
+      "stored": "validation/syntax-attempt-1/raw/013-MaktabahNativeSceneSession.swift.gz",
+      "stored_bytes": 17540,
+      "stored_sha256": "ac2a6800842876e25511da1cbd0eeed9d56d96c5ec657c7ef5f710c234791a01",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6736,
+      "original_sha256": "bbd3c831f642ef916f88988b2b429ce10fe9e7a79a48f83b6c762d52e2fa80ca",
+      "stored": "validation/syntax-attempt-1/raw/016-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2106,
+      "stored_sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "original_bytes": 2178,
+      "original_sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "stored": "validation/syntax-attempt-1/raw/017-NativeReaderTabIntents.swift.gz",
+      "stored_bytes": 737,
+      "stored_sha256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-attempt-1/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 13910,
+      "original_sha256": "992dc2e5b542f9cb2f360c3f6745c7f0bf0118806edfe8658c5f49f20b11356e",
+      "stored": "validation/syntax-attempt-1/raw/019-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 4520,
+      "stored_sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/RESULT.json",
+      "original_bytes": 4986,
+      "original_sha256": "ab90bec7dbab056524279f74512f6ec7bd07c0dc9450c0a13d09d7a3a427659a",
+      "stored": "validation/syntax-final/RESULT.json",
+      "stored_bytes": 4986,
+      "stored_sha256": "ab90bec7dbab056524279f74512f6ec7bd07c0dc9450c0a13d09d7a3a427659a",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/compile.stderr",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/syntax-final/raw/001-compile.stderr.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/compile.stdout",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/syntax-final/raw/002-compile.stdout.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "original_bytes": 42094,
+      "original_sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "stored": "validation/syntax-final/raw/008-StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_bytes": 8002,
+      "stored_sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "original_bytes": 10040,
+      "original_sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "stored": "validation/syntax-final/raw/009-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "stored_bytes": 2316,
+      "stored_sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "original_bytes": 15478,
+      "original_sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa",
+      "stored": "validation/syntax-final/raw/012-MaktabahNativeReaderTabBinding.swift.gz",
+      "stored_bytes": 3583,
+      "stored_sha256": "df3faa5f51b88d430cf2541683b64c9f7c2f5ea63cbdb6dcc43a055daeb9e08c",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "original_bytes": 98832,
+      "original_sha256": "a0cca077448d72b25cb3027e18cfa2b185b0fffd5be347323d7b1e8a3bb8fef1",
+      "stored": "validation/syntax-final/raw/013-MaktabahNativeSceneSession.swift.gz",
+      "stored_bytes": 17561,
+      "stored_sha256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "original_bytes": 6946,
+      "original_sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "stored": "validation/syntax-final/raw/016-NativeReaderTabIntentService.swift.gz",
+      "stored_bytes": 2146,
+      "stored_sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "original_bytes": 2178,
+      "original_sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "stored": "validation/syntax-final/raw/017-NativeReaderTabIntents.swift.gz",
+      "stored_bytes": 737,
+      "stored_sha256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/syntax-final/inputs/source/tools/test_native_reader_tab_selection.py",
+      "original_bytes": 16587,
+      "original_sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "stored": "validation/syntax-final/raw/019-test_native_reader_tab_selection.py.gz",
+      "stored_bytes": 5317,
+      "stored_sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax/RESULT.json",
+      "original_bytes": 1428,
+      "original_sha256": "e5d8578bb3e93fcf87bc95eed28d16b6c6bef123ec3c36ae26420282ee8f53ee",
+      "stored": "validation/proposal-syntax/RESULT.json",
+      "stored_bytes": 1428,
+      "stored_sha256": "e5d8578bb3e93fcf87bc95eed28d16b6c6bef123ec3c36ae26420282ee8f53ee",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/proposal-syntax/raw/001-stderr.log.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax/stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/proposal-syntax/raw/002-stdout.log.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax-explicit-tab/RESULT.json",
+      "original_bytes": 1437,
+      "original_sha256": "1be73ddd2d84378011ee1b9537846c752bf50e90376ab0d41b2d855d75a4ed0c",
+      "stored": "validation/proposal-syntax-explicit-tab/RESULT.json",
+      "stored_bytes": 1437,
+      "stored_sha256": "1be73ddd2d84378011ee1b9537846c752bf50e90376ab0d41b2d855d75a4ed0c",
+      "encoding": "identity"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax-explicit-tab/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/proposal-syntax-explicit-tab/raw/001-stderr.log.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    },
+    {
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/proposal-syntax-explicit-tab/stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored": "validation/proposal-syntax-explicit-tab/raw/002-stdout.log.gz",
+      "stored_bytes": 20,
+      "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "encoding": "gzip"
+    }
+  ],
+  "all_original_build_outputs_retained": true,
+  "no_native_inference": true
+}

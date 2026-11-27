@@ -1,0 +1,34 @@
+[
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+    "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "bytes": 2862,
+    "sha256": "27781fc022b8cd6e818d147ddafe22bf62f3b046f26e6a013c335c5758290cce",
+    "stored": "next-contract-source/StudyProfileMenu.swift.gz",
+    "stored_sha256": "2a2167b09cfd8c9c051fc466946070234b3255c0b74e17a51880c81aa3b85cce"
+  },
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+    "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "bytes": 13056,
+    "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+    "stored": "next-contract-source/StudyGroupsOverview.swift.gz",
+    "stored_sha256": "9db4d2460d085762e29d29d9c1680f0c8dd828c3e7767754c9cbfb09ff272236"
+  },
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "bytes": 34455,
+    "sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+    "stored": "next-contract-source/StudyWorkspaceNavigationAdapter.swift.gz",
+    "stored_sha256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1"
+  },
+  {
+    "path": "Source/LibraryBackend/BackendCoordinator.swift",
+    "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "bytes": 33786,
+    "sha256": "b67742f249c0f4ad4ed8e0a5fac1b45b7936bd726655ed034ac35664e3d0f955",
+    "stored": "next-contract-source/BackendCoordinator.swift.gz",
+    "stored_sha256": "d154ec2a71a3b79224c22caf88de2dc902bbece1ce7a5e3feddf3af9a75b81e1"
+  }
+]

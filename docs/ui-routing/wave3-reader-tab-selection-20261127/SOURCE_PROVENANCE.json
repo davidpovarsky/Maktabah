@@ -1,0 +1,143 @@
+{
+  "schema": "otzaria.native.reader-tab.provenance.v1",
+  "source_commit": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "modified_sources": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "git_blob": "63192638bd8159673e6d1c58f6615458a0934f5c"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "git_blob": "88ed8daaa6951bb9f4477c781945d571cd54813d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 15478,
+      "sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa",
+      "git_blob": "cfaa9e023cf4e974ed49ea8b771377cd458121d0"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 98832,
+      "sha256": "a0cca077448d72b25cb3027e18cfa2b185b0fffd5be347323d7b1e8a3bb8fef1",
+      "git_blob": "b165969b61652de19e7c8b45de24501e8fad29f3"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "bytes": 6946,
+      "sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "git_blob": "772c738e826aabdc22c4fd9a2e1083a3e7aad00b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "git_blob": "6c161747e134f3a6e7248fc0f817b5adaf7e77b7"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.py",
+      "bytes": 16587,
+      "sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "git_blob": "973d5d5f2f3298b19a24965c3b1d986cc9f5058a"
+    },
+    {
+      "path": "tools/test_native_reader_tab_selection.swift",
+      "bytes": 16888,
+      "sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "git_blob": "030d2965ca59633daa07ff5cd55af913ecea5895"
+    },
+    {
+      "path": "tools/test_native_reader_tab_intent_service.swift",
+      "bytes": 10449,
+      "sha256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b",
+      "git_blob": "f57aed0d382ca827c5c71fec88b0d39fb8d84eca"
+    }
+  ],
+  "prior_origin": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "base_blob": "064193da95e25f119158af13b4999c955edd54fc",
+      "base_sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+      "upstream_path_present": false,
+      "first_add_commit": "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "base_blob": "99d267d3968f160b641a7f8138ffaefbd8ce6517",
+      "base_sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "upstream_path_present": false,
+      "first_add_commit": "4ba65aba0236ddce00120e3cc9b1c6a7bf66925d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "base_blob": "4efd2fe79017d665b13aadc103900bbca27d51b3",
+      "base_sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "base_blob": "00e3ff7ec095836ccb35bb8bb1af77c8e1a5d6ce",
+      "base_sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "base_blob": "d02a60dcea307f5ecaf77fc3eab4e7a4da86de2f",
+      "base_sha256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b",
+      "upstream_path_present": false,
+      "first_add_commit": "d337c60896c6ef24af277697e6012ae1595c0335"
+    }
+  ],
+  "source_ownership": "Downstream original app owners and original portable Core/UIRouting; no upstream/vendor bytes or SDK/dependency pins changed",
+  "original_selectTab": "Exact15d original method body retained by owner controls and unchanged in product repository",
+  "real_owner_approvals": "Root must apply authentic current owner gate to integrated source; no signatures/registries changed here",
+  "original_requirements": [
+    "1220542361135050",
+    "1220542361203468",
+    "1220542420331748",
+    "1220103384037482"
+  ],
+  "next_contract_source": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 2862,
+      "sha256": "27781fc022b8cd6e818d147ddafe22bf62f3b046f26e6a013c335c5758290cce",
+      "stored": "next-contract-source/StudyProfileMenu.swift.gz",
+      "stored_sha256": "2a2167b09cfd8c9c051fc466946070234b3255c0b74e17a51880c81aa3b85cce"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+      "stored": "next-contract-source/StudyGroupsOverview.swift.gz",
+      "stored_sha256": "9db4d2460d085762e29d29d9c1680f0c8dd828c3e7767754c9cbfb09ff272236"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 34455,
+      "sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+      "stored": "next-contract-source/StudyWorkspaceNavigationAdapter.swift.gz",
+      "stored_sha256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1"
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "bytes": 33786,
+      "sha256": "b67742f249c0f4ad4ed8e0a5fac1b45b7936bd726655ed034ac35664e3d0f955",
+      "stored": "next-contract-source/BackendCoordinator.swift.gz",
+      "stored_sha256": "d154ec2a71a3b79224c22caf88de2dc902bbece1ce7a5e3feddf3af9a75b81e1"
+    }
+  ]
+}
