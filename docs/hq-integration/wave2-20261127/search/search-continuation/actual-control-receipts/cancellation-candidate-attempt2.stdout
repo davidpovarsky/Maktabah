@@ -1,0 +1,40 @@
+{
+  "appUI" : "NOT_RUN",
+  "failed" : 0,
+  "passed" : 8,
+  "rows" : [
+    {
+      "name" : "Otzaria started before mirror cancellation",
+      "passed" : true
+    },
+    {
+      "name" : "Zayit started before mirror cancellation",
+      "passed" : true
+    },
+    {
+      "name" : "Sefaria started before mirror cancellation",
+      "passed" : true
+    },
+    {
+      "name" : "Zayit preparation before mirror cancellation",
+      "passed" : true
+    },
+    {
+      "name" : "dirty input stops synchronous leaf before mirror",
+      "passed" : true
+    },
+    {
+      "name" : "idle original guard remains a no-op",
+      "passed" : true
+    },
+    {
+      "name" : "published loading cancellation remains original",
+      "passed" : true
+    },
+    {
+      "name" : "clean configuration guard remains a no-op",
+      "passed" : true
+    }
+  ],
+  "scope" : "VERBATIM_CONTROLLER_GUARDS_WITH_DECLARED_LEAF_AND_STOP_STUBS"
+}

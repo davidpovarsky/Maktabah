@@ -1,0 +1,22 @@
+{
+  "appSDKTypecheck": "NOT_RUN",
+  "application": "Wave3 owns reconciliation against current project and original source membership before an Apple build",
+  "finalSource": {
+    "bytes": 43134,
+    "sha256": "2d39de55348df1520fd4d8317440ca35e19eedb09b7f28376e3a944a4762fd50"
+  },
+  "membershipManifestSHA256": "269d1ff71ac10c6cdb30d2efe3aaee636073ac8c434f47f9c6acd630746dba0c",
+  "nativeUI": "NOT_RUN",
+  "originalObservedSource": {
+    "bytes": 43046,
+    "sha256": "3cf002b0ba180b0f592f1c905cbd73910cb0418de3ae9e81a7bb5472d4404c84"
+  },
+  "originalPacketPreserved": true,
+  "originalPacketSHA256": "bed36c458b5ac23376a66cb1a4b0149d007517777ab38c937b0b712b87e06af5",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+  "scope": "FINAL_SOURCE_RECONCILIATION_ONLY_NO_PROJECT_MUTATION",
+  "sourceDelta": "Single original failure constructor adds frozen command.source and command.operation; all other binding bytes unchanged",
+  "targetMappingUnchanged": [
+    "Maktabah-iOS"
+  ]
+}

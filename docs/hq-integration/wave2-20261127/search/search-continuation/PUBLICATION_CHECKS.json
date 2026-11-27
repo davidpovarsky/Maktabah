@@ -1,0 +1,45 @@
+{
+  "allExceptExactRawPatchStagedDiffCheck": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch"
+    ],
+    "exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "fullStagedDiffCheck": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 2,
+    "stderr": "",
+    "stdout": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:4: space before tab in indent.\n+ \t\t26A22B6932D96D324776D232 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:5: space before tab in indent.\n+ \t\tA3753B4C5A40027BCEAD8DC2 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:6: space before tab in indent.\n+ \t\t9B91FC6DAE7A4D8CB5A88C2D /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:13: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:16: space before tab in indent.\n+ \t\t57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfaceBinding.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift; sourceTree = \"<group>\"; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:17: space before tab in indent.\n+ \t\t5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfacePresentation.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift; sourceTree = \"<group>\"; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:18: space before tab in indent.\n+ \t\t6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UI/SefariaEmbeddedSurfaceContract.swift\"; sourceTree = \"<group>\"; };\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:23: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:26: space before tab in indent.\n+ \t\t\t\tCF0000000000000000000010 /* ReaderContentLoadCoordinator.swift */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:27: space before tab in indent.\n+ \t\t\t\tCF0000000000000000000011 /* ReaderRenderedHighlightInspector.swift */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:28: space before tab in indent.\n+ \t\t\t\tCF0000000000000000000012 /* BackendSessionIntegrityRepair.swift */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:32: space before tab in indent.\n+ \t\t\t);\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:33: space before tab in indent.\n+ \t\t\tpath = ChavrusaText;\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:34: space before tab in indent.\n+ \t\t\tsourceTree = \"<group>\";\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:36: space before tab in indent.\n+ \t\t\t\t94A3D0C76D647D289B857109 /* ActionOccurrenceCoveragePolicy.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:37: space before tab in indent.\n+ \t\t\t\tFF6F2C5D88653B72B6978794 /* OtzariaExactOccurrenceOperation.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:38: space before tab in indent.\n+ \t\t\t\t621609BD78BD7727EF7ABCE8 /* OtzariaExactOccurrenceModels.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:40: space before tab in indent.\n+ \t\t\t);\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:41: space before tab in indent.\n+ \t\t};\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:42: space before tab in indent.\n+ \t\t4B7C90A52F83494200454BE1 /* Sources */ = {\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:44: space before tab in indent.\n+ \t\t\t\t6D689CE9D7D7418D5F23E4DF /* ActionOccurrenceCoveragePolicy.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:45: space before tab in indent.\n+ \t\t\t\t77626BD0CAC8E2428A88F0BB /* OtzariaExactOccurrenceOperation.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:46: space before tab in indent.\n+ \t\t\t\t1ECEA89930E2CB726019F133 /* OtzariaExactOccurrenceModels.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:48: space before tab in indent.\n+ \t\t\t);\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:49: space before tab in indent.\n+ \t\t};\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:50: space before tab in indent.\n+ \t\t4BD8A4E3307E521A00E04BCB /* Sources */ = {\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:52: space before tab in indent.\n+ \t\t\t\tF904F00CC96FE017113ADD55 /* ActionOccurrenceCoveragePolicy.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:53: space before tab in indent.\n+ \t\t\t\tBA9022BBA589D9AB7CB55EF6 /* OtzariaExactOccurrenceOperation.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:54: space before tab in indent.\n+ \t\t\t\t0D322D1D9F633A1AFE401074 /* OtzariaExactOccurrenceModels.swift in Sources */,\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:58: space before tab in indent.\n+ \t\t\t);\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:59: space before tab in indent.\n+ \t\t};\ndocs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch:60: space before tab in indent.\n+ \t\t8E031407F5B8C0AA54243A7C /* Sources */ = {\n"
+  },
+  "interpretation": "Full check retains original patch context-prefix whitespace warnings. Only actual product and remaining documentation checks pass.",
+  "preservedPatchSHA256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce",
+  "productStagedDiffCheck": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      "Source"
+    ],
+    "exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "rawEvidenceBytesChanged": false,
+  "scope": "COMMIT_VERIFICATION_ONLY_NOT_BUILD_OR_NATIVE",
+  "warningDiagnosticCount": 32,
+  "warningPaths": [
+    "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch"
+  ]
+}

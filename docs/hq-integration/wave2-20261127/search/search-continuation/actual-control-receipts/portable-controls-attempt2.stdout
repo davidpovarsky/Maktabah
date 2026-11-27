@@ -1,0 +1,113 @@
+{
+  "appUI" : "NOT_RUN",
+  "cases" : [
+    {
+      "name" : "same source observation reuses current tokens without result cache",
+      "passed" : true
+    },
+    {
+      "name" : "duplicate identity is refused before grouping",
+      "passed" : true
+    },
+    {
+      "name" : "one synchronous claim prevents duplicate immediate dispatch",
+      "passed" : true
+    },
+    {
+      "name" : "completed claim cannot replay",
+      "passed" : true
+    },
+    {
+      "name" : "wrong operation cannot reinterpret a hit as cursor",
+      "passed" : true
+    },
+    {
+      "name" : "foreign source and observation are refused",
+      "passed" : true
+    },
+    {
+      "name" : "ABA source cannot revive a retired token",
+      "passed" : true
+    },
+    {
+      "name" : "invalidation keeps operation exclusion until exact owner finishes",
+      "passed" : true
+    },
+    {
+      "name" : "failed claim requires a fresh changed-source token for retry",
+      "passed" : true
+    },
+    {
+      "name" : "exact source configuration bytes distinguish Unicode normalization",
+      "passed" : true
+    },
+    {
+      "name" : "hit metadata preserves nil versus empty and exact version bytes",
+      "passed" : true
+    },
+    {
+      "name" : "old first-page query still rejects arbitrary offsets",
+      "passed" : true
+    },
+    {
+      "name" : "exact reveal passes retained validation and live authority",
+      "passed" : true
+    },
+    {
+      "name" : "unavailable authority prevents every apply effect",
+      "passed" : true
+    },
+    {
+      "name" : "authority loss after await retains actual selection effect",
+      "passed" : true
+    },
+    {
+      "name" : "deadline after apply retains effects without acknowledgement",
+      "passed" : true
+    },
+    {
+      "name" : "retained native validation refusal preserves actual effect",
+      "passed" : true
+    },
+    {
+      "name" : "empty terminal page uses accepted revision not offset growth",
+      "passed" : true
+    },
+    {
+      "name" : "all-deduplicated accepted page keeps raw cursor accounting",
+      "passed" : true
+    },
+    {
+      "name" : "foreign extra page dispatch cannot be one continuation",
+      "passed" : true
+    },
+    {
+      "name" : "dispatch without accepted page revision is not completion",
+      "passed" : true
+    },
+    {
+      "name" : "different original model cannot supply page receipt",
+      "passed" : true
+    },
+    {
+      "name" : "nonadvancing advertised cursor cannot rearm page",
+      "passed" : true
+    },
+    {
+      "name" : "wrong hit version cannot match visible identity",
+      "passed" : true
+    },
+    {
+      "name" : "cancelled task preserves an actual original selection effect",
+      "passed" : true
+    },
+    {
+      "name" : "source\/backend snapshot mismatch prevents apply",
+      "passed" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 26,
+  "pid" : 285233,
+  "scope" : "PORTABLE_ORIGINAL_CONTRACT_SERVICE_CLAIM_CONTROLS_ONLY"
+}

@@ -1,0 +1,439 @@
+{
+  "baseline": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "dependency": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+  "candidateManifest": {
+    "baseline": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "scope": "SOURCE_REVIEW_ONLY_NOT_APP_BUILD_OR_NATIVE",
+    "files": {
+      "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift": {
+        "bytes": 3723,
+        "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96"
+      },
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift": {
+        "bytes": 43046,
+        "sha256": "3cf002b0ba180b0f592f1c905cbd73910cb0418de3ae9e81a7bb5472d4404c84"
+      },
+      "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift": {
+        "bytes": 7947,
+        "sha256": "df9d0ff4eecc56b7b936ec78bbbcebbec7f290b6bbb7f159b1a1359b8ff4b057"
+      },
+      "Source/Features/Search/iOS/SearchModeView.swift": {
+        "bytes": 12630,
+        "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e"
+      },
+      "Source/Features/Search/iOS/SearchResultsListView.swift": {
+        "bytes": 22981,
+        "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42"
+      },
+      "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift": {
+        "bytes": 9635,
+        "sha256": "538c4a63a70c3ef39ea0e125d31ee62eef96516794bd22c95db11ce212acd8fd"
+      },
+      "Source/ZayitSearch/UnifiedSearchSessionController.swift": {
+        "bytes": 38402,
+        "sha256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f"
+      }
+    },
+    "reviewChanges": [
+      "retained ownership check permits own pending UIKit layout; all admission/final evidence still require current layout",
+      "fresh qualified observation retires expired old outer authority token rather than permanently retaining it"
+    ]
+  },
+  "compiler": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+  "files": [
+    {
+      "path": "candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "bytes": 3723,
+      "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96",
+      "role": "candidate",
+      "candidateRelative": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "bytes": 43046,
+      "sha256": "3cf002b0ba180b0f592f1c905cbd73910cb0418de3ae9e81a7bb5472d4404c84",
+      "role": "candidate",
+      "candidateRelative": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+      "bytes": 7947,
+      "sha256": "df9d0ff4eecc56b7b936ec78bbbcebbec7f290b6bbb7f159b1a1359b8ff4b057",
+      "role": "candidate",
+      "candidateRelative": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift"
+    },
+    {
+      "path": "candidate/Source/Features/Search/iOS/SearchModeView.swift",
+      "bytes": 12630,
+      "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e",
+      "role": "candidate",
+      "candidateRelative": "Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "path": "candidate/Source/Features/Search/iOS/SearchResultsListView.swift",
+      "bytes": 22981,
+      "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42",
+      "role": "candidate",
+      "candidateRelative": "Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "path": "candidate/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+      "bytes": 9635,
+      "sha256": "538c4a63a70c3ef39ea0e125d31ee62eef96516794bd22c95db11ce212acd8fd",
+      "role": "candidate",
+      "candidateRelative": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift"
+    },
+    {
+      "path": "candidate/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "bytes": 38402,
+      "sha256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f",
+      "role": "candidate",
+      "candidateRelative": "Source/ZayitSearch/UnifiedSearchSessionController.swift"
+    },
+    {
+      "path": "controls/SearchContinuationControls.swift",
+      "bytes": 18042,
+      "sha256": "89a438d7b281667bd4acc24d62326da45043d30edfc28843794215fc654030b6",
+      "role": "controls"
+    },
+    {
+      "path": "controls/prepare-cancellation-control.py",
+      "bytes": 6579,
+      "sha256": "d3b1d6c8aa6cb5a945e793716efd6ddc92e0abb75fe73e0b3274631a47869fee",
+      "role": "controls"
+    },
+    {
+      "path": "controls/run-rootfs-controls.py",
+      "bytes": 12299,
+      "sha256": "463b2a587093ca5251b391623c3f0c1e4824e7e277455618a225db6c16a98ad8",
+      "role": "controls"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+      "bytes": 1618,
+      "sha256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+      "bytes": 1747,
+      "sha256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+      "bytes": 4725,
+      "sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+      "bytes": 12045,
+      "sha256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+      "bytes": 9437,
+      "sha256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+      "bytes": 3725,
+      "sha256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+      "bytes": 2619,
+      "sha256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+      "bytes": 1275,
+      "sha256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+      "bytes": 5097,
+      "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+      "bytes": 7473,
+      "sha256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+      "bytes": 1862,
+      "sha256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+      "bytes": 8009,
+      "sha256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+      "bytes": 5919,
+      "sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+      "bytes": 4589,
+      "sha256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+      "bytes": 2353,
+      "sha256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "bytes": 5278,
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+      "bytes": 9216,
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+      "bytes": 3154,
+      "sha256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "bytes": 70887,
+      "sha256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "bytes": 14414,
+      "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+      "bytes": 1673,
+      "sha256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+      "bytes": 4844,
+      "sha256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+      "bytes": 7952,
+      "sha256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "bytes": 8269,
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+      "bytes": 8189,
+      "sha256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+      "bytes": 2110,
+      "sha256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+      "bytes": 2922,
+      "sha256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+      "bytes": 28048,
+      "sha256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef",
+      "role": "originalCore",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json",
+      "resourceRelative": "action-catalog.v1.json"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json",
+      "resourceRelative": "action-request.v1.schema.json"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json",
+      "resourceRelative": "action-result.v1.schema.json"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json",
+      "resourceRelative": "backend-acceptance-cases.v1.json"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json",
+      "resourceRelative": "backend-capability-matrix.v1.json"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "role": "originalResource",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitPath": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json",
+      "resourceRelative": "examples.v1.json"
+    },
+    {
+      "path": "baseline/UnifiedSearchSessionController.swift",
+      "bytes": 34464,
+      "sha256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "role": "baselineController",
+      "gitCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa"
+    },
+    {
+      "path": "dependency/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+      "bytes": 9858,
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d",
+      "role": "ledgerDependency",
+      "gitCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "gitPath": "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift"
+    },
+    {
+      "path": "dependency/Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "bytes": 5237,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd",
+      "role": "ledgerDependency",
+      "gitCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "gitPath": "Source/Features/Search/ViewModel/SearchViewModel.swift"
+    },
+    {
+      "path": "dependency/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "bytes": 13723,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8",
+      "role": "ledgerDependency",
+      "gitCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "gitPath": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift"
+    },
+    {
+      "path": "dependency/Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "bytes": 31344,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e",
+      "role": "ledgerDependency",
+      "gitCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "gitPath": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift"
+    },
+    {
+      "path": "dependency/Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "bytes": 5942,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df",
+      "role": "ledgerDependency",
+      "gitCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "gitPath": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+    }
+  ],
+  "writeDomain": "ROOTFS_ONLY",
+  "dataWrites": false
+}

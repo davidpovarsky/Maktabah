@@ -1,0 +1,32 @@
+[
+  {
+    "content": "\t\tA831833BE1B0146A96F2045D /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B81114EFCCDAE8C196042 /* OriginalSearchPageLedger.swift */; };\n\t\t398B7A57BFCB8B5C43C972E2 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B81114EFCCDAE8C196042 /* OriginalSearchPageLedger.swift */; };\n\t\tB1708373FE46DD6EECD20BAE /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B81114EFCCDAE8C196042 /* OriginalSearchPageLedger.swift */; };\n\t\tD8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */; };\n\t\t5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */; };\n",
+    "offset": 237119,
+    "purpose": "Five new target build-file objects"
+  },
+  {
+    "content": "\t\tC25B81114EFCCDAE8C196042 /* OriginalSearchPageLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContinuation/OriginalSearchPageLedger.swift; sourceTree = \"<group>\"; };\n\t\t617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContinuation/OriginalSearchContinuationClaim.swift; sourceTree = \"<group>\"; };\n\t\t76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift; sourceTree = \"<group>\"; };\n",
+    "offset": 396759,
+    "purpose": "Three new file-reference objects"
+  },
+  {
+    "content": "\t\t\t\tC25B81114EFCCDAE8C196042 /* OriginalSearchPageLedger.swift */,\n\t\t\t\t617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */,\n\t\t\t\t76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */,\n",
+    "offset": 406368,
+    "purpose": "Append three ChavrusaText children"
+  },
+  {
+    "content": "\t\t\t\tA831833BE1B0146A96F2045D /* OriginalSearchPageLedger.swift in Sources */,\n",
+    "offset": 513360,
+    "purpose": "Append source membership for Maktabah"
+  },
+  {
+    "content": "\t\t\t\t398B7A57BFCB8B5C43C972E2 /* OriginalSearchPageLedger.swift in Sources */,\n",
+    "offset": 539304,
+    "purpose": "Append source membership for Maktabah-Direct"
+  },
+  {
+    "content": "\t\t\t\tB1708373FE46DD6EECD20BAE /* OriginalSearchPageLedger.swift in Sources */,\n\t\t\t\tD8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */,\n\t\t\t\t5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */,\n",
+    "offset": 583571,
+    "purpose": "Append source membership for Maktabah-iOS"
+  }
+]

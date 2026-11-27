@@ -1,0 +1,47 @@
+{
+  "scope": "EXPLICIT_COMPONENT_BOUNDARY_NOT_APP_BUILD",
+  "variants": {
+    "baseline": {
+      "sourcePath": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/baseline/UnifiedSearchSessionController.swift",
+      "sourceBytes": 34464,
+      "sourceSHA256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "verbatimDeclarations": [
+        {
+          "marker": "    func cancelSearch() {",
+          "bytes": 387,
+          "sha256": "f07d241d0e31d0dd61abe9fb5fe7e8d49629d71f7f0e95758c54295d6915611b"
+        },
+        {
+          "marker": "    func configurationDidChange() {",
+          "bytes": 188,
+          "sha256": "ca558cb0dc5612173ff38979ea19926cd6b7e71af2fa6fa5202408f94a9ad3b8"
+        }
+      ],
+      "getterOrigin": "candidate",
+      "getterSHA256": "864af41333bc5ac0fd3c1f74bc37fb332776272ee38fc693de8466bc827b9ee7",
+      "compiledFixturePath": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-controls-attempt2/baseline.swift",
+      "compiledFixtureSHA256": "f56a5763862f195763240bed088ac2f5ebcf4abb97b17a2f029a8c084e899759"
+    },
+    "candidate": {
+      "sourcePath": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "sourceBytes": 38402,
+      "sourceSHA256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f",
+      "verbatimDeclarations": [
+        {
+          "marker": "    func cancelSearch() {",
+          "bytes": 412,
+          "sha256": "0e6fdc9fae7ca5f33bfc899f4e2679c1e0eff8360675f294ae43acad44e74628"
+        },
+        {
+          "marker": "    func configurationDidChange() {",
+          "bytes": 213,
+          "sha256": "fb7181e11377d42811b68102b24a83efd013717f297c0fdcbe38ab92f86ca442"
+        }
+      ],
+      "getterOrigin": "candidate",
+      "getterSHA256": "864af41333bc5ac0fd3c1f74bc37fb332776272ee38fc693de8466bc827b9ee7",
+      "compiledFixturePath": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-controls-attempt2/candidate.swift",
+      "compiledFixtureSHA256": "ad775cccd2c30f03c41aaa1d89de7453810744cc241262a5502bc3a91f85d031"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "path": "Maktabah.xcodeproj/project.pbxproj",
+  "blob": "24ab48b84d61fe4bae88eb41c53506664db44701",
+  "bytes": 630804,
+  "sha256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+  "validators": [
+    "Scripts/CI/verify-otzaria-xcode-project.py"
+  ]
+}

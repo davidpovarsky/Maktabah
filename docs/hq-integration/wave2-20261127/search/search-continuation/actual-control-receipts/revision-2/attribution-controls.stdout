@@ -1,0 +1,85 @@
+{
+  "appUI" : "NOT_RUN",
+  "cases" : [
+    {
+      "name" : "foreign request failure remains untouched and unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "same UUID foreign source failure remains unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "same UUID foreign operation failure remains unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "nil failure origin is explicitly unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "partial failure origin does not attest an operation",
+      "passed" : true
+    },
+    {
+      "name" : "foreign request acknowledgement remains unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "same UUID foreign source acknowledgement remains unqualified before authority",
+      "passed" : true
+    },
+    {
+      "name" : "same UUID foreign operation acknowledgement remains unqualified",
+      "passed" : true
+    },
+    {
+      "name" : "foreign after source cannot donate acknowledged effects",
+      "passed" : true
+    },
+    {
+      "name" : "malformed visible identity retains raw outcome without effect attribution",
+      "passed" : true
+    },
+    {
+      "name" : "nested unqualified response preserves all original provenance",
+      "passed" : true
+    },
+    {
+      "name" : "exact joined failure is returned unchanged",
+      "passed" : true
+    },
+    {
+      "name" : "joined failure retains real A effects after authority loss",
+      "passed" : true
+    },
+    {
+      "name" : "joined acknowledgement retains real A effects after authority loss",
+      "passed" : true
+    },
+    {
+      "name" : "joined acknowledgement retains real A effects after native layout refusal",
+      "passed" : true
+    },
+    {
+      "name" : "joined acknowledgement retains real A effects after deadline",
+      "passed" : true
+    },
+    {
+      "name" : "joined failure retains real A effects after task cancellation",
+      "passed" : true
+    },
+    {
+      "name" : "pre-apply refusal explicitly binds current origin and never calls owner",
+      "passed" : true
+    },
+    {
+      "name" : "exact joined empty terminal page still acknowledges",
+      "passed" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 19,
+  "pid" : 339484,
+  "scope" : "ACTUAL_REVISED_CONTRACT_SERVICE_WITH_FIXTURE_RESPONSES_ONLY"
+}

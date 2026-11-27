@@ -1,0 +1,58 @@
+{
+  "files": {
+    "BASE_IDENTITY.json": {
+      "bytes": 330,
+      "sha256": "0e143e614895a076bdb3d94c2c53db5d3b38069d6e6d640a5786fc8e57d6a4f3"
+    },
+    "INSERTIONS.json": {
+      "bytes": 2903,
+      "sha256": "30b8bf7c1c7c1164d892f63d944baff9c7e38bd66fe82d4f13071e09fba6da4a"
+    },
+    "MEMBERSHIP_MANIFEST.json": {
+      "bytes": 9165,
+      "sha256": "269d1ff71ac10c6cdb30d2efe3aaee636073ac8c434f47f9c6acd630746dba0c"
+    },
+    "PATCH_CHECKS.json": {
+      "bytes": 2363,
+      "sha256": "02527a1bf6b60864bbd0175d68a96ec9bc93076938615c68055a9563459548be"
+    },
+    "README.md": {
+      "bytes": 6542,
+      "sha256": "70d582a355aaaf04dafc7788189e228dfd301b1c523eb0ab67acc85783fa63eb"
+    },
+    "membership.patch": {
+      "bytes": 5239,
+      "sha256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce"
+    },
+    "original-packages/ChavrusaUIRoutingHost.Package.swift.txt": {
+      "bytes": 701,
+      "sha256": "f89a4943ec3b20027ff315e99e7e20296087f414d9cbcc81e27b47f18699b4b2"
+    },
+    "original-packages/OtzariaActionCore.Package.swift.txt": {
+      "bytes": 446,
+      "sha256": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944"
+    },
+    "original-tools/verify-otzaria-xcode-project.py": {
+      "bytes": 7113,
+      "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+    },
+    "original-tools/verify_source_registration.py": {
+      "bytes": 6070,
+      "sha256": "eff5cf3c0935562f9e9b1bbcd296f192c4daf2922cc9185d8fa5ad0ab3246a18"
+    },
+    "original/Maktabah.xcodeproj/project.pbxproj": {
+      "bytes": 630804,
+      "sha256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee"
+    },
+    "prepare_membership.py": {
+      "bytes": 12415,
+      "sha256": "8a3b6523aec0c4f6977e7489de7bed7e6f6b955523f6c0ee756ee53de70922dd"
+    },
+    "proposal/Maktabah.xcodeproj/project.pbxproj": {
+      "bytes": 633004,
+      "sha256": "60dc6ba2751d84604cc352e670472f7e5cc76763592355b6ebbbd5eb40d1afdf"
+    }
+  },
+  "schema": 1,
+  "scope": "LOCAL_REVIEWABLE_PROJECT_MEMBERSHIP_ONLY_NOT_APPLIED"
+}

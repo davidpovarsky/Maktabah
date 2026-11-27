@@ -1,0 +1,42 @@
+{
+  "base": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+  "candidate": 4,
+  "files": [
+    {
+      "bytes": 3723,
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96"
+    },
+    {
+      "bytes": 43134,
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "sha256": "2d39de55348df1520fd4d8317440ca35e19eedb09b7f28376e3a944a4762fd50"
+    },
+    {
+      "bytes": 8529,
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+      "sha256": "5a785feb7b3ddf76d19024ecbae7faec1c1fbbab10e2e76fa2e1d290635fd48f"
+    },
+    {
+      "bytes": 12630,
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e"
+    },
+    {
+      "bytes": 22981,
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42"
+    },
+    {
+      "bytes": 10506,
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+      "sha256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+    },
+    {
+      "bytes": 38402,
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "sha256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f"
+    }
+  ],
+  "purpose": "Foreign outcome provenance fix; unchanged UIKit logic except exact failure origin constructor"
+}
