@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "status": "SYNTHETIC_SOURCE_CONTROLS_ONLY",
+  "subjectSHA256": "5f2be3e510e8bd67a8f77a845d2d1fd4d9da78ecc3b9c86c3fc10e887f921ecc",
+  "controlSHA256": "6671da84df320370b99e134106b3d4d64551d7c0b4451b515f769e05a973c77b",
+  "passed": 50,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "exact two original-shaped submissions before typeText returns are admitted by the pure gate",
+      "passed": true
+    },
+    {
+      "name": "missing one submit",
+      "passed": true,
+      "rejection": "Require exactly two submit records and no extra submissions or observation failures"
+    },
+    {
+      "name": "extra submit",
+      "passed": true,
+      "rejection": "Require exactly two submit records and no extra submissions or observation failures"
+    },
+    {
+      "name": "same prior v40 PID",
+      "passed": true,
+      "rejection": "Cold case reused the original v40 process"
+    },
+    {
+      "name": "unmatched PID",
+      "passed": true,
+      "rejection": "Submissions came from different PIDs or images"
+    },
+    {
+      "name": "unmatched image",
+      "passed": true,
+      "rejection": "Submissions came from different PIDs or images"
+    },
+    {
+      "name": "wrong backend",
+      "passed": true,
+      "rejection": "Observed revision/backend/scope differs from the original query"
+    },
+    {
+      "name": "wrong scope",
+      "passed": true,
+      "rejection": "Observed revision/backend/scope differs from the original query"
+    },
+    {
+      "name": "wrong revision",
+      "passed": true,
+      "rejection": "Observed revision/backend/scope differs from the original query"
+    },
+    {
+      "name": "nonadvancing generation",
+      "passed": true,
+      "rejection": "Search generation did not advance"
+    },
+    {
+      "name": "submit before original Return",
+      "passed": true,
+      "rejection": "Submission is outside its actual original UI attempt"
+    },
+    {
+      "name": "submit after visible rejection",
+      "passed": true,
+      "rejection": "Submission is outside its actual original UI attempt"
+    },
+    {
+      "name": "page observation write error",
+      "passed": true,
+      "rejection": "Unexpected message, failed trace write or malformed submission"
+    },
+    {
+      "name": "UI observation write error",
+      "passed": true,
+      "rejection": "Unexpected message, failed trace write or malformed submission"
+    },
+    {
+      "name": "wrong native namespace",
+      "passed": true,
+      "rejection": "Native boundary belongs to another simulator or namespace"
+    },
+    {
+      "name": "wrong observed ps namespace",
+      "passed": true,
+      "rejection": "Wrong original launch option: -GlobalSearchNativeTraceNamespace"
+    },
+    {
+      "name": "wrong ps PID",
+      "passed": true,
+      "rejection": "App PID/image changed during original queries"
+    },
+    {
+      "name": "app restart inside query interval",
+      "passed": true,
+      "rejection": "App process identity/arguments changed during queries"
+    },
+    {
+      "name": "app absent inside query interval",
+      "passed": true,
+      "rejection": "Original app process/image ownership is ambiguous"
+    },
+    {
+      "name": "ambiguous app ownership",
+      "passed": true,
+      "rejection": "Original app process/image ownership is ambiguous"
+    },
+    {
+      "name": "app predates native cold launch",
+      "passed": true,
+      "rejection": "Observed process predates the cold launch"
+    },
+    {
+      "name": "image resolver moved during submissions",
+      "passed": true,
+      "rejection": "Original app process/image ownership is ambiguous"
+    },
+    {
+      "name": "capture not ready before native launch",
+      "passed": true,
+      "rejection": "Capture does not enclose the complete original native case"
+    },
+    {
+      "name": "capture stops before native final attachment",
+      "passed": true,
+      "rejection": "Capture does not enclose the complete original native case"
+    },
+    {
+      "name": "capture died",
+      "passed": true,
+      "rejection": "Capture died or reported an observation failure"
+    },
+    {
+      "name": "capture sampler saw dead owned process",
+      "passed": true,
+      "rejection": "Owned runtime log process disappeared"
+    },
+    {
+      "name": "capture dropped bytes by configured cap",
+      "passed": true,
+      "rejection": "Capture was truncated or stderr was not clean"
+    },
+    {
+      "name": "capture emitted stderr diagnostics",
+      "passed": true,
+      "rejection": "Capture was truncated or stderr was not clean"
+    },
+    {
+      "name": "unverified owned cleanup",
+      "passed": true,
+      "rejection": "Owned log process cleanup was not independently verified"
+    },
+    {
+      "name": "process observation gap",
+      "passed": true,
+      "rejection": "Process observation has an unverified gap"
+    },
+    {
+      "name": "missing ending process observation",
+      "passed": true,
+      "rejection": "Process samples do not enclose both complete attempts"
+    },
+    {
+      "name": "changed existing prefix offset",
+      "passed": true,
+      "rejection": "Trace offset changed during rejected query"
+    },
+    {
+      "name": "missing existing prefix",
+      "passed": true,
+      "rejection": "A positive existing trace prefix is required"
+    },
+    {
+      "name": "production bypass in actual arguments",
+      "passed": true,
+      "rejection": "A fixture or data override is present in the app command"
+    },
+    {
+      "name": "duplicate namespace launch option",
+      "passed": true,
+      "rejection": "Missing or repeated original launch option: -GlobalSearchNativeTraceNamespace"
+    },
+    {
+      "name": "wrong actual production profile",
+      "passed": true,
+      "rejection": "Native attachment does not retain production launch scope"
+    },
+    {
+      "name": "fixture data environment",
+      "passed": true,
+      "rejection": "Native launch contains a data override"
+    },
+    {
+      "name": "nonfinite native timestamp",
+      "passed": true,
+      "rejection": "Invalid timestamp: startedAtUnix"
+    },
+    {
+      "name": "missing log bytes",
+      "passed": true,
+      "rejection": "Missing, oversized or truncated log stream"
+    },
+    {
+      "name": "truncated JSON stream",
+      "passed": true,
+      "rejection": "Missing, oversized or truncated log stream"
+    },
+    {
+      "name": "unparseable NDJSON",
+      "passed": true,
+      "rejection": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "name": "duplicate JSON keys",
+      "passed": true,
+      "rejection": "Duplicate JSON key: eventType"
+    },
+    {
+      "name": "actual-shaped loss event fails",
+      "passed": true,
+      "rejection": "Dropped, loss, unknown or malformed log record"
+    },
+    {
+      "name": "unknown format header is not silently waived",
+      "passed": true,
+      "rejection": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "name": "exact retained ps argument extraction",
+      "passed": true
+    },
+    {
+      "name": "truncated ps row fails",
+      "passed": true,
+      "rejection": "Unparseable original ps row"
+    },
+    {
+      "name": "owned runtime process alone is signalled and unrelated capture preserved",
+      "passed": true
+    },
+    {
+      "name": "changed owned runtime parent prevents a targeted signal",
+      "passed": true
+    },
+    {
+      "name": "post-Popen LAUNCH write failure immediately invokes owned cleanup",
+      "passed": true
+    },
+    {
+      "name": "stdout EOF before planned stop is a capture failure even with a live process",
+      "passed": true
+    }
+  ],
+  "nativeExecutions": 0,
+  "simulatorExecutions": 0,
+  "realLogCaptures": 0,
+  "realProcessSignals": 0,
+  "positiveProductionReceipts": 0
+}
