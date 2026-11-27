@@ -1,0 +1,18 @@
+{
+  "status": "CONTROL_PASSED",
+  "test_exit": 0,
+  "result": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/retained-marker-candidate-1/RESULT.json",
+  "result_digest": {
+    "bytes": 20294,
+    "sha256": "08377cf24e3c2c2eb25adb0056d1f7455d54336d88e46c85a7b6e41e5144dc72"
+  },
+  "summaries": [
+    {
+      "failed": 0,
+      "passed": 10,
+      "scope": "real-filesystem-SQLite-component",
+      "skipped": 0,
+      "ui_acceptance": false
+    }
+  ]
+}
