@@ -1,0 +1,1063 @@
+{
+  "schema": 1,
+  "audited_source": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "prior_observed": "5f404e7063cd0237963bf7fb4244c309fba98509",
+  "family": {
+    "shell": {
+      "supplied": "Original iPad/iPhone root tabs, exact scene identity, native Library/Search/Annotations/History/Settings parents and original sidebar owners are present.",
+      "gaps": "Authors, book-info, exact sidebar visibility/palette/menu/popover states have no dedicated finite binding. Library/TOC parent selection covers those pages only. Notes root candidate still needs actual rerun.",
+      "qa": [
+        "Q-UI07-013",
+        "Q-UI07-014",
+        "Q-UI07-017"
+      ]
+    },
+    "bootstrap": {
+      "supplied": "Original backend consent, corpus installation/import and welcome/update UI remain authoritative.",
+      "gaps": "These are consent/readiness flows, not implicit GET installs or backend switches. Exercise their real unavailable/consent/failure states; do not invent navigation success for absent assets.",
+      "qa": [
+        "Q-UI07-018",
+        "Q-UI07-022",
+        "Q-UI07-027"
+      ]
+    },
+    "library": {
+      "supplied": "Original LibraryViewModel, iOSLibraryView and UIKit controller remain owners. Four new finite anchors reveal contents, grouping, downloaded filter and options without executing them.",
+      "gaps": "Exact category expansion/selected work/book-info/author/narrator and import/update review targets remain unbound. Reader.open covers opening canonical content, not selecting a Library row. Existing user actions still require original functional acceptance.",
+      "qa": [
+        "Q-UI07-001"
+      ]
+    },
+    "reader": {
+      "supplied": "Original Reader/Core opens backend-qualified section/focus locators in the existing or a new tab; retained Reader identity and actual native content receipt are implemented. Original TextKit/selection/options/book-search UI is retained.",
+      "gaps": "Independent text-range selection and exact navigation-slider/book-info/view-options/in-book-search target bindings are not established. A focusLocator is not a proof of arbitrary UIKit selection or complete viewport restoration.",
+      "qa": [
+        "Q-UI07-002",
+        "Q-UI07-003",
+        "Q-UI07-008"
+      ]
+    },
+    "toc": {
+      "supplied": "Original iOSTOCView owns list, structure selector, search/expansion and ScrollViewReader. Finite contents/structure/currentSelection anchors retain exact node/ancestor/source identities and actual layout/witness. Original phone workspace path and iPad matching fix supplied.",
+      "gaps": "Arbitrary public node/structure-value/query/expansion state is not supplied by the three reveal anchors. Native current-row scrolling, structure-picker and downloaded-filter focused cases remain unexecuted or without a new selector.",
+      "qa": [
+        "Q-UI07-004"
+      ]
+    },
+    "inspector": {
+      "supplied": "Original TorahInspectorKit and native iPad trailing system sheet remain. reader.openCommentary resolves an actual source relationship and opens canonical commentary in a new Reader tab, preserving base. Root inspector route opens actual tools.",
+      "gaps": "No finite exact tool/tab/commentary-group/note-item selector is installed. Core opening commentary content does not prove that an exact row/group is selected inside Inspector. Actual detents/source navigation/notes/resize/VO remain final acceptance.",
+      "qa": [
+        "Q-UI07-005",
+        "Q-UI07-013"
+      ]
+    },
+    "notes": {
+      "supplied": "notes.prepareDraft and optional Reader/commentary intent proposal use original unsaved editor and original approval/Save/Cancel actions.",
+      "gaps": "No finite body/tags/style/editor-control focus binding. Save/delete remain explicit user actions, never GET. Standalone note selection/editor identity and original save/edit/delete/cancel need acceptance; source draft controls are not persistence proof.",
+      "qa": [
+        "Q-UI07-009",
+        "Q-UI07-027"
+      ]
+    },
+    "annotations": {
+      "supplied": "Original global annotations screen and native.annotations root route retained; duplicate root mode publication removed in candidate.",
+      "gaps": "Historical D root route actually failed; current candidate has not run. Filter/import/export/book-specific/conflict-review selections have no finite state binding. No claim that a displayed navigation title proves notes content mounted.",
+      "qa": [
+        "Q-UI07-009",
+        "Q-UI07-010"
+      ]
+    },
+    "search": {
+      "supplied": "Original global/in-book search and original CommandPalette are retained. Native query-field focus exists only when its exact field is already visible. Trusted search.openResults uses original engine and native receipt for supported subset.",
+      "gaps": "Cold/warm parent-then-query-focus is missing and is the next assigned implementation. Native results accepts phrase/exact/distance0 only, default first page, Otzaria-only nonempty work scope; no selectedHit/cursor target. No independent ShowSearchResults AppIntent wrapper. Existing 54 native control rows are user controls/states, not automatically authorized public mutations.",
+      "qa": [
+        "Q-UI07-006",
+        "Q-UI07-007",
+        "Q-UI07-008",
+        "Q-UI07-038"
+      ]
+    },
+    "bookmarks": {
+      "supplied": "Original saved-results/bookmark/folder UI and user actions exist; legacy History links are preserved separately.",
+      "gaps": "No native bookmarks/Saved Results parent or stable exact folder/record selection binding. History root does not cover Saved Results. Rename/move/delete/save require original user confirmation rather than URL writes.",
+      "qa": [
+        "Q-UI07-010",
+        "Q-UI07-027"
+      ]
+    },
+    "history": {
+      "supplied": "Original History/Favorites parent and strict native receipt, legacy widget handler, system AppIntent and new actual Siri selectors are supplied.",
+      "gaps": "Exact history/favorite-picker/item selection is not supplied by root navigation. New Siri selectors are prepared but not executed; remembered legacy URL content does not prove arbitrary History-row binding.",
+      "qa": [
+        "Q-UI07-010",
+        "Q-UI07-040"
+      ]
+    },
+    "workspace": {
+      "supplied": "Original StudyWorkspaceStore/NavigationAdapter, profiles, groups, DuckDuckGo strip, original overview Grid/List and restoration already exist. Two actual parent presentations and nine fixed component anchors were added using original setters and retained source.",
+      "gaps": "Fixed reveal anchors do not select an arbitrary profile/group/tab or set layout preference. Exact identity/state routes remain missing. Original 3x3/30-tabs, same-book independent locators, mutations, migration, rollback, 100-switch/production restore, multiwindow/rotation and unsaved draft acceptance remain required.",
+      "qa": [
+        "Q-UI07-012",
+        "Q-UI07-017",
+        "Q-UI07-048"
+      ]
+    },
+    "settings": {
+      "supplied": "Original SettingsView is retained. Fifteen finite original section/control anchors and parent-then-reveal/focus use exact retained owner, Observation/backend invalidation, real layout and independent visible witness.",
+      "gaps": "Reveal is not value mutation or successful import/install. Dedicated language/accessibility/data-profile Settings pages were historical NOT_IMPLEMENTED placeholders; parent scopes these 'where existing', so this audit does not invent three new pages. Actual HE/EN/accessibility and production data remain required.",
+      "qa": [
+        "Q-UI07-011",
+        "Q-UI07-027",
+        "Q-UI07-043",
+        "Q-UI07-044"
+      ]
+    },
+    "packages": {
+      "supplied": "Original offline package management remains; Core packages.list/status/checkUpdates are implemented.",
+      "gaps": "Core install/remove/update/cancel actions are catalog-only, not implemented. They cannot be silently exposed by GET. Preserve explicit original confirmation UI and real package failure/cancellation/asset-readiness acceptance.",
+      "qa": [
+        "Q-UI07-022",
+        "Q-UI07-027"
+      ]
+    },
+    "ingress": {
+      "supplied": "Original Widget history/annotation routing and Widget configuration intents retained alongside versioned navigation ingress.",
+      "gaps": "Widget configuration is not an arbitrary navigation AppIntent. Legacy actual regressions still required on the final candidate; no duplicate Expo handling.",
+      "qa": [
+        "Q-UI07-040",
+        "Q-UI07-041",
+        "Q-UI07-042"
+      ]
+    },
+    "future": {
+      "supplied": "All six former infrastructure placeholders now have real source: registry, orchestrator, AppIntents, Universal Link configuration, guided navigation and thin original Hanlin host.",
+      "gaps": "Historical NOT_IMPLEMENTED labels are preserved as history, not current source conclusions. Actual system delivery/provider/guide/multiscene acceptance remains separate.",
+      "qa": [
+        "Q-UI07-023",
+        "Q-UI07-036",
+        "Q-UI07-039",
+        "Q-UI07-051"
+      ]
+    },
+    "inactive": {
+      "supplied": "Six historical alternative SwiftUI hosts remain in source. No named live construction of their root hosts was found; nested references are under the alternative hierarchy.",
+      "gaps": "Do not implement a parallel UI or count these as runtime passes. They are historical alternatives, distinct from active Exact9401/original hosts; visual/behavior requirements are satisfied only through actual active originals.",
+      "qa": [
+        "Q-UI07-013"
+      ]
+    },
+    "embedded": {
+      "supplied": "Original Sefaria JS/Expo/Hermes data integration remains, distinct from native Reader. Pinned original RN ReaderApp bridge source exists.",
+      "gaps": "No Source construction of SefariaEmbeddedNativeSurfaceHost was found. Headless RPC/data readiness is not an actual visible RN surface receipt. Parent explicitly includes native RN coverage; absence cannot be waived as unsupported merely because unmounted.",
+      "qa": [
+        "Q-UI07-020",
+        "Q-UI07-042"
+      ]
+    },
+    "embedded_rn": {
+      "supplied": "Forty-five semantic original RN source rows are preserved at immutable Sefaria-Mobile pin. They belong only to Embedded, not native Otzaria/Legacy variants.",
+      "gaps": "Actual native RN host mounting/exact state/scene+epoch acknowledgement is not established. Meaningful reading/TOC/search/library states remain an implementation gap under parent scope. Auth/account/destructive/debug preferences are not automatic public GET actions; retain their explicit original policy and conditional in-app behavior.",
+      "qa": [
+        "Q-UI07-020",
+        "Q-UI07-029",
+        "Q-UI07-042"
+      ]
+    },
+    "excluded": {
+      "supplied": "Four explicitly decorative presentation rows: toolbar artwork, theme material, library row layout and reader display label.",
+      "gaps": "No standalone navigation action is appropriate. Their visual fidelity, localized labels and accessibility semantics remain part of original feature acceptance; this is not a waiver of those checks.",
+      "qa": [
+        "Q-UI07-043",
+        "Q-UI07-044",
+        "Q-UI07-045"
+      ]
+    },
+    "native-routing": {
+      "supplied": "Current native root/canonical Reader/system-ingress definitions are installed over original Core and native owner/witness contracts.",
+      "gaps": "Descriptor presence and entity discovery are conditional source capabilities, not authorization or executed acceptance for all backend/entry/lifecycle combinations.",
+      "qa": [
+        "Q-UI07-023",
+        "Q-UI07-028",
+        "Q-UI07-031"
+      ]
+    }
+  },
+  "bindings": {
+    "inventory.v1.tab.library": {
+      "destination": "native.library",
+      "components": [
+        "native.library.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.library.catalog": {
+      "destination": "native.library",
+      "components": [
+        "native.library.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.native.library": {
+      "destination": "native.library",
+      "components": [
+        "native.library.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.library.grouping": {
+      "destination": "native.library",
+      "components": [
+        "native.library.grouping"
+      ],
+      "kind": "control_reveal",
+      "limit": "Reveals grouping control; does not select category/author mode."
+    },
+    "inventory.v1.library.author-grouping": {
+      "destination": "native.library",
+      "components": [
+        "native.library.grouping"
+      ],
+      "kind": "control_reveal",
+      "limit": "Reveals grouping control; does not select category/author mode."
+    },
+    "inventory.v1.library.download-filter": {
+      "destination": "native.library",
+      "components": [
+        "native.library.downloadedFilter"
+      ],
+      "kind": "control_reveal",
+      "limit": "Conditional original bundle mode and visibility; does not toggle filter."
+    },
+    "inventory.v1.library.options": {
+      "destination": "native.library",
+      "components": [
+        "native.library.options"
+      ],
+      "kind": "control_reveal",
+      "limit": "Reveals original menu control without executing an option."
+    },
+    "inventory.v1.library.open-work": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "core_reader_content",
+      "limit": "Canonical section/focus locators and existing/new-tab semantics; not Library-row or arbitrary text-range selection."
+    },
+    "inventory.v1.reader.content": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "core_reader_content",
+      "limit": "Canonical section/focus locators and existing/new-tab semantics; not Library-row or arbitrary text-range selection."
+    },
+    "inventory.v1.reader.viewport": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "core_reader_content",
+      "limit": "Canonical section/focus locators and existing/new-tab semantics; not Library-row or arbitrary text-range selection."
+    },
+    "inventory.v1.native.reader": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "core_reader_content",
+      "limit": "Canonical section/focus locators and existing/new-tab semantics; not Library-row or arbitrary text-range selection."
+    },
+    "inventory.v1.native.reader-new-tab": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "core_reader_content",
+      "limit": "Canonical section/focus locators and existing/new-tab semantics; not Library-row or arbitrary text-range selection."
+    },
+    "inventory.v1.toc.contents": {
+      "destination": "native.reader.toc",
+      "components": [
+        "native.reader.toc.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.native.reader.toc": {
+      "destination": "native.reader.toc",
+      "components": [
+        "native.reader.toc.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.reader.toolbar.toc": {
+      "destination": "native.reader.toc",
+      "components": [
+        "native.reader.toc.contents"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.toc.structure": {
+      "destination": "native.reader.toc",
+      "components": [
+        "native.reader.toc.structure"
+      ],
+      "kind": "control_reveal",
+      "limit": "Reveals existing structure picker only when multiple structures exist; does not select a requested structure value."
+    },
+    "inventory.v1.toc.selected-node": {
+      "destination": "native.reader.toc",
+      "components": [
+        "native.reader.toc.currentSelection"
+      ],
+      "kind": "exact_current_original_row",
+      "limit": "Current retained Reader node only, with original matcher/ancestor/layout/row witness; not arbitrary public private-node ID."
+    },
+    "inventory.v1.tab.history": {
+      "destination": "native.history",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.history.list": {
+      "destination": "native.history",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.native.history": {
+      "destination": "native.history",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.tab.search": {
+      "destination": "native.search",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.search.global": {
+      "destination": "native.search",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.native.search": {
+      "destination": "native.search",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.search.input-focus": {
+      "destination": "native.search",
+      "components": [
+        "native.search.query"
+      ],
+      "kind": "existing_visible_field_focus",
+      "limit": "Requires already visible original field; cold parent-to-focus gap assigned after this checkpoint."
+    },
+    "inventory.v1.search.results": {
+      "destination": "native.search.results",
+      "components": [],
+      "kind": "trusted_core_original_results",
+      "limit": "Only original ActionSearchResultsQuery supported subset; no public v2 query payload, selectedHit or cursor."
+    },
+    "inventory.v1.tab.annotations": {
+      "destination": "native.annotations",
+      "components": [],
+      "kind": "original_parent_candidate",
+      "limit": "Historical original D failed; minimal mode-publication candidate remains native NOT_RUN."
+    },
+    "inventory.v1.annotations.list": {
+      "destination": "native.annotations",
+      "components": [],
+      "kind": "original_parent_candidate",
+      "limit": "Historical original D failed; minimal mode-publication candidate remains native NOT_RUN."
+    },
+    "inventory.v1.native.annotations": {
+      "destination": "native.annotations",
+      "components": [],
+      "kind": "original_parent_candidate",
+      "limit": "Historical original D failed; minimal mode-publication candidate remains native NOT_RUN."
+    },
+    "inventory.v1.settings.root": {
+      "destination": "native.settings",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.native.settings": {
+      "destination": "native.settings",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.settings.backend": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.backend"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.offline": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.offline"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.database-mode": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.databaseMode"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.history": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.history"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.storage": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.storage"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.annotations": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.annotations"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.cloud": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.cloud"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.appearance": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.appearance"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.search-data": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.searchData"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.search-credits": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.searchCredits"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.search-index": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.searchIndex"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.optimization": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.optimization"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.updates": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.updates"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.settings.downloads": {
+      "destination": "native.settings",
+      "components": [
+        "native.settings.downloads"
+      ],
+      "kind": "original_section_control_reveal",
+      "limit": "Exact original section/control visibility/focus only; no value mutation."
+    },
+    "inventory.v1.workspace.groups-overview": {
+      "destination": "native.workspace.overview",
+      "components": [
+        "native.workspace.overview.groups",
+        "native.workspace.overview.grid",
+        "native.workspace.overview.list"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.inspector.panel": {
+      "destination": "native.reader.inspector",
+      "components": [],
+      "kind": "actual_original_inspector_parent",
+      "limit": "No exact tool/group/row binding implied."
+    },
+    "inventory.v1.inspector.sheet": {
+      "destination": "native.reader.inspector",
+      "components": [],
+      "kind": "actual_original_inspector_parent",
+      "limit": "No exact tool/group/row binding implied."
+    },
+    "inventory.v1.native.reader.inspector": {
+      "destination": "native.reader.inspector",
+      "components": [],
+      "kind": "actual_original_inspector_parent",
+      "limit": "No exact tool/group/row binding implied."
+    },
+    "inventory.v1.inspector.related-source": {
+      "destination": "native.reader",
+      "components": [],
+      "kind": "trusted_core_commentary",
+      "limit": "reader.openCommentary resolves original source relationship and opens canonical commentary in a new tab; not Inspector-row focus."
+    },
+    "inventory.v1.notes.draft": {
+      "destination": "native.reader.noteDraft",
+      "components": [],
+      "kind": "trusted_core_unsaved_draft",
+      "limit": "Original unsaved editor, no automatic save; proposal private and trusted, not shared URL payload."
+    },
+    "inventory.v1.legacy-link.history": {
+      "destination": "legacy WidgetDeepLink.history",
+      "components": [],
+      "kind": "legacy_ingress",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.legacy-link.annotation": {
+      "destination": "legacy WidgetDeepLink.annotation",
+      "components": [],
+      "kind": "legacy_ingress",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.shell.settings-sheet": {
+      "destination": "native.settings",
+      "components": [],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.workspace.profile.management": {
+      "destination": "native.workspace.profiles",
+      "components": [
+        "native.workspace.profiles.list"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.workspace.profile.groups": {
+      "destination": "native.workspace.profiles",
+      "components": [
+        "native.workspace.profiles.groups"
+      ],
+      "kind": "original_parent_or_canonical_content",
+      "limit": "Exact registered subset only; no runtime acceptance inferred."
+    },
+    "inventory.v1.workspace.profile.draft": {
+      "destination": "native.workspace.profiles",
+      "components": [
+        "native.workspace.profiles.newProfile"
+      ],
+      "kind": "control_reveal",
+      "limit": "Reveals original create control without creating or opening a draft."
+    },
+    "inventory.v1.workspace.profile-menu": {
+      "destination": "native.workspace.overview",
+      "components": [
+        "native.workspace.overview.profileMenu"
+      ],
+      "kind": "conditional_phone_control",
+      "limit": "Phone original overview profile menu only; no arbitrary profile selection."
+    }
+  },
+  "tasks": [
+    {
+      "gid": "1220036734107652",
+      "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+      "modified_at": "2026-11-26T17:35:09.058Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036734107652",
+      "notes_characters_read": 12542,
+      "comments_returned": 2,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220103384037482",
+      "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+      "modified_at": "2026-11-26T17:23:57.641Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220103384037482",
+      "notes_characters_read": 13639,
+      "comments_returned": 14,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220036884173010",
+      "name": "[PLANNED][P1][UX] אוצריא — Safari Toolbar וחיפוש ספרייה מתרחב עם CommandPalette + Gelatin Motion-Only",
+      "modified_at": "2026-11-26T20:08:40.753Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036884173010",
+      "notes_characters_read": 13374,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1219643110971002",
+      "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+      "modified_at": "2026-11-26T21:03:19.154Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219643110971002",
+      "notes_characters_read": 5794,
+      "comments_returned": 22,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542361135050",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "modified_at": "2026-11-26T23:39:37.833Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220542361135050",
+      "notes_characters_read": 59904,
+      "comments_returned": 25,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1219848733895424",
+      "name": "[P0][BATCH-B][IN_PROGRESS] Reader/Upstream — iPadOS 27 QA + TestFlight production",
+      "modified_at": "2026-11-26T16:09:57.844Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219848733895424",
+      "notes_characters_read": 6142,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542361203468",
+      "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק",
+      "modified_at": "2026-11-27T02:52:34.794Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468",
+      "notes_characters_read": 49503,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542420331748",
+      "name": "UI-04 | App Intents / Shortcuts / Siri — פתיחת DestinationState ורכיבים ספציפיים",
+      "modified_at": "2026-11-26T02:33:15.418Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748",
+      "notes_characters_read": 10358,
+      "comments_returned": 11,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542420330496",
+      "name": "UI-05 | Deep Links + Universal Links — ניווט מדויק, גרסאות ושימור קישורים ישנים",
+      "modified_at": "2026-11-27T01:23:54.735Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542420330496",
+      "notes_characters_read": 25857,
+      "comments_returned": 16,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542467495722",
+      "name": "UI-06 | חיבור AI/MCP/Guided Tours ל־UI Registry ולמיקוד רכיבים",
+      "modified_at": "2026-11-27T02:01:18.839Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542467495722",
+      "notes_characters_read": 28721,
+      "comments_returned": 50,
+      "comment_limit": 50,
+      "latest_notes_read": true,
+      "comment_window_boundary": "The connector returns at most 50 comments; all latest task notes were read, but this is not a claim that every older or later comment is in the returned window."
+    },
+    {
+      "gid": "1220542416158970",
+      "name": "UI-07 | QA: מטריצת כיסוי 3 Backends × מסכים × AppIntent/DeepLink, security, regression",
+      "modified_at": "2026-11-26T15:44:17.664Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "notes_characters_read": 16576,
+      "comments_returned": 13,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542479938540",
+      "name": "UI-01 | אינוונטר מלא לכל המסכים, רכיבי UI ומצבי פתיחה — coverage manifest",
+      "modified_at": "2026-11-19T14:47:54.409Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542479938540",
+      "notes_characters_read": 17294,
+      "comments_returned": 8,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542479938476",
+      "name": "UI-02 | חוזה RouteSpec ו־UI Destination/State Registry משותף עם ActionCore",
+      "modified_at": "2026-11-19T14:47:47.412Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542479938476",
+      "notes_characters_read": 51910,
+      "comments_returned": 6,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    }
+  ],
+  "contract": {
+    "UI03": {
+      "task": "1220542361203468",
+      "requirements": [
+        "One original @MainActor Core/registry/orchestrator chain from parse/permission/readiness/exact scene/workspace/content through specific control state to actual native View ACK.",
+        "Exact Library/category/work, Reader address/focus, Inspector source, global-search query/filter/mode/selected hit, Settings control, Notes draft, bookmark/history selection, tab/profile/group/sidebar/menu/presentation state.",
+        "Cold/warm/background/premount/multiwindow, backend generation/epoch, cancelled/deadline/replay/readiness; a queued or requested surface is never completed."
+      ]
+    },
+    "UI04": {
+      "task": "1220542420331748",
+      "requirements": [
+        "Meaningful typed AppIntent/AppEntity wrappers over original Core; stable backend-qualified entities, dependencies, foreground execution, ambiguity and honest availability.",
+        "Open book/location, optional commentary and unsaved proposal, search results state, Settings section/control, Reader/TOC and notes/bookmark/history targets as actually supported.",
+        "Actual system Shortcuts/Siri and process/lifecycle/error/native receipt acceptance; WidgetConfigurationIntent does not satisfy action delivery."
+      ]
+    },
+    "UI05": {
+      "task": "1220542420330496",
+      "requirements": [
+        "Versioned allowlisted private custom URLs and authorized HTTPS/AASA/app entitlement; exact original target state where supported.",
+        "Retain original Widget history/annotation and Expo URL/activity lifecycle; no duplicated navigation.",
+        "No private note/query payload in shareable URL, code/selector/path injection or GET writes; malformed/version/size/encoding/replay/multiwindow/offline scenarios and actual OS delivery."
+      ]
+    },
+    "UI06": {
+      "task": "1220542467495722",
+      "requirements": [
+        "Reuse the single original Hanlin SDK/Chat/Composer/tools/store through a thin scoped host; no parallel engine or untrusted authority.",
+        "Same catalog/Core/UI path for AI/MCP/guides with live source/context/cancel/consent and actual native witnesses.",
+        "At least three multistep guides with named targets, bounded readiness/cancellation/resume/replay and meaningful HE/EN/VO/RTL/Dynamic Type."
+      ]
+    },
+    "UI07": {
+      "task": "1220542416158970",
+      "requirements": [
+        "All 51 original semantic/lifecycle/security/ingress/observability families, three distinct backends, actual state and receipt evidence; maintain PASS/FAIL/BLOCKED/NOT_RUN truthfully.",
+        "Original Native116 baseline82/34 and Release114+2 remain original final-candidate gates; focused source tests are not substitutes.",
+        "Production v40/indices/Anytype/Hanlin Live/MiniApps, original regressions, iPad+iPhone, actual physical owner QA. Owner minimum is iOS/iPadOS27 only; historical26 row retained as superseded."
+      ]
+    }
+  },
+  "focused_names": [
+    "testGuidedAutomaticJourneyCompletesExploresResumesAndReplays",
+    "testGuidedSearchJourneyUsesOriginalFocusedSearchControl",
+    "testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad",
+    "testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPhone",
+    "testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+    "testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+    "testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue",
+    "testSystemAppIntentSettingsSearchDataRevealsOriginalLink",
+    "testPhoneSystemAppIntentSettingsAppearanceFromBackgroundDoesNotMutateValue",
+    "testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink",
+    "testSystemWorkspaceProfilesListFromHistoryUsesOriginalSheet",
+    "testSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+    "testSystemWorkspaceOverviewGroupSelectorFromHistoryPreservesTabs",
+    "testSystemWorkspaceOverviewActionsFromBackgroundDoNotExecuteMenu",
+    "testSystemWorkspaceOverviewBothOriginalLayoutsRemainBound",
+    "testPhoneSystemWorkspaceProfilesListFromBackgroundUsesOriginalNestedSheet",
+    "testPhoneSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+    "testPhoneSystemWorkspaceOverviewGroupSelectorPreservesTabs",
+    "testPhoneSystemWorkspaceOverviewActionsDoNotExecuteMenu",
+    "testPhoneSystemWorkspaceProfileMenuIsOriginalVisibleControl",
+    "testPhoneSystemWorkspaceOverviewBothOriginalLayoutsRemainBound",
+    "testSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+    "testSystemAppIntentLibraryGroupingFromHistoryDoesNotOpenMenu",
+    "testSystemAppIntentTOCContentsFromHistoryPreservesReader",
+    "testPhoneSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+    "testPhoneSystemAppIntentLibraryOptionsFromBackgroundDoesNotOpenMenu",
+    "testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader",
+    "testPhoneSystemAppIntentTOCContentsFromHistoryPreservesReader",
+    "testPhoneSystemAppIntentCurrentTOCEntryFromBackgroundPreservesReader",
+    "testSiriHistoryFromOriginalIPadReaderPreservesWorkspace",
+    "testPhoneSiriHistoryFromBackgroundPreservesOriginalReader"
+  ],
+  "ports": [
+    {
+      "repo": "ScrollableTabBar",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+      "sha256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "ScrollableTabBar",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+      "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "ScrollableTabBar",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+      "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+      "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+      "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+      "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+      "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+      "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+      "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+      "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "sha256": "ff9d0053799a914f7ab14cbe76c0f01d866739fa0d24529b8e9327331579ba5e",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+      "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "CommandPalette",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+      "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+      "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": true,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+      "sha256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+      "sha256": "de87ae23a776b6fd1ff9575ce52a0510f955dd64731f6da797385f0ecbbcca60",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+      "sha256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+      "sha256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+      "sha256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+      "sha256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "sha256": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": true
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "destination": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "sha256": "85e7cffcb6c0c25cf4ee085ec2bad3b3ae896e59985ebbdda9228f4076c6cc8e",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "sha256": "4a8699f9efacc4d10265618f3d691d97400c48f17492d59650ffba309bce989c",
+      "sameAsPriorCrosswalk": true,
+      "sameAsOriginal": false,
+      "sameAsRecordedPort": false
+    }
+  ],
+  "root_report": "Root reports no final app SDK/native run for this candidate. This audit executes no product test. Previous actual evidence is preserved and scoped to its original source, not reclassified as final acceptance."
+}
