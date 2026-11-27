@@ -71,6 +71,22 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     private var statusGeneration = 0
 
+    /// A replaced library invalidates old readiness and all pending status
+    /// publications. Clearing result rows alone does not revoke that authority.
+    func invalidateSourceReadiness() {
+        statusGeneration += 1
+        status = .unavailable
+        indexStatusDetail = nil
+    }
+
+    private func applyReadFailureToReadiness(_ error: Error) {
+        guard let artifactError = error as? OtzariaSearchArtifactError,
+              case .incompatible = artifactError else { return }
+        invalidateSourceReadiness()
+        status = .repairRequired(error.localizedDescription)
+        indexStatusDetail = error.localizedDescription
+    }
+
     func refreshStatus() {
         guard !isIndexing, !isInstallingArtifact else { return }
         statusGeneration += 1
@@ -467,14 +483,20 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
+                let source = repository.resourceObservation(databasePath: path)
                 let page = try repository.search(databasePath: path, request: request)
                 let items = repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    let currentSource = repository.resourceObservation(databasePath: path)
                     guard path == OtzariaMaktabahBridge.shared.databasePath,
                           profile == OtzariaDataProfileRegistry.activeProfileID,
-                          backendGeneration == BackendCoordinator.shared.generation else {
+                          backendGeneration == BackendCoordinator.shared.generation,
+                          source.fingerprint != nil,
+                          source.revision == currentSource.revision,
+                          source.fingerprint == currentSource.fingerprint else {
                         self.clear()
+                        self.invalidateSourceReadiness()
                         return
                     }
                     try self.store(page: page, items: items, replacing: true)
@@ -488,6 +510,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                 await MainActor.run {
                     guard self.searchGeneration == generation else { return }
                     self.errorMessage = error.localizedDescription
+                    self.applyReadFailureToReadiness(error)
                     self.enginePage = nil
                     self.results = []
                     self.searchRecords = []
@@ -516,14 +539,20 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
         paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
+                let source = repository.resourceObservation(databasePath: path)
                 let page = try repository.search(databasePath: path, request: nextRequest)
                 let items = repository.navigationItems(from: page)
                 try await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    let currentSource = repository.resourceObservation(databasePath: path)
                     guard path == OtzariaMaktabahBridge.shared.databasePath,
                           profile == OtzariaDataProfileRegistry.activeProfileID,
-                          backendGeneration == BackendCoordinator.shared.generation else {
+                          backendGeneration == BackendCoordinator.shared.generation,
+                          source.fingerprint != nil,
+                          source.revision == currentSource.revision,
+                          source.fingerprint == currentSource.fingerprint else {
                         self.clear()
+                        self.invalidateSourceReadiness()
                         return
                     }
                     try self.store(page: page, items: items, replacing: false)
@@ -539,6 +568,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     guard self.searchGeneration == generation else { return }
                     self.isLoadingMore = false
                     self.errorMessage = error.localizedDescription
+                    self.applyReadFailureToReadiness(error)
                 }
             }
         }

@@ -205,6 +205,38 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
             do { _ = try recoverTrustedManagedIndex(databasePath: databasePath) }
             catch { OtzariaIndexFileLogger.logError("managed identity recovery failed", error: error) }
         }
+        // Recovery may mutate metadata and invalidate cached engines. It must
+        // finish before acquiring this read scope, never inside a cache lock.
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        return try ITorahStorageLock.withLock(name: "migration-\(profile)") {
+            try ITorahStorageLock.withLock(name: "database-mutation-\(profile)") {
+                try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profile)") {
+                    guard profile == OtzariaDataProfileRegistry.activeProfileID else {
+                        throw OtzariaSearchArtifactError.incompatible("data profile changed during readiness")
+                    }
+                    let manifest = try validateCurrentIndexSource(databasePath: databasePath)
+                    let finalURL = indexURL(for: databasePath)
+                    let compatibility = try OtzariaSearchEngineBridge.checkCompatibility(indexURL: finalURL)
+                    guard compatibility.compatible else {
+                        throw OtzariaSearchError.invalidEngineResponse(compatibility.reason ?? compatibility.status)
+                    }
+                    let engine = try OtzariaSearchEngineBridge(indexURL: finalURL)
+                    defer { engine.close() }
+                    let count = try engine.documentCount()
+                    if let manifest, count != manifest.lexicalArtifact.documentCount {
+                        throw OtzariaSearchArtifactError.incompatible("managed index document count")
+                    }
+                    return count
+                }
+            }
+        }
+    }
+
+    /// Read-only admission shared by readiness and every ordinary engine read.
+    /// This never recovers, rewrites identities, opens an engine or takes a
+    /// storage/cache lock. The caller owns the original storage read scope.
+    @discardableResult
+    func validateCurrentIndexSource(databasePath: String) throws -> OtzariaSearchArtifactManifest? {
         let finalURL = indexURL(for: databasePath)
         let currentBuild = try OtzariaSearchEngineBridge.buildInfo()
         let registeredSemantic = decode(
@@ -217,11 +249,12 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
         guard FileManager.default.fileExists(atPath: finalURL.path) else {
             throw OtzariaSearchError.invalidEngineResponse("תיקיית אינדקס אוצריא אינה קיימת.")
         }
-        guard let identity = storedIdentity(indexURL: finalURL) else {
+        guard let identityData = try? readValidationMetadata(at: identityURL(indexURL: finalURL)),
+              let identity = try? JSONDecoder().decode(OtzariaIndexBuildIdentity.self, from: identityData) else {
             throw OtzariaSearchError.invalidEngineResponse("קובץ הזהות המשני של האינדקס חסר או אינו קריא; נתוני הספרים לא השתנו.")
         }
         let currentDatabase = try currentFingerprint(databasePath: databasePath)
-        let trustedManifest = managed && identity.upstreamCommit != currentBuild.upstreamCommit
+        let trustedManifest = managed
             ? trustedManagedReadManifest(indexURL: finalURL, databasePath: databasePath, build: currentBuild)
             : nil
         guard (managed
@@ -241,39 +274,57 @@ final class OtzariaSearchIndexManager: @unchecked Sendable {
               (managed || identity.semanticArtifactIdentity == registeredSemantic) else {
             throw OtzariaSearchError.invalidEngineResponse("זהות האינדקס אינה תואמת למסד, למנוע או למשאבים הפעילים.")
         }
-        let compatibility = try OtzariaSearchEngineBridge.checkCompatibility(indexURL: finalURL)
-        guard compatibility.compatible else {
-            throw OtzariaSearchError.invalidEngineResponse(compatibility.reason ?? compatibility.status)
-        }
-        let engine = try OtzariaSearchEngineBridge(indexURL: finalURL)
-        defer { engine.close() }
-        return try engine.documentCount()
+        return trustedManifest
     }
 
     func compatibility(databasePath: String) -> OtzariaIndexCompatibility? {
         try? OtzariaSearchEngineBridge.checkCompatibility(indexURL: indexURL(for: databasePath))
     }
 
-    /// Cross-revision reads require this full original manifest validation.
-    /// A local identity's bare commit cannot supply the missing producer repo.
+    /// Every managed read requires the full original manifest validation.
+    /// A local identity's bare commit or file size cannot identify its library.
     func trustedManagedReadManifest(
         indexURL: URL,
         databasePath: String,
         build: OtzariaSearchEngineBuildInfo
     ) -> OtzariaSearchArtifactManifest? {
-        guard OtzariaDatabaseAccessController.shared.source == .managedInternal else { return nil }
+        let selection = OtzariaDatabaseAccessController.shared.selectionObservation()
+        let databaseURL = URL(fileURLWithPath: databasePath).standardizedFileURL
+        guard selection.source == .managedInternal,
+              selection.url?.standardizedFileURL == databaseURL else { return nil }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        guard let storage = try? OtzariaDatabaseStorage(),
-              let databaseData = try? Data(contentsOf: storage.installationManifestURL),
+        let installationURL = databaseURL.deletingLastPathComponent()
+            .appendingPathComponent("seforim-installation.json")
+        guard let databaseData = try? readValidationMetadata(at: installationURL),
               let database = try? decoder.decode(OtzariaDatabaseInstallationManifest.self, from: databaseData),
               let fingerprint = try? currentFingerprint(databasePath: databasePath),
-              let data = try? Data(contentsOf: indexURL.appendingPathComponent("otzaria_prebuilt_installation.json")),
+              let data = try? readValidationMetadata(at: indexURL.appendingPathComponent("otzaria_prebuilt_installation.json")),
               let manifest = try? JSONDecoder().decode(OtzariaSearchArtifactManifest.self, from: data),
               (try? OtzariaSearchArtifactPolicy.validate(
                   manifest, database: database, databaseBytes: Int64(fingerprint.fileSize), build: build
               )) != nil else { return nil }
+        guard selection == OtzariaDatabaseAccessController.shared.selectionObservation() else { return nil }
         return manifest
+    }
+
+    private func readValidationMetadata(at url: URL) throws -> Data {
+        let maximum = 1_048_576
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        guard attributes[.type] as? FileAttributeType == .typeRegular,
+              let size = attributes[.size] as? NSNumber,
+              size.uint64Value <= UInt64(maximum) else {
+            throw OtzariaSearchArtifactError.incompatible("missing or oversized source metadata")
+        }
+        let file = try FileHandle(forReadingFrom: url)
+        defer { try? file.close() }
+        var data = Data()
+        while data.count <= maximum {
+            guard let bytes = try file.read(upToCount: maximum + 1 - data.count),
+                  !bytes.isEmpty else { return data }
+            data.append(bytes)
+        }
+        throw OtzariaSearchArtifactError.incompatible("oversized source metadata")
     }
 
     func trustedManagedArtifactIdentity(databasePath: String) -> String? {

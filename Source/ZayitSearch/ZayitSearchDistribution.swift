@@ -444,16 +444,42 @@ private extension ZayitSearchArtifactService {
         guard bytes == manifest.requiredDatabase.bytes else {
             throw ZayitSearchDistributionError.incompatible("database size/identity mismatch")
         }
-        guard let storage = try? OtzariaDatabaseStorage(),
-              databaseURL.standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL,
-              FileManager.default.fileExists(atPath: storage.installationManifestURL.path) else { return }
-        let data = try Data(contentsOf: storage.installationManifestURL)
+        let selection = OtzariaDatabaseAccessController.shared.selectionObservation()
+        let installationURL: URL
+        if selection.source == .managedInternal {
+            guard selection.url?.standardizedFileURL == databaseURL.standardizedFileURL else {
+                throw ZayitSearchDistributionError.incompatible("managed database selection changed")
+            }
+            installationURL = databaseURL.deletingLastPathComponent().appendingPathComponent("seforim-installation.json")
+        } else {
+            // Preserve the original external-folder contract. A canonical
+            // managed installation, however, must never fall through on a
+            // missing manifest merely because its byte count happens to match.
+            guard let storage = try? OtzariaDatabaseStorage(),
+                  databaseURL.standardizedFileURL == storage.finalDatabaseURL.standardizedFileURL,
+                  FileManager.default.fileExists(atPath: storage.installationManifestURL.path) else { return }
+            installationURL = storage.installationManifestURL
+        }
+        let maximum = 1_048_576
+        let attributes = try FileManager.default.attributesOfItem(atPath: installationURL.path)
+        guard attributes[.type] as? FileAttributeType == .typeRegular,
+              let size = attributes[.size] as? NSNumber, size.uint64Value <= UInt64(maximum) else {
+            throw ZayitSearchDistributionError.incompatible("missing or oversized database installation manifest")
+        }
+        let file = try FileHandle(forReadingFrom: installationURL)
+        defer { try? file.close() }
+        guard let data = try file.read(upToCount: maximum + 1),
+              data.count == size.intValue, data.count <= maximum else {
+            throw ZayitSearchDistributionError.incompatible("incomplete database installation manifest")
+        }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let installed = try (try? decoder.decode(OtzariaDatabaseInstallationManifest.self, from: data))
             ?? JSONDecoder().decode(OtzariaDatabaseInstallationManifest.self, from: data)
         let digest = installed.digest?.replacingOccurrences(of: "sha256:", with: "").lowercased()
-        guard installed.releaseTag == manifest.requiredDatabase.releaseTag,
+        guard selection == OtzariaDatabaseAccessController.shared.selectionObservation(),
+              installed.databaseFileSize == bytes,
+              installed.releaseTag == manifest.requiredDatabase.releaseTag,
               installed.effectiveProfileID == manifest.effectiveProfileID,
               installed.effectiveProfileVersion == manifest.effectiveProfileVersion,
               digest == manifest.requiredDatabase.compressedAssetSHA256.lowercased() else {

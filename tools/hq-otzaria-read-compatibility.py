@@ -60,7 +60,7 @@ def main():
                    "OtzariaIndexBuildIdentity", "OtzariaIndexCheckpoint"]
     model_source = "import Foundation\n" + "\n".join(block(models, "struct " + name + ":") for name in model_names)
     db_models = (ROOT / "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift").read_text(encoding="utf-8-sig")
-    model_source += "\n" + block(db_models, "struct OtzariaDatabaseInstallationManifest:")
+    model_source += "\n" + db_models
     manifest = (ROOT / "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift").read_text(encoding="utf-8-sig")
     model_source += "\n" + manifest.split("extension OtzariaSearchArtifactError:", 1)[0]
     (owned / "Models.swift").write_text(model_source, encoding="utf-8")
@@ -80,6 +80,9 @@ def main():
                        "    func recoverTrustedManagedIndex(", "    private func canSeedBuildingIndex("]
     if "    func trustedManagedReadManifest(" in manager:
         manager_methods.append("    func trustedManagedReadManifest(")
+    for marker in ("    func validateCurrentIndexSource(", "    private func readValidationMetadata("):
+        if marker in manager:
+            manager_methods.append(marker)
     source = "import Foundation\nfinal class OtzariaSearchIndexManager: @unchecked Sendable {\n"
     source += (ROOT / "Tests/HQ/search/IndexReadCompatibilityManagerBoundary.swift").read_text(encoding="utf-8")
     source += "\n".join(block(manager, name) for name in manager_methods)
