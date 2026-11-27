@@ -51,6 +51,13 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     private let searchQuery: ActionSearchResultsQuery?
     private let clock: any ActionClock
     private var consumed = false
+    private var claimingSingleCommit = false
+    private enum ContinuationPhase: Equatable { case claimingParent, parentCommitted, claimingSelection, selectionCommitted, retired }
+    private struct ContinuationState {
+        let token: UUID
+        var phase: ContinuationPhase
+    }
+    private var continuation: ContinuationState?
 
     public nonisolated static func == (lhs: ActionNavigationPreparation, rhs: ActionNavigationPreparation) -> Bool { lhs === rhs }
 
@@ -121,13 +128,77 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     public func authorizeCommit(invocation: ActionPortInvocation, sceneID: String,
                                 destination: ActionReaderDestination? = nil, noteDraft: ActionNoteDraftRequest? = nil,
                                 searchQuery: ActionSearchResultsQuery? = nil) throws {
-        guard !consumed else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
+        guard !consumed, !claimingSingleCommit else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
         guard invocation == self.invocation, sceneID == self.sceneID, destination == self.destination,
               noteDraft == self.noteDraft, searchQuery == self.searchQuery else {
             throw ActionNavigationError(.failed, "navigation_command_mismatch")
         }
+        // The old single-commit guard also calls live external authorities.
+        // Fence BOTH entry points during that call so a callback cannot claim
+        // the staged path before this original path marks itself consumed.
+        // A failed original validation still releases this transient fence;
+        // it does not change the old single-commit retry contract.
+        claimingSingleCommit = true
+        defer { claimingSingleCommit = false }
         try validateLive()
         consumed = true
+    }
+
+    /// An additive, finite UI-only commit: select the ORIGINAL parent, then
+    /// consume exactly one original selection after that parent's actual wait.
+    /// The same preparation owns both effects. It cannot also perform the
+    /// single-commit path or borrow a semantic reader/note/search preparation.
+    public func authorizeParentSelection(invocation: ActionPortInvocation,
+                                         sceneID: String) throws -> ActionNavigationContinuation {
+        guard !consumed, !claimingSingleCommit else { throw ActionNavigationError(.failed, "navigation_preparation_consumed") }
+        guard invocation == self.invocation, sceneID == self.sceneID,
+              destination == nil, noteDraft == nil, searchQuery == nil else {
+            throw ActionNavigationError(.failed, "navigation_command_mismatch")
+        }
+        let token = UUID()
+        // Claim BEFORE live authorities can invoke a synchronous callback.
+        // Failure or reentry never rearms this preparation.
+        consumed = true
+        continuation = .init(token: token, phase: .claimingParent)
+        do {
+            try validateLive()
+            guard continuation?.token == token, continuation?.phase == .claimingParent else {
+                throw ActionNavigationError(.staleState, "navigation_continuation_retired")
+            }
+            continuation?.phase = .parentCommitted
+            return ActionNavigationContinuation(preparation: self, token: token)
+        } catch {
+            retireContinuation(token: token)
+            throw error
+        }
+    }
+
+    func authorizeSelection(token: UUID, invocation: ActionPortInvocation, sceneID: String) throws {
+        guard invocation == self.invocation, sceneID == self.sceneID else {
+            throw ActionNavigationError(.failed, "navigation_command_mismatch")
+        }
+        guard continuation?.token == token, continuation?.phase == .parentCommitted else {
+            throw ActionNavigationError(.failed, "navigation_continuation_consumed")
+        }
+        continuation?.phase = .claimingSelection
+        do {
+            try validateLive()
+            guard continuation?.token == token, continuation?.phase == .claimingSelection else {
+                throw ActionNavigationError(.staleState, "navigation_continuation_retired")
+            }
+            continuation?.phase = .selectionCommitted
+        } catch {
+            retireContinuation(token: token)
+            throw error
+        }
+    }
+
+    func retireContinuation(token: UUID) {
+        guard continuation?.token == token else { return }
+        // A completed effect may still need the original outer completion
+        // check. Its one-use selection can never be claimed again. Retiring a
+        // partial parent, however, permanently forbids terminal completion.
+        if continuation?.phase != .selectionCommitted { continuation?.phase = .retired }
     }
 
     /// Freshness check after native observation/layout waits, not another grant.
@@ -135,6 +206,9 @@ public struct ActionNavigationError: Error, Sendable, Equatable {
     /// actual effect: it proves neither rollback nor absence of that effect.
     public func validateCompletion() throws {
         guard consumed else { throw ActionNavigationError(.failed, "navigation_commit_not_authorized") }
+        if let continuation, continuation.phase != .selectionCommitted {
+            throw ActionNavigationError(.failed, "navigation_selection_not_authorized")
+        }
         try validateLive()
     }
 }

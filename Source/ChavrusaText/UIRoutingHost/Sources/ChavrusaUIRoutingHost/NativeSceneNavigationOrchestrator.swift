@@ -32,6 +32,7 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         var active: Bool
         var acknowledged: Bool
         var token: UUID
+        var continuation: UIOriginalParentSelectionContinuation? = nil
     }
     private var dispatches: [UUID: Dispatch] = [:]
     private struct ReaderExecution: Sendable {
@@ -114,6 +115,7 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
         // Keep the bounded process ledger so that remount cannot dispatch a
         // completed/uncertain request again, including with a replacement driver.
         for id in Array(dispatches.keys) where dispatches[id]?.command.scene.sceneID == driver.sceneID {
+            dispatches[id]?.continuation?.retire()
             dispatches[id]?.active = false
             dispatches[id]?.token = UUID()
         }
@@ -282,20 +284,73 @@ public final class NativeSceneNavigationOrchestrator: UISceneNavigationPort {
             try driver.beginObservation(command)
             defer { driver.endObservation(requestID: requestID) }
             let current = try directory.synchronousScene(sceneID: sceneID, context: context, backend: backend.currentBackendSnapshot())
-            try prepared.authorizeCommit(current: current)
-            // A synchronous Core/backend callback can detach even the same
-            // driver instance. Check the ORIGINAL active dispatch ownership
-            // after the guard and immediately before this call's native effect.
-            guard let currentDriver = drivers[sceneID], currentDriver === driver,
-                  let dispatch = dispatches[requestID], dispatch.token == token,
-                  dispatch.active, !dispatch.dispatched, !dispatch.acknowledged else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
-            if let readerExecution { try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token) }
-            // No await between the ONE Core guard and actual native mutation.
-            // Mark uncertainty before apply: a throwing driver may have effects.
-            didDispatch = true; dispatches[requestID]?.dispatched = true
-            try driver.apply(prepared.command)
-            let visible = try await NativeObservationDeadline.run(until: command.invocation.deadlineUptimeNanoseconds, clock: clock) {
-                try await driver.waitUntilVisible(command)
+            let parentDriver = driver as? any NativeParentSelectionSceneDriver
+            let parentKind = try parentDriver?.originalParentSelectionKind(for: command)
+            let visible: NativeSurfaceState
+            if let parentDriver, let parentKind {
+                let continuation = try prepared.authorizeOriginalParent(kind: parentKind, current: current)
+                dispatches[requestID]?.continuation = continuation
+                defer { continuation.retire() }
+                guard let currentDriver = drivers[sceneID], currentDriver === driver,
+                      let dispatch = dispatches[requestID], dispatch.token == token,
+                      dispatch.active, !dispatch.dispatched, !dispatch.acknowledged else {
+                    throw UIRouteError(.staleState, "scene_lifetime_changed")
+                }
+                // The parent itself is an effect. Every later failure retains
+                // the original uncertain-effect result and cannot retry it.
+                didDispatch = true; dispatches[requestID]?.dispatched = true
+                try parentDriver.applyOriginalParent(prepared.command)
+                visible = try await NativeObservationDeadline.run(until: command.invocation.deadlineUptimeNanoseconds, clock: clock) { @MainActor [self] in
+                    let parent = try await parentDriver.waitUntilOriginalParentReady(command)
+                    try Task.checkCancellation()
+                    guard parent.requestID == requestID, parent.sceneID == sceneID,
+                          parent.presentationRevision > 0,
+                          let currentDriver = drivers[sceneID], currentDriver === driver,
+                          let dispatch = dispatches[requestID], dispatch.token == token,
+                          dispatch.active, dispatch.dispatched, !dispatch.acknowledged,
+                          dispatch.continuation === continuation else {
+                        throw UIRouteError(.staleState, "original_parent_owner_changed")
+                    }
+                    try parentDriver.validateOriginalParent(parent, for: command)
+                    let afterParent = try directory.synchronousScene(sceneID: sceneID, context: context,
+                        backend: backend.currentBackendSnapshot())
+                    // Directory/backend reads may synchronously publish source
+                    // changes. Recheck the EXACT retained UIKit parent before
+                    // claiming the terminal half of this same preparation.
+                    try parentDriver.validateOriginalParent(parent, for: command)
+                    try continuation.authorizeSelection(current: afterParent)
+                    // The terminal Core guard itself reads live authorities.
+                    // A callback may replace only the local Viewer host while
+                    // leaving this scene/dispatch alive. Recheck that SAME
+                    // retained parent before the final ownership guard/effect.
+                    try parentDriver.validateOriginalParent(parent, for: command)
+                    guard let currentDriver = drivers[sceneID], currentDriver === driver,
+                          let dispatch = dispatches[requestID], dispatch.token == token,
+                          dispatch.active, dispatch.dispatched, !dispatch.acknowledged,
+                          dispatch.continuation === continuation else {
+                        throw UIRouteError(.staleState, "scene_lifetime_changed")
+                    }
+                    // No await, new grant or render callback between this
+                    // terminal Core guard and the ORIGINAL synchronous action.
+                    try parentDriver.applyOriginalSelection(command)
+                    return try await driver.waitUntilVisible(command)
+                }
+            } else {
+                try prepared.authorizeCommit(current: current)
+                // A synchronous Core/backend callback can detach even the same
+                // driver instance. Check the ORIGINAL active dispatch ownership
+                // after the guard and immediately before this call's native effect.
+                guard let currentDriver = drivers[sceneID], currentDriver === driver,
+                      let dispatch = dispatches[requestID], dispatch.token == token,
+                      dispatch.active, !dispatch.dispatched, !dispatch.acknowledged else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+                if let readerExecution { try validateReaderExecution(sceneID: sceneID, driver: driver, token: readerExecution.token) }
+                // No await between the ONE Core guard and actual native mutation.
+                // Mark uncertainty before apply: a throwing driver may have effects.
+                didDispatch = true; dispatches[requestID]?.dispatched = true
+                try driver.apply(prepared.command)
+                visible = try await NativeObservationDeadline.run(until: command.invocation.deadlineUptimeNanoseconds, clock: clock) {
+                    try await driver.waitUntilVisible(command)
+                }
             }
             // Observe the actual visible surface and same synchronous backend
             // in one MainActor turn. A further suspension here lets ordinary

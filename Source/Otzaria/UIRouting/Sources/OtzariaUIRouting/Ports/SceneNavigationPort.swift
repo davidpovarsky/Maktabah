@@ -133,6 +133,33 @@ public struct UISceneCommand: Sendable, Equatable {
         try authorization.authorizeCommit(invocation: invocation, sceneID: scene.sceneID.rawValue,
                                           destination: route.route.content, noteDraft: noteDraft, searchQuery: searchQuery)
     }
+
+    @MainActor fileprivate func authorizeOriginalParent(kind: UIOriginalParentSelectionKind,
+                                                        current: UISceneSnapshot,
+                                                        using authorization: ActionNavigationPreparation) throws
+        -> ActionNavigationContinuation {
+        // Only the private, source-bound existing Reader-tab selection opts in.
+        // Public-v2, generic roots and semantic reader/note/search commands do
+        // not acquire a second effect from a decoded route or a render check.
+        guard route.descriptor.implementation == .implemented,
+              !route.descriptor.mutatesUserData, route.descriptor.riskTier < 3,
+              route.descriptor.requiredCoreActions.isEmpty, route.publicLocalBinding == nil,
+              route.route.content == nil, route.route.focus == nil,
+              route.route.presentation.kind == .currentTab, route.route.presentation.tabID != nil,
+              route.route.state.workspaceID != nil, route.route.state.profileID != nil,
+              route.route.state == .init(workspaceID: route.route.state.workspaceID,
+                                        profileID: route.route.state.profileID) else {
+            throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
+        }
+        switch kind {
+        case .readerTab:
+            guard route.route.destination.rawValue == "native.reader.tab" else {
+                throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
+            }
+        }
+        try validateScene(current)
+        return try authorization.authorizeParentSelection(invocation: invocation, sceneID: scene.sceneID.rawValue)
+    }
 }
 
 /// Trusted non-Codable preparation binds the complete immutable scene command.
@@ -151,6 +178,17 @@ public struct UIAuthorizedSceneCommand: Sendable {
     /// await. It consumes the one-use preparation; observation/receipt follow.
     @MainActor public func authorizeCommit(current: UISceneSnapshot) throws {
         try command.authorizeCommit(current: current, using: authorization, noteDraft: noteDraft, searchQuery: searchQuery)
+    }
+
+    /// Chooses a finite staged UI selection instead of the original single
+    /// apply. Both choices consume the SAME preparation and are exclusive.
+    @MainActor public func authorizeOriginalParent(kind: UIOriginalParentSelectionKind,
+                                                   current: UISceneSnapshot) throws -> UIOriginalParentSelectionContinuation {
+        guard noteDraft == nil, searchQuery == nil else {
+            throw UIRouteError(.notSupported, "original_parent_selection_not_supported")
+        }
+        let continuation = try command.authorizeOriginalParent(kind: kind, current: current, using: authorization)
+        return .init(command: command, kind: kind, authorization: continuation)
     }
     /// Check the exact observed native result AND current canonical authority
     /// after any layout/readiness await. This cannot authorize/repeat mutation.

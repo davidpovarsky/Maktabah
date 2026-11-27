@@ -47,6 +47,7 @@ struct iPadLayout: View {
         TabView(selection: $selectedTab) {
             Tab(iOSTab.viewer.title, systemImage: iOSTab.viewer.icon, value: .viewer) {
                 viewerTabContent
+                    .modifier(MaktabahNativeViewerParentSurface(manager: bManager, selectedTab: selectedTab))
                     .modifier(ReaderTabBarVisibility(visibility: readerTabBarVisibility))
             }
 
@@ -106,7 +107,10 @@ struct iPadLayout: View {
             if selectedTab != canonical {
                 selectedTab = canonical
             }
-            bManager.switchToMode(canonical.appMode)
+            MaktabahNativeViewerModePublication.perform(host: routingSession?.viewerParentHost,
+                manager: bManager, mode: canonical.appMode) {
+                bManager.switchToMode(canonical.appMode)
+            }
         }
         .onChange(of: bManager.currentMode) { _, newMode in
             let matchingTab = iOSTab(appMode: newMode)
