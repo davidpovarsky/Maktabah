@@ -1,0 +1,443 @@
+[
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+    "blob": "e789fa06493ace02f0b5cc9ff62b8f7a6f7708a3",
+    "bytes": 3723,
+    "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+    "blob": "8d832f2b915dac08d047caa1c1492042c0c97724",
+    "bytes": 43134,
+    "sha256": "2d39de55348df1520fd4d8317440ca35e19eedb09b7f28376e3a944a4762fd50"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+    "blob": "89ba3e35f50db571210f1f569eced95995ab6890",
+    "bytes": 8529,
+    "sha256": "5a785feb7b3ddf76d19024ecbae7faec1c1fbbab10e2e76fa2e1d290635fd48f"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "blob": "13b33e6864cdaf83710e819e58e0972fa72ff75b",
+    "bytes": 12630,
+    "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "blob": "f1ae6a7839ee8915b78757f8b0fe1637612b86eb",
+    "bytes": 22981,
+    "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+    "blob": "87059c3333555148739f42fd5e0a993706189eb8",
+    "bytes": 10506,
+    "sha256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "blob": "f8f05f312a67ab7e50577ab382bf3c84590c8d53",
+    "bytes": 38402,
+    "sha256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/ARCHIVE_INDEX.json",
+    "blob": "13e8eb494406a327641e7a12b19fdcc848eba93a",
+    "bytes": 25700,
+    "sha256": "dafed7d348ca128d3f169b035998d1364654f54b9da058b994c788e95c2c19a6"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/COMPILED_ARTIFACTS.json",
+    "blob": "e218d5061480a11ceee270c6bd597fe64a9cc1a0",
+    "bytes": 14017,
+    "sha256": "04336e1e26d73591cc05919e471e1a1eba0a57dcf7ca01463465636960120652"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/FINAL_SOURCE_MANIFEST.json",
+    "blob": "8164710b645f11b209be55e9e9ee4b10906b6dd8",
+    "bytes": 1658,
+    "sha256": "471e588de928383789a52d311dcd93a37a2e8399f44419d285e8d48930d878ee"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/PEER_REVIEW.md",
+    "blob": "a6b0e84ad419b51708ab09f83b0e7347464234d8",
+    "bytes": 5905,
+    "sha256": "b499a333bacd3787130ae2d5d13b1a997dddec8c2d78c88416c12b483ca98fdd"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/PUBLICATION_CHECKS.json",
+    "blob": "677c63202300dc92b1b9f65cff3413c6e785c3a5",
+    "bytes": 8129,
+    "sha256": "732f0910151978347c5f9e46fb29e54bf6174076194504876dd256710dd65002"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/PUBLICATION_PLAN.json",
+    "blob": "c9232ec174e9f5d6630662be7ef6842b91af9e7f",
+    "bytes": 930,
+    "sha256": "ed06e33f179fc2317e33ae4d1924b8fce85dc2716b1710795eaf818f2e0a10f9"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/README.md",
+    "blob": "bedb5f1ef2fd2d16358871bd86798472080c7fae",
+    "bytes": 11382,
+    "sha256": "a2fc1a1059728ef06b9a8a83cae955484c27c105bafacfde6e4b11da165333aa"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_1.json",
+    "blob": "99e4bdaf77d02cabb1213740575bca4992379e4d",
+    "bytes": 1492,
+    "sha256": "b8382734c4c76945b7412e0b27519dfe473ed488a6ced3e3414284d002cff383"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_1_SOURCES.tar.gz",
+    "blob": "f9061bd969d6095ecf61aee3dace1c0e11ad48c5",
+    "bytes": 29933,
+    "sha256": "ed908723d47d2bf42f77fe5b18eed4a070915b13af597c08205157f9e0800590"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_2.json",
+    "blob": "f958b40f5b7e4a92eb97fab07f929e066a59faba",
+    "bytes": 1677,
+    "sha256": "f71bec4270726911d2128c27a8519ef8dc2a123cba71148988e08c1ea6b9a473"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_2_SOURCES.tar.gz",
+    "blob": "0bc5ab5b8286f26b96be7be94f6a80c5c90f33a8",
+    "bytes": 30182,
+    "sha256": "6aa20135211b39c869e7ccba929113a42d144b3217ec6b708afac9f809544e91"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_3.json",
+    "blob": "7c758576fc0be3bfc07a9fffa2a383208767e04d",
+    "bytes": 1755,
+    "sha256": "78088d65b327593f2b7a6a7e808c9280e97063ba1caf7f75e250aeb3e07e7741"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_3_SOURCES.tar.gz",
+    "blob": "42e1fceeef195fe8f257b47ee3ee159b75ad67c2",
+    "bytes": 30310,
+    "sha256": "1dfc1ca7f78df1696b7bef032a8e1ce75fe1146ece7126b6851406c766e78b1b"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/REVIEW_CANDIDATE_4.json",
+    "blob": "8164710b645f11b209be55e9e9ee4b10906b6dd8",
+    "bytes": 1658,
+    "sha256": "471e588de928383789a52d311dcd93a37a2e8399f44419d285e8d48930d878ee"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/WIRING_CONTRACT.md",
+    "blob": "7caace9a88da0137d2ccf115400c5ad583ac47e8",
+    "bytes": 13876,
+    "sha256": "1c6757de014ebb935211b247eec3300ae2bcf6272c005df722da2590be1f1fd4"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/ADMISSION-attempt2.json",
+    "blob": "7e94fec15bd5b97150d27673e47ec921abb77abd",
+    "bytes": 780,
+    "sha256": "93c02eb0273d05a626472591f78117f8d33bb0293f6977456f9ca7cc5195f474"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/ADMISSION.json",
+    "blob": "cc81f8431657c05b41ea70ffe8d33e384d31b9b1",
+    "bytes": 778,
+    "sha256": "3cb02c52de60278065b8b4e41f7a71874b45c21d26a2718ee20938fd5faf52bf"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/DATA_FLOOR_BLOCKED.json",
+    "blob": "7ef0659f0beb1b13441f94f63749239101bc3f53",
+    "bytes": 356,
+    "sha256": "4a975ac29203104f166bd5c8ead1817652fa7919f513186f28875d7a180909eb"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/INPUTS.json",
+    "blob": "b25f57e3de5f4bb32e1fbb07f8d0685df6b476fd",
+    "bytes": 22246,
+    "sha256": "9e34d623a7bbe412e90dba7631b1248fb41ac523518a2f57986c0ec2e8699f77"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/RESULT-attempt2.json",
+    "blob": "fdb934e2e449ce2077a48c054bd9ed4d9b77e895",
+    "bytes": 20433,
+    "sha256": "adf3bdfb240436c4b43ce3abea55e12fb4ff36273697568390669abde208983f"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/RESULT.json",
+    "blob": "5f9cfcdcdbc0b116478c108f7d6d89c032361136",
+    "bytes": 19185,
+    "sha256": "cee5efbe86c810d61917de9bb57f81725a25725c108a25242bbd32eeca9bd59d"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/cancellation-baseline-attempt2.stdout",
+    "blob": "f146c850c8addf6743428e3c47573e9028317f7d",
+    "bytes": 927,
+    "sha256": "e3c1e1b113094e96f7386e4c8f4637da78a735c474a78ed6182483f1b6e93a7d"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/cancellation-candidate-attempt2.stdout",
+    "blob": "538dc6ecc65d4cb013d111cd10ec7c5733ae5655",
+    "bytes": 922,
+    "sha256": "5c5cbe7a51087d55771c06f54bc940d0efecec62a48098046371971b12c81877"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/cancellation-controls-attempt2/SOURCE_BOUNDARY.json",
+    "blob": "b60384ca4db1272ed3e06853947b2078d9b670fe",
+    "bytes": 2243,
+    "sha256": "6c2e499d28a530485582dc026386cd92dd7ee95ffaef3e047adf1af7a44dbd23"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/portable-controls-attempt2.stdout",
+    "blob": "5f0b8de9872c13047d06babfa1f109f52bee283c",
+    "bytes": 2972,
+    "sha256": "bbf89ff7017c0664bfd207435286ec247880e74eafe28057f8e55fe9a446aab5"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/revision-2/ADMISSION.json",
+    "blob": "df87e4b67b3aea39b6d8a4c875e1951e55eeb746",
+    "bytes": 956,
+    "sha256": "f152194630b6b2d7fe2dc39ca783faffbd03e2e66c8692a72b8985ea73cc0462"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/revision-2/INPUTS.json",
+    "blob": "08fce2317b2b415660ec5d6891a76c69cc04aa86",
+    "bytes": 1460,
+    "sha256": "8cab592453be435ee5d35e62abe512f5420c9796044dd2ef242ff5978a6a1a27"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/revision-2/RESULT.json",
+    "blob": "a4dce06670d46201008839b9c08888a17a2a1daf",
+    "bytes": 21816,
+    "sha256": "6c88e30487b8a76f005858751582ba1b25f456df2c8d6c49c8912a3c607c74d7"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/revision-2/attribution-controls.stdout",
+    "blob": "abf54aa2cb58d528814301c2ec5ee223014cf175",
+    "bytes": 2317,
+    "sha256": "1826beb98bcd6b39be6e23725b14122a49bc8e8faeb8626f53cd130170011c1d"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-control-receipts/revision-2/old-service-counterexamples.stdout",
+    "blob": "7c70aeae29fce8d7a635f2e17de5c179725f6ea5",
+    "bytes": 1179,
+    "sha256": "cc8507fe8fdd8f33deabca8bf4d2e55bef235b1f3bb85774b45e07dcef184f5f"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/actual-rootfs-controls-and-sources.tar.gz",
+    "blob": "6e275bb37e2c8ea583ab46930d3cae05ffbf872e",
+    "bytes": 187868,
+    "sha256": "03a290e078d253a8bc6fc28e87c1f2cb1ae8530bf92e4801f9bd464342fd21c6"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/ARTIFACT_INDEX.json",
+    "blob": "c6ce23b8b309a68141b08d3bf0368c325d3ffbb2",
+    "bytes": 2083,
+    "sha256": "fb199024a914ae11828967441fa0409a42cbbb5dd15a9d77dde69f4a542b50ba"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/BASE_IDENTITY.json",
+    "blob": "f65a7ceb0b73b9f5a469e3a88738486acc579fa4",
+    "bytes": 330,
+    "sha256": "0e143e614895a076bdb3d94c2c53db5d3b38069d6e6d640a5786fc8e57d6a4f3"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/FINAL_SOURCE_RECONCILIATION.json",
+    "blob": "fbbcff3c5bdb89ddf766d43b5a1799e77aaa4eac",
+    "bytes": 1030,
+    "sha256": "5a5276e66fae1b8e89251db4cdfbffcb5390db68e96eacfbb578bdddf4fde3b2"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/INSERTIONS.json",
+    "blob": "bcd761e5205c3e5662ac1e105db931820ed8b0e2",
+    "bytes": 2903,
+    "sha256": "30b8bf7c1c7c1164d892f63d944baff9c7e38bd66fe82d4f13071e09fba6da4a"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/MEMBERSHIP_MANIFEST.json",
+    "blob": "c05418e393e7caf0a664cb11f762c7fe356c291d",
+    "bytes": 9165,
+    "sha256": "269d1ff71ac10c6cdb30d2efe3aaee636073ac8c434f47f9c6acd630746dba0c"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/PATCH_CHECKS.json",
+    "blob": "3c5cff9cbb56aebefcbbe46138c24a8317eb7c17",
+    "bytes": 2363,
+    "sha256": "02527a1bf6b60864bbd0175d68a96ec9bc93076938615c68055a9563459548be"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/README.md",
+    "blob": "b4ea4b1e694697b21edf13bb726f98e4f355e685",
+    "bytes": 6542,
+    "sha256": "70d582a355aaaf04dafc7788189e228dfd301b1c523eb0ab67acc85783fa63eb"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch",
+    "blob": "a54b90dc38d6edec47951a8630c78c8f8cc29333",
+    "bytes": 5239,
+    "sha256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/original-packages/ChavrusaUIRoutingHost.Package.swift.txt",
+    "blob": "125ecf527f49830015b68e2ecb59c15a211df61b",
+    "bytes": 701,
+    "sha256": "f89a4943ec3b20027ff315e99e7e20296087f414d9cbcc81e27b47f18699b4b2"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/original-packages/OtzariaActionCore.Package.swift.txt",
+    "blob": "6e0f66e23a58df559e2eccdd62c5b894437aada8",
+    "bytes": 446,
+    "sha256": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/original-tools/verify-otzaria-xcode-project.py",
+    "blob": "f1430aff9f5db79f386cc7c8edfd28fdd75806ab",
+    "bytes": 7113,
+    "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/original-tools/verify_source_registration.py",
+    "blob": "0430f1a653553695c2132323f5600dc096253134",
+    "bytes": 6070,
+    "sha256": "eff5cf3c0935562f9e9b1bbcd296f192c4daf2922cc9185d8fa5ad0ab3246a18"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/original/Maktabah.xcodeproj/project.pbxproj",
+    "blob": "24ab48b84d61fe4bae88eb41c53506664db44701",
+    "bytes": 630804,
+    "sha256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/prepare_membership.py",
+    "blob": "c3351c0fc1145b65fe86e0a529c19af0748d7756",
+    "bytes": 12415,
+    "sha256": "8a3b6523aec0c4f6977e7489de7bed7e6f6b955523f6c0ee756ee53de70922dd"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/proposal/Maktabah.xcodeproj/project.pbxproj",
+    "blob": "feeccf531171ac0c66f2de20cdf78a15678a7955",
+    "bytes": 633004,
+    "sha256": "60dc6ba2751d84604cc352e670472f7e5cc76763592355b6ebbbd5eb40d1afdf"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/search-continuation-membership-proposal.tar.gz",
+    "blob": "41598c4cb5f0f3b063f5fb715f5548560a8fe61f",
+    "bytes": 202727,
+    "sha256": "bed36c458b5ac23376a66cb1a4b0149d007517777ab38c937b0b712b87e06af5"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/provenance/PATH_PROVENANCE.json",
+    "blob": "9f05babe4e663c74d3582bb096c0128d12ed486f",
+    "bytes": 5949,
+    "sha256": "910edf5863da753dea32dfc19c727dcc91908455ba0550d8dbbfed7b59e863a6"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/provenance/PRE_EDIT_PATH_MATRIX.md",
+    "blob": "55af3a8d75812f2955b9cdc3961c85f1f4afa808",
+    "bytes": 3383,
+    "sha256": "c77c5aceba7a2bb942d0a08c2c746e91cfde4aae8d99d73df407ba0d2179a98a"
+  },
+  {
+    "commit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/provenance/UPSTREAM_BOARD_DISCOVERY.json",
+    "blob": "f0db42c72eadff5de06d4fdbcbd0a6df8ea343fd",
+    "bytes": 37925,
+    "sha256": "98cfc0a8d36f760a189141e8a8f93c628722f2dd6fcf1dc4292d65712aacdcac"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/AUDIT_CLASSIFICATION.json",
+    "blob": "c05fe330bd76809c1a43373bf616bbad57e3fd49",
+    "bytes": 496,
+    "sha256": "a22a4d872ff95ad9b80cfb94a9898591aa79fb5d0ded63876afa6c71be10de61"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/DOCS_COMMIT_ADMISSION.json",
+    "blob": "832e943e39366db0d1b432eba6a5993343b91977",
+    "bytes": 1173,
+    "sha256": "57739a9fdcc51cf9fba712d1dce0f5f954cb0072ef3d55a5d6644574d17b5156"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/READ_ONLY_AUDIT.json",
+    "blob": "71b42a9edfe38d5030ee4ef34e0dfaed69d38323",
+    "bytes": 18846,
+    "sha256": "8134e01cc66755e308b3e551d6f9176c0a8e78f8bc0f6680740da0c51c286c9f"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/REVIEW.md",
+    "blob": "a00c8ffb33902d5284b77693842cd18efd8fbc6d",
+    "bytes": 7634,
+    "sha256": "bb37047904a92ba41e1533eb840f49fe1280cad0670cae1e7453a4c6e7c05419"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/ROOT_HOOK_ROUTING_RESTORE.json",
+    "blob": "0a48c5232eaa329f3ec7edd4fee7d2485f1a5755",
+    "bytes": 3367,
+    "sha256": "6c15bf0f4841dd5875e4b88e30942359f3fbcb272c0184a597e49c35ce53ecca"
+  },
+  {
+    "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+    "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/SEARCH_SIGNING_ROUTING_AUDIT_AND_RESTORE.json",
+    "blob": "11802d7dc8f7969ba1f4ad1175e393e6619c44c2",
+    "bytes": 3010,
+    "sha256": "92db764179c068d1fa739c5798baa945d06054f0e89f51483ada6611a6a8dd70"
+  }
+]

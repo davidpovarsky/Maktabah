@@ -1461,6 +1461,8 @@
 		CBD974721F24BC8DB2C27967 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
 		2BF4C79DEF4EBB5BCF6E6051 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
 		07E7057281BEA64047ED3789 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
+		D8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */; };
+		5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2305,6 +2307,8 @@
 		5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfacePresentation.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift; sourceTree = "<group>"; };
 		6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSurfaceContract.swift"; sourceTree = "<group>"; };
 		7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchContinuation/OriginalSearchPageLedger.swift"; sourceTree = "<group>"; };
+		617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchContinuation/OriginalSearchContinuationClaim.swift"; sourceTree = "<group>"; };
+		76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2401,6 +2405,8 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */,
+				76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */,
 				7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */,
 				E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */,
 				0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */,
@@ -5246,6 +5252,8 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				D8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */,
+				5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */,
 				FEC56B9B4626DDFBAD6452C5 /* MaktabahNativeComponentBinding.swift in Sources */,
 				4184FC410D6566A8493672E0 /* MaktabahNativeSettingsComponents.swift in Sources */,
 				E9C08C440407379D24047B9F /* MaktabahNativeTOCComponents.swift in Sources */,

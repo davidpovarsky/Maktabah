@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "OpenStep token structure and additive target membership only; inherited duplicate keys preserved, not repaired",
+  "baseline": "420dec8a19277bdb858839901b36a2e938f8823f",
+  "inherited_duplicate_keys": [
+    {
+      "key": "240682637A5169A63619E577",
+      "identical": true
+    },
+    {
+      "key": "FB254BD29A50C530E907662A",
+      "identical": true
+    },
+    {
+      "key": "FDB5242B5960EB1507BD74A6",
+      "identical": true
+    },
+    {
+      "key": "3373C7B02164CDBB77BFFF48",
+      "identical": true
+    },
+    {
+      "key": "C2CCE35AFE445BF8BEF37C5F",
+      "identical": true
+    }
+  ],
+  "new_objects": 4,
+  "modified_existing_objects": [
+    "CFEE00000000000000000001",
+    "F30576E22FA46222005732C6"
+  ],
+  "sources": [
+    {
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "targets": [
+        "Maktabah-iOS"
+      ],
+      "delivered_source": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "present_in_integration_tree": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "targets": [
+        "Maktabah-iOS"
+      ],
+      "delivered_source": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "present_in_integration_tree": true
+    }
+  ]
+}

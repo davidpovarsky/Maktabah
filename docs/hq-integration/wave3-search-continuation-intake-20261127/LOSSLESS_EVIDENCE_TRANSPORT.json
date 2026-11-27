@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+  "originalPath": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch",
+  "compressedPath": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch.gz",
+  "originalBytes": 5239,
+  "originalSHA256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce",
+  "gzipBytes": 1242,
+  "gzipSHA256": "de1bc2cab760ebb22dec743264eb326b8dd3d915b782d2d7b3d6a0b5ce290868",
+  "roundtripExact": true,
+  "reason": "Raw unified-diff context-prefix spaces preserved byte-for-byte in deterministic gzip; original donor history and manifests unchanged"
+}

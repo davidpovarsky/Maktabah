@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "time": "2026-11-27T12:21:57.210588+00:00",
+  "scope": "Six exact published documentation blobs were absent from readonly alternate; imported only into private root objectstore",
+  "commit": "671e2f39608c1195fc282147d003bc7e577269d6",
+  "sourceRepository": "davidpovarsky/Maktabah",
+  "rows": [
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/AUDIT_CLASSIFICATION.json",
+      "gitBlob": "c05fe330bd76809c1a43373bf616bbad57e3fd49",
+      "bytes": 496,
+      "sha256": "a22a4d872ff95ad9b80cfb94a9898591aa79fb5d0ded63876afa6c71be10de61",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/DOCS_COMMIT_ADMISSION.json",
+      "gitBlob": "832e943e39366db0d1b432eba6a5993343b91977",
+      "bytes": 1173,
+      "sha256": "57739a9fdcc51cf9fba712d1dce0f5f954cb0072ef3d55a5d6644574d17b5156",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/READ_ONLY_AUDIT.json",
+      "gitBlob": "71b42a9edfe38d5030ee4ef34e0dfaed69d38323",
+      "bytes": 18846,
+      "sha256": "8134e01cc66755e308b3e551d6f9176c0a8e78f8bc0f6680740da0c51c286c9f",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/REVIEW.md",
+      "gitBlob": "a00c8ffb33902d5284b77693842cd18efd8fbc6d",
+      "bytes": 7634,
+      "sha256": "bb37047904a92ba41e1533eb840f49fe1280cad0670cae1e7453a4c6e7c05419",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/ROOT_HOOK_ROUTING_RESTORE.json",
+      "gitBlob": "0a48c5232eaa329f3ec7edd4fee7d2485f1a5755",
+      "bytes": 3367,
+      "sha256": "6c15bf0f4841dd5875e4b88e30942359f3fbcb272c0184a597e49c35ce53ecca",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/SEARCH_SIGNING_ROUTING_AUDIT_AND_RESTORE.json",
+      "gitBlob": "11802d7dc8f7969ba1f4ad1175e393e6619c44c2",
+      "bytes": 3010,
+      "sha256": "92db764179c068d1fa739c5798baa945d06054f0e89f51483ada6611a6a8dd70",
+      "source": "GitHub exact blob read",
+      "readbackVerified": true
+    }
+  ],
+  "initialReadFailure": "Traceback (most recent call last):\n  File \"<stdin>\", line 24, in <module>\n  File \"<stdin>\", line 15, in batch\nAssertionError: ('671e2f39608c1195fc282147d003bc7e577269d6:docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/AUDIT_CLASSIFICATION.json', [b'671e2f39608c1195fc282147d003bc7e577269d6:docs/hq-integration/wave2-20261127/search/search-continuation/repository-routing-review-20261127/AUDIT_CLASSIFICATION.json', b'missing'])",
+  "headUnchanged": "420dec8a19277bdb858839901b36a2e938f8823f",
+  "trackedStatus": ""
+}

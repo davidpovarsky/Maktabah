@@ -1,0 +1,77 @@
+{
+  "schema": "otzaria.wave3.search-continuation-intake.v1",
+  "base": "420dec8a19277bdb858839901b36a2e938f8823f",
+  "commits": [
+    "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+    "671e2f39608c1195fc282147d003bc7e577269d6"
+  ],
+  "fileOccurrences": 63,
+  "sourceInputs": 7,
+  "existingSourceCompatibility": [
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift"
+  ],
+  "archiveMembersVerified": 133,
+  "membershipFilesVerified": 14,
+  "inventorySHA256": "a809617db18162b7bd51a518ca45f5eddbd66266c93cb789f3b9ec34737be869",
+  "preserved": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "blob": "ef266f46aa8cf305f3e214a4966119dffb8eff51",
+      "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "blob": "be55574d5b0f099c006a3c0751ad262120684986",
+      "sha256": "4efcc3994a1cd5bf63a2b5c410e77fe0763818ff6b2f001973ec51bd88062573"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "blob": "2d8b929f48f70308526156292145dfd5134e9dd8",
+      "sha256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41"
+    },
+    {
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+      "blob": "5d5d8c96d19a7261b85df3c69d6f6c3d887faf00",
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+    }
+  ],
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "project": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "beforeBytes": 634395,
+    "beforeSHA256": "a013609d6a15cba287c6c867398f739a739cc72ddc320151cfdc0322133b50f2",
+    "candidateBytes": 635562,
+    "candidateSHA256": "ab245c2c715d8ee7cb4550f1a6d9d7b26f3955c53faf3bfc295f35cb5b547f43",
+    "entries": [
+      {
+        "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "name": "OriginalSearchContinuationClaim.swift",
+        "relative": "SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "ref": "617E543E37C9CF0FFDDDAE9B",
+        "build": "D8970A66DDEA28F01EA4C5AD"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+        "name": "MaktabahNativeSearchContinuation.swift",
+        "relative": "UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+        "ref": "76229CEA1E4A77CFCDE6CEC4",
+        "build": "5D40916B9B405F964F1C4FA2"
+      }
+    ],
+    "newObjects": 4,
+    "existingChangedObjects": [
+      "CFEE00000000000000000001",
+      "F30576E22FA46222005732C6"
+    ],
+    "oldBytesExactlyRestoredByRemovingOnlyInsertions": true
+  },
+  "rawEvidenceTransportPath": "docs/hq-integration/wave2-20261127/search/search-continuation/project-membership/membership.patch",
+  "rootfsFloor": 1342177280,
+  "observedRootfsFree": 2985033728,
+  "sourceControlsRerun": 0,
+  "SDKTypecheck": "NOT_RUN",
+  "nativeRuns": 0,
+  "at": "2026-11-27T12:22:01.464037+00:00"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "offset": 238399,
+    "text": "\t\tD8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */; };\n\t\t5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */; };\n",
+    "purpose": "two iOS build objects"
+  },
+  {
+    "offset": 399785,
+    "text": "\t\t617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"SearchContinuation/OriginalSearchContinuationClaim.swift\"; sourceTree = \"<group>\"; };\n\t\t76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift\"; sourceTree = \"<group>\"; };\n",
+    "purpose": "two file references"
+  },
+  {
+    "offset": 404000,
+    "text": "\t\t\t\t617E543E37C9CF0FFDDDAE9B /* OriginalSearchContinuationClaim.swift */,\n\t\t\t\t76229CEA1E4A77CFCDE6CEC4 /* MaktabahNativeSearchContinuation.swift */,\n",
+    "purpose": "append source references without modifying owners"
+  },
+  {
+    "offset": 543670,
+    "text": "\t\t\t\tD8970A66DDEA28F01EA4C5AD /* OriginalSearchContinuationClaim.swift in Sources */,\n\t\t\t\t5D40916B9B405F964F1C4FA2 /* MaktabahNativeSearchContinuation.swift in Sources */,\n",
+    "purpose": "two iOS-only compile entries"
+  }
+]
