@@ -32,3 +32,15 @@ final class NativeHistoryRecordPhoneAcceptanceTests: NativeRoutingAcceptanceTest
                                                        warm: true, fromBackground: false, removeCachedFavorite: true)
     }
 }
+
+extension NativeHistoryRecordAcceptanceTests {
+    @MainActor func testFilteredHistoryRecordFromLibraryPreservesOriginalQueryAndExactCard() async throws {
+        try await runOriginalFilteredHistoryRecordSystemIntent(expectedPad: true, favorite: false, fromBackground: false)
+    }
+}
+
+extension NativeHistoryRecordPhoneAcceptanceTests {
+    @MainActor func testPhoneFilteredFavoriteRecordFromBackgroundPreservesOriginalQueryAndExactCard() async throws {
+        try await runOriginalFilteredHistoryRecordSystemIntent(expectedPad: false, favorite: true, fromBackground: true)
+    }
+}

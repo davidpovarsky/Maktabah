@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-27T09:51:06.224424+00:00",
+  "scope": "syntax only; no Apple SDK/typecheck/native execution",
+  "results": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "fd22a12e73552a87fdc01682279e14735e80115df6a149abecfd58892b3aeb3e",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+      "sha256": "c2fc8cdce6bdff6b0ee197673f80246a4ffd9013ab0ea18609fa71df8b78441b",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift"
+      ],
+      "exit": 0
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "84032054d2c3e10ae91f7703e13d305866810bdbda516064d7cd1f49730724b0",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+      ],
+      "exit": 0
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift"
+      ],
+      "exit": 0
+    }
+  ],
+  "prefixes": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "prefixBytes": 212559,
+      "prefixSha256": "67b579969c146eb6fd01e6d0c00a8e982cc5bea2ee3351ac12b932bbaed16bac",
+      "preserved": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "prefixBytes": 2255,
+      "prefixSha256": "28f965184793c4f82c41063637b2e1b91d7c21489b7c32c69b275e97e393df90",
+      "preserved": true
+    }
+  ]
+}

@@ -803,7 +803,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         -> UISceneAcknowledgement {
         try Task.checkCancellation()
         let window = request.window, end = deadline()
-        let windows = try intentRootEntities().filter { $0.id == window.id && $0 == window }
+        let windows = try intentHistoryRecordWindows().filter { $0.id == window.id && $0 == window }
         guard windows.count == 1, window.destination == MaktabahNativeHistoryRecords.destination,
               window.component == nil, let original = scenes[window.sceneID], original.session.mounted,
               window.backend == request.record.reference.locator.backend,
@@ -1902,6 +1902,37 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return values
     }
 
+    /// Record-specific window metadata preserves the original History query.
+    /// Generic root discovery keeps its existing empty-query contract. This
+    /// catalog grants no navigation and never advertises an empty/foreign card.
+    private func intentHistoryRecordWindows() throws -> [NativeIntentService.Destination] {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        guard let descriptor = registry.descriptor(for: MaktabahNativeHistoryRecords.destination),
+              descriptor.implementation == .implemented,
+              descriptor.supportedBackends.contains(snapshot.backend),
+              descriptor.presentations.contains(.currentTab),
+              descriptor.requiredCoreActions.isEmpty, !descriptor.requiresContent,
+              !descriptor.mutatesUserData, !descriptor.allowsPrivateState else { return [] }
+        let records = try MaktabahNativeHistoryRecords.catalog()
+        guard !records.isEmpty,
+              records.allSatisfy({ $0.reference.locator.backend == snapshot.backend }) else { return [] }
+        var values: [NativeIntentService.Destination] = []
+        for (id, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
+            guard entry.session.sceneID == id, let original = entry.session.historyRecordBinding,
+                  original.sceneID == id, original.isAvailable else { continue }
+            let windowLabel = entry.session.windowLabel(number: entry.windowNumber)
+            values.append(.init(backend: snapshot.backend, destination: descriptor.id,
+                title: descriptor.title + " — " + windowLabel, sceneID: id))
+        }
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot,
+              try MaktabahNativeHistoryRecords.catalog() == records else {
+            throw UIRouteError(.staleState, "intent_record_window_source_changed")
+        }
+        return values
+    }
+
     private func intentEntities() async throws -> [NativeIntentService.Destination] {
         let snapshot = try backend.currentBackendSnapshot()
         var values = try intentRootEntities()
@@ -2093,7 +2124,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             }
             return .init(snapshot: snapshot, records: records)
         }, windows: { [self] in
-            try intentRootEntities()
+            try intentHistoryRecordWindows()
         }, navigate: { [self] in
             do { return try await revealHistoryRecord($0) }
             catch { logIntentFailure(error, stage: "history_record"); throw error }

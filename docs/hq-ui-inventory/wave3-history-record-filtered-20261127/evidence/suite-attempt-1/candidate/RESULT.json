@@ -1,0 +1,12 @@
+{
+  "phase": "candidate",
+  "exit": 0,
+  "stoppedForReserve": false,
+  "start": "2026-11-27T09:49:59.746923+00:00",
+  "end": "2026-11-27T09:50:11.755916+00:00",
+  "packageInputSha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+  "generatedSourceSha256": "421fbe58d0c20ba366d2c5bfda86d4d429f9f427091eac2ed5dd65177172e7c8",
+  "rawSha256": "099fd97c8c6087af632805d649af5a1a5007d209da61c21da6241552dc1b857d",
+  "freeAfter": 1271373824,
+  "scope": "source controls only; explicit scene/UI/domain/Core lifetime boundaries, no app SDK/native claim"
+}

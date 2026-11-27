@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-27T09:52:03.191928+00:00",
+  "sourceInputSha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+  "scope": "filtered metadata source tests with explicit UI/domain boundaries; no native app",
+  "files": [
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/ChavrusaUIRoutingHostTests.so",
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-filtered-controls-20261127/preserved-candidate-products/ChavrusaUIRoutingHostTests.so",
+      "bytes": 19128552,
+      "sha256": "639e4b98434da49399379c2810762a36c9505990670634583b7011df91883af2"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/ChavrusaUIRoutingHostTests-test-runner",
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-filtered-controls-20261127/preserved-candidate-products/ChavrusaUIRoutingHostTests-test-runner",
+      "bytes": 1782968,
+      "sha256": "3eb9de2e434f0a55049f0472310e35670dcb7fe3f6392f2794c385c5a5afc581"
+    }
+  ]
+}
