@@ -1,0 +1,26 @@
+{
+  "status": "SOURCE_ADMISSION_CONTROLS_PASS_NOT_NATIVE",
+  "controls": 44,
+  "failures": 0,
+  "errors": 0,
+  "nativeUIExecuted": 0,
+  "productionCorpusReads": 0,
+  "genuinePreviewOracleProduced": false,
+  "startedAtUnix": 1795757282.7933693,
+  "finishedAtUnix": 1795757282.8959312,
+  "scope": "Synthetic parser/SQLite fixtures exercise rejection only; no actual UI or original-source output is inferred",
+  "inputs": {
+    "/workspace/scratch/ca3b32b82803/preview-oracle-producer/prepare-production-search-preview-oracle.py": {
+      "bytes": 38536,
+      "sha256": "df18479cc17098cb15251d664fac5064d036170104aab09cfada0ea94e0bd940"
+    },
+    "/workspace/scratch/ca3b32b82803/settings-post-update-contract/study-ui-settings-receipts.py": {
+      "bytes": 42922,
+      "sha256": "01e73bb98b1fbccfd2a2fd20db41b774ecd358e2417ded2379c0e7cdf82b5aef"
+    },
+    "/workspace/scratch/ca3b32b82803/preview-oracle-producer/source_controls.py": {
+      "bytes": 15525,
+      "sha256": "423fd126ecea08f1bef57d3028217ab9f44c5f0d0de04e4cf67f6199f7a38b08"
+    }
+  }
+}

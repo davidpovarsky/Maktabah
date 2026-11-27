@@ -1,0 +1,49 @@
+test_only_an_actual_complete_corpus_can_enter_the_hash_gate (__main__.Controls.test_only_an_actual_complete_corpus_can_enter_the_hash_gate) ... ok
+test_original_context_eligibility_rejection_keeps_complete_sources (__main__.Controls.test_original_context_eligibility_rejection_keeps_complete_sources) ... ok
+test_original_sql_query_checks_all_rows_and_never_writes (__main__.Controls.test_original_sql_query_checks_all_rows_and_never_writes) ... ok
+test_oversize_complete_oracle_is_rejected_without_truncation (__main__.Controls.test_oversize_complete_oracle_is_rejected_without_truncation) ... ok
+test_reject_oracle_changed_full_source (__main__.Controls.test_reject_oracle_changed_full_source) ... ok
+test_reject_oracle_changed_preview (__main__.Controls.test_reject_oracle_changed_preview) ... ok
+test_reject_oracle_changed_reader_body (__main__.Controls.test_reject_oracle_changed_reader_body) ... ok
+test_reject_oracle_false_complete_count (__main__.Controls.test_reject_oracle_false_complete_count) ... ok
+test_reject_oracle_foreign_corpus (__main__.Controls.test_reject_oracle_foreign_corpus) ... ok
+test_reject_oracle_missing_toc (__main__.Controls.test_reject_oracle_missing_toc) ... ok
+test_reject_oracle_other_compile (__main__.Controls.test_reject_oracle_other_compile) ... ok
+test_reject_oracle_other_hit (__main__.Controls.test_reject_oracle_other_hit) ... ok
+test_reject_oracle_other_presentation (__main__.Controls.test_reject_oracle_other_presentation) ... ok
+test_reject_oracle_other_service (__main__.Controls.test_reject_oracle_other_service) ... ok
+test_reject_oracle_search_claim (__main__.Controls.test_reject_oracle_search_claim) ... ok
+test_reject_oracle_source_escape (__main__.Controls.test_reject_oracle_source_escape) ... ok
+test_reject_oracle_ui_claim (__main__.Controls.test_reject_oracle_ui_claim) ... ok
+test_reject_oracle_wrong_focus_sql_id (__main__.Controls.test_reject_oracle_wrong_focus_sql_id) ... ok
+test_reject_oracle_wrong_utf16 (__main__.Controls.test_reject_oracle_wrong_utf16) ... ok
+test_reject_page_boolean_offset (__main__.Controls.test_reject_page_boolean_offset) ... ok
+test_reject_page_boolean_segment (__main__.Controls.test_reject_page_boolean_segment) ... ok
+test_reject_page_fixture_profile (__main__.Controls.test_reject_page_fixture_profile) ... ok
+test_reject_page_foreign_engine (__main__.Controls.test_reject_page_foreign_engine) ... ok
+test_reject_page_foreign_namespace (__main__.Controls.test_reject_page_foreign_namespace) ... ok
+test_reject_page_foreign_pid (__main__.Controls.test_reject_page_foreign_pid) ... ok
+test_reject_page_foreign_query (__main__.Controls.test_reject_page_foreign_query) ... ok
+test_reject_page_foreign_revision (__main__.Controls.test_reject_page_foreign_revision) ... ok
+test_reject_page_foreign_session (__main__.Controls.test_reject_page_foreign_session) ... ok
+test_reject_page_later_offset (__main__.Controls.test_reject_page_later_offset) ... ok
+test_reject_page_malformed_reference (__main__.Controls.test_reject_page_malformed_reference) ... ok
+test_reject_page_missing_provider_row (__main__.Controls.test_reject_page_missing_provider_row) ... ok
+test_reject_page_missing_publication_row (__main__.Controls.test_reject_page_missing_publication_row) ... ok
+test_reject_page_missing_sql_row (__main__.Controls.test_reject_page_missing_sql_row) ... ok
+test_reject_page_negative_provider_id (__main__.Controls.test_reject_page_negative_provider_id) ... ok
+test_reject_page_partial_limit (__main__.Controls.test_reject_page_partial_limit) ... ok
+test_reject_page_raw_query (__main__.Controls.test_reject_page_raw_query) ... ok
+test_reject_page_unqualified_book (__main__.Controls.test_reject_page_unqualified_book) ... ok
+test_reject_page_wrong_canonical_locator (__main__.Controls.test_reject_page_wrong_canonical_locator) ... ok
+test_reject_page_wrong_last_sql_id (__main__.Controls.test_reject_page_wrong_last_sql_id) ... ok
+test_reject_page_wrong_last_sql_title (__main__.Controls.test_reject_page_wrong_last_sql_title) ... ok
+test_reject_page_wrong_stable_id (__main__.Controls.test_reject_page_wrong_stable_id) ... ok
+test_source_payload_symlink_is_rejected (__main__.Controls.test_source_payload_symlink_is_rejected) ... ok
+test_synthetic_page_parser_retains_all_one_hundred_exact_rows (__main__.Controls.test_synthetic_page_parser_retains_all_one_hundred_exact_rows) ... ok
+test_synthetic_source_shape_is_only_parser_eligibility_not_producer_pass (__main__.Controls.test_synthetic_source_shape_is_only_parser_eligibility_not_producer_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.107s
+
+OK
