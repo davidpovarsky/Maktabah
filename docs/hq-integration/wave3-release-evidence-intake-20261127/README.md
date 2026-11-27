@@ -1,0 +1,3 @@
+# Selective release evidence intake
+
+Three explicitly reviewed documentation commits were independently checked and selectively cherry-picked. Every manifest row, compressed original and exact terminal receipt was rehashed. Source and Vendor trees are unchanged. The seven-root terminal receipt was also read directly from its durable Oracle location and matched the committed bytes. Historical compiler failures, raw publication failures and all capacity/ownership limitations remain present. No app, SDK, native, physical or TestFlight execution was performed by this intake. The exact final product gates remain open.

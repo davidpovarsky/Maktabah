@@ -1,0 +1,7 @@
+{
+  "initialFailureBytes": 1181699,
+  "initialFailureSHA256": "011f1fe510f70016f11d92f1f747072f8259d0bd6eadd88584f45fa2ded92a3d",
+  "compressedSHA256": "ea7f78c9f62f43b23d47291539b8c881b3f787fdd936de7f49f5f50279810a7f",
+  "firstCommitPreserved": "e786ef2b67a713a83306f152ed60d61ea826b8b7",
+  "cause": "Post-cherry-pick filesystem read assumed new documentation was materialized outside the sparse checkout; exact committed blobs now read directly with git show. No missing Git object, failed product gate, rollback, reset or data loss."
+}

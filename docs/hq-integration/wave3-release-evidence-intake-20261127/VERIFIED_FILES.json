@@ -1,0 +1,830 @@
+[
+  {
+    "commit": "929f5fc2b4f0e7d60c15e3bef829ecf7807e38ef",
+    "parent": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+    "prefix": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127",
+    "indexSHA256": "44da20cd4e9cab8f51867a2ed4193c123572955da0fadfbe5618912d13ce7619",
+    "files": 48,
+    "rows": 47,
+    "verified": [
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/COMPLETE_PRESERVATION_VERIFIED.json",
+        "bytes": 12869,
+        "sha256": "b93cf1bca06300066702c0d588cd14efe166e753f11f3d4fbca18e79a0d0ac68"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/HEADER.json.gz",
+        "bytes": 12261,
+        "sha256": "fb256ea37fb153a23ee997cada858bfebc88c88dc96c1fbb20c7231d6273fac4",
+        "rawBytes": 180605,
+        "rawSHA256": "0eda5768bd4ef592a41b2ad278b3ebd6ffb18b26e7f7c0b38bb63d220d8ec21f"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/INVENTORY_OWNER.json",
+        "bytes": 440,
+        "sha256": "3c4e4f2090f6981fc7b9ad38d3c59fc7fa273ae4a35869f7911d155b4e979c67"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/MAC_STREAM_OWNER.json",
+        "bytes": 569,
+        "sha256": "b19f2d31561e1016583da2f461e9d4aaca95611a4e00d354ec3e924a8e0ceb35"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/MAC_STREAM_RESULT.json",
+        "bytes": 1390,
+        "sha256": "8a2fc6136d804da83926767432fd0442fc9ff1fcf0b5bfe6af8a36c598bfd43a"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/NEW_ARCHIVE_VERIFIED.json",
+        "bytes": 1827,
+        "sha256": "591e5599d05619b28427a9b9b7af43e50cfe751a281ce6930817e57abb0ad85c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/PRIOR_MEMBERS_VERIFIED.json",
+        "bytes": 11880,
+        "sha256": "1cd29c0a43acfbfb0a61e0fc3dad87da97c1630d51b5ede3ec285793111c45ac"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/PRIOR_ORACLE_ARCHIVES_VERIFIED.json",
+        "bytes": 2929,
+        "sha256": "63aa34d7b5e1923cdb463f0b756987c9c31498a85d609eedfdf27f43b0023f25"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/PRIOR_WINDOWS_ARCHIVES_VERIFIED.json",
+        "bytes": 5694,
+        "sha256": "df5fdcf1d3754457eac738b25200a6bec6b0d6e407a2f89c7c7486a8531dc1bf"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/README.md",
+        "bytes": 10781,
+        "sha256": "ea69c250e0c6a0776c39aa589eafb7155e56c84938b05e206fd29011a7f7b5a4"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/READ_ONLY_PLAN.json.gz",
+        "bytes": 32929,
+        "sha256": "6ea96220510b3ee0259c691d9850b5b997ad221b76267b4c24aeb1138e315734",
+        "rawBytes": 218468,
+        "rawSHA256": "f7926486d1e091ed8ffff89f7fbe222cc9e2b71fea25d4c8486bfe97c305fe85"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RECEIVER_OWNER.json",
+        "bytes": 745,
+        "sha256": "3ba43757b7d6bab9abf7b6b038a084d051a5abff814b73c07d58e068677fb4a3"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_ACK.json",
+        "bytes": 415,
+        "sha256": "032e1f960dff3fa6ea73b15001718fda32ba2a4eb5b43668b9fb3d352b5d1efd"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_BRIDGE_OWNER.json",
+        "bytes": 279,
+        "sha256": "1ba69b2baea0e643cf41c8af94e111ddc28ce41543e3ed1e82209c88a325f987"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_CONTROLS_STAGED.json",
+        "bytes": 445,
+        "sha256": "2fecb135d0a4457105e3aec17a42bfd62f2ce1c5a8750d1ddc54d7b39d2f9793"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_CURRENT_BINDINGS.json",
+        "bytes": 9868,
+        "sha256": "59f94de2a6f282b56a0743bbe066644383bc2a4430358b58ff9baebb130daea5"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_PREDELETE.json",
+        "bytes": 14601,
+        "sha256": "9ac5aa0191106212f7406546171fb2b54ede51450a1972fb453f98c30f9b0624"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/RETIREMENT_RESULT.json",
+        "bytes": 17244,
+        "sha256": "45556d5e873441983cc819beb46f04f5feb300f35363d5f5e1b34d5e79c13d4f"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/SOURCE_REVERIFIED.json",
+        "bytes": 4535,
+        "sha256": "41f3afac682426e9de31cfcb1029672817f1411819d6606d58f2f66af281bdee"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/TRANSFER_RESULT.json",
+        "bytes": 1377,
+        "sha256": "837d38fe6c45f6c8b54ae29d90faa1e30c883126dcd144a17edbda49a9093213"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/PRIOR_ORACLE_REQUIRED.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/PRIOR_ORACLE_REQUIRED.stdout.json.gz",
+        "bytes": 1087,
+        "sha256": "b5ffebd5b8e843a52c82de923110a7818c165d526b23ed4301da7fd211a87911",
+        "rawBytes": 3279,
+        "rawSHA256": "41588663377a9961f8cc05105d9987e8db2d392ea850f6e7dc4f175e2ba8a7d0"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_ORACLE_CURRENT.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_ORACLE_CURRENT.stdout.json.gz",
+        "bytes": 1108,
+        "sha256": "20d3276ef1502696bc4ac8a28047c2f9ebc72f9a45424de1e179f781bf9dd710",
+        "rawBytes": 3309,
+        "rawSHA256": "e4be5d229d1e2c87e057e3b562dcb93a31b636909fd310f65495ad0f80eb2007"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_PREDELETE.json.oracle-copy.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_PREDELETE.json.oracle-copy.stdout.json.gz",
+        "bytes": 222,
+        "sha256": "b49a888768a1386066e0e51e2ca986fc5e39c2a54e9b47d20c58e813aa4b0592",
+        "rawBytes": 244,
+        "rawSHA256": "7145835b02b4795d9216d4df58e903f66849a78075c0b0d99d15146555f22c13"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_RESULT.json.oracle-copy.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_RESULT.json.oracle-copy.stdout.json.gz",
+        "bytes": 219,
+        "sha256": "989fb3bc6c6e63ce3152ab01f6389ff282096ab75915579e46b33cc25783347e",
+        "rawBytes": 241,
+        "rawSHA256": "905e2754d976249176e4166e636f95610844ec6ebe2d897489c2935daf8b324d"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_SCRIPT_READBACK.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_SCRIPT_READBACK.stdout.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/RETIREMENT_STDERR.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/SOURCE_REVERIFY.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/SOURCE_REVERIFY.stdout.json.gz",
+        "bytes": 346,
+        "sha256": "e413a78e2fc2b6b93ae526ab620fc879e0ec4d56b24224412bc6d978b68df630",
+        "rawBytes": 450,
+        "rawSHA256": "8df6cfaf3754ff2909f3ac4386c18249027b4d85c32f67feedaf3b81e5ccdfec"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/STREAM.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/verify_ad6_archive.py.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/verify_ad6_archive.py.stdout.json.gz",
+        "bytes": 472,
+        "sha256": "a286ddd4e1fd928e96b44e9cc88559df2686c6b4dd5da903e9e3e29519fbbc00",
+        "rawBytes": 667,
+        "rawSHA256": "fa2e89e7beb59b904334ccf5e56c5f4ccc82c29ba314c898f667e92c707d2f98"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/verify_ad6_prior_members.py.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/raw/verify_ad6_prior_members.py.stdout.json.gz",
+        "bytes": 315,
+        "sha256": "8fd3b81368d52dae3c040cd2a01fcb6eaa3960c829f00c94b34c2761d8c41245",
+        "rawBytes": 374,
+        "rawSHA256": "cb8198645b8bc0488150df65a29d47b27bd08fe4b70f32a5ea7f5d709e6a5f3a"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/ad6_preservation.py.gz",
+        "bytes": 6604,
+        "sha256": "239abf92816e4693e71696e91af57aac49eb257cdec56e2861fafe3a5d62beff",
+        "rawBytes": 22325,
+        "rawSHA256": "9bb4e8dc5ddf3661860bbc5b71245d1227c04561a2bf25cced727e7b38132f4d"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/receive_ad6_archive.py.gz",
+        "bytes": 2654,
+        "sha256": "ed87986989c16cb648cecf40f2c14f2f5ad571600a9d6d82080297977b4d346d",
+        "rawBytes": 7218,
+        "rawSHA256": "f518336f2574631b0896b34d4b5c805422d8458267a7af94b35c28970cf71c90"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/retire_ad6.py.gz",
+        "bytes": 4228,
+        "sha256": "3f76c66e8b19b2c872944a6560094e5dccd9741c595e3d6191fb9f5206bcfba7",
+        "rawBytes": 13314,
+        "rawSHA256": "3ddb2ec671175c46226fa09fcfd2dea2808e4b4ef20f43710b4c079779f0b3b4"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/retire_ad6_windows.py.gz",
+        "bytes": 3811,
+        "sha256": "b8098633eb3377cabc9062f5bbb98cb717a3af654012f3990156d490fbb57644",
+        "rawBytes": 12064,
+        "rawSHA256": "8aa58490d8def72e450157b175f25fd5729c7d4e4bfa71c1db85d36442f4a7f4"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/reverify_ad6_source.py.gz",
+        "bytes": 2408,
+        "sha256": "cee0fe67826e61c37d21f7efb082044e461c6c2e0734ef1c8b0747c6f22bc206",
+        "rawBytes": 6493,
+        "rawSHA256": "dd794069f00c786d0c1f0dbe4820f6ac0a7fbd3985f7e25996cf30abe1907eb4"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/seal_ad6_packet.py.gz",
+        "bytes": 3275,
+        "sha256": "172713f7c37731a0ef7dd8a9a7cfc471d7f0e7dfb4c245674f8b041f1afdbf59",
+        "rawBytes": 8533,
+        "rawSHA256": "8a65c7cf03bb003ae2ae5da7591b2211f0815544c0c5509cf73815c6586342ae"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/verify_ad6_archive.py.gz",
+        "bytes": 3877,
+        "sha256": "3963d97535313b98c30450936c0eb1033e4d943d438f37873e8d1efaa5d76c27",
+        "rawBytes": 11812,
+        "rawSHA256": "571d79617dc1a468aa8d36fbf33c6b471981cc504e205008ad73e824c782f7fb"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/verify_ad6_prior_members.py.gz",
+        "bytes": 3312,
+        "sha256": "42322f32c3ec0a2d1b5ab04d55f09613fffaa28303ec6c05098afa40d498f962",
+        "rawBytes": 9704,
+        "rawSHA256": "bd0192214c2f9d8a3fe96037367bc79bf7d3c86523b2a57f6afada434c007116"
+      },
+      {
+        "path": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127/sources/verify_oracle_required_members.py.gz",
+        "bytes": 912,
+        "sha256": "e8804d4721495ea61b595e7f3d276e2be90908de3c28053b13605bad48ae2f75",
+        "rawBytes": 2123,
+        "rawSHA256": "7e6b5c2864b47da365b9db426a46428ce8204c3ac30c97bd22cef935c5118f82"
+      }
+    ]
+  },
+  {
+    "commit": "1b9a917b5d129a98767e3e284edae55256d1d891",
+    "parent": "929f5fc2b4f0e7d60c15e3bef829ecf7807e38ef",
+    "prefix": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127",
+    "indexSHA256": "40a01dd43da8569b8c62f5e746dd03b4685f7d9d386401c19c84b0b4eba4e638",
+    "files": 41,
+    "rows": 40,
+    "verified": [
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/COMPLETE_PLAN.json",
+        "bytes": 2420,
+        "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/PROPOSAL.json",
+        "bytes": 4426,
+        "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/FRESH_RUN_COMMANDS.json",
+        "bytes": 7566,
+        "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/UNCHANGED_ORIGINAL_GUARDS.json",
+        "bytes": 5109,
+        "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/CUTOVER_READONLY.json",
+        "bytes": 2058,
+        "sha256": "c2eaac368dc1424ce554fee2ffc0e897f2ea575eb4fc69bb7c17344af03d93ef"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/CAPACITY_READONLY.json",
+        "bytes": 22660,
+        "sha256": "d6efc054a0d43e18e6db94245b8b8cbc493cb0ae137bb7059da5e67244cf01d1"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/plan/RUN_ARGV_CLARIFICATION.json",
+        "bytes": 1092,
+        "sha256": "5e825da9b6e6bb14aa12f60e63a5b66abc44b02714e06cc6638b60980d20ee2e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/supervisor.py.gz",
+        "bytes": 7696,
+        "sha256": "64a6e7bbd6b4b0e98032912eee30c9f53740889fd7cc3f39b61c37bb027fa97f",
+        "rawBytes": 26860,
+        "rawSHA256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/cutover_source.py.gz",
+        "bytes": 3944,
+        "sha256": "02a2d2f49fda092e7a90c56014c8995fb2ebb5fa71499248e424bae211d8d43c",
+        "rawBytes": 10442,
+        "rawSHA256": "01c047b138ceed49e107dacbbf627a1b0929510b654c35e9f64d02dadfe4623e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/reviewed-supervisor-30cb.py.gz",
+        "bytes": 7549,
+        "sha256": "9bb1fe14659219996aceb438e8224acacaf08b6cbda7bb159f50dcfa9e6a8a85",
+        "rawBytes": 26573,
+        "rawSHA256": "30cb3a7d41201271c53b08494d2bf2dbd027e8dba61f86538f1c75e969dc2416"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/HISTORICAL_OBSERVED_CONTRACT.json.gz",
+        "bytes": 2383,
+        "sha256": "f5077c2538c77cb39f876b45f8e472f0c5366e74ef3aa4982d627f2175736450",
+        "rawBytes": 6235,
+        "rawSHA256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/SUPERVISOR_CONFIGURATION.diff.gz",
+        "bytes": 6472,
+        "sha256": "1221bc1a5cd0814ec4354211106c4fdf65709993ed3cf2a67003d7aed41b1ecd",
+        "rawBytes": 36781,
+        "rawSHA256": "208bcc0f61776a8e9544650a94cee7a0e271750a0b6d917d0247b3b2506b5428"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/generate_plan.py.gz",
+        "bytes": 3813,
+        "sha256": "bfcf79f74f8f8e3cca38d3bee6f671e9dcaec798bd21ab2e8735c06fa22b0765",
+        "rawBytes": 9708,
+        "rawSHA256": "b19332b2e7509319a89ffd324bb266dfed9f4bbf00392f7583f5ff55c0f4bf60"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/prepare_launch_envelope.py.gz",
+        "bytes": 2425,
+        "sha256": "16ae6565a81208fe78d412ffcf2550ea254a501be1991524c1ae45f75235f36f",
+        "rawBytes": 5622,
+        "rawSHA256": "3d571015b257ef4e6703419cf6f8b9a6c863566c5e094614ff19ba1de85477e9"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_1.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_1.stdout.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_2.stderr.log.gz",
+        "bytes": 156,
+        "sha256": "3af1a1915f8ed978107168597b502b474914912b596b1c109d6b48b5eb7349b0",
+        "rawBytes": 214,
+        "rawSHA256": "6707cff1c3255147efc6df3f049bd5141629e9abb3fb79b617f1b9153d1833ea"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_2.stdout.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_3.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_3.stdout.log.gz",
+        "bytes": 360,
+        "sha256": "0868a46f64290af926413dd8bd9604698c888d946673fc5de85a6d5524c0e234",
+        "rawBytes": 881,
+        "rawSHA256": "7ce3868f2a5999d3325f79fe3c30b5235416165183c11bd2f8a4c0d9131d8baa"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_CONTROLLER.stderr.log.gz",
+        "bytes": 109,
+        "sha256": "7ebc2d25f8046fe5198f9e2c3426edc816d837cc09bd5f57fdfdc4889aabf839",
+        "rawBytes": 89,
+        "rawSHA256": "5f84030b22a07af5f51dd98e09d137e992e7cb347416c33bd4aef831aa3c514a"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/CUTOVER_CONTROLLER.stdout.log.gz",
+        "bytes": 338,
+        "sha256": "93a30faf837d2d6e53e144b30cf5df9174fac63658ea5f8e3440d74238535c77",
+        "rawBytes": 431,
+        "rawSHA256": "40a78b34eeadceb90a4620613273b464952482b6407bcc458f33577a478dd29d"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/actual-cutover/CUTOVER_CONTROLLER_RESULT.json",
+        "bytes": 1669,
+        "sha256": "194c3cbe66199e9d0ff1f01dee291769111e6fc9202dbdb5805298b954ec0b45"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/actual-cutover/CUTOVER_PRECHECK.json",
+        "bytes": 3051,
+        "sha256": "9014944513989a12862e9f43fc1c0437814eb09736997f1462da5e473440a88f"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/actual-cutover/CUTOVER_READONLY.json",
+        "bytes": 2058,
+        "sha256": "c2eaac368dc1424ce554fee2ffc0e897f2ea575eb4fc69bb7c17344af03d93ef"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/actual-cutover/CUTOVER_RESULT.json",
+        "bytes": 4248,
+        "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/completion_watcher.py.gz",
+        "bytes": 2869,
+        "sha256": "9bff825d055adff2839180ea65ab7882e28b2da38cb1e932042f5e92059ad3d4",
+        "rawBytes": 8105,
+        "rawSHA256": "d3dbbf9b6258d6818e4c58e6026446cf5995f28ddffbeaa7c6e9d9d31437ec23"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/actual-cutover/launch_owned.py.gz",
+        "bytes": 2177,
+        "sha256": "bcfe1cd5fe704e27651e70bc36b796f0f415eb5c437ebbc390625787d45b6cce",
+        "rawBytes": 5167,
+        "rawSHA256": "583e599ab0a226d3d5be3a070fadae0dd8d895645b2d17706ee8e387cd59448e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/COMPLETE_PLAN.json",
+        "bytes": 2420,
+        "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/CUTOVER_RESULT.json",
+        "bytes": 4248,
+        "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/ENVELOPE_PREPARATION.json",
+        "bytes": 645,
+        "sha256": "bda704267df408271ac18d91b07d1fbaf2bd048075fb4f4fad375aef569579aa"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/FRESH_RUN_COMMANDS.json",
+        "bytes": 7566,
+        "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/HISTORICAL_OBSERVED_CONTRACT.json",
+        "bytes": 6235,
+        "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/LAUNCH_INPUTS.json",
+        "bytes": 2440,
+        "sha256": "4d69b38000090f59e0fc3f12b4a46acfe36e55b7759a30c04df80833576ff317"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/PROPOSAL.json",
+        "bytes": 4426,
+        "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/launch-envelope/UNCHANGED_ORIGINAL_GUARDS.json",
+        "bytes": 5109,
+        "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/launch-envelope/completion_watcher.py.gz",
+        "bytes": 2880,
+        "sha256": "175d5c9bd2d305b47994b0b24da043f942e3971fe815a3aaf4d233afda2d0427",
+        "rawBytes": 8119,
+        "rawSHA256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/launch-envelope/launch_owned.py.gz",
+        "bytes": 2391,
+        "sha256": "7db1acb22647da5257f1e318467e1154972daa168e1cd8e82c3d1a1f549cf74e",
+        "rawBytes": 5891,
+        "rawSHA256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/raw/launch-envelope/supervisor.py.gz",
+        "bytes": 7696,
+        "sha256": "64a6e7bbd6b4b0e98032912eee30c9f53740889fd7cc3f39b61c37bb027fa97f",
+        "rawBytes": 26860,
+        "rawSHA256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127/README.md",
+        "bytes": 5543,
+        "sha256": "0508252059bff5beebc238a80b9082b80bba06cdbd3836a6fd535896fa2e21f7"
+      }
+    ]
+  },
+  {
+    "commit": "0bde9f30516ae47696c50ae13fecf48327c83f18",
+    "parent": "1b9a917b5d129a98767e3e284edae55256d1d891",
+    "prefix": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127",
+    "indexSHA256": "92a3fe8056cca73bfede9e21f30621d9f75b9c019b11955ca088341fc1552c75",
+    "files": 48,
+    "rows": 47,
+    "verified": [
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/PLAN.json",
+        "bytes": 2693,
+        "sha256": "a7020841dad500e79cbda84f1ee85b7eb88225d9153c70d882266c801d97a8cc"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/PROVENANCE_READONLY.json",
+        "bytes": 27048,
+        "sha256": "3c200d7b6ee48b3c75dcc4388ef5a686fd2928fa0dda2ac6ffb3edee19f94d74"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/README.md",
+        "bytes": 9802,
+        "sha256": "cc63ea22f26ba8b8dc1d6a2a643ae61acdb3dfd099fa460bc33fa3a99982fc9b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/RETIREMENT_PROPOSAL.json",
+        "bytes": 5560,
+        "sha256": "7a7b34a870cbdd6f864609c681f68ec3733696f861882102a76b7b188ed9c5f8"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/cutover-publication/PUBLICATION_ATTEMPT_1.json.gz",
+        "bytes": 1086,
+        "sha256": "b74a35a80c50ea31dedbbb9d1b9bd213d187b08f5c6ab4e706cb29afc8be837b",
+        "rawBytes": 5056,
+        "rawSHA256": "c9ba656202a6c3246f76108b1b8e2afe5758a3fe068e475c32ce37983f36a350"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/cutover-publication/PUBLICATION_ATTEMPT_2.json.gz",
+        "bytes": 584,
+        "sha256": "b23ac1fdfa59067758f4d49e320f8d7dca5320d999b872512165fd6812e3934b",
+        "rawBytes": 1085,
+        "rawSHA256": "a4368130226100c8e4fb4709aae685c1822fa759a4adabe1a80f15736b1a9697"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/bridge_closed_native.py.gz",
+        "bytes": 3456,
+        "sha256": "2bdfb9db93dae9ee7c22e1a1d0e238a62d48a682d655a508d4bfd44ccea73d6a",
+        "rawBytes": 10588,
+        "rawSHA256": "21a1d551febfe97690f74ce69d868975c97d869dc3e6f4041b3547a9484cf669"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/closed_native.py.gz",
+        "bytes": 6561,
+        "sha256": "5539db1adb84c41a12613939eeeff19c3bc32159eabcc33e9a9516b1a51e2e70",
+        "rawBytes": 21250,
+        "rawSHA256": "08db63301219a38ad9175702140ded020278c737216461890067f99f1dd3177c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/current_closed_archive.py.gz",
+        "bytes": 1510,
+        "sha256": "5797c4c03abe25011e58ae0c229ffc5aa461f72319fa257a8840eeb2a22ff178",
+        "rawBytes": 3275,
+        "rawSHA256": "d9a9960c983b0684432ddf9f0b933afa7cd38bbec876baa0cbc4d60fd811c275"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/metadata_helper.py.gz",
+        "bytes": 6362,
+        "sha256": "880e7f16b1f2de6422e962635f04b932fbeb989ac17846709acd88e7fa1df2de",
+        "rawBytes": 20899,
+        "rawSHA256": "f07264ccf70a75f9b74566d24f65cfdcd6e832e5f3b09231cb6311afae06749e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/receive_closed_native.py.gz",
+        "bytes": 3948,
+        "sha256": "db94c4f8b1488deeb4613b82d5b383280d0e40de3aeb506463fa74ab6b7fd692",
+        "rawBytes": 11920,
+        "rawSHA256": "132ff06ef8341d689c54c4d0d594e4fbf02ddb05307358cab39ecb68644df9bf"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/retire_closed_native.py.gz",
+        "bytes": 5438,
+        "sha256": "72ce0e425bf38ecea54787502bb19df75125e8b81cb9d946c5b161103aab1fc6",
+        "rawBytes": 16341,
+        "rawSHA256": "aea27961c4135686539cb9dbc2253bb8530b20452c899345d7abade61e818818"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/retire_closed_windows.py.gz",
+        "bytes": 4354,
+        "sha256": "17e9aca84576397cd8c7c787698b20a9408cd38833b4048e0e96a160be0fb07e",
+        "rawBytes": 11699,
+        "rawSHA256": "4d588b093f92ae2ffe525d151855b80cd35a93e28177192b3413eb90dad0c626"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/seal_complete.py.gz",
+        "bytes": 2382,
+        "sha256": "ec586e1bdf76aa6f8f9b0929e82d0061883261c893436b4439ae68b74de75873",
+        "rawBytes": 6453,
+        "rawSHA256": "53e4f72631f0a59e133c55dc9d2e7fd8979e761c8b1a391af91e853ebe5af7f3"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/scripts/seal_git_packet.py.gz",
+        "bytes": 1464,
+        "sha256": "e313bee2d35cb63fec0fbb8c2ae4a2f0db9e0b0817bd8067e5c7970ba6c83675",
+        "rawBytes": 3404,
+        "rawSHA256": "79aed2a582c33689804ded3b7b555c7d597a67726e5cbf0521c2abaab7b6fc0b"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/windows/bridge/RETIREMENT_EXTRA_STDOUT.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/windows/bridge/RETIREMENT_STDERR.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/windows/controller/RETIREMENT_CONTROLLER.stderr.log.gz",
+        "bytes": 20,
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+        "rawBytes": 0,
+        "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/raw/windows/controller/RETIREMENT_CONTROLLER.stdout.log.gz",
+        "bytes": 922,
+        "sha256": "eaab71b3d00f0f13a090f8595566bcc1279544712d1e0de52f8e071a2e664941",
+        "rawBytes": 2897,
+        "rawSHA256": "bd3e6676e2d7a1e9b5252d392ab21b29d1306efcf27423acd663cf30d8320b17"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/ARCHIVE_VERIFIED.json",
+        "bytes": 3117,
+        "sha256": "50987d6a7daa36458322f755068f6730609ad470309ab2fa6cd4e96fdcf0720e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/ASANA_MILESTONE.json",
+        "bytes": 240,
+        "sha256": "8554c9aa91d583addb52115d21ca97b60b806a9cc8bd95a02c1151dbe97e6a0a"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/BRIDGE_RESULT.json",
+        "bytes": 3338,
+        "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/COMPLETE_PRESERVATION_VERIFIED.json",
+        "bytes": 10994,
+        "sha256": "fc6acb50b51ece3133921d746cbdb06fc8869e0c541f057e4a1240ffe835f6a7"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/HEADER.json",
+        "bytes": 7385,
+        "sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/MEMORY_AND_BOOTED_SIMULATORS_READONLY.json",
+        "bytes": 17112,
+        "sha256": "58e9844e28fe8b9ce3bb97da4ab4fd8edf7a505e44654715e245bb9217c1028a"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/NARROW_TWO_SCOPES_READONLY.json",
+        "bytes": 7580,
+        "sha256": "ac8da7721b91ac5a401d5b5126c50b4a48755517359041519a396ca22818aae5"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/RETAINED_GOLDEN_SIMULATOR_BOUNDARY.json",
+        "bytes": 7025,
+        "sha256": "d62a60f720df8133a3bf426999ba67aa90ead5f84963341e0126f4dfcf61f2a7"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/RETIREMENT_CURRENT_BINDINGS.json",
+        "bytes": 2723,
+        "sha256": "887b3a7042e6db9ee64d7695074fc54b8c85a1cb55f9570db3fc76c61e53282e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/RETIREMENT_EXECUTION_NOTIFICATION.json",
+        "bytes": 3654,
+        "sha256": "5571a8c286cbc83218a2b8b4e3b9ff8aece2d7838447e474b1ec0923d331bc33"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/RETIREMENT_PREDELETE.json",
+        "bytes": 14007,
+        "sha256": "9be16770ad0c790864df3e1018e26446f618caed41c251e6a734bd7336ea351e"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/RETIREMENT_RESULT.json",
+        "bytes": 22572,
+        "sha256": "d3f7a4abb77d6a08b7c2bde626e2a05a61ab92c1b2c3f3fd4ba3619eaf669ad5"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/SOURCE_REVERIFIED.json",
+        "bytes": 3884,
+        "sha256": "13fd31b5bde07fd7138ac39d9c7db2c0954b42bec0fc711b83cdf333ce790112"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/receipts/STREAM_RESULT.json",
+        "bytes": 804,
+        "sha256": "b122ee4117355292d6d4fa385d938488aeccbdf16947fe206462febb62dd6e62"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/SOURCE_INDEX.json",
+        "bytes": 5182,
+        "sha256": "51336b057ae4c1786803c29879bcffd452a534bfba5e93110b626bba7f8d1a16"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/bridge/MAC_RETIREMENT_PROCESS.json",
+        "bytes": 147,
+        "sha256": "31997d344f017a2ebcf601d5275da1c3201e8833c6f5944cd82d17ab2b6012cf"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/bridge/MAC_RETIREMENT_SPAWN_INTENT.json",
+        "bytes": 1725,
+        "sha256": "3491914dff6c69cd47243b4c0431b6f8724147bb8a0af28ed843a4464b842d92"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/bridge/RETIREMENT_ACK.json",
+        "bytes": 430,
+        "sha256": "c92b4a9f36ba616523169e0f79e019069074828c87eec164161301a2ead56097"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/bridge/RETIREMENT_PREDELETE.json-oracle-copy.stdout.json",
+        "bytes": 265,
+        "sha256": "9f1bff36a6f08441bccf037337b39abbc7e645acb746822eae5ba2e904c50939"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/bridge/RETIREMENT_RESULT.json-oracle-copy.stdout.json",
+        "bytes": 262,
+        "sha256": "925f7fbec699a2056b5dca8deb45dff8a0e430f1583dee3d586462ee00dae990"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/controller/RETIREMENT_CONTROLLER_INTENT.json",
+        "bytes": 426,
+        "sha256": "b102c8a07044406daac930a75ad9d4a7e4155915d40ee38f655057c4fd04303d"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/controller/RETIREMENT_CONTROLLER_PROCESS.json",
+        "bytes": 145,
+        "sha256": "e4b2eca971b7b54c25cc0bbf50fdff86eb0e394413a915d7336b16f622cfa553"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/controller/RETIREMENT_CONTROLLER_RESULT.json",
+        "bytes": 3444,
+        "sha256": "60d50ce1b2c744b20e43e0439e0aaa4624ac38b1af8df801005a12730df129e2"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/preservation/BRIDGE_RESULT.json",
+        "bytes": 3338,
+        "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/preservation/RECEIVER_PROCESS.json",
+        "bytes": 154,
+        "sha256": "f03655df4b981ff74f53739a0ef05caecf2f3d682652da4f73deec830f242fe5"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/preservation/RECEIVER_SPAWN_INTENT.json",
+        "bytes": 720,
+        "sha256": "17a092726e873512eda48d615237f1b37667b7232bc7a066aa2489d55adce01f"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/preservation/SOURCE_PROCESS.json",
+        "bytes": 154,
+        "sha256": "928a7084026d93f5cd7c8b96e6cda6c1d58a8ff724fac61c0898a9c195b7419f"
+      },
+      {
+        "path": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127/windows/preservation/SOURCE_SPAWN_INTENT.json",
+        "bytes": 700,
+        "sha256": "a071a10c53f63ecb5e4486a7b3204de1596c6dd080ce76a07b38064de9ae1f15"
+      }
+    ]
+  }
+]

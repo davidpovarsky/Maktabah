@@ -1,0 +1,30 @@
+{
+  "base": "ec5385e863a478e368c7de47264474a440fd0734",
+  "branch": "codex/otzaria-wave3-integration-20261127",
+  "packets": [
+    {
+      "commit": "929f5fc2b4f0e7d60c15e3bef829ecf7807e38ef",
+      "parent": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "prefix": "docs/hq-integration/wave3-ad6-preservation-retirement-20261127",
+      "indexSHA256": "44da20cd4e9cab8f51867a2ed4193c123572955da0fadfbe5618912d13ce7619",
+      "files": 48,
+      "rows": 47
+    },
+    {
+      "commit": "1b9a917b5d129a98767e3e284edae55256d1d891",
+      "parent": "929f5fc2b4f0e7d60c15e3bef829ecf7807e38ef",
+      "prefix": "docs/hq-integration/wave3-sdk-pasteboard-cutover-20261127",
+      "indexSHA256": "40a01dd43da8569b8c62f5e746dd03b4685f7d9d386401c19c84b0b4eba4e638",
+      "files": 41,
+      "rows": 40
+    },
+    {
+      "commit": "0bde9f30516ae47696c50ae13fecf48327c83f18",
+      "parent": "1b9a917b5d129a98767e3e284edae55256d1d891",
+      "prefix": "docs/hq-integration/wave3-closed-native-preservation-retirement-20261127",
+      "indexSHA256": "92a3fe8056cca73bfede9e21f30621d9f75b9c019b11955ca088341fc1552c75",
+      "files": 48,
+      "rows": 47
+    }
+  ]
+}

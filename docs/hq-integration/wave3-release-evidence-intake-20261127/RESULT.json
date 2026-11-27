@@ -1,0 +1,31 @@
+{
+  "schema": "otzaria.wave3.release-evidence-intake.v1",
+  "utc": "2026-11-27T13:42:24.343230+00:00",
+  "base": "ec5385e863a478e368c7de47264474a440fd0734",
+  "mapping": [
+    {
+      "source": "929f5fc2b4f0e7d60c15e3bef829ecf7807e38ef",
+      "integrated": "e786ef2b67a713a83306f152ed60d61ea826b8b7"
+    },
+    {
+      "source": "1b9a917b5d129a98767e3e284edae55256d1d891",
+      "integrated": "e866e34b1aae6f7639d693d5ea3931168a132c76"
+    },
+    {
+      "source": "0bde9f30516ae47696c50ae13fecf48327c83f18",
+      "integrated": "3e65ebf6a933c38d263249b9cedb1be1fc778257"
+    }
+  ],
+  "sourceTree": "10e731eec6b7365687c73958f926800c61fa6461",
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "productChanges": 0,
+  "fileCount": 137,
+  "indexedRows": 134,
+  "losslessRawFiles": 64,
+  "verifiedFileIndexSHA256": "48ccd3b63508750abc5e73e2dd5564060f9714cef7b3a2e4782188ae2a0d97a1",
+  "directTerminalSHA256": "d3f7a4abb77d6a08b7c2bde626e2a05a61ab92c1b2c3f3fd4ba3619eaf669ad5",
+  "newSDKBuilds": 0,
+  "nativeRuns": 0,
+  "archiveRestore": "NOT_RUN",
+  "TestFlightUpload": "NOT_RUN"
+}
