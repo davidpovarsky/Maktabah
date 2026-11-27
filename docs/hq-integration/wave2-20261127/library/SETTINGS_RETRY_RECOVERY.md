@@ -23,4 +23,8 @@ The original Settings UI controller exposes `error.localizedDescription` through
 
 ## Evidence boundary
 
-Status at this source commit: **UI NOT_RUN; revised test Apple typecheck NOT_RUN**. The earlier test version's SDK typecheck and the transaction implementation's native filesystem controls remain separate receipts. They are not claimed as this UI failure/retry acceptance. Execution belongs to the parent's common simulator lane after the v40 installation, search and reader gates. No extra corpus, simulator or independent app build was started for this extension.
+Status: **UI NOT_RUN; revised test Apple SDK typecheck PASSED**. The earlier test version's SDK typecheck and the transaction implementation's native filesystem controls remain separate receipts. They are not claimed as this UI failure/retry acceptance. Execution belongs to the parent's common simulator lane after the v40 installation, search and reader gates. No extra corpus, simulator or independent app build was started for this extension.
+
+## Observed revised-source typecheck
+
+SentinelX `job_102a06588402` typechecked exact source `1bcfddc949f1b004de650505dcdedd0e4cd2ab29`, Swift file SHA-256 `869be2f45cae8323227ca48599aac47029277c44335bc9d917045dc1c418e139`, at 2026-11-27 00:12:14–00:12:15 UTC. Actual compiler exit: **0**; 74 inherited warnings, **0 warnings in the new class**, 0 errors. The existing private module cache was reused. Both admitted source hashes matched after execution. `settings-ui/typecheck-attempt-3/RESULT.json` SHA-256: `e46883cfccffaf37c6a52946b37ec81501e67e7dd1bfabbcf9e64342d951b447`. Raw logs are retained on both hosts and archived losslessly with hashes in Git. Earlier typecheck attempts remain unchanged. No app, simulator UI or corpus ran.

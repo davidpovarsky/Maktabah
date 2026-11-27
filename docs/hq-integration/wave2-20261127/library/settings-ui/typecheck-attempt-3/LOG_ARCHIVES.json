@@ -1,0 +1,20 @@
+{
+  "raw_files_retained_on_oracle_and_mac": true,
+  "oracle_raw_directory": "/mnt/development/projects/worktrees/Maktabah-wave2-library-20261127/build/library-settings-retry-typecheck-3",
+  "logs": [
+    {
+      "raw_name": "compiler.stdout.log",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_name": "compiler.stdout.log.gz",
+      "archive_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "raw_name": "compiler.stderr.log",
+      "raw_bytes": 110692,
+      "raw_sha256": "638a940aff97ed7dd314d79a77d7e5ddc9d92787c538fa52e9e9e4bb173c93d1",
+      "archive_name": "compiler.stderr.log.gz",
+      "archive_sha256": "b1160b2dc065aca061d8ed4a1303f58d2fcc37730a2a43f2c9cdb5fb388b52bb"
+    }
+  ]
+}
