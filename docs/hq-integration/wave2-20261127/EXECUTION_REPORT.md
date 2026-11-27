@@ -115,3 +115,29 @@ official v41 release, preserving prior library and logical user data.
 All native outcomes above remain pending a qualified combined build and
 actual sufficient Mac space; no task completion is inferred from source
 preparation, typechecking, fixture controls or a historical build.
+
+## Later checkpoint — Inspector and original UIKit selection
+
+This section supersedes only the earlier source-preparation status above. It does not upgrade historical evidence or mark any product task complete. Product source at this checkpoint is cb684f5e998592d9689cf9775f11ce2651a3c943; complete Source tree: a92ee56b382d3708510b2fbadf3357a03eab6e45.
+
+| Work | Verified scope | Native app acceptance |
+| --- | --- | --- |
+| Retained library marker repair 3f062f6c + 53769b8d | Same actual Apple filesystem/SQLite controls: 10/10, baseline exposed 1 failure | Pending original install/update |
+| F07 ace312925 | Actual Apple AnnotationStore: 9/9, 30 CRUD cycles and a separate 30-record cold process proof; explicit cloud/locator boundaries | Native Notes UI and full provider remain separate |
+| Sefaria selected editions e3af7bc7 | Actual version-aware source and captured API payload controls: 24/24 | New registered four-case context suite prepared; not executed |
+| Search preview cancellation 8c073dae | Actual task-body controls 22 PASS / 15 FAIL to 37/37, whole SwiftUI view typecheck | Pending integrated native case |
+| Inspector generation 9d4c6ded, integrated cb684f5e | Actual unchanged adapter + pinned Kit on Catalyst: 2/12 to 12/12; complete host typechecks | No Maktabah UI run; semantic v40 suite prepared |
+| Passive selected range 9e38d9ac, integrated 827acac9 | Whole observer iPhoneSimulator SDK typecheck and 12/12 real UIKit Catalyst component controls | Exact native selection/annotation case being completed |
+| Groups100 c7330955 + controller2b00b948 | Separate production UI source, original recorder19/19, host37 source-admission controls, exact50 execution inputs present | 100 full-v40 transitions/RSS/cold proof not run |
+| Inspector semantic oracle 1c1b2a2d + UI7facfd4b | Fresh full v40 hash/stat witness, actual SQL for Psalms1/75/150, registered original UI test typecheck | Not run |
+| F08 47d95262 | Actual-source catalog and additive original line/paragraph/chapter open/focus/pull UI source | Not run |
+
+A concrete managed-index defect was found during Books Updates review: retained v40 index files could remain ready/searchable against a replaced database, with a size-only admission shortcut. The search worker is binding readiness, engine cache and result publication to the original bounded source observation and correcting the Zayit missing-manifest/stamp admission. No whole-database hash is added to each query. Apple source controls are in progress.
+
+The hidden Inspector defect is repaired: current generation admission resets both the Kit repository and adapter caches, and suspended/retired callbacks cannot publish into another generation. Whole source and actual Mac receipt were independently read by the coordinator. Pinned SDK source is unchanged.
+
+The ordinary Settings v40-to-latest-v41 case now includes original pause/relaunch/resume, owned metadata-write failure and rollback/recovery/retry. Its final semantic extension is checking original Note/Favorite/History/copied-group reopen against captured source context and canonical identity; persisted legacy line offsets are not assumed universally stable.
+
+Current execution plan preserves the exact two original full-v32 cases. A first genuine v40 installation may use a separately identified qualified integrated build and retain its own original source receipt. Every later observation will independently qualify the then-current app/runner/SDK images and revalidate the retained v40 database. Settings update runs last. No full Native116/Release114, production search UI/offline, full-corpus PERF01–03 or Groups100 completion is claimed here.
+
+Storage was recovered by verifying and removing only 74 already-published compressed duplicate parts, with full local/public hash and no-live-reference witnesses. The production database and original evidence remain in place. See storage/zayit-published-duplicates. No Mac output was removed by Wave2.
