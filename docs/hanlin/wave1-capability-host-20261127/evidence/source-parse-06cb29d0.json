@@ -1,0 +1,43 @@
+{
+  "source_sha": "06cb29d07f5c7da936daa3b90aed52ec907441e8",
+  "bundle_sha256": "4288fd1e16c722be4217756dd095cd0dafa1db9daa284c3daab15fae1f0567e9",
+  "source_hashes": {
+    "OtzariaHanlinChatSession.swift": "d409df3984820713f3eb7155a6593a72daba24a3865c15e53ccfabb328d1d3b0",
+    "OtzariaHanlinChatView.swift": "b39a9d3ac1b1c54178f9cfe3076cc2dc2de0cce306c937cd6376d37e3ec679b0",
+    "OtzariaHanlinConversationStore.swift": "8da4d857867b73e424b799e6f15e5c70cae36fb3664e08d1537b591b1ceb0580"
+  },
+  "checks": [
+    {
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+        "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+        "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "plutil",
+        "-lint",
+        "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/Maktabah.xcodeproj/project.pbxproj"
+      ],
+      "exit_code": 0,
+      "stdout": "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/Maktabah.xcodeproj/project.pbxproj: OK\n",
+      "stderr": ""
+    }
+  ],
+  "python_harness_parse": "PASS",
+  "typecheck_executed": false,
+  "native_ui_executed": false,
+  "free_bytes": 4867473408
+}

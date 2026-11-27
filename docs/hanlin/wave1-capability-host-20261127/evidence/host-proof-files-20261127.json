@@ -1,0 +1,109 @@
+{
+  "files": {
+    "source-parse-06cb29d0.json": {
+      "sha256": "7f8f1d82cca3ace456e382a70f4db38ff09c4485548e1c93c7b1289a3e174566",
+      "bytes": 1867
+    },
+    "capability-history-06cb29d0-launch.json": {
+      "sha256": "a9fcaa08d0eaf5d0bfa3a03e6d58a99b66e79de9246c3242363305f9f18b1c2b",
+      "bytes": 1449
+    },
+    "capability-history-06cb29d0-launch.log": {
+      "sha256": "33ad58e3a410a15e67b281c81a0b06b04e4e206c7f1df666eb61fec848540eda",
+      "bytes": 4036
+    },
+    "composition-contracts-cb004e7b/swift-test.log": {
+      "sha256": "3f5e75c5e72e36e1bee79941ae4ef184f6a75576c77176b72305c541c44864eb",
+      "bytes": 789
+    },
+    "composition-contracts-cb004e7b/orchestration.json": {
+      "sha256": "0652d3f3d539325c3a4b45faffa805dfb833b55ee5cb5ae4df233c436e635fcd",
+      "bytes": 218
+    },
+    "composition-contracts-cb004e7b/inputs.json": {
+      "sha256": "eff156305727c3e8596c39749c7b95048ce9092d605f79e97c8beced3e0d08c0",
+      "bytes": 21244
+    },
+    "composition-contracts-cb004e7b/driver.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "composition-contracts-cb004e7b/launch.json": {
+      "sha256": "a1d08ddf6f0458e537f3d5503f6dad362750a6c18413b16f10fff68220b25180",
+      "bytes": 725
+    },
+    "composition-contracts-cb004e7b-attempt2/swift-test.log": {
+      "sha256": "12e9998f226050aa1e187489c3c42aca78b936bf7e22aa7a9dc33eb356e7344a",
+      "bytes": 13278
+    },
+    "composition-contracts-cb004e7b-attempt2/result.json": {
+      "sha256": "a646afb95b973dd0c2072b42a15d228274322d845601b5a0c76c58eb1df31393",
+      "bytes": 1451
+    },
+    "composition-contracts-cb004e7b-attempt2/inputs.json": {
+      "sha256": "eff156305727c3e8596c39749c7b95048ce9092d605f79e97c8beced3e0d08c0",
+      "bytes": 21244
+    },
+    "composition-contracts-cb004e7b-attempt2/driver.log": {
+      "sha256": "e48d18568c6b34a278a9b7faa3373334794a59088ab174c505007aaf69e30058",
+      "bytes": 14626
+    },
+    "composition-contracts-cb004e7b-attempt2/launch.json": {
+      "sha256": "0f9636ace95651de3bfa6932abae7226b60aebd0b87365ba04c4c08f82cee542",
+      "bytes": 734
+    },
+    "composition-contracts-b220a0d9/swift-test.log": {
+      "sha256": "0b233a18667986e2b4e7e320de6991d9b5ddb5e83eeb90f84b876741d741cbff",
+      "bytes": 11665
+    },
+    "composition-contracts-b220a0d9/result.json": {
+      "sha256": "a646afb95b973dd0c2072b42a15d228274322d845601b5a0c76c58eb1df31393",
+      "bytes": 1451
+    },
+    "composition-contracts-b220a0d9/inputs.json": {
+      "sha256": "738a22f8b785dbe6b51e607a72f737df6235754102308e31f4278b420d7a8521",
+      "bytes": 21244
+    },
+    "composition-contracts-b220a0d9/driver.log": {
+      "sha256": "cf6778d15df88bda58e191423140cdae1e459fb48c4b988f0574f5abbe39e674",
+      "bytes": 13013
+    },
+    "composition-contracts-b220a0d9/launch.json": {
+      "sha256": "4ab739bf399e1ffa03a116b1ff1e07e2f11c3217ef5560713e14d6e488129822",
+      "bytes": 722
+    },
+    "composition-contracts-66b92c1e/swift-test.log": {
+      "sha256": "caebecb550fed82e8966cc30ab9913463412e4f3f268eadf9db4ff1c12f78be0",
+      "bytes": 4652
+    },
+    "composition-contracts-66b92c1e/result.json": {
+      "sha256": "28f1c9c1bf780d52c3db176ad03f4955b2a6a7ddd3af3099d2361c5f88bc9e88",
+      "bytes": 2053
+    },
+    "composition-contracts-66b92c1e/inputs.json": {
+      "sha256": "a801625fe9e44b7dbaa94b68fe8e311c589bc7b62469be7a7bd0be2013bdcb81",
+      "bytes": 21244
+    },
+    "composition-contracts-66b92c1e/driver.log": {
+      "sha256": "597e7d2ad2d663f9e6b88eec534949a0a3c4d81dd4b8fb3ef5c02fee97d6dd52",
+      "bytes": 6566
+    },
+    "composition-contracts-66b92c1e/launch.json": {
+      "sha256": "5647adfbc9d6ff12ade1f3eb3b136f47b198419e7896d2d852cf17415ec9e32c",
+      "bytes": 997
+    },
+    "capability-history-06cb29d0/swift-test.log": {
+      "sha256": "6d18f5f32e547f08a1a67c2a17f0397a0c655cb65aa0d9cd67c821ae01e43111",
+      "bytes": 4543
+    },
+    "capability-history-06cb29d0/RESULT.json": {
+      "sha256": "d8e6fd9b2f8589d2cdcf0f81bf50bc51786a968947245a3c3a291b07b1ec0ecf",
+      "bytes": 16726
+    },
+    "capability-history-06cb29d0/inputs.json": {
+      "sha256": "cba44111a3e496d688aae3ada8b24df7f196ffb173d234d1e1ee6b6e94acbdfd",
+      "bytes": 11614
+    }
+  },
+  "scope": "8 actual routing cases with explicit constituent doubles; 4 real Foundation history cases; iOS parse only; no native UI or provider acceptance"
+}

@@ -1,0 +1,28 @@
+{
+  "started_at": "2026-11-27T01:01:32.449181+00:00",
+  "source_sha": "06cb29d07f5c7da936daa3b90aed52ec907441e8",
+  "command": [
+    "/opt/homebrew/opt/python@3.12/bin/python3.12",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/review-source/tools/hq-hanlin-consumer-store.py",
+    "--artifacts-dir",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/capability-history-06cb29d0",
+    "--sdk-sha",
+    "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+    "--sdk-repo",
+    "/Users/m1/builds/otzaria-wave1-hanlin-20261127/source",
+    "--only-testing",
+    "OtzariaHanlinConversationStoreTests/testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem",
+    "--only-testing",
+    "OtzariaHanlinConversationStoreTests/testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen",
+    "--only-testing",
+    "OtzariaHanlinConversationStoreTests/testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk",
+    "--only-testing",
+    "OtzariaHanlinConversationStoreTests/testCapabilityHistoryCannotBypassExistingStoreByteLimit"
+  ],
+  "SDKROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "free_bytes_before": 3213459456,
+  "scope": "Four real Foundation history storage cases; no native UI/provider/Xcode acceptance",
+  "finished_at": "2026-11-27T01:03:15.496324+00:00",
+  "exit_code": 0,
+  "free_bytes_after": 2060464128
+}
