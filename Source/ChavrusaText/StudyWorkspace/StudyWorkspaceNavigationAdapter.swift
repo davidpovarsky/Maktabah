@@ -495,9 +495,14 @@ final class StudyWorkspaceNavigationAdapter {
     func reserveNativeGroupSelection(requestID: UUID, profileID: UUID, groupID: UUID,
                                      selectsProfile: Bool, manager: iOSNavigationManager,
                                      backendObservation: StudyWorkspaceGroupBackendObservation,
-                                     prepared: StudyWorkspacePreparedGroupSelection) throws
+                                     prepared: StudyWorkspacePreparedGroupSelection,
+                                     activePresentation: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation? = nil) throws
         -> StudyWorkspaceNativeGroupSelectionReservation {
         try backendObservation.validate()
+        try activePresentation?.original.validate()
+        guard activePresentation == nil || activePresentation?.original.requestID == requestID else {
+            throw StudyWorkspaceError.invalidMembership
+        }
         guard attached, !isSwitching, mappingManager === manager,
               readerReservation == nil, tabSelectionReservation == nil, groupSelectionReservation == nil,
               store.loadError == nil, errorMessage == nil,
@@ -533,7 +538,7 @@ final class StudyWorkspaceNavigationAdapter {
             workspace: stored, snapshot: snapshot, actual: groupNativeState(manager),
             profileID: profileID, groupID: groupID, backend: prepared.desiredBackend, selectsProfile: selectsProfile)
         let reservation = StudyWorkspaceNativeGroupSelectionReservation(policy: policy, prepared: prepared,
-            backendObservation: backendObservation)
+            backendObservation: backendObservation, activePresentation: activePresentation)
         do {
             try backendObservation.bind(policy) { [weak self, weak reservation] in
                 guard let self, let reservation else { return }
@@ -564,8 +569,18 @@ final class StudyWorkspaceNavigationAdapter {
                 try validate()
                 try validateNativeGroupSelection(reservation)
                 try reservation.captureOriginalReaderSources()
+                let presenting: StudyWorkspaceGroupNativeTab?
+                if let retained = reservation.activePresentation {
+                    try retained.original.validate()
+                    guard let selected = reservation.selectedTab, selected.id == retained.tab.id,
+                          selected.book === retained.tab.book, selected.viewModel === retained.tab.viewModel,
+                          !retained.original.hasPublishedBook,
+                          let actual = groupNativeTabs([selected]).first else { throw StudyWorkspaceError.invalidMembership }
+                    presenting = actual
+                } else { presenting = nil }
                 try reservation.policy.finishPreparation(staged: groupNativeTabs(reservation.prepared.staged),
-                    requested: reservation.prepared.requested, actual: groupNativeState(manager), snapshot: store.snapshot)
+                    requested: reservation.prepared.requested, actual: groupNativeState(manager), snapshot: store.snapshot,
+                    presentingActiveTab: presenting)
             }
             try validate()
             try validateNativeGroupSelection(reservation)
@@ -610,7 +625,7 @@ final class StudyWorkspaceNavigationAdapter {
                     try validate()
                     try validateNativeGroupSelection(reservation)
                 }, publish: {
-                    publishOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation)
+                    publishOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation, validate: validate)
                 }, willClearPending: {
                     do {
                         try reservation.policy.beginPendingBackendClear(actual: groupNativeState(manager), snapshot: store.snapshot)
@@ -650,6 +665,7 @@ final class StudyWorkspaceNavigationAdapter {
     func releaseNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation) {
         guard groupSelectionReservation === reservation else { return }
         reservation.backendObservation.retire()
+        reservation.activePresentation?.original.release()
         reservation.policy.release()
         if reservation.ownsSwitching { reservation.ownsSwitching = false; isSwitching = false }
         groupSelectionReservation = nil
@@ -674,6 +690,45 @@ final class StudyWorkspaceNavigationAdapter {
         } catch {
             reservation.recordPublicationFailure(error)
             invalidateNativeGroupSelection(reservation)
+            return false
+        }
+    }
+
+    /// This is part of the SAME synchronous authorized terminal, after the
+    /// unchanged original selectTab no-op. No renderer or validator grants it.
+    private func presentOriginalActiveGroupTab(_ tab: iOSNavigationManager.ReaderTab,
+                                              selection: StudyWorkspacePreparedGroupSelection,
+                                              manager: iOSNavigationManager,
+                                              owner: StudyWorkspaceNativeGroupSelectionReservation,
+                                              validate: @MainActor () throws -> Void) -> Bool {
+        do {
+            guard groupSelectionReservation === owner, owner.prepared === selection,
+                  let retained = owner.activePresentation, retained.tab.id == tab.id,
+                  retained.tab.book === tab.book, retained.tab.viewModel === tab.viewModel,
+                  retained.original.requestID == owner.policy.requestID else { throw StudyWorkspaceError.invalidMembership }
+            try retained.original.validate()
+            try validate()
+            try validateNativeGroupSelection(owner)
+            try owner.policy.beginOperation(.presentActive(tab.id), actual: groupNativeState(manager))
+            try retained.original.apply {
+                // Manager invokes this only before/after an original effect,
+                // never inside its intermediate selectedBook will/did pair.
+                guard groupSelectionReservation === owner, owner.prepared === selection,
+                      owner.activePresentation?.original === retained.original else { throw StudyWorkspaceError.invalidMembership }
+                try validate()
+                guard groupSelectionReservation === owner, owner.prepared === selection else { throw StudyWorkspaceError.invalidMembership }
+                try validateNativeGroupSelection(owner)
+            }
+            try owner.policy.finishOperation(.presentActive(tab.id), actual: groupNativeState(manager))
+            try validate()
+            guard groupSelectionReservation === owner, owner.prepared === selection,
+                  retained.original.hasPublishedBook else { throw StudyWorkspaceError.invalidMembership }
+            try retained.original.validate()
+            try validateNativeGroupSelection(owner)
+            return true
+        } catch {
+            owner.recordPublicationFailure(error)
+            invalidateNativeGroupSelection(owner)
             return false
         }
     }
@@ -769,7 +824,7 @@ final class StudyWorkspaceNavigationAdapter {
             try await BackendCoordinator.shared.commitCheckedAsync(prepared.desiredBackend, beforeCommit: {
                 try persistOriginalGroupSelection(prepared, manager: manager)
             }, publish: {
-                publishOriginalGroupSelection(prepared, manager: manager)
+                publishOriginalGroupSelection(prepared, manager: manager, validate: {})
             })
         }
         manager.persistCurrentSession(immediate: true)
@@ -903,7 +958,8 @@ final class StudyWorkspaceNavigationAdapter {
 
     private func publishOriginalGroupSelection(_ selection: StudyWorkspacePreparedGroupSelection,
                                                manager: iOSNavigationManager,
-                                               owner: StudyWorkspaceNativeGroupSelectionReservation? = nil) {
+                                               owner: StudyWorkspaceNativeGroupSelectionReservation? = nil,
+                                               validate: @MainActor () throws -> Void) {
         let id = selection.target.id, requested = selection.requested, staged = selection.staged
         let documents = selection.documents, previousTabs = selection.previousTabs
         let previousGroup = selection.previousGroup, previousBackend = selection.previousBackend
@@ -933,6 +989,10 @@ final class StudyWorkspaceNavigationAdapter {
         if let active = staged.first(where: { $0.id == requested }) ?? staged.first {
             guard performOriginalGroupOperation(.select(active.id), selection: selection, manager: manager, owner: owner,
                 body: { manager.selectTab(id: active.id) }) else { return }
+            if let owner, owner.activePresentation != nil {
+                guard presentOriginalActiveGroupTab(active, selection: selection, manager: manager,
+                    owner: owner, validate: validate) else { return }
+            }
             active.viewModel.needsScrollRestore = true
         } else {
             guard performOriginalGroupOperation(.restoreClosingTabs, selection: selection, manager: manager, owner: owner,
@@ -1175,6 +1235,12 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
 /// A single original stage retained across async catalog preparation and the
 /// existing synchronous Core apply. It is not permission or a second store.
 @MainActor final class StudyWorkspaceNativeGroupSelectionReservation {
+    /// Exact existing objects; this is source metadata, never effect authority.
+    struct ActivePresentation {
+        let tab: iOSNavigationManager.ReaderTab
+        let original: iOSNavigationManager.ActiveReaderTabPresentation
+    }
+    let activePresentation: ActivePresentation?
     struct ReaderSource {
         let tab: iOSNavigationManager.ReaderTab
         let book: BooksData
@@ -1198,8 +1264,10 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
     private var initialContentDeadline: UInt64?
 
     init(policy: StudyWorkspaceGroupSelectionReservation, prepared: StudyWorkspacePreparedGroupSelection,
-         backendObservation: StudyWorkspaceGroupBackendObservation) {
+         backendObservation: StudyWorkspaceGroupBackendObservation,
+         activePresentation: ActivePresentation? = nil) {
         self.policy = policy; self.prepared = prepared; self.backendObservation = backendObservation
+        self.activePresentation = activePresentation
     }
     func recordPublicationFailure(_ error: Error) { publicationFailure = publicationFailure ?? error }
 

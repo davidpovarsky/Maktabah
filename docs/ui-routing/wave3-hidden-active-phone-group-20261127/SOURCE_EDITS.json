@@ -1,0 +1,120 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "edits": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": "case installTabs, restoreClosingTabs, select(UUID), close(UUID), liveContext",
+      "after": "case installTabs, restoreClosingTabs, select(UUID), presentActive(UUID), close(UUID), liveContext"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": "actual: StudyWorkspaceGroupNativeState, snapshot: StudyWorkspaceSnapshot?) throws {\n        guard phase == .preparing,",
+      "after": "actual: StudyWorkspaceGroupNativeState, snapshot: StudyWorkspaceSnapshot?,\n                           presentingActiveTab: StudyWorkspaceGroupNativeTab? = nil) throws {\n        guard phase == .preparing,"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": "            try append(.select(selected.id), changes)\n        } else {\n            try append(.restoreClosingTabs,",
+      "after": "            try append(.select(selected.id), changes)\n            if let presentingActiveTab {\n                // Only the retained ORIGINAL same-active phone presentation\n                // supplies this exact tab. The ordinary select call stays a\n                // no-op; its separate original presentation owns one setter.\n                guard presentingActiveTab == selected, changes.isEmpty,\n                      actual.tabs.filter({ $0.id == selected.id }) == [selected],\n                      actual.activeID == selected.id, actual.selectedBookOwner == nil,\n                      actual.selectedBookID == nil, actual.selectedBookMode == nil else { throw invalid() }\n                try append(.presentActive(selected.id), [.book(selected.bookOwner, selected.target.bookID)])\n            }\n        } else {\n            guard presentingActiveTab == nil else { throw invalid() }\n            try append(.restoreClosingTabs,"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "prepared: StudyWorkspacePreparedGroupSelection) throws\n        -> StudyWorkspaceNativeGroupSelectionReservation {\n        try backendObservation.validate()",
+      "after": "prepared: StudyWorkspacePreparedGroupSelection,\n                                     activePresentation: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation? = nil) throws\n        -> StudyWorkspaceNativeGroupSelectionReservation {\n        try backendObservation.validate()\n        try activePresentation?.original.validate()\n        guard activePresentation == nil || activePresentation?.original.requestID == requestID else {\n            throw StudyWorkspaceError.invalidMembership\n        }"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "backendObservation: backendObservation)\n        do {\n            try backendObservation.bind(policy)",
+      "after": "backendObservation: backendObservation, activePresentation: activePresentation)\n        do {\n            try backendObservation.bind(policy)"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "                try reservation.captureOriginalReaderSources()\n                try reservation.policy.finishPreparation(staged: groupNativeTabs(reservation.prepared.staged),\n                    requested: reservation.prepared.requested, actual: groupNativeState(manager), snapshot: store.snapshot)",
+      "after": "                try reservation.captureOriginalReaderSources()\n                let presenting: StudyWorkspaceGroupNativeTab?\n                if let retained = reservation.activePresentation {\n                    try retained.original.validate()\n                    guard let selected = reservation.selectedTab, selected.id == retained.tab.id,\n                          selected.book === retained.tab.book, selected.viewModel === retained.tab.viewModel,\n                          !retained.original.hasPublishedBook,\n                          let actual = groupNativeTabs([selected]).first else { throw StudyWorkspaceError.invalidMembership }\n                    presenting = actual\n                } else { presenting = nil }\n                try reservation.policy.finishPreparation(staged: groupNativeTabs(reservation.prepared.staged),\n                    requested: reservation.prepared.requested, actual: groupNativeState(manager), snapshot: store.snapshot,\n                    presentingActiveTab: presenting)"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "                    publishOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation)\n                }, willClearPending:",
+      "after": "                    publishOriginalGroupSelection(reservation.prepared, manager: manager, owner: reservation, validate: validate)\n                }, willClearPending:"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "        reservation.backendObservation.retire()\n        reservation.policy.release()",
+      "after": "        reservation.backendObservation.retire()\n        reservation.activePresentation?.original.release()\n        reservation.policy.release()"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "    // MARK: Workspace presentation\n",
+      "after": "    /// This is part of the SAME synchronous authorized terminal, after the\n    /// unchanged original selectTab no-op. No renderer or validator grants it.\n    private func presentOriginalActiveGroupTab(_ tab: iOSNavigationManager.ReaderTab,\n                                              selection: StudyWorkspacePreparedGroupSelection,\n                                              manager: iOSNavigationManager,\n                                              owner: StudyWorkspaceNativeGroupSelectionReservation,\n                                              validate: @MainActor () throws -> Void) -> Bool {\n        do {\n            guard groupSelectionReservation === owner, owner.prepared === selection,\n                  let retained = owner.activePresentation, retained.tab.id == tab.id,\n                  retained.tab.book === tab.book, retained.tab.viewModel === tab.viewModel,\n                  retained.original.requestID == owner.policy.requestID else { throw StudyWorkspaceError.invalidMembership }\n            try retained.original.validate()\n            try validate()\n            try validateNativeGroupSelection(owner)\n            try owner.policy.beginOperation(.presentActive(tab.id), actual: groupNativeState(manager))\n            try retained.original.apply {\n                // Manager invokes this only before/after an original effect,\n                // never inside its intermediate selectedBook will/did pair.\n                guard groupSelectionReservation === owner, owner.prepared === selection,\n                      owner.activePresentation?.original === retained.original else { throw StudyWorkspaceError.invalidMembership }\n                try validate()\n                guard groupSelectionReservation === owner, owner.prepared === selection else { throw StudyWorkspaceError.invalidMembership }\n                try validateNativeGroupSelection(owner)\n            }\n            try owner.policy.finishOperation(.presentActive(tab.id), actual: groupNativeState(manager))\n            try validate()\n            guard groupSelectionReservation === owner, owner.prepared === selection,\n                  retained.original.hasPublishedBook else { throw StudyWorkspaceError.invalidMembership }\n            try retained.original.validate()\n            try validateNativeGroupSelection(owner)\n            return true\n        } catch {\n            owner.recordPublicationFailure(error)\n            invalidateNativeGroupSelection(owner)\n            return false\n        }\n    }\n\n    // MARK: Workspace presentation\n"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "                publishOriginalGroupSelection(prepared, manager: manager)\n",
+      "after": "                publishOriginalGroupSelection(prepared, manager: manager, validate: {})\n"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "owner: StudyWorkspaceNativeGroupSelectionReservation? = nil) {\n        let id = selection.target.id, requested = selection.requested, staged = selection.staged",
+      "after": "owner: StudyWorkspaceNativeGroupSelectionReservation? = nil,\n                                               validate: @MainActor () throws -> Void) {\n        let id = selection.target.id, requested = selection.requested, staged = selection.staged"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "                body: { manager.selectTab(id: active.id) }) else { return }\n            active.viewModel.needsScrollRestore = true",
+      "after": "                body: { manager.selectTab(id: active.id) }) else { return }\n            if let owner, owner.activePresentation != nil {\n                guard presentOriginalActiveGroupTab(active, selection: selection, manager: manager,\n                    owner: owner, validate: validate) else { return }\n            }\n            active.viewModel.needsScrollRestore = true"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "@MainActor final class StudyWorkspaceNativeGroupSelectionReservation {\n    struct ReaderSource {",
+      "after": "@MainActor final class StudyWorkspaceNativeGroupSelectionReservation {\n    /// Exact existing objects; this is source metadata, never effect authority.\n    struct ActivePresentation {\n        let tab: iOSNavigationManager.ReaderTab\n        let original: iOSNavigationManager.ActiveReaderTabPresentation\n    }\n    let activePresentation: ActivePresentation?\n    struct ReaderSource {"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": "         backendObservation: StudyWorkspaceGroupBackendObservation) {\n        self.policy = policy; self.prepared = prepared; self.backendObservation = backendObservation\n    }",
+      "after": "         backendObservation: StudyWorkspaceGroupBackendObservation,\n         activePresentation: ActivePresentation? = nil) {\n        self.policy = policy; self.prepared = prepared; self.backendObservation = backendObservation\n        self.activePresentation = activePresentation\n    }"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "    let viewerParent: MaktabahNativeViewerParentContinuation?\n",
+      "after": "    let viewerParent: MaktabahNativeViewerParentContinuation?\n    private let activePresentation: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation?\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "            // Original selectTab is a no-op for the already active tab. Do not\n            // advertise that it pushes a hidden compact Reader as a side effect.\n            if !MaktabahApp.isIpad, let selected, manager.activeTabId == selected.id {\n                guard let tab = manager.openTabs.first(where: { $0.id == selected.id }),\n                      manager.selectedBook === tab.book, manager.selectedBookPresentationMode == .viewer else { return }\n            }",
+      "after": "            // The same-active hidden phone case uses the ORIGINAL retained\n            // presentation. Discovery checks feasibility without acquiring it.\n            do { _ = try activePhoneTabRequiringPresentation(stage, manager: manager) }\n            catch { return }"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "    /// Read-only feasibility from the ORIGINAL saved documents/cache.",
+      "after": "    private static func activePhoneTabRequiringPresentation(_ stage: StudyWorkspacePreparedGroupSelection,\n                                                            manager: iOSNavigationManager) throws -> iOSNavigationManager.ReaderTab? {\n        let selected = stage.documents.first(where: { $0.id == stage.requested }) ?? stage.documents.first\n        guard !MaktabahApp.isIpad, let selected, manager.activeTabId == selected.id else { return nil }\n        let matches = manager.openTabs.filter { $0.id == selected.id }\n        guard matches.count == 1, let tab = matches.first else { throw StudyWorkspaceError.invalidMembership }\n        if manager.selectedBook === tab.book, manager.selectedBookPresentationMode == .viewer { return nil }\n        guard manager.selectedBook == nil, manager.selectedBookPresentationMode == nil,\n              let revision = manager.selectedBookPresentationRevision, revision < .max else {\n            throw StudyWorkspaceError.invalidMembership\n        }\n        return tab\n    }\n\n    /// Read-only feasibility from the ORIGINAL saved documents/cache."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "        viewerParent = retainedParent\n        // Do not observe",
+      "after": "        viewerParent = retainedParent\n        let retainedActive: StudyWorkspaceNativeGroupSelectionReservation.ActivePresentation?\n        do {\n            if let tab = try Self.activePhoneTabRequiringPresentation(stage, manager: manager) {\n                retainedActive = .init(tab: tab,\n                    original: try manager.retainActiveReaderTabPresentation(requestID: requestID, tab: tab))\n            } else { retainedActive = nil }\n        } catch { retainedParent?.release(); backendObservation.retire(); throw error }\n        activePresentation = retainedActive\n        // Do not observe"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "        catch { retainedParent?.release(); backendObservation.retire(); throw error }\n    }\n\n    var isReserved",
+      "after": "        catch { retainedActive?.original.release(); retainedParent?.release(); backendObservation.retire(); throw error }\n    }\n\n    var isReserved"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "        try backendObservation.validate()\n        let manager = bindings.manager",
+      "after": "        try backendObservation.validate()\n        // This is called at original effect boundaries, not from Group's\n        // intermediate will/did hooks while Manager's book phase is publishing.\n        try activePresentation?.original.validate()\n        let manager = bindings.manager"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "            guard reservation.prepared === prepared, reservation.backendObservation === backendObservation,",
+      "after": "            guard reservation.prepared === prepared, reservation.backendObservation === backendObservation,\n                  reservation.activePresentation?.original === activePresentation?.original,"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "            manager: bindings.manager, backendObservation: backendObservation, prepared: prepared)",
+      "after": "            manager: bindings.manager, backendObservation: backendObservation, prepared: prepared,\n            activePresentation: activePresentation)"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": "        viewerParent?.release()\n        if let reservation { workspace.releaseNativeGroupSelection(reservation) }",
+      "after": "        viewerParent?.release()\n        activePresentation?.original.release()\n        if let reservation { workspace.releaseNativeGroupSelection(reservation) }"
+    }
+  ]
+}

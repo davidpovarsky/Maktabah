@@ -1,0 +1,578 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "observedRootHEAD": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "observedSourceTree": "ff6ea67df0f96753ccdaaec7e01fbb73a30079ec",
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": {
+        "bytes": 17686,
+        "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+      },
+      "after": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "after": {
+        "bytes": 84493,
+        "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "after": {
+        "bytes": 26559,
+        "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+      }
+    }
+  ],
+  "baseToObservedDependencies": [
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "baseSHA256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0",
+      "observedSHA256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "baseSHA256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "observedSHA256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "baseSHA256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108",
+      "observedSHA256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "baseSHA256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a",
+      "observedSHA256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "baseSHA256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d",
+      "observedSHA256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "baseSHA256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "observedSHA256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "baseSHA256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "observedSHA256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "baseSHA256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3",
+      "observedSHA256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "baseSHA256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "observedSHA256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "baseSHA256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118",
+      "observedSHA256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "baseSHA256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea",
+      "observedSHA256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "baseSHA256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "observedSHA256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "baseSHA256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+      "observedSHA256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "baseSHA256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085",
+      "observedSHA256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "baseSHA256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db",
+      "observedSHA256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "baseSHA256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+      "observedSHA256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "baseSHA256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532",
+      "observedSHA256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "baseSHA256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f",
+      "observedSHA256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "baseSHA256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570",
+      "observedSHA256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "baseSHA256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8",
+      "observedSHA256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "baseSHA256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d",
+      "observedSHA256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d",
+      "unchanged": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "baseSHA256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+      "observedSHA256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+      "unchanged": true
+    },
+    {
+      "path": "Source/Core/AppCoordinator/AppMode.swift",
+      "baseSHA256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b",
+      "observedSHA256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b",
+      "unchanged": true
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "baseSHA256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48",
+      "observedSHA256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48",
+      "unchanged": true
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "baseSHA256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905",
+      "observedSHA256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905",
+      "unchanged": true
+    },
+    {
+      "path": "Source/LibraryBackend/BackendCoordinator.swift",
+      "baseSHA256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12",
+      "observedSHA256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12",
+      "unchanged": true
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "baseSHA256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "observedSHA256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "unchanged": true
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "baseSHA256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b",
+      "observedSHA256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b",
+      "unchanged": true
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "baseSHA256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47",
+      "observedSHA256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47",
+      "unchanged": true
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "baseSHA256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a",
+      "observedSHA256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a",
+      "unchanged": true
+    }
+  ],
+  "compiledProductBodyJoins": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "product": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      },
+      "compiled": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      },
+      "transforms": [],
+      "completeProductBodyExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "product": {
+        "bytes": 84493,
+        "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+      },
+      "compiled": {
+        "bytes": 85215,
+        "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+      },
+      "transforms": [
+        "Exact two Apple imports replaced by Foundation/Observation",
+        "Exact 715-byte prior fixture attachment/read-only accessors appended"
+      ],
+      "completeProductBodyExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "product": {
+        "bytes": 26559,
+        "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+      },
+      "compiled": {
+        "bytes": 26525,
+        "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+      },
+      "transforms": [
+        "Only outer iOS guard and SwiftUI import removed"
+      ],
+      "completeProductBodyExact": true
+    }
+  ],
+  "completeProductBodiesMatchDeclaredCapsule": true,
+  "counts": {
+    "originalBaseline": {
+      "passed": 0,
+      "failed": 4
+    },
+    "finalCandidate": {
+      "passed": 22,
+      "failed": 0
+    },
+    "omitCanonicalValidator": {
+      "passed": 0,
+      "failed": 3
+    },
+    "explicitObservationFixture": {
+      "passed": 2,
+      "failed": 0
+    },
+    "preservedAttempt4": {
+      "passed": 19,
+      "failed": 3
+    },
+    "wholeFileSyntaxOnly": 6,
+    "appSDK": 0,
+    "native": 0
+  },
+  "preservedFailures": [
+    "Attempt1 missing runner free() before compiler spawn",
+    "Attempt2 initial recursive callback fixture: signal11",
+    "Attempt3 isolated same callback: signal11; exact corrected compile timed out and was reaped",
+    "Attempt4 unseeded optional Int annotation-clear callback fixture:19passed/3failed"
+  ],
+  "coreDump": "Exact owned PID/core policy and absent exact core paths are recorded; no nonexistent core is claimed preserved.",
+  "rawEvidenceFiles": 405,
+  "preservedGeneratedProducts": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-1/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/baseline-controls",
+      "bytes": 3690200,
+      "sha256": "c87541a156b3e250b4a6bd81507f49b5f9c0673b77a15cdb686b94a2a846d2e6",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-2/output/candidate-controls",
+      "bytes": 3696536,
+      "sha256": "d70fc85cd5dd2fd1f962a71650f8924942fe547d2583bb8f97e9939b9bfbc2d1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-3/output/fixture-diagnostic",
+      "bytes": 3698096,
+      "sha256": "93d457f050faac798b2f6ca312d1374a89c32dfe3d64ace007715207a87c4357",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-4/output/candidate-controls",
+      "bytes": 3699912,
+      "sha256": "a94c3be8446b0e6d0ca734f1ab91e2117faedac11c609c58d76a128b6673d5fb",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/candidate-controls",
+      "bytes": 3702464,
+      "sha256": "4fd19fe2cbe0b96f3e03ab4b9b4138ec650c2eb0b518f65aef3996eb89848019",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/negative-controls",
+      "bytes": 3702480,
+      "sha256": "faf35f730b9d447bb05662fd6be8fdbebfa6447898a12d08036f07b5af47ff52",
+      "preserved": true
+    }
+  ],
+  "peerReview": {
+    "reviewer": "/root/navigation_fix",
+    "scope": "Bounded source-only read; no runs or app/native qualification",
+    "readPins": {
+      "policy": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5",
+      "binding": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5",
+      "initialAdapterPrefix": "d59e4b28"
+    },
+    "conclusion": "No additional demonstrated lifetime blocker in exact staged/live tab/book/Reader, one declared book publication, captured reservation across callbacks, release, or unchanged default branches.",
+    "concreteFinding": "Outer apply validator was nonescaping but private optional validator escaped. Syntax-only checks could not establish the complete call chain.",
+    "correction": "Private publisher uses nonoptional nonescaping validation; sole ordinary UI caller passes {}. Complete candidate call chain compiled in actual source capsule.",
+    "finalAdapterSHA256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955",
+    "limits": "Peer did not rerun controls or claim full app SDK/native acceptance. Existing Manager Group/active helper will/did phase ordering remains unchanged."
+  },
+  "unchanged": [
+    "Manager/Core/Viewer/Store/Session/Composition",
+    "Original ordinary selectTab early return and original effect order",
+    "Original first4 baseline scenarios and all prior after-effect assertions"
+  ],
+  "open": [
+    "Actual iOS app SDK typecheck",
+    "Six proposed hidden-phone Group/Profile native selectors",
+    "Full document restoration, viewport/selection/TOC, relaunch, multiwindow, VoiceOver and production acceptance"
+  ],
+  "PBX": "No new product file or membership change in this packet. Root retains all shared integration.",
+  "sealedUTC": "2026-11-27T19:47:05.156881+00:00",
+  "dataFree": 4947767296,
+  "rootFree": 2313867264
+}

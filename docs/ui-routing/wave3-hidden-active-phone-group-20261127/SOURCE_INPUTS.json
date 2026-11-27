@@ -1,0 +1,35 @@
+[
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+    "before": {
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    "after": {
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    }
+  },
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "before": {
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    "after": {
+      "bytes": 84493,
+      "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+    }
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+    "before": {
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    "after": {
+      "bytes": 26559,
+      "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+    }
+  }
+]
