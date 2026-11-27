@@ -1,0 +1,28 @@
+{
+  "source_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+  "original_sha256": "5d3c30b6a119ce445cc343b17ff7c3aad7e70a0bb49b9d56622007d6d3da91f8",
+  "intermediate_sha256": "bbf93e364f006428f1db86de7845ab1f6ecb4a2bfca0366c3ea00246c65e3ea7",
+  "final_sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+  "first_exact_hunks": 9,
+  "unmount_exact_hunks": 2,
+  "original_unmount_inverse_exact": true,
+  "original_unmount_sha256": "68211cae75075732b0a86ba62c74c223e2f4d894d5d391d0bf21f5e4a0c27eda",
+  "original_ui_caller": {
+    "path": "/workspace/scratch/c1c70cc48453/saved-results-reveal/candidate/Source/Features/Search/iOS/SearchModeView.swift",
+    "product_commit": "86fb81e5b9231650b457daf13dbcf0d554a902cc",
+    "file_sha256": "45f2a9968b2d9ef5aafaf04d38afa84de780ad0787f4551c3cf58ae1397417fd",
+    "methods": [
+      {
+        "name": "nativePresentationBinding",
+        "body": "    @MainActor private func nativePresentationBinding(_ original: Binding<Bool>) -> Binding<Bool> {\n        Binding(get: { original.wrappedValue }, set: { value in\n            nativeRoutingSession?.savedResultsBinding?.originalOtherSearchStateWillChange(owner: nativePresentationOwner)\n            nativeRoutingSession?.originalSearchPresentationWillChange(owner: nativePresentationOwner)\n            original.wrappedValue = value\n        })\n    }",
+        "sha256": "172cf9ff0dd26af923dd28515c3cdbddef69383f17063ce74bffe429864ada97"
+      },
+      {
+        "name": "nativeSavedResultsBinding",
+        "body": "    @MainActor private func nativeSavedResultsBinding(_ original: Binding<Bool>) -> Binding<Bool> {\n        let session = nativeRoutingSession, binding = nativeRoutingSession?.savedResultsBinding\n        let owner = nativePresentationOwner\n        return Binding(get: { original.wrappedValue }, set: { [weak session, weak binding] value in\n            binding?.searchWillPublish(owner: owner, next: value)\n            session?.originalSearchPresentationWillChange(owner: owner)\n            original.wrappedValue = value\n            binding?.searchDidPublish(owner: owner)\n        })\n    }",
+        "sha256": "f3e22b9f671a8ef099b963c307e05bcfd7092ce6993be7e941f6fad55885fbdd"
+      }
+    ]
+  },
+  "boundary": "Byte joins and callback order source inspection; original SwiftUI Binding not executed."
+}

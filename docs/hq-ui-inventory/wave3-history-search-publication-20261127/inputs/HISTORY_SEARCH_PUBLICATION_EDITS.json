@@ -1,0 +1,56 @@
+[
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    @ObservationIgnored private var searchPresentationOwner: UUID?\n",
+    "new": "    @ObservationIgnored private var searchPresentationOwner: UUID?\n    @ObservationIgnored private var searchPresentationPublicationRevision: UInt64? = 0\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        if searchPresentationOwner != owner {\n            searchContinuationOwner?.retire(); publicSearchContinuationCatalog?.retire()\n",
+    "new": "        if searchPresentationOwner != owner {\n            advanceOriginalSearchPresentationPublication()\n            searchContinuationOwner?.retire(); publicSearchContinuationCatalog?.retire()\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func originalSearchPresentationWillChange(owner: UUID) {\n        searchEntryBinding?.originalPresentationWillChange(owner: owner)\n",
+    "new": "    func originalSearchPresentationWillChange(owner: UUID) {\n        if searchPresentationOwner == owner { advanceOriginalSearchPresentationPublication() }\n        searchEntryBinding?.originalPresentationWillChange(owner: owner)\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func removeSearchPresentation(owner: UUID) {\n        guard searchPresentationOwner == owner else { return }\n        searchContinuationOwner?.retire()\n",
+    "new": "    func removeSearchPresentation(owner: UUID) {\n        guard searchPresentationOwner == owner else { return }\n        advanceOriginalSearchPresentationPublication()\n        searchContinuationOwner?.retire()\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    private func validateSearchPresentation() throws {\n",
+    "new": "    private func advanceOriginalSearchPresentationPublication() {\n        guard let revision = searchPresentationPublicationRevision, revision < .max else {\n            searchPresentationPublicationRevision = nil\n            return\n        }\n        searchPresentationPublicationRevision = revision + 1\n    }\n\n    /// Original Search State publications include its existing Saved Results,\n    /// Save and FTS presentations. Retain their history before foreground waits:\n    /// an open/close or owner replacement cannot restore an earlier observation.\n    /// This reads the original owner and never changes its UI or grants access.\n    private func retainHistorySearchPresentationObservation() throws -> @MainActor () throws -> Void {\n        guard mounted, let revision = searchPresentationPublicationRevision else {\n            throw UIRouteError(.unavailable, \"history_reader_search_presentation_unavailable\")\n        }\n        let owner = searchPresentationOwner\n        let validate: @MainActor () throws -> Void = { [weak self] in\n            guard let self, self.mounted,\n                  self.searchPresentationPublicationRevision == revision,\n                  self.searchPresentationOwner == owner,\n                  self.searchPresentationBlocked?() != true else {\n                throw UIRouteError(.staleState, \"history_reader_search_presentation_changed\")\n            }\n            // The original blocker is a callback. It cannot publish a new\n            // owner/state and then return a value that rearms this observation.\n            guard self.searchPresentationPublicationRevision == revision,\n                  self.searchPresentationOwner == owner else {\n                throw UIRouteError(.staleState, \"history_reader_search_presentation_changed\")\n            }\n        }\n        try validate()\n        return validate\n    }\n\n    private func validateSearchPresentation() throws {\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func captureHistoryReaderWindow() throws -> @MainActor () throws -> Void {\n        let originalWindow = try retainOriginalWindowObservation()\n",
+    "new": "    func captureHistoryReaderWindow() throws -> @MainActor () throws -> Void {\n        let searchPresentation = try retainHistorySearchPresentationObservation()\n        let originalWindow = try retainOriginalWindowObservation()\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        let validate: @MainActor () throws -> Void = { [weak self, weak manager, weak workspace] in\n            _ = try originalWindow.validate()\n            try observation.validate()\n",
+    "new": "        let validate: @MainActor () throws -> Void = { [weak self, weak manager, weak workspace] in\n            try searchPresentation()\n            _ = try originalWindow.validate()\n            try observation.validate()\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            try observation.validate()\n            _ = try originalWindow.validate()\n        }\n        try validate()\n        return validate\n",
+    "new": "            try observation.validate()\n            _ = try originalWindow.validate()\n            try searchPresentation()\n        }\n        try validate()\n        return validate\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        windowSource = nil; searchPresentationOwner = nil; searchPresentationBlocked = nil\n",
+    "new": "        advanceOriginalSearchPresentationPublication()\n        windowSource = nil; searchPresentationOwner = nil; searchPresentationBlocked = nil\n",
+    "occurrences": 1
+  }
+]

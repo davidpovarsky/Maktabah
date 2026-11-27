@@ -1,0 +1,155 @@
+{
+  "status": "PASS_SOURCE_CONTROLS_ONLY",
+  "boundary": "Exact actual Session helper/callback/full caller/full unmount source; explicit stable app/UIKit/window/store/model boundaries. No old helper fabricated, no Core or native execution.",
+  "inputs_sha256": "67024b5c5b9311706220aea156e71203aff3b543b57633f260802fb60bba534c",
+  "results": [
+    {
+      "variant": "baseline",
+      "exit": 1,
+      "passed": 6,
+      "failed": 15,
+      "failures": [
+        "FAIL actual will callback detects original Saved open-close ABA",
+        "FAIL actual will callback detects equal original State publication",
+        "FAIL actual observe callback detects owner A-B-A",
+        "FAIL actual disappearance and same-owner return remain retired",
+        "FAIL actual caller rejects already blocked original presentation",
+        "FAIL blocker callback cannot publish equal State then return false",
+        "FAIL blocker callback cannot replace owner A-B-A then return false",
+        "FAIL will metadata is revoked before original entry callback",
+        "FAIL owner replacement is revoked before original retirement callback",
+        "FAIL disappearance is revoked before original retirement callback",
+        "FAIL full original unmount revokes before its FIRST retirement callback",
+        "FAIL publication exhaustion is terminal across later original callbacks",
+        "FAIL actual caller retains Search history BEFORE window capture callback",
+        "FAIL actual caller rechecks Search AFTER final window callback",
+        "FAIL actual caller rechecks Search AFTER original readiness callback"
+      ]
+    },
+    {
+      "variant": "intermediate",
+      "exit": 1,
+      "passed": 20,
+      "failed": 1,
+      "failures": [
+        "FAIL full original unmount revokes before its FIRST retirement callback"
+      ]
+    },
+    {
+      "variant": "candidate",
+      "exit": 0,
+      "passed": 21,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "steps": [
+    {
+      "name": "baseline-compile",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/BoundaryFixtures.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/baseline/SessionCapsule.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/Controls.swift",
+        "-o",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/baseline-controls"
+      ],
+      "pid": 1398826,
+      "exit": 0,
+      "started": 1795797857.2052627,
+      "finished": 1795797858.3727794,
+      "free_after": 2601287680,
+      "task_bytes": 45600768
+    },
+    {
+      "name": "baseline-run",
+      "argv": [
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/baseline-controls"
+      ],
+      "pid": 1398933,
+      "exit": 1,
+      "started": 1795797858.3982422,
+      "finished": 1795797858.414566,
+      "free_after": 2601279488,
+      "task_bytes": 45608960
+    },
+    {
+      "name": "intermediate-compile",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/BoundaryFixtures.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/intermediate/SessionCapsule.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/Controls.swift",
+        "-o",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/intermediate-controls"
+      ],
+      "pid": 1398939,
+      "exit": 0,
+      "started": 1795797858.4380832,
+      "finished": 1795797859.6086593,
+      "free_after": 2600976384,
+      "task_bytes": 45912064
+    },
+    {
+      "name": "intermediate-run",
+      "argv": [
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/intermediate-controls"
+      ],
+      "pid": 1399003,
+      "exit": 1,
+      "started": 1795797859.6313431,
+      "finished": 1795797859.6488876,
+      "free_after": 2600972288,
+      "task_bytes": 45916160
+    },
+    {
+      "name": "candidate-compile",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/BoundaryFixtures.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/candidate/SessionCapsule.swift",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/inputs/Controls.swift",
+        "-o",
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/candidate-controls"
+      ],
+      "pid": 1399010,
+      "exit": 0,
+      "started": 1795797859.6731722,
+      "finished": 1795797860.892759,
+      "free_after": 2600669184,
+      "task_bytes": 46219264
+    },
+    {
+      "name": "candidate-run",
+      "argv": [
+        "/home/ubuntu/otzaria-wave3-history-search-publication-controls-20261127/candidate-controls"
+      ],
+      "pid": 1399075,
+      "exit": 0,
+      "started": 1795797860.9168115,
+      "finished": 1795797860.9327095,
+      "free_after": 2600665088,
+      "task_bytes": 46223360
+    }
+  ],
+  "free_after": 2600660992,
+  "task_bytes": 46227456
+}
