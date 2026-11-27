@@ -1,0 +1,8 @@
+{
+  "index": 10,
+  "donor": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 c4c8475b] test(anytype): expose stale receive consent in original SQLite ledger\n Author: ChatGPT (release-preflight) <noreply@openai.com>\n Date: Fri Nov 27 05:29:15 2026 +0000\n 1 file changed, 221 insertions(+)\n",
+  "stderr": "",
+  "head": "c4c8475b6e75b7673260be417e100f6f16d141a9"
+}

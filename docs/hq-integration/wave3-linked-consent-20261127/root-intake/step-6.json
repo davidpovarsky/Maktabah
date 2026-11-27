@@ -1,0 +1,8 @@
+{
+  "index": 6,
+  "donor": "5424480455807cc32d7d1aba6c5e4e3f0ba3cd3a",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 a4625cb3] Check late linked receipts and actual local-editor publication retirement\n Author: ChatGPT <noreply@openai.com>\n Date: Fri Nov 27 01:40:43 2026 +0000\n 3 files changed, 72 insertions(+), 11 deletions(-)\n",
+  "stderr": "",
+  "head": "a4625cb3a3a5591da7919350d33fee2cd0bbde77"
+}

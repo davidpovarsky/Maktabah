@@ -1,0 +1,8 @@
+{
+  "index": 1,
+  "donor": "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 a886a805] Identify original annotation file actions for accessible native import and export\n Author: ChatGPT <noreply@openai.com>\n Date: Thu Nov 26 23:23:30 2026 +0000\n 1 file changed, 3 insertions(+)\n",
+  "stderr": "",
+  "head": "a886a805a2270a31d9b26ed44a214f7e7e4e5bbb"
+}

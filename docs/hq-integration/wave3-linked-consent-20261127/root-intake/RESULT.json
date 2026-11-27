@@ -1,0 +1,122 @@
+{
+  "status": "SELECTIVE_D_SOURCE_INTAKE_COMPLETE_VALIDATION_PRESERVED",
+  "at": "2026-11-27T06:23:39.637621+00:00",
+  "base": "3cf2a4ccd860a2d68633a76cd8349314aacb44ef",
+  "head": "e6a3b7f63a955817b0caba74e4531cdfb0f9fc5a",
+  "sourceTree": "a3d1097824cd681a6d8eb65d3483422ea76c15c2",
+  "steps": [
+    {
+      "index": 0,
+      "donor": "2433d032d3f8025ccd2e5fe66b8a95356014ba51",
+      "exit": 0,
+      "head": "56068a3ad880556d15d380560c4ef6ed7aba207a"
+    },
+    {
+      "index": 1,
+      "donor": "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+      "exit": 0,
+      "head": "a886a805a2270a31d9b26ed44a214f7e7e4e5bbb"
+    },
+    {
+      "index": 2,
+      "donor": "0d0c4c116ae06bb14f45df1dc597485dca06abba",
+      "exit": 0,
+      "head": "63d7385aa95c84559f4db0ff9e44e85b3fbe9e30"
+    },
+    {
+      "index": 3,
+      "donor": "4671202cb51de5470e60cd79e9c13343a97b5675",
+      "exit": 0,
+      "head": "9a8379be41d1757265f45eb18c09a3a5a0b0f91e"
+    },
+    {
+      "index": 4,
+      "donor": "f0d2f9b2973289600cd279143880bf79bac778eb",
+      "exit": 0,
+      "head": "68db3cb3a7b72b29ab392380c823f04327268872"
+    },
+    {
+      "index": 5,
+      "donor": "ad9d987f171e55f1f759c1119b01f50dc75203bc",
+      "exit": 0,
+      "head": "858c5b22500426879423cf23eddedbf5d925a5a4"
+    },
+    {
+      "index": 6,
+      "donor": "5424480455807cc32d7d1aba6c5e4e3f0ba3cd3a",
+      "exit": 0,
+      "head": "a4625cb3a3a5591da7919350d33fee2cd0bbde77"
+    },
+    {
+      "index": 7,
+      "donor": "50e3288a64078035773524d12a237053518c21a0",
+      "exit": 0,
+      "head": "5c743fd5b841cbdbe4998f7657a4c11c4964fbd0"
+    },
+    {
+      "index": 8,
+      "donor": "cde7879e46b780a21337bf9df2628e53fe33c26f",
+      "exit": 0,
+      "head": "5893d7b0153315763cb4dce954dc8a5bf88cec06"
+    },
+    {
+      "index": 9,
+      "donor": "178bf8e6697df7aa3d2d1b16092f4e35b4ca1462",
+      "exit": 0,
+      "head": "76c8de0b19bbd587f4e55321eb348bdf05ee32b3"
+    },
+    {
+      "index": 10,
+      "donor": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+      "exit": 0,
+      "head": "c4c8475b6e75b7673260be417e100f6f16d141a9"
+    },
+    {
+      "index": 11,
+      "donor": "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+      "exit": 0,
+      "head": "62e7f013432edd33c1732c45e04b43cfd7c163c8"
+    },
+    {
+      "index": 12,
+      "donor": "f191bcab419954e74741b542e239095a5b41ecc3",
+      "exit": 0,
+      "head": "e6a3b7f63a955817b0caba74e4531cdfb0f9fc5a"
+    }
+  ],
+  "all79CandidateInputsMatchIntegratedSource": true,
+  "all75OriginalDriverInputsMatchCandidate": true,
+  "rootMiniAppsContextBindingsPreserved": true,
+  "priorCatalogStringsUnchanged": 113,
+  "newCatalogStrings": 10,
+  "originalAppleComponentCases": 15,
+  "newAppleComponentCases": 7,
+  "baselinePassFail": [
+    4,
+    3
+  ],
+  "nativeUI": 0,
+  "appSDK": 0,
+  "twoFullAppsUITestPacket": "87dfd8d0 and8c0e9b21 pending separate complete review",
+  "archives": [
+    {
+      "name": "candidate-c765dfac.tar.gz",
+      "bytes": 233485,
+      "sha256": "f703090699a9f75a4f5a4d6574bc0537c33a4333015e8cb52daf07526f731f5a",
+      "members": 80
+    },
+    {
+      "name": "candidate-control-attempt-1.tar.gz",
+      "bytes": 1661960,
+      "sha256": "023bbbf8cb585faa35270c4aa9ea634ab09ac0ed56e6b456fa3403c1847a1b48",
+      "members": 60
+    },
+    {
+      "name": "baseline-744686e4.tar.gz",
+      "bytes": 202207,
+      "sha256": "451653404e0d498aac1a31167bde6f6a4ce431ec89e9d95417781aa317404b7f",
+      "members": 76
+    }
+  ],
+  "freeBytes": 793767936
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "at": "2026-11-27T06:24:25.035896+00:00",
+  "status": "ROOT_SOURCE_AND_EVIDENCE_REVIEW_COMPLETE",
+  "originalSourceReview": [
+    "Complete original D ledger extension and local replay binding",
+    "Original persistence/session/revision/UI/receive changes",
+    "Copy-discovery source lifetime and three new annotation AX IDs",
+    "All four retained-consent repair product diffs",
+    "Original linked-driver extension retains default suite; cde requires all15 distinct linked cases",
+    "Private Anytype fixture values not read or copied"
+  ],
+  "selectedCommits": 13,
+  "candidateInputCount": 79,
+  "originalDriverInputCount": 75,
+  "baselineArchiveAndCandidateArchivesVerified": true,
+  "MiniAppsUnchangedTailSHA256": "5b340778281759ad7b5649ca1e18513ea00543855a38c0d2bdb22f7dcc7d0e6f",
+  "MiniAppsUnchangedTailBytes": 21865,
+  "catalogOld113Unchanged": true,
+  "catalogAddedKeys": 10,
+  "deferredNativeControllerCommits": [
+    "87dfd8d0aa1cb06b418823a0c01587b9907be14d",
+    "8c0e9b21cf7f87c18383aa4fc329c65bf974d441"
+  ],
+  "actualAppleComponentEvidenceSource": "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+  "currentRootSourceInputsByteIdenticalToComponent": true,
+  "newNativeRuns": 0,
+  "fullAppSDKBuild": "NOT_RUN",
+  "ownerFinalSourceAttestation": "PENDING_AUTHENTIC_FINAL_WORKFLOW"
+}

@@ -1,0 +1,41 @@
+{
+  "base": "3cf2a4ccd860a2d68633a76cd8349314aacb44ef",
+  "commits": [
+    "2433d032d3f8025ccd2e5fe66b8a95356014ba51",
+    "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+    "0d0c4c116ae06bb14f45df1dc597485dca06abba",
+    "4671202cb51de5470e60cd79e9c13343a97b5675",
+    "f0d2f9b2973289600cd279143880bf79bac778eb",
+    "ad9d987f171e55f1f759c1119b01f50dc75203bc",
+    "5424480455807cc32d7d1aba6c5e4e3f0ba3cd3a",
+    "50e3288a64078035773524d12a237053518c21a0",
+    "cde7879e46b780a21337bf9df2628e53fe33c26f",
+    "178bf8e6697df7aa3d2d1b16092f4e35b4ca1462",
+    "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+    "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+    "f191bcab419954e74741b542e239095a5b41ecc3"
+  ],
+  "archives": [
+    {
+      "name": "candidate-c765dfac.tar.gz",
+      "bytes": 233485,
+      "sha256": "f703090699a9f75a4f5a4d6574bc0537c33a4333015e8cb52daf07526f731f5a",
+      "members": 80
+    },
+    {
+      "name": "candidate-control-attempt-1.tar.gz",
+      "bytes": 1661960,
+      "sha256": "023bbbf8cb585faa35270c4aa9ea634ab09ac0ed56e6b456fa3403c1847a1b48",
+      "members": 60
+    },
+    {
+      "name": "baseline-744686e4.tar.gz",
+      "bytes": 202207,
+      "sha256": "451653404e0d498aac1a31167bde6f6a4ce431ec89e9d95417781aa317404b7f",
+      "members": 76
+    }
+  ],
+  "candidateInputCount": 79,
+  "originalDriverInputCount": 75,
+  "nativeUI": 0
+}

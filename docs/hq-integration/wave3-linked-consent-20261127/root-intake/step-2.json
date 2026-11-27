@@ -1,0 +1,8 @@
+{
+  "index": 2,
+  "donor": "0d0c4c116ae06bb14f45df1dc597485dca06abba",
+  "exit": 0,
+  "stdout": "Auto-merging Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift\n[codex/otzaria-wave3-integration-20261127 63d7385a] Link original native copies to durable local annotation saves\n Author: ChatGPT <noreply@openai.com>\n Date: Fri Nov 27 01:17:14 2026 +0000\n 7 files changed, 1116 insertions(+), 218 deletions(-)\n",
+  "stderr": "",
+  "head": "63d7385aa95c84559f4db0ff9e44e85b3fbe9e30"
+}

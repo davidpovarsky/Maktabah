@@ -1,0 +1,8 @@
+{
+  "index": 9,
+  "donor": "178bf8e6697df7aa3d2d1b16092f4e35b4ca1462",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 76c8de0b] docs(anytype): bind linked sync product to reviewed Apple component evidence\n Author: ChatGPT <noreply@openai.com>\n Date: Fri Nov 27 02:07:05 2026 +0000\n 4 files changed, 1436 insertions(+)\n create mode 100644 docs/anytype/wave1-20261127/LINKED_SYNC_SOURCE_RECEIPT.json\n create mode 100644 docs/anytype/wave1-20261127/linked-ledger-15-RESULT.json\n create mode 100644 docs/anytype/wave1-20261127/local-owner-43-RESULT.json\n create mode 100644 docs/anytype/wave1-20261127/retained-ledger-37-RESULT.json\n",
+  "stderr": "",
+  "head": "76c8de0b19bbd587f4e55321eb348bdf05ee32b3"
+}

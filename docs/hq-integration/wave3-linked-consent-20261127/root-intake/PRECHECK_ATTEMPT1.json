@@ -1,0 +1,6 @@
+{
+  "status": "STOPPED_BEFORE_CHERRY_PICK",
+  "reason": "Root MiniApps text precheck used assignment syntax instead of the actual named argument syntax; source remained unchanged",
+  "toolJob": "script_job_e3be23ee1c8c47898f16de68073617eb",
+  "confirmedRootHEAD": "3cf2a4ccd860a2d68633a76cd8349314aacb44ef"
+}

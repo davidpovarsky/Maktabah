@@ -1,0 +1,8 @@
+{
+  "index": 0,
+  "donor": "2433d032d3f8025ccd2e5fe66b8a95356014ba51",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 56068a3a] Discover shared Anytype copies when an imported note has no local receipt\n Author: ChatGPT <noreply@openai.com>\n Date: Thu Nov 26 22:59:02 2026 +0000\n 3 files changed, 142 insertions(+), 9 deletions(-)\n",
+  "stderr": "",
+  "head": "56068a3ad880556d15d380560c4ef6ed7aba207a"
+}

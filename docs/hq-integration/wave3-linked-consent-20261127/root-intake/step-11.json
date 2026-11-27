@@ -1,0 +1,8 @@
+{
+  "index": 11,
+  "donor": "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 62e7f013] fix(annotations): bind linked receive to retained SQLite consent\n Author: ChatGPT (release-preflight) <noreply@openai.com>\n Date: Fri Nov 27 05:49:40 2026 +0000\n 6 files changed, 305 insertions(+), 34 deletions(-)\n create mode 100644 Tests/HQ/annotation-exchange/run-linked-consent-controls.py\n",
+  "stderr": "",
+  "head": "62e7f013432edd33c1732c45e04b43cfd7c163c8"
+}

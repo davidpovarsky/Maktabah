@@ -1,0 +1,8 @@
+{
+  "index": 8,
+  "donor": "cde7879e46b780a21337bf9df2628e53fe33c26f",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 5893d7b0] test(anytype): cover both linked completion orders at equal revision\n Author: ChatGPT <noreply@openai.com>\n Date: Fri Nov 27 01:54:23 2026 +0000\n 2 files changed, 62 insertions(+), 2 deletions(-)\n",
+  "stderr": "",
+  "head": "5893d7b0153315763cb4dce954dc8a5bf88cec06"
+}

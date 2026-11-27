@@ -1,0 +1,8 @@
+{
+  "index": 3,
+  "donor": "4671202cb51de5470e60cd79e9c13343a97b5675",
+  "exit": 0,
+  "stdout": "[codex/otzaria-wave3-integration-20261127 9a8379be] Exercise linked outbox consent, atomicity, restart and reconciliation\n Author: ChatGPT <noreply@openai.com>\n Date: Fri Nov 27 01:17:14 2026 +0000\n 1 file changed, 154 insertions(+)\n",
+  "stderr": "",
+  "head": "9a8379be41d1757265f45eb18c09a3a5a0b0f91e"
+}
