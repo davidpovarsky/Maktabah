@@ -1,0 +1,18 @@
+test_actual_corrected_root_source_closure_covers_every_bridge_input (__main__.Controls.test_actual_corrected_root_source_closure_covers_every_bridge_input) ... ok
+test_actual_fixed_remote_checkout_reads_head_with_bounded_original_git (__main__.Controls.test_actual_fixed_remote_checkout_reads_head_with_bounded_original_git) ... ok
+test_candidate_accepts_explicit_checkout_for_both_original_phases (__main__.Controls.test_candidate_accepts_explicit_checkout_for_both_original_phases) ... ok
+test_candidate_rejects_missing_or_malformed_checkout (__main__.Controls.test_candidate_rejects_missing_or_malformed_checkout) ... ok
+test_final_original_join_accepts_both_phases_only_with_same_checkout (__main__.Controls.test_final_original_join_accepts_both_phases_only_with_same_checkout) ... ok
+test_fixed_bootstrap_proves_head_before_any_original_exec (__main__.Controls.test_fixed_bootstrap_proves_head_before_any_original_exec) ... ok
+test_launch_frame_binds_observed_head_to_supplied_value (__main__.Controls.test_launch_frame_binds_observed_head_to_supplied_value) ... ok
+test_original_ready_is_published_only_after_same_checkout_binding (__main__.Controls.test_original_ready_is_published_only_after_same_checkout_binding) ... ok
+test_original_unmodified_frozen_core_requires_this_exact_environment (__main__.Controls.test_original_unmodified_frozen_core_requires_this_exact_environment) ... ok
+test_preserved_baseline_accepts_omission_that_original_core_refuses (__main__.Controls.test_preserved_baseline_accepts_omission_that_original_core_refuses) ... ok
+test_preserved_baseline_rejects_explicit_required_environment (__main__.Controls.test_preserved_baseline_rejects_explicit_required_environment) ... ok
+test_remote_checkout_refuses_failed_ambiguous_or_changed_head (__main__.Controls.test_remote_checkout_refuses_failed_ambiguous_or_changed_head) ... ok
+test_source_and_fixed_remote_programs_parse_without_import_execution (__main__.Controls.test_source_and_fixed_remote_programs_parse_without_import_execution) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.123s
+
+OK

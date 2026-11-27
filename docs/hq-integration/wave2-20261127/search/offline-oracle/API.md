@@ -1,6 +1,6 @@
 # Original offline phase: live Oracle coordinator
 
-This checkpoint is **source only**. Forty-three synthetic admission, lifecycle and local temporary-file controls pass. They perform no actual SSH, Mac, PF, launchd, network denial, signal, Simulator action or native test. Importing the helper has no runtime effects. Runtime still requires a real coordinated window and the original retained corpus/packages/build.
+This checkpoint is **source only**. The original `4cb7590` checkpoint retained forty-three synthetic admission, lifecycle and local temporary-file controls. The subsequent immutable-checkout environment correction has its own bounded baseline/candidate controls in `../offline-oracle-environment/`. Those controls perform no actual SSH, Mac, PF, launchd, network denial, signal, Simulator action or native test. Importing the helper has no runtime effects. Runtime still requires a real coordinated window and the original retained corpus/packages/build.
 
 ## Scope and integration
 
@@ -47,7 +47,7 @@ The exact launch JSON keys are:
 | `python` | FileWitness of the actual canonical Mac interpreter, matching resolved `sys.executable` at execution |
 | `controller` | FileWitness of that checkout's `Scripts/CI/production-study-v40-ui.py` |
 | `argv` | The exact original Python/controller argv listed below, not a shell fragment |
-| `environment` | Explicit actual `FAITHFUL_RUNTIME27_IDENTIFIER`, `LC_ALL=C`, `TZ=UTC`; optional actual `PATH` and `DEVELOPER_DIR` only |
+| `environment` | Explicit actual `EXPECTED_CHECKOUT_SHA` (40 lowercase hex), `FAITHFUL_RUNTIME27_IDENTIFIER`, `LC_ALL=C`, `TZ=UTC`; optional actual `PATH` and `DEVELOPER_DIR` only |
 | `inputs` | `installationResult: FileWitness`, plus `runnerInputs: FileWitness` only if that original option is supplied |
 | `outputDirectory` | New original phase directory under that Mac checkout's `build/artifacts`, with an existing canonical parent |
 | `timeouts` | Explicit `preReadySeconds`1–1800 and `postRestorationSeconds`1–900 resource bounds |
@@ -69,9 +69,9 @@ The pre-ready and post-restoration waits are resource limits for the outer orche
 
 ## Actual ready and real owner response
 
-The fixed remote bootstrap verifies the actual non-root Mac interpreter, canonical checkout, original input witnesses and eight committed source files before executing the original main in the same observed PID. It emits its actual PID/start/parent/UID first. The original main then performs its normal admission and emits its own `CONTROLLER_READY`.
+The fixed remote bootstrap verifies the actual non-root Mac interpreter, canonical checkout, original input witnesses and eight committed source files before executing the original main in the same observed PID. It reads actual `git rev-parse HEAD` and requires equality with the explicitly supplied `EXPECTED_CHECKOUT_SHA`; an inherited SSH value cannot supply or replace that launch requirement. It emits that checkout SHA with its actual PID/start/parent/UID first. The original main then performs its normal admission and emits its own `CONTROLLER_READY`.
 
-The coordinator's live pipe reader saves that event immediately. It re-reads the original private Mac event file and source-before file, confirms the current original main PID/start/parent/argv, and verifies that the current Mac helper files equal Oracle's committed bytes. It then atomically publishes `READY.private.json` in its Oracle output and prints a flushed line beginning:
+The coordinator's live pipe reader saves that event immediately. It re-reads the original private Mac event file and source-before file, binds the original `checkout_sha` to that same explicit launch value, confirms the current original main PID/start/parent/argv, and verifies that the current Mac helper files equal Oracle's committed bytes. The final source join repeats the checkout binding. It then atomically publishes `READY.private.json` in its Oracle output and prints a flushed line beginning:
 
 ```text
 OTZARIA_OFFLINE_ORACLE_READY 
