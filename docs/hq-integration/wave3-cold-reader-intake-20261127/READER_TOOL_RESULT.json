@@ -1,0 +1,412 @@
+{
+  "scope": "ACTUAL_ORIGINAL_READER_TOOL_SELECTION_AND_INITIAL_COORDINATOR_WITH_EXPLICIT_BOUNDARIES",
+  "steps": [
+    {
+      "name": "original-compile",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lChavrusaUIRoutingHost",
+        "-lOtzariaUIRouting",
+        "-lOtzariaActionCore",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualActionAppIdentityBridge.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualBackendPublicationObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualInspectorBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualLibraryIdentityTypes.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualNoteDraftPreparation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualNoteEditorOwner.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualOtzariaLineAnchor.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualReaderTextMode.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/Controls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ExplicitSourceBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ReaderContentLoadCoordinator.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ReaderInitialContentRequest.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/original.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/original"
+      ],
+      "started": 1795806072.11745,
+      "pid": 1992583,
+      "startTicks": "733314394",
+      "exit": 0,
+      "finished": 1795806094.5706446,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "original-controls",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/original"
+      ],
+      "started": 1795806094.5718532,
+      "pid": 1995444,
+      "startTicks": "733316640",
+      "exit": 1,
+      "finished": 1795806094.8276315,
+      "logs": {
+        ".stdout": {
+          "bytes": 1481,
+          "sha256": "c895c773ab154a88669e88dac85737022ee36bf48f1ccfb1150a060b31dcfe70"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-compile",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lChavrusaUIRoutingHost",
+        "-lOtzariaUIRouting",
+        "-lOtzariaActionCore",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualActionAppIdentityBridge.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualBackendPublicationObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualInspectorBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualLibraryIdentityTypes.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualNoteDraftPreparation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualNoteEditorOwner.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualOtzariaLineAnchor.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ActualReaderTextMode.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/Controls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ExplicitSourceBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ReaderContentLoadCoordinator.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/common/ReaderInitialContentRequest.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/inputs/candidate.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/candidate"
+      ],
+      "started": 1795806094.830543,
+      "pid": 1995470,
+      "startTicks": "733316666",
+      "exit": 0,
+      "finished": 1795806103.4236913,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "candidate-controls",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/candidate"
+      ],
+      "started": 1795806103.4323933,
+      "pid": 1996506,
+      "startTicks": "733317526",
+      "exit": 0,
+      "finished": 1795806103.696722,
+      "logs": {
+        ".stdout": {
+          "bytes": 1025,
+          "sha256": "7f63b8068fd01cb0feb6ce5529ea384d0b1115fc10c2fcacee9fff085140fcb8"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "cases": [
+        {
+          "name": "loaded original selection capture is read only and remains available",
+          "pass": true
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "already pending initial invocation refuses unchanged rendered selection",
+          "pass": false
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "pre-token initial start after capture retires selection before any original field changes",
+          "pass": false
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "initial start and invalidate ABA cannot revive captured source",
+          "pass": false
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "direct original section token issuance retires prior selection",
+          "pass": false
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "original coordinator invalidation retires selection without renderer replacement",
+          "pass": false
+        },
+        {
+          "name": "completed original initial invocation permits a fresh loaded source",
+          "pass": true
+        },
+        {
+          "name": "another original Reader coordinator cannot invalidate this selection",
+          "pass": true
+        },
+        {
+          "error": "ControlFailure(reason: \"retired original source was accepted\")",
+          "name": "expired competing start still retires captured source",
+          "pass": false
+        }
+      ],
+      "failed": 6,
+      "nativeRuns": 0,
+      "passed": 3,
+      "scope": "Actual full coordinator/request/selection and original Inspector source; explicit Reader/renderer/SwiftUI/Combine boundaries",
+      "exit": 1,
+      "name": "original"
+    },
+    {
+      "cases": [
+        {
+          "name": "loaded original selection capture is read only and remains available",
+          "pass": true
+        },
+        {
+          "name": "already pending initial invocation refuses unchanged rendered selection",
+          "pass": true
+        },
+        {
+          "name": "pre-token initial start after capture retires selection before any original field changes",
+          "pass": true
+        },
+        {
+          "name": "initial start and invalidate ABA cannot revive captured source",
+          "pass": true
+        },
+        {
+          "name": "direct original section token issuance retires prior selection",
+          "pass": true
+        },
+        {
+          "name": "original coordinator invalidation retires selection without renderer replacement",
+          "pass": true
+        },
+        {
+          "name": "completed original initial invocation permits a fresh loaded source",
+          "pass": true
+        },
+        {
+          "name": "another original Reader coordinator cannot invalidate this selection",
+          "pass": true
+        },
+        {
+          "name": "expired competing start still retires captured source",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "nativeRuns": 0,
+      "passed": 9,
+      "scope": "Actual full coordinator/request/selection and original Inspector source; explicit Reader/renderer/SwiftUI/Combine boundaries",
+      "exit": 0,
+      "name": "candidate"
+    }
+  ],
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "inputs": {
+    "rows": [
+      {
+        "path": "candidate.swift",
+        "bytes": 6825,
+        "sha256": "efb99eb87a52c6c7c4cd2099bfa52598bf4cc88d9eb4af4637c1cdeb9d62c7f2"
+      },
+      {
+        "path": "original.swift",
+        "bytes": 5826,
+        "sha256": "09632361a30fd4d498bb9c1b0f490da9898acfebbcd5ea327f6c7dad53294c83"
+      },
+      {
+        "path": "common/ExplicitSourceBoundary.swift",
+        "bytes": 5103,
+        "sha256": "61d4c593b1f868cebf19eb5775bb42fde3ec6cf42f2e1ca5a1f8ce10da956f4a"
+      },
+      {
+        "path": "common/ActualBackendPublicationObservation.swift",
+        "bytes": 1570,
+        "sha256": "8e0613d89ff8ea0f858fba09cd0edea52d6c7939100ec9f87b6d7e564f27d553"
+      },
+      {
+        "path": "common/ActualInspectorBinding.swift",
+        "bytes": 3738,
+        "sha256": "0c4766c802604e0c3978055c374ce7cc0b43c802284690f8c5d11fb4bfaae91d"
+      },
+      {
+        "path": "common/ActualActionAppIdentityBridge.swift",
+        "bytes": 3008,
+        "sha256": "adfec7a43d818cc9759d38f413ca0757d2addbc7a7eeefae9bcb9a81caac39c0"
+      },
+      {
+        "path": "common/Controls.swift",
+        "bytes": 7549,
+        "sha256": "27e0426661b9833b05172185d8e40d554fd891761644d29883fdcb4a03989046"
+      },
+      {
+        "path": "common/ActualOtzariaLineAnchor.swift",
+        "bytes": 199,
+        "sha256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6"
+      },
+      {
+        "path": "common/ActualReaderTextMode.swift",
+        "bytes": 188,
+        "sha256": "2d6451398b423482731fe12425d157d9e51ed7628690f546ec7d6a42874a776a"
+      },
+      {
+        "path": "common/ReaderContentLoadCoordinator.swift",
+        "bytes": 12268,
+        "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+      },
+      {
+        "path": "common/ActualNoteDraftPreparation.swift",
+        "bytes": 4660,
+        "sha256": "ff8f4016d9219c2f44f876d67f7530e1ecdf707b91e597bc69af1dd4a75a29b1"
+      },
+      {
+        "path": "common/ActualLibraryIdentityTypes.swift",
+        "bytes": 3464,
+        "sha256": "9013328f2d28c9dfe65060b222b0f4cb98f3b62788444716b20101eea17a0342"
+      },
+      {
+        "path": "common/ActualNoteEditorOwner.swift",
+        "bytes": 2068,
+        "sha256": "ddebd50ec1be26364b2664c95e125974bc689e0c7908e23843606302da86f0a0"
+      },
+      {
+        "path": "common/ReaderInitialContentRequest.swift",
+        "bytes": 2841,
+        "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+      }
+    ],
+    "scope": "Complete original Coordinator, Request and ReaderToolSource plus actual original Inspector/selection/editor owner and identity/observation bodies; explicit Reader/rendering/UI/Combine boundaries. No Core effect, Apple SDK or native run."
+  },
+  "rootHead": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+  "reusedModuleSources": {
+    "currentHost": 41,
+    "currentUI": 13
+  },
+  "reusedProducts": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+      "bytes": 3097048,
+      "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+      "bytes": 444488,
+      "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libChavrusaUIRoutingHost.so",
+      "bytes": 2922744,
+      "sha256": "9178efbb16fd169f1be6f5c7359018482ba291adb28137cf9ff2b71d0a632f48"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+      "bytes": 315448,
+      "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/ChavrusaUIRoutingHost.swiftmodule",
+      "bytes": 422384,
+      "sha256": "4c31889be16d205925902298f4992d393a60f5842d2d67435769cc9fbb319b8d"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+      "bytes": 1578856,
+      "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d"
+    },
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+      "bytes": 708952,
+      "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103"
+    },
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+      "bytes": 3002144,
+      "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a"
+    }
+  ],
+  "status": "PASS_SOURCE_CONTROLS_ONLY",
+  "rootFree": 2368942080,
+  "dataFree": 8159010816
+}

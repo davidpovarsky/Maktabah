@@ -1,0 +1,145 @@
+{
+  "files": [
+    {
+      "path": "RESULT.json",
+      "bytes": 18641,
+      "sha256": "c5db1561d0f0d470547e194d3064bc3f1118813370f7e290337f9c76844b386f"
+    },
+    {
+      "path": "RUN.py",
+      "bytes": 5849,
+      "sha256": "d91cae6c133d577d6680a8af2f387af91646879aec9ad3a1191be211fecd8337"
+    },
+    {
+      "path": "candidate-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "candidate-controls.stdout",
+      "bytes": 1025,
+      "sha256": "7f63b8068fd01cb0feb6ce5529ea384d0b1115fc10c2fcacee9fff085140fcb8"
+    },
+    {
+      "path": "inputs/INPUTS.json",
+      "bytes": 2631,
+      "sha256": "25655b081a642ae3b637c1c84574637efb2efcc4dd8193bfe8ab447123a2cb23"
+    },
+    {
+      "path": "inputs/candidate.swift",
+      "bytes": 6825,
+      "sha256": "efb99eb87a52c6c7c4cd2099bfa52598bf4cc88d9eb4af4637c1cdeb9d62c7f2"
+    },
+    {
+      "path": "inputs/common/ActualActionAppIdentityBridge.swift",
+      "bytes": 3008,
+      "sha256": "adfec7a43d818cc9759d38f413ca0757d2addbc7a7eeefae9bcb9a81caac39c0"
+    },
+    {
+      "path": "inputs/common/ActualBackendPublicationObservation.swift",
+      "bytes": 1570,
+      "sha256": "8e0613d89ff8ea0f858fba09cd0edea52d6c7939100ec9f87b6d7e564f27d553"
+    },
+    {
+      "path": "inputs/common/ActualInspectorBinding.swift",
+      "bytes": 3738,
+      "sha256": "0c4766c802604e0c3978055c374ce7cc0b43c802284690f8c5d11fb4bfaae91d"
+    },
+    {
+      "path": "inputs/common/ActualLibraryIdentityTypes.swift",
+      "bytes": 3464,
+      "sha256": "9013328f2d28c9dfe65060b222b0f4cb98f3b62788444716b20101eea17a0342"
+    },
+    {
+      "path": "inputs/common/ActualNoteDraftPreparation.swift",
+      "bytes": 4660,
+      "sha256": "ff8f4016d9219c2f44f876d67f7530e1ecdf707b91e597bc69af1dd4a75a29b1"
+    },
+    {
+      "path": "inputs/common/ActualNoteEditorOwner.swift",
+      "bytes": 2068,
+      "sha256": "ddebd50ec1be26364b2664c95e125974bc689e0c7908e23843606302da86f0a0"
+    },
+    {
+      "path": "inputs/common/ActualOtzariaLineAnchor.swift",
+      "bytes": 199,
+      "sha256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6"
+    },
+    {
+      "path": "inputs/common/ActualReaderTextMode.swift",
+      "bytes": 188,
+      "sha256": "2d6451398b423482731fe12425d157d9e51ed7628690f546ec7d6a42874a776a"
+    },
+    {
+      "path": "inputs/common/Controls.swift",
+      "bytes": 7549,
+      "sha256": "27e0426661b9833b05172185d8e40d554fd891761644d29883fdcb4a03989046"
+    },
+    {
+      "path": "inputs/common/ExplicitSourceBoundary.swift",
+      "bytes": 5103,
+      "sha256": "61d4c593b1f868cebf19eb5775bb42fde3ec6cf42f2e1ca5a1f8ce10da956f4a"
+    },
+    {
+      "path": "inputs/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "inputs/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "inputs/original.swift",
+      "bytes": 5826,
+      "sha256": "09632361a30fd4d498bb9c1b0f490da9898acfebbcd5ea327f6c7dad53294c83"
+    },
+    {
+      "path": "original-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original-controls.stdout",
+      "bytes": 1481,
+      "sha256": "c895c773ab154a88669e88dac85737022ee36bf48f1ccfb1150a060b31dcfe70"
+    }
+  ],
+  "preservedGeneratedProducts": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/original",
+      "bytes": 660968,
+      "sha256": "6fe8ee1c25b0c62c9cbfce24ab927a84d6c9bb96ee66b1b42a776efd8a16dbfb",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/candidate",
+      "bytes": 663840,
+      "sha256": "a3f44c18171f39ceb292d500751a654846f4609762968aef6ef24298b9f6c4ce",
+      "preserved": true
+    }
+  ],
+  "rawBytes": 123932,
+  "rawSHA256": "84cf23619c90623ae9e7533325abaf8f8a13a697c4490442e27d8cf6d43bcc12"
+}

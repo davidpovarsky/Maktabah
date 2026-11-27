@@ -1,0 +1,232 @@
+{
+  "schema": "otzaria.wave3.cold-reader-intake.v1",
+  "base": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+  "donor": "d7b4d0978fe1bfc5d79bb377a2691b789db08741",
+  "picked": "80ebaedb7ac4be74b62fc27eb16abcb85b304d51",
+  "sharedCommit": "a8730d95fdea19be263629a3238d473a10bbc8a9",
+  "sourceTree": "2e2ec2280ea76e2d8fede90658d854c038c42a9a",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "productPaths": 6,
+  "docsPaths": 34,
+  "manifestRows": 33,
+  "rawColdEvidenceFilesVerified": 142,
+  "sessionSnapshotsVerified": 4,
+  "sourceControls": {
+    "attempt-1/run-baseline.stdout": {
+      "pass": 3,
+      "fail": 4
+    },
+    "attempt-1/run-candidate.stdout": {
+      "pass": 35,
+      "fail": 0
+    },
+    "publisher-followup-attempt-1/run-ios-candidate.stdout": {
+      "pass": 14,
+      "fail": 3
+    },
+    "publisher-followup-attempt-2/run-ios-before.stdout": {
+      "pass": 10,
+      "fail": 7
+    },
+    "publisher-followup-attempt-2/run-ios-candidate.stdout": {
+      "pass": 17,
+      "fail": 0
+    },
+    "publisher-followup-attempt-2/run-macos-before.stdout": {
+      "pass": 3,
+      "fail": 2
+    },
+    "publisher-followup-attempt-2/run-macos-candidate.stdout": {
+      "pass": 5,
+      "fail": 0
+    }
+  },
+  "readerToolSourceControls": {
+    "original": {
+      "passed": 3,
+      "failed": 6
+    },
+    "candidate": {
+      "passed": 9,
+      "failed": 0
+    },
+    "resultSHA256": "c5db1561d0f0d470547e194d3064bc3f1118813370f7e290337f9c76844b386f",
+    "rawFilesPreserved": 25,
+    "preservedGeneratedProducts": [
+      {
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/original",
+        "bytes": 660968,
+        "sha256": "6fe8ee1c25b0c62c9cbfce24ab927a84d6c9bb96ee66b1b42a776efd8a16dbfb",
+        "preserved": true
+      },
+      {
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1/candidate",
+        "bytes": 663840,
+        "sha256": "a3f44c18171f39ceb292d500751a654846f4609762968aef6ef24298b9f6c4ce",
+        "preserved": true
+      }
+    ]
+  },
+  "rootSharedJoin": {
+    "base": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+    "rows": [
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "beforeBytes": 177536,
+        "beforeSHA256": "97b5991b052e6acc06ff42699146d884aa915cadbd5e1b8bd3bfd2c09514ff5c",
+        "afterBytes": 177649,
+        "afterSHA256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+        "inverseExact": true
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift",
+        "beforeBytes": 5845,
+        "beforeSHA256": "54b3155815d3df7c8886175ad46b44f0f88523e7128c735a8d28cfe6e98b1c4b",
+        "afterBytes": 6844,
+        "afterSHA256": "8b339394522c75062b2b8e057110b5015437d82e45b420be12e012d71ed30d7d",
+        "inverseExact": true
+      },
+      {
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "beforeBytes": 646947,
+        "beforeSHA256": "981bab3eb5b3f8c3646f9bc46110c70938639b6fa2d39298433448936385208f",
+        "afterBytes": 648014,
+        "afterSHA256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab",
+        "inverseExact": true
+      }
+    ],
+    "sessionHunks": 2,
+    "readerToolHunks": 5
+  },
+  "registration": {
+    "source": "Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+    "originalRef": "CF0000000000000000000010",
+    "targets": [
+      "Maktabah",
+      "Maktabah-Direct",
+      "Maktabah-iOS"
+    ],
+    "newObjects": [
+      "0D9E230554E3F5C704AB53A8",
+      "627097BD8AB78DEADAC8C319",
+      "D4032B42A357852D4E98A0E6",
+      "538D4EFA21E56EC7B252C365"
+    ],
+    "insertions": [
+      {
+        "offset": 408454,
+        "text": "\t\t0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Navigation/ReaderInitialContentRequest.swift\"; sourceTree = \"<group>\"; };\n"
+      },
+      {
+        "offset": 412414,
+        "text": "\t\t\t\t0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */,\n"
+      },
+      {
+        "offset": 242873,
+        "text": "\t\t627097BD8AB78DEADAC8C319 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };\n"
+      },
+      {
+        "offset": 501498,
+        "text": "\t\t\t\t627097BD8AB78DEADAC8C319 /* ReaderInitialContentRequest.swift in Sources */,\n"
+      },
+      {
+        "offset": 243053,
+        "text": "\t\tD4032B42A357852D4E98A0E6 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };\n"
+      },
+      {
+        "offset": 527972,
+        "text": "\t\t\t\tD4032B42A357852D4E98A0E6 /* ReaderInitialContentRequest.swift in Sources */,\n"
+      },
+      {
+        "offset": 243233,
+        "text": "\t\t538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };\n"
+      },
+      {
+        "offset": 554528,
+        "text": "\t\t\t\t538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */,\n"
+      }
+    ],
+    "catalogAndShortcutsUnchanged": true
+  },
+  "newBehaviorControlExecutions": 0,
+  "newFullAppFileSyntaxParses": 4,
+  "syntaxSteps": [
+    {
+      "name": "joined-full-ios-syntax-release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+      ],
+      "started": 1795806830.700901,
+      "pid": 2076433,
+      "startTicks": "733390253",
+      "exit": 0,
+      "finished": 1795806830.952072,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "joined-full-ios-syntax-debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+      ],
+      "started": 1795806830.9529624,
+      "pid": 2076435,
+      "startTicks": "733390278",
+      "exit": 0,
+      "finished": 1795806831.204234,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "protectedTrees": {
+    "Source/Otzaria/Actions": "0c9b1ca50eb9d9583567c4277a3506fe3d4b5679",
+    "Source/Otzaria/UIRouting": "2e6d89e3b682f835d243f8ca37845a9242be32fd",
+    "Source/ChavrusaText/UIRoutingHost/Sources": "bf7a3b86e938830210a88a6fa6ed08a4c510442e",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "3b08c2291bc87d99bca1f6056328bc3362a66a7f",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b",
+    "Source/Localizable.xcstrings": "6c64db83a8a42717aec39104c5f395bfe475af3b",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "adb2f1d767e5a827f9d49ae7e025267d9c8e29aa"
+  },
+  "AppleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "open": [
+    "App SDK typing and real cold/inactive/restored/cancelled/background UI acceptance",
+    "Hidden already-active phone Group presentation",
+    "Annotation expansion original full-caller correction and native selectors",
+    "Original Inspector complete source traversal",
+    "Final production/owner/target merge/TestFlight"
+  ]
+}

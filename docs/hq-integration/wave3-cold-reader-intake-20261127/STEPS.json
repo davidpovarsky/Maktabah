@@ -1,0 +1,58 @@
+[
+  {
+    "name": "joined-full-ios-syntax-release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+    ],
+    "started": 1795806830.700901,
+    "pid": 2076433,
+    "startTicks": "733390253",
+    "exit": 0,
+    "finished": 1795806830.952072,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "joined-full-ios-syntax-debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0",
+      "-D",
+      "DEBUG",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-cold-reader-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+    ],
+    "started": 1795806830.9529624,
+    "pid": 2076435,
+    "startTicks": "733390278",
+    "exit": 0,
+    "finished": 1795806831.204234,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]
