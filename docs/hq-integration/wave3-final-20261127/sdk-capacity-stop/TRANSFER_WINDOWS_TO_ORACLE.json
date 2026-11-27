@@ -1,0 +1,13 @@
+{
+  "archive_bytes": 961420,
+  "archive_sha256": "d33c6e34c510785942791027d813666d7a3697da16fa8c55870bd9e2d3790752",
+  "mac_archive_files_created": 0,
+  "manifest_sha256": "63b5097f80cfa0b2671e7f4f2cbbf0633522ae6c48bb2727ff3a4eb56eb7699f",
+  "original_mac_payloads_and_logs_preserved": true,
+  "raw_bytes": 13980756,
+  "raw_member_count": 67,
+  "schema": "otzaria.wave3.evidence-transfer/1",
+  "status": "WINDOWS_TO_ORACLE_SHA_AND_ALL_67_RAW_MEMBERS_VERIFIED",
+  "verified_at": "2026-11-27T04:24:52.138194+00:00",
+  "windows_root": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-capacity-stop-20261127"
+}

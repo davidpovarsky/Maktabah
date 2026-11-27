@@ -1,0 +1,156 @@
+{
+  "commands": {
+    "exact-package-resolution": {
+      "command": [
+        "xcodebuild",
+        "-resolvePackageDependencies",
+        "-project",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Anytype.xcodeproj",
+        "-scheme",
+        "AnytypeOriginalEditor",
+        "-configuration",
+        "Debug-Anytype",
+        "-destination",
+        "platform=iOS Simulator,id=8F9EA572-70C5-4ECF-9309-490673CDA95E",
+        "-derivedDataPath",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived",
+        "-onlyUsePackageVersionsFromResolvedFile"
+      ],
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:12:11.898015+00:00",
+      "returncode": 0,
+      "started_at": "2026-11-27T04:11:25.873922+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1aaeb2580b9a2e5e9efa6e0ecf125ea1687901afefbf2fafdcd3242160789408",
+      "timed_out": false,
+      "timeout_seconds": 900
+    },
+    "framework-build": {
+      "command": [
+        "xcodebuild",
+        "build",
+        "-project",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Anytype.xcodeproj",
+        "-scheme",
+        "AnytypeOriginalEditor",
+        "-configuration",
+        "Debug-Anytype",
+        "-destination",
+        "platform=iOS Simulator,id=8F9EA572-70C5-4ECF-9309-490673CDA95E",
+        "-derivedDataPath",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived",
+        "-resultBundlePath",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.xcresult",
+        "-onlyUsePackageVersionsFromResolvedFile",
+        "OTHER_SWIFT_FLAGS=$(inherited) -D PINKHA_NATIVE_DERIVED $(ORIGINAL_EDITOR_SYMBOL_GRAPH_FLAGS)",
+        "ONLY_ACTIVE_ARCH=YES",
+        "ARCHS=arm64",
+        "SWIFT_OPTIMIZATION_LEVEL=-Onone",
+        "CODE_SIGN_IDENTITY=-",
+        "CODE_SIGNING_ALLOWED=YES",
+        "CODE_SIGNING_REQUIRED=YES",
+        "PROVISIONING_PROFILE_SPECIFIER="
+      ],
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:15:53.981988+00:00",
+      "returncode": -15,
+      "started_at": "2026-11-27T04:12:20.094318+00:00",
+      "stderr_sha256": "23b50d81c65e172a3a39d38234b74de6d8015d338faa77094f07a2f4b38439d1",
+      "stdout_sha256": "efa2618ee5ae84947c1a9c765840b5d63a2196e21e1d18ee2aefd411125f297f",
+      "timed_out": false,
+      "timeout_seconds": 6000
+    }
+  },
+  "first_sample": {
+    "at": "2026-11-27T04:11:00.097583+00:00",
+    "command": "macro-prepare",
+    "controller_phase": null,
+    "free_bytes": 10961080320,
+    "pid": 529
+  },
+  "framework_log_errors_before_interrupt": [
+    "138 |     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {",
+    "    |          |- note: main actor-isolated instance method 'locationManager(_:didFailWithError:)' cannot satisfy nonisolated requirement",
+    "    |          `- note: mark instance method 'locationManager(_:didFailWithError:)' 'nonisolated'",
+    "138 |     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {",
+    "    |          |- note: main actor-isolated instance method 'locationManager(_:didFailWithError:)' cannot satisfy nonisolated requirement",
+    "    |          `- note: mark instance method 'locationManager(_:didFailWithError:)' 'nonisolated'",
+    "276 |     private func observeUI27Startup(_ phase: String, consumed: ApplicationState? = nil, error: Error? = nil) {",
+    "33 |     private func safeCode(_ error: Error) -> HanlinErrorCode {",
+    "277 |     private func safeCode(_ error: Error) -> HanlinErrorCode {",
+    "279 |         case is CancellationError: .cancelled",
+    "322 |         originalError: Error",
+    "1153 |     func reportSearchError(_ error: Error) {",
+    "1162 |     func searchMessage(for error: Error) -> String {",
+    "1181 |     private func recordAssociationError(_ error: Error) {"
+  ],
+  "free_bytes": 2036146176,
+  "last_sample": {
+    "at": "2026-11-27T04:16:03.202797+00:00",
+    "command": "macro-restore",
+    "controller_phase": null,
+    "free_bytes": 2265989120,
+    "pid": 10568
+  },
+  "macro_restoration": {
+    "status": "PREEXISTING_APPROVAL_NOT_CHANGED_BY_THIS_JOB",
+    "wrote_trust_store": false
+  },
+  "min_sample_free_bytes": 2233339904,
+  "observed_at": "2026-11-27T04:18:05.427486+00:00",
+  "other_xcode_processes": [],
+  "owned_processes_remaining": [],
+  "scope": "Read-only post-stop inventory; no cleanup or new build",
+  "scope_du": [
+    {
+      "du_kib": 11558736,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work",
+      "returncode": 0
+    },
+    {
+      "du_kib": 11558736,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived",
+      "returncode": 0
+    },
+    {
+      "du_kib": 5775652,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/SourcePackages",
+      "returncode": 0
+    },
+    {
+      "du_kib": 1935624,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/SourcePackages/repositories",
+      "returncode": 0
+    },
+    {
+      "du_kib": 897152,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/SourcePackages/checkouts",
+      "returncode": 0
+    },
+    {
+      "du_kib": 2942816,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/SourcePackages/artifacts",
+      "returncode": 0
+    },
+    {
+      "du_kib": 4675580,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/Build",
+      "returncode": 0
+    },
+    {
+      "du_kib": 2271768,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/Build/Products",
+      "returncode": 0
+    },
+    {
+      "du_kib": 2403812,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/Build/Intermediates.noindex",
+      "returncode": 0
+    },
+    {
+      "du_kib": 480080,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived/ModuleCache.noindex",
+      "returncode": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "schema":  "otzaria.wave3.evidence-transfer/1",
+    "status":  "MAC_COMPRESSED_STREAM_AND_WINDOWS_FILE_IDENTICAL",
+    "archive":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-capacity-stop-20261127\\SDK_STOPPED_RAW_EVIDENCE.tar.gz",
+    "bytes":  961420,
+    "sha256":  "d33c6e34c510785942791027d813666d7a3697da16fa8c55870bd9e2d3790752",
+    "manifest_sha256":  "63b5097f80cfa0b2671e7f4f2cbbf0633522ae6c48bb2727ff3a4eb56eb7699f",
+    "raw_file_count":  67,
+    "transport":  "Pinned scaleway-mac SSH; binary StandardOutput.BaseStream.CopyTo without text conversion",
+    "verified_at":  "2026-11-27T04:23:38.9520379Z",
+    "mac_archive_files_created":  0,
+    "no_sdk_acceptance":  true
+}
