@@ -1,0 +1,17 @@
+{
+  "schema": "otzaria.wave3.lossless-evidence-transport.v1",
+  "originalDonor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+  "files": [
+    {
+      "originalPath": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "originalBytes": 34464,
+      "originalSHA256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "storedPath": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ZayitSearch/UnifiedSearchSessionController.swift.gz",
+      "storedBytes": 8079,
+      "storedSHA256": "b59c4a8cabf251aefe724a499b3423b3276009fc4ea9cebb09b101773d9a0419",
+      "encoding": "gzip"
+    }
+  ],
+  "originalReceiptsUnchanged": true,
+  "reason": "Original raw source ends in blank line; preserve losslessly as gzip plus explicit transport index after exact intake; do not alter evidence bytes or original receipts"
+}

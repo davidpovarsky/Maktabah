@@ -1,0 +1,3 @@
+# Lossless root intake storage
+
+The immutable donor b5f52c446a5eba31273b6e3ee61d53ba022244d5 and all original receipts are preserved. Its captured original UnifiedSearchSessionController source includes a final blank line. The exact raw bytes now use deterministic gzip transport to satisfy repository whitespace checks without changing the source evidence. LOSSLESS_EVIDENCE_STORAGE.json maps the original manifest path to the stored payload, original byte length and SHA256. Decompress this one mapped file when replaying the historical donor manifests. All other files and all original receipts retain their donor bytes. This storage change is not a new test result.
