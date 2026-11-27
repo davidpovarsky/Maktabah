@@ -15,6 +15,9 @@ struct MaktabahNativeShortcuts: AppShortcutsProvider {
         AppShortcut(intent: OpenBookAtLocationIntent(),
                     phrases: ["Open \(\.$book) in \(.applicationName)"],
                     shortTitle: "Open book", systemImageName: "book")
+        AppShortcut(intent: ShowSearchResultsIntent(),
+                    phrases: ["Show search results in \(.applicationName)"],
+                    shortTitle: "Search", systemImageName: "magnifyingglass")
     }
 }
 #endif
