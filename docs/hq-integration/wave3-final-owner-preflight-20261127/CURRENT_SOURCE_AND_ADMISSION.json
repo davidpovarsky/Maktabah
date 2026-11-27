@@ -1,0 +1,112 @@
+{
+  "current_admission": {
+    "Scripts/CI/final-integration-source.inputs.json": {
+      "bytes": 209079,
+      "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15",
+      "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
+      "application_trees": {
+        "Maktabah-iOSUITests": "bd9c98e6ed6a4009ed06b7daf0d091815fdde26c",
+        "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
+        "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
+        "Vendor": "206715dd2022ff73184860bec183578c8799d812"
+      },
+      "final_product_source": null,
+      "schema": "otzaria.integrated-product-source/1",
+      "qualified": false,
+      "component_count": 80,
+      "product_delta_count": 141,
+      "sdk_routes": null,
+      "reviewed_source": null
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+      "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
+      "application_trees": {
+        "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
+        "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
+        "Vendor": "206715dd2022ff73184860bec183578c8799d812"
+      },
+      "final_product_source": {
+        "manifest": "Scripts/CI/final-integration-source.inputs.json",
+        "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
+      },
+      "schema": null,
+      "qualified": null,
+      "component_count": 0,
+      "product_delta_count": 0,
+      "sdk_routes": null,
+      "reviewed_source": null
+    }
+  },
+  "immutable_candidate": {
+    "candidate": "ec5385e863a478e368c7de47264474a440fd0734",
+    "trees": {
+      "Source": "10e731eec6b7365687c73958f926800c61fa6461",
+      "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+      "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+      "Maktabah-iOSUITests": "5b2798b9c4489d5dc67f200963ecfbf28d9c2577"
+    },
+    "current_vendor_delta_from_historical_source": [
+      "M\tVendor/HanlinSDK",
+      "M\tVendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "A\tVendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "A\tVendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "M\tVendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "M\tVendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "M\tVendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+    ],
+    "wave3_lock_manifest_license_paths": [
+      "docs/hq-integration/wave2-20261127/library/update-source-audit/producer/LICENSE"
+    ]
+  },
+  "workflow_sources": [
+    {
+      "path": ".github/workflows/upstream-boundary-guard.yml",
+      "bytes": 2756,
+      "sha256": "717080cb78f128094de92b29ce69bbd5fcb3b3c4baf812e1f63140bbd2bfdb43"
+    },
+    {
+      "path": ".github/workflows/ios-testflight.yml",
+      "bytes": 61764,
+      "sha256": "0eb140364a65a8e11451a5843d437919396f0f1d6f84b6d9f23c015585f786b3"
+    }
+  ],
+  "runtime_sources": [
+    {
+      "path": "Scripts/CI/verify-runtime27-release-gate.py",
+      "bytes": 21381,
+      "sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+    }
+  ],
+  "additional_sources": [
+    {
+      "path": "Scripts/CI/final_integration_source.py",
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+      "gzip_sha256": "be592540e4b0d052ba29683b0b4e11aecd0afebc479522362592ec002c0396a9"
+    },
+    {
+      "path": "Source/ChavrusaText/ThirdPartyNotices/OriginalAnytype-LICENSE.md",
+      "bytes": 2576,
+      "sha256": "daad9eb95adc6262b07115ba2cf87cd4c64acaca4b45d48e0fd3b15a72a31dc1",
+      "gzip_sha256": "06f246d6ca501cc8d459790e268c92ab77f3f59fb4cd6858414717854076f3ea"
+    },
+    {
+      "path": "Source/ChavrusaText/ThirdPartyNotices/Hanlin-LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "2bdf2973d798073b983a9068a8e328400068c18d962e2059bfcde4042129f294",
+      "gzip_sha256": "9dd9aa8eec6b8bc4ad3058df865c6119ca22309feaa99055ce448f79da487285"
+    }
+  ]
+}

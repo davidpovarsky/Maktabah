@@ -1,0 +1,233 @@
+{
+  "identity_metadata": {
+    "user": "DAVID",
+    "python": "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "artifact_candidates": [],
+    "identity_path": "C:\\Users\\DAVID\\AppData\\Local\\Maktabah\\OwnerVerification",
+    "identity_metadata_only": {
+      "owner-signing.dpapi": {
+        "exists": true,
+        "bytes": 314
+      },
+      "owner-signing.public.hex": {
+        "exists": true,
+        "bytes": 66
+      },
+      "public_fingerprint_sha256": "b0f0fa39ad1b59595699cd7eaef340a17567c9ff8dbe1408c2372c2a5866818b"
+    },
+    "private_key_read": false,
+    "signing_executed": false
+  },
+  "historical_filename_lookups": [
+    {
+      "reads": "filename-only exact wrapper lookup in three historically relevant Maktabah roots",
+      "results": [
+        {
+          "root": "C:\\Users\\DAVID\\Code\\Maktabah-ipad-ui-faithful-rebuild",
+          "matches": [],
+          "exit_code": 1
+        },
+        {
+          "root": "C:\\Users\\DAVID\\Code\\Maktabah",
+          "matches": [],
+          "exit_code": 1
+        },
+        {
+          "root": "C:\\Users\\DAVID\\Code\\Maktabah-original-editor-process-resume-20261122",
+          "matches": [],
+          "exit_code": 1
+        }
+      ],
+      "private_key_read": false,
+      "source_mutated": false
+    },
+    {
+      "scope": "C:\\Users\\DAVID\\.codex\\artifacts",
+      "filename": "sign-reviewed-delta.py",
+      "matches": [],
+      "exit_code": 1,
+      "file_contents_read": false,
+      "private_key_read": false
+    }
+  ],
+  "exact_conversation_searches": [
+    {
+      "link_scope": 0,
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"operation\":\"search\",\"query\":\"01a2151b-c333-73b3-b93b-09759f66a752\",\"search_mode\":\"deterministic_keyword_scan\",\"count\":0,\"matches\":[]}"
+            }
+          ],
+          "structuredContent": {
+            "ok": true,
+            "operation": "search",
+            "query": "01a2151b-c333-73b3-b93b-09759f66a752",
+            "search_mode": "deterministic_keyword_scan",
+            "count": 0,
+            "matches": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "link_scope": 1,
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"operation\":\"search\",\"query\":\"01a2151b-c333-73b3-b93b-09759f66a752\",\"search_mode\":\"deterministic_keyword_scan\",\"count\":0,\"matches\":[]}"
+            }
+          ],
+          "structuredContent": {
+            "ok": true,
+            "operation": "search",
+            "query": "01a2151b-c333-73b3-b93b-09759f66a752",
+            "search_mode": "deterministic_keyword_scan",
+            "count": 0,
+            "matches": []
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "link_scope": 2,
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"operation\":\"search\",\"query\":\"01a2151b-c333-73b3-b93b-09759f66a752\",\"search_mode\":\"deterministic_keyword_scan\",\"count\":0,\"matches\":[]}"
+            }
+          ],
+          "structuredContent": {
+            "ok": true,
+            "operation": "search",
+            "query": "01a2151b-c333-73b3-b93b-09759f66a752",
+            "search_mode": "deterministic_keyword_scan",
+            "count": 0,
+            "matches": []
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "final_lookup": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"ok\":false,\"error\":\"agent_offline\",\"message\":\"you have 1 enrolled host, but none are connected right now. This usually means the machine is powered off, asleep or has lost network, or its agent stopped. On Windows, check that the PC is awake and online and that `Get-Service SentinelX` is Running (for a per-user install, its scheduled task), then retry.\",\"hub_request_id\":\"hreq_faa2662abf614e86\"}"
+      }
+    ],
+    "structuredContent": {
+      "ok": false,
+      "error": "agent_offline",
+      "message": "you have 1 enrolled host, but none are connected right now. This usually means the machine is powered off, asleep or has lost network, or its agent stopped. On Windows, check that the PC is awake and online and that `Get-Service SentinelX` is Running (for a per-user install, its scheduled task), then retry.",
+      "hub_request_id": "hreq_faa2662abf614e86"
+    },
+    "isError": false
+  },
+  "context_lookup_summary": {
+    "windows_contexts": [
+      "sxc_NCA3K3YC revision33 2026-11-22",
+      "sxc_WAXQV0PW revision18 2026-11-22"
+    ],
+    "read_only_exports": true,
+    "historical_six_path_wrapper_locator_found": false
+  },
+  "status": "EXISTING_IDENTITY_METADATA_CONFIRMED_ORIGINAL_RUNNER_NOT_LOCATED_SENTINEL_OFFLINE_AND_PINNED_SSH_TIMEOUT",
+  "private_key_read": false,
+  "private_key_exported": false,
+  "signature_created": false,
+  "records_modified": false,
+  "old_two_path_bridge_reused": false,
+  "pinned_ssh_fallback": {
+    "ssh_configuration": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":true,\"job\":{\"id\":\"job_2f471a3185b6\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795788059.6699498,\"started_at\":\"2026-11-27T14:00:59.755959+00:00\",\"finished_at\":\"2026-11-27T14:00:59.821450+00:00\",\"duration_s\":0.07,\"error\":null,\"output_truncated\":false,\"timeout_s\":40,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"scope\\\": \\\"existing_pinned_alias_configuration_only\\\", \\\"alias\\\": \\\"david-win\\\", \\\"returncode\\\": 0, \\\"configuration\\\": [\\\"user DAVID\\\", \\\"hostname 100.75.73.92\\\", \\\"port 22\\\", \\\"batchmode yes\\\", \\\"identitiesonly yes\\\", \\\"stricthostkeychecking true\\\", \\\"identityfile /home/ubuntu/.ssh/id_ed25519_torah_to_windows\\\", \\\"userknownhostsfile /home/ubuntu/.ssh/known_hosts /home/ubuntu/.ssh/known_hosts2\\\"], \\\"stderr\\\": \\\"Pseudo-terminal will not be allocated because stdin is not a terminal.\\\\n\\\", \\\"credentials_read_or_changed\\\": false, \\\"host_connected\\\": false}\"}}"
+        }
+      ],
+      "structuredContent": {
+        "ok": true,
+        "job": {
+          "id": "job_2f471a3185b6",
+          "type": "job_result",
+          "source": "script_run@host_299cf75f6b338ecd",
+          "severity": "info",
+          "tool": "script_run",
+          "host": "host_299cf75f6b338ecd",
+          "status": "succeeded",
+          "exit_code": 0,
+          "created_at": 1795788059.6699498,
+          "started_at": "2026-11-27T14:00:59.755959+00:00",
+          "finished_at": "2026-11-27T14:00:59.821450+00:00",
+          "duration_s": 0.07,
+          "error": null,
+          "output_truncated": false,
+          "timeout_s": 40,
+          "read": false,
+          "notified": {
+            "telegram": null,
+            "resend": null
+          },
+          "notify_spec": {},
+          "output": "{\"scope\": \"existing_pinned_alias_configuration_only\", \"alias\": \"david-win\", \"returncode\": 0, \"configuration\": [\"user DAVID\", \"hostname 100.75.73.92\", \"port 22\", \"batchmode yes\", \"identitiesonly yes\", \"stricthostkeychecking true\", \"identityfile /home/ubuntu/.ssh/id_ed25519_torah_to_windows\", \"userknownhostsfile /home/ubuntu/.ssh/known_hosts /home/ubuntu/.ssh/known_hosts2\"], \"stderr\": \"Pseudo-terminal will not be allocated because stdin is not a terminal.\\n\", \"credentials_read_or_changed\": false, \"host_connected\": false}"
+        }
+      },
+      "isError": false
+    },
+    "ssh_identity_only": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":true,\"job\":{\"id\":\"job_fa7ac9c3ec08\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"info\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"succeeded\",\"exit_code\":0,\"created_at\":1795788105.2710795,\"started_at\":\"2026-11-27T14:01:45.356071+00:00\",\"finished_at\":\"2026-11-27T14:01:53.416683+00:00\",\"duration_s\":8.06,\"error\":null,\"output_truncated\":false,\"timeout_s\":35,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"scope\\\": \\\"existing_pinned_alias_identity_only\\\", \\\"alias\\\": \\\"david-win\\\", \\\"returncode\\\": 255, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ssh: connect to host 100.75.73.92 port 22: Connection timed out\\\\n\\\", \\\"key_bytes_read_or_changed\\\": false}\"}}"
+        }
+      ],
+      "structuredContent": {
+        "ok": true,
+        "job": {
+          "id": "job_fa7ac9c3ec08",
+          "type": "job_result",
+          "source": "script_run@host_299cf75f6b338ecd",
+          "severity": "info",
+          "tool": "script_run",
+          "host": "host_299cf75f6b338ecd",
+          "status": "succeeded",
+          "exit_code": 0,
+          "created_at": 1795788105.2710795,
+          "started_at": "2026-11-27T14:01:45.356071+00:00",
+          "finished_at": "2026-11-27T14:01:53.416683+00:00",
+          "duration_s": 8.06,
+          "error": null,
+          "output_truncated": false,
+          "timeout_s": 35,
+          "read": false,
+          "notified": {
+            "telegram": null,
+            "resend": null
+          },
+          "notify_spec": {},
+          "output": "{\"scope\": \"existing_pinned_alias_identity_only\", \"alias\": \"david-win\", \"returncode\": 255, \"stdout\": \"\", \"stderr\": \"ssh: connect to host 100.75.73.92 port 22: Connection timed out\\n\", \"key_bytes_read_or_changed\": false}"
+        }
+      },
+      "isError": false
+    },
+    "skill_package": "c25/hybrid-workspace-bridge",
+    "root_authorized_existing_fallback": true,
+    "remote_command_executed": false,
+    "outcome": "EXISTING_PINNED_ROUTE_CONNECTION_TIMEOUT",
+    "configuration_changed": false,
+    "private_key_read": false
+  }
+}

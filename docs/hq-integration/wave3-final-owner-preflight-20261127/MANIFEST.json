@@ -1,0 +1,47 @@
+{
+  "schema": "otzaria.wave3.final-owner-preflight-evidence/1",
+  "candidate": "ec5385e863a478e368c7de47264474a440fd0734",
+  "scope": "READ_ONLY_SOURCE_POLICY_REVIEW_NO_SIGNATURE_OR_FINAL_GATE",
+  "files": [
+    {
+      "path": "CURRENT_SOURCE_AND_ADMISSION.json",
+      "bytes": 4509,
+      "sha256": "d115bc12c0f40a52126d77f7db90b05e2f64808ae9a22f1ff87cc83aab73d903"
+    },
+    {
+      "path": "FINAL_SOURCE_INVENTORY.json",
+      "bytes": 107565,
+      "sha256": "33089825ede3f673dab414c0b2e77ea70a90726880c992aee543933e963ccd7b"
+    },
+    {
+      "path": "ORIGINAL_ASANA_REQUIREMENTS.json",
+      "bytes": 10680,
+      "sha256": "42f6576d77560cf2f796d8f2105229300ceab52c5ef1a39add13becab24fbc02"
+    },
+    {
+      "path": "README.md",
+      "bytes": 22308,
+      "sha256": "3f3aa55b9e188f39b03604fb31b570449239ae912c3934c9b1159d947f46a5c8"
+    },
+    {
+      "path": "READ_ATTEMPTS.json",
+      "bytes": 1920,
+      "sha256": "a7c5b0744efcfbec549c74d557b118b7d4d1b2c2bb5b527c57f41bb99f31355b"
+    },
+    {
+      "path": "READ_ONLY_INVENTORY_SCRIPT.py",
+      "bytes": 5076,
+      "sha256": "d78f93fb915dcfaf11b86be880440a1e2058f4800e241873b3268393c4acb7bd"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 5406,
+      "sha256": "6a2c7c4521410498581454e5427671672200007530b6955dd4ee2fcb60822306"
+    },
+    {
+      "path": "WINDOWS_RUNNER_PREFLIGHT.json",
+      "bytes": 10309,
+      "sha256": "113b4a5ae206acf8cb73b11f61307a47eef3df7d09a037010d556a9f663655e1"
+    }
+  ]
+}
