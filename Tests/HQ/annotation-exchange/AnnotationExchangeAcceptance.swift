@@ -406,6 +406,7 @@ final class Acceptance {
             try require(outcomes.filter { $0 == "committed" }.count == 1 && outcomes.filter { $0 == "staleRevision" }.count == 7, "unexpected outcomes \(outcomes)")
             try require(f.ledger.pending(for: a).count == 1 && f.cloudRows() == before, "concurrent duplication/CloudKit change")
         }
+        linkedSyncCases()
         let encoder = JSONEncoder(); encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         try encoder.encode(results).write(to: root.appendingPathComponent("CASES.json"))
         acceptancePrint("CASES \(results.count) PASS \(results.filter { $0.status == "PASS" }.count) FAIL \(results.filter { $0.status == "FAIL" }.count)")
@@ -471,5 +472,158 @@ struct AnnotationExchangeAcceptanceMain {
             return
         }
         throw CheckFailure("unknown mode \(mode)")
+    }
+}
+
+
+// Real SQLite durability tests of the Host ledger. The test origins are data,
+// not SDK receipts, and confer no native, account, network or UI acceptance.
+private func linkedOrigin(_ space: String = "space-a", root: String = String(repeating: "a", count: 64)) throws -> AnnotationExchangeNativeReadOrigin {
+    .init(destination: try scope("account-a", space, "anytype.original"), objectID: "native-object-" + space,
+          nativeRootSHA256: root, nativeResponseSHA256: String(repeating: "b", count: 64))
+}
+
+private func localLinkedCommit(_ f: Fixture, origin: AnnotationExchangeNativeReadOrigin? = nil,
+                               enableLink: Bool = false, revision: Int64, mutation: UUID = UUID()) throws -> AnnotationExchangeVersion {
+    var result: AnnotationExchangeVersion?
+    try f.db.transaction {
+        let source = try f.witness()
+        _ = try f.ledger.commitLocal(mutationID: mutation, payload: f.payload(source, preview: "revision \(revision + 1)"),
+                                     expectedSource: source, expectedRevision: revision)
+        guard let version = try f.ledger.version(mutationID: mutation) else { throw CheckFailure("missing immutable local version") }
+        if let origin { try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: enableLink) }
+        try f.ledger.enqueueLinkedVersion(version, suppressing: origin)
+        result = version
+    }
+    guard let result else { throw CheckFailure("missing actual commit") }
+    return result
+}
+
+extension Acceptance {
+    func linkedSyncCases() {
+        test("unlinked_save_preserves_empty_destinations_and_creates_no_link_schema") {
+            let f = try Fixture(root: root, name: "linked-off"), before = try f.originals()
+            let version = try localLinkedCommit(f, revision: 0)
+            try require(version.destinationsJSON == "[]" && !f.ledger.hasLinkedSyncSchema(), "unlinked save acquired a destination")
+            try require(f.ledger.pending(for: linkedOrigin().destination).isEmpty && f.originals() == before, "unlinked side effect")
+        }
+        test("opt_in_origin_is_atomic_and_does_not_echo_to_its_native_copy") {
+            let f = try Fixture(root: root, name: "linked-origin"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let links = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)
+            try require(links.count == 1 && links[0].objectID == origin.objectID, "actual origin lost")
+            try require(f.ledger.pending(for: origin.destination).isEmpty, "received body echoed to origin")
+            let version = try localLinkedCommit(f, revision: 1)
+            let pending = try f.ledger.linkedDeliveries(for: links[0])
+            try require(pending.count == 1 && pending[0].delivery.payload == version.payload && pending[0].state == .pending, "saved immutable body not queued")
+            let replay = try f.ledger.commitLocal(mutationID: version.mutationID, payload: version.payload,
+                                                  expectedSource: f.witness(), expectedRevision: 1)
+            try require(replay.replayed && replay.deliveries.isEmpty, "local replay changed creation scope")
+            try require(f.ledger.pending(for: origin.destination).count == 1, "local replay duplicated delivery")
+        }
+        test("outer_save_rollback_removes_body_and_linked_delivery_together") {
+            let f = try Fixture(root: root, name: "linked-rollback"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let before = try f.originals()
+            do {
+                try f.db.transaction {
+                    try f.db.execute(query: "UPDATE annotations SET note='rolled back linked save';")
+                    try f.queue.addPendingSync(ckRecordId: f.uuid.uuidString, operation: "upload")
+                    _ = try localLinkedCommit(f, revision: 1)
+                    throw CheckFailure("deliberate outer rollback")
+                }
+            } catch let error as CheckFailure { try require(error.description == "deliberate outer rollback", "wrong failure") }
+            try require(f.originals() == before && f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid) == 1, "Save rollback leaked original source/body")
+            try require(f.ledger.pending(for: origin.destination).isEmpty, "Save rollback leaked delivery")
+        }
+        test("linked_saved_revisions_coalesce_without_acknowledging_older_bytes") {
+            let f = try Fixture(root: root, name: "linked-coalesce"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let newest = try localLinkedCommit(f, revision: 2)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let items = try f.ledger.linkedDeliveries(for: link)
+            try require(items.count == 2 && items[0].state == .superseded && items[1].state == .pending, "coalescing lost ordered states")
+            try require(!items[0].delivery.acknowledged && items[1].delivery.payload == newest.payload, "superseded body received a fake ACK")
+            try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_versions;") == 3, "immutable history lost")
+        }
+        test("linked_backoff_and_uncertain_dispatch_survive_fresh_connection") {
+            let f = try Fixture(root: root, name: "linked-reopen"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0]
+            try f.ledger.deferLinkedRead(queued, now: 100)
+            let reopened = try Fixture(root: root, name: "linked-reopen", create: false)
+            let deferred = try reopened.ledger.linkedDeliveries(for: link)[0]
+            try require(deferred.retryCount == 1 && deferred.notBefore == 101, "backoff lost across restart")
+            try rejects(.staleRevision) { try reopened.db.transaction {
+                try reopened.ledger.markLinkedRevisionDispatch(deferred, attemptID: UUID(), observedRootSHA256: origin.nativeRootSHA256, now: 100)
+            } }
+            let attempt = UUID()
+            try reopened.db.transaction { try reopened.ledger.markLinkedRevisionDispatch(deferred, attemptID: attempt, observedRootSHA256: origin.nativeRootSHA256, now: 101) }
+            let again = try Fixture(root: root, name: "linked-reopen", create: false)
+            let uncertain = try again.ledger.linkedDeliveries(for: link)[0]
+            try require(uncertain.state == .dispatchMayHaveOccurred && uncertain.attemptID == attempt && !uncertain.delivery.acknowledged, "uncertainty lost")
+            try rejects(.staleRevision) { try again.db.transaction {
+                try again.ledger.markLinkedRevisionDispatch(uncertain, attemptID: UUID(), observedRootSHA256: origin.nativeRootSHA256, now: 1000)
+            } }
+        }
+        test("native_handoff_storage_requires_exact_message_attempt_and_keeps_peer_ack_separate") {
+            let f = try Fixture(root: root, name: "linked-ack"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0], attempt = UUID()
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: attempt, observedRootSHA256: origin.nativeRootSHA256, now: 100) }
+            try rejects(.receiptMismatch) { try f.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: UUID(), nativeRootSHA256: String(repeating: "c", count: 64), nativeResponseSHA256: origin.nativeResponseSHA256) }
+            try f.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: attempt, nativeRootSHA256: String(repeating: "c", count: 64), nativeResponseSHA256: origin.nativeResponseSHA256)
+            let result = try f.ledger.linkedDeliveries(for: link)[0]
+            try require(result.state == .verified && result.delivery.acknowledged && result.link.confirmedLocalRevision == 2, "exact native handoff not stored")
+            try require(f.scalar("SELECT count(*) FROM sqlite_master WHERE name LIKE '%remote_ack%';") == 0, "peer ACK was invented")
+        }
+        test("unlink_stops_new_deliveries_and_retains_copy_identity_history_and_uncertainty") {
+            let f = try Fixture(root: root, name: "linked-unlink"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0]
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: UUID(), observedRootSHA256: origin.nativeRootSHA256, now: 100) }
+            try f.ledger.unlinkNativeCopy(link)
+            _ = try localLinkedCommit(f, revision: 2)
+            try require(f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid).isEmpty, "link remained active")
+            let retained = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid, activeOnly: false)[0]
+            let uncertain = try f.ledger.linkedDeliveries(for: retained)
+            try require(retained.objectID == origin.objectID && uncertain.count == 1 && uncertain[0].state == .dispatchMayHaveOccurred && !uncertain[0].delivery.acknowledged, "unlink deleted historical outcome")
+            try require(f.scalar("SELECT count(*) FROM annotations;") == 1 && f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_versions;") == 3, "unlink deleted note/history")
+        }
+        test("received_origin_suppresses_only_that_copy_and_replay_cannot_add_consent") {
+            let f = try Fixture(root: root, name: "linked-isolation"), a = try linkedOrigin(), b = try linkedOrigin("space-b")
+            _ = try localLinkedCommit(f, origin: a, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, origin: b, enableLink: true, revision: 1)
+            let received = try localLinkedCommit(f, origin: a, revision: 2)
+            let links = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)
+            let aItems = try f.ledger.linkedDeliveries(for: links.first { $0.destination == a.destination }!)
+            let bItems = try f.ledger.linkedDeliveries(for: links.first { $0.destination == b.destination }!)
+            try require(aItems.allSatisfy { $0.state == .superseded } && bItems.last?.delivery.mutationID == received.mutationID, "origin suppression leaked across Space")
+            try rejects(.idempotencyConflict) { try f.ledger.requireNativeOriginReplay(mutationID: received.mutationID, origin: a, enableLink: true) }
+            try f.ledger.requireNativeOriginReplay(mutationID: received.mutationID, origin: a, enableLink: false)
+        }
+        test("explicit_fresh_review_retains_prior_uncertainty_before_new_CAS_fence") {
+            let f = try Fixture(root: root, name: "linked-review"), a = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: a, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0], firstAttempt = UUID()
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: firstAttempt, observedRootSHA256: a.nativeRootSHA256, now: 100) }
+            let uncertain = try f.ledger.linkedDeliveries(for: link)[0]
+            var reviewed: AnnotationExchangeLinkedDelivery?
+            let fresh = try linkedOrigin(root: String(repeating: "d", count: 64))
+            try f.db.transaction { reviewed = try f.ledger.acceptLinkedReview(uncertain, origin: fresh) }
+            guard let reviewed else { throw CheckFailure("missing explicit review") }
+            try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reviews WHERE prior_state='dispatch_may_have_occurred' AND prior_attempt_id=?;", [firstAttempt.uuidString]) == 1, "review erased prior uncertainty")
+            try require(!reviewed.delivery.acknowledged, "read alone produced ACK")
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(reviewed, attemptID: UUID(), observedRootSHA256: fresh.nativeRootSHA256, now: 101) }
+        }
     }
 }
