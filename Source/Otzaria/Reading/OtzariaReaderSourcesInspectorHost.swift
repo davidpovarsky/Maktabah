@@ -99,6 +99,7 @@ struct OtzariaReaderSourcesInspectorHost: View {
                 onDeleteNote: onDeleteNote,
                 showsCloseButton: showsCloseButton
             )
+            .id(ObjectIdentifier(repository))
             #if DEBUG
             .background {
                 if FullV32InspectorCacheObservation.enabled {
