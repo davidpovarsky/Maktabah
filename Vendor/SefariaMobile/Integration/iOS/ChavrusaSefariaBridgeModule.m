@@ -14,6 +14,7 @@
 
 RCT_EXTERN_METHOD(deliverResponse:(NSString *)jsonString)
 RCT_EXTERN_METHOD(deliverEvent:(NSString *)jsonString)
+RCT_EXTERN__BLOCKING_SYNCHRONOUS_METHOD(claimOriginalSemanticNavigation:(NSString *)jsonString)
 RCT_EXTERN_METHOD(echo:(NSString *)message
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
