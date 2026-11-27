@@ -1,6 +1,28 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Library contents": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוכן הספרייה"
+          }
+        }
+      }
+    },
+    "Table of contents list": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשימת תוכן העניינים"
+          }
+        }
+      }
+    },
     "Maktabah is waiting for the destination to become visible.": {
       "comment": "System App Intent navigation outcome. Noncompletion must stay explicit.",
       "extractionState": "manual",
