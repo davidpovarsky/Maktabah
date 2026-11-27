@@ -1,0 +1,165 @@
+{
+  "schema": "otzaria.wave3.annotation-expansion-intake.v2",
+  "base": "d1d66b043897f2e86288d748a5034da56d79e404",
+  "picked": [
+    {
+      "donor": "56a6ff0c4d9437924479444660b51ce62e59db7e",
+      "intake": "b091f6b2da81209c8d0572469eb8068ad0b897b0"
+    },
+    {
+      "donor": "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32",
+      "intake": "e6ff04562ae9b2735b74ef70b14cefecd613f91e"
+    },
+    {
+      "donor": "7f8223232a82b25502090617860459674cc49f2a",
+      "intake": "263caa203b2802573edbca2b6f41b2aebd3c1bca"
+    },
+    {
+      "donor": "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd",
+      "intake": "35d4ffb9216039cca768be36fa7a807bb2772f8c"
+    },
+    {
+      "donor": "748d67b95e7253a649d99cb12b84880b4f9fa54b",
+      "intake": "f7d8c9a3babd2bccc64ddda6386c6a70e7755f11"
+    }
+  ],
+  "sourceTree": "ff6ea67df0f96753ccdaaec7e01fbb73a30079ec",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "productPaths": 1,
+  "docsPaths": 129,
+  "manifests": [
+    {
+      "commit": "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32",
+      "path": "docs/hq-ui-inventory/wave3-annotation-expansion-20261127/MANIFEST.json",
+      "rows": 29,
+      "sha256": "75c78c28fe41862358a8d1e690214b52f55a499e1cac4fdd7c31421cd7141e09"
+    },
+    {
+      "commit": "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd",
+      "path": "docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/MANIFEST.json",
+      "rows": 47,
+      "sha256": "c292a58a28e9446ada2d58e12cf04c16b990362d54cde67520ce55321e576b48"
+    },
+    {
+      "commit": "748d67b95e7253a649d99cb12b84880b4f9fa54b",
+      "path": "docs/hq-ui-inventory/wave3-annotation-current-bindings-20261127/MANIFEST.json",
+      "rows": 50,
+      "sha256": "31a2d6ef60a5830dd4985e67a6ec0cc53808cacec9e7e48b1f64825a90aabed9"
+    }
+  ],
+  "originalExpansionEdits": 2,
+  "retainedCallerSignatureEdits": 1,
+  "wholeFileInverse": true,
+  "helperSourceControls": {
+    "original": {
+      "failed": 8,
+      "passed": 3
+    },
+    "candidate": {
+      "failed": 0,
+      "passed": 11
+    },
+    "resultSHA256": "1e23d72f21802c9a12e2b35d07586dec71c70cdec420e6e157e8e67f3e8e73f0"
+  },
+  "historicFullCallerSourceControls": {
+    "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+    "passed": 6,
+    "failed": 0,
+    "originalCompileExit": 1,
+    "candidateCompileExit": 0,
+    "resultSHA256": "63415a94517b961fea07adc7688dc68a21a1d29b548feaf3f8b9e4c893b9c1fe",
+    "preservedTypecheckAttemptSHA256": "fe6561af4aa6b00f6070bbb1f279253fbd79e1e646607aacce40cc0ccf661e22",
+    "scope": "Actual full binding, nativeRoutingReveal and expansion helper; original Core/UI value contracts with explicit UIKit/Combine/Store/backend/workspace fixtures. Old sealed caller genuine compile diagnostic retained. Six current caller ownership controls; no app/native/Core execution or actual geometry evidence.",
+    "currentIntegrationEvidence": false
+  },
+  "currentFullCallerSourceControls": {
+    "passed": 6,
+    "failed": 0,
+    "resultSHA256": "ebe40c5edffc71696bda9b7336786a277288ed90510816a7f46de471eb9c6e85",
+    "scope": "Same six actual binding/full caller/helper source controls, current original Core/UI/Host products, exact current root publisher. Explicit UIKit/Combine/Store/backend/workspace boundaries; no app or native execution. Original eleven and old compile diagnostic not rerun.",
+    "modules": {
+      "Core": 31,
+      "Host": 41,
+      "UI": 13
+    },
+    "moduleJoinSHA256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef",
+    "appJoinSHA256": "e6aff6bafb0dcc7af77f17c6693281fc6e2fe7304451bdee181430a1f21321ba",
+    "originalCurrentSourcePinsVerified": 85,
+    "actualLinkedProducts": [
+      {
+        "bytes": 444488,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+        "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 3097048,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+        "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 315448,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+        "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 1578856,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+        "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 708952,
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+        "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 3002144,
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+        "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+        "use": "read-only existing original compiled product"
+      }
+    ],
+    "sameAssertions": true
+  },
+  "verifiedRawFiles": 78,
+  "verifiedInputRows": [
+    10,
+    23,
+    0
+  ],
+  "currentSourceProductsMatched": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+    "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+    "Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+    "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+  ],
+  "historicModuleSourcePinsVerified": 44,
+  "preservedStoppedIntakeFailureSHA256": "e847ab7462b262785e6c9ef0ce886a41f92ddc78bb1b30377a5ceb1df7627767",
+  "newTestExecutions": 0,
+  "protectedTrees": {
+    "Source/Otzaria": "51eb8282fbcd72be297e13ad5e53893a7a524052",
+    "Source/ChavrusaText": "cb88ead25dd25bf680ee2e4b2b265e0f0679c748",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1",
+    "Source/Localizable.xcstrings": "6c64db83a8a42717aec39104c5f395bfe475af3b"
+  },
+  "AppleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "open": [
+    "Actual native annotation cell geometry and foreground/background/cached-entity acceptance",
+    "Original annotation editor and filter semantics",
+    "Final production/real-owner/target merge/TestFlight"
+  ]
+}
