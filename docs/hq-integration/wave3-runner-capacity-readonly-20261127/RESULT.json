@@ -1,0 +1,54 @@
+{
+  "acceptance_claimed": false,
+  "archives_created": 0,
+  "available_final_sample": 11470454784,
+  "builds": 0,
+  "created_at": "2026-11-27T16:01:26.404108+00:00",
+  "deletions": 0,
+  "jobs": [
+    "job_c3dce0fbc8c1",
+    "job_ed60dc5746b4"
+  ],
+  "launch_admission_bytes": 15032385536,
+  "launch_gap_at_sample": 3561930752,
+  "live_stop_bytes": 2415919104,
+  "mac_writes": 0,
+  "native_runs": 0,
+  "observations": [
+    {
+      "bytes": 33039,
+      "label": "INITIAL",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/initial-miai9r2j/stdout.json",
+      "script_sha256": "4b0b96af23c780dfd823d4e52927d14d60922e6007dbe8db01890490509d8ac4",
+      "sha256": "05bb13e0044138564202de1811268de5ca7af625519916c9730f5bbc2f0351a6",
+      "transport_sha256": "15df2be89b2f6cd9289079d945e4a5887fa88433cca96369061d169920635ee7"
+    },
+    {
+      "bytes": 25572,
+      "label": "GENERATED",
+      "original_path": "/mnt/development/projects/diagnostics/otzaria-wave3-runner-capacity-readonly-20261127/generated-orzgohke/stdout.json",
+      "script_sha256": "f1c503639fae8950471b805c8437fe28aa24a2bef8ad110cf57d3846e199ff37",
+      "sha256": "fadfeaf591cbee193196942b060a8cd03c4c8f2ed2b4a11d8c9eba51a1369a11",
+      "transport_sha256": "fb746e802c8daded1c9e6363428f592c0d9e7a6938c7512877b8a7819f37a137"
+    }
+  ],
+  "other_source_or_gate_changes": false,
+  "other_two_build_total_allocated_upper_bound": 7507968,
+  "process_actions": 0,
+  "protected_ntx_root_not_retireable": true,
+  "protected_scoped_pids": [
+    35619,
+    35620,
+    41371,
+    41372
+  ],
+  "remaining_build_allocated_bytes": {
+    "session.FK20ACaB": 1019904,
+    "session.XsIaHMlh": 6488064,
+    "session.ntx0UjXO": 114659328
+  },
+  "schema": "otzaria.three-runner-capacity-review/1",
+  "scope": "READ_ONLY",
+  "source_base": "a7be0e1fbe915a385c698acaef50b34cbc4b0986",
+  "status": "NO_SUFFICIENT_CLOSED_GENERATED_SCOPE_IDENTIFIED"
+}

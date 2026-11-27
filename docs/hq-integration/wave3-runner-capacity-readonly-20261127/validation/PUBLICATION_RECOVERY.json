@@ -1,0 +1,8 @@
+{
+  "cause": "New own documentation directory is outside the private sparse checkout specification. Initial git add refused to stage it.",
+  "correction": "Use git add --sparse for this exact new documentation path only. No sparse configuration, source, evidence bytes, test or acceptance gate changed.",
+  "initial_job": "job_7d0137b802cb",
+  "raw_bytes": 1658,
+  "raw_sha256": "c24968873b07a89947db3d15df675904c32cab1558cab7d787089f3752d59ea3",
+  "schema": "otzaria.publication-recovery/1"
+}
