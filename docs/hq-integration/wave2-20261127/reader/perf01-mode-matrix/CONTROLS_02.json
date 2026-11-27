@@ -1,0 +1,314 @@
+{
+  "appleCompilerExecuted": 0,
+  "controls": [
+    {
+      "name": "synthetic-complete-cell-103-line",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-103-paragraph",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-103-chapter",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-28-line",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-28-paragraph",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-28-chapter",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-3152-line",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-3152-paragraph",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-cell-3152-chapter",
+      "passed": true
+    },
+    {
+      "name": "missing-one-open-rejected",
+      "passed": true
+    },
+    {
+      "name": "legacy-twenty-open-substitution-rejected",
+      "passed": true
+    },
+    {
+      "name": "missing-pair-rejected",
+      "passed": true
+    },
+    {
+      "name": "reordered-pairs-rejected",
+      "passed": true
+    },
+    {
+      "name": "cold-reused-pid-rejected",
+      "passed": true
+    },
+    {
+      "name": "warm-restarted-pid-rejected",
+      "passed": true
+    },
+    {
+      "name": "warm-without-real-away-rejected",
+      "passed": true
+    },
+    {
+      "name": "missing-source-record-rejected",
+      "passed": true
+    },
+    {
+      "name": "extra-source-record-rejected",
+      "passed": true
+    },
+    {
+      "name": "stale-source-pid-rejected",
+      "passed": true
+    },
+    {
+      "name": "source-without-core-receipt-rejected",
+      "passed": true
+    },
+    {
+      "name": "substituted-source-core-request-rejected",
+      "passed": true
+    },
+    {
+      "name": "changed-document-rejected",
+      "passed": true
+    },
+    {
+      "name": "changed-group-rejected",
+      "passed": true
+    },
+    {
+      "name": "mode-not-persisted-rejected",
+      "passed": true
+    },
+    {
+      "name": "extra-mode-observation-rejected",
+      "passed": true
+    },
+    {
+      "name": "reused-mode-proof-rejected",
+      "passed": true
+    },
+    {
+      "name": "failed-resource-epoch-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-resource-kind-rejected",
+      "passed": true
+    },
+    {
+      "name": "missing-resource-epoch-rejected",
+      "passed": true
+    },
+    {
+      "name": "nonfinite-CPU-rejected",
+      "passed": true
+    },
+    {
+      "name": "overview-overlaps-open-rejected",
+      "passed": true
+    },
+    {
+      "name": "overview-wrong-actual-card-rejected",
+      "passed": true
+    },
+    {
+      "name": "overview-invented-duration-rejected",
+      "passed": true
+    },
+    {
+      "name": "false-source-visible-time-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-native-TOC-id-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-native-TOC-label-rejected",
+      "passed": true
+    },
+    {
+      "name": "no-selected-TOC-rejected",
+      "passed": true
+    },
+    {
+      "name": "unselected-TOC-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-book-cell-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-mode-cell-rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong-catalog-digest-rejected",
+      "passed": true
+    },
+    {
+      "name": "catalog-rejects-corpusProfile",
+      "passed": true
+    },
+    {
+      "name": "catalog-rejects-databaseSHA256",
+      "passed": true
+    },
+    {
+      "name": "catalog-rejects-status",
+      "passed": true
+    },
+    {
+      "name": "catalog-rejects-performanceObserved",
+      "passed": true
+    },
+    {
+      "name": "catalog-rejects-searchProviderExecuted",
+      "passed": true
+    },
+    {
+      "name": "missing-mode-target-rejected",
+      "passed": true
+    },
+    {
+      "name": "line-target-fallback-rejected",
+      "passed": true
+    },
+    {
+      "name": "unit-source-prefix-rejected",
+      "passed": true
+    },
+    {
+      "name": "escaping-source-file-rejected",
+      "passed": true
+    },
+    {
+      "name": "n6-per-temperature-never-mixed-book-aggregate",
+      "passed": true
+    },
+    {
+      "name": "actual-owned-allocated-file-inventory-positive",
+      "passed": true
+    },
+    {
+      "name": "actual-owned-symlink-inventory-rejected",
+      "passed": true
+    },
+    {
+      "name": "actual-trace-budget-overrun-rejected-with-bytes-retained",
+      "passed": true
+    },
+    {
+      "name": "actual-cap-failure-does-not-truncate",
+      "passed": true
+    },
+    {
+      "name": "nonempty-compiler-folder-refused-before-command",
+      "passed": true
+    },
+    {
+      "name": "synthetic-XCTest-post-Popen-ENOSPC-stops-only-owned-handle-once",
+      "passed": true
+    },
+    {
+      "name": "synthetic-exporter-post-Popen-ENOSPC-stops-only-owned-handle-once",
+      "passed": true
+    },
+    {
+      "name": "actual-unstarted-Python-Thread-never-joined-and-qualified-only-before-start-attempt",
+      "passed": true
+    },
+    {
+      "name": "synthetic-pending-Thread-start-without-ident-is-unverified-and-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-observer-stop-timeout-still-stops-other-owned-producers-and-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-observer-stop-returning-while-live-is-not-exit-proof",
+      "passed": true
+    },
+    {
+      "name": "synthetic-three-original-producers-observed-exited-enable-retention",
+      "passed": true
+    },
+    {
+      "name": "synthetic-trace-cleared-process-field-with-unverified-original-group-defers",
+      "passed": true
+    },
+    {
+      "name": "synthetic-trace-export-failure-does-not-erase-proven-recorder-exit-or-failure",
+      "passed": true
+    },
+    {
+      "name": "synthetic-foreign-recorder-group-receipt-is-not-cleanup-proof",
+      "passed": true
+    },
+    {
+      "name": "synthetic-URL-stop-failure-with-live-Popen-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-URL-stop-return-with-live-Popen-is-not-cleanup-proof",
+      "passed": true
+    },
+    {
+      "name": "synthetic-native-group-unverified-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-native-group-receipt-missing-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-no-finalized-cell-runtime-state-defers-Simulator",
+      "passed": true
+    },
+    {
+      "name": "synthetic-result-write-ENOSPC-keeps-shared-unverified-state-without-a-file",
+      "passed": true
+    },
+    {
+      "name": "synthetic-original-group-cleanup-failure-propagates-before-any-retention",
+      "passed": true
+    },
+    {
+      "name": "new-host-exports-only-own-27-target-catalog-with-original-observer-token",
+      "passed": true
+    }
+  ],
+  "corpusQueries": 0,
+  "helper": {
+    "bytes": 55721,
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf01-matrix/candidate/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+  },
+  "nativeExecuted": 0,
+  "passed": 74,
+  "performanceAcceptance": false,
+  "schema": "otzaria.perf01.source-controls/1",
+  "scope": "Synthetic parser/admission/owned-process controls and actual tiny local scratch allocation checks only",
+  "status": "PASS",
+  "total": 74
+}

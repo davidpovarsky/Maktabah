@@ -79,3 +79,33 @@ Future actual execution requires a frozen qualified checkout/build, exact origin
 `CONTROLS_01.json` is the actual 58/58 local host-control result. Its report explicitly says zero Apple compiler executions, zero native executions, zero corpus queries and no performance acceptance. `source-controls.py` is the exact runnable recipe. `CATALOG_PRESERVATION.json` and `SOURCE_PRESERVATION.json` document the byte-level unaffected bodies.
 
 The 07:22:25Z read-only Mac admission stop is retained separately. Actual free space was 3,413,528,576 bytes and another owner's Hanlin native test process was active. No third compile was started. It does not supersede the two earlier retained precompiler stops, and it does not confer compilation or UI credit on this new source.
+# Owned-runtime cleanup follow-up
+
+Parent source review of the first checkpoint `8865c304` found that a failed
+observer/trace/URL stop was recorded but did not prevent the outer controller
+from terminating the retained Simulator. The follow-up propagates an explicit
+in-memory `owned_runtime_cleanup` record for every attempted cell. Its default
+is unverified, and it survives a failed result write. Simulator retention and
+shutdown are deferred whenever any owned producer or native/exporter group
+has no verified exit.
+
+The original observation Thread is joined only after an actual thread identity
+exists. An observer whose start was never attempted is recorded separately
+from an interrupted start with no identity. The latter remains unverified.
+Trace cleanup must retain the original `GONE_CHECKED` receipt for the exact
+owned recorder process group; clearing its Python process field is insufficient.
+The original URL transport must have an observed actual Popen return code.
+Its scope is that transport process, without a claim about off-process
+Simulator agents. Original native and result-export subprocess groups also
+retain mandatory exact original cleanup receipts on success and failure.
+Post-recording trace export failure remains a measurement failure even when
+the recorder's exit was independently proved.
+
+`CONTROLS_02.json` records actual local exit 0 with 74/74 source controls,
+including 16 focused cleanup/environment cases added to the original 58.
+No Apple compiler, Simulator, UI, production database or performance workload
+ran. `CONTROLS_01.json` is retained unchanged for the original checkpoint.
+The Swift UI and catalog bytes remain those of `8865c304`. The new host no
+longer advertises the nonexistent historical `catalog.json`: its additive
+cases use only `PERF01_READER_CATALOG_FILE` and the 27-target decoder. Their
+reused launch/route/source/overview helpers do not invoke `fullV32Catalog`.

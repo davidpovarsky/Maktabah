@@ -7,6 +7,7 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import threading
 import types
 import uuid
 from unittest.mock import patch
@@ -211,6 +212,7 @@ class FakeGuard:
 class FakeTrace:
     def require_running(self): pass
 class FakeProcess:
+    pid = 4321
     returncode = None
     def poll(self): return None
 class FakeCore:
@@ -223,7 +225,7 @@ def cleanup_control(method):
     proxy = m.BudgetedOriginalRunner(FakeCore(), FakeGuard(), FakeTrace())
     with tempfile.TemporaryDirectory(prefix='synthetic-perf01-owned-process-') as name:
         with patch.object(m.subprocess, 'Popen', return_value=process), \
-             patch.object(m.runpy, 'run_path', return_value={'stop_owned_process_group': lambda p: stopped.append(p) or {'group_state':'GONE_CHECKED'}}):
+             patch.object(m.runpy, 'run_path', return_value={'stop_owned_process_group': lambda p: stopped.append(p) or {'group_state':'GONE_CHECKED', 'owned_pgid':p.pid}}):
             if method == 'bounded':
                 reject(lambda: proxy.bounded(['xcodebuild', 'test-without-building'], Path(name)/'log', 600, {}))
             else:
@@ -232,6 +234,146 @@ def cleanup_control(method):
     assert proxy.guard.failure == 'ValueError'
 check('synthetic-XCTest-post-Popen-ENOSPC-stops-only-owned-handle-once', lambda: cleanup_control('bounded'))
 check('synthetic-exporter-post-Popen-ENOSPC-stops-only-owned-handle-once', lambda: cleanup_control('command'))
+
+
+class NeverStartedObserver(threading.Thread):
+    def __init__(self):
+        super().__init__(); self.stop_event = threading.Event(); self.stop_calls = 0; self.error = None
+    def stop(self):
+        self.stop_calls += 1
+        self.join(timeout=0)
+
+class FakeObserver:
+    ident = 1234
+    def __init__(self, alive_after=False, error=None, stop_error=None):
+        self.alive, self.alive_after, self.error, self.stop_error = True, alive_after, error, stop_error
+        self.stop_event, self.stop_calls = threading.Event(), 0
+    def is_alive(self): return self.alive
+    def stop(self):
+        self.stop_calls += 1; self.alive = self.alive_after
+        if self.stop_error: raise self.stop_error('Synthetic observer stop failure')
+
+class OwnedProcess:
+    def __init__(self, pid, returncode=None): self.pid, self.returncode = pid, returncode
+    def poll(self): return self.returncode
+
+class FakeOwnedTrace:
+    def __init__(self, group='GONE_CHECKED', after_group_error=None, status='ACTUAL_TRACE_RETAINED_COVERAGE_AND_SCHEMA_REVIEW_REQUIRED'):
+        self.process, self.record = OwnedProcess(12345), {}
+        self.group, self.after_group_error, self.status, self.stop_calls = group, after_group_error, status, 0
+    def stop(self):
+        self.stop_calls += 1
+        self.record['owned_process_group_cleanup'] = {'owned_pgid':self.process.pid, 'group_state':self.group}
+        self.process = None  # This is the original recorder's behavior, even for an unverified group.
+        if self.after_group_error: raise self.after_group_error('Synthetic post-recorder export failure')
+        self.record['status'] = self.status
+        return self.record
+
+class FakeDelivery:
+    def __init__(self, exit_code=0, stop_error=None):
+        self.process, self.exit_code, self.stop_error, self.stop_calls = OwnedProcess(23456), exit_code, stop_error, 0
+    def stop(self):
+        self.stop_calls += 1; self.process.returncode = self.exit_code
+        if self.stop_error: raise self.stop_error('Synthetic URL transport stop failure')
+
+class FakeOwner:
+    def __init__(self): self.calls=[]
+    def retain_simulator(self, udid):
+        self.calls.append(udid); return {'status':'SYNTHETIC_RETAINED', 'udid':udid}
+
+def runtime(host=None, trace=None, delivery=None, proxy=None, attempts=None):
+    state = {'schema':1, 'verified':False}
+    m.stop_owned_runtime(state, host=host, trace=trace, delivery=delivery, proxy=proxy,
+        start_attempts=attempts or {'observer':host is not None, 'trace':trace is not None, 'url_delivery':delivery is not None})
+    return state
+
+def retention_check(state, allowed):
+    owner=FakeOwner(); receipt, verified=m.retain_only_after_runtime_cleanup(owner, uid('simulator'), [state])
+    assert verified is allowed and (len(owner.calls)==1) is allowed
+    if not allowed: assert receipt['status']=='NOT_SHUT_DOWN_HOST_CLEANUP_UNVERIFIED'
+
+def never_started_control(attempted):
+    host=NeverStartedObserver()
+    state=runtime(host=host, attempts={'observer':attempted, 'trace':False, 'url_delivery':False})
+    assert host.stop_calls==0 and host.stop_event.is_set()
+    assert state['verified'] is (not attempted)
+    assert state['producers']['observer']['status']==('START_ATTEMPT_WITHOUT_IDENT_UNVERIFIED' if attempted else 'THREAD_NEVER_STARTED')
+    retention_check(state, not attempted)
+check('actual-unstarted-Python-Thread-never-joined-and-qualified-only-before-start-attempt', lambda:never_started_control(False))
+check('synthetic-pending-Thread-start-without-ident-is-unverified-and-defers-Simulator', lambda:never_started_control(True))
+
+def live_host_control(raises):
+    host,trace,delivery=FakeObserver(alive_after=True, stop_error=ValueError if raises else None),FakeOwnedTrace(),FakeDelivery()
+    state=runtime(host,trace,delivery)
+    assert state['verified'] is False and host.stop_calls==trace.stop_calls==delivery.stop_calls==1
+    retention_check(state,False)
+check('synthetic-observer-stop-timeout-still-stops-other-owned-producers-and-defers-Simulator',lambda:live_host_control(True))
+check('synthetic-observer-stop-returning-while-live-is-not-exit-proof',lambda:live_host_control(False))
+
+def normal_cleanup_control():
+    state=runtime(FakeObserver(),FakeOwnedTrace(),FakeDelivery())
+    assert state['verified'] is True and not state['failures']
+    retention_check(state,True)
+check('synthetic-three-original-producers-observed-exited-enable-retention',normal_cleanup_control)
+
+def trace_cleanup_control(group, after_error, expected):
+    trace=FakeOwnedTrace(group,after_error)
+    state=runtime(FakeObserver(),trace,FakeDelivery())
+    assert trace.process is None and state['verified'] is expected
+    if after_error or not expected: assert state['failures']
+    retention_check(state,expected)
+check('synthetic-trace-cleared-process-field-with-unverified-original-group-defers',lambda:trace_cleanup_control('STILL_PRESENT_UNVERIFIED',None,False))
+check('synthetic-trace-export-failure-does-not-erase-proven-recorder-exit-or-failure',lambda:trace_cleanup_control('GONE_CHECKED',ValueError,True))
+
+def foreign_trace_group_control():
+    trace=FakeOwnedTrace()
+    original=trace.stop
+    def stop():
+        value=original(); value['owned_process_group_cleanup']['owned_pgid']=99999; return value
+    trace.stop=stop
+    state=runtime(FakeObserver(),trace,FakeDelivery())
+    retention_check(state,False)
+check('synthetic-foreign-recorder-group-receipt-is-not-cleanup-proof',foreign_trace_group_control)
+
+def url_cleanup_control(raises):
+    state=runtime(FakeObserver(),FakeOwnedTrace(),FakeDelivery(None,ValueError if raises else None))
+    assert state['verified'] is False and state['failures']
+    retention_check(state,False)
+check('synthetic-URL-stop-failure-with-live-Popen-defers-Simulator',lambda:url_cleanup_control(True))
+check('synthetic-URL-stop-return-with-live-Popen-is-not-cleanup-proof',lambda:url_cleanup_control(False))
+
+def group_cleanup_control(record):
+    state=runtime(FakeObserver(),FakeOwnedTrace(),FakeDelivery(),types.SimpleNamespace(owned_process_groups=[record]))
+    assert state['verified'] is False
+    retention_check(state,False)
+check('synthetic-native-group-unverified-defers-Simulator',lambda:group_cleanup_control({'owned_pid':4321,'verified':False,'original_cleanup':{'owned_pgid':4321,'group_state':'STILL_PRESENT_UNVERIFIED'}}))
+check('synthetic-native-group-receipt-missing-defers-Simulator',lambda:group_cleanup_control({'owned_pid':4321,'verified':False}))
+check('synthetic-no-finalized-cell-runtime-state-defers-Simulator',lambda:retention_check({'verified':False},False))
+
+def write_failure_control():
+    state=runtime(FakeObserver(alive_after=True),FakeOwnedTrace(),FakeDelivery())
+    try: raise OSError(28,'Synthetic RESULT write ENOSPC')
+    except OSError: pass
+    retention_check(state,False)
+check('synthetic-result-write-ENOSPC-keeps-shared-unverified-state-without-a-file',write_failure_control)
+
+def finish_process_negative_control():
+    proxy=m.BudgetedOriginalRunner(FakeCore(),FakeGuard(),FakeTrace())
+    reject(lambda:proxy.finish_process(OwnedProcess(4321), 'synthetic', Path('/synthetic/no-write'),
+        {'stop_owned_process_group':lambda p:{'owned_pgid':p.pid,'group_state':'STILL_PRESENT_UNVERIFIED'}}))
+    assert len(proxy.owned_process_groups)==1 and proxy.owned_process_groups[0]['verified'] is False
+check('synthetic-original-group-cleanup-failure-propagates-before-any-retention',finish_process_negative_control)
+
+def environment_control():
+    class Previous:
+        def __init__(self): self.catalog_dir=Path('/synthetic/catalog')
+        def environment(self): return {'TEST_RUNNER_FULL_V32_CATALOG_FILE':'/absent/catalog.json','TEST_RUNNER_FULL_V32_OBSERVER_TOKEN':'synthetic-token'}
+    host=m.observation_host(Previous,None,103,'line','a'*64)()
+    env=host.environment()
+    assert 'TEST_RUNNER_FULL_V32_CATALOG_FILE' not in env
+    assert env['TEST_RUNNER_PERF01_READER_CATALOG_FILE']=='/synthetic/catalog/reader-mode-matrix.json'
+    assert env['TEST_RUNNER_FULL_V32_OBSERVER_TOKEN']=='synthetic-token'
+check('new-host-exports-only-own-27-target-catalog-with-original-observer-token',environment_control)
 
 result = {'schema': 'otzaria.perf01.source-controls/1', 'status': 'PASS' if all(r['passed'] for r in records) else 'FAIL',
     'scope': 'Synthetic parser/admission/owned-process controls and actual tiny local scratch allocation checks only',
