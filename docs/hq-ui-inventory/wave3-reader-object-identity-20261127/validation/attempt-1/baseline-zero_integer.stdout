@@ -1,0 +1,13 @@
+Test Suite 'All tests' started at 2026-11-27 03:47:00.707
+Test Suite 'otzaria-wave3-reader-object-identity-20261127.xctest' started at 2026-11-27 03:47:00.711
+Test Suite 'IdentityGuardTests' started at 2026-11-27 03:47:00.711
+Test Case 'IdentityGuardTests.testOriginalFreshRequestOwner' started at 2026-11-27 03:47:00.711
+Test Case 'IdentityGuardTests.testOriginalFreshRequestOwner' passed (0.004 seconds)
+Test Case 'IdentityGuardTests.testOriginalHeldGestureOwner' started at 2026-11-27 03:47:00.715
+Test Case 'IdentityGuardTests.testOriginalHeldGestureOwner' passed (0.001 seconds)
+Test Suite 'IdentityGuardTests' passed at 2026-11-27 03:47:00.716
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'otzaria-wave3-reader-object-identity-20261127.xctest' passed at 2026-11-27 03:47:00.716
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'All tests' passed at 2026-11-27 03:47:00.716
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds

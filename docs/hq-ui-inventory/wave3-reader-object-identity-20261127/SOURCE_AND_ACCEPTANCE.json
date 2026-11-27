@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "createdAt": "2026-11-27T03:48:49.333112+00:00",
+  "baseCommit": "a1e12fd377c0909df535c96d1a61f54bef5001a7",
+  "testSource": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+  "beforeSHA256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+  "afterSHA256": "74d27daf2acf14b3a8fac14eb80f41bb93833b4beaf17eadad4b0a43da043392",
+  "change": "Four nonoptional XCTest Int bindings at the two new owner-identity assertion sites; all other assertions unchanged.",
+  "sourceFilesChanged": [],
+  "originalSelectorsUnchanged": true,
+  "scope": "PORTABLE_SOURCE_EXTRACTED_XCTEST_GUARD_CONTROL_NOT_APP_OR_UI",
+  "resultSummary": {
+    "candidateValidPayloadsAccepted": 3,
+    "candidateInvalidPayloadsRejected": 5,
+    "baselineInvalidPayloadsIncorrectlyAccepted": 2,
+    "xctestCasesPerPayload": 2,
+    "candidateGuardContractPasses": true,
+    "baselineGuardContractFails": true
+  },
+  "nativeUIExecuted": 0,
+  "appSDKCompiled": 0,
+  "physicalExecuted": 0,
+  "driverExit": 0,
+  "originalEvidenceRetained": true,
+  "files": {
+    "README.md": {
+      "bytes": 3176,
+      "sha256": "22c0471237865f8c5d76a596629fef0a9a38890342f2d265751e957006a09a12"
+    },
+    "run-source-guard-controls.py": {
+      "bytes": 9239,
+      "sha256": "60cb16d4e2faa1d0cd03beb60c71f10eb56c89a64d8b8d538ef13e904116234f"
+    },
+    "validation/attempt-1/RESULT.json": {
+      "bytes": 13951,
+      "sha256": "99061f844f293aa9ffd62b21ad9c1cf6e803ea1e69f5eacf24668abc81956e65"
+    },
+    "validation/attempt-1/baseline-both_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-both_missing.stdout": {
+      "bytes": 1035,
+      "sha256": "7f1f6c2bdb32237a62ff6386d42bb1753ef9548736f5f856dc926e96e18c397a"
+    },
+    "validation/attempt-1/baseline-both_wrong_string_type.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-both_wrong_string_type.stdout": {
+      "bytes": 1035,
+      "sha256": "8ef3545129847eeb6f7d260e90138295ff7b36bee4be5dce488c8d0cb4a80cdb"
+    },
+    "validation/attempt-1/baseline-compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-different_integers.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-different_integers.stdout": {
+      "bytes": 2017,
+      "sha256": "5f786d6552e98816ba47a0d2b6020d73a947922f9bc0616f3fa5c65b724a86e1"
+    },
+    "validation/attempt-1/baseline-negative_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-negative_integer.stdout": {
+      "bytes": 1033,
+      "sha256": "24364555e8a458be4f3bf19c7e72e8fdb69a0131d2dc857f30f2fd5911332e65"
+    },
+    "validation/attempt-1/baseline-positive_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-positive_integer.stdout": {
+      "bytes": 1033,
+      "sha256": "c42a061e47180910f9e02dede6ea262dc1fd1e568685e6b0b26efca59f7d8898"
+    },
+    "validation/attempt-1/baseline-selection_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-selection_missing.stdout": {
+      "bytes": 2017,
+      "sha256": "0f7ed8e98be40b6ae2353008b489fb4d2c8738c5bfe658b28fcd9bcc5dbf4a57"
+    },
+    "validation/attempt-1/baseline-viewport_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-viewport_missing.stdout": {
+      "bytes": 2011,
+      "sha256": "516a003cb7ef224f1fef59e5dc4fa349b5e157cc181635c0ebedf6c0c85663aa"
+    },
+    "validation/attempt-1/baseline-zero_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/baseline-zero_integer.stdout": {
+      "bytes": 1035,
+      "sha256": "327675f6cdd2de0736947aa13ba85e7c21c5b8e9b1582ad19b2770d20a85a707"
+    },
+    "validation/attempt-1/baseline.swift": {
+      "bytes": 2398,
+      "sha256": "62337e8011a8a228bc6a2b6e36280521d278ac42c14727322690831a0b13edb6"
+    },
+    "validation/attempt-1/candidate-both_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-both_missing.stdout": {
+      "bytes": 1764,
+      "sha256": "2ce0fa3ebbbc7e61c8d7aea966dd2cb3ffbc90dda1fd8bb119fa40916968421c"
+    },
+    "validation/attempt-1/candidate-both_wrong_string_type.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-both_wrong_string_type.stdout": {
+      "bytes": 1766,
+      "sha256": "6bb1867e6964388d0c190570ce3aa62e44b333ce5c165022e9611bf40f3c6f79"
+    },
+    "validation/attempt-1/candidate-compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-different_integers.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-different_integers.stdout": {
+      "bytes": 2019,
+      "sha256": "8d27579e58463891da9a05cd9cdf880a5741a81aa81f5fc3bb7027a7e8392e4f"
+    },
+    "validation/attempt-1/candidate-negative_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-negative_integer.stdout": {
+      "bytes": 1035,
+      "sha256": "8ae4efa14d72aa56453322d4fec7ae5048f1f8f5c3439c9ee1974878a605cd7e"
+    },
+    "validation/attempt-1/candidate-positive_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-positive_integer.stdout": {
+      "bytes": 1033,
+      "sha256": "d8a2744fbe1a4b1a4ae0f5b8c0ac224c5bced5c5f945091415b4eb4907729178"
+    },
+    "validation/attempt-1/candidate-selection_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-selection_missing.stdout": {
+      "bytes": 1766,
+      "sha256": "cc7020caca2e7a708fc30bc879c6bd3cb5ea101c7303a545525a938151e501bf"
+    },
+    "validation/attempt-1/candidate-viewport_missing.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-viewport_missing.stdout": {
+      "bytes": 1750,
+      "sha256": "ed1838c758739662a3be9b6be61bb01f61c1f1a64de11ddc5ecb5309a5e0d13f"
+    },
+    "validation/attempt-1/candidate-zero_integer.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/attempt-1/candidate-zero_integer.stdout": {
+      "bytes": 1035,
+      "sha256": "1484585a19686de209a9f769f182cbca2b8444327a36827f7652acaf8bfec1e7"
+    },
+    "validation/attempt-1/candidate.swift": {
+      "bytes": 2970,
+      "sha256": "ee78a32cff3eb8beb90b22fe5089a95ccbf6f65c6ba80afe28d66e68d26d1188"
+    },
+    "validation/attempt-1/fixtures/both_missing.json": {
+      "bytes": 256,
+      "sha256": "78791d74eef5e484ce7bf74c4cd824bd4c06703418f6d08723a918fdafa179b6"
+    },
+    "validation/attempt-1/fixtures/both_wrong_string_type.json": {
+      "bytes": 302,
+      "sha256": "92d37520b93d617acc190abb8d00c06f1a78fdae11284234d6e33f5fe38c6d2a"
+    },
+    "validation/attempt-1/fixtures/different_integers.json": {
+      "bytes": 298,
+      "sha256": "7af83046e9f905a780c8918208d6a701c2261e845a15435913ee0ffae00fea1e"
+    },
+    "validation/attempt-1/fixtures/negative_integer.json": {
+      "bytes": 300,
+      "sha256": "58249aaccdcc5f13b1547abc0880e5dfacb0f9d060ec1689c4ecc22d47586911"
+    },
+    "validation/attempt-1/fixtures/positive_integer.json": {
+      "bytes": 298,
+      "sha256": "2e78223c01ce62e7b48b640d8cd6ed90e039b32ff47386b72c12c118ec9e946d"
+    },
+    "validation/attempt-1/fixtures/selection_missing.json": {
+      "bytes": 273,
+      "sha256": "021aa0fc1ef8edc1cb53a43c4e686d6a408df881cf558182e3eb6ff69d6c8412"
+    },
+    "validation/attempt-1/fixtures/viewport_missing.json": {
+      "bytes": 281,
+      "sha256": "774ad02756a0667541646bd17014cf32bf95c4a666b1b3540dbd16e9ee3f0936"
+    },
+    "validation/attempt-1/fixtures/zero_integer.json": {
+      "bytes": 290,
+      "sha256": "3ccad555af7102e38568fd4665dd1a07673ad6cac7f72fbe211603ee125b6915"
+    }
+  },
+  "retainedSelectors": [
+    "func testA1_A2_SearchResultHighlightAndClearButton() throws {",
+    "func testA1_RealSearchFlowHighlightAndClear() throws {",
+    "func testA3_OrdinaryReaderHasNoClearSearchHighlightButton() throws {",
+    "func testB1_B2_PagingTransitionsPreserveReaderStability() throws {",
+    "func testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState() throws {",
+    "func testF1_SefariaHebrewLocaleRTLAndHebrewHeaders() throws {",
+    "func testF2_HebrewTOCStructureAndDafLabels() throws {",
+    "func testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus() throws {",
+    "func testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends() throws {",
+    "func testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized() throws {"
+  ],
+  "reversePatchRecoversDonorBytes": true
+}
