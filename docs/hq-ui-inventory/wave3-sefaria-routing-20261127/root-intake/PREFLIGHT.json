@@ -1,0 +1,24 @@
+{
+  "base": "dd17c23a3679b23b0bf54dadcfffe9517d1437c6",
+  "donors": [
+    "b712b3c1245f4b44fdeb232243cc305f99441a62",
+    "c1574234dde8a82e702d103331d9be15fb24f8cc",
+    "04dd3accdd3b3509d11f2d02549334115e78c371"
+  ],
+  "files": 363,
+  "evidenceCounts": {
+    "c1574234dde8a82e702d103331d9be15fb24f8cc": 159,
+    "04dd3accdd3b3509d11f2d02549334115e78c371": 172
+  },
+  "preexistingRootDeltasPreserved": [
+    {
+      "donor": "b712b3c1245f4b44fdeb232243cc305f99441a62",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "rootBeforeSHA256": "57910a7e20395e0dae95c11ac5123af01e7545055b9e70501daa2cdfd01dc49b",
+      "donorBaseSHA256": "124b45b93116c972894662eede46983929855e9049136e3ac91d812a1b1eed49",
+      "donorAfterSHA256": "93a6af6df96bafabef1e832211b050350727e5fd7f3b013c408e0a53ae5bc9c6",
+      "expectedCombinedSHA256": "0ae4ebb09ae2e120812ce2199b4a3b61b48be82a3f7653a187c9e45bcc392d93"
+    }
+  ],
+  "status": "ALL_DONOR_PINS_AND_NONCONFLICTING_MERGES_VERIFIED"
+}

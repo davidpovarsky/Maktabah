@@ -1,0 +1,17 @@
+{
+  "status": "PASS_APPLE_PLUTIL",
+  "at": "2026-11-27T07:05:36.978240+00:00",
+  "exactPBXBytes": 630804,
+  "exactPBXSHA256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+  "command": [
+    "/usr/bin/plutil",
+    "-lint",
+    "-"
+  ],
+  "exit": 0,
+  "stdout": "<stdin>: OK\n",
+  "stderr": "",
+  "sourceMutation": false,
+  "macStagedFile": false,
+  "appSDKBuild": false
+}

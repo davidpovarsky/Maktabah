@@ -1,0 +1,74 @@
+{
+  "status": "PAIRED_RN_SOURCE_INTAKED_PBX_APPLE_PARSE_PENDING",
+  "base": "dd17c23a3679b23b0bf54dadcfffe9517d1437c6",
+  "steps": [
+    {
+      "donor": "b712b3c1245f4b44fdeb232243cc305f99441a62",
+      "head": "791f88f2d2ba643ec39718a5f8b06106ef4af08b",
+      "exit": 0
+    },
+    {
+      "donor": "c1574234dde8a82e702d103331d9be15fb24f8cc",
+      "head": "3dcb7dc551fcc621ddac5d7c881f9b1615424628",
+      "exit": 0
+    },
+    {
+      "donor": "04dd3accdd3b3509d11f2d02549334115e78c371",
+      "head": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+      "exit": 0
+    }
+  ],
+  "sourceTree": "14897418f1d6c7c944f103f91b82399864ebe214",
+  "verifiedPacketPaths": 363,
+  "sourcePinnedFiles": 28,
+  "evidenceCounts": {
+    "c1574234dde8a82e702d103331d9be15fb24f8cc": 159,
+    "04dd3accdd3b3509d11f2d02549334115e78c371": 172
+  },
+  "merges": [
+    {
+      "donor": "b712b3c1245f4b44fdeb232243cc305f99441a62",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "rootBeforeSHA256": "57910a7e20395e0dae95c11ac5123af01e7545055b9e70501daa2cdfd01dc49b",
+      "donorBaseSHA256": "124b45b93116c972894662eede46983929855e9049136e3ac91d812a1b1eed49",
+      "donorAfterSHA256": "93a6af6df96bafabef1e832211b050350727e5fd7f3b013c408e0a53ae5bc9c6",
+      "expectedCombinedSHA256": "0ae4ebb09ae2e120812ce2199b4a3b61b48be82a3f7653a187c9e45bcc392d93"
+    }
+  ],
+  "pbx": {
+    "sha256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+    "bytes": 630804,
+    "beforeSHA256": "190d9d1f1eedbd0c97d58829929f3efe12189e06a42f99f5dbbcf03dc7f7a9b8",
+    "addedLines": 16,
+    "registrations": [
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+        "fileRef": "57B87619CD439FE744CDCE0C",
+        "buildFilesByPhase": {
+          "F30576E22FA46222005732C6": "7DBDC48C30D136AA385A1CDF"
+        }
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+        "fileRef": "5BD780D5143563A4BC2ED614",
+        "buildFilesByPhase": {
+          "F30576E22FA46222005732C6": "82AEF0CA294D2BD71A5CA816"
+        }
+      },
+      {
+        "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+        "fileRef": "6AA4C6EAAFCFE280784DC103",
+        "buildFilesByPhase": {
+          "4B3202242EDAFE85003B95D1": "26A22B6932D96D324776D232",
+          "4B7C90A52F83494200454BE1": "A3753B4C5A40027BCEAD8DC2",
+          "F30576E22FA46222005732C6": "9B91FC6DAE7A4D8CB5A88C2D"
+        }
+      }
+    ]
+  },
+  "nativeOriginalTestFilesUnchanged": true,
+  "nativeSelectorsDeclared": 4,
+  "newNativeRuns": 0,
+  "appSDKBuild": "NOT_RUN",
+  "ownerProtectedReaderHunk": "FRESH_SOURCE_BOUND_APPROVAL_REQUIRED"
+}

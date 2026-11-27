@@ -1,0 +1,19 @@
+{
+  "scope": "Source/evidence precheck only; no cherry-pick or PBX edit occurred",
+  "explanation": "UI evidence schema uses artifacts, while peer evidence schema uses files. Both exact schemas are now read; preserve original manifests.",
+  "result": {
+    "ok": false,
+    "interpreter": "python3",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "python3",
+      "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_918b27f2d00345fbb531d12b652b6178/script.py"
+    ],
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 33, in <module>\nAssertionError",
+    "duration": 0.74,
+    "returncode": 1,
+    "hub_request_id": "hreq_dc657fb3f44142c6"
+  }
+}

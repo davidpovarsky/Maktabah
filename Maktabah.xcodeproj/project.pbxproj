@@ -1449,6 +1449,11 @@
 		5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */; };
 		641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */; };
 		08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */; };
+		7DBDC48C30D136AA385A1CDF /* MaktabahNativeSefariaSurfaceBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */; };
+		82AEF0CA294D2BD71A5CA816 /* MaktabahNativeSefariaSurfacePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */; };
+		26A22B6932D96D324776D232 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
+		A3753B4C5A40027BCEAD8DC2 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
+		9B91FC6DAE7A4D8CB5A88C2D /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2285,6 +2290,9 @@
 		8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift; sourceTree = "<group>"; };
 		122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift; sourceTree = "<group>"; };
 		F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSearchEntry.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift; sourceTree = "<group>"; };
+		57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfaceBinding.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift; sourceTree = "<group>"; };
+		5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfacePresentation.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift; sourceTree = "<group>"; };
+		6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSurfaceContract.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2534,6 +2542,7 @@
 				CE0000000000000000000036 /* ChavrusaSefariaBridgeModule.swift */,
 				CE0000000000000000000037 /* ChavrusaSefariaBridgeModule.m */,
 				CE0000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift */,
+				6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */,
 			);
 			path = SefariaEmbedded;
 			sourceTree = "<group>";
@@ -4020,6 +4029,8 @@
 				8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */,
 				122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */,
 				F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */,
+				5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */,
+				57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */,
 				F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */,
 				346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */,
 				F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */,
@@ -4529,6 +4540,7 @@
 				CE1000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */,
 				CE1000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
 				CE1000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
+				26A22B6932D96D324776D232 /* SefariaEmbeddedSurfaceContract.swift in Sources */,
 				CE1000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE1000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE1000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -4890,6 +4902,7 @@
 				CE2000000000000000000035 /* SefariaEmbeddedNativeSurfaceHost.swift in Sources */,
 				CE2000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
 				CE2000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
+				A3753B4C5A40027BCEAD8DC2 /* SefariaEmbeddedSurfaceContract.swift in Sources */,
 				CE2000000000000000000001 /* LibraryBackendModels.swift in Sources */,
 				CE2000000000000000000002 /* LibraryBackendProtocols.swift in Sources */,
 				CE2000000000000000000003 /* BackendCoordinator.swift in Sources */,
@@ -5222,6 +5235,8 @@
 				5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */,
 				641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */,
 				08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */,
+				82AEF0CA294D2BD71A5CA816 /* MaktabahNativeSefariaSurfacePresentation.swift in Sources */,
+				7DBDC48C30D136AA385A1CDF /* MaktabahNativeSefariaSurfaceBinding.swift in Sources */,
 				8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */,
 				24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */,
 				EC5D1D474E6FAF12EA1BBEF9 /* AnnotationOriginalEditorLifecycleUI.swift in Sources */,
@@ -5352,6 +5367,7 @@
 				CE3000000000000000000036 /* ChavrusaSefariaBridgeModule.swift in Sources */,
 				CE3000000000000000000037 /* ChavrusaSefariaBridgeModule.m in Sources */,
 				CE3000000000000000000038 /* SefariaEmbeddedAcceptanceDiagnosticRunner.swift in Sources */,
+				9B91FC6DAE7A4D8CB5A88C2D /* SefariaEmbeddedSurfaceContract.swift in Sources */,
 				CE3000000000000000000009 /* SefariaModels.swift in Sources */,
 				CE300000000000000000000A /* SefariaNetworkConfiguration.swift in Sources */,
 				CE300000000000000000000B /* SefariaHTTPClient.swift in Sources */,
