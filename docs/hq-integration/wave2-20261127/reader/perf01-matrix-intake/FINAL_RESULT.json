@@ -1,0 +1,38 @@
+{
+  "appleCompileExecuted": 0,
+  "corpusQueried": 0,
+  "initialIntakeAndFailedCheck": {
+    "bytes": 6105,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/RESULT.json",
+    "sha256": "c0a76847b14831e5818fbc0c91e958c72bc16a0d6f243937a679cd01da8143b3"
+  },
+  "materializedUnchangedHEADPaths": [
+    {
+      "bytes": 12675,
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+    },
+    {
+      "bytes": 1426,
+      "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    }
+  ],
+  "nativeExecuted": 0,
+  "observedUnix": 1795768141.7638478,
+  "schema": "otzaria.wave2.perf01-matrix-intake-final/1",
+  "sourceCheck": {
+    "exit": 0,
+    "stderr": {
+      "bytes": 0,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK_02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 14219,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK_02.stdout.json",
+      "sha256": "8e58013dfd51b80ad657d7139da43eb56be08a1e6c72d1e56b1d5eacf4837c54"
+    }
+  },
+  "status": "SOURCE_ONLY_INTEGRATED_DECLARATIONS_CHECKED"
+}
