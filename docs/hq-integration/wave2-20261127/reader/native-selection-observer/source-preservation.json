@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "baselineCheckout": "425603045a1c106028fc6d452b057e6446aa576b",
+  "originalSHA256": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
+  "candidateSHA256": "742d3e9dec8c432c8bfebea5f6e8d31b0188202f786501d24057556fb93f9bd2",
+  "originalRecoveredByteForByte": true,
+  "existingRequestUUIDAndDedupeUnchanged": true,
+  "uiExecuted": 0
+}
