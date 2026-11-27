@@ -1,0 +1,82 @@
+{
+  "controls" : [
+    {
+      "name" : "mount activation alone is not layout evidence",
+      "passed" : true
+    },
+    {
+      "name" : "empty native frame cannot advance revision",
+      "passed" : true
+    },
+    {
+      "name" : "same live owner and source actual layout is accepted",
+      "passed" : true
+    },
+    {
+      "name" : "duplicate layout cannot advance a second phase",
+      "passed" : true
+    },
+    {
+      "name" : "expansion state mutation alone produces no publication",
+      "passed" : true
+    },
+    {
+      "name" : "queued previous expansion callback is rejected",
+      "passed" : true
+    },
+    {
+      "name" : "wrong marker token is rejected",
+      "passed" : false
+    },
+    {
+      "name" : "new original expansion layout is separately observed",
+      "passed" : true
+    },
+    {
+      "name" : "detached original container cannot publish",
+      "passed" : true
+    },
+    {
+      "name" : "old mount callback cannot inherit identical new source",
+      "passed" : false
+    },
+    {
+      "name" : "queued old retirement cannot erase replacement publisher",
+      "passed" : true
+    },
+    {
+      "name" : "replacement marker requires its own actual layout",
+      "passed" : true
+    },
+    {
+      "name" : "another owner with equal view ID cannot inherit",
+      "passed" : true
+    },
+    {
+      "name" : "empty original list geometry is not publication",
+      "passed" : true
+    },
+    {
+      "name" : "actual list content geometry can publish offscreen expansion",
+      "passed" : true
+    },
+    {
+      "name" : "duplicate list geometry cannot advance revision",
+      "passed" : true
+    },
+    {
+      "name" : "prior original search-state geometry is rejected",
+      "passed" : true
+    },
+    {
+      "name" : "retired marker rejects final queued geometry",
+      "passed" : true
+    }
+  ],
+  "failed" : 2,
+  "native_ui_executed" : 0,
+  "owner_boundary" : "Synthetic ownership predicate; actual app layout-state implementation verbatim",
+  "passed" : 16,
+  "physical_device_executed" : 0,
+  "status" : "SOURCE_LAYOUT_LIFETIME_CONTROLS_ONLY"
+}
