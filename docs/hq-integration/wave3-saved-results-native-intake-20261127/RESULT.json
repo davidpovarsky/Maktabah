@@ -1,0 +1,62 @@
+{
+  "schema": "otzaria.wave3.saved-native-source-intake.v1",
+  "base": "6fab35806ac97a1a287176a2605fd5bdc5918ba6",
+  "donorBase": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "picked": [
+    {
+      "donor": "6bca884d70f0dad8ed00639076f5db976c349573",
+      "intake": "2e129c015aa984aa2ab1d0b7d3afe175bfe358a6"
+    },
+    {
+      "donor": "3103dfd8d8883cccc9b93854ee2100131fce2ad0",
+      "intake": "c9e84afc25eb6384ac84b737da5528f72791f684"
+    }
+  ],
+  "sourcePaths": 2,
+  "docsPaths": 40,
+  "manifestRows": 39,
+  "dependenciesRejoined": 16,
+  "rawFilesVerified": 22,
+  "zipMembers": 23,
+  "oldPrefixBytes": 337724,
+  "oldPrefixSHA256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f",
+  "suffixBytes": 37710,
+  "suffixSHA256": "fe2f04de2a71ac5459c27e1d9ab67080e5113b013d468e22ebf67a5bbebb9a62",
+  "combinedSHA256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e",
+  "originalAssertionsAndSelectors": "Whole original337724-byte prefix exact",
+  "reusedExecutedSourceControls": {
+    "sqlite": 10,
+    "fullFrontendSyntaxParses": 2
+  },
+  "newNativeSelectors": 6,
+  "newNativeRuns": 0,
+  "PBX": "Unchanged; existing synchronized UI-test group membership",
+  "protectedTrees": {
+    "Source": "7afa76212dec72644917e6aaff3257ca56a14ccf",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "e8f08a3e8be4a79a577c70d0819875be2fee1d1b",
+    "Scripts": "3b08c2291bc87d99bca1f6056328bc3362a66a7f",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "originalWhitespaceEvidence": {
+    "schema": "otzaria.exact-original-source-formatting-review.v1",
+    "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+    "original_path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+    "raw_evidence_path": "docs/hq-ui-inventory/wave3-saved-results-native-20261127/original-source/Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+    "bytes": 2790,
+    "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9",
+    "git_blob": "0da3021cfbffde24f9be729a04c7c435d408ed78",
+    "observed_formatting": {
+      "line": 19,
+      "finding": "trailing whitespace",
+      "raw_bytes_hex": "202020200a"
+    },
+    "disposition": "Preserve byte-exact original evidence; original and source-copy hashes remain unchanged.",
+    "authored_files": "All newly authored source and evidence continue to require git diff --check.",
+    "exclusion_scope": "Only the one proven original raw-source copy is excluded from the authored-file formatting check.",
+    "source_test_assertions": "UNCHANGED",
+    "native": "NOT_RUN"
+  },
+  "scope": "Warm mounted original Saved tree; actual AppIntents and native delivery NOT_RUN; no production, full Hebrew/VoiceOver/keyboard/resize/physical acceptance."
+}
