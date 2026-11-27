@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "scope": "Linux source-only host collector admission controls; retained Apple component bytes are parser inputs only",
+  "helper": {
+    "path": "Scripts/CI/study-ui-sqlite-wait.py",
+    "bytes": 58976,
+    "sha256": "4e2421361013659285c67459601bc705c2d89a2b7abe2313a0a4974b0b34dcee"
+  },
+  "finalControls": {
+    "passed": 90,
+    "total": 90,
+    "resultSHA256": "9f97ffb9156d77b5302f7ec2227912edc94951d40808594845ff15243517fc2f"
+  },
+  "baselineDropCounterexample": {
+    "passed": 89,
+    "total": 90,
+    "resultSHA256": "f7eb10362fc96c1954d8bef8bc3f66289d51d171fd64356cd2e62a976aebe6ba",
+    "actualFailure": "prior-capacity-dropped-untracked-fetch-can-span-epoch-with-no-counter-change",
+    "scope": "Synthetic source-state model follows actual recorder begin/finish accounting; no application fetch executed"
+  },
+  "archive": {
+    "path": "source-controls-inputs-and-receipts-v2.tar.gz",
+    "bytes": 261624,
+    "sha256": "b980fe2fd5fbcb48b72527d91524d01b0c6298f92affbd668636befcc5750083",
+    "members": 60
+  },
+  "sourceCaptureUpperBound": 119,
+  "captureCap": 160,
+  "captureBudgetSource": {
+    "path": "CAPTURE_BUDGET_SOURCE.json",
+    "sha256": "a57f932906a27d5c3e017b5c4028134c6927aeaec438dbf294dc2dd76996c857"
+  },
+  "originalNativeComponentCommit": "0b445db8a8ee5bc53a1a729c9b65693b51cc88fe",
+  "actualNativeApplicationExecuted": false,
+  "actualNativeClockExecuted": false,
+  "productionCorpusRead": false,
+  "fullPerformanceAcceptance": false
+}
