@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "status": "PENDING_NATIVE_UI",
+  "nativeExecutions": 0,
+  "productPrerequisite": "326806331b0aad54c4ff45806a9a852dde650751",
+  "selector": "Maktabah-iOSUITests/PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries",
+  "afterSelector": "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState",
+  "requiredEnvironment": [
+    "PRODUCTION_SEARCH_POST_UPDATE_RECEIPT",
+    "PRODUCTION_SEARCH_POST_UPDATE_RECEIPT_SHA256",
+    "PRODUCTION_SEARCH_CONTAINER_PARENT",
+    "SIMULATOR_UDID"
+  ],
+  "forbiddenEnvironment": [
+    "OTZARIA_SHARED_ROOT_OVERRIDE",
+    "OTZARIA_PRODUCTION_DB_PATH"
+  ],
+  "scope": "cold post-Settings UI",
+  "hostProcessLogGateRequired": true,
+  "warmSameProcessUpdateVerified": false,
+  "attachmentStem": "production-search-after-books-update-original-ui-and-trace-boundary",
+  "timeoutSeconds": 1800,
+  "sourceSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9"
+}
