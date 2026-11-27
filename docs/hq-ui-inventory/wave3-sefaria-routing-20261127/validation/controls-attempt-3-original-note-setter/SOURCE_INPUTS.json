@@ -1,0 +1,51 @@
+{
+  "scope": "Actual source bodies over explicit app/UIKit/RPC/presentation boundary inputs; no Apple SDK, app, Core grant or native execution.",
+  "variant": "candidate",
+  "counterfactual": null,
+  "inputs": {
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift": {
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    "source:Source/UI/iOS/Managers/iOSNavigationManager.swift": {
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": {
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    "peer:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift": {
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    "source:Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    }
+  },
+  "generatedSHA256": "a431d19c55f50cedc54735032cfcc5adcc4018bf6411d2bf7b0d59e1e7afcb08",
+  "domainSHA256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+  "controlsSHA256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+  "extractedBodies": [
+    "MaktabahNativeSefariaRootSource",
+    "MaktabahNativeRootPublicationSource",
+    "NativeComponentSourceObservation",
+    "original manager mode/book declarations",
+    "original Workspace state revision/advance",
+    "original bindings.isPresentationReady",
+    "original iOSReaderWorkspaceView.setEditingAnnotation",
+    "Session.originalNoteEditorStateWillChange",
+    "Session.isSefariaOriginalRootReady",
+    "Session RN readiness branch",
+    "Session.waitUntilVisible"
+  ]
+}

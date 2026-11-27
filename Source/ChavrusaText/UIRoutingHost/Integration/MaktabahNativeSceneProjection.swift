@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview }
+    enum Surface { case library, tableOfContents, reader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -27,7 +27,8 @@ struct MaktabahNativeSceneProjection {
     private func stable(_ id: UUID?) -> UIStableID? { id.flatMap { UIStableID(rawValue: $0.uuidString) } }
     private func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
 
-    func identity(workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil) throws -> NativeSceneIdentity {
+    func identity(workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
+                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil) throws -> NativeSceneIdentity {
         let reader = activeTab?.viewModel
         let section = try reader?.currentLocator.map(ActionAppIdentityBridge.actionRef)
         var selection: UIUTF16Range?
@@ -44,6 +45,8 @@ struct MaktabahNativeSceneProjection {
             originalSheet = MaktabahNativeWorkspacePresentationBinding.Parent.profiles.destination
         } else if workspacePresentation?.presentationFacets(for: .overview).requested == true {
             originalSheet = MaktabahNativeWorkspacePresentationBinding.Parent.overview.destination
+        } else if sefariaSurface?.presentationFacets.requested == true {
+            originalSheet = MaktabahNativeSefariaSurfaceBinding.destination
         } else { originalSheet = nil }
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID), profileID: stable(workspace?.selection?.profileID),
                                selectedItemID: sidebar?.page == .contents ? stable(activeTab?.id) : nil,
@@ -57,10 +60,22 @@ struct MaktabahNativeSceneProjection {
     /// compact-column visibility, unread content or source mismatch stays nil.
     func surface(_ surface: Surface,
                  workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
-                 phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil) throws -> NativeSurfaceState? {
+                 phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil,
+                 sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
+        case .sefariaEmbedded:
+            guard !settingsPresented, let workspace, let binding = sefariaSurface,
+                  binding.owns(workspace, manager: manager), binding.isAvailable else { return nil }
+            let actual = binding.presentationFacets
+            guard actual.requested, actual.mounted, actual.visible, actual.ready,
+                  !actual.transitioning else { return nil }
+            // The feature proves the ORIGINAL React mount/epoch/layout. This
+            // state is still not an ACK: the separate native marker must be
+            // visible in this same window and its final report is source-locked.
+            return .init(destination: MaktabahNativeSefariaSurfaceBinding.destination,
+                         presentation: .init(kind: .sheet), content: nil, state: state, focus: nil)
         case .workspaceProfiles, .workspaceOverview:
             let parent: MaktabahNativeWorkspacePresentationBinding.Parent =
                 surface == .workspaceProfiles ? .profiles : .overview

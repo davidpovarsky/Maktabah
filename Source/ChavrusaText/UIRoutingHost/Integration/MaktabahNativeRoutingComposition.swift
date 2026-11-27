@@ -230,6 +230,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   anchors: MaktabahNativeWorkspaceComponents.Overview.allCases.map(\.id), requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet,
                       components: MaktabahNativeWorkspaceComponents.Overview.allCases.map(\.id))])),
+            .init(id: MaktabahNativeSefariaSurfaceBinding.destination,
+                  title: String(localized: "bootstrap.source.sefaria.title"), implementation: .implemented,
+                  supportedBackends: [.sefariaEmbedded], presentations: [.sheet], requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
             .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
@@ -769,6 +773,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
         if destination.component != nil || destination.destination.rawValue == "native.reader.inspector"
             || (!MaktabahApp.isIpad && destination.destination == MaktabahNativeTOCComponents.destination)
+            || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination
             || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
@@ -776,7 +781,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             return try await open(public: .init(destination: destination.destination, backend: destination.backend,
                 presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector
                     : (destination.destination.rawValue == "native.settings"
-                    || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil) ? .sheet : .currentTab,
+                    || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil
+                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination) ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }
@@ -832,6 +838,39 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         return try await open(public: intent, sceneID: sceneID, managerID: ObjectIdentifier(manager),
                               expectedSnapshot: nil, origin: origin, until: end)
     }
+
+    /// Stage 13 uses the SAME finite public/Core route as a user navigation.
+    /// Evidence comes only from its canonical receipt and actual original RN
+    /// host. A pre-existing surface is not borrowed or dismissed by diagnostics.
+    func performOriginalSefariaSurfaceAcceptance(manager: iOSNavigationManager) async throws -> SefariaEmbeddedSurfaceAcceptanceEvidence {
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID,
+              let original = entry.session.sefariaSurfaceBinding,
+              original.presentation == nil, !original.presentationFacets.mounted,
+              entry.session.isPresentationReady(for: MaktabahNativeSefariaSurfaceBinding.destination) else {
+            throw UIRouteError(.unavailable, "native_sefaria_diagnostic_requires_unpresented_source")
+        }
+        let requestID = UUID()
+        defer { original.dismissNewSurface(requestID: requestID) }
+        let result = try await open(public: .init(destination: MaktabahNativeSefariaSurfaceBinding.destination,
+            backend: .sefariaEmbedded, presentation: .sheet), sceneID: sceneID, managerID: managerID,
+            expectedSnapshot: nil, origin: .appIntent, until: end, requestID: requestID)
+        guard case .acknowledged(let receipt) = result, receipt.requestId == requestID,
+              scenes[sceneID]?.session === entry.session,
+              entry.session.sefariaSurfaceBinding === original else {
+            throw UIRouteError(.failed, "native_sefaria_surface_not_acknowledged")
+        }
+        let evidence = try entry.session.originalSefariaSurfaceAcceptanceEvidence(for: receipt)
+        try Task.checkCancellation()
+        guard SystemActionClock().now() <= end else {
+            throw UIRouteError(.unavailable, "deadline_exceeded")
+        }
+        return evidence
+    }
+
     private func open(public intent: PublicNavigationSpecV2, sceneID: UIStableID, managerID: ObjectIdentifier,
                       expectedSnapshot: ActionBackendSnapshot?, origin: ActionOrigin,
                       until end: UInt64, requestID: UUID = UUID()) async throws -> UISceneAcknowledgement {

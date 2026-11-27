@@ -766,6 +766,8 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func setEditingAnnotation(_ value: Annotation?) {
+        nativeRoutingSession?.originalNoteEditorStateWillChange(
+            id: nativeNoteEditorOwnerID, reader: viewModel)
         nativePhoneTOCAttachment.originalStateWillChange()
         // One identity per original sheet entry, including reopening the same
         // unsaved value. Callback closures capture this value, never a live getter.

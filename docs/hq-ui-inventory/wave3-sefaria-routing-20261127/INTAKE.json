@@ -1,0 +1,50 @@
+{
+  "base": "f8d9be6c045e29116b358999f9619183f7294e99",
+  "branch": "codex/otzaria-wave3-sefaria-routing-20261127",
+  "intakePolicy": "Cherry-pick only this exact narrow packet; do not merge whole donor branch.",
+  "dependencies": {
+    "searchAlreadyIntaked": "f8d9be6c045e29116b358999f9619183f7294e99",
+    "peerSource": "b712b3c1245f4b44fdeb232243cc305f99441a62",
+    "peerEvidence": "c1574234dde8a82e702d103331d9be15fb24f8cc"
+  },
+  "changedSourcePaths": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+  ],
+  "newSourceFiles": [],
+  "appTargetMembership": "No new source file in this shared packet; root registers peer RN files. Existing six file memberships preserved.",
+  "catalogChanges": false,
+  "coreChanges": false,
+  "originalNativeTestsChanged": false,
+  "actualFinalSourceControls": {
+    "passed": 48,
+    "failed": 0,
+    "result": "validation/controls-attempt-3-original-note-setter/RESULT.json"
+  },
+  "correctedOriginalBoundary": {
+    "passed": 41,
+    "failed": 1,
+    "result": "validation/controls-attempt-2-original-note-owner/RESULT.json"
+  },
+  "finalSyntax": {
+    "passed": 6,
+    "failed": 0,
+    "scope": "Linux frontend parse, NOT Apple SDK typecheck"
+  },
+  "appleAppSDKTypecheck": "NOT_RUN",
+  "nativeSelectors": "NOT_RUN (four in peer separate file)",
+  "physicalQA": "NOT_RUN",
+  "ownerApproval": "Original protected Reader two-line hunk needs authentic source-bound approval for final exact diff. Prior signatures remain untouched.",
+  "peerSourceReview": {
+    "reviewer": "navigation_fix",
+    "scope": "Read-only final source, no runtime/rerun",
+    "compositionSHA256": "d7c4030ae4c6c6ff79d8773cada9967aaa2d63b79536ff37b3005f80fb1bbcf0",
+    "sessionSHA256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+    "readerSHA256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+    "finding": "No remaining blocker in exact creator cleanup or original Notes pre-mutation lifetime correction."
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "scope": "Static original ownership/caller audit, not app/native execution",
+  "sourceInputs": {
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": {
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    }
+  },
+  "writes": {
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": [
+      {
+        "line": 109,
+        "text": "@State private var nativeNoteEditorOwnerID = UUID()"
+      },
+      {
+        "line": 110,
+        "text": "@State private var nativeNoteEditorPresentationID = UUID()"
+      },
+      {
+        "line": 783,
+        "text": "nativeNoteEditorPresentationID = presentationID"
+      },
+      {
+        "line": 785,
+        "text": "editingAnnotation = value"
+      },
+      {
+        "line": 814,
+        "text": "noteErrorMessage = value"
+      }
+    ],
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": [
+      {
+        "line": 398,
+        "text": "private(set) var presentationActive = false"
+      },
+      {
+        "line": 408,
+        "text": "retiredPresentationID = presentationID"
+      },
+      {
+        "line": 410,
+        "text": "textView = value"
+      },
+      {
+        "line": 411,
+        "text": "if value != nil { presentationActive = true }"
+      },
+      {
+        "line": 418,
+        "text": "retiredPresentationID = presentationID"
+      },
+      {
+        "line": 419,
+        "text": "presentationActive = false"
+      },
+      {
+        "line": 420,
+        "text": "textView = nil"
+      },
+      {
+        "line": 431,
+        "text": "presentationActive = true"
+      },
+      {
+        "line": 432,
+        "text": "annotation.wrappedValue = draft"
+      }
+    ]
+  },
+  "calls": {
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": [
+      {
+        "line": 237,
+        "text": "attachNativeNoteEditor()"
+      },
+      {
+        "line": 240,
+        "text": "attachNativeNoteEditor()"
+      },
+      {
+        "line": 242,
+        "text": ".onDisappear { nativeRoutingSession?.detachNoteEditor(id: nativeNoteEditorOwnerID) }"
+      },
+      {
+        "line": 340,
+        "text": "noteEditorDidDismiss(presentationID: dismissingNoteEditorPresentationID)"
+      },
+      {
+        "line": 348,
+        "text": "set: { if !$0 { setNoteErrorMessage(nil) } }"
+      },
+      {
+        "line": 351,
+        "text": "Button(\"OK\", role: .cancel) { setNoteErrorMessage(nil) }"
+      },
+      {
+        "line": 575,
+        "text": "noteEditorDidDismiss(presentationID: notePresentationID)"
+      },
+      {
+        "line": 635,
+        "text": "noteEditorDidDismiss(presentationID: notePresentationID)"
+      },
+      {
+        "line": 659,
+        "text": "setEditingAnnotation(nil)"
+      },
+      {
+        "line": 661,
+        "text": "noteEditorDidDismiss(presentationID: note.id, fromParentDismissal: true)"
+      },
+      {
+        "line": 671,
+        "text": "private func noteEditorDidDismiss(presentationID: UUID, fromParentDismissal: Bool = false) {"
+      },
+      {
+        "line": 677,
+        "text": "nativeRoutingSession?.noteEditorDidDismiss(id: nativeNoteEditorOwnerID,"
+      },
+      {
+        "line": 748,
+        "text": "nativeRoutingSession?.noteEditorTextViewChanged("
+      },
+      {
+        "line": 761,
+        "text": "private func attachNativeNoteEditor() {"
+      },
+      {
+        "line": 764,
+        "text": "annotation: Binding(get: { editingAnnotation }, set: { setEditingAnnotation($0) }),"
+      },
+      {
+        "line": 768,
+        "text": "private func setEditingAnnotation(_ value: Annotation?) {"
+      },
+      {
+        "line": 806,
+        "text": "setEditingAnnotation(nil)"
+      },
+      {
+        "line": 812,
+        "text": "private func setNoteErrorMessage(_ value: String?) {"
+      },
+      {
+        "line": 859,
+        "text": "setEditingAnnotation(nil)"
+      },
+      {
+        "line": 960,
+        "text": "setEditingAnnotation(nil)"
+      },
+      {
+        "line": 996,
+        "text": "setEditingAnnotation(nil)"
+      },
+      {
+        "line": 998,
+        "text": "noteEditorDidDismiss(presentationID: presentationID, fromParentDismissal: true)"
+      },
+      {
+        "line": 1021,
+        "text": "setNoteErrorMessage(String(localized: \"Select text in the reader before adding a note.\"))"
+      },
+      {
+        "line": 1041,
+        "text": "setEditingAnnotation(draft)"
+      },
+      {
+        "line": 1043,
+        "text": "setNoteErrorMessage(error.localizedDescription)"
+      },
+      {
+        "line": 1052,
+        "text": "setEditingAnnotation(annotation)"
+      },
+      {
+        "line": 1054,
+        "text": "setEditingAnnotation(annotation)"
+      },
+      {
+        "line": 1077,
+        "text": "setEditingAnnotation(nil)"
+      }
+    ]
+  },
+  "conclusions": [
+    "Original NoteEditorOwner is a plain MainActor class; current reads the original SwiftUI Binding and presentationActive is not Observable.",
+    "Original editingAnnotation has one actual assignment, in setEditingAnnotation; original presentation ID is assigned in that same setter after the new callback.",
+    "All original local editor open/dismiss/save/cancel paths use setEditingAnnotation; native draft uses the same annotation Binding setter, with no suspension between presentationActive=true and the Binding write.",
+    "Owner.observeTextView can set presentationActive=true only with current != nil for its exact presentation; such a note entry already crossed the synchronous setter hook.",
+    "Owner.didDismiss sets presentationActive=false only after current==nil for the exact presentation; the original dismissal setter already crossed the hook.",
+    "An idle original editor attachment/detachment is not a State mutation; existing admitted-root lifetime handling remains unchanged.",
+    "RN source does not read noteErrorMessage; its original error setter and existing phone invalidation are untouched.",
+    "The new callback requires the exact registered editor UUID and Reader identity, invalidates retained pre-begin and completed RN proofs one-way, and revokes only an active retained RN observation."
+  ]
+}

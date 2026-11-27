@@ -1,0 +1,28 @@
+{
+  "variant": "without-original-note-setter-hook",
+  "scope": "Private source counterfactual; same explicit original-owner boundary and scenarios as final 48. No production source mutation.",
+  "compileCommand": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-original-note-setter-hook/Generated.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-original-note-setter-hook/Controls"
+  ],
+  "compileExit": 0,
+  "compileSeconds": 3.0299701234325767,
+  "executionExit": 1,
+  "summary": [
+    "RESULT 44 PASS / 4 FAIL"
+  ],
+  "failures": [
+    "FAIL original non-Observable note State A-B-A consumes retained source: retained source was accepted after invalidation",
+    "FAIL equal original note State write before begin revokes retained source: retained source was accepted after invalidation",
+    "FAIL original note State revokes completed proof after public release: retained source was accepted after invalidation",
+    "FAIL original non-Observable note State ABA during RN wait cannot reach marker: operation completed despite the refused original input"
+  ]
+}

@@ -55,6 +55,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environment(\.maktabahNativeRoutingSession, session)
+            .modifier(MaktabahNativeSefariaSurfacePresentation(binding: session?.sefariaSurfaceBinding, session: session))
             .modifier(OtzariaHanlinChatPresentationHost(owner: hanlinChat))
             .environment(\.otzariaGuidedTour, guidedTour)
             .environment(\.otzariaGuidedReadingDestination, guideReadingDestination)

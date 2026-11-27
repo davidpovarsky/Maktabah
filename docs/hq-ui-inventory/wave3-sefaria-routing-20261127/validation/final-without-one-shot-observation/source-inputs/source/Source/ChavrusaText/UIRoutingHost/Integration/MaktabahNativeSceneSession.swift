@@ -1,0 +1,1502 @@
+#if os(iOS)
+import Foundation
+import Observation
+import SwiftUI
+import UIKit
+import OtzariaActionCore
+import OtzariaUIRouting
+import ChavrusaUIRoutingHost
+
+/// The original root identity view owns this observation. Both UIKit references
+/// are weak, and a detached older view cannot erase a newer registration.
+@MainActor final class MaktabahNativeWindowSource {
+    private weak var source: UIView?
+    private weak var window: UIWindow?
+
+    @discardableResult
+    func observe(_ window: UIWindow?, from source: UIView) -> Bool {
+        if window == nil {
+            guard self.source === source else { return false }
+            self.source = nil; self.window = nil
+            return true
+        }
+        guard self.source !== source || self.window !== window else { return false }
+        self.source = source; self.window = window
+        return true
+    }
+
+    func isPresentationReady(in sceneID: UIStableID) -> Bool {
+        guard let source, let window, source.window === window,
+              window.isKeyWindow, !window.isHidden, window.alpha >= 0.95,
+              let scene = window.windowScene, scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == sceneID.rawValue,
+              let root = window.rootViewController, root.viewIfLoaded?.window === window else { return false }
+        // Read the original controller tree now, including the dismissal
+        // interval after a SwiftUI sheet binding has already become false.
+        var controllers = [root]
+        while let controller = controllers.popLast() {
+            guard controller.presentedViewController == nil,
+                  !controller.isBeingPresented, !controller.isBeingDismissed,
+                  controller.transitionCoordinator == nil else { return false }
+            controllers.append(contentsOf: controller.children)
+        }
+        return true
+    }
+}
+
+/// The RN sheet may cover the original root, but it never selects a tab, pops a
+/// book or dismisses Settings. Retain those ORIGINAL publication histories at
+/// +0, separately from the feature's runtime/React/host proof. Values stay in
+/// their original owners; equal writes and A→B→A cannot renew this observation.
+@MainActor private final class MaktabahNativeSefariaRootSource {
+    private let observation: NativeComponentSourceObservation
+    private let managerID: ObjectIdentifier
+    private let root: MaktabahNativeRootPublicationSource
+    private weak var workspacePresentation: MaktabahNativeWorkspacePresentationBinding?
+    private let workspaceRevision: UInt64
+    private let selectionRevision: UInt64
+    private let settingsRevision: UInt64
+    private let modeRevision: UInt64
+    private let bookRevision: UInt64
+    private let tab: iOSTab
+    private let mode: AppMode
+    private let bookID: ObjectIdentifier?
+    private let bookMode: AppMode?
+
+    static func isAvailable(_ bindings: MaktabahNativeSceneBindings,
+                            workspace: MaktabahNativeWorkspacePresentationBinding?) -> Bool {
+        bindings.rootPublications?.selectionRevision != nil
+            && bindings.rootPublications?.settingsRevision != nil
+            && bindings.manager.nativeModePresentationRevision != nil
+            && bindings.manager.selectedBookPresentationRevision != nil
+            && workspace?.originalStateRevision != nil
+            && bindings.selectedTab.wrappedValue == bindings.selectedTab.wrappedValue.canonical
+            && bindings.manager.currentMode == bindings.selectedTab.wrappedValue.appMode
+            && !bindings.showSettings.wrappedValue && bindings.isPresentationReady
+    }
+
+    init(bindings: MaktabahNativeSceneBindings,
+         workspace: MaktabahNativeWorkspacePresentationBinding,
+         readForeignPresentations: @MainActor () -> Void) throws {
+        let manager = bindings.manager
+        observation = NativeComponentSourceObservation {
+            _ = manager.currentMode; _ = manager.selectedBook; _ = manager.selectedBookPresentationMode
+            _ = manager.selectedBookForInfo; _ = manager.showingTabsList
+            _ = manager.activeReaderViewModel?.isPopoverPresented
+            _ = DonationManager.shared.showDonationSheet
+            _ = bindings.sidebar?.overview.blocksRouting
+            _ = workspace.originalStateRevision
+            readForeignPresentations()
+        }
+        guard Self.isAvailable(bindings, workspace: workspace),
+              let root = bindings.rootPublications,
+              let selection = root.selectionRevision, let settings = root.settingsRevision,
+              let mode = manager.nativeModePresentationRevision,
+              let book = manager.selectedBookPresentationRevision,
+              let workspaceRevision = workspace.originalStateRevision else {
+            throw UIRouteError(.unavailable, "native_sefaria_original_root_unavailable")
+        }
+        self.root = root; managerID = ObjectIdentifier(manager)
+        workspacePresentation = workspace; self.workspaceRevision = workspaceRevision
+        selectionRevision = selection; settingsRevision = settings
+        modeRevision = mode; bookRevision = book
+        tab = bindings.selectedTab.wrappedValue; self.mode = manager.currentMode
+        bookID = manager.selectedBook.map(ObjectIdentifier.init)
+        bookMode = manager.selectedBookPresentationMode
+        try validate(bindings, workspace: workspace)
+    }
+
+    func validate(_ bindings: MaktabahNativeSceneBindings,
+                  workspace: MaktabahNativeWorkspacePresentationBinding?) throws {
+        try observation.validate()
+        let manager = bindings.manager
+        guard ObjectIdentifier(manager) == managerID, bindings.rootPublications === root,
+              let workspace, workspacePresentation === workspace,
+              workspace.originalStateRevision == workspaceRevision,
+              root.selectionRevision == selectionRevision, root.settingsRevision == settingsRevision,
+              manager.nativeModePresentationRevision == modeRevision,
+              manager.selectedBookPresentationRevision == bookRevision,
+              bindings.selectedTab.wrappedValue == tab, manager.currentMode == mode,
+              manager.selectedBook.map(ObjectIdentifier.init) == bookID,
+              manager.selectedBookPresentationMode == bookMode,
+              !bindings.showSettings.wrappedValue, bindings.isPresentationReady else {
+            throw UIRouteError(.staleState, "native_sefaria_original_root_changed")
+        }
+    }
+    func invalidate() { observation.invalidate() }
+}
+
+/// One instance per actual UIKit session. The app supplies the SAME directory /
+/// S facade used by Core and its current lifetime validator at composition.
+/// Native mutations remain behind P's canonical precommit guard.
+@MainActor @Observable
+final class MaktabahNativeSceneSession: NativeSceneDriver {
+    let sceneID: UIStableID
+    let presentation: NativePresentationObserver
+    private(set) var submissionID: UUID?
+    private(set) var mounted = true
+    var foreground = false
+    private let directory: NativeSceneDirectory
+    private var project: @MainActor () throws -> MaktabahNativeSceneProjection
+    private let bindings: MaktabahNativeSceneBindings
+    let workspaceProjectionSource: MaktabahNativeWorkspaceProjectionSource?
+    private(set) var workspacePresentation: MaktabahNativeWorkspacePresentationBinding?
+    private(set) var phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding?
+    private(set) var sefariaSurfaceBinding: MaktabahNativeSefariaSurfaceBinding?
+    @ObservationIgnored private var sefariaRootSources: [UUID: MaktabahNativeSefariaRootSource] = [:]
+    @ObservationIgnored private var completedSefariaRootSource: MaktabahNativeSefariaRootSource?
+    @ObservationIgnored private var retainedSefariaSurface = false
+    @ObservationIgnored private var retainedPhoneTOC = false
+    @ObservationIgnored private weak var forwardingWorkspaceOwner: MaktabahNativeWorkspaceOwner?
+    @ObservationIgnored private var retainedWorkspaceParent: MaktabahNativeWorkspacePresentationBinding.Parent?
+    private var lease: NativeSceneDirectory.Lease?
+    private var command: UISceneCommand?
+    @ObservationIgnored private var lastCompletedSurface: (route: RouteSpec, evidence: NativeSurfaceWitness.Evidence)?
+    var readerBinding: MaktabahNativeReaderBinding?
+    var searchResultsBinding: MaktabahNativeSearchResultsBinding?
+    @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
+    @ObservationIgnored private var retainedSearchField: UISearchTextField?
+    private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
+    @ObservationIgnored private var searchFieldUpdateScheduled = false
+    @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
+    @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
+    @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
+    private var searchFieldRevision: UInt64 = 0
+    @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
+    @ObservationIgnored private var searchPresentationOwner: UUID?
+    @ObservationIgnored private var searchPresentationBlocked: (@MainActor () -> Bool)?
+    @ObservationIgnored private var componentOwners: [UIDestinationID: MaktabahNativeComponentOwner] = [:]
+    @ObservationIgnored private var retainedComponentOwner: MaktabahNativeComponentOwner?
+    @ObservationIgnored private var componentValidation: (@MainActor (UISceneCommand) throws -> (@MainActor () throws -> Void))?
+    @ObservationIgnored private var componentUpdateScheduled = false
+    private var componentRevision: UInt64 = 0
+
+    func componentOwner(for destination: UIDestinationID) -> MaktabahNativeComponentOwner? { componentOwners[destination] }
+
+    func forwardRouting(to owner: MaktabahNativeWorkspaceOwner) throws {
+        guard usesWorkspaceOwner(owner) else { throw UIRouteError(.staleState, "native_workspace_owner_changed") }
+        try owner.attachNativeRoutingSession(self)
+        forwardingWorkspaceOwner = owner
+    }
+
+    /// The original parent source is retained before its component source and
+    /// before any public binding/Core await. Read-only discovery does not retain.
+    func retainParentSource(destination: UIDestinationID, requestID: UUID) throws {
+        if destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            guard mounted, foreground, isPresentationReady(for: destination),
+                  sefariaRootSources[requestID] == nil,
+                  let original = sefariaSurfaceBinding, let workspacePresentation else {
+                throw UIRouteError(.unavailable, "native_sefaria_parent_unavailable")
+            }
+            let root = try MaktabahNativeSefariaRootSource(bindings: bindings, workspace: workspacePresentation) { [weak self] in
+                guard let self else { return }
+                _ = mounted; _ = foreground; _ = studyChatPresentationID
+                // The original note editor owns SwiftUI State, not Observable
+                // fields. Its exact setter invalidates this source synchronously.
+            }
+            try original.retainSource(requestID: requestID)
+            do { try root.validate(bindings, workspace: workspacePresentation) }
+            catch { original.releaseSource(requestID: requestID); throw error }
+            sefariaRootSources[requestID] = root
+            return
+        }
+        if usesOriginalPhoneTOC(destination) {
+            guard mounted, foreground, isPresentationReady(for: destination), let phoneTOCPresentation else {
+                throw UIRouteError(.unavailable, "native_phone_toc_parent_unavailable")
+            }
+            try phoneTOCPresentation.retainSource(requestID: requestID)
+            return
+        }
+        guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else { return }
+        guard mounted, foreground, isPresentationReady(for: destination), let workspacePresentation else {
+            throw UIRouteError(.unavailable, "native_workspace_parent_unavailable")
+        }
+        try workspacePresentation.retainSource(parent: parent, requestID: requestID)
+    }
+    func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {
+        if destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            guard let original = sefariaSurfaceBinding, let root = sefariaRootSources[requestID] else {
+                throw UIRouteError(.staleState, "native_sefaria_parent_not_retained")
+            }
+            try root.validate(bindings, workspace: workspacePresentation)
+            try original.validateSource(requestID: requestID)
+            guard sefariaRootSources[requestID] === root else {
+                throw UIRouteError(.staleState, "native_sefaria_parent_released")
+            }
+            return
+        }
+        if usesOriginalPhoneTOC(destination) {
+            guard let phoneTOCPresentation else { throw UIRouteError(.staleState, "native_phone_toc_parent_detached") }
+            try phoneTOCPresentation.validateSource(requestID: requestID)
+            return
+        }
+        guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else { return }
+        guard let workspacePresentation else { throw UIRouteError(.staleState, "native_workspace_parent_detached") }
+        try workspacePresentation.validateSource(parent: parent, requestID: requestID)
+    }
+    func releaseParentSource(destination: UIDestinationID, requestID: UUID) {
+        if destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            if let root = sefariaRootSources.removeValue(forKey: requestID), root !== completedSefariaRootSource {
+                root.invalidate()
+            }
+            sefariaSurfaceBinding?.releaseSource(requestID: requestID)
+            return
+        }
+        if usesOriginalPhoneTOC(destination) {
+            phoneTOCPresentation?.releaseSource(requestID: requestID)
+            return
+        }
+        guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) != nil else { return }
+        workspacePresentation?.releaseSource(requestID: requestID)
+    }
+    func retainComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws -> MaktabahNativeComponentOwner {
+        guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
+        let searchEntry = destination == MaktabahNativeSearchEntryBinding.destination
+            && anchor == MaktabahNativeSearchEntryBinding.anchor
+        if searchEntry {
+            guard let searchEntryBinding, searchEntryBinding.owner === owner else {
+                throw UIRouteError(.unavailable, "native_search_entry_source_missing")
+            }
+            try searchEntryBinding.retainSource(requestID: requestID)
+        }
+        do { try owner.retainSource(requestID: requestID, anchor: anchor) }
+        catch {
+            if searchEntry { searchEntryBinding?.releaseSource(requestID: requestID) }
+            throw error
+        }
+        return owner
+    }
+    func releaseComponentSource(_ owner: MaktabahNativeComponentOwner, requestID: UUID) {
+        owner.releaseSource(requestID: requestID)
+        if searchEntryBinding?.owner === owner { searchEntryBinding?.releaseSource(requestID: requestID) }
+    }
+    func validateComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws {
+        if destination == NativeSearchFieldVisibility.destination, anchor == NativeSearchFieldVisibility.focus.anchor { return }
+        guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
+        try owner.validateSource(requestID: requestID, anchor: anchor)
+    }
+    func attachComponentOwner(_ owner: MaktabahNativeComponentOwner) {
+        guard componentOwners[owner.destination] == nil else { return }
+        componentOwners[owner.destination] = owner
+        owner.install(changed: { [weak self, weak owner] in
+            guard let self, let owner else { return }
+            componentStateDidChange(owner)
+        }, invalidated: { [weak self] in self?.presentation.revoke() })
+    }
+    func detachComponentOwner(_ owner: MaktabahNativeComponentOwner) {
+        guard componentOwners[owner.destination] === owner else { return }
+        owner.retirePresentation(); componentOwners.removeValue(forKey: owner.destination)
+        try? nativeStateChanged()
+    }
+    func configureComponentValidation(_ validation: @escaping @MainActor (UISceneCommand) throws -> (@MainActor () throws -> Void)) {
+        componentValidation = validation
+    }
+    func componentStateDidChange(_ owner: MaktabahNativeComponentOwner) {
+        guard mounted, componentOwners[owner.destination] === owner else { return }
+        originalPresentationStateDidChange()
+    }
+    private func originalPresentationStateDidChange() {
+        guard mounted else { return }
+        try? nativeStateChanged()
+        // UIKit layout may call this while SwiftUI updates. Only the graph
+        // notification is deferred; ownership invalidation is synchronous.
+        guard !componentUpdateScheduled else { return }
+        componentUpdateScheduled = true
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            componentUpdateScheduled = false; componentRevision &+= 1
+        }
+    }
+
+    func attachWindowSource(_ source: MaktabahNativeWindowSource) {
+        guard mounted else { return }
+        windowSource = source
+    }
+    func nativeWindowDidChange(_ source: MaktabahNativeWindowSource) {
+        guard mounted, windowSource === source else { return }
+        searchEntryBinding?.retire()
+        sefariaRootSources.values.forEach { $0.invalidate() }
+        completedSefariaRootSource?.invalidate()
+        presentation.revoke()
+        try? nativeStateChanged()
+    }
+    func observeSearchPresentation(owner: UUID, isBlocked: @escaping @MainActor () -> Bool) {
+        guard mounted else { return }
+        searchEntryBinding?.observeOriginalPresentation(owner: owner)
+        searchPresentationOwner = owner; searchPresentationBlocked = isBlocked
+    }
+    func originalSearchPresentationWillChange(owner: UUID) {
+        searchEntryBinding?.originalPresentationWillChange(owner: owner)
+    }
+    func renderSearchEntryFromOriginalView() {
+        guard mounted, foreground else { return }
+        searchEntryBinding?.renderOriginalFieldIfReady()
+    }
+    func removeSearchPresentation(owner: UUID) {
+        guard searchPresentationOwner == owner else { return }
+        searchEntryBinding?.originalPresentationDidDisappear(owner: owner)
+        // A hidden Search tab can retain its opaque FTS overlay state. Keep
+        // that original blocker until the actual owner clears/replaces it;
+        // reopening Search semantically must not submit behind a restored mask.
+        guard searchPresentationBlocked?() != true else { return }
+        searchPresentationOwner = nil; searchPresentationBlocked = nil
+    }
+    private func validateSearchPresentation() throws {
+        guard windowSource?.isPresentationReady(in: sceneID) == true,
+              searchPresentationBlocked?() != true else {
+            throw UIRouteError(.unavailable, "native_search_presentation_in_progress")
+        }
+    }
+
+    // This is the original scene-owned UIKit control, installed by its existing
+    // representable. No lookup through global windows or runtime class names.
+    func attachSearchField(_ field: UISearchTextField) {
+        guard nativeSearchField !== field else { return }
+        if retainedSearchField != nil { presentation.revoke() }
+        nativeSearchField = field
+        searchEntryBinding?.attachOriginalField(field)
+        searchFieldStateDidChange(field)
+    }
+
+    func detachSearchField(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        searchEntryBinding?.detachOriginalField(field)
+        if retainedSearchField === field { presentation.revoke() }
+        nativeSearchField = nil
+        // Ownership invalidation is synchronous even if the SwiftUI graph has
+        // not rendered yet, including detach/reattach ABA during Core awaits.
+        try? nativeStateChanged()
+        scheduleSearchFieldObservation()
+    }
+
+    func searchFieldStateDidChange(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        searchEntryBinding?.originalFieldStateDidChange(field)
+        try? nativeStateChanged()
+        scheduleSearchFieldObservation()
+    }
+    func searchFieldDidLayout(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        searchEntryBinding?.originalFieldDidLayout(field)
+    }
+
+    private func scheduleSearchFieldObservation() {
+        // UIKit attachment can happen inside updateUIView. Only the graph
+        // notification is deferred; the original directory revision has already
+        // changed synchronously above. Never defer authority invalidation.
+        guard !searchFieldUpdateScheduled else { return }
+        searchFieldUpdateScheduled = true
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            searchFieldUpdateScheduled = false
+            searchFieldRevision &+= 1
+        }
+    }
+
+    private var searchFieldAvailable: Bool {
+        guard mounted, foreground, isPresentationReady, let field = nativeSearchField,
+              (try? project().surface(.search)) != nil,
+              let evidence = visibilityChecks[NativeSearchFieldVisibility.destination]?(),
+              evidence.isVisible, evidence.sceneID == sceneID,
+              evidence.surface.destination == NativeSearchFieldVisibility.destination else { return false }
+        return NativeSearchFieldVisibility.isVisible(field, in: sceneID)
+    }
+    private var visible: [UIDestinationID: NativeSurfaceWitness.Evidence] = [:]
+    @ObservationIgnored private var visibilityChecks: [UIDestinationID: @MainActor () -> NativeSurfaceWitness.Evidence?] = [:]
+    private(set) var studyChatPresentationID: UUID?
+    private var hasOriginalWorkspacePresentation: Bool {
+        guard let workspacePresentation else { return false }
+        return MaktabahNativeWorkspacePresentationBinding.Parent.allCases.contains {
+            let actual = workspacePresentation.presentationFacets(for: $0)
+            return actual.requested || actual.mounted || actual.transitioning
+        }
+    }
+    private var hasOriginalSefariaSurface: Bool {
+        guard let actual = sefariaSurfaceBinding?.presentationFacets else { return false }
+        return actual.requested || actual.mounted || actual.transitioning
+    }
+    private var isSefariaOriginalRootReady: Bool {
+        mounted && foreground && !bindings.showSettings.wrappedValue && bindings.isPresentationReady
+            && !hasOriginalWorkspacePresentation && studyChatPresentationID == nil
+            && noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true
+            && MaktabahNativeSefariaRootSource.isAvailable(bindings, workspace: workspacePresentation)
+    }
+    var isPresentationReady: Bool {
+        bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface
+            && studyChatPresentationID == nil
+            && ((noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true)
+                || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
+    }
+
+    private func usesOriginalPhoneTOC(_ destination: UIDestinationID) -> Bool {
+        !MaktabahApp.isIpad && destination == MaktabahNativeTOCComponents.destination
+    }
+
+    /// Stable original Workspace sheets may navigate their own components.
+    /// Every unrelated modal keeps the existing blockers. A transition can be
+    /// awaited only by its already-applied command, never by fresh discovery.
+    func isPresentationReady(for destination: UIDestinationID) -> Bool {
+        if destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            guard isSefariaOriginalRootReady, let original = sefariaSurfaceBinding,
+                  original.isAvailable else { return false }
+            let actual = original.presentationFacets
+            if let requestID = submissionID, command?.invocation.requestId == requestID,
+               command?.route.route.destination == destination,
+               original.isContinuingAppliedRequest(requestID: requestID) {
+                return true
+            }
+            if actual.requested || actual.mounted || actual.transitioning {
+                return actual.requested && actual.mounted && actual.visible && !actual.transitioning
+            }
+            // Only a cold request uses the original root window. A stable own
+            // sheet supplies its exact host; unrelated modal transitions block.
+            return windowSource?.isPresentationReady(in: sceneID) == true
+        }
+        if usesOriginalPhoneTOC(destination) {
+            guard !bindings.showSettings.wrappedValue, isPresentationReady,
+                  isRootAvailable(destination), let phoneTOCPresentation else { return false }
+            if let requestID = submissionID, command?.invocation.requestId == requestID,
+               command?.route.route.destination == destination,
+               phoneTOCPresentation.isContinuingOriginalReaderPresentation(requestID: requestID) {
+                return true
+            }
+            // A cold request cannot dismiss or borrow a foreign transition.
+            // Only its already committed exact Reader source may await its push.
+            return windowSource?.isPresentationReady(in: sceneID) == true
+        }
+        guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else {
+            return isPresentationReady
+        }
+        guard bindings.isWorkspaceParentPresentationReady, !hasOriginalSefariaSurface, studyChatPresentationID == nil,
+              noteEditorOwner?.current == nil, noteEditorOwner?.presentationActive != true,
+              let binding = workspacePresentation, binding.isAvailable(parent: parent) else { return false }
+        let profiles = binding.presentationFacets(for: .profiles)
+        let overview = binding.presentationFacets(for: .overview)
+        let continuing: Bool
+        if let requestID = submissionID, command?.invocation.requestId == requestID,
+           command?.route.route.destination == destination {
+            continuing = binding.isContinuingAppliedRequest(parent: parent, requestID: requestID)
+        } else {
+            continuing = false
+        }
+        // Before the first canonical apply, the ORIGINAL window must have no
+        // unrelated presented controller or unfinished dismissal. A false
+        // SwiftUI sheet binding alone does not prove that UIKit has finished.
+        // Warm original Workspace sheets instead use their exact host evidence.
+        if !profiles.requested && !profiles.mounted && !overview.requested && !overview.mounted
+            && !continuing {
+            guard windowSource?.isPresentationReady(in: sceneID) == true else { return false }
+        }
+        if profiles.requested || profiles.mounted {
+            guard parent == .profiles,
+                  continuing || (profiles.visible && !profiles.transitioning) else { return false }
+        }
+        if overview.requested || overview.mounted || bindings.manager.showingTabsList
+            || bindings.sidebar?.overview.blocksRouting == true {
+            guard parent == .overview || (!MaktabahApp.isIpad && parent == .profiles),
+                  overview.requested else { return false }
+            let coveredByOriginalProfiles = parent == .profiles && profiles.requested
+                && profiles.mounted && profiles.visible && !profiles.transitioning
+            guard continuing || coveredByOriginalProfiles
+                || (overview.mounted && overview.visible && !overview.transitioning) else { return false }
+        }
+        return true
+    }
+
+    private func boundedRenderValidation(for value: UISceneCommand,
+                                         owner: MaktabahNativeComponentOwner? = nil,
+                                         anchor: UIDestinationID? = nil) throws -> @MainActor () throws -> Void {
+        guard let componentValidation else { throw UIRouteError(.unavailable, "native_render_lifetime_missing") }
+        let originalLifetime = try componentValidation(value)
+        return { [weak self, weak owner] in
+            try originalLifetime()
+            guard let self, mounted, foreground, isPresentationReady(for: value.route.route.destination) else {
+                throw UIRouteError(.staleState, "native_original_presentation_changed")
+            }
+            try validateParentSource(destination: value.route.route.destination, requestID: value.invocation.requestId)
+            if let anchor {
+                guard let owner, componentOwners[owner.destination] === owner, owner.isAvailable(anchor) else {
+                    throw UIRouteError(.staleState, "native_component_owner_changed")
+                }
+            }
+            let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+            guard value.route.route.state.workspaceID == identity.state.workspaceID,
+                  value.route.route.state.profileID == identity.state.profileID else {
+                throw UIRouteError(.staleState, "native_workspace_changed")
+            }
+        }
+    }
+
+    func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
+                          presentationID: @escaping @MainActor () -> UUID) {
+        if noteEditorOwner?.id == id, noteEditorOwner?.reader === reader { return }
+        if noteDraftBinding != nil { presentation.revoke() }
+        noteEditorOwner = .init(id: id, reader: reader, annotation: annotation, presentationID: presentationID)
+        try? nativeStateChanged()
+    }
+    func originalNoteEditorStateWillChange(id: UUID, reader: ReaderViewModel) {
+        guard mounted, let owner = noteEditorOwner,
+              owner.id == id, owner.reader === reader else { return }
+        // Observe the original setter BEFORE its SwiftUI State/presentation
+        // mutation. This also covers a retained source before beginObservation
+        // and completed proof; final-value equality cannot revive either one.
+        sefariaRootSources.values.forEach { $0.invalidate() }
+        completedSefariaRootSource?.invalidate()
+        if retainedSefariaSurface { presentation.revoke() }
+    }
+    func detachNoteEditor(id: UUID) {
+        guard let owner = noteEditorOwner, owner.id == id else { return }
+        // Leaving the Reader normally unmounts its idle editor registration.
+        // Revoke only a note-owned presentation, not the admitted Search/root
+        // transition that caused this original Reader to disappear.
+        let hadNotePresentation = noteDraftBinding != nil || owner.current != nil || owner.presentationActive
+        noteEditorOwner = nil
+        if hadNotePresentation { presentation.revoke() }
+        try? nativeStateChanged()
+    }
+    func noteEditorTextViewChanged(id: UUID, reader: ReaderViewModel, presentationID: UUID, textView: UITextView?) {
+        guard let owner = noteEditorOwner, owner.id == id, owner.reader === reader else { return }
+        guard owner.observeTextView(textView, presentationID: presentationID) else { return }
+        try? nativeStateChanged()
+    }
+    func noteEditorDidDismiss(id: UUID, presentationID: UUID) {
+        guard let owner = noteEditorOwner, owner.id == id else { return }
+        guard owner.didDismiss(presentationID: presentationID) else { return }
+        try? nativeStateChanged()
+    }
+    #if DEBUG
+    /// Passive acceptance observation of the existing exact Reader/editor owner.
+    /// Missing ownership is unknown, distinct from an owned dismissed draft.
+    struct NoteDraftAcceptanceState {
+        let ownerID: UUID
+        let draft: Annotation?
+        let presentationActive: Bool
+    }
+    func noteDraftAcceptanceState(reader: ReaderViewModel) -> NoteDraftAcceptanceState? {
+        guard mounted, foreground,
+              MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader,
+              let owner = noteEditorOwner, owner.reader === reader else { return nil }
+        return .init(ownerID: owner.id, draft: owner.current,
+                     presentationActive: owner.presentationActive)
+    }
+    #endif
+
+    #if DEBUG
+    /// Passive flags for the actual owner/marker seam. Never publishes a
+    /// receipt, forces TextKit layout, changes selection, or logs note content.
+    func diagnoseNoteDraftSurface(stage: String, reader: ReaderViewModel? = nil, draft: Annotation? = nil) {
+        let bound = noteDraftBinding, owner = noteEditorOwner
+        var validation = "no_binding"
+        if let bound {
+            do { try bound.validate(); validation = "valid" }
+            catch { validation = (error as? UIRouteError)?.code ?? String(describing: type(of: error)) }
+        }
+        let projected = (try? project().surface(.noteDraft)) != nil
+        let surfaceAvailable = (try? surface(.noteDraft)) != nil
+        let destination = UIDestinationID(rawValue: "native.reader.noteDraft")!
+        let check = visibilityChecks[destination], evidence = check?()
+        let textView = owner?.textView
+        let sameOwner = bound.map { owner === $0.owner } ?? false
+        let currentMatches = bound.map { owner?.current == $0.draft } ?? false
+        let passedReaderMatches = reader.map { owner?.reader === $0 } ?? false
+        let passedDraftMatches = draft.map { owner?.current == $0 } ?? false
+        let proposalMatches = bound.flatMap { bound in
+            textView.map { ($0.text ?? "").utf8.elementsEqual((bound.request.proposedText ?? "").utf8) }
+        } ?? false
+        let source = bound?.sourceDiagnostic() ?? "no_binding"
+        OtzariaFileLogger.shared.log("[NativeNoteDraftDiagnostic] stage=\(stage)"
+            + " mounted=\(mounted) foreground=\(foreground) pending=\(submissionID != nil)"
+            + " owner=\(owner != nil) binding=\(bound != nil) applied=\(bound?.isApplied == true)"
+            + " sameOwner=\(sameOwner) currentDraft=\(currentMatches)"
+            + " passedReader=\(passedReaderMatches) passedDraft=\(passedDraftMatches)"
+            + " sourceValidation=\(validation) source={\(source)}"
+            + " projected=\(projected) surface=\(surfaceAvailable)"
+            + " markerRegistered=\(check != nil) markerVisible=\(evidence?.isVisible == true)"
+            + " textView=\(textView != nil) textWindow=\(textView?.window != nil)"
+            + " textScene=\(textView?.window?.windowScene?.session.persistentIdentifier == sceneID.rawValue)"
+            + " proposalMatches=\(proposalMatches)")
+    }
+    #endif
+
+    func canPrepareNoteDraft() -> Bool {
+        guard mounted, foreground, isPresentationReady, noteDraftBinding == nil,
+              let owner = noteEditorOwner, owner.current == nil,
+              (try? publicBindingPresentation().witnessedReader) != nil else { return false }
+        return (try? MaktabahNativeNoteDraftBinding.selection(manager: bindings.manager, owner: owner, sceneID: sceneID)) != nil
+    }
+    func retainNoteDraft(_ request: ActionNoteDraftRequest) throws -> MaktabahNativeNoteDraftBinding {
+        guard canPrepareNoteDraft(), let owner = noteEditorOwner else { throw ActionPortError.unavailable }
+        let bound = try MaktabahNativeNoteDraftBinding(manager: bindings.manager, owner: owner, request: request, sceneID: sceneID)
+        noteDraftBinding = bound
+        return bound
+    }
+    func releaseNoteDraft(_ bound: MaktabahNativeNoteDraftBinding) {
+        #if DEBUG
+        if noteDraftBinding === bound { diagnoseNoteDraftSurface(stage: "before-binding-release") }
+        #endif
+        if noteDraftBinding === bound {
+            noteDraftBinding = nil
+            visibilityChecks[UIDestinationID(rawValue: "native.reader.noteDraft")!] = nil
+        }
+        // The original unsaved editor remains under the user's Save/Cancel.
+    }
+    func prepareNoteDraftRoute(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
+        try bound.validate()
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        return RouteSpec(requestId: invocation.requestId, destination: UIDestinationID(rawValue: "native.reader.noteDraft")!,
+            backend: invocation.snapshot.backend, presentation: .init(kind: .sheet),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateNoteDraftCompletion(_ bound: MaktabahNativeNoteDraftBinding, route: RouteSpec) throws {
+        guard mounted, foreground, noteDraftBinding === bound, noteEditorOwner === bound.owner else { throw ActionPortError.staleState }
+        try bound.validateVisible()
+        let id = UIDestinationID(rawValue: "native.reader.noteDraft")!
+        guard let actual = visibilityChecks[id]?(), actual.isVisible, actual.sceneID == sceneID,
+              actual.surface == (try surface(.noteDraft)),
+              actual.surface.destination == route.destination, actual.surface.presentation == route.presentation,
+              actual.surface.state == route.state, actual.surface.content == nil, actual.surface.focus == nil else {
+            throw ActionPortError.staleState
+        }
+    }
+
+    func beginStudyChatPresentation(_ id: UUID) throws {
+        guard mounted, foreground, isPresentationReady else {
+            throw UIRouteError(.unavailable, "native_presentation_in_progress")
+        }
+        studyChatPresentationID = id
+        do { try nativeStateChanged() }
+        catch { studyChatPresentationID = nil; throw error }
+        presentation.revoke()
+    }
+    func finishStudyChatPresentation(_ id: UUID) {
+        guard studyChatPresentationID == id else { return }
+        studyChatPresentationID = nil
+        try? nativeStateChanged()
+    }
+    /// Only this exact app-owned sheet may use its underlying source identity.
+    /// Other native routes stay unavailable until actual onDismiss, including
+    /// the period after the SDK lease is revoked but its sheet is still visible.
+    func isStudyChatContextReady(allowing id: UUID?) -> Bool {
+        bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface
+            && noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true
+            && (studyChatPresentationID == nil || studyChatPresentationID == id)
+    }
+    func isRootAvailable(_ destination: UIDestinationID) -> Bool {
+        if destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            return sefariaSurfaceBinding?.isAvailable == true
+                && MaktabahNativeSefariaRootSource.isAvailable(bindings, workspace: workspacePresentation)
+        }
+        if usesOriginalPhoneTOC(destination) {
+            return MaktabahNativeRootDestination.library.isAvailable
+                && phoneTOCPresentation?.isAvailable() == true
+        }
+        if let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) {
+            return workspacePresentation?.isAvailable(parent: parent) == true
+        }
+        guard let root = MaktabahNativeRootDestination(rawValue: destination.rawValue) else { return false }
+        return bindings.isRootAvailable(root)
+    }
+
+    init(sceneID: UIStableID, directory: NativeSceneDirectory, bindings: MaktabahNativeSceneBindings,
+         workspaceSource: MaktabahNativeWorkspaceProjectionSource? = nil,
+         project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) {
+        self.sceneID = sceneID; self.directory = directory; self.project = project
+        self.bindings = bindings
+        workspaceProjectionSource = workspaceSource
+        presentation = NativePresentationObserver(sceneID: sceneID)
+        if let workspaceSource, workspaceSource.isAuthoritative {
+            let searchEntry = MaktabahNativeSearchEntryBinding(sceneID: sceneID, bindings: bindings,
+                workspaceSource: workspaceSource,
+                commonReady: { [weak self] in
+                    guard let self else { return false }
+                    return mounted && foreground && isPresentationReady && searchPresentationBlocked?() != true
+                }, windowReady: { [weak self] in
+                    guard let self else { return false }
+                    return windowSource?.isPresentationReady(in: sceneID) == true
+                }, parentVisible: { [weak self] in
+                    guard let self else { return false }
+                    return (try? project().surface(.search)) != nil
+                })
+            searchEntryBinding = searchEntry
+            attachComponentOwner(searchEntry.owner)
+            let original = MaktabahNativeWorkspacePresentationBinding(sceneID: sceneID,
+                manager: bindings.manager, workspaceSource: workspaceSource, sidebar: bindings.sidebar,
+                selectViewer: { bindings.selectOriginalWorkspaceParent() })
+            workspacePresentation = original
+            original.install(changed: { [weak self, weak original] in
+                guard let self, let original, workspacePresentation === original else { return }
+                originalPresentationStateDidChange()
+            }, invalidated: { [weak self] in self?.presentation.revoke() })
+            for owner in MaktabahNativeWorkspaceComponents.makeOwners(binding: original) { attachComponentOwner(owner) }
+            let sefaria = MaktabahNativeSefariaSurfaceBinding(sceneID: sceneID,
+                manager: bindings.manager, workspaceSource: workspaceSource)
+            sefariaSurfaceBinding = sefaria
+            sefaria.install(changed: { [weak self, weak sefaria] in
+                guard let self, let sefaria, sefariaSurfaceBinding === sefaria else { return }
+                originalPresentationStateDidChange()
+            }, invalidated: { [weak self] in self?.presentation.revoke() })
+            if !MaktabahApp.isIpad {
+                let phone = MaktabahNativePhoneTOCPresentationBinding(sceneID: sceneID,
+                    manager: bindings.manager, workspaceSource: workspaceSource,
+                    presentReader: { try bindings.presentOriginalPhoneTOCReader($0) })
+                phoneTOCPresentation = phone
+                phone.install(changed: { [weak self, weak phone] in
+                    guard let self, let phone, phoneTOCPresentation === phone else { return }
+                    originalPresentationStateDidChange()
+                }, invalidated: { [weak self] in self?.presentation.revoke() })
+            }
+        }
+        attachComponentOwner(MaktabahNativeSettingsComponents.makeOwner())
+        attachComponentOwner(MaktabahNativeTOCComponents.makeOwner(manager: bindings.manager,
+                                                                  phonePresentation: phoneTOCPresentation))
+        attachComponentOwner(MaktabahNativeLibraryComponents.makeOwner(manager: bindings.manager))
+    }
+
+    func mount(validateLifetime: @escaping NativeSceneDirectory.ValidateLifetime) throws {
+        guard lease == nil, mounted else { throw UIRouteError(.staleState, "scene_session_already_mounted") }
+        lease = try directory.mount(sceneID: sceneID, observe: { [weak self] in
+            guard let self, mounted else { throw UIRouteError(.unavailable, "scene_missing") }
+            let projection = try project()
+            var route: RouteSpec?
+            var surface: NativeSurfaceState?
+            if let command, isPresentationReady(for: command.route.route.destination),
+               let evidence = visible[command.route.route.destination], evidence.isVisible,
+               let currentEvidence = visibilityChecks[command.route.route.destination]?(), currentEvidence == evidence,
+               evidence.sceneID == sceneID, evidence.submissionID == command.invocation.requestId,
+               let kind = surfaceKind(command.route.route.destination), let current = try self.surface(kind),
+               current == evidence.surface,
+               (kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID)),
+               (kind != .noteDraft || (try? noteDraftBinding?.validateVisible()) != nil) {
+                surface = current
+                route = current.observedRoute(for: command, backend: command.invocation.snapshot)
+            }
+            return .init(isForeground: foreground, isMounted: mounted, visibleRoute: route, surface: surface,
+                         identity: try projection.identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding))
+        }, validateLifetime: validateLifetime)
+    }
+
+    /// Preparation for the observer only; caller must possess the canonical
+    /// Core grant before invoking any native binding/model mutation afterwards.
+    func beginObservation(_ value: UISceneCommand) throws {
+        guard mounted, lease != nil, value.scene.sceneID == sceneID else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
+        let field: UISearchTextField?
+        if value.route.route.focus != nil, value.route.route.destination == NativeSearchFieldVisibility.destination,
+           value.route.route.focus?.anchor != MaktabahNativeSearchEntryBinding.anchor {
+            guard value.route.route.focus == NativeSearchFieldVisibility.focus,
+                  searchFieldAvailable, let original = nativeSearchField else {
+                throw UIRouteError(.unavailable, "native_search_field_not_visible")
+            }
+            field = original
+        } else { field = nil }
+        let component: MaktabahNativeComponentOwner?
+        let renderValidation: (@MainActor () throws -> Void)?
+        if let focus = value.route.route.focus, field == nil {
+            guard focus.kind == .component, focus.locator == nil, focus.range == nil,
+                  let anchor = focus.anchor, let owner = componentOwners[value.route.route.destination],
+                  owner.isAvailable(anchor) else {
+                throw UIRouteError(.unavailable, "native_component_unavailable")
+            }
+            component = owner
+            renderValidation = try boundedRenderValidation(for: value, owner: owner, anchor: anchor)
+        } else { component = nil; renderValidation = nil }
+        let workspaceParent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: value.route.route.destination.rawValue)
+        let phoneTOC = usesOriginalPhoneTOC(value.route.route.destination)
+        let sefaria = value.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination
+        let parentValidation: (@MainActor () throws -> Void)?
+        if workspaceParent != nil || phoneTOC || sefaria {
+            parentValidation = try renderValidation ?? boundedRenderValidation(for: value)
+        } else { parentValidation = nil }
+        let inspector: MaktabahNativeInspectorBinding?
+        if value.route.route.destination.rawValue == "native.reader.inspector" {
+            guard try publicBindingPresentation().inspectorAvailable else {
+                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+            }
+            inspector = try MaktabahNativeInspectorBinding(manager: bindings.manager)
+        } else { inspector = nil }
+        try presentation.begin(value)
+        do {
+            if let workspaceParent, let parentValidation, let workspacePresentation {
+                try workspacePresentation.begin(parent: workspaceParent, requestID: value.invocation.requestId,
+                                                validate: parentValidation)
+            }
+            if phoneTOC {
+                guard let phoneTOCPresentation, let parentValidation else {
+                    throw UIRouteError(.unavailable, "native_phone_toc_parent_detached")
+                }
+                try phoneTOCPresentation.begin(requestID: value.invocation.requestId, validate: parentValidation)
+            }
+            if sefaria {
+                guard let sefariaSurfaceBinding, let parentValidation else {
+                    throw UIRouteError(.unavailable, "native_sefaria_parent_detached")
+                }
+                try sefariaSurfaceBinding.begin(requestID: value.invocation.requestId, validate: parentValidation)
+            }
+            if let component, let anchor = value.route.route.focus?.anchor, let renderValidation {
+                if component === searchEntryBinding?.owner {
+                    try searchEntryBinding?.begin(requestID: value.invocation.requestId, validate: renderValidation)
+                }
+                try component.begin(requestID: value.invocation.requestId, anchor: anchor, validate: renderValidation)
+            }
+        } catch {
+            workspacePresentation?.finish(requestID: value.invocation.requestId, completed: false)
+            phoneTOCPresentation?.finish(requestID: value.invocation.requestId, completed: false)
+            searchEntryBinding?.finish(requestID: value.invocation.requestId, completed: false)
+            sefariaSurfaceBinding?.finish(requestID: value.invocation.requestId, completed: false)
+            presentation.end(requestID: value.invocation.requestId)
+            throw error
+        }
+        retainedWorkspaceParent = workspaceParent
+        retainedPhoneTOC = phoneTOC
+        retainedSefariaSurface = sefaria
+        retainedComponentOwner = component
+        inspectorBinding = inspector
+        retainedSearchField = field
+        lastCompletedSurface = nil
+        completedSefariaRootSource = nil
+        command = value; submissionID = value.invocation.requestId
+    }
+
+    func retainReader(_ content: ActionReaderDestination, requestID: UUID,
+                      revoke: @escaping @MainActor () -> Void) throws -> MaktabahNativeReaderBinding {
+        guard readerBinding == nil else { throw UIRouteError(.unavailable, "reader_binding_busy") }
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        let workspace = try workspaceProjectionSource?.read()
+        if content.presentationMode == .newTab, workspaceProjectionSource?.isAuthoritative != true {
+            throw UIRouteError(.unavailable, "new_reader_workspace_unavailable")
+        }
+        let retained = try MaktabahNativeReaderBinding(manager: bindings.manager,
+            currentTabID: identity.activeTabID, workspace: workspace, requestID: requestID, content: content, revoke: revoke)
+        readerBinding = retained
+        return retained
+    }
+    func releaseReader(_ retained: MaktabahNativeReaderBinding) {
+        guard readerBinding === retained else { return }
+        retained.release(); readerBinding = nil
+    }
+
+    func validateSurface(_ command: UISceneCommand) throws {
+        guard mounted, foreground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
+        guard isPresentationReady(for: command.route.route.destination) else {
+            throw UIRouteError(.unavailable, "native_presentation_in_progress")
+        }
+        let route = command.route.route, projection = try project()
+        let identity = try projection.identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        try validateParentSource(destination: route.destination, requestID: command.invocation.requestId)
+        guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
+              route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination.rawValue == "native.reader.noteDraft" {
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .sheet,
+                  route.presentation.tabID == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+                  let bound = noteDraftBinding, noteEditorOwner === bound.owner else {
+                throw UIRouteError(.unavailable, "original_note_editor_unavailable")
+            }
+            try bound.validate()
+            return
+        }
+        if route.destination.rawValue == "native.search.results" {
+            try validateSearchPresentation()
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .currentTab,
+                  route.presentation.tabID == nil, let searchResultsBinding,
+                  searchResultsBinding.requestID == command.invocation.requestId,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
+                throw UIRouteError(.notSupported, "native_search_results_variant_not_installed")
+            }
+            try searchResultsBinding.validate()
+            return
+        }
+        if route.destination.rawValue == "native.reader.inspector" {
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .inspector,
+                  route.presentation.tabID == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID,
+                      profileID: identity.state.profileID, inspectorVisible: true),
+                  try publicBindingPresentation().inspectorAvailable else {
+                throw UIRouteError(.unavailable, "native_inspector_reader_unavailable")
+            }
+            try inspectorBinding?.validate()
+            return
+        }
+        if route.destination.rawValue == "native.reader" {
+            guard let content = route.content, let readerBinding, readerBinding.accepts(content),
+                  route.presentation.kind == (readerBinding.isNewTab ? .newTab : .currentTab),
+                  route.presentation.tabID == readerBinding.targetTabID, route.focus == nil,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID,
+                                              inspectorVisible: readerBinding.inspectorVisible) else {
+                throw UIRouteError(.notSupported, "native_reader_variant_not_installed")
+            }
+            try readerBinding.validate()
+            return
+        }
+        if let focus = route.focus {
+            if route.destination == NativeSearchFieldVisibility.destination,
+               focus.anchor != MaktabahNativeSearchEntryBinding.anchor {
+                guard focus == NativeSearchFieldVisibility.focus, searchFieldAvailable,
+                      retainedSearchField == nil || retainedSearchField === nativeSearchField else {
+                    throw UIRouteError(.unavailable, "native_search_field_not_visible")
+                }
+            } else {
+                guard focus.kind == .component, focus.locator == nil, focus.range == nil,
+                      let anchor = focus.anchor, let owner = componentOwners[route.destination],
+                      owner.presentation == route.presentation.kind, owner.isAvailable(anchor),
+                      retainedComponentOwner == nil || retainedComponentOwner === owner else {
+                    throw UIRouteError(.unavailable, "native_component_unavailable")
+                }
+            }
+        }
+        guard route.content == nil, route.presentation.tabID == nil,
+              route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID) else {
+            throw UIRouteError(.notSupported, "native_surface_variant_not_installed")
+        }
+        switch route.destination.rawValue {
+        case "native.sefariaEmbedded":
+            guard route.presentation.kind == .sheet, route.focus == nil,
+                  isRootAvailable(route.destination) else {
+                throw UIRouteError(.unavailable, "native_sefaria_surface_unavailable")
+            }
+        case "native.workspace.profiles", "native.workspace.overview":
+            guard route.presentation.kind == .sheet, isRootAvailable(route.destination) else {
+                throw UIRouteError(.unavailable, "native_workspace_parent_unavailable")
+            }
+        case "native.settings":
+            guard route.presentation.kind == .sheet else { throw UIRouteError(.notSupported, "settings_presentation_not_installed") }
+        case "native.library", "native.reader.toc", "native.history", "native.search", "native.annotations":
+            guard route.presentation.kind == .currentTab, isRootAvailable(route.destination) else {
+                throw UIRouteError(.notSupported, "native_root_presentation_unavailable")
+            }
+        default: throw UIRouteError(.notSupported, "native_surface_not_installed")
+        }
+    }
+
+    func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            try validateSurface(command)
+            guard retainedSefariaSurface, let original = sefariaSurfaceBinding else {
+                throw UIRouteError(.staleState, "native_sefaria_parent_not_prepared")
+            }
+            // The sole Core-authorized commit publishes only this original RN
+            // sheet. Root selection, Reader, query and Settings stay untouched.
+            try original.apply(requestID: command.invocation.requestId)
+            return
+        }
+        if usesOriginalPhoneTOC(command.route.route.destination) {
+            try validateSurface(command)
+            guard retainedPhoneTOC, let phoneTOCPresentation else {
+                throw UIRouteError(.staleState, "native_phone_toc_parent_not_prepared")
+            }
+            if let owner = retainedComponentOwner { try owner.apply(requestID: command.invocation.requestId) }
+            try phoneTOCPresentation.apply(requestID: command.invocation.requestId)
+            return
+        }
+        if let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: command.route.route.destination.rawValue) {
+            try validateSurface(command)
+            guard retainedWorkspaceParent == parent, let workspacePresentation else {
+                throw UIRouteError(.staleState, "native_workspace_parent_not_prepared")
+            }
+            if let owner = retainedComponentOwner { try owner.apply(requestID: command.invocation.requestId) }
+            // One canonical commit. Only the captured original parent setter
+            // runs; any cold host continuation keeps this same source/deadline.
+            try workspacePresentation.apply(parent: parent, requestID: command.invocation.requestId)
+            return
+        }
+        if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+            try validateSurface(command)
+            guard let bound = noteDraftBinding else { throw ActionPortError.unavailable }
+            try bound.apply()
+            // Observe the actual editor's UITextView. Its binding checks the
+            // frontmost sheet, scene, text and TextKit layout on each read.
+            observeVisibility(for: command.route.route.destination) { [weak self, weak bound] in
+                guard let self, let bound, noteDraftBinding === bound,
+                      noteEditorOwner === bound.owner, (try? bound.validateVisible()) != nil,
+                      let actual = try? surface(.noteDraft) else { return nil }
+                return .init(sceneID: sceneID, surface: actual, isVisible: true,
+                             submissionID: command.invocation.requestId)
+            }
+            #if DEBUG
+            diagnoseNoteDraftSurface(stage: "after-apply")
+            #endif
+            return
+        }
+        if command.route.route.destination.rawValue == "native.search.results" {
+            try validateSurface(command)
+            guard let searchResultsBinding else { throw UIRouteError(.unavailable, "native_search_owner_missing") }
+            try searchResultsBinding.apply {
+                bindings.showSettings.wrappedValue = false
+                if !MaktabahApp.isIpad { bindings.manager.selectedBook = nil }
+                bindings.selectedTab.wrappedValue = .search
+                bindings.manager.switchToMode(.search)
+            }
+            return
+        }
+        if command.route.route.destination.rawValue == "native.reader.inspector" {
+            try validateSurface(command)
+            guard let inspectorBinding else { throw UIRouteError(.unavailable, "native_inspector_owner_missing") }
+            try inspectorBinding.apply()
+            return
+        }
+        if let owner = retainedComponentOwner, command.route.route.focus != nil {
+            try validateSurface(command)
+            try owner.apply(requestID: command.invocation.requestId)
+            if let searchEntryBinding, owner === searchEntryBinding.owner {
+                try searchEntryBinding.apply(requestID: command.invocation.requestId)
+                searchEntryBinding.renderOriginalFieldIfReady()
+                return
+            }
+            // One guarded, synchronous navigation commit publishes BOTH parent
+            // visibility and exact target. The original view renders that state.
+            try bindings.apply(command)
+            return
+        }
+        if command.route.route.focus != nil {
+            // Focus only an ALREADY VISIBLE original field. A caller first
+            // opens the Search root through this same orchestrator, then
+            // requests its component; no deferred mutation borrows a grant.
+            try validateSurface(command)
+            guard let field = retainedSearchField, nativeSearchField === field,
+                  field.isFirstResponder || field.becomeFirstResponder(),
+                  nativeSearchField === field, field.isFirstResponder,
+                  NativeSearchFieldVisibility.isVisible(field, in: sceneID) else {
+                throw UIRouteError(.unavailable, "native_search_focus_not_applied")
+            }
+            searchFieldStateDidChange(field)
+            return
+        }
+        if command.route.route.destination.rawValue == "native.reader" {
+            guard let readerBinding else { throw UIRouteError(.unavailable, "native_reader_owner_missing") }
+            try readerBinding.apply { try bindings.apply(command, reservedTab: readerBinding.reservedTab) }
+        } else { try bindings.apply(command) }
+    }
+
+    func waitUntilVisible(_ command: UISceneCommand) async throws -> NativeSurfaceState {
+        if command.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination {
+            guard retainedSefariaSurface, let original = sefariaSurfaceBinding,
+                  submissionID == command.invocation.requestId else {
+                throw UIRouteError(.staleState, "native_sefaria_wait_not_owned")
+            }
+            try validateSurface(command)
+            // This awaits the original RPC/host children inside the existing
+            // orchestrator deadline. No detached task, new grant or new timer
+            // extends that admission. Cancellation joins the original child.
+            try await original.awaitOriginalSurface(requestID: command.invocation.requestId)
+            try Task.checkCancellation()
+            try validateSurface(command)
+            if let actual = visibilityChecks[command.route.route.destination]?() { observe(actual) }
+        }
+        #if DEBUG
+        if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+            diagnoseNoteDraftSurface(stage: "wait-begin")
+        }
+        #endif
+        // A container's deduplicated layout callback can precede final geometry
+        // or TextKit paint/scroll restoration. Observe the same live UIKit
+        // witness only while its original request is waiting; never echo the route.
+        let readerObservation: Task<Void, Never>?
+        if retainedComponentOwner != nil || ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
+                                             "native.workspace.profiles", "native.workspace.overview", "native.sefariaEmbedded"].contains(command.route.route.destination.rawValue) {
+            readerObservation = Task { @MainActor [weak self] in
+                while !Task.isCancelled {
+                    guard let self, mounted, submissionID == command.invocation.requestId else { return }
+                    if let actual = visibilityChecks[command.route.route.destination]?() { observe(actual) }
+                    do { try await Task.sleep(for: .milliseconds(33)) } catch { return }
+                }
+            }
+        } else { readerObservation = nil }
+        defer { readerObservation?.cancel() }
+        do { return try await presentation.wait(for: command).surface }
+        catch {
+            #if DEBUG
+            OtzariaFileLogger.shared.log("[NativePresentationWait] code=\((error as? UIRouteError)?.code ?? (error is CancellationError ? "cancelled" : "unavailable")) mounted=\(mounted) foreground=\(foreground) ready=\(isPresentationReady)")
+            if command.route.route.destination.rawValue == "native.reader.noteDraft" {
+                diagnoseNoteDraftSurface(stage: "wait-error")
+            }
+            #endif
+            throw error
+        }
+    }
+
+    func nativeStateChanged() throws {
+        guard let lease else { return }
+        try directory.invalidate(lease)
+    }
+
+    func updateProjection(_ project: @escaping @MainActor () throws -> MaktabahNativeSceneProjection) {
+        self.project = project
+    }
+    func surface(_ kind: MaktabahNativeSceneProjection.Surface) throws -> NativeSurfaceState? {
+        if kind == .sefariaEmbedded {
+            let source = submissionID.flatMap { sefariaRootSources[$0] } ?? completedSefariaRootSource
+            guard let source, isSefariaOriginalRootReady else { return nil }
+            try source.validate(bindings, workspace: workspacePresentation)
+        }
+        if kind == .inspector { try inspectorBinding?.validate() }
+        if kind == .noteDraft {
+            guard let bound = noteDraftBinding, bound.isApplied, noteEditorOwner === bound.owner else { return nil }
+            try bound.validate()
+        }
+        if kind == .searchResults {
+            // Allow the native witness to mount during this route's own
+            // transition so UIKit can report viewDidAppear. The exact window
+            // is rechecked at completion; local overlays must hide the witness.
+            guard searchPresentationBlocked?() != true else { return nil }
+            guard let searchResultsBinding else { return nil }
+            try searchResultsBinding.validateCompleted()
+        }
+        _ = componentRevision
+        _ = phoneTOCPresentation?.stateRevision
+        _ = sefariaSurfaceBinding?.renderRevision
+        guard let state = try project().surface(kind, workspacePresentation: workspacePresentation,
+                                               phoneTOCPresentation: phoneTOCPresentation,
+                                               sefariaSurface: sefariaSurfaceBinding) else { return nil }
+        if command?.route.route.focus != nil, let owner = retainedComponentOwner, owner.destination == state.destination {
+            _ = componentRevision
+            return .init(destination: state.destination, presentation: state.presentation,
+                         content: state.content, state: state.state, focus: owner.actualFocus(in: sceneID))
+        }
+        // Root navigation does not request or report keyboard focus. For the
+        // registered component, the optional focus facet is projected ONLY
+        // from the same retained, visible UIKit field's actual responder state.
+        // The incoming anchor is never copied into native evidence.
+        guard state.destination == NativeSearchFieldVisibility.destination,
+              command?.route.route.focus != nil else { return state }
+        _ = searchFieldRevision
+        let actual: FocusSpec?
+        if let field = retainedSearchField, nativeSearchField === field, field.isFirstResponder,
+           NativeSearchFieldVisibility.isVisible(field, in: sceneID) {
+            actual = NativeSearchFieldVisibility.focus
+        } else { actual = nil }
+        return .init(destination: state.destination, presentation: state.presentation,
+            content: state.content, state: state.state, focus: actual)
+    }
+    /// Recheck the original UIKit surface after the navigation request has been retired.
+    func guidePresentationIdentity(for route: RouteSpec) throws -> NativeSceneIdentity? {
+        guard mounted, foreground, isPresentationReady(for: route.destination), let kind = surfaceKind(route.destination),
+              let evidence = visibilityChecks[route.destination]?(), evidence.isVisible, evidence.sceneID == sceneID,
+              let actual = try surface(kind), actual == evidence.surface,
+              actual.destination == route.destination, actual.presentation == route.presentation,
+              actual.content == route.content, actual.state == route.state else { return nil }
+        if kind == .reader {
+            guard try project().hasRenderedReaderEvidence(sceneID: sceneID) else { return nil }
+        }
+        if actual.focus != route.focus {
+            let searchFocus = route.destination == NativeSearchFieldVisibility.destination
+                && route.focus == NativeSearchFieldVisibility.focus
+                && nativeSearchField?.isFirstResponder == true && searchFieldAvailable
+            let componentFocus = route.focus != nil && componentOwners[route.destination]?.actualFocus(in: sceneID) == route.focus
+            guard searchFocus || componentFocus else { return nil }
+        }
+        return try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+    }
+
+    func usesWorkspaceOwner(_ owner: MaktabahNativeWorkspaceOwner) -> Bool { workspaceProjectionSource?.uses(owner) == true }
+    /// Passive independent evidence only. With the reader marker absent this
+    /// stays nil even if a reader model contains the requested destination.
+    func publicBindingPresentation() throws -> MaktabahNativePublicPresentation {
+        let readerID = UIDestinationID(rawValue: "native.reader")!
+        var reader: NativeSurfaceState?
+        if let evidence = visibilityChecks[readerID]?(), evidence.isVisible, evidence.sceneID == sceneID,
+           let current = try project().surface(.reader),
+           current == evidence.surface,
+           try project().hasRenderedReaderEvidence(sceneID: sceneID, includingContainingSection: true) { reader = current }
+        let inspectorID = UIDestinationID(rawValue: "native.reader.inspector")!
+        let inspectorWitnessed: Bool
+        if let evidence = visibilityChecks[inspectorID]?(), evidence.isVisible, evidence.sceneID == sceneID,
+           let actual = try surface(.inspector), actual == evidence.surface { inspectorWitnessed = true }
+        else { inspectorWitnessed = false }
+        let inspectorAvailable = MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) != nil
+            && (reader != nil || inspectorWitnessed)
+        return .init(ready: mounted && foreground && isPresentationReady,
+            historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
+            tableOfContentsAvailable: isRootAvailable(MaktabahNativeTOCComponents.destination), witnessedReader: reader,
+            searchFieldAvailable: searchFieldAvailable,
+            readyTableOfContents: mounted && foreground && isPresentationReady(for: MaktabahNativeTOCComponents.destination),
+            readySefariaSurface: mounted && foreground && isPresentationReady(for: MaktabahNativeSefariaSurfaceBinding.destination),
+            readyWorkspaceParents: Set(MaktabahNativeWorkspacePresentationBinding.Parent.allCases
+                .filter { mounted && foreground && isPresentationReady(for: $0.destination) }.map(\.destination)),
+            availableComponents: Dictionary(uniqueKeysWithValues: componentOwners.map { destination, owner in
+                // A pushed Settings child is not the original Form. Do not
+                // pretend setting its existing sheet flag can pop that stack.
+                let presentable = destination != MaktabahNativeSettingsComponents.destination
+                    || !bindings.showSettings.wrappedValue || owner.isMounted
+                return (destination, Set(owner.descriptors.filter { presentable && owner.isAvailable($0.anchor) }.map(\.anchor)))
+            }), inspectorAvailable: inspectorAvailable,
+            witnessedInspectorVisible: inspectorWitnessed ? true : reader?.state.inspectorVisible)
+    }
+    /// Independent source identity for the explicit current-work consent offer;
+    /// this does not relax the native route's surface or visibility receipt.
+    func hanlinCurrentWorkReadSource() throws -> MaktabahNativeSceneProjection.HanlinCurrentWorkReadSource? {
+        try project().hanlinCurrentWorkReadSource()
+    }
+    /// A freshness facet from the existing scene projection; no selected text or content grant.
+    func hanlinSelectionRange() throws -> UIUTF16Range? { try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding).selectedRange }
+    func ownsInspectorReader(_ reader: ReaderViewModel) -> Bool {
+        MaktabahNativeInspectorBinding.currentReader(in: bindings.manager) === reader
+    }
+    func observeVisibility(for destination: UIDestinationID, check: @escaping @MainActor () -> NativeSurfaceWitness.Evidence?) {
+        visibilityChecks[destination] = check
+    }
+
+    /// Synchronous readiness for Core capability/availability checks. This
+    /// observes only the original scene, presentation and search model; it
+    /// neither submits a query nor acquires a request-specific binding.
+    func canPrepareSearchResults() -> Bool {
+        let manager = bindings.manager, session = bindings.manager.unifiedSearchSession
+        guard mounted, foreground, isPresentationReady, searchResultsBinding == nil,
+              (try? validateSearchPresentation()) != nil,
+              session.searchViewModel === manager.searchViewModel,
+              session.selectedBookIds == manager.searchViewModel.selectedBookIds,
+              session.availableScopes.contains(.exact),
+              !session.showsBookFilterSheet, !session.showsSearchDataSheet,
+              !session.showsAdvancedOptions else { return false }
+        return true
+    }
+
+    func retainSearchResults(_ query: ActionSearchResultsQuery, requestID: UUID) throws -> MaktabahNativeSearchResultsBinding {
+        try validateSearchPresentation()
+        guard canPrepareSearchResults() else {
+            throw UIRouteError(.unavailable, "native_search_owner_unavailable")
+        }
+        let retained = try MaktabahNativeSearchResultsBinding(manager: bindings.manager, query: query, requestID: requestID)
+        searchResultsBinding = retained
+        return retained
+    }
+    func releaseSearchResults(_ binding: MaktabahNativeSearchResultsBinding) {
+        if searchResultsBinding === binding { searchResultsBinding = nil }
+    }
+    func prepareSearchResults(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        try validateSearchPresentation()
+        guard let searchResultsBinding, searchResultsBinding.requestID == invocation.requestId else {
+            throw UIRouteError(.unavailable, "native_search_owner_missing")
+        }
+        try searchResultsBinding.validate()
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        return RouteSpec(requestId: invocation.requestId, destination: UIDestinationID(rawValue: "native.search.results")!,
+            backend: invocation.snapshot.backend, presentation: .init(kind: .currentTab),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateSearchResultsCompletion(requestID: UUID) throws {
+        try validateSearchPresentation()
+        guard let searchResultsBinding, searchResultsBinding.requestID == requestID,
+              mounted, foreground, isPresentationReady,
+              let surface = try surface(.searchResults),
+              let evidence = visibilityChecks[surface.destination]?(),
+              evidence.isVisible, evidence.sceneID == sceneID, evidence.surface == surface else {
+            throw UIRouteError(.staleState, "native_search_results_no_longer_visible")
+        }
+        try searchResultsBinding.validateCompleted()
+    }
+
+    func windowLabel(number: Int) -> String {
+        let projection = try? project()
+        let names = [projection?.workspace?.profile?.name, projection?.workspace?.group?.name]
+            .compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " / ")
+        let window = String(localized: "Window \(number)")
+        return names.isEmpty ? window : names + " — " + window
+    }
+
+    func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard route.destination != MaktabahNativeSefariaSurfaceBinding.destination,
+              !usesOriginalPhoneTOC(route.destination), isRootAvailable(route.destination),
+              route.content == nil, route.presentation == .currentTab else {
+            throw UIRouteError(.notSupported, "public_native_variant_not_installed")
+        }
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        return RouteSpec(requestId: invocation.requestId, destination: route.destination, backend: invocation.snapshot.backend,
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision), expectedBackendSnapshot: invocation.snapshot)
+    }
+
+    func prepare(destination: UIDestinationID, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard destination != MaktabahNativeSefariaSurfaceBinding.destination else {
+            throw UIRouteError(.unavailable, "native_sefaria_parent_binding_required")
+        }
+        guard !usesOriginalPhoneTOC(destination) else {
+            throw UIRouteError(.unavailable, "native_phone_toc_parent_binding_required")
+        }
+        guard destination.rawValue == "native.settings"
+            || (MaktabahNativeRootDestination(rawValue: destination.rawValue) != nil && isRootAvailable(destination)) else {
+            throw UIRouteError(.notSupported, "native_surface_not_installed")
+        }
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        return RouteSpec(requestId: invocation.requestId, destination: destination, backend: invocation.snapshot.backend,
+            presentation: .init(kind: destination.rawValue == "native.settings" ? .sheet : .currentTab),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision), expectedBackendSnapshot: invocation.snapshot)
+    }
+
+    func observe(_ evidence: NativeSurfaceWitness.Evidence) {
+        guard mounted, evidence.sceneID == sceneID else { return }
+        if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader.noteDraft",
+           (try? noteDraftBinding?.validateVisible()) == nil {
+            if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+            return
+        }
+        if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader",
+           (try? project().hasRenderedReaderEvidence(sceneID: sceneID)) != true {
+            if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+            return
+        }
+        if evidence.isVisible, evidence.surface.destination == MaktabahNativeSefariaSurfaceBinding.destination,
+           let requestID = evidence.submissionID {
+            do {
+                guard let original = sefariaSurfaceBinding, submissionID == requestID,
+                      command?.invocation.requestId == requestID else {
+                    throw UIRouteError(.staleState, "native_sefaria_report_not_owned")
+                }
+                try original.withValidatedSurface(requestID: requestID) {
+                    try validateParentSource(destination: evidence.surface.destination, requestID: requestID)
+                    guard isSefariaOriginalRootReady, let current = try surface(.sefariaEmbedded),
+                          current == evidence.surface else {
+                        throw UIRouteError(.staleState, "native_sefaria_report_changed")
+                    }
+                    recordNativeObservation(evidence)
+                }
+            } catch {
+                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+                presentation.revoke()
+            }
+            return
+        }
+        recordNativeObservation(evidence)
+    }
+
+    private func recordNativeObservation(_ evidence: NativeSurfaceWitness.Evidence) {
+        #if DEBUG
+        if evidence.submissionID != nil {
+            let matches = command.map { evidence.surface.observedRoute(for: $0, backend: $0.invocation.snapshot) == $0.route.route } ?? false
+            OtzariaFileLogger.shared.log("[NativeSurfaceObservation] destination=\(evidence.surface.destination.rawValue) visible=\(evidence.isVisible) matches=\(matches)")
+        }
+        #endif
+        let prior = visible[evidence.surface.destination]
+        if evidence.isVisible { visible[evidence.surface.destination] = evidence }
+        else { visible.removeValue(forKey: evidence.surface.destination) }
+        if prior != visible[evidence.surface.destination] { try? nativeStateChanged() }
+        guard evidence.isVisible, let requestID = evidence.submissionID else { return }
+        presentation.report(.init(sceneID: evidence.sceneID, submissionID: requestID, surface: evidence.surface))
+    }
+
+    func endObservation(requestID: UUID) {
+        guard submissionID == requestID else { return }
+        if let command, let observed = visible[command.route.route.destination],
+           observed.isVisible, observed.submissionID == requestID,
+           observed.surface.observedRoute(for: command, backend: command.invocation.snapshot) == command.route.route {
+            lastCompletedSurface = (command.route.route, observed)
+        }
+        let completed = lastCompletedSurface?.route.requestId == requestID
+        retainedComponentOwner?.finish(requestID: requestID, completed: completed)
+        workspacePresentation?.finish(requestID: requestID, completed: completed)
+        phoneTOCPresentation?.finish(requestID: requestID, completed: completed)
+        searchEntryBinding?.finish(requestID: requestID, completed: completed)
+        if retainedSefariaSurface, completed, let root = sefariaRootSources[requestID],
+           (try? root.validate(bindings, workspace: workspacePresentation)) != nil {
+            completedSefariaRootSource = root
+        }
+        sefariaSurfaceBinding?.finish(requestID: requestID, completed: completedSefariaRootSource != nil)
+        retainedComponentOwner = nil; retainedWorkspaceParent = nil; retainedPhoneTOC = false
+        retainedSefariaSurface = false
+        presentation.end(requestID: requestID); submissionID = nil
+        // Keep only the independently observed surface. Clear private request
+        // metadata after its owner has validated the complete visible receipt.
+        command = nil; retainedSearchField = nil; inspectorBinding = nil
+    }
+
+    func validateCompletedJourneySurface(_ receipt: UISceneReceipt) throws {
+        let projection = try project()
+        guard mounted, foreground, isPresentationReady(for: receipt.route.destination), receipt.sceneID == sceneID,
+              let completed = lastCompletedSurface, completed.route == receipt.route,
+              completed.evidence.submissionID == receipt.requestId,
+              let visible = visibilityChecks[receipt.route.destination]?(),
+              visible.isVisible, visible.sceneID == sceneID,
+              let kind = surfaceKind(receipt.route.destination), let actual = try surface(kind),
+              actual == visible.surface, actual == completed.evidence.surface,
+              kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID) else {
+            throw ActionPortError.staleState
+        }
+    }
+
+    func originalSefariaSurfaceAcceptanceEvidence(for receipt: UISceneReceipt) throws -> SefariaEmbeddedSurfaceAcceptanceEvidence {
+        guard receipt.route.destination == MaktabahNativeSefariaSurfaceBinding.destination,
+              let original = sefariaSurfaceBinding, let source = completedSefariaRootSource else {
+            throw UIRouteError(.staleState, "native_sefaria_completed_source_missing")
+        }
+        try source.validate(bindings, workspace: workspacePresentation)
+        try validateCompletedJourneySurface(receipt)
+        let evidence = try original.acceptanceEvidence(for: receipt)
+        try source.validate(bindings, workspace: workspacePresentation)
+        return evidence
+    }
+
+    func unmount() {
+        guard mounted else { return }
+        lastCompletedSurface = nil
+        forwardingWorkspaceOwner?.detachNativeRoutingSession(self); forwardingWorkspaceOwner = nil
+        workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
+        phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
+        searchEntryBinding?.unmount(); searchEntryBinding = nil
+        sefariaRootSources.values.forEach { $0.invalidate() }; sefariaRootSources.removeAll()
+        completedSefariaRootSource?.invalidate(); completedSefariaRootSource = nil
+        sefariaSurfaceBinding?.unmount(); sefariaSurfaceBinding = nil; retainedSefariaSurface = false
+        mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
+        nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
+        for owner in componentOwners.values { owner.retirePresentation() }
+        componentOwners.removeAll(); retainedComponentOwner = nil; componentValidation = nil
+        noteEditorOwner = nil; noteDraftBinding = nil
+        windowSource = nil; searchPresentationOwner = nil; searchPresentationBlocked = nil
+        searchResultsBinding = nil
+        if let lease { directory.unmount(lease) }
+        lease = nil
+    }
+
+    private func surfaceKind(_ destination: UIDestinationID) -> MaktabahNativeSceneProjection.Surface? {
+        switch destination.rawValue {
+        case "native.library": .library
+        case "native.reader.toc": .tableOfContents
+        case "native.reader": .reader
+        case "native.reader.inspector": .inspector
+        case "native.reader.noteDraft": .noteDraft
+        case "native.history": .history
+        case "native.search": .search
+        case "native.search.results": .searchResults
+        case "native.annotations": .annotations
+        case "native.settings": .settings
+        case "native.workspace.profiles": .workspaceProfiles
+        case "native.workspace.overview": .workspaceOverview
+        case "native.sefariaEmbedded": .sefariaEmbedded
+        default: nil
+        }
+    }
+}
+
+/// Geometry and responder ownership belong to UIKit, independently of route
+/// metadata. Only the control explicitly supplied by its own representable is
+/// inspected; walking its actual ancestors does not discover arbitrary views.
+@MainActor private enum NativeSearchFieldVisibility {
+    static let destination = UIDestinationID(rawValue: "native.search")!
+    static let focus = FocusSpec(kind: .component, anchor: UIDestinationID(rawValue: "native.search.query")!)
+
+    static func isVisible(_ field: UISearchTextField, in expectedScene: UIStableID) -> Bool {
+        guard field.isEnabled, field.canBecomeFirstResponder,
+              let window = field.window, window.isKeyWindow, !window.isHidden,
+              let scene = window.windowScene, scene.activationState == .foregroundActive,
+              scene.session.persistentIdentifier == expectedScene.rawValue else { return false }
+        let target = field.convert(field.bounds, to: window)
+        let intersection = target.intersection(window.bounds), area = target.width * target.height
+        guard !target.isEmpty, area.isFinite, area > 0, !intersection.isNull,
+              intersection.width * intersection.height >= area * 0.98 else { return false }
+        var current: UIView? = field
+        var alpha: CGFloat = 1
+        while let view = current {
+            guard !view.isHidden else { return false }
+            alpha *= view.alpha; current = view.superview
+        }
+        guard alpha >= 0.95 else { return false }
+        var top = window.rootViewController
+        while let presented = top?.presentedViewController { top = presented }
+        if let top, top !== window.rootViewController, !field.isDescendant(of: top.view) { return false }
+        return true
+    }
+}
+#endif

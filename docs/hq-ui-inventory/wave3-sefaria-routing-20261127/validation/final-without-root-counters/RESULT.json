@@ -1,0 +1,31 @@
+{
+  "variant": "without-root-counters",
+  "scope": "Private source counterfactual; same explicit original-owner boundary and scenarios as final 48. No production source mutation.",
+  "compileCommand": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-root-counters/Generated.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-root-counters/Controls"
+  ],
+  "compileExit": 0,
+  "compileSeconds": 2.7956659039482474,
+  "executionExit": 1,
+  "summary": [
+    "RESULT 41 PASS / 7 FAIL"
+  ],
+  "failures": [
+    "FAIL selectedTab A-B-A before original mode publication revokes: retained source was accepted after invalidation",
+    "FAIL equal original selectedTab write revokes: retained source was accepted after invalidation",
+    "FAIL Settings false-true-false before view mount revokes: retained source was accepted after invalidation",
+    "FAIL equal original Settings false write revokes: retained source was accepted after invalidation",
+    "FAIL last finite selection revision permits zero writes then exhausts: retained source was accepted after invalidation",
+    "FAIL exhausted Settings revision never re-arms: retained source was accepted after invalidation",
+    "FAIL Settings ABA during original RN wait is checked again before marker: operation completed despite the refused original input"
+  ]
+}

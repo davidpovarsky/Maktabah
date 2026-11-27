@@ -1,0 +1,79 @@
+{
+  "task": "UI-03 original Sefaria Embedded RN surface through retained canonical native routing",
+  "base": "f8d9be6c045e29116b358999f9619183f7294e99",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127",
+  "branch": "codex/otzaria-wave3-sefaria-routing-20261127",
+  "upstream": {
+    "sha": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "source": "Root independently read actual GitHub upstream main; this lane verifies object/path provenance only and does not sync"
+  },
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "presentInPinnedUpstream": false,
+      "added": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points",
+      "classification": "DOWNSTREAM_OWNED shared application integration seam",
+      "plannedEdit": "Retain zero-write original root source with feature-owned RN source; canonical begin/apply/structured await/actual witness/finish; block unrelated routes while RN presented",
+      "downstreamAlternative": "Use the existing downstream shared routing composition and peer-owned original RN host; preserve original Reader/tab/source files and imported ReaderApp"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "presentInPinnedUpstream": false,
+      "added": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points",
+      "classification": "DOWNSTREAM_OWNED shared application integration seam",
+      "plannedEdit": "Finite Sefaria-only sheet descriptor; existing public/Core AppIntent path; diagnostic consumes real receipt and dismisses only its new owned sheet",
+      "downstreamAlternative": "Use the existing downstream shared routing composition and peer-owned original RN host; preserve original Reader/tab/source files and imported ReaderApp"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "presentInPinnedUpstream": false,
+      "added": "98b575fc2d25f085de69081b445825c677d7b9aa Compose inactive native binding with reconciled workspace owner [skip ci]",
+      "classification": "DOWNSTREAM_OWNED shared application integration seam",
+      "plannedEdit": "Finite root-only sheet shape and original-parent readiness/source checks; no public selector/content/authority extension",
+      "downstreamAlternative": "Use the existing downstream shared routing composition and peer-owned original RN host; preserve original Reader/tab/source files and imported ReaderApp"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "presentInPinnedUpstream": false,
+      "added": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points",
+      "classification": "DOWNSTREAM_OWNED shared application integration seam",
+      "plannedEdit": "Read actual feature-owned RN facets for native sheet identity; independent witness still required",
+      "downstreamAlternative": "Use the existing downstream shared routing composition and peer-owned original RN host; preserve original Reader/tab/source files and imported ReaderApp"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "presentInPinnedUpstream": false,
+      "added": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points",
+      "classification": "DOWNSTREAM_OWNED shared application integration seam",
+      "plannedEdit": "Install feature-owned RN presentation modifier beside original presenters",
+      "downstreamAlternative": "Use the existing downstream shared routing composition and peer-owned original RN host; preserve original Reader/tab/source files and imported ReaderApp"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "presentInPinnedUpstream": false,
+      "lineage": "Existing original app Reader workspace. Earliest visible path event in complete history is merge 66dfe13b9ffee428da7ac3fe40ba27d04e1a4b58 (AA), followed by 31 later changes; current path absence upstream is not a downstream-only classification.",
+      "classification": "DERIVED / protected original Reader feature view; narrow pre-mutation observation hook only",
+      "preEditSHA256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+      "protectedEvidence": "docs/architecture/BUILD_8401_PROTECTED_HUNK_APPROVAL_PACKAGE.md / BUILD_8401_PATCH_08",
+      "authorization": {
+        "rootLease": "Wave2 task 1220939536336523, comment 1220945081043799",
+        "scope": "Original setEditingAnnotation entry before State mutation; preserve existing Phone TOC retirement, presentation and note behavior. Error setter only if read by RN source (it is not)."
+      },
+      "plannedEdit": "Two-line exact current original editor ID/Reader callback to shared Session one-way source invalidation",
+      "downstreamAlternative": "Observe the original State at its existing setter; a downstream Observation read cannot track non-Observable Binding State or detect A-B-A. Failed corrected boundary 41 PASS / 1 FAIL preserved.",
+      "freshExactSourceOwnerApproval": "Required for final source diff; root authentic workflow owns it. No signature or approval data changed."
+    }
+  ],
+  "protectedFilesChanged": [
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+  ],
+  "noChanges": [
+    "Core schema/orchestrator/grants",
+    "original Search query-only contract",
+    "query/search/index engines",
+    "Xcode project/catalog by this lane",
+    "upstream imported React source",
+    "app/simulator builds"
+  ],
+  "validationPlan": "Focused actual-source root/readiness/lifecycle controls with preserved negative baseline; syntax separate from Apple SDK/app typing; native final acceptance remains NOT_RUN"
+}

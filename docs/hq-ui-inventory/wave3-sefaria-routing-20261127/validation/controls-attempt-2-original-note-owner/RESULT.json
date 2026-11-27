@@ -1,0 +1,26 @@
+{
+  "scope": "Corrected explicit boundary: original MaktabahNativeNoteEditorOwner is non-Observable and current is a SwiftUI State Binding. Product source unchanged.",
+  "generatorExit": 0,
+  "domainBefore": "f6dfb6e7f43af6c4c361189671670e0b2e7e55e395796bce1335bd0b978cdb98",
+  "domainAfter": "5fa4322db0dd45c051f614744de63473d4056c77a81fa5a8a34f70376055fec1",
+  "compileCommand": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-2-original-note-owner/Generated.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-2-original-note-owner/Controls"
+  ],
+  "compileExit": 0,
+  "executionExit": 1,
+  "summary": [
+    "RESULT 41 PASS / 1 FAIL"
+  ],
+  "failures": [
+    "FAIL foreign note editor presentation A-B-A consumes observation: retained source was accepted after invalidation"
+  ]
+}
