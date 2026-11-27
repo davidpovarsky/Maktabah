@@ -1,0 +1,474 @@
+{
+  "audited_source": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+  "selectors": [
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentLibraryGroupingFromHistoryDoesNotOpenMenu",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentTOCContentsFromHistoryPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentLibraryOptionsFromBackgroundDoesNotOpenMenu",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentTOCContentsFromHistoryPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentCurrentTOCEntryFromBackgroundPreservesReader",
+      "file": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testGuidedAutomaticJourneyCompletesExploresResumesAndReplays",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testGuidedSearchJourneyUsesOriginalFocusedSearchControl",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPhone",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemAppIntentSettingsSearchDataRevealsOriginalLink",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentSettingsAppearanceFromBackgroundDoesNotMutateValue",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink",
+      "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeSearchEntryAcceptanceTests/testColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry",
+      "file": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+        "git_blob": "1c3cea177c0b535f89ceb291f137074485e486e2",
+        "bytes": 1121
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeSearchEntryAcceptanceTests/testWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner",
+      "file": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+        "git_blob": "1c3cea177c0b535f89ceb291f137074485e486e2",
+        "bytes": 1121
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeSearchEntryPhoneAcceptanceTests/testPhoneColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry",
+      "file": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+        "git_blob": "1c3cea177c0b535f89ceb291f137074485e486e2",
+        "bytes": 1121
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeSearchEntryPhoneAcceptanceTests/testPhoneWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner",
+      "file": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+        "git_blob": "1c3cea177c0b535f89ceb291f137074485e486e2",
+        "bytes": 1121
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemSefariaOriginalSurfaceColdAndWarmPreserveWorkspace",
+      "file": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+        "git_blob": "979f6e3d11860b8f8003b5e1cd584816aae6f419",
+        "bytes": 10779
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemSefariaSurfaceUnavailableForOtzariaBackend",
+      "file": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+        "git_blob": "979f6e3d11860b8f8003b5e1cd584816aae6f419",
+        "bytes": 10779
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemSefariaOriginalSurfaceColdAndBackgroundWarmPreserveWorkspace",
+      "file": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+        "git_blob": "979f6e3d11860b8f8003b5e1cd584816aae6f419",
+        "bytes": 10779
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemSefariaSurfaceUnavailableForOtzariaBackend",
+      "file": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+        "git_blob": "979f6e3d11860b8f8003b5e1cd584816aae6f419",
+        "bytes": 10779
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSiriHistoryFromOriginalIPadReaderPreservesWorkspace",
+      "file": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "abc3d1e80f7a0268fdb7097233ab62bac867ac30f2fbd59fb48b17cb1bed06ed",
+        "git_blob": "2b37ce33b8d8a1b38ab077f79c0c9dcc02903079",
+        "bytes": 692
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSiriHistoryFromBackgroundPreservesOriginalReader",
+      "file": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "abc3d1e80f7a0268fdb7097233ab62bac867ac30f2fbd59fb48b17cb1bed06ed",
+        "git_blob": "2b37ce33b8d8a1b38ab077f79c0c9dcc02903079",
+        "bytes": 692
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemWorkspaceProfilesListFromHistoryUsesOriginalSheet",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewGroupSelectorFromHistoryPreservesTabs",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewActionsFromBackgroundDoNotExecuteMenu",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewBothOriginalLayoutsRemainBound",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceProfilesListFromBackgroundUsesOriginalNestedSheet",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewGroupSelectorPreservesTabs",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewActionsDoNotExecuteMenu",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceProfileMenuIsOriginalVisibleControl",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewBothOriginalLayoutsRemainBound",
+      "file": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "execution": "NOT_RUN"
+    }
+  ],
+  "boundary": "Separate additive selection only. Original Native116/Release114+2 manifests, selectors, counts and timeouts remain unchanged. No listed selector was executed by this checkpoint."
+}

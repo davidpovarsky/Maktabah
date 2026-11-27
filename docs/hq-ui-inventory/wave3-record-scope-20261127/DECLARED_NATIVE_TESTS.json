@@ -1,0 +1,1396 @@
+{
+  "audited_source": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+  "files": [
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+        "git_blob": "fc3e7a1c1c598284be9ced30abd8a7ad5b48fe91",
+        "bytes": 5997
+      },
+      "declared_methods": [
+        {
+          "test_class": "BackendTransitionAcceptanceTests",
+          "method": "testBackendSwitchRegressionScenario"
+        },
+        {
+          "test_class": "BackendTransitionAcceptanceTests",
+          "method": "testRoundTripBackendSwitchPersistsTabs"
+        },
+        {
+          "test_class": "BackendTransitionAcceptanceTests",
+          "method": "testBackendSwitchViaSettingsPickerUI"
+        },
+        {
+          "test_class": "BackendTransitionAcceptanceTests",
+          "method": "testBackendSwitchWhenCorpusUnavailablePresentsConfigurationPrompt"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+        "git_blob": "39636e8abaac379d996e51d5717390590f5d4d98",
+        "bytes": 5480
+      },
+      "declared_methods": [
+        {
+          "test_class": "BookHistoryScopeAcceptanceTests",
+          "method": "testBookSearchRetainsControlsWithoutGlobalHistory"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+        "git_blob": "172fa9232a536510bbb50751a9804c18487bc121",
+        "bytes": 102598
+      },
+      "declared_methods": [
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testA1_A2_SearchResultHighlightAndClearButton"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testA1_RealSearchFlowHighlightAndClear"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testA3_OrdinaryReaderHasNoClearSearchHighlightButton"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testB1_B2_PagingTransitionsPreserveReaderStability"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testD1_D2_TableOfContentsTrackingAndNoPrematureEmptyState"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testF1_SefariaHebrewLocaleRTLAndHebrewHeaders"
+        },
+        {
+          "test_class": "Build8401SevenDefectsAcceptanceTests",
+          "method": "testF2_HebrewTOCStructureAndDafLabels"
+        },
+        {
+          "test_class": "FullV40ReaderModeAcceptanceTests",
+          "method": "testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+        },
+        {
+          "test_class": "FullV40ReaderModeAcceptanceTests",
+          "method": "testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends"
+        },
+        {
+          "test_class": "FullV40ReaderModeAcceptanceTests",
+          "method": "testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+        },
+        {
+          "test_class": "FullV40ReaderModeAcceptanceTests",
+          "method": "testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+        "git_blob": "7447387778b8dd4bba7779d3209ea760ad85a88d",
+        "bytes": 5521
+      },
+      "declared_methods": [
+        {
+          "test_class": "Build8601ThreeRegressionsAcceptanceTests",
+          "method": "testDefectA_SwitchOtzariaToSefariaViaSettingsUI"
+        },
+        {
+          "test_class": "Build8601ThreeRegressionsAcceptanceTests",
+          "method": "testDefectA_RoundTripSwitchPreservesIntegrity"
+        },
+        {
+          "test_class": "Build8601ThreeRegressionsAcceptanceTests",
+          "method": "testDefectB_TOCRestorationAfterRelaunch"
+        },
+        {
+          "test_class": "Build8601ThreeRegressionsAcceptanceTests",
+          "method": "testDefectC_SearchDiagnosticsAndErrorLogging"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7",
+        "git_blob": "9e27844113ea1f381255623e021595fe0f8aa53a",
+        "bytes": 55496
+      },
+      "declared_methods": [
+        {
+          "test_class": "DeepLinkedCommentaryAcceptanceTests",
+          "method": "testDeepCommentaryRashiBerakhotLoadsFullFolio"
+        },
+        {
+          "test_class": "DeepLinkedCommentaryAcceptanceTests",
+          "method": "testTanachPassageLoadsWholeChapterWithSegmentFocus"
+        },
+        {
+          "test_class": "FullV40InspectorSemanticAcceptanceTests",
+          "method": "testFullV40InspectorSemanticGroupsAndLinkedContent"
+        },
+        {
+          "test_class": "SefariaInspectorModeAcceptanceTests",
+          "method": "testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+        "git_blob": "70edcc2c31ebdfdcf6a9682d18066ce8e82423aa",
+        "bytes": 337857
+      },
+      "declared_methods": [
+        {
+          "test_class": "SafariPrototypeReferenceTests",
+          "method": "testOriginalCompactAndExpandedToolbarOracle"
+        },
+        {
+          "test_class": "FaithfulReaderVisualBaselineTests",
+          "method": "testOriginalInspectorReferenceRetainsEvidenceBeforeReaderAssertions"
+        },
+        {
+          "test_class": "FaithfulReaderVisualBaselineTests",
+          "method": "testOriginalGlobalSearchHistoryThroughNativeControls"
+        },
+        {
+          "test_class": "FaithfulReaderVisualBaselineTests",
+          "method": "testOriginalWindowResizePreservesReader"
+        },
+        {
+          "test_class": "FaithfulReaderVisualBaselineTests",
+          "method": "testOriginalReaderThemes"
+        },
+        {
+          "test_class": "FaithfulReaderVisualBaselineTests",
+          "method": "testOriginalReaderLibrarySearchAnnotationsAndInspectorScreenshots"
+        },
+        {
+          "test_class": "FaithfulReaderIPhoneTests",
+          "method": "testSourceOverviewReplacesReaderAndRestoresViewport"
+        },
+        {
+          "test_class": "FaithfulReaderIPhoneTests",
+          "method": "testIPhoneKeepsOriginalReaderWithEitherIPadFeatureSetting"
+        },
+        {
+          "test_class": "FaithfulReaderLargeTextTests",
+          "method": "testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testLibraryMorphOutsideDismissalPreservesCanonicalQueryAndReader"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSourceOverviewReplacesReaderAndRestoresViewportLandscape"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSourceOverviewReplacesReaderAndRestoresViewportPortrait"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testOriginalBottomTOCActionOpensContentsFromLibraryPage"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testActualSidecarWriteFailureRollsBackVisibleGroupAndRecovers"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testFeatureOffCreatesNoSidecarAndPreservesAnExistingWorkspace"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testPointerHoverClickAndHardwareKeyboardDismissal"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testGroupCopyMoveRenameAndDeleteThroughRealMenus"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSystemReduceMotionKeepsOriginalPaletteUsable"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateWindowResizePreservesOriginalReaderAndSearch"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testNewManagementScreensExposeMeaningfulAccessibilityDescriptions"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateReaderThemes"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testEnglishReaderAndOriginalPaletteInLeftToRightLayout"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateGlobalSearchLandscapeMatchesOriginalNavigation"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateGlobalSearchPortraitMatchesOriginalNavigation"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateAnnotationsLandscapeMatchesOriginalNavigation"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateAnnotationsPortraitMatchesOriginalNavigation"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateTrimmedOriginalInspectorLandscape"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testCandidateTrimmedOriginalInspectorPortrait"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSidebarPreservesOriginalTextKitViewport"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSourceToolbarPaletteAndOverview"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testReaderDocumentAndGlobalBarsCollapseAndRestoreOnManualScroll"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testTwentyGlobalTabRoundTripsKeepOriginalReaderAndBottomBar"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testNewEmptyGroupAndRelaunchPersistence"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testHistoryRemainsGlobalAndIsAbsentFromBookSearch"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testSameBookRetainsIndependentLocationsAcrossGroupsAndRelaunch"
+        },
+        {
+          "test_class": "FaithfulReaderUIAcceptanceTests",
+          "method": "testThreeProfilesWithThreeGroupsThroughNativeManagement"
+        },
+        {
+          "test_class": "FaithfulProductionReleaseTests",
+          "method": "testRealProductionLibraryReaderAndGroupRestore"
+        },
+        {
+          "test_class": "StudyProfileNativeAcceptanceTests",
+          "method": "testProfileColorSaveCancelAndColdRelaunchPreserveWorkspace"
+        },
+        {
+          "test_class": "StudyGroupStressNativeAcceptanceTests",
+          "method": "testOneHundredConsecutiveOriginalGroupSwitchesPreserveDocumentsAndColdRestore"
+        },
+        {
+          "test_class": "StudyGroupStressNativeAcceptanceTests",
+          "method": "testOneHundredOriginalFullV40GroupSwitchesPreserveDocumentsAndColdRestore"
+        },
+        {
+          "test_class": "FaithfulProductionReleaseTests",
+          "method": "testTwentyOriginalFullV32ReaderOpensAndForcedRelaunch"
+        },
+        {
+          "test_class": "FaithfulProductionReleaseTests",
+          "method": "testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch"
+        },
+        {
+          "test_class": "FaithfulProductionReleaseTests",
+          "method": "testOriginalFullV32InspectorRelationshipScalesAndReturn"
+        },
+        {
+          "test_class": "FaithfulProductionReleaseTests",
+          "method": "testOriginalFullV40InspectorRelationshipScalesAndReturn"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "054a6cdaf282164a0b1995e89b31619def32c026e1537a177895afc201fd86da",
+        "git_blob": "d3e08dfcc6a8a666542fff6eac2554fdc695b86d",
+        "bytes": 196969
+      },
+      "declared_methods": [
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testHebrewHeaderUsesActualRTLGeometry"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testEnglishHeaderUsesActualLTRGeometry"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testTypingKeepsInlineHistoryAndSingleNativeFieldWithRealClear"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testOtzariaDefaultAdvancedFormExposesRealConditionalControls"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testExactAndFuzzyHideAdvancedOtzariaBindings"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testEmbeddedOffersExactOnlyAndNoIgnoredOptions"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testLegacyAdvancedUsesItsOwnSourceControls"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testOptionsDismissalReturnsToSameQueryWithoutSubmission"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testReturnProducesOriginalRowsWithPersistentHeader"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testModeEditRequiresExplicitRerun"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testLocalTitleFilterPreservesInputsAndRestoresOriginalIdentity"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZeroMatchProjectionRetainsExplicitLoadMore"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testActualPageFailurePreservesRowsAndRetryAppends"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testOriginalResultPreviewOpensExpectedNativeLocator"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testSubmittedCanonicalQueryReturnsInInlineHistoryAfterRelaunch"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testHeldSearchCanBeCancelledWithQueryVisible"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testHeaderAndHistoryNativeAccessibilityAudit"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitExplicitFlexibleScopeProducesCanonicalMiniTestRow"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitCanonicalRowOpensOriginalReaderAtExactSourceLine"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitNonzeroSourceLineRetainsExactOriginalTextAndHighlight"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitLoadedTitleSubstringUsesActualMountedProjection"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitZeroMatchProjectionRetainsRealExplicitPaging"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testZayitThreeNativePagesRetainCanonicalIdentityAndOriginalMetadata"
+        },
+        {
+          "test_class": "GlobalSearchNativeAcceptanceTests",
+          "method": "testOtzariaNativePagesRetainCanonicalMetadataBeyondOneHundred"
+        },
+        {
+          "test_class": "SearchDataNativeAcceptanceTests",
+          "method": "testHealthySearchDataAndColdLaunchMatchInstalledDocumentCount"
+        },
+        {
+          "test_class": "SearchDataNativeAcceptanceTests",
+          "method": "testMissingSecondaryIdentityRecoversOriginalIndexAndColdLaunch"
+        },
+        {
+          "test_class": "SearchDataNativeAcceptanceTests",
+          "method": "testCorruptIndexShowsRepairRequiredAndOriginalRepairSurvivesColdLaunch"
+        },
+        {
+          "test_class": "SearchDataNativeAcceptanceTests",
+          "method": "testMissingIndexUsesOriginalRemoveAndInstallWithoutChangingBooks"
+        },
+        {
+          "test_class": "SearchDataNativeAcceptanceTests",
+          "method": "testRepairFailureKeepsOriginalIndexAndExposesAWorkingRetry"
+        },
+        {
+          "test_class": "PublishedProductionSearchDataTests",
+          "method": "testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+        },
+        {
+          "test_class": "PublishedProductionSearchDataTests",
+          "method": "testPublishedV40ZayitPages50_100_150RetainSQLIdentity"
+        },
+        {
+          "test_class": "PublishedProductionSearchDataTests",
+          "method": "testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+        },
+        {
+          "test_class": "SefariaFullSearchContextAcceptanceTests",
+          "method": "testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies"
+        },
+        {
+          "test_class": "SefariaFullSearchContextAcceptanceTests",
+          "method": "testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+        },
+        {
+          "test_class": "PublishedProductionSearchDataTests",
+          "method": "testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+        },
+        {
+          "test_class": "PublishedProductionSearchDataTests",
+          "method": "testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment"
+        },
+        {
+          "test_class": "PublishedProductionSearchAfterBooksUpdateTests",
+          "method": "testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cb412ebbbfa34d57dd855bceb4798ece816c6b8725f4d0535a653882f22db3d0",
+        "git_blob": "ea9d42921e043b09b7bd0d70d17321fa7ffaa813",
+        "bytes": 53252
+      },
+      "declared_methods": [
+        {
+          "test_class": "HanlinConsumerAcceptanceTests",
+          "method": "testOriginalChatDraftReopensAcrossNativeDismissAndAppRestart"
+        },
+        {
+          "test_class": "HanlinReaderConsumerAcceptanceTests",
+          "method": "testOriginalReaderChatReturnsToSameNativeWorkspace"
+        },
+        {
+          "test_class": "HanlinReaderConsumerAcceptanceTests",
+          "method": "testOriginalIPadCurrentWorkConsentToggleWithoutConnection"
+        },
+        {
+          "test_class": "HanlinReaderConsumerAcceptanceTests",
+          "method": "testOriginalIPadFreshCurrentWorkReadConnectionWithoutSending"
+        },
+        {
+          "test_class": "HanlinReaderConsumerAcceptanceTests",
+          "method": "testOriginalIPadCurrentWorkReadConsentReopensAndRevokesWithoutSending"
+        },
+        {
+          "test_class": "HanlinReaderConsumerAcceptanceTests",
+          "method": "testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending"
+        },
+        {
+          "test_class": "HanlinLiveProviderAcceptanceTests",
+          "method": "testOriginalLiveProviderUsesCanonicalCoreAndRevokesReadConsent"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+        "git_blob": "0f5f2400477d173bad1079d6c5cca0f3fe508963",
+        "bytes": 4123
+      },
+      "declared_methods": [
+        {
+          "test_class": "HighlightAnnotationAcceptanceTests",
+          "method": "testAnnotationCreationPersistenceAndRelaunch"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+        "git_blob": "a4be04e06afb2957670f951507f5d83043db1a2f",
+        "bytes": 3648
+      },
+      "declared_methods": [
+        {
+          "test_class": "HistoryLocalizationAcceptanceTests",
+          "method": "testHistoryTabLocalizedInHebrewWithRTLLayout"
+        },
+        {
+          "test_class": "HistoryLocalizationAcceptanceTests",
+          "method": "testHistoryTabLocalizedInEnglishWithLTRLayout"
+        },
+        {
+          "test_class": "HistoryLocalizationAcceptanceTests",
+          "method": "testSelectedTabRestorationAfterRelaunch"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "b6b00a796aea01ea016bff70731fc71b8fbc63fa4e7667fc5e1f1481df54a296",
+        "git_blob": "47d2233dfe368e1aa06defcc9efa223eed3a2726",
+        "bytes": 114262
+      },
+      "declared_methods": [
+        {
+          "test_class": "MiniAppsAnnotationAcceptanceTests",
+          "method": "testSharedPickerHebrewRTLUsesNativeEditingAndPersistsPreferences"
+        },
+        {
+          "test_class": "MiniAppsAnnotationAcceptanceTests",
+          "method": "testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch"
+        },
+        {
+          "test_class": "MiniAppsAnnotationAcceptanceTests",
+          "method": "testOriginalNativeFilesRoundTripAndReplayAfterColdReopen"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+        "git_blob": "21d52aa5bfae683cc2cc07aa217ecb7e7f2c7376",
+        "bytes": 13565
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentLibraryContentsFromHistoryPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentLibraryGroupingFromHistoryDoesNotOpenMenu"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentTOCContentsFromHistoryPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentLibraryContentsFromHistoryPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentLibraryOptionsFromBackgroundDoesNotOpenMenu"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentTOCContentsFromHistoryPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentCurrentTOCEntryFromBackgroundPreservesReader"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+        "git_blob": "8183da0a03259ee07da1769f3221ad4cfe5b5ce2",
+        "bytes": 194950
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testWarmHistoryURLUsesOtzariaNativeScene"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testWarmHistoryURLUsesLegacyNativeScene"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testWarmHistoryURLUsesEmbeddedNativeScene"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testColdHistoryURLWaitsForActualSceneMount"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testUnknownURLVersionShowsErrorWithoutNavigatingToHistory"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testHistoryURLAfterBackgroundRequiresActualVisibleReceipt"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testWrongBackendURLCannotNavigateOrIssueNativeReceipt"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testReplayCannotIssueSecondNativeReceipt"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneWarmHistoryUsesActualForegroundScene"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneColdHistoryWaitsForActualSceneMount"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneWrongBackendCannotNavigateOrIssueReceipt"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2CurrentReaderShowsTwoCanonicalSourceLines"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGuidedPracticeRequiresOriginalNativeNavigationBeforeCoaching"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGuidedAutomaticJourneyCompletesExploresResumesAndReplays"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGuidedSearchJourneyUsesOriginalFocusedSearchControl"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPhone"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testGlobalSearchPublicRootPreservesOriginalPrivateQuery"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentSettingsShowsOriginalSheetAndReceipt"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2CurrentReaderShowsCanonicalSourceLines"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2NewTabPreservesOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2OtherBookCannotReplaceCurrentReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2LibraryPreservesPrivateQueryAndOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2TOCPreservesPrivateFilterAndOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2TOCWithoutOriginalReaderCannotAcknowledge"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2LibraryPreservesOriginalReaderOwner"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemBookIntentResolvesNamedChapterThroughOriginalCore"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemBookIntentRejectsDifferentBookLocationWithoutMutation"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemBookIntentRejectsMissingSourceWithoutMutation"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemBookIntentUsesOriginalReaderOwner"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentFocusesOriginalSearchComponent"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2SearchQueryFocusUsesOriginalFirstResponder"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2UnknownSearchComponentCannotFocusOrSubmit"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentShowsOriginalReaderInspector"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testPublicV2InspectorRequiresVisibleOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentShowsOriginalReaderInspector"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemAppIntentSettingsSearchDataRevealsOriginalLink"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentSettingsAppearanceFromBackgroundDoesNotMutateValue"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+        "git_blob": "1c3cea177c0b535f89ceb291f137074485e486e2",
+        "bytes": 1121
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeSearchEntryAcceptanceTests",
+          "method": "testColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry"
+        },
+        {
+          "test_class": "NativeSearchEntryAcceptanceTests",
+          "method": "testWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner"
+        },
+        {
+          "test_class": "NativeSearchEntryPhoneAcceptanceTests",
+          "method": "testPhoneColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry"
+        },
+        {
+          "test_class": "NativeSearchEntryPhoneAcceptanceTests",
+          "method": "testPhoneWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+        "git_blob": "979f6e3d11860b8f8003b5e1cd584816aae6f419",
+        "bytes": 10779
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemSefariaOriginalSurfaceColdAndWarmPreserveWorkspace"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemSefariaSurfaceUnavailableForOtzariaBackend"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemSefariaOriginalSurfaceColdAndBackgroundWarmPreserveWorkspace"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemSefariaSurfaceUnavailableForOtzariaBackend"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "abc3d1e80f7a0268fdb7097233ab62bac867ac30f2fbd59fb48b17cb1bed06ed",
+        "git_blob": "2b37ce33b8d8a1b38ab077f79c0c9dcc02903079",
+        "bytes": 692
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSiriHistoryFromOriginalIPadReaderPreservesWorkspace"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSiriHistoryFromBackgroundPreservesOriginalReader"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+        "git_blob": "a3be39ffc69e67fd5970d4ede82f1cece7d090f1",
+        "bytes": 33147
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetThreeDetentsPhysicallyRightRTL"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetThreeDetentsPhysicallyRightLTR"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetPeekAllowsOriginalReaderScrollBehindIt"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetOriginalNotesSaveEditDeleteAndCancel"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetOriginalTOCWaitsForActualSheetDismissal"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetOriginalEmbeddedSefariaOwnerAndAnchor"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetParentCloseWhileOriginalNoteChildIsVisible"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetTOCWhileOriginalNoteChildIsVisible"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput"
+        },
+        {
+          "test_class": "NativeStudySheetPadTests",
+          "method": "testSystemStudySheetInteractiveDismissThenSameIPadResizeDoesNotReopen"
+        },
+        {
+          "test_class": "NativeStudySheetPhoneFallbackTests",
+          "method": "testOriginalPhoneInspectorFallbackRetainsReader"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+        "git_blob": "ffab2af9d398286f2c5abd59206a44890a25abeb",
+        "bytes": 5758
+      },
+      "declared_methods": [
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemWorkspaceProfilesListFromHistoryUsesOriginalSheet"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemWorkspaceOverviewGroupSelectorFromHistoryPreservesTabs"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemWorkspaceOverviewActionsFromBackgroundDoNotExecuteMenu"
+        },
+        {
+          "test_class": "NativeRoutingAcceptanceTests",
+          "method": "testSystemWorkspaceOverviewBothOriginalLayoutsRemainBound"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceProfilesListFromBackgroundUsesOriginalNestedSheet"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceOverviewGroupSelectorPreservesTabs"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceOverviewActionsDoNotExecuteMenu"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceProfileMenuIsOriginalVisibleControl"
+        },
+        {
+          "test_class": "NativeRoutingPhoneAcceptanceTests",
+          "method": "testPhoneSystemWorkspaceOverviewBothOriginalLayoutsRemainBound"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "d02dec78c501096c82d4cf07b57c94e1844db612abb86d127ff86d3cc41e0994",
+        "git_blob": "6e1b283057de617c7e5dc8057ba8c312737bd31f",
+        "bytes": 22385
+      },
+      "declared_methods": [
+        {
+          "test_class": "OriginalEditorAnnotationAcceptanceTests",
+          "method": "testSavedBlankAnnotationUsesOriginalEditorAndReopensMixedBlocksAfterProcessRelaunch"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29",
+        "git_blob": "8083e07e87c528fa8e253c0bed31a51654d25568",
+        "bytes": 70406
+      },
+      "declared_methods": [
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination"
+        },
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch"
+        },
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinarySharedNoteUpdatesSameObjectAndReceivesSavedContent"
+        },
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinaryNativeCopyChiddushLifecyclePreservesIdentity"
+        },
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinaryNativeCopyArticleLifecyclePreservesIdentity"
+        },
+        {
+          "test_class": "ProductionAnnotationEditorAcceptanceTests",
+          "method": "testOrdinaryNativeCopyResearchLifecyclePreservesIdentity"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377",
+        "git_blob": "9dbddede6f7291b1de4eb3d53378dfef6b84770b",
+        "bytes": 72871
+      },
+      "declared_methods": [
+        {
+          "test_class": "ProductionOtzariaAcceptanceTests",
+          "method": "testProductionProfileLaunchResolution"
+        },
+        {
+          "test_class": "ProductionOtzariaAcceptanceTests",
+          "method": "testProductionDatabaseAssetManifestIntegrity"
+        },
+        {
+          "test_class": "ProductionOtzariaAcceptanceTests",
+          "method": "testProductionCorpusSQLiteIntegrity"
+        },
+        {
+          "test_class": "ManagedLibraryUpdateAcceptanceTests",
+          "method": "testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+        "git_blob": "c3ef8fc552967872a3313cff28a35d35be2a95a1",
+        "bytes": 4954
+      },
+      "declared_methods": [
+        {
+          "test_class": "PullNavigationAcceptanceTests",
+          "method": "testPullNavigationRetreatCancelDoesNotChangeContent"
+        },
+        {
+          "test_class": "PullNavigationAcceptanceTests",
+          "method": "testPullNavigationCommitBothDirectionsWithoutDuplicates"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786",
+        "git_blob": "306e99976d989f655e4ccfcf8a71cf246cdb1d56",
+        "bytes": 36297
+      },
+      "declared_methods": [
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapOtzariaRotationPreservesExactLocator"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapNativeWindowResizePaletteAndInspector"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapPaletteKeyboardDispatchCalibration"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapPaletteHIDComparison"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapLegacyGenesisAndRotation"
+        },
+        {
+          "test_class": "R27NativePadTests",
+          "method": "testNormalBootstrapEmbeddedGenesisAndRotation"
+        },
+        {
+          "test_class": "R27NativePhoneTests",
+          "method": "testNormalBootstrapOtzariaBackgroundAndColdRestoration"
+        },
+        {
+          "test_class": "R27NativePhoneTests",
+          "method": "testNormalBootstrapGlobalHistoryUsesActualSubmit"
+        },
+        {
+          "test_class": "R27NativePhoneTests",
+          "method": "testNormalBootstrapLegacyGenesisAndRotation"
+        },
+        {
+          "test_class": "R27NativePhoneTests",
+          "method": "testNormalBootstrapEmbeddedGenesisAndRotation"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "65145c30861efa74994edd9539c93d748d8b67dd4a77beb8332a4295960acba3",
+        "git_blob": "9038e4cf736a0c483cd6935bad0ea7d07a670bb7",
+        "bytes": 32332
+      },
+      "declared_methods": [
+        {
+          "test_class": "SefariaEmbeddedAcceptanceTests",
+          "method": "testEmbeddedSefariaFullAcceptanceDiagnostic"
+        },
+        {
+          "test_class": "SefariaEmbeddedAcceptanceTests",
+          "method": "testEmbeddedSefariaCatalogAndAppLaunch"
+        },
+        {
+          "test_class": "SefariaEmbeddedAcceptanceTests",
+          "method": "testEmbeddedSefariaReaderPresentation"
+        },
+        {
+          "test_class": "SefariaEmbeddedAcceptanceTests",
+          "method": "testThreeBackendSwitchRegression"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testEmbeddedHebrewTalmudTOCAndCanonicalNavigation"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testEmbeddedEnglishTalmudTOCAndCanonicalNavigation"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testEmbeddedHebrewChapterAndComplexTOC"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testEmbeddedEnglishChapterAndComplexTOC"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testRemoteHebrewLoadingFailureAndOriginalRetry"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPadAcceptanceTests",
+          "method": "testRemoteEnglishLoadingFailureAndOriginalRetry"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testEmbeddedHebrewChapterAndComplexTOCOnPhone"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testEmbeddedEnglishChapterAndComplexTOCOnPhone"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone"
+        },
+        {
+          "test_class": "SefariaTOCLocalizationPhoneAcceptanceTests",
+          "method": "testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+        "git_blob": "65befdcc2d7884edb0976fac0005c03676c4e2ac",
+        "bytes": 19775
+      },
+      "declared_methods": [
+        {
+          "test_class": "Sidebar11201AcceptanceTests",
+          "method": "testSidebarBodyPagingRTL"
+        },
+        {
+          "test_class": "Sidebar11201AcceptanceTests",
+          "method": "testSidebarBodyPagingLTR"
+        },
+        {
+          "test_class": "Sidebar11201AcceptanceTests",
+          "method": "testOriginalBottomTOCActionUsesActualSidebarPage"
+        },
+        {
+          "test_class": "Sidebar11201AcceptanceTests",
+          "method": "testSidebarSceneStateSurvivesBackgroundAndRotation"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+        "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+        "sha256": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+        "git_blob": "ca89665c931b54f89bc7b1f290001fa4d55cb071",
+        "bytes": 3665
+      },
+      "declared_methods": [
+        {
+          "test_class": "iPadTabBarAcceptanceTests",
+          "method": "testiPadTabBarVisibleAndHittableInReader"
+        },
+        {
+          "test_class": "iPadTabBarAcceptanceTests",
+          "method": "testiPadTabBarPersistsAcrossTOCAndInspectorTransitions"
+        }
+      ]
+    }
+  ],
+  "boundary": "Lexical source declarations only. Inherited/overridden methods are not a unique/executed runner case count."
+}
