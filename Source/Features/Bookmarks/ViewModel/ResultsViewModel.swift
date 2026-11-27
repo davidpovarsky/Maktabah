@@ -13,6 +13,7 @@ class ResultsViewModel {
     static let shared: ResultsViewModel = .init()
 
     let db: ResultsHandler = .shared
+    let nativeLoadLifetime = OriginalSavedResultsLoadLifetime()
 
     // sumber data
     var folderRoots: [FolderNode] = []

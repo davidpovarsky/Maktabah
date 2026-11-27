@@ -9,6 +9,8 @@ extension ResultsViewModel {
     // MARK: - Initial load / indexes
 
     func getFolders() async {
+        let nativeLoad = nativeLoadLifetime.beginOriginalLoad()
+        defer { nativeLoadLifetime.endOriginalLoad(nativeLoad, cancelled: Task.isCancelled) }
         let roots = await Task.detached {
             var roots = ResultsHandler.shared.fetchFolderTree()
             roots.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
@@ -29,6 +31,8 @@ extension ResultsViewModel {
     }
 
     func dbLoadAllResults() async {
+        let nativeLoad = nativeLoadLifetime.beginOriginalLoad()
+        defer { nativeLoadLifetime.endOriginalLoad(nativeLoad, cancelled: Task.isCancelled) }
         let allResults = await Task.detached {
             ResultsHandler.shared.fetchAllResultsGroupedByFolder()
         }.value

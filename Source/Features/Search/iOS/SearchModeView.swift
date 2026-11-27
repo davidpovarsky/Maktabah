@@ -37,7 +37,7 @@ struct SearchModeView: View {
                 session: session,
                 canSaveResults: canSaveResults,
                 onSaveResults: { nativePresentationBinding($showingSaveResults).wrappedValue = true },
-                onSavedResults: { nativePresentationBinding($showingSavedResults).wrappedValue = true }
+                onSavedResults: { nativeSavedResultsBinding($showingSavedResults).wrappedValue = true }
             )
         }
         .sheet(isPresented: $session.showsBookFilterSheet) {
@@ -56,8 +56,9 @@ struct SearchModeView: View {
                 searchViewModel: viewModel
             )
         }
-        .sheet(isPresented: nativePresentationBinding($showingSavedResults)) {
+        .sheet(isPresented: nativeSavedResultsBinding($showingSavedResults)) {
             iOSSavedResultsView()
+                .environment(\.maktabahNativeRoutingSession, nativeRoutingSession)
         }
         .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
         .animation(.interpolatingSpring(stiffness: 300, damping: 20),
@@ -82,6 +83,7 @@ struct SearchModeView: View {
             nativeRoutingSession?.renderSearchEntryFromOriginalView()
         }
         .onDisappear {
+            nativeRoutingSession?.savedResultsBinding?.detachSearch(owner: nativePresentationOwner)
             nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)
         }
         .onChange(of: viewModel.selectedBookIds) { _, newIds in
@@ -142,6 +144,11 @@ struct SearchModeView: View {
         nativeRoutingSession?.observeSearchPresentation(owner: nativePresentationOwner) {
             saving.wrappedValue || saved.wrappedValue || migration.wrappedValue
         }
+        let originalSaved = nativeSavedResultsBinding(saved)
+        nativeRoutingSession?.savedResultsBinding?.attachSearch(owner: nativePresentationOwner,
+            manager: navigationManager, requested: { saved.wrappedValue },
+            setRequested: { originalSaved.wrappedValue = $0 },
+            otherBlocked: { saving.wrappedValue || migration.wrappedValue })
     }
 
     /// Every original local overlay write retires an in-flight or completed
@@ -149,8 +156,22 @@ struct SearchModeView: View {
     /// Search entry never invokes these setters or dismisses their contents.
     @MainActor private func nativePresentationBinding(_ original: Binding<Bool>) -> Binding<Bool> {
         Binding(get: { original.wrappedValue }, set: { value in
+            nativeRoutingSession?.savedResultsBinding?.originalOtherSearchStateWillChange(owner: nativePresentationOwner)
             nativeRoutingSession?.originalSearchPresentationWillChange(owner: nativePresentationOwner)
             original.wrappedValue = value
+        })
+    }
+
+    /// The original Saved Results State remains the only presentation owner.
+    /// Its retained one-use publication is observed before existing callbacks.
+    @MainActor private func nativeSavedResultsBinding(_ original: Binding<Bool>) -> Binding<Bool> {
+        let session = nativeRoutingSession, binding = nativeRoutingSession?.savedResultsBinding
+        let owner = nativePresentationOwner
+        return Binding(get: { original.wrappedValue }, set: { [weak session, weak binding] value in
+            binding?.searchWillPublish(owner: owner, next: value)
+            session?.originalSearchPresentationWillChange(owner: owner)
+            original.wrappedValue = value
+            binding?.searchDidPublish(owner: owner)
         })
     }
 

@@ -20,11 +20,14 @@ enum MoveTarget: Identifiable {
 struct iOSSavedResultsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(iOSNavigationManager.self) var navigationManager
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
 
     let viewModel: ResultsViewModel = .shared
 
     @State private var isLoading = true
     @State private var searchText = ""
+    @State private var nativeNavigationPath: [FolderNode] = []
+    @State private var nativeSheetOwner = UUID()
 
     // Aksi item (shared across navigation stack)
     @State private var itemToMove: MoveTarget?
@@ -32,7 +35,7 @@ struct iOSSavedResultsView: View {
     @State private var itemToRename: RenameTarget?
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: nativeStateBinding($nativeNavigationPath, field: .path)) {
             Group {
                 if isLoading {
                     ProgressView()
@@ -46,6 +49,13 @@ struct iOSSavedResultsView: View {
                         systemImage: "bookmark.slash",
                         description: Text("Save search results to access them later.")
                     )
+                    .background {
+                        if let binding = nativeRoutingSession?.savedResultsBinding {
+                            MaktabahNativeSavedResultsPageWitness(binding: binding, owner: nativeSheetOwner,
+                                folder: nil, reveal: { _ in })
+                                .allowsHitTesting(false).accessibilityHidden(true)
+                        }
+                    }
                 } else if !searchText.isEmpty {
                     // Global Flattened Search
                     flattenedSearchList
@@ -55,7 +65,7 @@ struct iOSSavedResultsView: View {
             }
             .navigationTitle("Saved Results".localized)
             .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $searchText, prompt: "Search globally")
+            .searchable(text: nativeStateBinding($searchText, field: .filter), prompt: "Search globally")
             .navigationDestination(for: FolderNode.self) { folder in
                 makeFolderContentList(folder: folder)
             }
@@ -65,15 +75,22 @@ struct iOSSavedResultsView: View {
                 }
             }
         }
+        .background {
+            if let binding = nativeRoutingSession?.savedResultsBinding {
+                MaktabahNativeSavedResultsSheetWitness(binding: binding, access: nativeSheetAccess)
+                    .allowsHitTesting(false).accessibilityHidden(true)
+            }
+        }
+        .modifier(MaktabahNativeRoutingSurface(kind: .savedResults))
         // Sheet & Alerts
-        .sheet(item: $itemToMove) { target in
+        .sheet(item: nativeStateBinding($itemToMove, field: .operation)) { target in
             iOSMoveItemView(target: target)
         }
         .alert(
             "Delete Folder",
             isPresented: Binding(
                 get: { folderToDelete != nil },
-                set: { if !$0 { folderToDelete = nil } }
+                set: { if !$0 { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = nil } }
             ),
             presenting: folderToDelete
         ) { folder in
@@ -88,12 +105,12 @@ struct iOSSavedResultsView: View {
             itemToRename?.alertTitle ?? "",
             isPresented: Binding(
                 get: { itemToRename != nil },
-                set: { if !$0 { itemToRename = nil } }
+                set: { if !$0 { nativeStateBinding($itemToRename, field: .operation).wrappedValue = nil } }
             )
         ) {
             TextField("Name", text: Binding(
                 get: { itemToRename?.draftName ?? "" },
-                set: { itemToRename?.draftName = $0 }
+                set: { nativeStateBinding($itemToRename, field: .operation).wrappedValue?.draftName = $0 }
             ))
             Button("Save") {
                 if let target = itemToRename {
@@ -105,13 +122,36 @@ struct iOSSavedResultsView: View {
         .task {
             await viewModel.getFolders()
             await viewModel.dbLoadAllResults()
-            isLoading = false
+            nativeStateBinding($isLoading, field: .loading).wrappedValue = false
         }
+    }
+
+    /// Capture the actual original State storage, never a copied View value.
+    /// These hooks observe changes; ordinary UI setters always execute once.
+    @MainActor private func nativeStateBinding<Value>(_ original: Binding<Value>,
+        field: MaktabahNativeSavedResultsBinding.StateField) -> Binding<Value> {
+        let binding = nativeRoutingSession?.savedResultsBinding, owner = nativeSheetOwner
+        return Binding(get: { original.wrappedValue }, set: { [weak binding] value in
+            binding?.sheetStateWillPublish(owner: owner, field: field,
+                nextPath: value as? [FolderNode], nextLoading: value as? Bool)
+            original.wrappedValue = value
+            binding?.sheetStateDidPublish(owner: owner, field: field)
+        })
+    }
+    @MainActor private var nativeSheetAccess: MaktabahNativeSavedResultsBinding.SheetAccess {
+        let path = $nativeNavigationPath, query = $searchText, loading = $isLoading
+        let move = $itemToMove, deleting = $folderToDelete, rename = $itemToRename
+        let originalPath = nativeStateBinding(path, field: .path)
+        return .init(token: nativeSheetOwner, model: viewModel,
+            path: { path.wrappedValue }, setPath: { originalPath.wrappedValue = $0 },
+            filter: { query.wrappedValue }, loading: { loading.wrappedValue },
+            blocked: { move.wrappedValue != nil || deleting.wrappedValue != nil || rename.wrappedValue != nil })
     }
 
     // MARK: - Global Flattened Search
 
     private var flattenedSearchList: some View {
+        ScrollViewReader { proxy in
         ThemeList {
             let matchingFolders = viewModel.allFolders.filter { $0.name.localizedStandardContains(searchText) }
             if !matchingFolders.isEmpty {
@@ -125,11 +165,11 @@ struct iOSSavedResultsView: View {
                             }
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                            Button(role: .destructive) { folderToDelete = folder } label: { Label("Delete", systemImage: "trash") }
+                            Button(role: .destructive) { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = folder } label: { Label("Delete", systemImage: "trash") }
                         }
                         .swipeActions(edge: .leading) {
-                            Button { itemToMove = .folder(folder) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
-                            Button { itemToRename = .folder(folder) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
+                            Button { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .folder(folder) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
+                            Button { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .folder(folder) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
                         }
                     }
                 }
@@ -144,12 +184,20 @@ struct iOSSavedResultsView: View {
                 Section("Results") {
                     ForEach(matchingResults) { result in
                         ResultRow(result: result, action: { loadResult(result) })
+                            .id(MaktabahNativeSavedResultsBinding.ScrollKey.result(result))
+                            .background {
+                                if let binding = nativeRoutingSession?.savedResultsBinding {
+                                    MaktabahNativeSavedResultsRowWitness(binding: binding, owner: nativeSheetOwner,
+                                        folder: nil, node: .result(result))
+                                        .allowsHitTesting(false).accessibilityHidden(true)
+                                }
+                            }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) { viewModel.deleteResult(result.parentId, name: result.name) } label: { Label("Delete", systemImage: "trash") }
                             }
                             .swipeActions(edge: .leading) {
-                                Button { itemToMove = .result(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
-                                Button { itemToRename = .result(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
+                                Button { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .result(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
+                                Button { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .result(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
                             }
                     }
                 }
@@ -159,19 +207,28 @@ struct iOSSavedResultsView: View {
                 ContentUnavailableView.search(text: searchText)
             }
         }
+        .background {
+            if let binding = nativeRoutingSession?.savedResultsBinding {
+                MaktabahNativeSavedResultsPageWitness(binding: binding, owner: nativeSheetOwner, folder: nil,
+                    reveal: { proxy.scrollTo($0, anchor: .center) })
+                    .allowsHitTesting(false).accessibilityHidden(true)
+            }
+        }
+        }
     }
 
     private func makeFolderContentList(folder: FolderNode?) -> some View {
         iOSFolderContentList(
             folder: folder,
             onSelectResult: loadResult,
-            onDeleteFolder: { folderToDelete = $0 },
-            onMoveFolder: { itemToMove = .folder($0) },
-            onRenameFolder: { itemToRename = .folder($0) },
+            onDeleteFolder: { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = $0 },
+            onMoveFolder: { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .folder($0) },
+            onRenameFolder: { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .folder($0) },
             onDeleteResult: { viewModel.deleteResult($0.parentId, name: $0.name) },
-            onMoveResult: { itemToMove = .result($0) },
-            onRenameResult: { itemToRename = .result($0) },
-            onNewFolder: { parent in itemToRename = .newFolder(parent: parent) }
+            onMoveResult: { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .result($0) },
+            onRenameResult: { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .result($0) },
+            onNewFolder: { parent in nativeStateBinding($itemToRename, field: .operation).wrappedValue = .newFolder(parent: parent) },
+            nativeBinding: nativeRoutingSession?.savedResultsBinding, nativeOwner: nativeSheetOwner
         )
     }
 
@@ -221,6 +278,8 @@ struct iOSFolderContentList: View {
     let onMoveResult: (ResultNode) -> Void
     let onRenameResult: (ResultNode) -> Void
     let onNewFolder: (FolderNode?) -> Void
+    var nativeBinding: MaktabahNativeSavedResultsBinding? = nil
+    var nativeOwner: UUID? = nil
 
     let viewModel: ResultsViewModel = .shared
 
@@ -242,6 +301,7 @@ struct iOSFolderContentList: View {
     }
 
     var body: some View {
+        ScrollViewReader { proxy in
         ThemeList {
             ForEach(children) { child in
                 NavigationLink(value: child) {
@@ -262,6 +322,14 @@ struct iOSFolderContentList: View {
 
             ForEach(results) { result in
                 ResultRow(result: result, action: { onSelectResult(result) })
+                    .id(MaktabahNativeSavedResultsBinding.ScrollKey.result(result))
+                    .background {
+                        if let binding = nativeBinding, let owner = nativeOwner {
+                            MaktabahNativeSavedResultsRowWitness(binding: binding, owner: owner,
+                                folder: folder, node: .result(result))
+                                .allowsHitTesting(false).accessibilityHidden(true)
+                        }
+                    }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) { onDeleteResult(result) } label: { Label("Delete", systemImage: "trash") }
                     }
@@ -269,6 +337,13 @@ struct iOSFolderContentList: View {
                         Button { onMoveResult(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
                         Button { onRenameResult(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
                     }
+            }
+        }
+        .background {
+            if let binding = nativeBinding, let owner = nativeOwner {
+                MaktabahNativeSavedResultsPageWitness(binding: binding, owner: owner, folder: folder,
+                    reveal: { proxy.scrollTo($0, anchor: .center) })
+                    .allowsHitTesting(false).accessibilityHidden(true)
             }
         }
         .refreshable {
@@ -285,6 +360,7 @@ struct iOSFolderContentList: View {
                     Label("New Folder", systemImage: "folder.badge.plus")
                 }
             }
+        }
         }
     }
 }
