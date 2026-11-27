@@ -1,0 +1,9 @@
+{
+  "logical_path": "validation/lifecycle-attempt-2/COMPILE.log",
+  "stored_as": "validation/lifecycle-attempt-2/COMPILE.log.gz",
+  "uncompressed_bytes": 22626,
+  "uncompressed_sha256": "be1471245784d08878612f7c7a9df09ba93241c573d2e8fcbe6d70ed6a64a3c5",
+  "compressed_bytes": 2403,
+  "compressed_sha256": "56e7fa17367174cef05e4d81049d6755cfe67071b6beebaba425928684f37be8",
+  "reason": "Compiler diagnostic caret gutters contain original trailing spaces; gzip preserves them losslessly without weakening source whitespace checks. Raw log remains on the execution host."
+}

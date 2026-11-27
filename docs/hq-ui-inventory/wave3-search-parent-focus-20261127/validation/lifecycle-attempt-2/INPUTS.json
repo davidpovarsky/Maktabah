@@ -1,0 +1,19 @@
+{
+  "scope": "Actual app Search entry/parent setter/metadata and generic owner/one-shot latch; explicit UIKit, Combine, app domain and Core lifetime inputs. NOT SDK or native acceptance.",
+  "source_inputs": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift": "52e63db369e1348c226f1fdcdfe801a85011ebc682b0ed1bb56bd1bccbee0627",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "3da7e3ab9fb623b398694a9a33cb4508d67260a43a00bf1ddd023c89c1a458fe",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6"
+  },
+  "harness_files": {
+    "ActualBackendObservation.swift": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5",
+    "ActualObservation.swift": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e",
+    "ActualOwner.swift": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a",
+    "ActualSearchEntry.swift": "3fce834477bcca1dd8bc71bac07afef166f126e6fa73f51a9a47b085945a19c7",
+    "Controls.swift": "a3c944927978ad4a696a600d3b7be6570dedaa890a9dcdec2866a7ec0ce02577",
+    "DomainBoundary.swift": "be0b7f8ac0090c80ff9f39135e7bcd00d8643d14248a4341cb92773e23002d50"
+  }
+}

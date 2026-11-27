@@ -29,6 +29,7 @@ struct MaktabahNativeRoutingHost: ViewModifier {
     @Binding var columnVisibility: NavigationSplitViewVisibility
     @Binding var showSettings: Bool
     let sidebar: ReaderSidebarPageCoordinator?
+    let rootPublications: MaktabahNativeRootPublicationSource
     @Environment(\.scenePhase) private var phase
     @Environment(\.exact9401Workspace) private var workspace
     @Environment(\.maktabahNativeWorkspaceOwner) private var workspaceOwner
@@ -44,7 +45,8 @@ struct MaktabahNativeRoutingHost: ViewModifier {
             && !sceneID.isEmpty
     }
     private var bindings: MaktabahNativeSceneBindings {
-        .init(manager: manager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: sidebar)
+        .init(manager: manager, selectedTab: $selectedTab, columnVisibility: $columnVisibility,
+              showSettings: $showSettings, sidebar: sidebar, rootPublications: rootPublications)
     }
     private var projection: MaktabahNativeSceneProjection {
         .init(manager: manager, selectedTab: selectedTab, columnVisibility: columnVisibility,
@@ -299,7 +301,7 @@ private struct OtzariaGuidedTourPanel: View {
             .init(destination: .init(destination: UIDestinationID(rawValue: "native.library")!),
                   english: "Start with a topic or collection in the library.", hebrew: "מתחילים בנושא או באוסף מתוך הספרייה."),
             .init(destination: .init(destination: UIDestinationID(rawValue: "native.search")!,
-                                     component: UIDestinationID(rawValue: "native.search.query")!),
+                                     component: MaktabahNativeSearchEntryBinding.anchor),
                   english: "The search field is focused. Enter a title or phrase; Explore lets you try it.",
                   hebrew: "שדה החיפוש ממוקד. אפשר להזין כותר או ביטוי; שיטוט חופשי מאפשר לנסות."),
             .init(destination: .init(destination: UIDestinationID(rawValue: "native.history")!),
@@ -372,7 +374,12 @@ struct MaktabahNativeRoutingWitness: View {
                     #if DEBUG
                     OtzariaFileLogger.shared.log("[NativeSurfaceWitness] destination=\(state.destination.rawValue) \(flags)")
                     #endif
-                }) { session.observe($0) }
+                }) { evidence in
+                    session.observe(evidence)
+                    // A real original surface lifecycle publication may resume
+                    // the retained entry command; polling never invokes this hook.
+                    if kind == .search, evidence.isVisible { session.renderSearchEntryFromOriginalView() }
+                }
                 .allowsHitTesting(false)
                 .accessibilityHidden(true)
         }

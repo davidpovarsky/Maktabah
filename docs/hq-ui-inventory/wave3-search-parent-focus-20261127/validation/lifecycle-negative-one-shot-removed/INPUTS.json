@@ -1,0 +1,26 @@
+{
+  "scope": "DELIBERATE negative control: only the original app data-source one-shot validation call removed from exact candidate snapshot; no app source mutation",
+  "source_inputs": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+    "Source/UI/iOS/Views/iOSMainView.swift": "7ed267876790dcda4dbff2ca27dddc4ac4adaa3d0b598ecf74ff8b436a34b139"
+  },
+  "harness_files": {
+    "ActualBackendObservation.swift": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5",
+    "ActualObservation.swift": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e",
+    "ActualOwner.swift": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a",
+    "ActualSearchEntry.swift": "5e763a3d40ef2d07d0e16ffb4fddebd030af8074071e591d57770fb30ecd24f3",
+    "Controls.swift": "cda9dc755bb275b461f8b7dff6854de7c7fb0263700cf31c657f9dad31b63843",
+    "DomainBoundary.swift": "1f00d19bae9298a2b2282b6635abda30cf82393d2e783a531ee0d11d769860b5"
+  },
+  "negative_change": {
+    "file": "ActualSearchEntry.swift",
+    "remove": "try observation.validate(); ",
+    "before_sha256": "48dc045655cf295ccd57d271ac44b0afee780821be60476d0a10cfb02ed3297f",
+    "after_sha256": "5e763a3d40ef2d07d0e16ffb4fddebd030af8074071e591d57770fb30ecd24f3"
+  }
+}

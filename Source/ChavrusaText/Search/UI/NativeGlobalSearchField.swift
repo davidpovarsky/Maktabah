@@ -15,6 +15,9 @@ struct NativeGlobalSearchField: UIViewRepresentable {
         field.nativeAttachmentDidChange = { [weak coordinator = context.coordinator] field in
             coordinator?.nativeStateChanged(field)
         }
+        field.nativeOriginalLayoutDidChange = { [weak coordinator = context.coordinator] field in
+            coordinator?.nativeLayoutChanged(field)
+        }
         field.addTarget(context.coordinator, action: #selector(Coordinator.changed(_:)), for: .editingChanged)
         field.setSearchPlaceholder(String(localized: "Search Books", defaultValue: "חיפוש בטקסט הספרים"))
         field.accessibilityLabel = field.placeholder
@@ -49,6 +52,7 @@ struct NativeGlobalSearchField: UIViewRepresentable {
     static func dismantleUIView(_ field: UISearchTextField, coordinator: Coordinator) {
         coordinator.unbindNativeField(field)
         (field as? GlobalSearchTextField)?.nativeAttachmentDidChange = nil
+        (field as? GlobalSearchTextField)?.nativeOriginalLayoutDidChange = nil
         #if DEBUG
         (field as? GlobalSearchTextField)?.nativeFontDiagnosticNamespace = nil
         (field as? GlobalSearchTextField)?.nativeFontDiagnosticSink = nil
@@ -99,6 +103,10 @@ struct NativeGlobalSearchField: UIViewRepresentable {
             guard nativeField === field else { return }
             nativeSession?.searchFieldStateDidChange(field)
         }
+        func nativeLayoutChanged(_ field: UISearchTextField) {
+            guard nativeField === field else { return }
+            nativeSession?.searchFieldDidLayout(field)
+        }
 
         func textFieldDidBeginEditing(_ textField: UITextField) {
             if let field = textField as? UISearchTextField { nativeStateChanged(field) }
@@ -134,6 +142,7 @@ struct NativeGlobalSearchField: UIViewRepresentable {
 /// its earlier font while the surrounding SwiftUI layout changes Dynamic Type.
 private final class GlobalSearchTextField: UISearchTextField {
     var nativeAttachmentDidChange: (@MainActor (UISearchTextField) -> Void)?
+    var nativeOriginalLayoutDidChange: (@MainActor (UISearchTextField) -> Void)?
     #if DEBUG
     var nativeFontDiagnosticNamespace: (@MainActor () -> String?)?
     var nativeFontDiagnosticSink: (@MainActor (String) -> Void)?
@@ -202,6 +211,9 @@ private final class GlobalSearchTextField: UISearchTextField {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        // This is an actual original UIKit layout publication. The retained
+        // entry request never calls setNeedsLayout or manufactures this event.
+        defer { nativeOriginalLayoutDidChange?(self) }
         #if DEBUG
         defer {
             if nativeFontDiagnosticLayoutPending {

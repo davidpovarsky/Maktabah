@@ -2918,3 +2918,109 @@ extension NativeRoutingAcceptanceTests {
         capture(evidenceName + "-original-history-and-receipt")
     }
 }
+
+
+// Explicit additive parent-then-focus acceptance. The historical
+// native.search.query unavailable-parent case and all prior bytes stay intact.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    func runOriginalSearchEntry(expectedPad: Bool, warmPrivateQuery: Bool) async throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let workspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(workspace.lastActiveSceneID)
+        let original = try workspace.current()
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        let mode = app.descendants(matching: .any).matching(identifier: "global-search-mode").firstMatch
+        let books = app.buttons["global-search-books"]
+        var expectedMode: String?, expectedBooks: String?
+        let privateQuery = "בראשית"
+
+        if warmPrivateQuery {
+            let first = UUID()
+            try openInExistingProcess(publicRootURL("native.search", request: first))
+            try requireRootReceipt(first, destination: "native.search")
+            XCTAssertTrue(field.waitForExistence(timeout: 15) && field.isHittable)
+            field.tap(); field.typeText(privateQuery)
+            XCTAssertEqual(field.value as? String, privateQuery)
+            XCTAssertTrue(mode.exists && books.exists)
+            expectedMode = try XCTUnwrap(mode.value as? String)
+            expectedBooks = books.label
+            let historyRequest = UUID()
+            try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15) && history.isHittable)
+            try requireRootReceipt(historyRequest, destination: "native.history")
+        }
+        XCTAssertFalse(field.exists && field.isHittable,
+                       "The additive command must open its original parent from another page")
+
+        @MainActor func requireActualFocus(before: Set<String>, query: String?) throws {
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+            let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard field.exists, field.isHittable, !field.frame.isEmpty,
+                      self.app.otherElements["global-search-screen"].exists,
+                      self.app.keyboards.firstMatch.exists else { return false }
+                let frame = field.frame, clipped = frame.intersection(self.app.windows.firstMatch.frame)
+                return !clipped.isNull && clipped.width * clipped.height >= frame.width * frame.height * 0.98
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                           "The original input and actual keyboard must be visible together")
+            try requirePublicRootReceipt("native.search", before: before)
+            let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+            let fields = native.split(separator: " ")
+            let request = String(try XCTUnwrap(fields.first { $0.hasPrefix("request=") }).dropFirst(8))
+            let scene = String(try XCTUnwrap(fields.first { $0.hasPrefix("scene=") }).dropFirst(6))
+            XCTAssertEqual(scene, originalScene, "The focus must belong to the original window")
+            let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=native.search.queryEntry"
+            let lines = try String(contentsOf: actualReaderLogURL(), encoding: .utf8)
+                .split(separator: "\n").filter { $0.hasSuffix(exact) }
+            XCTAssertEqual(lines.count, 1, "One fresh canonical receipt must prove the new fixed original target")
+            let evidence = XCTAttachment(string: lines.joined(separator: "\n"))
+            evidence.name = "search-entry-original-focus-receipt"; evidence.lifetime = .keepAlways; add(evidence)
+            if let query { XCTAssertEqual(field.value as? String, query, "Opening and focusing must preserve the private query") }
+            if let expectedMode { XCTAssertEqual(mode.value as? String, expectedMode) }
+            if let expectedBooks { XCTAssertEqual(books.label, expectedBooks) }
+            XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+            XCTAssertFalse(app.otherElements["global-search-loading"].exists,
+                           "A navigation-only component must not submit Search")
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+            try requirePreservedOriginalWorkspace(original)
+        }
+
+        let before = try actualNativeReceiptLines()
+        if warmPrivateQuery {
+            let url = try publicSearchComponentURL("native.search.queryEntry")
+            XCTAssertFalse(url.absoluteString.contains(privateQuery))
+            try openInExistingProcess(url)
+        } else {
+            let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+            let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Open query input")
+            XCTAssertEqual(entities.count, 1, "Resolve the distinct additive target in the exact original scene")
+            let entity = try XCTUnwrap(entities.first)
+            _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        }
+        try requireActualFocus(before: before, query: warmPrivateQuery ? privateQuery : nil)
+        // No field tap follows delivery. Typing via the system's current
+        // responder is the independent first-responder oracle.
+        let suffix = warmPrivateQuery ? " בדיקה" : privateQuery
+        app.typeText(suffix)
+        let resultingQuery = warmPrivateQuery ? privateQuery + suffix : privateQuery
+        XCTAssertEqual(field.value as? String, resultingQuery)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+
+        if warmPrivateQuery {
+            // The already-selected original Search parent takes the +0 path;
+            // the second independent URL still needs its own strict receipt.
+            let focusedBefore = try actualNativeReceiptLines()
+            try openInExistingProcess(publicSearchComponentURL("native.search.queryEntry"))
+            try requireActualFocus(before: focusedBefore, query: resultingQuery)
+            app.typeText(" נוסף")
+            XCTAssertEqual(field.value as? String, resultingQuery + " נוסף")
+            XCTAssertEqual(try actualNativeReceiptLines().subtracting(focusedBefore).count, 1)
+        }
+        try requirePreservedOriginalWorkspace(original)
+        capture("search-entry-\(expectedPad ? "ipad" : "phone")-\(warmPrivateQuery ? "warm" : "cold")")
+    }
+}

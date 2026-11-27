@@ -1,0 +1,3 @@
+# Keep private executed control binaries on this host; all sources/logs/hashes are committed.
+validation/*/Controls
+validation/lifecycle-attempt-2/COMPILE.log

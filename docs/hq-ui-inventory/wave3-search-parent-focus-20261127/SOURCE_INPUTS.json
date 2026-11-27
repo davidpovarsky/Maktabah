@@ -1,0 +1,65 @@
+{
+  "base": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "items": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "sha256": "8f9474f4ce779a83cf30e3ebb27ad3a696b2937f0f9834125f8b3009dcc75f61",
+      "bytes": 21153
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "7baa0940b4ad298475d44b6b681007b030cbb82a47f6c5b0c09820c11a8e8ea7",
+      "bytes": 73937
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "d40fc6112d075009ee1939798699aacbdb6cd88f8b554eb847846cd33daf4752",
+      "bytes": 168871
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "486f55917c10daae161c2c17063f85c8f6b20b2f3cd2551405f049599824b749",
+      "bytes": 21832
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "sha256": "07b66c6f679c7f51fcb73b48d119a05fd16aeffc341f9638692ec140343621a7",
+      "bytes": 17034
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "sha256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73",
+      "bytes": 12564
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "sha256": "57910a7e20395e0dae95c11ac5123af01e7545055b9e70501daa2cdfd01dc49b",
+      "bytes": 34346
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+      "bytes": 194950
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+      "bytes": 1121
+    }
+  ]
+}

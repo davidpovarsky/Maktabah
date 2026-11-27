@@ -37,6 +37,14 @@ struct MaktabahNativeSceneBindings {
     let columnVisibility: Binding<NavigationSplitViewVisibility>
     let showSettings: Binding<Bool>
     let sidebar: ReaderSidebarPageCoordinator?
+    let rootPublications: MaktabahNativeRootPublicationSource?
+
+    init(manager: iOSNavigationManager, selectedTab: Binding<iOSTab>,
+         columnVisibility: Binding<NavigationSplitViewVisibility>, showSettings: Binding<Bool>,
+         sidebar: ReaderSidebarPageCoordinator?, rootPublications: MaktabahNativeRootPublicationSource? = nil) {
+        self.manager = manager; self.selectedTab = selectedTab; self.columnVisibility = columnVisibility
+        self.showSettings = showSettings; self.sidebar = sidebar; self.rootPublications = rootPublications
+    }
 
     func isRootAvailable(_ root: MaktabahNativeRootDestination) -> Bool {
         root.isAvailable && (root != .tableOfContents
@@ -108,6 +116,23 @@ struct MaktabahNativeSceneBindings {
               manager.selectedBookPresentationRevision == expectedRevision else {
             throw UIRouteError(.staleState, "native_phone_toc_reader_transition_changed")
         }
+    }
+
+    /// Additive Search entry opens the original parent without dismissing
+    /// Settings, submitting a query or selecting a substitute Reader. TabView
+    /// remains the sole mode publisher, including its asynchronous callback.
+    func presentOriginalSearchEntry(_ expected: MaktabahNativeSearchEntryParentTransition) throws {
+        guard !showSettings.wrappedValue, isPresentationReady,
+              MaktabahNativeRootDestination.search.isAvailable else {
+            throw UIRouteError(.unavailable, "native_search_entry_presentation_blocked")
+        }
+        try expected.validateBefore(self)
+        if expected.popsBook { manager.selectedBook = nil }
+        if expected.changesTab { selectedTab.wrappedValue = .search }
+        guard !showSettings.wrappedValue, isPresentationReady else {
+            throw UIRouteError(.staleState, "native_search_entry_presentation_changed")
+        }
+        try expected.validateAfter(self, requiresPublishedMode: false)
     }
 
     func apply(_ command: UISceneCommand, reservedTab: iOSNavigationManager.ReaderTab? = nil) throws {

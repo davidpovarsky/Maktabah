@@ -1,0 +1,13 @@
+{
+  "source_sha256": "57910a7e20395e0dae95c11ac5123af01e7545055b9e70501daa2cdfd01dc49b",
+  "raw_assignment_pattern": "(?m)^\\s*(?:selectedTab|showSettings)\\s*=",
+  "raw_assignments": [],
+  "original_selectedTab_bindings": 3,
+  "original_debug_tab_assignments": 14,
+  "original_settings_Done_and_debug_assignments": 2,
+  "raw_binding_occurrences": {
+    "selectedTab": 1,
+    "showSettings": 1
+  },
+  "native_runtime_claim": false
+}

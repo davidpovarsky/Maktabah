@@ -36,8 +36,8 @@ struct SearchModeView: View {
             GlobalSearchToolbar(
                 session: session,
                 canSaveResults: canSaveResults,
-                onSaveResults: { showingSaveResults = true },
-                onSavedResults: { showingSavedResults = true }
+                onSaveResults: { nativePresentationBinding($showingSaveResults).wrappedValue = true },
+                onSavedResults: { nativePresentationBinding($showingSavedResults).wrappedValue = true }
             )
         }
         .sheet(isPresented: $session.showsBookFilterSheet) {
@@ -48,7 +48,7 @@ struct SearchModeView: View {
                 SearchDataView()
             }
         }
-        .sheet(isPresented: $showingSaveResults) {
+        .sheet(isPresented: nativePresentationBinding($showingSaveResults)) {
             iOSResultWriterView(
                 results: session.results,
                 query: session.query,
@@ -56,7 +56,7 @@ struct SearchModeView: View {
                 searchViewModel: viewModel
             )
         }
-        .sheet(isPresented: $showingSavedResults) {
+        .sheet(isPresented: nativePresentationBinding($showingSavedResults)) {
             iOSSavedResultsView()
         }
         .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
@@ -64,7 +64,7 @@ struct SearchModeView: View {
                    value: session.isSearching)
         .onAppear {
             observeNativePresentation()
-            session.searchViewModel = viewModel
+            if session.searchViewModel !== viewModel { session.searchViewModel = viewModel }
             if !session.availableScopes.contains(session.scope), !session.hasSubmitted {
                 session.scope = session.availableScopes.first ?? session.scope
             }
@@ -77,6 +77,9 @@ struct SearchModeView: View {
         }
         .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in
             observeNativePresentation()
+        }
+        .onChange(of: navigationManager.currentMode) { _, _ in
+            nativeRoutingSession?.renderSearchEntryFromOriginalView()
         }
         .onDisappear {
             nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)
@@ -107,11 +110,11 @@ struct SearchModeView: View {
 
                     FtsMigrationProgressView(
                         onCancel: {
-                            showFtsMigrationOverlay = false
+                            nativePresentationBinding($showFtsMigrationOverlay).wrappedValue = false
                         },
                         onUpdate: {
                             try await ftsManager.performMigration()
-                            await MainActor.run { showFtsMigrationOverlay = false }
+                            await MainActor.run { nativePresentationBinding($showFtsMigrationOverlay).wrappedValue = false }
                         }
                     )
                     .transition(AnyTransition.opacity.combined(with: .scale))
@@ -139,6 +142,16 @@ struct SearchModeView: View {
         nativeRoutingSession?.observeSearchPresentation(owner: nativePresentationOwner) {
             saving.wrappedValue || saved.wrappedValue || migration.wrappedValue
         }
+    }
+
+    /// Every original local overlay write retires an in-flight or completed
+    /// component proof BEFORE State changes, even for an A -> B -> A cycle.
+    /// Search entry never invokes these setters or dismisses their contents.
+    @MainActor private func nativePresentationBinding(_ original: Binding<Bool>) -> Binding<Bool> {
+        Binding(get: { original.wrappedValue }, set: { value in
+            nativeRoutingSession?.originalSearchPresentationWillChange(owner: nativePresentationOwner)
+            original.wrappedValue = value
+        })
     }
 
     private func submitSearch() {
@@ -213,7 +226,7 @@ struct SearchModeView: View {
 
                 VStack(spacing: 10) {
                     Button {
-                        showFtsMigrationOverlay = true
+                        nativePresentationBinding($showFtsMigrationOverlay).wrappedValue = true
                     } label: {
                         Text(ftsManager.isOptimizationOnly
                             ? .ftsOptimizationNowCountBtn(ftsManager.totalArchivesToMigrate)

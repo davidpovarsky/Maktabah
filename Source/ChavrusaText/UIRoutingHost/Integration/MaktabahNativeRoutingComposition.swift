@@ -202,9 +202,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.search"), title: "Search".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], anchors: [id("native.search.query")],
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
+                  anchors: [id("native.search.query")] + MaktabahNativeSearchEntryBinding.descriptors.map(\.anchor),
                   requiredCoreActions: [], allowsPublicRoute: true,
-                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab, components: [id("native.search.query")])])),
+                  publicNavigationV2: .init(rules: [.init(presentation: .currentTab,
+                      components: [id("native.search.query")] + MaktabahNativeSearchEntryBinding.descriptors.map(\.anchor))])),
             .init(id: id("native.search.results"), title: "Search results".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
                   requiredCoreActions: ["search.openResults"]),
@@ -364,7 +366,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         invalidateHanlin(sceneID: session.sceneID)
         contexts.removeValue(forKey: session.sceneID)
         try session.nativeStateChanged()
-        if !value { session.presentation.revoke() }
+        if !value { session.searchEntryBinding?.retire(); session.presentation.revoke() }
         else { mountWaiters.removeValue(forKey: entry.managerID)?.continuation.resume(returning: session.sceneID) }
     }
     func unmount(_ session: MaktabahNativeSceneSession) {
@@ -849,11 +851,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         // Retain exact original component source BEFORE the first await. This
         // reads identity only; canonical Core still authorizes all navigation.
         let retainedComponent: MaktabahNativeComponentOwner?
-        if let anchor = intent.component, intent.destination.rawValue != "native.search" {
+        if let anchor = intent.component,
+           intent.destination.rawValue != "native.search" || anchor == MaktabahNativeSearchEntryBinding.anchor {
             retainedComponent = try entry.session.retainComponentSource(destination: intent.destination,
                 anchor: anchor, requestID: requestID)
         } else { retainedComponent = nil }
-        defer { retainedComponent?.releaseSource(requestID: requestID) }
+        defer { if let retainedComponent { entry.session.releaseComponentSource(retainedComponent, requestID: requestID) } }
         // Reserve actual native ownership before issuing/admitting authority;
         // R advances its epoch and invalidates any older mapping context.
         let retainedReader = try intent.content.map { content in
