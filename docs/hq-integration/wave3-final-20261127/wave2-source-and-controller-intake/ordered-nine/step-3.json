@@ -1,0 +1,7 @@
+{
+  "donor": "ef4d87bc5f26700a1299806e8068ca308cc3e70b",
+  "exit": 0,
+  "head": "db9f98db2f632dfe25ef9e91e14761bd91b69969",
+  "stdout": "Auto-merging Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift\n[codex/otzaria-wave3-integration-20261127 db9f98db] test(search): observe warm index readiness across Books Updates [skip ci]\n Author: ChatGPT Agent <chatgpt-agent@localhost>\n Date: Fri Nov 27 04:42:56 2026 +0000\n 10 files changed, 756 insertions(+)\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/COMPILE_RUN.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/INPUT.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/LAUNCH.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/README.md\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/RESULT.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/SOURCE_RECEIPTS.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/WarmSearchReadiness.swift\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/apple-inputs-and-logs.tar.gz\n create mode 100644 docs/hq-integration/wave2-20261127/search/warm-update-ui/run-typecheck.py\n",
+  "stderr": ""
+}

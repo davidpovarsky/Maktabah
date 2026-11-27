@@ -1,0 +1,82 @@
+{
+  "status": "NINE_REVIEWED_WAVE2_PACKETS_INTAKED_NATIVE_NOT_RUN",
+  "at": "2026-11-27T06:27:46.068144+00:00",
+  "base": "f075f567f75ba0cba327e2c477cd85b905775f70",
+  "head": "71308d147f4e7d46698529cecedb81f3615ff207",
+  "sourceTree": "a3d1097824cd681a6d8eb65d3483422ea76c15c2",
+  "steps": [
+    {
+      "donor": "55729e68e5d831925ed37802b7742983fb95bdf3",
+      "exit": 0,
+      "head": "57859029020b063ebcd67823f888a5053041d60e"
+    },
+    {
+      "donor": "9fdee9eca395a1ab70bbf1b2e2a4833b090d9d0a",
+      "exit": 0,
+      "head": "72928d5f1850a9a6ff7039789b846d8e459b508a"
+    },
+    {
+      "donor": "ea9241c9ea0420b9c0392c569f4e14e4d9bad7a1",
+      "exit": 0,
+      "head": "b68b1b3539e6bbad64a74865fd577ee50772e356"
+    },
+    {
+      "donor": "ef4d87bc5f26700a1299806e8068ca308cc3e70b",
+      "exit": 0,
+      "head": "db9f98db2f632dfe25ef9e91e14761bd91b69969"
+    },
+    {
+      "donor": "57ecbfd68e2904b999127b089ee1c824b9e62729",
+      "exit": 0,
+      "head": "d6401bd352fcd12b548e90d9aee3578d0d530eaa"
+    },
+    {
+      "donor": "a7bdd48767428ab7b62eea4eabf3213ce9eec59c",
+      "exit": 0,
+      "head": "a18c0f54ac6888ec764e8c5cae036941fa83a1ce"
+    },
+    {
+      "donor": "49d17045905e094fd52dbe95844235c4a3de1b72",
+      "exit": 0,
+      "head": "a1488d24e95c1c183db553855218ab0aac3f1b47"
+    },
+    {
+      "donor": "acadee6801a05ceca81ea5e3b57ca901589b7ea1",
+      "exit": 0,
+      "head": "a4e70f9cc506a088823d0540407fecd15b834cc1"
+    },
+    {
+      "donor": "1fc951485216935abfe0977f37376a5d3f155476",
+      "exit": 0,
+      "head": "71308d147f4e7d46698529cecedb81f3615ff207"
+    }
+  ],
+  "priorSourceUnchanged": true,
+  "prefixes": [
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "previousBytes": 184531,
+      "previousSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+      "afterSHA256": "054a6cdaf282164a0b1995e89b31619def32c026e1537a177895afc201fd86da",
+      "prefixUnchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "previousBytes": 32652,
+      "previousSHA256": "489a28190fa171bd5c5b3fdb47fadb48d3733d6f178315266eea5ea314848e7a",
+      "afterSHA256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7",
+      "prefixUnchanged": true
+    }
+  ],
+  "exactControllerSHA256": {
+    "Scripts/CI/study-ui-search-log.py": "5f2be3e510e8bd67a8f77a845d2d1fd4d9da78ecc3b9c86c3fc10e887f921ecc",
+    "Scripts/CI/study-ui-prerequisites.py": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2",
+    "Scripts/CI/production-study-v40-ui.py": "613bbf862725b3b5a1b7171938a34381315e5e3640dcd065637b27f65a2d522a"
+  },
+  "exactDocumentationPayloads": 199,
+  "nativeTestsExecuted": 0,
+  "repeatedTests": 0,
+  "offlinePerfPrerequisites": "REMAIN_NOT_QUALIFIED_WITHOUT_ACTUAL_PRODUCERS",
+  "physicalDevices": 0,
+  "freeBytes": 561299456
+}

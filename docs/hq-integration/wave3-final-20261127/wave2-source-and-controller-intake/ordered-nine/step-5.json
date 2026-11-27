@@ -1,0 +1,7 @@
+{
+  "donor": "a7bdd48767428ab7b62eea4eabf3213ce9eec59c",
+  "exit": 0,
+  "head": "a18c0f54ac6888ec764e8c5cae036941fa83a1ce",
+  "stdout": "[codex/otzaria-wave3-integration-20261127 a18c0f54] docs(search): seal approved v40 compressed-part cleanup [skip ci]\n Author: ChatGPT Agent <chatgpt-agent@localhost>\n Date: Fri Nov 27 04:47:45 2026 +0000\n 5 files changed, 768 insertions(+)\n create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-restore/PARTS_CLEANUP.md\n create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-restore/PARTS_CLEANUP_ADMISSION.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-restore/PARTS_CLEANUP_JOURNAL.jsonl\n create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-restore/PARTS_CLEANUP_RESULT.json\n create mode 100644 docs/hq-integration/wave2-20261127/search/corpus-restore/cleanup-restored-v40-parts.py\n",
+  "stderr": ""
+}

@@ -1,0 +1,221 @@
+{
+  "root": "f075f567f75ba0cba327e2c477cd85b905775f70",
+  "trackedStatus": "",
+  "items": [
+    {
+      "sha": "55729e68e5d831925ed37802b7742983fb95bdf3",
+      "subject": "test(search): bind post-update queries to active process logs [skip ci]",
+      "changedFiles": 4,
+      "sourceOrTests": [
+        "Scripts/CI/study-ui-search-log.py"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-log/SOURCE_CONTROL_RESULT.json",
+          "sha256": "95a91106fa0bb135d5e5961da5fbc406a85766a8908cbf1b502883db4505d720",
+          "bytes": 7779,
+          "fields": {
+            "status": "SYNTHETIC_SOURCE_CONTROLS_ONLY",
+            "passed": 50,
+            "failed": 0
+          }
+        }
+      ]
+    },
+    {
+      "sha": "9fdee9eca395a1ab70bbf1b2e2a4833b090d9d0a",
+      "subject": "docs(search): preserve public index cleanup and exact v40 recovery evidence [skip ci]",
+      "changedFiles": 42,
+      "sourceOrTests": [],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/CLEANUP_RESULT.json",
+          "sha256": "9bd62627598c13daffd1140d6112c86a92ef23acf2a691daecabbbb662d128e6",
+          "bytes": 4801,
+          "fields": {
+            "status": "APPROVED_PUBLIC_DUPLICATE_PAYLOADS_REMOVED_METADATA_PRESERVED"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/PUBLIC_STREAM_RESULT.json",
+          "sha256": "a4562c412c5fe823a2dcf5becc67d51de2b9652256ad94051d55dddd7afc2efc",
+          "bytes": 113599,
+          "fields": {
+            "status": "PUBLIC_STREAM_RECONSTRUCTS_CURRENT_SOURCE_NO_CLEANUP"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESERVATION_RESULT.json",
+          "sha256": "8efd950e3b1a792390e754cfdf7f2a7e00ad9c8badfc6b9c1198f3ee8263c48d",
+          "bytes": 1700,
+          "fields": {
+            "status": "OWNED_COMPRESSED_PLUS_DATABASE_CAPACITY_RESERVED_NO_DOWNLOAD"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESTORE_RESULT.json",
+          "sha256": "768d333cceb7e9d5e05bcb299f1ee579c8acd5174c5aec54c3afe76e0c074afb",
+          "bytes": 2452,
+          "fields": {
+            "status": "OFFICIAL_V40_CORPUS_RECONSTRUCTED_FULL_SHA_AND_READONLY_COUNTS_VERIFIED"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "ea9241c9ea0420b9c0392c569f4e14e4d9bad7a1",
+      "subject": "test: qualify same-tab Inspector modes against actual Sefaria source [skip ci]",
+      "changedFiles": 36,
+      "sourceOrTests": [
+        "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/apple-attempt-1/RESULT.json",
+          "sha256": "09dbcf8bc4c5c9dd033001675285b59954099b6e577cfeb814f89673ca440030",
+          "bytes": 7621,
+          "fields": {
+            "status": "COMPLETE_SOURCE_ONLY"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/apple-attempt-2/RESULT.json",
+          "sha256": "c17c7512359f44b9cc256524d03790ed314d38a543c53c7384187c48a83a1599",
+          "bytes": 2950,
+          "fields": {
+            "status": "FAILED_SOURCE_ONLY"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/apple-attempt-3/RESULT.json",
+          "sha256": "2cc2b0f86d436b4cc70707ea0f47cf9ee19f9520e9efd915da0e1a5367545bf6",
+          "bytes": 2868,
+          "fields": {
+            "status": "COMPLETE_SOURCE_ONLY"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "ef4d87bc5f26700a1299806e8068ca308cc3e70b",
+      "subject": "test(search): observe warm index readiness across Books Updates [skip ci]",
+      "changedFiles": 10,
+      "sourceOrTests": [
+        "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/warm-update-ui/RESULT.json",
+          "sha256": "3b73be22772fb169afeab91d39461bfe438fa26329d864c6c653e5a471a80b73",
+          "bytes": 2979,
+          "fields": {
+            "status": "SOURCE_TYPECHECK_ONLY_NOT_NATIVE_UI"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "57ecbfd68e2904b999127b089ee1c824b9e62729",
+      "subject": "test: bind warm search readiness to final Settings update retry [skip ci]",
+      "changedFiles": 10,
+      "sourceOrTests": [
+        "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/RESULT.json",
+          "sha256": "3a88a9cbf35282b9bc141787744e525460ff1f1837d7fb1f887576459f038595",
+          "bytes": 3108,
+          "fields": {
+            "status": "COMPLETE_SOURCE_ONLY"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "a7bdd48767428ab7b62eea4eabf3213ce9eec59c",
+      "subject": "docs(search): seal approved v40 compressed-part cleanup [skip ci]",
+      "changedFiles": 5,
+      "sourceOrTests": [],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/PARTS_CLEANUP_RESULT.json",
+          "sha256": "32c196322df66a4846a885d26f06b71138a0ab2dee1751dfa5e415e9eb4b6872",
+          "bytes": 1788,
+          "fields": {
+            "status": "ONLY_TWO_APPROVED_PUBLIC_COMPRESSED_PARTS_REMOVED_VERIFIED_DATABASE_RETAINED"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "49d17045905e094fd52dbe95844235c4a3de1b72",
+      "subject": "Gate Books Updates on original prerequisite receipts [skip ci]",
+      "changedFiles": 18,
+      "sourceOrTests": [
+        "Scripts/CI/study-ui-prerequisites.py"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/RUN_RESULT.json",
+          "sha256": "8a3312dbfdfd7913094cb931bcaaeede8aa48c1812187d6cd9d494090d134430",
+          "bytes": 128,
+          "fields": {
+            "exit": 0
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/prerequisites/source-controls-run01/RESULT.json",
+          "sha256": "a1304acce2fae060d189fd33395cc37414ff8320af4e2cf1606f5b6614278ebd",
+          "bytes": 2651,
+          "fields": {
+            "status": "SYNTHETIC_SOURCE_ADMISSION_CONTROLS_PASS"
+          }
+        }
+      ]
+    },
+    {
+      "sha": "acadee6801a05ceca81ea5e3b57ca901589b7ea1",
+      "subject": "Retain bounded full-v40 natural Inspector target discovery [skip ci]",
+      "changedFiles": 48,
+      "sourceOrTests": [],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/RUN_RESULT.json",
+          "sha256": "9a973b52894685380ee3a3f6a9214bdf8ed8c6e2f38d9f0737a9d00c4b5e1ec1",
+          "bytes": 145,
+          "fields": {
+            "exit": 0
+          }
+        }
+      ]
+    },
+    {
+      "sha": "1fc951485216935abfe0977f37376a5d3f155476",
+      "subject": "test: orchestrate original production study acceptance with ordered evidence gates [skip ci]",
+      "changedFiles": 32,
+      "sourceOrTests": [
+        "Scripts/CI/production-study-v40-ui.py"
+      ],
+      "results": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/study-ui/oracle-source-checks/RESULT.json",
+          "sha256": "e62c985344702412bb9a577e0aba5834b69ed6dd5ad6027fdb07e8089a7837dd",
+          "bytes": 9321,
+          "fields": {
+            "status": "SOURCE_ONLY_CONTROLS_AND_DECLARATIONS_PASS"
+          }
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/study-ui/source-controls-retained-run01/RESULT.json",
+          "sha256": "edc7b13d9729f8bac06c647aa69a08c750d7efb44801e9eae04ccfc9a43ab9ae",
+          "bytes": 1471,
+          "fields": {
+            "status": "SOURCE_CONTROL_ONLY_PASS"
+          }
+        }
+      ]
+    }
+  ],
+  "freeBytes": 566374400
+}

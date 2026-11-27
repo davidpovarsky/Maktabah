@@ -1,0 +1,7 @@
+{
+  "donor": "305b0b4de89a5532ee403419479cf6b9a280222d",
+  "exit": 0,
+  "head": "9a058c7c98c039e04aae314cc9257116b81b03af",
+  "stdout": "[codex/otzaria-wave3-integration-20261127 9a058c7c] test: bind actual preview producer and verified SQLite observation intake [skip ci]\n Author: Codex <chatgpt-agent@users.noreply.github.com>\n Date: Fri Nov 27 05:49:08 2026 +0000\n 9 files changed, 2556 insertions(+)\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/0.stderr.log\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/0.stdout.json\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/1.stderr.log\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/1.stdout.json\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/2.stderr.log\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/2.stdout.json\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/README.md\n create mode 100644 docs/hq-integration/wave2-20261127/reader/sqlite-preview-intake/RESULT.json\n",
+  "stderr": ""
+}

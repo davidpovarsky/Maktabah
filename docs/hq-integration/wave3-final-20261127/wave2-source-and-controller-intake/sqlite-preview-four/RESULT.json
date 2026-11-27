@@ -1,0 +1,53 @@
+{
+  "status": "REVIEWED_SQLITE_AND_ORIGINAL_PREVIEW_SOURCE_INTAKE_NATIVE_PENDING",
+  "at": "2026-11-27T06:35:36.052713+00:00",
+  "base": "71308d147f4e7d46698529cecedb81f3615ff207",
+  "head": "9a058c7c98c039e04aae314cc9257116b81b03af",
+  "sourceTree": "a0bedbc485e0cc70a0148d42ec3545ea8dea400a",
+  "steps": [
+    {
+      "donor": "a77b9a5e777474933e626f7cfa84ad15141e2c82",
+      "exit": 0,
+      "head": "ef3f12f8ae5b984439763487f9b27b6ee0d93863"
+    },
+    {
+      "donor": "145a478b1e2fdeb53acdaf9e10f174f3992f88c1",
+      "exit": 0,
+      "head": "96225f832cba919c19779eced6bb29accf2896b2"
+    },
+    {
+      "donor": "0af653e482c21a6b4c85f6ac9ff51880950e4269",
+      "exit": 0,
+      "head": "e10c213346ce45fbf2192fc18dd479d35aa3c3ea"
+    },
+    {
+      "donor": "305b0b4de89a5532ee403419479cf6b9a280222d",
+      "exit": 0,
+      "head": "9a058c7c98c039e04aae314cc9257116b81b03af"
+    }
+  ],
+  "productBefore": {
+    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": "742d3e9dec8c432c8bfebea5f6e8d31b0188202f786501d24057556fb93f9bd2"
+  },
+  "productAfter": {
+    "Source/Core/Database/SQLiteDatabase.swift": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b"
+  },
+  "exactDonorFiles": 340,
+  "rootSourceReview": [
+    "Both full product diffs and original observer callback context",
+    "Full559-line unchanged-original-Swift preview producer",
+    "One-line controller FILES binding addition",
+    "Original SQL/cancellation/lock/defer and Release observation exclusion preserved",
+    "Source receipts retain baseline failures and explicitly synthetic boundaries"
+  ],
+  "noNewTestRuns": true,
+  "historicalSQLiteAppleCommands": 25,
+  "historicalSQLiteComponentExecutions": 20,
+  "previewBinaryRun": false,
+  "nativeTests": 0,
+  "fullCorpusPerformance": "NOT_RUN",
+  "DComponentEvidence": "Original c76515+7 remains historical; current SQLite input changed and integrated final qualification remains required",
+  "freeBytes": 926900224
+}

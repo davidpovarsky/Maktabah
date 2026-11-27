@@ -1,0 +1,7 @@
+{
+  "donor": "57ecbfd68e2904b999127b089ee1c824b9e62729",
+  "exit": 0,
+  "head": "d6401bd352fcd12b548e90d9aee3578d0d530eaa",
+  "stdout": "[codex/otzaria-wave3-integration-20261127 d6401bd3] test: bind warm search readiness to final Settings update retry [skip ci]\n Date: Fri Nov 27 04:48:55 2026 +0000\n 10 files changed, 196 insertions(+)\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/HELPER_EXTRACTION.json\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/NATIVE_EVIDENCE.json\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/OriginalSearchReadinessSupport.swift.gz\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/PROVENANCE.json\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/ProductionOtzariaAcceptanceTests.swift.gz\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/README.md\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/RESULT.json\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/typecheck.stderr.log.gz\n create mode 100644 docs/hq-integration/wave2-20261127/library/settings-ui/warm-readiness/typecheck.stdout.log.gz\n",
+  "stderr": ""
+}
