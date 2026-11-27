@@ -1,0 +1,63 @@
+{
+  "schema": "otzaria.saved-results.native-source-packet.v1",
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "original_prefix": {
+    "bytes": 337724,
+    "sha256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f"
+  },
+  "unchanged_original_prefix": true,
+  "helper_collisions": [],
+  "new_test_declarations": [
+    "testSavedResultsSystemFolderRevealsOriginalNestedPageOnPad",
+    "testSavedResultsSystemResultRevealsOriginalRowWithoutExecutingOnPad",
+    "testSavedResultsCachedResultRefusesAfterOriginalTreeReloadOnPad",
+    "testSavedResultsSystemFolderRevealsOriginalNestedPageOnPhone",
+    "testSavedResultsSystemResultForegroundsOriginalRowOnPhone",
+    "testSavedResultsCachedFolderRefusesFromBackgroundAfterOriginalDeleteOnPhone"
+  ],
+  "native_selected_or_passed_count": null,
+  "source_control_boundary": {
+    "actual_sqlite_oracle": {
+      "passed": 10,
+      "failed": 0
+    },
+    "frontend_syntax": 2,
+    "apple_sdk_typecheck": "NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "product_files_changed": [],
+  "test_files": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 375434,
+      "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSavedResultsAcceptanceTests.swift",
+      "bytes": 1549,
+      "sha256": "c026ff096c068f3f20b5758a22f6f848f2c62e59d15839b4f469ef19d853faee"
+    }
+  ],
+  "helper_suffix": {
+    "bytes": 37710,
+    "sha256": "fe2f04de2a71ac5459c27e1d9ab67080e5113b013d468e22ebf67a5bbebb9a62"
+  },
+  "membership": {
+    "kind": "inherited synchronized root group",
+    "target": "F30578012FA46222005732C6",
+    "group": "F30578032FA46222005732C6",
+    "manual_pbx_change": false,
+    "apple_discovery": "NOT_RUN"
+  },
+  "limitations": [
+    "warm mounted tree only",
+    "miniTest10 only",
+    "no cold cached node",
+    "no cross-root Saved route",
+    "no execute-saved-search journey",
+    "no new selected-item log field",
+    "no production or physical acceptance",
+    "original GLOBAL_SEARCH_TEST_QUERY required; no fallback",
+    "English UI with actual original query"
+  ]
+}

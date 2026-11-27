@@ -1,0 +1,197 @@
+[
+  {
+    "path": "BASELINE_INITIAL_READ.json",
+    "bytes": 409,
+    "sha256": "2edf61e96304ad377b1fa068ba7852c07b09505e8c5737dfddcf9c9f10b7c36f"
+  },
+  {
+    "path": "DEPENDENCY_CURRENT_GIT_JOIN.json",
+    "bytes": 4807,
+    "sha256": "e4f7fe3c2a63b2d02e1867f968b9cc2b8972c04bb00afb36dff84ad5818e78fa"
+  },
+  {
+    "path": "NATIVE_HELPER_ADDITION.patch",
+    "bytes": 38556,
+    "sha256": "48e8dfbb7b61fd1a2d7a802e647c2b38676142af97a9577090f1294240f898b7"
+  },
+  {
+    "path": "NATIVE_HELPER_ADDITION.swift",
+    "bytes": 37710,
+    "sha256": "fe2f04de2a71ac5459c27e1d9ab67080e5113b013d468e22ebf67a5bbebb9a62"
+  },
+  {
+    "path": "README.md",
+    "bytes": 10526,
+    "sha256": "b7b559f3495146b6c352ba20ba0e3500505dcfb4d48de1a8e80338b5d0670b32"
+  },
+  {
+    "path": "SOURCE_DEPENDENCIES.json",
+    "bytes": 3041,
+    "sha256": "a52454b5c624abf13534fd0b8d0803d6f8275eb86719958d7f472f8cab68309a"
+  },
+  {
+    "path": "SOURCE_PACKET.json",
+    "bytes": 2165,
+    "sha256": "5bf7e57026a8e94f1a19c48ef4d523701f1c1dd9699a21f11604749875868192"
+  },
+  {
+    "path": "controls/CONTROL_JOB.json",
+    "bytes": 5307,
+    "sha256": "39c687bb26838e2a4f0f7406586416169a3b375096e3ac61b2a0ea43dd1daacb"
+  },
+  {
+    "path": "controls/EXECUTED_SOURCE_CONTROLLER.py",
+    "bytes": 186640,
+    "sha256": "45edcbb0f2002f726ece23daf572d3a281e8982d547427faee1d53f4b04ca04b"
+  },
+  {
+    "path": "controls/OriginalSQLiteOracleControls.swift",
+    "bytes": 10432,
+    "sha256": "b7d145698eae7afc5936cbfbce6fb8d1c0d0096086561e562cf0f6f8a1d4864d"
+  },
+  {
+    "path": "controls/RAW_ARCHIVE_RECEIPT.json",
+    "bytes": 4279,
+    "sha256": "a75926a6715e3f7fcfdb9468f7ba2b7a43c817f5466c518f759393e617eb8b53"
+  },
+  {
+    "path": "controls/RESULT.json",
+    "bytes": 5225,
+    "sha256": "9dd3bef6c6e4481bbf36b9c6a4f0f4a0fbc2db85643035d04bb59f18dd735c8e"
+  },
+  {
+    "path": "controls/SOURCE_CONTROLS_ATTEMPT_1.zip",
+    "bytes": 129746,
+    "sha256": "e18912d27bfe1f0fe8d279c764590cd7268abd4e594fb8d14d94a4ab6cbb9aa3"
+  },
+  {
+    "path": "controls/SOURCE_EXTRACT.json",
+    "bytes": 546,
+    "sha256": "e5312565231b9951bda2651336fc2542f71f6e4bf5a3e4eb092b39703ad109f5"
+  },
+  {
+    "path": "controls/VERIFIED_TRANSFER.json",
+    "bytes": 754,
+    "sha256": "97a92efe680dfa1349247ee022a0671188ffbd28a8789b80e6059d48ec520304"
+  },
+  {
+    "path": "controls/build_oracle_controls.py",
+    "bytes": 5969,
+    "sha256": "f132e57196aee1abe55c53b0282470a0165bd705d50d64d85ac574e3f3eb5164"
+  },
+  {
+    "path": "controls/run_source_controls.template.py",
+    "bytes": 5649,
+    "sha256": "eea2e2f0f012a8168d9cf5b92f7f00784f7aef5ccb6092120b38526a072a93d7"
+  },
+  {
+    "path": "original-source/Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+    "bytes": 3532,
+    "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e"
+  },
+  {
+    "path": "original-source/Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+    "bytes": 1967,
+    "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99"
+  },
+  {
+    "path": "original-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+    "bytes": 38667,
+    "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54"
+  },
+  {
+    "path": "original-source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+    "bytes": 11240,
+    "sha256": "176e6943b57f410fe09d9150dbcbc29f5da2b09dd353f1df71a0fa352579de3e"
+  },
+  {
+    "path": "original-source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+    "bytes": 5472,
+    "sha256": "e13f939d280885783c507a85e1b73e03f22a585aab9384a1c79dea849da241db"
+  },
+  {
+    "path": "original-source/Source/Core/Configuration/AppConfig.swift",
+    "bytes": 25258,
+    "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/Database/ResultsFolders.swift",
+    "bytes": 8487,
+    "sha256": "de5e7a34522c6f9d815b529c759558fbb3eff80239503905f6e55e8716d4dbf3"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/Database/ResultsHandler.swift",
+    "bytes": 12423,
+    "sha256": "e6788e02ebc621f26bcab164e84927c4cc99ebb3ed0431acba6e0ee15e7ff858"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/ViewModel/Extensions/Results+FolderOps.swift",
+    "bytes": 6242,
+    "sha256": "1a2393682be94d9b7e7ce2be087de1ee46eb3458928eeb230797e13406f85cb6"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "bytes": 2168,
+    "sha256": "a51ac819587a40fe217ef5720cadf406a309c56c276a8f12f4b491129571c12e"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/ViewModel/Extensions/Results+ResultOps.swift",
+    "bytes": 5290,
+    "sha256": "94409b6859a0191b045ce2cbdd0e0bc98cb887e5c02249f309ae2f86307779f8"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+    "bytes": 2790,
+    "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+    "bytes": 3548,
+    "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779"
+  },
+  {
+    "path": "original-source/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "bytes": 18324,
+    "sha256": "855d11b32c07e3bdd994b26c877be90332db51aa31a87514eb0945eae8c9be01"
+  },
+  {
+    "path": "publication/ATTEMPT_1_DIFF_CHECK.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "publication/ATTEMPT_1_DIFF_CHECK.stdout.base64",
+    "bytes": 221,
+    "sha256": "dbfa3938b5b86ef7ad9299dc9c5bfddf6c6c8d3e5e72cac23b6f70ac3de5fc6b"
+  },
+  {
+    "path": "publication/ATTEMPT_1_RESULT.json",
+    "bytes": 13718,
+    "sha256": "b98bb46eb1bd44aa099c6639ec7b1b295885bd37003243247a922074de897d86"
+  },
+  {
+    "path": "publication/ORIGINAL_SOURCE_WHITESPACE_REVIEW.json",
+    "bytes": 1034,
+    "sha256": "cb8423d080a524074162a2ed2da774bb703e56668ee79b50a3b499f6805d3869"
+  },
+  {
+    "path": "review/DELETION_SETUP_REVIEW.json",
+    "bytes": 446,
+    "sha256": "f264b8ea7ae486466891414433fc456afa98d308b216a18a03c09483bccf45cd"
+  },
+  {
+    "path": "review/INITIAL_BACK_DELETE_DRAFT.swift",
+    "bytes": 35701,
+    "sha256": "647fe31d0676fdd88ded2416e3dc412030388a27d507c9cd61db91bd72ecc2ec"
+  },
+  {
+    "path": "review/READ_TRANSPORT_ATTEMPT_1.json",
+    "bytes": 156,
+    "sha256": "fe49da168974189eed975bf8d3db1d95f5a56607c86a576baf160a63c9bee59f"
+  },
+  {
+    "path": "seal_packet.py",
+    "bytes": 7663,
+    "sha256": "abf67cf3f0ffa56807c4862b851c331fe7708b0b3b72b61809800095c3f40da0"
+  }
+]

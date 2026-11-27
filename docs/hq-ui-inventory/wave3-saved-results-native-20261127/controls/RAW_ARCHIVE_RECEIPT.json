@@ -1,0 +1,125 @@
+{
+  "archive": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/controls/SOURCE_CONTROLS_ATTEMPT_1.zip",
+  "bytes": 129746,
+  "sha256": "e18912d27bfe1f0fe8d279c764590cd7268abd4e594fb8d14d94a4ab6cbb9aa3",
+  "files": [
+    {
+      "path": "FIXTURES_BEFORE.json",
+      "bytes": 309,
+      "sha256": "b6af87b882a5c8924e843031e8d8ee641bcc62c7f2d930fdcfddebd5f1f202b2"
+    },
+    {
+      "path": "INPUTS.json",
+      "bytes": 1009,
+      "sha256": "e3ea18d76e174cfc75c9e5b766bd39f69c384b4683f5cff6c4d579cf9df504f3"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 5225,
+      "sha256": "9dd3bef6c6e4481bbf36b9c6a4f0f4a0fbc2db85643035d04bb59f18dd735c8e"
+    },
+    {
+      "path": "STARTED.json",
+      "bytes": 3550,
+      "sha256": "93d563a990acb83f6600e05dfcec8cb9e127caaf05274c794dc91878f0cb2c5c"
+    },
+    {
+      "path": "fixtures/missing-results.sqlite",
+      "bytes": 8192,
+      "sha256": "e5511c098bf0046273b9428c9314657b261302f71546ccedceab5a9968c09ab2"
+    },
+    {
+      "path": "fixtures/original.sqlite",
+      "bytes": 12288,
+      "sha256": "cf1cad33e2319fe2cfb233c8a8d9879a5109eaf14d42959424e35bbb96cc5d2b"
+    },
+    {
+      "path": "inputs/BASELINE.json",
+      "bytes": 409,
+      "sha256": "2edf61e96304ad377b1fa068ba7852c07b09505e8c5737dfddcf9c9f10b7c36f"
+    },
+    {
+      "path": "inputs/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 375434,
+      "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+    },
+    {
+      "path": "inputs/candidate/Maktabah-iOSUITests/NativeSavedResultsAcceptanceTests.swift",
+      "bytes": 1549,
+      "sha256": "c026ff096c068f3f20b5758a22f6f848f2c62e59d15839b4f469ef19d853faee"
+    },
+    {
+      "path": "inputs/controls/OriginalSQLiteOracleControls.swift",
+      "bytes": 10432,
+      "sha256": "b7d145698eae7afc5936cbfbce6fb8d1c0d0096086561e562cf0f6f8a1d4864d"
+    },
+    {
+      "path": "inputs/controls/SOURCE_EXTRACT.json",
+      "bytes": 546,
+      "sha256": "e5312565231b9951bda2651336fc2542f71f6e4bf5a3e4eb092b39703ad109f5"
+    },
+    {
+      "path": "inputs/proposal/NATIVE_HELPER_ADDITION.swift",
+      "bytes": 37710,
+      "sha256": "fe2f04de2a71ac5459c27e1d9ab67080e5113b013d468e22ebf67a5bbebb9a62"
+    },
+    {
+      "path": "modules/SQLite3/module.modulemap",
+      "bytes": 87,
+      "sha256": "e6da56f10eff389ca40e29d57b8b6cf59ff4afe689cbf9df4b9293ee75605e36"
+    },
+    {
+      "path": "oracle-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-controls",
+      "bytes": 205640,
+      "sha256": "5b1d899446dc9119613cb6667afb6b61e6158f8717258cfa532c5921a2b7afca"
+    },
+    {
+      "path": "oracle-execute.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-execute.stdout",
+      "bytes": 1068,
+      "sha256": "22bc0ae41c0031160512da48aeae0605a81285f93eefe346ff573497a8ef96b9"
+    },
+    {
+      "path": "parse-NativeRoutingAcceptanceTests.swift.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse-NativeRoutingAcceptanceTests.swift.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse-NativeSavedResultsAcceptanceTests.swift.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse-NativeSavedResultsAcceptanceTests.swift.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "members": 23,
+  "database_source_paths": [
+    "Source/Features/Bookmarks/Database/ResultsCRUD.swift",
+    "Source/Features/Bookmarks/Database/ResultsCloudKit.swift",
+    "Source/Features/Bookmarks/Database/ResultsFolders.swift",
+    "Source/Features/Bookmarks/Database/ResultsHandler.swift",
+    "Source/Features/Bookmarks/Database/ResultsOrphans.swift"
+  ]
+}

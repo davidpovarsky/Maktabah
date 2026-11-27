@@ -1,0 +1,28 @@
+{
+  "archive_sha256": "e18912d27bfe1f0fe8d279c764590cd7268abd4e594fb8d14d94a4ab6cbb9aa3",
+  "chunks": [
+    {
+      "offset": 0,
+      "bytes": 32768,
+      "sha256": "9abcae51268d1ba6baafe4edf1460213a870ac19aaa8a3c2ff5661326731f2c9"
+    },
+    {
+      "offset": 32768,
+      "bytes": 32768,
+      "sha256": "75c19c2de3d48199eb3e870066aa95e48d9f1cf41ce2267c8098640dcb6afb23"
+    },
+    {
+      "offset": 65536,
+      "bytes": 32768,
+      "sha256": "0e3bacfe956375a1766092224dca6db71affa409a344c4e97a57223f557970dd"
+    },
+    {
+      "offset": 98304,
+      "bytes": 31442,
+      "sha256": "5f6ad908aa941e8db9541e6c87bbc39e3882d8a0d06edde518e4c0564ba68a77"
+    }
+  ],
+  "verified_raw_members": 22,
+  "verified_total_members": 23,
+  "native": "NOT_RUN"
+}

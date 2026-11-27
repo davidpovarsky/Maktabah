@@ -1,0 +1,12 @@
+{
+  "source": "proposal/NATIVE_HELPER_ADDITION.swift",
+  "source_sha256": "fe2f04de2a71ac5459c27e1d9ab67080e5113b013d468e22ebf67a5bbebb9a62",
+  "exact_extracted_span_sha256": "7e6ffd330d6072a2bf136eb9bcc9dce2d232ebb434e2883d18ae077119afe818",
+  "range_utf8": [
+    664,
+    6296
+  ],
+  "harness_sha256": "b7d145698eae7afc5936cbfbce6fb8d1c0d0096086561e562cf0f6f8a1d4864d",
+  "cases": 10,
+  "boundary": "Actual read-only helper and real SQLite; explicit disposable fixture writer solely for counterexamples. No app/SDK/native/system acceptance."
+}

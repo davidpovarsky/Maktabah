@@ -1,0 +1,430 @@
+{
+  "schema": "otzaria.saved-results-native.publication.v1",
+  "started": 1795800569.547219,
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "branch": "codex/otzaria-wave3-saved-results-native-20261127",
+  "repo": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/source",
+  "source_only": true,
+  "native": "NOT_RUN",
+  "commands": [
+    {
+      "name": "base-present",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+        "cat-file",
+        "-e",
+        "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be^{commit}"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/base-present.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/base-present.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "original-object-dir",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-C",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+        "rev-parse",
+        "--git-common-dir"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/original-object-dir.stdout",
+        "bytes": 5,
+        "sha256": "fd03f16fc5ad8be70d6e0491fa2e029bc4a31f5b0de6d4adf8e7dd709d23840f"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/original-object-dir.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "private-init",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "init",
+        "-q",
+        "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/source"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/private-init.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/private-init.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "sparse-init",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "sparse-checkout",
+        "init",
+        "--no-cone"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/sparse-init.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/sparse-init.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "sparse-own-paths",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "sparse-checkout",
+        "set",
+        "--no-cone",
+        "--stdin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/sparse-own-paths.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/sparse-own-paths.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "isolated-base",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "checkout",
+        "-q",
+        "-b",
+        "codex/otzaria-wave3-saved-results-native-20261127",
+        "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/isolated-base.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/isolated-base.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "base-clean",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "status",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/base-clean.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/base-clean.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "stage-source",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "add",
+        "--",
+        "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "Maktabah-iOSUITests/NativeSavedResultsAcceptanceTests.swift"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/stage-source.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/stage-source.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-index-scope",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-index-scope.stdout",
+        "bytes": 115,
+        "sha256": "598da91dbaf7ffa59546b4f6df12ca36052afc30435114a7305e59ffcfb441f6"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-index-scope.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-diff-check",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-diff-check.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-diff-check.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-commit",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "commit",
+        "-m",
+        "test: add original system Saved Results acceptance selectors"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-commit.stdout",
+        "bytes": 239,
+        "sha256": "ac352038b09c909d589072b5befba2667a9184b70d7efda1cbf25b9a3952947d"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-commit.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-head",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-head.stdout",
+        "bytes": 41,
+        "sha256": "79e8d380c812815377ae3990163c45d62568f94fb324cb0ecb467c652dc2742c"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/source-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "stage-evidence",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "add",
+        "--sparse",
+        "--",
+        "docs/hq-ui-inventory/wave3-saved-results-native-20261127"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/stage-evidence.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/stage-evidence.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "evidence-index-scope",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/evidence-index-scope.stdout",
+        "bytes": 3853,
+        "sha256": "d9c02d5e59b928ecffba67edb0cd54f1754aafbca2edabd301ddfb8757240989"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/evidence-index-scope.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "evidence-diff-check",
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-c",
+        "maintenance.auto=false",
+        "-c",
+        "user.name=ChatGPT",
+        "-c",
+        "user.email=chatgpt-agent@users.noreply.github.com",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 2,
+      "stdout": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/evidence-diff-check.stdout",
+        "bytes": 164,
+        "sha256": "cfde9901d193fec3c7bb2abbebe30f585d049138224c3a0c6c0f5a734d2648ab"
+      },
+      "stderr": {
+        "path": "/home/ubuntu/otzaria-wave3-saved-results-native-20261127/delivery-20261127/evidence-diff-check.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "source_commit": "6bca884d70f0dad8ed00639076f5db976c349573",
+  "status": "FAILED",
+  "error": "evidence-diff-check failed; exact output retained",
+  "free_after": 2437214208,
+  "finished": 1795800570.559495
+}

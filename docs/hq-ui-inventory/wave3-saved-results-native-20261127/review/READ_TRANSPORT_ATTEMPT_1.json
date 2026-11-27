@@ -1,0 +1,6 @@
+{
+  "isError": true,
+  "error": "Mcp error: -32603: Internal error",
+  "operation": "read exact37ca Bookmarks Database paths",
+  "source_mutation": false
+}
