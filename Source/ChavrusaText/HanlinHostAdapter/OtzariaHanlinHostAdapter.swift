@@ -506,11 +506,13 @@ actor OtzariaHanlinComposedHost: HanlinHostNavigationTransitionSource, HanlinHos
         _ = try await context(for: session)
         let prepared = try await assistant.prepareStep(step, session: session)
         let current = try await currentSnapshot(for: session.context)
-        let allowed = Set(current.assistant.tools.map(\.route.alias))
+        let allowed = Set(current.combined.tools.map(\.route.alias))
         guard prepared.activeAliases.allSatisfy(allowed.contains),
               Set(prepared.activeAliases).count == prepared.activeAliases.count else { throw HanlinHostError.unknownTool }
         // Existing Core metadata/read authority remains independent of skill/MCP exposure.
-        return .init(activeAliases: current.library.tools.map(\.route.alias) + prepared.activeAliases,
+        let nativeAliases = current.library.tools.map(\.route.alias)
+        let nativeSet = Set(nativeAliases)
+        return .init(activeAliases: nativeAliases + prepared.activeAliases.filter { !nativeSet.contains($0) },
             skillIDs: prepared.skillIDs, instructions: prepared.instructions)
     }
 
