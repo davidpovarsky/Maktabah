@@ -1,0 +1,259 @@
+[
+  {
+    "name": "compile-merged-ui",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-swift-version",
+      "6",
+      "-strict-concurrency=complete",
+      "-parse-as-library",
+      "-module-cache-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/module-cache",
+      "-I",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-L",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-lOtzariaActionCore",
+      "-Xlinker",
+      "-rpath",
+      "-Xlinker",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-emit-module",
+      "-emit-library",
+      "-module-name",
+      "OtzariaUIRouting",
+      "-emit-module-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+      "-o",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift"
+    ],
+    "started": 1795804991.2087412,
+    "pid": 1843333,
+    "startTicks": "733206303",
+    "exit": 0,
+    "finished": 1795805001.7740445,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "compile-merged-host",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-swift-version",
+      "6",
+      "-strict-concurrency=complete",
+      "-parse-as-library",
+      "-module-cache-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/module-cache",
+      "-I",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-L",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-lOtzariaActionCore",
+      "-Xlinker",
+      "-rpath",
+      "-Xlinker",
+      "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+      "-I",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+      "-L",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+      "-lOtzariaUIRouting",
+      "-Xlinker",
+      "-rpath",
+      "-Xlinker",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+      "-emit-module",
+      "-emit-library",
+      "-module-name",
+      "ChavrusaUIRoutingHost",
+      "-emit-module-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/ChavrusaUIRoutingHost.swiftmodule",
+      "-o",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libChavrusaUIRoutingHost.so",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBindingSourceObservation.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeNavigationAuthority.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderPlanBudget.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift"
+    ],
+    "started": 1795805001.7772212,
+    "pid": 1844965,
+    "startTicks": "733207360",
+    "exit": 0,
+    "finished": 1795805018.4129262,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "syntax-MaktabahNativeRoutingComposition-release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    ],
+    "started": 1795805018.4153564,
+    "pid": 1847324,
+    "startTicks": "733209024",
+    "exit": 0,
+    "finished": 1795805018.9182627,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "syntax-MaktabahNativeRoutingComposition-debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    ],
+    "started": 1795805018.9205987,
+    "pid": 1847405,
+    "startTicks": "733209075",
+    "exit": 0,
+    "finished": 1795805019.4233332,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "syntax-MaktabahNativeSceneSession-release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    ],
+    "started": 1795805019.426701,
+    "pid": 1847470,
+    "startTicks": "733209125",
+    "exit": 0,
+    "finished": 1795805019.9306056,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "syntax-MaktabahNativeSceneSession-debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    ],
+    "started": 1795805019.9330227,
+    "pid": 1847536,
+    "startTicks": "733209176",
+    "exit": 0,
+    "finished": 1795805020.437013,
+    "logs": {
+      ".stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      ".stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]
