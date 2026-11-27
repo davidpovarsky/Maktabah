@@ -1,0 +1,10 @@
+{
+  "transport": "existing Windows to Oracle pinned SSH",
+  "observed_returncode": 255,
+  "message": "Timeout, server 100.119.51.66 not responding.",
+  "duration_seconds": 40.04,
+  "hub_request_id": "hreq_caa4cdf7654a4c11",
+  "mac_followup": "Direct Mac read-only exact phone-shared-setter-01 directory did not exist; no result/compile observed",
+  "oracle_followup": "Exact host-id read verified MAC_RESULT absent and no own matching control process before relaunch",
+  "counts": "zero test outcomes attributed to this transport failure"
+}

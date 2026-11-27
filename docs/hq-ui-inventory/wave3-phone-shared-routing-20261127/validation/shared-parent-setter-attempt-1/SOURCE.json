@@ -1,0 +1,25 @@
+{
+  "source_inputs": {
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/UI/iOS/Managers/iOSNavigationManager.swift": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d"
+  },
+  "verbatim_units": {
+    "shared_setter": "1a13746b0e494fdf76ebdd3e50f6ece452cf9051b3288809896b01b86e13ad59",
+    "original_mode_setter": "2d8bf22d999fa301fb73db0d9dcb86912a42918be04e9f297c9f23ed8d42cc29"
+  },
+  "scope": "Actual phone source, actual portable one-shot Observation, actual selectedBook and switchToMode setters, and VERBATIM shared phone Reader setter. Explicit synthetic app-domain/Binding/root-capability/Core-validator boundary. No UIKit/app SDK/native evidence.",
+  "expected_controls": 29,
+  "files": {
+    "NegativeForeignSettings.swift": "5fe98477346ed6690667ca69920424d48290b78d5c2a52c8fcff96cc56fa316c",
+    "Controls.swift": "1223d12b879cb11d8b14c906d72bbab3220afcefe27737740a4dc24d68ef1b83",
+    "Combined.swift": "eae9eb2d4f6fe6763c94baf03043f9457dc09edc415c3f6f48a35809414921f9",
+    "ActualContracts.swift": "64979a504ce46be21ff961d6c06a4a9c9fdef8898df8ca96a7124dafce53aedb",
+    "ActualOriginalModeSetter.swift": "1e29d2e5de505772d9ff1fb4084d4976decd00cd560cf842f59c3ac7e829d200",
+    "ActualObservation.swift": "cff7ccdb91cc07c1da4a8c7078e56d7eba3b3c490663f12c23bedfaa0def1341",
+    "Boundary.swift": "57f8c810b3440c8825e8cc256da6ae68ac2d1d7dcc561b6fbeb9118295ac7b73",
+    "ActualSharedSetter.swift": "20d06789c552659ace187bb9b2f56825a1b47da2040eab59c248cb9569576b2f",
+    "ActualPhone.swift": "263f0e5d2ae28b18be648446f9632a76238041432e1ea5439066fe52b21de06a"
+  },
+  "prior_peer_controls": "26 cases preserved; actual shared production callback replaces handwritten fixture callback; three extra shared-seam controls"
+}

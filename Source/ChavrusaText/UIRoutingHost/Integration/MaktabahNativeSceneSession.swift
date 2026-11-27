@@ -59,6 +59,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     private let bindings: MaktabahNativeSceneBindings
     let workspaceProjectionSource: MaktabahNativeWorkspaceProjectionSource?
     private(set) var workspacePresentation: MaktabahNativeWorkspacePresentationBinding?
+    private(set) var phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding?
+    @ObservationIgnored private var retainedPhoneTOC = false
     @ObservationIgnored private weak var forwardingWorkspaceOwner: MaktabahNativeWorkspaceOwner?
     @ObservationIgnored private var retainedWorkspaceParent: MaktabahNativeWorkspacePresentationBinding.Parent?
     private var lease: NativeSceneDirectory.Lease?
@@ -93,6 +95,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     /// The original parent source is retained before its component source and
     /// before any public binding/Core await. Read-only discovery does not retain.
     func retainParentSource(destination: UIDestinationID, requestID: UUID) throws {
+        if usesOriginalPhoneTOC(destination) {
+            guard mounted, foreground, isPresentationReady(for: destination), let phoneTOCPresentation else {
+                throw UIRouteError(.unavailable, "native_phone_toc_parent_unavailable")
+            }
+            try phoneTOCPresentation.retainSource(requestID: requestID)
+            return
+        }
         guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else { return }
         guard mounted, foreground, isPresentationReady(for: destination), let workspacePresentation else {
             throw UIRouteError(.unavailable, "native_workspace_parent_unavailable")
@@ -100,11 +109,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try workspacePresentation.retainSource(parent: parent, requestID: requestID)
     }
     func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {
+        if usesOriginalPhoneTOC(destination) {
+            guard let phoneTOCPresentation else { throw UIRouteError(.staleState, "native_phone_toc_parent_detached") }
+            try phoneTOCPresentation.validateSource(requestID: requestID)
+            return
+        }
         guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else { return }
         guard let workspacePresentation else { throw UIRouteError(.staleState, "native_workspace_parent_detached") }
         try workspacePresentation.validateSource(parent: parent, requestID: requestID)
     }
     func releaseParentSource(destination: UIDestinationID, requestID: UUID) {
+        if usesOriginalPhoneTOC(destination) {
+            phoneTOCPresentation?.releaseSource(requestID: requestID)
+            return
+        }
         guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) != nil else { return }
         workspacePresentation?.releaseSource(requestID: requestID)
     }
@@ -241,10 +259,26 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 || (command?.route.route.destination.rawValue == "native.reader.noteDraft" && noteDraftBinding?.isApplied == true))
     }
 
+    private func usesOriginalPhoneTOC(_ destination: UIDestinationID) -> Bool {
+        !MaktabahApp.isIpad && destination == MaktabahNativeTOCComponents.destination
+    }
+
     /// Stable original Workspace sheets may navigate their own components.
     /// Every unrelated modal keeps the existing blockers. A transition can be
     /// awaited only by its already-applied command, never by fresh discovery.
     func isPresentationReady(for destination: UIDestinationID) -> Bool {
+        if usesOriginalPhoneTOC(destination) {
+            guard !bindings.showSettings.wrappedValue, isPresentationReady,
+                  isRootAvailable(destination), let phoneTOCPresentation else { return false }
+            if let requestID = submissionID, command?.invocation.requestId == requestID,
+               command?.route.route.destination == destination,
+               phoneTOCPresentation.isContinuingOriginalReaderPresentation(requestID: requestID) {
+                return true
+            }
+            // A cold request cannot dismiss or borrow a foreign transition.
+            // Only its already committed exact Reader source may await its push.
+            return windowSource?.isPresentationReady(in: sceneID) == true
+        }
         guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else {
             return isPresentationReady
         }
@@ -456,6 +490,10 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             && (studyChatPresentationID == nil || studyChatPresentationID == id)
     }
     func isRootAvailable(_ destination: UIDestinationID) -> Bool {
+        if usesOriginalPhoneTOC(destination) {
+            return MaktabahNativeRootDestination.library.isAvailable
+                && phoneTOCPresentation?.isAvailable() == true
+        }
         if let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) {
             return workspacePresentation?.isAvailable(parent: parent) == true
         }
@@ -480,9 +518,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 originalPresentationStateDidChange()
             }, invalidated: { [weak self] in self?.presentation.revoke() })
             for owner in MaktabahNativeWorkspaceComponents.makeOwners(binding: original) { attachComponentOwner(owner) }
+            if !MaktabahApp.isIpad {
+                let phone = MaktabahNativePhoneTOCPresentationBinding(sceneID: sceneID,
+                    manager: bindings.manager, workspaceSource: workspaceSource,
+                    presentReader: { try bindings.presentOriginalPhoneTOCReader($0) })
+                phoneTOCPresentation = phone
+                phone.install(changed: { [weak self, weak phone] in
+                    guard let self, let phone, phoneTOCPresentation === phone else { return }
+                    originalPresentationStateDidChange()
+                }, invalidated: { [weak self] in self?.presentation.revoke() })
+            }
         }
         attachComponentOwner(MaktabahNativeSettingsComponents.makeOwner())
-        attachComponentOwner(MaktabahNativeTOCComponents.makeOwner(manager: bindings.manager))
+        attachComponentOwner(MaktabahNativeTOCComponents.makeOwner(manager: bindings.manager,
+                                                                  phonePresentation: phoneTOCPresentation))
         attachComponentOwner(MaktabahNativeLibraryComponents.makeOwner(manager: bindings.manager))
     }
 
@@ -533,8 +582,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             renderValidation = try boundedRenderValidation(for: value, owner: owner, anchor: anchor)
         } else { component = nil; renderValidation = nil }
         let workspaceParent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: value.route.route.destination.rawValue)
+        let phoneTOC = usesOriginalPhoneTOC(value.route.route.destination)
         let parentValidation: (@MainActor () throws -> Void)?
-        if workspaceParent != nil {
+        if workspaceParent != nil || phoneTOC {
             parentValidation = try renderValidation ?? boundedRenderValidation(for: value)
         } else { parentValidation = nil }
         let inspector: MaktabahNativeInspectorBinding?
@@ -550,15 +600,23 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 try workspacePresentation.begin(parent: workspaceParent, requestID: value.invocation.requestId,
                                                 validate: parentValidation)
             }
+            if phoneTOC {
+                guard let phoneTOCPresentation, let parentValidation else {
+                    throw UIRouteError(.unavailable, "native_phone_toc_parent_detached")
+                }
+                try phoneTOCPresentation.begin(requestID: value.invocation.requestId, validate: parentValidation)
+            }
             if let component, let anchor = value.route.route.focus?.anchor, let renderValidation {
                 try component.begin(requestID: value.invocation.requestId, anchor: anchor, validate: renderValidation)
             }
         } catch {
             workspacePresentation?.finish(requestID: value.invocation.requestId, completed: false)
+            phoneTOCPresentation?.finish(requestID: value.invocation.requestId, completed: false)
             presentation.end(requestID: value.invocation.requestId)
             throw error
         }
         retainedWorkspaceParent = workspaceParent
+        retainedPhoneTOC = phoneTOC
         retainedComponentOwner = component
         inspectorBinding = inspector
         retainedSearchField = field
@@ -672,6 +730,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if usesOriginalPhoneTOC(command.route.route.destination) {
+            try validateSurface(command)
+            guard retainedPhoneTOC, let phoneTOCPresentation else {
+                throw UIRouteError(.staleState, "native_phone_toc_parent_not_prepared")
+            }
+            if let owner = retainedComponentOwner { try owner.apply(requestID: command.invocation.requestId) }
+            try phoneTOCPresentation.apply(requestID: command.invocation.requestId)
+            return
+        }
         if let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: command.route.route.destination.rawValue) {
             try validateSurface(command)
             guard retainedWorkspaceParent == parent, let workspacePresentation else {
@@ -802,7 +869,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try searchResultsBinding.validateCompleted()
         }
         _ = componentRevision
-        guard let state = try project().surface(kind, workspacePresentation: workspacePresentation) else { return nil }
+        _ = phoneTOCPresentation?.stateRevision
+        guard let state = try project().surface(kind, workspacePresentation: workspacePresentation,
+                                               phoneTOCPresentation: phoneTOCPresentation) else { return nil }
         if command?.route.route.focus != nil, let owner = retainedComponentOwner, owner.destination == state.destination {
             _ = componentRevision
             return .init(destination: state.destination, presentation: state.presentation,
@@ -862,8 +931,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             && (reader != nil || inspectorWitnessed)
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
-            tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
+            tableOfContentsAvailable: isRootAvailable(MaktabahNativeTOCComponents.destination), witnessedReader: reader,
             searchFieldAvailable: searchFieldAvailable,
+            readyTableOfContents: mounted && foreground && isPresentationReady(for: MaktabahNativeTOCComponents.destination),
             readyWorkspaceParents: Set(MaktabahNativeWorkspacePresentationBinding.Parent.allCases
                 .filter { mounted && foreground && isPresentationReady(for: $0.destination) }.map(\.destination)),
             availableComponents: Dictionary(uniqueKeysWithValues: componentOwners.map { destination, owner in
@@ -950,7 +1020,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(_ route: PublicRouteSpec, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
-        guard isRootAvailable(route.destination),
+        guard !usesOriginalPhoneTOC(route.destination), isRootAvailable(route.destination),
               route.content == nil, route.presentation == .currentTab else {
             throw UIRouteError(.notSupported, "public_native_variant_not_installed")
         }
@@ -961,6 +1031,9 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func prepare(destination: UIDestinationID, invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard !usesOriginalPhoneTOC(destination) else {
+            throw UIRouteError(.unavailable, "native_phone_toc_parent_binding_required")
+        }
         guard destination.rawValue == "native.settings"
             || (MaktabahNativeRootDestination(rawValue: destination.rawValue) != nil && isRootAvailable(destination)) else {
             throw UIRouteError(.notSupported, "native_surface_not_installed")
@@ -1008,7 +1081,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let completed = lastCompletedSurface?.route.requestId == requestID
         retainedComponentOwner?.finish(requestID: requestID, completed: completed)
         workspacePresentation?.finish(requestID: requestID, completed: completed)
-        retainedComponentOwner = nil; retainedWorkspaceParent = nil
+        phoneTOCPresentation?.finish(requestID: requestID, completed: completed)
+        retainedComponentOwner = nil; retainedWorkspaceParent = nil; retainedPhoneTOC = false
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
@@ -1034,6 +1108,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         lastCompletedSurface = nil
         forwardingWorkspaceOwner?.detachNativeRoutingSession(self); forwardingWorkspaceOwner = nil
         workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
+        phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
         for owner in componentOwners.values { owner.retirePresentation() }

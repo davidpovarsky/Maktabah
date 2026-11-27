@@ -11,6 +11,7 @@ struct MaktabahNativePublicPresentation {
     let tableOfContentsAvailable: Bool
     let witnessedReader: NativeSurfaceState?
     var searchFieldAvailable: Bool = false
+    var readyTableOfContents: Bool = false
     var readyWorkspaceParents: Set<UIDestinationID> = []
     var availableComponents: [UIDestinationID: Set<UIDestinationID>] = [:]
     var inspectorAvailable: Bool = false
@@ -19,6 +20,7 @@ struct MaktabahNativePublicPresentation {
 
     func ready(for destination: UIDestinationID) -> Bool {
         switch destination.rawValue {
+        case "native.reader.toc": return readyTableOfContents
         case "native.workspace.profiles", "native.workspace.overview":
             return readyWorkspaceParents.contains(destination)
         default: return ready
@@ -59,7 +61,8 @@ struct MaktabahNativePublicPresentation {
          directory: NativeSceneDirectory, backend: any ActionSynchronousBackendStatePort,
          presentation: @escaping @MainActor () throws -> MaktabahNativePublicPresentation,
          validateParentSource: @escaping @MainActor (UIDestinationID, UUID) throws -> Void = { destination, _ in
-             guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) == nil else {
+             guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) == nil,
+                   MaktabahApp.isIpad || destination != MaktabahNativeTOCComponents.destination else {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
              }
          },

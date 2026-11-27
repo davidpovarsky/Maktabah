@@ -766,6 +766,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let snapshot = try backend.currentBackendSnapshot()
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
         if destination.component != nil || destination.destination.rawValue == "native.reader.inspector"
+            || (!MaktabahApp.isIpad && destination.destination == MaktabahNativeTOCComponents.destination)
             || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
@@ -1534,6 +1535,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               entry.session.foreground else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         if let requested = route.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
+        if !MaktabahApp.isIpad && route.destination == MaktabahNativeTOCComponents.destination {
+            guard route.content == nil, route.presentation == .currentTab else {
+                throw UIRouteError(.notSupported, "public_native_variant_not_installed")
+            }
+            // Preserve the original v1 request/deadline while using the same
+            // retained parent/Core path as v2 links and system intents.
+            return try await open(public: .init(destination: route.destination, backend: route.backend,
+                presentation: .currentTab), sceneID: exactSceneID, managerID: managerID,
+                expectedSnapshot: snapshot, origin: .deepLink, until: end, requestID: route.requestId)
+        }
         let context = context(sceneID: entry.session.sceneID, origin: .deepLink, snapshot: snapshot)
         try issue(context, sceneID: entry.session.sceneID)
         defer { finish(context, sceneID: entry.session.sceneID) }

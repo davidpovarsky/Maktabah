@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-27T03:06:05.595487+00:00",
+  "full_staged_check": {
+    "returncode": 2,
+    "stdout": "docs/hq-ui-inventory/wave3-phone-shared-routing-20261127/validation/shared-parent-setter-attempt-1/ActualObservation.swift:33: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-phone-shared-routing-20261127/validation/shared-parent-setter-attempt-1/ActualPhone.swift:507: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-phone-shared-routing-20261127/validation/shared-parent-setter-attempt-1/Combined.swift:905: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-phone-shared-routing-20261127/validation/shared-parent-setter-attempt-1/Controls.swift:201: new blank line at EOF.\ndocs/hq-ui-inventory/wave3-phone-shared-routing-20261127/validation/shared-parent-setter-attempt-1/NegativeForeignSettings.swift:905: new blank line at EOF.\n",
+    "stderr": ""
+  },
+  "five_product_file_check": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "resolution": "Preserve byte-exact executed harness captures including their trailing blank lines. No product formatting error, source mutation, compiler failure or acceptance change is suppressed."
+}

@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-11-27T02:43:10.662221+00:00",
+  "head": "84b0d77a9c2662845bd488b5737e65cec7349523",
+  "scope": "syntax only, not app SDK typing; peer continuation-facet dependency pending",
+  "results": [
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+      ],
+      "returncode": 0,
+      "log": "MaktabahNativeSceneBindings.swift.parse.log",
+      "output": ""
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "b157b4a4be79f549640ddddc6e224d8ab345bce51a32ff7faaca25d36f928ef1",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "returncode": 0,
+      "log": "MaktabahNativeSceneSession.swift.parse.log",
+      "output": ""
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "a62f41d6b6af4c63eac3f8e248d2aaa5570bb539714f90d2f8dd47a1aadbf0fb",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "returncode": 0,
+      "log": "MaktabahNativeSceneProjection.swift.parse.log",
+      "output": ""
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "69ad8543ded3642c0eda05e133457abb9b3bf34ae1429d67cb4b13d543293f72",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "returncode": 0,
+      "log": "MaktabahNativePublicBindingAdapter.swift.parse.log",
+      "output": ""
+    },
+    {
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "2fead2b6584cc8f066dad38c21a68c8a32ca47f34463386c295c5833dd9aae40",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "returncode": 0,
+      "log": "MaktabahNativeRoutingComposition.swift.parse.log",
+      "output": ""
+    }
+  ]
+}
