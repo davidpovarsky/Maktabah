@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "00-f03802af54b36bed1a326c6c0b197f60a6a04d34.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "00-f03802af54b36bed1a326c6c0b197f60a6a04d34.stdout",
+      "bytes": 431,
+      "sha256": "039b1f0f8f5b6ef2e36dec30044c17f85224f5bf48cb5dff13c95948e7f40fa3"
+    },
+    {
+      "path": "01-8b5381ad1b1c4ff254b5db17ca1b8e34fd8e3129.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01-8b5381ad1b1c4ff254b5db17ca1b8e34fd8e3129.stdout",
+      "bytes": 10073,
+      "sha256": "3b32b94629c749001ab84ac41f88eb58022a7ab20e32b809a2f38d19db725840"
+    },
+    {
+      "path": "02-e751ee7f3a751d78fb817daa8d0c31411a883244.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "02-e751ee7f3a751d78fb817daa8d0c31411a883244.stdout",
+      "bytes": 1893,
+      "sha256": "69616f92a395121e63af5db1bc5886f479b5fb2713eb04c737b758f240c799d7"
+    },
+    {
+      "path": "INTAKE_PARTIAL.json",
+      "bytes": 1175,
+      "sha256": "f9a338e043f30e88f193857d7a334d7c390e8d5b36cc976d01be6755ccd2d481"
+    },
+    {
+      "path": "PLAN.json",
+      "bytes": 49690,
+      "sha256": "90a4e39416129f568c7f3c58d4d2dc7404912412c704ecb642743f357aa49bf9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2435,
+      "sha256": "04f89b10c0036d5e8910606c693b2331f61cea8db9a8ba27f497eacd16338d86"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1677,
+      "sha256": "c172a25191b0c3ea2c3d3e80255e168625bc1e24e7bf55deff34b7b23133341a"
+    },
+    {
+      "path": "apply.py",
+      "bytes": 2899,
+      "sha256": "b44e2e30ac6484d0cd88c2b0391125f8575b7f0d8e604de2825db696fa80eeb2"
+    },
+    {
+      "path": "plan.py",
+      "bytes": 3993,
+      "sha256": "26476dba918e501677fbfc5a962619e17c159b3aab444131b61b4cf4586ab057"
+    }
+  ]
+}

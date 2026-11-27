@@ -1,0 +1,1001 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T08:56:41.345583+00:00",
+  "rootBase": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "packets": [
+    {
+      "donor": "f03802af54b36bed1a326c6c0b197f60a6a04d34",
+      "files": [
+        {
+          "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+          "baseSHA256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+          "donorSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedBytes": 31396
+        },
+        {
+          "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+          "baseSHA256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+          "donorSHA256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+          "expectedSHA256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+          "expectedBytes": 24671
+        },
+        {
+          "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+          "mode": "exact-donor",
+          "beforeSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "baseSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "donorSHA256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+          "expectedSHA256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+          "expectedBytes": 23528
+        },
+        {
+          "path": "tools/test_chavrusa_text_components.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+          "baseSHA256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+          "donorSHA256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+          "expectedSHA256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+          "expectedBytes": 131823
+        },
+        {
+          "path": "tools/test_sefaria_late_reply_diagnostic.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+          "expectedSHA256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+          "expectedBytes": 17527
+        },
+        {
+          "path": "tools/test_sefaria_late_reply_diagnostic_js.mjs",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedBytes": 9517
+        }
+      ]
+    },
+    {
+      "donor": "8b5381ad1b1c4ff254b5db17ca1b8e34fd8e3129",
+      "files": [
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/DIFF_CHECK_ATTEMPT2.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "45c25489246df28bbfd7a4ed399662997df0ff780e82c3b5ccae4e29fdb1e8ad",
+          "expectedSHA256": "45c25489246df28bbfd7a4ed399662997df0ff780e82c3b5ccae4e29fdb1e8ad",
+          "expectedBytes": 4198
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/EVIDENCE_MANIFEST.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "5f29ab56caec55fe1ee069c2ae39e2682a90e382f53b760509e6d77defd349aa",
+          "expectedSHA256": "5f29ab56caec55fe1ee069c2ae39e2682a90e382f53b760509e6d77defd349aa",
+          "expectedBytes": 15034
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/EVIDENCE_MANIFEST_ATTEMPT2.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0d2d01cc63c9a0c3a36fa6e97984059a70cbe78b8e91dfaa0260f975d6089483",
+          "expectedSHA256": "0d2d01cc63c9a0c3a36fa6e97984059a70cbe78b8e91dfaa0260f975d6089483",
+          "expectedBytes": 14211
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/EVIDENCE_PUBLICATION_ATTEMPT3_FAILURE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "dce763c33c6052dfe432363de0f409a448a59ba1b3542efa436dbb5512d4cb61",
+          "expectedSHA256": "dce763c33c6052dfe432363de0f409a448a59ba1b3542efa436dbb5512d4cb61",
+          "expectedBytes": 392
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/INTAKE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "2a144dd4abb5e953210aa98bc500c36ec9d02c11a724c16341d046ac0b7162c8",
+          "expectedSHA256": "2a144dd4abb5e953210aa98bc500c36ec9d02c11a724c16341d046ac0b7162c8",
+          "expectedBytes": 2584
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/INTAKE_ATTEMPT2.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "5b80e6bee3600874d526aa78e3dc55c89fbbeb5d4cf567fd1435e60e53763c92",
+          "expectedSHA256": "5b80e6bee3600874d526aa78e3dc55c89fbbeb5d4cf567fd1435e60e53763c92",
+          "expectedBytes": 2549
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/LOSSLESS_RAW_EVIDENCE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "45f7d559fc8007fe167079dd6b7e260f82dc62c9e42d56131bbc8b0f706ff66c",
+          "expectedSHA256": "45f7d559fc8007fe167079dd6b7e260f82dc62c9e42d56131bbc8b0f706ff66c",
+          "expectedBytes": 3162
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/PEER_SOURCE_REVIEW.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "6e195aba15d61ddb71b9c8cc078f21dc7ab706d4042111f387ae9a4dc054a456",
+          "expectedSHA256": "6e195aba15d61ddb71b9c8cc078f21dc7ab706d4042111f387ae9a4dc054a456",
+          "expectedBytes": 894
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/README.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d3f49f529ab8a05b13710b8949f5625d5fba9025349aa4ae326c2544d3d07881",
+          "expectedSHA256": "d3f49f529ab8a05b13710b8949f5625d5fba9025349aa4ae326c2544d3d07881",
+          "expectedBytes": 7007
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/RETAINED_BINARIES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "df8c12cdd89fef04e8420c246a04bc88a9fc946bc036f3580599cd852002ea08",
+          "expectedSHA256": "df8c12cdd89fef04e8420c246a04bc88a9fc946bc036f3580599cd852002ea08",
+          "expectedBytes": 1400
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/EVIDENCE_PUBLICATION_ATTEMPT1_FAILURE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b2fec7770ada03f39c18b4442ec912fd329dc794a14c29cf7706611376306c30",
+          "expectedSHA256": "b2fec7770ada03f39c18b4442ec912fd329dc794a14c29cf7706611376306c30",
+          "expectedBytes": 342
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/OWNERSHIP_PRE_EDIT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c020bbc6babb4fc5c883fc9d55cf767899a2ae57123805f2f1366d0e635f87d8",
+          "expectedSHA256": "c020bbc6babb4fc5c883fc9d55cf767899a2ae57123805f2f1366d0e635f87d8",
+          "expectedBytes": 2657
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/PRESERVATION_AND_FINAL_PINS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b4f124802c250352cbb9765bed18af98a5740d52df3f05abf5d8395ada19a375",
+          "expectedSHA256": "b4f124802c250352cbb9765bed18af98a5740d52df3f05abf5d8395ada19a375",
+          "expectedBytes": 2026
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/SOURCE_EDIT_ATTEMPT1.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b6a4da5dd92e35f7d8729d9e18fdcc6cf4ba9e0c460cd8c5acc35c20f013eec0",
+          "expectedSHA256": "b6a4da5dd92e35f7d8729d9e18fdcc6cf4ba9e0c460cd8c5acc35c20f013eec0",
+          "expectedBytes": 1052
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/SOURCE_WRITE_ATTEMPT1_FAILURE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "00b6776cb89290a878dac421c7e7434a6ad36243bd2434d5bcea2334f28102c4",
+          "expectedSHA256": "00b6776cb89290a878dac421c7e7434a6ad36243bd2434d5bcea2334f28102c4",
+          "expectedBytes": 447
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/BoundaryDoubles.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4",
+          "expectedSHA256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4",
+          "expectedBytes": 3982
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/COMPILE.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "93c409f95c79bdc9854004df4674f175ed63f7132e53a043300ee28937970e54",
+          "expectedSHA256": "93c409f95c79bdc9854004df4674f175ed63f7132e53a043300ee28937970e54",
+          "expectedBytes": 1029
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/COMPILE.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/OriginalCompiledControls.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "195db7932435c29f1207a20446f52662c711ad525cab649537267a3a71478e09",
+          "expectedSHA256": "195db7932435c29f1207a20446f52662c711ad525cab649537267a3a71478e09",
+          "expectedBytes": 14303
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "3a01637217f1abdb7cd84e8114e897a0c82b1e6084ccb6739c1989f633d05a9c",
+          "expectedSHA256": "3a01637217f1abdb7cd84e8114e897a0c82b1e6084ccb6739c1989f633d05a9c",
+          "expectedBytes": 6554
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/RUN.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e512b22e132486a12463f96503037dcfb1acdcc58d0e66708c6a8d07e1a2abc2",
+          "expectedSHA256": "e512b22e132486a12463f96503037dcfb1acdcc58d0e66708c6a8d07e1a2abc2",
+          "expectedBytes": 18707
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/RUN.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7167e62f4f3b5439d2cbc1f34f02b6e2171802998bc794acafe0b5d9ae495bda",
+          "expectedSHA256": "7167e62f4f3b5439d2cbc1f34f02b6e2171802998bc794acafe0b5d9ae495bda",
+          "expectedBytes": 2587
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SOURCE_INPUTS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "1f82fbf0ae00e4120448acbbd25462c41c7cf762751d8b70e632ec5e164d1fc6",
+          "expectedSHA256": "1f82fbf0ae00e4120448acbbd25462c41c7cf762751d8b70e632ec5e164d1fc6",
+          "expectedBytes": 2151
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9",
+          "expectedSHA256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9",
+          "expectedBytes": 24971
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SefariaEmbeddedSurfaceContract.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+          "expectedSHA256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+          "expectedBytes": 3692
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "1f5d393266ce775058cdba36d92ea6f4f730c381e4f3f6772f8d0a5ccf764b11",
+          "expectedSHA256": "1f5d393266ce775058cdba36d92ea6f4f730c381e4f3f6772f8d0a5ccf764b11",
+          "expectedBytes": 31337
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SefariaRPCModels.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedBytes": 4566
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-1/SefariaRuntimeManager.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+          "expectedSHA256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+          "expectedBytes": 11797
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/BoundaryDoubles.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4",
+          "expectedSHA256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4",
+          "expectedBytes": 3982
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/COMPILE.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/COMPILE.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/Controls.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+          "expectedSHA256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+          "expectedBytes": 17527
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f0cdecb99c45ecf2bcb5b0c9146cc10d15da65f4eef262743d05ee3c1e4cbd7b",
+          "expectedSHA256": "f0cdecb99c45ecf2bcb5b0c9146cc10d15da65f4eef262743d05ee3c1e4cbd7b",
+          "expectedBytes": 6274
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/RUN.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "5f58e48f37b698e9dcd65074eacb3073b8640dec3b07a1b4d26e47079031cb52",
+          "expectedSHA256": "5f58e48f37b698e9dcd65074eacb3073b8640dec3b07a1b4d26e47079031cb52",
+          "expectedBytes": 21350
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/RUN.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b73bfe950d9a9155f29ff1966057f9e1ef9af9170b7edc6d64385a9f3dc1d49f",
+          "expectedSHA256": "b73bfe950d9a9155f29ff1966057f9e1ef9af9170b7edc6d64385a9f3dc1d49f",
+          "expectedBytes": 3131
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SOURCE_INPUTS.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d3ba023919351cdd74258bd93f9108e07aefd274f92844b3df966cd2eabe1257",
+          "expectedSHA256": "d3ba023919351cdd74258bd93f9108e07aefd274f92844b3df966cd2eabe1257",
+          "expectedBytes": 2893
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9",
+          "expectedSHA256": "b3328aa20c88895d0a9ffa52b46fd6d7e8af1164577db23d251d036c4cf1b8b9",
+          "expectedBytes": 24971
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SefariaEmbeddedSurfaceContract.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+          "expectedSHA256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+          "expectedBytes": 3692
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedBytes": 31396
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SefariaRPCModels.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedBytes": 4566
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/attempt-2/SefariaRuntimeManager.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+          "expectedSHA256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+          "expectedBytes": 11797
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/final-source.diff.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c5f4e340d75ac4085d8638c0e0c4b58447e47292f2d58882c3f8c81ee484c76d",
+          "expectedSHA256": "c5f4e340d75ac4085d8638c0e0c4b58447e47292f2d58882c3f8c81ee484c76d",
+          "expectedBytes": 6616
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-1/OriginalExecutedControls.mjs",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad",
+          "expectedSHA256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad",
+          "expectedBytes": 9079
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-1/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35",
+          "expectedSHA256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35",
+          "expectedBytes": 4158
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-1/stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-1/stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35",
+          "expectedSHA256": "edb99e64ff88e9a60a99ed4d5684f6c696b045723ab9c79c41df044784fb8f35",
+          "expectedBytes": 4158
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/ExecutedControls.mjs",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedBytes": 9517
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446",
+          "expectedSHA256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446",
+          "expectedBytes": 4868
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/inputs/ChavrusaRoot.js",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+          "expectedSHA256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+          "expectedBytes": 5809
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/inputs/chavrusaRPCFacade.js",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "expectedSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "expectedBytes": 21034
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-baseline-attempt-2/stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446",
+          "expectedSHA256": "31de2a80831dab0b6a74f758fad06418597af49834a2e6d6a7ec6b91c0931446",
+          "expectedBytes": 4868
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-1/OriginalExecutedControls.mjs",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad",
+          "expectedSHA256": "d8769b7b334c8464a8dfcf538f6060280734970ba60711774f589554cb41cbad",
+          "expectedBytes": 9079
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-1/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70",
+          "expectedSHA256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70",
+          "expectedBytes": 3034
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-1/stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-1/stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70",
+          "expectedSHA256": "291c06ef8a0a2d110312d5018d3f6cd058807cd74f0ddc519420e832bd9afd70",
+          "expectedBytes": 3034
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/ExecutedControls.mjs",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedSHA256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+          "expectedBytes": 9517
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2",
+          "expectedSHA256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2",
+          "expectedBytes": 3404
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/inputs/ChavrusaRoot.js",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+          "expectedSHA256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+          "expectedBytes": 5809
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/inputs/chavrusaRPCFacade.js",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+          "expectedSHA256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+          "expectedBytes": 23528
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/js-candidate-attempt-2/stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2",
+          "expectedSHA256": "3e81cc4288b0e19293732a770729a6900254ae5ba8ff0340f9f190fc30229ff2",
+          "expectedBytes": 3404
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-inputs/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+          "expectedSHA256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+          "expectedBytes": 20518
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-inputs/Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+          "expectedSHA256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+          "expectedBytes": 21971
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-inputs/Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "expectedSHA256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+          "expectedBytes": 21034
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-inputs/tools/test_chavrusa_text_components.swift.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+          "expectedSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+          "expectedBytes": 24043
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/COMPILE.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/COMPILE.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/HarnessInput.swift.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+          "expectedSHA256": "881c2a77276d1234e61530828036c87083f8c0b7151519bf7324df2bf0177dc7",
+          "expectedBytes": 24043
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/OriginalSuites.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "aac55c0a8bcf562291b4890c06750ba7b45dc44bf63bd685b3fbae8478bb2d6d",
+          "expectedSHA256": "aac55c0a8bcf562291b4890c06750ba7b45dc44bf63bd685b3fbae8478bb2d6d",
+          "expectedBytes": 9084
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "5f16c93c4d762ef8ba6952ca0512776c08cff447fb2079f21afb045ff3453778",
+          "expectedSHA256": "5f16c93c4d762ef8ba6952ca0512776c08cff447fb2079f21afb045ff3453778",
+          "expectedBytes": 1731
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/RUN.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/RUN.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "3327fd08b71aab25ee8b588c04d1297928dd0b1b6b81097f8f48372d37c31046",
+          "expectedSHA256": "3327fd08b71aab25ee8b588c04d1297928dd0b1b6b81097f8f48372d37c31046",
+          "expectedBytes": 934
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedBytes": 31396
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-baseline/SefariaRPCModels.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedBytes": 4566
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/COMPILE.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/COMPILE.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/HarnessInput.swift.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "de6ae51b3552df2b6ff605bf9747d0218859c5ac3cadd073db55949ec4bbed7d",
+          "expectedSHA256": "de6ae51b3552df2b6ff605bf9747d0218859c5ac3cadd073db55949ec4bbed7d",
+          "expectedBytes": 24054
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/OriginalSuites.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "172ceb135a02c7ceac754b4fa3ea141ad648f9809311d7ac5aa86bfc341b7ffe",
+          "expectedSHA256": "172ceb135a02c7ceac754b4fa3ea141ad648f9809311d7ac5aa86bfc341b7ffe",
+          "expectedBytes": 9302
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "6263016bf1831205b70997e2e6cf2acfad95ee8bd828749abef962ac3ee7fcaa",
+          "expectedSHA256": "6263016bf1831205b70997e2e6cf2acfad95ee8bd828749abef962ac3ee7fcaa",
+          "expectedBytes": 1251
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/RUN.stderr.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "expectedBytes": 0
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/RUN.stdout.log",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "69e0cdad44ab6e30e18f465c3fa78e9cb8483037131dda29e7cb44170566eba8",
+          "expectedSHA256": "69e0cdad44ab6e30e18f465c3fa78e9cb8483037131dda29e7cb44170566eba8",
+          "expectedBytes": 1953
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/SefariaJSRPCBridge.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedSHA256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+          "expectedBytes": 31396
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/original-rpc-candidate/SefariaRPCModels.swift",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedSHA256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+          "expectedBytes": 4566
+        },
+        {
+          "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/evidence/source-attempt1.diff.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "1591d88a80e9967239be923de43d722c4e47d61a039e0004e6a000e005c51644",
+          "expectedSHA256": "1591d88a80e9967239be923de43d722c4e47d61a039e0004e6a000e005c51644",
+          "expectedBytes": 6562
+        }
+      ]
+    },
+    {
+      "donor": "e751ee7f3a751d78fb817daa8d0c31411a883244",
+      "files": [
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/PACKET_FILES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "fe8f8860cab72e565183be0b56f0f4f2b20b1260d93536ca951102d224135aef",
+          "expectedSHA256": "fe8f8860cab72e565183be0b56f0f4f2b20b1260d93536ca951102d224135aef",
+          "expectedBytes": 2647
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/PRESERVED_PREPARATION_FAILURES.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "c90abcd99a3e36d272bb11e88c0ea49cd1f70fa154a68cd549f782829ceedfde",
+          "expectedSHA256": "c90abcd99a3e36d272bb11e88c0ea49cd1f70fa154a68cd549f782829ceedfde",
+          "expectedBytes": 1513
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/PUBLICATION_PREPARATION_FAILURE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0a2768443ba7969d2ea85337bef68543e34982a9a564028b5ccf331bcde84811",
+          "expectedSHA256": "0a2768443ba7969d2ea85337bef68543e34982a9a564028b5ccf331bcde84811",
+          "expectedBytes": 927
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/README.md",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "87c484d214ded7680c470e10edd07a05f1be73e0c874c105bf053f39cddc6e98",
+          "expectedSHA256": "87c484d214ded7680c470e10edd07a05f1be73e0c874c105bf053f39cddc6e98",
+          "expectedBytes": 10112
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/BOUNDED_ATTRIBUTION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0266652002a3264bdc44c928d332d8483a72fc1eefb80c921abb3350c0bbde16",
+          "expectedSHA256": "0266652002a3264bdc44c928d332d8483a72fc1eefb80c921abb3350c0bbde16",
+          "expectedBytes": 21698
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/HELD_SYMBOL_MANIFEST_LOOKUP.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "1bdec4b428f908b4dae42ee1d89af0d3953c0fc2d309e9e8e898fc68164e46da",
+          "expectedSHA256": "1bdec4b428f908b4dae42ee1d89af0d3953c0fc2d309e9e8e898fc68164e46da",
+          "expectedBytes": 2553
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/NEW_SIMULATOR_AND_TEMP_ATTRIBUTION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "f1227ad6270f4244569ac6d69f5c24f963b0cc0ca6656669dd09fc31e4c54a77",
+          "expectedSHA256": "f1227ad6270f4244569ac6d69f5c24f963b0cc0ca6656669dd09fc31e4c54a77",
+          "expectedBytes": 4789
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/REFERENCE_PRIVATE_SUMMARY.json.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "fc96fefd54e6fe81a38e82ce35ea347f0e748afa3250f0ed7f760fb24d9dba8e",
+          "expectedSHA256": "fc96fefd54e6fe81a38e82ce35ea347f0e748afa3250f0ed7f760fb24d9dba8e",
+          "expectedBytes": 85495
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/RETIREMENT_PREDELETE.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "0f7ea39af14c2c77c515641748381d91f8b0c00ca424affecaa54edb1ff9115a",
+          "expectedSHA256": "0f7ea39af14c2c77c515641748381d91f8b0c00ca424affecaa54edb1ff9115a",
+          "expectedBytes": 63628
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/RETIREMENT_RESULT.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "ee98ccee1c7c8d4a2458136405cf9a44ce2dee2750994b7ff02677c736eb72af",
+          "expectedSHA256": "ee98ccee1c7c8d4a2458136405cf9a44ce2dee2750994b7ff02677c736eb72af",
+          "expectedBytes": 122220
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/receipts/VERIFIED_PRESERVATION.json",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "179860b3b16bf672d0e56d5b9e774c2201537a513597eba19e123f48911f009c",
+          "expectedSHA256": "179860b3b16bf672d0e56d5b9e774c2201537a513597eba19e123f48911f009c",
+          "expectedBytes": 5980
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/recovery/covered-scopes-metadata-only.tar.gz",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "7250221a87d34a6f4e335ce81f310f630b5635649a7423defa14ccc04b4eba87",
+          "expectedSHA256": "7250221a87d34a6f4e335ce81f310f630b5635649a7423defa14ccc04b4eba87",
+          "expectedBytes": 224999
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/scripts/covered_scopes.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "315c28c4195c06e9df99d2e784167542207efeab7192ac7fb93e483c19018164",
+          "expectedSHA256": "315c28c4195c06e9df99d2e784167542207efeab7192ac7fb93e483c19018164",
+          "expectedBytes": 18382
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/scripts/next_capacity_stdout_plan.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "9590abb2e79d20cfef0cdc007976664b39d827f84f9473fd17e12538855a19dc",
+          "expectedSHA256": "9590abb2e79d20cfef0cdc007976664b39d827f84f9473fd17e12538855a19dc",
+          "expectedBytes": 12437
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/scripts/retire_windows.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "50535fba92310046dee4b8d7c23499d7b7ebd8499f6f1ea315c7780cb4dec952",
+          "expectedSHA256": "50535fba92310046dee4b8d7c23499d7b7ebd8499f6f1ea315c7780cb4dec952",
+          "expectedBytes": 3471
+        },
+        {
+          "path": "docs/hq-integration/wave3-owned-capacity-20261127/scripts/verify_windows.py",
+          "mode": "exact-donor",
+          "beforeSHA256": null,
+          "baseSHA256": null,
+          "donorSHA256": "fd29b2351ae32a392214ecac132fd1d5ca63acd845f901dbd0338260fbf45dc4",
+          "expectedSHA256": "fd29b2351ae32a392214ecac132fd1d5ca63acd845f901dbd0338260fbf45dc4",
+          "expectedBytes": 11166
+        }
+      ]
+    }
+  ],
+  "manifestsVerified": [
+    {
+      "path": "docs/ui-routing/wave3-sefaria-late-reply-20261127/EVIDENCE_MANIFEST.json",
+      "sha256": "5f29ab56caec55fe1ee069c2ae39e2682a90e382f53b760509e6d77defd349aa",
+      "verifiedFiles": 84
+    },
+    {
+      "path": "docs/hq-integration/wave3-owned-capacity-20261127/PACKET_FILES.json",
+      "sha256": "fe8f8860cab72e565183be0b56f0f4f2b20b1260d93536ca951102d224135aef",
+      "verifiedFiles": 15
+    }
+  ],
+  "originalHarnessExactReconstruction": true,
+  "unmodifiedRuntimeModelsRNForwarding": true,
+  "nativeRuns": 0,
+  "interpretation": "Selective root source-reviewed commits; actual Oracle controls/evidence retain original source identities. No native/Hermes acceptance inferred."
+}

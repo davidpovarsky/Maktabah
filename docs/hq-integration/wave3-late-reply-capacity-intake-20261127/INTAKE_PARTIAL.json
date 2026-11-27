@@ -1,0 +1,32 @@
+[
+  {
+    "donor": "f03802af54b36bed1a326c6c0b197f60a6a04d34",
+    "before": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "startedUTC": "2026-11-27T08:56:52.398031+00:00",
+    "exit": 0,
+    "after": "c19b672d0b33d1f52ea459e303bb1fa5b83dd323",
+    "sourceTree": "60c3ea2e04e77a4404fda412fb964fb805c485e3",
+    "verifiedFiles": 6,
+    "completeUTC": "2026-11-27T08:56:52.646530+00:00"
+  },
+  {
+    "donor": "8b5381ad1b1c4ff254b5db17ca1b8e34fd8e3129",
+    "before": "c19b672d0b33d1f52ea459e303bb1fa5b83dd323",
+    "startedUTC": "2026-11-27T08:56:52.646769+00:00",
+    "exit": 0,
+    "after": "c32707272e5bd3efec53e9915241be2c8a677050",
+    "sourceTree": "60c3ea2e04e77a4404fda412fb964fb805c485e3",
+    "verifiedFiles": 85,
+    "completeUTC": "2026-11-27T08:56:52.938351+00:00"
+  },
+  {
+    "donor": "e751ee7f3a751d78fb817daa8d0c31411a883244",
+    "before": "c32707272e5bd3efec53e9915241be2c8a677050",
+    "startedUTC": "2026-11-27T08:56:52.938989+00:00",
+    "exit": 0,
+    "after": "1914cbf10680a9fa2f478f5dc7eb111dec48e83a",
+    "sourceTree": "60c3ea2e04e77a4404fda412fb964fb805c485e3",
+    "verifiedFiles": 16,
+    "completeUTC": "2026-11-27T08:56:53.170537+00:00"
+  }
+]

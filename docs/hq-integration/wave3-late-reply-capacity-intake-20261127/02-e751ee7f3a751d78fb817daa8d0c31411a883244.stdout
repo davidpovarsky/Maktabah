@@ -1,0 +1,20 @@
+[codex/otzaria-wave3-integration-20261127 1914cbf1] docs: preserve and retire two exact owned build scopes
+ Author: ChatGPT (release-preflight) <noreply@openai.com>
+ Date: Fri Nov 27 08:45:52 2026 +0000
+ 16 files changed, 1127 insertions(+)
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/PACKET_FILES.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/PRESERVED_PREPARATION_FAILURES.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/PUBLICATION_PREPARATION_FAILURE.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/README.md
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/BOUNDED_ATTRIBUTION.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/HELD_SYMBOL_MANIFEST_LOOKUP.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/NEW_SIMULATOR_AND_TEMP_ATTRIBUTION.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/REFERENCE_PRIVATE_SUMMARY.json.gz
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/RETIREMENT_PREDELETE.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/RETIREMENT_RESULT.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/receipts/VERIFIED_PRESERVATION.json
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/recovery/covered-scopes-metadata-only.tar.gz
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/scripts/covered_scopes.py
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/scripts/next_capacity_stdout_plan.py
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/scripts/retire_windows.py
+ create mode 100644 docs/hq-integration/wave3-owned-capacity-20261127/scripts/verify_windows.py

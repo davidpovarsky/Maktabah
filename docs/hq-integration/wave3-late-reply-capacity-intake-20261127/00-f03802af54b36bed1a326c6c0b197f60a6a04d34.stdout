@@ -1,0 +1,6 @@
+[codex/otzaria-wave3-integration-20261127 c19b672d] Require real delayed Sefaria RPC disposal across original runtime reset
+ Author: Otzaria Wave3 Navigation <otzaria-integration@users.noreply.github.com>
+ Date: Fri Nov 27 08:44:40 2026 +0000
+ 6 files changed, 744 insertions(+), 39 deletions(-)
+ create mode 100644 tools/test_sefaria_late_reply_diagnostic.swift
+ create mode 100644 tools/test_sefaria_late_reply_diagnostic_js.mjs
