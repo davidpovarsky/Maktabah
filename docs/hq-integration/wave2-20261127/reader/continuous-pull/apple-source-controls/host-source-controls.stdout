@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "status": "HOST_CODEC_SOURCE_CONTROLS_PASS_NOT_NATIVE_UI",
+  "controls": [
+    {
+      "name": "original portrait points admitted",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "wrong token rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "wrong UDID rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "stale nonce request rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "Boolean schema rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "missing point dimensions rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "pixel/point confusion rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "landscape mismatch rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "nonfinite coordinate rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "viewport path escape rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "waypoint outside Reader rejected before contact",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "fresh native identity shape admitted",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "stale viewport rejected",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "wrong original PID rejected",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "wrong render generation rejected",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "unavailable native source rejected",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "original codec preserves one RPC down-held-out-held-back-up",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "failed native criterion releases once in same stream and fails",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    },
+    {
+      "name": "broken transport cleanup is separately logged and cannot pass",
+      "status": "PASS",
+      "scope": "host/codec component control; no UI"
+    }
+  ],
+  "passed": 19,
+  "failed": 0,
+  "simulatorConnections": 0,
+  "touchesSent": 0,
+  "uiExecuted": 0,
+  "scope": "Actual installed idb codec/protobuf; explicitly synthetic client/probe doubles only"
+}

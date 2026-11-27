@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CHECKS_RECORDED_NOT_NATIVE_UI",
+  "records": [
+    {
+      "name": "host-source-controls",
+      "command": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd/local-tool-temporary.q6D5fNUv/r27-hid-tools-73pnzxjb/client/bin/python",
+        "-B",
+        "host-source-controls.py"
+      ],
+      "exit": 0,
+      "seconds": 0.180897125,
+      "stdoutSHA256": "05a4f0eb1515c04b1d1d161069df670b47865a22633ce3267c38d0b84d11405c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "whole-native-tests-parse",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse",
+        "Build8401SevenDefectsAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 0.12050191600000004,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "whole-native-tests-xctest-typecheck",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-typecheck",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/full-v40-observation-admission/module-cache",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+        "OriginalMaktabahUITestBase.swift",
+        "OriginalSearchContextUI.swift",
+        "Build8401SevenDefectsAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 1.495026,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "1369dc3ba030241a91314045685b1c94e8ebf1abbf4a41cb700af67f6cf82402"
+    }
+  ],
+  "directory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/continuous-pull-source-20261127T033549Z",
+  "sourceBase": "a1e12fd377c0909df535c96d1a61f54bef5001a7",
+  "sourceHashes": {
+    "Build8401SevenDefectsAcceptanceTests.swift": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de",
+    "reader-continuous-pull-host.py": "e36664701bbb370133d889fb6c370648be240d47330c13edcda021918fac87ca",
+    "host-source-controls.py": "7430799d4c78fdc214f9b39401087bdf84bede3b99154eeb06c851bf2b4b0f94",
+    "OriginalMaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "OriginalSearchContextUI.swift": "d1f5c7f6d66033c408d57bb5d5e3b527c74a0fb20c0c5f0ce1aa4577f8258db5"
+  },
+  "originalTestPrefixSHA256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "moduleCache": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/full-v40-observation-admission/module-cache",
+  "moduleCacheExisted": true,
+  "simulatorConnections": 0,
+  "touchesSent": 0,
+  "uiExecuted": 0,
+  "appBuilds": 0
+}

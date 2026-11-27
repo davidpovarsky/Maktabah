@@ -1415,3 +1415,157 @@ extension FullV40ReaderModeAcceptanceTests {
             "Original unit gestures and TOC selection must preserve the installed production corpus")
     }
 }
+
+// MARK: - Original single-contact armed retreat (portrait only)
+
+extension FullV40ReaderModeAcceptanceTests {
+    @MainActor
+    private func originalContinuousPull(_ target: FullV40ReaderModeOracle.Target,
+                                        installation value: Installation, ui: OriginalSearchContextUI) throws {
+        let token = try XCTUnwrap(environment["READER_CONTINUOUS_PULL_TOKEN"],
+            "The dedicated pinned original idb host must own this exact simulator")
+        try demand(token.count == 48 && token.allSatisfy { "0123456789abcdef".contains($0) },
+                   "Require the explicit private host token")
+        let udid = try XCTUnwrap(environment["SIMULATOR_UDID"])
+        let before = try currentDocument(value)
+        let initial = try nativeSelection(value, ui: ui)
+        try checkRecordedReaderSource(initial, target: target)
+        let identity = try XCTUnwrap(initial["nativeSelectionObservation"] as? [String: Any])
+        let processID = try XCTUnwrap(identity["processID"] as? Int)
+        let generation = try XCTUnwrap(identity["renderGeneration"] as? Int)
+        let owner = try XCTUnwrap(identity["textViewObject"] as? Int)
+        let initialDistance = try nativeOverscroll(initial, previous: true)
+        try demand(XCUIDevice.shared.orientation == .portrait && abs(initialDistance) <= 3,
+                   "The original Reader must be at its top edge in portrait before this continuous contact")
+        let window = app.windows.firstMatch.frame
+        let reader = app.textViews["reader-text"]
+        let frame = reader.frame
+        try demand(reader.exists && reader.isHittable && frame.height > 360 && window.contains(frame)
+            && window.width < window.height && abs(window.minX) <= 0.5 && abs(window.minY) <= 0.5,
+            "Use the fully visible original portrait Reader in the actual app-window point space")
+        func geometry(_ rect: CGRect) -> [String: Double] {
+            ["x": Double(rect.minX), "y": Double(rect.minY), "width": Double(rect.width), "height": Double(rect.height)]
+        }
+        let start = ["x": Double(frame.midX), "y": Double(frame.minY + frame.height * 0.2)]
+        let armed = ["x": start["x"]!, "y": start["y"]! + 240]
+        let retreat = ["x": start["x"]!, "y": start["y"]! + 20]
+        let nonce = UUID().uuidString
+        let basename = "reader-continuous-pull-" + token + "-" + nonce
+        let requestPath = value.container.appendingPathComponent("Documents/" + basename + ".request.json")
+        let replyPath = value.container.appendingPathComponent("Documents/" + basename + ".ack.json")
+        let request: [String: Any] = [
+            "schema": 1, "token": token, "nonce": nonce, "udid": udid, "mode": target.unitMode,
+            "orientation": "portrait", "viewportName": viewportName, "createdAt": Date().timeIntervalSince1970,
+            "appPID": processID, "renderGeneration": generation, "textViewObject": owner,
+            "sourceUTF16Length": target.backendReaderSourceUTF16Length, "documentID": before.id.uuidString,
+            "locator": target.sectionLocator, "window": geometry(window), "readerFrame": geometry(frame),
+            "points": [start, armed, retreat]
+        ]
+        try demand(!FileManager.default.fileExists(atPath: requestPath.path)
+            && !FileManager.default.fileExists(atPath: replyPath.path), "A contact nonce must never be reused")
+        try JSONSerialization.data(withJSONObject: request, options: [.sortedKeys]).write(to: requestPath, options: .atomic)
+        try nonce.write(to: value.container.appendingPathComponent("Documents/reader-continuous-pull-" + token + ".pending"),
+                        atomically: true, encoding: .utf8)
+        // No XCTest input or competing probe runs while the host owns contact.
+        // These are bounded file reads; the original app supplies each sample.
+        var response: [String: Any]?
+        try ui.wait("The single original HID contact must complete both held observations and its final release", timeout: 65) {
+            guard let reply = try? self.object(replyPath, maximum: 512_000), reply["nonce"] as? String == nonce else { return false }
+            response = reply; return true
+        }
+        let receipt = try XCTUnwrap(response)
+        try attach(receipt, "reader-v40-original-continuous-pull-" + target.unitMode)
+        try demand(receipt["schema"] as? Int == 1 && receipt["accepted"] as? Bool == true
+            && receipt["rpcCount"] as? Int == 1 && receipt["transportCompleted"] as? Bool == true
+            && receipt["emergencyReleaseAttempted"] == nil && receipt["upEmitted"] as? Bool == true
+            && receipt["udid"] as? String == udid && receipt["appPID"] as? Int == processID
+            && receipt["documentID"] as? String == before.id.uuidString && receipt["locator"] as? String == target.sectionLocator
+            && receipt["mode"] as? String == target.unitMode,
+            "Require one successful original stream, never two swipes or failure cleanup masquerading as retreat")
+        let dimensions = try XCTUnwrap(receipt["screenDimensions"] as? [String: Any])
+        let width = try XCTUnwrap(dimensions["width_points"] as? Double)
+        let height = try XCTUnwrap(dimensions["height_points"] as? Double)
+        try demand(abs(width - Double(window.width)) <= 0.5 && abs(height - Double(window.height)) <= 0.5
+            && width < height && XCUIDevice.shared.orientation == .portrait,
+            "Actual idb points and original app-window coordinates must remain the same portrait space")
+        let events = try XCTUnwrap(receipt["events"] as? [[String: Any]])
+        let held = try XCTUnwrap(receipt["heldBoundaries"] as? [[String: Any]])
+        try demand(events.count >= 4 && events.dropLast().allSatisfy { $0["direction"] as? String == "DOWN" }
+            && events.last?["direction"] as? String == "UP"
+            && events.enumerated().allSatisfy { $0.element["sequence"] as? Int == $0.offset + 1 }
+            && held.map { $0["phase"] as? String } == ["armed", "retreated"],
+            "The original contact remains pressed through both waypoints and lifts only once at the end")
+        let samples = try XCTUnwrap(receipt["nativeSamples"] as? [String: [String: Any]])
+        try demand(Set(samples.keys) == Set(["before", "armed", "retreated", "released"]),
+                   "Retain all four genuine phase samples")
+        var requestIDs = Set<String>()
+        var uptime = 0.0
+        for phase in ["before", "armed", "retreated", "released"] {
+            let sample = try XCTUnwrap(samples[phase])
+            try checkRecordedReaderSource(sample, target: target)
+            let native = try XCTUnwrap(sample["nativeSelectionObservation"] as? [String: Any])
+            let source = try XCTUnwrap(sample["fullV32SourceObservation"] as? [String: Any])
+            let requestID = try XCTUnwrap(sample["requestID"] as? String)
+            let observed = try XCTUnwrap(source["observedUptime"] as? Double)
+            try demand(UUID(uuidString: requestID) != nil && requestIDs.insert(requestID).inserted
+                && native["requestID"] as? String == requestID && native["processID"] as? Int == processID
+                && source["processID"] as? Int == processID && native["locator"] as? String == target.sectionLocator
+                && native["renderGeneration"] as? Int == generation && native["textViewObject"] as? Int == owner
+                && observed.isFinite && observed > uptime,
+                "Each phase needs a distinct advancing original response from the exact same current Reader")
+            uptime = observed
+            let distance = try nativeOverscroll(sample, previous: true)
+            switch phase {
+            case "armed": try demand(distance >= 80, "Observe the original threshold crossing while the same touch is held")
+            case "retreated": try demand(distance >= 0 && distance < 80, "Observe retreat below the original threshold before lifting")
+            default: try demand(abs(distance) <= 3, "The original Reader must start and finish at its real top edge")
+            }
+        }
+        let armBoundary = try XCTUnwrap(held.first?["lastDownSequence"] as? Int)
+        let retreatBoundary = try XCTUnwrap(held.last?["lastDownSequence"] as? Int)
+        try demand(0 < armBoundary && armBoundary < retreatBoundary && retreatBoundary < events.count
+            && held.first?["requestID"] as? String == samples["armed"]?["requestID"] as? String
+            && held.last?["requestID"] as? String == samples["retreated"]?["requestID"] as? String,
+            "Bind both original held observations before the one final UP in the exact same stream")
+        try assertReader(target, installation: value, ui: ui, requireSearchFocus: false)
+        let after = try currentDocument(value)
+        try demand(after.id == before.id && after.bookId == before.bookId
+            && after.backendLocator?.backend == before.backendLocator?.backend
+            && after.backendLocator?.workKey == before.backendLocator?.workKey,
+            "Armed retreat and release must retain the actual canonical document")
+        try assertOriginalSelectedTOC(target, installation: value, ui: ui)
+        try attach(["schema": 1, "nonce": nonce, "mode": target.unitMode,
+            "documentID": after.id.uuidString, "canonicalLocator": target.sectionLocator,
+            "tocCanonicalLocator": try XCTUnwrap(target.tocSelection?.canonicalLocator),
+            "orientationScope": "portrait only; original idb points equal actual app-window points",
+            "sourceScope": "independent full-v40 catalog compared with every bounded original native source sample"],
+            "reader-v40-continuous-pull-native-completion-" + target.unitMode)
+    }
+
+    @MainActor
+    func testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader() throws {
+        let (expected, installed, ui, id) = try prepareAdditionalReaderGate()
+        XCUIDevice.shared.orientation = .portrait
+        try ui.wait("The actual original app must settle in portrait") {
+            self.app.windows.firstMatch.frame.width < self.app.windows.firstMatch.frame.height
+                && XCUIDevice.shared.orientation == .portrait
+        }
+        for mode in ["paragraph", "chapter"] {
+            let target = try XCTUnwrap(expected.targets.first { $0.unitMode == mode })
+            try ui.setReaderUnit(mode, fromPreview: id)
+            try ui.openCurrentPreview(id)
+            try assertReader(target, installation: installed, ui: ui, requireSearchFocus: false)
+            if ui.control("reader.clear_search_highlight_button").exists {
+                try ui.require("reader.clear_search_highlight_button").tap()
+            }
+            try assertOriginalSelectedTOC(target, installation: installed, ui: ui)
+            try reachOriginalTop(target, installation: installed, ui: ui)
+            try originalContinuousPull(target, installation: installed, ui: ui)
+            try ui.returnToOriginalSearch()
+        }
+        let final = try installation()
+        try demand(final.container == installed.container && final.root == installed.root
+            && final.manifest == installed.manifest && final.owner == installed.owner,
+            "Both original continuous contacts must preserve the same actual production installation")
+    }
+}

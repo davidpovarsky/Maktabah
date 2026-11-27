@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "base": "a1e12fd377c0909df535c96d1a61f54bef5001a7",
+  "baselineSHA256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+  "baselineBytes": 90630,
+  "baselineLines": 1409,
+  "newSHA256": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de",
+  "oldFileIsExactBytePrefix": true,
+  "productSourceChanges": 0,
+  "v32Changes": 0,
+  "nativeAcceptance": false
+}
