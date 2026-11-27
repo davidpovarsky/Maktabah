@@ -1,0 +1,110 @@
+{
+  "inventory": {
+    "ok": true,
+    "job": {
+      "id": "job_dc0058ad5ce4",
+      "type": "job_result",
+      "source": "exec@host_4b47bdb65d00e49d",
+      "severity": "info",
+      "tool": "exec",
+      "host": "host_4b47bdb65d00e49d",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795761020.0484867,
+      "started_at": "2026-11-27T06:30:20.104365+00:00",
+      "finished_at": "2026-11-27T06:30:57.195664+00:00",
+      "duration_s": 37.09,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"COMPLETE_HASHED_INVENTORY_NOT_REMOVED\", \"utc\": \"2026-11-27T06:30:57.014465+00:00\", \"manifest_sha256\": \"d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb\", \"manifest_bytes\": 93784007, \"summary\": {\"entries\": 121147, \"regular_files\": 102063, \"directories\": 18845, \"symlinks\": 239, \"logical_file_bytes\": 49890963733, \"observed_allocated_bytes_including_shared_extents\": 10413191168, \"base_reused_files\": 78509, \"base_reused_logical_bytes\": 47086345732, \"new_unique_payloads\": 22521, \"new_unique_payload_bytes\": 2659619569, \"entries_with_xattrs\": 88, \"entries_with_acl\": 0, \"entries_with_flags\": 0, \"hardlinked_names\": 0}, \"free_before\": 6825193472, \"free_after\": 6729596928, \"df\": \"Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\\n/dev/disk3s5   482797652 430243608   6571872    99% 6807568 65718720    9%   /System/Volumes/Data\\n\"}"
+    }
+  },
+  "receive": {
+    "ok": true,
+    "job": {
+      "id": "job_048b937ac7b1",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795761458.1784368,
+      "started_at": "2026-11-27T06:37:38.259801+00:00",
+      "finished_at": "2026-11-27T06:39:02.173612+00:00",
+      "duration_s": 83.91,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 1800,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"EXACT_STREAM_RECEIVED_NOT_YET_MEMBER_VERIFIED_NOT_REMOVED\", \"utc\": \"2026-11-27T06:39:02.106189+00:00\", \"archive\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-fresh-producer-preservation-20261127\\\\fresh-producer-differential.tar.gz\", \"archive_sha256\": \"3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee\", \"archive_bytes\": 944883233, \"manifest_sha256\": \"d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb\", \"source_root\": \"/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work/producer-derived\", \"mac_evidence\": \"/Users/m1/builds/otzaria-wave3-fresh-producer-preservation-20261127.hhz749_k\", \"free_before\": 5136248832, \"free_after\": 4185321472, \"minimum_free_before_write\": 4183609344, \"reserve\": 2415919104, \"seconds\": 82.85899999999674, \"archive_identity\": {\"bytes\": 944883233, \"mtime_ns\": 1795761540882596500, \"ctime_ns\": 1795761459251521000, \"device\": 5400942862240111193, \"inode\": 12947848928777298}, \"base_archive_identity\": {\"bytes\": 5238640114, \"mtime_ns\": 1795756294281474100, \"ctime_ns\": 1795755704056118000, \"device\": 5400942862240111193, \"inode\": 21955048183724307}, \"mac_stream_result_sha256\": \"ca02a546b23e0e3ac662e29334aca92368d234ea9f66030a3a568890e79aa4a2\", \"native_acceptance\": 0}"
+    }
+  },
+  "verify": {
+    "ok": true,
+    "job": {
+      "id": "job_fadb10ba7915",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795761610.2309327,
+      "started_at": "2026-11-27T06:40:10.315566+00:00",
+      "finished_at": "2026-11-27T06:40:55.936793+00:00",
+      "duration_s": 45.62,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 1200,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"COMPLETE_DIFFERENTIAL_AND_ALL_REFERENCES_VERIFIED_NOT_REMOVED\", \"utc\": \"2026-11-27T06:40:55.709030+00:00\", \"source_root\": \"/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work/producer-derived\", \"manifest_sha256\": \"d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb\", \"manifest_bytes\": 93784007, \"archive\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-fresh-producer-preservation-20261127\\\\fresh-producer-differential.tar.gz\", \"archive_sha256\": \"3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee\", \"archive_bytes\": 944883233, \"base_archive_sha256\": \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\", \"base_archive\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\interrupted-original-sdk-work.tar.gz\", \"base_manifest_sha256\": \"558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94\", \"entries\": 121147, \"counts\": {\"file\": 102063, \"directory\": 18845, \"symlink\": 239}, \"logical_file_bytes\": 49890963733, \"verified_payloads\": 22521, \"verified_payload_bytes\": 2659619569, \"base_reused_files\": 78509, \"base_distinct_members\": 77878, \"differential_referenced_files\": 23554, \"entries_with_xattrs\": 88, \"entries_with_acl\": 0, \"hardlink_groups\": 0, \"all_metadata_and_symlink_targets_retained\": true, \"all_original_parent_directory_relationships_verified\": true, \"gzip_crc_and_all_tar_members_verified\": true, \"full_filesystem_restoration_run\": false, \"restoration_scope\": \"Lossless content/metadata manifest and payload references verified; no 49.9GB materialization. Historic inode/device/ctime retained as evidence.\", \"native_acceptance\": 0, \"sdk_qualified\": false, \"free_after\": 4086001664, \"seconds\": 44.78099999995902, \"verifier_sha256\": \"61d2ca24578b6335825e1333e65aa5359ed5afc728df8485c41b9ddec3199c5f\"}"
+    }
+  },
+  "retire": {
+    "ok": true,
+    "job": {
+      "id": "job_ef611f97198a",
+      "type": "job_result",
+      "source": "exec@host_4b47bdb65d00e49d",
+      "severity": "info",
+      "tool": "exec",
+      "host": "host_4b47bdb65d00e49d",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795761726.8783364,
+      "started_at": "2026-11-27T06:42:06.935184+00:00",
+      "finished_at": "2026-11-27T06:43:00.817683+00:00",
+      "duration_s": 53.88,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"RETIRED_ONLY_FULLY_PRESERVED_FRESH_PRODUCER_DERIVED\", \"utc\": \"2026-11-27T06:42:43.960558+00:00\", \"source_root\": \"/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work/producer-derived\", \"source_head\": \"1be970356c655bcef3688ddf1d129d5029bbc533\", \"manifest_sha256\": \"d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb\", \"windows_receipt_sha256\": \"485d1842dd531c9f6211a9498bddaa1139089fac92efee2abb436a716fced53f\", \"archive_sha256\": \"3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee\", \"base_archive_sha256\": \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\", \"entries_rehashed\": 121147, \"free_before\": 6497869824, \"source_qualified\": false, \"removed\": [\"/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work/producer-derived\"], \"outside_paths_unchanged\": true, \"work_parent_retained\": true, \"free_after\": 13814247424, \"observed_free_delta_bytes\": 7316377600, \"delta_caveat\": \"Concurrent df observation, not exclusive APFS reclaimed allocation.\", \"df_after\": \"Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\\n/dev/disk3s5   482797652 423325004  13490476    97% 6693218 134904760    5%   /System/Volumes/Data\\n\", \"finished_at\": \"2026-11-27T06:43:00.682732+00:00\"}"
+    }
+  }
+}

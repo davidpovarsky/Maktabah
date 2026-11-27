@@ -1,0 +1,12 @@
+{
+    "archive":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\interrupted-original-sdk-work.tar.gz",
+    "manifest":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\MEMBER_MANIFEST.json",
+    "manifestSHA256":  "558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94",
+    "priorFullMemberVerification":  "job_6f9fcedf19df",
+    "utc":  "2026-11-27T06:25:05.6560777Z",
+    "preflightAttempt1":  "Existing Python ran but inline quoting caused NameError; failed before archive hashing; no source retired",
+    "sha256":  "2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda",
+    "bytes":  5238640114,
+    "status":  "EXACT_PREVIOUSLY_ALL_MEMBER_VERIFIED_ARCHIVE_REHASHED",
+    "windowsFreeBytes":  5348036608
+}
