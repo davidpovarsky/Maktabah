@@ -1,0 +1,13 @@
+{
+  "absent": true,
+  "allIndexedOriginalSourceLogsReceiptsAndBinaryUnchanged": true,
+  "allocatedRootAndMembersBytes": 17768448,
+  "beforeSHA256": "31941e044402e13c03090476604820cc22288afa03dc108ebe1da523308639a1",
+  "dfDeltaNotExclusivelyAttributedToCleanup": true,
+  "freeAfter": 709689344,
+  "freeBefore": 691933184,
+  "removedOnly": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache",
+  "schema": 1,
+  "time": "2026-11-27T10:28:05.755338+00:00",
+  "verifiedRetainedEvidenceFiles": 55
+}
