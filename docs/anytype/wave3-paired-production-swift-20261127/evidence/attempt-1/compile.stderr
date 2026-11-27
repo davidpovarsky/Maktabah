@@ -1,0 +1,9 @@
+/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/ControlInput.swift:223:9: warning: result of call to 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' is unused [#NoUsage]
+221 |             ? ["-preferredBackend", backend, "-smokeBackend", backend] : []
+222 |         let workspaceArguments = isolatesStudyWorkspace ? ["-studyWorkspaceTestingNamespace", workspaceNamespace] : []
+223 |         launchWithTier(tier, scenario: scenario, backend: backend, extraArgs: backendArguments + workspaceArguments + [
+    |         `- warning: result of call to 'launchWithTier(_:scenario:backend:extraArgs:language:locale:extraEnvironment:)' is unused [#NoUsage]
+224 |             "-ChavrusaTextFaithfulReaderUIEnabled", enabled ? "YES" : "NO",
+225 |             "-textViewBackgroundColorLight", String(background)
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>

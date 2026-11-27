@@ -1,0 +1,33 @@
+{
+  "schema": "otzaria.wave3.paired-production.swift-intake.v1",
+  "source_commit": "2f71c9a2995ed1cf7d8d476df4f33919f06da97b",
+  "source_tree": "76ef29c904c7571f9a02eff3cccab697b9f62634",
+  "base": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "donor": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+  "branch": "codex/otzaria-wave3-paired-production-swift-20261127",
+  "scope": [
+    "One original UI-test file, paired-only production change",
+    "One focused source-control driver",
+    "No Python controllers or application Source changes"
+  ],
+  "source_result": {
+    "original_baseline": {
+      "passed": 0,
+      "failed": 4
+    },
+    "candidate": {
+      "passed": 49,
+      "failed": 0
+    },
+    "six_original_test_bodies": "BYTE_EXACT",
+    "syntax": "PASS; no Apple SDK typecheck",
+    "result_sha256": "5b7d6de8f63a80d44cff7a9dc2f771f005b99478769d68a4a2d1647a074d245b"
+  },
+  "peer_source_review": "NO_SOURCE_BLOCKER_FOUND; /root/ui_acceptance; no native rerun or owner signature",
+  "manifest_sha256": "9344de5249d4358d33233d7cf31165cde798a5f12ccad672c473590cb563bbfa",
+  "required_native": "NOT_RUN; original qualified Debug/xctestrun, production installer and actual five-phase two-app acceptance required",
+  "new_PBX_files": [],
+  "mac_work": "NONE",
+  "controls_cache": "Preserved; lease released after2026-11-27T09:11:58Z",
+  "recorded_at": "2026-11-27T09:17:24.461183+00:00"
+}

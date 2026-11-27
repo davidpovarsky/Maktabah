@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+    "bytes": 118047,
+    "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+  },
+  "original_base": {
+    "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+    "bytes": 9357,
+    "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424"
+  },
+  "original_faithful": {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "bytes": 351993,
+    "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618"
+  },
+  "donor": {
+    "path": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+    "bytes": 93114,
+    "sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34"
+  },
+  "control_input": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/ControlInput.swift",
+    "bytes": 21020,
+    "sha256": "a143932f925ec163cdffdbf1a582a634e4cb0b432c16c7e9e982480004896c38"
+  }
+}

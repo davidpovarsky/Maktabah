@@ -1,0 +1,32 @@
+[
+  {
+    "name": "testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination",
+    "sha256": "1e8de8fc58d9a48be2ea66d771a3ff108faac015023213a3bf43d1d8c915ac6e",
+    "unchanged": true
+  },
+  {
+    "name": "testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch",
+    "sha256": "7f6a3a40071a047762f7dd9253ada429252aca2c1efff22b7d45318cb53d545e",
+    "unchanged": true
+  },
+  {
+    "name": "testOrdinarySharedNoteUpdatesSameObjectAndReceivesSavedContent",
+    "sha256": "b389c3c7b7bb48f394b3a2636ce676d71dad2b10a50eeca0117d2e222ead406d",
+    "unchanged": true
+  },
+  {
+    "name": "testOrdinaryNativeCopyChiddushLifecyclePreservesIdentity",
+    "sha256": "788fcf4ddeacec7c00c62ab96fb20a13f5d93738f122198e1bedb69e2384d2d5",
+    "unchanged": true
+  },
+  {
+    "name": "testOrdinaryNativeCopyArticleLifecyclePreservesIdentity",
+    "sha256": "43aa8dfc714baceede9f6ce55b08167d2f57e83fe2eafe756293fb6428e63daf",
+    "unchanged": true
+  },
+  {
+    "name": "testOrdinaryNativeCopyResearchLifecyclePreservesIdentity",
+    "sha256": "d4b8ccbdece2e3f56007a278c0d3a5238a6e481e37bfb1e8f194f16fd8ddaa0e",
+    "unchanged": true
+  }
+]
