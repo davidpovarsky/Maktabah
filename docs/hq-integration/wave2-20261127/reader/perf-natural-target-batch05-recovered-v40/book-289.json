@@ -1,0 +1,2883 @@
+{
+  "bookID": 289,
+  "bookTitle": "ספרי במדבר",
+  "declaredTotalLines": 457,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.055986919440329075,
+  "resolvedAnchorRows": 3691,
+  "units": [
+    {
+      "unitID": "toc:28221",
+      "rawUnitTitle": "פסקה א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "6c301cda718f48575f1c55c0f3ae8b643bad3d8a7967046ce3f8fad0abde4343",
+      "rawMembershipSHA256": "c6d1a2ad08ccc060bdcf6ac98dd9728375d864ba689dd5a4dc2e16fbc4b7a56c"
+    },
+    {
+      "unitID": "toc:28222",
+      "rawUnitTitle": "פסקה ב",
+      "sourceLineIndices": [
+        10,
+        11
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 11,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "43a2d66e5f850f64677fc2fae986fcdbdf190e6b6f026167f70b21d8860826b3",
+      "rawMembershipSHA256": "d64647afecb5f9ee33bad0c9a070a57af162fda3c9d81284b4bdd7c9f896cf3f"
+    },
+    {
+      "unitID": "toc:28223",
+      "rawUnitTitle": "פסקה ג",
+      "sourceLineIndices": [
+        12,
+        13
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 12,
+      "unitEndLineIndex": 13,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "d44b49da11eef52c8694d1cd320ab433ebeca43ebdb81c3a7196a0b6abd9dd6b",
+      "rawMembershipSHA256": "aab6c80475f298a58342893669e2ade14dd4ba6d90e72f737e3a1c8c040afcb5"
+    },
+    {
+      "unitID": "toc:28224",
+      "rawUnitTitle": "פסקה ד",
+      "sourceLineIndices": [
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 14,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "54bf97bd142b5ff432ddeb0e5e6b97a19719129903d9125c172f6e5e5bc665d1",
+      "rawMembershipSHA256": "04b163390847c842093d7bbb29dbda0cd95650a32054ed4188706a50dd616f15"
+    },
+    {
+      "unitID": "toc:28225",
+      "rawUnitTitle": "פסקה ה",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "f429d7ffa8f21ada93c56e5104a5336c769e74c5738516059d86ea7805cdb8e7"
+    },
+    {
+      "unitID": "toc:28226",
+      "rawUnitTitle": "פסקה ו",
+      "sourceLineIndices": [
+        21,
+        22,
+        23
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 23,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "a9e21884f5dbdb8d6b78b7e7df3763f14a58d8a672b311f73efcf9fa05cd4b46",
+      "rawMembershipSHA256": "67d8c6c290d9f2a2eec8fd4b30abf5720e735731daf24852cd9c88f06df90521"
+    },
+    {
+      "unitID": "toc:28227",
+      "rawUnitTitle": "פסקה ז",
+      "sourceLineIndices": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 24,
+      "unitEndLineIndex": 27,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 57,
+      "sourceIndicesSHA256": "84b512fb3830fb00708877001d129f10350b12df05ab58b49fcee8f9180755cc",
+      "rawMembershipSHA256": "9729b5af8595c67801e05660ec543dd2cef2f9b1d064e251bc4790e59f46012c"
+    },
+    {
+      "unitID": "toc:28228",
+      "rawUnitTitle": "פסקה ח",
+      "sourceLineIndices": [
+        28,
+        29
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 28,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "5a2fb92d7208123d8efe010ba391caca153fd5198488a12236b6e436f208369b",
+      "rawMembershipSHA256": "bea377e8730059e91ae781611969b91a93bbd36d12c7c4a83bc17a1602fdaa8f"
+    },
+    {
+      "unitID": "toc:28229",
+      "rawUnitTitle": "פסקה ט",
+      "sourceLineIndices": [
+        30,
+        31
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "e84efd35b07dc0854dc7ea773ebd9a60bdb1a5f62fdb58a61bcff3b6d18403a3",
+      "rawMembershipSHA256": "0cfd37595de5a2bf054b9d640f0a57e0df52db7046711295d50cc81f9d870dab"
+    },
+    {
+      "unitID": "toc:28230",
+      "rawUnitTitle": "פסקה י",
+      "sourceLineIndices": [
+        32,
+        33
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "44ca12ff7e811c7f09514d225fdf22043aa0a9e57f40358d2dee37babd14e5ec",
+      "rawMembershipSHA256": "f6a912da27b1e8069fb8a28754d6ad05958195ea84f4e678cf0659045b9c68b0"
+    },
+    {
+      "unitID": "toc:28231",
+      "rawUnitTitle": "פסקה יא",
+      "sourceLineIndices": [
+        34,
+        35
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "69154ec3b3327ccc6c530123ee56527b3e6b702df75bf4cda2e89a6f65b205a3",
+      "rawMembershipSHA256": "3644447193c7245a69ec30a1e2b020d8145709cb01cf7076bf947d6374ea92f8"
+    },
+    {
+      "unitID": "toc:28232",
+      "rawUnitTitle": "פסקה יב",
+      "sourceLineIndices": [
+        36,
+        37
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 36,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 20,
+      "sourceIndicesSHA256": "0419710be814ea74d5894c3bc184c565ad771cd958218713ef84edb43dc91e6c",
+      "rawMembershipSHA256": "7f231f4d1a96ef1cbd719442f1514668195e41adb8e62b70f63fa7907a654a4c"
+    },
+    {
+      "unitID": "toc:28233",
+      "rawUnitTitle": "פסקה יג",
+      "sourceLineIndices": [
+        38,
+        39
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 39,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "44051911f835e863c905fecf91a2d2cbab24ed83d2043a357618949880fb1910",
+      "rawMembershipSHA256": "60cb19ff074585958bba6a2509df10efc70df5e807eadd1c94248b9b4315e227"
+    },
+    {
+      "unitID": "toc:28234",
+      "rawUnitTitle": "פסקה יד",
+      "sourceLineIndices": [
+        40,
+        41
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 40,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "cc2ed1b68368c5bccb02092f73f9687a4b8ff6adec23587e4ff37ebae58897a8",
+      "rawMembershipSHA256": "3a677b91522359685a9cc0f767bc230cc15b46345545d298e59120f0f77bfa6b"
+    },
+    {
+      "unitID": "toc:28235",
+      "rawUnitTitle": "פסקה טו",
+      "sourceLineIndices": [
+        42,
+        43,
+        44
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 44,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "0291cea3eb494af5ee11a314afe5d51a3c74cb4221eaa5a7b3cbf1a97dd486fb",
+      "rawMembershipSHA256": "a2adfb69129f5544fad5acb2609db6f9778689de811b57dc33a8c1629e9ddd02"
+    },
+    {
+      "unitID": "toc:28236",
+      "rawUnitTitle": "פסקה טז",
+      "sourceLineIndices": [
+        45,
+        46
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 45,
+      "unitEndLineIndex": 46,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "e89e53648e5e8ad35ab530d2b8a71c63fd15faeddb8e3a3574e89fec632d2c89",
+      "rawMembershipSHA256": "2a2032677b97aef3a32ce717d7e5b73beee7a8124f0b8e1a03407e34f9a9242e"
+    },
+    {
+      "unitID": "toc:28237",
+      "rawUnitTitle": "פסקה יז",
+      "sourceLineIndices": [
+        47,
+        48
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 47,
+      "unitEndLineIndex": 48,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "8a63a90c1b7258c2a838017f93418c58f3e50a532e419918d22d6186410be1fa",
+      "rawMembershipSHA256": "4f3b9fb0da32f8225a975c149a30bb5e3b1db3cb46286ac8aad4b30ce20a2324"
+    },
+    {
+      "unitID": "toc:28238",
+      "rawUnitTitle": "פסקה יח",
+      "sourceLineIndices": [
+        49,
+        50
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 49,
+      "unitEndLineIndex": 50,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "73e2f935c623ad7dc1a376377fea137c64097d765f415e996289924a308b0b5b",
+      "rawMembershipSHA256": "8fa4592bdd3cc088d09f5654fb6b8813d39c798241fe1d258a277f619930c09c"
+    },
+    {
+      "unitID": "toc:28239",
+      "rawUnitTitle": "פסקה יט",
+      "sourceLineIndices": [
+        51,
+        52
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 51,
+      "unitEndLineIndex": 52,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "e8ddb1a4d528f6e3867557f8bd88cb8925ee02d4fd4fc77b6ac1b993080db359",
+      "rawMembershipSHA256": "2b11fee8260b71737f672a330d2eaa5ee1f6181653098925bb85d28149bd368e"
+    },
+    {
+      "unitID": "toc:28240",
+      "rawUnitTitle": "פסקה כ",
+      "sourceLineIndices": [
+        53,
+        54
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 53,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "5b0078cd414c695e4cf5e745fa5cf3a7d09c1cc637ac3a06c3263f4c0d54690a",
+      "rawMembershipSHA256": "f89cb0f0e41ec4c6a785bdcdb10124834bc6b0f0ab94ba32f2dee2111ffd7595"
+    },
+    {
+      "unitID": "toc:28241",
+      "rawUnitTitle": "פסקה כא",
+      "sourceLineIndices": [
+        55,
+        56
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 56,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "40f276946b410720c53563b485e27443a82807dae11bacd4eede251b1d7eec0d",
+      "rawMembershipSHA256": "b5d59e71668e4912c1f29d541296e3ebab8f265711d67e9d3d3880dafc2a65e3"
+    },
+    {
+      "unitID": "toc:28242",
+      "rawUnitTitle": "פסקה כב",
+      "sourceLineIndices": [
+        57,
+        58
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 57,
+      "unitEndLineIndex": 58,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "5179480ffa76c258df09205d843af16b841286358a939e2066561b6b2aeae21d",
+      "rawMembershipSHA256": "84313f31a979b3d7468a0a01d94c330d248e2bd1736675b950df7f9c399f8cd3"
+    },
+    {
+      "unitID": "toc:28243",
+      "rawUnitTitle": "פסקה כג",
+      "sourceLineIndices": [
+        59,
+        60
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 59,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "feed0c470b28473effc2ef5000f5de7ce9637912d84f044d540ad43255e6ea7f",
+      "rawMembershipSHA256": "5f725dc5e920608292450eca25e828820c453f3e27d3c8833f97498ca37a9a97"
+    },
+    {
+      "unitID": "toc:28244",
+      "rawUnitTitle": "פסקה כד",
+      "sourceLineIndices": [
+        61,
+        62
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "384b88c1aeec78f8cfb80907012f68bcc2fba913bd4863b72134e09c40952783",
+      "rawMembershipSHA256": "c567f286714b674da4288dd117fb1b7ea13d1e0e8398865933e31c21692dd0fe"
+    },
+    {
+      "unitID": "toc:28245",
+      "rawUnitTitle": "פסקה כה",
+      "sourceLineIndices": [
+        63,
+        64
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 40,
+      "sourceIndicesSHA256": "e7812173fe1fd0cc36fa630876e68718ed74d452ad69100aff9948415e2488c8",
+      "rawMembershipSHA256": "9ba1247c49224f9895a30dc4b0e1749843c95c6eb8eb26be9639f623777dcf73"
+    },
+    {
+      "unitID": "toc:28246",
+      "rawUnitTitle": "פסקה כו",
+      "sourceLineIndices": [
+        65,
+        66
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "44f65a6052fe627180092b01e155115b4e4cd4764e28c025cae892f3bec835ae",
+      "rawMembershipSHA256": "e3d6727a3a7c8a928cad15db107569433fb7e46ea51f8c50ecd26fc91fab50ee"
+    },
+    {
+      "unitID": "toc:28247",
+      "rawUnitTitle": "פסקה כז",
+      "sourceLineIndices": [
+        67,
+        68
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "0e1b0dfa2323dce336b99189db29844694241142538a04b2377a3b9313d5db0c",
+      "rawMembershipSHA256": "ae1c21332731c814b7da9eaca5dde47885550db779513d7c836605c3a59260aa"
+    },
+    {
+      "unitID": "toc:28248",
+      "rawUnitTitle": "פסקה כח",
+      "sourceLineIndices": [
+        69,
+        70,
+        71
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "d2014bee7816b00f6d31eb7d05c30bfa80fe9a423e9ba3f19bd9a6f23e8921c5",
+      "rawMembershipSHA256": "14b2f8328da33c6d98de85ee61ae7986a42e79d5fc68b940cceab93fa2f249ce"
+    },
+    {
+      "unitID": "toc:28249",
+      "rawUnitTitle": "פסקה כט",
+      "sourceLineIndices": [
+        72,
+        73,
+        74
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 74,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "6938a570584f2b25ecf9f6930098b1c4574bca24662f2b835d86fb4026575264",
+      "rawMembershipSHA256": "27bf2ed2606018f3a4b94b6e369d8fdefe4948570aa4668c2d88606480c964a3"
+    },
+    {
+      "unitID": "toc:28250",
+      "rawUnitTitle": "פסקה ל",
+      "sourceLineIndices": [
+        75,
+        76
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 75,
+      "unitEndLineIndex": 76,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "fb299af5efc4fb37df00bc1a6e9a1fda9abd6670b62b2460c62ce2326acb9d49",
+      "rawMembershipSHA256": "7bf2714f431c061adb72d79b767c291e418a17e1a63da6852b0e94ef6954f826"
+    },
+    {
+      "unitID": "toc:28251",
+      "rawUnitTitle": "פסקה לא",
+      "sourceLineIndices": [
+        77,
+        78,
+        79,
+        80
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 77,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "f306f670019e13fc587ff72965cf673649e218ea297a5f2ff13a86be3c63078b",
+      "rawMembershipSHA256": "b1b6abb9ce1a9a1cd5f46c27bc27d64b90a664a86942a514e996b54967f0b69f"
+    },
+    {
+      "unitID": "toc:28252",
+      "rawUnitTitle": "פסקה לב",
+      "sourceLineIndices": [
+        81,
+        82
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "fd9b3391e05daff42f0a20cf579b049d88b473e7cbb9120b8e36d859eece2e20",
+      "rawMembershipSHA256": "05747ae36af65c19846e80a0eccac2e0b132fd72cfbc7a04990c014e542ec3a8"
+    },
+    {
+      "unitID": "toc:28253",
+      "rawUnitTitle": "פסקה לג",
+      "sourceLineIndices": [
+        83,
+        84
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 84,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "d931b7221739c41a0e26e44011f03d4439db9e6647bbeef3e6a3817d23ea0eb5",
+      "rawMembershipSHA256": "f91e264828e522ac67d8f901963783cc24446ddd7d9b2ec654f38af88e3c1777"
+    },
+    {
+      "unitID": "toc:28254",
+      "rawUnitTitle": "פסקה לד",
+      "sourceLineIndices": [
+        85,
+        86
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 85,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "8154f7f6aa97f0e7d84eb8eeb5a704948dc1c13c7f4568448ecdd6a0d2e072c5",
+      "rawMembershipSHA256": "e7df32b5f5e703b897ec4ab30eb53feb7cf4d997049e092a834ca7f0e30badc8"
+    },
+    {
+      "unitID": "toc:28255",
+      "rawUnitTitle": "פסקה לה",
+      "sourceLineIndices": [
+        87,
+        88
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 87,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 29,
+      "sourceIndicesSHA256": "743b2a08658e9f6493f1288e1dc5adcbd2cae15a370524ccaea4ba4be74ae129",
+      "rawMembershipSHA256": "fd7b1caee6c0e2901e8b9a9c9493f63b268275a648419e578171d61770e256a7"
+    },
+    {
+      "unitID": "toc:28256",
+      "rawUnitTitle": "פסקה לו",
+      "sourceLineIndices": [
+        89,
+        90
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 90,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "11a618f72c700daf3be36deb5b88bf957653aef622cbf29b6aedfdd2b8a05167",
+      "rawMembershipSHA256": "04893ca12dee468a45c3868bc3da97c66da3cf1d7d789696f2c38aed474488b1"
+    },
+    {
+      "unitID": "toc:28257",
+      "rawUnitTitle": "פסקה לז",
+      "sourceLineIndices": [
+        91,
+        92
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 91,
+      "unitEndLineIndex": 92,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "b793acdfa0525fded54c5a24fa448ad64e6db25fd52e9754017667e7bbe9c519",
+      "rawMembershipSHA256": "f1bafbdad668aa20ae2becdd34b6336388c03dcc58e7fce688c9648f777d5d62"
+    },
+    {
+      "unitID": "toc:28258",
+      "rawUnitTitle": "פסקה לח",
+      "sourceLineIndices": [
+        93,
+        94
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 93,
+      "unitEndLineIndex": 94,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "fd24e96ad2b3b7626e10a76b42c43627a1c7a9a6e345d6f7c624707664c3ff0f",
+      "rawMembershipSHA256": "6fc66af2d3c472026d1740534169a5285f85c5f50303ca955d36e6d4523b582b"
+    },
+    {
+      "unitID": "toc:28259",
+      "rawUnitTitle": "פסקה לט",
+      "sourceLineIndices": [
+        95,
+        96
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 95,
+      "unitEndLineIndex": 96,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "1100901ef003f9694661409c6a346c6a90e2f7875871ce8785772c6bd65c0ba3",
+      "rawMembershipSHA256": "4dda3722dce6494a22b4e132e4eef40e403cf8ac8c9d7d8b556424eb81fd2129"
+    },
+    {
+      "unitID": "toc:28260",
+      "rawUnitTitle": "פסקה מ",
+      "sourceLineIndices": [
+        97,
+        98
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 97,
+      "unitEndLineIndex": 98,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "58aa68524a36e7b02159ebcba3d56eb06faf13985133c1f81d4f93cfec1dd9cb",
+      "rawMembershipSHA256": "1cf55edc4127e6cfbf4b01bbb4e7d917f47645ff647a581b1bafc5b1c805796c"
+    },
+    {
+      "unitID": "toc:28261",
+      "rawUnitTitle": "פסקה מא",
+      "sourceLineIndices": [
+        99,
+        100
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 99,
+      "unitEndLineIndex": 100,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 39,
+      "sourceIndicesSHA256": "880f601a06c9a8b45810be41d44c522c208ad93751a38e17b8de200d5467bcb4",
+      "rawMembershipSHA256": "28c3e4a489f09f29b555e97c1e74edd6670883eda16d1458869fd7abb33ffb4b"
+    },
+    {
+      "unitID": "toc:28262",
+      "rawUnitTitle": "פסקה מב",
+      "sourceLineIndices": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 101,
+      "unitEndLineIndex": 105,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 171,
+      "sourceIndicesSHA256": "c88bd46993c0cc06b927ca8fe26f61efc7597d70697757b46a8e9e6dcfc56943",
+      "rawMembershipSHA256": "8d34d7fe60ffd787ba5b32ec9350e1389991ce0e923c3596e7a452d18f91d40a"
+    },
+    {
+      "unitID": "toc:28263",
+      "rawUnitTitle": "פסקה מג",
+      "sourceLineIndices": [
+        106,
+        107
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 106,
+      "unitEndLineIndex": 107,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "bc16292e5109f11d960c566ab85d4dfe2defd47b49c909ceab229f03fb169637",
+      "rawMembershipSHA256": "a9811d323c972a998bc41a15e54819b736d38fdf2547d69e03d4d9ff877b86c3"
+    },
+    {
+      "unitID": "toc:28264",
+      "rawUnitTitle": "פסקה מד",
+      "sourceLineIndices": [
+        108,
+        109
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 108,
+      "unitEndLineIndex": 109,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "20f5fc3896a9c7684bf843484ff862d22cc302b21a86464248ce0b95ffa7292b",
+      "rawMembershipSHA256": "1a594c13c2b452543af430bbac3778cb80f32599e051aa49fcc2d30b497af03f"
+    },
+    {
+      "unitID": "toc:28265",
+      "rawUnitTitle": "פסקה מה",
+      "sourceLineIndices": [
+        110,
+        111
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 110,
+      "unitEndLineIndex": 111,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "5cdd559af57eaae8a192a2768b0abddda0e9e11f37d4959336910021d33a89d2",
+      "rawMembershipSHA256": "f6ac43583b8fdf89ef64496577f266f0791a9beea144e071f6400ad82e134907"
+    },
+    {
+      "unitID": "toc:28266",
+      "rawUnitTitle": "פסקה מו",
+      "sourceLineIndices": [
+        112,
+        113,
+        114
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 112,
+      "unitEndLineIndex": 114,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 33,
+      "sourceIndicesSHA256": "ef3908689b32a4092c758690d0f589d7beab0adcdcc08116986b1d2d03a96d96",
+      "rawMembershipSHA256": "2d5c28a1088ffec87b066c0c0e19367419f1dbe6c93ef960324d1bdac227eea1"
+    },
+    {
+      "unitID": "toc:28267",
+      "rawUnitTitle": "פסקה מז",
+      "sourceLineIndices": [
+        115,
+        116
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 115,
+      "unitEndLineIndex": 116,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "d5cc5ad17c65bc082dab2569ed8f0c94f8cb293cfac37fae81e68d5ef80c172c",
+      "rawMembershipSHA256": "1d11c0b7f6b82e9fe7b10b50f09060647e82255eed9da02e7c96f2ce2fab9b0e"
+    },
+    {
+      "unitID": "toc:28268",
+      "rawUnitTitle": "פסקה מח",
+      "sourceLineIndices": [
+        117,
+        118
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 117,
+      "unitEndLineIndex": 118,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "5c8bf52146d251417727a24abb38fd101cd911d2a008597eb948d3770551712a",
+      "rawMembershipSHA256": "47347cf83450b959570e1f5cf674e628c5151e2addd1efeaca87e3f9147067aa"
+    },
+    {
+      "unitID": "toc:28269",
+      "rawUnitTitle": "פסקה מט",
+      "sourceLineIndices": [
+        119,
+        120
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 119,
+      "unitEndLineIndex": 120,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "db5f710b57a41e20ed952b110b2e1a8802f0e94ad4937fd59f877f2e4444f5c2",
+      "rawMembershipSHA256": "3051b51f615248999ead3f8360aa37e643768e2be71f4ff6f02ccfb2c98a2e51"
+    },
+    {
+      "unitID": "toc:28270",
+      "rawUnitTitle": "פסקה נ",
+      "sourceLineIndices": [
+        121,
+        122
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 121,
+      "unitEndLineIndex": 122,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "b149f0511b963ce54c6b7b62c469aed64f0346a01a735b5e130343820c4ce4e3",
+      "rawMembershipSHA256": "2c6a1a7a96b9e4263b913c066371a98778bd793f1833e1d5ea37ba1afe8d7577"
+    },
+    {
+      "unitID": "toc:28271",
+      "rawUnitTitle": "פסקה נא",
+      "sourceLineIndices": [
+        123,
+        124
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 123,
+      "unitEndLineIndex": 124,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "0f495ce71c2a142bde7d6804d8c224a8e1534bf768ad4b2d664168b427b98fd2",
+      "rawMembershipSHA256": "bfca27cd68a3f92d01440f43fe5fcd494fc16a8bc349be1f97a4a23eef0ded06"
+    },
+    {
+      "unitID": "toc:28272",
+      "rawUnitTitle": "פסקה נב",
+      "sourceLineIndices": [
+        125,
+        126
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 125,
+      "unitEndLineIndex": 126,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "3a8f523f7a6279a0b2269a2f627949ff9345f2ddfb2cb210db9cbca60ed91c9d",
+      "rawMembershipSHA256": "264e9f40e56dd0477c3a71608fa45bfd6303ad8e3d2bdecd7a6b2c66be61356a"
+    },
+    {
+      "unitID": "toc:28273",
+      "rawUnitTitle": "פסקה נג",
+      "sourceLineIndices": [
+        127,
+        128
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 127,
+      "unitEndLineIndex": 128,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "dbb5edcf7f80ee3636f5212027965124c094319015ce725b6d0c98ef9a476c92",
+      "rawMembershipSHA256": "b423b5ca847f6e65fbc14927821db866644b1710b505ed6743d99ac0ffe297a9"
+    },
+    {
+      "unitID": "toc:28274",
+      "rawUnitTitle": "פסקה נד",
+      "sourceLineIndices": [
+        129,
+        130
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 129,
+      "unitEndLineIndex": 130,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "15ad2aa7eea46a326117e0590bf3825f30701181c83f683d6f01f581ad45babf",
+      "rawMembershipSHA256": "9dd8ffe488c5e74b369a10983b81e557ba53c3c73477118395b4f5f181173a8b"
+    },
+    {
+      "unitID": "toc:28275",
+      "rawUnitTitle": "פסקה נה",
+      "sourceLineIndices": [
+        131,
+        132
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 131,
+      "unitEndLineIndex": 132,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "d7b109bc499a2f4c5d5f4249dfa589bd0b55cb9e02c893bb60c45ad843b48716",
+      "rawMembershipSHA256": "0e1c3fc89894142e2814eac4c3801f976abb3840d3a4ca6fbe553305da45bdbc"
+    },
+    {
+      "unitID": "toc:28276",
+      "rawUnitTitle": "פסקה נו",
+      "sourceLineIndices": [
+        133,
+        134
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 133,
+      "unitEndLineIndex": 134,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "8c7729d172b027784eadf4e6f4669813a6990e67d65147d276a3c3692df68ebe",
+      "rawMembershipSHA256": "de6153507d74ff251c3bc096ab18e4d899293c9b3dca0b7cab0218fedb672195"
+    },
+    {
+      "unitID": "toc:28277",
+      "rawUnitTitle": "פסקה נז",
+      "sourceLineIndices": [
+        135,
+        136
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 135,
+      "unitEndLineIndex": 136,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "ec5cdbda648393b64125854cf9598548a4319138745ca427fb037fe6e4cd273c",
+      "rawMembershipSHA256": "2329097e3bd3e64b3e01d99fb526b29d266fcc88d1efaa49dbbc988075789e5d"
+    },
+    {
+      "unitID": "toc:28278",
+      "rawUnitTitle": "פסקה נח",
+      "sourceLineIndices": [
+        137,
+        138,
+        139
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 137,
+      "unitEndLineIndex": 139,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 27,
+      "sourceIndicesSHA256": "a43ff303ae83803e10dea2c2c6dc4a3f9aa150c89ab74dfe9e01f831520137f3",
+      "rawMembershipSHA256": "335466afcb3de25af3509558a5726f7bcbce089706eadd8eac79fe165543e303"
+    },
+    {
+      "unitID": "toc:28279",
+      "rawUnitTitle": "פסקה נט",
+      "sourceLineIndices": [
+        140,
+        141
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 140,
+      "unitEndLineIndex": 141,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "100f48b27a225ef197b090688dd6c0ee7081071268d928e6c9038bade4661a1e",
+      "rawMembershipSHA256": "2c26e8a010cf6404824427bf964927f39e14e659582f7080d7511239d2ee7245"
+    },
+    {
+      "unitID": "toc:28280",
+      "rawUnitTitle": "פסקה ס",
+      "sourceLineIndices": [
+        142,
+        143
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 142,
+      "unitEndLineIndex": 143,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "28df8b016f574b123d9720979948d547fd4e67f2d72fde3ff33608fbc0f7e61d",
+      "rawMembershipSHA256": "4f2457b81577a5650297e8731f5a0322f6a9999b3a6e452e04d48597fdf35d51"
+    },
+    {
+      "unitID": "toc:28281",
+      "rawUnitTitle": "פסקה סא",
+      "sourceLineIndices": [
+        144,
+        145
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 144,
+      "unitEndLineIndex": 145,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "74e4b121c8031f8e4910452f0c958767060654584da098b3758f686bb75d0495",
+      "rawMembershipSHA256": "c82adc0f9a143e141a999cb791e5fa5184d48a601d955ea5f1e8b6f9a04d1307"
+    },
+    {
+      "unitID": "toc:28282",
+      "rawUnitTitle": "פסקה סב",
+      "sourceLineIndices": [
+        146,
+        147
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 146,
+      "unitEndLineIndex": 147,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "fa9304cb3904ceb496a25eed676922b94c6b79fdd17fcd2a92f9cf1482a0c41a",
+      "rawMembershipSHA256": "510ade8a5e9297fa7ab145331b037af55c5f9e4817f37ddfaf3343cc9b4c07f8"
+    },
+    {
+      "unitID": "toc:28283",
+      "rawUnitTitle": "פסקה סג",
+      "sourceLineIndices": [
+        148,
+        149
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 148,
+      "unitEndLineIndex": 149,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "bbc58316aaaabdb9ba717222f22a8514991b5bc6c0f4ab03fc68359448be8f77",
+      "rawMembershipSHA256": "267220ec0d95b6137418af8f267acb7e53a95f14a746961f7ddd0393b594803f"
+    },
+    {
+      "unitID": "toc:28284",
+      "rawUnitTitle": "פסקה סד",
+      "sourceLineIndices": [
+        150,
+        151,
+        152
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 150,
+      "unitEndLineIndex": 152,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "b7404283ee36da8f604ded766b5a8be7018616e4c9b25498bef3a201a1e04712",
+      "rawMembershipSHA256": "8e725a47cc4154e0dec844a850faf2d9d6cfa4f5b9d325a5819dedcb37078e58"
+    },
+    {
+      "unitID": "toc:28285",
+      "rawUnitTitle": "פסקה סה",
+      "sourceLineIndices": [
+        153,
+        154
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 153,
+      "unitEndLineIndex": 154,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 27,
+      "sourceIndicesSHA256": "664112f9ee2401ad2fa2417d9cbd029b9cdae3097be454dca8319924e441eca2",
+      "rawMembershipSHA256": "546c0482748a62d931df9690dc8d5e93c82a12df5b62af67254d074a7ce7aaaa"
+    },
+    {
+      "unitID": "toc:28286",
+      "rawUnitTitle": "פסקה סו",
+      "sourceLineIndices": [
+        155,
+        156
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 155,
+      "unitEndLineIndex": 156,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "8b994aa01c8f8d0630751e57e8839a49a3155fd8c23a7bedee25555a04e96523",
+      "rawMembershipSHA256": "613b5a70f5cf1801c39c78b0cc164825edc348622aa93a8398ac3f01546bd979"
+    },
+    {
+      "unitID": "toc:28287",
+      "rawUnitTitle": "פסקה סז",
+      "sourceLineIndices": [
+        157,
+        158
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 157,
+      "unitEndLineIndex": 158,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "1152d1a66844be725f6acef9cb895265043c9d9c6b1b8777ee7288bf7a227a93",
+      "rawMembershipSHA256": "d5d85616db34d7fde0796a8da82f0c76bcc6cf61f1675611d358d9a1df6a09fa"
+    },
+    {
+      "unitID": "toc:28288",
+      "rawUnitTitle": "פסקה סח",
+      "sourceLineIndices": [
+        159,
+        160
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 159,
+      "unitEndLineIndex": 160,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "60a9bbb0309bbec0fc45c80b7730ed4666c3e490084e89a165295a9b356c97fd",
+      "rawMembershipSHA256": "3b5842645bbf4eb86509263cc13f62c8ccf2b7ba6f0d490ca4b5bc6fbd2b672d"
+    },
+    {
+      "unitID": "toc:28289",
+      "rawUnitTitle": "פסקה סט",
+      "sourceLineIndices": [
+        161,
+        162,
+        163
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 161,
+      "unitEndLineIndex": 163,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 43,
+      "sourceIndicesSHA256": "9e84b804a95027e6b12292e4c4fb68f46b6d1283565e7c40480607ad6fc8343a",
+      "rawMembershipSHA256": "221cbfb9a557aaa7bd084708fdb02d6baa0ea1a26f9d4dd59c1fb4acc70fdabb"
+    },
+    {
+      "unitID": "toc:28290",
+      "rawUnitTitle": "פסקה ע",
+      "sourceLineIndices": [
+        164,
+        165
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 164,
+      "unitEndLineIndex": 165,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "2527626ef7ca2f32b4a829dd92b87ee0293712aa32d5799cdd0cafa3f6c61280",
+      "rawMembershipSHA256": "febc2e37f2baecad65ee31a847f3d185d0272878349dd4f97228e07c950a0f25"
+    },
+    {
+      "unitID": "toc:28291",
+      "rawUnitTitle": "פסקה עא",
+      "sourceLineIndices": [
+        166,
+        167
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 166,
+      "unitEndLineIndex": 167,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "b9a2f75fb9a6fdbeb711563696f13783857d2080ce8cb875354a3bdb3f2d4dfb",
+      "rawMembershipSHA256": "ee80db04d224139473556826525d5a47de33f6b073a401c3aa1bd0f053542375"
+    },
+    {
+      "unitID": "toc:28292",
+      "rawUnitTitle": "פסקה עב",
+      "sourceLineIndices": [
+        168,
+        169
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 168,
+      "unitEndLineIndex": 169,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "fe100ef581e5dc1d442656439949b5792cac448752ef1fb84751d86f8571d38e",
+      "rawMembershipSHA256": "a851afcf3833f50c73e4ecdf35f2100788095bcc1dbb2fd31c9f45f78cc346e1"
+    },
+    {
+      "unitID": "toc:28293",
+      "rawUnitTitle": "פסקה עג",
+      "sourceLineIndices": [
+        170,
+        171,
+        172,
+        173
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 170,
+      "unitEndLineIndex": 173,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "fdf113236ee32cd0f9265ff181ac28b21b4a034c34dd632be7be4c245e4200a0",
+      "rawMembershipSHA256": "e68ff4340ebc4a878f56d30d9a908a97001d43a98ea0b85862e470359f4c6198"
+    },
+    {
+      "unitID": "toc:28294",
+      "rawUnitTitle": "פסקה עד",
+      "sourceLineIndices": [
+        174,
+        175
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 174,
+      "unitEndLineIndex": 175,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "52abac3636b1fadfb45afa5d0f6bc01a822f163b8dd20491eb81e75c95a7105b",
+      "rawMembershipSHA256": "aea10bcd2fea7837c93d7d126ef2d68409d1bfe21de28d55e46c1f17c8ec588d"
+    },
+    {
+      "unitID": "toc:28295",
+      "rawUnitTitle": "פסקה עה",
+      "sourceLineIndices": [
+        176,
+        177
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 176,
+      "unitEndLineIndex": 177,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "5dfff61de98e4d965e1f320d6e65729307f0d317110604a4a2f10c4e5be42a75",
+      "rawMembershipSHA256": "b3ed277358082322297daddf05df96e0c5103e8c69fc7be22e4f77d9fcdb0524"
+    },
+    {
+      "unitID": "toc:28296",
+      "rawUnitTitle": "פסקה עו",
+      "sourceLineIndices": [
+        178,
+        179
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 178,
+      "unitEndLineIndex": 179,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "526949df9f93851061bf8bd37bba623a18ff6ab32588fed7287826ec0f911488",
+      "rawMembershipSHA256": "ebcd73a746a329620e6e3f4c3155e96ee421d4c9dfab69928cc4087cac1a4e08"
+    },
+    {
+      "unitID": "toc:28297",
+      "rawUnitTitle": "פסקה עז",
+      "sourceLineIndices": [
+        180,
+        181
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 180,
+      "unitEndLineIndex": 181,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 20,
+      "sourceIndicesSHA256": "221731384d15712cb70fe26963de39016463a8f27d1c6e41423b89d39ed21fea",
+      "rawMembershipSHA256": "42f18aa68449f4a73ea77626c42814061a91a6832ada04d0436741a6ddc6c8e9"
+    },
+    {
+      "unitID": "toc:28298",
+      "rawUnitTitle": "פסקה עח",
+      "sourceLineIndices": [
+        182,
+        183,
+        184,
+        185
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 182,
+      "unitEndLineIndex": 185,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 95,
+      "sourceIndicesSHA256": "c8aec57791607deed0340af36d50dc8b5c45e56d7c1c7ff31d6d47d6127121bc",
+      "rawMembershipSHA256": "6f106863242e95c5c6dffeae1feff74bfd121b050dad411dda9e2861218164dc"
+    },
+    {
+      "unitID": "toc:28299",
+      "rawUnitTitle": "פסקה עט",
+      "sourceLineIndices": [
+        186,
+        187
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 186,
+      "unitEndLineIndex": 187,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "b6e9fdced06a494f21b90b19cdf6b3c85ca2d37a1dbb6f3e3117ff90c55ca57f",
+      "rawMembershipSHA256": "2429453cb654a6dcf06fd651f2c12d07ae2d4cdcd038311e896daecbb1b58de3"
+    },
+    {
+      "unitID": "toc:28300",
+      "rawUnitTitle": "פסקה פ",
+      "sourceLineIndices": [
+        188,
+        189
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 188,
+      "unitEndLineIndex": 189,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "b686872e521f0cab53102ff7cb1fc2266176e680c7af9be211b255e1d6f42e1c",
+      "rawMembershipSHA256": "22bb6961fcc5f6f1d64b9cc7ed94cf94d02bb3dd20847063b3ba7acdfe6ab957"
+    },
+    {
+      "unitID": "toc:28301",
+      "rawUnitTitle": "פסקה פא",
+      "sourceLineIndices": [
+        190,
+        191
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 190,
+      "unitEndLineIndex": 191,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "4a5070a2b7fdd64b71771d64793202ed50221cf81ab8f8a09fd1c69c612800c2",
+      "rawMembershipSHA256": "6cfe8ee883eb4af87cefcf0cdede5b5373f02845fddebccff26a1fc142957773"
+    },
+    {
+      "unitID": "toc:28302",
+      "rawUnitTitle": "פסקה פב",
+      "sourceLineIndices": [
+        192,
+        193
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 192,
+      "unitEndLineIndex": 193,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 20,
+      "sourceIndicesSHA256": "5c9240920a498fa56a4c7c2aa64fe51f2c11f70abe4437f17ca21f662852e0bb",
+      "rawMembershipSHA256": "3e82347ba15885780c1c6ff1a0b38bc6e44049339679cc4d90841c7ff93817cb"
+    },
+    {
+      "unitID": "toc:28303",
+      "rawUnitTitle": "פסקה פג",
+      "sourceLineIndices": [
+        194,
+        195,
+        196,
+        197
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 194,
+      "unitEndLineIndex": 197,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "cdb291a6b7a049fb3f58226d331cfb53e69a768d3aeaeb5ce8a84256c700dc25",
+      "rawMembershipSHA256": "7f7ac1d8dfe30721152d6d9405b9f44714674ea44c7b621e12cc739a58161a6f"
+    },
+    {
+      "unitID": "toc:28304",
+      "rawUnitTitle": "פסקה פד",
+      "sourceLineIndices": [
+        198,
+        199,
+        200,
+        201,
+        202,
+        203
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 198,
+      "unitEndLineIndex": 203,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 97,
+      "sourceIndicesSHA256": "d96bd5ad791fefc3057921967b1b06e780d99d031aea93ce3d4cc2d2e52affeb",
+      "rawMembershipSHA256": "6fec0ee9d47293cab59b7a6d354349432e681e0ea4f1b376055af208e00243d2"
+    },
+    {
+      "unitID": "toc:28305",
+      "rawUnitTitle": "פסקה פה",
+      "sourceLineIndices": [
+        204,
+        205
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 204,
+      "unitEndLineIndex": 205,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "8d75e11d761faf72134326965ffb062df1e7614444c7c362abaee8649ca3dbe5",
+      "rawMembershipSHA256": "da886dd81157bcff0c3dad161ed79048ae8b2cf740116a4f75080160273df7f8"
+    },
+    {
+      "unitID": "toc:28306",
+      "rawUnitTitle": "פסקה פו",
+      "sourceLineIndices": [
+        206,
+        207
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 206,
+      "unitEndLineIndex": 207,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "11112563c062f6bb25c869e1cb131b45bc157dbbad6bfc4b3c4c00aeea3266e7",
+      "rawMembershipSHA256": "47a62da087af2945a9b55911d558f7ef7cf6db59216da5427d3d4a43ed208dd3"
+    },
+    {
+      "unitID": "toc:28307",
+      "rawUnitTitle": "פסקה פז",
+      "sourceLineIndices": [
+        208,
+        209
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 208,
+      "unitEndLineIndex": 209,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "a877edc0929ba6b5314eea7b20409bb31915be2498e855bf858009aed8b98d61",
+      "rawMembershipSHA256": "5bd4ae75a270405b1cd60ee2277170054a9d9ef624f101258cec119b737b2132"
+    },
+    {
+      "unitID": "toc:28308",
+      "rawUnitTitle": "פסקה פח",
+      "sourceLineIndices": [
+        210,
+        211
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 210,
+      "unitEndLineIndex": 211,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 33,
+      "sourceIndicesSHA256": "5eae74925a2912913fea048ea5de7c7b3b64d6b7f2ec175945a43cf423a90647",
+      "rawMembershipSHA256": "f9ab7ae5038b5b243fa8c3a256a253b008588b12f1ae2193f5fe8e93934e38fa"
+    },
+    {
+      "unitID": "toc:28309",
+      "rawUnitTitle": "פסקה פט",
+      "sourceLineIndices": [
+        212,
+        213
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 212,
+      "unitEndLineIndex": 213,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "bc569e4747b5204ed04639516114437e396b2d28a27f9d2abb13348f4235b49b",
+      "rawMembershipSHA256": "557b1601dd862bf14ad32a907188e78d550643810db3e6eb718e84f033ca8d6c"
+    },
+    {
+      "unitID": "toc:28310",
+      "rawUnitTitle": "פסקה צ",
+      "sourceLineIndices": [
+        214,
+        215
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 214,
+      "unitEndLineIndex": 215,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "74071b253e3c139dd6d2be69bfeb388c64a235d7fb29701fb0656171e82314d2",
+      "rawMembershipSHA256": "59b11f13ae2459ee53624bf92e801c67fdeed78d81a6dcd02267f08ca71ea6ec"
+    },
+    {
+      "unitID": "toc:28311",
+      "rawUnitTitle": "פסקה צא",
+      "sourceLineIndices": [
+        216,
+        217
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 216,
+      "unitEndLineIndex": 217,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "32a380dcc0a9c986ab49fb36da6ed282fb4f45774a020417948488631f7ad508",
+      "rawMembershipSHA256": "b2e45df9ff1d3ed2ee8d3571fcf94ddc7cafea5fd760f40b0fed8d0f6d3f22f3"
+    },
+    {
+      "unitID": "toc:28312",
+      "rawUnitTitle": "פסקה צב",
+      "sourceLineIndices": [
+        218,
+        219
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 218,
+      "unitEndLineIndex": 219,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 49,
+      "sourceIndicesSHA256": "b6ca5e4663cb75fbbbe6deff35e1e04971c9c30995c26d58cf16ac2266ae72e0",
+      "rawMembershipSHA256": "fb2c97f1a3f50e49f7b49515c7b4e7b302d6619195c3e29ec7e8e4870b30d99f"
+    },
+    {
+      "unitID": "toc:28313",
+      "rawUnitTitle": "פסקה צג",
+      "sourceLineIndices": [
+        220,
+        221
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 220,
+      "unitEndLineIndex": 221,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "f517dc4b71044ad502e3bae5a4ca89b57923a11806634c47139fa46df557fcce",
+      "rawMembershipSHA256": "cb2505af07164689aa32b06b8e7a2ff7e4b9eb081b42a286d3c941a988404211"
+    },
+    {
+      "unitID": "toc:28314",
+      "rawUnitTitle": "פסקה צד",
+      "sourceLineIndices": [
+        222,
+        223
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 222,
+      "unitEndLineIndex": 223,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "607f2e37509dd7c45da7ee89350791ee58bbf9b9c2aea7e0d2f3c1521ca0f553",
+      "rawMembershipSHA256": "116e9f2debc8c9bd87dfc65d8b3a12e8ff004a2da47ed520f0699698cac7c908"
+    },
+    {
+      "unitID": "toc:28315",
+      "rawUnitTitle": "פסקה צה",
+      "sourceLineIndices": [
+        224,
+        225,
+        226
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 224,
+      "unitEndLineIndex": 226,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "54da764fb45974bc34640308fc74fab87e64ad6f4f21fa55d5715f458cc914ea",
+      "rawMembershipSHA256": "9311d13682a864e36d899dd85f06d4c539b5b6b7faaf242fa4ba72646929974f"
+    },
+    {
+      "unitID": "toc:28316",
+      "rawUnitTitle": "פסקה צו",
+      "sourceLineIndices": [
+        227,
+        228
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 227,
+      "unitEndLineIndex": 228,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "85c01434f6b51579e91f302803b1c2b20414eed82620d362541a1574e47354e0",
+      "rawMembershipSHA256": "6d8d2b8196c20da0a1275a252ee5b66ab124c16199b4dddb47e395adf164933b"
+    },
+    {
+      "unitID": "toc:28317",
+      "rawUnitTitle": "פסקה צז",
+      "sourceLineIndices": [
+        229,
+        230
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 229,
+      "unitEndLineIndex": 230,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "2cf9f61ba56844aa703867a246169da21ad1f06364bcd3f300537c79eb506534",
+      "rawMembershipSHA256": "15936c4ab006a5a3c65f76995c3eeb6fae382e6382cf245ddc9d6cb67d43a48d"
+    },
+    {
+      "unitID": "toc:28318",
+      "rawUnitTitle": "פסקה צח",
+      "sourceLineIndices": [
+        231,
+        232
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 231,
+      "unitEndLineIndex": 232,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "ba30282a3f884074320be4f04b789468f56570a14c7443e5e27f221fb94e9f0d",
+      "rawMembershipSHA256": "2456144c15d5b94a7824e966667f8c7cbcc5a1b1ae0c29ef3486647af45101fe"
+    },
+    {
+      "unitID": "toc:28319",
+      "rawUnitTitle": "פסקה צט",
+      "sourceLineIndices": [
+        233,
+        234
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 233,
+      "unitEndLineIndex": 234,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 35,
+      "sourceIndicesSHA256": "7eb42b329eb40992b29eca884ca4e010d2a09dee6ca6d78a654aa77f668cf0dd",
+      "rawMembershipSHA256": "02277bc5bc160bf200aca6474b5b02e95e312b01cbcf236e42a19eaa3031fe17"
+    },
+    {
+      "unitID": "toc:28320",
+      "rawUnitTitle": "פסקה ק",
+      "sourceLineIndices": [
+        235,
+        236
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 235,
+      "unitEndLineIndex": 236,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "36af3e4057f419f6ee4f405e36720f4ca3ef2e7202eabcfdffda168440655cd8",
+      "rawMembershipSHA256": "2ec2fbe1e32392453796d1e75901f3a307195c19f5f732e191b71d66b8e144ed"
+    },
+    {
+      "unitID": "toc:28321",
+      "rawUnitTitle": "פסקה קא",
+      "sourceLineIndices": [
+        237,
+        238
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 237,
+      "unitEndLineIndex": 238,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "25e38e9387ee183bd2fb8d400a1166d88df317289467af8a171b9a4c9c92f5ea",
+      "rawMembershipSHA256": "9e6cf7be65c488cecb0115897567ac8aa880681a21612d57e4b19eff60638ccd"
+    },
+    {
+      "unitID": "toc:28322",
+      "rawUnitTitle": "פסקה קב",
+      "sourceLineIndices": [
+        239,
+        240
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 239,
+      "unitEndLineIndex": 240,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "37c7c8ab65def486ee4e555e7411e346858437ceee2ea23b568f45c57a3475f5",
+      "rawMembershipSHA256": "50dd0a41ec00c362f58dd72f2c17a445536055e81f8b6a9cbb12e2df3b0f0d25"
+    },
+    {
+      "unitID": "toc:28323",
+      "rawUnitTitle": "פסקה קג",
+      "sourceLineIndices": [
+        241,
+        242
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 241,
+      "unitEndLineIndex": 242,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 31,
+      "sourceIndicesSHA256": "2bf53a3464bc1ec357cff6eba771cb11bf02416ab45165337f9b15fb72725292",
+      "rawMembershipSHA256": "64b8da6e967a4928f9625418f48e7efc3d73aec0e8274ad139278207a982a6c4"
+    },
+    {
+      "unitID": "toc:28324",
+      "rawUnitTitle": "פסקה קד",
+      "sourceLineIndices": [
+        243,
+        244
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 243,
+      "unitEndLineIndex": 244,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "cf93fb3e479684cc53957aec6a65e519333a4d284b1dd572cea144bd20862851",
+      "rawMembershipSHA256": "f6f42074834cb6bace37b1689dfccc12c7dc944b1f34148f1770669a08ba3939"
+    },
+    {
+      "unitID": "toc:28325",
+      "rawUnitTitle": "פסקה קה",
+      "sourceLineIndices": [
+        245,
+        246
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 245,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 37,
+      "sourceIndicesSHA256": "6a646ced31dcb669ffa7d225022ee151e6134c7398cb911904576be4a4b0bc5d",
+      "rawMembershipSHA256": "52aa225a9baada63ac4b8a87f51e841edf33c5bb7ee5cb96a638093af9d42c7a"
+    },
+    {
+      "unitID": "toc:28326",
+      "rawUnitTitle": "פסקה קו",
+      "sourceLineIndices": [
+        247,
+        248
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 247,
+      "unitEndLineIndex": 248,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "356169a69c8847f9153c1e096d311334e566cd231a98513f5d14f67363b8419e",
+      "rawMembershipSHA256": "95d1a329bc1165af2ca16907c5a3d9286874db1488a2c0b692755928d0e2ad82"
+    },
+    {
+      "unitID": "toc:28327",
+      "rawUnitTitle": "פסקה קז",
+      "sourceLineIndices": [
+        249,
+        250,
+        251,
+        252
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 249,
+      "unitEndLineIndex": 252,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 55,
+      "sourceIndicesSHA256": "87a2dc69da234713bac00005c368a8c492acd60ec5f71a8299bc1707777baf52",
+      "rawMembershipSHA256": "e3762ccaa36a28935e8005d4a6d6de2e17435b8c9f6a01412602515e16a5caec"
+    },
+    {
+      "unitID": "toc:28328",
+      "rawUnitTitle": "פסקה קח",
+      "sourceLineIndices": [
+        253,
+        254
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 253,
+      "unitEndLineIndex": 254,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "5ce494965bcf39fad3d8775e6a31510e82451452d83cccec6962f1f947976537",
+      "rawMembershipSHA256": "ebaa0d3a6ccbbbb9d637264648be403bf9e31f965abd73732c3c1d441804f1d6"
+    },
+    {
+      "unitID": "toc:28329",
+      "rawUnitTitle": "פסקה קט",
+      "sourceLineIndices": [
+        255,
+        256
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 255,
+      "unitEndLineIndex": 256,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "6a88aff13183b7050fa302bd063719ca03baedd5a7c4b6bf67677c455a5cfaa7",
+      "rawMembershipSHA256": "d43af1bcbcf437528e114cc644383c268ec080c115136855741575e443fc1827"
+    },
+    {
+      "unitID": "toc:28330",
+      "rawUnitTitle": "פסקה קי",
+      "sourceLineIndices": [
+        257,
+        258,
+        259
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 257,
+      "unitEndLineIndex": 259,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 32,
+      "sourceIndicesSHA256": "c57e53f1f4d2bb0fca8d01f8eecd7f5edffba10ef88fc04a5439f5bb8aeff73c",
+      "rawMembershipSHA256": "dc1240fedea58b3e9ffba1d0caded4421ee63a206a81179537166db84c961a1a"
+    },
+    {
+      "unitID": "toc:28331",
+      "rawUnitTitle": "פסקה קיא",
+      "sourceLineIndices": [
+        260,
+        261,
+        262,
+        263
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 260,
+      "unitEndLineIndex": 263,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 48,
+      "sourceIndicesSHA256": "877783e577653a196983082ca5f837ea7498ac80291004bc708906bc3cfb4227",
+      "rawMembershipSHA256": "c4c532772c9ff6a858209f9854a9d743df37886959104487ac8c889cfeb1b9f5"
+    },
+    {
+      "unitID": "toc:28332",
+      "rawUnitTitle": "פסקה קיב",
+      "sourceLineIndices": [
+        264,
+        265,
+        266
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 264,
+      "unitEndLineIndex": 266,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 59,
+      "sourceIndicesSHA256": "14d9ca3f092beea19a1caa820cd600ff509ae152a7c57227a691dd5fbe2fc604",
+      "rawMembershipSHA256": "39e487e338af1d20975ff1f9aa768d1cbf7ae5e4d5e4f84249bc418f08a0260c"
+    },
+    {
+      "unitID": "toc:28333",
+      "rawUnitTitle": "פסקה קיג",
+      "sourceLineIndices": [
+        267,
+        268
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 267,
+      "unitEndLineIndex": 268,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "8ff6dce1e816fae50886345530afca972189cff60ff25bd828ef110b6922ff4d",
+      "rawMembershipSHA256": "729a70a142474753171e1f4782f9b17bf5dc937ae27b2d700a4c403f77be11f5"
+    },
+    {
+      "unitID": "toc:28334",
+      "rawUnitTitle": "פסקה קיד",
+      "sourceLineIndices": [
+        269,
+        270
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 269,
+      "unitEndLineIndex": 270,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "f42d1606a44f88fa10046147fded723605e80a619e523cb33a2c3e941cd1826b",
+      "rawMembershipSHA256": "f35aa1b967c5909ee04649ecdfec79f473d473cb53f3a810f77d9c19bf634558"
+    },
+    {
+      "unitID": "toc:28335",
+      "rawUnitTitle": "פסקה קטו",
+      "sourceLineIndices": [
+        271,
+        272,
+        273
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 271,
+      "unitEndLineIndex": 273,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 67,
+      "sourceIndicesSHA256": "9e62e52c4f8127871d0839305a8e05c2d1b0cadfa6701c31ee190ea85d4f5b6a",
+      "rawMembershipSHA256": "88f3998110bed876e3487bbbd742dea3ddb3e1ca084bd117b4d3e30e590c5633"
+    },
+    {
+      "unitID": "toc:28336",
+      "rawUnitTitle": "פסקה קטז",
+      "sourceLineIndices": [
+        274,
+        275,
+        276
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 274,
+      "unitEndLineIndex": 276,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 37,
+      "sourceIndicesSHA256": "0f12b72372ec2a3423b5b18cc8c29d0d9232e2f55489f6f675ac17bc44ff3b35",
+      "rawMembershipSHA256": "eb78fa5ad9299e9b9d172c949026ad17017f4e05ecb878c570e53fb869a4475b"
+    },
+    {
+      "unitID": "toc:28337",
+      "rawUnitTitle": "פסקה קיז",
+      "sourceLineIndices": [
+        277,
+        278,
+        279,
+        280
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 277,
+      "unitEndLineIndex": 280,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "388d90045735679b799c8d4ee77b18ea38a02f9442d09d82a4eaf7d98ddd875c",
+      "rawMembershipSHA256": "2abde75cd4ffccbb06801d53aad8a39fa911671dfaee209544e3775b31bc9588"
+    },
+    {
+      "unitID": "toc:28338",
+      "rawUnitTitle": "פסקה קיח",
+      "sourceLineIndices": [
+        281,
+        282
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 281,
+      "unitEndLineIndex": 282,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 44,
+      "sourceIndicesSHA256": "c2ffda92f16ead65d1dfdbc453e95a6f882d5b50058cd07bb47f788d1ffa7020",
+      "rawMembershipSHA256": "a1061d4ad60e93aae02571e718a3cba99d97a1c3fd83f0c4ec54ec94fa60f2af"
+    },
+    {
+      "unitID": "toc:28339",
+      "rawUnitTitle": "פסקה קיט",
+      "sourceLineIndices": [
+        283,
+        284,
+        285,
+        286,
+        287,
+        288
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 283,
+      "unitEndLineIndex": 288,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 81,
+      "sourceIndicesSHA256": "4d5e523ceb2f358559aef3a8694e7e8dbc8c23a1178404b1e49aa6137569349a",
+      "rawMembershipSHA256": "1be0b82e808cdff95788220cfe0af270b80c000213f1dd7a87875a3f13c3490b"
+    },
+    {
+      "unitID": "toc:28340",
+      "rawUnitTitle": "פסקה קכ",
+      "sourceLineIndices": [
+        289,
+        290
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 289,
+      "unitEndLineIndex": 290,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "d1b4c9761bfc3f56f276ff48da9dba32680a10b4dce6df4089ee9246ca07d523",
+      "rawMembershipSHA256": "463572d1e889194c127ca1671d0e4b9a57b2f4a1a0792e9ac4d28d831b9bf506"
+    },
+    {
+      "unitID": "toc:28341",
+      "rawUnitTitle": "פסקה קכא",
+      "sourceLineIndices": [
+        291,
+        292
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 291,
+      "unitEndLineIndex": 292,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 20,
+      "sourceIndicesSHA256": "d829a18cd30265ed0ad70d0964ceb18857850bf964cfa6beba283c45d317d337",
+      "rawMembershipSHA256": "c949e96960d04914f499a077f77eecd258c0b968a0e7c41ef10c6b568ce86aac"
+    },
+    {
+      "unitID": "toc:28342",
+      "rawUnitTitle": "פסקה קכב",
+      "sourceLineIndices": [
+        293,
+        294
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 293,
+      "unitEndLineIndex": 294,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "cdec44df7a3f2b36f7967512277ef965a074456b5f1c626f562ee8157d2125b6",
+      "rawMembershipSHA256": "d1ac33da850e06ef058ff1f272068413fd505a9872ca51f117bd09844c4e2828"
+    },
+    {
+      "unitID": "toc:28343",
+      "rawUnitTitle": "פסקה קכג",
+      "sourceLineIndices": [
+        295,
+        296,
+        297
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 295,
+      "unitEndLineIndex": 297,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "9e2ee7a81836c46b50cc68c6fdfbcbd467fab9bb51f715c02d0352579b21eb34",
+      "rawMembershipSHA256": "d2beb4af328aac036e5128fa312a2902237d3595ba1095abb8d5144abb83b0f6"
+    },
+    {
+      "unitID": "toc:28344",
+      "rawUnitTitle": "פסקה קכד",
+      "sourceLineIndices": [
+        298,
+        299,
+        300
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 298,
+      "unitEndLineIndex": 300,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 44,
+      "sourceIndicesSHA256": "569b0c57c139ff5b37c3133e0f41395db6f4522f1931ea722467e6966ffabfb6",
+      "rawMembershipSHA256": "e4e16ba32b625e20522b18c18e14bce11102c8932acb3e1bf451889eb1a71942"
+    },
+    {
+      "unitID": "toc:28345",
+      "rawUnitTitle": "פסקה קכה",
+      "sourceLineIndices": [
+        301,
+        302
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 301,
+      "unitEndLineIndex": 302,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "316f0d492df49348ccd0cd0dad250f881f7fd0633ca7d08f0d05346c1b84c925",
+      "rawMembershipSHA256": "8ccc2e1b987c7d161bc51b0dd236bec798693b5a46b1207ac38ab778176be7ba"
+    },
+    {
+      "unitID": "toc:28346",
+      "rawUnitTitle": "פסקה קכו",
+      "sourceLineIndices": [
+        303,
+        304
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 303,
+      "unitEndLineIndex": 304,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "96d2653a0cc1537d73f636bc48ad9701471cdf9cdf82b236512cbf3a91c193f1",
+      "rawMembershipSHA256": "d5c83500511616200370ac12e66ccc6c84e65b49f801d403de714add3bb3b35a"
+    },
+    {
+      "unitID": "toc:28347",
+      "rawUnitTitle": "פסקה קכז",
+      "sourceLineIndices": [
+        305,
+        306,
+        307,
+        308,
+        309,
+        310
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 305,
+      "unitEndLineIndex": 310,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "b005e36c4f82933fef53a5e38e92c72cf36ed86c2539af61d437daab13af995a",
+      "rawMembershipSHA256": "660f370d7d8890de36b0e5c97b8120de7c69a082e43adf3b96009593ea0ff4b3"
+    },
+    {
+      "unitID": "toc:28348",
+      "rawUnitTitle": "פסקה קכח",
+      "sourceLineIndices": [
+        311,
+        312,
+        313
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 311,
+      "unitEndLineIndex": 313,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "1796b695a97b6ad9d3836fec91c887a2af6cc5c07b215d283fb862179298d52b",
+      "rawMembershipSHA256": "282f8f9d0f14e5936b5a051aeede07174687bf9db1d748e412c229420945b5d3"
+    },
+    {
+      "unitID": "toc:28349",
+      "rawUnitTitle": "פסקה קכט",
+      "sourceLineIndices": [
+        314,
+        315,
+        316,
+        317,
+        318,
+        319
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 314,
+      "unitEndLineIndex": 319,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "4ab9dba2de9f4518bcc99a042694a20c97a66bb411cd130eda3365fc33234aaf",
+      "rawMembershipSHA256": "fdeacb85f736d0f742f3fecb85e6edfb9a9a4059329557452fd4024614b4a110"
+    },
+    {
+      "unitID": "toc:28350",
+      "rawUnitTitle": "פסקה קל",
+      "sourceLineIndices": [
+        320,
+        321
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 320,
+      "unitEndLineIndex": 321,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "0d5a9278f661d3d277c3ec96b32673f4e8d3ef330f43df26e4a93f6f2d93ecd9",
+      "rawMembershipSHA256": "f13c13482105dacde63d1b052da197f5efe3d81b6d75d85ed0fc2b2537adced4"
+    },
+    {
+      "unitID": "toc:28351",
+      "rawUnitTitle": "פסקה קלא",
+      "sourceLineIndices": [
+        322,
+        323,
+        324,
+        325,
+        326,
+        327
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 322,
+      "unitEndLineIndex": 327,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "88ed45852506e21b7346b582333563a265823f1d2599d0cf69ba286f7e950231",
+      "rawMembershipSHA256": "dffad13aba5448c8c3aabfab7e726df9334469d1a78534a5e32a865d0f7517de"
+    },
+    {
+      "unitID": "toc:28352",
+      "rawUnitTitle": "פסקה קלב",
+      "sourceLineIndices": [
+        328,
+        329,
+        330,
+        331,
+        332
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 328,
+      "unitEndLineIndex": 332,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 27,
+      "sourceIndicesSHA256": "fa34496cd021eb9798525905ae3abc1a219b14025eb589532be3be0498896e0c",
+      "rawMembershipSHA256": "036a81e8399fe429b5c2d365ba739cddc82d4861b9ecab8a66302ac6a3c0dba5"
+    },
+    {
+      "unitID": "toc:28353",
+      "rawUnitTitle": "פסקה קלג",
+      "sourceLineIndices": [
+        333,
+        334,
+        335,
+        336,
+        337
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 333,
+      "unitEndLineIndex": 337,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 53,
+      "sourceIndicesSHA256": "98a254b732fde323128bbeaf1ca0fe902a667f66bee5216e572cc12e79e5583c",
+      "rawMembershipSHA256": "465cfb246eb3f53869383758b27b1112f15380a10444723ff1e07f2acf2ae9b3"
+    },
+    {
+      "unitID": "toc:28354",
+      "rawUnitTitle": "פסקה קלד",
+      "sourceLineIndices": [
+        338,
+        339,
+        340,
+        341,
+        342,
+        343
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 338,
+      "unitEndLineIndex": 343,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "2d992ff96d5d29853846d51f14d67c2bc83b65d4cd57817b6ee7211e91b2fcba",
+      "rawMembershipSHA256": "758031ce23459420053954070229ff0f2fd2284b7aa0845151dcb463d7295e00"
+    },
+    {
+      "unitID": "toc:28355",
+      "rawUnitTitle": "פסקה קלה",
+      "sourceLineIndices": [
+        344,
+        345
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 344,
+      "unitEndLineIndex": 345,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "48a354234378d2e030cf18d7db80efa0985ab0a51df1c5288426c8b033348964",
+      "rawMembershipSHA256": "71b9ddff79a891d9843d7260fbc73351634ab0a0898970edb6e0fcd16ff6b105"
+    },
+    {
+      "unitID": "toc:28356",
+      "rawUnitTitle": "פסקה קלו",
+      "sourceLineIndices": [
+        346,
+        347,
+        348,
+        349
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 346,
+      "unitEndLineIndex": 349,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "61896595cc78b952a1492550fcb20a6e4c4ed8b86bf7aecfd88b842b05d18846",
+      "rawMembershipSHA256": "08cc3067f96f9d7e87f7be64d990d59fb790e7b68939a4fe0586cc2140854c84"
+    },
+    {
+      "unitID": "toc:28357",
+      "rawUnitTitle": "פסקה קלז",
+      "sourceLineIndices": [
+        350,
+        351,
+        352
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 350,
+      "unitEndLineIndex": 352,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "f862593fc69fada8c504f791068de6e3a081166f93cb5b91a57cba353bafbfd2",
+      "rawMembershipSHA256": "e55978c875b99554a36c9755ec90333ada0ed76dca904536defd499ba391aa22"
+    },
+    {
+      "unitID": "toc:28358",
+      "rawUnitTitle": "פסקה קלח",
+      "sourceLineIndices": [
+        353,
+        354
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 353,
+      "unitEndLineIndex": 354,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "df1cc4af79841c4f02d4c0fe1b584cdf62b60a27fa0427551e336502b4277552",
+      "rawMembershipSHA256": "7e0818bf9b5a89e8c8e7f6986379475b8926c72decf5e567e178c1f65eb4570a"
+    },
+    {
+      "unitID": "toc:28359",
+      "rawUnitTitle": "פסקה קלט",
+      "sourceLineIndices": [
+        355,
+        356,
+        357
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 355,
+      "unitEndLineIndex": 357,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "2eb7009013a08b72fb6211b550cfb8bd5bff74c716954642ec9950f3bc0d8f0e",
+      "rawMembershipSHA256": "023a7fe1bd0d460c68df2c974b1dad3ac7f1bf810c16bf8ee28a6ade915f68eb"
+    },
+    {
+      "unitID": "toc:28360",
+      "rawUnitTitle": "פסקה קמ",
+      "sourceLineIndices": [
+        358,
+        359,
+        360
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 358,
+      "unitEndLineIndex": 360,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "aef3565c2629a954c7e36344962518a7e60a58557bf315444ff7884db8b76171",
+      "rawMembershipSHA256": "6bd41060b8f781c1ed96e6fea3568771e4a7f68a90213067cd842bb952fbe9a4"
+    },
+    {
+      "unitID": "toc:28361",
+      "rawUnitTitle": "פסקה קמא",
+      "sourceLineIndices": [
+        361,
+        362,
+        363,
+        364
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 361,
+      "unitEndLineIndex": 364,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "f2372af9962d1eb7110626199e757db3a9bf21687e836c212c898354e103c840",
+      "rawMembershipSHA256": "697f8849759800ac9cb474146c64d1343df9ce8b560636b3d9e3309f1352fa7e"
+    },
+    {
+      "unitID": "toc:28362",
+      "rawUnitTitle": "פסקה קמב",
+      "sourceLineIndices": [
+        365,
+        366,
+        367,
+        368,
+        369,
+        370
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 365,
+      "unitEndLineIndex": 370,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "00b8b6494f135b1405ebbd59149598b1eede38726ddda98fb851789bd0a9d6a5",
+      "rawMembershipSHA256": "1db7b7b0af6d518813ce4c437b8fbe05a3030ed9168762f1e3d6dd25fd8835ef"
+    },
+    {
+      "unitID": "toc:28363",
+      "rawUnitTitle": "פסקה קמג",
+      "sourceLineIndices": [
+        371,
+        372,
+        373,
+        374
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 371,
+      "unitEndLineIndex": 374,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 37,
+      "sourceIndicesSHA256": "69df86da259db0d5181532909b81e2df8ae3e54a24703450aff4d1b984b7d8fc",
+      "rawMembershipSHA256": "1f0b5f7361d5a0e71c6a97574eb2bc04a66456bede6d3250be5f85787ceb4203"
+    },
+    {
+      "unitID": "toc:28364",
+      "rawUnitTitle": "פסקה קמד",
+      "sourceLineIndices": [
+        375,
+        376,
+        377
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 375,
+      "unitEndLineIndex": 377,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "f3aa891378768cb46a885dea56c2b2627ac94eaa8aa83395a89fca1c94f59386",
+      "rawMembershipSHA256": "ca3adcb6c7e3fea4af788312cf698499ec85fc1e4200668fb3d8fa845e15b1b5"
+    },
+    {
+      "unitID": "toc:28365",
+      "rawUnitTitle": "פסקה קמה",
+      "sourceLineIndices": [
+        378,
+        379,
+        380,
+        381
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 378,
+      "unitEndLineIndex": 381,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "1a3b705bd1e96a72c4148056d2516439c9ab6eb63347ad546c1b8cb7a5917b3a",
+      "rawMembershipSHA256": "21d584251ddcfd593320d560436240456decb2e9e264fa86a2f402769d9d1147"
+    },
+    {
+      "unitID": "toc:28366",
+      "rawUnitTitle": "פסקה קמו",
+      "sourceLineIndices": [
+        382,
+        383
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 382,
+      "unitEndLineIndex": 383,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "dd9a33c9f621f41cbdbf8500b8de0ab658f9d50be2445324a1387424cde4ef7b",
+      "rawMembershipSHA256": "8749428cdb6cc4617cfa566b886a945591922d621ce409a66edb47fd4fd021a6"
+    },
+    {
+      "unitID": "toc:28367",
+      "rawUnitTitle": "פסקה קמז",
+      "sourceLineIndices": [
+        384,
+        385,
+        386
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 384,
+      "unitEndLineIndex": 386,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "50a50b4caa4cc6f760d2f3c1b58338e31ac46d6e4bcd8ac391711231e999cd61",
+      "rawMembershipSHA256": "3e36e63303ce1d3fb87c12c83f4656ce8dab542020bebd672fda9e6ce5c57901"
+    },
+    {
+      "unitID": "toc:28368",
+      "rawUnitTitle": "פסקה קמח",
+      "sourceLineIndices": [
+        387,
+        388
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 387,
+      "unitEndLineIndex": 388,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "4aa43b81bc6586ac07cead672551167cb3a82b0789212598460a9fffbaaa5181",
+      "rawMembershipSHA256": "2209a44a51fbe2653e0a26657fd9f0cb769047e6b235fdc19b8a42da3076484c"
+    },
+    {
+      "unitID": "toc:28369",
+      "rawUnitTitle": "פסקה קמט",
+      "sourceLineIndices": [
+        389,
+        390,
+        391
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 389,
+      "unitEndLineIndex": 391,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "5ca78188ee5abcf1f23e7c693e701e46223bb5b28ce3b830b25b7ee068dd81ae",
+      "rawMembershipSHA256": "da6b71f8133ca5865831a1f65939162cb11700debc349ed213fba3af275a08c6"
+    },
+    {
+      "unitID": "toc:28370",
+      "rawUnitTitle": "פסקה קנ",
+      "sourceLineIndices": [
+        392,
+        393
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 392,
+      "unitEndLineIndex": 393,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "5c9e95b262682c6cb8816d3ebdbbb6771de5de65abd53dee1e2b625541c91423",
+      "rawMembershipSHA256": "2b27d3c1f33127eb7e41a0e2cfa2490e2ea87a1466077c58c8dbb04532451466"
+    },
+    {
+      "unitID": "toc:28371",
+      "rawUnitTitle": "פסקה קנא",
+      "sourceLineIndices": [
+        394,
+        395,
+        396
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 394,
+      "unitEndLineIndex": 396,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "bc18147f8abf63f565c1e125f82e8ece81ceb1dbff8a18d08cce0df7754d6622",
+      "rawMembershipSHA256": "4c11ddec290b70da3b44550875a6164ba39123f1f0d379c4c588285f026d90db"
+    },
+    {
+      "unitID": "toc:28372",
+      "rawUnitTitle": "פסקה קנב",
+      "sourceLineIndices": [
+        397,
+        398
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 397,
+      "unitEndLineIndex": 398,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "5d73bba7f5073a2bd1ed5045f2ccd273d51276ddda36a7888541b80c89a577c3",
+      "rawMembershipSHA256": "d56a7e7689dd6554add6bfeaee1d23b17288087536ac1195790682007b615d42"
+    },
+    {
+      "unitID": "toc:28373",
+      "rawUnitTitle": "פסקה קנג",
+      "sourceLineIndices": [
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 399,
+      "unitEndLineIndex": 409,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 86,
+      "sourceIndicesSHA256": "9f09effc41b82773c6b81345f88b3677257ac2b00ccda38285c7a63e1dd2a2c2",
+      "rawMembershipSHA256": "c8fa163a5ddad3b527f36f27030491dbd4ac001102bb069d53da95f69174370d"
+    },
+    {
+      "unitID": "toc:28374",
+      "rawUnitTitle": "פסקה קנד",
+      "sourceLineIndices": [
+        410,
+        411,
+        412,
+        413
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 410,
+      "unitEndLineIndex": 413,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "c0c26255b4061add2b1d90a09c87f2e4ab1859ebb22eaae01ec9912a3679e860",
+      "rawMembershipSHA256": "8096ff4ee10e557d6798e0daff4a6b751ed178c365434860d8db05417d374122"
+    },
+    {
+      "unitID": "toc:28375",
+      "rawUnitTitle": "פסקה קנה",
+      "sourceLineIndices": [
+        414,
+        415
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 414,
+      "unitEndLineIndex": 415,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "85eba20e4f34b72d1a068c61dd9fb21a846d6fec6307ec008075f82ad3476d62",
+      "rawMembershipSHA256": "84e250c1303d4a5a3c80eed00c6f5f6038b1e4a420beb3fc08a9bf3ae1760156"
+    },
+    {
+      "unitID": "toc:28376",
+      "rawUnitTitle": "פסקה קנו",
+      "sourceLineIndices": [
+        416,
+        417,
+        418,
+        419
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 416,
+      "unitEndLineIndex": 419,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "a11b7d7f2d5d02fb880871d88d55b1323f601ea07012cb9f55624c4dba278444",
+      "rawMembershipSHA256": "9d461dbfd99ecd2b556f48efef1520616384322ed3d06603a486af4076ed9886"
+    },
+    {
+      "unitID": "toc:28377",
+      "rawUnitTitle": "פסקה קנז",
+      "sourceLineIndices": [
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 420,
+      "unitEndLineIndex": 429,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 102,
+      "sourceIndicesSHA256": "a52a1f5a61a34f1bc04b4be5f1aaa8d9026c16f968e110b86f7b142f8d31a503",
+      "rawMembershipSHA256": "12e0e7258c652df930c02ab9e7f44ed029d421da9473eb5b6542d12e5ff0abe9"
+    },
+    {
+      "unitID": "toc:28378",
+      "rawUnitTitle": "פסקה קנח",
+      "sourceLineIndices": [
+        430,
+        431,
+        432,
+        433
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 430,
+      "unitEndLineIndex": 433,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "7edead4beb6a2859f83cf61696194c027439035fa636f74f1b390ee22bc99019",
+      "rawMembershipSHA256": "4c4da7c2c7dd490b072a267de4ee8588d5cbf7225348a3f65a8cef2ae5a21b94"
+    },
+    {
+      "unitID": "toc:28379",
+      "rawUnitTitle": "פסקה קנט",
+      "sourceLineIndices": [
+        434,
+        435
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 434,
+      "unitEndLineIndex": 435,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "4174498d4f07a5e8815bd384d339d6513e45ae2d0c41f49ddac371cf85e39259",
+      "rawMembershipSHA256": "b61321d119999d315fbdacb2579760c0e779a9545ab0bf290c64c99dd9e81f9c"
+    },
+    {
+      "unitID": "toc:28380",
+      "rawUnitTitle": "פסקה קס",
+      "sourceLineIndices": [
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 436,
+      "unitEndLineIndex": 450,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 91,
+      "sourceIndicesSHA256": "8a88f481206f4a4ebde15d97b0cae75db0548b363b99c13371d6dbf973688ae9",
+      "rawMembershipSHA256": "3d63f2da2a7c3d0b2fcaa1f4e45315c38c21418ac1685be88ae7da44dfc95985"
+    },
+    {
+      "unitID": "toc:28381",
+      "rawUnitTitle": "פסקה קסא",
+      "sourceLineIndices": [
+        451,
+        452,
+        453,
+        454,
+        455,
+        456
+      ],
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "mode": "chapter",
+      "unitStartLineIndex": 451,
+      "unitEndLineIndex": 456,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 36,
+      "sourceIndicesSHA256": "04c70d357567c3e6a5edbf4fed77a54955d931b7619e65337be37c0ea8d734f0",
+      "rawMembershipSHA256": "ab1d86c9af75602af23f24663b7f196fb7ec9c691abe7f55f812f0036190fe08"
+    }
+  ]
+}

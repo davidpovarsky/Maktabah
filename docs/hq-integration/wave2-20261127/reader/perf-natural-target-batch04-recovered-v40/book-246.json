@@ -1,0 +1,3313 @@
+{
+  "bookID": 246,
+  "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+  "declaredTotalLines": 452,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.03989358805119991,
+  "resolvedAnchorRows": 770,
+  "units": [
+    {
+      "unitID": "toc:13923",
+      "rawUnitTitle": "הקדמה",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 7,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "29101ebf1ead685029508789eee51c4d4fff65524064d8e32a48efded7036982",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:1235710",
+      "rawUnitTitle": "אות א",
+      "sourceLineIndices": [
+        8,
+        9
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 8,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "02d6e7b63835ccb6bd8c452eba73b83100c5af80bb9c94fafe03f27e1892eb6c",
+      "rawMembershipSHA256": "783e9aa382a388e9c9f8e901dc98e172a4f876def3cbbe3b62e48f0c85be7a58"
+    },
+    {
+      "unitID": "toc:1235711",
+      "rawUnitTitle": "אות ב",
+      "sourceLineIndices": [
+        10,
+        11
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 11,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "43a2d66e5f850f64677fc2fae986fcdbdf190e6b6f026167f70b21d8860826b3",
+      "rawMembershipSHA256": "fd06c06b0ee6121d2bf915c223082ab80b1dc9973aec5085dce786365a8e4ed8"
+    },
+    {
+      "unitID": "toc:1235712",
+      "rawUnitTitle": "אות ג",
+      "sourceLineIndices": [
+        12,
+        13
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 12,
+      "unitEndLineIndex": 13,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d44b49da11eef52c8694d1cd320ab433ebeca43ebdb81c3a7196a0b6abd9dd6b",
+      "rawMembershipSHA256": "f99d1c662a7f40c5ba2c441eb2d77b913c85ce27ac60aa7cc44884a3f869dc70"
+    },
+    {
+      "unitID": "toc:1235713",
+      "rawUnitTitle": "אות ד",
+      "sourceLineIndices": [
+        14,
+        15
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 14,
+      "unitEndLineIndex": 15,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "7acc3be837b191e910d1db8f1f4e4ca67000b9bd917e3e25d14796e7273c43c1",
+      "rawMembershipSHA256": "012e28513f5b1ee3cbd4bf98e47d05736a9d04de823e3ed93f90a14c61f7dfea"
+    },
+    {
+      "unitID": "toc:1235714",
+      "rawUnitTitle": "אות ה",
+      "sourceLineIndices": [
+        16,
+        17,
+        18
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 16,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "878181bc506b956124ea98571e52e23c909c817bbe91b52e65ae4cea1ceec6d6",
+      "rawMembershipSHA256": "8868310259cd0332af6930cb95bcb9c2537080b9b09fd0a655570599e1086e9d"
+    },
+    {
+      "unitID": "toc:1235715",
+      "rawUnitTitle": "אות ו",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "95cadac1dd104f74891f2f5c9a8cb5bd7880bb3afff257110b9f1aa10a461c08"
+    },
+    {
+      "unitID": "toc:1235716",
+      "rawUnitTitle": "אות ז",
+      "sourceLineIndices": [
+        21,
+        22
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "16f2380a3e0b5e5b1c2d4f701b94a23cff01b0676f32c88b60f22fcd84a26da8",
+      "rawMembershipSHA256": "3fe85fae8a47485eb744e6d41622cd0574a106ef6479bea3af59c200e4f74d4e"
+    },
+    {
+      "unitID": "toc:1235717",
+      "rawUnitTitle": "אות ח",
+      "sourceLineIndices": [
+        23,
+        24
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 24,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "c7235bde31989b3c728ce3f0c5ef87e2a573679410d884dac4a307bad46c17eb",
+      "rawMembershipSHA256": "2ee743c0638f76478bbe8043b0a93c59c7bb17eb4a257a0103b4a86089dffcde"
+    },
+    {
+      "unitID": "toc:1235718",
+      "rawUnitTitle": "אות ט",
+      "sourceLineIndices": [
+        25,
+        26
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 25,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "15dbd358e2e04b82fd900a1d83cb419298abe633792313e491cae32562e52596",
+      "rawMembershipSHA256": "9559d03321741054593b958dba208def0002219408ce360c479800bbe08b1903"
+    },
+    {
+      "unitID": "toc:1235719",
+      "rawUnitTitle": "אות י",
+      "sourceLineIndices": [
+        27,
+        28
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 27,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "174b4f0e4c4348c546001862b6173cad8da801b308af0497bb80400774e413a9",
+      "rawMembershipSHA256": "08bdffb1cbc0b80c514f82e5659885b94d5e94834d6d1e9b14ca697b1f4da05b"
+    },
+    {
+      "unitID": "toc:1235720",
+      "rawUnitTitle": "אות יא",
+      "sourceLineIndices": [
+        29,
+        30
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "8195aa19b2860c12ecd1600d71b1464c7d78613b4732e54d1d8289d94d7e5956",
+      "rawMembershipSHA256": "24c4c3aad9b28ba5d5fad69da92daf9c19f5007d64279df1bbf981cbce191721"
+    },
+    {
+      "unitID": "toc:1235721",
+      "rawUnitTitle": "אות יב",
+      "sourceLineIndices": [
+        31,
+        32
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 32,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "548e49f2adc8c7db5148842e7ce3ebd153854a45593caa8098fec884a076558c",
+      "rawMembershipSHA256": "6d9ce47d19d1befe765650648f7faed8fdf12e3cdb6444975bd8b5a94300315a"
+    },
+    {
+      "unitID": "toc:1235722",
+      "rawUnitTitle": "אות יג",
+      "sourceLineIndices": [
+        33,
+        34
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 33,
+      "unitEndLineIndex": 34,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "4cb60f21c2d87f231b117e6ecf4f706c005975d17ea53a0344bfecdd9609a798",
+      "rawMembershipSHA256": "adbecc8eaa0feb18cc0b7e3d23a8eeda0673d9f921a27de61d4b10050254e434"
+    },
+    {
+      "unitID": "toc:1235723",
+      "rawUnitTitle": "אות יד",
+      "sourceLineIndices": [
+        35,
+        36
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 35,
+      "unitEndLineIndex": 36,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "582b6c28537dcfef03d18ecfbd0e7d01263671d4eff3625cc91529c7672f0bb3",
+      "rawMembershipSHA256": "abe6eb2a649acbf9fc44cebd7750d4b452970ea2dc8592ff8edf2ab98ed3a7dc"
+    },
+    {
+      "unitID": "toc:1235724",
+      "rawUnitTitle": "אות טו",
+      "sourceLineIndices": [
+        37,
+        38
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 37,
+      "unitEndLineIndex": 38,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "ab728d276526135c663a8efdb98231005daaa8eb9c9ac4ffc3e574b80bb85908",
+      "rawMembershipSHA256": "8faf7cab6dbbb4e4d76e41a75091e348352c348ad30e42a8a75e56163512a294"
+    },
+    {
+      "unitID": "toc:1235725",
+      "rawUnitTitle": "אות טז",
+      "sourceLineIndices": [
+        39,
+        40,
+        41
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 39,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "c2f8ce3caef7aaa40a7f8a8f5195fe97c6978ab3dfacafc786e7a2dd786ba7d6",
+      "rawMembershipSHA256": "6231d84fccffd9e1771c1d5f409d42099d5e9d57060a08566c8b6990cec4c50f"
+    },
+    {
+      "unitID": "toc:1235726",
+      "rawUnitTitle": "אות יז",
+      "sourceLineIndices": [
+        42,
+        43
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 43,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "15ebe975f8c4a7644923d3b82dee039760a07438f1b021eb90e7edeab8cf6e3e",
+      "rawMembershipSHA256": "13ea15bc68e5cdf983cb6764ea3840e6db5b196fd402df42ce56c931c28ded30"
+    },
+    {
+      "unitID": "toc:1235727",
+      "rawUnitTitle": "אות יח",
+      "sourceLineIndices": [
+        44,
+        45
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 44,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "e115dbf5f2e4cf0f11c8910d1e649a81dc4fd72a84dacdda3ce26d877b8cab8b",
+      "rawMembershipSHA256": "80ddda4e9959bb0a8c071e91260d07d0a444fb23505759ad57cddbf75d13bfc3"
+    },
+    {
+      "unitID": "toc:1235728",
+      "rawUnitTitle": "אות יט",
+      "sourceLineIndices": [
+        46,
+        47
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 46,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "6a1c7b8e447da25dc5caa8739b2fac538e2a2e5c0a756eb2936cd60571622172",
+      "rawMembershipSHA256": "690fb7e26c0f6b5775be251a60251115ce69d7e89ff26515ec868ec9c658346a"
+    },
+    {
+      "unitID": "toc:1235729",
+      "rawUnitTitle": "אות כ",
+      "sourceLineIndices": [
+        48,
+        49
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 49,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "6bd7cf177944cde1440735165106c09f74f6ef1924c3c84ce8ba4478508b04ef",
+      "rawMembershipSHA256": "0e762e891730ca1873876f666b6916b6005bd3776a21284baf350b378acb8334"
+    },
+    {
+      "unitID": "toc:1235730",
+      "rawUnitTitle": "אות כא",
+      "sourceLineIndices": [
+        50,
+        51
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 50,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "468bab6022e018a8bc6b0d5b38ffee186987ce01c9166538a24e83d464ecac03",
+      "rawMembershipSHA256": "e3dfb6bb0124280ca450f57ecab02e32cf8609517a6e5d0d76f97bbe47aad39e"
+    },
+    {
+      "unitID": "toc:1235731",
+      "rawUnitTitle": "אות כב",
+      "sourceLineIndices": [
+        52,
+        53,
+        54
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "1b7cf9bd87a7baf9bb8bf2b3cf2a481ed43040c4df4722943895cd39996da3df",
+      "rawMembershipSHA256": "6e86ff9f8cb900776611d24b1f3430b50de02b1e10d87c036f311a855f3deeef"
+    },
+    {
+      "unitID": "toc:1235732",
+      "rawUnitTitle": "אות כג",
+      "sourceLineIndices": [
+        55,
+        56
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 56,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "40f276946b410720c53563b485e27443a82807dae11bacd4eede251b1d7eec0d",
+      "rawMembershipSHA256": "88b070956ee326daaee3076af9427bdb624dd06873b61101696ff3fae090cbe4"
+    },
+    {
+      "unitID": "toc:1235733",
+      "rawUnitTitle": "אות כד",
+      "sourceLineIndices": [
+        57,
+        58
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 57,
+      "unitEndLineIndex": 58,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "5179480ffa76c258df09205d843af16b841286358a939e2066561b6b2aeae21d",
+      "rawMembershipSHA256": "f94ef5821745ff0836ae9fd00249008d17d532527a902965848087eea38ed5e9"
+    },
+    {
+      "unitID": "toc:1235734",
+      "rawUnitTitle": "אות כה",
+      "sourceLineIndices": [
+        59,
+        60
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 59,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "feed0c470b28473effc2ef5000f5de7ce9637912d84f044d540ad43255e6ea7f",
+      "rawMembershipSHA256": "dbc62f0f4914696fd65aa44c1154030edf770dde03842614a169bcd2fa2c4929"
+    },
+    {
+      "unitID": "toc:1235735",
+      "rawUnitTitle": "אות כו",
+      "sourceLineIndices": [
+        61,
+        62,
+        63
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 63,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "b569105b49d09e7e8173f9891c89534cd2434c55f98c8288cf0846a4183a7da6",
+      "rawMembershipSHA256": "f9bbd61fdebb4fd094fbaf2ffa1d6244ddaefef10719edf50aed422731e060bc"
+    },
+    {
+      "unitID": "toc:1235736",
+      "rawUnitTitle": "אות כז",
+      "sourceLineIndices": [
+        64,
+        65,
+        66
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 64,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "36c7b0ec2ce66d4c2fe3021662581497de4cbc2eaf45ac2d81dca67903369d49",
+      "rawMembershipSHA256": "b0feff04e92512da2b8ab7813b8073269af68e17e0a8adcd8112615d6d1489c0"
+    },
+    {
+      "unitID": "toc:1235737",
+      "rawUnitTitle": "אות כח",
+      "sourceLineIndices": [
+        67,
+        68
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "0e1b0dfa2323dce336b99189db29844694241142538a04b2377a3b9313d5db0c",
+      "rawMembershipSHA256": "cdcef06e0c566adb019807c7037abe40bbae0881c841e55e2fd2b6989b9c3e76"
+    },
+    {
+      "unitID": "toc:1235738",
+      "rawUnitTitle": "אות כט",
+      "sourceLineIndices": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 74,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "3265863831089903563f593f5a8865a3c662c0d455716ee21f82ed8e2b979d80",
+      "rawMembershipSHA256": "78b0a7c80df073c4edf8b9f0360309b730cc3a9e3b2a6eb51aaa388c10f6c78f"
+    },
+    {
+      "unitID": "toc:1235739",
+      "rawUnitTitle": "אות ל",
+      "sourceLineIndices": [
+        75,
+        76,
+        77
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 75,
+      "unitEndLineIndex": 77,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "0bfd454056ca74a77837914c4d8c6df5c24226e1138f3c59672b489e9076d3ed",
+      "rawMembershipSHA256": "33dd44cee3bede7aa9b3e19ff29f326d9f3776e6a4a83c88cec20757ec597549"
+    },
+    {
+      "unitID": "toc:1235740",
+      "rawUnitTitle": "אות לא",
+      "sourceLineIndices": [
+        78,
+        79
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 78,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "513f3e868c1665ac948ac5f0a27401a8186019dae7d9363e46e073cefedf7a12",
+      "rawMembershipSHA256": "1087e7f1399b75098b9411f9ea043590310c01cc7309e8f1d74cc294df463d4c"
+    },
+    {
+      "unitID": "toc:1235741",
+      "rawUnitTitle": "אות לב",
+      "sourceLineIndices": [
+        80,
+        81
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 81,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "cbf9aaf9f86cc55c6ceeb782bb84de0a860df7d4017ddcae16754b6498583000",
+      "rawMembershipSHA256": "61852535fda8d73095be78b3fb3a2cd60d1fe46688b1d5ea13f2ce6a4ff0e082"
+    },
+    {
+      "unitID": "toc:1235742",
+      "rawUnitTitle": "אות לג",
+      "sourceLineIndices": [
+        82,
+        83,
+        84,
+        85
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 82,
+      "unitEndLineIndex": 85,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "9a05ea33ca1b0da66a536c643c10c463ca1ae01974a7b8afd0e148efa85a7473",
+      "rawMembershipSHA256": "383c7fd3cef51c5a8465fbbc3593ca52b0a3c41e07b9cb771b4320ae95004c01"
+    },
+    {
+      "unitID": "toc:1235743",
+      "rawUnitTitle": "אות לד",
+      "sourceLineIndices": [
+        86,
+        87
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 87,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "4e6f196066ec3e4044166e03d6dd2d2d973a658e4b21729cb6142b7fe3cf221c",
+      "rawMembershipSHA256": "5cbca9ef14cbc0cf1219e68ae8a2953fa1e4b659c9b9f0c710c22b2b6b6c650e"
+    },
+    {
+      "unitID": "toc:1235744",
+      "rawUnitTitle": "אות לה",
+      "sourceLineIndices": [
+        88,
+        89
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 88,
+      "unitEndLineIndex": 89,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "0d34219d2dc3f6c4466ab54429c09a6f6b15e3ef7a6994f9aa261dcb56ae15a1",
+      "rawMembershipSHA256": "def86bfd58eb96d5825027fce83231640b84afcae2405a5868062860eb4133b6"
+    },
+    {
+      "unitID": "toc:1235745",
+      "rawUnitTitle": "אות לו",
+      "sourceLineIndices": [
+        90,
+        91
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 90,
+      "unitEndLineIndex": 91,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "5bc33c52f64ccd5339df9b24980bb20ef3e3ce9b005f10a989f0f6cfb908d93a",
+      "rawMembershipSHA256": "01436240438efd3086981e2d6f74fef8e96664bcb68bf8985b888bce67425c79"
+    },
+    {
+      "unitID": "toc:1235746",
+      "rawUnitTitle": "אות לז",
+      "sourceLineIndices": [
+        92,
+        93,
+        94
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 92,
+      "unitEndLineIndex": 94,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "bcf73a798a8d80064f5c02e578e3a0945a4ade40cc5e9b19218b1a833139a9f3",
+      "rawMembershipSHA256": "8c5164be64a6b8b619bb9544ef0ec7df013b33580d251e75d1357443c90929f0"
+    },
+    {
+      "unitID": "toc:1235747",
+      "rawUnitTitle": "אות לח",
+      "sourceLineIndices": [
+        95,
+        96,
+        97
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 95,
+      "unitEndLineIndex": 97,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4909f6e6fa89e7f19ebc8b35b88f93f8e21236198abcb1e61a27ec64f297502c",
+      "rawMembershipSHA256": "4eac717efdbe4f424878c0284063279de4f25449e2fe48378d2bb986a5df6bf4"
+    },
+    {
+      "unitID": "toc:1235748",
+      "rawUnitTitle": "אות לט",
+      "sourceLineIndices": [
+        98,
+        99
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 98,
+      "unitEndLineIndex": 99,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "448339eb6c39e792f20ad1b877ff8e39fe3920fb33d6fbcda95edab1782e278a",
+      "rawMembershipSHA256": "3688ea15461cb8d2275221c4d7b93937f5aa776d1f8ce1835dd2ed6ff24295cf"
+    },
+    {
+      "unitID": "toc:1235749",
+      "rawUnitTitle": "אות מ",
+      "sourceLineIndices": [
+        100,
+        101
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 100,
+      "unitEndLineIndex": 101,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e6ed5e5ba1ffdb00c5e74bc012817eac783eea305479b95deeb36312d0ee164f",
+      "rawMembershipSHA256": "b7966833db1ad2df313b381eaaf10325cd20774a3bc991bf4f8dd033db23868e"
+    },
+    {
+      "unitID": "toc:1235750",
+      "rawUnitTitle": "אות מא",
+      "sourceLineIndices": [
+        102,
+        103
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 102,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "49d8ae7cab615ec2266262f5512ea79ff21f1e3a88bcbe03f0df54bddd1f93f1",
+      "rawMembershipSHA256": "1e4cff4390beba6b2f85ac0e92e81ecc4ae92b657784c8b9ee185de48a13cfc1"
+    },
+    {
+      "unitID": "toc:1235751",
+      "rawUnitTitle": "אות מב",
+      "sourceLineIndices": [
+        104,
+        105,
+        106
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 104,
+      "unitEndLineIndex": 106,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "1e26de4b724760f9706045a0610d1c5c0b11b0c6e950e4bb555c4676c56707f8",
+      "rawMembershipSHA256": "9adeb36fe50bcdcc4b255c7fb37a2aba545dd57750b311315052a298e3f21c1f"
+    },
+    {
+      "unitID": "toc:1235752",
+      "rawUnitTitle": "אות מג",
+      "sourceLineIndices": [
+        107,
+        108,
+        109
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 107,
+      "unitEndLineIndex": 109,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "3a37fee52dfb9d22c1781a586cc31a4fa59e965a7990d555dcf9529ddd309340",
+      "rawMembershipSHA256": "60f9068e201e555f65472159093e9636ba5e6df5e69de2cbc72742c5585d0ac6"
+    },
+    {
+      "unitID": "toc:1235753",
+      "rawUnitTitle": "אות מד",
+      "sourceLineIndices": [
+        110,
+        111,
+        112,
+        113
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 110,
+      "unitEndLineIndex": 113,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5457af4918dbfe152a355d08769ccaf9e3db57452d8f015d7164b2aee922311e",
+      "rawMembershipSHA256": "69c135a3235b83a9e89d93823d35cb898035fbc508784be07781e2623f52be3a"
+    },
+    {
+      "unitID": "toc:1235754",
+      "rawUnitTitle": "אות מה",
+      "sourceLineIndices": [
+        114,
+        115,
+        116
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 114,
+      "unitEndLineIndex": 116,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "ca050cd95fdf76948155f4ed166e39096be334efc0fdff62166b1d0b2e066af2",
+      "rawMembershipSHA256": "6938398a526af7e4e47f4eaf37eefa76a69f1b6c6e96d967d305a3cb8ea81073"
+    },
+    {
+      "unitID": "toc:1235755",
+      "rawUnitTitle": "אות מו",
+      "sourceLineIndices": [
+        117,
+        118
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 117,
+      "unitEndLineIndex": 118,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "5c8bf52146d251417727a24abb38fd101cd911d2a008597eb948d3770551712a",
+      "rawMembershipSHA256": "9b014405912bd144ab7dff06e05c763fcc35791f855f6f116eb3765939ff3df6"
+    },
+    {
+      "unitID": "toc:1235756",
+      "rawUnitTitle": "אות מז",
+      "sourceLineIndices": [
+        119,
+        120,
+        121
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 119,
+      "unitEndLineIndex": 121,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "675eb4464537290ccd329691ffe5909bb25f15f952902276e2ed995dec2a0a2d",
+      "rawMembershipSHA256": "dbbfb0d1a866605affeabeb3883b4a1f670f358edcb3f881685f17718d3d9304"
+    },
+    {
+      "unitID": "toc:1235757",
+      "rawUnitTitle": "אות מח",
+      "sourceLineIndices": [
+        122,
+        123
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 122,
+      "unitEndLineIndex": 123,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4f2822cc14e773606f0dbff5e4a9b453f4b5d9b9f4fa1913830917be204fa04a",
+      "rawMembershipSHA256": "c643154c1fc8718b35d3f43700ec3fdd0f6e23d6de516cf76b4372b005f7eec9"
+    },
+    {
+      "unitID": "toc:1235758",
+      "rawUnitTitle": "אות מט",
+      "sourceLineIndices": [
+        124,
+        125
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 124,
+      "unitEndLineIndex": 125,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "866318c673090123eca3f692a765b27f3bd36bb2e7b844d0c741249d16166e61",
+      "rawMembershipSHA256": "a8f99de988b43dda118b22eeeffca05021bc36c60b92fef23c623d1c58a1883f"
+    },
+    {
+      "unitID": "toc:1235759",
+      "rawUnitTitle": "אות נ",
+      "sourceLineIndices": [
+        126,
+        127
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 126,
+      "unitEndLineIndex": 127,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "38d3d56781b6d9f7bbb6902a8f460fe349835e3cd4ec9d465b4ec932f1aec6f8",
+      "rawMembershipSHA256": "b38a64f8e6f767a1857c7faa80ae7ad5c677017166ad909e44b78920074fe193"
+    },
+    {
+      "unitID": "toc:1235760",
+      "rawUnitTitle": "אות נא",
+      "sourceLineIndices": [
+        128,
+        129
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 128,
+      "unitEndLineIndex": 129,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "39540b44c8f3f859f39c566d4c506e638b724b81015102697695053ea97e9117",
+      "rawMembershipSHA256": "16998d9cba6dd0c57125d8f894dfc4c41165d09df5d8c39418722aa3b35a467e"
+    },
+    {
+      "unitID": "toc:1235761",
+      "rawUnitTitle": "אות נב",
+      "sourceLineIndices": [
+        130,
+        131,
+        132
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 130,
+      "unitEndLineIndex": 132,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "f11fe5cee574ef4366cea5a460efb0dd98e1e559a99591d16221b1038d7731aa",
+      "rawMembershipSHA256": "5cdcc7ba35a4ce2a0a148849b364af03003fe4e83182e9815a0eb5627e57e454"
+    },
+    {
+      "unitID": "toc:1235762",
+      "rawUnitTitle": "אות נג",
+      "sourceLineIndices": [
+        133,
+        134,
+        135
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 133,
+      "unitEndLineIndex": 135,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "76200d0f9a9cbdb985c2ab27380b49e52d217d22a41499826a04ff7cc3d2a572",
+      "rawMembershipSHA256": "9aa42c9a5d64fca3fdadaa572423dbd092e62aef9510d09b214e5a3d82005502"
+    },
+    {
+      "unitID": "toc:1235763",
+      "rawUnitTitle": "אות נד",
+      "sourceLineIndices": [
+        136,
+        137
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 136,
+      "unitEndLineIndex": 137,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "26f8ac8d78e4fa73abbb2c40f6841d8db135ac3a6b2597c5ff5a81bcb9db54ba",
+      "rawMembershipSHA256": "53e3fec3077bf2ee4b0ad412651df9123d77e6d23708039623e2c9867f6c699b"
+    },
+    {
+      "unitID": "toc:1235764",
+      "rawUnitTitle": "אות נה",
+      "sourceLineIndices": [
+        138,
+        139
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 138,
+      "unitEndLineIndex": 139,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e7bb2fc9abaab02d6c75e0ecd91fade777ca3c5627373e3991273b465902aef3",
+      "rawMembershipSHA256": "62448105e4dc2147c192b4b708af28e8505a85a61d10e98742ce1d8484d053c0"
+    },
+    {
+      "unitID": "toc:1235765",
+      "rawUnitTitle": "אות נו",
+      "sourceLineIndices": [
+        140,
+        141,
+        142
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 140,
+      "unitEndLineIndex": 142,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "c301dcb72dbfa0f043174c30802272a5520235bb3d86ab11f8b7f8d059cb4340",
+      "rawMembershipSHA256": "a8003cf894e7a7219e3d2b60a2d061ae9c5a2cca4dc37ae03873124e869a1070"
+    },
+    {
+      "unitID": "toc:1235766",
+      "rawUnitTitle": "אות נז",
+      "sourceLineIndices": [
+        143,
+        144
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 143,
+      "unitEndLineIndex": 144,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "18d0f0d4b660eac7a52237e3e73bf9ce3bb5eda493e39d1c9173823f92717858",
+      "rawMembershipSHA256": "7e01820117a5c5dad0f4000a2c7170cb56c4e00014caf59e2937e730b16b3c3c"
+    },
+    {
+      "unitID": "toc:1235767",
+      "rawUnitTitle": "אות נח",
+      "sourceLineIndices": [
+        145,
+        146
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 145,
+      "unitEndLineIndex": 146,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "a708dfbecd19defc13516895551488f602813c563fa6387b555538b03be769d9",
+      "rawMembershipSHA256": "50133bf7fbacf152d087a12d711d370f8be1b6085e26c78bfbc8b5053b26d34a"
+    },
+    {
+      "unitID": "toc:1235768",
+      "rawUnitTitle": "אות נט",
+      "sourceLineIndices": [
+        147,
+        148
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 147,
+      "unitEndLineIndex": 148,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d07e62a7d5347c7de1379e15c8d8a2af988ac388e5b096b655d356110f71b04f",
+      "rawMembershipSHA256": "7b38fc968397de5c0e764e36b8155e23c62ac14a214e9f62ef331721060169d5"
+    },
+    {
+      "unitID": "toc:1235769",
+      "rawUnitTitle": "אות ס",
+      "sourceLineIndices": [
+        149,
+        150,
+        151
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 149,
+      "unitEndLineIndex": 151,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "ef026912da22677ece5ea414e6311614148638da913d64f3bf1c4f7ad8a327cd",
+      "rawMembershipSHA256": "cf1d1abae3c434bfd3aa620ad66fca23b5103b24365ca8a3f3d31392dc39ad64"
+    },
+    {
+      "unitID": "toc:1235770",
+      "rawUnitTitle": "אות סא",
+      "sourceLineIndices": [
+        152,
+        153
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 152,
+      "unitEndLineIndex": 153,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4aef7a480eee7a916ef90e2bafb680aee53d99cfcc15521ef9ec0be10b8c7427",
+      "rawMembershipSHA256": "3bd76a225b13cc84b2ea1642a7737161627e25421f28e45241858b56edeb40a6"
+    },
+    {
+      "unitID": "toc:1235771",
+      "rawUnitTitle": "אות סב",
+      "sourceLineIndices": [
+        154,
+        155
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 154,
+      "unitEndLineIndex": 155,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "1cec7f0b8201d1a29b9d63ddac276ad12f853dbba057fea51918f5d7ef9354b8",
+      "rawMembershipSHA256": "dac2e7ebf3aaaa0ae04876e7f0283c39dc5d3149161443d8e27d95ee7b5a8464"
+    },
+    {
+      "unitID": "toc:1235772",
+      "rawUnitTitle": "אות סג",
+      "sourceLineIndices": [
+        156,
+        157
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 156,
+      "unitEndLineIndex": 157,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "726312cd230593096f8e3f1018037cc67c33d614d6f70382a219c8a0df2fed9f",
+      "rawMembershipSHA256": "2d82d0553bfbdddd86178c9b805838c7c6f23b5bc1b0e39d90778600ee409eb2"
+    },
+    {
+      "unitID": "toc:1235773",
+      "rawUnitTitle": "אות סד",
+      "sourceLineIndices": [
+        158,
+        159
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 159,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e2632c9f823ce359f3913bf4ff4aea59e30cff88677f5df1d802cd93deccacde",
+      "rawMembershipSHA256": "47d8aeaf41914c0df71cb9bbf4678c5b0dc7d4d1e278ee315d51d9bbff5c60f1"
+    },
+    {
+      "unitID": "toc:1235774",
+      "rawUnitTitle": "אות סה",
+      "sourceLineIndices": [
+        160,
+        161,
+        162
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 160,
+      "unitEndLineIndex": 162,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "098f50f9674d61a54812708eb3adb97dad2f5171757649bf208de00a89c73aa3",
+      "rawMembershipSHA256": "731cbeab56bcae0546bb68310fd69a6c4b58814693b7d958299a5d8871166222"
+    },
+    {
+      "unitID": "toc:1235775",
+      "rawUnitTitle": "אות סו",
+      "sourceLineIndices": [
+        163,
+        164
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 163,
+      "unitEndLineIndex": 164,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "c9312ea087f6c5caf9366982a6b10dbd43921033ee0b7e03427d3d8dfa410aae",
+      "rawMembershipSHA256": "77ee4a710d43880da33b2af96c65378fc9713d69ef3543ad25a1dbb6c4cdf52f"
+    },
+    {
+      "unitID": "toc:1235776",
+      "rawUnitTitle": "אות סז",
+      "sourceLineIndices": [
+        165,
+        166
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 165,
+      "unitEndLineIndex": 166,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "6347a1bc6f91470241515fce2064d16630a34af5e900cdc7d7028e6e11163744",
+      "rawMembershipSHA256": "892a768730c3a4d6358fdc6a8f544d34a9d4baa530260dae1c6a41587a338b41"
+    },
+    {
+      "unitID": "toc:1235777",
+      "rawUnitTitle": "אות סח",
+      "sourceLineIndices": [
+        167,
+        168,
+        169
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 167,
+      "unitEndLineIndex": 169,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "7f7e39c5d1d68eea51f803e851edbe3e55a00bceb0c0a98b33fca8dc5d2685ac",
+      "rawMembershipSHA256": "77da71d6316e60c8c4cd94c288791ea72fd48a65575ae4e2be72708b32bda17e"
+    },
+    {
+      "unitID": "toc:1235778",
+      "rawUnitTitle": "אות סט",
+      "sourceLineIndices": [
+        170,
+        171,
+        172
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 170,
+      "unitEndLineIndex": 172,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d7ca36276c31ece054239d590cd8ebefb31a2bbf9bc2b43ec00b404ab12e8ab5",
+      "rawMembershipSHA256": "ea6a270c26cb77db0fb75914c17fe31971e4bfed2dabdbd653361b06dc106f4c"
+    },
+    {
+      "unitID": "toc:1235779",
+      "rawUnitTitle": "אות ע",
+      "sourceLineIndices": [
+        173,
+        174,
+        175
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 173,
+      "unitEndLineIndex": 175,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "8f132164174fb7fcfe067b3df35257178868658b978e606287eb772f94b3ee34",
+      "rawMembershipSHA256": "baadd67811b26f2cc12819c90147e280d4d5111764bb233e0a8c4208b04d458e"
+    },
+    {
+      "unitID": "toc:1235780",
+      "rawUnitTitle": "אות עא",
+      "sourceLineIndices": [
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 176,
+      "unitEndLineIndex": 180,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "f7c6d81b4e06b9c2e517df11baf8226c6af48b8a7dfd7f07c3171cc2587d3573",
+      "rawMembershipSHA256": "2167ce73162413c7ef6e2165fa23cf186e3e03bb478473620db5f47652c8b5aa"
+    },
+    {
+      "unitID": "toc:1235781",
+      "rawUnitTitle": "אות עב",
+      "sourceLineIndices": [
+        181,
+        182
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 181,
+      "unitEndLineIndex": 182,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d1ee3448b804c6101967197ba96d3086f9924c7f19d446a7beb1bba59a45d9e5",
+      "rawMembershipSHA256": "880ebdf4bd0f690f0abd6a3f1663bcdbbd24e21fb06efc20b1d8e0cde90de2f3"
+    },
+    {
+      "unitID": "toc:1235782",
+      "rawUnitTitle": "אות עג",
+      "sourceLineIndices": [
+        183,
+        184
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 183,
+      "unitEndLineIndex": 184,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c8e085a51d9718a1641ffaedff7137c45c840bf2e43a5b29e407a3946cbd05ad",
+      "rawMembershipSHA256": "3651da93dbe9fa803dc112badb794264a9e55d93e96df6150396362f5d699231"
+    },
+    {
+      "unitID": "toc:1235783",
+      "rawUnitTitle": "אות עד",
+      "sourceLineIndices": [
+        185,
+        186
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 185,
+      "unitEndLineIndex": 186,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "99c6fc645891dd04cd58f83c24af08a59f02b557603bcf92391ee970c9ca6f65",
+      "rawMembershipSHA256": "d53d71fe82c270cb288b834d8e165a0d7f384dd5986022a689d82d47a929989b"
+    },
+    {
+      "unitID": "toc:1235784",
+      "rawUnitTitle": "אות עה",
+      "sourceLineIndices": [
+        187,
+        188,
+        189,
+        190
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 187,
+      "unitEndLineIndex": 190,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "6b5d22f8036527b6d9b63c91f0f04356e9341bd44bcbcab8ebcd92726cd62145",
+      "rawMembershipSHA256": "c05744be5d20bb98a83ca5136a92d43ca1bef8de076e04775d3393d7f00a35d5"
+    },
+    {
+      "unitID": "toc:1235785",
+      "rawUnitTitle": "אות עו",
+      "sourceLineIndices": [
+        191,
+        192
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 191,
+      "unitEndLineIndex": 192,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "607709150d3b8408a2e63669ed53274013cdd2ee6237d51e191b09811ea25baf",
+      "rawMembershipSHA256": "93f49b2e7097a4008e3eef49eedcdc9cc50a3d756193af1aa63efe10a00161b8"
+    },
+    {
+      "unitID": "toc:1235786",
+      "rawUnitTitle": "אות עז",
+      "sourceLineIndices": [
+        193,
+        194
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 193,
+      "unitEndLineIndex": 194,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4eaf5eaeddcda7912d142e0749a7dd867a1be954b40008e3408e147a7ed89cf9",
+      "rawMembershipSHA256": "f8a5768bad27bf16e842ff914fe50fd1ef64a3b3231a4bfd8bc425b650b92cc1"
+    },
+    {
+      "unitID": "toc:1235787",
+      "rawUnitTitle": "אות עח",
+      "sourceLineIndices": [
+        195,
+        196
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 195,
+      "unitEndLineIndex": 196,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "95d74d71ce794e1cda4aa1fcaadf5847b309b9aed9c7abe3ca6ae058d7eb7978",
+      "rawMembershipSHA256": "9e47a7ecbe5625180f9852a3fec2145af72cb107e8fe7c5f4217335406fff5d7"
+    },
+    {
+      "unitID": "toc:1235788",
+      "rawUnitTitle": "אות עט",
+      "sourceLineIndices": [
+        197,
+        198
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 197,
+      "unitEndLineIndex": 198,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "dfcdc636cbd166716584f08e07c2371ede001e26836958ea429cea271aa5e979",
+      "rawMembershipSHA256": "f91281a7df6dd82f007a257423369fe1c2e425b2aa4b2104be641409b7bd40da"
+    },
+    {
+      "unitID": "toc:1235789",
+      "rawUnitTitle": "אות פ",
+      "sourceLineIndices": [
+        199,
+        200
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 199,
+      "unitEndLineIndex": 200,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "658d32cc2b0f323d22a257be28ee691d1d74eb3c6c771f8622986917b4a56e03",
+      "rawMembershipSHA256": "1dc0d7190d50baab55aa0f2338927c8e83c13b13b974e367c1d761fea9be2eda"
+    },
+    {
+      "unitID": "toc:1235790",
+      "rawUnitTitle": "אות פא",
+      "sourceLineIndices": [
+        201,
+        202
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 201,
+      "unitEndLineIndex": 202,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "0b9ce9017b1205184bf54dfdbe44aee4afcc5ba53b9da260459b094718fd3d7c",
+      "rawMembershipSHA256": "7f868b27be4f347681c5bc16f197d985ecd404e16f0011f465110f5c48d20cc2"
+    },
+    {
+      "unitID": "toc:1235791",
+      "rawUnitTitle": "אות פב",
+      "sourceLineIndices": [
+        203,
+        204,
+        205
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 203,
+      "unitEndLineIndex": 205,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "5b22d015193208fac4adfb17fb99bcd4f863629d9ff44887dd17b3dbd9f18129",
+      "rawMembershipSHA256": "edbe14e57d7689dd76ead00418f4d92ffcd52804c37861071a358e9090c4919a"
+    },
+    {
+      "unitID": "toc:1235792",
+      "rawUnitTitle": "אות פג",
+      "sourceLineIndices": [
+        206,
+        207
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 206,
+      "unitEndLineIndex": 207,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "11112563c062f6bb25c869e1cb131b45bc157dbbad6bfc4b3c4c00aeea3266e7",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:1235793",
+      "rawUnitTitle": "אות פד",
+      "sourceLineIndices": [
+        208,
+        209,
+        210
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 208,
+      "unitEndLineIndex": 210,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "68fb638c26f2e6db514f2cae3f7ec79749bdf3cecd319e619492223e6237d515",
+      "rawMembershipSHA256": "4678d3c23114b3c623029e386eab57984fd32905b401a3bde5cbb5bfec66d46c"
+    },
+    {
+      "unitID": "toc:1235794",
+      "rawUnitTitle": "אות פה",
+      "sourceLineIndices": [
+        211,
+        212
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 211,
+      "unitEndLineIndex": 212,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "84fc467b75eda38bd0002fa69439caee0c6b621ed0d177c08a5996433ecec631",
+      "rawMembershipSHA256": "dce7e28a33f96eaba961d35a20ea6711365fcfe7cf8e3751bb7fb4e01d60e2ce"
+    },
+    {
+      "unitID": "toc:1235795",
+      "rawUnitTitle": "אות פו",
+      "sourceLineIndices": [
+        213,
+        214
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 213,
+      "unitEndLineIndex": 214,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "30799448ce2fa53b71c9eb27662603d08ca44a09580316952fdd516843b7e6ce",
+      "rawMembershipSHA256": "42e036f03b9e6cb7ce948e7497f0e16304601a57164252b4bd83fcb812b5af2e"
+    },
+    {
+      "unitID": "toc:1235796",
+      "rawUnitTitle": "אות פז",
+      "sourceLineIndices": [
+        215,
+        216
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 215,
+      "unitEndLineIndex": 216,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "865ed48fbbd1dbff997d931a96affbf0bddc33b7e1022cd56757321c13bf3158",
+      "rawMembershipSHA256": "40ded8cdfe6a38f27625dc3a19bb815ce83b97c46850865214e3f75f9ff0e2a6"
+    },
+    {
+      "unitID": "toc:1235797",
+      "rawUnitTitle": "אות פח",
+      "sourceLineIndices": [
+        217,
+        218
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 217,
+      "unitEndLineIndex": 218,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5b8eb78498789af3d09528d3486043538aa6c3e1c9c23617c690f7287f30d141",
+      "rawMembershipSHA256": "ed13930aa942da36f95548b36dc9b647e7056fb35f4cf4f5bbe2de3775ce5ebb"
+    },
+    {
+      "unitID": "toc:1235798",
+      "rawUnitTitle": "אות פט",
+      "sourceLineIndices": [
+        219,
+        220
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 219,
+      "unitEndLineIndex": 220,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "354b7381cd3e3579b7e9be5e8c622dbe0d4e15af8035513cf52df0dbb51cccce",
+      "rawMembershipSHA256": "879a7d20ed88e3296b8bcb5aa58edb83d72b7f647aa543a2c95dd488280cd3a7"
+    },
+    {
+      "unitID": "toc:1235799",
+      "rawUnitTitle": "אות צ",
+      "sourceLineIndices": [
+        221,
+        222
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 221,
+      "unitEndLineIndex": 222,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "94f228947dd6c5ce3654bd38460205b16a31b049231fd41fc205258b874169fb",
+      "rawMembershipSHA256": "1c5a78de0bf05d837a266aa6d249a0eb8f71feb815b726bea946ee153e30f469"
+    },
+    {
+      "unitID": "toc:1235800",
+      "rawUnitTitle": "אות צא",
+      "sourceLineIndices": [
+        223,
+        224
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 223,
+      "unitEndLineIndex": 224,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "73869e8ad9273a0a5ebd96709a20f12251f89cf05b2566cd3cf5e26a6ec99ac7",
+      "rawMembershipSHA256": "49ac338ba61ba95ec6da90b41f4ea01d0b87645a4aa25de589ba9d73a12ed501"
+    },
+    {
+      "unitID": "toc:1235801",
+      "rawUnitTitle": "אות צב",
+      "sourceLineIndices": [
+        225,
+        226
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 225,
+      "unitEndLineIndex": 226,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c8ad4a365fb40d323054607772b442777ed031920a9ed5c5ec1b8eaab2d5166a",
+      "rawMembershipSHA256": "fbe03fa2483c623e595c3dab6f21aca396fd33640f6e0fe66fc762c060a08d53"
+    },
+    {
+      "unitID": "toc:1235802",
+      "rawUnitTitle": "אות צג",
+      "sourceLineIndices": [
+        227,
+        228
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 227,
+      "unitEndLineIndex": 228,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "85c01434f6b51579e91f302803b1c2b20414eed82620d362541a1574e47354e0",
+      "rawMembershipSHA256": "9df7346dbe3736c4804c9e500f5084884a18692f8e903b4a0080ba66f82f0fc0"
+    },
+    {
+      "unitID": "toc:1235803",
+      "rawUnitTitle": "אות צד",
+      "sourceLineIndices": [
+        229,
+        230
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 229,
+      "unitEndLineIndex": 230,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "2cf9f61ba56844aa703867a246169da21ad1f06364bcd3f300537c79eb506534",
+      "rawMembershipSHA256": "2bc8f26881ea39ca119f7465f4472e309b13d1d868d5e40cd1fc824167c95543"
+    },
+    {
+      "unitID": "toc:1235804",
+      "rawUnitTitle": "אות צה",
+      "sourceLineIndices": [
+        231,
+        232
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 231,
+      "unitEndLineIndex": 232,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "ba30282a3f884074320be4f04b789468f56570a14c7443e5e27f221fb94e9f0d",
+      "rawMembershipSHA256": "bf626d6be940ecc1c7eabe3e23a793eae5c6e6209972c4eca79de1b272a7c850"
+    },
+    {
+      "unitID": "toc:1235805",
+      "rawUnitTitle": "אות צו",
+      "sourceLineIndices": [
+        233,
+        234
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 233,
+      "unitEndLineIndex": 234,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "7eb42b329eb40992b29eca884ca4e010d2a09dee6ca6d78a654aa77f668cf0dd",
+      "rawMembershipSHA256": "fc0524b7943d8b3e678f033cfca61ae6565f814e37e97cff28ced35b809b3750"
+    },
+    {
+      "unitID": "toc:1235806",
+      "rawUnitTitle": "אות צז",
+      "sourceLineIndices": [
+        235,
+        236
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 235,
+      "unitEndLineIndex": 236,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "36af3e4057f419f6ee4f405e36720f4ca3ef2e7202eabcfdffda168440655cd8",
+      "rawMembershipSHA256": "fb09598d924c0a27ed14caeee1d110ec630ee210ce93389ba2cf1bd7d0e99ed0"
+    },
+    {
+      "unitID": "toc:1235807",
+      "rawUnitTitle": "אות צח",
+      "sourceLineIndices": [
+        237,
+        238
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 237,
+      "unitEndLineIndex": 238,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "25e38e9387ee183bd2fb8d400a1166d88df317289467af8a171b9a4c9c92f5ea",
+      "rawMembershipSHA256": "3e2edb2504c1550428419a1919aaa91186da6f292edbc4f067f1f90a6f6ad3d9"
+    },
+    {
+      "unitID": "toc:1235808",
+      "rawUnitTitle": "אות צט",
+      "sourceLineIndices": [
+        239,
+        240
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 239,
+      "unitEndLineIndex": 240,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "37c7c8ab65def486ee4e555e7411e346858437ceee2ea23b568f45c57a3475f5",
+      "rawMembershipSHA256": "490462c2c45d0f8324e991c763f2e63f277a37bafdc0e809fa239a1e4f3e4e4d"
+    },
+    {
+      "unitID": "toc:1235809",
+      "rawUnitTitle": "אות ק",
+      "sourceLineIndices": [
+        241,
+        242,
+        243
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 241,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "b8dc9972449c30dd2b1400e488467f55b398d54bac7dc4654dd2880e397ecba9",
+      "rawMembershipSHA256": "267357a79b8c574801e36f931ce069eb07f093c169ea695fc6149d56b007b385"
+    },
+    {
+      "unitID": "toc:1235810",
+      "rawUnitTitle": "אות קא",
+      "sourceLineIndices": [
+        244,
+        245,
+        246
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "c4d68c6741728e668ead210674e113b8c8aa18f57b4755c5dc7c6cecb1d7877b",
+      "rawMembershipSHA256": "cca3bda486be55ad889d12755382adbfb84cd6cdee5cefcfdb6f7112bbd0ddbe"
+    },
+    {
+      "unitID": "toc:1235811",
+      "rawUnitTitle": "אות קב",
+      "sourceLineIndices": [
+        247,
+        248
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 247,
+      "unitEndLineIndex": 248,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "356169a69c8847f9153c1e096d311334e566cd231a98513f5d14f67363b8419e",
+      "rawMembershipSHA256": "aa9ee9115c5795891b314a77ee044564d117a45d9c13f684c14e7db476affc5e"
+    },
+    {
+      "unitID": "toc:1235812",
+      "rawUnitTitle": "אות קג",
+      "sourceLineIndices": [
+        249,
+        250
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 249,
+      "unitEndLineIndex": 250,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "cb5032e7eb42ee0e630f27ba2769edf9dad682db011e7a2d67fdaea9ff03de15",
+      "rawMembershipSHA256": "cfecf72ab7257ad5433204e47b10604280c172d094245cc6a2c3664ee341143d"
+    },
+    {
+      "unitID": "toc:1235813",
+      "rawUnitTitle": "אות קד",
+      "sourceLineIndices": [
+        251,
+        252,
+        253,
+        254,
+        255
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 251,
+      "unitEndLineIndex": 255,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "3de29f8d70cc4fed8da35040c3404018f7cfc1ebfbfd973757c10999a6cdf551",
+      "rawMembershipSHA256": "7e9cde1409d4466643bbb1b499085c8a3a2a21af25e680702d49a8cc287f222d"
+    },
+    {
+      "unitID": "toc:1235814",
+      "rawUnitTitle": "אות קה",
+      "sourceLineIndices": [
+        256,
+        257
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 256,
+      "unitEndLineIndex": 257,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "4769f59df0dbc0be71f6f9b296c92a891b563cefbd7fb9c3332f8c20eca5e8b4",
+      "rawMembershipSHA256": "7346830362967566d3fffdbfeb37bd3e9809bc5ec21a0f4df01e87eb46bf404d"
+    },
+    {
+      "unitID": "toc:1235815",
+      "rawUnitTitle": "אות קו",
+      "sourceLineIndices": [
+        258,
+        259
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 258,
+      "unitEndLineIndex": 259,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "843ae5c27f03ef935375dd1c16183f927d519fcd45bf6fea39464a3dd0eb6c3b",
+      "rawMembershipSHA256": "a96a2f15c2996db40e18733e2cd64ce991e983a58577ef04545ad984073597f1"
+    },
+    {
+      "unitID": "toc:1235816",
+      "rawUnitTitle": "אות קז",
+      "sourceLineIndices": [
+        260,
+        261,
+        262,
+        263
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 260,
+      "unitEndLineIndex": 263,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "877783e577653a196983082ca5f837ea7498ac80291004bc708906bc3cfb4227",
+      "rawMembershipSHA256": "842cda871e79b80a7d5c9bc871dacebcf5057355c8777572a9f833a769430756"
+    },
+    {
+      "unitID": "toc:1235817",
+      "rawUnitTitle": "אות קח",
+      "sourceLineIndices": [
+        264,
+        265,
+        266
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 264,
+      "unitEndLineIndex": 266,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "14d9ca3f092beea19a1caa820cd600ff509ae152a7c57227a691dd5fbe2fc604",
+      "rawMembershipSHA256": "79920953aa9c93ca31747e0f043a0dbca0dea22a1064d1a0362a58a68fb86d89"
+    },
+    {
+      "unitID": "toc:1235818",
+      "rawUnitTitle": "אות קט",
+      "sourceLineIndices": [
+        267,
+        268
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 267,
+      "unitEndLineIndex": 268,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "8ff6dce1e816fae50886345530afca972189cff60ff25bd828ef110b6922ff4d",
+      "rawMembershipSHA256": "bd55677c035ddeccf10897f0870845fc719d33a0cfa4bfbcdc2a45d4e3e6c2fd"
+    },
+    {
+      "unitID": "toc:1235819",
+      "rawUnitTitle": "אות קי",
+      "sourceLineIndices": [
+        269,
+        270
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 269,
+      "unitEndLineIndex": 270,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "f42d1606a44f88fa10046147fded723605e80a619e523cb33a2c3e941cd1826b",
+      "rawMembershipSHA256": "3831def9f8a4e56f8364e30c7ec663912b125bb355532c2dce24a0d629c3af8c"
+    },
+    {
+      "unitID": "toc:1235820",
+      "rawUnitTitle": "אות קיא",
+      "sourceLineIndices": [
+        271,
+        272
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 271,
+      "unitEndLineIndex": 272,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "c8c7221e28d65d29f1d2dfae6f6720d058b2c7a62f77311a45dfd1990c7a1b92",
+      "rawMembershipSHA256": "16a109bbe4025f8bf74fa9457c8f84654585835c616ea1734262a00674db28f8"
+    },
+    {
+      "unitID": "toc:1235821",
+      "rawUnitTitle": "אות קיב",
+      "sourceLineIndices": [
+        273,
+        274
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 273,
+      "unitEndLineIndex": 274,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "fe8a4aa215a68e03b2b72ea950890ce1fd2fb5bbffb9ad87c264b988edc8ba44",
+      "rawMembershipSHA256": "21ec3995dba47ac354aa9cf93f242e585b30a41ccee8761611191cba9fc29a3f"
+    },
+    {
+      "unitID": "toc:1235822",
+      "rawUnitTitle": "אות קיג",
+      "sourceLineIndices": [
+        275,
+        276
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 275,
+      "unitEndLineIndex": 276,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "af6269033362c02ccd6a9b1604090d278527f0ebafa934ac28045dbe47d03544",
+      "rawMembershipSHA256": "0c5a64e6a1540e4095eb05409da8724107f2dc901d86cfa495a6567c9bb9dc41"
+    },
+    {
+      "unitID": "toc:1235823",
+      "rawUnitTitle": "אות קיד",
+      "sourceLineIndices": [
+        277,
+        278
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 277,
+      "unitEndLineIndex": 278,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "6bf49ac2ee33da6db290aa59b0bd2b94f8c9b9cc258d98db5d41a773b9d81f5d",
+      "rawMembershipSHA256": "429ba5ed231d1a0a33c5c4c082b5c061c256f9027fd3fa0c82ff648846cb9211"
+    },
+    {
+      "unitID": "toc:1235824",
+      "rawUnitTitle": "אות קטו",
+      "sourceLineIndices": [
+        279,
+        280
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 279,
+      "unitEndLineIndex": 280,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "5b4bdfd7a4eea424b9af732a67aa167d72eb0feaa19d070816499bb049fe17dc",
+      "rawMembershipSHA256": "e178cf29b2ec6037233e2ab201500305c5af108c62951378dabd8388c5ac9037"
+    },
+    {
+      "unitID": "toc:1235825",
+      "rawUnitTitle": "אות קטז",
+      "sourceLineIndices": [
+        281,
+        282
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 281,
+      "unitEndLineIndex": 282,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c2ffda92f16ead65d1dfdbc453e95a6f882d5b50058cd07bb47f788d1ffa7020",
+      "rawMembershipSHA256": "e0524b15d4e653ab8924cdf9471b9e0361cc4451b7bee93aac4829d850affda5"
+    },
+    {
+      "unitID": "toc:1235826",
+      "rawUnitTitle": "אות קיז",
+      "sourceLineIndices": [
+        283,
+        284,
+        285
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 283,
+      "unitEndLineIndex": 285,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "9e6a1dae1bfa11084e72ee40362d3b0f68770e286144cd208e40fe9fd72c4277",
+      "rawMembershipSHA256": "eb1cbef028cff4a5e7ac3e9e7c5e528c4da17e75c9a730333df20023032c5b43"
+    },
+    {
+      "unitID": "toc:1235827",
+      "rawUnitTitle": "אות קיח",
+      "sourceLineIndices": [
+        286,
+        287
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 286,
+      "unitEndLineIndex": 287,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "1b3439960d3648b18b6bf0017e6315d6c9ccb0a0d5bb0c958df2adc7491d0bc3",
+      "rawMembershipSHA256": "f2beca96b559d36c75bc5f73126ec60883cdf5389a6700a2e616e5a52b4db716"
+    },
+    {
+      "unitID": "toc:1235828",
+      "rawUnitTitle": "אות קיט",
+      "sourceLineIndices": [
+        288,
+        289,
+        290
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 288,
+      "unitEndLineIndex": 290,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "e30494708ac3bb36db6385d0e818f56cdbeea74abfb31fad0355b402b468fca8",
+      "rawMembershipSHA256": "40a204e6e95ae340317ecd8dece35dc13089edb9d46d4d65f0f7ef399e5c4ffc"
+    },
+    {
+      "unitID": "toc:1235829",
+      "rawUnitTitle": "אות קכ",
+      "sourceLineIndices": [
+        291,
+        292
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 291,
+      "unitEndLineIndex": 292,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "d829a18cd30265ed0ad70d0964ceb18857850bf964cfa6beba283c45d317d337",
+      "rawMembershipSHA256": "9f76bda52a1d79da29e7c1049c2e689c1fa60112be4829a61ee3204876597171"
+    },
+    {
+      "unitID": "toc:1235830",
+      "rawUnitTitle": "אות קכא",
+      "sourceLineIndices": [
+        293,
+        294
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 293,
+      "unitEndLineIndex": 294,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "cdec44df7a3f2b36f7967512277ef965a074456b5f1c626f562ee8157d2125b6",
+      "rawMembershipSHA256": "84e7fed726a6665021c88a727cc93db84a5c8e9d6f1982c2938c17571423185b"
+    },
+    {
+      "unitID": "toc:1235831",
+      "rawUnitTitle": "אות קכב",
+      "sourceLineIndices": [
+        295,
+        296
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 295,
+      "unitEndLineIndex": 296,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "ddf28936fb9520c5392825641986c42f91c3709c0a0853bd8b40d8d5d9402eea",
+      "rawMembershipSHA256": "8ea3ccbc0765068616dac0c942849249a3a05bb8a4df2a3ada7f637a5a4e050a"
+    },
+    {
+      "unitID": "toc:1235832",
+      "rawUnitTitle": "אות קכג",
+      "sourceLineIndices": [
+        297,
+        298
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 297,
+      "unitEndLineIndex": 298,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "ab5f80d01784f8c5a9268c15369ef39ab1b4becb8df6d463e5be9c0ed4d180ed",
+      "rawMembershipSHA256": "ef08e86edd769c929522eb68751de57821449142f1b0808af66a02ea2b95c122"
+    },
+    {
+      "unitID": "toc:1235833",
+      "rawUnitTitle": "אות קכד",
+      "sourceLineIndices": [
+        299,
+        300
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 299,
+      "unitEndLineIndex": 300,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "dff31a882bce55c4d559b4fd5eaabdf15eb6eb21f5b5b7a3375172abdc590496",
+      "rawMembershipSHA256": "770f9a08334466ba4a511611f82df93a7673bdb91b422717a57601eae3e8dd9a"
+    },
+    {
+      "unitID": "toc:1235834",
+      "rawUnitTitle": "אות קכה",
+      "sourceLineIndices": [
+        301,
+        302
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 301,
+      "unitEndLineIndex": 302,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "316f0d492df49348ccd0cd0dad250f881f7fd0633ca7d08f0d05346c1b84c925",
+      "rawMembershipSHA256": "cf60fcb37687d668eb07ec8dc3356765970ecba7262768412d85611763905c76"
+    },
+    {
+      "unitID": "toc:1235835",
+      "rawUnitTitle": "אות קכו",
+      "sourceLineIndices": [
+        303,
+        304,
+        305
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 303,
+      "unitEndLineIndex": 305,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "10d4817867ec69a93cc496edf798b6c19e064f0632296742d7e4f492e7001e1d",
+      "rawMembershipSHA256": "1ac461b4ee280d539cb822306974a07003b8cdc2b8b7ced121b55dcf51304838"
+    },
+    {
+      "unitID": "toc:1235836",
+      "rawUnitTitle": "אות קכז",
+      "sourceLineIndices": [
+        306,
+        307
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 306,
+      "unitEndLineIndex": 307,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "5e485858ec0e75343317380a1796bf5d03131403c9901818c9bf99a9193f9235",
+      "rawMembershipSHA256": "85bbff98f172f830f636c136940567443fc8fd494dff753f9fd9d74aa7d80969"
+    },
+    {
+      "unitID": "toc:1235837",
+      "rawUnitTitle": "אות קכח",
+      "sourceLineIndices": [
+        308,
+        309,
+        310
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 308,
+      "unitEndLineIndex": 310,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "1a343da63dd004e4b0c42d05d79703ac31b27926ad2e61713265182cc562482a",
+      "rawMembershipSHA256": "943e92a5897227239ef85d8af233a66897c0432a95b00fe4faf404a8c0a1778f"
+    },
+    {
+      "unitID": "toc:1235838",
+      "rawUnitTitle": "אות קכט",
+      "sourceLineIndices": [
+        311,
+        312
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 311,
+      "unitEndLineIndex": 312,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5662d85cc42326e21bfddb2b55d7ae3bfab334b5314879148fd93de7d32fe6be",
+      "rawMembershipSHA256": "ecd9c2d87fe3cfd8b324c271894a7b0bc77ee8e70a428441820c31be321a26aa"
+    },
+    {
+      "unitID": "toc:1235839",
+      "rawUnitTitle": "אות קל",
+      "sourceLineIndices": [
+        313,
+        314
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 313,
+      "unitEndLineIndex": 314,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "92a315a9494f4fbea8018449b0d0506ce949458bc11854ee0d17f81e56807f29",
+      "rawMembershipSHA256": "9400cfbc4e99a1abafa2a4bd4a2b677b3a3aecc3eb8cccd48377b0ce15298171"
+    },
+    {
+      "unitID": "toc:1235840",
+      "rawUnitTitle": "אות קלא",
+      "sourceLineIndices": [
+        315,
+        316,
+        317
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 315,
+      "unitEndLineIndex": 317,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "6a07e6bc3317eb44e9a1eeffb718508b848ef100ef77ea81ac72f884b7cdae26",
+      "rawMembershipSHA256": "91abe2a7b13cea239048d58f227147ded9b85fd8c8e6fd9472fb5fef3b780fa1"
+    },
+    {
+      "unitID": "toc:1235841",
+      "rawUnitTitle": "אות קלב",
+      "sourceLineIndices": [
+        318,
+        319
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 318,
+      "unitEndLineIndex": 319,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "70ed79e42d01d4e0a31ca9e8184c2563f04bdd1bc64990c6a018b8d66e86c933",
+      "rawMembershipSHA256": "c0a991338d548762bf48f459af999f2902403713da0938dfeafc96a99eeed361"
+    },
+    {
+      "unitID": "toc:1235842",
+      "rawUnitTitle": "אות קלג",
+      "sourceLineIndices": [
+        320,
+        321
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 320,
+      "unitEndLineIndex": 321,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "0d5a9278f661d3d277c3ec96b32673f4e8d3ef330f43df26e4a93f6f2d93ecd9",
+      "rawMembershipSHA256": "ff4d35d04f3d1774fed3d224bffb87a3ff8aeb435e7de9652d1824b87f90a25c"
+    },
+    {
+      "unitID": "toc:1235843",
+      "rawUnitTitle": "אות קלד",
+      "sourceLineIndices": [
+        322,
+        323
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 322,
+      "unitEndLineIndex": 323,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "0f7dddbf265918ba816d43061b5803d0302e9cca5fa2e998823d4d6071e2007b",
+      "rawMembershipSHA256": "9f6115005000106b7b9e0ed27fd9e60e7ac4c128791e1a577e3a4199d131407b"
+    },
+    {
+      "unitID": "toc:1235844",
+      "rawUnitTitle": "אות קלה",
+      "sourceLineIndices": [
+        324,
+        325
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 324,
+      "unitEndLineIndex": 325,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "e69141c9b320266b3ec8197b4108b4eed0c75c99b1ec8d9197dbeba3e152237d",
+      "rawMembershipSHA256": "3d22ed80a2a762c8a7964525b320b4bfdeae610fddfafc7fca0b94f9f5f4bdff"
+    },
+    {
+      "unitID": "toc:1235845",
+      "rawUnitTitle": "אות קלו",
+      "sourceLineIndices": [
+        326,
+        327
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 326,
+      "unitEndLineIndex": 327,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "aa04c3eaa1d22ce58dcb5eb0a0a43ae19135223bbe1ea5f7736f09405715c6b5",
+      "rawMembershipSHA256": "5124b2980ab15eca4ca41cbc50ee310874a1973060942563d38d022a1705e0b9"
+    },
+    {
+      "unitID": "toc:1235846",
+      "rawUnitTitle": "אות קלז",
+      "sourceLineIndices": [
+        328,
+        329
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 328,
+      "unitEndLineIndex": 329,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "da280c03c5baa6b75ff3609cf1cf50d31ea8c20817d28d450c1d6cb8b280bdc1",
+      "rawMembershipSHA256": "9bb8582dbbd7abb0a80f8c03bffc6464fa8e25f3f32d8a1a78fdbc416eeba8e1"
+    },
+    {
+      "unitID": "toc:1235847",
+      "rawUnitTitle": "אות קלח",
+      "sourceLineIndices": [
+        330,
+        331
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 330,
+      "unitEndLineIndex": 331,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "16ec0a2f08145720052a44de1818e99de99ea1f1120ef272d94029a6af36e3f1",
+      "rawMembershipSHA256": "5da0cd21dc161a312a09ea7526b8afa631c81887a4e0d0a0dfe2f38b9d21c286"
+    },
+    {
+      "unitID": "toc:1235848",
+      "rawUnitTitle": "אות קלט",
+      "sourceLineIndices": [
+        332,
+        333
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 332,
+      "unitEndLineIndex": 333,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c26e0c39fa21a468c7434fcab5111d82af5108c289d80d7762fd87dae924301e",
+      "rawMembershipSHA256": "3a57596d7e389da5ff777b713973827f69ffed82715b85c422346352c7474381"
+    },
+    {
+      "unitID": "toc:1235849",
+      "rawUnitTitle": "אות קמ",
+      "sourceLineIndices": [
+        334,
+        335
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 334,
+      "unitEndLineIndex": 335,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "57ee3044a038a5b72c05da3c26bf4c27815ffdc903d81ea4c4c6e8ecdef31255",
+      "rawMembershipSHA256": "bc3fda719df0956cd2609472cc358536d3782b6445ce7874b6fa42cfb3965cf3"
+    },
+    {
+      "unitID": "toc:1235850",
+      "rawUnitTitle": "אות קמא",
+      "sourceLineIndices": [
+        336,
+        337
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 336,
+      "unitEndLineIndex": 337,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "3f301b83712f2863c3c4937f083ad26a80efe141e798a0b4a372fe41c9ca14f8",
+      "rawMembershipSHA256": "498fbe3780dece8556a84e20c3beb4e5950f16557e0e9b875cbd85e37d98971a"
+    },
+    {
+      "unitID": "toc:1235851",
+      "rawUnitTitle": "אות קמב",
+      "sourceLineIndices": [
+        338,
+        339
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 338,
+      "unitEndLineIndex": 339,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "8ffb2f8674d8bf8fb348790ab4e3e5487fdd3d0cf4ddf97fce83991355df7e3c",
+      "rawMembershipSHA256": "0fb0409c9cbef297d3a26ffdcf0e3a6a702fc01a38eda9517376eb33e05bdd62"
+    },
+    {
+      "unitID": "toc:1235852",
+      "rawUnitTitle": "אות קמג",
+      "sourceLineIndices": [
+        340,
+        341
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 340,
+      "unitEndLineIndex": 341,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "346bbf1b9d71e8fb94ad68cb65a48a867617fcd1602d230976b9525edcba7498",
+      "rawMembershipSHA256": "354c0e8d362e1873220a7a18196d4bb9732ba69ef1b245758c6ebf968bd12f9c"
+    },
+    {
+      "unitID": "toc:1235853",
+      "rawUnitTitle": "אות קמד",
+      "sourceLineIndices": [
+        342,
+        343
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 342,
+      "unitEndLineIndex": 343,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "e6cb84a3e60ee28e85c03147ccd3a1b3125dbc5798d26de6cbadd14959f42011",
+      "rawMembershipSHA256": "1539a140238fc28b6aaf0e5e128a40ed6fedea4bd1687e264a7e62b0b0ecf78e"
+    },
+    {
+      "unitID": "toc:1235854",
+      "rawUnitTitle": "אות קמה",
+      "sourceLineIndices": [
+        344,
+        345,
+        346
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 344,
+      "unitEndLineIndex": 346,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "189be1fbaa99cd72a2cd5f5e1168462561e4fc283ac4bae75264206311e8d401",
+      "rawMembershipSHA256": "4fa803a1f2aa86c17e4db3a4c41c16aa0b7328c1eafe4647fe351346deb4ac72"
+    },
+    {
+      "unitID": "toc:1235855",
+      "rawUnitTitle": "אות קמו",
+      "sourceLineIndices": [
+        347,
+        348
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 347,
+      "unitEndLineIndex": 348,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "91e2fea691bdf2e44bd3d8c450b372fda35f2ad0b46fdbfdcba932e1b962d0a1",
+      "rawMembershipSHA256": "319e548833ce590d50280118a1ea676216b6ad7ee5ddb9cd97f9181baa2c15b3"
+    },
+    {
+      "unitID": "toc:1235856",
+      "rawUnitTitle": "אות קמז",
+      "sourceLineIndices": [
+        349,
+        350
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 349,
+      "unitEndLineIndex": 350,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "99973e4c41f98a3094058384d3099c46b0edd3ce63fbfb5877b90b08515e7ba8",
+      "rawMembershipSHA256": "212a9d12960c588e4f7065fefa5ec05a53ab1ebac55ea4ae934375aa16a61100"
+    },
+    {
+      "unitID": "toc:1235857",
+      "rawUnitTitle": "אות קמח",
+      "sourceLineIndices": [
+        351,
+        352
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 351,
+      "unitEndLineIndex": 352,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "7c79fcb428ba08ad82f1033020a4d352b0bda8a12e64ecb35f9a3047da543477",
+      "rawMembershipSHA256": "74cec6186ea6dcab8c56716505b708ed5bb34899242e0f56ef2d0410363aabbe"
+    },
+    {
+      "unitID": "toc:1235858",
+      "rawUnitTitle": "אות קמט",
+      "sourceLineIndices": [
+        353,
+        354
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 353,
+      "unitEndLineIndex": 354,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "df1cc4af79841c4f02d4c0fe1b584cdf62b60a27fa0427551e336502b4277552",
+      "rawMembershipSHA256": "ce1917163a304a8a2a74b97a0dd186a428acdd302764f5f6f3a5e790c0ed3242"
+    },
+    {
+      "unitID": "toc:1235859",
+      "rawUnitTitle": "אות קנ",
+      "sourceLineIndices": [
+        355,
+        356,
+        357
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 355,
+      "unitEndLineIndex": 357,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "2eb7009013a08b72fb6211b550cfb8bd5bff74c716954642ec9950f3bc0d8f0e",
+      "rawMembershipSHA256": "98f91aedd073e855086196b134b796c5ea84111aeec73f76de726e39d0d0023c"
+    },
+    {
+      "unitID": "toc:1235860",
+      "rawUnitTitle": "אות קנא",
+      "sourceLineIndices": [
+        358,
+        359
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 358,
+      "unitEndLineIndex": 359,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "fbc8d01a55d0a5d6e4e3d944407cdcbbae841cd91724e7b086098687d694ff23",
+      "rawMembershipSHA256": "a0fc9c8240659311941e36bf320c1ba53ab568a702db0c0c8617241da2a827da"
+    },
+    {
+      "unitID": "toc:1235861",
+      "rawUnitTitle": "אות קנב",
+      "sourceLineIndices": [
+        360,
+        361,
+        362
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 360,
+      "unitEndLineIndex": 362,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "e65b4d4a25dbc3b3af345fd56c33491f30ac4cbad28b92464876ffd3d3a69f36",
+      "rawMembershipSHA256": "869ed30f564a0a31211d8f10e79410cfa0cc3bf64a7268bc3c5e7c3db8a78b6a"
+    },
+    {
+      "unitID": "toc:1235862",
+      "rawUnitTitle": "אות קנג",
+      "sourceLineIndices": [
+        363,
+        364,
+        365
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 363,
+      "unitEndLineIndex": 365,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "a0945a2933814bcaf9c0b034948fb70726b53ec520e6f115235a89fb0c2fefdd",
+      "rawMembershipSHA256": "794c2cacbb031c4c0c422a196dcd727a0da616c4ef644b95dc7feca259e8c9bd"
+    },
+    {
+      "unitID": "toc:1235863",
+      "rawUnitTitle": "אות קנד",
+      "sourceLineIndices": [
+        366,
+        367
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 366,
+      "unitEndLineIndex": 367,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "3e2e202e35a493ea259bdae9db62b252be966bdf0fa73057456255cda5e0aab4",
+      "rawMembershipSHA256": "9e9804a0ad65282b151f7bd7e4ac8ca1146e1b0980014ef9b21b746e89dc5e6b"
+    },
+    {
+      "unitID": "toc:1235864",
+      "rawUnitTitle": "אות קנה",
+      "sourceLineIndices": [
+        368,
+        369
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 368,
+      "unitEndLineIndex": 369,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "6c42aa073bef5e6fcb868434bbbb13e5044b1beae661fc3105eec2d3adae30b1",
+      "rawMembershipSHA256": "b525a27271f5c84b9d12c0ac9886609632902ae08a6b00eb455323f7b314a9fe"
+    },
+    {
+      "unitID": "toc:1235865",
+      "rawUnitTitle": "אות קנו",
+      "sourceLineIndices": [
+        370,
+        371
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 370,
+      "unitEndLineIndex": 371,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "626c99a48c73f880db138abdf9469d322d0034fea817ac057021aff36a3050e5",
+      "rawMembershipSHA256": "8e15f5ece28e526c5c747af3fa7e6a0caf526c2ae63148421ff745d94023a8bc"
+    },
+    {
+      "unitID": "toc:1235866",
+      "rawUnitTitle": "אות קנז",
+      "sourceLineIndices": [
+        372,
+        373
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 372,
+      "unitEndLineIndex": 373,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "e2d34f1e36678ced5c180e1f18ad3446e2c09a1c9589e380d1b7a1b46360d448",
+      "rawMembershipSHA256": "49a2111970d98d211c81a5641d24d72cfe10d2484eb498f8581cf4794ae5ca07"
+    },
+    {
+      "unitID": "toc:1235867",
+      "rawUnitTitle": "אות קנח",
+      "sourceLineIndices": [
+        374,
+        375
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 374,
+      "unitEndLineIndex": 375,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "a35bfc94125ee2c9bbb2ca2df4144f0526ef591c937f35a17d9edb3f93a981ab",
+      "rawMembershipSHA256": "f9320e0d38ae20d64ab602e617f5db4a8b8ac18e306f043890c1fd284600ae7d"
+    },
+    {
+      "unitID": "toc:1235868",
+      "rawUnitTitle": "אות קנט",
+      "sourceLineIndices": [
+        376,
+        377
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 376,
+      "unitEndLineIndex": 377,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "2f3a6ab270259d09d0de718d4fecf9e847ac8dedd50ac509b8b2d41c979df687",
+      "rawMembershipSHA256": "e3dee17fbd329fb35184bfbb447d3e0faa23194758f8bec1d7bf2cc704624963"
+    },
+    {
+      "unitID": "toc:1235869",
+      "rawUnitTitle": "אות קס",
+      "sourceLineIndices": [
+        378,
+        379,
+        380
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 378,
+      "unitEndLineIndex": 380,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "ddd74e8529cc9f06512ed10ce95989c2f11f2d6de4a3a84f9d1e4e5d49e94a1b",
+      "rawMembershipSHA256": "07a205841fd5777038b4b040e3b47d29b43eefa09ca7290dc0308d9e7aff9133"
+    },
+    {
+      "unitID": "toc:1235870",
+      "rawUnitTitle": "אות קסא",
+      "sourceLineIndices": [
+        381,
+        382
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 381,
+      "unitEndLineIndex": 382,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d01d128ee39d3329e7aced95372d36e3aca5b7ddab6b9c52eff609dd6bdb1709",
+      "rawMembershipSHA256": "ba47ee6a593818155ae7619d7fc6f0fc00e546295694d8e8509a1fc335d27685"
+    },
+    {
+      "unitID": "toc:1235871",
+      "rawUnitTitle": "אות קסב",
+      "sourceLineIndices": [
+        383,
+        384
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 383,
+      "unitEndLineIndex": 384,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "00cb4b01e9e875017c31816e0e560810587ee5013feb81d37ba6c78af3b5a284",
+      "rawMembershipSHA256": "f2b5b10096e69e90c4f511e2f989a274a31bde7856175f912dbd2f31d8842a98"
+    },
+    {
+      "unitID": "toc:1235872",
+      "rawUnitTitle": "אות קסג",
+      "sourceLineIndices": [
+        385,
+        386
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 385,
+      "unitEndLineIndex": 386,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "a97dacbef981910444b9a792b018d2b6d15ceadca263485d0209cbd7d88f2b17",
+      "rawMembershipSHA256": "04bca5e6555b05d4fc6dce1b4b88c639488734578728e8be80e994af082493c4"
+    },
+    {
+      "unitID": "toc:1235873",
+      "rawUnitTitle": "אות קסד",
+      "sourceLineIndices": [
+        387,
+        388
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 387,
+      "unitEndLineIndex": 388,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "4aa43b81bc6586ac07cead672551167cb3a82b0789212598460a9fffbaaa5181",
+      "rawMembershipSHA256": "474b193329ca6fff5b9db0a861e625070d0a4a8cfd3480e83c3f6e836885f7b9"
+    },
+    {
+      "unitID": "toc:1235874",
+      "rawUnitTitle": "אות קסה",
+      "sourceLineIndices": [
+        389,
+        390
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 389,
+      "unitEndLineIndex": 390,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "059860239860bfd5148f2ae45b6e23e231f77000382dd94a6517f0c1a8e55e7f",
+      "rawMembershipSHA256": "756ce6ca95f278e526b27027c51d4c6feaaf0088ac4b51035a4679ae27fc2b91"
+    },
+    {
+      "unitID": "toc:1235875",
+      "rawUnitTitle": "אות קסו",
+      "sourceLineIndices": [
+        391,
+        392
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 391,
+      "unitEndLineIndex": 392,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "8678b2e4eac653058315dcc24fc06cdd7648a17c672984dff89be71606beea47",
+      "rawMembershipSHA256": "4ad4e4a3bb7dae17f9af65b5aae869fbc5aa0b1ca706a161e5efabf06d8b740a"
+    },
+    {
+      "unitID": "toc:1235876",
+      "rawUnitTitle": "אות קסז",
+      "sourceLineIndices": [
+        393,
+        394
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 393,
+      "unitEndLineIndex": 394,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "e544048bd1a991b9f0311723bbdbf696a114a151cb51b7fc831dc4bbee817c60",
+      "rawMembershipSHA256": "8c1c4ed040ad177f22ffd5e24699b234aebaa6007a40fafd18d496b758e00a7e"
+    },
+    {
+      "unitID": "toc:1235877",
+      "rawUnitTitle": "אות קסח",
+      "sourceLineIndices": [
+        395,
+        396
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 395,
+      "unitEndLineIndex": 396,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "cbae4f9cd3b301602720b1c636588c0bd5dddbb9cc2a300970115e486c1ba23f",
+      "rawMembershipSHA256": "effd24d738f492eccdbe31290e944859a6ea44ec168e3bd33cea8a553025078c"
+    },
+    {
+      "unitID": "toc:1235878",
+      "rawUnitTitle": "אות קסט",
+      "sourceLineIndices": [
+        397,
+        398,
+        399
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 397,
+      "unitEndLineIndex": 399,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "f2cdb5e3be59d9019e1adf0547565581b510431fd54bd3bebaa9f25160b13fc3",
+      "rawMembershipSHA256": "d0b9a15ba2eb44cfee7c68d2c6f99839c67a9bfc7ca02e3999c69c5a4a009690"
+    },
+    {
+      "unitID": "toc:1235879",
+      "rawUnitTitle": "אות קע",
+      "sourceLineIndices": [
+        400,
+        401
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 400,
+      "unitEndLineIndex": 401,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "0be872e00ee1b312e9cdfc6fde475392ff2daf0e796fbf85d54e7158fa6d8cd2",
+      "rawMembershipSHA256": "fc4eb3986c23c0ea3fef5ea51c1682b669fbcce808f997c306edd1f214ce9951"
+    },
+    {
+      "unitID": "toc:1235880",
+      "rawUnitTitle": "אות קעא",
+      "sourceLineIndices": [
+        402,
+        403
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 402,
+      "unitEndLineIndex": 403,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "6e5c7f0e0c72f2a59538fdb5044eddaa8ceec8cd6b7127da09f97466e5faf0ce",
+      "rawMembershipSHA256": "74f3f241b4201a3cad45e26c6aed1adee45a839cf9b77b1694c0a05a9bd36a62"
+    },
+    {
+      "unitID": "toc:1235881",
+      "rawUnitTitle": "אות קעב",
+      "sourceLineIndices": [
+        404,
+        405,
+        406
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 404,
+      "unitEndLineIndex": 406,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "514cdf1fd744122f9fc18db5b6e4f0be860450b1c1e61924ee289c28bb1254e0",
+      "rawMembershipSHA256": "922db6d363c938a66393d6bf1af7eab3f9e4a93a8a03ec3e790c5dcdc4babbd7"
+    },
+    {
+      "unitID": "toc:1235882",
+      "rawUnitTitle": "אות קעג",
+      "sourceLineIndices": [
+        407,
+        408
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 407,
+      "unitEndLineIndex": 408,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "d9d1a3ea838d9438d28492c61a26ff32c5b00b0fdc5c3cabcd5ab2c669d97583",
+      "rawMembershipSHA256": "2f62c45ecc1a6657d016be4ffa9a86e0d74372b99b82c28d1d0c0e726119e57b"
+    },
+    {
+      "unitID": "toc:1235883",
+      "rawUnitTitle": "אות קעד",
+      "sourceLineIndices": [
+        409,
+        410
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 409,
+      "unitEndLineIndex": 410,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "3d05c515979c9ef2b21ec6987d19416ef921f913b17e78e607ce669b1e1e4cf9",
+      "rawMembershipSHA256": "e52cd1349145096cfa88342fd34a67914e024c456b18a35bd14ec28cea591b23"
+    },
+    {
+      "unitID": "toc:1235884",
+      "rawUnitTitle": "אות קעה",
+      "sourceLineIndices": [
+        411,
+        412,
+        413,
+        414
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 411,
+      "unitEndLineIndex": 414,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "555b13f0972e90a3d8894c48896efb77677805761825cd8898cee02610b770a0",
+      "rawMembershipSHA256": "64fb1bdce979a67c9896413e8bd382ed46fe50e4c22b35a528989c71744e2945"
+    },
+    {
+      "unitID": "toc:1235885",
+      "rawUnitTitle": "אות קעו",
+      "sourceLineIndices": [
+        415,
+        416
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 415,
+      "unitEndLineIndex": 416,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "88b2da397baeafdeb7f57f2eff9e51101891e8ec64ad7a015aef31c25de44c14",
+      "rawMembershipSHA256": "16cbfd20357c892da2026c73a8cca92b5de8e212a13188214c37d03d34a4c0a1"
+    },
+    {
+      "unitID": "toc:1235886",
+      "rawUnitTitle": "אות קעז",
+      "sourceLineIndices": [
+        417,
+        418,
+        419
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 417,
+      "unitEndLineIndex": 419,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "ddb79fcb2b0c2febd1fc9752930c1eafe754d5ff30807e79bc75a425a29cdc2f",
+      "rawMembershipSHA256": "7c429f50f8f61e85c0a842ce8a555fe8912564c91b7e4de74e9f0de3cb706795"
+    },
+    {
+      "unitID": "toc:1235887",
+      "rawUnitTitle": "אות קעח",
+      "sourceLineIndices": [
+        420,
+        421
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 420,
+      "unitEndLineIndex": 421,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "965e99977ef1dd27b71dc634c552328e2270a5e644a66dba7ddf54a137998f09",
+      "rawMembershipSHA256": "289cf525d6c57e9abc133ed96a0299504c8113528870955e40a09f8aaec87f1a"
+    },
+    {
+      "unitID": "toc:1235888",
+      "rawUnitTitle": "אות קעט",
+      "sourceLineIndices": [
+        422,
+        423
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 422,
+      "unitEndLineIndex": 423,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "16f536701f6057a7dad1ac67a15f864a427856a47594444f3e44f70d8180d652",
+      "rawMembershipSHA256": "220e04772acced0182a6bfa9df6fbce31c14dd9946f064608ac450c8f117d5bf"
+    },
+    {
+      "unitID": "toc:1235889",
+      "rawUnitTitle": "אות קפ",
+      "sourceLineIndices": [
+        424,
+        425,
+        426
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 424,
+      "unitEndLineIndex": 426,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "718abe43469825ac1b9657ea826af79b02c68894833a2f1d97d4594cf4523e94",
+      "rawMembershipSHA256": "060f66aa32a533d65930a1aec00f788c27d1d35f7cdc4df9f3fd531de0062558"
+    },
+    {
+      "unitID": "toc:1235890",
+      "rawUnitTitle": "אות קפא",
+      "sourceLineIndices": [
+        427,
+        428,
+        429
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 427,
+      "unitEndLineIndex": 429,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "9e20b0cc6c58dacee615324d9fdfb67dbbb6f686fd2d8824febddeaf5700a3e5",
+      "rawMembershipSHA256": "e308e8cc3f93345c4078b80dd2a0d95e054baca9dd2ff41a2f9de8010e47195b"
+    },
+    {
+      "unitID": "toc:1235891",
+      "rawUnitTitle": "אות קפב",
+      "sourceLineIndices": [
+        430,
+        431
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 430,
+      "unitEndLineIndex": 431,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "b3779ab0edd3928ee0f0e17aceb76353b57ba201087b2fea8b9ca2688577f1b9",
+      "rawMembershipSHA256": "48ece355df239832cdc993a31a3642a2e40b6ab3f2935ecd10450519c5ba7eb2"
+    },
+    {
+      "unitID": "toc:1235892",
+      "rawUnitTitle": "אות קפג",
+      "sourceLineIndices": [
+        432,
+        433,
+        434
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 432,
+      "unitEndLineIndex": 434,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "3df3dc95fa492f9a849230a2fee55e3d7a3fd48d76b28b4cbce5c03c7a07a09c",
+      "rawMembershipSHA256": "21efa17c8559af8c714218772320152b3b315458436e6c3d990b9ee827919533"
+    },
+    {
+      "unitID": "toc:1235893",
+      "rawUnitTitle": "אות קפד",
+      "sourceLineIndices": [
+        435,
+        436,
+        437,
+        438
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 435,
+      "unitEndLineIndex": 438,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "ce4dd02c2d78db3464bcd5f4335b77d9d9c4bcb48bcc446ef88c7c2576371c47",
+      "rawMembershipSHA256": "cbeac1bf9985417da52ec09987eac5ebebd416ce078982e078a19ad37dc669af"
+    },
+    {
+      "unitID": "toc:1235894",
+      "rawUnitTitle": "אות קפה",
+      "sourceLineIndices": [
+        439,
+        440,
+        441
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 439,
+      "unitEndLineIndex": 441,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "9e749b980124378926e245e98a283840a36bd06e97c0ad7c247bb829db26482c",
+      "rawMembershipSHA256": "860011d0015bbe7c06645f9c77b88b90aaab65c8586f35ba8b27e8412a13770a"
+    },
+    {
+      "unitID": "toc:1235895",
+      "rawUnitTitle": "אות קפו",
+      "sourceLineIndices": [
+        442,
+        443,
+        444
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 442,
+      "unitEndLineIndex": 444,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "da072d1644c0e2d5c38814edf3953d84d2b13d9672261f8fd5ac08d7835de5d7",
+      "rawMembershipSHA256": "0170ea92b6549523f59c4df8ee32ab1b34f03796a8318baa2236f89145f0008c"
+    },
+    {
+      "unitID": "toc:1235896",
+      "rawUnitTitle": "אות קפז",
+      "sourceLineIndices": [
+        445,
+        446,
+        447
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 445,
+      "unitEndLineIndex": 447,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "196b503cccfc94b263d56b462eb4d856baf71edc4650451aa862b757674b835a",
+      "rawMembershipSHA256": "ccec4350d0e0e605a4d9b608e5a06b23feeabdab3fe487bff9e07b7da3fe9e2f"
+    },
+    {
+      "unitID": "toc:1235897",
+      "rawUnitTitle": "אות קפח",
+      "sourceLineIndices": [
+        448,
+        449
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 448,
+      "unitEndLineIndex": 449,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "ccded4754b06c8dce81843ed27be5064ebd9ce03f44b62ad59049c770c65d725",
+      "rawMembershipSHA256": "8b111a15731419b9690986da23e44c09058c4b2ac78378d9d1cb3504bd725119"
+    },
+    {
+      "unitID": "toc:1235898",
+      "rawUnitTitle": "אות קפט",
+      "sourceLineIndices": [
+        450,
+        451
+      ],
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "mode": "chapter",
+      "unitStartLineIndex": 450,
+      "unitEndLineIndex": 451,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "47a6fbaf8dbc387b38f3ea349194d6fc2bf74b77b88feb8cd2bc57c2ae97868b",
+      "rawMembershipSHA256": "e4db677a9c10c3665a828cb28788a06254309a38ec4bfaabce4d1350818a2a07"
+    }
+  ]
+}

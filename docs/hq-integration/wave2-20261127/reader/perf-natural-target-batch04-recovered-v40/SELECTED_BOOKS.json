@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 177 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 178,
+      "bookTitle": "תלמוד ירושלמי נדה",
+      "declaredTotalLines": 134,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 179,
+      "bookTitle": "תוספתא ברכות",
+      "declaredTotalLines": 158,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 181,
+      "bookTitle": "תוספתא דמאי",
+      "declaredTotalLines": 160,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 183,
+      "bookTitle": "תוספתא שביעית",
+      "declaredTotalLines": 129,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 184,
+      "bookTitle": "תוספתא תרומות",
+      "declaredTotalLines": 179,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 190,
+      "bookTitle": "תוספתא שבת",
+      "declaredTotalLines": 252,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 191,
+      "bookTitle": "תוספתא עירובין",
+      "declaredTotalLines": 126,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 192,
+      "bookTitle": "תוספתא פסחים",
+      "declaredTotalLines": 121,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 201,
+      "bookTitle": "תוספתא יבמות",
+      "declaredTotalLines": 118,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 202,
+      "bookTitle": "תוספתא כתובות",
+      "declaredTotalLines": 138,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 205,
+      "bookTitle": "תוספתא סוטה",
+      "declaredTotalLines": 117,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 208,
+      "bookTitle": "תוספתא בבא קמא",
+      "declaredTotalLines": 112,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 209,
+      "bookTitle": "תוספתא בבא מציעא",
+      "declaredTotalLines": 130,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "declaredTotalLines": 108,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 218,
+      "bookTitle": "תוספתא מנחות",
+      "declaredTotalLines": 126,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 228,
+      "bookTitle": "תוספתא אהלות",
+      "declaredTotalLines": 164,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 229,
+      "bookTitle": "תוספתא נגעים",
+      "declaredTotalLines": 108,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "declaredTotalLines": 307,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 240,
+      "bookTitle": "אוצר מדרשים",
+      "declaredTotalLines": 8087,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 241,
+      "bookTitle": "בראשית רבתי",
+      "declaredTotalLines": 646,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 243,
+      "bookTitle": "הערות ותיקונים על מדרש אגדה",
+      "declaredTotalLines": 3571,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 244,
+      "bookTitle": "ילקוט שמעוני על התורה",
+      "declaredTotalLines": 5739,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 245,
+      "bookTitle": "מדרש אגדה",
+      "declaredTotalLines": 5906,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 246,
+      "bookTitle": "מדרש ילמדנו מתוך ילקוט תלמוד תורה",
+      "declaredTotalLines": 452,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 248,
+      "bookTitle": "מדרש לקח טוב על איכה",
+      "declaredTotalLines": 326,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 249,
+      "bookTitle": "מדרש לקח טוב על אסתר",
+      "declaredTotalLines": 436,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 250,
+      "bookTitle": "מדרש לקח טוב על קהלת",
+      "declaredTotalLines": 458,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 251,
+      "bookTitle": "מדרש לקח טוב על רות",
+      "declaredTotalLines": 224,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 252,
+      "bookTitle": "מדרש לקח טוב על שיר השירים",
+      "declaredTotalLines": 453,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 253,
+      "bookTitle": "הערות ותיקונים על מדרש לקח טוב",
+      "declaredTotalLines": 6049,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 254,
+      "bookTitle": "הערות ותיקונים על מדרש לקח טוב על אסתר",
+      "declaredTotalLines": 266,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "declaredTotalLines": 172,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 256,
+      "bookTitle": "בראשית רבה",
+      "declaredTotalLines": 1137,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 257,
+      "bookTitle": "שמות רבה",
+      "declaredTotalLines": 517,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 258,
+      "bookTitle": "ויקרא רבה",
+      "declaredTotalLines": 368,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 259,
+      "bookTitle": "במדבר רבה",
+      "declaredTotalLines": 468,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 260,
+      "bookTitle": "דברים רבה",
+      "declaredTotalLines": 172,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 262,
+      "bookTitle": "שיר השירים רבה",
+      "declaredTotalLines": 378,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 263,
+      "bookTitle": "איכה רבה",
+      "declaredTotalLines": 193,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 264,
+      "bookTitle": "אסתר רבה",
+      "declaredTotalLines": 148,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "298770025ec4b15429cd8e86f2d9ef92d07d2382",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

@@ -1,0 +1,363 @@
+{
+  "schema": 1,
+  "status": "SQL_CANDIDATES_ONLY_EXACT_2000_NOT_FOUND_IN_AUTHORIZED_FIRST_200_BOOKS",
+  "batches": [
+    {
+      "batch": 1,
+      "resultPath": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
+      "resultSHA256": "efd18aad0afa12b31355c5b449bc96cec3c2a0249bfa48e6286935859a73c01e",
+      "seconds": 18.37942755036056,
+      "completeBooks": 40,
+      "excludedBooks": 0,
+      "units": 887,
+      "rows": 1023152,
+      "peakDiscoveryRSSBytes": 64524288,
+      "firstSelectedBook": {
+        "bookID": 1,
+        "bookTitle": "בראשית",
+        "declaredTotalLines": 1584,
+        "isBaseBook": 1
+      },
+      "lastSelectedBook": {
+        "bookID": 80,
+        "bookTitle": "משנה זבחים",
+        "declaredTotalLines": 116,
+        "isBaseBook": 1
+      },
+      "exactCandidates": {
+        "100": 0,
+        "500": 1,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 2,
+      "resultPath": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
+      "resultSHA256": "5ad7a7d05ed0dfce0b8d334f59f80a9dd31ba7ce9ea38cdfbb7cfd4d2b9c548a",
+      "seconds": 51.55322085600346,
+      "completeBooks": 40,
+      "excludedBooks": 0,
+      "units": 5161,
+      "rows": 1411940,
+      "peakDiscoveryRSSBytes": 61157376,
+      "firstSelectedBook": {
+        "bookID": 81,
+        "bookTitle": "משנה מנחות",
+        "declaredTotalLines": 107,
+        "isBaseBook": 1
+      },
+      "lastSelectedBook": {
+        "bookID": 137,
+        "bookTitle": "מעילה",
+        "declaredTotalLines": 557,
+        "isBaseBook": 1
+      },
+      "exactCandidates": {
+        "100": 7,
+        "500": 3,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 3,
+      "resultPath": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/DISCOVERY.json",
+      "resultSHA256": "fdedbb3db6a1c4d946bd114d0f698bbbeff213fcf6f41fa0f487da0dbef8968e",
+      "seconds": 27.004336370155215,
+      "completeBooks": 40,
+      "excludedBooks": 0,
+      "units": 453,
+      "rows": 284774,
+      "peakDiscoveryRSSBytes": 53223424,
+      "firstSelectedBook": {
+        "bookID": 138,
+        "bookTitle": "תמיד",
+        "declaredTotalLines": 225,
+        "isBaseBook": 1
+      },
+      "lastSelectedBook": {
+        "bookID": 177,
+        "bookTitle": "תלמוד ירושלמי הוריות",
+        "declaredTotalLines": 146,
+        "isBaseBook": 1
+      },
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 4,
+      "resultPath": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/DISCOVERY.json",
+      "resultSHA256": "ab5fcb4f2a7f52ed97fa8a05bd421acd8644e33e73624971b7503417e3ab1b8f",
+      "seconds": 7.56556699052453,
+      "completeBooks": 40,
+      "excludedBooks": 0,
+      "units": 1972,
+      "rows": 310614,
+      "peakDiscoveryRSSBytes": 47566848,
+      "firstSelectedBook": {
+        "bookID": 178,
+        "bookTitle": "תלמוד ירושלמי נדה",
+        "declaredTotalLines": 134,
+        "isBaseBook": 1
+      },
+      "lastSelectedBook": {
+        "bookID": 264,
+        "bookTitle": "אסתר רבה",
+        "declaredTotalLines": 148,
+        "isBaseBook": 1
+      },
+      "exactCandidates": {
+        "100": 3,
+        "500": 1,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 5,
+      "resultPath": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/DISCOVERY.json",
+      "resultSHA256": "a9e5dcc7f4dd95d1e2d2e26763ccb12fb99648a1938bfe7412dbb6897141f112",
+      "seconds": 5.483335638418794,
+      "completeBooks": 40,
+      "excludedBooks": 0,
+      "units": 1396,
+      "rows": 272525,
+      "peakDiscoveryRSSBytes": 43630592,
+      "firstSelectedBook": {
+        "bookID": 265,
+        "bookTitle": "מדרש שכל טוב",
+        "declaredTotalLines": 8522,
+        "isBaseBook": 1
+      },
+      "lastSelectedBook": {
+        "bookID": 323,
+        "bookTitle": "משנה תורה, הלכות מאכלות אסורות",
+        "declaredTotalLines": 443,
+        "isBaseBook": 1
+      },
+      "exactCandidates": {
+        "100": 5,
+        "500": 0,
+        "2000": 0
+      }
+    }
+  ],
+  "totals": {
+    "completeBooks": 200,
+    "units": 9869,
+    "rows": 3303005,
+    "seconds": 109.98588740546256,
+    "exactCandidates": {
+      "100": 15,
+      "500": 5,
+      "2000": 0
+    }
+  },
+  "nearestTo2000": [
+    {
+      "bookID": 1,
+      "bookTitle": "בראשית",
+      "unitID": "toc:39",
+      "unitStartLineIndex": 1158,
+      "unitEndLineIndex": 1188,
+      "unitRowCount": 31,
+      "candidateRawRelationshipCount": 2006,
+      "rawMembershipSHA256": "66e81fc0c19a813ae5171dc045206898d2be6393be385f5bb6e62ba9966820c2"
+    },
+    {
+      "bookID": 4,
+      "bookTitle": "במדבר",
+      "unitID": "toc:152",
+      "unitStartLineIndex": 1091,
+      "unitEndLineIndex": 1145,
+      "unitRowCount": 55,
+      "candidateRawRelationshipCount": 2009,
+      "rawMembershipSHA256": "05c79a4b8940a8f72fb6b1aa42496a27c0b1bbef82fc68309ccd699ecfb59dd6"
+    },
+    {
+      "bookID": 5,
+      "bookTitle": "דברים",
+      "unitID": "toc:161",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 115,
+      "unitRowCount": 30,
+      "candidateRawRelationshipCount": 1991,
+      "rawMembershipSHA256": "07274616508ed5cc31d66a83635f26fcb901de54fd8ebbdf21775ecf8957052a"
+    },
+    {
+      "bookID": 5,
+      "bookTitle": "דברים",
+      "unitID": "toc:187",
+      "unitStartLineIndex": 814,
+      "unitEndLineIndex": 842,
+      "unitRowCount": 29,
+      "candidateRawRelationshipCount": 1988,
+      "rawMembershipSHA256": "c4eb11da3c131ebb3b957c6d4fd49af9bf4045db1b12f3e53a06276760ccb949"
+    },
+    {
+      "bookID": 141,
+      "bookTitle": "תלמוד ירושלמי פאה",
+      "unitID": "toc:7012",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 87,
+      "candidateRawRelationshipCount": 2013,
+      "rawMembershipSHA256": "dbdd97b043d1243d399783a7dc17c4331147cfc19c7fc908ece311608bc2f4ca"
+    },
+    {
+      "bookID": 2,
+      "bookTitle": "שמות",
+      "unitID": "toc:59",
+      "unitStartLineIndex": 160,
+      "unitEndLineIndex": 189,
+      "unitRowCount": 30,
+      "candidateRawRelationshipCount": 2014,
+      "rawMembershipSHA256": "71bab7cd864e35a3d4cefe39fd429f0426ae79701969307c392fd33af004fef4"
+    },
+    {
+      "bookID": 2,
+      "bookTitle": "שמות",
+      "unitID": "toc:83",
+      "unitStartLineIndex": 916,
+      "unitEndLineIndex": 934,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 2014,
+      "rawMembershipSHA256": "e6ada7021adf637ed4489563cef1b6f01f534ab5c759f8db2180150a89f56c09"
+    },
+    {
+      "bookID": 30,
+      "bookTitle": "משלי",
+      "unitID": "toc:801",
+      "unitStartLineIndex": 210,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 1986,
+      "rawMembershipSHA256": "064170576d4d6bcd454228798711e3c9226bb437a3609f5ec6baf802366442c6"
+    },
+    {
+      "bookID": 245,
+      "bookTitle": "מדרש אגדה",
+      "unitID": "toc:13071",
+      "unitStartLineIndex": 3358,
+      "unitEndLineIndex": 3895,
+      "unitRowCount": 538,
+      "candidateRawRelationshipCount": 2015,
+      "rawMembershipSHA256": "2d2f7f9b281e72e790a24f6472a69491d1e6c7f22319df1a8fffce40307a169f"
+    },
+    {
+      "bookID": 3,
+      "bookTitle": "ויקרא",
+      "unitID": "toc:95",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 1984,
+      "rawMembershipSHA256": "bec7f88f71697cf25c45b002a03ba76b9874361ae5637fb354eb7245c265f0ae"
+    },
+    {
+      "bookID": 161,
+      "bookTitle": "תלמוד ירושלמי מועד קטן",
+      "unitID": "toc:8173",
+      "unitStartLineIndex": 88,
+      "unitEndLineIndex": 188,
+      "unitRowCount": 101,
+      "candidateRawRelationshipCount": 1969,
+      "rawMembershipSHA256": "0e8892a2935ecbea4dda6df3b04a7b5a92113ca61e39298058321e11627cc5cc"
+    },
+    {
+      "bookID": 262,
+      "bookTitle": "שיר השירים רבה",
+      "unitID": "toc:19682",
+      "unitStartLineIndex": 90,
+      "unitEndLineIndex": 153,
+      "unitRowCount": 64,
+      "candidateRawRelationshipCount": 1964,
+      "rawMembershipSHA256": "611e782d9ed851f9876dd5d5a26cf9eb7aa6c63f3be015b51a658af799d0808f"
+    },
+    {
+      "bookID": 8,
+      "bookTitle": "שמואל א",
+      "unitID": "toc:242",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 1962,
+      "rawMembershipSHA256": "813bd32e6aef66556662d9b763b2f66c757067e14d15711c14c3931e6d63328c"
+    },
+    {
+      "bookID": 31,
+      "bookTitle": "שיר השירים",
+      "unitID": "toc:826",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 2038,
+      "rawMembershipSHA256": "e7aab8c9612319db05422a3105802a7799365421bcdef2c9131b1a34949341e8"
+    },
+    {
+      "bookID": 257,
+      "bookTitle": "שמות רבה",
+      "unitID": "toc:19541",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 189,
+      "unitRowCount": 32,
+      "candidateRawRelationshipCount": 2046,
+      "rawMembershipSHA256": "b68d8f58ea4d8424ed3854b5d6007474cc7d3504ca788c99b62e663f523951d5"
+    },
+    {
+      "bookID": 262,
+      "bookTitle": "שיר השירים רבה",
+      "unitID": "toc:19709",
+      "unitStartLineIndex": 189,
+      "unitEndLineIndex": 235,
+      "unitRowCount": 47,
+      "candidateRawRelationshipCount": 2050,
+      "rawMembershipSHA256": "8f85320c7bcdcca4589aa9ac1a5ab10044adf3dbc5acd1ad8c5bf4c8dc337176"
+    },
+    {
+      "bookID": 3,
+      "bookTitle": "ויקרא",
+      "unitID": "toc:103",
+      "unitStartLineIndex": 242,
+      "unitEndLineIndex": 262,
+      "unitRowCount": 21,
+      "candidateRawRelationshipCount": 2055,
+      "rawMembershipSHA256": "74fdb97cf56a1a7a6ee86a9a2a82d961ba227acea2c92835ac2bedee1bfc630b"
+    },
+    {
+      "bookID": 4,
+      "bookTitle": "במדבר",
+      "unitID": "toc:131",
+      "unitStartLineIndex": 394,
+      "unitEndLineIndex": 430,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 2055,
+      "rawMembershipSHA256": "757fb25ee0669ffc57d0b3ef871e4b3327b70af0d04b4f7d5dae3f755165a433"
+    },
+    {
+      "bookID": 151,
+      "bookTitle": "תלמוד ירושלמי שבת",
+      "unitID": "toc:7499",
+      "unitStartLineIndex": 384,
+      "unitEndLineIndex": 467,
+      "unitRowCount": 84,
+      "candidateRawRelationshipCount": 2056,
+      "rawMembershipSHA256": "a64889e056a7b19d9b5795e353af7ee201c9b8cf7608ad72397afba15de8b868"
+    },
+    {
+      "bookID": 1,
+      "bookTitle": "בראשית",
+      "unitID": "toc:49",
+      "unitStartLineIndex": 1500,
+      "unitEndLineIndex": 1522,
+      "unitRowCount": 23,
+      "candidateRawRelationshipCount": 2057,
+      "rawMembershipSHA256": "2419ab3242b4d90dcf6e3dc5361dcf7fca070ab8b8d1151660cc9fce6a3904e5"
+    }
+  ],
+  "unitsAtLeast2000": 166,
+  "newDatabaseReadPerformedByThisSummary": false,
+  "nativeUIExecuted": 0,
+  "originalSwiftAdapterExecuted": false
+}

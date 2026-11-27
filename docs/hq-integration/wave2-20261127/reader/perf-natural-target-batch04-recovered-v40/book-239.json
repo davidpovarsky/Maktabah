@@ -1,0 +1,1578 @@
+{
+  "bookID": 239,
+  "bookTitle": "אגדת בראשית",
+  "declaredTotalLines": 307,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.08783054072409868,
+  "resolvedAnchorRows": 3751,
+  "units": [
+    {
+      "unitID": "toc:9969",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 5,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 52,
+      "sourceIndicesSHA256": "4e098021cf9ec15699efd082b803811ec67394af4b3ea324e86edbccc3cbeac3",
+      "rawMembershipSHA256": "0f4bdcadf09b4adcf675dfcf831d46f0b87b5ca6863cbfd96a0b47361cf29fe3"
+    },
+    {
+      "unitID": "toc:9970",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        6,
+        7,
+        8
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 6,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 64,
+      "sourceIndicesSHA256": "1a98b65e0a633c88274d1d3cb9c90fbc634fa223bb74c7e08d9e2c28132965ca",
+      "rawMembershipSHA256": "feb5d386048fb45c08108018b4c5b51a87bfc96f7e7510df2f927ac872887857"
+    },
+    {
+      "unitID": "toc:9971",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        9,
+        10
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "11e07e7bb591992307e25655831247578120a67b9436b172b61a4df9ba743557",
+      "rawMembershipSHA256": "b4aba4361889bf87dcc64426aef881264f8fc6375d1d4199cebd7cb31b8518d4"
+    },
+    {
+      "unitID": "toc:9972",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 36,
+      "sourceIndicesSHA256": "15225829a74894d4d186cc6d46095a2847e22d6223b6ec9ecc74e9e1d043175b",
+      "rawMembershipSHA256": "7c6df4f97134579904b9ab19348707d8064288077c45088cd7be50ce409903a6"
+    },
+    {
+      "unitID": "toc:9973",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 74,
+      "sourceIndicesSHA256": "6dc02b77cd6196461cf092eb6a2acf2233c6080fd6f0798555223e69cdf61fff",
+      "rawMembershipSHA256": "3b5f98c993903f4612de8ae48a65c7b1c307fa0837b1d3f1cc138f0f1ffd9584"
+    },
+    {
+      "unitID": "toc:9974",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "5b6c10647ade19b2faf8400b42067969b0077b4987894457f6d63eb53b39eb64"
+    },
+    {
+      "unitID": "toc:9975",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 24,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 52,
+      "sourceIndicesSHA256": "20ea5641e2ff761043c4714d3dccdca18ab9380601440bbe7468eca032a1674f",
+      "rawMembershipSHA256": "83096fd3a59b9c7ea65f8041b21755d72e6cdcb71fb8036bb6b3b2f37eb5cfb2"
+    },
+    {
+      "unitID": "toc:9976",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 25,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 87,
+      "sourceIndicesSHA256": "fc7b3090a0cee34a060e8f22e30b584736d4be7318eb2eb5ed59fe4ea784824f",
+      "rawMembershipSHA256": "1b14a87365045add969a619ebf05b9dca62f22de9f501969d87dadc7464853ab"
+    },
+    {
+      "unitID": "toc:9977",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        30,
+        31,
+        32,
+        33
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "f85ec492272a70c24ead14ee7e6b909839a49999949fc718ea88d7ef8f02c3b9",
+      "rawMembershipSHA256": "af102a6273e95600cf3134d33be4998d4d4567e0f6ecba8e060c4f395d129116"
+    },
+    {
+      "unitID": "toc:9978",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        34,
+        35,
+        36,
+        37
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 35,
+      "sourceIndicesSHA256": "009b68e3719a5dfb44670beaf17256cd9929f45b17f833794e222c37a9a01d3e",
+      "rawMembershipSHA256": "3a6407e26077f7b91050f51857911d09d2b5c0a58096f65cfdac86207df7b48a"
+    },
+    {
+      "unitID": "toc:9979",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        38,
+        39,
+        40
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 40,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 45,
+      "sourceIndicesSHA256": "5ee77b95dc5a229398e3a8197b31d10bad4733bbbfa048f07c1fb372ed970acb",
+      "rawMembershipSHA256": "9c38396b57c4edd967bcaab5b0b16d595efbc0bcf63098d50ac59fcfc57f908c"
+    },
+    {
+      "unitID": "toc:9980",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        41,
+        42
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 41,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "3beeee5787f850dd0de404ae4972f02cf353a6c3ea882ec293543c19ca1c96d0",
+      "rawMembershipSHA256": "b2c3844d8bbdf5146a1b38d708d873c04664ec1e79f56971c639fda3de5f3a3c"
+    },
+    {
+      "unitID": "toc:9981",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        43,
+        44,
+        45,
+        46
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 46,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 66,
+      "sourceIndicesSHA256": "866664b6d9470a43fda90a691d5bb13b4c1640e0e9ff9ba50052faa49bb6c077",
+      "rawMembershipSHA256": "e6799dc325cb4d2bceb57fee22bc2d35871c8bd912d4d2707a6d9b2812abaf1e"
+    },
+    {
+      "unitID": "toc:9982",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 47,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "713e161f252f82b750dc7bc635043b3c9040d734f195e19004cad693dcc653d3",
+      "rawMembershipSHA256": "fa3392901192128a71ed95d1892d58bf3d994de06d4b15e9b45e7fd01d49c087"
+    },
+    {
+      "unitID": "toc:9983",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        52,
+        53
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 53,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "64e521936c9b0fe75f82d3d03b33aed044fdce965d7feac2f1bc445e38e73d5f",
+      "rawMembershipSHA256": "227a9017adabe5760f2c86f503faa313531693ebf99b909eac0e9a6bbf19700d"
+    },
+    {
+      "unitID": "toc:9984",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 54,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "f463290be78d55aa0484b8d5a3528cda44b9587eba96de3ab75a713f0e60ee96",
+      "rawMembershipSHA256": "bc5bef2dbf72c92309886a067fa28f9debb8e34f1bd2afd40c1d4d281f151b02"
+    },
+    {
+      "unitID": "toc:9985",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        58,
+        59,
+        60
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "4b802d7bea0e811ec2ec269c1adbb85f45da5e0b022a04877edd0ea3f10d16bf",
+      "rawMembershipSHA256": "2159d0f3022eacf609cc7a80eb94864e0f7870cdb3c00b798551f452c472b980"
+    },
+    {
+      "unitID": "toc:9986",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        61,
+        62
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "384b88c1aeec78f8cfb80907012f68bcc2fba913bd4863b72134e09c40952783",
+      "rawMembershipSHA256": "30f64a62ad1946d97565cc9ac6f414b3f6e44d5a8e66d3fe4dcfa2751cb2a13e"
+    },
+    {
+      "unitID": "toc:9987",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        63,
+        64,
+        65,
+        66
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 72,
+      "sourceIndicesSHA256": "37ae900c2e5bfcd5ea4caaf0a1822669d40ad1489d327affd2103a0562977041",
+      "rawMembershipSHA256": "d62e0758e4d4c832aaa2a8a09c3fd60ac6bcd3358100a4ba1fb2c3c68e9ae957"
+    },
+    {
+      "unitID": "toc:9988",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "33d6e0e3a0f6bfadf393eadc2bb3e30a307ec899e0ceb1c55c00a21317866261",
+      "rawMembershipSHA256": "9d220906fa2431965a1c6804957f50620327a00f24b508602783f0cdc3e7edda"
+    },
+    {
+      "unitID": "toc:9989",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        72,
+        73
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 73,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "994536fe07517ee44a29b5a44e4d0d9f80d50c2ed20fe2c0de104a100aab31e3",
+      "rawMembershipSHA256": "dd43deac1bde92fc51aa021ff85f4f2bb67556a7d11ea33d9346298dd1e295be"
+    },
+    {
+      "unitID": "toc:9990",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        74,
+        75,
+        76,
+        77
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 74,
+      "unitEndLineIndex": 77,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 54,
+      "sourceIndicesSHA256": "34f06c70a6c90f5ec754e3f289dbc9c92c040fcf30db8286a6c0b823f5129d54",
+      "rawMembershipSHA256": "a3652cd7e306aaea4a6a67e140fdf830ed704e3470e9372c192ab910478e4a0a"
+    },
+    {
+      "unitID": "toc:9991",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 78,
+      "unitEndLineIndex": 83,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 45,
+      "sourceIndicesSHA256": "edea75e94647fa859ba97d8b23f4ce1400717df83b6e06cb1c0c2616dc483878",
+      "rawMembershipSHA256": "b1df4477dab5ee6d33d4b14ba0922c0dae1c145c76a3761c2c5ea0ad2da270d4"
+    },
+    {
+      "unitID": "toc:9992",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        84,
+        85
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 84,
+      "unitEndLineIndex": 85,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "f681b3a27b24befc92b10c9fbe74628e887b8e8648d737f80090d0947b571018",
+      "rawMembershipSHA256": "4779b8084c244c5ba0d8f6ae3a206b95fd9709c076f6ebce5914ecaa7148d079"
+    },
+    {
+      "unitID": "toc:9993",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        86,
+        87,
+        88
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "38255e1acd1fc8c2284f7858a3e163206090d5cae2b45d7dbe6889d496563683",
+      "rawMembershipSHA256": "beb39f071c5be95984190c924a2d080069c082dae6919763e51fa1efbd3b9776"
+    },
+    {
+      "unitID": "toc:9994",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        89,
+        90,
+        91,
+        92
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 92,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "08240459e09f9e6d9c1abb299e2c951193a570abf19e9ab17e9ef1e25ebf1cee",
+      "rawMembershipSHA256": "f98f55a1f5ff0cdbec4ac26d0155d32ec1fefd802f9b9b8b4dcbc19e6ca71e63"
+    },
+    {
+      "unitID": "toc:9995",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        93,
+        94,
+        95
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 93,
+      "unitEndLineIndex": 95,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "19194d165f14a1ded777ad01dd9b1c06d9e598c3accaafcbcd4d25c36c673c9e",
+      "rawMembershipSHA256": "69a7ef2bb45abfdd974ee0cee832d9221dade626c45eb3b56a782a26e023d4c3"
+    },
+    {
+      "unitID": "toc:9996",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 96,
+      "unitEndLineIndex": 100,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "d4c84a6ee33a34f485d12ea0021c9f571a54bbb0a89bef044dcabd28d73c898b",
+      "rawMembershipSHA256": "2c4e85e7ee66fbe74a18939434857a0e79725a89a75536d3ed07e01281552cd9"
+    },
+    {
+      "unitID": "toc:9997",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        101,
+        102,
+        103,
+        104
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 101,
+      "unitEndLineIndex": 104,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 65,
+      "sourceIndicesSHA256": "8e692d39859e310d6523ad2e66b1f7f53521220e33350b927d3128062343487c",
+      "rawMembershipSHA256": "e2401d3f6d32def06fa821a50f4b4d7de976296ae7f29ecce7c2c2cf426950de"
+    },
+    {
+      "unitID": "toc:9998",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        105,
+        106
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 105,
+      "unitEndLineIndex": 106,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "ac7844e64f2b2772513878f3e03be3ffe59f787e5b098303461d24b3301d5cc4",
+      "rawMembershipSHA256": "a65ba4ee668fadb4342267ff14bed7eac477fd9b3a4b42b0164678d3209e1849"
+    },
+    {
+      "unitID": "toc:9999",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        107,
+        108,
+        109,
+        110
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 107,
+      "unitEndLineIndex": 110,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 62,
+      "sourceIndicesSHA256": "282b178a4bb117622ecc447f6c74c790e77f3f2fc4d0aea90c75e7b4f0a99b50",
+      "rawMembershipSHA256": "b774e0a21e6a88ad30de8acea66c552789f913b6b4d7cbad2f3be575757b756b"
+    },
+    {
+      "unitID": "toc:10000",
+      "rawUnitTitle": "פרק לב",
+      "sourceLineIndices": [
+        111,
+        112,
+        113,
+        114
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 111,
+      "unitEndLineIndex": 114,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "f455e6a55719a90c69c10bd25b84c6e6028958e5cdc6e9d555c288c876e67af2",
+      "rawMembershipSHA256": "8a26b6be5ae8938ac7fdb6eec4ba80f353730c89a8f6ff9620dd160cde659095"
+    },
+    {
+      "unitID": "toc:10001",
+      "rawUnitTitle": "פרק לג",
+      "sourceLineIndices": [
+        115,
+        116
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 115,
+      "unitEndLineIndex": 116,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "d5cc5ad17c65bc082dab2569ed8f0c94f8cb293cfac37fae81e68d5ef80c172c",
+      "rawMembershipSHA256": "de4446cac37037265d1160046bbadacdeb83961adc5402ac4df338042033233f"
+    },
+    {
+      "unitID": "toc:10002",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        117,
+        118,
+        119
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 117,
+      "unitEndLineIndex": 119,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 53,
+      "sourceIndicesSHA256": "83cfd4e9341f6b0433cb469516313b2e6ef4234d837228a7aea60e1c1994b55c",
+      "rawMembershipSHA256": "a26ff211c427184735e718a6846c3177b2c456316de3b14b9a244e6780cdb92f"
+    },
+    {
+      "unitID": "toc:10003",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        120,
+        121,
+        122
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 120,
+      "unitEndLineIndex": 122,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 50,
+      "sourceIndicesSHA256": "d83648692a151071b95bee79a913f7114c68253d2c6adabb436fb9bbeff6cd77",
+      "rawMembershipSHA256": "2c9c6db69d5d7250ba58a96c7646e5e076822b18067a5a2ce3824dd1eafd5c15"
+    },
+    {
+      "unitID": "toc:10004",
+      "rawUnitTitle": "פרק לו",
+      "sourceLineIndices": [
+        123,
+        124
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 123,
+      "unitEndLineIndex": 124,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "0f495ce71c2a142bde7d6804d8c224a8e1534bf768ad4b2d664168b427b98fd2",
+      "rawMembershipSHA256": "fd8194e7fceb84972952143038dbaf15fed4695616ab9a56212472882c01b998"
+    },
+    {
+      "unitID": "toc:10005",
+      "rawUnitTitle": "פרק לז",
+      "sourceLineIndices": [
+        125,
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 125,
+      "unitEndLineIndex": 130,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 62,
+      "sourceIndicesSHA256": "d22ded243bf8b09c1307cb6abaa3bd9800c6020afa9b86b046091b9a495b1a88",
+      "rawMembershipSHA256": "2212579ac8f571db7852badf409988e998f8ff91de03e25b68c96869c7957643"
+    },
+    {
+      "unitID": "toc:10006",
+      "rawUnitTitle": "פרק לח",
+      "sourceLineIndices": [
+        131,
+        132,
+        133,
+        134
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 131,
+      "unitEndLineIndex": 134,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 49,
+      "sourceIndicesSHA256": "c62dea7893bc549c16cd4b3fbb386a98ae12f3a7c9e7cdfeab37c3a1eaca3750",
+      "rawMembershipSHA256": "62fe0919816b08e3331618628354c59f03b04b3acc9ff98fbf8b4e2a884f66be"
+    },
+    {
+      "unitID": "toc:10007",
+      "rawUnitTitle": "פרק לט",
+      "sourceLineIndices": [
+        135,
+        136
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 135,
+      "unitEndLineIndex": 136,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "ec5cdbda648393b64125854cf9598548a4319138745ca427fb037fe6e4cd273c",
+      "rawMembershipSHA256": "103c43116f41d727edc0664add58a84a63be71c3dd3560a848c005b69d36dac5"
+    },
+    {
+      "unitID": "toc:10008",
+      "rawUnitTitle": "פרק מ",
+      "sourceLineIndices": [
+        137,
+        138,
+        139,
+        140
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 137,
+      "unitEndLineIndex": 140,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 49,
+      "sourceIndicesSHA256": "b97c4d6dc46e9e15fa14a7fbe42b835a03b9c4383319f0fd92b1847844753e98",
+      "rawMembershipSHA256": "f943e6bcd2b8e757d6373f038cb618032e2fa38e0b2500f6d3279dc8b6e6f682"
+    },
+    {
+      "unitID": "toc:10009",
+      "rawUnitTitle": "פרק מא",
+      "sourceLineIndices": [
+        141,
+        142,
+        143,
+        144,
+        145
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 141,
+      "unitEndLineIndex": 145,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 45,
+      "sourceIndicesSHA256": "335635c311e085fbd291aad08e6917b48454f2216179acc787391ff056e52a44",
+      "rawMembershipSHA256": "8949afe238133ddc0217d46c0fa4547f8ce137cd0e998dcf70fdd37a97380f7c"
+    },
+    {
+      "unitID": "toc:10010",
+      "rawUnitTitle": "פרק מב",
+      "sourceLineIndices": [
+        146,
+        147
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 146,
+      "unitEndLineIndex": 147,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "fa9304cb3904ceb496a25eed676922b94c6b79fdd17fcd2a92f9cf1482a0c41a",
+      "rawMembershipSHA256": "012e8e16b81fe7b5cc5582d2de7e1b3911209b87bedd922d37489fdf5dfe3660"
+    },
+    {
+      "unitID": "toc:10011",
+      "rawUnitTitle": "פרק מג",
+      "sourceLineIndices": [
+        148,
+        149,
+        150,
+        151,
+        152
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 148,
+      "unitEndLineIndex": 152,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "d8134e0c6b3731aecc37b98f15294fb23d5bd50f01310291fbe17d190516df68",
+      "rawMembershipSHA256": "c65b0a3f18af17bfbe78574007e5760248021b5c7d08f944aea92044765496ed"
+    },
+    {
+      "unitID": "toc:10012",
+      "rawUnitTitle": "פרק מד",
+      "sourceLineIndices": [
+        153,
+        154,
+        155,
+        156,
+        157
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 153,
+      "unitEndLineIndex": 157,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 27,
+      "sourceIndicesSHA256": "5b6aba0c4ba13af11e9d45a8de5906fac8631d53f6abf5cdc66206de6321403b",
+      "rawMembershipSHA256": "bf7d6730a9a18a87e4425c0be4a5ee0a979928e0afeb1347f283269cc17b75f5"
+    },
+    {
+      "unitID": "toc:10013",
+      "rawUnitTitle": "פרק מה",
+      "sourceLineIndices": [
+        158,
+        159
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 159,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "e2632c9f823ce359f3913bf4ff4aea59e30cff88677f5df1d802cd93deccacde",
+      "rawMembershipSHA256": "3b0482a08671b7b5397d2c3f81a71fd89720ba1edc3e22461bf67945a5a3c84a"
+    },
+    {
+      "unitID": "toc:10014",
+      "rawUnitTitle": "פרק מו",
+      "sourceLineIndices": [
+        160,
+        161,
+        162,
+        163
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 160,
+      "unitEndLineIndex": 163,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 62,
+      "sourceIndicesSHA256": "94e13d404929daf0d798c876817b4058078b732c6a12ab298c1655d52d9880e4",
+      "rawMembershipSHA256": "3baad98df5ac8e9a57e5c866e7c61001987a5c38620fd4c733c9c4d2312d7253"
+    },
+    {
+      "unitID": "toc:10015",
+      "rawUnitTitle": "פרק מז",
+      "sourceLineIndices": [
+        164,
+        165,
+        166
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 164,
+      "unitEndLineIndex": 166,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 32,
+      "sourceIndicesSHA256": "d96148ae82eccce2b89dda07252690ab7a93b1349f9b7910fea65cca324bde13",
+      "rawMembershipSHA256": "c54f7472ca08364188fb792fef1fdd4fb52d2cca4d5266224f194c5d7e1b408e"
+    },
+    {
+      "unitID": "toc:10016",
+      "rawUnitTitle": "פרק מח",
+      "sourceLineIndices": [
+        167,
+        168
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 167,
+      "unitEndLineIndex": 168,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "6a3e3e2d4f084696f7d7fbb1b094b281a87634d604318c5214b256d97f23124c",
+      "rawMembershipSHA256": "212ca9f591317d7e3af1e9d14801d85056aef9ee058e349bfd7b85aea0ac2f9b"
+    },
+    {
+      "unitID": "toc:10017",
+      "rawUnitTitle": "פרק מט",
+      "sourceLineIndices": [
+        169,
+        170,
+        171,
+        172,
+        173,
+        174
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 169,
+      "unitEndLineIndex": 174,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 71,
+      "sourceIndicesSHA256": "08ef0ad3372b0c6981017d20bc8b9aeecc42e3d399357b4fd070d1c4afabc55f",
+      "rawMembershipSHA256": "6bd756a678d2b5e7912663577abd0321e5fca14854e1d917a9bccabf9e13aa37"
+    },
+    {
+      "unitID": "toc:10018",
+      "rawUnitTitle": "פרק נ",
+      "sourceLineIndices": [
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 175,
+      "unitEndLineIndex": 180,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 55,
+      "sourceIndicesSHA256": "fc2c8e059b2783d4aff83ccbde8c06af11009584392856abb545cc7761f4d499",
+      "rawMembershipSHA256": "e0bf8417e82fb5f05aacb8cd143e21351c2e89a34d198afaae99a90098959951"
+    },
+    {
+      "unitID": "toc:10019",
+      "rawUnitTitle": "פרק נא",
+      "sourceLineIndices": [
+        181,
+        182
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 181,
+      "unitEndLineIndex": 182,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "d1ee3448b804c6101967197ba96d3086f9924c7f19d446a7beb1bba59a45d9e5",
+      "rawMembershipSHA256": "69d8492908c07b19e88f403972d5ef6e130d64dd3e6bd3dc39a23b27d3f94db7"
+    },
+    {
+      "unitID": "toc:10020",
+      "rawUnitTitle": "פרק נב",
+      "sourceLineIndices": [
+        183,
+        184,
+        185,
+        186
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 183,
+      "unitEndLineIndex": 186,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 43,
+      "sourceIndicesSHA256": "f8cec6280a3592966523214bc1ffddd2569be60f8a74f1d3b03a4ca239a57676",
+      "rawMembershipSHA256": "6f1f72d03670c42b61906ff5d454ad6e25c03841168193e0d7278dbc1c34449d"
+    },
+    {
+      "unitID": "toc:10021",
+      "rawUnitTitle": "פרק נג",
+      "sourceLineIndices": [
+        187,
+        188,
+        189,
+        190
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 187,
+      "unitEndLineIndex": 190,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 58,
+      "sourceIndicesSHA256": "6b5d22f8036527b6d9b63c91f0f04356e9341bd44bcbcab8ebcd92726cd62145",
+      "rawMembershipSHA256": "8f31cd5dc6efdd3ed994c7c2ee1efce3f7fb330e6f0dfc720e41849f8f023605"
+    },
+    {
+      "unitID": "toc:10022",
+      "rawUnitTitle": "פרק נד",
+      "sourceLineIndices": [
+        191,
+        192,
+        193
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 191,
+      "unitEndLineIndex": 193,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 24,
+      "sourceIndicesSHA256": "c81ac5e062fa5e1a455be89164c96b6b117717d7b3fe6dd1647826b99480e692",
+      "rawMembershipSHA256": "168f1dd7b7da335fb39ca578c3e8e927e2d6770ffd2b1847c2f8284fef28e7ee"
+    },
+    {
+      "unitID": "toc:10023",
+      "rawUnitTitle": "פרק נה",
+      "sourceLineIndices": [
+        194,
+        195,
+        196
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 194,
+      "unitEndLineIndex": 196,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "70d228375659edbefaa7663b8c07087823311c82af6bd257cf0cd0b70c70153a",
+      "rawMembershipSHA256": "dfec1e9068a6128603d6528195442dfcd8c66fc1dacdd6c726da56af4c84dcab"
+    },
+    {
+      "unitID": "toc:10024",
+      "rawUnitTitle": "פרק נו",
+      "sourceLineIndices": [
+        197,
+        198
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 197,
+      "unitEndLineIndex": 198,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 70,
+      "sourceIndicesSHA256": "dfcdc636cbd166716584f08e07c2371ede001e26836958ea429cea271aa5e979",
+      "rawMembershipSHA256": "29fa9b8137a37c5bee93d9af251337ce7c7ebb0e33f3abbaacc2a9a94cda3dd7"
+    },
+    {
+      "unitID": "toc:10025",
+      "rawUnitTitle": "פרק נז",
+      "sourceLineIndices": [
+        199,
+        200
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 199,
+      "unitEndLineIndex": 200,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "658d32cc2b0f323d22a257be28ee691d1d74eb3c6c771f8622986917b4a56e03",
+      "rawMembershipSHA256": "59f7310b98500f1af6d37e521915863bea63d268381110b2a4d440e830933fb2"
+    },
+    {
+      "unitID": "toc:10026",
+      "rawUnitTitle": "פרק נח",
+      "sourceLineIndices": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 201,
+      "unitEndLineIndex": 205,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 43,
+      "sourceIndicesSHA256": "47bd04173d236a3fd70a288945294329c8c1e70f2c24463c33eff3c5436ece4c",
+      "rawMembershipSHA256": "06ec1a766b658ee27362cbbed1be0535ee8950bb074d844ef68c56e03c315f0c"
+    },
+    {
+      "unitID": "toc:10027",
+      "rawUnitTitle": "פרק נט",
+      "sourceLineIndices": [
+        206,
+        207,
+        208,
+        209,
+        210
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 206,
+      "unitEndLineIndex": 210,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "3b8d3c63b3f90fc32db67daf56b77d13ebe3bf3e6944a3cd40def29fb6539172",
+      "rawMembershipSHA256": "08fafd4192c6200d4749ae6003ba8796ada01ce28bc57c9f4054ca89295e73e2"
+    },
+    {
+      "unitID": "toc:10028",
+      "rawUnitTitle": "פרק ס",
+      "sourceLineIndices": [
+        211,
+        212
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 211,
+      "unitEndLineIndex": 212,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 29,
+      "sourceIndicesSHA256": "84fc467b75eda38bd0002fa69439caee0c6b621ed0d177c08a5996433ecec631",
+      "rawMembershipSHA256": "59fbaa458198e33f407e03e5af7877d63cd9eb17e0b56222588e4545ce0a8ff4"
+    },
+    {
+      "unitID": "toc:10029",
+      "rawUnitTitle": "פרק סא",
+      "sourceLineIndices": [
+        213,
+        214,
+        215,
+        216
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 213,
+      "unitEndLineIndex": 216,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 62,
+      "sourceIndicesSHA256": "b04c7c5490ef7ec9784e7cf5e22e036a88eb99e6ad7f980794cb1ba4bca7d0e4",
+      "rawMembershipSHA256": "c0fddf8ee4c2c112a324ad6cc692b4774c74ad3e80779c1483d183fcc23cf0b9"
+    },
+    {
+      "unitID": "toc:10030",
+      "rawUnitTitle": "פרק סב",
+      "sourceLineIndices": [
+        217,
+        218,
+        219,
+        220,
+        221
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 217,
+      "unitEndLineIndex": 221,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "0a22f411dda77457271c064b0c81a5608cd27683a7821c81957e8d1d142e2ce6",
+      "rawMembershipSHA256": "ac9b0b0a4eee55293fdfec9d4f29a3707fa561c4350b1b714e54d11918a84347"
+    },
+    {
+      "unitID": "toc:10031",
+      "rawUnitTitle": "פרק סג",
+      "sourceLineIndices": [
+        222,
+        223
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 222,
+      "unitEndLineIndex": 223,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "607f2e37509dd7c45da7ee89350791ee58bbf9b9c2aea7e0d2f3c1521ca0f553",
+      "rawMembershipSHA256": "3b0abc70869e8671e77a97f1273fe760191ca592b12ed9bb304f4dd3f52d9bc0"
+    },
+    {
+      "unitID": "toc:10032",
+      "rawUnitTitle": "פרק סד",
+      "sourceLineIndices": [
+        224,
+        225,
+        226,
+        227
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 224,
+      "unitEndLineIndex": 227,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "09472801ce4aea9199ed9427a6493c26adda8b288caa4d3d1a87c54f53bff300",
+      "rawMembershipSHA256": "f3d3cbc46fa537761325719b1e17c1f76221fa700972e61257bee4df44b8bd63"
+    },
+    {
+      "unitID": "toc:10033",
+      "rawUnitTitle": "פרק סה",
+      "sourceLineIndices": [
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 228,
+      "unitEndLineIndex": 234,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "df5bc39bc2d46c198518cf0de5b45b64b4dce8d44ff257caade3d6732eb4931e",
+      "rawMembershipSHA256": "57b85cb02daaab50a4799594696c53a9a702a86452141b386020f33a72c2b22e"
+    },
+    {
+      "unitID": "toc:10034",
+      "rawUnitTitle": "פרק סו",
+      "sourceLineIndices": [
+        235,
+        236
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 235,
+      "unitEndLineIndex": 236,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "36af3e4057f419f6ee4f405e36720f4ca3ef2e7202eabcfdffda168440655cd8",
+      "rawMembershipSHA256": "b383c006473c26a4247f993cb903cc4f7ec63129c9da9a54a3e94560d188bd92"
+    },
+    {
+      "unitID": "toc:10035",
+      "rawUnitTitle": "פרק סז",
+      "sourceLineIndices": [
+        237,
+        238,
+        239,
+        240
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 237,
+      "unitEndLineIndex": 240,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 58,
+      "sourceIndicesSHA256": "16f842e434fda998748a8f77aafb10b247ce2238123a7f9aab08e36c5a51f8ba",
+      "rawMembershipSHA256": "982f71844c8a5de778082047cf16e7ef9d4728e6f59eb12d5b7ad0959454be3d"
+    },
+    {
+      "unitID": "toc:10036",
+      "rawUnitTitle": "פרק סח",
+      "sourceLineIndices": [
+        241,
+        242,
+        243
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 241,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 149,
+      "sourceIndicesSHA256": "b8dc9972449c30dd2b1400e488467f55b398d54bac7dc4654dd2880e397ecba9",
+      "rawMembershipSHA256": "8c8169167b8b1d413d353b30a433b084c66c676dd2b51f5020e8dcf70ca9b131"
+    },
+    {
+      "unitID": "toc:10037",
+      "rawUnitTitle": "פרק סט",
+      "sourceLineIndices": [
+        244,
+        245,
+        246
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 71,
+      "sourceIndicesSHA256": "c4d68c6741728e668ead210674e113b8c8aa18f57b4755c5dc7c6cecb1d7877b",
+      "rawMembershipSHA256": "bcd45e3da96c31aaab7bb26dbb1fd98f87e7682d5d063e7b310c198ddb56339d"
+    },
+    {
+      "unitID": "toc:10038",
+      "rawUnitTitle": "פרק ע",
+      "sourceLineIndices": [
+        247,
+        248,
+        249,
+        250,
+        251,
+        252
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 247,
+      "unitEndLineIndex": 252,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 53,
+      "sourceIndicesSHA256": "dc7209f07569d30800e44775aaa5b40c7563a9e4726af84abf8749c20adab1cc",
+      "rawMembershipSHA256": "426dee436f5d02c9fe1c01dd491c6979d01d2ae1a1e33b722a028f25c2762ead"
+    },
+    {
+      "unitID": "toc:10039",
+      "rawUnitTitle": "פרק עא",
+      "sourceLineIndices": [
+        253,
+        254,
+        255,
+        256,
+        257,
+        258
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 253,
+      "unitEndLineIndex": 258,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 59,
+      "sourceIndicesSHA256": "d126a19cc995dd218e38cc4945041808fddfb5601e2418e6e74a8effe4157d1d",
+      "rawMembershipSHA256": "e1bf20feb74c39a6f8b273f0741396a9645a56149b420eb115eed9e000c63a31"
+    },
+    {
+      "unitID": "toc:10040",
+      "rawUnitTitle": "פרק עב",
+      "sourceLineIndices": [
+        259,
+        260
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 259,
+      "unitEndLineIndex": 260,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "adaee0db10cf70cc8b9a09cffe0df7e79439b5ada9f667bc1bbad41490af2fc5",
+      "rawMembershipSHA256": "76048d871f096108adfc533a16759d00e9c20e8ef18e270c2ab7e0dd44157a3f"
+    },
+    {
+      "unitID": "toc:10041",
+      "rawUnitTitle": "פרק עג",
+      "sourceLineIndices": [
+        261,
+        262,
+        263,
+        264
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 261,
+      "unitEndLineIndex": 264,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 71,
+      "sourceIndicesSHA256": "5e824a7a6279ab5ecd4328e82531c7f4871079c98ff3d0c43b072f5aeeabeb68",
+      "rawMembershipSHA256": "54dd1e121e31c42401f16bb830d9563b1b84b7fcc1427ae632dfa797408ed855"
+    },
+    {
+      "unitID": "toc:10042",
+      "rawUnitTitle": "פרק עד",
+      "sourceLineIndices": [
+        265,
+        266,
+        267,
+        268
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 265,
+      "unitEndLineIndex": 268,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 64,
+      "sourceIndicesSHA256": "27124bef30b574e3555e97e911e61e1cb2ec0335653dd20598918eb3e62415c9",
+      "rawMembershipSHA256": "d1ad1ed413b0b9914bd126bae6a5df040415985ea66f8617f9489c115062a6e0"
+    },
+    {
+      "unitID": "toc:10043",
+      "rawUnitTitle": "פרק עה",
+      "sourceLineIndices": [
+        269,
+        270
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 269,
+      "unitEndLineIndex": 270,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "f42d1606a44f88fa10046147fded723605e80a619e523cb33a2c3e941cd1826b",
+      "rawMembershipSHA256": "57170e69b07b34cc5c5f6bbc4f6aa42f120081f76a5c9a8b895371f971386ad6"
+    },
+    {
+      "unitID": "toc:10044",
+      "rawUnitTitle": "פרק עו",
+      "sourceLineIndices": [
+        271,
+        272,
+        273,
+        274,
+        275
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 271,
+      "unitEndLineIndex": 275,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 65,
+      "sourceIndicesSHA256": "4280be233bbd822e7703b13ebbc3e5b6490bd2de2391a8b975f2cd07b6bbcdb7",
+      "rawMembershipSHA256": "e16fe222d0aa24a68972d9409b194df27947959b74edfeefa3e1f5feb3ffbb81"
+    },
+    {
+      "unitID": "toc:10045",
+      "rawUnitTitle": "פרק עז",
+      "sourceLineIndices": [
+        276,
+        277,
+        278,
+        279,
+        280
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 276,
+      "unitEndLineIndex": 280,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 54,
+      "sourceIndicesSHA256": "555643658afaa2d10e2d53fb3a45d0a9ab1da1e8139d0bce39821a63fde776db",
+      "rawMembershipSHA256": "251cb9b481962f076e003763e6e4b2bf59ddaed5d03fdf1e993cc61408086c82"
+    },
+    {
+      "unitID": "toc:10046",
+      "rawUnitTitle": "פרק עח",
+      "sourceLineIndices": [
+        281,
+        282
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 281,
+      "unitEndLineIndex": 282,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "c2ffda92f16ead65d1dfdbc453e95a6f882d5b50058cd07bb47f788d1ffa7020",
+      "rawMembershipSHA256": "f83c4253cd36787ebd23cd1cb7b21b2c08b06c96d7bed3e337f38ed08c81ce03"
+    },
+    {
+      "unitID": "toc:10047",
+      "rawUnitTitle": "פרק עט",
+      "sourceLineIndices": [
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 283,
+      "unitEndLineIndex": 289,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 63,
+      "sourceIndicesSHA256": "59bdbeb357f98ce79414265392751b8675c95071e8ef5c799305d57fe0c5cd32",
+      "rawMembershipSHA256": "70b65beaa1cd3e3c5ba389d023542f844b4eb073a241bde2bc97ad1fc03da444"
+    },
+    {
+      "unitID": "toc:10048",
+      "rawUnitTitle": "פרק פ",
+      "sourceLineIndices": [
+        290,
+        291,
+        292
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 290,
+      "unitEndLineIndex": 292,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "840fecaecd36fbea28270e0043a375b4517e105129f0bd7e56a4ee39d56d3d7a",
+      "rawMembershipSHA256": "a6a30e238b31a38061c91fba69dccd44859fc823533ee94b025d202e2a2916d2"
+    },
+    {
+      "unitID": "toc:10049",
+      "rawUnitTitle": "פרק פא",
+      "sourceLineIndices": [
+        293,
+        294,
+        295
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 293,
+      "unitEndLineIndex": 295,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "3bd9ac4e83d4c5b139a22af578f96b59b2b7416b48e6c57b87f6171f8be92da0",
+      "rawMembershipSHA256": "48f10c16de05848ca2d842b8308f2f03058c514520f7045ca221c834cd32b858"
+    },
+    {
+      "unitID": "toc:10050",
+      "rawUnitTitle": "פרק פב",
+      "sourceLineIndices": [
+        296,
+        297,
+        298,
+        299,
+        300
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 296,
+      "unitEndLineIndex": 300,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "a682f93f85460dbff134eef675245b37ba28817a52c87d602f24786ab62d66b4",
+      "rawMembershipSHA256": "19eb969d285203f2b02e8880a3febfdbc26e3eebfcaa1f6b6b56dc047ab639dc"
+    },
+    {
+      "unitID": "toc:10051",
+      "rawUnitTitle": "פרק פג",
+      "sourceLineIndices": [
+        301,
+        302
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 301,
+      "unitEndLineIndex": 302,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 99,
+      "sourceIndicesSHA256": "316f0d492df49348ccd0cd0dad250f881f7fd0633ca7d08f0d05346c1b84c925",
+      "rawMembershipSHA256": "d7a11e1e5e9a86f0498741266307600a401cd1e57ad47f95de75b98d9459f2a9"
+    },
+    {
+      "unitID": "toc:10052",
+      "rawUnitTitle": "פרק פד",
+      "sourceLineIndices": [
+        303,
+        304,
+        305,
+        306
+      ],
+      "bookID": 239,
+      "bookTitle": "אגדת בראשית",
+      "mode": "chapter",
+      "unitStartLineIndex": 303,
+      "unitEndLineIndex": 306,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 76,
+      "sourceIndicesSHA256": "56a8bc2ba987beb390d78c50ee882ee48dd8e7ed2ae8aeb30988d9556c1fe4ba",
+      "rawMembershipSHA256": "899309ada233f820a2d9ea5170fd3ce39d4f8d70e871a9eea27b82c5cebf323b"
+    }
+  ]
+}

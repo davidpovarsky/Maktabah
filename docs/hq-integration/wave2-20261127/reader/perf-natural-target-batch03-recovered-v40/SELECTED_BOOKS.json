@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 137 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 138,
+      "bookTitle": "תמיד",
+      "declaredTotalLines": 225,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 139,
+      "bookTitle": "נדה",
+      "declaredTotalLines": 2809,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 140,
+      "bookTitle": "תלמוד ירושלמי ברכות",
+      "declaredTotalLines": 723,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 141,
+      "bookTitle": "תלמוד ירושלמי פאה",
+      "declaredTotalLines": 466,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 142,
+      "bookTitle": "תלמוד ירושלמי דמאי",
+      "declaredTotalLines": 352,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 143,
+      "bookTitle": "תלמוד ירושלמי כלאים",
+      "declaredTotalLines": 388,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 144,
+      "bookTitle": "תלמוד ירושלמי שביעית",
+      "declaredTotalLines": 457,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 145,
+      "bookTitle": "תלמוד ירושלמי תרומות",
+      "declaredTotalLines": 478,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 146,
+      "bookTitle": "תלמוד ירושלמי מעשרות",
+      "declaredTotalLines": 212,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 147,
+      "bookTitle": "תלמוד ירושלמי מעשר שני",
+      "declaredTotalLines": 271,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 148,
+      "bookTitle": "תלמוד ירושלמי חלה",
+      "declaredTotalLines": 203,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 149,
+      "bookTitle": "תלמוד ירושלמי ערלה",
+      "declaredTotalLines": 201,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 150,
+      "bookTitle": "תלמוד ירושלמי בכורים",
+      "declaredTotalLines": 168,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 151,
+      "bookTitle": "תלמוד ירושלמי שבת",
+      "declaredTotalLines": 938,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 152,
+      "bookTitle": "תלמוד ירושלמי עירובין",
+      "declaredTotalLines": 520,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 153,
+      "bookTitle": "תלמוד ירושלמי פסחים",
+      "declaredTotalLines": 612,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 154,
+      "bookTitle": "תלמוד ירושלמי שקלים",
+      "declaredTotalLines": 267,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 155,
+      "bookTitle": "תלמוד ירושלמי יומא",
+      "declaredTotalLines": 422,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 156,
+      "bookTitle": "תלמוד ירושלמי סוכה",
+      "declaredTotalLines": 260,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 157,
+      "bookTitle": "תלמוד ירושלמי ביצה",
+      "declaredTotalLines": 247,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 158,
+      "bookTitle": "תלמוד ירושלמי ראש השנה",
+      "declaredTotalLines": 201,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 159,
+      "bookTitle": "תלמוד ירושלמי תענית",
+      "declaredTotalLines": 290,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 160,
+      "bookTitle": "תלמוד ירושלמי מגילה",
+      "declaredTotalLines": 275,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 161,
+      "bookTitle": "תלמוד ירושלמי מועד קטן",
+      "declaredTotalLines": 189,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 162,
+      "bookTitle": "תלמוד ירושלמי חגיגה",
+      "declaredTotalLines": 176,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 163,
+      "bookTitle": "תלמוד ירושלמי יבמות",
+      "declaredTotalLines": 798,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 164,
+      "bookTitle": "תלמוד ירושלמי כתובות",
+      "declaredTotalLines": 650,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 165,
+      "bookTitle": "תלמוד ירושלמי נדרים",
+      "declaredTotalLines": 452,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 166,
+      "bookTitle": "תלמוד ירושלמי נזיר",
+      "declaredTotalLines": 370,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 167,
+      "bookTitle": "תלמוד ירושלמי סוטה",
+      "declaredTotalLines": 464,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 168,
+      "bookTitle": "תלמוד ירושלמי גיטין",
+      "declaredTotalLines": 434,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 169,
+      "bookTitle": "תלמוד ירושלמי קידושין",
+      "declaredTotalLines": 377,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 170,
+      "bookTitle": "תלמוד ירושלמי בבא קמא",
+      "declaredTotalLines": 371,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 171,
+      "bookTitle": "תלמוד ירושלמי בבא מציעא",
+      "declaredTotalLines": 368,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 172,
+      "bookTitle": "תלמוד ירושלמי בבא בתרא",
+      "declaredTotalLines": 347,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 173,
+      "bookTitle": "תלמוד ירושלמי סנהדרין",
+      "declaredTotalLines": 688,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 174,
+      "bookTitle": "תלמוד ירושלמי מכות",
+      "declaredTotalLines": 107,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 175,
+      "bookTitle": "תלמוד ירושלמי שבועות",
+      "declaredTotalLines": 358,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 176,
+      "bookTitle": "תלמוד ירושלמי עבודה זרה",
+      "declaredTotalLines": 418,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 177,
+      "bookTitle": "תלמוד ירושלמי הוריות",
+      "declaredTotalLines": 146,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "298770025ec4b15429cd8e86f2d9ef92d07d2382",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

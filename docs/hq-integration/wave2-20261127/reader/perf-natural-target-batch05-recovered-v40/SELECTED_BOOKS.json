@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 264 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 265,
+      "bookTitle": "מדרש שכל טוב",
+      "declaredTotalLines": 8522,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 266,
+      "bookTitle": "מדרש שמואל",
+      "declaredTotalLines": 240,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 267,
+      "bookTitle": "מדרש תהילים",
+      "declaredTotalLines": 952,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 268,
+      "bookTitle": "מדרש תנחומא",
+      "declaredTotalLines": 2944,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 269,
+      "bookTitle": "משנת רבי אליעזר",
+      "declaredTotalLines": 610,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 272,
+      "bookTitle": "מאיר עין על סדר עולם רבה",
+      "declaredTotalLines": 502,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 273,
+      "bookTitle": "ספר הישר (מדרש)",
+      "declaredTotalLines": 329,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 274,
+      "bookTitle": "ספרי דאגדתא על מגילת אסתר",
+      "declaredTotalLines": 217,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 275,
+      "bookTitle": "עין יעקב",
+      "declaredTotalLines": 3589,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 276,
+      "bookTitle": "עין יעקב (מאת שמואל צבי גליק)",
+      "declaredTotalLines": 2249,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 277,
+      "bookTitle": "פסיקתא דרב כהנא",
+      "declaredTotalLines": 333,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "declaredTotalLines": 134,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 279,
+      "bookTitle": "פרקי דרבי אליעזר",
+      "declaredTotalLines": 711,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 281,
+      "bookTitle": "תנא דבי אליהו זוטא",
+      "declaredTotalLines": 134,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 282,
+      "bookTitle": "תנחומא בובר",
+      "declaredTotalLines": 3188,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 284,
+      "bookTitle": "מדרש תנאים על ספר דברים",
+      "declaredTotalLines": 4504,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 285,
+      "bookTitle": "מכילתא דרבי ישמעאל",
+      "declaredTotalLines": 2135,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "declaredTotalLines": 409,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 288,
+      "bookTitle": "ספרא",
+      "declaredTotalLines": 3057,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 289,
+      "bookTitle": "ספרי במדבר",
+      "declaredTotalLines": 457,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 290,
+      "bookTitle": "ספרי דברים",
+      "declaredTotalLines": 2715,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 291,
+      "bookTitle": "ספרי זוטא",
+      "declaredTotalLines": 1026,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 293,
+      "bookTitle": "משנה תורה, מצוות לא תעשה",
+      "declaredTotalLines": 372,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 294,
+      "bookTitle": "משנה תורה, מצוות עשה",
+      "declaredTotalLines": 250,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 295,
+      "bookTitle": "משנה תורה, תוכן החיבור",
+      "declaredTotalLines": 158,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 296,
+      "bookTitle": "משנה תורה, הלכות יסודי התורה",
+      "declaredTotalLines": 100,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 299,
+      "bookTitle": "משנה תורה, הלכות עבודה זרה וחוקות הגויים",
+      "declaredTotalLines": 162,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 302,
+      "bookTitle": "משנה תורה, הלכות תפילה וברכת כהנים",
+      "declaredTotalLines": 257,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 303,
+      "bookTitle": "משנה תורה, הלכות תפילין ומזוזה וספר תורה",
+      "declaredTotalLines": 158,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 305,
+      "bookTitle": "משנה תורה, הלכות ברכות",
+      "declaredTotalLines": 191,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 308,
+      "bookTitle": "משנה תורה, הלכות שבת",
+      "declaredTotalLines": 691,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 309,
+      "bookTitle": "משנה תורה, הלכות עירובין",
+      "declaredTotalLines": 173,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 311,
+      "bookTitle": "משנה תורה, הלכות קידוש החודש",
+      "declaredTotalLines": 256,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 314,
+      "bookTitle": "משנה תורה, הלכות שופר וסוכה ולולב",
+      "declaredTotalLines": 140,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 315,
+      "bookTitle": "משנה תורה, הלכות שביתת יום טוב",
+      "declaredTotalLines": 185,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 317,
+      "bookTitle": "משנה תורה, הלכות חמץ ומצה",
+      "declaredTotalLines": 169,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 318,
+      "bookTitle": "משנה תורה, הלכות אישות",
+      "declaredTotalLines": 562,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 319,
+      "bookTitle": "משנה תורה, הלכות גירושין",
+      "declaredTotalLines": 348,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 320,
+      "bookTitle": "משנה תורה, הלכות יבום וחליצה",
+      "declaredTotalLines": 204,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 323,
+      "bookTitle": "משנה תורה, הלכות מאכלות אסורות",
+      "declaredTotalLines": 443,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "298770025ec4b15429cd8e86f2d9ef92d07d2382",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

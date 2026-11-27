@@ -1,0 +1,648 @@
+{
+  "bookID": 255,
+  "bookTitle": "מדרש משלי",
+  "declaredTotalLines": 172,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.09218908473849297,
+  "resolvedAnchorRows": 1661,
+  "units": [
+    {
+      "unitID": "toc:19394",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 202,
+      "sourceIndicesSHA256": "e994167b45cad6081dd187620abc417759e9f5459b5dcbc0ac8d96ef3a7c7ba2",
+      "rawMembershipSHA256": "14ae6056e4db15b91e6b257d1552d54c70ca88e318ed6a7718684d7ceb85de03"
+    },
+    {
+      "unitID": "toc:19395",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "d90f20ab6f1470c03c40208ec7105c27efe9e5fe31a768e18c4ad6fe7d996a39",
+      "rawMembershipSHA256": "ba60493d5c602e23b0bef0dd37c8bfde6295c7ad1c632510de65b622a477b319"
+    },
+    {
+      "unitID": "toc:19396",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        23,
+        24
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 24,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c7235bde31989b3c728ce3f0c5ef87e2a573679410d884dac4a307bad46c17eb",
+      "rawMembershipSHA256": "caa2d2255f84dd8adc527cf750b658dc596a2213251c8432c14d25c5f10f79aa"
+    },
+    {
+      "unitID": "toc:19397",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 25,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "9a37ff1218bd994d6b170cfb32313e0286ada16ce9d4f5dc34ab48b256909ae1",
+      "rawMembershipSHA256": "c64450ff86960c4ebd9a14a0bbee877d71769a1d5cfeb93f0383ecabc986e84a"
+    },
+    {
+      "unitID": "toc:19398",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 40,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 53,
+      "sourceIndicesSHA256": "8b506ff6db7602f9328281767aa006fe9ed5047d2ec75a14c258ee5d98e4a7f0",
+      "rawMembershipSHA256": "77d24af11a89541facfa1a5a3c99139ac8d214512242a149e75108d077fa73cf"
+    },
+    {
+      "unitID": "toc:19399",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 41,
+      "unitEndLineIndex": 49,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 127,
+      "sourceIndicesSHA256": "18c753b13e63017db5fcf09ed59364588eecdb2b327e12758d9e8851ec81cc2d",
+      "rawMembershipSHA256": "09569ccd3f7010d09a4726f42c093da035fc92e85c2b4e9b4507dda7663cb594"
+    },
+    {
+      "unitID": "toc:19400",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        50,
+        51
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 50,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "468bab6022e018a8bc6b0d5b38ffee186987ce01c9166538a24e83d464ecac03",
+      "rawMembershipSHA256": "bba812a58d683a039c5872b14187a95bc41c96e08df40118c8e1b371e4486ee2"
+    },
+    {
+      "unitID": "toc:19401",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 58,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 75,
+      "sourceIndicesSHA256": "e303debd21e33e9f394ff121cd3927a8c6fd0bef4af099aee97ebf41dadd6b5c",
+      "rawMembershipSHA256": "ad49c8466ee9bc10f94a9af2dbf9436ef07697100298844caeb062b162e3a55a"
+    },
+    {
+      "unitID": "toc:19402",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 59,
+      "unitEndLineIndex": 63,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 75,
+      "sourceIndicesSHA256": "f95cd85c9ff99ed8f0c9c7945632ccf513b0112a01028aeee9d5664390fd0a3e",
+      "rawMembershipSHA256": "4f38e256651252efaf871f0134bb329083b063fd08901f679321e0e58d773959"
+    },
+    {
+      "unitID": "toc:19403",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        64,
+        65
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 64,
+      "unitEndLineIndex": 65,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "ce235e123302227dee8fd019e2ad081710d455f550399cdb795aa20fb8fb736f",
+      "rawMembershipSHA256": "8692282ce313e855a595d22e313bc9b60d522be7494e11f82d0a3a15b0da7f63"
+    },
+    {
+      "unitID": "toc:19404",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 66,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "3104e495bb1b34344011a50d06cc08fa4094cf45503411412dd0747a6e98e5ef",
+      "rawMembershipSHA256": "4e13b6c0e6e8dece2cd14be73eb39efe19c1f3127f97671e21f40debd2a3a7ae"
+    },
+    {
+      "unitID": "toc:19405",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        72,
+        73
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 73,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "994536fe07517ee44a29b5a44e4d0d9f80d50c2ed20fe2c0de104a100aab31e3",
+      "rawMembershipSHA256": "16d290bc7727ed24a476080b509babc218637a8020cce02ee5e913abc0dbcda5"
+    },
+    {
+      "unitID": "toc:19406",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 74,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "d89863fa6912f0ac64ec05de75e8af9370286aae3d7941f439ba1be89230cff0",
+      "rawMembershipSHA256": "b848b22a62e0353456e137bf49dc6e210f2ca9161a6d8674b6d08959e1e941d8"
+    },
+    {
+      "unitID": "toc:19407",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        80,
+        81,
+        82,
+        83
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 83,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 91,
+      "sourceIndicesSHA256": "fd819606b264c3dca2bf99f9feeaf5e1d71de477589e2a59ef7f6e24275758e9",
+      "rawMembershipSHA256": "800496bdd789a37978d170256ef486978878ff278b74cfb6e2e6b2c526dec954"
+    },
+    {
+      "unitID": "toc:19408",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 84,
+      "unitEndLineIndex": 90,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 55,
+      "sourceIndicesSHA256": "9347a2cb272f3ec518d77a17f8f8d412de231756e7065294c646ed541c96cceb",
+      "rawMembershipSHA256": "74c954ef13dfbb093ec0ee0b9a50b604105d83e5848fb012572d0e602fa17084"
+    },
+    {
+      "unitID": "toc:19409",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 91,
+      "unitEndLineIndex": 95,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 40,
+      "sourceIndicesSHA256": "af8f291690774f5cbe47587330c5babb7d67e85cb02230a17fd3afc2d01e436a",
+      "rawMembershipSHA256": "49896428b6955dc1337fed6cd7861ed26ea2ae6585571c1af4829664dd2724ef"
+    },
+    {
+      "unitID": "toc:19410",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        96,
+        97
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 96,
+      "unitEndLineIndex": 97,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "b51244e28a2c80cbfc69516d9e1fff53a467a3e30b1377c3101e2878be52ca85",
+      "rawMembershipSHA256": "348f563090ee2c6a208f69c5183836f363e294a61f6b63e45542f7b92f28a900"
+    },
+    {
+      "unitID": "toc:19411",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        98,
+        99
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 98,
+      "unitEndLineIndex": 99,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "448339eb6c39e792f20ad1b877ff8e39fe3920fb33d6fbcda95edab1782e278a",
+      "rawMembershipSHA256": "3ab14cadd7799440dd611adf28817f9168f460bc4bae59ef0fd4f6dd8fa299e3"
+    },
+    {
+      "unitID": "toc:19412",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        100,
+        101,
+        102,
+        103
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 100,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 45,
+      "sourceIndicesSHA256": "740079c17681a28bdba12bf241e9e7bf53ada90a861af5f5131fe0a1cb11d991",
+      "rawMembershipSHA256": "50f500df60719c7df55ee551ee1b9c57a5d0645fe57228bbadbae05afaf1cd22"
+    },
+    {
+      "unitID": "toc:19413",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        104,
+        105,
+        106,
+        107
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 104,
+      "unitEndLineIndex": 107,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 29,
+      "sourceIndicesSHA256": "8c1a71770059e27ad1d17a898a31d57d228ab73904f50b19d781249aa94e66db",
+      "rawMembershipSHA256": "71d80b39a8e043a0086f77d4e4051ca6e6b9f3a0c1e26e6f9d6b2520c0d91fc7"
+    },
+    {
+      "unitID": "toc:19414",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 108,
+      "unitEndLineIndex": 112,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 40,
+      "sourceIndicesSHA256": "0f9b08aabd878a18056d21865369d63ce9fab3eaa4646f57933835dbdd9ef390",
+      "rawMembershipSHA256": "7c3a209aa35d50bc24cdcbd79c265c5824594f9200c3cb6ec2e22bc32f324203"
+    },
+    {
+      "unitID": "toc:19415",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 113,
+      "unitEndLineIndex": 121,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 69,
+      "sourceIndicesSHA256": "0cb950626f5eb3063dff2af1cb1b39aae0197f9f8dd685168f72f7e32c59edd2",
+      "rawMembershipSHA256": "0bec0e96558b3d9b0a4befb5d0d24d96d7dfccc1867946f5e6b188aa6d7189ca"
+    },
+    {
+      "unitID": "toc:19416",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        122,
+        123,
+        124,
+        125
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 122,
+      "unitEndLineIndex": 125,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "1dd29e93d6f0269eee7ff68a24281514918001bcdf991d8ec4b76f7b3bffc005",
+      "rawMembershipSHA256": "f765b04a140637b27bfb5a7c65578f35d8c719d081abdf2c3c3b7951ba032370"
+    },
+    {
+      "unitID": "toc:19417",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        126,
+        127,
+        128,
+        129
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 126,
+      "unitEndLineIndex": 129,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "75566098175b783d521951193b7175be5fec7262d37b4e5549d9844c53a6bda8",
+      "rawMembershipSHA256": "6f23a86a2378d0ac3d8138c40e632a593d18ebbac9ff56f81eb49e1c1f227456"
+    },
+    {
+      "unitID": "toc:19418",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        130,
+        131,
+        132,
+        133,
+        134,
+        135
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 130,
+      "unitEndLineIndex": 135,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "7621e93674b791c4745b0c0bca3d4be2d60e7675d05a7e7f0ab1ce26e957b9b4",
+      "rawMembershipSHA256": "b426ed17e931df2f8253cce66401c87e78ba1cf55d0001a1d3b13f145cd280cd"
+    },
+    {
+      "unitID": "toc:19419",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 136,
+      "unitEndLineIndex": 141,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 57,
+      "sourceIndicesSHA256": "00502a12a649491700b607e3bb9cb01cfc1d4d121790eefacba1b2d7e5b3b621",
+      "rawMembershipSHA256": "101a4bab492d304073a5293c05fb6b4fd1f0801ae867789b3462c8b4dd979d0b"
+    },
+    {
+      "unitID": "toc:19420",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        142,
+        143,
+        144,
+        145,
+        146,
+        147
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 142,
+      "unitEndLineIndex": 147,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "5aad1e02188699e8f30c30c226dfa32cf2684a1f0337cdab8b4df91b20aa0cd0",
+      "rawMembershipSHA256": "f28d981e34d4464272ae1cf19a9f00b1eb1d4447c4e02807d23897ce83c3700c"
+    },
+    {
+      "unitID": "toc:19421",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 148,
+      "unitEndLineIndex": 154,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "a55092feb7da9d1fbfd3ec60e8f0fb33843de047b9c92c417670562d8b207119",
+      "rawMembershipSHA256": "1077cf3ca0646887bb4f5090bf0c5fe096610923788d8ec6766808f9b4992c37"
+    },
+    {
+      "unitID": "toc:19422",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        155,
+        156
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 155,
+      "unitEndLineIndex": 156,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "8b994aa01c8f8d0630751e57e8839a49a3155fd8c23a7bedee25555a04e96523",
+      "rawMembershipSHA256": "33aa58e304c11e339d661564a26075de636d579a20faf7eb07cdf87871bb6fd2"
+    },
+    {
+      "unitID": "toc:19423",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 157,
+      "unitEndLineIndex": 165,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 123,
+      "sourceIndicesSHA256": "55c9442aaa350c1b008161f099a319e5ce73be9b584cdcaf7eb416c12a810db2",
+      "rawMembershipSHA256": "c77c3c794fc85ccf3148051e625bae3c9a86fa14e196ca8d4d9a9f3235bf71b2"
+    },
+    {
+      "unitID": "toc:19424",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        166,
+        167,
+        168,
+        169,
+        170,
+        171
+      ],
+      "bookID": 255,
+      "bookTitle": "מדרש משלי",
+      "mode": "chapter",
+      "unitStartLineIndex": 166,
+      "unitEndLineIndex": 171,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 131,
+      "sourceIndicesSHA256": "d73e8dd2f23e7cad8a0406091da02bcbca98e383ced784ad5edfeebb3e13a0d3",
+      "rawMembershipSHA256": "72d3d2ce7eaba8239449328757a8cdfdda010433f4c879a2ff6a0d9c58c484b1"
+    }
+  ]
+}
