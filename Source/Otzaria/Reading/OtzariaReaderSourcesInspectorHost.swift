@@ -46,11 +46,10 @@ struct OtzariaReaderSourcesInspectorHost: View {
             inspectorSession.refreshForCurrentGeneration()
             if previous != current { viewModel.closeReaderInspector() }
         }
-        .onChange(of: viewModel.currentReaderTextMode) { _, mode in
-            inspectorSession = MaktabahTorahInspectorSession(
-                viewModel: viewModel,
-                preferredMode: mode
-            )
+        .onChange(of: viewModel.currentReaderTextMode, initial: true) { _, mode in
+            if let replacement = inspectorSession.replacementForTextMode(mode, viewModel: viewModel) {
+                inspectorSession = replacement
+            }
         }
     }
 

@@ -1,0 +1,73 @@
+{
+  "cases" : [
+    {
+      "name" : "matching-mode-keeps-session-cache-selection-and-open-state",
+      "passed" : true,
+      "witness" : {
+        "providerCalls" : 1,
+        "source" : "source-A"
+      }
+    },
+    {
+      "name" : "mode-admission-replaces-both-cache-owner-and-language-mapping",
+      "passed" : true,
+      "witness" : {
+        "sameReference" : true,
+        "source" : "source-A",
+        "translation" : "translation:source-A",
+        "translationLanguage" : "en"
+      }
+    },
+    {
+      "name" : "matching-mode-close-and-reopen-do-not-discard-current-cache",
+      "passed" : true,
+      "witness" : {
+        "providerCalls" : 2
+      }
+    },
+    {
+      "name" : "translation-both-source-roundtrip-keeps-distinct-original-mappings",
+      "passed" : true,
+      "witness" : {
+        "both" : "source-A\ntranslation:source-A",
+        "sourceAgain" : "source-A"
+      }
+    },
+    {
+      "name" : "generation-plus-mode-generation-first",
+      "passed" : true,
+      "witness" : {
+        "generation" : 1,
+        "text" : "translation:generation-B"
+      }
+    },
+    {
+      "name" : "generation-plus-mode-mode-first",
+      "passed" : true,
+      "witness" : {
+        "generation" : 1,
+        "text" : "translation:generation-B"
+      }
+    },
+    {
+      "name" : "remount-admission-can-replace-retained-hidden-mode",
+      "passed" : true,
+      "witness" : {
+        "scope" : "Calls the product admission API; SwiftUI mount scheduling remains an original UI gate",
+        "text" : "translation:source-after-hide"
+      }
+    },
+    {
+      "name" : "old-mode-completion-cannot-populate-the-new-repository",
+      "passed" : true,
+      "witness" : {
+        "current" : "translation:current-source",
+        "retired" : "suspended-source",
+        "scope" : "Retired external Kit objects may retain their own snapshot; they are not the current Session"
+      }
+    }
+  ],
+  "passed" : 8,
+  "scope" : "Whole original candidate Session plus actual pinned Kit caches; declared synthetic provider\/reader boundaries; no SwiftUI, app, simulator or source-corpus acceptance",
+  "total" : 8
+}

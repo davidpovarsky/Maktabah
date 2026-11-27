@@ -50,6 +50,22 @@ final class MaktabahTorahInspectorSession {
         self.readerViewModel = viewModel
     }
 
+    /// The workspace owns this session across Inspector host identities. A host
+    /// remount must admit its current text mode even when no change is observed.
+    /// Keep a matching session so the first open and its caches stay intact.
+    func replacementForTextMode(
+        _ mode: LibraryReaderTextMode,
+        viewModel: ReaderViewModel
+    ) -> MaktabahTorahInspectorSession? {
+        guard preferredMode != mode else { return nil }
+        return MaktabahTorahInspectorSession(
+            coordinator: coordinator,
+            otzaria: otzaria,
+            preferredMode: mode,
+            viewModel: viewModel
+        )
+    }
+
     /// A workspace retains this session while its Inspector is hidden. Rebind
     /// both cache owners before handing a repository or selection to a new view.
     /// All state is MainActor-owned; no storage/cache locks are acquired here.
