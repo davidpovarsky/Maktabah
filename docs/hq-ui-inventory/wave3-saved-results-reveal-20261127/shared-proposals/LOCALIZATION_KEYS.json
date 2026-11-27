@@ -1,0 +1,45 @@
+{
+  "new_literals": [
+    {
+      "key": "Saved results folder",
+      "en": "Saved results folder",
+      "he": "תיקיית תוצאות שמורות"
+    },
+    {
+      "key": "Saved search result",
+      "en": "Saved search result",
+      "he": "תוצאת חיפוש שמורה"
+    },
+    {
+      "key": "Saved results window",
+      "en": "Saved results window",
+      "he": "חלון תוצאות שמורות"
+    },
+    {
+      "key": "Show a saved results folder",
+      "en": "Show a saved results folder",
+      "he": "הצגת תיקיית תוצאות שמורות"
+    },
+    {
+      "key": "Show a saved search result",
+      "en": "Show a saved search result",
+      "he": "הצגת תוצאת חיפוש שמורה"
+    },
+    {
+      "key": "Show an existing folder in Saved Results.",
+      "en": "Show an existing folder in Saved Results.",
+      "he": "הצגת תיקייה קיימת בתוצאות השמורות."
+    },
+    {
+      "key": "Show a saved result without running its search.",
+      "en": "Show a saved result without running its search.",
+      "he": "הצגת תוצאה שמורה בלי להריץ את החיפוש שלה."
+    }
+  ],
+  "existing_key": "Saved Results",
+  "shortcut_phrase": {
+    "source": "Show saved search result in \\(.applicationName)",
+    "he": "הצגת תוצאת חיפוש שמורה ב־\\(.applicationName)"
+  },
+  "note": "Preserve the actual AppShortcuts placeholder syntax and prior phrases. Apple metadata/localized Siri validation NOT_RUN."
+}

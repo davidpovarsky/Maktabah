@@ -1,0 +1,55 @@
+[
+  {
+    "attempt": 1,
+    "initial": "compile 0; run -11 SIGSEGV; no complete pass count",
+    "candidate": "14/14 actual passive load lifetime controls",
+    "correction": "Sticky reentry retirement; initial source and crash retained."
+  },
+  {
+    "attempt": 2,
+    "initial": "harness compile 1; no tests ran",
+    "correction": "Owned Host include/link lookup must precede preserved peer Host module."
+  },
+  {
+    "attempt": 3,
+    "initial": "harness compile 1; no tests ran",
+    "correction": "Correct original RouteSpec state/scene argument order in harness only."
+  },
+  {
+    "attempt": 4,
+    "initial_service": {
+      "passed": 10,
+      "failed": 2
+    },
+    "candidate_service": {
+      "passed": 12,
+      "failed": 0
+    },
+    "owner": {
+      "passed": 26,
+      "failed": 2
+    },
+    "correction": "Service preserves late refusal; two owner stimuli bypassed actual original load/private State setter. Whole attempt remains FAILED."
+  },
+  {
+    "attempt": 5,
+    "owner": {
+      "passed": 28,
+      "failed": 0
+    },
+    "pre_apply_phase_counterexample": {
+      "passed": 27,
+      "failed": 1
+    },
+    "correction": "Execute actual original load and root setter bodies; no product hook added for an unreachable fixture shortcut."
+  },
+  {
+    "attempt": 6,
+    "targeted_existing_case": {
+      "passed": 1,
+      "failed": 0
+    },
+    "parse_inputs": 18,
+    "correction": "Additional post-release recatalog assertion only. Prior full suites reused with exact source/product hashes."
+  }
+]

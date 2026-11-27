@@ -1,0 +1,1865 @@
+--- a/Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift
++++ b/Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift
+@@ -0,0 +1,84 @@
++import Foundation
++import Observation
++
++/// Passive metadata for the ORIGINAL ResultsViewModel loads. A load continues
++/// unchanged when this observer is exhausted; only native cached references
++/// become unavailable. No database, task, UI action or navigation grant lives
++/// here. A completed reload can never restore an older source revision.
++@Observable @MainActor
++final class OriginalSavedResultsLoadLifetime {
++    final class Load {
++        fileprivate weak var owner: OriginalSavedResultsLoadLifetime?
++        fileprivate let id = UUID()
++        fileprivate var admitted = false
++        fileprivate var ended = false
++        fileprivate init(owner: OriginalSavedResultsLoadLifetime) { self.owner = owner }
++    }
++
++    private(set) var revision: UInt64?
++    private(set) var lastCompletionWasCancelled = false
++    @ObservationIgnored private var active: [UUID: Load] = [:]
++    @ObservationIgnored private var publishing = false
++    @ObservationIgnored private var retired = false
++
++    init(initialRevision: UInt64 = 0) { revision = initialRevision }
++
++    /// A nil value means a real original reload/publication is in progress, or
++    /// the finite metadata lifetime has been exhausted. It is never a grant.
++    var settledRevision: UInt64? {
++        guard !retired, !publishing, active.isEmpty else { return nil }
++        return revision
++    }
++
++    func beginOriginalLoad() -> Load {
++        let load = Load(owner: self)
++        guard !retired, !publishing, revision != nil, active.count < 128 else {
++            retireMetadata()
++            return load
++        }
++        publishing = true
++        defer { publishing = false }
++        advance()
++        guard !retired, revision != nil else { return load }
++        load.admitted = true
++        active[load.id] = load
++        return load
++    }
++
++    func endOriginalLoad(_ load: Load, cancelled: Bool) {
++        guard load.owner === self else { retireMetadata(); return }
++        // A load admitted after exhaustion does not acquire an active slot.
++        guard load.admitted else { return }
++        guard !publishing, !load.ended, active[load.id] === load else {
++            retireMetadata()
++            return
++        }
++        publishing = true
++        defer { publishing = false }
++        // Consume before Observation can synchronously re-enter this owner.
++        load.ended = true
++        active.removeValue(forKey: load.id)
++        advance()
++        lastCompletionWasCancelled = cancelled
++    }
++
++    func isCurrent(_ expected: UInt64) -> Bool { settledRevision == expected }
++
++    private func advance() {
++        guard !retired, let current = revision, current < .max else {
++            retireMetadata()
++            return
++        }
++        revision = current + 1
++        // Observation invokes willSet callbacks synchronously. A nested retire
++        // must survive the outer observed property's eventual assignment.
++        if retired { revision = nil }
++    }
++
++    private func retireMetadata() {
++        // Reentrant invalidation does not reopen an outer transition.
++        guard !retired else { return }
++        retired = true
++        revision = nil
++    }
++}
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift
+@@ -0,0 +1,686 @@
++#if os(iOS)
++import Foundation
++import UIKit
++import OtzariaActionCore
++import OtzariaUIRouting
++import ChavrusaUIRoutingHost
++
++/// Scene-owned access to the ORIGINAL Search saved-results sheet. It opens no
++/// substitute UI and never invokes the result button, database or query loader.
++@MainActor final class MaktabahNativeSavedResultsBinding {
++    typealias Record = NativeSavedResultIntentService.Record
++    typealias Tree = MaktabahNativeSavedResultsSource
++    static let destination = UIDestinationID(rawValue: "native.savedResults")!
++
++    enum StateField { case path, filter, loading, operation }
++    struct SheetAccess {
++        let token: UUID
++        let model: ResultsViewModel
++        let path: @MainActor () -> [FolderNode]
++        let setPath: @MainActor ([FolderNode]) -> Void
++        let filter: @MainActor () -> String
++        let loading: @MainActor () -> Bool
++        let blocked: @MainActor () -> Bool
++    }
++    struct PageKey: Hashable {
++        let folder: ObjectIdentifier?
++        init(_ folder: FolderNode?) { self.folder = folder.map(ObjectIdentifier.init) }
++    }
++    struct RowKey: Hashable {
++        let kind: NativeSavedResultIntentService.Kind
++        let object: ObjectIdentifier
++        init(_ node: Tree.Node) {
++            switch node {
++            case .folder(let folder): kind = .folder; object = ObjectIdentifier(folder)
++            case .result(let result): kind = .result; object = ObjectIdentifier(result)
++            }
++        }
++    }
++    struct ScrollKey: Hashable {
++        let kind: String
++        let id: Int64
++        static func folder(_ node: FolderNode) -> Self { .init(kind: "folder", id: node.id) }
++        static func result(_ node: ResultNode) -> Self { .init(kind: "result", id: node.id) }
++    }
++    private final class SearchHost {
++        let token: UUID
++        weak var manager: iOSNavigationManager?
++        var requested: @MainActor () -> Bool
++        var setRequested: @MainActor (Bool) -> Void
++        var otherBlocked: @MainActor () -> Bool
++        var revision: UInt64? = 0
++        init(token: UUID, manager: iOSNavigationManager, requested: @escaping @MainActor () -> Bool,
++             setRequested: @escaping @MainActor (Bool) -> Void, otherBlocked: @escaping @MainActor () -> Bool) {
++            self.token = token; self.manager = manager; self.requested = requested
++            self.setRequested = setRequested; self.otherBlocked = otherBlocked
++        }
++    }
++    private final class SheetHost {
++        var access: SheetAccess
++        weak var view: UIView?
++        var revision: UInt64? = 0
++        init(access: SheetAccess, view: UIView) { self.access = access; self.view = view }
++    }
++    private final class Page {
++        let token: UUID
++        let sheet: UUID
++        let folder: FolderNode?
++        weak var view: UIView?
++        var reveal: @MainActor (ScrollKey) -> Void
++        init(token: UUID, sheet: UUID, folder: FolderNode?, view: UIView,
++             reveal: @escaping @MainActor (ScrollKey) -> Void) {
++            self.token = token; self.sheet = sheet; self.folder = folder
++            self.view = view; self.reveal = reveal
++        }
++    }
++    private final class Row {
++        let token: UUID
++        let sheet: UUID
++        let page: PageKey
++        let node: Tree.Node
++        weak var view: UIView?
++        init(token: UUID, sheet: UUID, page: PageKey, node: Tree.Node, view: UIView) {
++            self.token = token; self.sheet = sheet; self.page = page; self.node = node; self.view = view
++        }
++    }
++    private final class Source {
++        let requestID: UUID
++        let record: Record?
++        let tree: Tree?
++        let entry: Tree.Entry?
++        let search: SearchHost
++        let searchRevision: UInt64
++        let initiallyRequested: Bool
++        let window: MaktabahNativeWindowObservation
++        let validateForeign: @MainActor () throws -> Void
++        let initialPath: [FolderNode]
++        let targetPath: [FolderNode]
++        let filter: [UInt8]
++        var sheet: SheetHost?
++        var sheetRevision: UInt64?
++        var pageToken: UUID?
++        var rowToken: UUID?
++        var valid = true
++        var applied = false
++        var searchPublished = false
++        var pathPublished = false
++        var loadingCompleted = false
++        var scrolled = false
++        init(requestID: UUID, record: Record?, tree: Tree?, entry: Tree.Entry?, search: SearchHost,
++             searchRevision: UInt64, requested: Bool, sheet: SheetHost?, initialPath: [FolderNode],
++             targetPath: [FolderNode], filter: String, window: MaktabahNativeWindowObservation,
++             validateForeign: @escaping @MainActor () throws -> Void) {
++            self.requestID = requestID; self.record = record; self.tree = tree; self.entry = entry
++            self.search = search; self.searchRevision = searchRevision; initiallyRequested = requested
++            self.sheet = sheet; sheetRevision = sheet?.revision
++            self.initialPath = initialPath; self.targetPath = targetPath; self.filter = Array(filter.utf8)
++            self.window = window; self.validateForeign = validateForeign
++        }
++        var page: PageKey { PageKey(targetPath.last) }
++    }
++    private final class Pending {
++        let source: Source
++        let validate: @MainActor () throws -> Void
++        var applying = false
++        var rendering = false
++        init(source: Source, validate: @escaping @MainActor () throws -> Void) {
++            self.source = source; self.validate = validate
++        }
++    }
++    /// A permit authorizes only one observed original setter publication. It
++    /// carries no execution authority: only apply(), under Core, creates it.
++    private final class Publication {
++        enum Field { case search, path }
++        let pending: Pending
++        let field: Field
++        let token: UUID
++        var will = false
++        var did = false
++        init(pending: Pending, field: Field, token: UUID) {
++            self.pending = pending; self.field = field; self.token = token
++        }
++    }
++
++    let sceneID: UIStableID
++    private let bindings: MaktabahNativeSceneBindings
++    private let workspaceSource: MaktabahNativeWorkspaceProjectionSource
++    private weak var workspacePresentation: MaktabahNativeWorkspacePresentationBinding?
++    private let commonReady: @MainActor () -> Bool
++    private let windowReady: @MainActor () -> Bool
++    private let retainWindow: @MainActor () throws -> MaktabahNativeWindowObservation
++    private let readForeign: @MainActor () -> Void
++    private var search: SearchHost?
++    private var sheet: SheetHost?
++    private var pages: [PageKey: Page] = [:]
++    private var rows: [RowKey: Row] = [:]
++    private var catalogSource: Tree?
++    private var retained: Source?
++    private var completed: Source?
++    private var pending: Pending?
++    private var publication: Publication?
++    private var capturing = false
++    private var retiring = false
++    private var mounted = true
++    private var lifetime: UInt64? = 0
++    private var changed: (@MainActor () -> Void)?
++    private var invalidated: (@MainActor () -> Void)?
++
++    init(sceneID: UIStableID, bindings: MaktabahNativeSceneBindings,
++         workspaceSource: MaktabahNativeWorkspaceProjectionSource,
++         workspacePresentation: MaktabahNativeWorkspacePresentationBinding,
++         commonReady: @escaping @MainActor () -> Bool, windowReady: @escaping @MainActor () -> Bool,
++         retainWindow: @escaping @MainActor () throws -> MaktabahNativeWindowObservation,
++         readForeignPresentations: @escaping @MainActor () -> Void) {
++        self.sceneID = sceneID; self.bindings = bindings; self.workspaceSource = workspaceSource
++        self.workspacePresentation = workspacePresentation; self.commonReady = commonReady
++        self.windowReady = windowReady; self.retainWindow = retainWindow; readForeign = readForeignPresentations
++    }
++    func install(changed: @escaping @MainActor () -> Void, invalidated: @escaping @MainActor () -> Void) {
++        self.changed = changed; self.invalidated = invalidated
++    }
++    var isRequestedOrMounted: Bool { search?.requested() == true || sheet != nil }
++    /// Discovery/readiness facet only. Execution separately retains the actual
++    /// original window and source; this does not create a request or grant.
++    var isStableOriginalPresentation: Bool {
++        guard isAvailable, search?.requested() == true, let sheet, let view = sheet.view,
++              let window = view.window, !sheet.access.loading(), !sheet.access.blocked(),
++              sheet.access.model.nativeLoadLifetime.settledRevision != nil else { return false }
++        return MaktabahNativeSavedResultsGeometry.isVisible(view, in: view, window: window, sceneID: sceneID)
++    }
++    var isAvailable: Bool {
++        guard mounted, lifetime != nil, let search, search.manager === bindings.manager,
++              search.revision != nil, !search.otherBlocked(), commonReady(),
++              bindings.selectedTab.wrappedValue == .search, bindings.manager.currentMode == .search,
++              !bindings.showSettings.wrappedValue, bindings.isPresentationReady,
++              bindings.manager.alertMessage == nil,
++              !BackendCoordinator.shared.isTransitioning,
++              BackendCoordinator.shared.activeBackendID == .otzaria,
++              BackendCoordinator.shared.usesNativeMaktabahDataPath,
++              iOSTab.search.isAvailable(for: BackendCoordinator.shared.activeCapabilities) else { return false }
++        return true
++    }
++
++    func catalog() throws -> [Record] {
++        guard !capturing, !retiring, pending == nil, retained == nil, let captureRevision = lifetime else { return [] }
++        capturing = true
++        defer { capturing = false }
++        guard isAvailable,
++              let sheet, search?.requested() == true, !sheet.access.loading(), !sheet.access.blocked(),
++              sheet.revision != nil else { return [] }
++        if let current = catalogSource {
++            do { try current.validate() }
++            catch { current.retire(); catalogSource = nil }
++        }
++        if catalogSource == nil {
++            let next = try Tree(model: sheet.access.model, sceneID: sceneID)
++            guard mounted, lifetime == captureRevision, self.sheet === sheet,
++                  pending == nil, retained == nil, isAvailable, !sheet.access.loading(), !sheet.access.blocked() else {
++                next.retire(); throw stale()
++            }
++            catalogSource = next
++        }
++        guard let source = catalogSource else { throw stale() }
++        try source.validate()
++        let filter = sheet.access.filter()
++        let records = source.entries.filter { source.matchesOriginalFilter($0, filter: filter) }.map(\.record)
++        guard lifetime == captureRevision, catalogSource === source, self.sheet === sheet,
++              pending == nil, retained == nil else { throw stale() }
++        return records
++    }
++
++    /// Retain BEFORE the first foreground/Core await. A cached record may join
++    /// only the exact warm original tree; a cold primitive root retains no node.
++    func retain(record: Record?, requestID: UUID) throws {
++        guard !capturing, !retiring, retained == nil, pending == nil,
++              let captureRevision = lifetime else { throw stale() }
++        capturing = true
++        defer { capturing = false }
++        guard isAvailable,
++              let search, let searchRevision = search.revision, let lifetime,
++              let workspacePresentation, let workspaceRevision = workspacePresentation.originalStateRevision,
++              workspaceSource.isAuthoritative, let workspace = try workspaceSource.read(),
++              workspace.attached, !workspace.isSwitching, workspace.sceneID == sceneID.rawValue,
++              workspace.errorMessage == nil, workspace.store.loadError == nil,
++              let mapping = workspace.mappingOwnershipObservation(),
++              let stored = workspace.store.mappingObservation(scene: sceneID.rawValue),
++              mapping.owner == ObjectIdentifier(bindings.manager), mapping.scene == sceneID.rawValue,
++              mapping.coverage == .liveNativeSetters, stored.coverage == .workspaceStoreOnly,
++              let root = bindings.rootPublications, let selectionRevision = root.selectionRevision,
++              let settingsRevision = root.settingsRevision,
++              let modeRevision = bindings.manager.nativeModePresentationRevision,
++              let bookRevision = bindings.manager.selectedBookPresentationRevision else {
++            throw UIRouteError(.unavailable, "native_saved_results_source_unavailable")
++        }
++        let window = try retainWindow()
++        _ = try window.validate()
++        let requested = search.requested()
++        let originalSheet = sheet
++        guard requested == (originalSheet != nil), originalSheet?.access.blocked() != true,
++              originalSheet?.access.loading() != true, originalSheet == nil || originalSheet?.revision != nil else {
++            throw UIRouteError(.unavailable, "native_saved_results_transition_in_progress")
++        }
++        let path = originalSheet?.access.path() ?? [], filter = originalSheet?.access.filter() ?? ""
++        var tree: Tree?, entry: Tree.Entry?
++        if let record {
++            guard requested, let source = catalogSource, source.model === originalSheet?.access.model,
++                  record.sceneID == sceneID else { throw stale() }
++            tree = source; entry = try source.entry(record)
++            guard let entry, source.matchesOriginalFilter(entry, filter: filter) else { throw stale() }
++        }
++        let targetPath: [FolderNode]
++        if let entry {
++            switch entry.node {
++            case .folder: targetPath = entry.path
++            case .result: targetPath = filter.isEmpty ? entry.path : []
++            }
++        } else { targetPath = [] }
++        let manager = bindings.manager, originalBook = manager.selectedBook
++        let originalBookMode = manager.selectedBookPresentationMode
++        let session = manager.unifiedSearchSession, model = manager.searchViewModel, reader = manager.activeReaderViewModel
++        let observation = MaktabahNativeComponentSourceObservation {
++            _ = try? self.workspaceSource.read(); _ = workspace.attached; _ = workspace.isSwitching
++            _ = workspace.errorMessage; _ = workspace.store.loadError
++            _ = mapping.source.event; _ = stored.source.event
++            _ = root.selectionRevision; _ = root.settingsRevision
++            _ = manager.currentMode; _ = manager.selectedBook; _ = manager.selectedBookPresentationMode
++            _ = manager.openTabs; _ = manager.activeTabId; _ = manager.selectedContentId
++            _ = manager.unifiedSearchSession; _ = manager.searchViewModel
++            _ = session.query; _ = session.scope; _ = session.requestConfiguration
++            _ = session.selectedBookIds; _ = session.resultKitabFilter
++            _ = session.showsBookFilterSheet; _ = session.showsSearchDataSheet; _ = session.showsAdvancedOptions
++            _ = manager.selectedBookForInfo; _ = manager.showingTabsList; _ = manager.alertMessage
++            _ = reader?.currentBook; _ = reader?.currentDestination; _ = reader?.isPopoverPresented
++            _ = reader?.readerInspectorVisible; _ = DonationManager.shared.showDonationSheet
++            self.readForeign()
++        }
++        let source = Source(requestID: requestID, record: record, tree: tree, entry: entry,
++            search: search, searchRevision: searchRevision, requested: requested,
++            sheet: originalSheet, initialPath: path, targetPath: targetPath, filter: filter, window: window) {
++                [weak self, weak workspace, weak manager, weak workspacePresentation, weak session, weak model] in
++                try observation.validate(); _ = try window.validate()
++                guard let self, let workspace, let manager, let workspacePresentation, let session, let model,
++                      self.mounted, self.lifetime == lifetime, self.isAvailable,
++                      self.workspaceSource.isAuthoritative, try self.workspaceSource.read() === workspace,
++                      workspace.attached, !workspace.isSwitching, workspace.sceneID == self.sceneID.rawValue,
++                      workspace.store.loadError == nil, workspace.errorMessage == nil,
++                      self.workspacePresentation === workspacePresentation,
++                      workspacePresentation.originalStateRevision == workspaceRevision,
++                      let current = workspace.mappingOwnershipObservation(),
++                      let currentStored = workspace.store.mappingObservation(scene: self.sceneID.rawValue),
++                      current.source === mapping.source, current.epoch == mapping.epoch,
++                      current.owner == mapping.owner, current.projection == mapping.projection,
++                      currentStored.source === stored.source, currentStored.epoch == stored.epoch,
++                      currentStored.owner == stored.owner, currentStored.projection == stored.projection,
++                      self.bindings.rootPublications === root, root.selectionRevision == selectionRevision,
++                      root.settingsRevision == settingsRevision,
++                      manager.nativeModePresentationRevision == modeRevision,
++                      manager.selectedBookPresentationRevision == bookRevision,
++                      manager.selectedBook === originalBook, manager.selectedBookPresentationMode == originalBookMode,
++                      manager.unifiedSearchSession === session, manager.searchViewModel === model,
++                      session.searchViewModel === model,
++                      !session.showsBookFilterSheet, !session.showsSearchDataSheet, !session.showsAdvancedOptions else {
++                    throw UIRouteError(.staleState, "native_saved_results_foreign_source_changed")
++                }
++                try observation.validate(); _ = try window.validate()
++            }
++        guard self.lifetime == lifetime, lifetime == captureRevision,
++              self.search === search, self.sheet === originalSheet,
++              retained == nil, pending == nil else { throw stale() }
++        source.pageToken = pages[source.page]?.token
++        if let entry { source.rowToken = rows[RowKey(entry.node)]?.token }
++        completed?.valid = false; completed = nil; retained = source
++        do { try validate(source) }
++        catch { releaseSource(requestID: requestID); throw error }
++    }
++
++    func validateSource(requestID: UUID) throws {
++        guard let value = retained, value.requestID == requestID else { throw stale() }
++        try validate(value)
++    }
++    func selectedItem(requestID: UUID) throws -> UIStableID? {
++        try validateSource(requestID: requestID)
++        return retained?.record?.itemID
++    }
++    func begin(requestID: UUID, validate: @escaping @MainActor () throws -> Void) throws {
++        guard pending == nil, let source = retained, source.requestID == requestID else { throw stale() }
++        try self.validate(source); try validate(); try self.validate(source)
++        guard retained === source, pending == nil, source.initiallyRequested || windowReady() else { throw stale() }
++        if source.initiallyRequested { try visibleSheet(source) }
++        pending = Pending(source: source, validate: validate)
++    }
++    func apply(requestID: UUID) throws {
++        guard let value = pending, value.source === retained, value.source.requestID == requestID,
++              !value.source.applied, !value.applying else { throw stale() }
++        try validatePending(value)
++        value.applying = true
++        // Claim the one canonical effect before original State callbacks.
++        // This permits only this command's own in-progress presentation; all
++        // surface reporting stays closed until apply and actual layout finish.
++        value.source.applied = true
++        defer { value.applying = false }
++        do {
++            if !value.source.initiallyRequested {
++                try publish(value, field: .search, token: value.source.search.token) {
++                    value.source.search.setRequested(true)
++                }
++            } else if !Tree.identical(value.source.initialPath, value.source.targetPath) {
++                guard let sheet = value.source.sheet else { throw stale() }
++                try publish(value, field: .path, token: sheet.access.token) {
++                    sheet.access.setPath(value.source.targetPath)
++                }
++            }
++            guard pending === value, retained === value.source, value.source.valid else { throw stale() }
++            try validatePending(value)
++        } catch { retire(); throw error }
++        value.applying = false
++        renderOriginalContainer()
++        try validatePending(value)
++        changed?()
++    }
++
++    private func publish(_ value: Pending, field: Publication.Field, token: UUID,
++                         perform: @MainActor () -> Void) throws {
++        guard publication == nil, pending === value, retained === value.source, value.applying else { throw stale() }
++        let permit = Publication(pending: value, field: field, token: token)
++        publication = permit
++        perform()
++        guard publication === permit, permit.will, permit.did, pending === value,
++              retained === value.source, value.source.valid else { throw stale() }
++        publication = nil
++        try validatePending(value)
++    }
++
++    /// The original State setter calls these on both sides of its unchanged
++    /// assignment. Consume BEFORE any existing Session/SwiftUI callback.
++    func searchWillPublish(owner: UUID, next: Bool) {
++        guard let search, search.token == owner else { retire(); return }
++        let owned = publication.map { $0.field == .search && $0.token == owner && !$0.will && !$0.did
++            && $0.pending === pending && $0.pending.source === retained
++            && $0.pending.applying && $0.pending.source.valid && !search.requested() && next } == true
++        if owned { publication?.will = true }
++        else { retire() }
++        search.revision = nextRevision(search.revision)
++        if search.revision == nil { retire() }
++    }
++    func searchDidPublish(owner: UUID) {
++        guard let permit = publication, permit.field == .search, permit.token == owner,
++              permit.will, !permit.did, permit.pending === pending,
++              permit.pending.source === retained, permit.pending.source.valid,
++              search === permit.pending.source.search, search?.requested() == true,
++              let revision = search?.revision, permit.pending.source.searchRevision < .max,
++              revision == permit.pending.source.searchRevision + 1 else { return }
++        permit.did = true; permit.pending.source.searchPublished = true
++    }
++    func originalOtherSearchStateWillChange(owner: UUID) {
++        guard search?.token == owner else { return }
++        retire()
++    }
++    func sheetStateWillPublish(owner: UUID, field: StateField, nextPath: [FolderNode]? = nil,
++                               nextLoading: Bool? = nil) {
++        guard let sheet, sheet.access.token == owner else { retire(); return }
++        let ownedPath: Bool
++        if let permit = publication, let nextPath {
++            ownedPath = permit.field == .path && permit.token == owner && !permit.will && !permit.did
++                && permit.pending === pending && permit.pending.source === retained && permit.pending.applying
++                && permit.pending.source.valid && field == .path
++                && Tree.identical(nextPath, permit.pending.source.targetPath)
++        } else { ownedPath = false }
++        // A root cold load is an original view lifecycle, never a node claim.
++        // Permit only its first actual true -> false completion; all other
++        // State writes invalidate the already retained request.
++        let coldLoad = field == .loading && nextLoading == false && sheet.access.loading()
++            && pending?.source === retained && pending?.source.applied == true
++            && pending?.source.initiallyRequested == false && pending?.source.record == nil
++            && pending?.source.loadingCompleted == false && pending?.source.sheet === sheet
++        if ownedPath { publication?.will = true }
++        else if coldLoad { pending?.source.loadingCompleted = true }
++        else { retire() }
++        sheet.revision = nextRevision(sheet.revision)
++        if sheet.revision == nil { retire() }
++        if coldLoad, let value = pending?.source { value.sheetRevision = sheet.revision }
++    }
++    func sheetStateDidPublish(owner: UUID, field: StateField) {
++        guard let sheet, sheet.access.token == owner else { return }
++        if let permit = publication, permit.field == .path, permit.token == owner, field == .path,
++           permit.will, !permit.did, permit.pending === pending, permit.pending.source === retained,
++           permit.pending.source.valid, let previous = permit.pending.source.sheetRevision,
++           previous < .max, sheet.revision == previous + 1,
++           Tree.identical(sheet.access.path(), permit.pending.source.targetPath) {
++            permit.did = true; permit.pending.source.pathPublished = true
++        }
++        renderOriginalContainer(); changed?()
++    }
++
++    func attachSearch(owner: UUID, manager: iOSNavigationManager, requested: @escaping @MainActor () -> Bool,
++                      setRequested: @escaping @MainActor (Bool) -> Void,
++                      otherBlocked: @escaping @MainActor () -> Bool) {
++        guard mounted, manager === bindings.manager else { return }
++        if let search, search.token == owner, search.manager === manager {
++            search.requested = requested; search.setRequested = setRequested; search.otherBlocked = otherBlocked
++            return
++        }
++        retire(); search = SearchHost(token: owner, manager: manager, requested: requested,
++            setRequested: setRequested, otherBlocked: otherBlocked)
++        changed?()
++    }
++    func detachSearch(owner: UUID) {
++        guard search?.token == owner else { return }
++        // The original presenter can be covered by its own sheet. Its captured
++        // State owner stays exact; a replacement owner still revokes it.
++        guard search?.requested() != true else { return }
++        retire(); search = nil; changed?()
++    }
++    func attachSheet(access: SheetAccess, view: UIView) {
++        guard mounted, access.model === ResultsViewModel.shared, search?.requested() == true else { return }
++        if let sheet, sheet.access.token == access.token, sheet.access.model === access.model, sheet.view === view {
++            sheet.access = access; renderOriginalContainer(); return
++        }
++        let cold = sheet == nil && pending?.source.applied == true
++            && pending?.source.initiallyRequested == false && pending?.source.sheet == nil
++            && pending?.source.valid == true && pending?.source === retained
++        if !cold { retire() }
++        let next = SheetHost(access: access, view: view)
++        sheet = next
++        if cold, let value = pending?.source { value.sheet = next; value.sheetRevision = next.revision }
++        renderOriginalContainer(); changed?()
++    }
++    func detachSheet(owner: UUID, view: UIView) {
++        guard sheet?.access.token == owner, sheet?.view === view else { return }
++        retire(); sheet = nil; pages.removeAll(); rows.removeAll(); changed?()
++    }
++    func attachPage(token: UUID, sheet owner: UUID, folder: FolderNode?, view: UIView,
++                    reveal: @escaping @MainActor (ScrollKey) -> Void) {
++        guard sheet?.access.token == owner else { return }
++        let key = PageKey(folder)
++        if let page = pages[key], page.token == token, page.view === view, page.sheet == owner {
++            page.reveal = reveal; renderOriginalContainer(); return
++        }
++        if let source = retained ?? completed, source.page == key,
++           source.pageToken != nil || !source.applied { retire() }
++        pages[key] = Page(token: token, sheet: owner, folder: folder, view: view, reveal: reveal)
++        if let source = pending?.source, source.valid, source.applied, source.page == key,
++           source.pageToken == nil { source.pageToken = token }
++        renderOriginalContainer(); changed?()
++    }
++    func detachPage(token: UUID, sheet owner: UUID, folder: FolderNode?, view: UIView) {
++        let key = PageKey(folder)
++        guard let page = pages[key], page.token == token, page.sheet == owner, page.view === view else { return }
++        if let source = retained ?? completed, source.pageToken == token { retire() }
++        pages.removeValue(forKey: key); changed?()
++    }
++    func attachRow(token: UUID, sheet owner: UUID, page folder: FolderNode?, node: Tree.Node, view: UIView) {
++        guard sheet?.access.token == owner else { return }
++        let key = RowKey(node), page = PageKey(folder)
++        if let row = rows[key], row.token == token, row.sheet == owner, row.page == page, row.view === view { return }
++        if let source = retained ?? completed, source.entry.map({ RowKey($0.node) }) == key,
++           source.rowToken != nil || !source.applied { retire() }
++        rows[key] = Row(token: token, sheet: owner, page: page, node: node, view: view)
++        if let source = pending?.source, source.valid, source.applied,
++           source.entry.map({ RowKey($0.node) }) == key, source.rowToken == nil { source.rowToken = token }
++        changed?()
++    }
++    func detachRow(token: UUID, node: Tree.Node, view: UIView) {
++        let key = RowKey(node)
++        guard let row = rows[key], row.token == token, row.view === view else { return }
++        if let source = retained ?? completed, source.rowToken == token { retire() }
++        rows.removeValue(forKey: key); changed?()
++    }
++    func originalLayoutDidChange() { renderOriginalContainer(); changed?() }
++
++    /// Only scrolling of the actual original list may continue from layout.
++    /// Path/sheet selection has already happened once inside canonical apply.
++    private func renderOriginalContainer() {
++        guard let value = pending, value.source.applied, !value.applying, !value.rendering else { return }
++        value.rendering = true
++        defer { value.rendering = false }
++        do {
++            try validatePending(value)
++            let source = value.source
++            guard let sheet = source.sheet, !sheet.access.loading(),
++                  Tree.identical(sheet.access.path(), source.targetPath),
++                  let page = pages[source.page], page.sheet == sheet.access.token,
++                  let pageView = page.view, let sheetView = sheet.view,
++                  MaktabahNativeSavedResultsGeometry.isVisible(pageView, in: sheetView,
++                      window: try source.window.validate(), sceneID: sceneID) else { return }
++            if let token = source.pageToken { guard token == page.token else { throw stale() } }
++            else { source.pageToken = page.token }
++            if let entry = source.entry, case .result(let node) = entry.node, !source.scrolled {
++                source.scrolled = true
++                page.reveal(.result(node))
++                try validatePending(value)
++            }
++        } catch { retire() }
++    }
++
++    func observedItem(requestID: UUID) -> UIStableID? {
++        guard let source = pending?.source ?? completed, source.requestID == requestID else { return nil }
++        do { try validateVisibleSource(source); return source.record?.itemID } catch { return nil }
++    }
++    func hasVisibleSurface(requestID: UUID) -> Bool {
++        guard let source = pending?.source ?? completed, source.requestID == requestID else { return false }
++        do { try validateVisibleSource(source); return true } catch { return false }
++    }
++    /// Only the SAME already-applied request may await its own original sheet
++    /// transition. This passive facet must not call the Session validator.
++    func isContinuingAppliedRequest(requestID: UUID) -> Bool {
++        guard let value = pending, value.source === retained, value.source.requestID == requestID,
++              value.source.valid, value.source.applied else { return false }
++        return (try? validate(value.source)) != nil
++    }
++    func validateCompletedSurface(requestID: UUID) throws {
++        guard let source = completed, source.requestID == requestID else { throw stale() }
++        try validateVisibleSource(source)
++    }
++    func withValidatedSurface<T>(requestID: UUID, report: @MainActor () throws -> T) throws -> T {
++        guard let value = pending, value.source.requestID == requestID else { throw stale() }
++        try requireSurface(value)
++        let result = try report()
++        try requireSurface(value)
++        return result
++    }
++    func finish(requestID: UUID, completed success: Bool) {
++        guard let value = pending, value.source.requestID == requestID else { return }
++        let accepted = success && (try? requireSurface(value)) != nil
++        pending = nil; publication = nil
++        if accepted { completed = value.source }
++        else { value.source.valid = false }
++    }
++    func releaseSource(requestID: UUID) {
++        guard let source = retained, source.requestID == requestID else { return }
++        if pending?.source === source { retire() }
++        if completed !== source { source.valid = false }
++        retained = nil
++    }
++    func clearCompletedProof() { completed?.valid = false; completed = nil }
++    func retire() {
++        guard !retiring else { return }
++        retiring = true
++        defer { retiring = false }
++        if let old = lifetime { lifetime = old < .max ? old + 1 : nil }
++        let wasActive = retained != nil || pending != nil || completed != nil
++        retained?.valid = false; completed?.valid = false
++        pending = nil; publication = nil; completed = nil
++        catalogSource?.retire(); catalogSource = nil
++        if wasActive { invalidated?() }
++    }
++    func unmount() {
++        mounted = false; retire(); retained = nil; search = nil; sheet = nil
++        pages.removeAll(); rows.removeAll(); changed = nil; invalidated = nil
++    }
++
++    private func validate(_ source: Source) throws {
++        guard mounted, source.valid, retained === source || completed === source,
++              search === source.search else { throw stale() }
++        try source.validateForeign()
++        guard source.valid, retained === source || completed === source, search === source.search,
++              source.searchRevision <= .max - (source.searchPublished ? 1 : 0),
++              source.search.revision == source.searchRevision + (source.searchPublished ? 1 : 0),
++              source.search.requested() == (source.initiallyRequested || source.searchPublished) else { throw stale() }
++        try source.tree?.validate()
++        if let expected = source.sheet {
++            guard sheet === expected, let initial = source.sheetRevision,
++                  initial <= .max - (source.pathPublished ? 1 : 0),
++                  expected.revision == initial + (source.pathPublished ? 1 : 0),
++                  !expected.access.blocked(), expected.access.filter().utf8.elementsEqual(source.filter),
++                  Tree.identical(expected.access.path(), source.pathPublished ? source.targetPath : source.initialPath),
++                  source.record == nil || !expected.access.loading() else { throw stale() }
++        } else if sheet != nil { throw stale() }
++        guard source.valid else { throw stale() }
++    }
++    private func validatePending(_ value: Pending) throws {
++        guard pending === value, retained === value.source, value.source.valid else { throw stale() }
++        try validate(value.source); try value.validate(); try validate(value.source)
++        guard pending === value, retained === value.source, value.source.valid else { throw stale() }
++    }
++    private func visibleSheet(_ source: Source) throws {
++        guard let sheet = source.sheet, self.sheet === sheet, let view = sheet.view,
++              !sheet.access.loading(), !sheet.access.blocked(),
++              MaktabahNativeSavedResultsGeometry.isVisible(view, in: view,
++                  window: try source.window.validate(), sceneID: sceneID) else {
++            throw UIRouteError(.unavailable, "native_saved_results_sheet_not_visible")
++        }
++    }
++    private func requireSurface(_ value: Pending) throws {
++        try validatePending(value)
++        guard !value.applying, !value.rendering else { throw stale() }
++        try validateVisibleSource(value.source)
++        try validatePending(value)
++    }
++    private func validateVisibleSource(_ source: Source) throws {
++        try validate(source)
++        if let current = pending, current.source === source {
++            guard !current.applying, !current.rendering else { throw stale() }
++        }
++        guard source.applied,
++              let sheet = source.sheet, let sheetView = sheet.view,
++              let page = pages[source.page], page.sheet == sheet.access.token,
++              let pageView = page.view, !sheet.access.loading(), !sheet.access.blocked(),
++              sheet.access.model.nativeLoadLifetime.settledRevision != nil,
++              Tree.identical(sheet.access.path(), source.targetPath),
++              MaktabahNativeSavedResultsGeometry.isVisible(pageView, in: sheetView,
++                  window: try source.window.validate(), sceneID: sceneID) else {
++            throw UIRouteError(.unavailable, "native_saved_results_original_page_not_visible")
++        }
++        if let token = source.pageToken { guard token == page.token else { throw stale() } }
++        else { source.pageToken = page.token }
++        if let entry = source.entry, case .result = entry.node {
++            guard source.scrolled, let row = rows[RowKey(entry.node)], row.sheet == sheet.access.token,
++                  row.page == source.page, let rowView = row.view,
++                  MaktabahNativeSavedResultsGeometry.isVisible(rowView, in: sheetView,
++                      window: try source.window.validate(), sceneID: sceneID) else {
++                throw UIRouteError(.unavailable, "native_saved_results_original_row_not_visible")
++            }
++            if let token = source.rowToken { guard token == row.token else { throw stale() } }
++            else { source.rowToken = row.token }
++        }
++        try validate(source)
++    }
++    /// Compute before publication. Invalidation invokes app-owned callbacks and
++    /// must never run while an inout access to the original host is held.
++    private func nextRevision(_ revision: UInt64?) -> UInt64? {
++        guard let old = revision, old < .max else { return nil }
++        return old + 1
++    }
++    private func stale() -> UIRouteError { UIRouteError(.staleState, "native_saved_results_source_changed") }
++}
++#endif
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift
+@@ -0,0 +1,188 @@
++#if os(iOS)
++import Foundation
++import OtzariaActionCore
++import OtzariaUIRouting
++import ChavrusaUIRoutingHost
++
++/// One immutable observation of the ORIGINAL published Saved Results tree.
++/// Object identity is deliberate: FolderNode/ResultNode equality uses SQL IDs,
++/// which can be reused by reloads. This proof neither loads nor edits the tree.
++@MainActor final class MaktabahNativeSavedResultsSource {
++    typealias Record = NativeSavedResultIntentService.Record
++    enum Node {
++        case folder(FolderNode)
++        case result(ResultNode)
++    }
++    struct Entry {
++        let record: Record
++        let node: Node
++        let path: [FolderNode]
++    }
++    private struct Folder {
++        let node: FolderNode
++        let id: Int64
++        let name: [UInt8]
++        let modified: Int64?
++        let children: [FolderNode]
++    }
++    private struct Result {
++        let node: ResultNode
++        let id: Int64
++        let parent: Int64?
++        let name: [UInt8]
++        let modified: Int64?
++        let mode: Int
++        let distance: Int
++    }
++
++    let model: ResultsViewModel
++    let sceneID: UIStableID
++    let entries: [Entry]
++    private let revision: UInt64
++    private let roots: [FolderNode]
++    private let folders: [Int64: Folder]
++    private let results: [Int64: Result]
++    private let folderResults: [Int64?: [ResultNode]]
++    private let parents: [Int64: Int64?]
++    private let observation: MaktabahNativeComponentSourceObservation
++    private var retired = false
++
++    init(model: ResultsViewModel, sceneID: UIStableID) throws {
++        guard let revision = model.nativeLoadLifetime.settledRevision,
++              model.folderById.count <= 1_000, model.resultById.count <= 1_000,
++              model.folderRoots.count <= 1_000, model.folderResults.count <= 1_001 else {
++            throw UIRouteError(.unavailable, "saved_results_tree_not_settled")
++        }
++        var folders: [Int64: Folder] = [:]
++        var paths: [Int64: [FolderNode]] = [:]
++        var folderObjects: Set<ObjectIdentifier> = []
++        func visit(_ node: FolderNode, parent: FolderNode?, path: [FolderNode]) throws {
++            guard path.count < 32, folders.count < 1_000,
++                  folders[node.id] == nil, folderObjects.insert(ObjectIdentifier(node)).inserted,
++                  model.folderById[node.id] === node,
++                  (model.parentById[node.id] ?? nil) == parent?.id else {
++                throw UIRouteError(.staleState, "saved_results_tree_ambiguous")
++            }
++            folders[node.id] = Folder(node: node, id: node.id, name: Array(node.name.utf8),
++                modified: node.lastModified, children: node.children)
++            let next = path + [node]
++            paths[node.id] = next
++            for child in node.children { try visit(child, parent: node, path: next) }
++        }
++        for node in model.folderRoots { try visit(node, parent: nil, path: []) }
++        guard folders.count == model.folderById.count else {
++            throw UIRouteError(.staleState, "saved_results_unpublished_folder")
++        }
++        var results: [Int64: Result] = [:]
++        var resultObjects: Set<ObjectIdentifier> = []
++        for (parent, nodes) in model.folderResults {
++            guard nodes.count <= 1_000, parent == nil || folders[parent!] != nil else {
++                throw UIRouteError(.staleState, "saved_results_parent_missing")
++            }
++            for node in nodes {
++                guard results.count < 1_000, results[node.id] == nil,
++                      resultObjects.insert(ObjectIdentifier(node)).inserted,
++                      node.parentId == parent, model.resultById[node.id] === node else {
++                    throw UIRouteError(.staleState, "saved_results_record_ambiguous")
++                }
++                results[node.id] = Result(node: node, id: node.id, parent: parent,
++                    name: Array(node.name.utf8), modified: node.lastModified,
++                    mode: node.searchMode, distance: node.nearDistance)
++            }
++        }
++        guard results.count == model.resultById.count else {
++            throw UIRouteError(.staleState, "saved_results_unpublished_record")
++        }
++        var entries: [Entry] = []
++        for value in folders.values.sorted(by: { $0.id < $1.id }) {
++            guard let record = try? Record(reference: .init(backend: .otzaria, kind: .folder, token: UUID()),
++                title: value.node.name, sceneID: sceneID), let path = paths[value.id] else { continue }
++            entries.append(Entry(record: record, node: .folder(value.node), path: path))
++        }
++        for value in results.values.sorted(by: { $0.id < $1.id }) {
++            guard let record = try? Record(reference: .init(backend: .otzaria, kind: .result, token: UUID()),
++                title: value.node.name, sceneID: sceneID) else { continue }
++            let path = value.parent.flatMap { paths[$0] } ?? []
++            entries.append(Entry(record: record, node: .result(value.node), path: path))
++        }
++        guard entries.count <= 1_000 else { throw UIRouteError(.unavailable, "saved_results_catalog_limit") }
++        self.model = model; self.sceneID = sceneID; self.revision = revision
++        roots = model.folderRoots; folderResults = model.folderResults; parents = model.parentById
++        self.folders = folders; self.results = results; self.entries = entries
++        observation = MaktabahNativeComponentSourceObservation {
++            _ = model.nativeLoadLifetime.settledRevision
++            _ = model.folderRoots; _ = model.folderResults; _ = model.folderById
++            _ = model.parentById; _ = model.resultById
++            for value in folders.values {
++                _ = value.node.name; _ = value.node.lastModified; _ = value.node.children
++            }
++            for value in results.values {
++                _ = value.node.id; _ = value.node.parentId; _ = value.node.name
++                _ = value.node.lastModified; _ = value.node.searchMode; _ = value.node.nearDistance
++            }
++        }
++        try validate()
++    }
++
++    func retire() { retired = true }
++
++    func validate() throws {
++        try observation.validate()
++        guard !retired, model.nativeLoadLifetime.isCurrent(revision),
++              Self.identical(model.folderRoots, roots),
++              model.folderById.count == folders.count, model.resultById.count == results.count,
++              model.parentById == parents, Set(model.folderResults.keys) == Set(folderResults.keys) else {
++            throw UIRouteError(.staleState, "saved_results_tree_changed")
++        }
++        for (id, value) in folders {
++            guard model.folderById[id] === value.node, value.node.id == value.id,
++                  value.node.name.utf8.elementsEqual(value.name), value.node.lastModified == value.modified,
++                  Self.identical(value.node.children, value.children) else {
++                throw UIRouteError(.staleState, "saved_results_folder_changed")
++            }
++        }
++        for (parent, expected) in folderResults {
++            guard let current = model.folderResults[parent], Self.identical(current, expected) else {
++                throw UIRouteError(.staleState, "saved_results_records_changed")
++            }
++        }
++        for (id, value) in results {
++            guard model.resultById[id] === value.node, value.node.id == value.id,
++                  value.node.parentId == value.parent, value.node.name.utf8.elementsEqual(value.name),
++                  value.node.lastModified == value.modified, value.node.searchMode == value.mode,
++                  value.node.nearDistance == value.distance else {
++                throw UIRouteError(.staleState, "saved_results_record_changed")
++            }
++        }
++        try observation.validate()
++        guard !retired, model.nativeLoadLifetime.isCurrent(revision) else {
++            throw UIRouteError(.staleState, "saved_results_source_retired")
++        }
++    }
++
++    func entry(_ record: Record) throws -> Entry {
++        try validate()
++        let matches = entries.filter { $0.record == record }
++        guard matches.count == 1, let entry = matches.first else {
++            throw UIRouteError(.staleState, "saved_results_record_not_retained")
++        }
++        return entry
++    }
++
++    /// Match the ORIGINAL flattened-list predicate without changing or
++    /// publishing the private filter. Names/queries remain local to the owner.
++    func matchesOriginalFilter(_ entry: Entry, filter: String) -> Bool {
++        guard !filter.isEmpty else { return true }
++        switch entry.node {
++        case .folder(let node): return node.name.localizedStandardContains(filter)
++        case .result(let node):
++            return node.name.localizedStandardContains(filter)
++                || (node.items.first?.query ?? "").localizedStandardContains(filter)
++        }
++    }
++
++    static func identical<T: AnyObject>(_ lhs: [T], _ rhs: [T]) -> Bool {
++        lhs.count == rhs.count && zip(lhs, rhs).allSatisfy { pair in pair.0 === pair.1 }
++    }
++}
++#endif
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift
+@@ -0,0 +1,238 @@
++#if os(iOS)
++import SwiftUI
++import UIKit
++import OtzariaUIRouting
++
++/// Passive markers inside the ORIGINAL sheet/list/row. A scroll proxy is the
++/// original List's own proxy; no marker creates, replaces or activates a row.
++struct MaktabahNativeSavedResultsSheetWitness: View {
++    let binding: MaktabahNativeSavedResultsBinding
++    let access: MaktabahNativeSavedResultsBinding.SheetAccess
++    var body: some View {
++        let marker = MaktabahNativeSavedResultsWitness(binding: binding, owner: access.token,
++            role: .sheet, model: access.model, access: access, reveal: nil)
++        marker.id(marker.identity)
++    }
++}
++
++struct MaktabahNativeSavedResultsPageWitness: View {
++    let binding: MaktabahNativeSavedResultsBinding
++    let owner: UUID
++    let folder: FolderNode?
++    let reveal: @MainActor (MaktabahNativeSavedResultsBinding.ScrollKey) -> Void
++    var body: some View {
++        let marker = MaktabahNativeSavedResultsWitness(binding: binding, owner: owner,
++            role: .page(folder), model: nil, access: nil, reveal: reveal)
++        marker.id(marker.identity)
++    }
++}
++
++struct MaktabahNativeSavedResultsRowWitness: View {
++    let binding: MaktabahNativeSavedResultsBinding
++    let owner: UUID
++    let folder: FolderNode?
++    let node: MaktabahNativeSavedResultsSource.Node
++    var body: some View {
++        let marker = MaktabahNativeSavedResultsWitness(binding: binding, owner: owner,
++            role: .row(folder, node), model: nil, access: nil, reveal: nil)
++        marker.id(marker.identity)
++    }
++}
++
++private struct MaktabahNativeSavedResultsWitness: UIViewRepresentable {
++    struct Identity: Hashable {
++        let binding: ObjectIdentifier
++        let owner: UUID
++        let role: MaktabahNativeSavedResultsMarker.Role.Identity
++        let model: ObjectIdentifier?
++    }
++    let binding: MaktabahNativeSavedResultsBinding
++    let owner: UUID
++    let role: MaktabahNativeSavedResultsMarker.Role
++    let model: ResultsViewModel?
++    let access: MaktabahNativeSavedResultsBinding.SheetAccess?
++    let reveal: (@MainActor (MaktabahNativeSavedResultsBinding.ScrollKey) -> Void)?
++    var identity: Identity {
++        .init(binding: ObjectIdentifier(binding), owner: owner, role: role.identity,
++            model: model.map(ObjectIdentifier.init))
++    }
++    func makeUIView(context: Context) -> MaktabahNativeSavedResultsMarker {
++        .init(binding: binding, owner: owner, role: role, model: model)
++    }
++    func updateUIView(_ view: MaktabahNativeSavedResultsMarker, context: Context) {
++        guard view.matches(binding: binding, owner: owner, role: role, model: model) else { view.detach(); return }
++        view.access = access; view.reveal = reveal
++        view.register()
++    }
++    static func dismantleUIView(_ view: MaktabahNativeSavedResultsMarker, coordinator: ()) { view.detach() }
++}
++
++@MainActor final class MaktabahNativeSavedResultsMarker: UIView {
++    enum Role {
++        case sheet
++        case page(FolderNode?)
++        case row(FolderNode?, MaktabahNativeSavedResultsSource.Node)
++        struct Identity: Hashable {
++            let kind: Int
++            let page: ObjectIdentifier?
++            let row: MaktabahNativeSavedResultsBinding.RowKey?
++        }
++        var identity: Identity {
++            switch self {
++            case .sheet: return Identity(kind: 0, page: nil, row: nil)
++            case .page(let folder): return Identity(kind: 1, page: folder.map(ObjectIdentifier.init), row: nil)
++            case .row(let folder, let node):
++                return Identity(kind: 2, page: folder.map(ObjectIdentifier.init),
++                    row: MaktabahNativeSavedResultsBinding.RowKey(node))
++            }
++        }
++    }
++    let token = UUID()
++    let owner: UUID
++    let role: Role
++    weak var binding: MaktabahNativeSavedResultsBinding?
++    weak var model: ResultsViewModel?
++    var access: MaktabahNativeSavedResultsBinding.SheetAccess?
++    var reveal: (@MainActor (MaktabahNativeSavedResultsBinding.ScrollKey) -> Void)?
++    private var active = true
++    private var previous: MaktabahNativeSavedResultsGeometry.Evidence?
++    private var waitingCoordinator: ObjectIdentifier?
++    private var attachment = UUID()
++
++    init(binding: MaktabahNativeSavedResultsBinding, owner: UUID, role: Role, model: ResultsViewModel? = nil) {
++        self.binding = binding; self.owner = owner; self.role = role; self.model = model
++        super.init(frame: .zero)
++        backgroundColor = .clear; isUserInteractionEnabled = false; isAccessibilityElement = false
++    }
++    required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
++    func matches(binding: MaktabahNativeSavedResultsBinding, owner: UUID, role: Role,
++                 model: ResultsViewModel? = nil) -> Bool {
++        active && self.binding === binding && self.owner == owner
++            && self.role.identity == role.identity && self.model === model
++    }
++    func register() {
++        guard active, let binding, window != nil else { return }
++        switch role {
++        case .sheet:
++            guard let access, access.model === model else { return }
++            binding.attachSheet(access: access, view: self)
++        case .page(let folder):
++            guard let reveal else { return }
++            binding.attachPage(token: token, sheet: owner, folder: folder, view: self, reveal: reveal)
++        case .row(let folder, let node):
++            binding.attachRow(token: token, sheet: owner, page: folder, node: node, view: self)
++        }
++        publishLayout()
++    }
++    func detach() {
++        guard active else { return }
++        active = false
++        attachment = UUID()
++        removeRegistration()
++        binding = nil; access = nil; reveal = nil; waitingCoordinator = nil
++    }
++    private func removeRegistration() {
++        switch role {
++        case .sheet: binding?.detachSheet(owner: owner, view: self)
++        case .page(let folder): binding?.detachPage(token: token, sheet: owner, folder: folder, view: self)
++        case .row(_, let node): binding?.detachRow(token: token, node: node, view: self)
++        }
++    }
++    override func didMoveToWindow() {
++        super.didMoveToWindow()
++        if window == nil {
++            // Preserve the actual marker identity for SwiftUI's possible
++            // reattachment, but retire any captured request immediately.
++            attachment = UUID(); waitingCoordinator = nil
++            removeRegistration(); previous = nil
++        } else { register() }
++    }
++    override func didMoveToSuperview() { super.didMoveToSuperview(); register() }
++    override func layoutSubviews() { super.layoutSubviews(); register() }
++    private func publishLayout() {
++        guard active, let binding else { return }
++        let actual = MaktabahNativeSavedResultsGeometry.evidence(self)
++        if actual != previous { previous = actual; binding.originalLayoutDidChange() }
++        // A real UIKit completion can publish newly stable geometry. Bind the
++        // callback to the EXACT attachment; no callback may transfer to a new
++        // binding after replacement, detach or A -> B -> A.
++        guard let coordinator = MaktabahNativeSavedResultsGeometry.transitionCoordinator(self) else {
++            waitingCoordinator = nil; return
++        }
++        let identity = ObjectIdentifier(coordinator as AnyObject)
++        guard waitingCoordinator != identity else { return }
++        waitingCoordinator = identity
++        let originalAttachment = attachment
++        coordinator.animate(alongsideTransition: nil) { [weak self, weak binding] _ in
++            guard let self, let binding, self.active, self.binding === binding,
++                  self.attachment == originalAttachment,
++                  self.waitingCoordinator == identity else { return }
++            self.publishLayout()
++        }
++    }
++}
++
++@MainActor enum MaktabahNativeSavedResultsGeometry {
++    struct Evidence: Equatable {
++        let window: ObjectIdentifier?
++        let frame: CGRect
++        let visible: CGRect
++        let alpha: CGFloat
++        let hidden: Bool
++        let transitioning: Bool
++        let foreground: Bool
++    }
++    static func evidence(_ view: UIView) -> Evidence {
++        let window = view.window
++        let rect = window.map { view.convert(view.bounds, to: $0) } ?? .null
++        var visible = window.map { rect.intersection($0.bounds) } ?? .null
++        var alpha: CGFloat = 1, hidden = false
++        var current: UIView? = view
++        while let node = current {
++            hidden = hidden || node.isHidden; alpha *= node.alpha
++            if let window, node.clipsToBounds { visible = visible.intersection(node.convert(node.bounds, to: window)) }
++            if let scroll = node as? UIScrollView, let window {
++                hidden = hidden || scroll.isDragging || scroll.isDecelerating
++                visible = visible.intersection(scroll.convert(scroll.bounds.inset(by: scroll.adjustedContentInset), to: window))
++            }
++            current = node.superview
++        }
++        return Evidence(window: window.map(ObjectIdentifier.init), frame: rect, visible: visible,
++            alpha: alpha, hidden: hidden, transitioning: transitionCoordinator(view) != nil,
++            foreground: window?.isKeyWindow == true && window?.isHidden == false
++                && window?.windowScene?.activationState == .foregroundActive)
++    }
++    static func transitionCoordinator(_ view: UIView) -> UIViewControllerTransitionCoordinator? {
++        var responder: UIResponder? = view
++        while let current = responder {
++            if let controller = current as? UIViewController, let transition = controller.transitionCoordinator { return transition }
++            responder = current.next
++        }
++        return nil
++    }
++    static func isVisible(_ view: UIView, in sheet: UIView, window: UIWindow, sceneID: UIStableID) -> Bool {
++        guard view.window === window, sheet.window === window,
++              window.windowScene?.session.persistentIdentifier == sceneID.rawValue,
++              let root = window.rootViewController, root.viewIfLoaded?.window === window else { return false }
++        let value = evidence(view)
++        guard value.foreground, !value.hidden, !value.transitioning, value.alpha >= 0.95,
++              value.frame.origin.x.isFinite, value.frame.origin.y.isFinite,
++              value.frame.width.isFinite, value.frame.height.isFinite,
++              value.frame.width > 1, value.frame.height > 1, !value.visible.isNull,
++              value.visible.width * value.visible.height >= value.frame.width * value.frame.height * 0.98 else { return false }
++        var controllers = [root], visited: Set<ObjectIdentifier> = [], originalSheetFound = false
++        while let controller = controllers.popLast() {
++            guard visited.insert(ObjectIdentifier(controller)).inserted else { continue }
++            guard !controller.isBeingPresented, !controller.isBeingDismissed,
++                  controller.transitionCoordinator == nil else { return false }
++            if let presented = controller.presentedViewController {
++                guard let presentedView = presented.viewIfLoaded,
++                      sheet.isDescendant(of: presentedView), view.isDescendant(of: presentedView) else { return false }
++                originalSheetFound = true; controllers.append(presented)
++            }
++            controllers.append(contentsOf: controller.children)
++        }
++        return originalSheetFound
++    }
++}
++#endif
+--- a/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift
+@@ -0,0 +1,198 @@
++import Foundation
++import OtzariaActionCore
++import OtzariaUIRouting
++
++/// A reference selects an actual, already published original Saved Results
++/// node in one original window. It carries no saved query, folder path, SQL ID
++/// or authority. Reload, replacement and source invalidation retire it.
++@MainActor public final class NativeSavedResultIntentService {
++    public enum Kind: String, Codable, Sendable, Hashable { case folder, result }
++    public struct Reference: Codable, Sendable, Equatable {
++        public let backend: ActionBackendID
++        public let kind: Kind
++        public let token: UUID
++        public init(backend: ActionBackendID, kind: Kind, token: UUID) {
++            self.backend = backend; self.kind = kind; self.token = token
++        }
++    }
++    public struct Record: Sendable, Equatable, Identifiable {
++        public let id: String
++        public let reference: Reference
++        public let title: String
++        public let sceneID: UIStableID
++        public let itemID: UIStableID
++        public init(reference: Reference, title: String, sceneID: UIStableID) throws {
++            guard reference.backend == .otzaria,
++                  !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
++                  title.unicodeScalars.count <= 256,
++                  let itemID = UIStableID(rawValue: "saved-results." + reference.kind.rawValue + "." + reference.token.uuidString.lowercased()) else {
++                throw UIRouteError(.failed, "invalid_saved_result_metadata")
++            }
++            id = try NativeReaderEntityIdentifier.encode(reference, prefix: "maktabah.saved-result.v1.")
++            self.reference = reference; self.title = title; self.sceneID = sceneID; self.itemID = itemID
++        }
++    }
++    public struct Catalog: Sendable {
++        public let snapshot: ActionBackendSnapshot
++        public let records: [Record]
++        public init(snapshot: ActionBackendSnapshot, records: [Record]) {
++            self.snapshot = snapshot; self.records = records
++        }
++    }
++    public struct OpenRequest: Sendable {
++        public let requestID: UUID
++        public let record: Record
++        public let window: NativeIntentService.Destination
++        public let expectedSnapshot: ActionBackendSnapshot
++        init(record: Record, window: NativeIntentService.Destination, snapshot: ActionBackendSnapshot) {
++            requestID = UUID(); self.record = record; self.window = window; expectedSnapshot = snapshot
++        }
++    }
++    public typealias Read = @MainActor @Sendable () throws -> Catalog
++    public typealias Windows = @MainActor @Sendable () throws -> [NativeIntentService.Destination]
++    public typealias Open = @MainActor @Sendable (OpenRequest) async throws -> UISceneAcknowledgement
++
++    /// Preserve the actual canonical return if cancellation or receipt-shape
++    /// validation fails after the effect. This value is not a successful ACK.
++    public struct Failure: Error, Sendable {
++        public let acknowledgement: UISceneAcknowledgement
++        public let status: ActionStatus
++        public let code: String
++        public init(acknowledgement: UISceneAcknowledgement, underlying: any Error) {
++            self.acknowledgement = acknowledgement
++            let route = underlying as? UIRouteError
++            status = route?.status ?? (underlying is CancellationError ? .cancelled : .failed)
++            code = route?.code ?? (underlying is CancellationError ? "cancelled" : "native_effect_uncertain")
++        }
++    }
++    private let read: Read
++    private let readWindows: Windows
++    private let navigate: Open
++    public init(read: @escaping Read, windows: @escaping Windows, navigate: @escaping Open) {
++        self.read = read; readWindows = windows; self.navigate = navigate
++    }
++
++    public func records(kind: Kind, identifiers: [String]? = nil, matching query: String? = nil) throws -> [Record] {
++        try Task.checkCancellation()
++        try validateQuery(identifiers, query)
++        if let identifiers {
++            for identifier in identifiers {
++                let reference = try decode(identifier)
++                guard reference.kind == kind else { throw UIRouteError(.failed, "saved_result_kind_mismatch") }
++            }
++        }
++        let source = try catalog()
++        var records = source.records.filter { $0.reference.kind == kind }
++        if let identifiers { records = records.filter { identifiers.contains($0.id) } }
++        if let query, !query.isEmpty { records = records.filter { $0.title.localizedCaseInsensitiveContains(query) } }
++        return records
++    }
++
++    public func windows(identifiers: [String]? = nil, matching query: String? = nil) throws -> [NativeIntentService.Destination] {
++        try Task.checkCancellation()
++        try validateQuery(identifiers, query)
++        let source = try catalog()
++        var values = try windows(source.snapshot)
++        if let identifiers { values = values.filter { identifiers.contains($0.id) } }
++        if let query, !query.isEmpty { values = values.filter { $0.title.localizedCaseInsensitiveContains(query) } }
++        guard try catalog().snapshot == source.snapshot else {
++            throw UIRouteError(.staleState, "saved_result_backend_changed")
++        }
++        return values
++    }
++
++    /// Reveal the original folder page or result row. The original result
++    /// button is never activated: no query is loaded and no data is changed.
++    public func reveal(kind: Kind, identifier: String, windowIdentifier: String) async throws -> UISceneAcknowledgement {
++        try Task.checkCancellation()
++        let reference = try decode(identifier)
++        guard reference.kind == kind, !windowIdentifier.isEmpty, windowIdentifier.utf8.count <= 512 else {
++            throw UIRouteError(.failed, "invalid_saved_result_selection")
++        }
++        let source = try catalog()
++        guard source.snapshot.backend == reference.backend else {
++            throw UIRouteError(.requiresBackendSwitch, "saved_result_backend_mismatch")
++        }
++        let matches = source.records.filter { $0.id == identifier && $0.reference == reference }
++        let selectedWindows = try windows(source.snapshot).filter { $0.id == windowIdentifier }
++        guard matches.count == 1, let record = matches.first,
++              selectedWindows.count == 1, let window = selectedWindows.first,
++              record.sceneID == window.sceneID else {
++            throw UIRouteError(.staleState, "saved_result_no_longer_available")
++        }
++        let current = try catalog()
++        guard current.snapshot == source.snapshot, current.records.contains(record) else {
++            throw UIRouteError(.staleState, "saved_result_source_changed")
++        }
++        let request = OpenRequest(record: record, window: window, snapshot: source.snapshot)
++        // The original host retains the exact published tree, path, node,
++        // window and source before its FIRST await; this metadata is no grant.
++        let result = try await navigate(request)
++        guard case .acknowledged(let receipt) = result else { return result }
++        do {
++            try Task.checkCancellation()
++            guard receipt.requestId == request.requestID, receipt.route.requestId == request.requestID,
++                  receipt.route.version == 1, receipt.route.state.version == 1,
++                  receipt.backendSnapshot == request.expectedSnapshot,
++                  receipt.sceneID == record.sceneID, receipt.sceneID == window.sceneID,
++                  receipt.route.scene.kind == .specific, receipt.route.scene.sceneID == record.sceneID,
++                  receipt.route.scene.expectedRevision == receipt.basedOnSceneRevision,
++                  receipt.appliedSceneRevision > receipt.basedOnSceneRevision,
++                  receipt.route.destination.rawValue == "native.savedResults",
++                  receipt.route.backend == .otzaria, receipt.route.expectedBackendSnapshot == request.expectedSnapshot,
++                  receipt.route.presentation.kind == .sheet, receipt.route.presentation.tabID == nil,
++                  receipt.route.content == nil, receipt.route.focus == nil,
++                  receipt.route.state.selectedItemID == record.itemID,
++                  receipt.route.state.visibleComponents.isEmpty, receipt.route.state.expandedComponents.isEmpty,
++                  receipt.route.state.sidebarVisible == nil, receipt.route.state.inspectorVisible == nil,
++                  receipt.route.state.sheet == nil, receipt.route.state.scrollAnchor == nil,
++                  receipt.route.state.privateState == nil, receipt.coreReceipt == nil else {
++                throw UIRouteError(.failed, "native_effect_uncertain")
++            }
++            let completion = try catalog()
++            guard completion.snapshot == source.snapshot, completion.records.contains(record),
++                  try windows(source.snapshot).contains(window) else {
++                throw UIRouteError(.staleState, "saved_result_completion_source_changed")
++            }
++            let final = try catalog()
++            guard final.snapshot == source.snapshot, final.records.contains(record) else {
++                throw UIRouteError(.staleState, "saved_result_completion_source_changed")
++            }
++            try Task.checkCancellation()
++        } catch { throw Failure(acknowledgement: result, underlying: error) }
++        return result
++    }
++
++    private func decode(_ identifier: String) throws -> Reference {
++        let reference: Reference = try NativeReaderEntityIdentifier.decode(identifier, prefix: "maktabah.saved-result.v1.")
++        guard reference.backend == .otzaria else { throw UIRouteError(.notSupported, "saved_result_backend_unavailable") }
++        return reference
++    }
++    private func validateQuery(_ identifiers: [String]?, _ query: String?) throws {
++        guard identifiers == nil || identifiers!.count <= 64,
++              query == nil || query!.utf8.count <= 512 else {
++            throw UIRouteError(.failed, "invalid_saved_result_query")
++        }
++    }
++    private func catalog() throws -> Catalog {
++        let source = try read()
++        guard source.records.count <= 1_000, Set(source.records.map(\.id)).count == source.records.count,
++              Set(source.records.map(\.itemID)).count == source.records.count,
++              source.records.allSatisfy({ $0.reference.backend == .otzaria && $0.reference.backend == source.snapshot.backend }) else {
++            throw UIRouteError(.failed, "invalid_saved_result_catalog")
++        }
++        for record in source.records {
++            guard try Record(reference: record.reference, title: record.title, sceneID: record.sceneID) == record else {
++                throw UIRouteError(.failed, "invalid_saved_result_identity")
++            }
++        }
++        return source
++    }
++    private func windows(_ snapshot: ActionBackendSnapshot) throws -> [NativeIntentService.Destination] {
++        let values = try readWindows()
++        guard values.count <= 128, Set(values.map(\.id)).count == values.count else {
++            throw UIRouteError(.failed, "invalid_live_intent_catalog")
++        }
++        return values.filter { $0.backend == snapshot.backend && $0.destination.rawValue == "native.savedResults" && $0.component == nil }
++    }
++}
+--- a/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift
+@@ -0,0 +1,102 @@
++#if os(iOS)
++import AppIntents
++import Foundation
++
++public struct NativeSavedResultFolderEntity: AppEntity {
++    public static let typeDisplayRepresentation = TypeDisplayRepresentation(name: "Saved results folder")
++    public static let defaultQuery = NativeSavedResultFolderQuery()
++    public let id: String
++    public let title: String
++    public init(id: String, title: String) { self.id = id; self.title = title }
++    public var displayRepresentation: DisplayRepresentation {
++        .init(title: LocalizedStringResource(stringLiteral: title))
++    }
++}
++public struct NativeSavedResultEntity: AppEntity {
++    public static let typeDisplayRepresentation = TypeDisplayRepresentation(name: "Saved search result")
++    public static let defaultQuery = NativeSavedResultQuery()
++    public let id: String
++    public let title: String
++    public init(id: String, title: String) { self.id = id; self.title = title }
++    public var displayRepresentation: DisplayRepresentation {
++        .init(title: LocalizedStringResource(stringLiteral: title))
++    }
++}
++public struct NativeSavedResultFolderQuery: EntityStringQuery {
++    @Dependency private var service: NativeSavedResultIntentService
++    public init() {}
++    public func entities(for identifiers: [String]) async throws -> [NativeSavedResultFolderEntity] {
++        try await service.records(kind: .folder, identifiers: identifiers).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func entities(matching string: String) async throws -> [NativeSavedResultFolderEntity] {
++        try await service.records(kind: .folder, matching: string).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func suggestedEntities() async throws -> [NativeSavedResultFolderEntity] {
++        try await service.records(kind: .folder).map { .init(id: $0.id, title: $0.title) }
++    }
++}
++public struct NativeSavedResultQuery: EntityStringQuery {
++    @Dependency private var service: NativeSavedResultIntentService
++    public init() {}
++    public func entities(for identifiers: [String]) async throws -> [NativeSavedResultEntity] {
++        try await service.records(kind: .result, identifiers: identifiers).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func entities(matching string: String) async throws -> [NativeSavedResultEntity] {
++        try await service.records(kind: .result, matching: string).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func suggestedEntities() async throws -> [NativeSavedResultEntity] {
++        try await service.records(kind: .result).map { .init(id: $0.id, title: $0.title) }
++    }
++}
++public struct NativeSavedResultWindowQuery: EntityStringQuery {
++    @Dependency private var service: NativeSavedResultIntentService
++    public init() {}
++    public func entities(for identifiers: [String]) async throws -> [NativeDestinationEntity] {
++        try await service.windows(identifiers: identifiers).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func entities(matching string: String) async throws -> [NativeDestinationEntity] {
++        try await service.windows(matching: string).map { .init(id: $0.id, title: $0.title) }
++    }
++    public func suggestedEntities() async throws -> [NativeDestinationEntity] {
++        try await service.windows().map { .init(id: $0.id, title: $0.title) }
++    }
++}
++public struct RevealSavedResultsFolderIntent: AppIntent {
++    public static let title: LocalizedStringResource = "Show a saved results folder"
++    public static let description = IntentDescription("Show an existing folder in Saved Results.")
++    public static let supportedModes: IntentModes = .foreground
++    @Parameter(title: "Saved results folder", query: NativeSavedResultFolderQuery())
++    public var folder: NativeSavedResultFolderEntity
++    @Parameter(title: "Saved results window", query: NativeSavedResultWindowQuery())
++    public var window: NativeDestinationEntity
++    @Dependency private var service: NativeSavedResultIntentService
++    public static var parameterSummary: some ParameterSummary {
++        Summary("Show a saved results folder") { \.$folder; \.$window }
++    }
++    public init() {}
++    public func perform() async throws -> some IntentResult {
++        let result = try await service.reveal(kind: .folder, identifier: folder.id, windowIdentifier: window.id)
++        try NativeIntentOutcome.requireVisibleAcknowledgement(result)
++        return .result()
++    }
++}
++public struct RevealSavedResultIntent: AppIntent {
++    public static let title: LocalizedStringResource = "Show a saved search result"
++    public static let description = IntentDescription("Show a saved result without running its search.")
++    public static let supportedModes: IntentModes = .foreground
++    @Parameter(title: "Saved search result", query: NativeSavedResultQuery())
++    public var result: NativeSavedResultEntity
++    @Parameter(title: "Saved results window", query: NativeSavedResultWindowQuery())
++    public var window: NativeDestinationEntity
++    @Dependency private var service: NativeSavedResultIntentService
++    public static var parameterSummary: some ParameterSummary {
++        Summary("Show a saved search result") { \.$result; \.$window }
++    }
++    public init() {}
++    public func perform() async throws -> some IntentResult {
++        let acknowledgement = try await service.reveal(kind: .result, identifier: result.id, windowIdentifier: window.id)
++        try NativeIntentOutcome.requireVisibleAcknowledgement(acknowledgement)
++        return .result()
++    }
++}
++#endif
+--- a/Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift
++++ b/Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift
+@@ -9,6 +9,8 @@
+     // MARK: - Initial load / indexes
+ 
+     func getFolders() async {
++        let nativeLoad = nativeLoadLifetime.beginOriginalLoad()
++        defer { nativeLoadLifetime.endOriginalLoad(nativeLoad, cancelled: Task.isCancelled) }
+         let roots = await Task.detached {
+             var roots = ResultsHandler.shared.fetchFolderTree()
+             roots.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+@@ -29,6 +31,8 @@
+     }
+ 
+     func dbLoadAllResults() async {
++        let nativeLoad = nativeLoadLifetime.beginOriginalLoad()
++        defer { nativeLoadLifetime.endOriginalLoad(nativeLoad, cancelled: Task.isCancelled) }
+         let allResults = await Task.detached {
+             ResultsHandler.shared.fetchAllResultsGroupedByFolder()
+         }.value
+--- a/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift
++++ b/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift
+@@ -13,6 +13,7 @@
+     static let shared: ResultsViewModel = .init()
+ 
+     let db: ResultsHandler = .shared
++    let nativeLoadLifetime = OriginalSavedResultsLoadLifetime()
+ 
+     // sumber data
+     var folderRoots: [FolderNode] = []
+--- a/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift
++++ b/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift
+@@ -20,11 +20,14 @@
+ struct iOSSavedResultsView: View {
+     @Environment(\.dismiss) private var dismiss
+     @Environment(iOSNavigationManager.self) var navigationManager
++    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
+ 
+     let viewModel: ResultsViewModel = .shared
+ 
+     @State private var isLoading = true
+     @State private var searchText = ""
++    @State private var nativeNavigationPath: [FolderNode] = []
++    @State private var nativeSheetOwner = UUID()
+ 
+     // Aksi item (shared across navigation stack)
+     @State private var itemToMove: MoveTarget?
+@@ -32,7 +35,7 @@
+     @State private var itemToRename: RenameTarget?
+ 
+     var body: some View {
+-        NavigationStack {
++        NavigationStack(path: nativeStateBinding($nativeNavigationPath, field: .path)) {
+             Group {
+                 if isLoading {
+                     ProgressView()
+@@ -46,6 +49,13 @@
+                         systemImage: "bookmark.slash",
+                         description: Text("Save search results to access them later.")
+                     )
++                    .background {
++                        if let binding = nativeRoutingSession?.savedResultsBinding {
++                            MaktabahNativeSavedResultsPageWitness(binding: binding, owner: nativeSheetOwner,
++                                folder: nil, reveal: { _ in })
++                                .allowsHitTesting(false).accessibilityHidden(true)
++                        }
++                    }
+                 } else if !searchText.isEmpty {
+                     // Global Flattened Search
+                     flattenedSearchList
+@@ -55,7 +65,7 @@
+             }
+             .navigationTitle("Saved Results".localized)
+             .navigationBarTitleDisplayMode(.inline)
+-            .searchable(text: $searchText, prompt: "Search globally")
++            .searchable(text: nativeStateBinding($searchText, field: .filter), prompt: "Search globally")
+             .navigationDestination(for: FolderNode.self) { folder in
+                 makeFolderContentList(folder: folder)
+             }
+@@ -65,15 +75,22 @@
+                 }
+             }
+         }
++        .background {
++            if let binding = nativeRoutingSession?.savedResultsBinding {
++                MaktabahNativeSavedResultsSheetWitness(binding: binding, access: nativeSheetAccess)
++                    .allowsHitTesting(false).accessibilityHidden(true)
++            }
++        }
++        .modifier(MaktabahNativeRoutingSurface(kind: .savedResults))
+         // Sheet & Alerts
+-        .sheet(item: $itemToMove) { target in
++        .sheet(item: nativeStateBinding($itemToMove, field: .operation)) { target in
+             iOSMoveItemView(target: target)
+         }
+         .alert(
+             "Delete Folder",
+             isPresented: Binding(
+                 get: { folderToDelete != nil },
+-                set: { if !$0 { folderToDelete = nil } }
++                set: { if !$0 { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = nil } }
+             ),
+             presenting: folderToDelete
+         ) { folder in
+@@ -88,12 +105,12 @@
+             itemToRename?.alertTitle ?? "",
+             isPresented: Binding(
+                 get: { itemToRename != nil },
+-                set: { if !$0 { itemToRename = nil } }
++                set: { if !$0 { nativeStateBinding($itemToRename, field: .operation).wrappedValue = nil } }
+             )
+         ) {
+             TextField("Name", text: Binding(
+                 get: { itemToRename?.draftName ?? "" },
+-                set: { itemToRename?.draftName = $0 }
++                set: { nativeStateBinding($itemToRename, field: .operation).wrappedValue?.draftName = $0 }
+             ))
+             Button("Save") {
+                 if let target = itemToRename {
+@@ -105,13 +122,36 @@
+         .task {
+             await viewModel.getFolders()
+             await viewModel.dbLoadAllResults()
+-            isLoading = false
+-        }
++            nativeStateBinding($isLoading, field: .loading).wrappedValue = false
++        }
++    }
++
++    /// Capture the actual original State storage, never a copied View value.
++    /// These hooks observe changes; ordinary UI setters always execute once.
++    @MainActor private func nativeStateBinding<Value>(_ original: Binding<Value>,
++        field: MaktabahNativeSavedResultsBinding.StateField) -> Binding<Value> {
++        let binding = nativeRoutingSession?.savedResultsBinding, owner = nativeSheetOwner
++        return Binding(get: { original.wrappedValue }, set: { [weak binding] value in
++            binding?.sheetStateWillPublish(owner: owner, field: field,
++                nextPath: value as? [FolderNode], nextLoading: value as? Bool)
++            original.wrappedValue = value
++            binding?.sheetStateDidPublish(owner: owner, field: field)
++        })
++    }
++    @MainActor private var nativeSheetAccess: MaktabahNativeSavedResultsBinding.SheetAccess {
++        let path = $nativeNavigationPath, query = $searchText, loading = $isLoading
++        let move = $itemToMove, deleting = $folderToDelete, rename = $itemToRename
++        let originalPath = nativeStateBinding(path, field: .path)
++        return .init(token: nativeSheetOwner, model: viewModel,
++            path: { path.wrappedValue }, setPath: { originalPath.wrappedValue = $0 },
++            filter: { query.wrappedValue }, loading: { loading.wrappedValue },
++            blocked: { move.wrappedValue != nil || deleting.wrappedValue != nil || rename.wrappedValue != nil })
+     }
+ 
+     // MARK: - Global Flattened Search
+ 
+     private var flattenedSearchList: some View {
++        ScrollViewReader { proxy in
+         ThemeList {
+             let matchingFolders = viewModel.allFolders.filter { $0.name.localizedStandardContains(searchText) }
+             if !matchingFolders.isEmpty {
+@@ -125,11 +165,11 @@
+                             }
+                         }
+                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+-                            Button(role: .destructive) { folderToDelete = folder } label: { Label("Delete", systemImage: "trash") }
++                            Button(role: .destructive) { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = folder } label: { Label("Delete", systemImage: "trash") }
+                         }
+                         .swipeActions(edge: .leading) {
+-                            Button { itemToMove = .folder(folder) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
+-                            Button { itemToRename = .folder(folder) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
++                            Button { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .folder(folder) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
++                            Button { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .folder(folder) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
+                         }
+                     }
+                 }
+@@ -144,12 +184,20 @@
+                 Section("Results") {
+                     ForEach(matchingResults) { result in
+                         ResultRow(result: result, action: { loadResult(result) })
++                            .id(MaktabahNativeSavedResultsBinding.ScrollKey.result(result))
++                            .background {
++                                if let binding = nativeRoutingSession?.savedResultsBinding {
++                                    MaktabahNativeSavedResultsRowWitness(binding: binding, owner: nativeSheetOwner,
++                                        folder: nil, node: .result(result))
++                                        .allowsHitTesting(false).accessibilityHidden(true)
++                                }
++                            }
+                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                 Button(role: .destructive) { viewModel.deleteResult(result.parentId, name: result.name) } label: { Label("Delete", systemImage: "trash") }
+                             }
+                             .swipeActions(edge: .leading) {
+-                                Button { itemToMove = .result(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
+-                                Button { itemToRename = .result(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
++                                Button { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .result(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
++                                Button { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .result(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
+                             }
+                     }
+                 }
+@@ -158,6 +206,14 @@
+             if matchingFolders.isEmpty, matchingResults.isEmpty {
+                 ContentUnavailableView.search(text: searchText)
+             }
++        }
++        .background {
++            if let binding = nativeRoutingSession?.savedResultsBinding {
++                MaktabahNativeSavedResultsPageWitness(binding: binding, owner: nativeSheetOwner, folder: nil,
++                    reveal: { proxy.scrollTo($0, anchor: .center) })
++                    .allowsHitTesting(false).accessibilityHidden(true)
++            }
++        }
+         }
+     }
+ 
+@@ -165,13 +221,14 @@
+         iOSFolderContentList(
+             folder: folder,
+             onSelectResult: loadResult,
+-            onDeleteFolder: { folderToDelete = $0 },
+-            onMoveFolder: { itemToMove = .folder($0) },
+-            onRenameFolder: { itemToRename = .folder($0) },
++            onDeleteFolder: { nativeStateBinding($folderToDelete, field: .operation).wrappedValue = $0 },
++            onMoveFolder: { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .folder($0) },
++            onRenameFolder: { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .folder($0) },
+             onDeleteResult: { viewModel.deleteResult($0.parentId, name: $0.name) },
+-            onMoveResult: { itemToMove = .result($0) },
+-            onRenameResult: { itemToRename = .result($0) },
+-            onNewFolder: { parent in itemToRename = .newFolder(parent: parent) }
++            onMoveResult: { nativeStateBinding($itemToMove, field: .operation).wrappedValue = .result($0) },
++            onRenameResult: { nativeStateBinding($itemToRename, field: .operation).wrappedValue = .result($0) },
++            onNewFolder: { parent in nativeStateBinding($itemToRename, field: .operation).wrappedValue = .newFolder(parent: parent) },
++            nativeBinding: nativeRoutingSession?.savedResultsBinding, nativeOwner: nativeSheetOwner
+         )
+     }
+ 
+@@ -221,6 +278,8 @@
+     let onMoveResult: (ResultNode) -> Void
+     let onRenameResult: (ResultNode) -> Void
+     let onNewFolder: (FolderNode?) -> Void
++    var nativeBinding: MaktabahNativeSavedResultsBinding? = nil
++    var nativeOwner: UUID? = nil
+ 
+     let viewModel: ResultsViewModel = .shared
+ 
+@@ -242,6 +301,7 @@
+     }
+ 
+     var body: some View {
++        ScrollViewReader { proxy in
+         ThemeList {
+             ForEach(children) { child in
+                 NavigationLink(value: child) {
+@@ -262,6 +322,14 @@
+ 
+             ForEach(results) { result in
+                 ResultRow(result: result, action: { onSelectResult(result) })
++                    .id(MaktabahNativeSavedResultsBinding.ScrollKey.result(result))
++                    .background {
++                        if let binding = nativeBinding, let owner = nativeOwner {
++                            MaktabahNativeSavedResultsRowWitness(binding: binding, owner: owner,
++                                folder: folder, node: .result(result))
++                                .allowsHitTesting(false).accessibilityHidden(true)
++                        }
++                    }
+                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                         Button(role: .destructive) { onDeleteResult(result) } label: { Label("Delete", systemImage: "trash") }
+                     }
+@@ -269,6 +337,13 @@
+                         Button { onMoveResult(result) } label: { Label("Move", systemImage: "folder") }.tint(.blue)
+                         Button { onRenameResult(result) } label: { Label("Rename", systemImage: "pencil") }.tint(.orange)
+                     }
++            }
++        }
++        .background {
++            if let binding = nativeBinding, let owner = nativeOwner {
++                MaktabahNativeSavedResultsPageWitness(binding: binding, owner: owner, folder: folder,
++                    reveal: { proxy.scrollTo($0, anchor: .center) })
++                    .allowsHitTesting(false).accessibilityHidden(true)
+             }
+         }
+         .refreshable {
+@@ -285,6 +360,7 @@
+                     Label("New Folder", systemImage: "folder.badge.plus")
+                 }
+             }
++        }
+         }
+     }
+ }
+--- a/Source/Features/Search/iOS/SearchModeView.swift
++++ b/Source/Features/Search/iOS/SearchModeView.swift
+@@ -37,7 +37,7 @@
+                 session: session,
+                 canSaveResults: canSaveResults,
+                 onSaveResults: { nativePresentationBinding($showingSaveResults).wrappedValue = true },
+-                onSavedResults: { nativePresentationBinding($showingSavedResults).wrappedValue = true }
++                onSavedResults: { nativeSavedResultsBinding($showingSavedResults).wrappedValue = true }
+             )
+         }
+         .sheet(isPresented: $session.showsBookFilterSheet) {
+@@ -56,8 +56,9 @@
+                 searchViewModel: viewModel
+             )
+         }
+-        .sheet(isPresented: nativePresentationBinding($showingSavedResults)) {
++        .sheet(isPresented: nativeSavedResultsBinding($showingSavedResults)) {
+             iOSSavedResultsView()
++                .environment(\.maktabahNativeRoutingSession, nativeRoutingSession)
+         }
+         .animation(.easeInOut(duration: 0.5), value: session.results.isEmpty)
+         .animation(.interpolatingSpring(stiffness: 300, damping: 20),
+@@ -82,6 +83,7 @@
+             nativeRoutingSession?.renderSearchEntryFromOriginalView()
+         }
+         .onDisappear {
++            nativeRoutingSession?.savedResultsBinding?.detachSearch(owner: nativePresentationOwner)
+             nativeRoutingSession?.removeSearchPresentation(owner: nativePresentationOwner)
+         }
+         .onChange(of: viewModel.selectedBookIds) { _, newIds in
+@@ -142,6 +144,11 @@
+         nativeRoutingSession?.observeSearchPresentation(owner: nativePresentationOwner) {
+             saving.wrappedValue || saved.wrappedValue || migration.wrappedValue
+         }
++        let originalSaved = nativeSavedResultsBinding(saved)
++        nativeRoutingSession?.savedResultsBinding?.attachSearch(owner: nativePresentationOwner,
++            manager: navigationManager, requested: { saved.wrappedValue },
++            setRequested: { originalSaved.wrappedValue = $0 },
++            otherBlocked: { saving.wrappedValue || migration.wrappedValue })
+     }
+ 
+     /// Every original local overlay write retires an in-flight or completed
+@@ -149,8 +156,22 @@
+     /// Search entry never invokes these setters or dismisses their contents.
+     @MainActor private func nativePresentationBinding(_ original: Binding<Bool>) -> Binding<Bool> {
+         Binding(get: { original.wrappedValue }, set: { value in
++            nativeRoutingSession?.savedResultsBinding?.originalOtherSearchStateWillChange(owner: nativePresentationOwner)
+             nativeRoutingSession?.originalSearchPresentationWillChange(owner: nativePresentationOwner)
+             original.wrappedValue = value
++        })
++    }
++
++    /// The original Saved Results State remains the only presentation owner.
++    /// Its retained one-use publication is observed before existing callbacks.
++    @MainActor private func nativeSavedResultsBinding(_ original: Binding<Bool>) -> Binding<Bool> {
++        let session = nativeRoutingSession, binding = nativeRoutingSession?.savedResultsBinding
++        let owner = nativePresentationOwner
++        return Binding(get: { original.wrappedValue }, set: { [weak session, weak binding] value in
++            binding?.searchWillPublish(owner: owner, next: value)
++            session?.originalSearchPresentationWillChange(owner: owner)
++            original.wrappedValue = value
++            binding?.searchDidPublish(owner: owner)
+         })
+     }
+ 

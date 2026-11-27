@@ -1,0 +1,38 @@
+[
+  {
+    "path": "attempt-1.py",
+    "bytes": 48426,
+    "sha256": "424a68f8ec3f8e91187aa077b1e07e1ad091bd3dc32760290cb67e9242eb7295",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  },
+  {
+    "path": "attempt-2.py",
+    "bytes": 71523,
+    "sha256": "94e9db8045d4812c7510b48d0880eab1ea8e0dc8571f8878c7f29cce20a541c0",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  },
+  {
+    "path": "attempt-3.py",
+    "bytes": 81565,
+    "sha256": "d3b030cc9ecb103e95db43cef3517fd7aabf64cc7fce6086f5551dcdbcc159bc",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  },
+  {
+    "path": "attempt-4.py",
+    "bytes": 81605,
+    "sha256": "0d71bcfc2fd4b350dfb2578533794a19c80b4bac070d2df1b4d86452d65f1a7e",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  },
+  {
+    "path": "attempt-5.py",
+    "bytes": 84948,
+    "sha256": "385e713eb2be5ed37a962b190888a28895d920c44a87dcb0dd258893f543d1e2",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  },
+  {
+    "path": "attempt-6.py",
+    "bytes": 171553,
+    "sha256": "95fb22809ea5a84a3dc752f93761188286a160cc5c7496c00c68d3b3152f5a34",
+    "execution": "Exact inner Python bytes passed to runuser stdin through existing Sentinel route"
+  }
+]

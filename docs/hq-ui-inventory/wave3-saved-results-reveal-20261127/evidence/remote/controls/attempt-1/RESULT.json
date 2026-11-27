@@ -1,0 +1,110 @@
+{
+  "source_boundary": "Actual passive source plus Foundation Observation; UIKit/AppIntent/Core/native NOT_RUN",
+  "swiftc": "/usr/local/bin/swiftc",
+  "started": 1795793732.2568822,
+  "free_before": 1875116032,
+  "inputs_sha256": "4ce3932568c6df6fbcec1bc4f3fef30b9a8bb99a70ecc68326ee45527dfa007c",
+  "runs": [
+    {
+      "name": "initial",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/inputs/evidence/initial-load-lifetime/OriginalSavedResultsLoadLifetime.swift",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/inputs/controls/LoadLifetimeTests.swift",
+        "-o",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/initial"
+      ],
+      "compile_exit": 0,
+      "exit": -11,
+      "summary": ""
+    },
+    {
+      "name": "candidate",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/module-cache",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/inputs/candidate/Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/inputs/controls/LoadLifetimeTests.swift",
+        "-o",
+        "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/controls/attempt-1/candidate"
+      ],
+      "compile_exit": 0,
+      "exit": 0,
+      "summary": " is recorded and cannot restore prior revision\nPASS duplicate actual completion fails closed\nPASS foreign token cannot complete another owner\nPASS begin revision exhaustion stays closed\nPASS completion revision exhaustion stays closed\nPASS bounded concurrent loads refuse metadata without stopping original calls\nPASS real Observation reentry cannot resurrect retired metadata\nPASS completion callback reentry stays retired\nPASS old completion after a new load cannot rearm\nRESULT passed=14 failed=0\n"
+    }
+  ],
+  "parses": [
+    {
+      "source": "candidate/Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+      "exit": 0,
+      "stderr": "parse-d32aa826715a.stderr"
+    },
+    {
+      "source": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+      "exit": 0,
+      "stderr": "parse-1997e5993c9e.stderr"
+    },
+    {
+      "source": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+      "exit": 0,
+      "stderr": "parse-6e4cfb09d92e.stderr"
+    },
+    {
+      "source": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+      "exit": 0,
+      "stderr": "parse-e437975cb355.stderr"
+    },
+    {
+      "source": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+      "exit": 0,
+      "stderr": "parse-92a12d60944e.stderr"
+    },
+    {
+      "source": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+      "exit": 0,
+      "stderr": "parse-9ecc0a512ee3.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Search/iOS/SearchModeView.swift",
+      "exit": 0,
+      "stderr": "parse-c936d0d3fbfd.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/Models/SavedResultsItem.swift",
+      "exit": 0,
+      "stderr": "parse-40e545e69c33.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/Models/FolderNode.swift",
+      "exit": 0,
+      "stderr": "parse-2298d297fcc6.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/Models/ResultNode.swift",
+      "exit": 0,
+      "stderr": "parse-f9d8804d7c59.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+      "exit": 0,
+      "stderr": "parse-079a4a948e08.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+      "exit": 0,
+      "stderr": "parse-e4a303d2d428.stderr"
+    },
+    {
+      "source": "candidate/Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+      "exit": 0,
+      "stderr": "parse-d8854052ec5f.stderr"
+    }
+  ],
+  "free_after": 1857093632,
+  "finished": 1795793741.9303336
+}

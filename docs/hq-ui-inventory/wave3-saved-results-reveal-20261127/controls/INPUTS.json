@@ -1,0 +1,77 @@
+[
+  {
+    "path": "controls/LoadLifetimeTests.swift",
+    "bytes": 5616,
+    "sha256": "7f3aed990e43dd35315765b0cea0bcd97230927e67a10b3de1df08418b4fe52b"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+    "bytes": 3127,
+    "sha256": "439f61aac96a581b6b5948797c60b6c27c77b5e683271f23facf6f73a35b9975"
+  },
+  {
+    "path": "evidence/initial-load-lifetime/OriginalSavedResultsLoadLifetime.swift",
+    "bytes": 2801,
+    "sha256": "6ccb27f71ae1a5f15c37ce9dd171f5ce4ae2a426daeaa9ac0ea3d8bc8959d4bf"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+    "bytes": 36796,
+    "sha256": "0dbad0f52ac0db1873477c0c34ee7bd2da4417d8ed1d1a94d371979df66e6e30"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+    "bytes": 8996,
+    "sha256": "a62262899eb138f395b264aa557563c593fa3a0c117cbf1831d1ce598434766f"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+    "bytes": 10728,
+    "sha256": "02db6f7e1e258a6049239f65e8746cea01578ed5a5ba5d0474e060daa8053c4f"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+    "bytes": 10643,
+    "sha256": "8af0c73d48833ab9dc7eb4157bbd4ed34096f0472b4fcb03780c89841bf43c7a"
+  },
+  {
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+    "bytes": 5508,
+    "sha256": "5977b19614fa680a2ee76716400e51850059798e9045eee718b83d8fdf20e02a"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/Models/FolderNode.swift",
+    "bytes": 1093,
+    "sha256": "66c778b8f703d81974ce0fcec76d0a8eebfd7c752326b1a2ae7c057e18bfff5d"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/Models/ResultNode.swift",
+    "bytes": 1135,
+    "sha256": "9925060950de564129ff5c718ef080fab7b317bb52254658d31bad58a97feb0e"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/Models/SavedResultsItem.swift",
+    "bytes": 271,
+    "sha256": "0cd4349e0ee02a343be05d7625445185c0a9ec8639c2c2b0987fbd8704f73bc0"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "bytes": 2168,
+    "sha256": "a51ac819587a40fe217ef5720cadf406a309c56c276a8f12f4b491129571c12e"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "bytes": 2513,
+    "sha256": "12d81887f18080deb706260b8e3adb56dc8decefd7d70603e4ed78d8d14127f7"
+  },
+  {
+    "path": "candidate/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "bytes": 18255,
+    "sha256": "d24b832d80fb5cd102d273983b19b0975c8327f6fd5cadb0aed70fc612111fac"
+  },
+  {
+    "path": "candidate/Source/Features/Search/iOS/SearchModeView.swift",
+    "bytes": 14055,
+    "sha256": "45f2a9968b2d9ef5aafaf04d38afa84de780ad0787f4551c3cf58ae1397417fd"
+  }
+]
