@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_240a42f629dc",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795773579.8570116,
+    "started_at": "2026-11-27T09:59:39.935601+00:00",
+    "finished_at": "2026-11-27T09:59:40.336670+00:00",
+    "duration_s": 0.4,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 90,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 39, in <module>\nKeyError: 'uncompressedBytes'"
+  }
+}

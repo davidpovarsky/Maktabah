@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "base": "bdfb717340464fb41ed07294503abe83bd5a1124",
+  "integrated": [
+    {
+      "donor": "a1aad59adda0b27f0a2264d507ded9753cecdb1a",
+      "integrated": "b811b5d86463001c29335462f4c1fcd3b2fe7727"
+    },
+    {
+      "donor": "f522b934f12570691904190ed37dcf34a659dd9c",
+      "integrated": "9e91220da53af99af262f4aa2fda15331fa61e4d"
+    }
+  ],
+  "membershipLocalizationCommit": "ae6edec3e3bb02f86edaf109229441e8580cc21c",
+  "sourceTree": "858fed1752ee58b8402cdb4b1a6a2d8b90c1b41a",
+  "planSHA256": "be42210d0c645b4da1aa713262dee52510ed12efb0b0bc18ae76100b632ebe0f",
+  "fileOccurrencesVerified": 168,
+  "manifestFilesVerified": 150,
+  "gzipFilesVerified": 73,
+  "threeWayMerges": [
+    {
+      "donor": "a1aad59adda0b27f0a2264d507ded9753cecdb1a",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "baseSHA256": "d7c4030ae4c6c6ff79d8773cada9967aaa2d63b79536ff37b3005f80fb1bbcf0",
+      "oursSHA256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b",
+      "theirsSHA256": "8dc62f7208411a3985f0725d7c4f23af99f52b1e0bf3d7068aa54ea29297c830",
+      "mergedSHA256": "e758383d406d991a75090d53b5e00bf582dcd66f7cfca865e3b78d0037f0636d"
+    },
+    {
+      "donor": "f522b934f12570691904190ed37dcf34a659dd9c",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "baseSHA256": "8dc62f7208411a3985f0725d7c4f23af99f52b1e0bf3d7068aa54ea29297c830",
+      "oursSHA256": "e758383d406d991a75090d53b5e00bf582dcd66f7cfca865e3b78d0037f0636d",
+      "theirsSHA256": "fd22a12e73552a87fdc01682279e14735e80115df6a149abecfd58892b3aeb3e",
+      "mergedSHA256": "50b30773af0328903bef75960eb124f610b3d4689bd9369d3173a70c9057b968"
+    }
+  ],
+  "rootEdits": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "priorSHA256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+      "bytes": 632086,
+      "sha256": "ec22d62c446b8419b7640247d7b3c5cdc24a9b53462563b847cbab6dcd24b648",
+      "candidate": "project.pbxproj.candidate",
+      "addedAppFiles": 2,
+      "addedLines": 8
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "priorSHA256": "f2b4ab29b72e4049200064bdaa4c17f95af8f17cc79fda5c0c2fdcdbf6ec63bf",
+      "bytes": 379755,
+      "sha256": "be1cbda45c744b8409f6f7c85060720f3b01c0a7e96f67f902bc9092f56b13f4",
+      "candidate": "Localizable.xcstrings.candidate",
+      "originalEntriesPreserved": 713,
+      "addedKeys": [
+        "History record",
+        "Favorite record",
+        "Show a history entry",
+        "Reveal an existing reading-history card in the selected Maktabah window.",
+        "History entry",
+        "Show a favorite",
+        "Reveal an existing favorite card in the selected Maktabah window.",
+        "Favorite"
+      ]
+    }
+  ],
+  "genericRootAndNativePrefixesPreserved": true,
+  "diffCheckExit": 0,
+  "nativeRuns": 0,
+  "sourceEvidenceReused": {
+    "recordService": "12/0",
+    "binding": "27/0",
+    "filteredProvider": "10/0",
+    "selectedItemNegativeFailures": 2,
+    "retainedObservationNegativeFailures": 4,
+    "rowGeometryNegativeFailures": 16,
+    "oldFilteredProviderFailures": 3
+  },
+  "utc": "2026-11-27T10:05:08.875230+00:00"
+}
