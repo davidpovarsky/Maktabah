@@ -1,0 +1,118 @@
+{
+  "after": {
+    "args": [
+      "-C",
+      "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+      "config",
+      "--type=bool",
+      "--show-origin",
+      "--show-scope",
+      "--get-all",
+      "commit.gpgSign"
+    ],
+    "exit": 1,
+    "stderr": "",
+    "stdout": ""
+  },
+  "before": {
+    "originalDataEffective": {
+      "args": [
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-search-continuation-20261127",
+        "config",
+        "--type=bool",
+        "--show-origin",
+        "--show-scope",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 1,
+      "stderr": "",
+      "stdout": ""
+    },
+    "repoEffective": {
+      "args": [
+        "-C",
+        "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+        "config",
+        "--type=bool",
+        "--show-origin",
+        "--show-scope",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "local\tfile:.git/config\tfalse\n"
+    },
+    "repoLocal": {
+      "args": [
+        "-C",
+        "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+        "config",
+        "--local",
+        "--type=bool",
+        "--show-origin",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "file:.git/config\tfalse\n"
+    },
+    "ubuntuGlobal": {
+      "args": [
+        "config",
+        "--global",
+        "--type=bool",
+        "--show-origin",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 1,
+      "stderr": "",
+      "stdout": ""
+    },
+    "ubuntuSystem": {
+      "args": [
+        "config",
+        "--system",
+        "--type=bool",
+        "--show-origin",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 1,
+      "stderr": "",
+      "stdout": ""
+    }
+  },
+  "dataWrites": false,
+  "historicalPreOverrideAudit": "NOT_CAPTURED",
+  "inheritedTrueFlags": [],
+  "localOverrideWasRequested": false,
+  "observedUTC": "2026-11-27T11:23:21.641472+00:00",
+  "publishedHistoryRewritten": false,
+  "repo": "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+  "restore": {
+    "args": [
+      "-C",
+      "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+      "config",
+      "--local",
+      "--unset",
+      "commit.gpgSign"
+    ],
+    "exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "schema": 1,
+  "scope": "ONLY_COMMIT_GPGSIGN_BOOLEAN_AND_ORIGIN_NO_KEYS_OR_CREDENTIALS",
+  "sourceCommitAfter": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+  "sourceCommitBefore": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+  "sourceTreeAfter": "41263bcc6d46ee3ea5066aa78d98d3e32c68964b",
+  "sourceTreeBefore": "41263bcc6d46ee3ea5066aa78d98d3e32c68964b",
+  "status": "LOCAL_SIGNING_OVERRIDE_REMOVED_ORDINARY_POLICY_RESTORED",
+  "statusAfter": ""
+}

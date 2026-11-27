@@ -1,0 +1,39 @@
+{
+  "before": {
+    "hooksEffective": {
+      "args": [
+        "config",
+        "--show-origin",
+        "--show-scope",
+        "--get-all",
+        "core.hooksPath"
+      ],
+      "exit": 1,
+      "stderr": "",
+      "stdout": ""
+    },
+    "ordinaryHookPath": "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository/.git/hooks",
+    "signingEffective": {
+      "args": [
+        "config",
+        "--type=bool",
+        "--show-origin",
+        "--show-scope",
+        "--get-all",
+        "commit.gpgSign"
+      ],
+      "exit": 1,
+      "stderr": "",
+      "stdout": ""
+    }
+  },
+  "historicalPreOverrideInventory": "NOT_CAPTURED",
+  "noHookOrSigningSuppressionFlags": true,
+  "parent": "0a68042bc6d7d3d7b2ecb03cc660b9550fac8ec6",
+  "perCommandAuthorOnly": true,
+  "rootHookRestoreSHA256": "6c15bf0f4841dd5875e4b88e30942359f3fbcb272c0184a597e49c35ce53ecca",
+  "scope": "DOCS_ONLY_ROUTING_ADMISSION_NO_PRODUCT_OR_TEST_CHANGE",
+  "signingRestoreSHA256": "92db764179c068d1fa739c5798baa945d06054f0e89f51483ada6611a6a8dd70",
+  "sourceTree": "41263bcc6d46ee3ea5066aa78d98d3e32c68964b",
+  "timeUTC": "2026-11-27T11:25:18.816745+00:00"
+}
