@@ -1,0 +1,23 @@
+usage: study-ui-trace-exports.py [-h] --request REQUEST [--output OUTPUT]
+                                 [--output-budget-bytes OUTPUT_BUDGET_BYTES]
+                                 [--free-reserve-bytes FREE_RESERVE_BYTES]
+                                 [--child-seconds CHILD_SECONDS]
+                                 [--total-seconds TOTAL_SECONDS]
+                                 {plan,export}
+
+Export observed tables from an already stopped original v40 trace. This module
+never records, launches an app, changes a Simulator, decodes a metric or
+produces performance acceptance. It preserves actual raw exports for a later,
+separately qualified row/timebase/PID/coverage interpretation.
+
+positional arguments:
+  {plan,export}
+
+options:
+  -h, --help            show this help message and exit
+  --request REQUEST
+  --output OUTPUT
+  --output-budget-bytes OUTPUT_BUDGET_BYTES
+  --free-reserve-bytes FREE_RESERVE_BYTES
+  --child-seconds CHILD_SECONDS
+  --total-seconds TOTAL_SECONDS
