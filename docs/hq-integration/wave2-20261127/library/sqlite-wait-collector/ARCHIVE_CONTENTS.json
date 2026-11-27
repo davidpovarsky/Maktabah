@@ -1,0 +1,302 @@
+[
+  {
+    "path": "CAPTURE_BUDGET_SOURCE.json",
+    "bytes": 1149,
+    "sha256": "a57f932906a27d5c3e017b5c4028134c6927aeaec438dbf294dc2dd76996c857"
+  },
+  {
+    "path": "SOURCE_SNAPSHOT.json",
+    "bytes": 580,
+    "sha256": "1f37a026d05bf7ebc75fa97982ee041dd8f60ec42fca5196763030ac8befb74d"
+  },
+  {
+    "path": "attempt-1/RESULT.json",
+    "bytes": 13277,
+    "sha256": "8b50bb71483ee5c2f3a22ab7456b405a99a92a34a4c2851f2cd9d1364f13b9af"
+  },
+  {
+    "path": "attempt-1/source-controls.py.gz",
+    "bytes": 6114,
+    "sha256": "7ec7252ebfaf416c9cc4e396d1b3dcf9608e206608bad5a774b1e859afefd96f"
+  },
+  {
+    "path": "attempt-1/study-ui-sqlite-wait.py.gz",
+    "bytes": 14803,
+    "sha256": "a407c612b407974c2bf81b4a229f55413e82504175dbf1d2e1e6a7d4b472f507"
+  },
+  {
+    "path": "attempt-2/EXECUTION.json",
+    "bytes": 604,
+    "sha256": "37caa03f772fd4bf2f02de1e6264ce08156ea470109971f0aff5238f75dceed5"
+  },
+  {
+    "path": "attempt-2/FINALIZATION_FAILED.json",
+    "bytes": 215,
+    "sha256": "5f6da35ec2c081f45257fa1088927e9fd5ca9d68aac536be190ff2597eba1209"
+  },
+  {
+    "path": "attempt-2/RESULT.json",
+    "bytes": 13301,
+    "sha256": "9f819c3e605d7593fbc9356c09a7fa82b6253bb883721e75064132c2ab9ad468"
+  },
+  {
+    "path": "attempt-2/source-controls.py.gz",
+    "bytes": 6141,
+    "sha256": "c2c4e7f91dc4377fd1e592532c3b87b3a167c05e823dfb4314e50a1bd44635ad"
+  },
+  {
+    "path": "attempt-2/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-2/stdout.log",
+    "bytes": 44,
+    "sha256": "b91ad7e02bcc8e961e6c61f544545bfb25d101a8908c6b80a1d027bda118295e"
+  },
+  {
+    "path": "attempt-2/study-ui-sqlite-wait.py.gz",
+    "bytes": 14803,
+    "sha256": "a407c612b407974c2bf81b4a229f55413e82504175dbf1d2e1e6a7d4b472f507"
+  },
+  {
+    "path": "attempt-3/EXECUTION.json",
+    "bytes": 604,
+    "sha256": "b2eb870cc6a8612a7428fff59dd8a532fd77a8c560f118ab55eeb7012eed7717"
+  },
+  {
+    "path": "attempt-3/FINALIZATION_FAILED.json",
+    "bytes": 215,
+    "sha256": "5f6da35ec2c081f45257fa1088927e9fd5ca9d68aac536be190ff2597eba1209"
+  },
+  {
+    "path": "attempt-3/RESULT.json",
+    "bytes": 13731,
+    "sha256": "fafd77380387d7ce963e60c986752bb5d3d9e14c203d0eb7988ae216b9ccbcb5"
+  },
+  {
+    "path": "attempt-3/source-controls.py.gz",
+    "bytes": 7159,
+    "sha256": "deb175bf3e5cec7a2696b7a2ed216b45de23f8b953bf79f61b70360d963255ee"
+  },
+  {
+    "path": "attempt-3/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-3/stdout.log",
+    "bytes": 44,
+    "sha256": "7684e0a4bbe9541ffb32037313dae81982364c52f6597e8638f001c16b8ac2ff"
+  },
+  {
+    "path": "attempt-3/study-ui-sqlite-wait.py.gz",
+    "bytes": 15073,
+    "sha256": "b49e3e6f38879ccf61617664d22bf6745e29146009b6a0d12093e86eb681e24d"
+  },
+  {
+    "path": "attempt-4/EXECUTION.json",
+    "bytes": 739,
+    "sha256": "60d282e2b1540497f0ea8cd1900c1a9b0d6d8e2a3cb2100ba970dc92313a2677"
+  },
+  {
+    "path": "attempt-4/FINALIZATION_FAILED.json",
+    "bytes": 215,
+    "sha256": "5f6da35ec2c081f45257fa1088927e9fd5ca9d68aac536be190ff2597eba1209"
+  },
+  {
+    "path": "attempt-4/RESULT.json",
+    "bytes": 14476,
+    "sha256": "5e5850fe8e7849af4a4d8c7c54a0a82be3044e97c82f0c796b8c7a730d6bcf23"
+  },
+  {
+    "path": "attempt-4/source-controls.py.gz",
+    "bytes": 7954,
+    "sha256": "ff62943088c6acabfd8d5ac2e195c56eef83351be1982bee0bb5716a4c6c982c"
+  },
+  {
+    "path": "attempt-4/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-4/stdout.log",
+    "bytes": 44,
+    "sha256": "49cea67fef409837126f20ae62582bac5eee0e98a2d2fab356e5771b640aea1f"
+  },
+  {
+    "path": "attempt-4/study-ui-sqlite-wait.py.gz",
+    "bytes": 16109,
+    "sha256": "5bed3e8e3e2ad42bb44510b409894d01b9cb686efd2165426bc5c01d77ece44b"
+  },
+  {
+    "path": "baseline-drop-counterexample/EXECUTION.json",
+    "bytes": 775,
+    "sha256": "866075c5fb4c17dddcb5f405c7098b3c0b03b61916ea612fe0dd7c499da2809f"
+  },
+  {
+    "path": "baseline-drop-counterexample/FINALIZATION_FAILED.json",
+    "bytes": 215,
+    "sha256": "5f6da35ec2c081f45257fa1088927e9fd5ca9d68aac536be190ff2597eba1209"
+  },
+  {
+    "path": "baseline-drop-counterexample/RESULT.json",
+    "bytes": 15636,
+    "sha256": "f7eb10362fc96c1954d8bef8bc3f66289d51d171fd64356cd2e62a976aebe6ba"
+  },
+  {
+    "path": "baseline-drop-counterexample/source-controls.py.gz",
+    "bytes": 8373,
+    "sha256": "5bf8acd88dc22aac1d4bbea1d853bfb9c1fc3174df3e582c1445ede5367f92a2"
+  },
+  {
+    "path": "baseline-drop-counterexample/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "baseline-drop-counterexample/stdout.log",
+    "bytes": 1172,
+    "sha256": "2935c63b29abd0eab71703cf71e149a62490b04bbd16be8beec85570e13d27d8"
+  },
+  {
+    "path": "baseline-drop-counterexample/study-ui-sqlite-wait.py.gz",
+    "bytes": 16109,
+    "sha256": "5bed3e8e3e2ad42bb44510b409894d01b9cb686efd2165426bc5c01d77ece44b"
+  },
+  {
+    "path": "capture-budget-source/fullV32CloseOriginalInspector.swift.fragment",
+    "bytes": 1793,
+    "sha256": "a61fd2fe3ebc60c40e07bb6d622572a91813421a814dcc023a481c1222e1294c"
+  },
+  {
+    "path": "capture-budget-source/fullV32PostSample.swift.fragment",
+    "bytes": 3767,
+    "sha256": "a6bb11f7c0f5ff686e9fc648f754f2457ce954291c68d029cb1b4dde787da3b2"
+  },
+  {
+    "path": "capture-budget-source/observeOriginalFullCorpusInspectorRelationshipScalesAndReturn.swift.fragment",
+    "bytes": 9794,
+    "sha256": "252d1810face464d99af7ca49975eabdad4107bb815529bd0f3e9bd4f07353c9"
+  },
+  {
+    "path": "capture-budget-source/observeTwentyOriginalFullCorpusReaderOpensAndForcedRelaunch.swift.fragment",
+    "bytes": 8497,
+    "sha256": "f475c25bf2a4c1fed7405bf58c45b2e1a0e8272cc87a3e1b9a1b5d319dd29828"
+  },
+  {
+    "path": "final/EXECUTION.json",
+    "bytes": 753,
+    "sha256": "fec94445238232419333c09db29f7d57f246ef47659e877e18da9cbd1be8e703"
+  },
+  {
+    "path": "final/FINALIZATION_FAILED.json",
+    "bytes": 215,
+    "sha256": "5f6da35ec2c081f45257fa1088927e9fd5ca9d68aac536be190ff2597eba1209"
+  },
+  {
+    "path": "final/RESULT.json",
+    "bytes": 14600,
+    "sha256": "9f97ffb9156d77b5302f7ec2227912edc94951d40808594845ff15243517fc2f"
+  },
+  {
+    "path": "final/source-controls.py.gz",
+    "bytes": 8373,
+    "sha256": "5bf8acd88dc22aac1d4bbea1d853bfb9c1fc3174df3e582c1445ede5367f92a2"
+  },
+  {
+    "path": "final/stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "final/stdout.log",
+    "bytes": 44,
+    "sha256": "67f0a4894f7aa3a376da0b0be5c9e905499a7e541bdb5d6474e8b16bac5baf19"
+  },
+  {
+    "path": "final/study-ui-sqlite-wait.py.gz",
+    "bytes": 16299,
+    "sha256": "f9805e9ae32d7c4d2e2df87c1e06260727e7d87c46674fd4812d9797b5af35fc"
+  },
+  {
+    "path": "original-common.py",
+    "bytes": 84518,
+    "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49"
+  },
+  {
+    "path": "retained-component-run02/RESULT.json",
+    "bytes": 28767,
+    "sha256": "00a7e67662d7b3a92511be1a85d99dfad665e69f02acb80e9ece83391c37a7ee"
+  },
+  {
+    "path": "retained-component-run02/TRANSFER.json",
+    "bytes": 13107,
+    "sha256": "e5895635c78df590e616cb315240f3930fef208e083e11950bfc0e5a4c150219"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-active-bound/synthetic-recorder-active-bound-snapshot.json",
+    "bytes": 14218,
+    "sha256": "a94db4dfa5efb04fa1e538ff3fd6206349c1bb700df10f3f98fcd9fdabf258c4"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-basic/actual-basic-snapshot.json",
+    "bytes": 1713,
+    "sha256": "2999341146a6b3b09fc6ea9dddf7b8f1053a2a30e5e8faea1ac86ee07dc8678e"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-cancel-before/actual-cancel-before-snapshot.json",
+    "bytes": 1648,
+    "sha256": "e64136bbcce9e9f556fc7d33f510cd16264013f0fef22dfff83c2abcf71e9fce"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-cancel-wait/actual-active-snapshot.json",
+    "bytes": 1700,
+    "sha256": "59edf52c79926d6a5e6c6f1797eb1d508d6aa82ce78f303c48b5a81fffefa3ca"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-cancel-wait/actual-wait-terminal-snapshot.json",
+    "bytes": 2141,
+    "sha256": "91477e39ace9858c9a13a382ba41eb887d07810ebf1cbf1bc16bb0072c3e6ef6"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-connection-bound/actual-connection-bound-snapshot.json",
+    "bytes": 56125,
+    "sha256": "f14ad64ad9f0b8aeafb218e23183c9b97871e7e13f6a28e1479cca016001ec68"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-errors/actual-error-snapshot.json",
+    "bytes": 2140,
+    "sha256": "919662dee198334eee1be8e479bf6848c85dc35eb0114be2b21e8a660318fd42"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-held-wait/actual-active-snapshot.json",
+    "bytes": 1698,
+    "sha256": "9b597322bd107320be3bd6c78ec52e710429d81f48160ad4d91ccd9f8dc94a2c"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-held-wait/actual-wait-terminal-snapshot.json",
+    "bytes": 2132,
+    "sha256": "cc44d2d23576f0df652dd11e2d61b3718e8279e784720b1a59cc42d65d151eac"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-non-file-identity/actual-memory-snapshot.json",
+    "bytes": 1439,
+    "sha256": "e051ccdf9efc758fee3f0fa02427043c88285510577ea8c63df2f4739906ed0e"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-recursive/actual-recursive-snapshot.json",
+    "bytes": 3830,
+    "sha256": "f95cb58d96bb60380114cc5630ef36d646fb7dae3b98f63c0cd3b996bea5c2d8"
+  },
+  {
+    "path": "retained-component-run02/candidate-fixture-ring-bound/actual-ring-snapshot.json",
+    "bytes": 436758,
+    "sha256": "a957da0fb464798bcdad668716e9aa82b20dbda42be9935bced4cdfc67cb6ec2"
+  },
+  {
+    "path": "retained-component-run02/catalyst-companion-fixture/source-request.sqlite-fetch-wait.json",
+    "bytes": 1703,
+    "sha256": "22a3e9f700ab1c141853be3afd8d260eb9292b2135f7f38a8005cef6eef54be0"
+  }
+]

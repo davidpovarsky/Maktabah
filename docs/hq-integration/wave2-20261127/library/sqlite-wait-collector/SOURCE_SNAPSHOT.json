@@ -1,0 +1,17 @@
+{
+  "head": "9fc87f2a78d84a8323022a83889931c50e44a95e",
+  "files": {
+    "Scripts/CI/reader-full-v32-ui-observation.py": {
+      "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
+      "bytes": 84518
+    },
+    "Scripts/CI/reader-full-v40-ui-observation.py": {
+      "sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+      "bytes": 23994
+    },
+    "Scripts/CI/reader-full-v40-ui-observation.inputs.json": {
+      "sha256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+      "bytes": 6670
+    }
+  }
+}

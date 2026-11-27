@@ -1,0 +1,32 @@
+{
+  "head": "dc609b080b388966e2e6ade58127c2da6d123f46",
+  "sourcePath": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+  "sourceBytes": 337784,
+  "sourceSHA256": "36e4b5bb0e244484cd152de8ae92823838772d5f90cc780aa85efbf7e6b4af66",
+  "blocks": {
+    "observeTwentyOriginalFullCorpusReaderOpensAndForcedRelaunch": {
+      "bytes": 8497,
+      "sha256": "f475c25bf2a4c1fed7405bf58c45b2e1a0e8272cc87a3e1b9a1b5d319dd29828",
+      "postSampleCallSites": 3,
+      "beginCallSites": 2
+    },
+    "observeOriginalFullCorpusInspectorRelationshipScalesAndReturn": {
+      "bytes": 9794,
+      "sha256": "252d1810face464d99af7ca49975eabdad4107bb815529bd0f3e9bd4f07353c9",
+      "postSampleCallSites": 2,
+      "beginCallSites": 3
+    },
+    "fullV32CloseOriginalInspector": {
+      "bytes": 1793,
+      "sha256": "a61fd2fe3ebc60c40e07bb6d622572a91813421a814dcc023a481c1222e1294c",
+      "postSampleCallSites": 1,
+      "beginCallSites": 0
+    },
+    "fullV32PostSample": {
+      "bytes": 3767,
+      "sha256": "a6bb11f7c0f5ff686e9fc648f754f2457ce954291c68d029cb1b4dde787da3b2",
+      "postSampleCallSites": 1,
+      "beginCallSites": 0
+    }
+  }
+}
