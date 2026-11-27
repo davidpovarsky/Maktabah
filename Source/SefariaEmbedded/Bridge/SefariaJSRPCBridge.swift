@@ -119,6 +119,26 @@ final class SefariaEmbeddedSurfaceRuntimeTransition: @unchecked Sendable {
     }
 }
 
+/// Exact metadata for the original diagnostic RPC only. These values neither
+/// authorize navigation nor alter normal RPC cancellation or response handling.
+struct SefariaLateReplyDiagnosticToken: Sendable, Equatable {
+    fileprivate let id: UUID
+    let nonce: String
+    let originalEpoch: UInt64
+    let delayMs: Int
+    let timeoutMs: Int
+}
+
+struct SefariaLateReplyDiagnosticEvidence: Codable, Sendable, Equatable {
+    let requestID: String
+    let nonce: String
+    let originalEpoch: UInt64
+    let currentEpoch: UInt64
+    let jsReceived: Bool
+    let originalCancellation: Bool
+    let disposition: String
+}
+
 actor SefariaJSRPCBridge {
     static let shared = SefariaJSRPCBridge()
 
@@ -349,6 +369,7 @@ actor SefariaJSRPCBridge {
                     timeoutMs: timeoutMs,
                     method: method
                 )
+                self.observeLateReplyDispatch(envelope)
                 Task {
                     do {
                         guard self.inFlightRequests[requestID] != nil,
@@ -401,8 +422,10 @@ actor SefariaJSRPCBridge {
 
         guard let req = inFlightRequests.removeValue(forKey: response.requestID) else {
             // Late response after timeout or stale request - safely ignored
+            observeLateReplyResponse(response, wasInFlight: false)
             return
         }
+        observeLateReplyResponse(response, wasInFlight: true)
         req.timeoutTask.cancel()
 
         // Validate protocol version
@@ -452,7 +475,8 @@ actor SefariaJSRPCBridge {
 
     /// Cancels all pending in-flight requests (e.g. during a backend switch or runtime reset).
     func cancelAll(reason: String = "Session invalidated") {
-        for (_, req) in inFlightRequests {
+        for (requestID, req) in inFlightRequests {
+            observeLateReplyCancellation(requestID: requestID, generation: req.generation, reason: reason)
             req.timeoutTask.cancel()
             req.continuation.resume(throwing: SefariaRPCError(code: "CANCELLED", message: reason, retryable: false))
         }
@@ -461,6 +485,193 @@ actor SefariaJSRPCBridge {
 
     func cancelAllInFlight() {
         cancelAll(reason: "Backend invalidated")
+    }
+
+    // MARK: - Bounded real-transport diagnostic observation
+
+    private struct LateReplyWireProof: Decodable {
+        let contract: String
+        let requestID: String
+        let nonce: String
+        let sessionGeneration: UInt64
+        let delayMs: Int
+    }
+    private struct LateReplyParameters: Decodable {
+        struct Options: Decodable {
+            let contract: String
+            let nonce: String
+            let delayMs: Int
+        }
+        let lateReplyDiagnostic: Options
+    }
+    private struct LateReplyResult: Decodable {
+        let lateReplyDiagnostic: LateReplyWireProof
+    }
+    private final class LateReplyObservation {
+        let token: SefariaLateReplyDiagnosticToken
+        let transport: any SefariaJSTransport
+        let deadline: ContinuousClock.Instant
+        var requestID: String?
+        var jsReceived = false
+        var originalCancellation = false
+        var discarded: SefariaLateReplyDiagnosticEvidence?
+        var failure: SefariaRPCError?
+        init(token: SefariaLateReplyDiagnosticToken, transport: any SefariaJSTransport) {
+            self.token = token
+            self.transport = transport
+            self.deadline = ContinuousClock.now.advanced(by: .milliseconds(token.timeoutMs))
+        }
+    }
+    private var lateReplyObservation: LateReplyObservation?
+
+    func beginLateReplyDiagnostic(nonce: UUID, delayMs: Int, timeoutMs: Int) throws -> SefariaLateReplyDiagnosticToken {
+        guard lateReplyObservation == nil, isTransportReady, resourcesAreStable,
+              currentSurfaceRuntimeObservation.canPresent,
+              let transport, sessionEpoch > 0, sessionEpoch < 9_007_199_254_740_991,
+              (1...3_000).contains(delayMs), timeoutMs > delayMs, timeoutMs <= 10_000 else {
+            throw lateReplyFailure("DIAGNOSTIC_UNAVAILABLE")
+        }
+        let token = SefariaLateReplyDiagnosticToken(id: UUID(), nonce: nonce.uuidString,
+            originalEpoch: sessionEpoch, delayMs: delayMs, timeoutMs: timeoutMs)
+        lateReplyObservation = LateReplyObservation(token: token, transport: transport)
+        return token
+    }
+
+    func endLateReplyDiagnostic(_ token: SefariaLateReplyDiagnosticToken) {
+        guard lateReplyObservation?.token == token else { return }
+        lateReplyObservation = nil
+    }
+
+    func waitForLateReplyJSReceipt(_ token: SefariaLateReplyDiagnosticToken) async throws {
+        while true {
+            try Task.checkCancellation()
+            let observation = try lateReplyState(token)
+            if observation.jsReceived { return }
+            // This only waits for an actual JS event recorded by the original
+            // actor; elapsed time is never a received/discarded acknowledgement.
+            try await Task.sleep(for: .milliseconds(10))
+        }
+    }
+
+    func validateLateReplyBeforeReset(_ token: SefariaLateReplyDiagnosticToken) throws {
+        let observation = try lateReplyState(token)
+        guard sessionEpoch == token.originalEpoch, observation.jsReceived,
+              !observation.originalCancellation, observation.discarded == nil,
+              let requestID = observation.requestID,
+              inFlightRequests[requestID]?.generation == token.originalEpoch else {
+            throw lateReplyFailure("DIAGNOSTIC_NOT_IN_FLIGHT")
+        }
+    }
+
+    func validateLateReplyAfterReset(_ token: SefariaLateReplyDiagnosticToken) throws {
+        let observation = try lateReplyState(token)
+        guard sessionEpoch == token.originalEpoch + 1, observation.jsReceived,
+              observation.originalCancellation, let requestID = observation.requestID,
+              inFlightRequests[requestID] == nil else {
+            throw lateReplyFailure("DIAGNOSTIC_RESET_NOT_OBSERVED")
+        }
+    }
+
+    func waitForDiscardedLateReply(_ token: SefariaLateReplyDiagnosticToken) async throws -> SefariaLateReplyDiagnosticEvidence {
+        while true {
+            try Task.checkCancellation()
+            try validateLateReplyAfterReset(token)
+            if let evidence = try lateReplyState(token).discarded { return evidence }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+    }
+
+    func validateLateReplyCompletion(_ token: SefariaLateReplyDiagnosticToken,
+                                     evidence: SefariaLateReplyDiagnosticEvidence) throws {
+        try validateLateReplyAfterReset(token)
+        guard try lateReplyState(token).discarded == evidence else {
+            throw lateReplyFailure("DIAGNOSTIC_RECEIPT_CHANGED")
+        }
+    }
+
+    private func lateReplyState(_ token: SefariaLateReplyDiagnosticToken) throws -> LateReplyObservation {
+        guard let observation = lateReplyObservation, observation.token == token else {
+            throw lateReplyFailure("DIAGNOSTIC_RETIRED")
+        }
+        if let failure = observation.failure { throw failure }
+        guard ContinuousClock.now < observation.deadline else {
+            throw lateReplyFailure("DIAGNOSTIC_DEADLINE_EXCEEDED")
+        }
+        guard let transport, transport === observation.transport, isTransportReady,
+              resourcesAreStable else {
+            throw lateReplyFailure("DIAGNOSTIC_TRANSPORT_CHANGED")
+        }
+        return observation
+    }
+
+    private func lateReplyFailure(_ code: String) -> SefariaRPCError {
+        .init(code: code, message: "The original delayed RPC proof is incomplete or changed.")
+    }
+
+    private func failLateReply(_ observation: LateReplyObservation, _ code: String) {
+        // A diagnostic observation never cancels/resumes or admits an RPC.
+        if observation.failure == nil { observation.failure = lateReplyFailure(code) }
+    }
+
+    private func observeLateReplyDispatch(_ envelope: SefariaRPCEnvelope) {
+        guard envelope.method == "diagnostic.echo", let observation = lateReplyObservation,
+              let params = envelope.paramsJson?.data(using: .utf8),
+              let options = try? JSONDecoder().decode(LateReplyParameters.self, from: params).lateReplyDiagnostic else { return }
+        guard observation.requestID == nil, options.contract == "chavrusa.diagnostic.late-reply.v1",
+              options.nonce == observation.token.nonce, options.delayMs == observation.token.delayMs,
+              envelope.sessionGeneration == observation.token.originalEpoch,
+              envelope.timeoutMs == observation.token.timeoutMs,
+              (try? lateReplyState(observation.token)) != nil else {
+            failLateReply(observation, "DIAGNOSTIC_DISPATCH_MISMATCH"); return
+        }
+        observation.requestID = envelope.requestID
+    }
+
+    private func observeLateReplyStarted(_ event: SefariaRPCEvent) {
+        guard event.event == "diagnostic.echo.started", let observation = lateReplyObservation else { return }
+        guard event.backendID == BackendID.sefariaEmbedded.rawValue,
+              let json = event.payloadJson, json.utf8.count <= 1_024,
+              let proof = try? JSONDecoder().decode(LateReplyWireProof.self, from: Data(json.utf8)),
+              proof.contract == "chavrusa.diagnostic.late-reply.v1",
+              proof.requestID == observation.requestID, proof.nonce == observation.token.nonce,
+              proof.sessionGeneration == observation.token.originalEpoch,
+              proof.delayMs == observation.token.delayMs, !observation.jsReceived,
+              !observation.originalCancellation, sessionEpoch == observation.token.originalEpoch,
+              inFlightRequests[proof.requestID]?.generation == observation.token.originalEpoch,
+              (try? lateReplyState(observation.token)) != nil else {
+            failLateReply(observation, "DIAGNOSTIC_JS_RECEIPT_MISMATCH"); return
+        }
+        observation.jsReceived = true
+    }
+
+    private func observeLateReplyCancellation(requestID: String, generation: UInt64, reason: String) {
+        guard let observation = lateReplyObservation, observation.requestID == requestID else { return }
+        guard observation.jsReceived, !observation.originalCancellation, observation.discarded == nil,
+              reason == "Session epoch changed", generation == observation.token.originalEpoch,
+              sessionEpoch == observation.token.originalEpoch else {
+            failLateReply(observation, "DIAGNOSTIC_CANCELLATION_MISMATCH"); return
+        }
+        observation.originalCancellation = true
+    }
+
+    private func observeLateReplyResponse(_ response: SefariaRPCResponse, wasInFlight: Bool) {
+        guard let observation = lateReplyObservation, response.requestID == observation.requestID else { return }
+        guard !wasInFlight, observation.jsReceived, observation.originalCancellation,
+              observation.discarded == nil, response.protocolVersion == "1.0",
+              response.backendID == BackendID.sefariaEmbedded.rawValue, response.isSuccess, response.error == nil,
+              response.sessionGeneration == observation.token.originalEpoch,
+              sessionEpoch == observation.token.originalEpoch + 1,
+              let json = response.resultJson, json.utf8.count <= 2_048,
+              let proof = try? JSONDecoder().decode(LateReplyResult.self, from: Data(json.utf8)).lateReplyDiagnostic,
+              proof.contract == "chavrusa.diagnostic.late-reply.v1",
+              proof.requestID == response.requestID, proof.nonce == observation.token.nonce,
+              proof.sessionGeneration == response.sessionGeneration, proof.delayMs == observation.token.delayMs,
+              (try? lateReplyState(observation.token)) != nil else {
+            failLateReply(observation, "DIAGNOSTIC_LATE_DISPOSITION_MISMATCH"); return
+        }
+        observation.discarded = .init(requestID: response.requestID, nonce: observation.token.nonce,
+            originalEpoch: response.sessionGeneration, currentEpoch: sessionEpoch,
+            jsReceived: true, originalCancellation: true, disposition: "discarded_no_in_flight_request")
     }
 
     // MARK: - Event Subscriptions
@@ -478,6 +689,7 @@ actor SefariaJSRPCBridge {
             return
         }
 
+        observeLateReplyStarted(event)
         if event.event == "ready" {
             notifyReady()
         } else if event.event == "bootstrapError" {

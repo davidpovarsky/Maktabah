@@ -58,6 +58,74 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             var durationMs: Int?
             var surfaceEvidence: SefariaEmbeddedSurfaceAcceptanceEvidence? = nil
             var readerEvidence: ReaderEvidence? = nil
+            var lateReplyEvidence: SefariaLateReplyDiagnosticEvidence? = nil
+        }
+    }
+
+    /// Uses only the existing RN/Hermes transport and original runtime reset.
+    /// The child RPC is always drained before its observational metadata retires.
+    private static func verifyOriginalLateReply() async throws -> SefariaLateReplyDiagnosticEvidence {
+        let bridge = SefariaJSRPCBridge.shared
+        let token = try await bridge.beginLateReplyDiagnostic(nonce: UUID(), delayMs: 1_500, timeoutMs: 10_000)
+        do {
+            let evidence = try await withThrowingTaskGroup(of: SefariaRPCError.self) { group in
+                defer { group.cancelAll() }
+                let params: [String: Any] = [
+                    "message": "late-generation-check",
+                    "lateReplyDiagnostic": [
+                        "contract": "chavrusa.diagnostic.late-reply.v1",
+                        "nonce": token.nonce, "delayMs": token.delayMs
+                    ]
+                ]
+                let json = String(decoding: try JSONSerialization.data(withJSONObject: params), as: UTF8.self)
+                group.addTask {
+                    do {
+                        _ = try await bridge.call(method: "diagnostic.echo", paramsJson: json,
+                            generation: token.originalEpoch, timeoutMs: token.timeoutMs)
+                        throw SefariaRPCError(code: "LATE_REQUEST_COMPLETED_EARLY",
+                            message: "The original request completed before reset cancelled it.")
+                    } catch let error as SefariaRPCError {
+                        return error
+                    }
+                }
+                try await bridge.waitForLateReplyJSReceipt(token)
+                try await bridge.validateLateReplyBeforeReset(token)
+                await SefariaRuntimeManager.shared.reset()
+                try await bridge.validateLateReplyAfterReset(token)
+                guard let cancellation = try await group.next(), cancellation.code == "CANCELLED" else {
+                    throw SefariaRPCError(code: "ORIGINAL_RESET_CANCELLATION_MISSING",
+                        message: "The original in-flight request was not cancelled by reset.")
+                }
+                let discarded = try await bridge.waitForDiscardedLateReply(token)
+                let fresh = try await bridge.call(method: "diagnostic.echo",
+                    paramsJson: "{\"message\":\"after-original-reset\"}",
+                    generation: discarded.currentEpoch, timeoutMs: 2_000)
+                struct Echo: Decodable { let echoedMessage: String; let generation: UInt64 }
+                let echo = try fresh.decodeResult(Echo.self)
+                guard fresh.isSuccess, fresh.protocolVersion == "1.0",
+                      fresh.backendID == BackendID.sefariaEmbedded.rawValue,
+                      fresh.sessionGeneration == discarded.currentEpoch,
+                      echo.generation == discarded.currentEpoch,
+                      echo.echoedMessage == "after-original-reset" else {
+                    throw SefariaRPCError(code: "FRESH_GENERATION_ECHO_FAILED",
+                        message: "The real post-reset echo did not match the current runtime.")
+                }
+                // Preserve the original negative expectation as a separate real
+                // invocation; it cannot substitute for the late-response proof.
+                do {
+                    _ = try await bridge.call(method: "diagnostic.echo",
+                        paramsJson: "{\"message\":\"stale-gen-check\"}", generation: token.originalEpoch)
+                    throw SefariaRPCError(code: "STALE_GENERATION_ACCEPTED",
+                        message: "The bridge accepted the old generation after reset.")
+                } catch let error as SefariaRPCError where error.code == "STALE_GENERATION" {}
+                try await bridge.validateLateReplyCompletion(token, evidence: discarded)
+                return discarded
+            }
+            await bridge.endLateReplyDiagnostic(token)
+            return evidence
+        } catch {
+            await bridge.endLateReplyDiagnostic(token)
+            throw error
         }
     }
 
@@ -119,43 +187,17 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             report.stages["echoErrorInjection"] = .init(passed: true, details: "Injected error correctly rejected across bridge", durationMs: dur3)
             NSLog("[SefariaAcceptance] Stage 3: echoErrorInjection passed (%d ms)", dur3)
 
-            // Stage 4: lateGenerationRejected validation
+            // Stage 4: the actual JS-received request survives in the same Hermes
+            // instance while ORIGINAL runtime reset cancels its native continuation.
+            // Only the actor's later real discard plus a fresh echo closes this stage.
             let startT4 = Date()
             NSLog("[SefariaAcceptance] Stage 4: lateGenerationRejected started")
-            let currentEpoch = await SefariaJSRPCBridge.shared.sessionEpoch
-            guard currentEpoch > 0 else {
-                throw SefariaRPCError(code: "GENERATION_CHECK_FAILED", message: "The active runtime has no valid generation")
-            }
-            // Check the real current-generation roundtrip, then invoke the same
-            // original bridge with an actual stale generation. A successful echo
-            // alone never proves stale-generation rejection.
-            let genCheckResp = try await SefariaJSRPCBridge.shared.call(
-                method: "diagnostic.echo",
-                paramsJson: "{\"message\": \"gen-check\"}",
-                generation: currentEpoch
-            )
-            guard genCheckResp.isSuccess, genCheckResp.sessionGeneration == currentEpoch else {
-                throw SefariaRPCError(code: "GENERATION_CHECK_FAILED", message: "Generation check returned wrong epoch")
-            }
-            let staleEpoch = currentEpoch - 1
-            do {
-                _ = try await SefariaJSRPCBridge.shared.call(
-                    method: "diagnostic.echo", paramsJson: "{\"message\": \"stale-gen-check\"}",
-                    generation: staleEpoch
-                )
-                throw SefariaRPCError(code: "STALE_GENERATION_ACCEPTED", message: "The bridge accepted an explicitly stale generation")
-            } catch let error as SefariaRPCError where error.code == "STALE_GENERATION" {
-                // Only the original bridge's exact stale-generation rejection is
-                // success. Network, timeout, cancellation and other errors fail.
-            }
-            guard await SefariaJSRPCBridge.shared.sessionEpoch == currentEpoch else {
-                throw SefariaRPCError(code: "GENERATION_CHANGED", message: "The runtime changed during generation verification")
-            }
-            report.sessionEpoch = currentEpoch
+            let lateReply = try await verifyOriginalLateReply()
+            report.sessionEpoch = lateReply.currentEpoch
             let dur4 = Int(Date().timeIntervalSince(startT4) * 1000)
             report.stages["lateGenerationRejected"] = .init(passed: true,
-                details: "Current epoch \(currentEpoch) roundtrip succeeded; an actual request for stale epoch \(staleEpoch) threw STALE_GENERATION.",
-                durationMs: dur4)
+                details: "Original JS request received at epoch \(lateReply.originalEpoch); original reset cancelled it; its real late response was discarded; current epoch \(lateReply.currentEpoch) echo succeeded.",
+                durationMs: dur4, lateReplyEvidence: lateReply)
             NSLog("[SefariaAcceptance] Stage 4: lateGenerationRejected passed (%d ms)", dur4)
 
             // Stage 5: runtime.initialize
