@@ -1,0 +1,8 @@
+{
+  "cause": "The metadata-only vnode receipt has explicit writes/signals/builds but no deletions field. A generic packaging assertion raised KeyError before commit.",
+  "correction": "Check the exact already-reviewed vnode schema explicitly, preserving the original receipt and script bytes. All other receipts still require their explicit deletions zero field. No inspection rerun, no product/gate change and no Mac action.",
+  "job": "job_aa7f5145e61f",
+  "raw_bytes": 317,
+  "raw_sha256": "382061022c1eb461f2dc4b3e7d513619ade6b3be8ea7cbd8fd4e8eb7669e578b",
+  "schema": "otzaria.packaging-recovery/1"
+}
