@@ -1,0 +1,31 @@
+{
+  "cases" : [
+    {
+      "name" : "actual binding calls full original reveal helper then canonical selected-cell observation",
+      "passed" : true
+    },
+    {
+      "name" : "actual diffable callback publication refuses before later cell writes or selection",
+      "passed" : true
+    },
+    {
+      "name" : "actual binding release during expansion retires its weak captured Pending",
+      "passed" : true
+    },
+    {
+      "name" : "escaping animation cannot write once the same pending phase is applied",
+      "passed" : true
+    },
+    {
+      "name" : "escaping animation cannot write after successful finish and exact source release",
+      "passed" : true
+    },
+    {
+      "name" : "escaping animation cannot write after binding unmount",
+      "passed" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 6,
+  "scope" : "Actual full binding\/caller\/helper over explicit UIKit\/domain boundaries; no app\/native execution"
+}

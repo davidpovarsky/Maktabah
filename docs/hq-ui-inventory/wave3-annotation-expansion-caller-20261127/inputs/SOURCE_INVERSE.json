@@ -1,0 +1,11 @@
+{
+  "after": "func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @escaping @MainActor () throws -> Void) throws",
+  "after_sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+  "base": "56a6ff0c4d9437924479444660b51ce62e59db7e",
+  "before": "func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @MainActor () throws -> Void) throws",
+  "before_sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+  "caller_capsule": "Complete original nativeRoutingReveal plus expansion helper, in the previously verified finite original controller extension; surrounding UIKit/domain declarations explicit. Existing weak-self/weak-Pending binding callback compiled unchanged.",
+  "exact_inverse": true,
+  "fixture_changes": "Original group cell installed in explicit DataSource fixture; UIKit animation declaration now correctly escaping and can retain a callback; config writes counted in fixture only.",
+  "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+}

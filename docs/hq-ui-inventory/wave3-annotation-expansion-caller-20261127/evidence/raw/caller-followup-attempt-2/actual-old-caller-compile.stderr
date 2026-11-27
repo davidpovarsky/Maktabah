@@ -1,0 +1,23 @@
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-followup-attempt-2/inputs/controls/OriginalCaller.swift:180:29: error: escaping closure captures non-escaping parameter 'validate'
+166 |     /// persistence callback. All effects finish synchronously; later layout
+167 |     /// observation is read-only and cannot resume a feature mutation.
+168 |     func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @MainActor () throws -> Void) throws {
+    |                                                       `- note: parameter 'validate' is implicitly non-escaping
+169 |         func requireCurrent() throws {
+170 |             try validate()
+    |                 `- note: captured here
+171 |             guard nativeRoutingMatches(row), isViewLoaded, dataSource != nil, collectionView != nil else {
+172 |                 throw UIRouteError(.staleState, "native_annotation_row_changed")
+173 |             }
+174 |             try validate()
+    |                 `- note: captured here
+175 |         }
+176 |         try requireCurrent()
+    :
+178 |         if !dataSource.snapshot(for: row.section).isExpanded(group) {
+179 |             setOriginalGroupExpanded(row.group, willExpand: true, animated: false,
+180 |                 validating: { (try? requireCurrent()) != nil })
+    |                             |       `- note: captured indirectly by this call
+    |                             `- error: escaping closure captures non-escaping parameter 'validate'
+181 |             try requireCurrent()
+182 |         }
