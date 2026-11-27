@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-27T02:34:16.478367+00:00",
+  "base": "dd2e7bf73b1716cdb9723a7de3e5bf51681a9d85",
+  "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+  "baseSHA256": "3fb9431099f39cd4024b24938c8628d5367112676fafdf019be47bad83d6d281",
+  "candidateSHA256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+  "originalRecoveredByteForByte": true,
+  "noteBehavior": "Every original setter body/write/callback remains; only synchronous phone source retirement precedes local State writes. iPad has no phone attachment.",
+  "assignments": {
+    "editingAnnotation": [
+      {
+        "line": 783,
+        "source": "editingAnnotation = value"
+      }
+    ],
+    "noteErrorMessage": [
+      {
+        "line": 812,
+        "source": "noteErrorMessage = value"
+      }
+    ],
+    "showPanelSheet": [
+      {
+        "line": 96,
+        "source": "@State private var showPanelSheet = false"
+      },
+      {
+        "line": 869,
+        "source": "showPanelSheet = false"
+      },
+      {
+        "line": 950,
+        "source": "showPanelSheet = false"
+      },
+      {
+        "line": 963,
+        "source": "showPanelSheet = false"
+      },
+      {
+        "line": 966,
+        "source": "showPanelSheet = false"
+      },
+      {
+        "line": 971,
+        "source": "showPanelSheet = false"
+      },
+      {
+        "line": 975,
+        "source": "showPanelSheet = true"
+      }
+    ],
+    "pendingCompactContentsOpen": [
+      {
+        "line": 102,
+        "source": "@State private var pendingCompactContentsOpen = false"
+      },
+      {
+        "line": 867,
+        "source": "pendingCompactContentsOpen = true"
+      },
+      {
+        "line": 999,
+        "source": "pendingCompactContentsOpen = false"
+      }
+    ]
+  },
+  "readSetCoupling": {
+    "showPanel": "Derived from original @Observable Reader.readerInspectorVisible; retained read-set already tracks it synchronously.",
+    "showPanelSheet": "Only true assignment is final updatePanelPresentation branch after !showPanel branch has failed: requires observed readerInspectorVisible true. Sheet binding may dismiss an already-blocking true state; no new true state bypass.",
+    "pendingCompactContentsOpen": "Only true assignment is in openContents(), whose entry synchronously retires; original false callback cannot regrant the source.",
+    "editingAnnotation": "Sole assignment is original setEditingAnnotation, now retiring before all existing body logic and original assignment.",
+    "noteErrorMessage": "All four original set/clear sites use one identical-write setter with synchronous retirement."
+  },
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}

@@ -1,0 +1,356 @@
+{
+  "at": "2026-11-27T02:53:52.391337+00:00",
+  "baseCommit": "dd2e7bf73b1716cdb9723a7de3e5bf51681a9d85",
+  "sourceChanges": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad"
+  },
+  "trackedSourceScopeExact": true,
+  "phoneOriginalRecoveredByteForByte": true,
+  "workspaceOriginalRecoveredByteForByte": true,
+  "productDiffCheck": 0,
+  "controls": {
+    "attempt": "attempt-4",
+    "actual": {
+      "passed": 5,
+      "failed": 0,
+      "compileExit": 0,
+      "runExit": 0
+    },
+    "negativeWithoutOnlyTwoHooks": {
+      "passed": 2,
+      "failed": 3,
+      "compileExit": 0,
+      "runExit": 1
+    },
+    "sourceBindingExact": true,
+    "scope": "Actual original setter fragments + actual full phone class/shared Observation with explicit storage/domain boundaries; not SwiftUI UI or Apple SDK execution"
+  },
+  "finalIOS27Syntax": {
+    "at": "2026-11-27T02:52:26.994154+00:00",
+    "scope": "Swift syntax only for required iOS27 simulator target; no Apple SDK/typecheck/native execution",
+    "files": [
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+        "sha256": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+        "command": [
+          "/usr/local/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift"
+        ],
+        "exit": 0,
+        "log": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/final-MaktabahNativePhoneTOCPresentation-ios27-parse.log"
+      },
+      {
+        "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+        "sha256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+        "command": [
+          "/usr/local/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+        ],
+        "exit": 0,
+        "log": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/final-iOSReaderWorkspaceView-ios27-parse.log"
+      }
+    ]
+  },
+  "preservedAttempts": [
+    "attempt-1 interrupted; no invented compiler result",
+    "attempt-2 3/0 with pre-facet phone class; negative0/3",
+    "attempt-3 fixture-lifetime crash retained; unchanged final product source",
+    "attempt-4 fixed fixture retains actual owner;5/0 and expected2/3"
+  ],
+  "peerReview": {
+    "reviewer": "ui_acceptance",
+    "sourceReview": "No blockers in exact +0/+1 parent lifecycle and original workspace hooks; local SwiftUI State read-set caveat addressed by this follow-up",
+    "correlationFacet": "Requested exact pending/active source, presented phase, no Session recursion; first mount still requires applied",
+    "separateReported29CaseRun": "Not incorporated as this packet's executed evidence; sibling retains actual raw receipt"
+  },
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0,
+  "appleSDKTypecheckExecuted": 0,
+  "sharedOrPeerSourcesChanged": false,
+  "artifactInventory": [
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/FINAL_IOS27_SYNTAX.json",
+      "bytes": 1445,
+      "sha256": "d7d396455b5a12c6e044e14824b8ea3af1714849417331e0f8ba79fd9be9d44d"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/README.md",
+      "bytes": 3498,
+      "sha256": "88a6b596884df876b7fcfd6aba5cceca4c3f5aa98a636d9d3f181dbf1222e42c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/SOURCE_READ_SET.json",
+      "bytes": 2663,
+      "sha256": "dcbca67a44d3902a00eb86d6e0ca686f6abad3bc347b83ac52829d0a23c748dc"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-1/Actual.swift",
+      "bytes": 35020,
+      "sha256": "2156a34c4a533ca1bbc3b7ea1b8e883a9e2d594766d317abbfeb7543fa8b457f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-1/ActualOriginalWorkspaceSetters.swift",
+      "bytes": 1014,
+      "sha256": "579b67c1de922ac015ba72dbd539d4d1160e42dc1567b4ffdccbb41297a1e2b1"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-1/Controls.swift",
+      "bytes": 1633,
+      "sha256": "44cb806f9fb042d6f085b06a6f3eed851dba86554f15f604faea30df8457839b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-1/LocalStateBoundary.swift",
+      "bytes": 1926,
+      "sha256": "6a15d9138e17e5c16d303425771456407df6847c6239a31d2dec5027ce183836"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-1/RESULT_INTERRUPTED.json",
+      "bytes": 346,
+      "sha256": "8a408cf54f2b5527e5d16cbce73a71e3341c052573f5d9622cd418e8e35936eb"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/Actual-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/Actual-execution.log",
+      "bytes": 253,
+      "sha256": "10d293999cfe4805a74dab2813be76257b7a1402214e3d14438fa189a2313a0b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/Actual.swift",
+      "bytes": 35020,
+      "sha256": "2156a34c4a533ca1bbc3b7ea1b8e883a9e2d594766d317abbfeb7543fa8b457f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/ActualOriginalWorkspaceSetters.swift",
+      "bytes": 1014,
+      "sha256": "579b67c1de922ac015ba72dbd539d4d1160e42dc1567b4ffdccbb41297a1e2b1"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/Controls.swift",
+      "bytes": 1633,
+      "sha256": "44cb806f9fb042d6f085b06a6f3eed851dba86554f15f604faea30df8457839b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/LocalStateBoundary.swift",
+      "bytes": 1926,
+      "sha256": "6a15d9138e17e5c16d303425771456407df6847c6239a31d2dec5027ce183836"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/NegativeWithoutTwoHooks-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/NegativeWithoutTwoHooks-execution.log",
+      "bytes": 253,
+      "sha256": "8502d96e620a13dbf7812e77a2852de026de81b5391682900c711692f5044ab0"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/NegativeWithoutTwoHooks.swift",
+      "bytes": 34902,
+      "sha256": "c51cf8c953e7b67fdd561cec4b4c2ad9ffa423042461fd0f57cbe4970bb70775"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/RESULT.json",
+      "bytes": 2880,
+      "sha256": "a7f8e341a8e1ee0c60552e6d4249515f40e98131f71e381912ed9e1265549d8b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2/iOS27-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2-LAUNCH.json",
+      "bytes": 830,
+      "sha256": "2470e3e03ea54ae2c7506462b9ca860ab5899593af97de231409c32b5c474f9e"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-2-launch.log",
+      "bytes": 2558,
+      "sha256": "42193d9d82d2c4965ed0cb6f6eb0b82a8c6f0e9467a6e87b02f4ddfd4cdd6b2b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/Actual-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/Actual-execution.log",
+      "bytes": 3538,
+      "sha256": "15e3f9f802c5925796675fd02396ff21fb5113ec9a90d62f56fad54c25b03607"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/Actual.swift",
+      "bytes": 36694,
+      "sha256": "8d32f213e6cebcb56104be4c3c9d1753e08c88d2c9d6fcef7f3db7d238255ba6"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/ActualOriginalWorkspaceSetters.swift",
+      "bytes": 1014,
+      "sha256": "579b67c1de922ac015ba72dbd539d4d1160e42dc1567b4ffdccbb41297a1e2b1"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/Controls.swift",
+      "bytes": 2525,
+      "sha256": "3ca810c5b92313b4dec145ce92f2edb47bdbbc01ec2e6cac52c1022cad678551"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/CurrentActualPhone.swift",
+      "bytes": 22829,
+      "sha256": "c4ddc67a3afea99d266073ab78ed462769b21999c7f44ece53bbc67299170b21"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/HARNESS_DIAGNOSIS.json",
+      "bytes": 455,
+      "sha256": "95f844d5ffd70058ad35098443d80b2d557d0fc6c4cbb7034c30c7faf67a6ec5"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/LocalStateBoundary.swift",
+      "bytes": 1926,
+      "sha256": "6a15d9138e17e5c16d303425771456407df6847c6239a31d2dec5027ce183836"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/NegativeWithoutTwoHooks-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/NegativeWithoutTwoHooks-execution.log",
+      "bytes": 3617,
+      "sha256": "fddadb19609693ebee845a7a0637eaefe393b531ccba754128d76ddbbea90c7c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/NegativeWithoutTwoHooks.swift",
+      "bytes": 36576,
+      "sha256": "973260983a5371590432709b56c5533c7c9ba26565afb8ddd8a91542510b4a48"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/RESULT.json",
+      "bytes": 2275,
+      "sha256": "cd82f1eb7dd730ba989a2c83c7cd32c2900ca81485986ad7aa57b9b7925fffc7"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/iOS27-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3-LAUNCH.json",
+      "bytes": 670,
+      "sha256": "0d8eb770fc822b966586b203dac26c1af2f505066049abab13e2b298101d5ca5"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3-launch.log",
+      "bytes": 1957,
+      "sha256": "89846d80d10d025f4144085a442d4e6a548aa2ef953d3ce8f16771308ac5f96f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/Actual-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/Actual-execution.log",
+      "bytes": 423,
+      "sha256": "e250834defe24c9611f27caeb3b7755a3b702ee3da95b93871a54c55b95c3700"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/Actual.swift",
+      "bytes": 36732,
+      "sha256": "76579f1af4de708ed17d81cbbdcbf53b52db99560180af1c5c52288b89e8199c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/ActualOriginalWorkspaceSetters.swift",
+      "bytes": 1014,
+      "sha256": "579b67c1de922ac015ba72dbd539d4d1160e42dc1567b4ffdccbb41297a1e2b1"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/Controls.swift",
+      "bytes": 2563,
+      "sha256": "e1bc81b751e03c4fac013393cb07bdbf038f1d6850d6b77ee1f0a5df6d56010c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/CurrentActualPhone.swift",
+      "bytes": 22829,
+      "sha256": "c4ddc67a3afea99d266073ab78ed462769b21999c7f44ece53bbc67299170b21"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/LocalStateBoundary.swift",
+      "bytes": 1926,
+      "sha256": "6a15d9138e17e5c16d303425771456407df6847c6239a31d2dec5027ce183836"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/NegativeWithoutTwoHooks-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/NegativeWithoutTwoHooks-execution.log",
+      "bytes": 423,
+      "sha256": "f352257dba60370a27fe0c6d205124f6b261509a424127d03f8c3761aa05a18c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/NegativeWithoutTwoHooks.swift",
+      "bytes": 36614,
+      "sha256": "33e786d0ea847f8736cd2ef0503fac858acaa67e794b84b41b09287fab8001fb"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/RESULT.json",
+      "bytes": 3131,
+      "sha256": "d9b72fcc4e01c0e1e0eb090021d280d6732d1cbd00d307e9e59b0f6a9463026e"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4/iOS27-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4-LAUNCH.json",
+      "bytes": 674,
+      "sha256": "6dadd73169332632a4f549c72e08022c54b3b7cdaa0a10f8c32754d59eabf896"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4-launch.log",
+      "bytes": 2813,
+      "sha256": "89809df8b4e6e01520eff9e675648744b83d88d19002ceaa2f14d7172bac7a8d"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/final-MaktabahNativePhoneTOCPresentation-ios27-parse.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/final-iOSReaderWorkspaceView-ios27-parse.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/run-local-state-controls.py",
+      "bytes": 7372,
+      "sha256": "805f16bb91c3bb370909e7e22ba59054441752bd0a5695b33bbfd11d9f88cb1c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-wave2-intake-review-20261127/ASANA_DISCUSSION.json",
+      "bytes": 466,
+      "sha256": "148bb3fa4717ede275b3fb9552a9b035451783f0226afcd43408fd0d8bc7383a"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-wave2-intake-review-20261127/REVIEW.json",
+      "bytes": 7018,
+      "sha256": "66e5bea242fd621d42c7e14cc32127db784edf2cd464e680f18ea09731945427"
+    }
+  ]
+}

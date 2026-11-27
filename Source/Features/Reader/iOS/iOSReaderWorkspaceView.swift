@@ -345,10 +345,10 @@ struct iOSReaderWorkspaceView: View {
             String(localized: "Cannot Add Note"),
             isPresented: Binding(
                 get: { noteErrorMessage != nil },
-                set: { if !$0 { noteErrorMessage = nil } }
+                set: { if !$0 { setNoteErrorMessage(nil) } }
             )
         ) {
-            Button("OK", role: .cancel) { noteErrorMessage = nil }
+            Button("OK", role: .cancel) { setNoteErrorMessage(nil) }
         } message: {
             Text(noteErrorMessage ?? "")
         }
@@ -766,6 +766,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func setEditingAnnotation(_ value: Annotation?) {
+        nativePhoneTOCAttachment.originalStateWillChange()
         // One identity per original sheet entry, including reopening the same
         // unsaved value. Callback closures capture this value, never a live getter.
         if value != nil {
@@ -804,6 +805,11 @@ struct iOSReaderWorkspaceView: View {
                 pendingNotesDidChange = nil
             }
         )
+    }
+
+    private func setNoteErrorMessage(_ value: String?) {
+        nativePhoneTOCAttachment.originalStateWillChange()
+        noteErrorMessage = value
     }
 
     private var nativePhoneTOCBlocked: Bool {
@@ -1010,7 +1016,7 @@ struct iOSReaderWorkspaceView: View {
 
         guard resolvedRange.location != NSNotFound,
               NSMaxRange(resolvedRange) <= (viewModel.contentText as NSString).length else {
-            noteErrorMessage = String(localized: "Select text in the reader before adding a note.")
+            setNoteErrorMessage(String(localized: "Select text in the reader before adding a note."))
             return
         }
         do {
@@ -1032,7 +1038,7 @@ struct iOSReaderWorkspaceView: View {
             #endif
             setEditingAnnotation(draft)
         } catch {
-            noteErrorMessage = error.localizedDescription
+            setNoteErrorMessage(error.localizedDescription)
         }
     }
 

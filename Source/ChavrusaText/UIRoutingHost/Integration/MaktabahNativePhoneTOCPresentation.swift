@@ -143,6 +143,21 @@ final class MaktabahNativePhoneTOCPresentationBinding {
         return true
     }
 
+    /// Read-only correlation for the same original Reader push while its
+    /// native presentation is settling. This must never call the Session's
+    /// admission validator (which itself reads this facet), renew permission,
+    /// or admit a first mount before apply has finished.
+    func isContinuingOriginalReaderPresentation(requestID: UUID) -> Bool {
+        guard let value = pending, let source = activeSource,
+              value.source === source, source.requestID == requestID,
+              source.phase == .presented, source.valid else { return false }
+        do {
+            try validate(source)
+            return pending === value && activeSource === source
+                && source.valid && source.phase == .presented
+        } catch { return false }
+    }
+
     func isAvailable() -> Bool {
         guard !MaktabahApp.isIpad, !blocksRouting,
               let tab = originalTab(), workspaceSource.isAuthoritative,
