@@ -1,0 +1,13 @@
+{
+  "base": {
+    "bytes": 150931,
+    "sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9"
+  },
+  "candidate": {
+    "bytes": 156114,
+    "sha256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+  },
+  "edits": 13,
+  "inverse_original_bytes": true,
+  "root_owned_proposal_only": true
+}

@@ -5,6 +5,29 @@ import UIKit
 import OtzariaUIRouting
 import ChavrusaUIRoutingHost
 
+/// Finite original source identities only. The group consumer retains and
+/// validates its actual prepared stage; this value cannot create that stage.
+fileprivate enum MaktabahNativeViewerParentTarget {
+    case readerTab(UUID)
+    case workspaceSelection(profileID: UUID, groupID: UUID, activeDocumentID: UUID?)
+
+    @MainActor func matches(_ command: UISceneCommand) -> Bool {
+        let route = command.route.route
+        switch self {
+        case .readerTab(let tabID):
+            return route.destination == NativeReaderTabIntentService.destination
+                && route.presentation.tabID?.rawValue == tabID.uuidString
+        case .workspaceSelection(let profileID, let groupID, let activeDocumentID):
+            return route.destination == NativeWorkspaceSelectionIntentService.destination
+                && route.presentation == .init(kind: .currentTab,
+                    tabID: activeDocumentID.flatMap { UIStableID(rawValue: $0.uuidString) })
+                && route.state == .init(workspaceID: UIStableID(rawValue: groupID.uuidString),
+                                        profileID: UIStableID(rawValue: profileID.uuidString))
+                && route.content == nil && route.focus == nil
+        }
+    }
+}
+
 /// Scene-owned registration of the ORIGINAL Viewer container. It neither
 /// selects a root nor acknowledges a route. Only its retained request can
 /// admit the first cold host after the canonical parent effect.
@@ -51,12 +74,25 @@ final class MaktabahNativeViewerParentHost {
 
     func retain(requestID: UUID, tabID: UUID, bindings: MaktabahNativeSceneBindings) throws
         -> MaktabahNativeViewerParentContinuation {
+        try retain(requestID: requestID, target: .readerTab(tabID), bindings: bindings)
+    }
+
+    func retainWorkspaceSelection(requestID: UUID, profileID: UUID, groupID: UUID,
+                                  activeDocumentID: UUID?, bindings: MaktabahNativeSceneBindings) throws
+        -> MaktabahNativeViewerParentContinuation {
+        try retain(requestID: requestID,
+            target: .workspaceSelection(profileID: profileID, groupID: groupID,
+                                        activeDocumentID: activeDocumentID), bindings: bindings)
+    }
+
+    private func retain(requestID: UUID, target: MaktabahNativeViewerParentTarget,
+                        bindings: MaktabahNativeSceneBindings) throws -> MaktabahNativeViewerParentContinuation {
         guard !retired, !retaining, pending == nil, bindings.manager === manager else {
             throw UIRouteError(.unavailable, "native_viewer_parent_unavailable")
         }
         retaining = true
         defer { retaining = false }
-        let value = try MaktabahNativeViewerParentContinuation(requestID: requestID, tabID: tabID,
+        let value = try MaktabahNativeViewerParentContinuation(requestID: requestID, target: target,
             host: self, bindings: bindings, window: captureOriginalWindow())
         guard !retired, pending == nil, bindings.manager === manager else {
             throw UIRouteError(.staleState, "native_viewer_parent_session_changed")
@@ -153,14 +189,14 @@ final class MaktabahNativeViewerParentHost {
 }
 
 /// One retained original root transition. The workspace/tab/Reader source is
-/// retained by the existing ReaderTab binding, not copied into this object.
+/// retained by its original selection binding, not copied into this object.
 /// This object owns no Core grant: only the orchestrator may call the original
 /// selection after consuming its same-preparation terminal capability.
 @MainActor
 final class MaktabahNativeViewerParentContinuation {
     fileprivate let manager: iOSNavigationManager
     let requestID: UUID
-    private let tabID: UUID
+    private let target: MaktabahNativeViewerParentTarget
     private let host: MaktabahNativeViewerParentHost
     fileprivate let originalWindow: MaktabahNativeWindowObservation
     private let bindings: MaktabahNativeSceneBindings
@@ -184,7 +220,7 @@ final class MaktabahNativeViewerParentContinuation {
     private var waitStarted = false
     private var waiter: (id: UUID, continuation: CheckedContinuation<NativeOriginalParentObservation, Error>)?
 
-    fileprivate init(requestID: UUID, tabID: UUID, host: MaktabahNativeViewerParentHost,
+    fileprivate init(requestID: UUID, target: MaktabahNativeViewerParentTarget, host: MaktabahNativeViewerParentHost,
                      bindings: MaktabahNativeSceneBindings, window: MaktabahNativeWindowObservation) throws {
         let manager = bindings.manager, tab = bindings.selectedTab.wrappedValue
         guard tab == tab.canonical, tab != .viewer, manager.currentMode == tab.appMode,
@@ -198,7 +234,7 @@ final class MaktabahNativeViewerParentContinuation {
               host.presentationRevision != nil else {
             throw UIRouteError(.unavailable, "native_viewer_parent_source_unavailable")
         }
-        self.requestID = requestID; self.tabID = tabID; self.host = host; self.bindings = bindings
+        self.requestID = requestID; self.target = target; self.host = host; self.bindings = bindings
         originalWindow = window
         self.manager = manager; self.root = root
         originalTab = tab; originalMode = manager.currentMode
@@ -211,8 +247,7 @@ final class MaktabahNativeViewerParentContinuation {
         try validateRoot()
         guard phase == .retained, self.command == nil,
               command.invocation.requestId == requestID, command.scene.sceneID == host.sceneID,
-              command.route.route.destination == NativeReaderTabIntentService.destination,
-              command.route.route.presentation.tabID?.rawValue == tabID.uuidString else {
+              target.matches(command) else {
             throw UIRouteError(.staleState, "native_viewer_parent_command_changed")
         }
         try host.validateSession(self, beforeParent: true)
@@ -376,6 +411,23 @@ final class MaktabahNativeViewerParentContinuation {
     func validateOriginalSelectionEntry() throws {
         try validateRoot()
         guard phase == .selecting, host.retains(self) else { throw sourceChanged() }
+    }
+
+    /// Group terminal validation is repeated after the ORIGINAL snapshot
+    /// flush and before its Store/native writes. Those synchronous callbacks
+    /// may change UIKit while the root values stay equal. Re-read the SAME
+    /// original host/window/visible geometry; this check grants no effect.
+    func validateWorkspaceSelectionSource() throws {
+        try validateRoot()
+        let expectedPhase = phase
+        guard case .workspaceSelection = target,
+              phase == .selecting || phase == .selected,
+              modeWasPublished, modeToken == nil, let start = parentStartRevision,
+              let actual = try host.visibleParent(for: self),
+              actual.id == originalWitness, actual.revision > start,
+              actual.window === (try originalWindow.validate()) else { throw sourceChanged() }
+        try validateRoot()
+        guard phase == expectedPhase, host.retains(self) else { throw sourceChanged() }
     }
     func release() { host.release(self) }
     func invalidate() {

@@ -1,0 +1,32 @@
+{
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "source_tree": "7afa76212dec72644917e6aaff3257ca56a14ccf",
+  "files": [
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2168,
+      "sha256": "d9d515375ec29ce3ea3d2b574cb02627b737a253bda4361596692cc4a9ea3e72"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18186,
+      "sha256": "2814d6c1793e66c295a67d96977f757e71da0e6fd8902982d67f19c6076ff56b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 20823,
+      "sha256": "d25b21be0ff98eed6a663241fde17ce85df41d6b7b1b965d7432e827db89ffcd"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 20094,
+      "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 150931,
+      "sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+      "proposal_only": true
+    }
+  ]
+}

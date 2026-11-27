@@ -1,0 +1,54 @@
+[
+  {
+    "before": "    @ObservationIgnored private var readerTabParentObservation: NativeOriginalParentObservation?\n",
+    "after": "    @ObservationIgnored private var readerTabParentObservation: NativeOriginalParentObservation?\n    @ObservationIgnored private var workspaceSelectionParentObservation: NativeOriginalParentObservation?\n"
+  },
+  {
+    "before": "        guard mounted, workspaceSelectionBinding == nil, readerTabBinding == nil, isReaderTabSourceReady,\n              bindings.selectedTab.wrappedValue == .viewer, bindings.manager.currentMode == .viewer,\n              let source = workspaceProjectionSource else { return [] }\n",
+    "after": "        guard mounted, workspaceSelectionBinding == nil, readerTabBinding == nil, isReaderTabSourceReady,\n              let source = workspaceProjectionSource else { return [] }\n        let originalViewer = bindings.selectedTab.wrappedValue == .viewer && bindings.manager.currentMode == .viewer\n        guard originalViewer || viewerParentHost?.isAvailable(bindings: bindings) == true else { return [] }\n"
+  },
+  {
+    "before": "        let bound = try MaktabahNativeWorkspaceSelectionBinding(requestID: requestID, target: target,\n            bindings: bindings, source: source,\n",
+    "after": "        let bound = try MaktabahNativeWorkspaceSelectionBinding(requestID: requestID, target: target,\n            bindings: bindings, source: source, viewerParentHost: viewerParentHost,\n"
+  },
+  {
+    "before": "        guard workspaceSelectionBinding === bound else { return }\n        workspaceSelectionBinding = nil\n",
+    "after": "        guard workspaceSelectionBinding === bound else { return }\n        workspaceSelectionBinding = nil; workspaceSelectionParentObservation = nil\n"
+  },
+  {
+    "before": "                let originalLifetime = try componentValidation(value)\n                try bound.begin { [weak self, weak bound] in\n",
+    "after": "                workspaceSelectionParentObservation = nil\n                try bound.viewerParent?.bind(value)\n                let originalLifetime = try componentValidation(value)\n                try bound.begin { [weak self, weak bound] in\n"
+  },
+  {
+    "before": "    // Opt-in ONLY for an existing Reader-tab request retained on a foreign\n    // original root. The same command/preparation owns both effects; these\n",
+    "after": "    // Opt-in ONLY for the finite original Reader-tab or prepared workspace\n    // selection retained on a foreign root. The same preparation owns both effects; these\n"
+  },
+  {
+    "before": "    func originalParentSelectionKind(for value: UISceneCommand) throws -> UIOriginalParentSelectionKind? {\n",
+    "after": "    func originalParentSelectionKind(for value: UISceneCommand) throws -> UIOriginalParentSelectionKind? {\n        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {\n            guard command == value, let bound = workspaceSelectionBinding,\n                  bound.requestID == value.invocation.requestId, bound.isPrepared else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_owner_missing\")\n            }\n            guard let kind = try bound.originalParentSelectionKind(), let parent = bound.viewerParent else { return nil }\n            try parent.validates(value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_owner_changed\")\n            }\n            try bound.validate()\n            return kind\n        }\n"
+  },
+  {
+    "before": "    func applyOriginalParent(_ value: UISceneCommand) throws {\n",
+    "after": "    func applyOriginalParent(_ value: UISceneCommand) throws {\n        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {\n            try validateSurface(value)\n            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,\n                  bound.requestID == value.invocation.requestId, bound.isPrepared, !bound.isApplied else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            try parent.applyParent(value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            originalPresentationStateDidChange()\n            return\n        }\n"
+  },
+  {
+    "before": "    func waitUntilOriginalParentReady(_ value: UISceneCommand) async throws -> NativeOriginalParentObservation {\n",
+    "after": "    func waitUntilOriginalParentReady(_ value: UISceneCommand) async throws -> NativeOriginalParentObservation {\n        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {\n            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,\n                  bound.requestID == value.invocation.requestId, !bound.isApplied else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            let actual = try await parent.waitUntilReady(value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            try parent.validateParent(actual, command: value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            workspaceSelectionParentObservation = actual\n            return actual\n        }\n"
+  },
+  {
+    "before": "    func validateOriginalParent(_ actual: NativeOriginalParentObservation, for value: UISceneCommand) throws {\n",
+    "after": "    func validateOriginalParent(_ actual: NativeOriginalParentObservation, for value: UISceneCommand) throws {\n        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {\n            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,\n                  bound.requestID == value.invocation.requestId, workspaceSelectionParentObservation == actual else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            try parent.validateParent(actual, command: value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent,\n                  workspaceSelectionParentObservation == actual else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try bound.validate()\n            return\n        }\n"
+  },
+  {
+    "before": "    func applyOriginalSelection(_ value: UISceneCommand) throws {\n",
+    "after": "    func applyOriginalSelection(_ value: UISceneCommand) throws {\n        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {\n            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,\n                  bound.requestID == value.invocation.requestId, let actual = workspaceSelectionParentObservation else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            try validateOriginalParent(actual, for: value)\n            try parent.beginSelection(actual, command: value)\n            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {\n                throw UIRouteError(.staleState, \"native_workspace_selection_parent_changed\")\n            }\n            // The SAME Core terminal capability was just consumed. The complete\n            // original group flush/Store/native publisher stays synchronous.\n            try apply(value)\n            return\n        }\n"
+  },
+  {
+    "before": "        command = nil; retainedSearchField = nil; inspectorBinding = nil\n        readerTabParentObservation = nil\n",
+    "after": "        command = nil; retainedSearchField = nil; inspectorBinding = nil\n        readerTabParentObservation = nil\n        workspaceSelectionParentObservation = nil\n"
+  },
+  {
+    "before": "        workspaceSelectionBinding?.release(); workspaceSelectionBinding = nil\n",
+    "after": "        workspaceSelectionBinding?.release(); workspaceSelectionBinding = nil; workspaceSelectionParentObservation = nil\n"
+  }
+]

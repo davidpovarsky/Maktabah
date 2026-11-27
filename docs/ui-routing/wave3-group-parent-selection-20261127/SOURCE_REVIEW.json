@@ -1,0 +1,18 @@
+{
+  "reviewer": "/root/navigation_fix",
+  "scope": "Read-only finite Viewer/Group/Session source review; no reruns or native claim.",
+  "reviewed": {
+    "ViewerParent": "6201e44e",
+    "GroupBinding": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50",
+    "ScenePort": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b",
+    "Continuation": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47",
+    "Session": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+  },
+  "finding": "No demonstrated blocker in strict ReaderTab nonnil branch, exact prepared empty Group predicate, same window/root/mode/Settings ownership, repeated actual visible parent through synchronous terminal, or exact Session wait/callback identities.",
+  "postReviewDelta": "Only @MainActor on new finite target.matches, required by the actual strict-concurrency compiler; initial compiler failure and pre-annotation source retained. Current Viewer SHA3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f.",
+  "notReviewed": [
+    "Later cold initial-content issuer",
+    "Actual app SDK typing",
+    "Native runtime"
+  ]
+}

@@ -31,6 +31,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
     private let originalBookMode: AppMode?
     private let foreignObservation: NativeComponentSourceObservation
     private let foreignReady: @MainActor () -> Bool
+    let viewerParent: MaktabahNativeViewerParentContinuation?
     private var stagedForeignObservation: NativeComponentSourceObservation?
     private var reservation: StudyWorkspaceNativeGroupSelectionReservation?
     private var canonicalLifetime: (@MainActor () throws -> Void)?
@@ -112,6 +113,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
 
     init(requestID: UUID, target: NativeWorkspaceSelectionIntentService.Selection,
          bindings: MaktabahNativeSceneBindings, source: MaktabahNativeWorkspaceProjectionSource,
+         viewerParentHost: MaktabahNativeViewerParentHost? = nil,
          foreignReady: @escaping @MainActor () -> Bool,
          readForeignPresentations: @escaping @MainActor () -> Void) throws {
         let manager = bindings.manager
@@ -143,6 +145,21 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         self.bookRevision = bookRevision; self.overviewRevision = overviewRevision
         originalBook = manager.selectedBook; originalBookMode = manager.selectedBookPresentationMode
         self.foreignReady = foreignReady
+        let retainedParent: MaktabahNativeViewerParentContinuation?
+        if bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer {
+            retainedParent = nil
+        } else {
+            guard let viewerParentHost else {
+                backendObservation.retire()
+                throw UIRouteError(.unavailable, "native_viewer_parent_unavailable")
+            }
+            do {
+                retainedParent = try viewerParentHost.retainWorkspaceSelection(requestID: requestID,
+                    profileID: target.profileID, groupID: target.groupID,
+                    activeDocumentID: target.activeDocumentID, bindings: bindings)
+            } catch { backendObservation.retire(); throw error }
+        }
+        viewerParent = retainedParent
         // Do not observe owned Store/native/isSwitching mutations through a
         // generic latch. Their original setters have exact one-use permissions.
         // Warm original Reader source fields and all unrelated UI remain one-shot.
@@ -151,8 +168,14 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         foreignObservation = NativeComponentSourceObservation {
             _ = try? source.read()
             _ = workspace.attached; _ = workspace.errorMessage; _ = workspace.store.loadError
-            _ = root.selectionRevision; _ = root.settingsRevision
-            _ = manager.currentMode; _ = manager.nativeModePresentationRevision
+            _ = root.settingsRevision
+            if retainedParent == nil {
+                _ = root.selectionRevision
+                _ = manager.currentMode; _ = manager.nativeModePresentationRevision
+            }
+            // The exact original parent owns only its one root publication
+            // and original onChange mode call. Its source proof replaces
+            // these two observations, without rearming any other observer.
             _ = manager.selectedBookForInfo; _ = DonationManager.shared.showDonationSheet
             _ = bindings.sidebar?.overview.blocksRouting
             for reader in originalReaders { _ = reader.isPopoverPresented }
@@ -163,7 +186,8 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             }
             readForeignPresentations()
         }
-        try validate()
+        do { try validate() }
+        catch { retainedParent?.release(); backendObservation.retire(); throw error }
     }
 
     var isReserved: Bool { reservation != nil }
@@ -172,7 +196,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
     var observedSurface: MaktabahNativeSceneProjection.Surface {
         isEmpty ? (MaktabahApp.isIpad ? .emptyReader : .library) : .reader
     }
-    func invalidate() { valid = false }
+    func invalidate() { valid = false; viewerParent?.invalidate() }
 
     func validate() throws {
         try Task.checkCancellation()
@@ -180,13 +204,21 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         try stagedForeignObservation?.validate()
         try backendObservation.validate()
         let manager = bindings.manager
+        if let viewerParent {
+            try viewerParent.validateRoot()
+            if applying || isApplied { try viewerParent.validateWorkspaceSelectionSource() }
+        } else {
+            guard root.selectionRevision == selectionRevision,
+                  manager.nativeModePresentationRevision == modeRevision,
+                  bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer else {
+                throw UIRouteError(.staleState, "native_workspace_selection_source_changed")
+            }
+        }
         guard valid, source.isAuthoritative, try source.read() === workspace, workspace.store === store,
               workspace.sceneID == target.sceneID.rawValue, workspace.attached,
               workspace.errorMessage == nil, store.loadError == nil, foreignReady(),
               bindings.rootPublications === root,
-              root.selectionRevision == selectionRevision, root.settingsRevision == settingsRevision,
-              manager.nativeModePresentationRevision == modeRevision,
-              bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer,
+              root.settingsRevision == settingsRevision,
               !bindings.showSettings.wrappedValue,
               ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) == target.backend else {
             throw UIRouteError(.staleState, "native_workspace_selection_source_changed")
@@ -271,11 +303,38 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         canonicalLifetime = validateLifetime
     }
 
+    /// The driver can offer the staged path only for THIS actual original
+    /// preparation. In particular a nil wire tab is not an empty-group proof.
+    func originalParentSelectionKind() throws -> UIOriginalParentSelectionKind? {
+        try validate()
+        guard viewerParent != nil else { return nil }
+        guard isPrepared, !isApplied, let reservation,
+              reservation.prepared === prepared,
+              reservation.selectedTab?.id == target.activeDocumentID,
+              let profileID = UIStableID(rawValue: target.profileID.uuidString),
+              let groupID = UIStableID(rawValue: target.groupID.uuidString) else {
+            throw UIRouteError(.staleState, "native_workspace_selection_prepared_target_changed")
+        }
+        if target.activeDocumentID == nil {
+            guard prepared.staged.isEmpty, prepared.documents.isEmpty, reservation.selectedTab == nil else {
+                throw UIRouteError(.staleState, "native_workspace_selection_empty_target_changed")
+            }
+        } else {
+            guard !prepared.staged.isEmpty, !prepared.documents.isEmpty else {
+                throw UIRouteError(.staleState, "native_workspace_selection_prepared_target_changed")
+            }
+        }
+        return .workspaceSelection(profileID: profileID, workspaceID: groupID,
+            activeTabID: target.activeDocumentID.flatMap { UIStableID(rawValue: $0.uuidString) })
+    }
+
     func apply() throws {
         try validate()
         guard let reservation, let canonicalLifetime, isPrepared, !isApplied, !applying else {
             throw UIRouteError(.staleState, "native_workspace_selection_not_prepared")
         }
+        try viewerParent?.validateOriginalSelectionEntry()
+        try viewerParent?.validateWorkspaceSelectionSource()
         try canonicalLifetime()
         applying = true
         defer { applying = false }
@@ -289,6 +348,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             try self.validate()
         }
         isApplied = true
+        try viewerParent?.selectionDidApply()
         try canonicalLifetime(); try validate()
     }
 
@@ -321,6 +381,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
 
     func release() {
         valid = false; canonicalLifetime = nil
+        viewerParent?.release()
         if let reservation { workspace.releaseNativeGroupSelection(reservation) }
         else { backendObservation.retire() }
         reservation = nil
