@@ -1,0 +1,14 @@
+test_actual_effective_context_change_prevents_seal (__main__.ControllerChecks.test_actual_effective_context_change_prevents_seal) ... ok
+test_changed_v41_identity_fails_after_both_ui_and_log (__main__.ControllerChecks.test_changed_v41_identity_fails_after_both_ui_and_log) ... ok
+test_failed_native_search_aborts_host_before_retention (__main__.ControllerChecks.test_failed_native_search_aborts_host_before_retention) ... ok
+test_post_settings_success_has_separate_source_scope (__main__.ControllerChecks.test_post_settings_success_has_separate_source_scope) ... ok
+test_pull_transport_failure_with_stopped_workers_is_not_ui_pass (__main__.ControllerChecks.test_pull_transport_failure_with_stopped_workers_is_not_ui_pass) ... ok
+test_settings_seal_happens_after_image_postcheck (__main__.ControllerChecks.test_settings_seal_happens_after_image_postcheck) ... ok
+test_source_change_prevents_settings_seal_after_ui (__main__.ControllerChecks.test_source_change_prevents_settings_seal_after_ui) ... ok
+test_unqualified_prerequisites_never_boot_or_update (__main__.ControllerChecks.test_unqualified_prerequisites_never_boot_or_update) ... ok
+test_unverified_host_cleanup_defers_simulator_shutdown (__main__.ControllerChecks.test_unverified_host_cleanup_defers_simulator_shutdown) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.035s
+
+OK

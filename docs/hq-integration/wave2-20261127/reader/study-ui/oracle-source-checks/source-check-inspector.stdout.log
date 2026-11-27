@@ -1,0 +1,329 @@
+{
+  "status": "SOURCE_ONLY_NOT_UI",
+  "source": {
+    "checkout_sha": "acadee6801a05ceca81ea5e3b57ca901589b7ea1",
+    "application_source_sha": "UNFINALIZED",
+    "application_trees": {
+      "Source": "f23d96610fc90ffce3d5fab915104c8c7682c06f",
+      "Vendor": "206715dd2022ff73184860bec183578c8799d812",
+      "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
+      "Maktabah-iOSUITests": "1e6cdc774b473d7ac6f4221801326a21bbf4e2c8"
+    },
+    "inputs_file_sha256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+    "execution_inputs": {
+      ".github/workflows/otzaria-reader-groups-full-v32.yml": {
+        "bytes": 12675,
+        "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+      },
+      "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+        "bytes": 337784,
+        "sha256": "36e4b5bb0e244484cd152de8ae92823838772d5f90cc780aa85efbf7e6b4af66"
+      },
+      "Scripts/CI/hq-original-editor-distribution.py": {
+        "bytes": 72109,
+        "sha256": "3aacab5fc36a523929a3646b4a6ffc9e7c4d13638a999c302dde89a6babeafa5"
+      },
+      "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+        "bytes": 4889,
+        "sha256": "bcbae2085537f46c057667d39fdf7da809d1eec981a8df05da4c6253ff13914e"
+      },
+      "Scripts/CI/hq-stage2-focused-apple.py": {
+        "bytes": 69168,
+        "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+      },
+      "Scripts/CI/mac-prepared-inputs.py": {
+        "bytes": 16112,
+        "sha256": "38f403c94b4289ec43e13bbb97d7ce9b288a353e710e4a406a50f05dcc08a6c9"
+      },
+      "Scripts/CI/library-morph-focused-native.inputs.json": {
+        "bytes": 2701,
+        "sha256": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d"
+      },
+      "Scripts/CI/library-morph-focused-native.py": {
+        "bytes": 11955,
+        "sha256": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3"
+      },
+      "Scripts/CI/native-cohort-artifacts.py": {
+        "bytes": 4914,
+        "sha256": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03"
+      },
+      "Scripts/CI/prepare-faithful-ipad-fixtures.py": {
+        "bytes": 4384,
+        "sha256": "19c79cbcd58669ec0a2605fff33e4778367c9fe1bec1a7eea4cf888d9485072d"
+      },
+      "Scripts/CI/prepare-hanlin-sdk.py": {
+        "bytes": 4150,
+        "sha256": "5c4dafad120a3b6b7f9dc21bc7f0687e53fbbaf20ef876efaee939aff1064a1c"
+      },
+      "Scripts/CI/prepare-pinned-sharp-libvips.py": {
+        "bytes": 6252,
+        "sha256": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764"
+      },
+      "Scripts/CI/reader-full-v32-ui-observation.py": {
+        "bytes": 84518,
+        "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49"
+      },
+      "Scripts/CI/reader-groups100-focused-native.inputs.json": {
+        "bytes": 3346,
+        "sha256": "da0298893d193c57cebcf2e798c6a45f494e72aa17c4cc8db677f0ab91989914"
+      },
+      "Scripts/CI/reader-groups100-focused-native.py": {
+        "bytes": 13550,
+        "sha256": "6c0402fcd55617d3250adad84290c08c22dacddab7775c7620de8e1b0c363186"
+      },
+      "Scripts/CI/runtime27-url-delivery.py": {
+        "bytes": 5818,
+        "sha256": "065c8afaed97a7974a2e8ba4c61b3077c63366e21bb8696837a00e4ab4bd17b8"
+      },
+      "Scripts/CI/runtime27_interruption.py": {
+        "bytes": 7650,
+        "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+      },
+      "Scripts/CI/select-runtime27-toolchain.py": {
+        "bytes": 10936,
+        "sha256": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f"
+      },
+      "Scripts/CI/shutdown-faithful-simulator.py": {
+        "bytes": 2814,
+        "sha256": "da381cad8763c864fabcf68164504be8ca8ddbc19839e4007347ae9e24f93192"
+      },
+      "Scripts/CI/verify-faithful-xctest.py": {
+        "bytes": 6009,
+        "sha256": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7"
+      },
+      "Scripts/CI/verify-otzaria-xcode-project.py": {
+        "bytes": 7113,
+        "sha256": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee"
+      },
+      "Scripts/CI/verify-xcframework.sh": {
+        "bytes": 808,
+        "sha256": "6cc8cc2d1a22026e0864c1ddac337460146bc0e0b5da0a2a587dd9f2a1a19782"
+      },
+      "Scripts/DataProfiles/miniTest10.seed.json": {
+        "bytes": 713,
+        "sha256": "1a2ec23062eeaa877af9a43af8ffcdd7a6260232e09757abfecb54b2bdac7f17"
+      },
+      "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": {
+        "bytes": 7601,
+        "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+      },
+      "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": {
+        "bytes": 14288,
+        "sha256": "742d3e9dec8c432c8bfebea5f6e8d31b0188202f786501d24057556fb93f9bd2"
+      },
+      "Source/Core/Database/SQLiteDatabase.swift": {
+        "bytes": 14916,
+        "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+      },
+      "Source/Core/Database/ZstdShim.swift": {
+        "bytes": 3213,
+        "sha256": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999"
+      },
+      "Source/Otzaria/Core/OtzariaSQLiteError.swift": {
+        "bytes": 1363,
+        "sha256": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad"
+      },
+      "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": {
+        "bytes": 2487,
+        "sha256": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307"
+      },
+      "Source/Otzaria/Core/String+OtzariaText.swift": {
+        "bytes": 5243,
+        "sha256": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1"
+      },
+      "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": {
+        "bytes": 10284,
+        "sha256": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1"
+      },
+      "Source/Otzaria/Data/OtzariaSchema.swift": {
+        "bytes": 8773,
+        "sha256": "feabd62c4a170d5762bcc6bef09b27d1e736f122aa385dd5c2a148acb24829ad"
+      },
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": {
+        "bytes": 48689,
+        "sha256": "722c3e6dae328a217944d5298f60a2d6afc5125fdced02821cf34f2621d3b9e4"
+      },
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": {
+        "bytes": 12327,
+        "sha256": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e"
+      },
+      "Source/Otzaria/Reading/OtzariaLineAnchor.swift": {
+        "bytes": 199,
+        "sha256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6"
+      },
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": {
+        "bytes": 24184,
+        "sha256": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193"
+      },
+      "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": {
+        "bytes": 22057,
+        "sha256": "b5166743145329783d5650aed8caffeb6fc755b599987ae7629cb75893a6d006"
+      },
+      "Source/Otzaria/Reading/OtzariaReadingUnit.swift": {
+        "bytes": 3536,
+        "sha256": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb"
+      },
+      "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": {
+        "bytes": 2146,
+        "sha256": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02"
+      },
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": {
+        "bytes": 31632,
+        "sha256": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902"
+      },
+      "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+        "bytes": 443,
+        "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+      },
+      "tools/verify_xcresult_zero_skips.py": {
+        "bytes": 10243,
+        "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+      },
+      "Scripts/CI/runtime27-final-source-composition.inputs.json": {
+        "bytes": 22307,
+        "sha256": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0"
+      },
+      "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": {
+        "bytes": 1426,
+        "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+      },
+      "Scripts/CI/reader-full-v40-ui-observation.py": {
+        "bytes": 23994,
+        "sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10"
+      },
+      "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift": {
+        "bytes": 23978,
+        "sha256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992"
+      },
+      "Scripts/CI/library-v40-focused-native.py": {
+        "bytes": 24369,
+        "sha256": "6eb5768fe51a5c3339b107c839afd84e70cb02d093176cd166107b71beddaff0"
+      },
+      "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json": {
+        "bytes": 1390,
+        "sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b"
+      },
+      "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py": {
+        "bytes": 4021,
+        "sha256": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38"
+      },
+      "Source/LibraryBackend/LibraryBackendModels.swift": {
+        "bytes": 32419,
+        "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+      }
+    },
+    "scope": "Debug original production-corpus UI observation; no final Native116/Release114/device acceptance",
+    "study_ui_execution_sources": {
+      "Scripts/CI/production-study-v40-ui.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/production-study-v40-ui.py",
+        "bytes": 45393,
+        "sha256": "613bbf862725b3b5a1b7171938a34381315e5e3640dcd065637b27f65a2d522a"
+      },
+      "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+        "bytes": 196835,
+        "sha256": "6acb1e26a37bef05706662049e8ba755ccfd72d83e060a6c9405459ecec8ac37"
+      },
+      "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+        "bytes": 72871,
+        "sha256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377"
+      },
+      "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+        "bytes": 102026,
+        "sha256": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de"
+      },
+      "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+        "bytes": 55496,
+        "sha256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7"
+      },
+      "Maktabah-iOSUITests/MaktabahUITestBase.swift": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Maktabah-iOSUITests/MaktabahUITestBase.swift",
+        "bytes": 9285,
+        "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+      },
+      "Scripts/CI/prepare-managed-library-update-context.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/prepare-managed-library-update-context.py",
+        "bytes": 6512,
+        "sha256": "83e60a0e8ad7f22e61b5ecac62f6ecb48fede39133bf92a48f5fdfb85051da7f"
+      },
+      "Scripts/CI/study-ui-settings-receipts.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-settings-receipts.py",
+        "bytes": 42922,
+        "sha256": "01e73bb98b1fbccfd2a2fd20db41b774ecd358e2417ded2379c0e7cdf82b5aef"
+      },
+      "Scripts/CI/study-ui-prerequisites.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-prerequisites.py",
+        "bytes": 47638,
+        "sha256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2"
+      },
+      "Scripts/CI/study-ui-search-log.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-search-log.py",
+        "bytes": 30960,
+        "sha256": "5f2be3e510e8bd67a8f77a845d2d1fd4d9da78ecc3b9c86c3fc10e887f921ecc"
+      },
+      "Scripts/CI/reader-continuous-pull-host.py": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-continuous-pull-host.py",
+        "bytes": 33013,
+        "sha256": "e36664701bbb370133d889fb6c370648be240d47330c13edcda021918fac87ca"
+      },
+      "docs/hq-integration/wave2-20261127/search/production-ui-contract.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/production-ui-contract.json",
+        "bytes": 2735,
+        "sha256": "557a8627a14f6c918251b5e53f32bf16e049421d574ed84f31b545bfa0c5cd6c"
+      },
+      "docs/hq-integration/wave2-20261127/search/native-context/TEST_CONTRACT.md": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/native-context/TEST_CONTRACT.md",
+        "bytes": 9024,
+        "sha256": "a39e5e93bf63b212725b9b903c543e6af527d253f35b608db38475dec3910978"
+      },
+      "docs/hq-integration/wave2-20261127/search/native-context/sefaria-native-source-oracle.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/native-context/sefaria-native-source-oracle.json",
+        "bytes": 87140,
+        "sha256": "759e939ff99a27b58e3ddea7505855ff18ca8b80416bf1e12f3d24440cf66890"
+      },
+      "docs/hq-integration/wave2-20261127/library/inspector-v40/ORACLE.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/library/inspector-v40/ORACLE.json",
+        "bytes": 73525,
+        "sha256": "53694dd13202791d02b223a03c88d9c550bd840749884fc576d15928aef4dff6"
+      },
+      "docs/hq-integration/wave2-20261127/library/settings-receipts/POST_UPDATE_RECEIPT.schema.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/library/settings-receipts/POST_UPDATE_RECEIPT.schema.json",
+        "bytes": 13154,
+        "sha256": "7405ed55ebf521d8dcaf991003fbe80e0d5ac5ff1e293a0912d8628c7cecfec4"
+      },
+      "docs/hq-integration/wave2-20261127/reader/continuous-pull/TEST_CONTRACT.md": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/continuous-pull/TEST_CONTRACT.md",
+        "bytes": 5776,
+        "sha256": "1338243211da7c121cd4de84dd46a9e1e22e4c4dfb6519ca50ee78c57a915053"
+      },
+      "docs/hq-integration/wave2-20261127/search/post-update-ui/TEST_CONTRACT.md": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/search/post-update-ui/TEST_CONTRACT.md",
+        "bytes": 12631,
+        "sha256": "31314411c5b5679dc36e9a2190229d1e5c275749bbb039398725df374614c1cd"
+      },
+      "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/sefaria-inspector-default-mode-oracle.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/library/inspector-mode-ui/sefaria-inspector-default-mode-oracle.json",
+        "bytes": 21902,
+        "sha256": "288876d0fcb903298bc0b4c9bcfe95047f4f520ea0ce9476fe008650baa3e224"
+      },
+      "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response.json",
+        "bytes": 29198,
+        "sha256": "c785026ced58b9af868ce50181463fd0bfafa7d96b7f9f3c1bb710aba5e0ae90"
+      },
+      "docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response-receipt.json": {
+        "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response-receipt.json",
+        "bytes": 1277,
+        "sha256": "a410f359a935622a73de478470e5710f1a2b44418f6c796adf2c112cb7b34f19"
+      }
+    },
+    "study_ui_phase": "inspector",
+    "executed_case_ids": [
+      "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+    ],
+    "shared_profile_scope": "Full-v40 ownership/source admission only; original two Reader/Inspector observation cases are not executed by this controller"
+  }
+}
