@@ -1,0 +1,57 @@
+{
+  "compileArgv": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt1/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/ActualSourceWithControls.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/SefariaRPCModels.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/BackendID.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/controls"
+  ],
+  "compileExit": 0,
+  "expectedOutcomeObserved": true,
+  "expectedSuccess": false,
+  "failed": 1,
+  "finishedAt": "2026-11-27T06:12:06.852001+00:00",
+  "logs": [
+    {
+      "bytes": 1172,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/compile.stderr.log",
+      "sha256": "39f9263287d81d88f15a4195dfd70bc70d5d61492e00b275fb1435bb0537efb0"
+    },
+    {
+      "bytes": 0,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7382,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/run.stderr.log",
+      "sha256": "d8ad78f82648fe21e407ff4c8d10c1463d95828687d1b8264feec7a6a44be4ee"
+    },
+    {
+      "bytes": 3225,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/run.stdout.json",
+      "sha256": "54a55cf5bc6ccb80104eb0678d23062e05a1673268b48e6af96407abc77d7350"
+    }
+  ],
+  "name": "runtime-weakened-synchronous-lock",
+  "passed": 24,
+  "runArgv": [
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/controls",
+    "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9"
+  ],
+  "runExit": 1,
+  "source": {
+    "bytes": 41831,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-weakened-synchronous-lock/ActualSourceWithControls.swift",
+    "sha256": "f93b4d5f15555617c06ccd6081fa4148c8f75b301d220d29b36d55877b80652a"
+  },
+  "startedAt": "2026-11-27T06:12:04.194952+00:00"
+}

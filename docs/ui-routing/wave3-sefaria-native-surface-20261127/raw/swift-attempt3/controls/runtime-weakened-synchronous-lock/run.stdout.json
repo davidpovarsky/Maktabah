@@ -1,0 +1,111 @@
+{
+  "failed" : 1,
+  "metadata" : {
+    "scope" : "portable source controls; native acceptance not run",
+    "sourceSHA256" : "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9"
+  },
+  "passed" : 24,
+  "results" : [
+    {
+      "name" : "not-started bridge cannot issue a surface token",
+      "passed" : true
+    },
+    {
+      "name" : "real actor fields and synchronous observation agree",
+      "passed" : true
+    },
+    {
+      "name" : "listener false-true ABA invalidates without changing original RPC epoch",
+      "passed" : true
+    },
+    {
+      "name" : "bootstrap-error to ready ABA invalidates at the same epoch",
+      "passed" : true
+    },
+    {
+      "name" : "equal-value listener lifecycle publication is still a new observation",
+      "passed" : true
+    },
+    {
+      "name" : "equal-value ready lifecycle publication is still a new observation",
+      "passed" : true
+    },
+    {
+      "name" : "epoch A-B-A cannot revive a surface token",
+      "passed" : true
+    },
+    {
+      "name" : "direct RuntimeManager bump closes its cancellation-before-epoch boundary",
+      "passed" : true
+    },
+    {
+      "name" : "nested lifecycle end cannot reopen an outer transition",
+      "passed" : true
+    },
+    {
+      "name" : "unmatched lifecycle completion cannot make a source available",
+      "passed" : true
+    },
+    {
+      "name" : "queued native lifecycle invalidates before actor publication",
+      "passed" : true
+    },
+    {
+      "name" : "exact native boundaries settle out of order and complete only once",
+      "passed" : true
+    },
+    {
+      "name" : "concurrent duplicate native completion consumes one boundary",
+      "passed" : true
+    },
+    {
+      "name" : "native transition overflow cannot issue another surface token",
+      "passed" : true
+    },
+    {
+      "name" : "actual transport replacement revokes token before another handshake",
+      "passed" : true
+    },
+    {
+      "name" : "unrelated transport detach cannot revoke current original owner",
+      "passed" : true
+    },
+    {
+      "name" : "original resource begin-end is unavailable throughout and revokes old token",
+      "passed" : true
+    },
+    {
+      "name" : "failed resource operation drains and keeps its two original epoch boundaries",
+      "passed" : true
+    },
+    {
+      "name" : "synchronous commit permits same-thread read validation without deadlock",
+      "passed" : true
+    },
+    {
+      "name" : "stale token cannot enter the synchronous publication",
+      "passed" : true
+    },
+    {
+      "detail" : "SurfaceControlFailure(message: \"lifecycle writer entered native commit\")",
+      "name" : "writer contending with synchronous commit waits until its scope ends",
+      "passed" : false
+    },
+    {
+      "name" : "revision exhaustion fails permanently instead of wrapping",
+      "passed" : true
+    },
+    {
+      "name" : "retained token owns its source authority for its full lifetime",
+      "passed" : true
+    },
+    {
+      "name" : "typed native lease rejects another owner and stale free-state ABA",
+      "passed" : true
+    },
+    {
+      "name" : "native identity rejects imprecise JavaScript epochs",
+      "passed" : true
+    }
+  ]
+}

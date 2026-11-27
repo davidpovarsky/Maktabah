@@ -1,0 +1,21 @@
+{
+  "_notice": "You have 8 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them.",
+  "cleanup": true,
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_f4dc3a53b9da466d8f5e72101a7c3414\\sentinelx_bootstrap.ps1",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_f4dc3a53b9da466d8f5e72101a7c3414\\script.ps1"
+  ],
+  "cwd": null,
+  "duration": 2.27,
+  "interpreter": "powershell",
+  "ok": true,
+  "output": "SOURCE Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28\nSOURCE Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift 941a42e4cd4d3f49d3034e95d95c85ee1755d74ed8611a62de5ae16daac14e75\nSOURCE Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687\nDIFF_CHECK 0  \nACTUAL_UPSTREAM 0 4203de5fd77beb119e5826e039be1a61325f7be0\tHEAD\n4203de5fd77beb119e5826e039be1a61325f7be0\trefs/heads/main\nPIN 160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream\nMERGE_BASE a0ed0df908a6cb38bc459d4baaeb400f447b2fc4\nORIGIN {\"baseBlob\": \"05bd767754e4509b7b48c8ab2e94f4fc173240ad\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"15ad8ac0596056503e52082ae3d8c0b13499fdd5\"], \"path\": \"Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift\"}\nORIGIN {\"baseBlob\": \"efd5c651bda5577447b836ee40429cece2dfb429\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift\"}\nORIGIN {\"baseBlob\": \"5b57b725a661f58bf133812328e36a30fe44c33b\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift\"}\nORIGIN {\"baseBlob\": \"6a5a5466a08e384415f65eae15d1e6131919430b\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift\"}\nORIGIN {\"baseBlob\": \"4a7f8b2112e4e7782d282a29ab1fff8739cea5ae\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"7be24ab648de8539afdb161c0551d605ce3c1e18\"], \"path\": \"Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift\"}\nORIGIN {\"baseBlob\": \"a37c1df1138f96ae1ed1a214abfa9339604c60bf\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift\"}\nORIGIN {\"baseBlob\": \"4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7\", \"existsAtCurrentUpstream\": true, \"introducedAt\": [\"1d4f4a283bf34d62b3c7ec95e5da3c50f75cf625\"], \"path\": \"Source/UI/iOS/Views/iOSMainView.swift\"}\nORIGIN {\"baseBlob\": \"3d736ec0312cf622694e079f45ac31ee9de00941\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js\"}\nORIGIN {\"baseBlob\": \"5faa35d1e28431c40937b26840cb97127ba82dc4\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\"}\nORIGIN {\"baseBlob\": \"5abb64ffc21de52daab497185c897e0b925441b7\", \"existsAtCurrentUpstream\": false, \"introducedAt\": [\"b13aabcd300d91aae13d152875163e33906bcb7e\"], \"path\": \"Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift\"}\nFREE 793128960",
+  "returncode": 0,
+  "sudo": false
+}

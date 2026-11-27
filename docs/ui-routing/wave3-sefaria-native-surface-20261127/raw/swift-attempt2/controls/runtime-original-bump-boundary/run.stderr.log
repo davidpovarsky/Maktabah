@@ -1,0 +1,52 @@
+2026-11-27 06:00:33.509 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.509 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 0
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"bootstrapError","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] bootstrapError received: 
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.510 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.511 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.511 controls[3580895:d075f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.511 controls[3580895:d075f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.512 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.512 controls[3580895:d075f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.513 controls[3580895:d075f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.513 controls[3580895:d075f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] clearTransportIfMatches: clearing transport
+2026-11-27 06:00:33.513 controls[3580895:d075f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.513 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.514 controls[3580895:d075f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.514 controls[3580895:d075f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"event":"ready","sequence":1,"backendID":"sefariaEmbedded"}
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 06:00:33.514 controls[3580895:cf73f0e0] [SefariaJSRPCBridge] notifyListenersActive: 1

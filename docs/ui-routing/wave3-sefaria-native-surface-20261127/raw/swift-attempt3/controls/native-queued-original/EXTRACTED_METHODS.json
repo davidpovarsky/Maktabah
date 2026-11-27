@@ -1,0 +1,13 @@
+{
+  "moduleSourceSHA256": "2508c9835d1c2177ca1c10e4bfe1b749bb8b1ed5cabd0e685a81768ecce2b852",
+  "nativeMethods": [
+    "    override func startObserving() {\n        NSLog(\"[ChavrusaSefariaBridgeModule] startObserving() called, active listeners wired\")\n        hasListeners = true\n        Task {\n            await SefariaJSRPCBridge.shared.notifyListenersActive(true)\n        }\n    }",
+    "    override func stopObserving() {\n        hasListeners = false\n        Task {\n            await SefariaJSRPCBridge.shared.notifyListenersActive(false)\n        }\n    }",
+    "    override func invalidate() {\n        hasListeners = false\n        Task {\n            await SefariaJSRPCBridge.shared.clearTransportIfMatches(self)\n        }\n        super.invalidate()\n    }",
+    "    func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {\n        self.customExecutor = executor\n    }",
+    "    @objc func deliverEvent(_ jsonString: String) {\n        #if DEBUG\n        if jsonString.count > 300 {\n            let prefix = String(jsonString.prefix(200))\n            NSLog(\"[ChavrusaSefariaBridgeModule] deliverEvent: %@... (%ld bytes)\", prefix, jsonString.count)\n        } else {\n            NSLog(\"[ChavrusaSefariaBridgeModule] deliverEvent: %@\", jsonString)\n        }\n        #endif\n        Task {\n            await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)\n        }\n    }"
+  ],
+  "objcAttributeRemovedForLinuxOnly": true,
+  "originalReset": "    func reset() async {\n        resetState()\n        _ = await SefariaJSRPCBridge.shared.bumpSessionEpoch()\n    }",
+  "resetSourceSHA256": "a6db78ccd1d7a5ce818e9e86c87998889e2010f72667b3b0f4bff070599b2fab"
+}

@@ -1,0 +1,108 @@
+{
+  "variant": "allow-first-mount-aba",
+  "sourceSHA256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+  "evaluatedSHA256": "e78099c67351cfaa9a8cb467a14216d90f92b678d76bff85bcfb8b4958296722",
+  "passed": 21,
+  "failed": 3,
+  "results": [
+    {
+      "name": "warm original surface requires a real subsequent frame",
+      "passed": true
+    },
+    {
+      "name": "cold observation admits only its exact first real mount",
+      "passed": true
+    },
+    {
+      "name": "original loaded flag cannot be manufactured by native layout",
+      "passed": true
+    },
+    {
+      "name": "original completed-init flag is mandatory",
+      "passed": true
+    },
+    {
+      "name": "actual layout event is mandatory",
+      "passed": true
+    },
+    {
+      "name": "reject unrendered layout width=0",
+      "passed": true
+    },
+    {
+      "name": "reject unrendered layout height=0",
+      "passed": true
+    },
+    {
+      "name": "reject unrendered layout width=NaN",
+      "passed": true
+    },
+    {
+      "name": "reject unrendered layout height=Infinity",
+      "passed": true
+    },
+    {
+      "name": "reject wrong original surfaceID",
+      "passed": true
+    },
+    {
+      "name": "reject wrong original mountID",
+      "passed": true
+    },
+    {
+      "name": "reject wrong original sceneID",
+      "passed": true
+    },
+    {
+      "name": "reject wrong bridge epoch",
+      "passed": true
+    },
+    {
+      "name": "reject invalid nonce and unsafe epoch",
+      "passed": true
+    },
+    {
+      "name": "detach revokes pending read and cancels its frame",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: ORIGINAL_SURFACE_DETACHED"
+    },
+    {
+      "name": "first-mount foreign to null ABA cannot join an old wait",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'fulfilled'\n- 'rejected'\n"
+    },
+    {
+      "name": "equal-identity unmount and remount does not revive a prior request",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'ORIGINAL_SURFACE_SOURCE_CHANGED'\n- 'ORIGINAL_SURFACE_DETACHED'\n                    ^\n"
+    },
+    {
+      "name": "duplicate visible root cannot replace the owner",
+      "passed": true
+    },
+    {
+      "name": "original error boundary revokes actual surface observation",
+      "passed": true
+    },
+    {
+      "name": "retained deadline is exclusive even when UI becomes ready then",
+      "passed": true
+    },
+    {
+      "name": "an absent cold surface has a bounded lifetime",
+      "passed": true
+    },
+    {
+      "name": "only one original observation may be pending",
+      "passed": true
+    },
+    {
+      "name": "response reads actual latest geometry without mutating feature state",
+      "passed": true
+    },
+    {
+      "name": "failed prior request does not strand observation capacity",
+      "passed": true
+    }
+  ]
+}

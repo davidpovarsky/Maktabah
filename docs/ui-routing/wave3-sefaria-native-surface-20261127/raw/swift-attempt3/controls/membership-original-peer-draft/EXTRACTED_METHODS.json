@@ -1,0 +1,17 @@
+[
+  {
+    "sha256": "a56f49d01a70973373e3934e730c4fed4db3964b27479a337819e39c71c2e429",
+    "signature": "    func releaseSource(requestID:",
+    "text": "    func releaseSource(requestID: UUID) { sources.removeValue(forKey: requestID) }"
+  },
+  {
+    "sha256": "09833aa9bfd796d92dd164b556b75058c5e4f824a7b694b9771a1c59b330098c",
+    "signature": "    func begin(requestID:",
+    "text": "    func begin(requestID: UUID, validate: @escaping @MainActor () throws -> Void) throws {\n        guard pending == nil else { throw UIRouteError(.unavailable, \"native_sefaria_surface_busy\") }\n        try validateSource(requestID: requestID); try validate()\n        completed = nil\n        pending = .init(requestID: requestID, validate: validate)\n    }"
+  },
+  {
+    "sha256": "f247abac7bc5e513258a5f9fd760700fb804bca148863addea15216866aff113",
+    "signature": "    private func withSource<T>(requestID:",
+    "text": "    private func withSource<T>(requestID: UUID, operation: @MainActor (SourceEntry) throws -> T) throws -> T {\n        guard let entry = sources[requestID], let pending, pending.requestID == requestID else {\n            throw UIRouteError(.staleState, \"native_sefaria_observation_changed\")\n        }\n        return try entry.original.runtime.withValidRuntime {\n            try validate(entry); try pending.validate()\n            let value = try operation(entry)\n            try validate(entry); try pending.validate()\n            return value\n        }\n    }"
+  }
+]

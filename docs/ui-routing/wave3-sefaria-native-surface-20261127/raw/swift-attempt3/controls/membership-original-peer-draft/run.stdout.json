@@ -1,0 +1,75 @@
+{
+  "failed" : 12,
+  "passed" : 2,
+  "results" : [
+    {
+      "name" : "exact active original source publishes once",
+      "passed" : true
+    },
+    {
+      "detail" : "MembershipFailure(message: \"removed membership accepted\")",
+      "name" : "first admission callback removing map membership prevents publication",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"active release accepted\")",
+      "name" : "reentrant active release invalidates and finishes the exact request",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"replacement source accepted\")",
+      "name" : "same request identifier with replacement source is not the original source",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"replacement pending accepted\")",
+      "name" : "same request identifier with a replacement Pending is a different operation",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"finished pending accepted\")",
+      "name" : "finished admission cannot execute from a copied Pending",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"report callback released source without rejection\")",
+      "name" : "report callback release is rejected on the same synchronous boundary",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"completed report returned under stale pending\")",
+      "name" : "report callback completion cannot return through stale copied Pending",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"last callback removal accepted\")",
+      "name" : "last admission callback is followed by fresh membership validation",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"invalid source executed before the late check\")",
+      "name" : "original source invalidation is checked after admission callback",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"begin restored released source\")",
+      "name" : "begin cannot publish Pending after its admission callback releases source",
+      "passed" : false
+    },
+    {
+      "detail" : "MembershipFailure(message: \"begin overwrote another operation\")",
+      "name" : "begin cannot overwrite a reentrant Pending",
+      "passed" : false
+    },
+    {
+      "name" : "only exact successfully completed receipt proof survives normal release",
+      "passed" : true
+    },
+    {
+      "detail" : "MembershipFailure(message: \"foreign completed proof retained source\")",
+      "name" : "unrelated completed proof does not retain a released source",
+      "passed" : false
+    }
+  ],
+  "scope" : "verbatim source boundary controls; UIKit\/native not run"
+}

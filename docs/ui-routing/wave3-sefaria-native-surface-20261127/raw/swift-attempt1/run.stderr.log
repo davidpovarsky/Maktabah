@@ -1,0 +1,49 @@
+2026-11-27 05:35:23.660 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.662 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 0
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"bootstrapError","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] bootstrapError received: 
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.663 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] clearTransportIfMatches: clearing transport
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:277df0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.664 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"sequence":1,"event":"ready","backendID":"sefariaEmbedded"}
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyListenersActive: 1
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] handleIncomingEvent: {"backendID":"sefariaEmbedded","sequence":1,"event":"ready"}
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyReady: Hermes runtime ready event received!
+2026-11-27 05:35:23.665 surface-runtime-controls[3496890:267bf0e0] [SefariaJSRPCBridge] notifyListenersActive: 1

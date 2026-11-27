@@ -1,0 +1,20 @@
+{
+  "cleanup": true,
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_d8d7972720f9421dbe2c96f1095a4c69\\sentinelx_bootstrap.ps1",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_d8d7972720f9421dbe2c96f1095a4c69\\script.ps1"
+  ],
+  "cwd": null,
+  "duration": 1.71,
+  "interpreter": "powershell",
+  "ok": true,
+  "output": "{\"nav.texts\": \"Texts\", \"common.topics\": \"Topics\", \"history.saved\": \"Saved\", \"nav.account\": \"Account\", \"common.welcome\": \"Welcome\", \"common.not_now\": \"Not Now\", \"common.ok\": \"OK\"}",
+  "returncode": 0,
+  "sudo": false
+}

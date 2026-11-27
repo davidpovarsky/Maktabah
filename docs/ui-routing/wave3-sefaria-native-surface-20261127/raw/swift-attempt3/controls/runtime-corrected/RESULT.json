@@ -1,0 +1,57 @@
+{
+  "compileArgv": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt1/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/ActualSourceWithControls.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/SefariaRPCModels.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/BackendID.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/controls"
+  ],
+  "compileExit": 0,
+  "expectedOutcomeObserved": true,
+  "expectedSuccess": true,
+  "failed": 0,
+  "finishedAt": "2026-11-27T06:11:55.263815+00:00",
+  "logs": [
+    {
+      "bytes": 1156,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/compile.stderr.log",
+      "sha256": "cda21593e1510dd1cf39d6e225f3cee084f364fd065d32a2c6d2075b76d08389"
+    },
+    {
+      "bytes": 0,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7382,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/run.stderr.log",
+      "sha256": "4eca77dc4393df619fd9eb4018bbea2f0658bfe0d1099d886104f01753e86e76"
+    },
+    {
+      "bytes": 3129,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/run.stdout.json",
+      "sha256": "55245517445a606c282ab649cdd5e031a8680d83fab194237052323a63d9c53d"
+    }
+  ],
+  "name": "runtime-corrected",
+  "passed": 25,
+  "runArgv": [
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/controls",
+    "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9"
+  ],
+  "runExit": 0,
+  "source": {
+    "bytes": 41876,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt3/controls/runtime-corrected/ActualSourceWithControls.swift",
+    "sha256": "cfc868d0cf0ea22b94b9c1c6cda145e1d135481b3865fce213ef13878df36d68"
+  },
+  "startedAt": "2026-11-27T06:11:50.539420+00:00"
+}

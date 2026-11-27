@@ -1,0 +1,63 @@
+{
+  "failed" : 0,
+  "passed" : 14,
+  "results" : [
+    {
+      "name" : "exact active original source publishes once",
+      "passed" : true
+    },
+    {
+      "name" : "first admission callback removing map membership prevents publication",
+      "passed" : true
+    },
+    {
+      "name" : "reentrant active release invalidates and finishes the exact request",
+      "passed" : true
+    },
+    {
+      "name" : "same request identifier with replacement source is not the original source",
+      "passed" : true
+    },
+    {
+      "name" : "same request identifier with a replacement Pending is a different operation",
+      "passed" : true
+    },
+    {
+      "name" : "finished admission cannot execute from a copied Pending",
+      "passed" : true
+    },
+    {
+      "name" : "report callback release is rejected on the same synchronous boundary",
+      "passed" : true
+    },
+    {
+      "name" : "report callback completion cannot return through stale copied Pending",
+      "passed" : true
+    },
+    {
+      "name" : "last admission callback is followed by fresh membership validation",
+      "passed" : true
+    },
+    {
+      "name" : "original source invalidation is checked after admission callback",
+      "passed" : true
+    },
+    {
+      "name" : "begin cannot publish Pending after its admission callback releases source",
+      "passed" : true
+    },
+    {
+      "name" : "begin cannot overwrite a reentrant Pending",
+      "passed" : true
+    },
+    {
+      "name" : "only exact successfully completed receipt proof survives normal release",
+      "passed" : true
+    },
+    {
+      "name" : "unrelated completed proof does not retain a released source",
+      "passed" : true
+    }
+  ],
+  "scope" : "verbatim source boundary controls; UIKit\/native not run"
+}

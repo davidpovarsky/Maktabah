@@ -1,0 +1,39 @@
+{
+  "failed" : 0,
+  "passed" : 8,
+  "results" : [
+    {
+      "name" : "native listener start is fenced before its own setter and queued actor work",
+      "passed" : true
+    },
+    {
+      "name" : "native listener stop is fenced before its own setter",
+      "passed" : true
+    },
+    {
+      "name" : "native invalidate remains closed through original super invalidation",
+      "passed" : true
+    },
+    {
+      "name" : "executor replacement invalidates synchronously before original assignment",
+      "passed" : true
+    },
+    {
+      "name" : "equal ready event invalidates before its queued actor handling",
+      "passed" : true
+    },
+    {
+      "name" : "queued bootstrap error cannot lend actor's previous ready state",
+      "passed" : true
+    },
+    {
+      "name" : "unrelated original events do not invalidate surface authority",
+      "passed" : true
+    },
+    {
+      "name" : "RuntimeManager reset fences its first original mutation before the actor hop",
+      "passed" : true
+    }
+  ],
+  "scope" : "verbatim native callback\/reset boundary controls; React\/UIKit NOT_RUN"
+}

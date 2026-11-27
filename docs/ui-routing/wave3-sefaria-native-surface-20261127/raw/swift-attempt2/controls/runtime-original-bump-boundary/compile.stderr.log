@@ -1,0 +1,10 @@
+/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt2/controls/runtime-original-bump-boundary/ActualSourceWithControls.swift:697:22: warning: weak variable 'weakAuthority' was never mutated; consider changing to 'let' constant [#VariableNeverMutated::WeakMutability]
+695 |         await test("retained token owns its source authority for its full lifetime") {
+696 |             var authority: SefariaRPCSessionEpoch? = .init(); authority!.controlSeed(revision: 1)
+697 |             weak var weakAuthority = authority
+    |                      `- warning: weak variable 'weakAuthority' was never mutated; consider changing to 'let' constant [#VariableNeverMutated::WeakMutability]
+698 |             var token: SefariaEmbeddedSurfaceRuntimeToken? = try authority!.retainSurface()
+699 |             authority = nil; try expect(weakAuthority != nil, "retained source was released early")
+
+[#VariableNeverMutated]: <https://docs.swift.org/compiler/documentation/diagnostics/variable-never-mutated>
+[#WeakMutability]: <https://docs.swift.org/compiler/documentation/diagnostics/weak-mutability>

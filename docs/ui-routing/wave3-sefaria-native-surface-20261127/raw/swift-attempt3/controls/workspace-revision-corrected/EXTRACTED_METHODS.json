@@ -1,0 +1,8 @@
+{
+  "methods": [
+    "    func originalStateWillChange(host kind: Host, stateOwnerID: UUID, change: OriginalChange) {\n        advanceOriginalStateRevision()\n        guard let host = hosts[kind], host.stateOwnerID == stateOwnerID else {\n            invalidateRetainedSources(); return\n        }\n        if ownedChange?.consume(.host(kind, host.token, change)) != true { invalidateRetainedSources() }\n    }",
+    "    private func advanceOriginalStateRevision() {\n        guard let value = originalStateRevision else { return }\n        originalStateRevision = value < .max ? value + 1 : nil\n    }"
+  ],
+  "originalSidebarCallback": "        sidebarObservation = sidebar?.observeOverviewRequestChanges { [weak self] in\n            guard let self else { return }\n            advanceOriginalStateRevision()\n            // Only the exact synchronous original request setter is exempt.\n            // The one-shot source proof is never reset after a user state change.\n            if ownedChange?.consume(.sidebar) != true { invalidateRetainedSources() }\n        }",
+  "sourceSHA256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba"
+}

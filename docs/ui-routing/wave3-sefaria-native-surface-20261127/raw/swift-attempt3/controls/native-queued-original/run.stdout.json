@@ -1,0 +1,46 @@
+{
+  "failed" : 7,
+  "passed" : 1,
+  "results" : [
+    {
+      "detail" : "HookFailure(message: \"native start setter preceded source invalidation\")",
+      "name" : "native listener start is fenced before its own setter and queued actor work",
+      "passed" : false
+    },
+    {
+      "detail" : "HookFailure(message: \"native stop setter preceded source invalidation\")",
+      "name" : "native listener stop is fenced before its own setter",
+      "passed" : false
+    },
+    {
+      "detail" : "HookFailure(message: \"native invalidate setter preceded source boundary\")",
+      "name" : "native invalidate remains closed through original super invalidation",
+      "passed" : false
+    },
+    {
+      "detail" : "HookFailure(message: \"executor write preceded source boundary\")",
+      "name" : "executor replacement invalidates synchronously before original assignment",
+      "passed" : false
+    },
+    {
+      "detail" : "HookFailure(message: \"queued equal-ready event retained token\")",
+      "name" : "equal ready event invalidates before its queued actor handling",
+      "passed" : false
+    },
+    {
+      "detail" : "HookFailure(message: \"queued bootstrap error retained ready token\")",
+      "name" : "queued bootstrap error cannot lend actor's previous ready state",
+      "passed" : false
+    },
+    {
+      "name" : "unrelated original events do not invalidate surface authority",
+      "passed" : true
+    },
+    {
+      "detail" : "HookFailure(message: \"resetState ran before the reset boundary\")",
+      "name" : "RuntimeManager reset fences its first original mutation before the actor hop",
+      "passed" : false
+    }
+  ],
+  "scope" : "verbatim native callback\/reset boundary controls; React\/UIKit NOT_RUN"
+}
