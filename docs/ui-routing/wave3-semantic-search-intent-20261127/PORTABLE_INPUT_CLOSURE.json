@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "MATCH",
+  "utc": "2026-11-27T07:53:33.355176+00:00",
+  "scope": "Original SwiftPM Package.swift/Sources/Tests/resource input closure remains byte-identical after approved app-only shortcut addition.",
+  "original_inventory_sha256": "41fe235b7ac0f84953c17609092eb709e00138cfc815968f259d5134f067a56d",
+  "matched_input_count": 132,
+  "excluded_integration_inputs": "App Integration directory is outside the portable SwiftPM target; Apple syntax/SDK/native gates are independent.",
+  "post_run_changes": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "run_sha256": "827f1160986abd9b80def9f7fed84e9737f07330beba4f37fffb4eeae351281b",
+      "current_sha256": "5f642ff73dcff83d80591ccab9a0cf81aea049c98bfa8bda2541bce5e7538b08"
+    }
+  ],
+  "apple_sdk_typecheck": "NOT_RUN",
+  "native": "NOT_RUN"
+}

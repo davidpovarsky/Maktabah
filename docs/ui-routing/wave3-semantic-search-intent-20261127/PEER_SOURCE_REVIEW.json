@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "reviewer": "/root/ui_acceptance",
+  "scope": "Read-only exact source; no test rerun or native acceptance",
+  "serviceSHA256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+  "compositionSHA256": "8df5190cbb67bcc6951108dd9fb0b64ee44bdd095171b216fe10d9129b74dbf0",
+  "blockingFindings": [],
+  "conclusion": "Exact original Registration/window/backend before bounded foreground preflight, shared original pending/prepare/Core grant/search owner path, final completion check before cleanup, and retained failed result/receipt were independently reviewed. Original Core re-resolves scopes; unsupported hit/cursor presence is refused. No extra executor or fallback found.",
+  "nonblockingObservation": "Service receipt-shape check does not explicitly forbid selectedItemID/scrollAnchor/components in UIState. The actual original search route sets only original workspace/profile IDs. No production path supplying those extra fields was identified; no gate was relaxed."
+}

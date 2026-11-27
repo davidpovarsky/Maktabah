@@ -1,0 +1,25 @@
+Building for debugging...
+[Computing dependencies]
+[Provisioning 3 / 11]
+[Pre-planning 1 / 242]
+[Planning deferred tasks]
+[16 / 44] OtzariaActionCore_OtzariaActionCore
+[23 / 47] OtzariaActionCore
+[23 / 47]
+[29 / 53] OtzariaUIRouting
+[30 / 53] OtzariaUIRouting
+[36 / 56] ChavrusaUIRoutingHost
+[38 / 59] ChavrusaUIRoutingHost
+[39 / 59] ChavrusaUIRoutingHost
+[45 / 59] ChavrusaUIRoutingHost
+[47 / 63] ChavrusaUIRoutingHostTests-product
+[49 / 63] ChavrusaUIRoutingHostTests-product
+[50 / 63] ChavrusaUIRoutingHostTests-product
+[55 / 63] OtzariaActionCore
+[57 / 63] ChavrusaUIRoutingHost
+[57 / 63] ChavrusaUIRoutingHostTests-product
+[61 / 64] ChavrusaUIRoutingHostTests-product
+[65 / 67] ChavrusaUIRoutingHostTests-test-runner
+[69 / 69] ChavrusaUIRoutingHostTests-test-runner
+[73 / 73] ChavrusaUIRoutingHost-product
+Build complete! (44.57 secs)

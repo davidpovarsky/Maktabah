@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "scope": "Apple-target syntax only; original Apple AppIntents metadata extraction and Siri execution NOT_RUN",
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift"
+  ],
+  "exit": 0,
+  "utc": "2026-11-27T07:41:57.999346+00:00",
+  "source_sha256": "5f642ff73dcff83d80591ccab9a0cf81aea049c98bfa8bda2541bce5e7538b08",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

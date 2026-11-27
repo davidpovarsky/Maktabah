@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "scope": "Apple-target syntax only. Imports/AppIntents/UIKit types are not SDK typechecked. Native acceptance NOT_RUN.",
+  "status": "PASS",
+  "utc": "2026-11-27T07:33:11.494941+00:00",
+  "records": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "sha256": "706ef6ef6f0eeaf77e18518f310397a33f9c4a85feac94e19251b2b9cd34e4ca",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift"
+      ],
+      "exit": 0,
+      "log": "NativeSearchIntents.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "8df5190cbb67bcc6951108dd9fb0b64ee44bdd095171b216fe10d9129b74dbf0",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0,
+      "log": "MaktabahNativeRoutingComposition.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

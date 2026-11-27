@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_FOR_ROOT_ORIGINAL_CATALOG_INTEGRATION",
+  "source": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+  "note": "Use original Apple extraction for App Intents/shortcut interpolation keys. Existing identical semantic keys may be reused; do not rename protected keys. English source literals are present; Hebrew integration and native locale acceptance remain pending.",
+  "strings": [
+    {
+      "en": "Search book filter",
+      "he": "סינון החיפוש לפי ספר"
+    },
+    {
+      "en": "Search mode",
+      "he": "מצב חיפוש"
+    },
+    {
+      "en": "Exact phrase",
+      "he": "ביטוי מדויק"
+    },
+    {
+      "en": "Search order",
+      "he": "סדר התוצאות"
+    },
+    {
+      "en": "Relevance",
+      "he": "רלוונטיות"
+    },
+    {
+      "en": "Book order",
+      "he": "סדר הספרים"
+    },
+    {
+      "en": "Chronological",
+      "he": "סדר כרונולוגי"
+    },
+    {
+      "en": "Show search results",
+      "he": "הצגת תוצאות חיפוש"
+    },
+    {
+      "en": "Search for an exact phrase in the current library and display its results in the selected Maktabah window. Book filters are available in the Otzaria library. Sorting choices depend on the selected library.",
+      "he": "חיפוש ביטוי מדויק בספרייה הפעילה והצגת התוצאות בחלון אוצריא שנבחר. סינון לפי ספרים זמין בספריית אוצריא. אפשרויות המיון תלויות בספרייה שנבחרה."
+    },
+    {
+      "en": "Search phrase",
+      "he": "ביטוי לחיפוש"
+    },
+    {
+      "en": "Books (optional)",
+      "he": "ספרים (רשות)"
+    },
+    {
+      "en": "Sort results",
+      "he": "מיון תוצאות"
+    },
+    {
+      "en": "Window",
+      "he": "חלון"
+    },
+    {
+      "en": "Search",
+      "he": "חיפוש"
+    }
+  ],
+  "interpolated": [
+    {
+      "sourceLiteral": "Show results for \\(\\.$query) in \\(\\.$window)",
+      "heMeaning": "הצגת תוצאות עבור [query] בחלון [window]",
+      "kind": "App Intent ParameterSummary; preserve exact original extracted placeholders"
+    },
+    {
+      "sourceLiteral": "Show search results in \\(.applicationName)",
+      "heMeaning": "הצגת תוצאות חיפוש ב־[applicationName]",
+      "kind": "AppShortcut phrase; use AppShortcuts catalog and preserve applicationName placeholder"
+    }
+  ]
+}

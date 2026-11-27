@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "status": "SOURCE_READY_NATIVE_PENDING",
+  "utc": "2026-11-27T08:00:15.408262+00:00",
+  "base": "1a4d64dca46b61ea3d9dbcab5d152dc618f2be39",
+  "sourceCommit": "ff5e20977f9aef49492a6bf9ae1e5794862edfe9",
+  "sourceTree": "0ac3181814daee36e9832e404d588e99f8005eb7",
+  "branch": "codex/otzaria-wave3-search-results-intent-20261127",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127",
+  "scope": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "sha256": "5f642ff73dcff83d80591ccab9a0cf81aea049c98bfa8bda2541bce5e7538b08",
+      "bytes": 1038
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "8df5190cbb67bcc6951108dd9fb0b64ee44bdd095171b216fe10d9129b74dbf0",
+      "bytes": 173488
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+      "bytes": 11134
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "sha256": "706ef6ef6f0eeaf77e18518f310397a33f9c4a85feac94e19251b2b9cd34e4ca",
+      "bytes": 4647
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "sha256": "29f57981f85bdbc04aa72282dfa15564a44280f6f9f215e65b54f8e25a79693c",
+      "bytes": 26367
+    }
+  ],
+  "portable": {
+    "status": "PASS",
+    "tests": 68,
+    "newSearchTests": 23,
+    "existingTests": 45,
+    "failures": 0,
+    "resultSha256": "591c5e99798f9c6cf65af034f5db7140b523545968765e371a37796e36904579",
+    "manifestSha256": "b5ad4a3057552a72d9b1129c01a38927739590da9f78d5247d7a6df4e68505fb"
+  },
+  "sourcePeerReview": {
+    "reviewer": "ui_acceptance",
+    "blockingFindings": 0,
+    "scope": "Actual two shared boundaries and new service source; no rerun/native claim",
+    "receipt": "PEER_SOURCE_REVIEW.json"
+  },
+  "apple": {
+    "syntaxFiles": 3,
+    "syntaxStatus": "PASS",
+    "SDKTypecheck": "NOT_RUN",
+    "metadataExtraction": "NOT_RUN",
+    "nativeIPad": "NOT_RUN",
+    "nativeIPhone": "NOT_RUN",
+    "SiriShortcuts": "NOT_RUN"
+  },
+  "originalAcceptanceCountsChanged": false,
+  "openRequirements": [
+    "selected-hit row/version focus",
+    "source-owned cursor/paging continuation",
+    "root String Catalog integration for exact new strings",
+    "final original source/owner admission",
+    "original Apple metadata and actual native system journeys"
+  ],
+  "integrationNotes": [
+    "Package Sources/Tests automatically include the new files; no extra app PBX membership",
+    "Only two original Composition hunks plus one fixed app shortcut entry",
+    "RN and record root composition changes are independently owned and must both remain",
+    "No source/engine/SDK pins or existing gates changed"
+  ]
+}
