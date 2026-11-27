@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/Features/Setting/SettingsView.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.261,
+  "scope": "syntax_only_active_iOS27_branch_NOT_Apple_SDK_typecheck",
+  "output": "",
+  "sources": {
+    "Source/Features/Setting/SettingsView.swift": "50e06827c91312943351a375ba05853a22ce0de678659f89055e82768383b421",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "09834a04d6efcaea1301e76024a6e1f518b591e55be197de25246cb7edf59180",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "31bbcb4cdd7f8716f1bd87e4037f674954739123e705b59db2daf2d74a8c6244",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "aa6cf8660287c3db2cca987c4a77509363b44d8c96668b2c92a0c2daa25aac77",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "cf2c98761c654091c03d28dcbd7a3ec9b08a9e183e48a26f2c268f6d3d49b7a1"
+  }
+}

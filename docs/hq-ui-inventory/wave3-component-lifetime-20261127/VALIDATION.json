@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "base_sha": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "upstream_observed_sha": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "sources": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "09834a04d6efcaea1301e76024a6e1f518b591e55be197de25246cb7edf59180",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "31bbcb4cdd7f8716f1bd87e4037f674954739123e705b59db2daf2d74a8c6244",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "aa6cf8660287c3db2cca987c4a77509363b44d8c96668b2c92a0c2daa25aac77",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "cf2c98761c654091c03d28dcbd7a3ec9b08a9e183e48a26f2c268f6d3d49b7a1",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "439bbc4855bd33bfab5ada49537ce7fb9ef3ecee6ab66c383faff3d1cd760184",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift": "e0ba0b336d3899a2022d0c47c39dd589960101382b79a279fb3c7c113e12d295",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentSourceObservationTests.swift": "fef723b46e09eff76af607cfcc7a5686fb199b0ac5405daf985062a7294f5ec7",
+    "Source/Features/Setting/SettingsView.swift": "50e06827c91312943351a375ba05853a22ce0de678659f89055e82768383b421"
+  },
+  "app_adapter_dependency": {
+    "sha": "688ed61e9db646795a28c771bdebc3ee8b70bdad",
+    "status": "separate peer commit must be integrated with this shared API"
+  },
+  "verification": {
+    "ios27_syntax": {
+      "status": "PASS",
+      "files": 6,
+      "scope": "parse only; NOT Apple SDK typecheck"
+    },
+    "portable_46_control_attempt": {
+      "status": "BLOCKED_CAPACITY",
+      "executed_cases": 0,
+      "returncode": -15,
+      "capacity_guard_bytes": 134217728,
+      "available_bytes_at_start": 90517504,
+      "raw_result": "validation/component-lifetime-result.json"
+    },
+    "supplemental_portable_typecheck": {
+      "status": "BLOCKED_DEPENDENCY_SEARCH_PATH",
+      "detail": "No such module OtzariaUIRouting: existing cache uses Swift Build out/Intermediates.noindex, not legacy triple/debug. No source compiler acceptance asserted. Newly created failed-attempt module cache was timestamp-identified and removed; prior cache preserved.",
+      "raw_result": "validation/portable-source-typecheck.json"
+    },
+    "native_runtime": "NOT_RUN",
+    "apple_sdk_compile": "NOT_RUN",
+    "original_native_suites": "UNCHANGED_NOT_RERUN",
+    "physical": "NOT_RUN",
+    "historical_Settings_controls": "24f880be has36 passing portable cases on its own earlier source, not acceptance of this change"
+  },
+  "owner_gate": "Authentic source-bound approval for new protected SettingsView delta remains required. No signatures/gate code changed.",
+  "boundary": "Finite original control reveal only; actual source and UIKit witness mandatory; no canonical grant refresh, data writes, invented receipt or pass criteria change.",
+  "artifacts": {
+    "component-lifetime-result.json": "7489351c832cd5489c650679c0e029f4493874a3968eb372d441aba18abbe18f",
+    "component-lifetime-tests.log": "c8f8384f4851336ddaaa421c1c26e256531fa82f451f6ed3bec2038ee3c03edb",
+    "ios27-source-parse.json": "2bef35ff31d6171d26c39bd94386bf3e55bd826ca673b4c3bfd5e95d1b8c9fea",
+    "portable-source-typecheck.json": "7790056ed3c31210ec3580c7b34afa9d6b3cf5707a0e39b3fac75cae24d743b5",
+    "source-snapshot.json": "f0265322d54b2c7bfc61d193f9df2889ba79ff645170828f61540f2681027e59"
+  }
+}

@@ -38,7 +38,7 @@ enum MaktabahSettingsComponent: String, CaseIterable {
         }
     }
     static func makeOwner() -> MaktabahNativeComponentOwner {
-        .init(destination: destination, presentation: .sheet, descriptors: descriptors) { anchor in
+        .init(destination: destination, presentation: .sheet, descriptors: descriptors, available: { anchor in
             guard let component = MaktabahSettingsComponent.allCases.first(where: { $0.anchorString == anchor.rawValue }) else { return false }
             let backend = BackendCoordinator.shared, model = SettingsViewModel.shared
             guard !backend.isTransitioning, !model.showCollisionAlert else { return false }
@@ -56,7 +56,49 @@ enum MaktabahSettingsComponent: String, CaseIterable {
                 return backend.usesNativeMaktabahDataPath && AppConfig.isUsingBundleMode
             default: return true
             }
-        }
+        }, captureSource: { anchor in
+            guard let component = MaktabahSettingsComponent.allCases.first(where: { $0.anchorString == anchor.rawValue }) else {
+                throw UIRouteError(.unavailable, "native_settings_component_unavailable")
+            }
+            let model = SettingsViewModel.shared, migration = FtsMigrationManager.shared
+            let bundleMode = AppConfig.isUsingBundleMode
+            let observation = MaktabahNativeComponentSourceObservation {
+                _ = model.showCollisionAlert
+                _ = model.isBundleMode
+                switch component {
+                case .appearance: _ = model.useDefaultTheme
+                case .history: _ = model.recordSearchHistory
+                case .annotations: _ = model.hideMissingBookAnnotations
+                case .cloud:
+                    _ = model.useICloud; _ = model.isProcessingICloud
+                case .storage:
+                    _ = model.databaseFilesPath; _ = model.archiveFilesPath
+                case .optimization:
+                    _ = model.hasPendingVacuum; _ = model.isVacuuming
+                case .updates: _ = model.enableAutoCoreVersionCheck
+                case .searchIndex:
+                    _ = migration.needsMigration; _ = migration.isMigrating
+                    _ = migration.isCancelled; _ = migration.isOptimizationOnly
+                    _ = migration.totalArchivesToMigrate
+                default: break
+                }
+            }
+            return { [weak model, weak migration] in
+                try observation.validate()
+                guard let model, let migration,
+                      SettingsViewModel.shared === model, FtsMigrationManager.shared === migration,
+                      !model.showCollisionAlert, AppConfig.isUsingBundleMode == bundleMode else {
+                    throw UIRouteError(.staleState, "native_settings_component_source_changed")
+                }
+            }
+        })
+    }
+
+    /// Called synchronously by the original overlay setters. SwiftUI @State is
+    /// not claimed as an Observation source and an onChange callback can coalesce
+    /// a complete open/close cycle while a retained request is suspended.
+    static func originalOverlayWillChange(_ session: MaktabahNativeSceneSession?) {
+        session?.componentOwner(for: destination)?.retirePresentation()
     }
 }
 

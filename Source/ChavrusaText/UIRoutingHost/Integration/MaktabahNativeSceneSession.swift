@@ -361,6 +361,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         workspaceProjectionSource = workspaceSource
         presentation = NativePresentationObserver(sceneID: sceneID)
         attachComponentOwner(MaktabahNativeSettingsComponents.makeOwner())
+        attachComponentOwner(MaktabahNativeTOCComponents.makeOwner(manager: bindings.manager))
+        attachComponentOwner(MaktabahNativeLibraryComponents.makeOwner(manager: bindings.manager))
     }
 
     func mount(validateLifetime: @escaping NativeSceneDirectory.ValidateLifetime) throws {
