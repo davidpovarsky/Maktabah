@@ -1,0 +1,30 @@
+{
+  "schema": "otzaria.wave3.hidden-phone-native.result.v1",
+  "sourceCommit": "9e28e2a10c1906e3eca8c0cf355b199a3676435d",
+  "sourceBase": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "branch": "codex/otzaria-wave3-hidden-phone-reader-native-20261127",
+  "sourceTreeUnchanged": "1e36b8942c4f43e551f5b1eb814139fac651e56b",
+  "sourcePreservation": "259080-byte7f735 prefix and67 existing test-function occurrences byte-exact; no existing test file or app code modified",
+  "syntax": {
+    "actualExit": 0,
+    "invocations": 1,
+    "inputFiles": 2,
+    "resultSHA256": "07055f566ef84d10a1182773b8f6eedd5261524e0605921649291249f5c77f7b",
+    "scope": "Swift6.4.3 frontend parse for arm64-apple-ios27.0, not Apple SDK typechecking or XCTest execution"
+  },
+  "additiveSelectors": 5,
+  "nativeExecuted": 0,
+  "native": "NOT_RUN",
+  "sdkTypecheck": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "productionV40": "NOT_RUN; retains original miniTest10-v6 family fixture",
+  "evidenceArchive": {
+    "path": "EVIDENCE.zip",
+    "bytes": 114988,
+    "sha256": "20d92d1cb8ad438b5d3044f5b055f49049157df69a0607bc63a982b8de02eb75",
+    "members": 17,
+    "fullMemberReadback": "all exact bytes compared to original inputs"
+  },
+  "integration": "Root must append only the separately supplied suffix while preserving its independent History four-call correction and UI-agent Search suffix; new test already inherits synchronized target membership.",
+  "independentSourceReview": "PEER_REVIEW.json; no concrete source blocker, no run by peer"
+}

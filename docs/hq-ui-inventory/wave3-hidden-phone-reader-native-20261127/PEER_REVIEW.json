@@ -1,0 +1,26 @@
+{
+  "reviewer": "/root/release_preflight",
+  "scope": "Independent bounded source review only; no rerun or edit",
+  "sourceCommit": "9e28e2a10c1906e3eca8c0cf355b199a3676435d",
+  "helperSHA256": "25e48b7aec434f0e279ba03dcccaa3171310209d5da03ab0706bca1e6a66fc9a",
+  "newTestSHA256": "df2a74beaee99eadd112613a7eca19f75eb68280660d802bb58b24e25fb1871b",
+  "readOriginalBoundaries": [
+    "requireReaderLocator with sealed SQL and actual TextKit",
+    "strict eight-field single native receipt parser",
+    "actual workspace and persisted-document readers",
+    "original Back, dedicated History and original empty-group setup"
+  ],
+  "result": "No concrete source blocker found in this bounded review",
+  "findings": [
+    "Positive cases begin with a visible original SQL/TextKit Reader and prove the same active tab is hidden through original Back before delivering the same cached real system entity.",
+    "The History setup uses the dedicated original historyURL, preserving the unrelated restrictive publicRootURL guard.",
+    "Both refusal cases first prove the same entity succeeds, then use original empty-group UI and actual discovery withdrawal.",
+    "Refusal compares all persisted workspace fields except checkpoint revision and all receipts across the bounded five-second observation; read failures count as unwanted effects.",
+    "A system parameter-resolution refusal may truthfully leave the app in the background; there is no activation fallback."
+  ],
+  "limits": [
+    "The positive document comparison covers the existing explicit semantic field subset, not full selectedRange, TOC expansion or layout restoration.",
+    "Five-second polling is bounded no-late-effect evidence, not an unbounded runtime guarantee.",
+    "No Apple SDK typecheck, app/native XCTest or physical execution was performed by this review."
+  ]
+}

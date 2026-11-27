@@ -1,0 +1,49 @@
+{
+  "schema": "otzaria.wave3.hidden-phone-native.source-parse.v1",
+  "base": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/candidate/Maktabah-iOSUITests/NativeHiddenActivePhoneReaderTabAcceptanceTests.swift"
+  ],
+  "toolVersion": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "exit": 0,
+  "seconds": 0.09098362922668457,
+  "inputs": [
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 272224,
+      "sha256": "20ff79f690d4ebf203f9596095f09ebb0c14148e21f243b50885f217da75bd61"
+    },
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/candidate/Maktabah-iOSUITests/NativeHiddenActivePhoneReaderTabAcceptanceTests.swift",
+      "bytes": 1511,
+      "sha256": "df2a74beaee99eadd112613a7eca19f75eb68280660d802bb58b24e25fb1871b"
+    }
+  ],
+  "logs": [
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/attempt-1/parse.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-hidden-phone-reader-native-20261127/build/hidden-phone-reader-native-20261127/attempt-1/parse.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "prefix": {
+    "bytes": 259080,
+    "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad",
+    "exactPreserved": true
+  },
+  "scope": "Apple-target frontend syntax only; imports are not typechecked or linked. No Apple SDK, app, simulator, XCTest execution, native PASS or production acceptance.",
+  "native": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "free": 2348457984
+}

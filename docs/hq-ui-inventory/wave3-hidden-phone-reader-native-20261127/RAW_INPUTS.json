@@ -1,0 +1,85 @@
+{
+  "schema": "otzaria.wave3.hidden-phone-native.raw-inputs.v1",
+  "files": [
+    {
+      "path": "NATIVE_HELPER_ADDITION.swift",
+      "bytes": 13144,
+      "sha256": "25e48b7aec434f0e279ba03dcccaa3171310209d5da03ab0706bca1e6a66fc9a"
+    },
+    {
+      "path": "APPEND_ONLY_HELPER.patch",
+      "bytes": 13559,
+      "sha256": "c1d3907007c57cb0db689e88e3ef97d976cd3319d5b6f8ac2054af0130c81713"
+    },
+    {
+      "path": "NativeHiddenActivePhoneReaderTabAcceptanceTests.swift",
+      "bytes": 1511,
+      "sha256": "df2a74beaee99eadd112613a7eca19f75eb68280660d802bb58b24e25fb1871b"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 1476,
+      "sha256": "5128c8711842abf7ddcf99564bc845511ef3cadf00f281d061320b785ba716ca"
+    },
+    {
+      "path": "SOURCE_PRESERVATION.json",
+      "bytes": 1196,
+      "sha256": "5c0dc5a1547f5bbbb88b53c584b2188b6961d42af0bf93afb385b2544a47affe"
+    },
+    {
+      "path": "TRANSPORT_AND_METADATA_ATTEMPTS.json",
+      "bytes": 8138,
+      "sha256": "07f753477443bfd5a27c062ea3d147342627e22b55533b7cfec8e6d680cc85ca"
+    },
+    {
+      "path": "INTAKE.json",
+      "bytes": 2925,
+      "sha256": "ba5ca952625791e5acc043e701f85c7e1947823f2a7c20cbf87a54477039bb2d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9132,
+      "sha256": "33aabdf51eea53a9fc1d3e137ee2fd381ec227246795e0f21104e1605658d53d"
+    },
+    {
+      "path": "evidence/MEMBERSHIP_READ.json",
+      "bytes": 1672,
+      "sha256": "f518219896b2bcd596e8435e22ebbc8572c3c50cb4fbc3f4654cd9c0fbc87cf7"
+    },
+    {
+      "path": "evidence/PROVENANCE.json",
+      "bytes": 2297,
+      "sha256": "0d6f574750d47c23c6a88f2e7367f15fa2574b1d2f2fe4d2927c83a2e350ad2f"
+    },
+    {
+      "path": "evidence/attempt-1/RESULT.json",
+      "bytes": 2441,
+      "sha256": "07055f566ef84d10a1182773b8f6eedd5261524e0605921649291249f5c77f7b"
+    },
+    {
+      "path": "evidence/attempt-1/parse.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/attempt-1/parse.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/baseline/NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "candidate/Maktabah-iOSUITests/NativeHiddenActivePhoneReaderTabAcceptanceTests.swift",
+      "bytes": 1511,
+      "sha256": "df2a74beaee99eadd112613a7eca19f75eb68280660d802bb58b24e25fb1871b"
+    },
+    {
+      "path": "candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 272224,
+      "sha256": "20ff79f690d4ebf203f9596095f09ebb0c14148e21f243b50885f217da75bd61"
+    }
+  ]
+}
