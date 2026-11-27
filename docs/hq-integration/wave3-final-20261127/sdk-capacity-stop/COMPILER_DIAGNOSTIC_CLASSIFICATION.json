@@ -1,0 +1,8 @@
+{
+  "diagnostics": [],
+  "filter": "^path:line:column: error: or Xcode error diagnostics; excludes source parameter names and notes",
+  "original_build_result": "INTERRUPTED_NOT_ACCEPTED",
+  "original_stdout_sha256": "efa2618ee5ae84947c1a9c765840b5d63a2196e21e1d18ee2aefd411125f297f",
+  "prior_inventory_note": "The prior broad substring inventory includes source excerpts mentioning error; it is not a compiler-error count.",
+  "status": "NO_COMPILER_ERROR_DIAGNOSTIC_BEFORE_CONTROLLED_INTERRUPT"
+}

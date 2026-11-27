@@ -1,0 +1,148 @@
+{
+  "active_pid": null,
+  "automatic_artifact_cleanup": false,
+  "cache_seed_reuse": false,
+  "capacity_signals": [
+    {
+      "at": "2026-11-27T04:15:53.947584+00:00",
+      "free_bytes": 2352279552,
+      "pgid": 540,
+      "pid": 540,
+      "reason": "APPROACHING_RECORDED_2_GIB_CAPACITY_RESERVE",
+      "scope": "Only this launched original controller group; its unchanged command() owns child-group draining",
+      "signal": "SIGINT"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_reviewed_macro.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127"
+      ],
+      "capacity_stop_requested": false,
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:11:01.015504+00:00",
+      "free_after_bytes": 10960973824,
+      "free_before_bytes": 10961092608,
+      "name": "macro-prepare",
+      "pgid": 529,
+      "pid": 529,
+      "returncode": 0,
+      "started_at": "2026-11-27T04:11:00.095407+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "fa981b1b0c7f1c7f4cd194ac91c7231795c08e6f372638edd49d5f7dde052387"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/run_framework_acceptance.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work",
+        "--import-abi-receipt",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/ABI_DONOR_INPUT.json",
+        "--import-abi-sha256",
+        "adab56b1ad2c6fc06d7b154b4df0112a9a3dfdde4230a576e5064bd15bd04496"
+      ],
+      "capacity_stop_requested": true,
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:16:03.188614+00:00",
+      "free_after_bytes": 2266005504,
+      "free_before_bytes": 10960941056,
+      "name": "framework",
+      "pgid": 540,
+      "pid": 540,
+      "returncode": 1,
+      "started_at": "2026-11-27T04:11:01.072980+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "2d222c2df9a03beaa59d557ab8ee93f98fa4abdfc38a44ae2f35d82010ef3bad"
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_reviewed_macro.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127",
+        "--restore"
+      ],
+      "capacity_stop_requested": false,
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:16:03.400003+00:00",
+      "free_after_bytes": 2265976832,
+      "free_before_bytes": 2266001408,
+      "name": "macro-restore",
+      "pgid": 10568,
+      "pid": 10568,
+      "returncode": 0,
+      "started_at": "2026-11-27T04:16:03.197736+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "79e24cd77c4ad7e78570c07f3848f4305f84c274003514fcbfff5409d993a534"
+    }
+  ],
+  "early_stop_free_bytes": 2415919104,
+  "error": {
+    "message": "Original framework acceptance failed with exit 1",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervise_original_sdk.py\", line 91, in <module>\n    if framework_rc!=0:raise RuntimeError('Original framework acceptance failed with exit '+str(framework_rc))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Original framework acceptance failed with exit 1\n",
+    "type": "RuntimeError"
+  },
+  "finished_at": "2026-11-27T04:16:03.402238+00:00",
+  "framework_invoked": true,
+  "framework_returncode": 1,
+  "free_after_bytes": 2265964544,
+  "last_sample": {
+    "at": "2026-11-27T04:16:03.202797+00:00",
+    "command": "macro-restore",
+    "controller_phase": null,
+    "free_bytes": 2265989120,
+    "pid": 10568
+  },
+  "macro_restore_returncode": 0,
+  "original_controller_owned_simulator_cleanup_unchanged": true,
+  "original_execution": {
+    "error": "CI signal 2",
+    "external_consumer_build": "NOT_RUN",
+    "original_framework_build": "NOT_RUN",
+    "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/execution.json",
+    "phase": "ORIGINAL_FRAMEWORK_BUILD",
+    "sha256": "2d222c2df9a03beaa59d557ab8ee93f98fa4abdfc38a44ae2f35d82010ef3bad",
+    "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+    "status": "FAIL",
+    "verified_runtime_observations": 0
+  },
+  "owner": "root coordinated SDK window; navigation_fix execution",
+  "phase": "macro-restore",
+  "preflight": {
+    "checked_at": "2026-11-27T04:11:00.094686+00:00",
+    "conflicting_processes": [],
+    "early_stop_free_bytes": 2415919104,
+    "framework_execution_absent": true,
+    "free_bytes": 10961100800,
+    "macro_output_absent": true,
+    "provisional_growth_budget_bytes": 8813617152,
+    "reserve_bytes": 2147483648,
+    "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+    "tracked_clean": true,
+    "work_absent": true
+  },
+  "reserve_bytes": 2147483648,
+  "schema": "otzaria.wave3.original-sdk-supervision/1",
+  "source_after": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "started_at": "2026-11-27T04:10:59.973807+00:00",
+  "status": "NOT_COMPLETE",
+  "supervisor_pgid": 525,
+  "supervisor_pid": 525,
+  "tracked_status_after": ""
+}

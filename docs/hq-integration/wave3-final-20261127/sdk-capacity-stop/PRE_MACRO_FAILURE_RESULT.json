@@ -1,0 +1,74 @@
+{
+  "active_pid": null,
+  "automatic_artifact_cleanup": false,
+  "cache_seed_reuse": false,
+  "capacity_signals": [],
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_reviewed_macro.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestoration-20261127"
+      ],
+      "capacity_stop_requested": false,
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "finished_at": "2026-11-27T04:07:10.874879+00:00",
+      "free_after_bytes": 10997653504,
+      "free_before_bytes": 10997669888,
+      "name": "macro-prepare",
+      "pgid": 99320,
+      "pid": 99320,
+      "returncode": 1,
+      "started_at": "2026-11-27T04:07:10.411005+00:00",
+      "stderr_sha256": "57a69058aa06b7286e5a2727faef2a6cb018ee6dd7d077db786685bc628aa392",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "early_stop_free_bytes": 2415919104,
+  "error": {
+    "message": "Original reviewed macro preparation failed with exit 1",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/supervise_original_sdk.py\", line 86, in <module>\n    if rc!=0:raise RuntimeError('Original reviewed macro preparation failed with exit '+str(rc))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Original reviewed macro preparation failed with exit 1\n",
+    "type": "RuntimeError"
+  },
+  "finished_at": "2026-11-27T04:07:10.880389+00:00",
+  "framework_invoked": false,
+  "framework_returncode": null,
+  "free_after_bytes": 10997649408,
+  "last_sample": {
+    "at": "2026-11-27T04:07:10.413386+00:00",
+    "command": "macro-prepare",
+    "controller_phase": null,
+    "free_bytes": 10997661696,
+    "pid": 99320
+  },
+  "macro_restore_returncode": null,
+  "original_controller_owned_simulator_cleanup_unchanged": true,
+  "owner": "root coordinated SDK window; navigation_fix execution",
+  "phase": "macro-prepare",
+  "preflight": {
+    "checked_at": "2026-11-27T04:07:10.409803+00:00",
+    "conflicting_processes": [],
+    "early_stop_free_bytes": 2415919104,
+    "framework_execution_absent": true,
+    "free_bytes": 10997673984,
+    "macro_output_absent": true,
+    "provisional_growth_budget_bytes": 8850190336,
+    "reserve_bytes": 2147483648,
+    "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+    "tracked_clean": true,
+    "work_absent": true
+  },
+  "reserve_bytes": 2147483648,
+  "schema": "otzaria.wave3.original-sdk-supervision/1",
+  "source_after": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "started_at": "2026-11-27T04:07:10.311272+00:00",
+  "status": "NOT_COMPLETE",
+  "supervisor_pgid": 99316,
+  "supervisor_pid": 99316,
+  "tracked_status_after": ""
+}

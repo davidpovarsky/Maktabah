@@ -1,0 +1,414 @@
+{
+  "created_at": "2026-11-27T04:23:38.294306+00:00",
+  "entries": [
+    {
+      "bytes": 12609,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/MACRO_REVIEWED_SOURCE_RESTORATION.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/MACRO_REVIEWED_SOURCE_RESTORATION.json",
+      "sha256": "1604ca978dfcf3cd88aeaf703735291ea0e7b981a1494694f65e5f2a3be43bd3"
+    },
+    {
+      "bytes": 11838,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/MACRO_REVIEWED_SOURCE_RESTORATION_BEFORE.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/MACRO_REVIEWED_SOURCE_RESTORATION_BEFORE.json",
+      "sha256": "59135e5313899f7ff13cc4fcbd39772109a0c734aa71674ebd0c0b64373e5641"
+    },
+    {
+      "bytes": 411,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/PREFLIGHT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/PREFLIGHT.json",
+      "sha256": "4b80269c149add64e3fad3ffb3c5733840becd1855a9f760ca2853753ceb0b69"
+    },
+    {
+      "bytes": 3109,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/RESULT.json",
+      "sha256": "f45eac534bf73b516945c046eaebdf7397e3261bf8a650eec9495b48544e074a"
+    },
+    {
+      "bytes": 3109,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/STATUS.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/STATUS.json",
+      "sha256": "f45eac534bf73b516945c046eaebdf7397e3261bf8a650eec9495b48544e074a"
+    },
+    {
+      "bytes": 501,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/SUPERVISOR_ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/SUPERVISOR_ACTUAL_LAUNCH.json",
+      "sha256": "c4b272d51c63a17e41d2978ccc2c25ee17cfd5e438a1a1244d567f46754d6751"
+    },
+    {
+      "bytes": 138,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/disk-samples.jsonl",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/disk-samples.jsonl",
+      "sha256": "3a9569a72e7c7db1564db28a6c6cffaac00e3ed6c43fa21f075c94e2a4006f1a"
+    },
+    {
+      "bytes": 570,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.ACTUAL_LAUNCH.json",
+      "sha256": "158a0b81ca33a7bc8302b09e7bcc44ef5fb702fd24c77201e0d910c9e73ba991"
+    },
+    {
+      "bytes": 887,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.COMMAND_RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.COMMAND_RESULT.json",
+      "sha256": "835eb12d3a63df13eddb52394eab9ed51c6a14eee2c16bf8e2005c56f0d25ff8"
+    },
+    {
+      "bytes": 1467,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.stderr.log",
+      "sha256": "57a69058aa06b7286e5a2727faef2a6cb018ee6dd7d077db786685bc628aa392"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/macro-prepare.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 9076,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/supervise_original_sdk.py",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/supervise_original_sdk.py",
+      "sha256": "9490bb4f5af6b6593f92914c7f57e4f5404aee560cb7158a299d1b7c943f628a"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/supervisor.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/supervisor.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1095,
+      "member": "evidence/sdk-1be-framework-after-restoration-20261127/supervisor.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-20261127/supervisor.stdout.log",
+      "sha256": "0342d028d4dc54dbc8b349bf01ef7e4de4c0abe623acac0569dc1da1961b0d6d"
+    },
+    {
+      "bytes": 500,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/COMPILER_DIAGNOSTIC_CLASSIFICATION.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/COMPILER_DIAGNOSTIC_CLASSIFICATION.json",
+      "sha256": "9d4cf4cf51d6ed819061d820f461af51f61c9bd9231d17bf2baa42036d6abe73"
+    },
+    {
+      "bytes": 908,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/FRAMEWORK_ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/FRAMEWORK_ACTUAL_LAUNCH.json",
+      "sha256": "23fa7481863b05d24fe162b3043bb984d51aabcdcc362facc4a08452f19b82c0"
+    },
+    {
+      "bytes": 6666,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/POST_STOP_STORAGE_AND_DRAIN.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/POST_STOP_STORAGE_AND_DRAIN.json",
+      "sha256": "9b66a09f05255c04f776551c48af1658cb7b4b824c01429d6e09d63801ab015b"
+    },
+    {
+      "bytes": 411,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/PREFLIGHT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/PREFLIGHT.json",
+      "sha256": "4e741364a7b1521d1b6d6ae0c94b334afeac85e6628cdfd6e76fe1e815b5a0dd"
+    },
+    {
+      "bytes": 6317,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/RESULT.json",
+      "sha256": "e84f621476aae3a8c7fad8293a200fa89a0ec0409bed49e53faf60b044750d3b"
+    },
+    {
+      "bytes": 6317,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/STATUS.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/STATUS.json",
+      "sha256": "e84f621476aae3a8c7fad8293a200fa89a0ec0409bed49e53faf60b044750d3b"
+    },
+    {
+      "bytes": 762,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/SUPERVISOR_ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/SUPERVISOR_ACTUAL_LAUNCH.json",
+      "sha256": "aa144c3445d93aa6a4a40a44a1e75e284e72b7c31c31700fa6ab3c7f9b9438ab"
+    },
+    {
+      "bytes": 9441,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/disk-samples.jsonl",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/disk-samples.jsonl",
+      "sha256": "7ca60bd572b9b4bd46ee228b22ab80778fb736e523cb0ffda610050347a7636c"
+    },
+    {
+      "bytes": 908,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.ACTUAL_LAUNCH.json",
+      "sha256": "23fa7481863b05d24fe162b3043bb984d51aabcdcc362facc4a08452f19b82c0"
+    },
+    {
+      "bytes": 1223,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.COMMAND_RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.COMMAND_RESULT.json",
+      "sha256": "6e4c32f21c38d8c7acba0fc44b43026b64e0830eceee91e76596b583e619544a"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 66978,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/framework.stdout.log",
+      "sha256": "2d222c2df9a03beaa59d557ab8ee93f98fa4abdfc38a44ae2f35d82010ef3bad"
+    },
+    {
+      "bytes": 574,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.ACTUAL_LAUNCH.json",
+      "sha256": "87ead5b05b55794452125afd698a26d72c7fa09422012ec862d720e1080d5314"
+    },
+    {
+      "bytes": 891,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.COMMAND_RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.COMMAND_RESULT.json",
+      "sha256": "d94cbc552e46ded16c83a0d5c00727b76a6cf6fd5d2649c5e621a85be78332c4"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1157,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-prepare.stdout.log",
+      "sha256": "fa981b1b0c7f1c7f4cd194ac91c7231795c08e6f372638edd49d5f7dde052387"
+    },
+    {
+      "bytes": 594,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.ACTUAL_LAUNCH.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.ACTUAL_LAUNCH.json",
+      "sha256": "65c7aa224e8f1cf9c57ce671d2f93731ee9187df4cf4ff698c5fde9589f64677"
+    },
+    {
+      "bytes": 910,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.COMMAND_RESULT.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.COMMAND_RESULT.json",
+      "sha256": "3b551c24556fb0e54e48173f795c7d4ec8bad0e75343f6799fc0b530ba47da8a"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 87,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/macro-restore.stdout.log",
+      "sha256": "79e24cd77c4ad7e78570c07f3848f4305f84c274003514fcbfff5409d993a534"
+    },
+    {
+      "bytes": 9093,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervise_original_sdk.py",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervise_original_sdk.py",
+      "sha256": "ffd69573e0a52c254bda497806b3fe17e1ca483d5704cb75c5e06e7a5f50550b"
+    },
+    {
+      "bytes": 0,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervisor.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervisor.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1898,
+      "member": "evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervisor.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-framework-after-restoration-attempt2-20261127/supervisor.stdout.log",
+      "sha256": "d4ed05be8db3775d11d97bce2bc796f61caaa80b164cad17f7bfb8934aa6a93d"
+    },
+    {
+      "bytes": 505,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.command.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.command.json",
+      "sha256": "b7cec2c137188bb7f895a779f26c636fd75c658b80cbb381daf1eb347faf32ab"
+    },
+    {
+      "bytes": 0,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 5,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-simulator-sdk.stdout.log",
+      "sha256": "7b01c549928398a045692f24bcac7803b348524cdd76f21265b02984b2ba556a"
+    },
+    {
+      "bytes": 474,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.command.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.command.json",
+      "sha256": "d36b79a9a476939c1df48ad0b6aa1318df369b65c60ad1ca2f6d51e75ec4b550"
+    },
+    {
+      "bytes": 30,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.stderr.log",
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "bytes": 98,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/actual-swift.stdout.log",
+      "sha256": "04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83"
+    },
+    {
+      "bytes": 935,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.command.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.command.json",
+      "sha256": "482d4553a1c18cea8d18761607c450b1e822c38c8ecceccf4467493f2d14f4e9"
+    },
+    {
+      "bytes": 0,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 21546,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/exact-package-resolution.stdout.log",
+      "sha256": "1aaeb2580b9a2e5e9efa6e0ecf125ea1687901afefbf2fafdcd3242160789408"
+    },
+    {
+      "bytes": 66978,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/execution.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/execution.json",
+      "sha256": "2d222c2df9a03beaa59d557ab8ee93f98fa4abdfc38a44ae2f35d82010ef3bad"
+    },
+    {
+      "bytes": 1383,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.command.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.command.json",
+      "sha256": "e0756a397d01a38458b06267199f8b98fe02cc530f8ad22ae1e95babfe92129c"
+    },
+    {
+      "bytes": 24,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.stderr.log",
+      "sha256": "23b50d81c65e172a3a39d38234b74de6d8015d338faa77094f07a2f4b38439d1"
+    },
+    {
+      "bytes": 11986397,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.stdout.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.stdout.log",
+      "sha256": "efa2618ee5ae84947c1a9c765840b5d63a2196e21e1d18ee2aefd411125f297f"
+    },
+    {
+      "bytes": 18924,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/import-abi-before.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/import-abi-before.json",
+      "sha256": "83bba88a0aac6314d7c2da9270f4de3e71a5f0cfc9cb32f265d0311e5a604e93"
+    },
+    {
+      "bytes": 246,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.env",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.env",
+      "sha256": "7f2218ab0768360d2d0ced0fa2e91b9991a8726100240ca3c0d668d83ff75e03"
+    },
+    {
+      "bytes": 987,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.json",
+      "sha256": "37147361fcaad1521fc3f3d47279341dd3c6b25db619f801babfab3ce0ff0528"
+    },
+    {
+      "bytes": 843237,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/original-hanlin-snapshot.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/original-hanlin-snapshot.json",
+      "sha256": "1f997b1fe7fae6715e80f752656d63f314cd2c9f3c3abfa67cdc85af07ecdc5c"
+    },
+    {
+      "bytes": 899,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/owned-simulator-cleanup.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/owned-simulator-cleanup.json",
+      "sha256": "54e69a12a0a2bfcb4ea7c81cc3f5d5848a716e8c6e765f77f9737f045a1cb872"
+    },
+    {
+      "bytes": 43258,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/preflight/preflight.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/preflight/preflight.json",
+      "sha256": "59bfe845ac783b8ffcd9e123aa7fef18daa722ae5ac47ec825fa64ca6c65f7e4"
+    },
+    {
+      "bytes": 134760,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/preflight/simulator-inventory.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/preflight/simulator-inventory.json",
+      "sha256": "21cf047e04cd730bf5ff2c6a106cb81f3ed15e665dbed51e36ac87e65a440123"
+    },
+    {
+      "bytes": 1894,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/source-admission.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/source-admission.json",
+      "sha256": "909578b4fad3e0d92b322fe06ca0a823b771a5a62711354d22c9511f7e700ea4"
+    },
+    {
+      "bytes": 329479,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/source-after.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/source-after.json",
+      "sha256": "96c2ef0ff40998b069f0757192ec198f9a151b79d76ec62b098ff0e3a02c2ad6"
+    },
+    {
+      "bytes": 329479,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-Evidence/source-before.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/source-before.json",
+      "sha256": "96c2ef0ff40998b069f0757192ec198f9a151b79d76ec62b098ff0e3a02c2ad6"
+    },
+    {
+      "bytes": 1251,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macro-approval.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macro-approval.json",
+      "sha256": "f6149b8cb960519b9fb3237ea6333c62774c54ead14d048f95d47410e89289f8"
+    },
+    {
+      "bytes": 93,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macro-restoration.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macro-restoration.json",
+      "sha256": "ce5426fbcda6757bcd65069dfb2b0c0c84690d5843df71de3835439c0ccafa67"
+    },
+    {
+      "bytes": 147,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macros.after.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macros.after.json",
+      "sha256": "7d1821befdef1327439a77047600813d40a3da350f4d1ab7cd6be01f1eebc39c"
+    },
+    {
+      "bytes": 147,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macros.before.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/macros.before.json",
+      "sha256": "7d1821befdef1327439a77047600813d40a3da350f4d1ab7cd6be01f1eebc39c"
+    },
+    {
+      "bytes": 591,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/owned-trust-state.json",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/owned-trust-state.json",
+      "sha256": "9d3e287cecb946115884b9f18af9ff0854ead29dab111a603cdad2bfe428fb54"
+    },
+    {
+      "bytes": 36068,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/reviewed-upstream-source.tar.gz",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/reviewed-upstream-source.tar.gz",
+      "sha256": "58816bb9fc940f73660d3f80481d27ba37bbf5a59975b8791926c78828b306ee"
+    },
+    {
+      "bytes": 476,
+      "member": "source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/source-download.stderr.log",
+      "original_path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127/source-download.stderr.log",
+      "sha256": "059eb1439e11a1049e34a6d875b59a64fc94fd0802f5198fc0faefb5bc13de6c"
+    }
+  ],
+  "file_count": 67,
+  "mac_temporary_or_archive_files_created": 0,
+  "raw_bytes": 13980756,
+  "schema": "otzaria.wave3.sdk-stopped-evidence/1",
+  "scope": "Original failed pre-macro attempt, exact18 sparse input restoration, next original framework attempt and raw XCResult/logs. No producer Products/SourcePackages payload.",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "status": "NOT_COMPLETE_CAPACITY_INTERRUPTED"
+}

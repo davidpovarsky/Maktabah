@@ -1,0 +1,25 @@
+{
+  "command": [
+    "xcodebuild",
+    "-resolvePackageDependencies",
+    "-project",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Anytype.xcodeproj",
+    "-scheme",
+    "AnytypeOriginalEditor",
+    "-configuration",
+    "Debug-Anytype",
+    "-destination",
+    "platform=iOS Simulator,id=8F9EA572-70C5-4ECF-9309-490673CDA95E",
+    "-derivedDataPath",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived",
+    "-onlyUsePackageVersionsFromResolvedFile"
+  ],
+  "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "finished_at": "2026-11-27T04:12:11.898015+00:00",
+  "returncode": 0,
+  "started_at": "2026-11-27T04:11:25.873922+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "1aaeb2580b9a2e5e9efa6e0ecf125ea1687901afefbf2fafdcd3242160789408",
+  "timed_out": false,
+  "timeout_seconds": 900
+}
