@@ -1,0 +1,304 @@
+TYPECHECK 0  nts/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:205:25: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+    |                         `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+206 |                 okButton.tap()
+207 |             }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:206:26: warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+199 |     }
+200 | 
+201 |     func dismissAlertsIfNeeded() {
+    |          `- note: add '@MainActor' to make instance method 'dismissAlertsIfNeeded()' part of global actor 'MainActor'
+202 |         if app.alerts.count > 0 {
+203 |             let alert = app.alerts.firstMatch
+204 |             let okButton = alert.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'אישור' OR label CONTAINS[c] 'OK' OR label CONTAINS[c] 'Allow'")).firstMatch
+205 |             if okButton.exists {
+206 |                 okButton.tap()
+    |                          `- warning: call to main actor-isolated instance method 'tap()' in a synchronous nonisolated context [#ActorIsolatedCall]
+207 |             }
+208 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:139:1: note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+137 |  * Sends a tap event to a hittable point computed for the element.
+138 |  */
+139 | - (void)tap API_UNAVAILABLE(tvos);
+    | `- note: calls to instance method 'tap()' from outside of its actor context are implicitly asynchronous
+140 | 
+141 | /*!
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:213:38: warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    |                                      `- warning: call to main actor-isolated instance method 'matching' in a synchronous nonisolated context [#ActorIsolatedCall]
+214 |         let count = candidates.count
+215 |         if count > 1 {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:61:1: note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+59 | 
+60 | /*! Returns a new query that applies the specified attributes or predicate to the receiver. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+61 | - (XCUIElementQuery *)matchingPredicate:(NSPredicate *)predicate;
+   | |- note: calls to instance method 'matching' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+62 | - (XCUIElementQuery *)matchingType:(XCUIElementType)elementType identifier:(nullable NSString *)identifier;
+63 | - (XCUIElementQuery *)matchingIdentifier:(NSString *)identifier;
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:213:30: warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    |                              `- warning: main actor-isolated property 'buttons' can not be referenced from a nonisolated context
+214 |         let count = candidates.count
+215 |         if count > 1 {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:22:46: note: property declared here
+ 20 | @property (readonly, copy) XCUIElementQuery *alerts;
+ 21 | @property (readonly, copy) XCUIElementQuery *dialogs;
+ 22 | @property (readonly, copy) XCUIElementQuery *buttons;
+    |                                              `- note: property declared here
+ 23 | @property (readonly, copy) XCUIElementQuery *radioButtons;
+ 24 | @property (readonly, copy) XCUIElementQuery *radioGroups;
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:214:32: warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+214 |         let count = candidates.count
+    |                                `- warning: main actor-isolated property 'count' can not be referenced from a nonisolated context
+215 |         if count > 1 {
+216 |             for i in 0..<count {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:29:33: note: property declared here
+27 | 
+28 | /*! Evaluates the query at the time it is called and returns the number of matches found. */
+29 | @property (readonly) NSUInteger count;
+   |                                 `- note: property declared here
+30 | 
+31 | /*! Returns an element that will resolve to the index into the query's result set. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:217:44: warning: call to main actor-isolated instance method 'element(boundBy:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+215 |         if count > 1 {
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+    |                                            `- warning: call to main actor-isolated instance method 'element(boundBy:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+218 |                 if candidate.exists && candidate.isHittable {
+219 |                     return candidate
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementQuery.h:37:1: note: calls to instance method 'element(boundBy:)' from outside of its actor context are implicitly asynchronous
+35 | 
+36 | /*! Returns an element that will use the index into the query's results to determine which underlying accessibility element it is matched with. */
+37 | - (XCUIElement *)elementBoundByIndex:(NSUInteger)index;
+   | |- note: calls to instance method 'element(boundBy:)' from outside of its actor context are implicitly asynchronous
+   | `- note: main actor isolation inferred from conformance to protocol 'XCUIElementTypeQueryProvider'
+38 | 
+39 | /*! Returns an element that matches the predicate. The predicate will be evaluated against objects of type id<XCUIElementAttributes>. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:218:30: warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+218 |                 if candidate.exists && candidate.isHittable {
+    |                              `- warning: main actor-isolated property 'exists' can not be referenced from a nonisolated context
+219 |                     return candidate
+220 |                 }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:54:27: note: property declared here
+ 52 | 
+ 53 | /*! Test to determine if the element exists. */
+ 54 | @property (readonly) BOOL exists;
+    |                           `- note: property declared here
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:218:50: warning: main actor-isolated property 'isHittable' can not be referenced from a nonisolated autoclosure
+216 |             for i in 0..<count {
+217 |                 let candidate = candidates.element(boundBy: i)
+218 |                 if candidate.exists && candidate.isHittable {
+    |                                                  `- warning: main actor-isolated property 'isHittable' can not be referenced from a nonisolated autoclosure
+219 |                     return candidate
+220 |                 }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:63:48: note: property declared here
+ 61 | 
+ 62 | /*! Whether or not a hit point can be computed for the element for the purpose of synthesizing events. */
+ 63 | @property (readonly, getter = isHittable) BOOL hittable;
+    |                                                `- note: property declared here
+ 64 | 
+ 65 | /*! Returns a query for all descendants of the element matching the specified type. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:223:27: warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+209 |     }
+210 | 
+211 |     func findTabButton(hebrew: String, english: String) -> XCUIElement {
+    |          `- note: add '@MainActor' to make instance method 'findTabButton(hebrew:english:)' part of global actor 'MainActor'
+212 |         let predicate = NSPredicate(format: "label CONTAINS[c] %@ OR label CONTAINS[c] %@", hebrew, english)
+213 |         let candidates = app.buttons.matching(predicate)
+    :
+221 |             }
+222 |         }
+223 |         return candidates.firstMatch
+    |                           `- warning: main actor-isolated property 'firstMatch' can not be referenced from a nonisolated context
+224 |     }
+225 | 
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElementTypeQueryProvider.h:105:35: note: property declared here
+103 |  * matches will not be detected.
+104 |  */
+105 | @property (readonly) XCUIElement *firstMatch;
+    |                                   `- note: property declared here
+106 | 
+107 | @end
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:233:90: warning: parameter 'file' with default argument '#file' passed to parameter 'file', whose default argument is '#filePath'
+227 |         _ element: XCUIElement,
+228 |         timeout: TimeInterval = 12.0,
+229 |         file: StaticString = #file,
+    |                              `- note: did you mean for parameter 'file' to default to '#filePath'?
+230 |         line: UInt = #line
+231 |     ) -> Bool {
+232 |         let exists = element.waitForExistence(timeout: timeout)
+233 |         XCTAssertTrue(exists, "Expected element to exist: \(element.description)", file: file, line: line)
+    |                                                                                          |- warning: parameter 'file' with default argument '#file' passed to parameter 'file', whose default argument is '#filePath'
+    |                                                                                          `- note: add parentheses to silence this warning
+234 |         return exists
+235 |     }
+
+XCTest.XCTAssertTrue.file:1:1: note: 'file' declared here
+1 | file: StaticString
+  | `- note: 'file' declared here
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:232:30: warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+224 |     }
+225 | 
+226 |     func waitForElement(
+    |          `- note: add '@MainActor' to make instance method 'waitForElement(_:timeout:file:line:)' part of global actor 'MainActor'
+227 |         _ element: XCUIElement,
+228 |         timeout: TimeInterval = 12.0,
+    :
+230 |         line: UInt = #line
+231 |     ) -> Bool {
+232 |         let exists = element.waitForExistence(timeout: timeout)
+    |                              `- warning: call to main actor-isolated instance method 'waitForExistence(timeout:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+233 |         XCTAssertTrue(exists, "Expected element to exist: \(element.description)", file: file, line: line)
+234 |         return exists
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIElement.h:57:1: note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 55 | 
+ 56 | /*! Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence. */
+ 57 | - (BOOL)waitForExistenceWithTimeout:(NSTimeInterval)timeout XCUI_WARN_UNUSED;
+    | `- note: calls to instance method 'waitForExistence(timeout:)' from outside of its actor context are implicitly asynchronous
+ 58 | 
+ 59 | /*! Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing. */
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:238:26: warning: main actor-isolated property 'userInterfaceIdiom' can not be referenced from a nonisolated context
+236 | 
+237 |     var isPad: Bool {
+238 |         UIDevice.current.userInterfaceIdiom == .pad
+    |                          `- warning: main actor-isolated property 'userInterfaceIdiom' can not be referenced from a nonisolated context
+239 |     }
+240 | }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h:61:52: note: property declared here
+59 | @property(nonatomic,readonly,getter=isMultitaskingSupported) BOOL multitaskingSupported API_AVAILABLE(ios(4.0));
+60 | 
+61 | @property(nonatomic,readonly) UIUserInterfaceIdiom userInterfaceIdiom API_AVAILABLE(ios(3.2));
+   |                                                    `- note: property declared here
+62 | 
+63 | - (void)playInputClick API_AVAILABLE(ios(4.2)) API_UNAVAILABLE(visionos);  // Plays a click only if an enabling input view is on-screen and user has enabled input clicks.
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/MaktabahUITestBase.swift:238:18: warning: main actor-isolated class property 'current' can not be referenced from a nonisolated context
+236 | 
+237 |     var isPad: Bool {
+238 |         UIDevice.current.userInterfaceIdiom == .pad
+    |                  `- warning: main actor-isolated class property 'current' can not be referenced from a nonisolated context
+239 |     }
+240 | }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h:37:49: note: class property declared here
+35 | @interface UIDevice : NSObject
+36 | 
+37 | @property(class, nonatomic, readonly) UIDevice *currentDevice;
+   |                                                 `- note: class property declared here
+38 | 
+39 | @property(nonatomic,readonly,strong) NSString    *name;              // Synonym for model. Prior to iOS 16, user-assigned device name (e.g. @"My iPhone").
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/ExtractedPublishedContextTests.swift:908:68: warning: call to main actor-isolated instance method 'screenshot()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 906 |             let tree = XCTAttachment(string: app.debugDescription)
+ 907 |             tree.name = "full-context-final-native-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+ 908 |             let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+     |                                                                    `- warning: call to main actor-isolated instance method 'screenshot()' in a synchronous nonisolated context [#ActorIsolatedCall]
+ 909 |             screen.name = "full-context-final-native-screen"; screen.lifetime = .keepAlways; add(screen)
+ 910 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIScreenshotProviding.h:22:1: note: calls to instance method 'screenshot()' from outside of its actor context are implicitly asynchronous
+20 |  * the occluded window is captured, the front window will be visible in the screenshot.
+21 |  */
+22 | - (XCUIScreenshot *)screenshot;
+   | `- note: calls to instance method 'screenshot()' from outside of its actor context are implicitly asynchronous
+23 | 
+24 | @end
+
+/Users/m1/builds/otzaria-wave2-search-20261127/native-context-typecheck/ExtractedPublishedContextTests.swift:908:63: warning: main actor-isolated class property 'main' can not be referenced from a nonisolated context
+ 906 |             let tree = XCTAttachment(string: app.debugDescription)
+ 907 |             tree.name = "full-context-final-native-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+ 908 |             let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+     |                                                               `- warning: main actor-isolated class property 'main' can not be referenced from a nonisolated context
+ 909 |             screen.name = "full-context-final-native-screen"; screen.lifetime = .keepAlways; add(screen)
+ 910 |         }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers/XCUIScreen.h:26:49: note: class property declared here
+24 |  * Returns the current device's main screen.
+25 |  */
+26 | @property (class, readonly, strong) XCUIScreen *mainScreen;
+   |                                                 `- note: class property declared here
+27 | 
+28 | /*!
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+

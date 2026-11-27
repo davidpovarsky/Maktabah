@@ -1763,17 +1763,17 @@ final class PublishedProductionSearchDataTests: MaktabahUITestBase {
     }
 
     @MainActor
-    private func launchProduction() throws {
+    private func launchProduction(unitMode: String? = "line") throws {
         for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH"] {
             try requireSearchDataFixture(ProcessInfo.processInfo.environment[key] == nil,
                 "Real managed installation acceptance forbids external storage override " + key)
         }
         XCUIDevice.shared.orientation = .landscapeLeft
+        let unitArguments = unitMode.map { ["-otzaria_reader_unit_mode", $0] } ?? []
         launchWithTier(.production, backend: "otzaria", extraArgs: [
             "-GlobalSearchNativeTraceEnabled", "YES", "-GlobalSearchNativeTraceNamespace", traceNamespace,
-            "-lastSelectedTab", "0", "-otzaria_reader_unit_mode", "line",
-            "-ChavrusaTextFaithfulReaderUIEnabled", "YES"
-        ])
+            "-lastSelectedTab", "0", "-ChavrusaTextFaithfulReaderUIEnabled", "YES"
+        ] + unitArguments)
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         XCTAssertFalse(app.launchArguments.contains("-studyWorkspaceTestingNamespace"))
         XCTAssertEqual(app.launchEnvironment["OTZARIA_DATA_PROFILE"], "production")
@@ -2069,5 +2069,666 @@ final class PublishedProductionSearchDataTests: MaktabahUITestBase {
     @MainActor
     func testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata() throws {
         try assertPublishedPages(engine: "otzaria", pages: 2, pageSize: 100)
+    }
+}
+
+
+// Full text assertions use source-qualified hashes for each complete native Text.
+// A provider receipt alone never counts as a visible full-context acceptance.
+struct SearchContextExpectedSegment: Decodable {
+    let locator: String
+    let sourceSHA256: String
+    let translationSHA256: String?
+    let sourceUTF8Bytes: Int
+    let translationUTF8Bytes: Int?
+}
+
+private struct SefariaContextSourceReceipt: Decodable {
+    struct Section: Decodable {
+        let versionTitle: String
+        let language: String
+        let reference: String
+        let stableID: String
+        let segments: [SearchContextExpectedSegment]
+    }
+    struct Page: Decodable {
+        struct Row: Decodable {
+            let offset: Int
+            let ref: String
+            let versionTitle: String
+            let language: String
+        }
+        let offset: Int
+        let rows: [Row]
+    }
+    let schema: Int
+    let status: String
+    let uiExecuted: Bool
+    let query: String
+    let filters: [String]
+    let limit: Int
+    let sortOrder: String
+    let targetRef: String
+    let pages: [Page]
+    let sections: [Section]
+}
+
+func originalSearchOracleBytes(pathKey: String, digestKey: String) throws -> Data {
+    let environment = ProcessInfo.processInfo.environment
+    let supplied = try XCTUnwrap(environment[pathKey], "Runner must supply the qualified source oracle " + pathKey)
+    let digest = try XCTUnwrap(environment[digestKey], "Runner must seal the exact oracle bytes")
+    let url = URL(fileURLWithPath: supplied).standardizedFileURL
+    let info = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+    try requireSearchDataFixture(info.isRegularFile == true && info.isSymbolicLink == false
+        && url.path == url.resolvingSymlinksInPath().path
+        && (info.fileSize ?? 2_000_001) <= 2_000_000 && digest.count == 64,
+        "Only a bounded, regular, byte-sealed source oracle is eligible")
+    let bytes = try Data(contentsOf: url)
+    let actual = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+    try requireSearchDataFixture(actual == digest, "Reject changed or different-source acceptance inputs")
+    return bytes
+}
+
+@MainActor
+struct OriginalSearchContextUI {
+    let app: XCUIApplication
+    let test: XCTestCase
+
+    func control(_ id: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: id).firstMatch
+    }
+
+    @discardableResult
+    func require(_ id: String, timeout: TimeInterval = 30) throws -> XCUIElement {
+        let value = control(id)
+        try requireSearchDataFixture(value.waitForExistence(timeout: timeout), "Original control absent: " + id)
+        return value
+    }
+
+    func wait(_ reason: String, timeout: TimeInterval = 60,
+              _ condition: @escaping @MainActor () -> Bool) throws {
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated { condition() }
+        }, object: nil)
+        try requireSearchDataFixture(XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed, reason)
+    }
+
+    func capture(_ name: String) {
+        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screen.name = name; screen.lifetime = .keepAlways; test.add(screen)
+        let tree = XCTAttachment(string: app.debugDescription)
+        tree.name = name + "-hierarchy"; tree.lifetime = .keepAlways; test.add(tree)
+    }
+
+    func dragVisible(_ element: XCUIElement, up: Bool) throws {
+        let rect = element.frame.intersection(app.frame)
+        try requireSearchDataFixture(rect.width > 40 && rect.height > 100, "The original scroll owner must have a visible viewport")
+        let origin = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let x = rect.midX - app.frame.minX
+        let high = rect.minY + rect.height * 0.22 - app.frame.minY
+        let low = rect.minY + rect.height * 0.78 - app.frame.minY
+        let start = origin.withOffset(CGVector(dx: x, dy: up ? low : high))
+        let end = origin.withOffset(CGVector(dx: x, dy: up ? high : low))
+        start.press(forDuration: 0.05, thenDragTo: end)
+    }
+
+    func reach(_ id: String, maximumSwipes: Int = 50) throws -> XCUIElement {
+        for _ in 0...maximumSwipes {
+            let value = control(id)
+            if value.exists && value.isHittable && value.frame.intersects(app.frame) { return value }
+            try dragVisible(require("global-search-results"), up: true)
+        }
+        throw SearchDataNativeFixtureError.rejected("Original result not reachable: " + id)
+    }
+
+    func loadedCount(filtered: Bool = false) throws -> Int {
+        let label = try require("global-search-count").label
+        let values = label.split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) }
+        try requireSearchDataFixture(!values.isEmpty && (!filtered || values.count >= 2), "Read the original loaded counter: " + label)
+        return filtered ? values[1] : values[0]
+    }
+
+    func suppressAutomaticPaging() throws {
+        try require("global-search-result-filter-toggle").tap()
+        let filter = try require("global-search-result-filter")
+        filter.tap(); filter.typeText("source-acceptance-no-book-" + UUID().uuidString + "\n")
+        try require("global-search-filter-empty")
+    }
+
+    func closeResultFilter() throws { try require("global-search-result-filter-done").tap() }
+
+    func expand(_ id: String) throws {
+        let toggle = try reach("search-result-preview-toggle-" + id)
+        if toggle.value as? String != "Expanded" { toggle.tap() }
+        try require("search-result-expanded-preview-" + id)
+    }
+
+    func originalPreviewScroll(_ id: String) throws -> XCUIElement {
+        let scroll = app.scrollViews.matching(identifier: "search-result-expanded-preview-" + id).firstMatch
+        try requireSearchDataFixture(scroll.waitForExistence(timeout: 45),
+            "Full context must be the original native scroll view, not a synthetic witness")
+        return scroll
+    }
+
+    func openCurrentPreview(_ id: String) throws {
+        let scroll = try originalPreviewScroll(id)
+        for _ in 0..<100 {
+            let button = control("search-result-open-" + id)
+            if button.exists && button.isHittable { button.tap(); return }
+            try dragVisible(scroll, up: true)
+        }
+        throw SearchDataNativeFixtureError.rejected("Original Open action was not reachable")
+    }
+
+    func returnToOriginalSearch() throws {
+        // The original TabView has no invented route ID. Scope to its native
+        // tab bar, not Reader's separate in-book magnifying-glass button.
+        let labels = NSPredicate(format: "label == %@ OR label == %@", "Search", "חיפוש")
+        let back = app.navigationBars.buttons.matching(labels)
+        if back.count == 1, back.firstMatch.isHittable {
+            back.firstMatch.tap()
+            if control("global-search-screen").waitForExistence(timeout: 5) { return }
+        }
+        var tabs = app.tabBars.buttons.matching(labels).allElementsBoundByIndex.filter(\.isHittable)
+        if tabs.isEmpty {
+            let reader = app.textViews["reader-text"].firstMatch
+            try requireSearchDataFixture(reader.waitForExistence(timeout: 15), "Reveal the original Reader chrome")
+            reader.tap()
+            try wait("Original root Search tab must become visible") {
+                self.app.tabBars.buttons.matching(labels).allElementsBoundByIndex.filter(\.isHittable).count == 1
+            }
+            tabs = app.tabBars.buttons.matching(labels).allElementsBoundByIndex.filter(\.isHittable)
+        }
+        try requireSearchDataFixture(tabs.count == 1 && tabs[0].frame.intersects(app.frame),
+            "Require one visible original root Search tab")
+        tabs[0].tap()
+        try require("global-search-screen")
+    }
+
+    func setReaderTextMode(_ mode: String, fromPreview id: String) throws {
+        try openCurrentPreview(id)
+        try require("reader-more-menu", timeout: 60).tap()
+        try require("reader-text-options").tap()
+        for _ in 0..<8 {
+            if control("reader-text-mode").exists && control("reader-text-mode").isHittable { break }
+            let popover = app.popovers.firstMatch
+            try requireSearchDataFixture(popover.waitForExistence(timeout: 10), "Original View Options popover must be present")
+            try dragVisible(popover, up: true)
+        }
+        try require("reader-text-mode").tap()
+        try require("reader-text-mode-" + mode).tap()
+        try require("reader-options-close").tap()
+        try returnToOriginalSearch()
+        try require("search-result-expanded-preview-" + id)
+    }
+
+    func setReaderUnit(_ mode: String, fromPreview id: String) throws {
+        try openCurrentPreview(id)
+        try require("reader-more-menu", timeout: 60).tap()
+        try require("reader-display-unit-menu").tap()
+        try require("reader-display-unit-" + mode).tap()
+        try returnToOriginalSearch()
+        try require("search-result-expanded-preview-" + id)
+    }
+
+    func assertOriginalSearchResize(rtl: Bool, query: String, firstStableID: String) throws {
+        let count = try loadedCount()
+        let bookLabel = try require("global-search-books").label
+        let modeLabel = try require("global-search-mode").label
+        for orientation in [UIDeviceOrientation.portrait, .landscapeLeft] {
+            XCUIDevice.shared.orientation = orientation
+            try wait("The original app must actually change viewport orientation") {
+                let frame = self.app.frame
+                return orientation == .portrait ? frame.height > frame.width : frame.width > frame.height
+            }
+            try wait("All persistent header controls must remain usable after actual resize") {
+                ["global-search-query", "global-search-options", "global-search-books", "global-search-mode"]
+                    .allSatisfy { self.control($0).isHittable && self.control($0).frame.intersects(self.app.frame) }
+            }
+            let field = try require("global-search-query")
+            let options = try require("global-search-options")
+            let books = try require("global-search-books")
+            let mode = try require("global-search-mode")
+            XCTAssertEqual(field.value as? String, query)
+            XCTAssertEqual(books.label, bookLabel)
+            XCTAssertEqual(mode.label, modeLabel)
+            XCTAssertEqual(try loadedCount(), count)
+            XCTAssertFalse(field.frame.intersects(options.frame))
+            XCTAssertGreaterThanOrEqual(books.frame.minY, field.frame.maxY - 1)
+            if rtl {
+                XCTAssertLessThanOrEqual(options.frame.maxX, field.frame.minX + 1)
+                XCTAssertGreaterThan(books.frame.midX, mode.frame.midX)
+            } else {
+                XCTAssertGreaterThanOrEqual(options.frame.minX, field.frame.maxX - 1)
+                XCTAssertLessThan(books.frame.midX, mode.frame.midX)
+            }
+            try require("search-result-preview-toggle-" + firstStableID)
+            XCTAssertFalse(control("global-search-dirty").exists)
+            XCTAssertFalse(control("global-search-error").exists)
+            capture("original-search-resize-" + (rtl ? "he-" : "en-") + String(orientation.rawValue))
+        }
+    }
+
+    func assertCompleteContext(id: String, segments: [SearchContextExpectedSegment], mode: String) throws {
+        try requireSearchDataFixture(!segments.isEmpty && Set(segments.map(\.locator)).count == segments.count,
+            "Independent source must identify every segment uniquely")
+        let scroll = try originalPreviewScroll(id)
+        let sourcePrefix = "search-preview-source-" + id + "-"
+        let translationPrefix = "search-preview-translation-" + id + "-"
+        var expected: [String: (String, Int)] = [:]
+        for segment in segments {
+            if mode == "source" || mode == "both" {
+                expected[sourcePrefix + segment.locator] = (segment.sourceSHA256, segment.sourceUTF8Bytes)
+            }
+            if mode == "translation" || mode == "both" {
+                let hash = try XCTUnwrap(segment.translationSHA256, "Bilingual acceptance requires a real translation slot")
+                let count = try XCTUnwrap(segment.translationUTF8Bytes)
+                expected[translationPrefix + segment.locator] = (hash, count)
+            }
+        }
+        try wait("The original full body must finish loading", timeout: 90) {
+            !self.control("search-preview-loading-" + id).exists
+                && self.app.staticTexts.matching(NSPredicate(format: "identifier BEGINSWITH %@ OR identifier BEGINSWITH %@",
+                    sourcePrefix, translationPrefix)).count > 0
+        }
+        let firstID = (mode == "translation" ? translationPrefix : sourcePrefix) + segments[0].locator
+        for _ in 0..<(segments.count * 4 + 20) {
+            let first = app.staticTexts[firstID].firstMatch
+            if first.exists && first.frame.intersects(app.frame) && !first.frame.isEmpty { break }
+            try dragVisible(scroll, up: false)
+        }
+        var seen: [String: String] = [:]
+        for step in 0..<(segments.count * 5 + 20) {
+            let elements = app.staticTexts.matching(NSPredicate(format: "identifier BEGINSWITH %@ OR identifier BEGINSWITH %@",
+                                                               sourcePrefix, translationPrefix)).allElementsBoundByIndex
+            try requireSearchDataFixture(Set(elements.map(\.identifier)).count == elements.count,
+                "An original segment may not be duplicated in the expanded card")
+            for element in elements {
+                let wanted = try XCTUnwrap(expected[element.identifier],
+                    "The selected language mode must not show an extra source/translation segment")
+                let text = element.label
+                let hash = SHA256.hash(data: Data(text.utf8)).map { String(format: "%02x", $0) }.joined()
+                XCTAssertEqual(hash, wanted.0, "Complete native Text must match independent source: " + element.identifier)
+                XCTAssertEqual(text.utf8.count, wanted.1)
+                if element.frame.intersects(app.frame) && !element.frame.isEmpty { seen[element.identifier] = hash }
+            }
+            XCTAssertFalse(control("search-preview-error-" + id).exists)
+            if step == 0 { capture("full-context-" + mode + "-first") }
+            let open = control("search-result-open-" + id)
+            if seen.count == expected.count && open.exists && open.isHittable { break }
+            try dragVisible(scroll, up: true)
+        }
+        XCTAssertEqual(Set(seen.keys), Set(expected.keys), "Every complete original source segment must become visible")
+        capture("full-context-" + mode + "-last")
+        let receipt = XCTAttachment(data: try JSONSerialization.data(withJSONObject: [
+            "stableID": id, "mode": mode, "visibleSegmentHashes": seen,
+            "expectedSegmentCount": expected.count
+        ], options: [.sortedKeys]), uniformTypeIdentifier: "public.json")
+        receipt.name = "actual-native-complete-context-" + mode
+        receipt.lifetime = .keepAlways; test.add(receipt)
+    }
+}
+
+final class SefariaFullSearchContextAcceptanceTests: MaktabahUITestBase {
+    @MainActor private var ui: OriginalSearchContextUI { .init(app: app, test: self) }
+
+    private func oracle() throws -> SefariaContextSourceReceipt {
+        let bytes = try originalSearchOracleBytes(pathKey: "SEFARIA_SEARCH_CONTEXT_ORACLE",
+                                                   digestKey: "SEFARIA_SEARCH_CONTEXT_ORACLE_SHA256")
+        let source = try JSONDecoder().decode(SefariaContextSourceReceipt.self, from: bytes)
+        XCTAssertEqual(source.schema, 1)
+        XCTAssertEqual(source.status, "ACTUAL_SOURCE_ORACLE_ONLY_NOT_UI")
+        XCTAssertFalse(source.uiExecuted)
+        XCTAssertEqual(source.query, "soul")
+        XCTAssertEqual(source.filters, ["Tanakh/Writings/Psalms"])
+        XCTAssertEqual(source.limit, 100)
+        XCTAssertEqual(source.sortOrder, "canonical")
+        XCTAssertEqual(source.targetRef, "Psalms 35:17")
+        XCTAssertEqual(source.pages.map(\.offset), [0, 100])
+        let target = source.pages.flatMap(\.rows).filter { $0.ref == source.targetRef }
+        XCTAssertEqual(target.map(\.offset), [98, 99, 100])
+        XCTAssertEqual(target.map(\.versionTitle), source.sections.map(\.versionTitle))
+        XCTAssertEqual(Set(source.sections.map { $0.segments.compactMap(\.translationSHA256).joined() }).count, 3,
+                       "Three real editions must have distinguishable complete bodies")
+        for section in source.sections {
+            XCTAssertEqual(section.language, "en")
+            XCTAssertEqual(section.segments.count, 28)
+            XCTAssertEqual(section.stableID, "sefaria|Psalms|ref:Psalms 35:17|\(section.versionTitle)|en")
+        }
+        let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        attachment.name = "independent-sefaria-pages-and-complete-context-oracle"
+        attachment.lifetime = .keepAlways; add(attachment)
+        return source
+    }
+
+    @MainActor
+    private func launchPsalms(_ source: SefariaContextSourceReceipt, language: String) throws {
+        for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH"] {
+            XCTAssertNil(ProcessInfo.processInfo.environment[key], "Do not substitute application data")
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "sefaria",
+            extraArgs: ["-lastSelectedTab", "0", "-ChavrusaTextFaithfulReaderUIEnabled", "YES"],
+            language: language, locale: language == "he" ? "he_IL" : "en_US")
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        XCTAssertFalse(app.launchArguments.contains("-studyWorkspaceTestingNamespace"))
+        let tab = findTabButton(hebrew: "חיפוש", english: "Search")
+        try requireSearchDataFixture(tab.waitForExistence(timeout: 120), "Original Sefaria bootstrap must expose Search")
+        tab.tap()
+        try ui.require("global-search-screen", timeout: 60)
+        try ui.require("global-search-mode").tap()
+        try ui.require("global-search-mode-exact").tap()
+        try ui.require("global-search-books").tap()
+        if ui.control("global-search-book-clear").exists { ui.control("global-search-book-clear").tap() }
+        let books = try ui.require("global-search-book-query", timeout: 60)
+        books.tap()
+        if let clear = books.buttons.allElementsBoundByIndex.first(where: \.isHittable) { clear.tap() }
+        books.typeText(language == "he" ? "תהילים\n" : "Psalms\n")
+        let psalms = try ui.require("search-book-sefaria|Psalms|ref:Psalms", timeout: 60)
+        XCTAssertTrue(psalms.isHittable); psalms.tap()
+        if ui.control("global-search-book-done").exists { ui.control("global-search-book-done").tap() }
+        let query = try ui.require("global-search-query")
+        query.tap()
+        if let clear = query.buttons.allElementsBoundByIndex.first(where: \.isHittable) { clear.tap() }
+        query.typeText(source.query + "\n")
+        try ui.require("global-search-count", timeout: 120)
+        try ui.require("global-search-sort").tap()
+        try ui.require("global-search-sort-canonical").tap()
+        try ui.require("global-search-rerun").tap()
+        try ui.wait("The original canonical first page must contain exactly 100 results", timeout: 120) {
+            (try? self.ui.loadedCount()) == 100
+        }
+        try ui.suppressAutomaticPaging()
+        XCTAssertEqual(try ui.loadedCount(filtered: true), 100)
+        try ui.closeResultFilter()
+        let first = try XCTUnwrap(source.pages.first?.rows.first)
+        let firstID = "sefaria|Psalms|ref:\(first.ref)|\(first.versionTitle)|\(first.language)"
+        try ui.assertOriginalSearchResize(rtl: language == "he", query: source.query, firstStableID: firstID)
+    }
+
+    @MainActor
+    private func appendSecondPage(_ source: SefariaContextSourceReceipt) throws {
+        let group = "search-result-versions-sefaria|Psalms|ref:Psalms 35:17"
+        let menu = try ui.reach(group)
+        XCTAssertEqual(menu.value as? String, "2", "Only the first two real editions belong to page one")
+        menu.tap()
+        for section in source.sections.prefix(2) { try ui.require("search-result-version-" + section.stableID) }
+        XCTAssertFalse(ui.control("search-result-version-" + source.sections[2].stableID).exists)
+        try ui.require("search-result-version-" + source.sections[0].stableID).tap()
+        ui.capture("same-source-two-editions-page-one")
+        try ui.suppressAutomaticPaging()
+        let load = app.buttons.matching(NSPredicate(format: "label == %@", "Load more results")).firstMatch
+        try requireSearchDataFixture(load.waitForExistence(timeout: 20) && load.isHittable, "Original explicit paging action must remain reachable")
+        load.tap()
+        try ui.wait("The original second page must append cumulatively to 200") {
+            (try? self.ui.loadedCount(filtered: true)) == 200
+        }
+        try ui.closeResultFilter()
+        let updated = try ui.reach(group)
+        XCTAssertEqual(updated.value as? String, "3")
+        XCTAssertEqual(app.buttons.matching(identifier: group).count, 1,
+            "The later-page edition must merge into one canonical source card")
+        ui.capture("same-source-three-editions-across-original-pages")
+    }
+
+    @MainActor
+    func testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies() throws {
+        let source = try oracle()
+        try launchPsalms(source, language: "en")
+        try appendSecondPage(source)
+        let first = source.sections[0]
+        try ui.expand(first.stableID)
+        try ui.setReaderTextMode("translation", fromPreview: first.stableID)
+        var activeID = first.stableID
+        for section in source.sections {
+            // Return to the result header before changing the original version menu.
+            let scroll = try ui.originalPreviewScroll(activeID)
+            for _ in 0..<80 {
+                if ui.control("search-result-versions-sefaria|Psalms|ref:Psalms 35:17").isHittable { break }
+                try ui.dragVisible(scroll, up: false)
+            }
+            try ui.require("search-result-versions-sefaria|Psalms|ref:Psalms 35:17").tap()
+            try ui.require("search-result-version-" + section.stableID).tap()
+            activeID = section.stableID
+            try ui.require("search-result-expanded-preview-" + section.stableID)
+            XCTAssertEqual(ui.control("search-result-preview-toggle-" + section.stableID).value as? String, "Expanded")
+            try ui.assertCompleteContext(id: section.stableID, segments: section.segments, mode: "translation")
+        }
+        XCTAssertEqual(try ui.loadedCount(), 200)
+    }
+
+    @MainActor
+    func testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls() throws {
+        let source = try oracle()
+        try launchPsalms(source, language: "he")
+        try appendSecondPage(source)
+        let section = source.sections[0]
+        try ui.expand(section.stableID)
+        for mode in ["source", "translation", "both"] {
+            try ui.setReaderTextMode(mode, fromPreview: section.stableID)
+            try ui.assertCompleteContext(id: section.stableID, segments: section.segments, mode: mode)
+        }
+        XCTAssertEqual(try ui.require("global-search-query").value as? String, source.query)
+        XCTAssertFalse(ui.control("global-search-dirty").exists)
+    }
+
+    override func tearDownWithError() throws {
+        if let app {
+            let tree = XCTAttachment(string: app.debugDescription)
+            tree.name = "full-context-final-native-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+            let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            screen.name = "full-context-final-native-screen"; screen.lifetime = .keepAlways; add(screen)
+        }
+        try super.tearDownWithError()
+    }
+}
+
+
+private struct ProductionSearchPreviewSourceReceipt: Decodable {
+    struct Target: Decodable {
+        struct Anchor: Decodable {
+            let lineID: Int64
+            let bookID: Int
+            let lineIndex: Int
+            let heRef: String?
+            let text: String
+            let textSHA256: String
+            let segmentID: String
+            let previewPlainText: String
+            let previewPlainTextSHA256: String
+            let previewUTF16Length: Int
+        }
+        let bookID: Int
+        let bookTitle: String
+        let focusLineIndex: Int
+        let unitID: String
+        let unitMode: String
+        let unitStartLineIndex: Int
+        let unitEndLineIndex: Int
+        let unitRowCount: Int
+        let sourceUTF8: String
+        let sourceSHA256: String
+        let allOriginalAnchorsChecked: Int
+        let focusLocator: String
+        let anchors: [Anchor]
+    }
+    let schema: Int
+    let status: String
+    let corpusProfile: String
+    let databaseSHA256: String
+    let sourceServiceSHA256: String
+    let presentationSourceSHA256: String
+    let catalogCompileInputsSHA256: String
+    let uiExecuted: Int
+    let searchProviderExecuted: Bool
+    let targets: [Target]
+}
+
+extension PublishedProductionSearchDataTests {
+    @MainActor
+    private func submitNafshiOriginalFirstPage() throws -> (Installation, [[String: Any]]) {
+        try launchProduction(unitMode: nil) // The real UI must be able to persist mode changes.
+        let value = try installation()
+        try verifyUnchanged(value)
+        try verifyPackages(value)
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try chooseEngine("otzaria")
+        let field = try required("global-search-query")
+        field.tap()
+        if let clear = field.buttons.allElementsBoundByIndex.first(where: \.isHittable) { clear.tap() }
+        field.typeText("נפשי\n")
+        try ui.wait("The requested real production query must publish its first 100 results", timeout: 180) {
+            (try? self.loadedCount(filtered: false)) == 100
+        }
+        try ui.suppressAutomaticPaging()
+        XCTAssertEqual(try loadedCount(filtered: true), 100)
+        try ui.closeResultFilter()
+        let observed = try events(value)
+        let queryHash = searchDataDigest(Data("נפשי".utf8))
+        let providers = observed.filter {
+            $0["engine"] as? String == "otzaria" && $0["event"] as? String == "provider"
+                && ($0["request"] as? [String: Any])?["querySHA256"] as? String == queryHash
+        }
+        XCTAssertEqual(providers.count, 1, "Only the original first page of the requested query is eligible")
+        let provider = try XCTUnwrap(providers.first)
+        XCTAssertEqual(provider["namespace"] as? String, traceNamespace)
+        XCTAssertEqual(provider["profileID"] as? String, "production")
+        let request = try XCTUnwrap(provider["request"] as? [String: Any])
+        XCTAssertEqual(request["querySHA256"] as? String, queryHash)
+        XCTAssertNil(request["query"], "Preserve passive trace query privacy")
+        XCTAssertEqual((request["offset"] as? NSNumber)?.intValue, 0)
+        XCTAssertEqual((request["limit"] as? NSNumber)?.intValue, 100)
+        let page = try XCTUnwrap(provider["page"] as? [String: Any])
+        let rows = try XCTUnwrap(page["results"] as? [[String: Any]])
+        let publication = try XCTUnwrap(observed.last {
+            $0["engine"] as? String == "otzaria" && $0["event"] as? String == "published"
+                && ($0["items"] as? [[String: Any]])?.count == 100
+        })
+        let items = try XCTUnwrap(publication["items"] as? [[String: Any]])
+        XCTAssertEqual(rows.count, 100)
+        XCTAssertEqual(items.count, 100)
+        var handle: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(value.database.path, &handle, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(handle)
+        defer { sqlite3_close(database) }
+        XCTAssertEqual(sqlite3_db_readonly(database, "main"), 1)
+        var sql: [[String: Any]] = []
+        for (row, item) in zip(rows, items) {
+            let path = try XCTUnwrap(row["filePath"] as? String)
+            try requireSearchDataFixture(path.hasPrefix("otzaria-book:"), "Actual source must retain its qualified book identity")
+            let book = try XCTUnwrap(Int(path.dropFirst("otzaria-book:".count)))
+            let line = try XCTUnwrap((row["segment"] as? NSNumber)?.intValue)
+            let id = "otzaria:\(path):\(try XCTUnwrap((row["id"] as? NSNumber)?.uint64Value)):\(line)"
+            let actual = try sqlLine(database: database, book: book, line: line)
+            XCTAssertEqual(item["id"] as? String, id)
+            XCTAssertEqual((item["bookID"] as? NSNumber)?.intValue, book)
+            XCTAssertEqual((item["lineIndex"] as? NSNumber)?.intValue, line)
+            XCTAssertEqual(item["locator"] as? String, "otzaria|book:\(book)|line:\(line)")
+            XCTAssertEqual(item["bookTitle"] as? String, actual["bookTitle"] as? String)
+            XCTAssertEqual(row["title"] as? String, actual["bookTitle"] as? String)
+            XCTAssertEqual(item["reference"] as? String, row["reference"] as? String ?? "")
+            XCTAssertEqual(row["reference"] as? String ?? "", actual["reference"] as? String ?? "")
+            sql.append(actual)
+        }
+        XCTAssertEqual(Set(items.compactMap { $0["id"] as? String }).count, 100)
+        XCTAssertEqual(field.value as? String, "נפשי")
+        let receipt = XCTAttachment(data: try canonical([
+            "scope": "actual original UI query and provider page plus immutable SQL, not full-context acceptance",
+            "provider": provider, "publication": publication, "independentSQL": sql
+        ]), uniformTypeIdentifier: "public.json")
+        receipt.name = "published-v40-nafshi-source-selection-for-independent-context-oracle"
+        receipt.lifetime = .keepAlways; add(receipt)
+        let firstID = try XCTUnwrap(items.first?["id"] as? String)
+        try ui.assertOriginalSearchResize(rtl: true, query: "נפשי", firstStableID: firstID)
+        let afterResizeProviders = try events(value).filter {
+            $0["engine"] as? String == "otzaria" && $0["event"] as? String == "provider"
+                && ($0["request"] as? [String: Any])?["querySHA256"] as? String == queryHash
+        }
+        XCTAssertEqual(afterResizeProviders.count, providers.count, "Viewport changes must not submit another source request")
+        ui.capture("published-v40-nafshi-original-first-page")
+        return (value, items)
+    }
+
+    @MainActor
+    func testPublishedV40NafshiFirstPageForIndependentFullContextOracle() throws {
+        let (value, _) = try submitNafshiOriginalFirstPage()
+        try verifyUnchanged(value, hashDatabase: false)
+    }
+
+    @MainActor
+    func testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment() throws {
+        let oracleBytes = try originalSearchOracleBytes(pathKey: "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+                                                        digestKey: "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256")
+        let oracle = try JSONDecoder().decode(ProductionSearchPreviewSourceReceipt.self, from: oracleBytes)
+        XCTAssertEqual(oracle.schema, 1)
+        XCTAssertEqual(oracle.status, "ORIGINAL_SOURCE_PREVIEW_CATALOG_ONLY_NOT_SEARCH_OR_UI")
+        XCTAssertEqual(oracle.corpusProfile, "full-v40")
+        XCTAssertEqual(oracle.databaseSHA256, v40Digest)
+        XCTAssertEqual(oracle.uiExecuted, 0)
+        XCTAssertFalse(oracle.searchProviderExecuted)
+        let environment = ProcessInfo.processInfo.environment
+        for (actual, key) in [
+            (oracle.sourceServiceSHA256, "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"),
+            (oracle.presentationSourceSHA256, "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256"),
+            (oracle.catalogCompileInputsSHA256, "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256")
+        ] {
+            let expected = try XCTUnwrap(environment[key], "Bind the oracle to the independently retained actual source/compile closure")
+            XCTAssertEqual(expected.count, 64); XCTAssertEqual(actual, expected)
+        }
+        let paragraph = try XCTUnwrap(oracle.targets.first { $0.unitMode == "paragraph" })
+        let chapter = try XCTUnwrap(oracle.targets.first { $0.unitMode == "chapter" })
+        XCTAssertEqual(oracle.targets.filter { $0.unitMode == "paragraph" }.count, 1)
+        XCTAssertEqual(oracle.targets.filter { $0.unitMode == "chapter" }.count, 1)
+        XCTAssertEqual(paragraph.bookID, chapter.bookID)
+        XCTAssertEqual(paragraph.focusLineIndex, chapter.focusLineIndex)
+        XCTAssertGreaterThan(chapter.unitRowCount, paragraph.unitRowCount,
+            "Select an actual hit whose genuine paragraph and chapter have different complete bounds")
+        let (value, items) = try submitNafshiOriginalFirstPage()
+        let hit = try XCTUnwrap(items.first {
+            ($0["bookID"] as? NSNumber)?.intValue == paragraph.bookID
+                && ($0["lineIndex"] as? NSNumber)?.intValue == paragraph.focusLineIndex
+        }, "The original submitted page must actually contain the source-qualified target")
+        let id = try XCTUnwrap(hit["id"] as? String)
+        XCTAssertEqual(hit["locator"] as? String, paragraph.focusLocator)
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try ui.expand(id)
+        var handle: OpaquePointer?
+        XCTAssertEqual(sqlite3_open_v2(value.database.path, &handle, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil), SQLITE_OK)
+        let database = try XCTUnwrap(handle)
+        defer { sqlite3_close(database) }
+        for target in [paragraph, chapter] {
+            XCTAssertEqual(target.focusLocator, "otzaria|book:\(target.bookID)|line:\(target.focusLineIndex)")
+            XCTAssertEqual(target.unitRowCount, target.anchors.count)
+            XCTAssertEqual(target.allOriginalAnchorsChecked, target.anchors.count)
+            XCTAssertEqual(target.sourceSHA256,
+                SHA256.hash(data: Data(target.sourceUTF8.utf8)).map { String(format: "%02x", $0) }.joined())
+            XCTAssertEqual(Set(target.anchors.map(\.lineID)).count, target.anchors.count)
+            var expected: [SearchContextExpectedSegment] = []
+            for anchor in target.anchors {
+                let row = try sqlLine(database: database, book: anchor.bookID, line: anchor.lineIndex)
+                XCTAssertEqual((row["lineID"] as? NSNumber)?.int64Value, anchor.lineID)
+                XCTAssertEqual(anchor.bookID, target.bookID)
+                XCTAssertEqual(row["bookTitle"] as? String, target.bookTitle)
+                XCTAssertEqual(row["reference"] as? String ?? "", anchor.heRef ?? "")
+                XCTAssertEqual(anchor.segmentID, "otzaria|book:\(anchor.bookID)|line:\(anchor.lineIndex)")
+                XCTAssertEqual(anchor.textSHA256,
+                    SHA256.hash(data: Data(anchor.text.utf8)).map { String(format: "%02x", $0) }.joined())
+                XCTAssertEqual(anchor.previewPlainTextSHA256,
+                    SHA256.hash(data: Data(anchor.previewPlainText.utf8)).map { String(format: "%02x", $0) }.joined())
+                XCTAssertEqual(anchor.previewUTF16Length, (anchor.previewPlainText as NSString).length)
+                if !anchor.previewPlainText.isEmpty {
+                    expected.append(.init(locator: anchor.segmentID, sourceSHA256: anchor.previewPlainTextSHA256,
+                        translationSHA256: nil, sourceUTF8Bytes: anchor.previewPlainText.utf8.count,
+                        translationUTF8Bytes: nil))
+                }
+            }
+            try ui.setReaderUnit(target.unitMode, fromPreview: id)
+            try ui.assertCompleteContext(id: id, segments: expected, mode: "source")
+        }
+        let receipt = XCTAttachment(data: oracleBytes, uniformTypeIdentifier: "public.json")
+        receipt.name = "independent-v40-complete-paragraph-and-chapter-source"
+        receipt.lifetime = .keepAlways; add(receipt)
+        XCTAssertEqual(try required("global-search-query").value as? String, "נפשי")
+        try verifyUnchanged(value, hashDatabase: false)
     }
 }
