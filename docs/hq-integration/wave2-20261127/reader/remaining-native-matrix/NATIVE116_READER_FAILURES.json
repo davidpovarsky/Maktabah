@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "scope": "Retained exact Native116 reader41/phone29 failure ledger and source checkpoint; no new native result",
+  "diagnostic": {
+    "actual_selected_case_counts": {
+      "failed": 34,
+      "passed": 82
+    },
+    "control_checkout": "ec14460748dc79818b1a7a3f269a54e3a1ddfaa9",
+    "groups": {
+      "11": {
+        "failedTests": 5,
+        "passedTests": 7,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 12
+      },
+      "11-index": {
+        "failedTests": 0,
+        "passedTests": 5,
+        "runnerStatus": "EXECUTED_PASS",
+        "skippedTests": 0,
+        "totalTestCount": 5
+      },
+      "11-reader": {
+        "failedTests": 8,
+        "passedTests": 33,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 41
+      },
+      "11-search": {
+        "failedTests": 3,
+        "passedTests": 19,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 22
+      },
+      "11-sidebar": {
+        "failedTests": 0,
+        "passedTests": 5,
+        "runnerStatus": "EXECUTED_PASS",
+        "skippedTests": 0,
+        "totalTestCount": 5
+      },
+      "11-window": {
+        "failedTests": 2,
+        "passedTests": 0,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 2
+      },
+      "phone": {
+        "failedTests": 16,
+        "passedTests": 13,
+        "runnerStatus": "FAIL",
+        "skippedTests": 0,
+        "totalTestCount": 29
+      }
+    },
+    "matrix_sha256": "12c12470056356b747fe16c66df3031de46a0df3a95fd7b366206909f492ab93",
+    "physical_device_qualification": false,
+    "release_acceptance": false,
+    "scope": "Original 116 declared baseline diagnostic selectors only",
+    "source_application": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb"
+  },
+  "summaryWitnesses": {
+    "native116-apple-summary-11-reader.json": {
+      "sha256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32",
+      "bytes": 7915
+    },
+    "native116-apple-summary-phone.json": {
+      "sha256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df",
+      "bytes": 11879
+    }
+  },
+  "failureCount": 24,
+  "readerLaneFailureCount": 13,
+  "failures": [
+    {
+      "selector": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+      "originalFailure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOC",
+      "originalFailure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-expand--16525",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigation",
+      "originalFailure": "XCTAssertEqual failed: (\"0\") is not equal to (\"1\") - Require the original localized structure label",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "c1ea03786921d683a620e3800c2a9e22cd5bbfcd",
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOC",
+      "originalFailure": "XCTAssertEqual failed: (\"הרחב את ⁨פרק ב׳⁩\") is not equal to (\"הרחב את פרק ב׳\")",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigation",
+      "originalFailure": "XCTAssertEqual failed: (\"Optional(\"ב\")\") is not equal to (\"Optional(\"ברכות\")\")",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "NativeRoutingAcceptanceTests/testPublicV2TOCWithoutOriginalReaderCannotAcknowledge",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetry",
+      "originalFailure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPadAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetry",
+      "originalFailure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Require one actual visible, hittable original control: toc-loading",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-11-reader.json",
+      "originalSummarySHA256": "9bf25c00d91339eca15167ea86e1a19667a84030f892f8eb926464e056089d32"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone",
+      "originalFailure": "XCTAssertEqual failed: (\"Optional(\"cancelled\")\") is not equal to (\"Optional(\"completed\")\")",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishChapterAndComplexTOCOnPhone",
+      "originalFailure": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedEnglishTalmudTOCAndCanonicalNavigationOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewChapterAndComplexTOCOnPhone",
+      "originalFailure": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testEmbeddedHebrewTalmudTOCAndCanonicalNavigationOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "R27NativePhoneTests/testNormalBootstrapGlobalHistoryUsesActualSubmit",
+      "originalFailure": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - The original Return submission must settle and persist in its own installation before relaunch",
+      "owner": "wave2 search",
+      "repairCommits": [
+        "0b5b9375d8462020c7c118d5ab3ff650d1cbf417"
+      ],
+      "currentStatus": "Preference read-cap observer repair delivered by search lane; actual product history outcome was not established by old failure; combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "R27NativePhoneTests/testNormalBootstrapOtzariaBackgroundAndColdRestoration",
+      "originalFailure": "Failed to determine hittability of \"reader-text\" TextView: Activation point invalid and no suggested hit points based on element frame",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "cf9a3ec8"
+      ],
+      "currentStatus": "Original passive TextView activation-point failure; scoped native observer repair delivered, cold phase originally unreached; combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "HanlinReaderConsumerAcceptanceTests/testOriginalPhoneCurrentWorkReadConsentReopensAndRevokesWithoutSending",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testPhoneColdHistoryWaitsForActualSceneMount",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteEnglishLoadingFailureAndOriginalRetryOnPhone",
+      "originalFailure": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "SefariaTOCLocalizationPhoneAcceptanceTests/testRemoteHebrewLoadingFailureAndOriginalRetryOnPhone",
+      "originalFailure": "Failed to determine hittability of \"toc-content-list\" CollectionView: Activation point invalid and no suggested hit points based on element frame",
+      "owner": "wave2 reader",
+      "repairCommits": [
+        "49cfd5e8d5ecebf37acf812e047fee36cf60893a"
+      ],
+      "currentStatus": "Source/observation repair delivered; current combined native UI NOT_RUN",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+      "originalFailure": "XCTAssertNil failed: \"semantic_commentary_draft_failed\" - [\"probeError\": semantic_commentary_draft_failed, \"errorType\": CommentaryDraftFailure]",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    },
+    {
+      "selector": "NativeRoutingPhoneAcceptanceTests/testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone",
+      "originalFailure": "XCTAssertTrue failed",
+      "owner": "integration owner / Wave3",
+      "repairCommits": [],
+      "currentStatus": "Original failure; exact current owner repair/combined native outcome must be supplied by integration owner",
+      "originalSummary": "native116-apple-summary-phone.json",
+      "originalSummarySHA256": "3f4c72012a2504064fdec58a0c6176412accd2d9894aa7201e6ac823b6c1a7df"
+    }
+  ]
+}
