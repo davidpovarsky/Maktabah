@@ -38,6 +38,7 @@ class iOSNavigationManager: BackendSwitchParticipant {
     @ObservationIgnored private(set) var nativeModePresentationRevision: UInt64? = 0
     var selectedBook: BooksData? {
         willSet {
+            activeReaderTabPresentation?.bookWillChange(to: newValue)
             StudyWorkspaceNavigationAdapter.nativeGroupBookWillChange(self, to: newValue)
             // Original presentation ownership metadata. Every setter, including
             // an equal-value write, advances; exhaustion can never recycle it.
@@ -50,8 +51,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
         didSet {
             selectedBookPresentationMode = selectedBook.map { _ in currentMode }
             StudyWorkspaceNavigationAdapter.nativeGroupBookDidChange(self)
+            activeReaderTabPresentation?.bookDidChange()
         }
     }
+    @ObservationIgnored private weak var activeReaderTabPresentation: ActiveReaderTabPresentation?
     private(set) var selectedBookPresentationRevision: UInt64? = 0
     private(set) var selectedBookPresentationMode: AppMode?
     var selectedBookForInfo: BooksData?
@@ -313,13 +316,142 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
         activeTabId = id
         if let nextTab = openTabs.first(where: { $0.id == id }) {
-            nextTab.viewModel.annotationEvent = nil
-            nextTab.viewModel.searchEvent = nil
-            nextTab.viewModel.needsScrollRestore = true
-            selectedBook = nextTab.book
-            selectedContentId = nextTab.viewModel.currentContentId
+            presentOriginalSelectedTab(nextTab) { _ in }
         }
         persistCurrentSession(immediate: false)
+    }
+
+    /// The ORIGINAL tab-selection presentation, shared without changing the
+    /// ordinary selectTab early return, assignments, order or persistence.
+    /// Only the retained native caller supplies a read-only boundary check.
+    private func presentOriginalSelectedTab(
+        _ nextTab: ReaderTab,
+        before: (ActiveReaderTabPresentation.Step) throws -> Void
+    ) rethrows {
+        try before(.annotation)
+        nextTab.viewModel.annotationEvent = nil
+        try before(.search)
+        nextTab.viewModel.searchEvent = nil
+        try before(.restore)
+        nextTab.viewModel.needsScrollRestore = true
+        try before(.book)
+        selectedBook = nextTab.book
+        try before(.content)
+        selectedContentId = nextTab.viewModel.currentContentId
+    }
+
+    /// Source metadata only. Core still owns the sole effect grant; the exact
+    /// native binding retains this object before any foreground/parent await.
+    func retainActiveReaderTabPresentation(requestID: UUID, tab: ReaderTab) throws -> ActiveReaderTabPresentation {
+        guard activeReaderTabPresentation == nil else { throw StudyWorkspaceError.invalidMembership }
+        let value = try ActiveReaderTabPresentation(requestID: requestID, manager: self, tab: tab)
+        activeReaderTabPresentation = value
+        do { try value.validate(); return value }
+        catch { value.release(); throw error }
+    }
+
+    /// One already-active ORIGINAL phone tab. No book-ID lookup, hydration,
+    /// tab replacement, mode setter, async task or presentation fallback.
+    @MainActor final class ActiveReaderTabPresentation {
+        fileprivate enum Step: Int { case annotation, search, restore, book, content }
+        private enum Phase: Equatable { case retained, applying, completed, invalid, released }
+        private enum BookPhase: Equatable { case waiting, publishing, published }
+        let requestID: UUID
+        private weak var manager: iOSNavigationManager?
+        private let tab: ReaderTab
+        private let bookRevision: UInt64
+        private var phase: Phase = .retained
+        private var bookPhase: BookPhase = .waiting
+        private var nextStep = 0
+
+        var hasPublishedBook: Bool { bookPhase == .published }
+
+        fileprivate init(requestID: UUID, manager: iOSNavigationManager, tab: ReaderTab) throws {
+            guard !MaktabahApp.isIpad, manager.activeTabId == tab.id,
+                  manager.selectedBook == nil, manager.selectedBookPresentationMode == nil,
+                  let revision = manager.selectedBookPresentationRevision, revision < .max else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            self.requestID = requestID; self.manager = manager; self.tab = tab; bookRevision = revision
+        }
+
+        private func originalOwner() throws -> iOSNavigationManager {
+            guard phase != .invalid, phase != .released, let manager,
+                  manager.activeReaderTabPresentation === self, !MaktabahApp.isIpad,
+                  manager.activeTabId == tab.id else { throw StudyWorkspaceError.invalidMembership }
+            let matches = manager.openTabs.filter { $0.id == tab.id }
+            guard matches.count == 1, let actual = matches.first,
+                  actual.book === tab.book, actual.viewModel === tab.viewModel else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+            return manager
+        }
+
+        func validate() throws {
+            let manager = try originalOwner()
+            guard bookPhase != .publishing,
+                  phase == .retained || manager.currentMode == .viewer,
+                  manager.selectedBook === (hasPublishedBook ? tab.book : nil),
+                  manager.selectedBookPresentationMode == (hasPublishedBook ? .viewer : nil),
+                  manager.selectedBookPresentationRevision == bookRevision + (hasPublishedBook ? 1 : 0) else {
+                throw StudyWorkspaceError.invalidMembership
+            }
+        }
+
+        fileprivate func bookWillChange(to value: BooksData?) {
+            do {
+                try validate()
+                guard phase == .applying, nextStep == Step.book.rawValue + 1,
+                      bookPhase == .waiting, value === tab.book else { throw StudyWorkspaceError.invalidMembership }
+                // Consume BEFORE the original Group/Observation callbacks.
+                // A second/equal/nested setter invalidates; ordinary UI still
+                // performs its own setter and is never blocked by this proof.
+                bookPhase = .publishing
+            } catch { phase = .invalid }
+        }
+
+        fileprivate func bookDidChange() {
+            do {
+                let manager = try originalOwner()
+                guard phase == .applying, bookPhase == .publishing,
+                      nextStep == Step.book.rawValue + 1, manager.currentMode == .viewer,
+                      manager.selectedBook === tab.book, manager.selectedBookPresentationMode == .viewer,
+                      manager.selectedBookPresentationRevision == bookRevision + 1 else {
+                    throw StudyWorkspaceError.invalidMembership
+                }
+                bookPhase = .published
+            } catch { phase = .invalid }
+        }
+
+        /// Called only inside the SAME Core-authorized original selection.
+        /// The supplied check cannot grant an effect; it rechecks the retained
+        /// binding before each original assignment and around persistence.
+        func apply(validateSource: () throws -> Void) throws {
+            do {
+                try validate()
+                guard phase == .retained else { throw StudyWorkspaceError.invalidMembership }
+                let manager = try originalOwner()
+                guard manager.currentMode == .viewer else { throw StudyWorkspaceError.invalidMembership }
+                phase = .applying
+                try manager.presentOriginalSelectedTab(tab) { [self] step in
+                    guard phase == .applying, nextStep == step.rawValue else { throw StudyWorkspaceError.invalidMembership }
+                    nextStep += 1
+                    try validate(); try validateSource(); try validate()
+                    guard phase == .applying, nextStep == step.rawValue + 1 else { throw StudyWorkspaceError.invalidMembership }
+                }
+                guard hasPublishedBook, nextStep == Step.content.rawValue + 1 else { throw StudyWorkspaceError.invalidMembership }
+                try validate(); try validateSource(); try validate()
+                manager.persistCurrentSession(immediate: false)
+                try validate(); try validateSource(); try validate()
+                guard phase == .applying else { throw StudyWorkspaceError.invalidMembership }
+                phase = .completed
+            } catch { phase = .invalid; throw error }
+        }
+
+        func release() {
+            phase = .released
+            if manager?.activeReaderTabPresentation === self { manager?.activeReaderTabPresentation = nil }
+        }
     }
 
     func confirmPendingBookIntegration(state: BundleArchiveDownloadProgressState) {
