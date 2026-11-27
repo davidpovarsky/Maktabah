@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/production-study-v40-ui.py", line 718, in <module>
+    main()
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/production-study-v40-ui.py", line 708, in main
+    context = source_context(core, args.study_phase, False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/production-study-v40-ui.py", line 158, in source_context
+    context = core.source_context(require_frozen=frozen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v40-ui-observation.py", line 275, in source_context
+    return original(require_frozen)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 116, in source_context
+    head = git("rev-parse", "HEAD")
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 107, in git
+    return command(["git", *args]).stdout.strip()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 103, in command
+    require(result.returncode == 0, "Original command failed: " + str(args[0]))
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 49, in require
+    raise ValueError(message)
+ValueError: Original command failed: git
