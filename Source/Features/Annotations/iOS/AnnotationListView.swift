@@ -94,7 +94,15 @@ struct AnnotationListView: View {
         )
         .annotationEditorSheet(
             editingAnnotation: nativeModalBinding($editingAnnotation),
-            viewModel: viewModel
+            viewModel: viewModel,
+            nativeControls: nativeRoutingSession?.annotationEditorControls,
+            nativeListOwner: nativeRoutingOwner,
+            nativeParentAvailable: {
+                !isExporting && !isImporting && !showOverwriteDialog && !showImportAlert && !showMissingBookAlert
+            }, nativeSurface: nativeRoutingSession.map { session in
+                { AnyView(MaktabahNativeRoutingWitness(kind: .annotationEditor)
+                    .environment(\.maktabahNativeRoutingSession, session)) }
+            }
         )
     }
 
@@ -350,7 +358,11 @@ private extension View {
 
     func annotationEditorSheet(
         editingAnnotation: Binding<Annotation?>,
-        viewModel: AnnotationViewModel
+        viewModel: AnnotationViewModel,
+        nativeControls: MaktabahNativeAnnotationEditorControls? = nil,
+        nativeListOwner: UUID? = nil,
+        nativeParentAvailable: @escaping @MainActor () -> Bool = { true },
+        nativeSurface: (@MainActor () -> AnyView)? = nil
     ) -> some View {
         sheet(item: editingAnnotation) { ann in
             iOSAnnotationEditorSheet(
@@ -367,6 +379,12 @@ private extension View {
                 onDelete: { id in
                     viewModel.deleteAnnotation(id: id)
                     UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                }, nativeSurface: nativeSurface,
+                nativeControls: nativeControls.flatMap { controls in
+                    nativeListOwner.map { owner in
+                        .init(controls: controls, listOwner: owner,
+                            parentCurrent: { editingAnnotation.wrappedValue == ann && nativeParentAvailable() })
+                    }
                 }
             )
         }
