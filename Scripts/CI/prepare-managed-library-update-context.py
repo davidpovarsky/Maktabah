@@ -8,6 +8,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import runpy
 from pathlib import Path
 import subprocess
 import urllib.request
@@ -51,8 +52,10 @@ def main():
             "Expected the managed production v40 database")
     manifest_bytes = (database.parent / "seforim-installation.json").read_bytes()
     manifest = json.loads(manifest_bytes)
-    require(manifest.get("releaseID") == 455390662 and manifest.get("releaseTag") == TAG
-            and manifest.get("profileID") == "production", "Managed manifest is not the accepted full-v40 source")
+    require(manifest.get("releaseID") == 455390662 and manifest.get("releaseTag") == TAG,
+            "Managed manifest is not the accepted full-v40 source")
+    profile_gate = runpy.run_path(str(Path(__file__).with_name("study-ui-settings-receipts.py")))["require_production_profile"]
+    profile_gate(manifest)
     candidates = [args.annotations_path] if args.annotations_path else sorted({
         candidate.resolve(strict=True) for candidate in data.rglob("Annotations.sqlite")
         if candidate.is_file() and not candidate.is_symlink()})

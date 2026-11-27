@@ -1,0 +1,567 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:maktabah:ordinary-settings-post-update-receipt:v1",
+  "title": "Actual ordinary Settings v40 to v41 success receipt",
+  "description": "Shape only; the helper enforces source/owner/native execution/byte/SQL/trace bindings. This schema is not an execution receipt.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "const": "ORIGINAL_SETTINGS_UPDATE_VERIFIED"
+    },
+    "simulatorUDID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bundleID": {
+      "const": "com.davidpovarsky.chavrusatext"
+    },
+    "checkoutSHA": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "dataContainerBefore": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataContainerAfter": {
+      "type": "string",
+      "minLength": 1
+    },
+    "originalInstallationResult": {
+      "$ref": "#/$defs/FileWitness"
+    },
+    "settingsExecution": {
+      "$ref": "#/$defs/SettingsExecution"
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "before": {
+      "$ref": "#/$defs/Snapshot"
+    },
+    "after": {
+      "$ref": "#/$defs/Snapshot"
+    },
+    "officialTarget": {
+      "$ref": "#/$defs/OfficialTarget"
+    },
+    "cleanup": {
+      "$ref": "#/$defs/Cleanup"
+    },
+    "traceBaseline": {
+      "$ref": "#/$defs/TraceBaseline"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "status",
+    "simulatorUDID",
+    "bundleID",
+    "checkoutSHA",
+    "dataContainerBefore",
+    "dataContainerAfter",
+    "originalInstallationResult",
+    "settingsExecution",
+    "context",
+    "before",
+    "after",
+    "officialTarget",
+    "cleanup",
+    "traceBaseline"
+  ],
+  "additionalProperties": true,
+  "$defs": {
+    "FileWitness": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "RawManifestWitness": {
+      "type": "object",
+      "properties": {
+        "sourcePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rawBase64": {
+          "type": "string",
+          "contentEncoding": "base64"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "sourcePath",
+        "rawBase64",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "IndexFile": {
+      "type": "object",
+      "properties": {
+        "relativePath": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "inode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "mtimeNs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "ctimeNs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        }
+      },
+      "required": [
+        "relativePath",
+        "bytes",
+        "inode",
+        "mtimeNs",
+        "ctimeNs"
+      ],
+      "additionalProperties": false
+    },
+    "Index": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "enum": [
+            "otzaria",
+            "zayit"
+          ]
+        },
+        "storageRoot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifactID": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "manifest": {
+          "$ref": "#/$defs/RawManifestWitness"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1024,
+          "items": {
+            "$ref": "#/$defs/IndexFile"
+          }
+        }
+      },
+      "required": [
+        "engine",
+        "storageRoot",
+        "artifactID",
+        "manifest",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "Snapshot": {
+      "type": "object",
+      "properties": {
+        "database": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "installationManifest": {
+          "$ref": "#/$defs/RawManifestWitness"
+        },
+        "indexes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/Index"
+          }
+        }
+      },
+      "required": [
+        "database",
+        "installationManifest",
+        "indexes"
+      ],
+      "additionalProperties": false
+    },
+    "Owner": {
+      "type": "object",
+      "properties": {
+        "simulatorUDID": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bundleID": {
+          "const": "com.davidpovarsky.chavrusatext"
+        },
+        "simulatorData": {
+          "type": "string",
+          "minLength": 1
+        },
+        "containerParent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataContainer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storageRoot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "appOwnerMetadata": {
+          "$ref": "#/$defs/RawManifestWitness"
+        },
+        "storageOwnerMetadata": {
+          "$ref": "#/$defs/RawManifestWitness"
+        }
+      },
+      "required": [
+        "simulatorUDID",
+        "bundleID",
+        "simulatorData",
+        "containerParent",
+        "dataContainer",
+        "storageRoot",
+        "appOwnerMetadata",
+        "storageOwnerMetadata"
+      ],
+      "additionalProperties": false
+    },
+    "Context": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "effective": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "relocations": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "properties": {
+              "before": {
+                "$ref": "#/$defs/Owner"
+              },
+              "after": {
+                "$ref": "#/$defs/Owner"
+              }
+            },
+            "required": [
+              "before",
+              "after"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "input",
+        "effective",
+        "relocations"
+      ],
+      "additionalProperties": false
+    },
+    "SettingsExecution": {
+      "type": "object",
+      "properties": {
+        "caseID": {
+          "const": "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+        },
+        "caseStatus": {
+          "const": "Passed"
+        },
+        "executedTests": {
+          "const": 1
+        },
+        "skippedTests": {
+          "const": 0
+        },
+        "caseResult": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "zeroSkipResult": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "xcresultPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "installedAttachment": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "officialTargetAttachment": {
+          "$ref": "#/$defs/FileWitness"
+        }
+      },
+      "required": [
+        "caseID",
+        "caseStatus",
+        "executedTests",
+        "skippedTests",
+        "caseResult",
+        "zeroSkipResult",
+        "xcresultPath",
+        "installedAttachment",
+        "officialTargetAttachment"
+      ],
+      "additionalProperties": true
+    },
+    "Asset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "bytes",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "OfficialTarget": {
+      "type": "object",
+      "properties": {
+        "releaseID": {
+          "const": 459809828
+        },
+        "releaseTag": {
+          "const": "v41-20261126162443"
+        },
+        "repository": {
+          "const": "Otzaria/SeforimLibrary"
+        },
+        "fullManifestAsset": {
+          "$ref": "#/$defs/Asset"
+        },
+        "statisticsAsset": {
+          "$ref": "#/$defs/Asset"
+        },
+        "statistics": {
+          "type": "object",
+          "properties": {
+            "db_version": {
+              "const": 41
+            },
+            "books": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "lines": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "links": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "db_version",
+            "books",
+            "lines",
+            "links"
+          ],
+          "additionalProperties": true
+        },
+        "metadataReceipts": {
+          "type": "object",
+          "properties": {
+            "release": {
+              "$ref": "#/$defs/FileWitness"
+            },
+            "fullManifest": {
+              "$ref": "#/$defs/FileWitness"
+            },
+            "statistics": {
+              "$ref": "#/$defs/FileWitness"
+            }
+          },
+          "required": [
+            "release",
+            "fullManifest",
+            "statistics"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "releaseID",
+        "releaseTag",
+        "repository",
+        "fullManifestAsset",
+        "statisticsAsset",
+        "statistics",
+        "metadataReceipts"
+      ],
+      "additionalProperties": false
+    },
+    "Cleanup": {
+      "type": "object",
+      "properties": {
+        "transactionAbsent": {
+          "const": true
+        },
+        "downloadsAbsent": {
+          "const": true
+        },
+        "stagingMatches": {
+          "type": "array",
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "transactionAbsent",
+        "downloadsAbsent",
+        "stagingMatches"
+      ],
+      "additionalProperties": true
+    },
+    "TraceBaseline": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relativePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "inode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "mtimeNs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "ctimeNs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9223372036854775807
+        },
+        "processID": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "caseID": {
+          "enum": [
+            "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata",
+            "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity"
+          ]
+        },
+        "caseStatus": {
+          "const": "Passed"
+        },
+        "caseResult": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "xcresultPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceAttachment": {
+          "$ref": "#/$defs/FileWitness"
+        },
+        "sourceDatabaseManifestSHA256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "namespace",
+        "relativePath",
+        "bytes",
+        "sha256",
+        "inode",
+        "mtimeNs",
+        "ctimeNs",
+        "processID",
+        "caseID",
+        "caseStatus",
+        "caseResult",
+        "xcresultPath",
+        "sourceAttachment",
+        "sourceDatabaseManifestSHA256"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

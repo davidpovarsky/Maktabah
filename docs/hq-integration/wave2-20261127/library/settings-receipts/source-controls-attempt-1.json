@@ -1,0 +1,277 @@
+{
+  "status": "SOURCE_RECEIPT_GATE_CONTROLS_ONLY",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "actualNativeUIExecutions": 0,
+  "actualSimulatorExecutions": 0,
+  "productionDatabasesCreatedOrRead": 0,
+  "positiveProductionEnvelopesWritten": 0,
+  "passed": 46,
+  "total": 46,
+  "helperSHA256": "880df14ab98d8ddc70d0706cf3c87aee47c405358bf171227337a9df32180e2f",
+  "controlSHA256": "4e05ca3c25df9d9248f3b0fc538bd3eb5346fdbf59347f6856c07710df05c475",
+  "actualFileVerifierSHA256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6",
+  "cases": [
+    {
+      "name": "production-profile-missing",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "production-profile-null",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "production-profile-explicit",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-profile-profileID-''",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or empty installation profile"
+    },
+    {
+      "name": "reject-profile-profileID-'miniTest10'",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or empty installation profile"
+    },
+    {
+      "name": "reject-profile-profileID-True",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or empty installation profile"
+    },
+    {
+      "name": "reject-profile-profileVersion-True",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or malformed production profile version"
+    },
+    {
+      "name": "reject-profile-profileVersion-'1'",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or malformed production profile version"
+    },
+    {
+      "name": "reject-profile-profileVersion-''",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or malformed production profile version"
+    },
+    {
+      "name": "reject-profile-profileVersion-2",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Foreign or malformed production profile version"
+    },
+    {
+      "name": "exact-immutable-input",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-changed-immutable-input",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Changed immutable receipt: /tmp/synthetic-settings-evidence-gate-zz2b9z44/immutable-input.json"
+    },
+    {
+      "name": "reject-evidence-symlink",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Redirected/noncanonical path: /tmp/synthetic-settings-evidence-gate-zz2b9z44/redirected.json"
+    },
+    {
+      "name": "original-export-manifest-shape",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-wrong-case-attachment",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Exactly one actual named case attachment is required: settings-update-installed"
+    },
+    {
+      "name": "reject-wrong-device-attachment",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Wrong attachment device"
+    },
+    {
+      "name": "reject-escaped-attachment-path",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Escaped or invalid exported attachment filename"
+    },
+    {
+      "name": "reject-duplicate-attachment",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Exactly one actual named case attachment is required: settings-update-installed"
+    },
+    {
+      "name": "official-asset-metadata-shape-and-exact-byte-binding",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "managed-production-profile-omission-and-multipart-identity",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-confusing-manifest-size-with-assembled-archive",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Final installed release/manifest asset identity differs"
+    },
+    {
+      "name": "reject-foreign-multipart-asset-id",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Final original multipart member identity differs"
+    },
+    {
+      "name": "reject-metadata-asset-digest-mismatch",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Official metadata asset identity/digest differs: fullManifest"
+    },
+    {
+      "name": "original-MCM-owner-shape",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-ambiguous-MCM-owner",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Require exactly one original application owner"
+    },
+    {
+      "name": "reject-cross-device-parent",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Wrong simulator container parent"
+    },
+    {
+      "name": "exact-retained-package-metadata-and-inventory",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-reserialized-manifest-even-if-object-equal",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Retained manifest bytes changed"
+    },
+    {
+      "name": "reject-retained-inventory-change",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Retained package inventory changed"
+    },
+    {
+      "name": "reject-index-symlink",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Index member is redirected"
+    },
+    {
+      "name": "read-only-small-SQL-fixture-hash-and-counts",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-final-database-hash-mismatch",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Final DB differs from the actual installed UI attachment"
+    },
+    {
+      "name": "reject-final-published-count-mismatch",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Actual complete updated corpus counts differ from verified official statistics"
+    },
+    {
+      "name": "clean-transaction-observation",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-pending-transaction-remnant",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Completed update left a transaction artifact"
+    },
+    {
+      "name": "reject-download-remnant",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Completed update left a download artifact"
+    },
+    {
+      "name": "reject-dangling-staging-artifact",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Completed update left a staging database"
+    },
+    {
+      "name": "observed-same-UDID-relocation-with-original-input-immutable",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "original-input-retained-after-relocation",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-relocated-context-path-escape",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Context paths are not bound to an observed original MCM owner"
+    },
+    {
+      "name": "reject-unrecorded-relocation",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Unrecorded initial/final container relocation"
+    },
+    {
+      "name": "original-file-verifier-admits-consistent-synthetic-shape",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-zero-skip-receipt-inconsistency",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Stored zero-skip result differs from actual retained xcresult exports"
+    },
+    {
+      "name": "existing-qualified-trace-prefix-required",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reject-absent-trace-instead-of-accepting-no-pages",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/synthetic-settings-evidence-gate-zz2b9z44/CoreSimulator/Devices/00000000-0000-0000-0000-000000000001/data/Containers/Data/Application/00000000-0000-0000-0000-00000000000C/Documents/OtzariaLogs/search-native-00000000-0000-0000-0000-000000000014.jsonl'"
+    },
+    {
+      "name": "reject-empty-trace",
+      "expected": "reject",
+      "passed": true,
+      "observedError": "ValueError: Original trace is truncated"
+    }
+  ]
+}
