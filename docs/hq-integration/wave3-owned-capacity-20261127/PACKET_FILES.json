@@ -1,0 +1,80 @@
+{
+  "files": [
+    {
+      "bytes": 1513,
+      "path": "PRESERVED_PREPARATION_FAILURES.json",
+      "sha256": "c90abcd99a3e36d272bb11e88c0ea49cd1f70fa154a68cd549f782829ceedfde"
+    },
+    {
+      "bytes": 10112,
+      "path": "README.md",
+      "sha256": "87c484d214ded7680c470e10edd07a05f1be73e0c874c105bf053f39cddc6e98"
+    },
+    {
+      "bytes": 21698,
+      "path": "receipts/BOUNDED_ATTRIBUTION.json",
+      "sha256": "0266652002a3264bdc44c928d332d8483a72fc1eefb80c921abb3350c0bbde16"
+    },
+    {
+      "bytes": 2553,
+      "path": "receipts/HELD_SYMBOL_MANIFEST_LOOKUP.json",
+      "sha256": "1bdec4b428f908b4dae42ee1d89af0d3953c0fc2d309e9e8e898fc68164e46da"
+    },
+    {
+      "bytes": 4789,
+      "path": "receipts/NEW_SIMULATOR_AND_TEMP_ATTRIBUTION.json",
+      "sha256": "f1227ad6270f4244569ac6d69f5c24f963b0cc0ca6656669dd09fc31e4c54a77"
+    },
+    {
+      "bytes": 85495,
+      "path": "receipts/REFERENCE_PRIVATE_SUMMARY.json.gz",
+      "sha256": "fc96fefd54e6fe81a38e82ce35ea347f0e748afa3250f0ed7f760fb24d9dba8e"
+    },
+    {
+      "bytes": 63628,
+      "path": "receipts/RETIREMENT_PREDELETE.json",
+      "sha256": "0f7ea39af14c2c77c515641748381d91f8b0c00ca424affecaa54edb1ff9115a"
+    },
+    {
+      "bytes": 122220,
+      "path": "receipts/RETIREMENT_RESULT.json",
+      "sha256": "ee98ccee1c7c8d4a2458136405cf9a44ce2dee2750994b7ff02677c736eb72af"
+    },
+    {
+      "bytes": 5980,
+      "path": "receipts/VERIFIED_PRESERVATION.json",
+      "sha256": "179860b3b16bf672d0e56d5b9e774c2201537a513597eba19e123f48911f009c"
+    },
+    {
+      "bytes": 224999,
+      "path": "recovery/covered-scopes-metadata-only.tar.gz",
+      "sha256": "7250221a87d34a6f4e335ce81f310f630b5635649a7423defa14ccc04b4eba87"
+    },
+    {
+      "bytes": 18382,
+      "path": "scripts/covered_scopes.py",
+      "sha256": "315c28c4195c06e9df99d2e784167542207efeab7192ac7fb93e483c19018164"
+    },
+    {
+      "bytes": 12437,
+      "path": "scripts/next_capacity_stdout_plan.py",
+      "sha256": "9590abb2e79d20cfef0cdc007976664b39d827f84f9473fd17e12538855a19dc"
+    },
+    {
+      "bytes": 3471,
+      "path": "scripts/retire_windows.py",
+      "sha256": "50535fba92310046dee4b8d7c23499d7b7ebd8499f6f1ea315c7780cb4dec952"
+    },
+    {
+      "bytes": 11166,
+      "path": "scripts/verify_windows.py",
+      "sha256": "fd29b2351ae32a392214ecac132fd1d5ca63acd845f901dbd0338260fbf45dc4"
+    },
+    {
+      "bytes": 927,
+      "path": "PUBLICATION_PREPARATION_FAILURE.json",
+      "sha256": "0a2768443ba7969d2ea85337bef68543e34982a9a564028b5ccf331bcde84811"
+    }
+  ],
+  "scope": "Documentation and artifact preservation only; native acceptance0; no SDK retry"
+}
