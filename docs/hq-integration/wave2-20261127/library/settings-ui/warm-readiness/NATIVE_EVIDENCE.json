@@ -1,0 +1,44 @@
+{
+  "HELPER_EXTRACTION.json": {
+    "compressed": false,
+    "originalBytes": 1019,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/HELPER_EXTRACTION.json",
+    "originalSHA256": "907fbc35a814eeba6e3fe59309f22e42fc4f6628ba826b257fe307addbbb7949",
+    "storedSHA256": "907fbc35a814eeba6e3fe59309f22e42fc4f6628ba826b257fe307addbbb7949"
+  },
+  "OriginalSearchReadinessSupport.swift.gz": {
+    "compressed": true,
+    "originalBytes": 26219,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/OriginalSearchReadinessSupport.swift",
+    "originalSHA256": "1c876ad1e4bf62c82bd641c99cbbc455b08d44f03ddd5e999bb1aa2c59dd2d8a",
+    "storedSHA256": "e2f0afa54ad6907fbafd52a6f3355a1f2aea76d89283f05537649cc29a2210ca"
+  },
+  "ProductionOtzariaAcceptanceTests.swift.gz": {
+    "compressed": true,
+    "originalBytes": 72871,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/ProductionOtzariaAcceptanceTests.swift",
+    "originalSHA256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377",
+    "storedSHA256": "bd52653634a324dbc0113a52a8a858791c735b26a456ce7c9c1b44c72e9f3784"
+  },
+  "RESULT.json": {
+    "compressed": false,
+    "originalBytes": 3108,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/RESULT.json",
+    "originalSHA256": "3a88a9cbf35282b9bc141787744e525460ff1f1837d7fb1f887576459f038595",
+    "storedSHA256": "3a88a9cbf35282b9bc141787744e525460ff1f1837d7fb1f887576459f038595"
+  },
+  "typecheck.stderr.log.gz": {
+    "compressed": true,
+    "originalBytes": 111994,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/typecheck.stderr.log",
+    "originalSHA256": "c48e404c67dc94dab1859f252a44235bb17d744ed88fd55adcc76bc57627c19a",
+    "storedSHA256": "3f9627b879a9bb270ca1cf825d940e7d64a643e4ae5c4cfb3c149b6f60dba642"
+  },
+  "typecheck.stdout.log.gz": {
+    "compressed": true,
+    "originalBytes": 0,
+    "originalPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/typecheck.stdout.log",
+    "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSHA256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+  }
+}

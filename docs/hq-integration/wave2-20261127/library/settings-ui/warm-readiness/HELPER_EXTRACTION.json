@@ -1,0 +1,29 @@
+{
+  "blocks": [
+    {
+      "bytes": 278,
+      "sha256": "50aa4395ffc660173f61d6efa02a90d311fad3f881fa01d98ed9a7707b015160"
+    },
+    {
+      "bytes": 129,
+      "sha256": "0148b50debac1569bf3c9361d36950448786eebffedead19860c49450fc2a742"
+    },
+    {
+      "bytes": 202,
+      "sha256": "6d6602f2d74114eb17e8b9e5043f2260c3c95b405e4d9ca2f7c8effc5af6ed9e"
+    },
+    {
+      "bytes": 13102,
+      "sha256": "227afc13ae443d286aef973789d02916594b205c0a4870f28f6fe78f483b99b1"
+    },
+    {
+      "bytes": 12438,
+      "sha256": "0c50eda55965421f80cdd94f0e6e365c7399265ea527bb4bd543ec8c59abf36f"
+    }
+  ],
+  "gitPath": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "gitRevision": "78f61e08694d463a289072c41c1e27f04c264c8d",
+  "scope": "verbatim UI-test dependency extraction; no Source changes and no app/UI execution",
+  "warmHelperSHA256": "0c50eda55965421f80cdd94f0e6e365c7399265ea527bb4bd543ec8c59abf36f",
+  "wholeSourceSHA256": "6acb1e26a37bef05706662049e8ba755ccfd72d83e060a6c9405459ecec8ac37"
+}
