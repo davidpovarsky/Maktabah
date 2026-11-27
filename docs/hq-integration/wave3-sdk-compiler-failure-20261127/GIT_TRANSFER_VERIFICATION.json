@@ -1,0 +1,19 @@
+{
+  "bundleBytes": 1055244,
+  "bundleSHA256": "1235e19ba182ee0d33eea67d7ffb3ee90814b55fa51a9e1b7c0305e5a163a33f",
+  "finalProseFormattingRecord": "FORMATTING_FINALIZATION.json",
+  "inputPacketIndexPath": "INPUT_PACKET_INDEX.json",
+  "newProductEdits": 0,
+  "newRuns": 0,
+  "oracleFree": 1111736320,
+  "originalArchiveSHA256": "6acd6fa09f46c4b3037c84654266618be5605137eea0ad3fa3158453039993c5",
+  "originalBridgeSources": 6,
+  "originalMembers": 48,
+  "originalTransferVerificationRawSHA256": "fb139f452543f89fa1c45a4d9c4bbac4e2c4a5b5dc7d33451824864c3ea5a086",
+  "packetIndexSHA256": "bd1bceeed96e0d8c4a2bb9b2d7029e91671f2353a275b01e79482af9a83b9862",
+  "rootWorkspaceEdits": 0,
+  "schema": "otzaria.sdk-compiler-failure-git-verification/1",
+  "sourceBoundaryRawSHA256": "6d64fa41c99f13778ebf2dcbdfb5e6c969e879bd8a8ee24bc4e4f8eba6ede3f2",
+  "status": "EXACT_TRANSFER_ALL_48_ORIGINAL_MEMBERS_AND_LOSSLESS_SOURCES_VERIFIED",
+  "verifiedAt": "2026-11-27T11:11:54.815800+00:00"
+}

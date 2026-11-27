@@ -1,0 +1,59 @@
+{
+  "rows": [
+    {
+      "compressedBytes": 45887,
+      "compressedPath": "raw/actual-launch-bridge.ps1.gz",
+      "compressedSHA256": "d81455a978a9fb299f1c4f1e4e85c9c2585c4ccc6a8c9576669ab41eb1ba6440",
+      "losslessRoundTrip": true,
+      "originalBytes": 114484,
+      "originalPath": "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_5782f8741d514af29ee95902e4894f7c\\script.ps1",
+      "originalSHA256": "61df7edd2fe45f66cdd206cc7e678c67c0593bde0db6808704df139dfc19c35c"
+    },
+    {
+      "compressedBytes": 8427,
+      "compressedPath": "raw/actual-failure-preservation-bridge.ps1.gz",
+      "compressedSHA256": "16af7914bc234b0ac1090921f40aa1be0ddc3e8c90422482260990512c8ed94e",
+      "losslessRoundTrip": true,
+      "originalBytes": 18865,
+      "originalPath": "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_4f82a59a00a64cf28a5cf77d96fdb89a\\script.ps1",
+      "originalSHA256": "27fe20798e42c3893fabdb2334d7940883dc1d54d001d94febba4147a79a39a8"
+    },
+    {
+      "compressedBytes": 3729,
+      "compressedPath": "raw/build_error_packet.py.gz",
+      "compressedSHA256": "649d24da72b4643d2ac5b918108832267f3e2c17373b147809294c2f2b5554be",
+      "losslessRoundTrip": true,
+      "originalBytes": 9678,
+      "originalPath": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-fresh-after-five-launch-20261127\\build_error_packet.py",
+      "originalSHA256": "85341433ba92531defa44454ec043da021fe1f323420af49e8d7e351b319c6d3"
+    },
+    {
+      "compressedBytes": 1503,
+      "compressedPath": "raw/receive_error_packet.py.gz",
+      "compressedSHA256": "187c77614e7e9859f18cfa02861d3d4fc88b5d0a8ad87a2e288a167922f18171",
+      "losslessRoundTrip": true,
+      "originalBytes": 3693,
+      "originalPath": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-fresh-after-five-launch-20261127\\receive_error_packet.py",
+      "originalSHA256": "62d89967f1e6b4d2cbc037f823c0c83cb28c2e7108b8926dbca69d2f41b69f6f"
+    },
+    {
+      "compressedBytes": 1568,
+      "compressedPath": "raw/bridge_run.py.gz",
+      "compressedSHA256": "a8b582260848a6b3a97bd5f08c8484e7279c4ebefecc01ffdd90b7afaffecf9c",
+      "losslessRoundTrip": true,
+      "originalBytes": 3916,
+      "originalPath": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-fresh-after-five-launch-20261127\\bridge_run.py",
+      "originalSHA256": "34f8241f65e6b362ca65e1c65a14bfaa56adcedfb32cc07886a07f846565c56f"
+    },
+    {
+      "compressedBytes": 275,
+      "compressedPath": "raw/PREPARATION_FAILURE.json.gz",
+      "compressedSHA256": "9de1235f011630cdc24704a22a948c233a248c1b059546a35eec5e5ee919390a",
+      "losslessRoundTrip": true,
+      "originalBytes": 353,
+      "originalPath": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-fresh-after-five-launch-20261127\\PREPARATION_FAILURE.json",
+      "originalSHA256": "ec63bd32650d51fa6bfc1a94ca4227ebd1f07ba79794d98483c7f6d3745e403c"
+    }
+  ],
+  "schema": "otzaria.lossless-original-bridge-source/1"
+}
