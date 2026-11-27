@@ -1,0 +1,23 @@
+{
+  "donor": "82e74fe2f338d8f66fbbd28d56549ea006f203d5",
+  "transforms": [
+    {
+      "originalPath": "scripts/bridge_windows.py",
+      "originalBytes": 7279,
+      "originalSHA256": "c7791d70b5254a6788a53641021b544e11d385d5b081124cab24e98f5cd256e8",
+      "storedPath": "scripts/bridge_windows.py.gz",
+      "storedBytes": 2562,
+      "storedSHA256": "82dc10bd2b115f28fb9b2b254b1fb20fc34268085567df68fa74282a27e60345"
+    },
+    {
+      "originalPath": "PACKET_INDEX.json",
+      "originalBytes": 10365,
+      "originalSHA256": "36d706f5826f8960be5868aaadbac9e5e90eaa0313216b693c1877383ccc2d8c",
+      "storedPath": "PACKET_INDEX.json.gz",
+      "storedBytes": 2640,
+      "storedSHA256": "e5a07181a0d6d19e33f47fb46bc325d63066915773f8bd75b064547fbd69eb54"
+    }
+  ],
+  "executedBytesChanged": false,
+  "newExecutions": 0
+}

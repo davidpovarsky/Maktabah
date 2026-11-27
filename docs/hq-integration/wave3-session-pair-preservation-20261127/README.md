@@ -100,3 +100,7 @@ Original Native116, Release114+2, App SDK, live integrations, TestFlight, and ph
 ## Packet byte preservation
 
 The actual executed Windows bridge_windows.py is preserved with its original 121 CRLF line endings, SHA-256 c7791d70b5254a6788a53641021b544e11d385d5b081124cab24e98f5cd256e8. Default git diff --check reports those CR characters as trailing whitespace. The raw output is retained in validation/PACKET_DIFF_CHECK.txt; no other file is flagged. The script was not normalized, because that would replace the executed evidence bytes. All eight Python scripts parse; this is syntax inspection only, not a re-execution or product test. All staged files were verified against the packet index. The small attempted Windows staging operation stopped at its reserve guard before creating a staging file; the final proof readback streamed only existing small files through memory and wrote zero staging bytes on Windows.
+
+## Root intake storage of executed Windows evidence
+
+After exact donor intake, root retained the executed bridge script as lossless scripts/bridge_windows.py.gz. Its 121 CRLF line endings and every raw byte are unchanged. The original packet index is retained as PACKET_INDEX.json.gz; the current index identifies this storage change. The historical raw whitespace-check result remains evidence of the original packet, and root checks the final integrated tree without disabling or changing the check. This is storage of executed evidence, not a re-execution or source normalization.
