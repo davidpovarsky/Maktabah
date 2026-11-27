@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-27T03:40:14.841539+00:00",
+  "audited_integration_sha": "5f404e7063cd0237963bf7fb4244c309fba98509",
+  "source_task": "https://app.asana.com/0/0/1220036884173010/f/",
+  "owner_clarification": "2026-11-22 | OWNER-APPROVED SEARCH-MORPH REFERENCE | SOURCE ARCHIVED",
+  "boundary": "Recovered byte-identical owner reference artifacts from documented original Windows paths. Documentation only; no application target, demo UI or execution added. Existing older tools/faithful-ui-reference artifact is preserved.",
+  "files": [
+    {
+      "name": "MorphingSearchPlaygrounds.swift",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah\\docs\\otzaria\\ui-prototypes\\library-search-morph-20261122\\MorphingSearchPlaygrounds.swift",
+      "bytes": 14577,
+      "sha256": "d8d9e8b41b133ec61375a970e0f2fe8fc821141cc049c68d06a5b124496d84f4",
+      "expectedSha256": "d8d9e8b41b133ec61375a970e0f2fe8fc821141cc049c68d06a5b124496d84f4",
+      "expectedBytes": 14577,
+      "matches": true,
+      "destination": "docs/otzaria/ui-prototypes/library-search-morph-20261122/MorphingSearchPlaygrounds.swift"
+    },
+    {
+      "name": "SafariToolbarSearch-Playgrounds.zip",
+      "path": "C:\\Users\\DAVID\\Code\\Maktabah\\docs\\otzaria\\ui-prototypes\\library-search-morph-20261122\\SafariToolbarSearch-Playgrounds.zip",
+      "bytes": 9091,
+      "sha256": "f3a657cc1b4e43639bcfbaa210bc9c2cbbcf80f1a610f2b9031d22ab823a784f",
+      "expectedSha256": "f3a657cc1b4e43639bcfbaa210bc9c2cbbcf80f1a610f2b9031d22ab823a784f",
+      "expectedBytes": 9091,
+      "matches": true,
+      "destination": "docs/otzaria/ui-prototypes/library-search-morph-20261122/SafariToolbarSearch-Playgrounds.zip",
+      "archive_members": [
+        "SafariToolbarSearch.swiftpm/",
+        "SafariToolbarSearch.swiftpm/GELATIN_LICENSE.txt",
+        "SafariToolbarSearch.swiftpm/MyApp.swift",
+        "SafariToolbarSearch.swiftpm/Package.swift",
+        "SafariToolbarSearch.swiftpm/README.txt"
+      ]
+    }
+  ]
+}
