@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "current-ui-requirements-audit/finalize_audit.py"
+  ],
+  "exit_code": 1,
+  "error": "ValueError: an inventory anchor needs a fresh line review",
+  "cause": "Eight original registry anchors refer to the one changed Composition file. Finalizer correctly stopped; actual current bytes and all eight anchors were then independently rechecked.",
+  "source_mutations": 0,
+  "native_or_build_invocations": 0
+}

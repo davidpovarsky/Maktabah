@@ -1,0 +1,26 @@
+{
+  "product_changes": 0,
+  "new_test_declarations": 0,
+  "compiler_invocations": 0,
+  "app_builds": 0,
+  "simulator_runs": 0,
+  "physical_runs": 0,
+  "owner_signatures_changed": 0,
+  "preserved_historical_native116": {
+    "application": "f2e3fecbd3e6f36d8a8b7edd7c95e6015acb48fb",
+    "control": "ec14460748dc79818b1a7a3f269a54e3a1ddfaa9",
+    "passed": 82,
+    "failed": 34,
+    "skipped": 0,
+    "raw_sha256": "0754ec183a78623bd2392a8250bb32e7e1e922d9c181584f0992da5090066c64"
+  },
+  "declaration_index": {
+    "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+    "files": 32,
+    "textual_test_function_declarations": 322,
+    "sha256": "024e8fec2e75ad9a7d7f9afb1b4e93ce1681b9acb03d946338da777ec15e92ae",
+    "not_a_selected_or_executed_suite": true
+  },
+  "initial_audit_metadata_correction": "Initial current byte SHA256/ref were correct; old audit Git blob field was retained. Raw initial output is preserved; current object join and separately labelled historical ID correct this without changing product bytes.",
+  "transport_note": "Two synchronous Oracle Sentinel calls returned MCP -32603 Internal error before output; authenticated exact-ref GitHub reads matched current byte SHA256. Root later used existing Oracle background dispatch successfully. No credential/connection/permission change."
+}

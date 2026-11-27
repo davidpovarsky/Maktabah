@@ -1,0 +1,1852 @@
+{
+  "schema": "otzaria.wave3.original-qa51-reconciliation.v1",
+  "original_requirements": {
+    "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\ui-routing\\qa\\requirements.json",
+    "sha256": "5eb5fbdb55bfded61250b7e8db322d2e488dd277fc60a8077abbc402303816da",
+    "source_sha": "2918825be8c5cc8ecee53d57e1f48ca51779cab4",
+    "case_families": 51,
+    "requirements": [
+      {
+        "id": "Q-UI07-001",
+        "group": "surfaces",
+        "title": "Library category/book/info"
+      },
+      {
+        "id": "Q-UI07-002",
+        "group": "surfaces",
+        "title": "Reader complete address"
+      },
+      {
+        "id": "Q-UI07-003",
+        "group": "surfaces",
+        "title": "Selection and focus"
+      },
+      {
+        "id": "Q-UI07-004",
+        "group": "surfaces",
+        "title": "TOC exact item"
+      },
+      {
+        "id": "Q-UI07-005",
+        "group": "surfaces",
+        "title": "Inspector commentary/source"
+      },
+      {
+        "id": "Q-UI07-006",
+        "group": "search",
+        "title": "Global search exact state"
+      },
+      {
+        "id": "Q-UI07-007",
+        "group": "search",
+        "title": "Cursor and selected hit"
+      },
+      {
+        "id": "Q-UI07-008",
+        "group": "search",
+        "title": "Search-in-book and clear"
+      },
+      {
+        "id": "Q-UI07-009",
+        "group": "surfaces",
+        "title": "Notes draft and unsaved state"
+      },
+      {
+        "id": "Q-UI07-010",
+        "group": "surfaces",
+        "title": "Bookmarks and history"
+      },
+      {
+        "id": "Q-UI07-011",
+        "group": "surfaces",
+        "title": "Settings subsection/control"
+      },
+      {
+        "id": "Q-UI07-012",
+        "group": "surfaces",
+        "title": "Tabs/workspace/profile/group"
+      },
+      {
+        "id": "Q-UI07-013",
+        "group": "surfaces",
+        "title": "Sidebar/menu/sheet/popover"
+      },
+      {
+        "id": "Q-UI07-014",
+        "group": "lifecycle",
+        "title": "Cold launch"
+      },
+      {
+        "id": "Q-UI07-015",
+        "group": "lifecycle",
+        "title": "Warm foreground"
+      },
+      {
+        "id": "Q-UI07-016",
+        "group": "lifecycle",
+        "title": "Background and resume"
+      },
+      {
+        "id": "Q-UI07-017",
+        "group": "lifecycle",
+        "title": "Multi-scene and scene choice"
+      },
+      {
+        "id": "Q-UI07-018",
+        "group": "readiness",
+        "title": "Inactive backend"
+      },
+      {
+        "id": "Q-UI07-019",
+        "group": "readiness",
+        "title": "Backend generation race"
+      },
+      {
+        "id": "Q-UI07-020",
+        "group": "readiness",
+        "title": "Hermes ready/reset/absent"
+      },
+      {
+        "id": "Q-UI07-021",
+        "group": "readiness",
+        "title": "Scene revision race"
+      },
+      {
+        "id": "Q-UI07-022",
+        "group": "readiness",
+        "title": "Offline/missing assets"
+      },
+      {
+        "id": "Q-UI07-023",
+        "group": "receipts",
+        "title": "Complete normalized route receipt"
+      },
+      {
+        "id": "Q-UI07-024",
+        "group": "receipts",
+        "title": "Queued/foreground are not completed"
+      },
+      {
+        "id": "Q-UI07-025",
+        "group": "receipts",
+        "title": "Cancellation/deadline commit race"
+      },
+      {
+        "id": "Q-UI07-026",
+        "group": "receipts",
+        "title": "Retry/replay/supersession"
+      },
+      {
+        "id": "Q-UI07-027",
+        "group": "security",
+        "title": "Public GET does not mutate"
+      },
+      {
+        "id": "Q-UI07-028",
+        "group": "security",
+        "title": "Authority never comes from request"
+      },
+      {
+        "id": "Q-UI07-029",
+        "group": "security",
+        "title": "No code/selector/path injection"
+      },
+      {
+        "id": "Q-UI07-030",
+        "group": "security",
+        "title": "Shareable URL privacy"
+      },
+      {
+        "id": "Q-UI07-031",
+        "group": "security",
+        "title": "Discovery is not authorization"
+      },
+      {
+        "id": "Q-UI07-032",
+        "group": "codec",
+        "title": "Unknown/versioned route and migration"
+      },
+      {
+        "id": "Q-UI07-033",
+        "group": "codec",
+        "title": "Strict transport boundaries"
+      },
+      {
+        "id": "Q-UI07-034",
+        "group": "codec",
+        "title": "Numeric identity and ambiguity"
+      },
+      {
+        "id": "Q-UI07-035",
+        "group": "codec",
+        "title": "Limits"
+      },
+      {
+        "id": "Q-UI07-036",
+        "group": "hanlin",
+        "title": "Single existing Chat/Agent"
+      },
+      {
+        "id": "Q-UI07-037",
+        "group": "hanlin",
+        "title": "Live scoped context and tool result"
+      },
+      {
+        "id": "Q-UI07-038",
+        "group": "guides",
+        "title": "Named focus anchor"
+      },
+      {
+        "id": "Q-UI07-039",
+        "group": "guides",
+        "title": "Sequential guide cancellation"
+      },
+      {
+        "id": "Q-UI07-040",
+        "group": "regression",
+        "title": "Old widget history URLs"
+      },
+      {
+        "id": "Q-UI07-041",
+        "group": "regression",
+        "title": "Old widget annotation URLs"
+      },
+      {
+        "id": "Q-UI07-042",
+        "group": "regression",
+        "title": "Expo app delegate/lifecycle"
+      },
+      {
+        "id": "Q-UI07-043",
+        "group": "accessibility",
+        "title": "Hebrew RTL and English"
+      },
+      {
+        "id": "Q-UI07-044",
+        "group": "accessibility",
+        "title": "VoiceOver"
+      },
+      {
+        "id": "Q-UI07-045",
+        "group": "accessibility",
+        "title": "Dynamic Type and iPad layout"
+      },
+      {
+        "id": "Q-UI07-046",
+        "group": "observability",
+        "title": "Correlated redacted trace"
+      },
+      {
+        "id": "Q-UI07-047",
+        "group": "responsiveness",
+        "title": "Bounded wait and MainActor"
+      },
+      {
+        "id": "Q-UI07-048",
+        "group": "responsiveness",
+        "title": "Memory and repetition"
+      },
+      {
+        "id": "Q-UI07-049",
+        "group": "platform",
+        "title": "iOS26"
+      },
+      {
+        "id": "Q-UI07-050",
+        "group": "platform",
+        "title": "iOS27"
+      },
+      {
+        "id": "Q-UI07-051",
+        "group": "platform",
+        "title": "Universal Link domain gate"
+      }
+    ],
+    "original_plan_unchanged": true,
+    "original_checker_not_run_or_represented_as_product_acceptance": true
+  },
+  "product_source": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+  "current_test_source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "entry_backend_boundary": "Original three backends × five entry families remain required where semantically supported; these rows are not 765 completed executions.",
+  "rows": [
+    {
+      "id": "Q-UI07-001",
+      "group": "surfaces",
+      "title": "Library category/book/info",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PARTIAL_FINE_CONTROLS",
+      "current_scope": "Library four finite controls and original ordinary UI; exact category/book/info variants remain separate.",
+      "source_gap_ids": [
+        "UI-GAP-07"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1875,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L1875"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-002",
+      "group": "surfaces",
+      "title": "Reader complete address",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_BOUND_READER_ROUTE",
+      "current_scope": "Original current/new-tab source locator and actual TextKit acknowledgement; final all-backend native gate remains.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testPublicV2CurrentReaderShowsTwoCanonicalSourceLines",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 545,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L545"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 723,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L723"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-003",
+      "group": "surfaces",
+      "title": "Selection and focus",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PARTIAL_FINE_CONTROLS",
+      "current_scope": "Real focus/current source selection exists; arbitrary original text-range/control variants not all delivered.",
+      "source_gap_ids": [
+        "UI-GAP-07"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testPublicV2SearchQueryFocusUsesOriginalFirstResponder",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1622,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1622"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-004",
+      "group": "surfaces",
+      "title": "TOC exact item",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_CURRENT_ROW_DELIVERED",
+      "current_scope": "Original selected TOC row and phone parent delivered; arbitrary node/query/expansion remains distinct.",
+      "source_gap_ids": [
+        "UI-GAP-07"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+              "line": 49,
+              "file_sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift#L49"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemAppIntentCurrentTOCEntryFromBackgroundPreservesReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+              "line": 96,
+              "file_sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift#L96"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-005",
+      "group": "surfaces",
+      "title": "Inspector commentary/source",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PARTIAL_INSPECTOR_SELECTION",
+      "current_scope": "Core linked commentary and original Inspector parent exist; specific original Inspector child selection remains.",
+      "source_gap_ids": [
+        "UI-GAP-05"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2203,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2203"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPublicV2InspectorPreservesOriginalReaderAndWorkspace",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1752,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1752"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-006",
+      "group": "search",
+      "title": "Global search exact state",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_SEMANTIC_QUERY_DELIVERED",
+      "current_scope": "Exact phrase, supported scope/sort; all modes/backends are not silently accepted.",
+      "source_gap_ids": [
+        "UI-GAP-04"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1963,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1963"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-007",
+      "group": "search",
+      "title": "Cursor and selected hit",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PRODUCTION_ENTRY_GAP",
+      "current_scope": "Actual continuation exists; current native probe is DEBUG only; public semantic hit/cursor entry remains under implementation.",
+      "source_gap_ids": [
+        "UI-GAP-04"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testOriginalSearchContinuationCommitsOneActualNextPage",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 9,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L9"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testOriginalSearchContinuationRevealsLoadedHitInEnglishAndHebrew",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 6,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L6"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-008",
+      "group": "search",
+      "title": "Search-in-book and clear",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "ORIGINAL_UI_PRESENT_ROUTE_PARTIAL",
+      "current_scope": "Original book-local search stays separate from global history; deep exact control/clear routes still need classification.",
+      "source_gap_ids": [
+        "UI-GAP-07"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testBookSearchRetainsControlsWithoutGlobalHistory",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+              "line": 57,
+              "file_sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift#L57"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-009",
+      "group": "surfaces",
+      "title": "Notes draft and unsaved state",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PARTIAL_DRAFT_AND_RECORD",
+      "current_scope": "Original unsaved draft retained; selected saved record/control variants remain.",
+      "source_gap_ids": [
+        "UI-GAP-05",
+        "UI-GAP-06"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1905,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1905"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-010",
+      "group": "surfaces",
+      "title": "Bookmarks and history",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PARTIAL_HISTORY_CARD_ONLY",
+      "current_scope": "History/Favorite card reveal delivered; Saved Results and remembered-position opening remain distinct.",
+      "source_gap_ids": [
+        "UI-GAP-01",
+        "UI-GAP-02"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testHistoryRecordFromOriginalLibraryShowsExactOriginalCardAndReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+              "line": 7,
+              "file_sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift#L7"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneCachedFavoriteRemovedThroughOriginalControlIsRefusedWithoutReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+              "line": 30,
+              "file_sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift#L30"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-011",
+      "group": "surfaces",
+      "title": "Settings subsection/control",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_ORIGINAL_CONTROLS_DELIVERED",
+      "current_scope": "Fifteen actual Settings anchors; reveal does not change values or add absent pages.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2774,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2774"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2797,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2797"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-012",
+      "group": "surfaces",
+      "title": "Tabs/workspace/profile/group",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_TYPED_SELECTION_DELIVERED",
+      "current_scope": "ReaderTab incl hidden active phone source delivered; Profile/Group remains current-Viewer/same-backend with qualified source.",
+      "source_gap_ids": [
+        "UI-GAP-03"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemStudyProfileIntentSelectsOriginalFirstGroup",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 25,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L25"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemTabGroupIntentReturnsFromBackgroundToOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 53,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L53"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-013",
+      "group": "surfaces",
+      "title": "Sidebar/menu/sheet/popover",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_ORIGINAL_PARENTS_DELIVERED",
+      "current_scope": "Original Sidebar and real workspace/phone/Inspector sheets retained; fine menus/popovers are not all public destinations.",
+      "source_gap_ids": [
+        "UI-GAP-07"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemWorkspaceProfilesListFromHistoryUsesOriginalSheet",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+              "line": 8,
+              "file_sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift#L8"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemWorkspaceOverviewBothOriginalLayoutsRemainBound",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+              "line": 103,
+              "file_sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift#L103"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-014",
+      "group": "lifecycle",
+      "title": "Cold launch",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_LIFETIME_GUARDS_PRESENT",
+      "current_scope": "Per-entry cold readiness and retained source; no final full-matrix cold proof.",
+      "source_gap_ids": [
+        "UI-GAP-03"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testColdHistoryURLWaitsForActualSceneMount",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 333,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L333"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+              "line": 8,
+              "file_sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift#L8"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-015",
+      "group": "lifecycle",
+      "title": "Warm foreground",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_LIFETIME_GUARDS_PRESENT",
+      "current_scope": "Actual original parent/window witnesses; final-source warm results pending.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testWarmHistoryURLUsesOtzariaNativeScene",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 327,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L327"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+              "line": 13,
+              "file_sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift#L13"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-016",
+      "group": "lifecycle",
+      "title": "Background and resume",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_LIFETIME_GUARDS_PRESENT",
+      "current_scope": "Foreground and retained scene/source validation; actual background delivery pending.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 361,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L361"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemTabGroupIntentReturnsFromBackgroundToOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 53,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L53"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-017",
+      "group": "lifecycle",
+      "title": "Multi-scene and scene choice",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_SCENE_IDENTITY_PRESENT",
+      "current_scope": "Window/entity/scene identity is retained; complete original two-window/resize acceptance still needed.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testCandidateWindowResizePreservesOriginalReaderAndSearch",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2375,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L2375"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-018",
+      "group": "readiness",
+      "title": "Inactive backend",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "TRUTHFUL_REFUSAL_PRESENT",
+      "current_scope": "No silent backend switch; unavailable parents/entities remain unavailable.",
+      "source_gap_ids": [
+        "UI-GAP-03"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 377,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L377"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSystemSefariaSurfaceUnavailableForOtzariaBackend",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+              "line": 14,
+              "file_sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift#L14"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-019",
+      "group": "readiness",
+      "title": "Backend generation race",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_AUTHORITY_GUARDS_PRESENT",
+      "current_scope": "Original source-owned backend generations and one-shot retained proof; all final runtime races remain distinct.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testWrongBackendURLCannotNavigateOrIssueNativeReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 377,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L377"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-020",
+      "group": "readiness",
+      "title": "Hermes ready/reset/absent",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "RN_ROOT_ONLY_SOURCE_DELIVERED",
+      "current_scope": "Real runtime epoch/readiness and visible RN root; actual Hermes late-reply/native execution remains required.",
+      "source_gap_ids": [
+        "UI-GAP-08"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemSefariaOriginalSurfaceColdAndWarmPreserveWorkspace",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+              "line": 9,
+              "file_sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift#L9"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-021",
+      "group": "readiness",
+      "title": "Scene revision race",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_SCENE_REVISION_GUARDS_PRESENT",
+      "current_scope": "Actual source/window identity plus monotonic observation; no final native ABA claim.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testPhoneSystemBookIntentUsesOriginalReaderOwner",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1508,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1508"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-022",
+      "group": "readiness",
+      "title": "Offline/missing assets",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "AVAILABILITY_REFUSAL_PRESENT",
+      "current_scope": "Missing data/index/network/qualified token must fail; production corpus and all three backends are separate gates.",
+      "source_gap_ids": [
+        "UI-GAP-03"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemBookIntentRejectsMissingSourceWithoutMutation",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1503,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1503"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-023",
+      "group": "receipts",
+      "title": "Complete normalized route receipt",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "ORIGINAL_RECEIPT_CONTRACT_PRESENT",
+      "current_scope": "Exact native request/backend/scene/owner evidence, not a model-only completion.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 947,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L947"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-024",
+      "group": "receipts",
+      "title": "Queued/foreground are not completed",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "NONCOMPLETION_DISTINCT",
+      "current_scope": "Queued/foreground/deadline states remain non-success; final actual tests are required.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1126,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1126"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-025",
+      "group": "receipts",
+      "title": "Cancellation/deadline commit race",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_ONE_USE_BOUNDARY_PRESENT",
+      "current_scope": "Same original absolute five-second deadline, cancellation and one-use effect grants; source controls are not native proof.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+              "line": 505,
+              "file_sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift#L505"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-026",
+      "group": "receipts",
+      "title": "Retry/replay/supersession",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_REPLAY_REFUSAL_PRESENT",
+      "current_scope": "Existing request idempotence, stale response and replay checks retained.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testReplayCannotIssueSecondNativeReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 400,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L400"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-027",
+      "group": "security",
+      "title": "Public GET does not mutate",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "NAVIGATION_ONLY_PUBLIC_CONTRACT",
+      "current_scope": "Public typed URLs navigate/read/open drafts; mutations require independent original user authority.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2774,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2774"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-028",
+      "group": "security",
+      "title": "Authority never comes from request",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "HOST_AUTHORITY_CONTRACT",
+      "current_scope": "Core/host issues authority; discovery/client state is not a grant. New public Search contract must retain this.",
+      "source_gap_ids": [
+        "UI-GAP-04"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1126,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1126"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-029",
+      "group": "security",
+      "title": "No code/selector/path injection",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_CODEC_ALLOWLIST",
+      "current_scope": "No arbitrary selector/view path/JS method accepted by reviewed native v1/v2 codecs.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testPublicV2UnknownSearchComponentCannotFocusOrSubmit",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1646,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1646"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-030",
+      "group": "security",
+      "title": "Shareable URL privacy",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PUBLIC_PRIVATE_STATE_SEPARATED",
+      "current_scope": "Private query/note payload must not enter external URLs; Search hit references need a finite original source contract.",
+      "source_gap_ids": [
+        "UI-GAP-04"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testGlobalSearchPublicRootPreservesOriginalPrivateQuery",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 919,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L919"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-031",
+      "group": "security",
+      "title": "Discovery is not authorization",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "DISCOVERY_REVALIDATED",
+      "current_scope": "Actual cached entities are rechecked at execution; stale/removed records are refused.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testCachedFavoriteRemovedThroughOriginalControlIsRefusedWithoutReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+              "line": 15,
+              "file_sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift#L15"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-032",
+      "group": "codec",
+      "title": "Unknown/versioned route and migration",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "VERSIONED_CODEC_PRESENT",
+      "current_scope": "Current v1/v2 and legacy handoff; no downgrade fallback from invalid v2.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testUnknownURLVersionShowsErrorWithoutNavigatingToHistory",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 347,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L347"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-033",
+      "group": "codec",
+      "title": "Strict transport boundaries",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "CANONICAL_TRANSPORT_PRESENT",
+      "current_scope": "Strict single query token, canonical base64url, path/version agreement and origin mapping; installed transport still required.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2615,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2615"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-034",
+      "group": "codec",
+      "title": "Numeric identity and ambiguity",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "QUALIFIED_IDENTITIES_PRESENT",
+      "current_scope": "Source-qualified work/location/records/tabs; old numeric widget handling remains a separate preserved legacy path.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemBookIntentRejectsDifferentBookLocationWithoutMutation",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1500,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1500"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-035",
+      "group": "codec",
+      "title": "Limits",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "BOUNDED_INPUTS_PRESENT",
+      "current_scope": "Existing URL/query/scope/text/deadline bounds retained; no new generalized parameter executor.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1126,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1126"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-036",
+      "group": "hanlin",
+      "title": "Single existing Chat/Agent",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "DEPENDENCY_ACCEPTANCE_SEPARATE",
+      "current_scope": "Actual existing Hanlin session composition is present; SDK/Chat/provider acceptance belongs to Wave1/root and is not re-executed here.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-037",
+      "group": "hanlin",
+      "title": "Live scoped context and tool result",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "LIVE_PROVIDER_ACCEPTANCE_OPEN",
+      "current_scope": "Real foreground/scoped source and provider/tool response must be verified in original app; no stub success credited.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-038",
+      "group": "guides",
+      "title": "Named focus anchor",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "FINITE_NAMED_FOCUS_PRESENT",
+      "current_scope": "Search query-entry focus is real; guides still show Inspector parent rather than exact commentary row. Inner RN/fine controls remain partial.",
+      "source_gap_ids": [
+        "UI-GAP-05",
+        "UI-GAP-07",
+        "UI-GAP-08"
+      ],
+      "existing_native_declarations": [
+        {
+          "name": "testGuidedSearchJourneyUsesOriginalFocusedSearchControl",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 852,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L852"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-039",
+      "group": "guides",
+      "title": "Sequential guide cancellation",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "THREE_GUIDES_SOURCE_PRESENT",
+      "current_scope": "Three actual shared-orchestrator definitions and resume/replay/explore controls; all native journey outcomes pending.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testGuidedAutomaticJourneyCompletesExploresResumesAndReplays",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 822,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L822"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-040",
+      "group": "regression",
+      "title": "Old widget history URLs",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "LEGACY_HANDOFF_PRESERVED",
+      "current_scope": "Existing history host is returned to WidgetDeepLink; new typed History route is separate.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testWarmHistoryURLUsesOtzariaNativeScene",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 327,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L327"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-041",
+      "group": "regression",
+      "title": "Old widget annotation URLs",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "LEGACY_HANDOFF_PRESERVED",
+      "current_scope": "Existing annotation host returns to original handler; original annotation widget journey still must be run.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-042",
+      "group": "regression",
+      "title": "Expo app delegate/lifecycle",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "ORIGINAL_LIFECYCLE_NOT_REWRITTEN",
+      "current_scope": "URL adapter is called once by original handler. This audit does not independently requalify Expo/application lifecycle.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-043",
+      "group": "accessibility",
+      "title": "Hebrew RTL and English",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_LOCALIZATION_PRESENT_RUNTIME_OPEN",
+      "current_scope": "Hebrew/English labels and RTL layout hooks exist; exact visual/source text is tested through original controls.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testEnglishReaderAndOriginalPaletteInLeftToRightLayout",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 2406,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L2406"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSidebarBodyPagingRTL",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+              "line": 18,
+              "file_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift#L18"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSidebarBodyPagingLTR",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+              "line": 23,
+              "file_sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift#L23"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-044",
+      "group": "accessibility",
+      "title": "VoiceOver",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "VOICEOVER_ACCEPTANCE_OPEN",
+      "current_scope": "Actual speech reachability selectors exist; they do not prove uniquely correlated focused-row/full context, full traversal/restoration, or hardware interaction.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testNativeVoiceOverSpeaksRealOverviewAndPaletteControls",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1971,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L1971"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testOriginalSearchContinuationActualVoiceOverTraversal",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 15,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L15"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-045",
+      "group": "accessibility",
+      "title": "Dynamic Type and iPad layout",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "LAYOUT_ACCEPTANCE_OPEN",
+      "current_scope": "Original responsive layouts/detents/labels exist; actual large text, 11/13-inch, rotation, Stage Manager and physical review required.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testOriginalReaderAndPublicGroupSelectorRemainUsableAtLargeTextSize",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1714,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L1714"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSystemStudySheetSameIPadNarrowAndWideRetainsOwnerAndAnchor",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+              "line": 331,
+              "file_sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift#L331"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-046",
+      "group": "observability",
+      "title": "Correlated redacted trace",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SOURCE_CORRELATED_RECEIPTS_PRESENT",
+      "current_scope": "Original fixed-category URL failures avoid payload export and native tests preserve real receipts. This is not a full log/privacy audit.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testHistoryURLAfterBackgroundRequiresActualVisibleReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 361,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L361"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-047",
+      "group": "responsiveness",
+      "title": "Bounded wait and MainActor",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "BOUNDED_WAIT_SOURCE_PRESENT",
+      "current_scope": "Original deadline/cancellation and one-use staged continuation source is retained; actual responsiveness/main-thread gate remains.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testSystemStudySheetReopenDuringActualDismissalRejectsStaleAndReplayedInput",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+              "line": 505,
+              "file_sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift#L505"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-048",
+      "group": "responsiveness",
+      "title": "Memory and repetition",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "PRODUCTION_STRESS_UNPROVEN",
+      "current_scope": "Original 100-switch/full-v40 cases exist; model/source controls do not establish actual memory/performance.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testOneHundredOriginalFullV40GroupSwitchesPreserveDocumentsAndColdRestore",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 4064,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L4064"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testLibraryMorphRepeatedOpenCloseReleasesHiddenKeyboardFocus",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1813,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L1813"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-049",
+      "group": "platform",
+      "title": "iOS26",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "SUPERSEDED_BY_OWNER_IOS27_MINIMUM",
+      "current_scope": "Preserved historical iOS26 row; explicit owner minimum27 in Asana1220542174542004 supersedes this platform target. Not counted as a native pass.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-050",
+      "group": "platform",
+      "title": "iOS27",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "IOS27_FINAL_APP_ACCEPTANCE_OPEN",
+      "current_scope": "Final current app/XCTest Apple SDK27 build, native iPad/iPhone and physical device results required.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    },
+    {
+      "id": "Q-UI07-051",
+      "group": "platform",
+      "title": "Universal Link domain gate",
+      "original_task": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "source_state": "CONFIGURED_ORIGIN_RUNTIME_GATE_OPEN",
+      "current_scope": "Current source restricts published HTTPS namespace; real AASA/CDN/profile/entitlement/install delivery is root-owned final gate. Old no-domain inventory text is historical.",
+      "source_gap_ids": [],
+      "existing_native_declarations": [
+        {
+          "name": "testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2615,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2615"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2648,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2648"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ],
+      "current_native_acceptance": "NOT_ESTABLISHED_BY_THIS_AUDIT",
+      "physical": "NOT_RUN_BY_THIS_AUDIT"
+    }
+  ]
+}

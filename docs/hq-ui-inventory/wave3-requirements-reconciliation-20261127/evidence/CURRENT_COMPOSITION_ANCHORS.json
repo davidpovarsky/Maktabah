@@ -1,0 +1,90 @@
+{
+  "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+  "sha256": "134a01ada9114405437d8c1f655b13cd321ea64ddf3a0b9d3c1b5837e48bd3b4",
+  "git_blob": "ca1f8992bb502612a4fb27c9cc3db02746089e40",
+  "bytes": 224190,
+  "anchors": [
+    {
+      "id": "inventory.v1.native.library",
+      "anchor": ".init(id: id(\"native.library\")",
+      "prior_matching_lines": [
+        191
+      ],
+      "current_matching_lines": [
+        194
+      ]
+    },
+    {
+      "id": "inventory.v1.native.reader.toc",
+      "anchor": ".init(id: id(\"native.reader.toc\")",
+      "prior_matching_lines": [
+        196
+      ],
+      "current_matching_lines": [
+        199
+      ]
+    },
+    {
+      "id": "inventory.v1.native.history",
+      "anchor": ".init(id: id(\"native.history\")",
+      "prior_matching_lines": [
+        201
+      ],
+      "current_matching_lines": [
+        204
+      ]
+    },
+    {
+      "id": "inventory.v1.native.search",
+      "anchor": ".init(id: id(\"native.search\")",
+      "prior_matching_lines": [
+        204
+      ],
+      "current_matching_lines": [
+        207
+      ]
+    },
+    {
+      "id": "inventory.v1.native.annotations",
+      "anchor": ".init(id: id(\"native.annotations\")",
+      "prior_matching_lines": [
+        213
+      ],
+      "current_matching_lines": [
+        216
+      ]
+    },
+    {
+      "id": "inventory.v1.native.settings",
+      "anchor": ".init(id: id(\"native.settings\")",
+      "prior_matching_lines": [
+        216
+      ],
+      "current_matching_lines": [
+        219
+      ]
+    },
+    {
+      "id": "inventory.v1.native.reader.inspector",
+      "anchor": ".init(id: id(\"native.reader.inspector\")",
+      "prior_matching_lines": [
+        237
+      ],
+      "current_matching_lines": [
+        240
+      ]
+    },
+    {
+      "id": "inventory.v1.native.reader",
+      "anchor": ".init(id: id(\"native.reader\")",
+      "prior_matching_lines": [
+        248
+      ],
+      "current_matching_lines": [
+        251
+      ]
+    }
+  ],
+  "boundary": "Exact anchor recheck after finite DEBUG acceptance-probe additions; no public hit/cursor or native acceptance inferred."
+}

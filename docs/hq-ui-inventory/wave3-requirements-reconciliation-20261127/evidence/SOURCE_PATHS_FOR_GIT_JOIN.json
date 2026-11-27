@@ -1,0 +1,1222 @@
+{
+  "source": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+  "source_tree": "1e36b8942c4f43e551f5b1eb814139fac651e56b",
+  "externalPins": {
+    "TorahInspectorKit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+    "SefariaMobile": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+  },
+  "paths": [
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "DependencyObjects/TorahInspectorKit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+      "object_path": "Sources/TorahInspectorUI/TorahSegmentDetailView.swift",
+      "source_ref": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+      "bytes": null,
+      "sha256": "cf23dec33df1df00d85e3fd333a838a60befa7a22a6ea2daed53dc86158df823"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "DependencyObjects/TorahInspectorKit/Sources/TorahInspectorUI/TorahSourceReaderView.swift",
+      "object_path": "Sources/TorahInspectorUI/TorahSourceReaderView.swift",
+      "source_ref": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+      "bytes": null,
+      "sha256": "5b0e3044c299242f701af6e6d48d4b7222337432cafc6a0e774f3398e5c49517"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "DependencyObjects/TorahInspectorKit/Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "object_path": "Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "source_ref": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+      "bytes": null,
+      "sha256": "92295e1d372d393309fc03d15ea2cd2ea51997acf22a065ec865dea72ed89c33"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderApp.js",
+      "object_path": "ReaderApp.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "cb088826ca2c14c9e9b20728f108594e76efd3437dbf54a500902213d81d8d1a"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TextsPage.js",
+      "object_path": "TextsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "98fa9a858bd8a6b48067a38fda2b46019e4d781752a0367b58ca1dc05ff505ea"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TextCategoryPage.js",
+      "object_path": "TextCategoryPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "77193a9695799df3c7ea682cfcb7aedbcbad49d0d5ace21a6182dfcd1ad7f2a2"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderControls.js",
+      "object_path": "ReaderControls.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "f8d16cb51d08cb638a99fbb0cc8a6699fbe033e3b1c2657c4d8508f1a7ac899a"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TextColumn.js",
+      "object_path": "TextColumn.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "1341233cdc2c5e0580b16e4a2e3e35a582be4b76eedeb84f95da2a58b2a691a7"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TextSegment.js",
+      "object_path": "TextSegment.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "95762036f6055f52f1db0dcacc95469a546dc60c97cd50eb054355cc02a2a0c4"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderTextTableOfContents.js",
+      "object_path": "ReaderTextTableOfContents.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanel.js",
+      "object_path": "ConnectionsPanel.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "6f60a758af9bb1efd6ec33fc82b491427cbcfcab52b7d8e9c45b0554d4213bb5"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanelHeader.js",
+      "object_path": "ConnectionsPanelHeader.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "eaabbae614a3e4d0d4e6036192e2a728d3829a3541e02e55e5ff59949a2fb70b"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/LinkContent.js",
+      "object_path": "LinkContent.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "204ce0bbb3f3c7fe2a27ff8171ab44ef192f47bab8eb2ef04db403ea7084028d"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/VersionBlock.js",
+      "object_path": "VersionBlock.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "c1a13329d29b9aac20432841a938709ec3c4c8f108afa9431fadfb4166a9feac"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TranslationsBox.js",
+      "object_path": "TranslationsBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "eac7be05e8451f8ac22c02b757b11f034977e69c3f48c727c3db96fe1e147a3d"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/LexiconBox.js",
+      "object_path": "LexiconBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "74bba675f0f1658fbdfec2759ab1f58d69c3327abf0684331a41cac453ba0b76"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderDisplayOptionsMenu.js",
+      "object_path": "ReaderDisplayOptionsMenu.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "4efddf0e7d6fc23ec4da0ae2ba39f213cffb03f3e5f363090359bf1151031c08"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchPage.js",
+      "object_path": "search/SearchPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "9a9efc584ebf989cd1f98dd27c69b190ff7f19b954d343ff15595f7e7f61b49b"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchResultPage.js",
+      "object_path": "search/SearchResultPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "374d76e9b9dfd5c671049706cd0e37625638383da139e3df56bc2c7bb79ebc9c"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchFilterPage.js",
+      "object_path": "search/SearchFilterPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "aff1409a8ae53aad91712ac7b221e6c51616ada83c277518284d0d9e448a4f49"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/search/AutocompletePage.js",
+      "object_path": "search/AutocompletePage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "afbbc5cd9e030a04848da48e72b997a9340819ed71b0975f11a5ab1c427daee4"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/HistorySavedPage.js",
+      "object_path": "HistorySavedPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "466a28fadea885fc51b1407245dd063c485ef94d9c9874799e0e274d07923230"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/AccountNavigationMenu.js",
+      "object_path": "AccountNavigationMenu.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "6ade35d78593afacb0ede6479c69e892b5743a358276c8baeeb31157f1da3432"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/AuthPage.js",
+      "object_path": "AuthPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "4c242c1e0e8677fb3fc7e7f87ce04a0143a4892a913206368f423d71fce139f3"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ForgotPasswordScreen.js",
+      "object_path": "ForgotPasswordScreen.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "85074c913589deb4400b0bae56645ca37d1a12e00d23f85da34c8d120246ac35"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TopicPage.js",
+      "object_path": "TopicPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "bb6d3904e5509cbb7760196e5189bdf05a85852899bca21d32500c9a4c7795bf"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/TopicList.js",
+      "object_path": "TopicList.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "917af8209a86321fb09eddf511d9bb270bb171f0cceabaf06c119b4537c488e8"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/learningSchedules/LearningSchedules.js",
+      "object_path": "learningSchedules/LearningSchedules.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "119d8d323cbb671108c699642962b7129116ef7fd99ff41cba3e2dc051ca76f2"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/SheetMeta.js",
+      "object_path": "SheetMeta.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "1b3805f877e9205d1d3abf7d4b816451e74e9681392561f3a1b5d3385a3f4801"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/AboutBox.js",
+      "object_path": "AboutBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "16ef128a58aab0c6ede7141a0e346381b90d3160156fb06ae5f4fd59d46caf39"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/FooterTabBar.js",
+      "object_path": "FooterTabBar.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "5a18c445933c74257de45ce51fdce47cfd5d5f90a24b20278c54ad5a16fe9bb3"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/DeepLinkRouter.js",
+      "object_path": "DeepLinkRouter.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "5e216bd8c68bccc2cea223807677dcb972b53598960c62e5ec37ec1e9862b592"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/ErrorBoundaryFallbackComponent.js",
+      "object_path": "ErrorBoundaryFallbackComponent.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "7cd32c23c1831db3ec4d4167a04683aef81d62d01f9a68b4b72cac176d6d4503"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/WebViewPage.js",
+      "object_path": "WebViewPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "3c1d1978079073d097b279ee2437cdf06f5182139550525bac83c784242357f3"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/Dedication.js",
+      "object_path": "Dedication.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "18066086edb2d6ba1151286fb685357323c70b947247eacc688e2401d8f6a8d5"
+    },
+    {
+      "storage": "PINNED_EXTERNAL_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Upstream/InterruptingMessage.js",
+      "object_path": "InterruptingMessage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "bytes": null,
+      "sha256": "1c3b75e0b60138aca99b150e8302c9748864ebc94473e6b6b87a2139c73ee343"
+    }
+  ],
+  "boundary": "Request current Git object metadata only; current bytes/SHA256 already read. Old git_blob field from initial join deliberately excluded.",
+  "app_paths": [
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "object_path": "Source/UI/iOS/MaktabahApp.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 14660,
+      "sha256": "1954ba44e312863a2a9c82641eb295365c8294ce86330e5c9e9a862780eb2647"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "object_path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 34750,
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "object_path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 24340,
+      "sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "object_path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 7677,
+      "sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/Bootstrap/BootstrapView.swift",
+      "object_path": "Source/UI/iOS/Views/Bootstrap/BootstrapView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 10334,
+      "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/Bootstrap/iOSCoreUpdateProgressOverlayView.swift",
+      "object_path": "Source/UI/iOS/Views/Bootstrap/iOSCoreUpdateProgressOverlayView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 1867,
+      "sha256": "8796c1063148288136ca6dfa90984889f2611eeed9d89485602ba10393f26044"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "object_path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 9017,
+      "sha256": "3fa74f98c3f2894ad22f3d8eca3b319850450ffc63a9b0affd37a45e59ea7c9c"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "object_path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 23038,
+      "sha256": "4549047d28085a9c3b3a638bbcffd8eed6b21db779e838a6ad26379cccaef612"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "object_path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 19998,
+      "sha256": "f6be0e9682141fd6f5ed2107cabda8495679e5d600a477e2fe80092bb785951a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Library/iOS/iOSLibraryViewController.swift",
+      "object_path": "Source/Features/Library/iOS/iOSLibraryViewController.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6423,
+      "sha256": "08b97830305cc4843538be98a83e8aa0d3e65f7629e26b7eba4cbe97873acec2"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Library/Updates/BookImportView.swift",
+      "object_path": "Source/Features/Library/Updates/BookImportView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 19209,
+      "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "object_path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 12213,
+      "sha256": "c7d346a72915374c40709f1089cfc0cdc31429399992a73f351704a60a13f013"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Library/iOS/AuthorModeView.swift",
+      "object_path": "Source/Features/Library/iOS/AuthorModeView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3074,
+      "sha256": "71742cab4448ee0b8ff8970bbf92526db74874694f0bfe599d5a1406f088da3e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Narrator/iOS/iOSRowiSidebarView.swift",
+      "object_path": "Source/Features/Narrator/iOS/iOSRowiSidebarView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 1401,
+      "sha256": "b7cfba084546b5fd050e8fe0c828086d1165ecd9f9de04ca56828eca8c84f29b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 13136,
+      "sha256": "5e598293fa98f1480926a9ccd6d1ec5fceda9571b61db52d87261a89a4bd682e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "object_path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 60088,
+      "sha256": "bc2f3004194727eaf2c7e0f66f4e5055f3b6557d298e1c9f4ae9dec87eda8a2b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 46951,
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
+      "object_path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4898,
+      "sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 10741,
+      "sha256": "59212349bc82314c6487248f9b7cbc051ea2f95a44482e665559bbf845f35441"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 7450,
+      "sha256": "c79d9fbeddb58c7995645df9b6ca5cf26223990f1d181697a68789855d6cbc8b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6340,
+      "sha256": "685c42f915f7cf92cb0a025c1072eb97b88276c4fb49b08e1768f73e7965435a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 7884,
+      "sha256": "e8c716628fac03a9d32272967d5679df9c22e88aaf86652de55676aea20d0d59"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "object_path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 8078,
+      "sha256": "0b8977cfe9df88698fd132d1c8a963d66bd2983090015278a2893f76f28a3ef3"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "object_path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 14300,
+      "sha256": "44bfa60ac7aa6c59d87fe2f9215461574166dd5e77457ab9f6937366266f45bf"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4403,
+      "sha256": "3fdf0665d909d769cf31d88f353df7c3aef860fa556e23fa570b79637d7f36e6"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "object_path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 22103,
+      "sha256": "1fb9c8c8db81b50f86541dd970e22bca8da934434c4c4990d47926f0f710ebb2"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/Reading/OtzariaLineSourcesInspectorView.swift",
+      "object_path": "Source/Otzaria/Reading/OtzariaLineSourcesInspectorView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 9244,
+      "sha256": "69c67308895908bb5aefab441f12a32100a53344eae99ea581412c49fcf4b5ca"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 24610,
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "object_path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 12791,
+      "sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6060,
+      "sha256": "c2e15b55714924aed00c8c93d38ae7cca113c725b9cefc8bb854b93ee2df24a8"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "object_path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 12630,
+      "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 17034,
+      "sha256": "07b66c6f679c7f51fcb73b48d119a05fd16aeffc341f9638692ec140343621a7"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "object_path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 37364,
+      "sha256": "61abb04cafb4cd0daaa0aaa99724a93ffad7d5aa0e5f454ddfa5f7318fab2c8b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "object_path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 14727,
+      "sha256": "e610d23f2870f96743375ca20d0cab04b75bd52dd37172facd7195bb171e695f"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "object_path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 22981,
+      "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "object_path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 39256,
+      "sha256": "0f2542b10c1f4226f7d9b6a523650c7b6bd1294c39d73e56a1ed241606857e4f"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6004,
+      "sha256": "580ee709da51687a8f8bf6bf44c25db594784985b3e2bb3a3eaeb7367982ab90"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "object_path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 16413,
+      "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+      "object_path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3548,
+      "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+      "object_path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 12878,
+      "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Bookmarks/iOS/iOSMoveItemView.swift",
+      "object_path": "Source/Features/Bookmarks/iOS/iOSMoveItemView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2826,
+      "sha256": "70410b975035e78e2df7899a42fb1825208b01a2a229a7a217699f33f518e66f"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+      "object_path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2790,
+      "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "object_path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4423,
+      "sha256": "6f3ea2696498eae8ce094c9f195f15a343aa820a27af24daf0b79658ef1461af"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/History/iOS/HistoryFavoriteSections.swift",
+      "object_path": "Source/Features/History/iOS/HistoryFavoriteSections.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 5532,
+      "sha256": "d2e99d3248ef7026fc704e842486e6c92e96e166d4871c6020d3a72841d0205c"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "object_path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2591,
+      "sha256": "887a97378a9bf76422e3220d275ed1438c07d77705bf091f8ee92ad2783b62ae"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderTabsPopoverView.swift",
+      "object_path": "Source/Features/Reader/iOS/Toolbar/iOSReaderTabsPopoverView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4686,
+      "sha256": "8dcd96b7be9d2ffd0c42e3712d299db8ca4750657475b1e1bb3aa8b659222668"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "object_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "object_path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3855,
+      "sha256": "13b3ada73d2f8de8bdc318ccebf9d6e74449a0530c4d6f5fa38c663f1944c20a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "object_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2785,
+      "sha256": "9ca7694119b4aa74aab2ba1b49c3bb98a190708e712631915b22d75098fcbc24"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "object_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 19225,
+      "sha256": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "object_path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 16422,
+      "sha256": "96421e6063403149324d2b2f4309b5ddb2aaaefc25d7cd7612f2a91b50aafcf2"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "object_path": "Source/Features/Setting/SettingsView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 22395,
+      "sha256": "50e06827c91312943351a375ba05853a22ce0de678659f89055e82768383b421"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+      "object_path": "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3950,
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/LibraryBackend/OfflineLibraryManagementView.swift",
+      "object_path": "Source/LibraryBackend/OfflineLibraryManagementView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6121,
+      "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Core/Models/WidgetDeepLink.swift",
+      "object_path": "Source/Core/Models/WidgetDeepLink.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2024,
+      "sha256": "328054d86c8c51b8f7f40ba17a592bd3162e9b8dbd9ee6a112dcb405cc126e13"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Features/Widget/History/HistoryProvider.swift",
+      "object_path": "Source/Features/Widget/History/HistoryProvider.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3474,
+      "sha256": "89420e0e20e777cf3e4476bfe3b4bc0aeb2cfcbd66e7b93ce08e218e0a14f684"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "object_path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 22073,
+      "sha256": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/App/OtzariaRootSplitView.swift",
+      "object_path": "Source/Otzaria/App/OtzariaRootSplitView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4407,
+      "sha256": "5c389b37570beee98b6c3771e19bdd9ed51b989955f3ca41343ae9670d0dc404"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/App/OtzariaIntegratedLibraryView.swift",
+      "object_path": "Source/Otzaria/App/OtzariaIntegratedLibraryView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4011,
+      "sha256": "e6c839c3c881abffa3771eb7a5398102311df58f36b5b83974902ff1807d10b1"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/Features/Reader/OtzariaReaderView.swift",
+      "object_path": "Source/Otzaria/Features/Reader/OtzariaReaderView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4157,
+      "sha256": "8ca71d5d756ea375edbab030b7b8865b9c3b0ad4aa888d3b3187f00cc0e0e303"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift",
+      "object_path": "Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 1530,
+      "sha256": "41f40ec2c6c1415703bc58fc989943560a23830472f0b21f0722a2e18be3aa7b"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/Otzaria/Search/OtzariaTextSearchView.swift",
+      "object_path": "Source/Otzaria/Search/OtzariaTextSearchView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 12036,
+      "sha256": "0286f2802bdf7c11f09b0d0f4b7c763d97302f9f157af58f6a77626457827888"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "object_path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6981,
+      "sha256": "941a42e4cd4d3f49d3034e95d95c85ee1755d74ed8611a62de5ae16daac14e75"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "object_path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 7988,
+      "sha256": "54bffdc4c8c55c2632897a7691bae936d9efbabd09ac3de61c0482bb948137b3"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "object_path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 23528,
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "object_path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Theme/ThemeComponents.swift",
+      "object_path": "Source/UI/iOS/Theme/ThemeComponents.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 6808,
+      "sha256": "ce9187fce4ddc518a62e973f93aa28b4d898be1071a813873b37744188008687"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "object_path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 8925,
+      "sha256": "084f8d15e37655bf5ccd42cbdc9e308ecddd9c1cfc399a12d58089737ec8f2b1"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",
+      "object_path": "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 5029,
+      "sha256": "7b03ca345a7527bdb8a32604136a8f88fdbe7fcc82d503557122ea527551c640"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/UI/macOS/Modal+Overlay/DonationSheetView.swift",
+      "object_path": "Source/UI/macOS/Modal+Overlay/DonationSheetView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 10334,
+      "sha256": "061bcfdd377df8394833320f38a0f9eef57c21a828b28b888a825074bd0f3644"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "object_path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 21459,
+      "sha256": "ff9d0053799a914f7ab14cbe76c0f01d866739fa0d24529b8e9327331579ba5e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 7751,
+      "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 5945,
+      "sha256": "43331ffc115ce6825aeb9a7f1c12ea334ebb7a51449b7994c13b16a65bb6b222"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3532,
+      "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 3537,
+      "sha256": "9e46465ad6490329db3704e0c33ffb12c3a420bc087f770051d067dd00515dd3"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4165,
+      "sha256": "fc6cd46b1e4254ce085185b4fcd6dec26c3f8bee231935430ce1155012cbf3aa"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "object_path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 1967,
+      "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "object_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 206640,
+      "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "object_path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+      "object_path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 2463,
+      "sha256": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "object_path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 1736,
+      "sha256": "cf7a6176a4e1ff9a36b2b87350265ba74aa140ffd932ded48659997c873aa7b4"
+    },
+    {
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
+      "object_path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
+      "source_ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+      "bytes": 4983,
+      "sha256": "4da5aa29c60f499593a85ed6eeb5488f421f5b084252f8143d7c452aa9944421"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "de87ae23a776b6fd1ff9575ce52a0510f955dd64731f6da797385f0ecbbcca60",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "85e7cffcb6c0c25cf4ee085ec2bad3b3ae896e59985ebbdda9228f4076c6cc8e",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "4a8699f9efacc4d10265618f3d691d97400c48f17492d59650ffba309bce989c",
+      "purpose": "original source port"
+    },
+    {
+      "path": "Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "c206773d0a798a5ab3df9ee66f456ea82815b793b044aaa9b69211253ae02aaa",
+      "bytes": 22867,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f",
+      "bytes": 7115,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45",
+      "bytes": 6531,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "d0a5edbf6f7bc1b79af45b01cd19a29c6c758ab7ab2e1ea785a82bf76495c423",
+      "bytes": 10447,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8",
+      "bytes": 20094,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "8dbcb1d117e84d977cc7610ad754bfd39c1ca3d1cc1b3cf5f073001a90dc85b5",
+      "bytes": 5503,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "a4203fdc1251a04a23e06cb74511dfafff83be76fbe1fd77a8a40f34aa5a582f",
+      "bytes": 5489,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+      "bytes": 11134,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "706ef6ef6f0eeaf77e18518f310397a33f9c4a85feac94e19251b2b9cd34e4ca",
+      "bytes": 4647,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "cef617ef5bd54f470f6fd2f11b4cfd9827d5905491237dc29cdc8c29c5e7cb0b",
+      "bytes": 4580,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+      "bytes": 36861,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28",
+      "bytes": 29317,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389",
+      "bytes": 2814,
+      "purpose": "current adapter review"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+      "storage": "PINNED_APP_GIT_OBJECT",
+      "sha256": "c2fc8cdce6bdff6b0ee197673f80246a4ffd9013ab0ea18609fa71df8b78441b",
+      "bytes": 28857,
+      "purpose": "current adapter review"
+    }
+  ],
+  "paths_note": "external immutable pin evidence is attributed reuse; no refresh needed unless original pin differs"
+}
