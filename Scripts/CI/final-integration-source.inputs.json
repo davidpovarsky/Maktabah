@@ -55,18 +55,37 @@
     "stable_native_group_segments": "816672732d0c96f192a2a2af22f405df67855272",
     "study_workspace_locale": "a30962719873962e18b08fa1ad7a9df6a925fc72",
     "universal_link_transport": "efb0a7ef58e31fa0b79eb8f7c25a1b7b5abcdef6",
+    "wave1_original_guided_journeys": "49bd4faa5391c67e5ad1c2ea7adca6fbe8b6f88f",
+    "wave2_debug_release_phase_identity": "38cc5d3381abb9f0330842d75e424e395e49b18d",
+    "wave2_full_v40_reader_observations": "2e08ca162ce6eec0e66d7fdd3e5116411235b53a",
+    "wave2_library_transaction_rollback": "e2e5f445fcee98faa4dba2dc306386a04998e618",
+    "wave2_original_localized_toc_observers": "b8cf8ccba88742260416057add1e6189aaa40d54",
+    "wave2_original_phone_restoration_observer": "64c1e74a5888f807e127e43611c3aab8fa702755",
+    "wave2_original_search_dynamic_type_offline_revalidation": "bade340598db1e4d440a99613f68d5dc6abc8e5a",
+    "wave2_original_sefaria_mobile_structure_titles": "8228e2457cf09f2b882d2cb753ea71437aae7d9a",
+    "wave2_production_search_observation": "9aa3becfadffc652b8fcd0340cc1f21db676abb4",
+    "wave2_retained_library_transaction_retirement": "d759a5cfd8b5b4c1151157f70097cbbf3ae1eeae",
     "wave2_toc_load_generation": "a40ff8a4a6a48170b0ed0a9917d59ffcb8e92b7a",
     "wave3_annotation_surface_observation": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+    "wave3_bounded_history_observer": "35a65887bf104a626e00b11621e5330eb1ce7f3d",
+    "wave3_component_source_lifetime": "5c3211789f3d72fcb16b98b8dd60fd39c51393e2",
+    "wave3_component_target_membership": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
     "wave3_miniapps_durable_launch_context": "b7a0a96021ca1cbce9cd9b497e6439988cabc0ea",
     "wave3_miniapps_return_context": "d18b6a0e76bc1846c50de5864afcd876d606ab11",
+    "wave3_original_component_localization": "d29152d96e773078bd9c3442375860a5e7e34635",
+    "wave3_original_settings_components": "e98e03ca8281bff65aaded3cebdadff5c013ccea",
+    "wave3_original_tab_selection_owner": "984e724be557ed41bc7c4e7f4c30a263751521e6",
+    "wave3_original_toc_library_components": "552fdf0d03c0fe70134961496df67e725b0a52ed",
+    "wave3_original_toc_library_observation": "899ced50d1e777568e06c9cecbf306ef897657f7",
+    "wave3_public_https_native_transport": "97495376716feb809d94e9cf525813b907286061",
     "wave3_retained_user_integration_29a": "29a731e273f9a757c743c49e182fece0e8047d46",
     "wave3_system_intent_localization": "9090271b6ccd132e0e3a39951c48e758e58a57cc"
   },
-  "application_source_sha": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
   "application_trees": {
-    "Maktabah-iOSUITests": "9a567ab65ae1d73545292a02183ff6ba877ee18f",
-    "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "5be8b3a43a7cb0c7868989abbe845ef7d8f479aa",
+    "Maktabah-iOSUITests": "bd9c98e6ed6a4009ed06b7daf0d091815fdde26c",
+    "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
+    "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
@@ -84,11 +103,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 291079,
+        "bytes": 294411,
         "kind": "blob",
         "mode": "100644",
-        "object": "9c9a9274866ba489df4cb27b7d3ff0b3ac4ff6cf",
-        "sha256": "05f48bf5bcda02660dd90af28ba1c98debf64f22f07740de57bfea715928ede2"
+        "object": "7c8fb91379cb9b6d8d6ea403738230d07e30c1df",
+        "sha256": "b3b0ce08588b3c30586d2b379bbdbf4c30c06bac9b449a8b79a16e5c5c257f8c"
       },
       "before": {
         "bytes": 290867,
@@ -97,8 +116,27 @@
         "object": "f09fa4faf5d3bfd6d17cdd0309feeae8e2494058",
         "sha256": "28d5dbc2a6672b39b4083ff9f50f25b338e177bb33ac5c32da474b2baf1b7d4a"
       },
-      "component": "wave3_retained_user_integration_29a",
+      "component": "wave2_full_v40_reader_observations",
       "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 117157,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "29196701ee6a3aa57623ae0fa46298c65e4c6f52",
+        "sha256": "896f6ec6df2a2196afd991ad807ad547dd3595b4571d6bc2496621c8cb060568"
+      },
+      "before": {
+        "bytes": 89402,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "14f458874a131628e2e770b63e74beffd2de12f7",
+        "sha256": "4f56efa323615e0c602d5c55a090c2d6751b1fb229bced37a216b92d7b15424f"
+      },
+      "component": "wave2_production_search_observation",
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -135,11 +173,24 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 162475,
+        "bytes": 2118,
         "kind": "blob",
         "mode": "100644",
-        "object": "853bf8935bd72d1199749e3454c247a302629629",
-        "sha256": "216dc1ffbf7d93b2a72285fc6d428c9a72ba34933242489692d0453e95971983"
+        "object": "3a5d53fb393133c33b564dd512eb14e2f295f18c",
+        "sha256": "d3a5f532be41683ba5cda9ed942525d49aba12443cc7edb35ebb14c37bd0547c"
+      },
+      "before": null,
+      "component": "wave3_original_toc_library_components",
+      "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 176975,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "943104d102aa98649ae28416c024e1e5b2db3ae8",
+        "sha256": "2c079b76f82cb41ff15d95587d308776fb83b171227ada3a53b146fd7b371b1f"
       },
       "before": {
         "bytes": 160603,
@@ -148,7 +199,7 @@
         "object": "2a8fa49e0ee8f56e42d345a5f1316f24c2e6d67f",
         "sha256": "640de48033d86f5de8d26f025027f1de0cf06f8adf1413860014f0a77b37ad7f"
       },
-      "component": "wave3_retained_user_integration_29a",
+      "component": "wave3_original_settings_components",
       "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
     },
     {
@@ -167,11 +218,49 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 622644,
+        "bytes": 36297,
         "kind": "blob",
         "mode": "100644",
-        "object": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
-        "sha256": "27a449d411f5f3983cf162b4201781c660e456549e028fe63ad75c4ef2c8b32e"
+        "object": "306e99976d989f655e4ccfcf8a71cf246cdb1d56",
+        "sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786"
+      },
+      "before": {
+        "bytes": 30127,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "f9a5d33d3c76113357257a86fd28d22531b9a3a7",
+        "sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004"
+      },
+      "component": "wave2_original_phone_restoration_observer",
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 32332,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9038e4cf736a0c483cd6935bad0ea7d07a670bb7",
+        "sha256": "65145c30861efa74994edd9539c93d748d8b67dd4a77beb8332a4295960acba3"
+      },
+      "before": {
+        "bytes": 27748,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "9175d3f728caac49b975d8409f01a6efdd101e28",
+        "sha256": "d4d78663f69d64d0507dd5941cba364e31c9d1c81c9de4625880132c059341dd"
+      },
+      "component": "wave2_original_localized_toc_observers",
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 625580,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "15bdc85bd3ef17b24e9b6a4c07de0e959f78788e",
+        "sha256": "ec801013d0017532b125c55304bc39a31757d18de0509489b125f14fdeab8d45"
       },
       "before": {
         "bytes": 602975,
@@ -180,7 +269,7 @@
         "object": "009ef4838a6a92ed1f5025f1ab510faf51ceda64",
         "sha256": "4b0e0b54ae37282dd6b9218097abcedadcafe3f29e4738cfd50017f123f098fa"
       },
-      "component": "anytype_native_host",
+      "component": "wave3_component_target_membership",
       "path": "Maktabah.xcodeproj/project.pbxproj"
     },
     {
@@ -585,6 +674,76 @@
           "object": "ff0a5b7472f10e97480cb197ca4518157a8723ac",
           "sha256": "6742822e85758a6650e5f54fcf3a7a7510f585e9a615996b26ba0a34049e0dfa"
         },
+        "wave1_original_guided_journeys": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_debug_release_phase_identity": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_full_v40_reader_observations": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_library_transaction_rollback": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_original_localized_toc_observers": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_original_phone_restoration_observer": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_original_search_dynamic_type_offline_revalidation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_original_sefaria_mobile_structure_titles": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_production_search_observation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave2_retained_library_transaction_retirement": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "wave2_toc_load_generation": {
           "bytes": 5988,
           "kind": "blob",
@@ -599,6 +758,27 @@
           "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
+        "wave3_bounded_history_observer": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_component_source_lifetime": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_component_target_membership": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
         "wave3_miniapps_durable_launch_context": {
           "bytes": 5988,
           "kind": "blob",
@@ -607,6 +787,48 @@
           "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
         },
         "wave3_miniapps_return_context": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_original_component_localization": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_original_settings_components": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_original_tab_selection_owner": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_original_toc_library_components": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_original_toc_library_observation": {
+          "bytes": 5988,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+          "sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4"
+        },
+        "wave3_public_https_native_transport": {
           "bytes": 5988,
           "kind": "blob",
           "mode": "100644",
@@ -1281,6 +1503,76 @@
           "object": "f3958b83b551c6c05b6c34efbf5dc0ddf4b18f85",
           "sha256": "ce8ca34400da1458e51a1356e1f9c3591baef161333131280a51f2c66940bd9f"
         },
+        "wave1_original_guided_journeys": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_debug_release_phase_identity": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_full_v40_reader_observations": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_library_transaction_rollback": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_original_localized_toc_observers": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_original_phone_restoration_observer": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_original_search_dynamic_type_offline_revalidation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_original_sefaria_mobile_structure_titles": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_production_search_observation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave2_retained_library_transaction_retirement": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "wave2_toc_load_generation": {
           "bytes": 21873,
           "kind": "blob",
@@ -1295,6 +1587,27 @@
           "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
+        "wave3_bounded_history_observer": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_component_source_lifetime": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_component_target_membership": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
         "wave3_miniapps_durable_launch_context": {
           "bytes": 21873,
           "kind": "blob",
@@ -1303,6 +1616,48 @@
           "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
         },
         "wave3_miniapps_return_context": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_original_component_localization": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_original_settings_components": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_original_tab_selection_owner": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_original_toc_library_components": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_original_toc_library_observation": {
+          "bytes": 21873,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "6707ce8c6c6907698ade66192d2edd82ea57b7e7",
+          "sha256": "cae0446fcac749d9cab5fef3e627c0b5a59e54953cace627e01eeaa9972d5a69"
+        },
+        "wave3_public_https_native_transport": {
           "bytes": 21873,
           "kind": "blob",
           "mode": "100644",
@@ -1779,6 +2134,76 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "wave1_original_guided_journeys": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_debug_release_phase_identity": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_full_v40_reader_observations": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_library_transaction_rollback": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_original_localized_toc_observers": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_original_phone_restoration_observer": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_original_search_dynamic_type_offline_revalidation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_original_sefaria_mobile_structure_titles": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_production_search_observation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave2_retained_library_transaction_retirement": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "wave2_toc_load_generation": {
           "bytes": 54697,
           "kind": "blob",
@@ -1793,6 +2218,27 @@
           "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
+        "wave3_bounded_history_observer": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_component_source_lifetime": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_component_target_membership": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
         "wave3_miniapps_durable_launch_context": {
           "bytes": 54697,
           "kind": "blob",
@@ -1801,6 +2247,48 @@
           "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
         },
         "wave3_miniapps_return_context": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_original_component_localization": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_original_settings_components": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_original_tab_selection_owner": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_original_toc_library_components": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_original_toc_library_observation": {
+          "bytes": 54697,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "74f4fb173e123bc322bb75b8ac746ae049131282",
+          "sha256": "517baf0bdb8900127ae5e3bd58a5bed8d8fe4cfc7494890acba431c18685bbce"
+        },
+        "wave3_public_https_native_transport": {
           "bytes": 54697,
           "kind": "blob",
           "mode": "100644",
@@ -2277,6 +2765,76 @@
           "object": "43d0b2a31f90da0dbf012df367e2c8394a08c355",
           "sha256": "8808021db3164018cae6517bea106d35f05cbf50defca3a2558368603d6d7ee2"
         },
+        "wave1_original_guided_journeys": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_debug_release_phase_identity": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_full_v40_reader_observations": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_library_transaction_rollback": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_original_localized_toc_observers": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_original_phone_restoration_observer": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_original_search_dynamic_type_offline_revalidation": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_original_sefaria_mobile_structure_titles": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_production_search_observation": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave2_retained_library_transaction_retirement": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
         "wave2_toc_load_generation": {
           "bytes": 38732,
           "kind": "blob",
@@ -2291,6 +2849,27 @@
           "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
           "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
         },
+        "wave3_bounded_history_observer": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_component_source_lifetime": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_component_target_membership": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
         "wave3_miniapps_durable_launch_context": {
           "bytes": 37347,
           "kind": "blob",
@@ -2299,6 +2878,48 @@
           "sha256": "eacb55cc993be5bc14e1b0b6d77f8a048e1a2ffb487eb3ba9f05e98926bba2cd"
         },
         "wave3_miniapps_return_context": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_original_component_localization": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_original_settings_components": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_original_tab_selection_owner": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_original_toc_library_components": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_original_toc_library_observation": {
+          "bytes": 38732,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "2bf9ec508b79d37c342cacae3eb8f9e3ff33a0d3",
+          "sha256": "3ae359d9695a990db6d5d8388358f70eb29f4837888e5157183cccfdd297a6a1"
+        },
+        "wave3_public_https_native_transport": {
           "bytes": 38732,
           "kind": "blob",
           "mode": "100644",
@@ -2712,6 +3333,76 @@
           "object": "ed7eaacdd03eca57dbc4ed6019e304c0f217f7c4",
           "sha256": "8ab9c6130fc2ead55d321e1142e5c74e4796b0a3e1b420ea68333dd5211ea998"
         },
+        "wave1_original_guided_journeys": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_debug_release_phase_identity": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_full_v40_reader_observations": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_library_transaction_rollback": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_original_localized_toc_observers": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_original_phone_restoration_observer": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_original_search_dynamic_type_offline_revalidation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_original_sefaria_mobile_structure_titles": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_production_search_observation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave2_retained_library_transaction_retirement": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "wave2_toc_load_generation": {
           "bytes": 15325,
           "kind": "blob",
@@ -2726,6 +3417,27 @@
           "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
+        "wave3_bounded_history_observer": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_component_source_lifetime": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_component_target_membership": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
         "wave3_miniapps_durable_launch_context": {
           "bytes": 15325,
           "kind": "blob",
@@ -2734,6 +3446,48 @@
           "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
         },
         "wave3_miniapps_return_context": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_original_component_localization": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_original_settings_components": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_original_tab_selection_owner": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_original_toc_library_components": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_original_toc_library_observation": {
+          "bytes": 15325,
+          "kind": "blob",
+          "mode": "100644",
+          "object": "d31632706b84525087f044a46642dd9fa7a5dcb4",
+          "sha256": "d7edfd5d5d1f8e570f0ec9e79f4b1f2839a879836acc5a9fd4f542ce680cdbc2"
+        },
+        "wave3_public_https_native_transport": {
           "bytes": 15325,
           "kind": "blob",
           "mode": "100644",
@@ -3039,11 +3793,37 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 17836,
+        "bytes": 6296,
         "kind": "blob",
         "mode": "100644",
-        "object": "13e31b06af0f6bc411be4c316e032dbf2dce90ba",
-        "sha256": "c8094f797bacd63dc436f04781c727d1e9e7dc5ddc0214831c1d140234f5d21d"
+        "object": "866918a0a8e63ee5031ed444d6f032e93ce1a207",
+        "sha256": "09834a04d6efcaea1301e76024a6e1f518b591e55be197de25246cb7edf59180"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7115,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "194eb752d8dec120e38375ee5260793d8239d81b",
+        "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f"
+      },
+      "before": null,
+      "component": "wave3_original_toc_library_observation",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 19689,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "1fc7eed19d5b9cf65ded4e8770d3ab78788f132b",
+        "sha256": "31bbcb4cdd7f8716f1bd87e4037f674954739123e705b59db2daf2d74a8c6244"
       },
       "before": {
         "bytes": 17210,
@@ -3052,17 +3832,17 @@
         "object": "4ac661ab2936ff7503e0af8fe99d9eae3fc9ab60",
         "sha256": "6b67a3502b0060db50c735a6c3442fb7a5776717d01582d9c69b4746db5f568d"
       },
-      "component": "app_intent_scoped_discovery",
+      "component": "wave3_component_source_lifetime",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 161008,
+        "bytes": 165493,
         "kind": "blob",
         "mode": "100644",
-        "object": "773de9ebb7890c0ddd62cc03ae3489958d0260cc",
-        "sha256": "62a335b2227ac226949d46693934b9631c20a9de97fbcd0c79c4cbe0ea499776"
+        "object": "c5a28aa73ed43c858297ea350ccf398929be1a74",
+        "sha256": "aa6cf8660287c3db2cca987c4a77509363b44d8c96668b2c92a0c2daa25aac77"
       },
       "before": {
         "bytes": 152357,
@@ -3071,17 +3851,17 @@
         "object": "df28f34439dd0d22f1c8d5ad13326adb6ed686f7",
         "sha256": "89a4a7dd90d458dfc91e69c9d840530372b42702182a77864487a5eb30fde93d"
       },
-      "component": "wave3_retained_user_integration_29a",
+      "component": "wave3_component_source_lifetime",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 14872,
+        "bytes": 20514,
         "kind": "blob",
         "mode": "100644",
-        "object": "a357a38cfe9dbaa44dbc5b69620ff51d18379d03",
-        "sha256": "8e37edd879143d39c1963fc903ac2524504290add0f3e5422e2caf830e272226"
+        "object": "fb85bd129c2e2af9b0f69374cedf14e947fa1ad0",
+        "sha256": "ad58540502f8d99b50e49cfc27ed78b5d5dc6aaed36739870fedfcd48ddefa5b"
       },
       "before": {
         "bytes": 10227,
@@ -3090,17 +3870,17 @@
         "object": "b524195aaa657a93a95ace3e78bee5a30c956f6e",
         "sha256": "c984947478e9a29464c5ec9fff7d87b1cbb6f67a923fa2662c79c62ed033de89"
       },
-      "component": "wave3_retained_user_integration_29a",
+      "component": "wave1_original_guided_journeys",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 32370,
+        "bytes": 32477,
         "kind": "blob",
         "mode": "100644",
-        "object": "8ae02c263c0973379f1da0b175fca734c17b04c7",
-        "sha256": "f53c9bba758d9fe42036c8588acdca0ca78138d0ebf338fa2b07dff4fc78ee62"
+        "object": "5726bdcc391cae8a839aaf17ce4da5ee83e882d9",
+        "sha256": "02fffa713fd2ab9684b1e3c0008db48d7756f4f1d4e469c2024c33f6fca1e805"
       },
       "before": {
         "bytes": 32198,
@@ -3109,7 +3889,7 @@
         "object": "1fdd5b9002fe07b19f4c7b475215cc3d7a0c12a8",
         "sha256": "4d0b19560fef3968d1dc1799df1dd97a3aaac432668be4a97f8d750c80364505"
       },
-      "component": "wave3_retained_user_integration_29a",
+      "component": "wave3_original_tab_selection_owner",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
     },
     {
@@ -3134,11 +3914,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 48078,
+        "bytes": 55416,
         "kind": "blob",
         "mode": "100644",
-        "object": "f0248f2b0e77c36ef065ba9e4cc847052e81f95b",
-        "sha256": "8fb9d9aa761b7ea2491a6daed185a4f0a9a90286db3303228dd0e81f33fe4d96"
+        "object": "3c64e628e4533ba4c265450646f36eadfac8212a",
+        "sha256": "cf2c98761c654091c03d28dcbd7a3ec9b08a9e183e48a26f2c268f6d3d49b7a1"
       },
       "before": {
         "bytes": 45049,
@@ -3147,8 +3927,34 @@
         "object": "da38520df403bf4331a1811529586e82d67b528e",
         "sha256": "f163d68594c4a45c3a3f4f02f0aace306feab5cdc5b828f5e25656d7a328050f"
       },
-      "component": "wave3_annotation_surface_observation",
+      "component": "wave3_component_source_lifetime",
       "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 6531,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "19de8347acad04129f66035a471bcaf497cdb2de",
+        "sha256": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 7567,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "06d9cb15fa73d7d109864157bdaf04194a7833ab",
+        "sha256": "9061b890b78239afb043d64c1df8d6e1d38a69ae9900c033c2be429433ed1f04"
+      },
+      "before": null,
+      "component": "wave3_original_toc_library_observation",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3172,6 +3978,32 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 9556,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "005b71bfb0bfd41650df7d778312d1207f22ad1d",
+        "sha256": "439bbc4855bd33bfab5ada49537ce7fb9ef3ecee6ab66c383faff3d1cd760184"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 1195,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "56efc8d34badaa9d97e2d61eb0651d97ae2c193a",
+        "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 2853,
         "kind": "blob",
         "mode": "100644",
@@ -3187,6 +4019,25 @@
       },
       "component": "wave3_system_intent_localization",
       "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 6186,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "832ff7ccdd6d42a17e486e4305024331236d72a5",
+        "sha256": "294414f30018f48478fc19f2bfba9fe5bffedf742da2744870a57ff9a6e30f75"
+      },
+      "before": {
+        "bytes": 5676,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "03a53371851c378f02aa263c933ab298fbd26d7f",
+        "sha256": "61a8907d79b9fc673c9a4550b63f8c205eecaca21958f655a8c2f94bb84d9b64"
+      },
+      "component": "wave3_original_settings_components",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3225,6 +4076,51 @@
       },
       "component": "wave3_retained_user_integration_29a",
       "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 9839,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "4936f1e5e05023fa6de98663760be64f77126891",
+        "sha256": "e0ba0b336d3899a2022d0c47c39dd589960101382b79a279fb3c7c113e12d295"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 5962,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ba5099b2387898ac947e0b47b5a18d50ebe8a9f0",
+        "sha256": "fef723b46e09eff76af607cfcc7a5686fb199b0ac5405daf985062a7294f5ec7"
+      },
+      "before": null,
+      "component": "wave3_component_source_lifetime",
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentSourceObservationTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 27335,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "87c9edb1ddc5ce02f07f3d7ecec587f23b76da6a",
+        "sha256": "c8464a495a691f735703408a971bf5fd2afeebda4542f2bbbd3e481a2db05193"
+      },
+      "before": {
+        "bytes": 24631,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "aea24223885192175d8c71e26a19dee7614cd079",
+        "sha256": "8b16254babd3052e64bb8bf35ae39f5d08ff96e1e64d2a8917e4a36f8260e537"
+      },
+      "component": "wave3_original_settings_components",
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3324,6 +4220,25 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
+        "bytes": 9017,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "c3d3854cc5069e512f6dddfefd47e2d439ef8047",
+        "sha256": "3fa74f98c3f2894ad22f3d8eca3b319850450ffc63a9b0affd37a45e59ea7c9c"
+      },
+      "before": {
+        "bytes": 8312,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "46f202177491274e37e140326913cfcbf716883b",
+        "sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b"
+      },
+      "component": "wave3_original_toc_library_components",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
         "bytes": 14108,
         "kind": "blob",
         "mode": "100644",
@@ -3377,6 +4292,25 @@
       },
       "component": "reader_annotations_presentation",
       "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 12631,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "89f8797780bdd62e54b5ba12fbc25c21369b8731",
+        "sha256": "a6608b1ab4be3542d1d083104bd9fb94b2bd65613f8e9f80a75639c3690d8315"
+      },
+      "before": {
+        "bytes": 12324,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "d8386c58093527a0f81e3ac1bf4fac739e5ab966",
+        "sha256": "802ff46c9e4efc3526aaedb51b9cfd76cc22f611c652f7c44c4d85486a05f4ea"
+      },
+      "component": "wave3_original_toc_library_components",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -3457,11 +4391,30 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 20566,
+        "bytes": 14385,
         "kind": "blob",
         "mode": "100644",
-        "object": "d8488611ddfb166985a0e724bec6495a45f15b1e",
-        "sha256": "f11c149e2aff58116fb6d9995e887101c19354c8055c92014d3300080e032329"
+        "object": "a5066b010668c0981254748145ff564b493cf0b1",
+        "sha256": "0a29bc3992a1da701ac8ffb2af3f4825dbeaafe87b4710caba207ac307665c28"
+      },
+      "before": {
+        "bytes": 12223,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "05254df866e1f6a866e2807a8a5ed49561273b22",
+        "sha256": "f4fc969da25d4a6c4997aa0661c378cc7013455e0f4662ecb3a0c514ac94e8a9"
+      },
+      "component": "wave2_original_search_dynamic_type_offline_revalidation",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 22395,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "6de6dc461eb148525e001c7e2ddcf9ba3581b14c",
+        "sha256": "50e06827c91312943351a375ba05853a22ce0de678659f89055e82768383b421"
       },
       "before": {
         "bytes": 19519,
@@ -3470,7 +4423,7 @@
         "object": "e7d7f1d554290526fe3b81b54cc8db36135fadba",
         "sha256": "386e05e0fb9ab891a98d8d1a7c7c8aa24de19a999f858856f3ac252bcc0ccab5"
       },
-      "component": "original_rich_miniapps",
+      "component": "wave3_component_source_lifetime",
       "path": "Source/Features/Setting/SettingsView.swift"
     },
     {
@@ -3514,11 +4467,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 363044,
+        "bytes": 363557,
         "kind": "blob",
         "mode": "100644",
-        "object": "a60bff78654244052bf0d213c34a90bef502694c",
-        "sha256": "448670a0a155117adbe57871c836ca169cf996a03028ef88abe2accd9f58ede5"
+        "object": "48a2a25209daac0d9479ef6dd167f5cb1a4ed3e6",
+        "sha256": "d24d0b3bd53289859a6a30953d26a515385fc66e93149d56354d742eccd76769"
       },
       "before": {
         "bytes": 340316,
@@ -3527,7 +4480,7 @@
         "object": "511a85ca4442f82c7f9edbe5303eacf073730017",
         "sha256": "af09522860989af555e8c0423fae89ec293e4b76119ac7e06c8a2f8bb819bb46"
       },
-      "component": "wave3_system_intent_localization",
+      "component": "wave3_original_component_localization",
       "path": "Source/Localizable.xcstrings"
     },
     {
@@ -3891,11 +4844,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 6436,
+        "bytes": 7299,
         "kind": "blob",
         "mode": "100644",
-        "object": "28844586ef583d5b8667b3d8f19f5bf3968a4b3a",
-        "sha256": "fbc2ff580e2ab3ddff4ec831da8fe01530f0680e9dc6a39e8f73d888f55613dc"
+        "object": "79f659eb3da3b78ad2d67cbc11f52e75213d6336",
+        "sha256": "11cb7aa686fe0426724d68e28003d55cea936d2b42b9ecacfca857588b61ebf0"
       },
       "before": {
         "bytes": 4740,
@@ -3904,17 +4857,17 @@
         "object": "92f497af1dba7086c50e1121fe0b53ec2e720c0c",
         "sha256": "fe08c44f229e7df9b58a803d011989fe7c326da3a16ea423e13c534ebc72d50f"
       },
-      "component": "library_install_cancel_rollback",
+      "component": "wave2_library_transaction_rollback",
       "path": "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 11219,
+        "bytes": 11234,
         "kind": "blob",
         "mode": "100644",
-        "object": "099b26e5e7e5602363d977a57b2b1d5ff5597ac7",
-        "sha256": "c6462ef7b59ad2d43cd2b85b7fa527db62041b80e50ef07805a93f7a707b7adc"
+        "object": "b1aa0e494e51e17bf3d8039a08b2a95a20e4f2ac",
+        "sha256": "8c138198f41830eca491508e57b8c67508a580eeb36e00c0a61d7600eabbdff5"
       },
       "before": {
         "bytes": 9091,
@@ -3923,7 +4876,7 @@
         "object": "baca123b69f9d31f779e7bd4e024c654c6a50ea2",
         "sha256": "02953786c2b5327b4cc2b83307c54ff5acf4eae7beb4e8d974c5773c0dc646b1"
       },
-      "component": "library_install_cancel_rollback",
+      "component": "wave2_library_transaction_rollback",
       "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift"
     },
     {
@@ -3948,11 +4901,11 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 18893,
+        "bytes": 23174,
         "kind": "blob",
         "mode": "100644",
-        "object": "5ece0d4a012bd58192bff2ecadbc831b19e6a5ed",
-        "sha256": "d529968ed276250171efb24ff0c47e1381d244ae802b878dd4e7bc46a74df2f2"
+        "object": "d8c19519716662f3edc9b06106d96b4ebbf2f785",
+        "sha256": "57b459d6f43bd143236a2616dd9f8298ed48387e727e3903077caa178c5315f3"
       },
       "before": {
         "bytes": 18852,
@@ -3961,8 +4914,27 @@
         "object": "b008ae8bcd4bbf6d2484005fd678f11cb83435ec",
         "sha256": "192dc8cb8fa041a6f3fd4760d8d2daf00cd72e05209d25ef5c6b5790430d3624"
       },
-      "component": "library_install_cancel_rollback",
+      "component": "wave2_retained_library_transaction_retirement",
       "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 14275,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "fcee8ff2785c434ccb8e1ed6ecb67951bdb4fa4d",
+        "sha256": "7619190c383e5042fd55ea1cf5ff5c19016b55a4ad34191f8c0d7699a25b12c7"
+      },
+      "before": {
+        "bytes": 14219,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "85abf4ecba1277474bf90aceb641fd1416f1d43a",
+        "sha256": "afb748bb57d9edcbd804d329f25c7b0b2263dd0a178b59979e10fb2c43ca2f45"
+      },
+      "component": "wave2_debug_release_phase_identity",
+      "path": "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -4050,28 +5022,47 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 11595,
+        "bytes": 11974,
         "kind": "blob",
         "mode": "100644",
-        "object": "c88a8faf48ed53a0d392e9e96e55392a46084453",
-        "sha256": "ef8a336a1a9fa5f733cf759402f5f32fcbdb84b5881f3a4d3685a7e03aec2912"
+        "object": "4fe016bf851f0c21ea755c8cd7f53d04be1f0870",
+        "sha256": "969898aba46d4c30a0f0f045db2e4da1b54d6f9cf4841a2ae40acecc8a960ccb"
       },
       "before": null,
-      "component": "guided_native_visibility",
+      "component": "wave1_original_guided_journeys",
       "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 7144,
+        "bytes": 9572,
         "kind": "blob",
         "mode": "100644",
-        "object": "fb3dc2641a4dc394d7444fb91bfecead5ced69b9",
-        "sha256": "72f5bca4f7614e8444258938172b69554a240c7d2fc8e135daf890b3fa39caf0"
+        "object": "2ffd9909989e07e634de083be8d6f65ffe05fd3a",
+        "sha256": "3630cffaf740ba45da009daf8f6de456666f4a3d1894f6a7db9462559621ed54"
       },
       "before": null,
-      "component": "guided_native_visibility",
+      "component": "wave1_original_guided_journeys",
       "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 34785,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "c8bbd55bf027d0df363436a55c51142055edea84",
+        "sha256": "c867b7384455f87e5bddec526f0f1c5bc9af4f7ec73707260df6de6c311e8a5f"
+      },
+      "before": {
+        "bytes": 34284,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "86b7b97047426083516f40a9034ef7765b7c6a2f",
+        "sha256": "3a33b37270a8cc19826a403db93f7d800a99a453626b2c0c31ec8e0c9f7a0a5e"
+      },
+      "component": "wave2_original_sefaria_mobile_structure_titles",
+      "path": "Source/Sefaria/Domain/SefariaNavigationParser.swift"
     },
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
@@ -4190,11 +5181,49 @@
     {
       "adoption": "UNCHANGED_COMPONENT_OBJECT",
       "after": {
-        "bytes": 35768,
+        "bytes": 34371,
         "kind": "blob",
         "mode": "100644",
-        "object": "0bfd802da2f152ac74142ebd172957607790ff7d",
-        "sha256": "06e0d99eecd1751d807fe7f1a9f677f393942ec75ecafc445d769f796adc172f"
+        "object": "91c3f01f876b5e574a10e7fd81b80130215fbacd",
+        "sha256": "b403cee7173846aa6101c7d771554304285683ec802fbd1f181f6cc6e4ac3b82"
+      },
+      "before": {
+        "bytes": 34057,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "8e62133937df4349a7d9a3c6ed1d9e17deb0e337",
+        "sha256": "26222438075d476c96c34d1b3416a11dbd0630c1664a97c679d509e555850937"
+      },
+      "component": "wave2_production_search_observation",
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 39256,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "7dde3a6c74f0689b1d7d3e3139255625a81d4745",
+        "sha256": "0f2542b10c1f4226f7d9b6a523650c7b6bd1294c39d73e56a1ed241606857e4f"
+      },
+      "before": {
+        "bytes": 39104,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "bda6d4571765bc2f58612cbe6aa8888f2a44fd99",
+        "sha256": "f37faabf742fe6ca2b7d3a3d5c045cc38f7a520547c14e6da55d554164e99cf4"
+      },
+      "component": "wave2_production_search_observation",
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift"
+    },
+    {
+      "adoption": "UNCHANGED_COMPONENT_OBJECT",
+      "after": {
+        "bytes": 36190,
+        "kind": "blob",
+        "mode": "100644",
+        "object": "ee178e394f5a441bab72f50eebf1d26686b4529e",
+        "sha256": "98429a31f01ba9db5953440cb7c48cb65f1111c8c5923105fe657fb5b49a838d"
       },
       "before": {
         "bytes": 35437,
@@ -4203,7 +5232,7 @@
         "object": "42865fa6e658aceb7f705c81968ac0560afd1bf4",
         "sha256": "14398bf1136e858b33e44059732bfb71c4fe59d8db7cb37afd270d8924e311f8"
       },
-      "component": "managed_database_identity",
+      "component": "wave2_original_search_dynamic_type_offline_revalidation",
       "path": "Source/ZayitSearch/ZayitSearchDistribution.swift"
     },
     {

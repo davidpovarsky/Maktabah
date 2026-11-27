@@ -1,9 +1,9 @@
 {
-  "application_source_sha": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
   "application_trees": {
-    "Maktabah-iOSUITests": "9a567ab65ae1d73545292a02183ff6ba877ee18f",
-    "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "5be8b3a43a7cb0c7868989abbe845ef7d8f479aa",
+    "Maktabah-iOSUITests": "bd9c98e6ed6a4009ed06b7daf0d091815fdde26c",
+    "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
+    "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "reviewed_r27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
@@ -26,7 +26,7 @@
     "release_ui_cases": 114
   },
   "source_pin_sha256": {
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "028f3644be2a13fbb5dcfd8020850c3cf9493077b15f9b1fd1d51a311888bd48",
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
     "Scripts/CI/hq-v32-prebuilt-native.py": "36ef3c8369e69607912b3805d4d3646b0166e2716e2cc9d18f86b2fdf2876436",
     "Scripts/CI/runtime27-release-manifest.json": "efc17b2c9514f12cd55b787128d6f7c30c0acdbe37335cae87ff11caa4b11a5f",
     "docs/hq-integration/runtime27/R27_CASES.json": "6538c21575ff67d5bfa08f5966968a143407ddec81a9fc51b8b847c84df9c8ed"

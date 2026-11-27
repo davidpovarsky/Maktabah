@@ -471,17 +471,25 @@
     }
   ],
   "excluded_build_inputs": {
-    "Maktabah.xcodeproj/project.pbxproj": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
+    "Maktabah.xcodeproj/project.pbxproj": "15bdc85bd3ef17b24e9b6a4c07de0e959f78788e",
     "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
     "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
     "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
   },
   "final_integrated_project_review": {
-    "actual_membership_receipt": "docs/hq-integration/final-delivery-20261126/project-shortcuts-membership.json",
-    "actual_membership_receipt_sha256": "3119b929a129f3b45b6da873864d424a738639dcb611799540b160f547b53f24",
-    "application_source_sha": "104168712f060f0a21a78d27fcde98dc312d9527",
+    "actual_membership_receipt": "docs/hq-integration/wave3-final-20261127/PROJECT_COMPONENT_MEMBERSHIP_64c1e74a.json",
+    "actual_membership_receipt_sha256": "3346e252518ba0e16e330fed3a778cb8ea5c945a72309babc2d25eb9a55ac07b",
+    "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
     "native_acceptance": "NOT_CLAIMED",
-    "reviewed_project_blob": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
+    "previous_review_preserved": {
+      "actual_membership_receipt": "docs/hq-integration/final-delivery-20261126/project-shortcuts-membership.json",
+      "actual_membership_receipt_sha256": "3119b929a129f3b45b6da873864d424a738639dcb611799540b160f547b53f24",
+      "application_source_sha": "104168712f060f0a21a78d27fcde98dc312d9527",
+      "native_acceptance": "NOT_CLAIMED",
+      "reviewed_project_blob": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
+      "standalone_engine_tests_not_in_app_target": true
+    },
+    "reviewed_project_blob": "15bdc85bd3ef17b24e9b6a4c07de0e959f78788e",
     "standalone_engine_tests_not_in_app_target": true
   },
   "mac_shared_project_review": {

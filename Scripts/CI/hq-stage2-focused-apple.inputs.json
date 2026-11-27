@@ -1,8 +1,8 @@
 {
-  "application_source_sha": "22fd689971ebe6506087cd85d740f54d5d9f36e5",
+  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
   "application_trees": {
-    "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
-    "Source": "5be8b3a43a7cb0c7868989abbe845ef7d8f479aa",
+    "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
+    "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
     "Vendor": "206715dd2022ff73184860bec183578c8799d812"
   },
   "artifacts": [
@@ -72,7 +72,7 @@
   },
   "final_product_source": {
     "manifest": "Scripts/CI/final-integration-source.inputs.json",
-    "sha256": "b9371759fcf84f44d0f1a19bbbdff2707fa9c5db180f920a458bbc7e58acb0bb"
+    "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
   },
   "hanlin_gitlink": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
   "mac_shared_composition": {
@@ -82,7 +82,7 @@
     "new_runtime_acceptance_required": true,
     "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
   },
-  "otzaria_test_additions_sha256": "2f52ef68d84f09f2d78cdf15eb629eb4292d456de9e2bdfe16036a266deae082",
+  "otzaria_test_additions_sha256": "c8a74947f04d8308835d27eed3fb562c517bbe8365a13ca902ae0be8d33627cf",
   "rebuild_zayit_framework": false,
   "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
   "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",

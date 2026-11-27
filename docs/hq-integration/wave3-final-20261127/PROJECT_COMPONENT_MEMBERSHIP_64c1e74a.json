@@ -1,0 +1,23 @@
+{
+  "added_lines": 20,
+  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "change_commit": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "iOS_sources": [
+    "MaktabahNativeComponentBinding.swift",
+    "MaktabahNativeSettingsComponents.swift",
+    "MaktabahNativeTOCComponents.swift",
+    "MaktabahNativeLibraryComponents.swift"
+  ],
+  "native_acceptance": "NOT_CLAIMED",
+  "original_macOS_targets_shared_fallback": [
+    "MaktabahNativeSettingsComponents.swift"
+  ],
+  "portable_package_sources": "Original local Swift package discovers owner/observation sources",
+  "previous_project_blob": "f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08",
+  "project_git_blob": "15bdc85bd3ef17b24e9b6a4c07de0e959f78788e",
+  "project_sha256": "ec801013d0017532b125c55304bc39a31757d18de0509489b125f14fdeab8d45",
+  "removed_lines": 0,
+  "scope": "STATIC_ORIGINAL_TARGET_MEMBERSHIP_REVIEW_NOT_APP_TYPECHECK_OR_NATIVE_ACCEPTANCE",
+  "standalone_engine_tests_not_in_app_target": true,
+  "ui_tests": "Existing synchronized original test group; no duplicate membership"
+}
