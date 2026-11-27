@@ -97,6 +97,7 @@ struct iOSTOCView: View {
         .themeTint()
         .listStyle(.plain)
         .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+        .modifier(MaktabahNativeTOCComponentContainer(model: tocViewModel))
         #if DEBUG && targetEnvironment(simulator)
         .task { await SefariaTOCOwnerAcceptance.observe(tocViewModel, onRetry: onRetry) }
         #endif
@@ -120,6 +121,7 @@ struct iOSTOCView: View {
                     }
                     .pickerStyle(.segmented)
                     .accessibilityIdentifier("toc-structure-picker")
+                    .background { MaktabahNativeTOCComponentMarker(anchor: .structure, model: tocViewModel) }
                     .padding(.horizontal)
                     .padding(.vertical, 8)
                     .background(Color.appBackground)
@@ -168,6 +170,7 @@ struct iOSTOCView: View {
                             }
                         }
                         .accessibilityIdentifier("toc-content-list")
+                        .background { MaktabahNativeTOCComponentMarker(anchor: .contents, model: tocViewModel) }
                         .modifier(ReaderSidebarContentsSearch(text: $searchText))
                         .navigationBarTitleDisplayMode(.inline)
                         .modifier(ReaderContentsNavigationTitle(bookTitle: bookTitle))

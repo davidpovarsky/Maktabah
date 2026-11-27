@@ -20,6 +20,7 @@ struct iOSLibraryView: View {
         )
 
         libraryVC(viewModel: viewModel)
+            .modifier(MaktabahNativeLibraryComponentContainer(model: viewModel))
             .onChange(of: viewModel.selectedBookIds) { _, _ in
                 handleSelectionChange(viewModel: viewModel)
             }
@@ -96,6 +97,8 @@ struct iOSLibraryView: View {
         )
         .themeTint()
         .ignoresSafeArea(edges: [.vertical])
+        .accessibilityIdentifier("library-contents-list")
+        .background { MaktabahNativeLibraryComponentMarker(anchor: .contents, model: viewModel) }
         .overlay {
             if viewModel.state == .loading {
                 ProgressView {
@@ -179,6 +182,8 @@ struct iOSLibraryView: View {
                 systemImage: viewModel.viewMode == .category ? "folder" : "person"
             )
         }
+        .accessibilityIdentifier("library-grouping")
+        .background { MaktabahNativeLibraryComponentMarker(anchor: .grouping, model: viewModel) }
     }
 
     private func downloadedFilterToggle(viewModel: LibraryViewModel) -> some View {
@@ -190,6 +195,8 @@ struct iOSLibraryView: View {
         }
         .labelStyle(.iconOnly)
         .toggleStyle(.button)
+        .accessibilityIdentifier("library-downloaded-filter")
+        .background { MaktabahNativeLibraryComponentMarker(anchor: .downloadedFilter, model: viewModel) }
     }
 
     private func optionsMenu(viewModel: LibraryViewModel) -> some View {
@@ -224,5 +231,7 @@ struct iOSLibraryView: View {
         }
         .accessibilityLabel(String(localized: .Library.libraryOptions))
         .help(String(localized: .Library.libraryOptions))
+        .accessibilityIdentifier("library-options")
+        .background { MaktabahNativeLibraryComponentMarker(anchor: .options, model: viewModel) }
     }
 }

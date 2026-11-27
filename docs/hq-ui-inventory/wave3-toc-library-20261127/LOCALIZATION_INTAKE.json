@@ -1,0 +1,29 @@
+{
+  "sourceLanguage": "en",
+  "keys": {
+    "Library contents": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוכן הספרייה"
+          }
+        }
+      }
+    },
+    "Table of contents list": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשימת תוכן העניינים"
+          }
+        }
+      }
+    }
+  },
+  "appliedToCatalog": false,
+  "owner": "root shared catalog integration"
+}

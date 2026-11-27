@@ -1,0 +1,29 @@
+{
+  "scope": "Swift syntax and exact upstream-hook preservation only; not Apple typecheck or native acceptance",
+  "exit": 0,
+  "toolchain": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift": "0f71b532117bb866b6609298ab73ef5609a42d23f199eee27cd42237dc84a1a3",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift": "9898502c9d572cff3e07e6b12c0ecf39b58be781fe645c851119541e0a52f778",
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift": "a6608b1ab4be3542d1d083104bd9fb94b2bd65613f8e9f80a75639c3690d8315",
+    "Source/Features/Library/iOS/iOSLibraryView.swift": "7f3dda16d7fa4ad5d0d04c97d65c0e6d860afef6e6634a13f8e3be8ece8003e9"
+  },
+  "hook_checks": {
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift": {
+      "original_bytes_preserved_outside_additive_hooks": true,
+      "original_sha256": "7e863a77b8121a2af88807a7854c52da0085302cd2d1e2f86d42e17850beb94c"
+    },
+    "Source/Features/Library/iOS/iOSLibraryView.swift": {
+      "original_bytes_preserved_outside_additive_hooks": true,
+      "original_sha256": "0eb1ad2037008fa1b4af6575f9617a031be455b99d3a19dcddaaf83a0d4dfe2b"
+    }
+  },
+  "existing_localization_keys": {
+    "Library": true,
+    "Group By": true,
+    "Table of Contents": true,
+    "Structure": true
+  },
+  "native_acceptance": false,
+  "physical_test": false
+}
