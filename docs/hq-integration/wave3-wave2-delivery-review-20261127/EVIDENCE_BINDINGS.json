@@ -1,0 +1,239 @@
+{
+  "schema": "otzaria.wave3.wave2-read-only-evidence/1",
+  "reviewer": "ui_acceptance",
+  "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "scope": "Read-only Git/blob/archive/hash comparisons and review of retained controls; no controller import, compiler, process spawn, native, signal, network-denial or suite rerun",
+  "pendingArchive": {
+    "path": "docs/hq-integration/wave2-20261127/library/pending-sql/source-controls-and-inputs.tar.gz",
+    "bytes": 977176,
+    "sha256": "1637f4b219268eecf2c6078f2c46cfcf556cfff9db70dafc0a647fe89a73e7e2",
+    "declaredArchive": {
+      "bytes": 977176,
+      "filename": "source-controls-and-inputs.tar.gz",
+      "sha256": "1637f4b219268eecf2c6078f2c46cfcf556cfff9db70dafc0a647fe89a73e7e2"
+    },
+    "indexFiles": 1540,
+    "regularFiles": 1540,
+    "memberNamesEqual": true,
+    "mismatches": [],
+    "candidateSwift": {
+      "archiveEqualsDonor": true
+    },
+    "candidatePython": {
+      "archiveEqualsDonor": true
+    },
+    "retainedAttemptResults": [
+      {
+        "path": "compiler-driver-controls/RESULT.json",
+        "passed": 7,
+        "total": 7,
+        "status": "SOURCE_ORIGINAL_DRIVER_ARGV_CONTROLS_ONLY_NOT_COMPILATION"
+      },
+      {
+        "path": "interrupted-start-controls/RESULT.json",
+        "passed": 12,
+        "total": 12,
+        "status": "SOURCE_INTERRUPTED_START_CONTROLS_ONLY_NOT_UI_OR_THREADS",
+        "scope": "No actual thread, Swift compiler, corpus, simulator or application execution; exact prior source counterexample and current lifecycle gate only"
+      },
+      {
+        "path": "request-lifetime-controls/RESULT.json",
+        "passed": 10,
+        "total": 10,
+        "status": "SOURCE_LOCAL_FILESYSTEM_REQUEST_LIFETIME_CONTROLS_ONLY"
+      },
+      {
+        "path": "retained-artifact-controls-attempt-2/RESULT.json",
+        "passed": 26,
+        "total": 27,
+        "status": "SOURCE_RETAINED_ARTIFACT_GATE_CONTROLS_ONLY_NOT_NATIVE_OR_PRODUCTION",
+        "scope": "EXPLICIT_SYNTHETIC_SOURCE_GATE_MODEL_NOT_APPLICATION_NATIVE_OR_CORPUS_EVIDENCE"
+      },
+      {
+        "path": "retained-artifact-controls-attempt-3/RESULT.json",
+        "passed": 27,
+        "total": 27,
+        "status": "SOURCE_RETAINED_ARTIFACT_GATE_CONTROLS_ONLY_NOT_NATIVE_OR_PRODUCTION",
+        "scope": "EXPLICIT_SYNTHETIC_SOURCE_GATE_MODEL_NOT_APPLICATION_NATIVE_OR_CORPUS_EVIDENCE"
+      },
+      {
+        "path": "retained-artifact-controls/RESULT.json",
+        "passed": 21,
+        "total": 21,
+        "status": "SOURCE_RETAINED_ARTIFACT_GATE_CONTROLS_ONLY_NOT_NATIVE_OR_PRODUCTION",
+        "scope": "EXPLICIT_SYNTHETIC_SOURCE_GATE_MODEL_NOT_APPLICATION_NATIVE_OR_CORPUS_EVIDENCE"
+      },
+      {
+        "path": "source-controls-attempt-1/RESULT.json",
+        "passed": 61,
+        "total": 61,
+        "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+        "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution"
+      },
+      {
+        "path": "source-controls-attempt-2-pre-causality-fix/RESULT.json",
+        "passed": 61,
+        "total": 66,
+        "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+        "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution"
+      },
+      {
+        "path": "source-controls-attempt-3-causality-fix/RESULT.json",
+        "passed": 66,
+        "total": 66,
+        "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+        "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution"
+      },
+      {
+        "path": "source-controls-attempt-4-final/RESULT.json",
+        "passed": 74,
+        "total": 74,
+        "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+        "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution"
+      },
+      {
+        "path": "source-controls-attempt-5-final/RESULT.json",
+        "passed": 75,
+        "total": 75,
+        "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+        "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution"
+      }
+    ]
+  },
+  "pendingControlsByExactHistoricalSource": {
+    "source-controls-attempt-5-final/RESULT.json": {
+      "inputs": {
+        "actualComponent": {
+          "bytes": 1703,
+          "originalMacDirectory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T052034Z",
+          "relativePath": "8042-0-52331.source.utf8",
+          "sha256": "22a3e9f700ab1c141853be3afd8d260eb9292b2135f7f38a8005cef6eef54be0"
+        },
+        "host": {
+          "bytes": 62613,
+          "path": "/workspace/scratch/ca3b32b82803/pending-sql/candidate/Scripts/CI/study-ui-pending-sql.py",
+          "sha256": "20859d77a5da9c7e05a1351da0d25b782d3261a8997e8872699c864e2beb51bc"
+        },
+        "nativeCase": {
+          "bytes": 141906,
+          "path": "/workspace/scratch/ca3b32b82803/pending-sql/candidate/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+          "sha256": "732c90f48ac345067b7b2450eaa0ba47b724a55ecc08be6b13efb57f6479e60d"
+        },
+        "runner": {
+          "bytes": 24336,
+          "path": "/workspace/scratch/ca3b32b82803/pending-sql/source_controls.py",
+          "sha256": "ccedc41ea3a11a53e2f506dd7735f8529065192f59f656cb6ae71cb9f47e37f0"
+        },
+        "waitCollector": {
+          "bytes": 58976,
+          "path": "/workspace/scratch/ca3b32b82803/sqlite-wait-host/study-ui-sqlite-wait.py",
+          "sha256": "4e2421361013659285c67459601bc705c2d89a2b7abe2313a0a4974b0b34dcee"
+        }
+      },
+      "nativeUIExecuted": 0,
+      "originalSourceCatalogExecuted": 0,
+      "passed": 75,
+      "performanceAccepted": false,
+      "schema": 1,
+      "scope": "Linux synthetic correlation/negative admission models plus one byte-exact retained Catalyst component parser input; no Swift compiler, corpus query, simulator, app or performance execution",
+      "status": "SOURCE_CONTROLS_ONLY_NOT_APP_OR_PERFORMANCE",
+      "total": 75
+    },
+    "retained-artifact-controls-attempt-3/RESULT.json": {
+      "attemptsSHA256": "9233c90472c3be773a397763c9a51e2bc1d8ed10aab42711cfb76d0cd2db21a4",
+      "boundaries": [
+        "Source comparator explicit stub",
+        "No original admission/build/MCM producer",
+        "No native completion fixture",
+        "No corpus file"
+      ],
+      "candidateSHA256": "5a2077a17177f8128205faf2344710bb08cc9ef9e839a3377e8241d7f67a6038",
+      "continuityModelsSHA256": "d66d0330a8c341dac95484c334147a436b2e3b427a20aa5ea95808576991d6c4",
+      "databaseQueries": 0,
+      "fullPhaseAdmitted": false,
+      "nativeSourceSHA256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5",
+      "nativeUIExecuted": 0,
+      "passed": 27,
+      "performanceAccepted": false,
+      "runnerSHA256": "e6c28f56c34a95c055031992c1cc78df42ee013f92c5fef98631f7e425badb02",
+      "schema": 1,
+      "scope": "EXPLICIT_SYNTHETIC_SOURCE_GATE_MODEL_NOT_APPLICATION_NATIVE_OR_CORPUS_EVIDENCE",
+      "status": "SOURCE_RETAINED_ARTIFACT_GATE_CONTROLS_ONLY_NOT_NATIVE_OR_PRODUCTION",
+      "swiftCompiles": 0,
+      "total": 27
+    },
+    "compiler-driver-controls/RESULT.json": {
+      "candidateSHA256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004",
+      "databaseQueries": 0,
+      "modelsSHA256": "55dcd308ddee287609446d363ce1c6f8746b458926a3ec682f94ceb097c0295d",
+      "nativeUIExecuted": 0,
+      "passed": 7,
+      "performanceAccepted": false,
+      "priorSHA256": "5a2077a17177f8128205faf2344710bb08cc9ef9e839a3377e8241d7f67a6038",
+      "runnerSHA256": "f53bbac82c0494fbcfac7ecaf0bb3c9557cc03cf87dd3f82d7e25d2f3b470622",
+      "schema": 1,
+      "status": "SOURCE_ORIGINAL_DRIVER_ARGV_CONTROLS_ONLY_NOT_COMPILATION",
+      "swiftCompiles": 0,
+      "total": 7
+    },
+    "request-lifetime-controls/RESULT.json": {
+      "candidateSourceSHA256": "70490f60d0e406addfa8c369666605a1e9320988cfa0966498d1b09267e18b5e",
+      "databaseQueries": 0,
+      "modelSHA256": "9334f0f97b089e600398a5152332065a2b02de99595d353e664e8b9af2458459",
+      "nativeUIExecuted": 0,
+      "passed": 10,
+      "performanceAccepted": false,
+      "priorSourceSHA256": "ca25743a35cb2182c402c2a5ac2da670154102fd7a08ea07aed6de9813c55089",
+      "runnerSHA256": "3c3dcf9a59b124300756a3fb62632fe18ccd67b107e3edc10a34cb985191fe5c",
+      "schema": 1,
+      "status": "SOURCE_LOCAL_FILESYSTEM_REQUEST_LIFETIME_CONTROLS_ONLY",
+      "swiftCompiles": 0,
+      "total": 10
+    },
+    "interrupted-start-controls/RESULT.json": {
+      "actualNewThreads": 0,
+      "candidateSourceSHA256": "ca25743a35cb2182c402c2a5ac2da670154102fd7a08ea07aed6de9813c55089",
+      "modelsSHA256": "dfec9e2084a5fbd7d9c4b1c168e60339e7abeef59ccc16c209351001c9cb4c4a",
+      "nativeSourceSHA256": "719eff51e9297adcac25480704ac4d7a7255d3472bd450e8eb81b39184ee0283",
+      "nativeUIExecuted": 0,
+      "passed": 12,
+      "performanceAccepted": false,
+      "priorSourceSHA256": "20859d77a5da9c7e05a1351da0d25b782d3261a8997e8872699c864e2beb51bc",
+      "runnerSHA256": "78b489998b8933b1de12f0c24ab9c42f37433757102b326a5b74ae4389591924",
+      "schema": 1,
+      "scope": "No actual thread, Swift compiler, corpus, simulator or application execution; exact prior source counterexample and current lifecycle gate only",
+      "status": "SOURCE_INTERRUPTED_START_CONTROLS_ONLY_NOT_UI_OR_THREADS",
+      "total": 12
+    }
+  },
+  "caution": "Counts belong to their declared historical source versions. 75/75 is not labelled as a rerun against final a8df46b5. Later 12,10,27,7 controls are incremental source/domain controls; they are not native acceptance or a combined final suite.",
+  "catalog": {
+    "path": "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
+    "originalSHA256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992",
+    "candidateSHA256": "e0ea195c23e0e0ce55069ee2d9fe43cd64afd2f4d1699d8be978f60fa21d369b",
+    "removeOnlyTwoOptionalFieldsAndDedicatedBranchRestoresOriginalBytes": true,
+    "branchLines": 100
+  },
+  "independentPeerJoin": {
+    "reviewer": "release_preflight",
+    "scope": "Read-only provenance joins; no rerun",
+    "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+    "rootResult": {
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_RESULT.json",
+      "bytes": 15964,
+      "sha256": "17c9a0f8e75c3ce40a9f5ba9a8b37666b462c26e2fb926c2ac9eb0d810c9f83d"
+    },
+    "rootEvidenceBindings": 34,
+    "sourceTransferPairs": 4,
+    "localControlInputJoins": 10,
+    "rawControlCounts": [
+      22,
+      23
+    ],
+    "syntaxInputs": 7,
+    "oracleSourceCheckLogs": 2,
+    "materializedHeadInputs": 2,
+    "reportedMismatches": [],
+    "separatePeerReviewCommit": "Pending at this review seal; exact source RESULT above remains independently retrievable"
+  }
+}

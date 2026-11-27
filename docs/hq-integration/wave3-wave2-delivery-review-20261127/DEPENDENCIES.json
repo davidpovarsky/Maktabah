@@ -1,0 +1,149 @@
+{
+  "schema": "otzaria.wave3.wave2-read-only-dependencies/1",
+  "rootReference": "bdfb717340464fb41ed07294503abe83bd5a1124",
+  "rootAlreadyIntaked": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "donorBaseAlreadyCovered": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+  "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "commits": [
+    {
+      "sha": "20ab4e14f30c3ae272c7c57093544198d63f328b",
+      "subject": "docs: verify exact released Oracle corpus retirement intake",
+      "files": 2,
+      "nonDocs": []
+    },
+    {
+      "sha": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "subject": "Add source-bound v40 per-book mode measurement cases [skip ci]",
+      "files": 9,
+      "nonDocs": [
+        "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+        "Scripts/CI/reader-v40-perbook-mode-performance.py"
+      ]
+    },
+    {
+      "sha": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "subject": "Defer Simulator retention until owned measurement producers exit [skip ci]",
+      "files": 4,
+      "nonDocs": [
+        "Scripts/CI/reader-v40-perbook-mode-performance.py"
+      ]
+    },
+    {
+      "sha": "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+      "subject": "Retain actual Oracle per-book mode source admission [skip ci]",
+      "files": 3,
+      "nonDocs": []
+    },
+    {
+      "sha": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "subject": "docs: verify per-book Reader source intake and owned cleanup",
+      "files": 7,
+      "nonDocs": []
+    },
+    {
+      "sha": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "subject": "test(search): supervise owned watchdog exercises and Oracle relay [skip ci]",
+      "files": 10,
+      "nonDocs": [
+        "Scripts/CI/study-ui-offline-exercises.py"
+      ]
+    },
+    {
+      "sha": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "subject": "fix(ci): bind cleanup to original child identity and exited readers [skip ci]",
+      "files": 14,
+      "nonDocs": [
+        "Scripts/CI/study-ui-offline-exercises.py"
+      ]
+    },
+    {
+      "sha": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "subject": "test(search): bridge original offline phases through owned live Oracle SSH [skip ci]",
+      "files": 10,
+      "nonDocs": [
+        "Scripts/CI/study-ui-offline-oracle.py"
+      ]
+    },
+    {
+      "sha": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "subject": "docs: verify original offline coordinator intake and preserve failed trace evidence",
+      "files": 16,
+      "nonDocs": []
+    },
+    {
+      "sha": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "subject": "Prepare bounded original trace exports without metric claims [skip ci]",
+      "files": 6,
+      "nonDocs": [
+        "Scripts/CI/study-ui-trace-exports.py"
+      ]
+    },
+    {
+      "sha": "72ae2474e1341d511b9b56f097c773a791649753",
+      "subject": "Fence trace exporter cleanup with original child identity [skip ci]",
+      "files": 6,
+      "nonDocs": [
+        "Scripts/CI/study-ui-trace-exports.py"
+      ]
+    },
+    {
+      "sha": "141c413501858d43d2252b5630692d22e730aac7",
+      "subject": "docs: verify stopped-trace exporter source intake and ownership",
+      "files": 4,
+      "nonDocs": []
+    },
+    {
+      "sha": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "subject": "test: add source-qualified pending fetch correctness gate [skip ci]",
+      "files": 10,
+      "nonDocs": [
+        "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+        "Scripts/CI/study-ui-pending-sql.py"
+      ]
+    },
+    {
+      "sha": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "subject": "docs: retain pending UI syntax-only Oracle check [skip ci]",
+      "files": 4,
+      "nonDocs": []
+    },
+    {
+      "sha": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "subject": "[skip ci] Require original immutable checkout in offline Oracle launch",
+      "files": 13,
+      "nonDocs": [
+        "Scripts/CI/study-ui-offline-oracle.py"
+      ]
+    },
+    {
+      "sha": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "subject": "[skip ci] Retain offline child ownership through every cleanup boundary",
+      "files": 21,
+      "nonDocs": [
+        "Scripts/CI/study-ui-offline-exercises.py",
+        "Scripts/CI/study-ui-offline-oracle.py"
+      ]
+    },
+    {
+      "sha": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "subject": "Integrate original pending-fetch and offline study execution ownership",
+      "files": 39,
+      "nonDocs": [
+        "Scripts/CI/production-study-v40-ui.py",
+        "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+        "Scripts/CI/study-ui-pending-execution.py",
+        "Scripts/CI/study-ui-prerequisites.py"
+      ]
+    }
+  ],
+  "sourceTrees": {
+    "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+    "2c23de7138c002cfa4476c40303d4d6973b4b6d5": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1"
+  },
+  "oldInterruption": {
+    "path": "Scripts/CI/runtime27_interruption.py",
+    "bytes": 7650,
+    "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+  },
+  "donorOriginalCommonUnchanged": true
+}

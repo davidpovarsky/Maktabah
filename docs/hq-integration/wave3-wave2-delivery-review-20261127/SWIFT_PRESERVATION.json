@@ -1,0 +1,59 @@
+[
+  {
+    "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "versions": {
+      "base": {
+        "bytes": 102598,
+        "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+      },
+      "root": {
+        "bytes": 102598,
+        "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c"
+      },
+      "donor": {
+        "bytes": 142688,
+        "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5"
+      }
+    },
+    "rootEqualsBase": true,
+    "donorStartsBase": true
+  },
+  {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "versions": {
+      "base": {
+        "bytes": 351920,
+        "sha256": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf"
+      },
+      "root": {
+        "bytes": 351993,
+        "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618"
+      },
+      "donor": {
+        "bytes": 371626,
+        "sha256": "8f732382df5878978caf9b589b6c376006d848248ea30962f03c81b82d44e220"
+      }
+    },
+    "rootEqualsBase": false,
+    "donorStartsBase": true
+  },
+  {
+    "path": "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
+    "versions": {
+      "base": {
+        "bytes": 23978,
+        "sha256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992"
+      },
+      "root": {
+        "bytes": 23978,
+        "sha256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992"
+      },
+      "donor": {
+        "bytes": 31753,
+        "sha256": "e0ea195c23e0e0ce55069ee2d9fe43cd64afd2f4d1699d8be978f60fa21d369b"
+      }
+    },
+    "rootEqualsBase": true,
+    "donorStartsBase": false
+  }
+]

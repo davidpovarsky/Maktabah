@@ -1,0 +1,412 @@
+{
+  "schema": "otzaria.wave3.wave2-read-only-inputs/1",
+  "scope": "Independently byte-verified Git blobs copied for bounded read-only review; this is not an execution result",
+  "manifests": [
+    {
+      "inputManifest": "scripts-INPUTS.json",
+      "bytes": 2829,
+      "sha256": "4b7852d61044d3fdd70d2b318bf86dc3c5b112862163f5695381cfd1aa7a8c98",
+      "contents": [
+        {
+          "label": "donor",
+          "path": "Scripts/CI/production-study-v40-ui.py",
+          "bytes": 61274,
+          "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+        },
+        {
+          "label": "root",
+          "path": "Scripts/CI/production-study-v40-ui.py",
+          "bytes": 45455,
+          "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+        },
+        {
+          "label": "base",
+          "path": "Scripts/CI/production-study-v40-ui.py",
+          "bytes": 45455,
+          "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+          "bytes": 8410,
+          "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+        },
+        {
+          "label": "root",
+          "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+          "bytes": 8117,
+          "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+        },
+        {
+          "label": "base",
+          "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+          "bytes": 8117,
+          "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+          "bytes": 55721,
+          "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-offline-exercises.py",
+          "bytes": 56645,
+          "sha256": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-offline-oracle.py",
+          "bytes": 66214,
+          "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-pending-execution.py",
+          "bytes": 19358,
+          "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-pending-sql.py",
+          "bytes": 119300,
+          "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-prerequisites.py",
+          "bytes": 49535,
+          "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+        },
+        {
+          "label": "root",
+          "path": "Scripts/CI/study-ui-prerequisites.py",
+          "bytes": 48654,
+          "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72"
+        },
+        {
+          "label": "base",
+          "path": "Scripts/CI/study-ui-prerequisites.py",
+          "bytes": 48654,
+          "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72"
+        },
+        {
+          "label": "donor",
+          "path": "Scripts/CI/study-ui-trace-exports.py",
+          "bytes": 37661,
+          "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+        }
+      ]
+    },
+    {
+      "inputManifest": "docs-INPUTS.json",
+      "bytes": 6727,
+      "sha256": "c3b0f7d3ebd96c639231f32dad8b84fc458cd5996266905bc2de24a0febfb473",
+      "contents": [
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/library/pending-sql/API.md",
+          "bytes": 11613,
+          "sha256": "7c222864bcecf0267fc781c3e88dcbee7e820fca55c51ec681797e4e10826710"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/library/pending-sql/README.md",
+          "bytes": 16989,
+          "sha256": "bf49f966a1016921b4c93a30fdc84373f515f4c64cb3ff3fa512ff218986aa24"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/README.md",
+          "bytes": 1760,
+          "sha256": "c1ee0954f59420727286f6f17bf63662b8779372d5e5190f503df5be51e8891a"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/README.md",
+          "bytes": 12185,
+          "sha256": "c7fbf27e45cf43f1c0d20caeb78162269c8a0deca5a19a254fa6f4462f05c464"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/README.md",
+          "bytes": 2434,
+          "sha256": "4e7f4265d05853f5db8fb1c6af2a278ccc76858e8b125aa130e891c9772073ba"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DOCS_TRANSFER.json",
+          "bytes": 4931,
+          "sha256": "5222a634390538b01cc47fb43bc6bb4c57f0a8dea11a81fe4f7fad1b0eb06cfb"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DONOR_INTAKE.json",
+          "bytes": 11673,
+          "sha256": "19a11b2d88e56f308746b84b02a033be2a5c60a08cddeba06ab9fb63aa8cd82d"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_LIBRARY_REVIEW.md",
+          "bytes": 1481,
+          "sha256": "90e6a3b6a8957cddff7344f0eb5e1c3b58f24799d90d92fc85657959b18e95b1"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/INTEGRATION_REVIEW.md",
+          "bytes": 5823,
+          "sha256": "33c2989f02c0255dbf3176c9eae619cffbee1a8c474c879e2a9e0680ef08a5d6"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/OFFLINE_REVIEWED_60dd.md",
+          "bytes": 4293,
+          "sha256": "9f554ff4fa27c074debae21caa67cb0eb647b2e0c3c63f6861e9900da590c7c2"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/PRESERVATION.json",
+          "bytes": 898,
+          "sha256": "4149a247fa1a024d1de86091569398effb3df6d82bbf382633ddac271e20a0a6"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/README.md",
+          "bytes": 10090,
+          "sha256": "247fe06037c0e5976c3df7b5b795b37d8923ad715fec8f86c683b0ff82f1b25f"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_LOCAL_CONTROLS.json",
+          "bytes": 7057,
+          "sha256": "7534426f1ebbb20152bc86f6fffb03ce757d5480c55a4858a66b75d42ffc0be2"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_PRESERVATION.json",
+          "bytes": 22216,
+          "sha256": "dea1cdc513e03e049eb65d5115e06241ab657671496d415c0ed65e30c635c056"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_RESULT.json",
+          "bytes": 15964,
+          "sha256": "17c9a0f8e75c3ce40a9f5ba9a8b37666b462c26e2fb926c2ac9eb0d810c9f83d"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/SOURCE_TRANSFER.json",
+          "bytes": 1334,
+          "sha256": "38439916f90a7fe22ae69d62f636adcc8fd93d99572718dda16de269a6e9ec58"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/RESULT.json",
+          "bytes": 3514,
+          "sha256": "789f6ae6e7cca894afeffdaf10603562ad55185829cf982c73fab8b5ac1191dc"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/README.md",
+          "bytes": 1321,
+          "sha256": "62ea34b83fc7c342ad6e1a7a89fab27079f1a81a904ef8fbe47d8b79877f795f"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md",
+          "bytes": 12548,
+          "sha256": "bb3ee44a29b9511bf96261d65e360ed0bf1ffd1364b995fd75f5b4c9218fd20a"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/corpus-retirement-intake/README.md",
+          "bytes": 687,
+          "sha256": "ea9ceb740a586c6d4b1ab422502022938bc89a8377d571f95a5f39247ab0745c"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/README.md",
+          "bytes": 2734,
+          "sha256": "fa4120cee9c31c91542362cee72f964782fac009a242acd828ca4196a54ce779"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/API.md",
+          "bytes": 12125,
+          "sha256": "f8b01d8f1b843fdb1b3cd50e0672d8d2de5011496585dfd9d2110573870c722f"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/README.md",
+          "bytes": 4826,
+          "sha256": "d8d49d3676dfec63f9f652ab203dfe3b705c2491ece0a077a0b39d21fe610a14"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/README.md",
+          "bytes": 4244,
+          "sha256": "0fadb2c897c36da4679cdd8aff086c69e50a3d96a26f27728b391b52388c0113"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/DONOR_INTAKE.json",
+          "bytes": 8572,
+          "sha256": "457155ab7eefb12b22df9a723552c85fc3d2a29ef01289eddf8d789e0734f205"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/README.md",
+          "bytes": 1023,
+          "sha256": "588b208029e67cf431af9bd60fd98937a848dbf296ba8fd2a4ed80ff12c727ac"
+        },
+        {
+          "label": "donor",
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md",
+          "bytes": 15540,
+          "sha256": "a5e1bfedf65c82747bbc2fd9f745b0a51f11b97ea3ce1969f3206d44f1ab179d"
+        },
+        {
+          "label": "root",
+          "path": "docs/hq-integration/wave3-natural-offline-intake-20261127/README.md",
+          "bytes": 3027,
+          "sha256": "e59df5b01bb28d60e191397a08d981f75b8ed70f2400d89d1f188597d01aca4d"
+        },
+        {
+          "label": "root",
+          "path": "docs/hq-integration/wave3-natural-offline-intake-20261127/RESULT.json",
+          "bytes": 2088,
+          "sha256": "57447562be7ef9c31b87b972cbd4619bd4576bbff96d2d4a4bc5daf77d80b30c"
+        },
+        {
+          "label": "root",
+          "path": "docs/hq-integration/wave3-natural-offline-intake-20261127/PLAN.json",
+          "bytes": 31420,
+          "sha256": "41806165154b26b18e4cffe703c99fbe3f1e5d12468f8c9e17962f12fe6938c2"
+        }
+      ]
+    },
+    {
+      "inputManifest": "controls-INPUTS.json",
+      "bytes": 4490,
+      "sha256": "b617c9abab3ba1fafcb4dc1af6da84d6ae79baa3b5420c76ed079c0772ce38c3",
+      "contents": [
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ARTIFACT_INDEX.json",
+          "bytes": 803750,
+          "sha256": "741828c134f016e759c2b6829a4152f4c59c5fc4f4a7a526c1beef25bbc5d242"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/pending-sql/LOCAL_SOURCE_CHECK.json",
+          "bytes": 739,
+          "sha256": "ba7dc13cd065e67862d3d61debc59da1612b5ee93facc8ed1c558ac7393a4cb3"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/RESULT.json",
+          "bytes": 1808,
+          "sha256": "2e4f35b2521b7b2060991db7900c54a23a20a09c257a864b34d664abbb564f46"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CONTROLS_01.json",
+          "bytes": 5499,
+          "sha256": "3b8c47c4f9aea1cca1bddf1c60bc8d6a391f2389f2b8ab1477ee922b97453232"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CONTROLS_02.json",
+          "bytes": 7423,
+          "sha256": "66939388063e9b3979de5fa492bfbef968a49bf8ed222c46d57ba814d5da89b0"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/SOURCE_PRESERVATION.json",
+          "bytes": 960,
+          "sha256": "23fe389e4aab79d0bdc74f63836d1c8c4c966c0b083a96c8dddaeb8cd6ece45a"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CATALOG_PRESERVATION.json",
+          "bytes": 326,
+          "sha256": "a493a0931ca5c9ec668c30b5e99eb57b28cfe1023ef2c90823566a1d2ddb106d"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/RESULT.json",
+          "bytes": 6105,
+          "sha256": "c0a76847b14831e5818fbc0c91e958c72bc16a0d6f243937a679cd01da8143b3"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/FINAL_RESULT.json",
+          "bytes": 1588,
+          "sha256": "8038b86a80c702ef29f109a702dc7f2b64519178649ca1b02b68e4fc23710363"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_01.json",
+          "bytes": 6699,
+          "sha256": "5d90b57b61384f6c4580cba0dadbd47d38eaf0cbf150ffbd04c5242f2e46c23a"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_02.json",
+          "bytes": 6920,
+          "sha256": "4637a629928453798b74a2d52d3a520e3a8bb918259260d65a99f854e08602b5"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_03.json",
+          "bytes": 6920,
+          "sha256": "0055e5ffffaf8c0a8b2c0b1a3fa65dddc55b418ed7d17e757994a38674f99619"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/OWNERSHIP_CONTROLS_01.json",
+          "bytes": 5252,
+          "sha256": "b3895c17edacc9ec2ebc8fa9cb88ee6074e63bcb84e462a428c235db2d8ea2fd"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/RESULT.json",
+          "bytes": 5415,
+          "sha256": "7e43a59b5de6fa26d87ffb980c29af79c05fea68ee509836288f422a515bf529"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/SOURCE_CONTROLS.json",
+          "bytes": 310,
+          "sha256": "211b850a2f288c58f376dd03993e360622dafd2c512727295153986ee617d623"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.json",
+          "bytes": 641,
+          "sha256": "963cc976c5596490c2c7b70c4363fb0326cd3fd6e4e43ce89dc7ca124c4b4d0c"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/SOURCE_CONTROLS.json",
+          "bytes": 1447,
+          "sha256": "bdd936a46cd61bbb1bfec2fa3c69b6ec9dbb85ffe863aabc7378a9bd58b41dd3"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/BASELINE_INPUTS.json",
+          "bytes": 684,
+          "sha256": "7346a9b3c72a9206a7beb5eaebb9ecba9950481ed1aed7d38fd65820e2bd850a"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/ORACLE_EXECUTION.json",
+          "bytes": 2076,
+          "sha256": "ae04355251fa70a5f12a9ec3ded7eeac8e05071ae5c0fd3a999bacd8ae5c96d5"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/SOURCE_CONTROLS.json",
+          "bytes": 541,
+          "sha256": "c0cb82820ccb5baa524d1f470d91e96e373a7821bac6ac7b243680741edb1d3b"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ORACLE_EXECUTION.json",
+          "bytes": 936,
+          "sha256": "b42f8003943207d846c29d65b167ac3cfc79a7b0b79f22f1400c9aba3821370a"
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/RESULT.json",
+          "bytes": 6234,
+          "sha256": "711a964ae91a980e6732347bd72a541187327787fed0d369e1909c0fc64ed559"
+        }
+      ]
+    }
+  ],
+  "labelRefs": {
+    "base": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+    "root": "bdfb717340464fb41ed07294503abe83bd5a1124",
+    "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5"
+  }
+}

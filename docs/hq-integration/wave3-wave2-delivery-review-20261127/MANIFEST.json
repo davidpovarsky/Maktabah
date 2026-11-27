@@ -1,0 +1,39 @@
+{
+  "schema": "otzaria.wave3.wave2-read-only-review-manifest/1",
+  "recordedAtUTC": "2026-11-27T10:24:49.136738+00:00",
+  "scope": "Review artifacts only; no tested product mutation or runtime qualification",
+  "files": {
+    "CONTROLLER_PRESERVATION.json": {
+      "bytes": 14459,
+      "sha256": "f054efd560b85b2efee691af56c6fc1219492a376926a0aa604dec7628655ae4"
+    },
+    "DEPENDENCIES.json": {
+      "bytes": 5130,
+      "sha256": "5402c0067da6cf578f2851f106079b1ef7b10f72a25d5197ec275807119a1bd8"
+    },
+    "EVIDENCE_BINDINGS.json": {
+      "bytes": 11444,
+      "sha256": "4d263c9f51aab3ab1f295b8d6fe5589a9f3c88fc39d3f17108273875f96aa4d5"
+    },
+    "README.md": {
+      "bytes": 14598,
+      "sha256": "4b356f539682d29bde02113b302e51e2b0d82941b10f9c8215657e221a0a18ab"
+    },
+    "READ_INPUTS.json": {
+      "bytes": 17277,
+      "sha256": "bcad5f8dd0ed9a33d588235a491d76904daa7a73cb2fbe218d90750d926d018b"
+    },
+    "REVIEW.json": {
+      "bytes": 3576,
+      "sha256": "7c71d77ca6b01ed551fe506826711a4c22476168203f93065e1e00b96f5e8ab9"
+    },
+    "SOURCE_FRAGMENTS.json": {
+      "bytes": 17300,
+      "sha256": "0aad1c9f4e0dedf88c9188f3e89d10c2cbb024f20b47c524f41eea94d477f0e7"
+    },
+    "SWIFT_PRESERVATION.json": {
+      "bytes": 1727,
+      "sha256": "1f87f17fdfbe5f9cc47909cabfb4f30d6c8838bccb63a4470129a38d6e3fd9e5"
+    }
+  }
+}
