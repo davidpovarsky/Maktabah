@@ -38,3 +38,21 @@ extension NativeRoutingPhoneAcceptanceTests {
         XCTAssertFalse(app.menus.firstMatch.exists, "Revealing the existing control must not execute its action")
     }
 }
+
+
+// This selector resolves the fixed component through the actual system entity
+// query; the target is the ORIGINAL selected Button, not an added AX marker.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    func testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: true, destination: "native.reader.toc",
+            title: "Current Table of Contents Entry", anchor: "native.reader.toc.currentSelection",
+            identifier: "", expectedValue: "selected", originalTarget: { app in
+                let selected = app.buttons.matching(NSPredicate(
+                    format: "identifier BEGINSWITH %@ AND value == %@", "toc-row-", "selected"))
+                XCTAssertEqual(selected.count, 1,
+                    "Exactly one original selected row must be resolved; duplicate legacy IDs cannot be guessed")
+                return selected.firstMatch
+            })
+    }
+}

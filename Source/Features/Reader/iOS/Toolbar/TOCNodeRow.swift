@@ -100,6 +100,7 @@ struct TOCNodeRow: View {
         .accessibilityIdentifier("toc-row-\(item.id)")
         .accessibilityAddTraits(item.id == selectedId ? [.isSelected] : [])
         .accessibilityValue(item.id == selectedId ? "selected" : "unselected")
+        .background { MaktabahNativeTOCSelectedRowMarker(item: item) }
     }
 }
 
