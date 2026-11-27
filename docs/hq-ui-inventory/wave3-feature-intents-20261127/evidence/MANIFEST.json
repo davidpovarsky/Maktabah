@@ -1,0 +1,75 @@
+{
+  "utc": "2026-11-27T05:21:00.883161+00:00",
+  "files": [
+    {
+      "path": "apple-observation/ARTIFACT_OBSERVATION.json",
+      "bytes": 6502,
+      "sha256": "ac95cb3b89899d25350b79c6f70d1ad0f6a7b32314ebab6ccb34989f802a858a"
+    },
+    {
+      "path": "apple-observation/ChavrusaUIRoutingHost.SwiftFileList",
+      "bytes": 3293,
+      "sha256": "c8e3f744ccd4bca3940a207d8e5d60d9701237af21d0222815ff9001f099ce26"
+    },
+    {
+      "path": "apple-observation/NativeFeatureIntents.symbols.txt",
+      "bytes": 37631,
+      "sha256": "825a652e4d2368aca3cbaf76695d3af493b3c82f99323b9e1c268904cfe7eaad"
+    },
+    {
+      "path": "apple-observation/NativeFeatureIntents.vtool.txt",
+      "bytes": 359,
+      "sha256": "3d8ad98bd85e92df5d9b9fe673cc381f61a447c0568baae0d82e4ecd9248b565"
+    },
+    {
+      "path": "apple-observation/OtzariaActionCore.SwiftFileList",
+      "bytes": 4381,
+      "sha256": "89743cd748c8f474b66c88ffa46973f7a6c93d0b3090fa08840d3b662f1e4b1f"
+    },
+    {
+      "path": "apple-observation/OtzariaUIRouting.SwiftFileList",
+      "bytes": 2005,
+      "sha256": "5adde9a5f60b93988f6c0fe151d7f0cb1b1f0d0681d2c17b919ce4c29d66012c"
+    },
+    {
+      "path": "apple/INPUT_MANIFEST.json",
+      "bytes": 34584,
+      "sha256": "5530b5df57aa883ed58adf430b144b81a66ce503956e273db36a2c4c40bcba84"
+    },
+    {
+      "path": "apple/RESULT.json",
+      "bytes": 2376,
+      "sha256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b"
+    },
+    {
+      "path": "apple/STATUS.json",
+      "bytes": 2376,
+      "sha256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b"
+    },
+    {
+      "path": "apple/TRANSFER_RESULT.json",
+      "bytes": 393,
+      "sha256": "2401f1460aec69a085af0aa72f1b269e54870650dd6593134dfe78bbd4918e00"
+    },
+    {
+      "path": "apple/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "apple/build.stdout.log",
+      "bytes": 1506,
+      "sha256": "60f88acc92818a6b47249ce2df4a78d6219a2e1c2ebb867cf7ec0594546c0ab7"
+    },
+    {
+      "path": "apple/localizations.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "apple/localizations.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

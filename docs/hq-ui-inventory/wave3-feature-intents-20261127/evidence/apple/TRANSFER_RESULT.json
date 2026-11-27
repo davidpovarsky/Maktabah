@@ -1,0 +1,9 @@
+{
+  "status": "EXACT_SOURCE_TRANSFER_VERIFIED",
+  "utc": "2026-11-27T05:08:10.702633+00:00",
+  "files": 156,
+  "archiveSHA256": "fbabdcd925a4037ca8fbde549c8f30dbacef401fef1f9ac75ea7f4053ce4f4b3",
+  "manifestSHA256": "5530b5df57aa883ed58adf430b144b81a66ce503956e273db36a2c4c40bcba84",
+  "source_root": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source",
+  "nativeExecutions": 0
+}

@@ -1,0 +1,8 @@
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o:
+Load command 1
+      cmd LC_BUILD_VERSION
+  cmdsize 24
+ platform IOSSIMULATOR
+    minos 27.0
+      sdk 27.0
+   ntools 0

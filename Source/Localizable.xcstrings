@@ -14615,6 +14615,176 @@
           }
         }
       }
+    },
+    "Open a Settings section": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a Settings section"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת סעיף בהגדרות"
+          }
+        }
+      }
+    },
+    "Open a Settings section or control in the selected Maktabah window.": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a Settings section or control in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת סעיף או פקד בהגדרות בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Settings section": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings section"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סעיף בהגדרות"
+          }
+        }
+      }
+    },
+    "Open the table of contents": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the table of contents"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת תוכן העניינים"
+          }
+        }
+      }
+    },
+    "Show the book's table of contents or selected entry in the selected Maktabah window.": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the book's table of contents or selected entry in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת תוכן העניינים של הספר או הפריט הנבחר בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Table of contents": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table of contents"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוכן העניינים"
+          }
+        }
+      }
+    },
+    "Open reading history": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open reading history"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת היסטוריית הקריאה"
+          }
+        }
+      }
+    },
+    "Open reading history in the selected Maktabah window.": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open reading history in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת היסטוריית הקריאה בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "History window": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History window"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון ההיסטוריה"
+          }
+        }
+      }
+    },
+    "Open query input": {
+      "comment": "Native feature navigation intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open query input"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת שורת השאילתה"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

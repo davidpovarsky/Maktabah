@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T05:24:11.955811+00:00",
+  "base": "68b191f56c4fc1644d0b2a3478f05e9935770d20",
+  "kind": "SOURCE_AND_COMPONENT_EVIDENCE_NOT_NATIVE_ACCEPTANCE",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+      "bytes": 9765,
+      "sha256": "4ca00592735cfa9787e326537a74938b032a7c48482623fc85f2795266881051"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+      "bytes": 5503,
+      "sha256": "8dbcb1d117e84d977cc7610ad754bfd39c1ca3d1cc1b3cf5f073001a90dc85b5"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeFeatureIntentServiceTests.swift",
+      "bytes": 10503,
+      "sha256": "12f85a1927dc5fb9d6f968cb054c71873fe49c8df0e8f4772d11150e47cc59df"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "bytes": 371567,
+      "sha256": "6074aa3444c7029eb787ccf37c81d13193e98fa8e210907ab325f617450cb5d1"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/README.md",
+      "bytes": 3754,
+      "sha256": "f95a3ccc60210815d6840bbfd9c5311abc87338896707c2dc28a5c1594a76139"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/SOURCE_BEFORE_VALIDATION.json",
+      "bytes": 1112,
+      "sha256": "91660711f2a5f31cf261ba905af1e921b358915db557204781126d6ec0fb7f5f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/VERIFIED_SOURCE_AND_EVIDENCE.json",
+      "bytes": 3519,
+      "sha256": "634f45b17f066f5869602370d66eb11eac5f168f84f031eb7e0761e8a3ab8740"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/APPLE_ARTIFACT_OBSERVATION_CONTROLLER.py",
+      "bytes": 3482,
+      "sha256": "69154f0332d6caca34dfd2e7264d566bfa0341a2f06858de39fa5210d01453da"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/APPLE_COMPILE_CONTROLLER.py",
+      "bytes": 3704,
+      "sha256": "ab65edb96bd4b888f4aa23e2fed3741209b90a199db2e0fdda3d0831e98b3809"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/LINUX_SOURCE_CONTROL_CONTROLLER.py",
+      "bytes": 3029,
+      "sha256": "87bd79c498dee1a040851ebbf474f01188b54ca515c8d29683ad5db2de9f7b4d"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/MANIFEST.json",
+      "bytes": 2426,
+      "sha256": "f17f00f0fc24a82f2b2b3fac59734b0fe1538047baa8fcf48c1360bf0227e30d"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/INPUT_MANIFEST.json",
+      "bytes": 34584,
+      "sha256": "5530b5df57aa883ed58adf430b144b81a66ce503956e273db36a2c4c40bcba84"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/RESULT.json",
+      "bytes": 2376,
+      "sha256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/STATUS.json",
+      "bytes": 2376,
+      "sha256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/TRANSFER_RESULT.json",
+      "bytes": 393,
+      "sha256": "2401f1460aec69a085af0aa72f1b269e54870650dd6593134dfe78bbd4918e00"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/build.stdout.log",
+      "bytes": 1506,
+      "sha256": "60f88acc92818a6b47249ce2df4a78d6219a2e1c2ebb867cf7ec0594546c0ab7"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/localizations.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple/localizations.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/ARTIFACT_OBSERVATION.json",
+      "bytes": 6502,
+      "sha256": "ac95cb3b89899d25350b79c6f70d1ad0f6a7b32314ebab6ccb34989f802a858a"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/ChavrusaUIRoutingHost.SwiftFileList",
+      "bytes": 3293,
+      "sha256": "c8e3f744ccd4bca3940a207d8e5d60d9701237af21d0222815ff9001f099ce26"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/NativeFeatureIntents.symbols.txt",
+      "bytes": 37631,
+      "sha256": "825a652e4d2368aca3cbaf76695d3af493b3c82f99323b9e1c268904cfe7eaad"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/NativeFeatureIntents.vtool.txt",
+      "bytes": 359,
+      "sha256": "3d8ad98bd85e92df5d9b9fe673cc381f61a447c0568baae0d82e4ecd9248b565"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/OtzariaActionCore.SwiftFileList",
+      "bytes": 4381,
+      "sha256": "89743cd748c8f474b66c88ffa46973f7a6c93d0b3090fa08840d3b662f1e4b1f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/apple-observation/OtzariaUIRouting.SwiftFileList",
+      "bytes": 2005,
+      "sha256": "5adde9a5f60b93988f6c0fe151d7f0cb1b1f0d0681d2c17b919ce4c29d66012c"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/RESULT.json",
+      "bytes": 1288,
+      "sha256": "13d750b3ab19037e0c54239a923944407743efef04be48f5723e9d2b7aba596f"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/SOURCE_INPUTS.json",
+      "bytes": 27665,
+      "sha256": "1e8a0acc3bf62c56ef01ec42d382c6b4e4e31074e7074a0f46251d131902ee26"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/STATUS.json",
+      "bytes": 920,
+      "sha256": "e21c7bfb08fb9a3395230dee9a99bd9adaa64c4fa91c8ceb47e895e743fe1045"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/stderr.log",
+      "bytes": 1012,
+      "sha256": "a0aea71451e8c8ee5ac788bf0b21bd6ed68c236e729e7c54a86c850c19791d64"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/stdout.log",
+      "bytes": 9689,
+      "sha256": "7459eb0c89565f0a3ba177408e327356d26220cc19204b6afac891488fb714f9"
+    },
+    {
+      "path": "docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/swift-test-help.txt",
+      "bytes": 11638,
+      "sha256": "825883a8fe139ae9bc500d6921c3c7a009b0901770f7eb5acf007dd9b8825024"
+    }
+  ]
+}

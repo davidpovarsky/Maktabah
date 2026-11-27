@@ -104,3 +104,76 @@ public final class NativeIntentService {
         return try await navigate(target)
     }
 }
+
+
+/// These are finite projections of destinations already declared by the native
+/// host. They carry no new permission, scene selection or execution authority.
+public enum NativeFeatureIntentTarget: Sendable {
+    case settingsSection
+    case readerContents
+    case readingHistory
+
+    fileprivate func accepts(_ value: NativeIntentService.Destination) -> Bool {
+        switch self {
+        case .settingsSection:
+            guard value.destination.rawValue == "native.settings",
+                  let component = value.component?.rawValue else { return false }
+            return [
+                "native.settings.backend", "native.settings.offline",
+                "native.settings.databaseMode", "native.settings.history",
+                "native.settings.storage", "native.settings.annotations",
+                "native.settings.cloud", "native.settings.appearance",
+                "native.settings.searchData", "native.settings.searchCredits",
+                "native.settings.searchIndex", "native.settings.optimization",
+                "native.settings.updates", "native.settings.downloads",
+                "native.settings.miniApps"
+            ].contains(component)
+        case .readerContents:
+            guard value.destination.rawValue == "native.reader.toc" else { return false }
+            guard let component = value.component?.rawValue else { return true }
+            return [
+                "native.reader.toc.contents", "native.reader.toc.structure",
+                "native.reader.toc.currentSelection"
+            ].contains(component)
+        case .readingHistory:
+            return value.destination.rawValue == "native.history" && value.component == nil
+        }
+    }
+}
+
+extension NativeIntentService {
+    /// Validate the complete original metadata catalog before narrowing it.
+    /// Feature filtering precedes the original exact-title search so "History"
+    /// in another feature cannot hide the Settings control with that name.
+    public func featureDestinations(_ feature: NativeFeatureIntentTarget,
+                                    identifiers: [String]? = nil,
+                                    matching query: String? = nil) async throws -> [Destination] {
+        try Task.checkCancellation()
+        if let identifiers, identifiers.count > 64 {
+            throw UIRouteError(.failed, "too_many_intent_entities")
+        }
+        guard query == nil || query!.utf8.count <= 512 else {
+            throw UIRouteError(.failed, "intent_query_too_large")
+        }
+        let values = try await destinations()
+        try Task.checkCancellation()
+        return try filter(values.filter(feature.accepts), identifiers: identifiers, matching: query)
+    }
+
+    /// The entity must belong to the requested semantic action. The original
+    /// open() then waits for foreground and independently discovers fresh
+    /// execution eligibility before using the single native orchestrator.
+    public func openFeature(_ feature: NativeFeatureIntentTarget,
+                            identifier: String) async throws -> UISceneAcknowledgement {
+        guard identifier.utf8.count <= 512 else {
+            throw UIRouteError(.failed, "invalid_intent_entity")
+        }
+        try Task.checkCancellation()
+        let matches = try await featureDestinations(feature, identifiers: [identifier])
+        guard matches.count == 1 else {
+            throw UIRouteError(.staleState, "intent_feature_no_longer_available")
+        }
+        try Task.checkCancellation()
+        return try await open(identifier: identifier)
+    }
+}

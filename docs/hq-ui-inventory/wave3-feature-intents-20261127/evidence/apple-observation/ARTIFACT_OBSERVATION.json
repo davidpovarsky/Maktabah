@@ -1,0 +1,78 @@
+{
+  "status": "ACTUAL_IOS27_COMPONENT_ARTIFACTS_OBSERVED",
+  "utc": "2026-11-27T05:21:00.881473+00:00",
+  "artifacts": [
+    {
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.SwiftFileList",
+      "bytes": 3293,
+      "sha256": "c8e3f744ccd4bca3940a207d8e5d60d9701237af21d0222815ff9001f099ce26",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.SwiftFileList: ASCII text"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeIntentService.o",
+      "bytes": 167576,
+      "sha256": "30b1166619b38f2d280812c74e10406964d6888a9754bd7b834df41875448b10",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeIntentService.o: Mach-O 64-bit object arm64"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o",
+      "bytes": 284040,
+      "sha256": "8060c3d4133c2cbf7e002d0569858d34c0094a74962b1c8923765beae0870acc",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o: Mach-O 64-bit object arm64",
+      "vtoolExit": 0
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.swiftmodule",
+      "bytes": 442184,
+      "sha256": "05d13511ce364ae38d32c3342a986fa2aa3beffbadaed7ad5324cafa2032a9a0",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.swiftmodule: data"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.swiftmodule",
+      "bytes": 319388,
+      "sha256": "a3f832084934deb6ada3a4179bb7150e495aad0bfe65c7a8580eb010b7e92c63",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.swiftmodule: data"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.SwiftFileList",
+      "bytes": 2005,
+      "sha256": "5adde9a5f60b93988f6c0fe151d7f0cb1b1f0d0681d2c17b919ce4c29d66012c",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.SwiftFileList: ASCII text"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.swiftmodule",
+      "bytes": 662356,
+      "sha256": "84836f2b6cad2f61915b2a9faa203db4bf128177d1e42d05e1a5f25d0308c958",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.swiftmodule: data"
+    },
+    {
+      "path": "swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.SwiftFileList",
+      "bytes": 4381,
+      "sha256": "89743cd748c8f474b66c88ffa46973f7a6c93d0b3090fa08840d3b662f1e4b1f",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.SwiftFileList: ASCII text"
+    },
+    {
+      "path": "swift-build/out/Products/Debug-iphonesimulator/OtzariaActionCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule",
+      "bytes": 662356,
+      "sha256": "84836f2b6cad2f61915b2a9faa203db4bf128177d1e42d05e1a5f25d0308c958",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Products/Debug-iphonesimulator/OtzariaActionCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule: data"
+    },
+    {
+      "path": "swift-build/out/Products/Debug-iphonesimulator/OtzariaUIRouting.swiftmodule/arm64-apple-ios-simulator.swiftmodule",
+      "bytes": 319388,
+      "sha256": "a3f832084934deb6ada3a4179bb7150e495aad0bfe65c7a8580eb010b7e92c63",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Products/Debug-iphonesimulator/OtzariaUIRouting.swiftmodule/arm64-apple-ios-simulator.swiftmodule: data"
+    },
+    {
+      "path": "swift-build/out/Products/Debug-iphonesimulator/ChavrusaUIRoutingHost.swiftmodule/arm64-apple-ios-simulator.swiftmodule",
+      "bytes": 442184,
+      "sha256": "05d13511ce364ae38d32c3342a986fa2aa3beffbadaed7ad5324cafa2032a9a0",
+      "file": "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Products/Debug-iphonesimulator/ChavrusaUIRoutingHost.swiftmodule/arm64-apple-ios-simulator.swiftmodule: data"
+    }
+  ],
+  "originalResultSHA256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b",
+  "originalResultUntouched": true,
+  "originalResultModulesArrayNote": "Original glob expected Modules layout; SwiftPM27 emitted out/Products and Intermediates. This separate observation records actual artifacts without rewriting original receipt.",
+  "nativeExecutions": 0,
+  "fullAppBuilds": 0
+}

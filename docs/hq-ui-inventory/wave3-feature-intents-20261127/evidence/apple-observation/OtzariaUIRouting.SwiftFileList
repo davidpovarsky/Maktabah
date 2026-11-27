@@ -1,0 +1,13 @@
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/DerivedSources/resource_bundle_accessor.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift
+/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift
