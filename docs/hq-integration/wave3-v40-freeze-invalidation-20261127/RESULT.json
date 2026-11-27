@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T08:34:03.220984+00:00",
+  "sourceHead": "adc6013953d03bd3ba6e98818af24dba5f19cee8",
+  "historicalFrozenSource": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "changedSemanticKeys": [
+    "application_source_sha",
+    "application_trees",
+    "input_sha256",
+    "source_status"
+  ],
+  "allOtherValuesPreserved": true,
+  "historicalSHA256": "c510dceeedb661de509e107f539175f354af2bc98feaec9fc6a9034f07d8bd2a",
+  "unfinalizedSHA256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+  "gatesChanged": false,
+  "nativeAcceptance": false,
+  "reason": "The old frozen input closure predates current integrated source. Carry the original donor UNFINALIZED declaration until actual current source/build/input closure is frozen; no old execution is reattributed."
+}

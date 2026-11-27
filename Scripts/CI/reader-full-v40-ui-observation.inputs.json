@@ -1,10 +1,33 @@
 {
-  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "schema": "otzaria.full-v40.original-ui-observation/1",
+  "application_source_sha": "UNFINALIZED",
   "application_trees": {
-    "Maktabah-iOSUITests": "bd9c98e6ed6a4009ed06b7daf0d091815fdde26c",
-    "Maktabah.xcodeproj": "a43b59065016f8bf63c2fdb13588ce8c565f006e",
-    "Source": "238ecfdbd44a4c57f1bbcf69329b900779510e2f",
-    "Vendor": "206715dd2022ff73184860bec183578c8799d812"
+    "Source": "UNFINALIZED",
+    "Vendor": "UNFINALIZED",
+    "Maktabah.xcodeproj": "UNFINALIZED",
+    "Maktabah-iOSUITests": "UNFINALIZED"
+  },
+  "selected_case_ids": [
+    "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
+    "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn"
+  ],
+  "source_database": {
+    "repository": "Otzaria/SeforimLibrary",
+    "releaseID": 455390662,
+    "releaseTag": "v40-20261123094345",
+    "assetID": 782942035,
+    "assetName": "seforim-schema7.db.zst.manifest.json",
+    "assetBytes": 2129902636,
+    "assetSHA256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+    "manifestAssetBytes": 589,
+    "manifestSHA256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+    "databaseBytes": 4355063808,
+    "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+    "counts": {
+      "book": 8259,
+      "line": 7925185,
+      "link": 7001824
+    }
   },
   "catalog_compiled_sources": [
     "Source/Core/Database/SQLiteDatabase.swift",
@@ -21,43 +44,6 @@
     "Tests/HQ/sqlite/UnusedZstdBoundary.swift",
     "Source/LibraryBackend/LibraryBackendModels.swift"
   ],
-  "catalog_targets": {
-    "books": [
-      {
-        "bookID": 103,
-        "lineCount": 2875,
-        "title": "ברכות"
-      },
-      {
-        "bookID": 28,
-        "lineCount": 2678,
-        "title": "תהילים"
-      },
-      {
-        "bookID": 3152,
-        "lineCount": 528,
-        "title": "דרשות הר\"ן"
-      }
-    ],
-    "retainedChapter": {
-      "bookID": 8042,
-      "focusLineIndex": 26166,
-      "sourceUTF16Length": 8307947,
-      "unitEndLineIndex": 52331,
-      "unitID": "toc:1948815",
-      "unitRowCount": 52332,
-      "unitStartLineIndex": 0
-    }
-  },
-  "corpus_identity_provenance": {
-    "fresh_read_only_query": "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
-    "fresh_read_only_query_sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b",
-    "prior_component_receipt": "docs/hq-integration/core-final-20261126/COMPONENT_ACCEPTANCE.md",
-    "prior_installation_acceptance_attributed_only_to_original_source": true,
-    "query_recipe_sha256": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38",
-    "same_numeric_book_ids_as_v32": "Independently queried on hash-bound v40; no v32 catalog/evidence transfer"
-  },
-  "exact_inspector_count_policy": "Actual original counts only; natural at-least exploration does not satisfy missing exact sizes; no truncation",
   "execution_input_paths": [
     ".github/workflows/otzaria-reader-groups-full-v32.yml",
     "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
@@ -110,92 +96,56 @@
     "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py",
     "Source/LibraryBackend/LibraryBackendModels.swift"
   ],
-  "input_sha256": {
-    ".github/workflows/otzaria-reader-groups-full-v32.yml": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
-    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": "b3b0ce08588b3c30586d2b379bbdbf4c30c06bac9b449a8b79a16e5c5c257f8c",
-    "Scripts/CI/hq-original-editor-distribution.py": "3aacab5fc36a523929a3646b4a6ffc9e7c4d13638a999c302dde89a6babeafa5",
-    "Scripts/CI/hq-stage2-focused-apple.inputs.json": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
-    "Scripts/CI/hq-stage2-focused-apple.py": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
-    "Scripts/CI/library-morph-focused-native.inputs.json": "2e61c9a97a7cb3862fdf1c716575541d322b3ca0d0dbe381da43f32ca4071e4d",
-    "Scripts/CI/library-morph-focused-native.py": "13d9c4dbb24591b6406e6a3da5c0d619c5785c726d894182383d899ce9373fc3",
-    "Scripts/CI/library-v40-focused-native.py": "6eb5768fe51a5c3339b107c839afd84e70cb02d093176cd166107b71beddaff0",
-    "Scripts/CI/mac-prepared-inputs.py": "38f403c94b4289ec43e13bbb97d7ce9b288a353e710e4a406a50f05dcc08a6c9",
-    "Scripts/CI/native-cohort-artifacts.py": "cf7092191b7058041fe894673380865c9048bab15e224a027b34687123082b03",
-    "Scripts/CI/prepare-faithful-ipad-fixtures.py": "19c79cbcd58669ec0a2605fff33e4778367c9fe1bec1a7eea4cf888d9485072d",
-    "Scripts/CI/prepare-hanlin-sdk.py": "5c4dafad120a3b6b7f9dc21bc7f0687e53fbbaf20ef876efaee939aff1064a1c",
-    "Scripts/CI/prepare-pinned-sharp-libvips.py": "37a279a3ab6e1bf7ece3d92c657a8c4f5e1fcb9e5007564b4aef0408f0eee764",
-    "Scripts/CI/reader-full-v32-ui-observation.py": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
-    "Scripts/CI/reader-full-v40-ui-observation.py": "42d3ae8d6738fe6987622bdfc1ff844929ec7a0fb088e24d096ebec02a6ec74c",
-    "Scripts/CI/reader-groups100-focused-native.inputs.json": "da0298893d193c57cebcf2e798c6a45f494e72aa17c4cc8db677f0ab91989914",
-    "Scripts/CI/reader-groups100-focused-native.py": "6c0402fcd55617d3250adad84290c08c22dacddab7775c7620de8e1b0c363186",
-    "Scripts/CI/runtime27-final-source-composition.inputs.json": "36d14ddf2b9c7cb594e0cc982acb1f0d8e69b808d3c5868876b9fe79d2c994b0",
-    "Scripts/CI/runtime27-url-delivery.py": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80",
-    "Scripts/CI/runtime27_interruption.py": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
-    "Scripts/CI/select-runtime27-toolchain.py": "3e6ed97188d50f4f344dbd7f77f142a05f0a0bde1b720a0745df098f49bfcf2f",
-    "Scripts/CI/shutdown-faithful-simulator.py": "da381cad8763c864fabcf68164504be8ca8ddbc19839e4007347ae9e24f93192",
-    "Scripts/CI/verify-faithful-xctest.py": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
-    "Scripts/CI/verify-otzaria-xcode-project.py": "c3bc822db4b816989217de154fdcb56266e897a2e1212f894a7a9cd33b36c4ee",
-    "Scripts/CI/verify-xcframework.sh": "6cc8cc2d1a22026e0864c1ddac337460146bc0e0b5da0a2a587dd9f2a1a19782",
-    "Scripts/DataProfiles/miniTest10.seed.json": "1a2ec23062eeaa877af9a43af8ffcdd7a6260232e09757abfecb54b2bdac7f17",
-    "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc",
-    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": "a8773b4892ebeac2c98bc371e6ee358eb69d4085caec0ffa1aac9caa84a5c552",
-    "Source/Core/Database/SQLiteDatabase.swift": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
-    "Source/Core/Database/ZstdShim.swift": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999",
-    "Source/Otzaria/Core/OtzariaSQLiteError.swift": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad",
-    "Source/Otzaria/Core/OtzariaSQLiteStatement.swift": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307",
-    "Source/Otzaria/Core/String+OtzariaText.swift": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1",
-    "Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1",
-    "Source/Otzaria/Data/OtzariaSchema.swift": "feabd62c4a170d5762bcc6bef09b27d1e736f122aa385dd5c2a148acb24829ad",
-    "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
-    "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
-    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
-    "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
-    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": "2f53c4136145100382ea86dd2b659c8457ec7b56e19173eafb8d7c0ba464fa25",
-    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
-    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02",
-    "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
-    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
-    "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
-    "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift": "1ecd1336ef0f353d14bfdf857a71f3ee9c37d56fe3a47dd541ca86959fa2a86c",
-    "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b",
-    "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38",
-    "tools/verify_xcresult_zero_skips.py": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
-  },
-  "installation_policy": "REUSE_EXPLICIT_ROOT_OWNED_VERIFIED_V40_INSTALL",
+  "input_sha256": {},
+  "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "source_status": "UNFINALIZED_INTEGRATION_OWNER_MUST_FREEZE_CURRENT_SOURCE_AND_INPUT_BYTES",
   "native_ui_executed": 0,
-  "perf_candidate_promoted": false,
-  "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics",
   "physical_device_executed": 0,
+  "perf_candidate_promoted": false,
+  "required_reader_opens": 20,
   "required_forced_relaunches": 10,
   "required_inspector_counts": [
     100,
     500,
     2000
   ],
-  "required_reader_opens": 20,
-  "schema": "otzaria.full-v40.original-ui-observation/1",
-  "selected_case_ids": [
-    "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
-    "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn"
-  ],
-  "source_database": {
-    "assetBytes": 2129902636,
-    "assetID": 782942035,
-    "assetName": "seforim-schema7.db.zst.manifest.json",
-    "assetSHA256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
-    "counts": {
-      "book": 8259,
-      "line": 7925185,
-      "link": 7001824
-    },
-    "databaseBytes": 4355063808,
-    "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
-    "manifestAssetBytes": 589,
-    "manifestSHA256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
-    "releaseID": 455390662,
-    "releaseTag": "v40-20261123094345",
-    "repository": "Otzaria/SeforimLibrary"
+  "exact_inspector_count_policy": "Actual original counts only; natural at-least exploration does not satisfy missing exact sizes; no truncation",
+  "performance_budgets": "NONE_INVENTED; retain actual observations and missing metrics",
+  "installation_policy": "REUSE_EXPLICIT_ROOT_OWNED_VERIFIED_V40_INSTALL",
+  "catalog_targets": {
+    "books": [
+      {
+        "bookID": 103,
+        "lineCount": 2875,
+        "title": "ברכות"
+      },
+      {
+        "bookID": 28,
+        "lineCount": 2678,
+        "title": "תהילים"
+      },
+      {
+        "bookID": 3152,
+        "lineCount": 528,
+        "title": "דרשות הר\"ן"
+      }
+    ],
+    "retainedChapter": {
+      "bookID": 8042,
+      "focusLineIndex": 26166,
+      "sourceUTF16Length": 8307947,
+      "unitEndLineIndex": 52331,
+      "unitID": "toc:1948815",
+      "unitRowCount": 52332,
+      "unitStartLineIndex": 0
+    }
   },
-  "source_status": "FROZEN_INTEGRATED_SOURCE_REQUIRES_QUALIFIED_BUILD_AND_NATIVE_EXECUTION",
-  "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785"
+  "corpus_identity_provenance": {
+    "prior_component_receipt": "docs/hq-integration/core-final-20261126/COMPONENT_ACCEPTANCE.md",
+    "fresh_read_only_query": "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
+    "query_recipe_sha256": "ed50a21d76b79e56b649392d0e8974c7c4ff1f51d4b18e229e28a97db9861a38",
+    "same_numeric_book_ids_as_v32": "Independently queried on hash-bound v40; no v32 catalog/evidence transfer",
+    "prior_installation_acceptance_attributed_only_to_original_source": true,
+    "fresh_read_only_query_sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b"
+  }
 }
