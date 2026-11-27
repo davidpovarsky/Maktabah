@@ -1,0 +1,53 @@
+{
+  "status": "PASSED",
+  "scope": "Apple-SDK typecheck only; no application execution or UI acceptance",
+  "source_parent_commit": "1c1b2a2db869b960e84832acbde9e2d280cd7114",
+  "source_state": "exact uncommitted additive UI candidate",
+  "inputs": {
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "DeepLinkedCommentaryAcceptanceTests.swift": "b01f74538c93f70b17d75944040748a37af29016fe6cfc05c0330e6f54b0c210"
+  },
+  "inputs_after": {
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "DeepLinkedCommentaryAcceptanceTests.swift": "b01f74538c93f70b17d75944040748a37af29016fe6cfc05c0330e6f54b0c210"
+  },
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-I",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+    "-module-name",
+    "Maktabah_iOSUITests",
+    "-D",
+    "DEBUG",
+    "-enable-upcoming-feature",
+    "NonisolatedNonsendingByDefault",
+    "-enable-upcoming-feature",
+    "InferIsolatedConformances",
+    "-enable-upcoming-feature",
+    "MemberImportVisibility",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-ui-attempt-1/MaktabahUITestBase.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-ui-attempt-1/DeepLinkedCommentaryAcceptanceTests.swift"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-11-27T00:59:39.859507+00:00",
+  "finished_at": "2026-11-27T00:59:41.791271+00:00",
+  "free_bytes_before": 4709900288,
+  "free_bytes_after": 4665614336,
+  "reused_module_cache": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+  "warning_count": 138,
+  "new_class_warning_count": 0,
+  "errors": []
+}

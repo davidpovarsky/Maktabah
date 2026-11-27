@@ -1,0 +1,16 @@
+{
+  "compiler.stderr.log": {
+    "gzip_bytes": 8801,
+    "gzip_sha256": "721e248f309d3e0eefbd2000e367dae240e5c505a3705a5e4c9df184cc4560a6",
+    "raw_bytes": 104049,
+    "raw_path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-ui-attempt-2/compiler.stderr.log",
+    "raw_sha256": "1300e8bdce95939cd4b00e548fb5aaa010b195ee2e15a2f87361c13f3ffa5c85"
+  },
+  "compiler.stdout.log": {
+    "gzip_bytes": 20,
+    "gzip_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+    "raw_bytes": 0,
+    "raw_path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-ui-attempt-2/compiler.stdout.log",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
