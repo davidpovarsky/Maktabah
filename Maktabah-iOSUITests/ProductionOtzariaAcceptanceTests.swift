@@ -648,7 +648,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         let root = database.deletingLastPathComponent()
         let downloads = URL(fileURLWithPath: context.downloadsPath)
         let manifestURL = root.appendingPathComponent("seforim-installation.json")
-        let obstructionURL = root.appendingPathComponent("seforim-installation.json.previous")
+        let obstructionURL = root.appendingPathComponent("seforim-installation.json.installing")
         let obstructionToken = Data(("ManagedLibraryUpdateAcceptanceTests-owned-obstruction:" + UUID().uuidString).utf8)
         var ownsObstruction = false
         defer {
@@ -720,9 +720,14 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         capture("settings-update-paused")
 
         app.terminate()
-        // This is the same real filesystem fault exercised by the native
-        // rollback control. The app remains the sole installer. Only this
-        // UUID-marked metadata backup file is created; no corpus bytes change.
+        launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
+        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Cold launch must reopen the previous library after interruption")
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertEqual(try state(context, requirePopulated: true), before)
+        try require(cacheBytes(downloads) == retainedBytes, "Cold launch changed retained download bytes")
+        // The old reader has completed cold restore and no update is active.
+        // Obstruct only the new pending-identity write, after recovery has run.
+        // The app remains the sole installer; no corpus bytes are changed.
         for name in ["seforim.db.previous", "seforim-installation.json.previous", "seforim-installation.json.installing"] {
             try require(!FileManager.default.fileExists(atPath: root.appendingPathComponent(name).path),
                         "Do not replace an existing transaction artifact to inject the owned failure")
@@ -732,12 +737,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: obstructionURL.path)
         try requireOwnedObstruction(obstructionURL, token: obstructionToken)
         try attach(["path": obstructionURL.path, "token_sha256": hash(obstructionToken),
-                    "fault": "owned immutable metadata backup; corpus unchanged"], name: "settings-update-owned-fault")
-        launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
-        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Cold launch must reopen the previous library after interruption")
-        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
-        XCTAssertEqual(try state(context, requirePopulated: true), before)
-        try require(cacheBytes(downloads) == retainedBytes, "Cold launch changed retained download bytes")
+                    "fault": "owned immutable pending metadata; corpus unchanged"], name: "settings-update-owned-fault")
         try requireOwnedObstruction(obstructionURL, token: obstructionToken)
         try openUpdateSettings()
         install = app.buttons["otzaria-update-install"]
@@ -749,7 +749,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         }
         let failure = app.staticTexts["otzaria-update-error"]
         try require(failure.exists && failure.label.contains(obstructionURL.lastPathComponent),
-                    "Require the observed metadata-backup failure, not an unrelated network/storage error: " + failure.label)
+                    "Require the observed pending-metadata write failure, not an unrelated network/storage error: " + failure.label)
         try require(!app.staticTexts["The library was updated successfully."].exists, "Failed metadata promotion must not report success")
         try require(install.waitForExistence(timeout: 30) && install.isHittable,
                     "The original install action must remain available to retry the failed update")
@@ -809,7 +809,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         try require(newHash != context.expectedCurrentSHA256, "Update did not replace the old corpus")
         try attach(["installed_manifest": installed, "new_database_sha256": newHash,
                     "paused_download_bytes": retainedBytes, "old_database_sha256": context.expectedCurrentSHA256,
-                    "metadata_promotion_failure": "observed original UI; previous corpus and manifest restored",
+                    "metadata_promotion_failure": "observed pending-identity write error; previous corpus and manifest restored",
                     "retry_and_recovery": "original Settings action after verified owned-token removal and cold reopen",
                     "scope": "ordinary-Settings-UI-current-to-latest", "http_range_receipt": "separate-native-bootstrap-gate"],
                    name: "settings-update-installed")
