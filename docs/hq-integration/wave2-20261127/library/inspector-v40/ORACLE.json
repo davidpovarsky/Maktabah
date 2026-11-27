@@ -1,0 +1,1288 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ORACLE_PREPARED_UI_NOT_RUN",
+  "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+  "databaseBytes": 4355063808,
+  "releaseID": 455390662,
+  "releaseTag": "v40-20261123094345",
+  "kitRevision": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "bookID": 28,
+  "bookTitle": "תהילים",
+  "authors": {
+    "twoWorks": {
+      "id": 222,
+      "name": "רבי דוד אלטשולר"
+    },
+    "quoting": {
+      "id": 1290,
+      "name": "רבי אברהם סבע"
+    },
+    "similarA": {
+      "id": 1929,
+      "name": "רבנו משה בן מימון [הרמב\"ם]"
+    },
+    "similarB": {
+      "id": 1973,
+      "name": "רבנו משה ב\"ר נחמן [הרמב\"ן]"
+    }
+  },
+  "cases": [
+    {
+      "chapter": 1,
+      "tocID": 600,
+      "tocTitle": "פרק א",
+      "startLineIndex": 1,
+      "endLineIndex": 7,
+      "groups": [
+        {
+          "authorID": 222,
+          "author": "רבי דוד אלטשולר",
+          "kind": "commentary",
+          "groupID": "author:רבי דוד אלטשולר",
+          "count": 38,
+          "workIDs": [
+            3323,
+            3436,
+            3442,
+            3444,
+            3445,
+            3446,
+            3454,
+            3459,
+            3460,
+            3465,
+            3466
+          ],
+          "memberIDs": [
+            "otzaria:book:3323|otzaria:v1:3323:11|פירוש|Commentary||מצודת דוד על תהילים, א, ד, א",
+            "otzaria:book:3323|otzaria:v1:3323:13|פירוש|Commentary||מצודת דוד על תהילים, א, ה, א",
+            "otzaria:book:3323|otzaria:v1:3323:14|פירוש|Commentary||מצודת דוד על תהילים, א, ה, ב",
+            "otzaria:book:3323|otzaria:v1:3323:16|פירוש|Commentary||מצודת דוד על תהילים, א, ו, א",
+            "otzaria:book:3323|otzaria:v1:3323:4|פירוש|Commentary||מצודת דוד על תהילים, א, א, א",
+            "otzaria:book:3323|otzaria:v1:3323:6|פירוש|Commentary||מצודת דוד על תהילים, א, ב, א",
+            "otzaria:book:3323|otzaria:v1:3323:7|פירוש|Commentary||מצודת דוד על תהילים, א, ב, ב",
+            "otzaria:book:3323|otzaria:v1:3323:9|פירוש|Commentary||מצודת דוד על תהילים, א, ג, א",
+            "otzaria:book:3436|otzaria:v1:3436:10|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ב",
+            "otzaria:book:3436|otzaria:v1:3436:11|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ג",
+            "otzaria:book:3436|otzaria:v1:3436:12|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ד",
+            "otzaria:book:3436|otzaria:v1:3436:14|פירוש|Commentary||מצודת ציון על תהילים, א, ד, א",
+            "otzaria:book:3436|otzaria:v1:3436:15|פירוש|Commentary||מצודת ציון על תהילים, א, ד, ב",
+            "otzaria:book:3436|otzaria:v1:3436:17|פירוש|Commentary||מצודת ציון על תהילים, א, ו, א",
+            "otzaria:book:3436|otzaria:v1:3436:4|פירוש|Commentary||מצודת ציון על תהילים, א, א, א",
+            "otzaria:book:3436|otzaria:v1:3436:5|פירוש|Commentary||מצודת ציון על תהילים, א, א, ב",
+            "otzaria:book:3436|otzaria:v1:3436:7|פירוש|Commentary||מצודת ציון על תהילים, א, ב, א",
+            "otzaria:book:3436|otzaria:v1:3436:9|פירוש|Commentary||מצודת ציון על תהילים, א, ג, א",
+            "otzaria:book:3442|otzaria:v1:3442:1458|פירוש|Commentary||מצודת ציון על משלי, לא, כח, ב",
+            "otzaria:book:3442|otzaria:v1:3442:864|פירוש|Commentary||מצודת ציון על משלי, כא, ו, א",
+            "otzaria:book:3444|otzaria:v1:3444:1321|פירוש|Commentary||מצודת ציון על איוב, כט, יא, א",
+            "otzaria:book:3444|otzaria:v1:3444:940|פירוש|Commentary||מצודת ציון על איוב, כ, יז, א",
+            "otzaria:book:3445|otzaria:v1:3445:314|פירוש|Commentary||מצודת ציון על שיר השירים, ו, ט, ב",
+            "otzaria:book:3446|otzaria:v1:3446:361|פירוש|Commentary||מצודת ציון על הושע, ט, יג, א",
+            "otzaria:book:3446|otzaria:v1:3446:506|פירוש|Commentary||מצודת ציון על הושע, יג, ג, א",
+            "otzaria:book:3454|otzaria:v1:3454:1208|פירוש|Commentary||מצודת ציון על ישעיהו, כב, יט, א",
+            "otzaria:book:3454|otzaria:v1:3454:1310|פירוש|Commentary||מצודת ציון על ישעיהו, כד, ד, ב",
+            "otzaria:book:3454|otzaria:v1:3454:1581|פירוש|Commentary||מצודת ציון על ישעיהו, כח, א, ג",
+            "otzaria:book:3454|otzaria:v1:3454:2188|פירוש|Commentary||מצודת ציון על ישעיהו, לד, ד, ג",
+            "otzaria:book:3454|otzaria:v1:3454:2442|פירוש|Commentary||מצודת ציון על ישעיהו, מ, ז, א",
+            "otzaria:book:3454|otzaria:v1:3454:3805|פירוש|Commentary||מצודת ציון על ישעיהו, סד, ה, ג",
+            "otzaria:book:3454|otzaria:v1:3454:951|פירוש|Commentary||מצודת ציון על ישעיהו, יז, יג, א",
+            "otzaria:book:3459|otzaria:v1:3459:1815|פירוש|Commentary||מצודת ציון על יחזקאל, לד, כא, ב",
+            "otzaria:book:3459|otzaria:v1:3459:2367|פירוש|Commentary||מצודת ציון על יחזקאל, מז, יב, א",
+            "otzaria:book:3459|otzaria:v1:3459:771|פירוש|Commentary||מצודת ציון על יחזקאל, יז, ח, ב",
+            "otzaria:book:3460|otzaria:v1:3460:106|פירוש|Commentary||מצודת ציון על מלכים ב, ד, כז, א",
+            "otzaria:book:3465|otzaria:v1:3465:627|פירוש|Commentary||מצודת ציון על ירמיהו, ח, יג, ב",
+            "otzaria:book:3466|otzaria:v1:3466:453|פירוש|Commentary||מצודת ציון על יהושע, כג, ה, א"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3323|otzaria:v1:3323:4|פירוש|Commentary||מצודת דוד על תהילים, א, א, א",
+              "bookID": 3323,
+              "bookTitle": "מצודת דוד על תהילים",
+              "lineID": 6559492,
+              "lineIndex": 4,
+              "heRef": "מצודת דוד על תהילים, א, א, א",
+              "sourceRef": "otzaria:v1:3323:4",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9197373,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "אשרי האיש. ספורי תהלות האיש המה לומר עליו בשבחו זהו אשר לא הלך בעצת רשעים ר״‎ל לא היה לבו נפתה ללכת בעצתם לעשות כמוהם וכל כך היה נזהר בנפשו עד שלא עמד בדרך אשר החוטאים עוברים בו בחשבו פן יפגשוהו ויסיתוהו אחרי עצתם ובהיות כן לא בא א״‎כ לכלל ישיבה לשבת עמהם להשריש עצתם בלבו וללכת בה ועשה א״‎כ משמרת למשמרת:",
+              "decodedHTMLSHA256": "e72481cf84b0bd27b31dd0107b6fce16c71160f252368eb9f5425092a96f756b"
+            },
+            {
+              "id": "otzaria:book:3436|otzaria:v1:3436:4|פירוש|Commentary||מצודת ציון על תהילים, א, א, א",
+              "bookID": 3436,
+              "bookTitle": "מצודת ציון על תהילים",
+              "lineID": 6619491,
+              "lineIndex": 4,
+              "heRef": "מצודת ציון על תהילים, א, א, א",
+              "sourceRef": "otzaria:v1:3436:4",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9275726,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "אשרי. ענין שבח ותהלה כמו כי אשרוני בנות (בראשית ל׳:י״ג):",
+              "decodedHTMLSHA256": "52e1b44aa70f5494d9ec52f46ae09757b7ac05e3ec472fd6323d0a7f68dcd464"
+            }
+          ]
+        },
+        {
+          "authorID": 1290,
+          "author": "רבי אברהם סבע",
+          "kind": "commentary",
+          "groupID": "author:רבי אברהם סבע",
+          "count": 1,
+          "workIDs": [
+            3554
+          ],
+          "memberIDs": [
+            "otzaria:book:3554|otzaria:v1:3554:435|פירוש|Commentary||צרור המור על התורה, בראשית,  ל, כב, ו"
+          ],
+          "samples": []
+        },
+        {
+          "authorID": 1929,
+          "author": "רבנו משה בן מימון [הרמב\"ם]",
+          "kind": "commentary",
+          "groupID": "author:רבנו משה בן מימון [הרמב\"ם]",
+          "count": 1,
+          "workIDs": [
+            543
+          ],
+          "memberIDs": [
+            "otzaria:book:543|otzaria:v1:543:91|פירוש|Commentary||רמב\"ם על משנה אבות, ג, ב, א"
+          ],
+          "samples": []
+        },
+        {
+          "authorID": 1290,
+          "author": "רבי אברהם סבע",
+          "kind": "quotingCommentary",
+          "groupID": "author:רבי אברהם סבע",
+          "count": 4,
+          "workIDs": [
+            3554
+          ],
+          "memberIDs": [
+            "otzaria:book:3554|otzaria:v1:3554:1296|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, במדבר,  ג, טו, א",
+            "otzaria:book:3554|otzaria:v1:3554:1743|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  כב, ו, ג",
+            "otzaria:book:3554|otzaria:v1:3554:1817|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  כט, א, א",
+            "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א",
+              "bookID": 3554,
+              "bookTitle": "צרור המור על התורה",
+              "lineID": 2439088,
+              "lineIndex": 50,
+              "heRef": "צרור המור על התורה, בראשית,  ג, ו, א",
+              "sourceRef": "otzaria:v1:3554:50",
+              "category": "Quoting Commentary",
+              "displayType": "ציטוט פירוש",
+              "rawEdges": [
+                {
+                  "id": 9189489,
+                  "matchedSide": 0,
+                  "connectionType": "QUOTATION"
+                }
+              ],
+              "plainText": "ותרא האשה כי טוב העץ למאכל ר\"ל ראתה כי זה העץ הוא טוב למאכל והדבר שהוא ממית כמו שאומר השם ראוי הוא שיהיה בו סם המות או שימית האדם בראייה או יעוור עיניו או יהיה בו ריח רע וכיוצא בזה. אבל אני רואה כל הדברים בהפך כי טוב העץ למאכל וכי תאוה הוא לעינים והעינים מתאוים לראותו לפי שמחזיקין הראות ונחמד העץ להשכיל כי מצד הריח הטוב נהנית הנשמה כאומרם ז\"ל כל הנשמה תהלל יה איזה דבר שהנשמה נהנית בו זה הריח ולכן מברכין על הריח וזהו ונחמד העץ עד שמצד הריח נהנית הנשמה ומשגת המושכלות כאומרו לריח שמניך טובים ותרגום לא תחמוד לא תירוג שהוא כמו אתרוג שמריח. ולכן ותקח מפריו ותאכל. או יאמר שראתה דבריו של שטן שהיו טענות אמיתיות כאמרו שהיו סומים ומתים ואם יאכלו שיפקחו עיניהם ולפי שהיו סומים היו מתאוים לראות והיו דואגים מאד על חסרון הראיה. אמרה כי טוב העץ למאכל ירצה תאוה הוא לעינים והם מתאוים לראות וזאת היא רפואתם והעץ שיש בו ב' סגולות אלו הוא טוב טוב למאכל וטוב לרפואה כאומרו אשר פריו יתן בעתו כנגד המאכל ועלהו לא יבול כנגד הרפואה אפי' עלה שלו הוא מועיל לרפואה וזהו כי טוב העץ למאכל וכי תאוה הוא לעינים לרפואה. ונחמד העץ להשכיל בפועל מה שהיה להם בכח. ולכן ותקח מפריו ותאכל. וי\"א שעשתה פשרה כוזבת ואמרה השם אמר לי שלא אוכל והנחש אומר שאוכל איני רוצה לאכול מהפרי אלא מהקליפה ואם היא טובה מסתמא הפרי הוא טוב ולקחה מהקליפה ואכלה וזהו ותרא האשה כי טוב העץ למאכל ותקח מפריו ותאכל. כי אחר שהקליפה היתה טובה כל שכן הפרי. והנה חטא אדם ואשתו הוא חטא המלאכים שחטאו כאומרם ז\"ל עזה ועזאל שנפלו מן השמים וזהו הנפילים היו בארץ והמלאכים היאך חטאו אחר שהם פשוטים מחומר וכן אדם הראשון שהיה ערום בכל חכמה ולא ידע בין טוב לרע כאלו היה פשוט מחומר איך חטא. אבל ידוע שהחוטא כשחוטא יורד ממעלתו והמלאכים כשחטאו נתגאו ורצו לעשות עצמם אלוהות לעלות למעלה עליונה יותר ממעלתם הראשונה וזהו חטאם שעלה במחשבתם. וכן אדם הראשון לא חטא כדרך החוטאים אלא חשב שעלה למעלה עליונה ממעלתו שא\"ל הנחש והייתם כאלהים ואם כן כשחטא על זה הערך חטא. והנה חטא אדם הראשון הוא ענין עמוק עמוק מי ימצאנו. וכבר רמזתי אותו במשנת בן זומא אומר שהוא א' מד' שנכנסו לפרדס והם בן עזאי בן זומא רבי עקיבא ואחר. וכנגדם יש ד' אחרים בתורה שנכנסו לפרדס והם אדם הראשון ונח ואברהם ובני אהרן. ואיני רוצה עתה להאריך בו:",
+              "decodedHTMLSHA256": "4e3b4c44a82ee4bdae3d9df4245609d3befafccaef90791b9531ed4239844814"
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "lineID": 15827,
+          "lineIndex": 1,
+          "heRef": null,
+          "plainText": "פרק א",
+          "groups": []
+        },
+        {
+          "lineID": 6188105,
+          "lineIndex": 2,
+          "heRef": "תהילים, א, א",
+          "plainText": "(א) אַ֥שְֽׁרֵי־הָאִ֗ישׁ אֲשֶׁ֤ר ׀ לֹ֥א הָלַךְ֮ בַּעֲצַ֢ת רְשָׁ֫עִ֥ים וּבְדֶ֣רֶךְ חַ֭טָּאִים לֹ֥א עָמָ֑ד וּבְמוֹשַׁ֥ב לֵ֝צִ֗ים לֹ֣א יָשָֽׁב׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 6,
+              "workIDs": [
+                3323,
+                3436,
+                3442,
+                3444,
+                3445
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:4|פירוש|Commentary||מצודת דוד על תהילים, א, א, א",
+                "otzaria:book:3436|otzaria:v1:3436:4|פירוש|Commentary||מצודת ציון על תהילים, א, א, א",
+                "otzaria:book:3436|otzaria:v1:3436:5|פירוש|Commentary||מצודת ציון על תהילים, א, א, ב",
+                "otzaria:book:3442|otzaria:v1:3442:1458|פירוש|Commentary||מצודת ציון על משלי, לא, כח, ב",
+                "otzaria:book:3444|otzaria:v1:3444:1321|פירוש|Commentary||מצודת ציון על איוב, כט, יא, א",
+                "otzaria:book:3445|otzaria:v1:3445:314|פירוש|Commentary||מצודת ציון על שיר השירים, ו, ט, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6188106,
+          "lineIndex": 3,
+          "heRef": "תהילים, א, ב",
+          "plainText": "(ב) כִּ֤י אִ֥ם־בְּתוֹרַ֥ת יְהֹוָ֗ה חֶ֫פְצ֥וֹ וּֽבְתוֹרָת֥וֹ יֶהְגֶּ֗ה יוֹמָ֥ם וָלָֽיְלָה׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 3,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:6|פירוש|Commentary||מצודת דוד על תהילים, א, ב, א",
+                "otzaria:book:3323|otzaria:v1:3323:7|פירוש|Commentary||מצודת דוד על תהילים, א, ב, ב",
+                "otzaria:book:3436|otzaria:v1:3436:7|פירוש|Commentary||מצודת ציון על תהילים, א, ב, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1929,
+              "author": "רבנו משה בן מימון [הרמב\"ם]",
+              "kind": "commentary",
+              "groupID": "author:רבנו משה בן מימון [הרמב\"ם]",
+              "count": 1,
+              "workIDs": [
+                543
+              ],
+              "memberIDs": [
+                "otzaria:book:543|otzaria:v1:543:91|פירוש|Commentary||רמב\"ם על משנה אבות, ג, ב, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6188107,
+          "lineIndex": 4,
+          "heRef": "תהילים, א, ג",
+          "plainText": "(ג) וְֽהָיָ֗ה כְּעֵץ֮ שָׁת֢וּל עַֽל־פַּלְגֵ֫י־מָ֥יִם אֲשֶׁ֤ר פִּרְי֨וֹ ׀ יִתֵּ֬ן בְּעִתּ֗וֹ וְעָלֵ֥הוּ לֹֽא־יִבּ֑וֹל וְכֹ֖ל אֲשֶׁר־יַעֲשֶׂ֣ה יַצְלִֽיחַ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 15,
+              "workIDs": [
+                3323,
+                3436,
+                3444,
+                3446,
+                3454,
+                3459,
+                3465
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:9|פירוש|Commentary||מצודת דוד על תהילים, א, ג, א",
+                "otzaria:book:3436|otzaria:v1:3436:10|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ב",
+                "otzaria:book:3436|otzaria:v1:3436:11|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ג",
+                "otzaria:book:3436|otzaria:v1:3436:12|פירוש|Commentary||מצודת ציון על תהילים, א, ג, ד",
+                "otzaria:book:3436|otzaria:v1:3436:9|פירוש|Commentary||מצודת ציון על תהילים, א, ג, א",
+                "otzaria:book:3444|otzaria:v1:3444:940|פירוש|Commentary||מצודת ציון על איוב, כ, יז, א",
+                "otzaria:book:3446|otzaria:v1:3446:361|פירוש|Commentary||מצודת ציון על הושע, ט, יג, א",
+                "otzaria:book:3454|otzaria:v1:3454:1310|פירוש|Commentary||מצודת ציון על ישעיהו, כד, ד, ב",
+                "otzaria:book:3454|otzaria:v1:3454:1581|פירוש|Commentary||מצודת ציון על ישעיהו, כח, א, ג",
+                "otzaria:book:3454|otzaria:v1:3454:2188|פירוש|Commentary||מצודת ציון על ישעיהו, לד, ד, ג",
+                "otzaria:book:3454|otzaria:v1:3454:2442|פירוש|Commentary||מצודת ציון על ישעיהו, מ, ז, א",
+                "otzaria:book:3454|otzaria:v1:3454:3805|פירוש|Commentary||מצודת ציון על ישעיהו, סד, ה, ג",
+                "otzaria:book:3459|otzaria:v1:3459:2367|פירוש|Commentary||מצודת ציון על יחזקאל, מז, יב, א",
+                "otzaria:book:3459|otzaria:v1:3459:771|פירוש|Commentary||מצודת ציון על יחזקאל, יז, ח, ב",
+                "otzaria:book:3465|otzaria:v1:3465:627|פירוש|Commentary||מצודת ציון על ירמיהו, ח, יג, ב"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1290,
+              "author": "רבי אברהם סבע",
+              "kind": "commentary",
+              "groupID": "author:רבי אברהם סבע",
+              "count": 1,
+              "workIDs": [
+                3554
+              ],
+              "memberIDs": [
+                "otzaria:book:3554|otzaria:v1:3554:435|פירוש|Commentary||צרור המור על התורה, בראשית,  ל, כב, ו"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1290,
+              "author": "רבי אברהם סבע",
+              "kind": "quotingCommentary",
+              "groupID": "author:רבי אברהם סבע",
+              "count": 4,
+              "workIDs": [
+                3554
+              ],
+              "memberIDs": [
+                "otzaria:book:3554|otzaria:v1:3554:1296|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, במדבר,  ג, טו, א",
+                "otzaria:book:3554|otzaria:v1:3554:1743|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  כב, ו, ג",
+                "otzaria:book:3554|otzaria:v1:3554:1817|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  כט, א, א",
+                "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6188108,
+          "lineIndex": 5,
+          "heRef": "תהילים, א, ד",
+          "plainText": "(ד) לֹא־כֵ֥ן הָרְשָׁעִ֑ים כִּ֥י אִם־כַּ֝מֹּ֗ץ אֲֽשֶׁר־תִּדְּפֶ֥נּוּ רֽוּחַ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 10,
+              "workIDs": [
+                3323,
+                3436,
+                3442,
+                3446,
+                3454,
+                3459,
+                3460,
+                3466
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:11|פירוש|Commentary||מצודת דוד על תהילים, א, ד, א",
+                "otzaria:book:3436|otzaria:v1:3436:14|פירוש|Commentary||מצודת ציון על תהילים, א, ד, א",
+                "otzaria:book:3436|otzaria:v1:3436:15|פירוש|Commentary||מצודת ציון על תהילים, א, ד, ב",
+                "otzaria:book:3442|otzaria:v1:3442:864|פירוש|Commentary||מצודת ציון על משלי, כא, ו, א",
+                "otzaria:book:3446|otzaria:v1:3446:506|פירוש|Commentary||מצודת ציון על הושע, יג, ג, א",
+                "otzaria:book:3454|otzaria:v1:3454:1208|פירוש|Commentary||מצודת ציון על ישעיהו, כב, יט, א",
+                "otzaria:book:3454|otzaria:v1:3454:951|פירוש|Commentary||מצודת ציון על ישעיהו, יז, יג, א",
+                "otzaria:book:3459|otzaria:v1:3459:1815|פירוש|Commentary||מצודת ציון על יחזקאל, לד, כא, ב",
+                "otzaria:book:3460|otzaria:v1:3460:106|פירוש|Commentary||מצודת ציון על מלכים ב, ד, כז, א",
+                "otzaria:book:3466|otzaria:v1:3466:453|פירוש|Commentary||מצודת ציון על יהושע, כג, ה, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6188109,
+          "lineIndex": 6,
+          "heRef": "תהילים, א, ה",
+          "plainText": "(ה) עַל־כֵּ֤ן ׀ לֹא־יָקֻ֣מוּ רְ֭שָׁעִים בַּמִּשְׁפָּ֑ט וְ֝חַטָּאִ֗ים בַּעֲדַ֥ת צַדִּיקִֽים׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:13|פירוש|Commentary||מצודת דוד על תהילים, א, ה, א",
+                "otzaria:book:3323|otzaria:v1:3323:14|פירוש|Commentary||מצודת דוד על תהילים, א, ה, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6188110,
+          "lineIndex": 7,
+          "heRef": "תהילים, א, ו",
+          "plainText": "(ו) כִּֽי־יוֹדֵ֣עַ יְ֭הֹוָה דֶּ֣רֶךְ צַדִּיקִ֑ים וְדֶ֖רֶךְ רְשָׁעִ֣ים תֹּאבֵֽד׃ {פ}",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:16|פירוש|Commentary||מצודת דוד על תהילים, א, ו, א",
+                "otzaria:book:3436|otzaria:v1:3436:17|פירוש|Commentary||מצודת ציון על תהילים, א, ו, א"
+              ],
+              "samples": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 75,
+      "tocID": 674,
+      "tocTitle": "פרק עה",
+      "startLineIndex": 1258,
+      "endLineIndex": 1269,
+      "groups": [
+        {
+          "authorID": 222,
+          "author": "רבי דוד אלטשולר",
+          "kind": "commentary",
+          "groupID": "author:רבי דוד אלטשולר",
+          "count": 32,
+          "workIDs": [
+            3323,
+            3436,
+            3454,
+            3465
+          ],
+          "memberIDs": [
+            "otzaria:book:3323|otzaria:v1:3323:2897|פירוש|Commentary||מצודת דוד על תהילים, עה, א, א",
+            "otzaria:book:3323|otzaria:v1:3323:2899|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, א",
+            "otzaria:book:3323|otzaria:v1:3323:2900|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, ב",
+            "otzaria:book:3323|otzaria:v1:3323:2901|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, ג",
+            "otzaria:book:3323|otzaria:v1:3323:2903|פירוש|Commentary||מצודת דוד על תהילים, עה, ג, א",
+            "otzaria:book:3323|otzaria:v1:3323:2905|פירוש|Commentary||מצודת דוד על תהילים, עה, ד, א",
+            "otzaria:book:3323|otzaria:v1:3323:2906|פירוש|Commentary||מצודת דוד על תהילים, עה, ד, ב",
+            "otzaria:book:3323|otzaria:v1:3323:2908|פירוש|Commentary||מצודת דוד על תהילים, עה, ה, א",
+            "otzaria:book:3323|otzaria:v1:3323:2909|פירוש|Commentary||מצודת דוד על תהילים, עה, ה, ב",
+            "otzaria:book:3323|otzaria:v1:3323:2911|פירוש|Commentary||מצודת דוד על תהילים, עה, ו, א",
+            "otzaria:book:3323|otzaria:v1:3323:2913|פירוש|Commentary||מצודת דוד על תהילים, עה, ז, א",
+            "otzaria:book:3323|otzaria:v1:3323:2915|פירוש|Commentary||מצודת דוד על תהילים, עה, ח, א",
+            "otzaria:book:3323|otzaria:v1:3323:2917|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, א",
+            "otzaria:book:3323|otzaria:v1:3323:2918|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, ב",
+            "otzaria:book:3323|otzaria:v1:3323:2919|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, ג",
+            "otzaria:book:3323|otzaria:v1:3323:2921|פירוש|Commentary||מצודת דוד על תהילים, עה, י, א",
+            "otzaria:book:3323|otzaria:v1:3323:2923|פירוש|Commentary||מצודת דוד על תהילים, עה, יא, א",
+            "otzaria:book:3436|otzaria:v1:3436:1790|פירוש|Commentary||מצודת ציון על תהילים, עה, ג, א",
+            "otzaria:book:3436|otzaria:v1:3436:1792|פירוש|Commentary||מצודת ציון על תהילים, עה, ד, א",
+            "otzaria:book:3436|otzaria:v1:3436:1793|פירוש|Commentary||מצודת ציון על תהילים, עה, ד, ב",
+            "otzaria:book:3436|otzaria:v1:3436:1795|פירוש|Commentary||מצודת ציון על תהילים, עה, ה, א",
+            "otzaria:book:3436|otzaria:v1:3436:1796|פירוש|Commentary||מצודת ציון על תהילים, עה, ה, ב",
+            "otzaria:book:3436|otzaria:v1:3436:1798|פירוש|Commentary||מצודת ציון על תהילים, עה, ו, א",
+            "otzaria:book:3436|otzaria:v1:3436:1800|פירוש|Commentary||מצודת ציון על תהילים, עה, ז, א",
+            "otzaria:book:3436|otzaria:v1:3436:1802|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, א",
+            "otzaria:book:3436|otzaria:v1:3436:1803|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ב",
+            "otzaria:book:3436|otzaria:v1:3436:1804|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ג",
+            "otzaria:book:3436|otzaria:v1:3436:1805|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ד",
+            "otzaria:book:3436|otzaria:v1:3436:1806|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ה",
+            "otzaria:book:3436|otzaria:v1:3436:1808|פירוש|Commentary||מצודת ציון על תהילים, עה, יא, א",
+            "otzaria:book:3454|otzaria:v1:3454:1419|פירוש|Commentary||מצודת ציון על ישעיהו, כה, ו, ג",
+            "otzaria:book:3465|otzaria:v1:3465:2511|פירוש|Commentary||מצודת ציון על ירמיהו, מח, יא, ב"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3323|otzaria:v1:3323:2897|פירוש|Commentary||מצודת דוד על תהילים, עה, א, א",
+              "bookID": 3323,
+              "bookTitle": "מצודת דוד על תהילים",
+              "lineID": 6561215,
+              "lineIndex": 2897,
+              "heRef": "מצודת דוד על תהילים, עה, א, א",
+              "sourceRef": "otzaria:v1:3323:2897",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9213240,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "אל תשחת. ר״‎ל בזה המזמור יתרצה לה׳‎ לבל ישחית את ישראל בהיותם בגולה:",
+              "decodedHTMLSHA256": "de8bff53861df3a42e96f6d02d3b74fd4206b09e396362d477baea33646f5eb1"
+            },
+            {
+              "id": "otzaria:book:3436|otzaria:v1:3436:1790|פירוש|Commentary||מצודת ציון על תהילים, עה, ג, א",
+              "bookID": 3436,
+              "bookTitle": "מצודת ציון על תהילים",
+              "lineID": 6620547,
+              "lineIndex": 1790,
+              "heRef": "מצודת ציון על תהילים, עה, ג, א",
+              "sourceRef": "otzaria:v1:3436:1790",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9287777,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "מועד. זמן:",
+              "decodedHTMLSHA256": "24638bbb5a21dc705208e10189d75289cd27b424f48feb0ff1726f1392eb914a"
+            }
+          ]
+        },
+        {
+          "authorID": 1973,
+          "author": "רבנו משה ב\"ר נחמן [הרמב\"ן]",
+          "kind": "commentary",
+          "groupID": "author:רבנו משה ב\"ר נחמן [הרמב\"ן]",
+          "count": 2,
+          "workIDs": [
+            3629,
+            3630
+          ],
+          "memberIDs": [
+            "otzaria:book:3629|otzaria:v1:3629:321|פירוש|Commentary||רמב\"ן על דברים,  טו, א, א",
+            "otzaria:book:3630|otzaria:v1:3630:450|פירוש|Commentary||רמב\"ן על ויקרא,  כג, כח, א"
+          ],
+          "samples": []
+        },
+        {
+          "authorID": 1290,
+          "author": "רבי אברהם סבע",
+          "kind": "quotingCommentary",
+          "groupID": "author:רבי אברהם סבע",
+          "count": 4,
+          "workIDs": [
+            3554
+          ],
+          "memberIDs": [
+            "otzaria:book:3554|otzaria:v1:3554:160|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  יג, ה, ב",
+            "otzaria:book:3554|otzaria:v1:3554:1919|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לב, כג, א",
+            "otzaria:book:3554|otzaria:v1:3554:1920|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לב, כג, ב",
+            "otzaria:book:3554|otzaria:v1:3554:1953|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לג, ב, ד"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3554|otzaria:v1:3554:160|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  יג, ה, ב",
+              "bookID": 3554,
+              "bookTitle": "צרור המור על התורה",
+              "lineID": 2439198,
+              "lineIndex": 160,
+              "heRef": "צרור המור על התורה, בראשית,  יג, ה, ב",
+              "sourceRef": "otzaria:v1:3554:160",
+              "category": "Quoting Commentary",
+              "displayType": "ציטוט פירוש",
+              "rawEdges": [
+                {
+                  "id": 9362366,
+                  "matchedSide": 0,
+                  "connectionType": "QUOTATION"
+                }
+              ],
+              "plainText": "ואלו הד' הם כנגד ארבע אחרים שכתובים בתורה ברמז. והם אדם הראשון שנכנס לגן החכמה ועבר מאמר השם וקיצץ בנטיעות הגן ואכל מפרי עץ הדעת טוב ורע ונגזר עליו מות תמות בעה\"ז ובעה\"ב כמו שהיה באלישע אחר. לולי רחמי ה' לפי שהיה יציר כפיו של הקדוש ברוך הוא ואם הוא ימות העולם כולו יחרב ויבש. ולכן אמרו עץ שאכל אדם הראשון גפן היתה וי\"א חטה היתה וי\"א תאנה היתה והוא יין חמר מלא מסך מצד נחש הקדמוני. נח גם כן וישת מן היין וישכר ויתגל בתוך אהלה אהל הראשון. כי שם הוא מקום הטעות ליודעים ונכנס לפרדס החכמה ולא עמד בעצמו ונטרפה דעתו כשכור. ויתגל שגלה הסוד ולא עמד על תכונתו מצד נחש הקדמוני. וזהו ארור כנען כמו שפירשתי למעלה. והוא כנגד בן זומא שהציץ מן החרכים ונפגע מצד הצר הצורר ונדחף לחוץ. אברהם עליו השלום נכנס לפרדס החכמה ויעבר אברם בארץ וירד לארץ מצרים כי שם כל הכשופים וחכמות חיצוניות מצד טמאה ופגע בכולם ולא הזיקוהו ועמד בעצמו. לפי שהיה שלם בכל החכמות וידע שיש יתרון לחכמה מן הסכלות ולכן נכנס בשלום ויצא בשלום דכתיב ויעל אברם ממצרים. וכן ואברם כבד מאד ומיושב בדעתו בכל החכמות הנמשלות לכסף ולזהב. וילך למסעיו שעלה ממדרגה למדרגה מנגב ועד בית אל. כסדר הייחוד הרמוז בסוד הקרבנות דתנן עלה לכבש ופנה לסובב ובא לו לקרן דרומית מזרחית מזרחית צפונית צפונית מערבית. וזהו מנגב ועד בית אל עד המקום אשר היה שם אהלה בתחלה. כי עלה למעלה וירד למטה כדרך הייחוד ממטה למעלה וממעלה למטה. והוא היה כנגד רבי עקיבא שנכנס בשלום ויצא בשלום כמו אברהם. בני אהרן נכנסו לפרדס החכמה ונכנסו לפנים ממחיצתם דכתיב בקרבתם לפני ה' וימותו וטעו בעץ הגן ולקחו איש מחתתו לחתות אש. מיקוד ויתנו בהם אש וישימו עליה קטורת ולא אמר וישימו עליהם. וכאן סוד עונם כי לא ידעו להזהר מאש זרה ושתו מהיין ששתה נח כאומרם שתויי יין נכנסו למקדש. והכל טעם א' בעניין שבזה מתו בלא עתם לפי שהתבוננו במה שלא הורשו. והם היו כנגד בן עזאי שקצץ ומת ועליהם נאמר יקר בעיני ה' המותה לחסידיו. קצרתי ועליתי בקנצי למילין ואם הייתי מאריך יותר אולי היה הדבר מובן יותר אלא מיראת האריכות והשם יכפר בעדי:",
+              "decodedHTMLSHA256": "c76e7bf41135002756ca191218bb30cfb6ac6a8844187067abe72c00390a42b9"
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "lineID": 17084,
+          "lineIndex": 1258,
+          "heRef": null,
+          "plainText": "פרק עה",
+          "groups": []
+        },
+        {
+          "lineID": 6189288,
+          "lineIndex": 1259,
+          "heRef": "תהילים, עה, א",
+          "plainText": "(א) לַמְנַצֵּ֥חַ אַל־תַּשְׁחֵ֑ת מִזְמ֖וֹר לְאָסָ֣ף שִֽׁיר׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 1,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2897|פירוש|Commentary||מצודת דוד על תהילים, עה, א, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189289,
+          "lineIndex": 1260,
+          "heRef": "תהילים, עה, ב",
+          "plainText": "(ב) ה֘וֹדִ֤ינוּ לְּךָ֨ ׀ אֱֽלֹהִ֗ים ה֭וֹדִינוּ וְקָר֣וֹב שְׁמֶ֑ךָ סִ֝פְּר֗וּ נִפְלְאוֹתֶֽיךָ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 3,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2899|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, א",
+                "otzaria:book:3323|otzaria:v1:3323:2900|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, ב",
+                "otzaria:book:3323|otzaria:v1:3323:2901|פירוש|Commentary||מצודת דוד על תהילים, עה, ב, ג"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189290,
+          "lineIndex": 1261,
+          "heRef": "תהילים, עה, ג",
+          "plainText": "(ג) כִּ֭י אֶקַּ֣ח מוֹעֵ֑ד אֲ֝נִ֗י מֵישָׁרִ֥ים אֶשְׁפֹּֽט׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2903|פירוש|Commentary||מצודת דוד על תהילים, עה, ג, א",
+                "otzaria:book:3436|otzaria:v1:3436:1790|פירוש|Commentary||מצודת ציון על תהילים, עה, ג, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1973,
+              "author": "רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "kind": "commentary",
+              "groupID": "author:רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "count": 1,
+              "workIDs": [
+                3629
+              ],
+              "memberIDs": [
+                "otzaria:book:3629|otzaria:v1:3629:321|פירוש|Commentary||רמב\"ן על דברים,  טו, א, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189291,
+          "lineIndex": 1262,
+          "heRef": "תהילים, עה, ד",
+          "plainText": "(ד) נְֽמֹגִ֗ים אֶ֥רֶץ וְכׇל־יֹשְׁבֶ֑יהָ אָנֹכִ֨י תִכַּ֖נְתִּי עַמּוּדֶ֣יהָ סֶּֽלָה׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 4,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2905|פירוש|Commentary||מצודת דוד על תהילים, עה, ד, א",
+                "otzaria:book:3323|otzaria:v1:3323:2906|פירוש|Commentary||מצודת דוד על תהילים, עה, ד, ב",
+                "otzaria:book:3436|otzaria:v1:3436:1792|פירוש|Commentary||מצודת ציון על תהילים, עה, ד, א",
+                "otzaria:book:3436|otzaria:v1:3436:1793|פירוש|Commentary||מצודת ציון על תהילים, עה, ד, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189292,
+          "lineIndex": 1263,
+          "heRef": "תהילים, עה, ה",
+          "plainText": "(ה) אָמַ֣רְתִּי לַ֭הוֹלְלִים אַל־תָּהֹ֑לּוּ וְ֝לָרְשָׁעִ֗ים אַל־תָּרִ֥ימוּ קָֽרֶן׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 4,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2908|פירוש|Commentary||מצודת דוד על תהילים, עה, ה, א",
+                "otzaria:book:3323|otzaria:v1:3323:2909|פירוש|Commentary||מצודת דוד על תהילים, עה, ה, ב",
+                "otzaria:book:3436|otzaria:v1:3436:1795|פירוש|Commentary||מצודת ציון על תהילים, עה, ה, א",
+                "otzaria:book:3436|otzaria:v1:3436:1796|פירוש|Commentary||מצודת ציון על תהילים, עה, ה, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189293,
+          "lineIndex": 1264,
+          "heRef": "תהילים, עה, ו",
+          "plainText": "(ו) אַל־תָּרִ֣ימוּ לַמָּר֣וֹם קַרְנְכֶ֑ם תְּדַבְּר֖וּ בְצַוָּ֣אר עָתָֽק׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2911|פירוש|Commentary||מצודת דוד על תהילים, עה, ו, א",
+                "otzaria:book:3436|otzaria:v1:3436:1798|פירוש|Commentary||מצודת ציון על תהילים, עה, ו, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189294,
+          "lineIndex": 1265,
+          "heRef": "תהילים, עה, ז",
+          "plainText": "(ז) כִּ֤י לֹ֣א מִ֭מּוֹצָא וּמִֽמַּעֲרָ֑ב וְ֝לֹ֗א מִמִּדְבַּ֥ר הָרִֽים׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2913|פירוש|Commentary||מצודת דוד על תהילים, עה, ז, א",
+                "otzaria:book:3436|otzaria:v1:3436:1800|פירוש|Commentary||מצודת ציון על תהילים, עה, ז, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189295,
+          "lineIndex": 1266,
+          "heRef": "תהילים, עה, ח",
+          "plainText": "(ח) כִּֽי־אֱלֹהִ֥ים שֹׁפֵ֑ט זֶ֥ה יַ֝שְׁפִּ֗יל וְזֶ֣ה יָרִֽים׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 1,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2915|פירוש|Commentary||מצודת דוד על תהילים, עה, ח, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1290,
+              "author": "רבי אברהם סבע",
+              "kind": "quotingCommentary",
+              "groupID": "author:רבי אברהם סבע",
+              "count": 1,
+              "workIDs": [
+                3554
+              ],
+              "memberIDs": [
+                "otzaria:book:3554|otzaria:v1:3554:1953|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לג, ב, ד"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189296,
+          "lineIndex": 1267,
+          "heRef": "תהילים, עה, ט",
+          "plainText": "(ט) כִּ֤י כ֪וֹס בְּֽיַד־יְהֹוָ֡ה וְיַ֤יִן חָמַ֨ר ׀ מָ֥לֵא מֶסֶךְ֮ וַיַּגֵּ֢ר מִ֫זֶּ֥ה אַךְ־שְׁ֭מָרֶיהָ יִמְצ֣וּ יִשְׁתּ֑וּ כֹּ֝֗ל רִשְׁעֵי־אָֽרֶץ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 10,
+              "workIDs": [
+                3323,
+                3436,
+                3454,
+                3465
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2917|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, א",
+                "otzaria:book:3323|otzaria:v1:3323:2918|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, ב",
+                "otzaria:book:3323|otzaria:v1:3323:2919|פירוש|Commentary||מצודת דוד על תהילים, עה, ט, ג",
+                "otzaria:book:3436|otzaria:v1:3436:1802|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, א",
+                "otzaria:book:3436|otzaria:v1:3436:1803|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ב",
+                "otzaria:book:3436|otzaria:v1:3436:1804|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ג",
+                "otzaria:book:3436|otzaria:v1:3436:1805|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ד",
+                "otzaria:book:3436|otzaria:v1:3436:1806|פירוש|Commentary||מצודת ציון על תהילים, עה, ט, ה",
+                "otzaria:book:3454|otzaria:v1:3454:1419|פירוש|Commentary||מצודת ציון על ישעיהו, כה, ו, ג",
+                "otzaria:book:3465|otzaria:v1:3465:2511|פירוש|Commentary||מצודת ציון על ירמיהו, מח, יא, ב"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1290,
+              "author": "רבי אברהם סבע",
+              "kind": "quotingCommentary",
+              "groupID": "author:רבי אברהם סבע",
+              "count": 3,
+              "workIDs": [
+                3554
+              ],
+              "memberIDs": [
+                "otzaria:book:3554|otzaria:v1:3554:160|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  יג, ה, ב",
+                "otzaria:book:3554|otzaria:v1:3554:1919|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לב, כג, א",
+                "otzaria:book:3554|otzaria:v1:3554:1920|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, דברים,  לב, כג, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189297,
+          "lineIndex": 1268,
+          "heRef": "תהילים, עה, י",
+          "plainText": "(י) וַ֭אֲנִי אַגִּ֣יד לְעֹלָ֑ם אֲ֝זַמְּרָ֗ה לֵאלֹהֵ֥י יַעֲקֹֽב׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 1,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2921|פירוש|Commentary||מצודת דוד על תהילים, עה, י, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6189298,
+          "lineIndex": 1269,
+          "heRef": "תהילים, עה, יא",
+          "plainText": "(יא) וְכׇל־קַרְנֵ֣י רְשָׁעִ֣ים אֲגַדֵּ֑עַ תְּ֝רוֹמַ֗מְנָה קַֽרְנ֥וֹת צַדִּֽיק׃ {פ}",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:2923|פירוש|Commentary||מצודת דוד על תהילים, עה, יא, א",
+                "otzaria:book:3436|otzaria:v1:3436:1808|פירוש|Commentary||מצודת ציון על תהילים, עה, יא, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1973,
+              "author": "רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "kind": "commentary",
+              "groupID": "author:רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "count": 1,
+              "workIDs": [
+                3630
+              ],
+              "memberIDs": [
+                "otzaria:book:3630|otzaria:v1:3630:450|פירוש|Commentary||רמב\"ן על ויקרא,  כג, כח, א"
+              ],
+              "samples": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 150,
+      "tocID": 749,
+      "tocTitle": "פרק קנ",
+      "startLineIndex": 2671,
+      "endLineIndex": 2677,
+      "groups": [
+        {
+          "authorID": 222,
+          "author": "רבי דוד אלטשולר",
+          "kind": "commentary",
+          "groupID": "author:רבי דוד אלטשולר",
+          "count": 16,
+          "workIDs": [
+            3321,
+            3323,
+            3436,
+            3440,
+            3452,
+            3463,
+            3465
+          ],
+          "memberIDs": [
+            "otzaria:book:3321|otzaria:v1:3321:888|פירוש|Commentary||מצודת דוד על דברי הימים א, טו, טז, א",
+            "otzaria:book:3323|otzaria:v1:3323:6047|פירוש|Commentary||מצודת דוד על תהילים, קנ, א, א",
+            "otzaria:book:3323|otzaria:v1:3323:6048|פירוש|Commentary||מצודת דוד על תהילים, קנ, א, ב",
+            "otzaria:book:3323|otzaria:v1:3323:6050|פירוש|Commentary||מצודת דוד על תהילים, קנ, ב, א",
+            "otzaria:book:3323|otzaria:v1:3323:6051|פירוש|Commentary||מצודת דוד על תהילים, קנ, ב, ב",
+            "otzaria:book:3323|otzaria:v1:3323:6053|פירוש|Commentary||מצודת דוד על תהילים, קנ, ה, א",
+            "otzaria:book:3323|otzaria:v1:3323:6054|פירוש|Commentary||מצודת דוד על תהילים, קנ, ה, ב",
+            "otzaria:book:3323|otzaria:v1:3323:6056|פירוש|Commentary||מצודת דוד על תהילים, קנ, ו, א",
+            "otzaria:book:3436|otzaria:v1:3436:3484|פירוש|Commentary||מצודת ציון על תהילים, קנ, א, א",
+            "otzaria:book:3436|otzaria:v1:3436:3486|פירוש|Commentary||מצודת ציון על תהילים, קנ, ד, א",
+            "otzaria:book:3436|otzaria:v1:3436:3488|פירוש|Commentary||מצודת ציון על תהילים, קנ, ה, א",
+            "otzaria:book:3436|otzaria:v1:3436:3489|פירוש|Commentary||מצודת ציון על תהילים, קנ, ה, ב",
+            "otzaria:book:3440|otzaria:v1:3440:193|פירוש|Commentary||מצודת ציון על דברי הימים א, יג, ח, א",
+            "otzaria:book:3452|otzaria:v1:3452:194|פירוש|Commentary||מצודת ציון על שמואל ב, ו, ה, ד",
+            "otzaria:book:3463|otzaria:v1:3463:503|פירוש|Commentary||מצודת ציון על זכריה, יד, כ, א",
+            "otzaria:book:3465|otzaria:v1:3465:1847|פירוש|Commentary||מצודת ציון על ירמיהו, לא, ד, ד"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3323|otzaria:v1:3323:6047|פירוש|Commentary||מצודת דוד על תהילים, קנ, א, א",
+              "bookID": 3323,
+              "bookTitle": "מצודת דוד על תהילים",
+              "lineID": 6563055,
+              "lineIndex": 6047,
+              "heRef": "מצודת דוד על תהילים, קנ, א, א",
+              "sourceRef": "otzaria:v1:3323:6047",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9195591,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "הללויה. הללו את יה ואמרו הללו את האל במקום קדשו והוא עולם המלאכים:",
+              "decodedHTMLSHA256": "b3d82cb07298e4ce3938bbd7953a9d57d03216c4bd0059a9fdb3eb5498abaee6"
+            },
+            {
+              "id": "otzaria:book:3436|otzaria:v1:3436:3484|פירוש|Commentary||מצודת ציון על תהילים, קנ, א, א",
+              "bookID": 3436,
+              "bookTitle": "מצודת ציון על תהילים",
+              "lineID": 6621515,
+              "lineIndex": 3484,
+              "heRef": "מצודת ציון על תהילים, קנ, א, א",
+              "sourceRef": "otzaria:v1:3436:3484",
+              "category": "Commentary",
+              "displayType": "פירוש",
+              "rawEdges": [
+                {
+                  "id": 9274539,
+                  "matchedSide": 0,
+                  "connectionType": "COMMENTARY"
+                }
+              ],
+              "plainText": "עזו. ענין חוזק:",
+              "decodedHTMLSHA256": "9b4a6de38232778afb0ec4701f927c2dc529cc4f26427876a74585f2d94440ac"
+            }
+          ]
+        },
+        {
+          "authorID": 1929,
+          "author": "רבנו משה בן מימון [הרמב\"ם]",
+          "kind": "commentary",
+          "groupID": "author:רבנו משה בן מימון [הרמב\"ם]",
+          "count": 1,
+          "workIDs": [
+            553
+          ],
+          "memberIDs": [
+            "otzaria:book:553|otzaria:v1:553:77|פירוש|Commentary||רמב\"ם על משנה ביכורים, ג, ד, ב"
+          ],
+          "samples": []
+        },
+        {
+          "authorID": 1973,
+          "author": "רבנו משה ב\"ר נחמן [הרמב\"ן]",
+          "kind": "commentary",
+          "groupID": "author:רבנו משה ב\"ר נחמן [הרמב\"ן]",
+          "count": 1,
+          "workIDs": [
+            3629
+          ],
+          "memberIDs": [
+            "otzaria:book:3629|otzaria:v1:3629:562|פירוש|Commentary||רמב\"ן על דברים,  כח, מב, א"
+          ],
+          "samples": []
+        },
+        {
+          "authorID": 1290,
+          "author": "רבי אברהם סבע",
+          "kind": "quotingCommentary",
+          "groupID": "author:רבי אברהם סבע",
+          "count": 1,
+          "workIDs": [
+            3554
+          ],
+          "memberIDs": [
+            "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א"
+          ],
+          "samples": [
+            {
+              "id": "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א",
+              "bookID": 3554,
+              "bookTitle": "צרור המור על התורה",
+              "lineID": 2439088,
+              "lineIndex": 50,
+              "heRef": "צרור המור על התורה, בראשית,  ג, ו, א",
+              "sourceRef": "otzaria:v1:3554:50",
+              "category": "Quoting Commentary",
+              "displayType": "ציטוט פירוש",
+              "rawEdges": [
+                {
+                  "id": 9161107,
+                  "matchedSide": 0,
+                  "connectionType": "QUOTATION"
+                }
+              ],
+              "plainText": "ותרא האשה כי טוב העץ למאכל ר\"ל ראתה כי זה העץ הוא טוב למאכל והדבר שהוא ממית כמו שאומר השם ראוי הוא שיהיה בו סם המות או שימית האדם בראייה או יעוור עיניו או יהיה בו ריח רע וכיוצא בזה. אבל אני רואה כל הדברים בהפך כי טוב העץ למאכל וכי תאוה הוא לעינים והעינים מתאוים לראותו לפי שמחזיקין הראות ונחמד העץ להשכיל כי מצד הריח הטוב נהנית הנשמה כאומרם ז\"ל כל הנשמה תהלל יה איזה דבר שהנשמה נהנית בו זה הריח ולכן מברכין על הריח וזהו ונחמד העץ עד שמצד הריח נהנית הנשמה ומשגת המושכלות כאומרו לריח שמניך טובים ותרגום לא תחמוד לא תירוג שהוא כמו אתרוג שמריח. ולכן ותקח מפריו ותאכל. או יאמר שראתה דבריו של שטן שהיו טענות אמיתיות כאמרו שהיו סומים ומתים ואם יאכלו שיפקחו עיניהם ולפי שהיו סומים היו מתאוים לראות והיו דואגים מאד על חסרון הראיה. אמרה כי טוב העץ למאכל ירצה תאוה הוא לעינים והם מתאוים לראות וזאת היא רפואתם והעץ שיש בו ב' סגולות אלו הוא טוב טוב למאכל וטוב לרפואה כאומרו אשר פריו יתן בעתו כנגד המאכל ועלהו לא יבול כנגד הרפואה אפי' עלה שלו הוא מועיל לרפואה וזהו כי טוב העץ למאכל וכי תאוה הוא לעינים לרפואה. ונחמד העץ להשכיל בפועל מה שהיה להם בכח. ולכן ותקח מפריו ותאכל. וי\"א שעשתה פשרה כוזבת ואמרה השם אמר לי שלא אוכל והנחש אומר שאוכל איני רוצה לאכול מהפרי אלא מהקליפה ואם היא טובה מסתמא הפרי הוא טוב ולקחה מהקליפה ואכלה וזהו ותרא האשה כי טוב העץ למאכל ותקח מפריו ותאכל. כי אחר שהקליפה היתה טובה כל שכן הפרי. והנה חטא אדם ואשתו הוא חטא המלאכים שחטאו כאומרם ז\"ל עזה ועזאל שנפלו מן השמים וזהו הנפילים היו בארץ והמלאכים היאך חטאו אחר שהם פשוטים מחומר וכן אדם הראשון שהיה ערום בכל חכמה ולא ידע בין טוב לרע כאלו היה פשוט מחומר איך חטא. אבל ידוע שהחוטא כשחוטא יורד ממעלתו והמלאכים כשחטאו נתגאו ורצו לעשות עצמם אלוהות לעלות למעלה עליונה יותר ממעלתם הראשונה וזהו חטאם שעלה במחשבתם. וכן אדם הראשון לא חטא כדרך החוטאים אלא חשב שעלה למעלה עליונה ממעלתו שא\"ל הנחש והייתם כאלהים ואם כן כשחטא על זה הערך חטא. והנה חטא אדם הראשון הוא ענין עמוק עמוק מי ימצאנו. וכבר רמזתי אותו במשנת בן זומא אומר שהוא א' מד' שנכנסו לפרדס והם בן עזאי בן זומא רבי עקיבא ואחר. וכנגדם יש ד' אחרים בתורה שנכנסו לפרדס והם אדם הראשון ונח ואברהם ובני אהרן. ואיני רוצה עתה להאריך בו:",
+              "decodedHTMLSHA256": "4e3b4c44a82ee4bdae3d9df4245609d3befafccaef90791b9531ed4239844814"
+            }
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "lineID": 18497,
+          "lineIndex": 2671,
+          "heRef": null,
+          "plainText": "פרק קנ",
+          "groups": []
+        },
+        {
+          "lineID": 6190626,
+          "lineIndex": 2672,
+          "heRef": "תהילים, קנ, א",
+          "plainText": "(א) הַ֥לְלוּ־יָ֨הּ ׀ הַֽלְלוּ־אֵ֥ל בְּקׇדְשׁ֑וֹ הַֽ֝לְל֗וּהוּ בִּרְקִ֥יעַ עֻזּֽוֹ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 3,
+              "workIDs": [
+                3323,
+                3436
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:6047|פירוש|Commentary||מצודת דוד על תהילים, קנ, א, א",
+                "otzaria:book:3323|otzaria:v1:3323:6048|פירוש|Commentary||מצודת דוד על תהילים, קנ, א, ב",
+                "otzaria:book:3436|otzaria:v1:3436:3484|פירוש|Commentary||מצודת ציון על תהילים, קנ, א, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6190627,
+          "lineIndex": 2673,
+          "heRef": "תהילים, קנ, ב",
+          "plainText": "(ב) הַלְל֥וּהוּ בִגְבוּרֹתָ֑יו הַ֝לְל֗וּהוּ כְּרֹ֣ב גֻּדְלֽוֹ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:6050|פירוש|Commentary||מצודת דוד על תהילים, קנ, ב, א",
+                "otzaria:book:3323|otzaria:v1:3323:6051|פירוש|Commentary||מצודת דוד על תהילים, קנ, ב, ב"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6190628,
+          "lineIndex": 2674,
+          "heRef": "תהילים, קנ, ג",
+          "plainText": "(ג) הַ֭לְלוּהוּ בְּתֵ֣קַע שׁוֹפָ֑ר הַ֝לְל֗וּהוּ בְּנֵ֣בֶל וְכִנּֽוֹר׃",
+          "groups": []
+        },
+        {
+          "lineID": 6190629,
+          "lineIndex": 2675,
+          "heRef": "תהילים, קנ, ד",
+          "plainText": "(ד) הַ֭לְלוּהוּ בְּתֹ֣ף וּמָח֑וֹל הַֽ֝לְל֗וּהוּ בְּמִנִּ֥ים וְעֻגָֽב׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 2,
+              "workIDs": [
+                3436,
+                3465
+              ],
+              "memberIDs": [
+                "otzaria:book:3436|otzaria:v1:3436:3486|פירוש|Commentary||מצודת ציון על תהילים, קנ, ד, א",
+                "otzaria:book:3465|otzaria:v1:3465:1847|פירוש|Commentary||מצודת ציון על ירמיהו, לא, ד, ד"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6190630,
+          "lineIndex": 2676,
+          "heRef": "תהילים, קנ, ה",
+          "plainText": "(ה) הַלְל֥וּהוּ בְצִלְצְלֵי־שָׁ֑מַע הַֽ֝לְל֗וּהוּ בְּֽצִלְצְלֵ֥י תְרוּעָֽה׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 8,
+              "workIDs": [
+                3321,
+                3323,
+                3436,
+                3440,
+                3452,
+                3463
+              ],
+              "memberIDs": [
+                "otzaria:book:3321|otzaria:v1:3321:888|פירוש|Commentary||מצודת דוד על דברי הימים א, טו, טז, א",
+                "otzaria:book:3323|otzaria:v1:3323:6053|פירוש|Commentary||מצודת דוד על תהילים, קנ, ה, א",
+                "otzaria:book:3323|otzaria:v1:3323:6054|פירוש|Commentary||מצודת דוד על תהילים, קנ, ה, ב",
+                "otzaria:book:3436|otzaria:v1:3436:3488|פירוש|Commentary||מצודת ציון על תהילים, קנ, ה, א",
+                "otzaria:book:3436|otzaria:v1:3436:3489|פירוש|Commentary||מצודת ציון על תהילים, קנ, ה, ב",
+                "otzaria:book:3440|otzaria:v1:3440:193|פירוש|Commentary||מצודת ציון על דברי הימים א, יג, ח, א",
+                "otzaria:book:3452|otzaria:v1:3452:194|פירוש|Commentary||מצודת ציון על שמואל ב, ו, ה, ד",
+                "otzaria:book:3463|otzaria:v1:3463:503|פירוש|Commentary||מצודת ציון על זכריה, יד, כ, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1973,
+              "author": "רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "kind": "commentary",
+              "groupID": "author:רבנו משה ב\"ר נחמן [הרמב\"ן]",
+              "count": 1,
+              "workIDs": [
+                3629
+              ],
+              "memberIDs": [
+                "otzaria:book:3629|otzaria:v1:3629:562|פירוש|Commentary||רמב\"ן על דברים,  כח, מב, א"
+              ],
+              "samples": []
+            }
+          ]
+        },
+        {
+          "lineID": 6190631,
+          "lineIndex": 2677,
+          "heRef": "תהילים, קנ, ו",
+          "plainText": "(ו) כֹּ֣ל הַ֭נְּשָׁמָה תְּהַלֵּ֥ל יָ֗הּ הַֽלְלוּ־יָֽהּ׃",
+          "groups": [
+            {
+              "authorID": 222,
+              "author": "רבי דוד אלטשולר",
+              "kind": "commentary",
+              "groupID": "author:רבי דוד אלטשולר",
+              "count": 1,
+              "workIDs": [
+                3323
+              ],
+              "memberIDs": [
+                "otzaria:book:3323|otzaria:v1:3323:6056|פירוש|Commentary||מצודת דוד על תהילים, קנ, ו, א"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1929,
+              "author": "רבנו משה בן מימון [הרמב\"ם]",
+              "kind": "commentary",
+              "groupID": "author:רבנו משה בן מימון [הרמב\"ם]",
+              "count": 1,
+              "workIDs": [
+                553
+              ],
+              "memberIDs": [
+                "otzaria:book:553|otzaria:v1:553:77|פירוש|Commentary||רמב\"ם על משנה ביכורים, ג, ד, ב"
+              ],
+              "samples": []
+            },
+            {
+              "authorID": 1290,
+              "author": "רבי אברהם סבע",
+              "kind": "quotingCommentary",
+              "groupID": "author:רבי אברהם סבע",
+              "count": 1,
+              "workIDs": [
+                3554
+              ],
+              "memberIDs": [
+                "otzaria:book:3554|otzaria:v1:3554:50|ציטוט פירוש|Quoting Commentary||צרור המור על התורה, בראשית,  ג, ו, א"
+              ],
+              "samples": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "identityReceiptSHA256": "9b9077fb62991b0c0a1859343989ee8607de286ae9f470ca96a2f3c311e23c88",
+  "statBefore": {
+    "device": 2064,
+    "inode": 6323524,
+    "bytes": 4355063808,
+    "mtime_ns": 1795652330365173510,
+    "ctime_ns": 1795652637138021936,
+    "mode": 33060
+  },
+  "statAfter": {
+    "device": 2064,
+    "inode": 6323524,
+    "bytes": 4355063808,
+    "mtime_ns": 1795652330365173510,
+    "ctime_ns": 1795652637138021936,
+    "mode": 33060
+  },
+  "scope": "Original immutable SQL author/work/line payloads for three real chapters; no UI execution or performance claim"
+}
