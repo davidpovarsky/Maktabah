@@ -1,0 +1,11 @@
+{
+  "actual_archive_bytes": 665526,
+  "actual_archive_members": 265,
+  "actual_archive_sha256": "8ae8057ea4f345586bffa067fb80bf6d84d863930ca03df8898d0896c56a7ff4",
+  "native": "NOT_RUN",
+  "original_product_source_unchanged": true,
+  "sdk": "NOT_RUN",
+  "syntax_checks": 30,
+  "transfer_bytes": 639139,
+  "transfer_sha256": "e495ee9c9b91738e4c763114966755d13db79ef03de63b73b8a78f3e798b1087"
+}

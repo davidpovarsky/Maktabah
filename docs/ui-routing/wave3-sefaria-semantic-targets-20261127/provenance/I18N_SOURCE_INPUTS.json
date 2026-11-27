@@ -1,0 +1,16 @@
+[
+  {
+    "path": "rn-inner-semantics/upstream/i18n/en.json",
+    "bytes": 16490,
+    "sha256": "2f4d0e59fc576d8e66958677dc7598b757e0c9f5f0d78caf8ec0df82611c03de",
+    "git_blob": "dd10eade55d5bd427e1f70109f68153eccce45b8",
+    "url": "https://github.com/Sefaria/Sefaria-Mobile/blob/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/i18n/en.json"
+  },
+  {
+    "path": "rn-inner-semantics/upstream/i18n/he.json",
+    "bytes": 19441,
+    "sha256": "5d75a25cd9839cb74c215a533d56fce5176e4bd1d8fd9d66661f01227eabd8e4",
+    "git_blob": "b1814d050c0555f7b49b2bf1b45e88b062c87911",
+    "url": "https://github.com/Sefaria/Sefaria-Mobile/blob/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/i18n/he.json"
+  }
+]

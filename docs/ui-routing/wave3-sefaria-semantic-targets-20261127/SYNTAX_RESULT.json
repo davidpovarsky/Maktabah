@@ -1,0 +1,577 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+      ],
+      "bytes": 8386,
+      "duration": 0.059,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+      ],
+      "bytes": 8386,
+      "duration": 0.043,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "bytes": 22875,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "719b5ed16eb7d1712c5f539148ba2930abcf6742635daa86866a2f744dfaef8c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "bytes": 22875,
+      "duration": 0.041,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "719b5ed16eb7d1712c5f539148ba2930abcf6742635daa86866a2f744dfaef8c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "bytes": 258181,
+      "duration": 0.061,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "8c7495e39386a0b437ae30a41ccdb08c4d714fd98f6c8c908d02a59a4bb07ef2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "bytes": 258181,
+      "duration": 0.061,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "8c7495e39386a0b437ae30a41ccdb08c4d714fd98f6c8c908d02a59a4bb07ef2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "bytes": 26620,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "122e6c16f65c1ae9ea8fc8c41ffb6ee75bed990b36f1409e57b62e301bbd9fc4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "bytes": 26620,
+      "duration": 0.043,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "122e6c16f65c1ae9ea8fc8c41ffb6ee75bed990b36f1409e57b62e301bbd9fc4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "bytes": 154747,
+      "duration": 0.055,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "ccb03fccc09f49f6591f8fa7d1635fce02e73b045217bb222d2ef671d5fea83c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "bytes": 154747,
+      "duration": 0.049,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "ccb03fccc09f49f6591f8fa7d1635fce02e73b045217bb222d2ef671d5fea83c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift"
+      ],
+      "bytes": 27762,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift"
+      ],
+      "bytes": 27762,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift"
+      ],
+      "bytes": 41873,
+      "duration": 0.046,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "sha256": "ba40fc67d860a5530259a77a515e3f9980250ffcd3fff87beb85a79c15364e53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift"
+      ],
+      "bytes": 41873,
+      "duration": 0.052,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "sha256": "ba40fc67d860a5530259a77a515e3f9980250ffcd3fff87beb85a79c15364e53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift"
+      ],
+      "bytes": 4741,
+      "duration": 0.046,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift"
+      ],
+      "bytes": 4741,
+      "duration": 0.048,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift"
+      ],
+      "bytes": 3125,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift"
+      ],
+      "bytes": 3125,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
+      ],
+      "bytes": 12146,
+      "duration": 0.041,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+      "sha256": "8e02c43fe534d2f703be0539a6b910bb99759b140966c1ea560654fc41669ad4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
+      ],
+      "bytes": 12146,
+      "duration": 0.041,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+      "sha256": "8e02c43fe534d2f703be0539a6b910bb99759b140966c1ea560654fc41669ad4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift"
+      ],
+      "bytes": 31947,
+      "duration": 0.046,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "f33216f75a32f46e220613b31e828d7f024cc8c5312b3d4df0da61dc606f5db3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift"
+      ],
+      "bytes": 31947,
+      "duration": 0.048,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "f33216f75a32f46e220613b31e828d7f024cc8c5312b3d4df0da61dc606f5db3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift"
+      ],
+      "bytes": 12677,
+      "duration": 0.045,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "sha256": "63c5c4bef953de662c479e7e8a8f9c8eb1cee872201bf65362652141d4654f92",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift"
+      ],
+      "bytes": 12677,
+      "duration": 0.049,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "sha256": "63c5c4bef953de662c479e7e8a8f9c8eb1cee872201bf65362652141d4654f92",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/UI/SefariaEmbeddedSemanticNavigation.swift"
+      ],
+      "bytes": 10150,
+      "duration": 0.04,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSemanticNavigation.swift",
+      "sha256": "cd342245b2d7983bff2e05ea6500d097543531e64a4a73d369ba696537f3bb83",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/SefariaEmbedded/UI/SefariaEmbeddedSemanticNavigation.swift"
+      ],
+      "bytes": 10150,
+      "duration": 0.048,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSemanticNavigation.swift",
+      "sha256": "cd342245b2d7983bff2e05ea6500d097543531e64a4a73d369ba696537f3bb83",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/UI/iOS/Managers/iOSNavigationManager.swift"
+      ],
+      "bytes": 52990,
+      "duration": 0.046,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Source/UI/iOS/Managers/iOSNavigationManager.swift"
+      ],
+      "bytes": 52990,
+      "duration": 0.044,
+      "exit": 0,
+      "mode": "release",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+      ],
+      "bytes": 8465,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "debug",
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/capsule-finalization-attempt-1/syntax-source/Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+      ],
+      "bytes": 8465,
+      "duration": 0.042,
+      "exit": 0,
+      "mode": "release",
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "failed": 0,
+  "passed": 30,
+  "scope": "LINUX_FRONTEND_TARGET_27_PARSE_ONLY_NO_APPLE_SDK_TYPECHECK"
+}

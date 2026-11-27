@@ -1,0 +1,86 @@
+{
+  "counterfactual_results": {
+    "observable_mode_counter": [
+      49,
+      1
+    ],
+    "observable_root_counter": [
+      49,
+      1
+    ],
+    "observable_window_counter": [
+      49,
+      1
+    ],
+    "omit_closed_publication": [
+      40,
+      10
+    ],
+    "omit_geometry_uniqueness": [
+      31,
+      1
+    ],
+    "omit_js_native_claim": [
+      24,
+      12
+    ],
+    "omit_runtime_guard": [
+      47,
+      3
+    ],
+    "omit_source_claim_latch": [
+      34,
+      16
+    ],
+    "omit_synchronous_cancel_revoke": [
+      12,
+      1
+    ]
+  },
+  "metro": "NOT_RUN",
+  "native_ui": "NOT_RUN",
+  "required_followups": [
+    "root exact shared hunk intake and original PBX membership for new Swift file",
+    "Annotations original local-State closed publication facet",
+    "strict chained Vendor contract on actual root intake ancestry",
+    "fresh original Metro and app SDK build",
+    "additive original-system native selectors for the four finite target routes",
+    "real EN/HE iPad/iPhone visible-state and cancellation acceptance"
+  ],
+  "root_admission": "NOT_FROZEN",
+  "scope": "SOURCE_ONLY_ORIGINAL_BODY_AND_EXPLICIT_BOUNDARY_CONTROLS",
+  "sdk_typecheck": "NOT_RUN",
+  "source_commit": "d4e25c0cf5581427d6742ade1d4d1e0f3ddaa1a3",
+  "source_results": {
+    "actual_js_method_bodies": [
+      36,
+      0
+    ],
+    "complete_binding_and_rpc_with_platform_boundaries": [
+      13,
+      0
+    ],
+    "final_claim_and_publication": [
+      50,
+      0
+    ],
+    "native_geometry_algorithm_with_platform_boundary": [
+      32,
+      0
+    ],
+    "unchanged_original_js_root_controls": [
+      24,
+      0
+    ],
+    "workspace_candidate": [
+      4,
+      0
+    ],
+    "workspace_original_baseline": [
+      2,
+      2
+    ]
+  },
+  "source_tree": "fecd5475208cc75f3ba8683045b513b7c4a747fd",
+  "vendor_tree": "2fb868bdbe5d2d52735e857a24933918ff658cef"
+}

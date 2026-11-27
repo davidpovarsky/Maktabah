@@ -1,0 +1,43 @@
+{
+  "reviews": [
+    {
+      "finding": "No demonstrated blocker in fixed runtime/root/backend/ticket lock order, registry removal and consumed-ticket completion seam; not full JS/UIKit/shared integration.",
+      "pins": [
+        "cd342245b2d7983bff2e05ea6500d097543531e64a4a73d369ba696537f3bb83",
+        "f33216f75a32f46e220613b31e828d7f024cc8c5312b3d4df0da61dc606f5db3"
+      ],
+      "reviewer": "/root/navigation_fix",
+      "scope": "closed claim and cancellation call sites"
+    },
+    {
+      "finding": "No demonstrated blocker: register before getters, clear weak batch before fixed Boolean invalidation, preserve ignored counter and existing same-owner/foreign-detach semantics.",
+      "pins": [
+        "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+        "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532",
+        "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a",
+        "ccb03fccc09f49f6591f8fa7d1635fce02e73b045217bb222d2ef671d5fea83c"
+      ],
+      "reviewer": "/root/navigation_fix",
+      "scope": "final four passive publication source proposals"
+    },
+    {
+      "finding": "No demonstrated blocker in invalidation before publishing/observer/deinit and register-before-inspect with validation afterward. Same-object early return unchanged.",
+      "pins": [
+        "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8",
+        "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf",
+        "ba40fc67d860a5530259a77a515e3f9980250ffcd3fff87beb85a79c15364e53"
+      ],
+      "reviewer": "/root/navigation_fix",
+      "scope": "Workspace prepublication and deinit source seam"
+    },
+    {
+      "finding": "No additional demonstrated blocker. RetainedRequest rejoins source map and Pending token, semantic ticket arms only after host evidence, synchronous cancellation revocation precedes MainActor cleanup, child groups cancel and join. Completed proof cannot rearm. Original root-only target-nil branch retains separate host proof. Not all shared Session/JS/geometry paths.",
+      "pins": [
+        "ba40fc67d860a5530259a77a515e3f9980250ffcd3fff87beb85a79c15364e53"
+      ],
+      "reviewer": "/root/ui_acceptance",
+      "scope": "apply, structured await, finish and release"
+    }
+  ],
+  "scope": "SOURCE_ONLY_NO_PEER_RERUN_OR_NATIVE_CLAIM"
+}
