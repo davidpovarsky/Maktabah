@@ -1,0 +1,6 @@
+FAIL original annotation setter ABA keeps original Notes behavior and retires source
+FAIL original error alert set-clear ABA cannot regain pending source
+FAIL equal original annotation setter cannot preserve a captured callback
+PASS only exact post-Reader proof admits its own unsettled push before applied
+PASS presentation facet rejects wrong request and retired source without Session recursion
+RESULT passed=2 failed=3

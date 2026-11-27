@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-27T02:43:17.521885+00:00",
+  "scope": "Actual original setter fragments + actual full phone class/shared Observation with explicit storage/domain boundaries; not SwiftUI UI or Apple SDK execution",
+  "workspaceSHA256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+  "phoneSourceSHA256": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+  "prior_actual_parts_sha256": {
+    "ActualContracts.swift": "64979a504ce46be21ff961d6c06a4a9c9fdef8898df8ca96a7124dafce53aedb",
+    "Boundary.swift": "d1b7468afdf87271f13f5b32f4d6cf7327cd448809f1a3382908e701b585ba1b",
+    "ActualObservation.swift": "cff7ccdb91cc07c1da4a8c7078e56d7eba3b3c490663f12c23bedfaa0def1341"
+  },
+  "results": [
+    {
+      "variant": "Actual",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/Actual.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/phone-state-Actual-attempt-3"
+      ],
+      "compileExit": 0,
+      "runExit": -5,
+      "output": ""
+    },
+    {
+      "variant": "NegativeWithoutTwoHooks",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-3/NegativeWithoutTwoHooks.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/phone-state-NegativeWithoutTwoHooks-attempt-3"
+      ],
+      "compileExit": 0,
+      "runExit": -5,
+      "output": ""
+    }
+  ],
+  "iOS27Syntax": {
+    "command": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    ],
+    "exit": 0
+  },
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}

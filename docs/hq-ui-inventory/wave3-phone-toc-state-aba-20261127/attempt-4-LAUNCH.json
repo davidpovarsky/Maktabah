@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-27T02:44:47.220047+00:00",
+  "pid": 2886814,
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "180s",
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/run-local-state-controls.py",
+    "--root",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127",
+    "--out",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-state-aba-20261127/attempt-4"
+  ],
+  "scope": "Same unchanged product source; retain actual attachment lifetime in facet control"
+}
