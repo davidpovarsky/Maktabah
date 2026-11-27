@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "reason": "Raw diff context and the actual protocol marker's trailing space are exact evidence data; gzip retains every original byte while the integrated tree passes its unchanged whitespace gate. No implementation, assertion, receipt or source fixture was normalized.",
+  "files": [
+    {
+      "original_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch",
+      "original_bytes": 15957,
+      "original_sha256": "f6ea80b1bfdeebbb2f957b9e20d0f810bdd175224cc349d51588ce563d6faa7e",
+      "stored_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch.gz",
+      "stored_bytes": 4397,
+      "stored_sha256": "93c607ed66e1343769c27ffa463c6956fbf5cb52d683ab2ea38ae29b03d48453",
+      "encoding": "gzip",
+      "original_donor_path_preserved_in_history": true
+    },
+    {
+      "original_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch",
+      "original_bytes": 16287,
+      "original_sha256": "e940248efaf91cc6effe496a8876756f37bf7add1246c9702f860fbbef40addd",
+      "stored_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch.gz",
+      "stored_bytes": 4484,
+      "stored_sha256": "620a0d60ed1efd4901f47d43669cb3b2894f7d0c3094a477ddb66ab936cd4af2",
+      "encoding": "gzip",
+      "original_donor_path_preserved_in_history": true
+    },
+    {
+      "original_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch",
+      "original_bytes": 1736,
+      "original_sha256": "3f3c1eee2cdf225ad2490275c2d961acecddd39ff25f201ca6f6ea5adc4b22e6",
+      "stored_path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch.gz",
+      "stored_bytes": 780,
+      "stored_sha256": "fc8c6feb8d88b31ce8494768169f76ee9616c6777335c82ce9f4c8a5087eda10",
+      "encoding": "gzip",
+      "original_donor_path_preserved_in_history": true
+    },
+    {
+      "original_path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md",
+      "original_bytes": 15540,
+      "original_sha256": "a5e1bfedf65c82747bbc2fd9f745b0a51f11b97ea3ce1969f3206d44f1ab179d",
+      "stored_path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md.gz",
+      "stored_bytes": 6430,
+      "stored_sha256": "99529714e7faca84101af57559a76c24eace3bc676901585b91bcc9980bf2075",
+      "encoding": "gzip",
+      "original_donor_path_preserved_in_history": true
+    }
+  ],
+  "consumers": "No Script/Source/UI-test references to these exact raw documentation artifacts were found by immutable Git grep; original donor manifests remain immutable and original-path lookups must resolve through this transport map."
+}
