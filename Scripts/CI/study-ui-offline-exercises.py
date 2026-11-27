@@ -241,17 +241,55 @@ def created_child_identity(window, child, identity, command, parent_pid):
 
 
 def stop_owned(window, interruption, child, identity):
-    current = window.process(child.pid)
-    require(current is None or current == identity, 'Refuse signaling a replaced owned process identity')
-    require(identity is not None or (current is None and child.poll() is not None),
-            'An unobserved live process cannot be signaled by inferred identity')
+    def current_live_identity():
+        original_exit = child.poll()
+        current = window.process(child.pid)
+        if original_exit is not None:
+            require(current is None, 'Refuse a live reused PID after the original child was reaped')
+            return None
+        if current is None:
+            require(child.poll() is not None, 'An unobserved live process cannot be signaled by inferred identity')
+            return None
+        require(identity is not None and current == identity, 'Refuse signaling a replaced owned process identity')
+        try:
+            require(os.getpgid(child.pid) == child.pid, 'Original child left its directly created process group')
+        except ProcessLookupError:
+            require(child.poll() is not None and window.process(child.pid) is None,
+                    'Created group identity vanished without verified original exit')
+            return None
+        if child.poll() is not None:
+            require(window.process(child.pid) is None, 'Refuse a PID reused during original child observation')
+            return None
+        return current
+
+    def guarded_killpg(pgid, kind):
+        require(pgid == child.pid, 'Only the original directly created group may be observed or signaled')
+        live = current_live_identity()
+        if live is None and kind != 0:
+            # A surviving group cannot be attributed after the original leader
+            # is reaped. Only the signal-0 absence probe is permitted here.
+            try:
+                os.killpg(pgid, 0)
+            except ProcessLookupError:
+                raise
+            raise ValueError('A remaining group has no verifiable original live leader')
+        return os.killpg(pgid, kind)
+
+    current_live_identity()
     result = {'process': identity, 'createdChildPID': child.pid, 'startedUnix': time.time(), 'startedMonotonic': time.monotonic()}
-    result['group'] = interruption.stop_owned_process_group(child, grace_seconds=1, kill_wait_seconds=.5)
+    result['group'] = interruption.stop_owned_process_group(child, grace_seconds=1, kill_wait_seconds=.5,
+                                                           killpg_fn=guarded_killpg)
+    require(result['group'].get('group_state') == 'GONE_CHECKED'
+            and not result['group'].get('probe_errors') and not result['group'].get('send_errors')
+            and child.poll() is not None and window.process(child.pid) is None,
+            'Original group/leader exit is unverified; no unguarded subprocess signal is allowed')
+    # The original subprocess helper is now observation-only: the exact
+    # original Popen was already reaped and the qualified group is absent.
     result['subprocess'] = interruption.stop_owned_subprocess(child)
     result.update(finishedUnix=time.time(), finishedMonotonic=time.monotonic(), actualProcessAbsent=window.process(child.pid) is None)
     if identity is None:
         # Only a directly created, already reaped child can reach this failure
-        # cleanup path. Its original group may still contain owned descendants.
+        # cleanup path. No surviving group is adopted or signaled after reap.
         require(result['group'].get('group_state') == 'GONE_CHECKED'
                 and not result['group'].get('probe_errors') and not result['group'].get('send_errors')
                 and result['subprocess'].get('state') in ('EXITED', 'TERMINATED', 'KILLED')
@@ -351,10 +389,11 @@ class OwnedOracleRelay:
         require(self.ready['oracleRelaySource']['sha256'] == self.sources['study-ui-offline-heartbeat.py']['sha256'], 'Oracle/Mac relay source differs')
         self.child = self.identity = self.start_value = self.finished = self.finished_stop = None
         self.command, self.parent_pid = None, os.getpid()
+        self.start_attempted = False
         self.logs = []
 
     def start(self):
-        require(self.child is None, 'Start this actual owned relay only once')
+        require(self.child is None and not self.start_attempted, 'Start this actual owned relay only once')
         path = self.output / 'heartbeat.jsonl'
         command = [sys.executable, self.sources['study-ui-offline-heartbeat.py']['path'], '--window', self.ready['windowID'],
                    '--deadline-unix', str(self.ready['hardDeadlineUnix']), '--output', str(path)]
@@ -362,6 +401,7 @@ class OwnedOracleRelay:
         try:
             stdout = (self.output / 'relay.stdout.log').open('xb'); self.logs.append(stdout)
             stderr = (self.output / 'relay.stderr.log').open('xb'); self.logs.append(stderr)
+            self.start_attempted = True
             self.child = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
             self.identity = created_child_identity(self.window, self.child, None, self.command, self.parent_pid)
             require(self.identity is not None, 'The relay ended before its original identity was observed')
@@ -463,6 +503,8 @@ class OwnedOracleRelay:
             return self.finished_stop
         result = None
         try:
+            require(not self.start_attempted or self.child is not None,
+                    'Original relay spawn was attempted without a returned handle; cleanup is unverified')
             if self.child is not None:
                 identity = created_child_identity(self.window, self.child, self.identity, self.command, self.parent_pid)
                 result = stop_owned(self.window, self.interruption, self.child, identity)
@@ -494,6 +536,7 @@ class NoDenialExercise:
         self.nonce = uuid.uuid4().hex
         self.child = self.identity = self.lease = self.ready = self.heartbeat = self.relay_start = None
         self.command, self.parent_pid = None, os.getpid()
+        self.start_attempted = False
         self.possible_deployment = self.relay_possible = self.unloaded = False
         self.events, self.errors, self.threads = queue.Queue(maxsize=16), [], []
         self.stderr = bytearray()
@@ -584,6 +627,7 @@ class NoDenialExercise:
             command = [sys.executable, str(Path(__file__).resolve()), '--worker', self.kind,
                        '--nonce', self.nonce, '--output', str(self.output / 'worker')]
             self.command = command
+            self.start_attempted = True
             self.child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
             # This try already owns the process: an ENOSPC receipt cannot escape cleanup.
             self.identity = created_child_identity(self.window, self.child, None, self.command, self.parent_pid)
@@ -695,6 +739,8 @@ class NoDenialExercise:
 
     def abort(self):
         errors = {}
+        if self.start_attempted and self.child is None:
+            errors['worker'] = 'Original worker spawn was attempted without a returned handle; cleanup is unverified'
         if self.possible_deployment and not self.unloaded and self.lease is not None:
             try:
                 self._private('finish'); self._wait_cleanup(20); self._unload()

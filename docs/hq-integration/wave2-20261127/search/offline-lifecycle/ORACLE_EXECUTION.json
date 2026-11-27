@@ -1,0 +1,58 @@
+{
+  "scope": "ACTUAL_ORACLE_SOURCE_CONTROLS_WITH_SYNTHETIC_PROCESS_BOUNDARIES_ONLY",
+  "command": [
+    "python3",
+    "-B",
+    "docs/hq-integration/wave2-20261127/search/offline-lifecycle/source-controls.py"
+  ],
+  "exit": 0,
+  "sources": {
+    "study-ui-offline-oracle.py": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee",
+    "study-ui-offline-exercises.py": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+  },
+  "controls": {
+    "scope": "SYNTHETIC_WHOLE_BASELINE_CANDIDATE_OWNERSHIP_LIFECYCLE_CONTROLS_ONLY",
+    "sources": {
+      "study-ui-offline-oracle.py": {
+        "bytes": 66214,
+        "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+      },
+      "study-ui-offline-exercises.py": {
+        "bytes": 56645,
+        "sha256": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+      },
+      "runtime27_interruption.py": {
+        "bytes": 7650,
+        "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+      }
+    },
+    "baselineInputs": {
+      "baseline-oracle-1d5140.py.gz": {
+        "sourceCommit": "1d5140c271d3e666f4c631d40876ab812563ba10",
+        "uncompressedBytes": 61383,
+        "uncompressedSHA256": "7f40ce53485a56e327f6a09012066a8ee6d97dd4f0ce65363e30de8387110c9c",
+        "gzipBytes": 16458,
+        "gzipSHA256": "a2281cd6d3663a918b612683c62d6042b323021dffc621a62c7e06689f815241"
+      },
+      "baseline-exercises-8dba.py.gz": {
+        "sourceCommit": "8dba94565372a15fe232d8135e3d447494318c9c",
+        "uncompressedBytes": 54090,
+        "uncompressedSHA256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406",
+        "gzipBytes": 13586,
+        "gzipSHA256": "efaa2263d0748dc2a6d3b018207006c385e07ee2ea3cc1797dea41fa7ef153f7"
+      }
+    },
+    "testsRun": 26,
+    "failures": 0,
+    "errors": 0,
+    "actualSSH": 0,
+    "actualMac": 0,
+    "actualNetworkDenial": 0,
+    "actualNativeCases": 0,
+    "actualSignals": 0
+  },
+  "actualSSH": 0,
+  "actualMac": 0,
+  "actualNative": 0,
+  "actualSignals": 0
+}

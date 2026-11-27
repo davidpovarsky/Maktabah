@@ -666,6 +666,9 @@ class OracleOfflineCoordinator:
         self.response = self.response_record = self.relay = self.relay_result = self.mac_relay_rows = None
         self.child = self.identity = self.owned_stop = self.final_collection = None
         self.command_argv, self.parent_pid = None, os.getpid()
+        self.owned_attempts, self.owned_handles, self.cleanup_history = [], {}, []
+        self.remote_interrupt_attempted = False
+        self.remote_interrupt_result = self.remote_interrupt_error = None
         self.stdin_thread, self.stdin_error, self.stdin_start_attempted = None, None, False
         self.captures, self.rpc_records, self.event_records, self.errors = [], [], [], []
         self.events = queue.Queue(maxsize=64)
@@ -687,9 +690,65 @@ class OracleOfflineCoordinator:
     def payload(self):
         return {'launch': self.spec, 'sources': self.sources}
 
+    def spawn_child(self, command, *, kind):
+        # This ledger is published in memory before Popen. An interruption
+        # before a returned handle can never become verified cleanup.
+        row = {'kind': kind, 'startAttempted': True, 'ownedPID': None,
+               'parentPID': self.parent_pid, 'commandSHA256': sha(json_bytes(command)),
+               'identity': None, 'cleanupAttempted': False, 'verified': False}
+        self.owned_attempts.append(row)
+        self.cleanup_receipt = None
+        child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                 start_new_session=True, env={**os.environ, 'LC_ALL': 'C', 'TZ': 'UTC'})
+        self.owned_handles[id(child)] = (child, list(command), row)
+        row['ownedPID'] = child.pid
+        return child
+
+    def remember_identity(self, child, identity):
+        require(id(child) in self.owned_handles and self.owned_handles[id(child)][0] is child,
+                'Only a directly created original child may acquire identity')
+        self.owned_handles[id(child)][2]['identity'] = identity
+
     def stop_child(self, child, identity, command):
-        qualified = qualified_ssh_identity(self.window, child, identity, command, self.parent_pid)
-        return self.exercises.stop_owned(self.window, self.interruption, child, qualified)
+        require(id(child) in self.owned_handles and self.owned_handles[id(child)][0] is child,
+                'Only a directly created original child may be stopped')
+        _, expected_command, row = self.owned_handles[id(child)]
+        require(command == expected_command, 'The original created child command changed')
+        if row['cleanupAttempted']:
+            require(row['verified'], 'Do not repeat an uncertain original child cleanup')
+            return row['ownedStop']
+        row['cleanupAttempted'] = True
+        row['ownedPID'] = child.pid
+        try:
+            qualified = qualified_ssh_identity(self.window, child, identity, command, self.parent_pid)
+            row['identity'] = qualified
+            stopped = self.exercises.stop_owned(self.window, self.interruption, child, qualified)
+            require(stopped.get('actualProcessAbsent') is True
+                    and stopped.get('group', {}).get('group_state') == 'GONE_CHECKED'
+                    and stopped['group'].get('owned_pgid') == child.pid
+                    and not stopped['group'].get('probe_errors') and not stopped['group'].get('send_errors')
+                    and stopped.get('subprocess', {}).get('state') in ('EXITED', 'TERMINATED', 'KILLED'),
+                    'Original child process/group exit is unverified')
+            row['ownedStop'], row['verified'] = stopped, True
+            return stopped
+        except BaseException as error:
+            row['errorType'] = type(error).__name__
+            raise
+
+    def finish_owned_children(self):
+        errors = []
+        for child, command, row in tuple(self.owned_handles.values()):
+            if not row['cleanupAttempted']:
+                try: self.stop_child(child, row['identity'], command)
+                except BaseException as error: errors.append(row['kind'] + ': ' + type(error).__name__)
+        known = {id(row) for _, _, row in self.owned_handles.values()}
+        for row in self.owned_attempts:
+            if id(row) not in known:
+                row['errorType'] = 'SpawnAttemptWithoutReturnedHandle'
+                errors.append(row['kind'] + ': original spawn ownership is unknown')
+            elif not row['verified']:
+                errors.append(row['kind'] + ': original child cleanup remains unverified')
+        return errors
 
     def rpc(self, operation, *, cleanup=False, **payload):
         maximum = 30 if cleanup else min(30, self.outer_deadline - time.monotonic())
@@ -703,9 +762,9 @@ class OracleOfflineCoordinator:
         record = {'operation': operation, 'startedOracleUnix': time.time(), 'commandSHA256': sha(json_bytes(command)), 'inputSHA256': sha(body)}
         self.rpc_records.append({'directory': str(directory)})
         try:
-            child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                     start_new_session=True, env={**os.environ, 'LC_ALL': 'C', 'TZ': 'UTC'})
+            child = self.spawn_child(command, kind='rpc:' + operation)
             identity = qualified_ssh_identity(self.window, child, None, command, self.parent_pid)
+            self.remember_identity(child, identity)
             require(identity is not None, 'Fresh SSH RPC ended before its actual identity was observed')
             stdout, stderr = child.communicate(body, timeout=maximum)
             require(len(stdout) <= MAX_RPC_RETURN and len(stderr) <= MAX_INPUT, 'Fixed SSH RPC output exceeded its bound')
@@ -720,18 +779,24 @@ class OracleOfflineCoordinator:
         finally:
             try:
                 if child is not None: record['ownedStop'] = self.stop_child(child, identity, command)
+            except BaseException as error:
+                record['cleanupErrorType'] = type(error).__name__
+                raise
             finally:
+                record['ownedSpawnAttempts'] = [dict(row) for row in self.owned_attempts
+                    if row['kind'] == 'rpc:' + operation]
                 record['finishedOracleUnix'] = time.time()
                 self.rpc_records[number] = private_raw(directory / 'RESULT.private.json', json_bytes(record))
 
     def start(self):
-        require(self.child is None, 'Start only one actual original controller')
+        require(self.child is None and not any(row['kind'] == 'controller' for row in self.owned_attempts),
+                'Start only one actual original controller')
         command = self.command(REMOTE_START)
         self.command_argv = command
-        self.child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                      start_new_session=True, env={**os.environ, 'LC_ALL': 'C', 'TZ': 'UTC'})
+        self.child = self.spawn_child(command, kind='controller')
         # run()'s finally begins before start(), including receipt/thread errors.
         self.identity = qualified_ssh_identity(self.window, self.child, None, command, self.parent_pid)
+        self.remember_identity(self.child, self.identity)
         require(self.identity is not None, 'Created SSH controller ended before its actual identity was observed')
         for name, pipe in [('stdout', self.child.stdout), ('stderr', self.child.stderr)]:
             capture = StreamCapture(pipe, self.output / ('controller.' + name + '.private.log'), self.events, name)
@@ -838,16 +903,20 @@ class OracleOfflineCoordinator:
         if self.relay is not None:
             try: result['relay'] = self.relay.abort()
             except BaseException as error: result['errors'].append('relay: ' + type(error).__name__ + ': ' + str(error))
-        if failed and self.child is not None and self.child.poll() is None and self.state.boot is not None:
+        if failed and self.state.boot is not None and not self.remote_interrupt_attempted:
+            self.remote_interrupt_attempted = True
             try:
-                result['remoteInterrupt'] = self.rpc('interrupt-controller', cleanup=True, binding=self.binding, boot=self.state.boot)
-                self.child.wait(timeout=30)
-            except BaseException as error: result['errors'].append('remote controller: ' + type(error).__name__ + ': ' + str(error))
-        try:
-            if self.child is not None:
-                self.owned_stop = self.stop_child(self.child, self.identity, self.command_argv)
-                result['ssh'] = self.owned_stop
-        except BaseException as error: result['errors'].append('owned SSH: ' + type(error).__name__ + ': ' + str(error))
+                self.remote_interrupt_result = self.rpc('interrupt-controller', cleanup=True, binding=self.binding, boot=self.state.boot)
+                if self.child is not None and self.child.poll() is None: self.child.wait(timeout=30)
+            except BaseException as error:
+                self.remote_interrupt_error = type(error).__name__ + ': ' + str(error)
+        if self.remote_interrupt_attempted:
+            result['remoteInterrupt'] = self.remote_interrupt_result
+            if self.remote_interrupt_error is not None: result['errors'].append('remote controller: ' + self.remote_interrupt_error)
+        result['errors'].extend(self.finish_owned_children())
+        if self.child is not None and id(self.child) in self.owned_handles:
+            self.owned_stop = self.owned_handles[id(self.child)][2].get('ownedStop')
+            result['ssh'] = self.owned_stop
         for capture in self.captures:
             try:
                 require(not capture.start_attempted or capture.thread.ident is not None,
@@ -862,9 +931,11 @@ class OracleOfflineCoordinator:
                 require(not self.stdin_thread.is_alive(), 'owned input still alive')
             except BaseException as error: result['errors'].append(str(error))
         result.update(finishedOracleUnix=time.time(), ownedLocalProcessesAndStreamsStopped=not result['errors'],
+                      ownedChildren=[dict(row) for row in self.owned_attempts],
                       noRemoteCleanupInferredFromSSHExit=True)
         # The original root final RESULT/transport receipt remains mandatory.
-        self.cleanup_receipt = self.write('OWNED_CLEANUP.private.json', result)
+        self.cleanup_receipt = self.write('OWNED_CLEANUP-' + str(len(self.cleanup_history)).zfill(2) + '.private.json', result)
+        self.cleanup_history.append(self.cleanup_receipt)
         return self.cleanup_receipt
 
     def run(self):
@@ -891,11 +962,21 @@ class OracleOfflineCoordinator:
             if self.final_collection is None:
                 try: self.final_collection = self.rpc('collect', cleanup=True, binding=self.binding)
                 except BaseException as error: self.errors.append('original final/partial evidence unavailable: ' + type(error).__name__ + ': ' + str(error))
+            # Evidence readback itself creates a fresh owned SSH process. Its
+            # actual exit/unknown-spawn state belongs in the final cleanup too.
+            try:
+                self.cleanup(failure is not None)
+                require(self.window.strict_json(self.window.read_bytes(self.cleanup_receipt['path'])).get('ownedLocalProcessesAndStreamsStopped') is True,
+                        'Final original local ownership cleanup is unverified')
+            except BaseException as error:
+                self.errors.append('final owned cleanup: ' + type(error).__name__ + ': ' + str(error))
+                if failure is None: failure = error
             collection = self.write('MAC_FINAL_OR_PARTIAL.private.json', self.final_collection) if self.final_collection is not None else None
             result = {'schema': SCHEMA, 'status': PASS if failure is None and not self.errors and joined else 'FAILED_OR_INCOMPLETE',
                       'launchSpec': self.input_record, 'sources': self.source_record, 'events': self.event_records,
                       'ownerResponse': self.response_record, 'relay': self.relay_result, 'macRelayRows': self.mac_relay_rows,
                       'originalMacEvidence': collection, 'rpcReceipts': self.rpc_records, 'ownedCleanup': self.cleanup_receipt,
+                      'ownedCleanupHistory': self.cleanup_history,
                       'actualSSHExit': self.child.returncode if self.child is not None else None,
                       'streamReceipts': {c.channel: c.record for c in self.captures}, 'joined': joined,
                       'errors': self.errors, 'errorType': type(failure).__name__ if failure else None,
