@@ -1,0 +1,41 @@
+{
+  "appleSDKTypecheck": false,
+  "command": [
+    "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-frontend",
+    "-parse",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "finishedUTC": "2026-11-27T09:23:33.672428+00:00",
+  "frontend": {
+    "bytes": 208647456,
+    "path": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-frontend",
+    "sha256": "d98470fed50d4efc0075bcbd45ba1f908382dc9222c2b8213d1ff074efaa2083"
+  },
+  "nativeUIExecuted": 0,
+  "performanceAccepted": false,
+  "schema": 1,
+  "scope": "EXISTING_ORACLE_LINUX_SWIFT_FRONTEND_SYNTAX_ONLY_WITH_APPLE_TARGET_NOT_APPLE_SDK_TYPECHECK_OR_UI",
+  "source": {
+    "bytes": 142688,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127/Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5"
+  },
+  "startedUTC": "2026-11-27T09:23:33.314817+00:00",
+  "status": "SOURCE_SYNTAX_PASS_NOT_SDK_OR_UI",
+  "stderr": {
+    "bytes": 0,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127/docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 0,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-pending-sql-20261127/docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
