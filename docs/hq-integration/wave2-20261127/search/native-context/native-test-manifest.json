@@ -1,0 +1,14 @@
+{
+  "productPrerequisite": "e3af7bc78e4cca198150a6a4205aff1a9bc44a8a",
+  "testFileSHA256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+  "selectors": [
+    "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle",
+    "Maktabah-iOSUITests/PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+    "Maktabah-iOSUITests/SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+    "Maktabah-iOSUITests/SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+  ],
+  "status": "APPLE_XCTEST_SOURCE_TYPECHECK_ONLY_NATIVE_EXECUTION_PENDING",
+  "nativeExecuted": 0,
+  "sourceOracleSHA256": "759e939ff99a27b58e3ddea7505855ff18ca8b80416bf1e12f3d24440cf66890",
+  "schema": 1
+}

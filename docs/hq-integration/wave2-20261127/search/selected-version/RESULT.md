@@ -25,7 +25,7 @@ Apple evidence directory:
 
 apple-third-control-attempt.log preserves both compile/run outputs. Earlier attempts retain the Python archive compatibility and duplicate harness declaration failures; neither was a product failure.
 
-control-input-sha256.json, baseline/candidate extracted methods and the original response fixtures permit independent reproduction. Compile the root Swift files plus exactly one variant's ExtractedSections.swift with xcrun swiftc -parse-as-library -swift-version6, then pass the fixture directory and a new owned cache directory to the binary.
+control-input-sha256.json, baseline/candidate extracted methods and the original response fixtures permit independent reproduction. Compile the root Swift files plus exactly one variant's ExtractedSections.swift with xcrun swiftc -parse-as-library -swift-version 6, then pass the fixture directory and a new owned cache directory to the binary.
 
 ## Real F04 pagination oracle and UI status
 

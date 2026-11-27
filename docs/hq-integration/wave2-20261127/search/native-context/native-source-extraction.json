@@ -1,0 +1,6 @@
+{
+  "source": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "sourceSHA256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+  "excerptSHA256": "a78f576698b16b01656886b3bedfd455cf4f56eac49c5bd21af7baefd7ab1001",
+  "scope": "Verbatim original PublishedProduction class and every following native context declaration plus actual shared file helpers; excludes unrelated miniature tests. Actual Apple XCTest SDK typecheck only, not linked app build or native execution."
+}

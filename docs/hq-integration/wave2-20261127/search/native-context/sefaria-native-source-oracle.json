@@ -1,0 +1,2128 @@
+{
+  "capturedAt" : "2026-11-26T23:22:46Z",
+  "filters" : [
+    "Tanakh/Writings/Psalms"
+  ],
+  "limit" : 100,
+  "pages" : [
+    {
+      "offset" : 0,
+      "rawSource" : {
+        "bytes" : 105954,
+        "sha256" : "744bf29af6c8a48b5ab29bde6b37086f22e45f22a3c560d20a90754b5a15224c"
+      },
+      "rows" : [
+        {
+          "language" : "en",
+          "offset" : 0,
+          "ref" : "Psalms 3:3",
+          "upstreamID" : "Psalms 3:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 1,
+          "ref" : "Psalms 3:3",
+          "upstreamID" : "Psalms 3:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 2,
+          "ref" : "Psalms 3:3",
+          "upstreamID" : "Psalms 3:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 3,
+          "ref" : "Psalms 6:4",
+          "upstreamID" : "Psalms 6:4 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 4,
+          "ref" : "Psalms 6:4",
+          "upstreamID" : "Psalms 6:4 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 5,
+          "ref" : "Psalms 6:4",
+          "upstreamID" : "Psalms 6:4 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 6,
+          "ref" : "Psalms 6:5",
+          "upstreamID" : "Psalms 6:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 7,
+          "ref" : "Psalms 6:5",
+          "upstreamID" : "Psalms 6:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 8,
+          "ref" : "Psalms 6:5",
+          "upstreamID" : "Psalms 6:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 9,
+          "ref" : "Psalms 7:3",
+          "upstreamID" : "Psalms 7:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 10,
+          "ref" : "Psalms 7:3",
+          "upstreamID" : "Psalms 7:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 11,
+          "ref" : "Psalms 7:3",
+          "upstreamID" : "Psalms 7:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 12,
+          "ref" : "Psalms 7:6",
+          "upstreamID" : "Psalms 7:6 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 13,
+          "ref" : "Psalms 7:6",
+          "upstreamID" : "Psalms 7:6 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 14,
+          "ref" : "Psalms 7:6",
+          "upstreamID" : "Psalms 7:6 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 15,
+          "ref" : "Psalms 10:3",
+          "upstreamID" : "Psalms 10:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 16,
+          "ref" : "Psalms 11:1",
+          "upstreamID" : "Psalms 11:1 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 17,
+          "ref" : "Psalms 11:1",
+          "upstreamID" : "Psalms 11:1 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 18,
+          "ref" : "Psalms 11:1",
+          "upstreamID" : "Psalms 11:1 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 19,
+          "ref" : "Psalms 11:5",
+          "upstreamID" : "Psalms 11:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 20,
+          "ref" : "Psalms 11:5",
+          "upstreamID" : "Psalms 11:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 21,
+          "ref" : "Psalms 11:5",
+          "upstreamID" : "Psalms 11:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 22,
+          "ref" : "Psalms 13:3",
+          "upstreamID" : "Psalms 13:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 23,
+          "ref" : "Psalms 13:3",
+          "upstreamID" : "Psalms 13:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 24,
+          "ref" : "Psalms 13:3",
+          "upstreamID" : "Psalms 13:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 25,
+          "ref" : "Psalms 16:9",
+          "upstreamID" : "Psalms 16:9 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 26,
+          "ref" : "Psalms 16:10",
+          "upstreamID" : "Psalms 16:10 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 27,
+          "ref" : "Psalms 16:10",
+          "upstreamID" : "Psalms 16:10 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 28,
+          "ref" : "Psalms 16:10",
+          "upstreamID" : "Psalms 16:10 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 29,
+          "ref" : "Psalms 17:9",
+          "upstreamID" : "Psalms 17:9 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 30,
+          "ref" : "Psalms 17:13",
+          "upstreamID" : "Psalms 17:13 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 31,
+          "ref" : "Psalms 17:13",
+          "upstreamID" : "Psalms 17:13 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 32,
+          "ref" : "Psalms 17:13",
+          "upstreamID" : "Psalms 17:13 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 33,
+          "ref" : "Psalms 19:8",
+          "upstreamID" : "Psalms 19:8 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 34,
+          "ref" : "Psalms 19:8",
+          "upstreamID" : "Psalms 19:8 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 35,
+          "ref" : "Psalms 19:8",
+          "upstreamID" : "Psalms 19:8 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 36,
+          "ref" : "Psalms 22:21",
+          "upstreamID" : "Psalms 22:21 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 37,
+          "ref" : "Psalms 22:21",
+          "upstreamID" : "Psalms 22:21 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 38,
+          "ref" : "Psalms 22:30",
+          "upstreamID" : "Psalms 22:30 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 39,
+          "ref" : "Psalms 22:30",
+          "upstreamID" : "Psalms 22:30 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 40,
+          "ref" : "Psalms 22:30",
+          "upstreamID" : "Psalms 22:30 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 41,
+          "ref" : "Psalms 22:30",
+          "upstreamID" : "Psalms 22:30 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 42,
+          "ref" : "Psalms 22:30",
+          "upstreamID" : "Psalms 22:30 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 43,
+          "ref" : "Psalms 23:3",
+          "upstreamID" : "Psalms 23:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 44,
+          "ref" : "Psalms 23:3",
+          "upstreamID" : "Psalms 23:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 45,
+          "ref" : "Psalms 23:3",
+          "upstreamID" : "Psalms 23:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 46,
+          "ref" : "Psalms 24:4",
+          "upstreamID" : "Psalms 24:4 (Sefaria Community Translation [en])",
+          "versionTitle" : "Sefaria Community Translation"
+        },
+        {
+          "language" : "en",
+          "offset" : 47,
+          "ref" : "Psalms 25:1",
+          "upstreamID" : "Psalms 25:1 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 48,
+          "ref" : "Psalms 25:1",
+          "upstreamID" : "Psalms 25:1 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 49,
+          "ref" : "Psalms 25:1",
+          "upstreamID" : "Psalms 25:1 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 50,
+          "ref" : "Psalms 25:13",
+          "upstreamID" : "Psalms 25:13 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 51,
+          "ref" : "Psalms 25:13",
+          "upstreamID" : "Psalms 25:13 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 52,
+          "ref" : "Psalms 25:13",
+          "upstreamID" : "Psalms 25:13 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 53,
+          "ref" : "Psalms 25:20",
+          "upstreamID" : "Psalms 25:20 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 54,
+          "ref" : "Psalms 25:20",
+          "upstreamID" : "Psalms 25:20 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 55,
+          "ref" : "Psalms 25:20",
+          "upstreamID" : "Psalms 25:20 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 56,
+          "ref" : "Psalms 26:9",
+          "upstreamID" : "Psalms 26:9 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 57,
+          "ref" : "Psalms 26:9",
+          "upstreamID" : "Psalms 26:9 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 58,
+          "ref" : "Psalms 26:9",
+          "upstreamID" : "Psalms 26:9 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 59,
+          "ref" : "Psalms 30:4",
+          "upstreamID" : "Psalms 30:4 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 60,
+          "ref" : "Psalms 30:4",
+          "upstreamID" : "Psalms 30:4 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 61,
+          "ref" : "Psalms 30:4",
+          "upstreamID" : "Psalms 30:4 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 62,
+          "ref" : "Psalms 30:13",
+          "upstreamID" : "Psalms 30:13 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 63,
+          "ref" : "Psalms 31:6",
+          "upstreamID" : "Psalms 31:6 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 64,
+          "ref" : "Psalms 31:8",
+          "upstreamID" : "Psalms 31:8 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 65,
+          "ref" : "Psalms 31:8",
+          "upstreamID" : "Psalms 31:8 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 66,
+          "ref" : "Psalms 31:8",
+          "upstreamID" : "Psalms 31:8 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 67,
+          "ref" : "Psalms 31:10",
+          "upstreamID" : "Psalms 31:10 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 68,
+          "ref" : "Psalms 31:10",
+          "upstreamID" : "Psalms 31:10 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 69,
+          "ref" : "Psalms 31:10",
+          "upstreamID" : "Psalms 31:10 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 70,
+          "ref" : "Psalms 31:14",
+          "upstreamID" : "Psalms 31:14 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 71,
+          "ref" : "Psalms 33:19",
+          "upstreamID" : "Psalms 33:19 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 72,
+          "ref" : "Psalms 33:19",
+          "upstreamID" : "Psalms 33:19 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 73,
+          "ref" : "Psalms 33:20",
+          "upstreamID" : "Psalms 33:20 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 74,
+          "ref" : "Psalms 33:20",
+          "upstreamID" : "Psalms 33:20 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 75,
+          "ref" : "Psalms 34:3",
+          "upstreamID" : "Psalms 34:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 76,
+          "ref" : "Psalms 34:3",
+          "upstreamID" : "Psalms 34:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 77,
+          "ref" : "Psalms 34:3",
+          "upstreamID" : "Psalms 34:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 78,
+          "ref" : "Psalms 34:23",
+          "upstreamID" : "Psalms 34:23 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 79,
+          "ref" : "Psalms 34:23",
+          "upstreamID" : "Psalms 34:23 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 80,
+          "ref" : "Psalms 35:3",
+          "upstreamID" : "Psalms 35:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 81,
+          "ref" : "Psalms 35:3",
+          "upstreamID" : "Psalms 35:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 82,
+          "ref" : "Psalms 35:3",
+          "upstreamID" : "Psalms 35:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 83,
+          "ref" : "Psalms 35:4",
+          "upstreamID" : "Psalms 35:4 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 84,
+          "ref" : "Psalms 35:4",
+          "upstreamID" : "Psalms 35:4 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 85,
+          "ref" : "Psalms 35:4",
+          "upstreamID" : "Psalms 35:4 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 86,
+          "ref" : "Psalms 35:7",
+          "upstreamID" : "Psalms 35:7 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 87,
+          "ref" : "Psalms 35:7",
+          "upstreamID" : "Psalms 35:7 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 88,
+          "ref" : "Psalms 35:7",
+          "upstreamID" : "Psalms 35:7 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 89,
+          "ref" : "Psalms 35:9",
+          "upstreamID" : "Psalms 35:9 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 90,
+          "ref" : "Psalms 35:9",
+          "upstreamID" : "Psalms 35:9 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 91,
+          "ref" : "Psalms 35:9",
+          "upstreamID" : "Psalms 35:9 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 92,
+          "ref" : "Psalms 35:12",
+          "upstreamID" : "Psalms 35:12 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 93,
+          "ref" : "Psalms 35:12",
+          "upstreamID" : "Psalms 35:12 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 94,
+          "ref" : "Psalms 35:12",
+          "upstreamID" : "Psalms 35:12 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 95,
+          "ref" : "Psalms 35:13",
+          "upstreamID" : "Psalms 35:13 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 96,
+          "ref" : "Psalms 35:13",
+          "upstreamID" : "Psalms 35:13 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 97,
+          "ref" : "Psalms 35:13",
+          "upstreamID" : "Psalms 35:13 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 98,
+          "ref" : "Psalms 35:17",
+          "upstreamID" : "Psalms 35:17 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 99,
+          "ref" : "Psalms 35:17",
+          "upstreamID" : "Psalms 35:17 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        }
+      ],
+      "total" : 424
+    },
+    {
+      "offset" : 100,
+      "rawSource" : {
+        "bytes" : 110021,
+        "sha256" : "9da898c7a48400a7527bfa14d6760e053f0bff8a7753bda7173da92fab05d92b"
+      },
+      "rows" : [
+        {
+          "language" : "en",
+          "offset" : 100,
+          "ref" : "Psalms 35:17",
+          "upstreamID" : "Psalms 35:17 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 101,
+          "ref" : "Psalms 38:13",
+          "upstreamID" : "Psalms 38:13 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 102,
+          "ref" : "Psalms 40:15",
+          "upstreamID" : "Psalms 40:15 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 103,
+          "ref" : "Psalms 40:15",
+          "upstreamID" : "Psalms 40:15 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 104,
+          "ref" : "Psalms 40:15",
+          "upstreamID" : "Psalms 40:15 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 105,
+          "ref" : "Psalms 41:5",
+          "upstreamID" : "Psalms 41:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 106,
+          "ref" : "Psalms 41:5",
+          "upstreamID" : "Psalms 41:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 107,
+          "ref" : "Psalms 41:5",
+          "upstreamID" : "Psalms 41:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 108,
+          "ref" : "Psalms 42:2",
+          "upstreamID" : "Psalms 42:2 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 109,
+          "ref" : "Psalms 42:2",
+          "upstreamID" : "Psalms 42:2 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 110,
+          "ref" : "Psalms 42:2",
+          "upstreamID" : "Psalms 42:2 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 111,
+          "ref" : "Psalms 42:2",
+          "upstreamID" : "Psalms 42:2 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 112,
+          "ref" : "Psalms 42:2",
+          "upstreamID" : "Psalms 42:2 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 113,
+          "ref" : "Psalms 42:3",
+          "upstreamID" : "Psalms 42:3 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 114,
+          "ref" : "Psalms 42:3",
+          "upstreamID" : "Psalms 42:3 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 115,
+          "ref" : "Psalms 42:3",
+          "upstreamID" : "Psalms 42:3 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 116,
+          "ref" : "Psalms 42:3",
+          "upstreamID" : "Psalms 42:3 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 117,
+          "ref" : "Psalms 42:3",
+          "upstreamID" : "Psalms 42:3 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 118,
+          "ref" : "Psalms 42:5",
+          "upstreamID" : "Psalms 42:5 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 119,
+          "ref" : "Psalms 42:5",
+          "upstreamID" : "Psalms 42:5 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 120,
+          "ref" : "Psalms 42:5",
+          "upstreamID" : "Psalms 42:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 121,
+          "ref" : "Psalms 42:5",
+          "upstreamID" : "Psalms 42:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 122,
+          "ref" : "Psalms 42:5",
+          "upstreamID" : "Psalms 42:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 123,
+          "ref" : "Psalms 42:6",
+          "upstreamID" : "Psalms 42:6 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 124,
+          "ref" : "Psalms 42:6",
+          "upstreamID" : "Psalms 42:6 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 125,
+          "ref" : "Psalms 42:6",
+          "upstreamID" : "Psalms 42:6 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 126,
+          "ref" : "Psalms 42:6",
+          "upstreamID" : "Psalms 42:6 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 127,
+          "ref" : "Psalms 42:6",
+          "upstreamID" : "Psalms 42:6 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 128,
+          "ref" : "Psalms 42:7",
+          "upstreamID" : "Psalms 42:7 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 129,
+          "ref" : "Psalms 42:7",
+          "upstreamID" : "Psalms 42:7 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 130,
+          "ref" : "Psalms 42:7",
+          "upstreamID" : "Psalms 42:7 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 131,
+          "ref" : "Psalms 42:7",
+          "upstreamID" : "Psalms 42:7 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 132,
+          "ref" : "Psalms 42:7",
+          "upstreamID" : "Psalms 42:7 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 133,
+          "ref" : "Psalms 42:12",
+          "upstreamID" : "Psalms 42:12 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 134,
+          "ref" : "Psalms 42:12",
+          "upstreamID" : "Psalms 42:12 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 135,
+          "ref" : "Psalms 42:12",
+          "upstreamID" : "Psalms 42:12 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 136,
+          "ref" : "Psalms 42:12",
+          "upstreamID" : "Psalms 42:12 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 137,
+          "ref" : "Psalms 42:12",
+          "upstreamID" : "Psalms 42:12 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 138,
+          "ref" : "Psalms 43:5",
+          "upstreamID" : "Psalms 43:5 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 139,
+          "ref" : "Psalms 43:5",
+          "upstreamID" : "Psalms 43:5 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 140,
+          "ref" : "Psalms 43:5",
+          "upstreamID" : "Psalms 43:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 141,
+          "ref" : "Psalms 43:5",
+          "upstreamID" : "Psalms 43:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 142,
+          "ref" : "Psalms 43:5",
+          "upstreamID" : "Psalms 43:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 143,
+          "ref" : "Psalms 44:26",
+          "upstreamID" : "Psalms 44:26 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 144,
+          "ref" : "Psalms 44:26",
+          "upstreamID" : "Psalms 44:26 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 145,
+          "ref" : "Psalms 49:9",
+          "upstreamID" : "Psalms 49:9 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 146,
+          "ref" : "Psalms 49:9",
+          "upstreamID" : "Psalms 49:9 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 147,
+          "ref" : "Psalms 49:16",
+          "upstreamID" : "Psalms 49:16 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 148,
+          "ref" : "Psalms 49:16",
+          "upstreamID" : "Psalms 49:16 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 149,
+          "ref" : "Psalms 49:16",
+          "upstreamID" : "Psalms 49:16 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 150,
+          "ref" : "Psalms 49:19",
+          "upstreamID" : "Psalms 49:19 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 151,
+          "ref" : "Psalms 49:19",
+          "upstreamID" : "Psalms 49:19 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 152,
+          "ref" : "Psalms 49:19",
+          "upstreamID" : "Psalms 49:19 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 153,
+          "ref" : "Psalms 54:5",
+          "upstreamID" : "Psalms 54:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 154,
+          "ref" : "Psalms 54:5",
+          "upstreamID" : "Psalms 54:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 155,
+          "ref" : "Psalms 54:5",
+          "upstreamID" : "Psalms 54:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 156,
+          "ref" : "Psalms 54:6",
+          "upstreamID" : "Psalms 54:6 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 157,
+          "ref" : "Psalms 54:6",
+          "upstreamID" : "Psalms 54:6 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 158,
+          "ref" : "Psalms 54:6",
+          "upstreamID" : "Psalms 54:6 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 159,
+          "ref" : "Psalms 55:19",
+          "upstreamID" : "Psalms 55:19 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 160,
+          "ref" : "Psalms 55:19",
+          "upstreamID" : "Psalms 55:19 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 161,
+          "ref" : "Psalms 55:19",
+          "upstreamID" : "Psalms 55:19 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 162,
+          "ref" : "Psalms 56:7",
+          "upstreamID" : "Psalms 56:7 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 163,
+          "ref" : "Psalms 56:7",
+          "upstreamID" : "Psalms 56:7 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 164,
+          "ref" : "Psalms 56:14",
+          "upstreamID" : "Psalms 56:14 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 165,
+          "ref" : "Psalms 56:14",
+          "upstreamID" : "Psalms 56:14 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 166,
+          "ref" : "Psalms 56:14",
+          "upstreamID" : "Psalms 56:14 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 167,
+          "ref" : "Psalms 57:2",
+          "upstreamID" : "Psalms 57:2 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 168,
+          "ref" : "Psalms 57:2",
+          "upstreamID" : "Psalms 57:2 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 169,
+          "ref" : "Psalms 57:2",
+          "upstreamID" : "Psalms 57:2 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 170,
+          "ref" : "Psalms 57:5",
+          "upstreamID" : "Psalms 57:5 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 171,
+          "ref" : "Psalms 57:5",
+          "upstreamID" : "Psalms 57:5 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 172,
+          "ref" : "Psalms 57:5",
+          "upstreamID" : "Psalms 57:5 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 173,
+          "ref" : "Psalms 57:7",
+          "upstreamID" : "Psalms 57:7 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 174,
+          "ref" : "Psalms 57:7",
+          "upstreamID" : "Psalms 57:7 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 175,
+          "ref" : "Psalms 57:7",
+          "upstreamID" : "Psalms 57:7 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 176,
+          "ref" : "Psalms 57:9",
+          "upstreamID" : "Psalms 57:9 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 177,
+          "ref" : "Psalms 57:9",
+          "upstreamID" : "Psalms 57:9 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 178,
+          "ref" : "Psalms 57:9",
+          "upstreamID" : "Psalms 57:9 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 179,
+          "ref" : "Psalms 59:4",
+          "upstreamID" : "Psalms 59:4 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 180,
+          "ref" : "Psalms 59:4",
+          "upstreamID" : "Psalms 59:4 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 181,
+          "ref" : "Psalms 59:16",
+          "upstreamID" : "Psalms 59:16 (Bible du Rabbinat 1899 [fr] [en])",
+          "versionTitle" : "Bible du Rabbinat 1899 [fr]"
+        },
+        {
+          "language" : "en",
+          "offset" : 182,
+          "ref" : "Psalms 62:2",
+          "upstreamID" : "Psalms 62:2 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 183,
+          "ref" : "Psalms 62:2",
+          "upstreamID" : "Psalms 62:2 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 184,
+          "ref" : "Psalms 62:2",
+          "upstreamID" : "Psalms 62:2 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 185,
+          "ref" : "Psalms 62:2",
+          "upstreamID" : "Psalms 62:2 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 186,
+          "ref" : "Psalms 62:2",
+          "upstreamID" : "Psalms 62:2 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 187,
+          "ref" : "Psalms 62:6",
+          "upstreamID" : "Psalms 62:6 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 188,
+          "ref" : "Psalms 62:6",
+          "upstreamID" : "Psalms 62:6 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 189,
+          "ref" : "Psalms 62:6",
+          "upstreamID" : "Psalms 62:6 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 190,
+          "ref" : "Psalms 62:6",
+          "upstreamID" : "Psalms 62:6 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 191,
+          "ref" : "Psalms 63:2",
+          "upstreamID" : "Psalms 63:2 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        },
+        {
+          "language" : "en",
+          "offset" : 192,
+          "ref" : "Psalms 63:2",
+          "upstreamID" : "Psalms 63:2 (Tanakh: The Holy Scriptures, published by JPS [en])",
+          "versionTitle" : "Tanakh: The Holy Scriptures, published by JPS"
+        },
+        {
+          "language" : "en",
+          "offset" : 193,
+          "ref" : "Psalms 63:2",
+          "upstreamID" : "Psalms 63:2 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 194,
+          "ref" : "Psalms 63:2",
+          "upstreamID" : "Psalms 63:2 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 195,
+          "ref" : "Psalms 63:2",
+          "upstreamID" : "Psalms 63:2 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 196,
+          "ref" : "Psalms 63:6",
+          "upstreamID" : "Psalms 63:6 (The Holy Scriptures: A New Translation (JPS 1917) [en])",
+          "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+        },
+        {
+          "language" : "en",
+          "offset" : 197,
+          "ref" : "Psalms 63:6",
+          "upstreamID" : "Psalms 63:6 (The Rashi Ketuvim by Rabbi Shraga Silverstein [en])",
+          "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+        },
+        {
+          "language" : "en",
+          "offset" : 198,
+          "ref" : "Psalms 63:6",
+          "upstreamID" : "Psalms 63:6 (The Koren Jerusalem Bible [en])",
+          "versionTitle" : "The Koren Jerusalem Bible"
+        },
+        {
+          "language" : "en",
+          "offset" : 199,
+          "ref" : "Psalms 63:9",
+          "upstreamID" : "Psalms 63:9 (THE JPS TANAKH: Gender-Sensitive Edition [en])",
+          "versionTitle" : "THE JPS TANAKH: Gender-Sensitive Edition"
+        }
+      ],
+      "total" : 424
+    }
+  ],
+  "query" : "soul",
+  "schema" : 1,
+  "sections" : [
+    {
+      "language" : "en",
+      "reference" : "Psalms 35",
+      "segments" : [
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:1",
+          "sourceSHA256" : "2248df1e12672108d492681c8b6b921a8f5b05d817563bb967894f5bc9bb6537",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "e00d3662523edb5e2b64ad635307849472936f03cd538d741a892809bc0b43b1",
+          "translationUTF8Bytes" : 108
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:2",
+          "sourceSHA256" : "16f5f870103d348ad64b90ccd15c67b6f6289e7f11df41527a31dcab38670946",
+          "sourceUTF8Bytes" : 98,
+          "translationSHA256" : "722e47ab9f2b5e75fc55c1400efaff870185a56bbfda31528a4b7544173e2c8a",
+          "translationUTF8Bytes" : 56
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:3",
+          "sourceSHA256" : "e42133792ce0ae755b76a155d6fec3fed691e5ee88006b7c69bf6df6ea45e6d3",
+          "sourceUTF8Bytes" : 166,
+          "translationSHA256" : "2eb870eedd6f03d304fdacc58618a21781d41c7af2ab2b4bdfa565889fd446e2",
+          "translationUTF8Bytes" : 113
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:4",
+          "sourceSHA256" : "c078817bea043243a6d39b1dab805dc05c5ebb85ea184003e21e9bbe2654027f",
+          "sourceUTF8Bytes" : 190,
+          "translationSHA256" : "932a40918bb4f0fca60232e2a0764547f555c9c7c55d357a066f150ba7ae33eb",
+          "translationUTF8Bytes" : 129
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:5",
+          "sourceSHA256" : "699e9b25b8febba37ffefc6d2bf076561eb5f7b4dfceea90c7318ea5a8a07a84",
+          "sourceUTF8Bytes" : 121,
+          "translationSHA256" : "0835fa68bdd118ffc858f140f8a2a5341725bab7dbcaa3034e7722aa1627ba90",
+          "translationUTF8Bytes" : 75
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:6",
+          "sourceSHA256" : "0965c6ed6cb1b968c252d11569d928e47f7704ea4d4f5a1c7b3625978125ac37",
+          "sourceUTF8Bytes" : 141,
+          "translationSHA256" : "695dba4bf30935e773b24955237f276f3102b28ebe50c3b911e9550e70fd16ea",
+          "translationUTF8Bytes" : 72
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:7",
+          "sourceSHA256" : "abfea1f568861e12a0a6c07da4a474e9af2664d6c97febc09bc8be0d255b793d",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "a9198a3c5ac06dc8bfaeea25efd866c6684dbfaa792d7df0386182db16134678",
+          "translationUTF8Bytes" : 109
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:8",
+          "sourceSHA256" : "69d109a1422bcabf1ed8f6e01359b8c73664a5caaf5d7a6995b6760c6e442a93",
+          "sourceUTF8Bytes" : 197,
+          "translationSHA256" : "083f9f4639c8193a9fa919624116c79a9b1e6b646256c98596624dc5112f7ee5",
+          "translationUTF8Bytes" : 126
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:9",
+          "sourceSHA256" : "fd5bfab2a1801ef23a8dab6ef48252077b9c99bd70c4f36d2fcdce7c60fef7d6",
+          "sourceUTF8Bytes" : 114,
+          "translationSHA256" : "f7d05005c9f7027830d0d4ec561c949ed9b0cb50209206967ab3a4f4a002c62f",
+          "translationUTF8Bytes" : 75
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:10",
+          "sourceSHA256" : "24e32b97251ca0db46ed377492efe8748c40cc8d56ad73f6a6b0fe7d94c00960",
+          "sourceUTF8Bytes" : 247,
+          "translationSHA256" : "e0044089b448a28705bf6fb1a1f2809a130e6a6bd40db7730be1059ff6cad2da",
+          "translationUTF8Bytes" : 171
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:11",
+          "sourceSHA256" : "b56e276edb2d9c2938d7f1818bee109e2c363437111a85d5972764b5f6f33d3e",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "1c0fb3e7b1631f42c13ea5a1e45a67413fb06d38d74b2ee68386da990bf1960f",
+          "translationUTF8Bytes" : 69
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:12",
+          "sourceSHA256" : "16eb1d42786f316c674ccdfd314a7ddf80aa952d624d67ed8bcb99a57b9fc9c8",
+          "sourceUTF8Bytes" : 115,
+          "translationSHA256" : "f9ffccc9bb56db42b1720a565a0ff3d45d0394408ab168be67df9c98a4f3b394",
+          "translationUTF8Bytes" : 60
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:13",
+          "sourceSHA256" : "1867726d5cf331db0952fa150152c781bd1d711bab311565cec0a46ecd532bf4",
+          "sourceUTF8Bytes" : 206,
+          "translationSHA256" : "7288a3335684f9077456be2e6935df3ac72f8bb61e05e8c31b8920031cf24b10",
+          "translationUTF8Bytes" : 146
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:14",
+          "sourceSHA256" : "e029a6d25436429654400625836f0533b98a8406137a3a74d5bda2b2083ec456",
+          "sourceUTF8Bytes" : 137,
+          "translationSHA256" : "724ce9c3b9ba8767d634c9e2d053789c9ea78b76a1603fdac4b180cc2b9bcdb5",
+          "translationUTF8Bytes" : 119
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:15",
+          "sourceSHA256" : "3922b8f230fdfadc9c1d464f6fc95bf866c71a3740c5970703c4a8b761a68206",
+          "sourceUTF8Bytes" : 203,
+          "translationSHA256" : "cc628e1e30bc92636c019c37fdc897270ae870855a77c38ba1f41e632fe47f43",
+          "translationUTF8Bytes" : 168
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:16",
+          "sourceSHA256" : "4808f0dd3bd8173833e75666ffda58757007483b7ab070cfb5914fe1e2685543",
+          "sourceUTF8Bytes" : 105,
+          "translationSHA256" : "ee2b3c1500b631ea20fd1946f2fa8ccbaa8ffa49d8dfde3069fd91d51af7ed5b",
+          "translationUTF8Bytes" : 77
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:17",
+          "sourceSHA256" : "57c1eef51d555eb3674a518cf2e3a147ffaa3df2790c670ee9303cd19658d555",
+          "sourceUTF8Bytes" : 173,
+          "translationSHA256" : "15104e2959a9438934120e2070764f4ee3f572994cefde9057c886356a736806",
+          "translationUTF8Bytes" : 103
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:18",
+          "sourceSHA256" : "8737f947f1df5d9c43aa94d7f2e0bf058a2be5b90a4088b6fbfe9bf2f790e77a",
+          "sourceUTF8Bytes" : 101,
+          "translationSHA256" : "b0f55c7005c839bfe89c9179f39ccd10aa0102cbe1ac32f1ab8aebf054c4c423",
+          "translationUTF8Bytes" : 94
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:19",
+          "sourceSHA256" : "47b5025cecab2bb4ac31107bacc728bd15c3565bd7e8ff1511601fc06d94e388",
+          "sourceUTF8Bytes" : 143,
+          "translationSHA256" : "a15871ab87e99db29a2aa0383d344dd33d0d9a9c278ff08fb7e1765561f2efce",
+          "translationUTF8Bytes" : 127
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:20",
+          "sourceSHA256" : "6e97e20c16a8df9264e82d82d27fb26f52c27c0ce3e55a9fc2812ef8ac8eb235",
+          "sourceUTF8Bytes" : 170,
+          "translationSHA256" : "96d6cc547ec2b7e26605f76a60acaf8e65775d9f2f112e8d9acc32a9f7be93cd",
+          "translationUTF8Bytes" : 100
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:21",
+          "sourceSHA256" : "a34b6ea00892e300f435f865ee008d1f82a47ac6e0e02850eb9218795424de48",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "fd32ab1b1faa3cf4d3a259c5060aa8f77a9e88985351491f9e4b64b640d8d692",
+          "translationUTF8Bytes" : 87
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:22",
+          "sourceSHA256" : "567bec7cf6ea7d19148e7ff5d596c43a8a6f1a13ac18ba97480b8266738514c3",
+          "sourceUTF8Bytes" : 135,
+          "translationSHA256" : "cab4884214b525737c05f3aee731d2e3b02ef51ecd7ae057120a936ce89da64b",
+          "translationUTF8Bytes" : 69
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:23",
+          "sourceSHA256" : "c74f9bfab4bad1a5955e12c2feb0c8d759fb5acc33194099d01d5926ae2ea51c",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "eddac2324d43e24e961adaddfb82a311f6bcad93ca8987a9d18480ad5dbfeb31",
+          "translationUTF8Bytes" : 77
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:24",
+          "sourceSHA256" : "c92ed7a5365c6ead18c4e33600046ca6867c042f2401b60a644c5043477f8c3a",
+          "sourceUTF8Bytes" : 124,
+          "translationSHA256" : "6f7d18fc0c7f55442c92086651a64552e1331aaf90924495aba6250e3459ff44",
+          "translationUTF8Bytes" : 90
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:25",
+          "sourceSHA256" : "385e0802186aa4a7bd3a862149a15b338fc1994eef454d44306ecdbe7ff1e2f1",
+          "sourceUTF8Bytes" : 145,
+          "translationSHA256" : "7198900f19f4eeef0735be164ad777d1210c4bc91d23c669f019f11909b5b07c",
+          "translationUTF8Bytes" : 105
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:26",
+          "sourceSHA256" : "ed6843ca8540d0ed31bd2bf8cd87190ba02c4025f4f033cc887c36b1f3697be0",
+          "sourceUTF8Bytes" : 223,
+          "translationSHA256" : "4eb9187b16e79620d7f217bbeafceb99523e17e594ef7fc18b9f519dd3675db5",
+          "translationUTF8Bytes" : 148
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:27",
+          "sourceSHA256" : "041bc0fb690d12eeec63a7a490b9d54e43ca7523cc28b06522179b07fbcd8717",
+          "sourceUTF8Bytes" : 212,
+          "translationSHA256" : "cb67f911cfc27c342b1d096350c2e0c32498715aca447fe86e5de5251eaf59c1",
+          "translationUTF8Bytes" : 170
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:28",
+          "sourceSHA256" : "ca13262dfbdeade08a8b611299ef76e62c44f6249c0dec37afa8b1a2ec358545",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "41737775f68f66556d9da0e5285fb09022a1750ebcc27b939809e7d3c3b710be",
+          "translationUTF8Bytes" : 78
+        }
+      ],
+      "sourceReceipt" : {
+        "bytes" : 29652,
+        "language" : "en",
+        "name" : "psalms35-jps1917",
+        "observedAt" : "2026-11-26T23:49:11.360944+00:00",
+        "sha256" : "fdf3636978eb8c561d183939e44ae6ed9d8bb6c5962460f1d8c9aed2f6b2e8e5",
+        "status" : 200,
+        "url" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=english%7CThe+Holy+Scriptures%3A+A+New+Translation+%28JPS+1917%29&version=source&fill_in_missing_segments=0&return_format=text_only",
+        "versions" : [
+          {
+            "isSource" : false,
+            "language" : "en",
+            "license" : "Public Domain",
+            "segments" : 28,
+            "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+          },
+          {
+            "isSource" : true,
+            "language" : "he",
+            "license" : "CC-BY-SA",
+            "segments" : 28,
+            "versionTitle" : "Miqra according to the Masorah"
+          }
+        ],
+        "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+      },
+      "stableID" : "sefaria|Psalms|ref:Psalms 35:17|The Holy Scriptures: A New Translation (JPS 1917)|en",
+      "versionTitle" : "The Holy Scriptures: A New Translation (JPS 1917)"
+    },
+    {
+      "language" : "en",
+      "reference" : "Psalms 35",
+      "segments" : [
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:1",
+          "sourceSHA256" : "2248df1e12672108d492681c8b6b921a8f5b05d817563bb967894f5bc9bb6537",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "24ba21158db536178b7466bb6030b214d4706bce3e9ddff8e43f269b3ae0ce29",
+          "translationUTF8Bytes" : 88
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:2",
+          "sourceSHA256" : "16f5f870103d348ad64b90ccd15c67b6f6289e7f11df41527a31dcab38670946",
+          "sourceUTF8Bytes" : 98,
+          "translationSHA256" : "637f0cf65b0e526f82101ef4c05eceba9508e441485c0cf23bcb6fe5bb3fd27d",
+          "translationUTF8Bytes" : 45
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:3",
+          "sourceSHA256" : "e42133792ce0ae755b76a155d6fec3fed691e5ee88006b7c69bf6df6ea45e6d3",
+          "sourceUTF8Bytes" : 166,
+          "translationSHA256" : "f007be6272f935e9fe978dbb0b8754e01b75c790ee755f3cd2cc8f6e8dee9209",
+          "translationUTF8Bytes" : 92
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:4",
+          "sourceSHA256" : "c078817bea043243a6d39b1dab805dc05c5ebb85ea184003e21e9bbe2654027f",
+          "sourceUTF8Bytes" : 190,
+          "translationSHA256" : "6de9cfc94347eeb627ee269401ef9cf15ea4ac4a2ca5e72449d549e9808613c3",
+          "translationUTF8Bytes" : 119
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:5",
+          "sourceSHA256" : "699e9b25b8febba37ffefc6d2bf076561eb5f7b4dfceea90c7318ea5a8a07a84",
+          "sourceUTF8Bytes" : 121,
+          "translationSHA256" : "131b981975b7c5c55165d511e8da7f7ed186327d8b9c441134f3457cb770ee25",
+          "translationUTF8Bytes" : 82
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:6",
+          "sourceSHA256" : "0965c6ed6cb1b968c252d11569d928e47f7704ea4d4f5a1c7b3625978125ac37",
+          "sourceUTF8Bytes" : 141,
+          "translationSHA256" : "9e90c687f523ca600abf781e37d9fa5d8e524408a5ecbd3454d8c5b1d060e05d",
+          "translationUTF8Bytes" : 71
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:7",
+          "sourceSHA256" : "abfea1f568861e12a0a6c07da4a474e9af2664d6c97febc09bc8be0d255b793d",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "ac4e1a91e5f1a4985b6cd7f651f14295579e17b1d95e0d79385fcac8d80a69b8",
+          "translationUTF8Bytes" : 120
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:8",
+          "sourceSHA256" : "69d109a1422bcabf1ed8f6e01359b8c73664a5caaf5d7a6995b6760c6e442a93",
+          "sourceUTF8Bytes" : 197,
+          "translationSHA256" : "4cfb07f790947a692cdb51a3868a6afa00ea4800a71a98953b2c92e17c8a35fb",
+          "translationUTF8Bytes" : 131
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:9",
+          "sourceSHA256" : "fd5bfab2a1801ef23a8dab6ef48252077b9c99bd70c4f36d2fcdce7c60fef7d6",
+          "sourceUTF8Bytes" : 114,
+          "translationSHA256" : "6dc93ee62c834345442002fdaeec4c354b5831a63da2ed04168e9d2784f8d802",
+          "translationUTF8Bytes" : 93
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:10",
+          "sourceSHA256" : "24e32b97251ca0db46ed377492efe8748c40cc8d56ad73f6a6b0fe7d94c00960",
+          "sourceUTF8Bytes" : 247,
+          "translationSHA256" : "f8d8f5efef9a4c87bba7bda7b6b692034f62f1e287e0fdbf767104eb038604aa",
+          "translationUTF8Bytes" : 176
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:11",
+          "sourceSHA256" : "b56e276edb2d9c2938d7f1818bee109e2c363437111a85d5972764b5f6f33d3e",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "1cfadc785a61fde2b48c363223fa6fe32dfc82659304155b4f9cd6a89b727841",
+          "translationUTF8Bytes" : 97
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:12",
+          "sourceSHA256" : "16eb1d42786f316c674ccdfd314a7ddf80aa952d624d67ed8bcb99a57b9fc9c8",
+          "sourceUTF8Bytes" : 115,
+          "translationSHA256" : "fb3bcb22d9d0f0923a74e6aa285465bd6449a81d1f756df3360241e504ddfd7a",
+          "translationUTF8Bytes" : 57
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:13",
+          "sourceSHA256" : "1867726d5cf331db0952fa150152c781bd1d711bab311565cec0a46ecd532bf4",
+          "sourceUTF8Bytes" : 206,
+          "translationSHA256" : "b352ae458ac74aba00042eb5170e1f4931b6a78227a32e1ff7dfbdfd156a0973",
+          "translationUTF8Bytes" : 187
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:14",
+          "sourceSHA256" : "e029a6d25436429654400625836f0533b98a8406137a3a74d5bda2b2083ec456",
+          "sourceUTF8Bytes" : 137,
+          "translationSHA256" : "cabd6cca820268eee2de7d5f01a8e39a9b753c21344110f67a0d85b15559027c",
+          "translationUTF8Bytes" : 128
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:15",
+          "sourceSHA256" : "3922b8f230fdfadc9c1d464f6fc95bf866c71a3740c5970703c4a8b761a68206",
+          "sourceUTF8Bytes" : 203,
+          "translationSHA256" : "1f92f6dec1aae73b36196f28410f7aa294518c3af16ce1df61dcb17a82842209",
+          "translationUTF8Bytes" : 219
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:16",
+          "sourceSHA256" : "4808f0dd3bd8173833e75666ffda58757007483b7ab070cfb5914fe1e2685543",
+          "sourceUTF8Bytes" : 105,
+          "translationSHA256" : "6de30ab51afbe6a1b78bb0edc7afcf4cbaa1f54b6dcc7681271c3fdb8fede856",
+          "translationUTF8Bytes" : 123
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:17",
+          "sourceSHA256" : "57c1eef51d555eb3674a518cf2e3a147ffaa3df2790c670ee9303cd19658d555",
+          "sourceUTF8Bytes" : 173,
+          "translationSHA256" : "e0aedd0024a55fd132c60358eb2caec550ea3a2e9f1b10ff0a94709e282963d1",
+          "translationUTF8Bytes" : 122
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:18",
+          "sourceSHA256" : "8737f947f1df5d9c43aa94d7f2e0bf058a2be5b90a4088b6fbfe9bf2f790e77a",
+          "sourceUTF8Bytes" : 101,
+          "translationSHA256" : "0925e769ed740e9e5cbac97be6436c47fb76f9a7eebaa488e892eb25c38b0a4c",
+          "translationUTF8Bytes" : 93
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:19",
+          "sourceSHA256" : "47b5025cecab2bb4ac31107bacc728bd15c3565bd7e8ff1511601fc06d94e388",
+          "sourceUTF8Bytes" : 143,
+          "translationSHA256" : "9eb79cf3ad6cf9709fb324122c720d5ccf1acffb13d9653edb3e00accc11e0f9",
+          "translationUTF8Bytes" : 151
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:20",
+          "sourceSHA256" : "6e97e20c16a8df9264e82d82d27fb26f52c27c0ce3e55a9fc2812ef8ac8eb235",
+          "sourceUTF8Bytes" : 170,
+          "translationSHA256" : "75b135b370883c0b30b0b0aeabaf863da5754734ac061b2bbb0157d9f6f7eb6d",
+          "translationUTF8Bytes" : 87
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:21",
+          "sourceSHA256" : "a34b6ea00892e300f435f865ee008d1f82a47ac6e0e02850eb9218795424de48",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "3e5a33b6102d1300d521787955c7ed9ddc977455c76f114ef8e97e0e54100cd0",
+          "translationUTF8Bytes" : 132
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:22",
+          "sourceSHA256" : "567bec7cf6ea7d19148e7ff5d596c43a8a6f1a13ac18ba97480b8266738514c3",
+          "sourceUTF8Bytes" : 135,
+          "translationSHA256" : "95d6e5f4aa7f93ab0c2ea147775b84aee41cbe92d32e219b672ddf333a7ed1f9",
+          "translationUTF8Bytes" : 79
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:23",
+          "sourceSHA256" : "c74f9bfab4bad1a5955e12c2feb0c8d759fb5acc33194099d01d5926ae2ea51c",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "aa46985b794057abbedddebe6ae119137bbca1f963bdeae3b162767041e22943",
+          "translationUTF8Bytes" : 98
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:24",
+          "sourceSHA256" : "c92ed7a5365c6ead18c4e33600046ca6867c042f2401b60a644c5043477f8c3a",
+          "sourceUTF8Bytes" : 124,
+          "translationSHA256" : "a90759d3fe904545542228ddcfddfdfcbf58405033266c54fafebcc1b86f11c8",
+          "translationUTF8Bytes" : 91
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:25",
+          "sourceSHA256" : "385e0802186aa4a7bd3a862149a15b338fc1994eef454d44306ecdbe7ff1e2f1",
+          "sourceUTF8Bytes" : 145,
+          "translationSHA256" : "95383a3a9535592c1cfb79ea8297802ef56ad89e632c800445843d0cbe94720a",
+          "translationUTF8Bytes" : 100
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:26",
+          "sourceSHA256" : "ed6843ca8540d0ed31bd2bf8cd87190ba02c4025f4f033cc887c36b1f3697be0",
+          "sourceUTF8Bytes" : 223,
+          "translationSHA256" : "affe5f0b1bf5aff607b1f698bbbd57737f283c9ab2ed834c694f3a3b96c595d1",
+          "translationUTF8Bytes" : 145
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:27",
+          "sourceSHA256" : "041bc0fb690d12eeec63a7a490b9d54e43ca7523cc28b06522179b07fbcd8717",
+          "sourceUTF8Bytes" : 212,
+          "translationSHA256" : "04c5d3dac8a0594e3054e4a2183fe68547dd9ff9c17a4c81d17058c96fd80053",
+          "translationUTF8Bytes" : 164
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:28",
+          "sourceSHA256" : "ca13262dfbdeade08a8b611299ef76e62c44f6249c0dec37afa8b1a2ec358545",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "5152006d93d8e3515c610d84cb479af9965a6d26264282f1dcdd5bf617092e72",
+          "translationUTF8Bytes" : 84
+        }
+      ],
+      "sourceReceipt" : {
+        "bytes" : 29686,
+        "language" : "en",
+        "name" : "psalms35-rashi",
+        "observedAt" : "2026-11-26T23:49:11.364297+00:00",
+        "sha256" : "786d5916a0f44be048b2660dd6a079709916d8af0688e7a96f23fd27a8c04ea0",
+        "status" : 200,
+        "url" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=english%7CThe+Rashi+Ketuvim+by+Rabbi+Shraga+Silverstein&version=source&fill_in_missing_segments=0&return_format=text_only",
+        "versions" : [
+          {
+            "isSource" : false,
+            "language" : "en",
+            "license" : "CC-BY",
+            "segments" : 28,
+            "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+          },
+          {
+            "isSource" : true,
+            "language" : "he",
+            "license" : "CC-BY-SA",
+            "segments" : 28,
+            "versionTitle" : "Miqra according to the Masorah"
+          }
+        ],
+        "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+      },
+      "stableID" : "sefaria|Psalms|ref:Psalms 35:17|The Rashi Ketuvim by Rabbi Shraga Silverstein|en",
+      "versionTitle" : "The Rashi Ketuvim by Rabbi Shraga Silverstein"
+    },
+    {
+      "language" : "en",
+      "reference" : "Psalms 35",
+      "segments" : [
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:1",
+          "sourceSHA256" : "2248df1e12672108d492681c8b6b921a8f5b05d817563bb967894f5bc9bb6537",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "840b367c1d4bb34b13b0c5199d4bb35b64dcbe6af2adcc241161e0a6e51f9dd6",
+          "translationUTF8Bytes" : 92
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:2",
+          "sourceSHA256" : "16f5f870103d348ad64b90ccd15c67b6f6289e7f11df41527a31dcab38670946",
+          "sourceUTF8Bytes" : 98,
+          "translationSHA256" : "604784093cf7afb08b7810de459f8a0fbf87342e4ac2c8ae497f16800cc14b25",
+          "translationUTF8Bytes" : 57
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:3",
+          "sourceSHA256" : "e42133792ce0ae755b76a155d6fec3fed691e5ee88006b7c69bf6df6ea45e6d3",
+          "sourceUTF8Bytes" : 166,
+          "translationSHA256" : "f6ecc648a7e8bd1c1cf561bd570a05bcea8fd10a87fdca61503661cbe91d432a",
+          "translationUTF8Bytes" : 107
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:4",
+          "sourceSHA256" : "c078817bea043243a6d39b1dab805dc05c5ebb85ea184003e21e9bbe2654027f",
+          "sourceUTF8Bytes" : 190,
+          "translationSHA256" : "147e67c344c1e3293fdbc799e4412cd513348f2e934e0a1a3ccbbd3971791b3c",
+          "translationUTF8Bytes" : 132
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:5",
+          "sourceSHA256" : "699e9b25b8febba37ffefc6d2bf076561eb5f7b4dfceea90c7318ea5a8a07a84",
+          "sourceUTF8Bytes" : 121,
+          "translationSHA256" : "728b04c66a8bb5366bc37e70261e67ae6d954b6daaa8cfc529af1c0e9bb55029",
+          "translationUTF8Bytes" : 75
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:6",
+          "sourceSHA256" : "0965c6ed6cb1b968c252d11569d928e47f7704ea4d4f5a1c7b3625978125ac37",
+          "sourceUTF8Bytes" : 141,
+          "translationSHA256" : "46d2628980c90d2893d2737fa150c68bc4c0fa5ab12747abd54a6f49ad73e520",
+          "translationUTF8Bytes" : 72
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:7",
+          "sourceSHA256" : "abfea1f568861e12a0a6c07da4a474e9af2664d6c97febc09bc8be0d255b793d",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "dc07b4f42185868332d06e455a4afc14fc32097c72cdfa8a557e908d715251ed",
+          "translationUTF8Bytes" : 96
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:8",
+          "sourceSHA256" : "69d109a1422bcabf1ed8f6e01359b8c73664a5caaf5d7a6995b6760c6e442a93",
+          "sourceUTF8Bytes" : 197,
+          "translationSHA256" : "5ec9e5cfdd6afadb5fcf4d93c89b9c944ad1d945d385d0c0e8be8ff43082222c",
+          "translationUTF8Bytes" : 108
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:9",
+          "sourceSHA256" : "fd5bfab2a1801ef23a8dab6ef48252077b9c99bd70c4f36d2fcdce7c60fef7d6",
+          "sourceUTF8Bytes" : 114,
+          "translationSHA256" : "2daae230105edfd153aa5abc345ff64896eeb60cb9a4749e4291048b93ab68ad",
+          "translationUTF8Bytes" : 75
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:10",
+          "sourceSHA256" : "24e32b97251ca0db46ed377492efe8748c40cc8d56ad73f6a6b0fe7d94c00960",
+          "sourceUTF8Bytes" : 247,
+          "translationSHA256" : "68e63d4c543541d29ab31ef8ecc4a3df57f4553cde5c7fb85bc88c92d1923ac1",
+          "translationUTF8Bytes" : 157
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:11",
+          "sourceSHA256" : "b56e276edb2d9c2938d7f1818bee109e2c363437111a85d5972764b5f6f33d3e",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "b44e8adcd004ee13ba12b7cc87815b8fcdd7c2d21c07a2c2562e524d0d0a54cf",
+          "translationUTF8Bytes" : 60
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:12",
+          "sourceSHA256" : "16eb1d42786f316c674ccdfd314a7ddf80aa952d624d67ed8bcb99a57b9fc9c8",
+          "sourceUTF8Bytes" : 115,
+          "translationSHA256" : "d6a1c9eccc5019c463d9c5f38348c5689e25795c81f6bc5d11809e30393e7807",
+          "translationUTF8Bytes" : 54
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:13",
+          "sourceSHA256" : "1867726d5cf331db0952fa150152c781bd1d711bab311565cec0a46ecd532bf4",
+          "sourceUTF8Bytes" : 206,
+          "translationSHA256" : "1146b5cb1cc9ef7c4f77d147392e20ef4d8d3f01888f27fde1359afc4394e001",
+          "translationUTF8Bytes" : 148
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:14",
+          "sourceSHA256" : "e029a6d25436429654400625836f0533b98a8406137a3a74d5bda2b2083ec456",
+          "sourceUTF8Bytes" : 137,
+          "translationSHA256" : "4a3f3e285716bac0d65caaa795f96e1494f69fa25ddd38c91f32e4ec66e14cae",
+          "translationUTF8Bytes" : 97
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:15",
+          "sourceSHA256" : "3922b8f230fdfadc9c1d464f6fc95bf866c71a3740c5970703c4a8b761a68206",
+          "sourceUTF8Bytes" : 203,
+          "translationSHA256" : "b8734abe8ed0a408253b652e5e8d5681bedae68ef014d7225dd0423c2d151d9a",
+          "translationUTF8Bytes" : 130
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:16",
+          "sourceSHA256" : "4808f0dd3bd8173833e75666ffda58757007483b7ab070cfb5914fe1e2685543",
+          "sourceUTF8Bytes" : 105,
+          "translationSHA256" : "447db7fe9db70d290057a5d33c659cf4df7e7b0c2f30dce50bd85586ad72041b",
+          "translationUTF8Bytes" : 70
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:17",
+          "sourceSHA256" : "57c1eef51d555eb3674a518cf2e3a147ffaa3df2790c670ee9303cd19658d555",
+          "sourceUTF8Bytes" : 173,
+          "translationSHA256" : "64363096f6b7fe271d4b078547ebc47e152678a91693cc6928fe1da0e2c0576e",
+          "translationUTF8Bytes" : 101
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:18",
+          "sourceSHA256" : "8737f947f1df5d9c43aa94d7f2e0bf058a2be5b90a4088b6fbfe9bf2f790e77a",
+          "sourceUTF8Bytes" : 101,
+          "translationSHA256" : "ec04a04e662fffafb3ed98561780437d1d16d7b7b633916cd64b18f1200f79ba",
+          "translationUTF8Bytes" : 94
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:19",
+          "sourceSHA256" : "47b5025cecab2bb4ac31107bacc728bd15c3565bd7e8ff1511601fc06d94e388",
+          "sourceUTF8Bytes" : 143,
+          "translationSHA256" : "2915996b2bc735cde6637182d4546e5856f1223f3e772e5eafde567dab87ffe8",
+          "translationUTF8Bytes" : 111
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:20",
+          "sourceSHA256" : "6e97e20c16a8df9264e82d82d27fb26f52c27c0ce3e55a9fc2812ef8ac8eb235",
+          "sourceUTF8Bytes" : 170,
+          "translationSHA256" : "c66ae50f47a69541a3960e47621635e8b743b5ca165598bf5f104a531f5fd308",
+          "translationUTF8Bytes" : 99
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:21",
+          "sourceSHA256" : "a34b6ea00892e300f435f865ee008d1f82a47ac6e0e02850eb9218795424de48",
+          "sourceUTF8Bytes" : 148,
+          "translationSHA256" : "610c855609ecc9c287e4b351ec636ccaa027ee40e1ee27fe825ecba5dda8a99a",
+          "translationUTF8Bytes" : 83
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:22",
+          "sourceSHA256" : "567bec7cf6ea7d19148e7ff5d596c43a8a6f1a13ac18ba97480b8266738514c3",
+          "sourceUTF8Bytes" : 135,
+          "translationSHA256" : "fc55c7ae00ecc6b29d8ca0d71b8431fbebb2069eb6b3036e35c8ac1e2ee6127a",
+          "translationUTF8Bytes" : 68
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:23",
+          "sourceSHA256" : "c74f9bfab4bad1a5955e12c2feb0c8d759fb5acc33194099d01d5926ae2ea51c",
+          "sourceUTF8Bytes" : 127,
+          "translationSHA256" : "6ae95c0c861bad1e0e23431c2d882f86ac512bf926865403ee36829ce3639051",
+          "translationUTF8Bytes" : 73
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:24",
+          "sourceSHA256" : "c92ed7a5365c6ead18c4e33600046ca6867c042f2401b60a644c5043477f8c3a",
+          "sourceUTF8Bytes" : 124,
+          "translationSHA256" : "8c01df7b38dacd8dad1d19ee22db89791372b90824faa24b039479ec1ba68d3f",
+          "translationUTF8Bytes" : 90
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:25",
+          "sourceSHA256" : "385e0802186aa4a7bd3a862149a15b338fc1994eef454d44306ecdbe7ff1e2f1",
+          "sourceUTF8Bytes" : 145,
+          "translationSHA256" : "d0866932516a3ec700d0b1cea961fa661b1c04b893f661b63410d56c3b8752da",
+          "translationUTF8Bytes" : 104
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:26",
+          "sourceSHA256" : "ed6843ca8540d0ed31bd2bf8cd87190ba02c4025f4f033cc887c36b1f3697be0",
+          "sourceUTF8Bytes" : 223,
+          "translationSHA256" : "6b977f6581c6e94d56f6f73cd235d8e1f9a3e6cf214bc4661b92df62ae6a77f3",
+          "translationUTF8Bytes" : 171
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:27",
+          "sourceSHA256" : "041bc0fb690d12eeec63a7a490b9d54e43ca7523cc28b06522179b07fbcd8717",
+          "sourceUTF8Bytes" : 212,
+          "translationSHA256" : "9a457376449397fe33e102dc6eb542b14f382effbe6828608ab07e7dc597594a",
+          "translationUTF8Bytes" : 178
+        },
+        {
+          "locator" : "sefaria|Psalms|ref:Psalms 35:28",
+          "sourceSHA256" : "ca13262dfbdeade08a8b611299ef76e62c44f6249c0dec37afa8b1a2ec358545",
+          "sourceUTF8Bytes" : 122,
+          "translationSHA256" : "4b7e30b90f360ab4d00a1c341d9271910a1f2a7625c441fcfe6ffc64252f1b10",
+          "translationUTF8Bytes" : 79
+        }
+      ],
+      "sourceReceipt" : {
+        "bytes" : 29143,
+        "language" : "en",
+        "name" : "psalms35-koren",
+        "observedAt" : "2026-11-26T23:49:11.363622+00:00",
+        "sha256" : "547b7394d5437541632f0ed6012899e3d0e1f32bddc7b05fae6cbf35cb04eb53",
+        "status" : 200,
+        "url" : "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=english%7CThe+Koren+Jerusalem+Bible&version=source&fill_in_missing_segments=0&return_format=text_only",
+        "versions" : [
+          {
+            "isSource" : false,
+            "language" : "en",
+            "license" : "CC-BY-NC",
+            "segments" : 28,
+            "versionTitle" : "The Koren Jerusalem Bible"
+          },
+          {
+            "isSource" : true,
+            "language" : "he",
+            "license" : "CC-BY-SA",
+            "segments" : 28,
+            "versionTitle" : "Miqra according to the Masorah"
+          }
+        ],
+        "versionTitle" : "The Koren Jerusalem Bible"
+      },
+      "stableID" : "sefaria|Psalms|ref:Psalms 35:17|The Koren Jerusalem Bible|en",
+      "versionTitle" : "The Koren Jerusalem Bible"
+    }
+  ],
+  "sortOrder" : "canonical",
+  "source" : "https://www.sefaria.org/api/search-wrapper",
+  "status" : "ACTUAL_SOURCE_ORACLE_ONLY_NOT_UI",
+  "targetRef" : "Psalms 35:17",
+  "uiExecuted" : false
+}
