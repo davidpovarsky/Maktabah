@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "NA6HPWARQ2.com.davidpovarsky.chavrusatext"
+        ],
+        "components": [
+          {
+            "/": "/chavrusatext/action/v2/*",
+            "comment": "Versioned public ChavrusaText navigation"
+          }
+        ]
+      }
+    ]
+  }
+}

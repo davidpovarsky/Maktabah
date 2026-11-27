@@ -1,0 +1,15 @@
+{
+  "ok": false,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "python3",
+    "/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_d978f4ae8b4d4b5eb23e437f2605bfd3/script.py"
+  ],
+  "output": "Traceback (most recent call last):\n  File \"/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_d978f4ae8b4d4b5eb23e437f2605bfd3/script.py\", line 11, in <module>\n    raw=path.read_bytes();p=subprocess.run(['/usr/bin/security','cms','-D','-i',str(path)],capture_output=True,timeout=30);assert p.returncode==0\nAssertionError",
+  "duration": 0.19,
+  "returncode": 1,
+  "hub_request_id": "hreq_f93776a885ee4137"
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Internal Error ()\n【turn717004491view0】 [wordlim: 200] Source: open({\"ref_id\":\"https://davidpovarsky.github.io/.well-known/apple-app-site-association\",\"lineno\":null}); \nURL https://davidpovarsky.github.io/.well-known/apple-app-site-association is not accessible via this tool.\n--------------------------------------------------------------------------------\nInternal Error ()\n【turn717004491view1】 [wordlim: 200] Source: open({\"ref_id\":\"https://app-site-association.cdn-apple.com/a/v1/davidpovarsky.github.io\",\"lineno\":null}); \nURL https://app-site-association.cdn-apple.com/a/v1/davidpovarsky.github.io is not accessible via this tool."
+    }
+  ],
+  "isError": false
+}

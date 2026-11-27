@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "observedUTC": "2026-11-27T10:06:18.837199+00:00",
+  "scope": "Existing main iOS app signing identity and read-only delivery preflight; no archive/upload/native proof",
+  "sourceHead": "2acdeb502e58ac56d8eb6e171a9d6d53a7bd8745",
+  "sourceTree": "858fed1752ee58b8402cdb4b1a6a2d8b90c1b41a",
+  "teamID": "NA6HPWARQ2",
+  "appID": "6809559414",
+  "bundleID": "com.davidpovarsky.chavrusatext",
+  "distributionIdentitySHA1": "644940FCF25D1730DBD1BF7596AEBA7229E2B8FD",
+  "profile": {
+    "id": "2498S5G3V2",
+    "name": "ChavrusaText App Store Associated Domains 20261126",
+    "uuid": "4e665d33-3317-4924-85d5-7e786f6bbd07",
+    "profileState": "ACTIVE",
+    "profileType": "IOS_APP_STORE",
+    "createdDate": "2026-11-26T00:27:29.000+00:00",
+    "expirationDate": "2027-09-07T07:25:00.000+00:00",
+    "bytes": 14810,
+    "sha256": "ae8b531d912908973ba8212adf8e0dfad4c5c88c320fe4c9ae59804ffe2b2b7b",
+    "installedExact": true,
+    "appGroups": [
+      "group.com.davidpovarsky.itorah",
+      "group.com.davidpovarsky.chavrusatext",
+      "group.com.itorah.shared"
+    ],
+    "associatedDomains": "*",
+    "distributionCertificateSHA1": "644940FCF25D1730DBD1BF7596AEBA7229E2B8FD",
+    "certificates": [
+      {
+        "id": "B8HSX5CPJ4",
+        "serialNumber": "45A1A073D2122E727826B624D069DD06",
+        "certificateType": "DISTRIBUTION",
+        "expirationDate": "2027-09-07T07:25:00.000+00:00"
+      }
+    ],
+    "bundleIds": [
+      {
+        "id": "7F445975JM",
+        "identifier": "com.davidpovarsky.chavrusatext",
+        "name": "ChavrusaText"
+      }
+    ]
+  },
+  "entitlementsSource": {
+    "path": "Source/ChavrusaText-iOS.entitlements",
+    "sha256": "44f805d3c0cd12b86a9045eba34e9bb641bb0806364530e1e17d52f2d5efea70",
+    "values": {
+      "aps-environment": "development",
+      "com.apple.developer.associated-domains": [
+        "applinks:davidpovarsky.github.io"
+      ],
+      "com.apple.developer.icloud-container-identifiers": [
+        "iCloud.com.davidpovarsky.chavrusatext"
+      ],
+      "com.apple.developer.icloud-services": [
+        "CloudDocuments",
+        "CloudKit"
+      ],
+      "com.apple.developer.ubiquity-container-identifiers": [
+        "iCloud.com.davidpovarsky.chavrusatext"
+      ],
+      "com.apple.developer.ubiquity-kvstore-identifier": "$(TeamIdentifierPrefix)$(CFBundleIdentifier)",
+      "com.apple.security.application-groups": [
+        "group.com.davidpovarsky.chavrusatext",
+        "group.com.davidpovarsky.itorah",
+        "group.com.itorah.shared"
+      ]
+    }
+  },
+  "exportOptions": {
+    "path": "/Users/m1/builds/_preflight/chavrusatext-final-internal-export-20261126.OR7qIPNh/Otzaria-InternalTestFlight-ExportOptions.plist",
+    "sha256": "8153f7871fe8c1d87dec6a7948bf4afb5928a8c4c524a5d25ca31892bc26b390",
+    "options": {
+      "destination": "export",
+      "manageAppVersionAndBuildNumber": false,
+      "method": "app-store-connect",
+      "provisioningProfiles": {
+        "com.davidpovarsky.chavrusatext": "ChavrusaText App Store Associated Domains 20261126"
+      },
+      "signingCertificate": "644940FCF25D1730DBD1BF7596AEBA7229E2B8FD",
+      "signingStyle": "manual",
+      "teamID": "NA6HPWARQ2",
+      "testFlightInternalTestingOnly": true
+    }
+  },
+  "betaGroup": {
+    "id": "04958ecd-edac-4820-b277-8cc626e1ff64",
+    "name": "חברותא",
+    "isInternalGroup": true
+  },
+  "latestObservedExistingBuild": {
+    "id": "78f4cf1f-d84a-4a57-aa1d-de472790916c",
+    "version": "1.0.0",
+    "build": "11201",
+    "processingState": "VALID",
+    "uploadedDate": "2026-11-09T18:40:04-08:00",
+    "expired": false,
+    "expirationDate": "2027-02-07T18:40:04-08:00"
+  },
+  "originalSharedMapSHA256": "e3bb406527d152e18b5870fa7f412561eb0f5e716d537ed6af9cce4328a7e3f9",
+  "originalSharedMapChanged": false,
+  "newArchive": false,
+  "newExport": false,
+  "newValidation": false,
+  "newUpload": false,
+  "nativeUniversalLinkExecution": false,
+  "physicalTests": 0
+}

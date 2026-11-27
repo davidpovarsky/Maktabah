@@ -1,0 +1,127 @@
+{
+  "utc": "2026-11-27T10:06:18.837199+00:00",
+  "context": "existing key in pinned m1 SSH; read-only ASC requests; no JWT or key material retained",
+  "profile": {
+    "id": "2498S5G3V2",
+    "name": "ChavrusaText App Store Associated Domains 20261126",
+    "uuid": "4e665d33-3317-4924-85d5-7e786f6bbd07",
+    "profileState": "ACTIVE",
+    "profileType": "IOS_APP_STORE",
+    "createdDate": "2026-11-26T00:27:29.000+00:00",
+    "expirationDate": "2027-09-07T07:25:00.000+00:00",
+    "bytes": 14810,
+    "sha256": "ae8b531d912908973ba8212adf8e0dfad4c5c88c320fe4c9ae59804ffe2b2b7b",
+    "installedExact": true,
+    "appGroups": [
+      "group.com.davidpovarsky.itorah",
+      "group.com.davidpovarsky.chavrusatext",
+      "group.com.itorah.shared"
+    ],
+    "associatedDomains": "*",
+    "distributionCertificateSHA1": "644940FCF25D1730DBD1BF7596AEBA7229E2B8FD",
+    "certificates": [
+      {
+        "id": "B8HSX5CPJ4",
+        "serialNumber": "45A1A073D2122E727826B624D069DD06",
+        "certificateType": "DISTRIBUTION",
+        "expirationDate": "2027-09-07T07:25:00.000+00:00"
+      }
+    ],
+    "bundleIds": [
+      {
+        "id": "7F445975JM",
+        "identifier": "com.davidpovarsky.chavrusatext",
+        "name": "ChavrusaText"
+      }
+    ]
+  },
+  "app": {
+    "id": "6809559414",
+    "name": "ChavrusaText",
+    "bundleId": "com.davidpovarsky.chavrusatext",
+    "sku": "chavrusatext-ios"
+  },
+  "betaGroups": [
+    {
+      "id": "04958ecd-edac-4820-b277-8cc626e1ff64",
+      "name": "חברותא",
+      "isInternalGroup": true
+    }
+  ],
+  "observedExistingBuilds": [
+    {
+      "id": "78f4cf1f-d84a-4a57-aa1d-de472790916c",
+      "version": "1.0.0",
+      "build": "11201",
+      "processingState": "VALID",
+      "uploadedDate": "2026-11-09T18:40:04-08:00",
+      "expired": false,
+      "expirationDate": "2027-02-07T18:40:04-08:00"
+    },
+    {
+      "id": "3ad95949-abf0-46d4-afa5-62609dd80dea",
+      "version": "1.0.0",
+      "build": "11001",
+      "processingState": "VALID",
+      "uploadedDate": "2026-11-09T15:34:25-08:00",
+      "expired": false,
+      "expirationDate": "2027-02-07T15:34:25-08:00"
+    },
+    {
+      "id": "3e2f77e7-b9e5-452b-b268-84a0908b1e2a",
+      "version": "1.0.0",
+      "build": "10901",
+      "processingState": "VALID",
+      "uploadedDate": "2026-11-09T12:33:24-08:00",
+      "expired": false,
+      "expirationDate": "2027-02-07T12:33:24-08:00"
+    },
+    {
+      "id": "00ce1524-94dd-4fe2-bcaa-750ae1d3a5fe",
+      "version": "1.0.0",
+      "build": "10701",
+      "processingState": "VALID",
+      "uploadedDate": "2026-11-09T07:09:49-08:00",
+      "expired": false,
+      "expirationDate": "2027-02-07T07:09:49-08:00"
+    },
+    {
+      "id": "97bff7e2-0fe6-457a-9db0-bf32794e88c2",
+      "version": "1.0.0",
+      "build": "10601",
+      "processingState": "VALID",
+      "uploadedDate": "2026-11-09T00:29:49-08:00",
+      "expired": false,
+      "expirationDate": "2027-02-07T00:29:49-08:00"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/v1/profiles/2498S5G3V2?include=bundleId,certificates",
+      "http": 200,
+      "responseBytes": 26003,
+      "responseSHA256": "60bd5234bca5db611d914dc5fa9c0917bfc65ab7a7f6a7f52345ed2a3cce4a59"
+    },
+    {
+      "path": "/v1/apps/6809559414",
+      "http": 200,
+      "responseBytes": 13101,
+      "responseSHA256": "cc114a1653487003057e441e988338f7f8c93f80fc7d7cfb041a095386b8933d"
+    },
+    {
+      "path": "/v1/apps/6809559414/betaGroups?limit=200",
+      "http": 200,
+      "responseBytes": 2644,
+      "responseSHA256": "937e2b1636a92ba9fa3611e34cc86bcf51ead9097a59b9a42da02d53eae53930"
+    },
+    {
+      "path": "/v1/builds?filter%5Bapp%5D=6809559414&sort=-uploadedDate&limit=5&include=preReleaseVersion",
+      "http": 200,
+      "responseBytes": 25425,
+      "responseSHA256": "d3b38edcadc5bb773afc321e9d9d8526633cc0b68ef795b430248545fa333bbe"
+    }
+  ],
+  "newArchive": false,
+  "newUpload": false,
+  "physicalTests": 0
+}

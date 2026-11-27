@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "AASA_READBACK.json",
+      "bytes": 2402,
+      "sha256": "b66c7ee35406c3be118cace8e2e446f7a6c01c82ee5dde6bffcf0f4328038110"
+    },
+    {
+      "path": "ASC_READBACK.json",
+      "bytes": 3940,
+      "sha256": "e9833575ab6aaaf218677713007426f6d9a2424fd7b7a395ce1e682e695389d5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3521,
+      "sha256": "53da9755face78f8b2da1f59be897953e96c933a703c8f4845e4a82d7ca7d84e"
+    },
+    {
+      "path": "VERIFIED_RELEASE_SIGNING_MAP.json",
+      "bytes": 3952,
+      "sha256": "a67ad52e639d7021bcbae31f35c319c42030fe9d63495ce16b68f1cf5b65c5ae"
+    },
+    {
+      "path": "apple-cdn-aasa.raw",
+      "bytes": 318,
+      "sha256": "154858002a3a0e4f647651ba518e5e2a6dd9ae86a70588c52dba4e8b7974b81f"
+    },
+    {
+      "path": "origin-aasa.raw",
+      "bytes": 318,
+      "sha256": "154858002a3a0e4f647651ba518e5e2a6dd9ae86a70588c52dba4e8b7974b81f"
+    },
+    {
+      "path": "raw/AASA_SOURCE_READBACK.json",
+      "bytes": 5629,
+      "sha256": "7bee77741f3a52c6fa2c7e8de2c6d0fa7172d0af8410d2d35f4009ef6e246024"
+    },
+    {
+      "path": "raw/AASA_WEB_TOOL_UNAVAILABLE.json",
+      "bytes": 754,
+      "sha256": "24e8e75f6f29e7bdf5fbce182786222889fba9ecfd398f143dbba4d315beee10"
+    },
+    {
+      "path": "raw/DIRECT_DAEMON_ATTEMPT_FAILED.json",
+      "bytes": 671,
+      "sha256": "08483eda709e8be0ccba449bf37d68818f850d7df7c891e9d44d4dd5d5548b46"
+    },
+    {
+      "path": "raw/PINNED_SSH_LOCAL_READBACK.json",
+      "bytes": 5772,
+      "sha256": "47f690b663504d17dfcea2437e304a7864d3053cf9e18609e5d23c2815344345"
+    },
+    {
+      "path": "raw/PROJECT_SOURCE_READBACK.json",
+      "bytes": 6306,
+      "sha256": "12daa56f311c6de0e057f92220275254454d6a7f0391c33cdf82979669a90c90"
+    },
+    {
+      "path": "raw/SIGNING_MAP_ORIGINAL_READBACK.json",
+      "bytes": 4859,
+      "sha256": "aaf8c7acd00bbc2e9bc2512dead952eb8f2818df86d2f3e24d9c70e520a938ab"
+    }
+  ]
+}

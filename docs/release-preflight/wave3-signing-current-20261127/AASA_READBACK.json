@@ -1,0 +1,70 @@
+{
+  "utc": "2026-11-27T10:12:05.635078+00:00",
+  "scope": "Public HTTPS AASA origin and Apple CDN read only; no native Universal Link delivery",
+  "endpoints": [
+    {
+      "url": "https://davidpovarsky.github.io/.well-known/apple-app-site-association",
+      "status": 200,
+      "finalURL": "https://davidpovarsky.github.io/.well-known/apple-app-site-association",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"6b077bbd-13e\"",
+        "Cache-Control": "max-age=600",
+        "Age": "0",
+        "Date": "Fri, 27 Nov 2026 10:12:05 GMT"
+      },
+      "bytes": 318,
+      "sha256": "154858002a3a0e4f647651ba518e5e2a6dd9ae86a70588c52dba4e8b7974b81f",
+      "rawPath": "/Users/m1/builds/_preflight/otzaria-wave3-signing-current-20261127.swoie897/origin-aasa.raw",
+      "document": {
+        "applinks": {
+          "details": [
+            {
+              "appIDs": [
+                "NA6HPWARQ2.com.davidpovarsky.chavrusatext"
+              ],
+              "components": [
+                {
+                  "/": "/chavrusatext/action/v2/*",
+                  "comment": "Versioned public ChavrusaText navigation"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://app-site-association.cdn-apple.com/a/v1/davidpovarsky.github.io",
+      "status": 200,
+      "finalURL": "https://app-site-association.cdn-apple.com/a/v1/davidpovarsky.github.io",
+      "headers": {
+        "Date": "Fri, 27 Nov 2026 10:12:06 GMT",
+        "Content-Type": "application/json",
+        "Apple-From": "https://davidpovarsky.github.io/.well-known/apple-app-site-association",
+        "Cache-Control": "max-age=3600,public",
+        "Age": "4"
+      },
+      "bytes": 318,
+      "sha256": "154858002a3a0e4f647651ba518e5e2a6dd9ae86a70588c52dba4e8b7974b81f",
+      "rawPath": "/Users/m1/builds/_preflight/otzaria-wave3-signing-current-20261127.swoie897/apple-cdn-aasa.raw",
+      "document": {
+        "applinks": {
+          "details": [
+            {
+              "appIDs": [
+                "NA6HPWARQ2.com.davidpovarsky.chavrusatext"
+              ],
+              "components": [
+                {
+                  "/": "/chavrusatext/action/v2/*",
+                  "comment": "Versioned public ChavrusaText navigation"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
