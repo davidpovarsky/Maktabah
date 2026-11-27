@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "kind": "READ_ONLY_ORIGINAL_LATE_REPLY_CAPABILITY_AUDIT",
+  "sourceReviewStartCommit": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "sourceReviewFinalCommit": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+  "rootDiagnosticPeerReviewCommit": "19dc53e3412c759cff18f74531e8953085289199",
+  "sourcePins": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9",
+      "size": 20518,
+      "gitBlob": "a54df1e4e48e50d87388585c8005351ee06fc8fe"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+      "size": 11797,
+      "gitBlob": "0ee1ab5796be7ba4b787c67c110b722b6d004892"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f",
+      "size": 21034,
+      "gitBlob": "f925caa6e80e715678d1a99e755f1fb316bc49c1"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+      "size": 5809,
+      "gitBlob": "cac6a68cfbcf7c652f60a25889e2f8625b4e8f82"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840",
+      "size": 8050,
+      "gitBlob": "62a8d564a24352037d2ef26e22385cd74bc6a8e1"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+      "size": 6556,
+      "gitBlob": "e06994f58e3e68376fe785fdcd875d5c4508b6ad"
+    },
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "sha256": "65145c30861efa74994edd9539c93d748d8b67dd4a77beb8332a4295960acba3",
+      "size": 32332,
+      "gitBlob": "9038e4cf736a0c483cd6935bad0ea7d07a670bb7"
+    },
+    {
+      "path": "docs/hq-actions-bridge/RuntimeAcceptance.swift",
+      "sha256": "e6aa7fac9be9645de7723a44da1926ebf2e0e4a9ded33155d22a1161a139029b",
+      "size": 9761,
+      "gitBlob": "6aea978411f955d5ee29f6510f3bc76f3ff477ef"
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "sha256": "764160c3e39243ff135398ae624478a8bd91341cd0eca5d2629c610b72cbd2bd",
+      "size": 131605,
+      "gitBlob": "58b66089ff5959e77efb28f5cec9c58a6739d353"
+    },
+    {
+      "path": "docs/sefaria-mobile/LIVE_RUNTIME_FIX_ACCEPTANCE.md",
+      "sha256": "fc5903c39040f23c87438608a44269081c65cc34b68aa40ddaa7378a0b822c48",
+      "size": 16746,
+      "gitBlob": "f917291b90e33202e5d2915e85e23f26b34cb4a6"
+    }
+  ],
+  "observedFacts": [
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "lines": "93-158,498-519",
+      "finding": "diagnostic.echo reads message/injectError/errorMessage and returns without a delay/hold branch. The response copies the request generation. Extra delay-like parameters are unused, not an implemented capability."
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "lines": "33-63",
+      "finding": "The real RN root awaits the actual facade, then calls the actual native module deliverResponse. It exposes no response-hold/release controller."
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "lines": "112-144",
+      "finding": "Normal production send uses onSefariaRPCRequest; deliverResponse queues the actual bridge response handler. setJSExecutor/customExecutor is a replacement route and is not acceptable as evidence of the original Hermes path. DEBUG response logging does not itself acknowledge the actor's actual late-ignore decision."
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "lines": "177-221,278-311,396-459",
+      "finding": "Explicit stale calls reject before dispatch. All observed session-epoch/transport transitions cancelAll and remove pending continuations before publication. A subsequently delivered old response therefore normally hits the missing-request return at402-405; the separate response-generation mismatch at428-435 applies while its request still exists."
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "lines": "278-296",
+      "finding": "The original reset performs resetState then original bumpSessionEpoch within the retained lifecycle boundary. A late-reply test must observe that real operation, not mutate private generation storage or force a pending request to survive cancellation."
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "lines": "71-135",
+      "finding": "surface.awaitVisible legitimately waits for the exact first original mount/readiness/layout under a bounded deadline. It is not a diagnostic delay parameter. Inventing a never-owned surfaceID merely to make it wait is not acceptance of an original UI lifecycle."
+    },
+    {
+      "path": "docs/hq-actions-bridge/RuntimeAcceptance.swift",
+      "lines": "3-56,113-145",
+      "finding": "RuntimeFixtureTransport hold/release covers actual Swift bridge cancellation/late timeout delivery with an explicitly synthetic transport. It states that Hermes/network/bundle are not represented."
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "lines": "1954-1971,1978-1995,2056-2079",
+      "finding": "Strict-response and concurrent-delay controls use MockBridgeTransport/ConcurrentEchoTransport. They are component boundaries, not live Hermes acceptance. This audit did not rerun or certify those historical tests."
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "lines": "1936-1951,1974-1994,2009-2013,2028-2032,2047,2083-2096",
+      "finding": "Additional source-only harness defect: Suite36 resets epoch to1, Suite37 installs a replacement transport that now bumps epoch, then still supplies generation1. Its stale assertion can pass at the upfront guard; protocol/backend tests cannot then reach their intended response checks. Suite38 also supplies generation1 after replacement. No execution/repaired result is claimed."
+    }
+  ],
+  "requirements": {
+    "nativeSelector": "SefariaEmbeddedAcceptanceTests/testEmbeddedSefariaFullAcceptanceDiagnostic",
+    "mandatoryOriginalKey": "lateGenerationRejected",
+    "nativeSourceLines": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift:57-78",
+    "asanaLiteralStatus": "The exact literal lateGenerationRejected was not found in the bounded source-task notes read. Do not attribute the test key as an exact Asana quote.",
+    "asanaReadTaskIDs": [
+      "1220542361135050",
+      "1220542361203468",
+      "1220542416158970",
+      "1219848733895424",
+      "1219602987688812",
+      "1220763167870295",
+      "1220547779919596",
+      "1220548880392687",
+      "1220539465608963",
+      "1220539645638524",
+      "1219614472017979"
+    ],
+    "asanaSearchLimit": "Premium full-text search returned payment_required. The existing project inventory was read instead (93 tasks, no next page), followed by the bounded source-task reads above.",
+    "historicalDossierBoundary": "The retained LIVE_RUNTIME_FIX_ACCEPTANCE.md describes Stage4 as stale request rejection. Its aggregate historical PASS labels are preserved, not inherited or upgraded to an executed late-in-flight acceptance result."
+  },
+  "result": {
+    "realEchoControlledDelayAvailable": false,
+    "existingComponentDelayAvailable": true,
+    "lateInFlightHermesAcceptance": "NOT_RUN",
+    "freshNativeTestsRun": 0,
+    "freshComponentTestsRun": 0,
+    "sourceMutations": 0,
+    "macJobs": 0,
+    "decision": "Keep explicit stale-request validation and real late-in-flight reply observation as separate proof obligations. No existing original controllable echo-delay route was found. Source changes, if chosen, require a reviewed narrow original-facade/observability lease and fresh qualified app/bundle acceptance."
+  },
+  "upstreamGitlink": "160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream",
+  "sealedAtUTC": "2026-11-27T08:16:58.404840+00:00"
+}

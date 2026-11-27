@@ -1,0 +1,37 @@
+{
+  "kind": "exact quoted clauses from original source tasks; not live runtime evidence",
+  "tasks": [
+    {
+      "gid": "1220542361203468",
+      "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק",
+      "modifiedAt": "2026-11-27T02:52:34.794Z",
+      "notesSHA256": "b4d1891d4b00e2da927abfe83e08d7a5adf8b8c974740cfebaf56d898d640ea5",
+      "quotedClauses": [
+        "מסלולים: 1) ספר/קטע/פסוק עם highlight, 2) Inspector מפרש ספציפי עם source anchor, 3) Global search+query+filter+selected hit, 4) Settings route+control focus, 5) tab/sidebar/panel/popover, 6) Notes/Bookmark/History selection (draft no save), 7) Sefaria Embedded RN surface באמצעות bridge/epoch/ready במקום פתיחת UI שגוי."
+      ],
+      "url": "https://app.asana.com/0/1219602719070493/1220542361203468"
+    },
+    {
+      "gid": "1220542416158970",
+      "name": "UI-07 | QA: מטריצת כיסוי 3 Backends × מסכים × AppIntent/DeepLink, security, regression",
+      "modifiedAt": "2026-11-26T15:44:17.664Z",
+      "notesSHA256": "80ae61d82dbea22f2448be001cd6518105e4551770937d99be25184cb8564ae1",
+      "quotedClauses": [
+        "הכן בדיקות מבוססות inventory ותיעוד PASS/FAIL/BLOCKED/NOT_RUN לכל רכיב/מסך וכניסה (in-app, AppIntents/Shortcuts/Siri, Deep/Universal Links, AI/Guides) עבור Otzaria, Sefaria Legacy, Sefaria Embedded. מקרים: cold/warm start, background/foreground, multi-window, active/inactive backend, reading unit/book/chapter/verse/highlight, local/remote search index, selected hit ID, commentary/Inspector, notes draft/no-save, sidebar/tab/menu, Settings subsection/control, invalid/stale IDs, iOS 26/27, Hebrew RTL and VoiceOver, Hermes ready/reset/no transport, old WidgetDeepLink.",
+        "Security: public deep link cannot mutate persistent state; app-intent parameters cannot elevate scopes or inject view selector; privacy of user notes; schema/URL fuzz, cancellation, tight limits, observability (trace ID, UI ack evidence), no MainActor hang, memory and responsiveness."
+      ],
+      "url": "https://app.asana.com/0/1219602719070493/1220542416158970"
+    },
+    {
+      "gid": "1220542361135050",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "modifiedAt": "2026-11-26T23:39:37.833Z",
+      "notesSHA256": "ff0a245104fca42758a24250d895954a0ecddaa4a5112df56197adf403d4b685",
+      "quotedClauses": [
+        "- Native and embedded UI: full coverage of Otzaria, Sefaria Legacy and Sefaria Embedded (Hermes/JS RPC and native RN surface). Distinguish backend route readiness and actual visible scene from successful API response. Suspended/cold app, multi-window, offline and backend switching must not silently open wrong content.",
+        "- Observability: trace ID shared with ActionCore; log route resolution, backend/generation, scene, readiness, navigation/element acknowledgement, failure, elapsed time; redact user text/tokens; no claim of success after merely enqueuing."
+      ],
+      "url": "https://app.asana.com/0/1219602719070493/1220542361135050"
+    }
+  ]
+}
