@@ -1,0 +1,15 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"output\":\"{\\\"exit\\\": 0, \\\"remote\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"localHEAD\\\": \\\"310db9a9a887b604f422581765feb902465fef99\\\", \\\"status\\\": \\\"\\\"}\",\"duration\":0.49,\"returncode\":0}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "output": "{\"exit\": 0, \"remote\": \"\", \"stderr\": \"\", \"localHEAD\": \"310db9a9a887b604f422581765feb902465fef99\", \"status\": \"\"}",
+    "duration": 0.49,
+    "returncode": 0
+  },
+  "isError": false
+}

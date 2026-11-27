@@ -1,0 +1,276 @@
+{
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "ownCheckout": {
+    "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+    "branch": "codex/otzaria-wave3-public-search-entry-20261127",
+    "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-public-search-entry-20261127",
+    "alternates": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/objects\n",
+    "origins": [
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": 4259,
+        "baseSHA256": "6874bc23365b990acbaca1cea6957f1ab9fa586fcb3ef41e7a72a32c682f1ed4"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": 6628,
+        "baseSHA256": "854e094d9d47d94cdf1cb8b86876bcc93c2bc8a038539dcac0d8d94e39bf8fec"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": 9650,
+        "baseSHA256": "d3231ae87d31d8571133d64bbda27220a4aae72866f48bd4d1272e9cc7d8c062"
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": 15154,
+        "baseSHA256": "7c5692bfacc3b70a9218df87344cf84dc9fec2d098286f47fa28036b0eb14bee"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": 43780,
+        "baseSHA256": "c6ed5b52aa3fab8ea142c5d4d4ed27e134bc5efa1a53091e675e3a784b5c5fc2"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationCatalog.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": null,
+        "baseSHA256": null
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": null,
+        "baseSHA256": null
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": null,
+        "baseSHA256": null
+      },
+      {
+        "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicSearchReferenceV2Tests.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": null,
+        "baseSHA256": null
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchContinuationIntentServiceTests.swift",
+        "upstreamTracked": false,
+        "classification": "DOWNSTREAM_OWNED",
+        "baseBytes": null,
+        "baseSHA256": null
+      }
+    ],
+    "status": ""
+  },
+  "actualReads": [
+    {
+      "upstreamRemoteExit": 0,
+      "refs": "4203de5fd77beb119e5826e039be1a61325f7be0\tHEAD\n4203de5fd77beb119e5826e039be1a61325f7be0\trefs/heads/main\n",
+      "error": ""
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+      "firstLineage": [
+        "98b575fc2d25f085de69081b445825c677d7b9aa Compose inactive native binding with reconciled workspace owner [skip ci]"
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+      "firstLineage": [
+        "0c502e107f7d9f90611672f55fb0d65ff0ee61b2 Implement bounded UI route codecs, registry discovery, and scene contract validation [skip ci]",
+        "98b575fc2d25f085de69081b445825c677d7b9aa Compose inactive native binding with reconciled workspace owner [skip ci]"
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+      "firstLineage": [
+        "98b575fc2d25f085de69081b445825c677d7b9aa Compose inactive native binding with reconciled workspace owner [skip ci]"
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "firstLineage": [
+        "0c502e107f7d9f90611672f55fb0d65ff0ee61b2 Implement bounded UI route codecs, registry discovery, and scene contract validation [skip ci]",
+        "b9adb9c46ef04b0aac84ece0045ca7e420bc30d0 Fix discovery current-scene freshness and cooperative deadline contract [skip ci]",
+        "065148d3662b5322bdd5dea038405079cd3a66c3 Add canonical live-authority native navigation preparation and UI-only routes [skip ci]"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "firstLineage": [
+        "46576bff81808f3711fa93f7df3b844435a75398 Add original search hit reveal and one-page continuation",
+        "9e6193246b632caf1cd16e1dc7a4082e7688d450 fix(ios): wire original search continuation and native workspace sources"
+      ]
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "sha256": "c2fb42c37739065a100a6d1c03865dc3dfdfe3f75cdd059a4857251468b6e7dc",
+      "keys": 735,
+      "selected": {
+        "Save Search Results": {
+          "localizations": {
+            "ar": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "حفظ نتائج البحث"
+              }
+            },
+            "id": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Simpan Hasil Pencarian"
+              }
+            },
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "שמור תוצאות חיפוש"
+              }
+            }
+          }
+        },
+        "Save search results to access them later.": {
+          "localizations": {
+            "ar": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "احفظ نتائج البحث للوصول إليها لاحقًا."
+              }
+            },
+            "id": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Simpan hasil pencarian untuk diakses nanti."
+              }
+            },
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "שמור תוצאות חיפוש כדי לגשת אליהן מאוחר יותר."
+              }
+            }
+          }
+        },
+        "Annotations & Search Results": {
+          "localizations": {
+            "ar": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "التعليقات ونتائج البحث"
+              }
+            },
+            "id": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Anotasi & Hasil Pencarian"
+              }
+            },
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "הערות ותוצאות חיפוש"
+              }
+            }
+          }
+        },
+        "Sync annotations and search results across devices with CloudKit.": {
+          "localizations": {
+            "ar": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "قم بمزامنة التعليقات التوضيحية والنتائج عبر الأجهزة باستخدام CloudKit."
+              }
+            },
+            "id": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Selaraskan anotasi dan hasil pencarian di seluruh perangkat dengan CloudKit."
+              }
+            },
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "סנכרן הערות ותוצאות חיפוש בין מכשירים באמצעות CloudKit."
+              }
+            }
+          }
+        },
+        "Add books opened from search results to reading history.": {
+          "extractionState": "manual",
+          "localizations": {
+            "ar": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "أضف الكتب المفتوحة من نتائج البحث إلى سجل القراءة."
+              }
+            },
+            "en": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Add books opened from search results to reading history."
+              }
+            },
+            "id": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Tambahkan buku yang dibuka dari hasil pencarian ke riwayat bacaan."
+              }
+            }
+          }
+        },
+        "Show search results": {
+          "extractionState": "manual",
+          "localizations": {
+            "en": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "Show search results"
+              }
+            },
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "הצגת תוצאות חיפוש"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "sha256": "80193ca8edff967eb8bbc23eeecfb8563fac0db99c8538ee0cdb0695f46f47b3",
+      "keys": 6,
+      "selected": {
+        "Show search results in ${applicationName}": {
+          "localizations": {
+            "he": {
+              "stringUnit": {
+                "state": "translated",
+                "value": "הצג תוצאות חיפוש באפליקציה ${applicationName}"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

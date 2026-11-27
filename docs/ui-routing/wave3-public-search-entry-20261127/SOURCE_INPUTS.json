@@ -1,0 +1,56 @@
+{
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "sourceCommit": "310db9a9a887b604f422581765feb902465fef99",
+  "files": [
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+      "bytes": 5392,
+      "sha256": "daf78cca3b668fd23ead28d9724dfcff550157bff97b84552cae4d2b50c85db5"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+      "bytes": 6755,
+      "sha256": "b73aaeadaece2dca0f9d8d4e23939d2babf418b99807060096cfd17d6b82cfc0"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+      "bytes": 12169,
+      "sha256": "c2b59bdbf94f379e17d864a5ff6b067eac26286dbfdd86aa5f4960637a181a72"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "bytes": 15392,
+      "sha256": "b97a2983845e874cbb827082114197253ccd86a386bcc395bcc7068d3f0e9b6f"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "bytes": 51510,
+      "sha256": "ae173de39c46df7b5180ec1d957fcd62d9689b252f3c409f93f8d34cf6c4b626"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationCatalog.swift",
+      "bytes": 17659,
+      "sha256": "d4aa2f49116ce2c7adf1012acff6e83aa69435c221cb8e47466660ed37e8ecfd"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+      "bytes": 18082,
+      "sha256": "7ea7700979afcf12d42c0226812f172b630d81eaba8fe49496f82e8ef21a990e"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+      "bytes": 5604,
+      "sha256": "a0caa1b1a89e1c130b764982df7b5d69f7efcb61b03b8f43acb0d81ebddbabcc"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicSearchReferenceV2Tests.swift",
+      "bytes": 12040,
+      "sha256": "1def3238c8560b16eaa79b4104f05648fcad1d44545e0b7633166aa642bbef3d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchContinuationIntentServiceTests.swift",
+      "bytes": 23534,
+      "sha256": "cacd3da82160a841b3acda191bc33bcd8696af418a652896eafcb091453595dc"
+    }
+  ]
+}

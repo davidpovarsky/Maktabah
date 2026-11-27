@@ -1,0 +1,43 @@
+{
+  "exit": 2,
+  "stdout": "docs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:6: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:27: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:1310: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:1321: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:1348: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/SOURCE.diff:1396: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/root-proposals/MaktabahNativeRoutingComposition.swift.patch:181: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/root-proposals/MaktabahNativeSceneSession.swift.patch:57: trailing whitespace.\n+ \ndocs/ui-routing/wave3-public-search-entry-20261127/root-proposals/MaktabahNativeURLHandler.swift.patch:4: trailing whitespace.\n+ \n",
+  "stderr": "",
+  "explanation": "Unified diff blank context lines are a single required space, not product trailing whitespace. Exact original diffs were retained losslessly in gzip; no original source or patch byte changed.",
+  "archives": [
+    {
+      "path": "SOURCE.diff.gz",
+      "bytes": 103864,
+      "sha256": "12bb2dd4e3b5f87887a9af351aa9ae8d4eae0efdaa8ccc51b197772e1435d076",
+      "gzipBytes": 21546,
+      "gzipSHA256": "1310eab6346b68a8a1213aa27e12e53287a847d679c39f1643ffc8e3a26a93cf"
+    },
+    {
+      "path": "root-proposals/MaktabahNativeIntents.swift.patch.gz",
+      "bytes": 908,
+      "sha256": "e53b3e9c00ca2b080bf0661cedaa075540f32dbec71fbbc621a2f86032c94b73",
+      "gzipBytes": 377,
+      "gzipSHA256": "c498afe47475726a12289b98183e4b19e6e53d4963370dcd43940cdb1fa9a484"
+    },
+    {
+      "path": "root-proposals/MaktabahNativeRoutingComposition.swift.patch.gz",
+      "bytes": 12575,
+      "sha256": "c09448f3db7bf4fd03be24fb4e5f6b659355cf5491c527e13a06136b418a8d5d",
+      "gzipBytes": 3361,
+      "gzipSHA256": "412f53e3a5297d208343262eaeb272b27dbf3ef2fcf19de370589d18ab082fc0"
+    },
+    {
+      "path": "root-proposals/MaktabahNativeSceneSession.swift.patch.gz",
+      "bytes": 8312,
+      "sha256": "7e7cd67fd7166a560239b8fefd0f9833b54455aa9d9d305269abd5d7d1e485ed",
+      "gzipBytes": 2096,
+      "gzipSHA256": "b7fa9883e76d2bfd2cb7a7cb4462a73e3e0d333233c7a8b2533d49e33c68efa6"
+    },
+    {
+      "path": "root-proposals/MaktabahNativeURLHandler.swift.patch.gz",
+      "bytes": 1801,
+      "sha256": "e8024750b83fe5fcd722672679c9434ccd86cb90cc5656a0d8087fdbf848d885",
+      "gzipBytes": 657,
+      "gzipSHA256": "49d7ff50815420fe7bc7b4de5f3d1e4116472f6452934746334d5e45e02669c2"
+    }
+  ]
+}

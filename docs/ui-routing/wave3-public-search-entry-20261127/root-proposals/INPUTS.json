@@ -1,0 +1,33 @@
+{
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "scope": "Root-owned source proposals only; no live edit, no typecheck/native execution",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "baseBytes": 129051,
+      "baseSHA256": "902b93bfdc8beea69779b7fa5f0acb85d65bcf8178600c3b2d6e38ea0c4201e5",
+      "candidateBytes": 134023,
+      "candidateSHA256": "7e09f61a11debd875040d0fc8837a8cbb80a097742859ba559170e86917be322",
+      "patchBytes": 8312,
+      "patchSHA256": "7e7cd67fd7166a560239b8fefd0f9833b54455aa9d9d305269abd5d7d1e485ed"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "baseBytes": 224190,
+      "baseSHA256": "134a01ada9114405437d8c1f655b13cd321ea64ddf3a0b9d3c1b5837e48bd3b4",
+      "candidateBytes": 232658,
+      "candidateSHA256": "d64ec6d5c6e49d89d263e370ad77ed03fc5af9f478d0ba430362ebf449aa8d24",
+      "patchBytes": 12575,
+      "patchSHA256": "c09448f3db7bf4fd03be24fb4e5f6b659355cf5491c527e13a06136b418a8d5d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+      "baseBytes": 1785,
+      "baseSHA256": "0e3f598c685479d23a9bb67e6c1aecf012a1fc6291269a26f9888cc40e3e4420",
+      "candidateBytes": 2150,
+      "candidateSHA256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45",
+      "patchBytes": 1801,
+      "patchSHA256": "e8024750b83fe5fcd722672679c9434ccd86cb90cc5656a0d8087fdbf848d885"
+    }
+  ]
+}

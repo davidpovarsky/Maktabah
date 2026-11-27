@@ -1,0 +1,31 @@
+{
+  "expected": "Actual unchanged reference isolation tests fail; controls only, never shipping",
+  "changes": [
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "beforeSHA256": "b97a2983845e874cbb827082114197253ccd86a386bcc395bcc7068d3f0e9b6f",
+      "afterSHA256": "7c5692bfacc3b70a9218df87344cf84dc9fec2d098286f47fa28036b0eb14bee",
+      "changes": [
+        [
+          "        guard descriptor.publicNavigationV2?.searchReferenceKind == nil else {\n            throw UIRouteError(.notSupported, \"typed_search_continuation_required\")\n        }\n",
+          ""
+        ],
+        [
+          "\n            && $0.publicNavigationV2?.searchReferenceKind == nil }",
+          " }"
+        ]
+      ]
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+      "beforeSHA256": "c2b59bdbf94f379e17d864a5ff6b067eac26286dbfdd86aa5f4960637a181a72",
+      "afterSHA256": "d4ed72f94f821f634d0e6eb92b3f92326316a80c08afaf7ed9fd11499497ba67",
+      "changes": [
+        [
+          "        guard normalized.searchReference == nil else {\n            throw UIRouteError(.notSupported, \"typed_search_continuation_required\")\n        }\n",
+          ""
+        ]
+      ]
+    }
+  ]
+}

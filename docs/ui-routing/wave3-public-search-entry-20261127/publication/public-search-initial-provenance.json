@@ -1,0 +1,79 @@
+{
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "branch": "codex/otzaria-wave3-public-search-entry-20261127",
+  "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-public-search-entry-20261127",
+  "alternates": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/objects\n",
+  "origins": [
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": 4259,
+      "baseSHA256": "6874bc23365b990acbaca1cea6957f1ab9fa586fcb3ef41e7a72a32c682f1ed4"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": 6628,
+      "baseSHA256": "854e094d9d47d94cdf1cb8b86876bcc93c2bc8a038539dcac0d8d94e39bf8fec"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": 9650,
+      "baseSHA256": "d3231ae87d31d8571133d64bbda27220a4aae72866f48bd4d1272e9cc7d8c062"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": 15154,
+      "baseSHA256": "7c5692bfacc3b70a9218df87344cf84dc9fec2d098286f47fa28036b0eb14bee"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": 43780,
+      "baseSHA256": "c6ed5b52aa3fab8ea142c5d4d4ed27e134bc5efa1a53091e675e3a784b5c5fc2"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationCatalog.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": null,
+      "baseSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": null,
+      "baseSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": null,
+      "baseSHA256": null
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicSearchReferenceV2Tests.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": null,
+      "baseSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchContinuationIntentServiceTests.swift",
+      "upstreamTracked": false,
+      "classification": "DOWNSTREAM_OWNED",
+      "baseBytes": null,
+      "baseSHA256": null
+    }
+  ],
+  "status": ""
+}

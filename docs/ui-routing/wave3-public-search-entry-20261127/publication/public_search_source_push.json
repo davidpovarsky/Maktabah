@@ -1,0 +1,16 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"output\":\"{\\\"pushExit\\\": 1, \\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"remote: \\\\nremote: Create a pull request for 'codex/otzaria-wave3-public-search-entry-20261127' on GitHub by visiting:        \\\\nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-wave3-public-search-entry-20261127        \\\\nremote: \\\\nTo https://github.com/davidpovarsky/Maktabah.git\\\\n ! [remote rejected]     HEAD -> codex/otzaria-wave3-public-search-entry-20261127 (failed)\\\\nerror: failed to push some refs to 'https://github.com/davidpovarsky/Maktabah.git'\\\\n\\\"}\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 7, in <module>\\n  File \\\"/usr/lib/python3.12/subprocess.py\\\", line 502, in check_returncode\\n    raise CalledProcessError(self.returncode, self.args, self.stdout,\\nsubprocess.CalledProcessError: Command '['git', '-C', '/home/ubuntu/.codex/worktrees/Maktabah-wave3-public-search-entry-20261127', '-c', 'remote.origin.mirror=false', '-c', 'credential.helper=!gh auth git-credential', 'push', '--set-upstream', 'origin', 'HEAD:refs/heads/codex/otzaria-wave3-public-search-entry-20261127']' returned non-zero exit status 1.\",\"duration\":8.04,\"returncode\":1,\"_notice\":\"You have 2 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them.\"}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "output": "{\"pushExit\": 1, \"stdout\": \"\", \"stderr\": \"remote: \\nremote: Create a pull request for 'codex/otzaria-wave3-public-search-entry-20261127' on GitHub by visiting:        \\nremote:      https://github.com/davidpovarsky/Maktabah/pull/new/codex/otzaria-wave3-public-search-entry-20261127        \\nremote: \\nTo https://github.com/davidpovarsky/Maktabah.git\\n ! [remote rejected]     HEAD -> codex/otzaria-wave3-public-search-entry-20261127 (failed)\\nerror: failed to push some refs to 'https://github.com/davidpovarsky/Maktabah.git'\\n\"}\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n  File \"/usr/lib/python3.12/subprocess.py\", line 502, in check_returncode\n    raise CalledProcessError(self.returncode, self.args, self.stdout,\nsubprocess.CalledProcessError: Command '['git', '-C', '/home/ubuntu/.codex/worktrees/Maktabah-wave3-public-search-entry-20261127', '-c', 'remote.origin.mirror=false', '-c', 'credential.helper=!gh auth git-credential', 'push', '--set-upstream', 'origin', 'HEAD:refs/heads/codex/otzaria-wave3-public-search-entry-20261127']' returned non-zero exit status 1.",
+    "duration": 8.04,
+    "returncode": 1,
+    "_notice": "You have 2 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+  },
+  "isError": false
+}
