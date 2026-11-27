@@ -1,0 +1,61 @@
+{
+  "schema": "otzaria.wave3.hidden-phone-group-native-intake.v1",
+  "base": "409d28b2d5c3c72665081465ab628e53528645c6",
+  "donor": "aaa4ebc36d28254a635d9157c61376909f6e4321",
+  "picked": "3e4230ff6e838bdb11bf836cb1c51fb2c9f69978",
+  "explicitHelperJoin": "ac813bbec2be1e5c330359cc8d4bd003a6f0c04c",
+  "sourceTree": "f0bfdbf5ee81d59365588df581bc2acb3cb48735",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "testPaths": 2,
+  "donorDocsPaths": 8,
+  "originalHelper": {
+    "bytes": 407115,
+    "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+  },
+  "appendedSuffix": {
+    "bytes": 8969,
+    "sha256": "3848a9225585aab09221f626c6fd951773af06a863938da991d2be478e17b004"
+  },
+  "combinedHelper": {
+    "bytes": 416084,
+    "sha256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46"
+  },
+  "sourceDependencyIntakeSHA256": "21e26d081807299808db9fa2df97952052b84a161114a45293622d25e79e0475",
+  "rawFilesVerified": 13,
+  "originalSynchronizedTargetPBX": {
+    "bytes": 648014,
+    "sha256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab"
+  },
+  "selectors": [
+    "testPhoneGroupIntentPresentsSameActiveHiddenReaderFromLibrary",
+    "testPhoneProfileIntentPresentsSameActiveHiddenReaderFromLibrary",
+    "testPhoneGroupIntentPresentsSameActiveHiddenReaderFromBackground",
+    "testPhoneProfileIntentPresentsSameActiveHiddenReaderFromBackground",
+    "testPhoneGroupIntentPresentsSameActiveHiddenReaderFromOriginalHistory",
+    "testPhoneProfileIntentPresentsSameActiveHiddenReaderFromOriginalSearch"
+  ],
+  "syntaxOnlyEvidenceSHA256": "92858c6633bd88cb3ed9dbe25f03f5635d91bdcb232ee2f517117ebca2c7e412",
+  "sourceReview": {
+    "root": "Exact original Back/Library/History/Search/background setup, real cached AppEntity, production AppIntent, original TextKit/workspace/scene receipt; source read only.",
+    "peer": "navigation_fix reviewed exact3848a922 suffix and0eb7a591 selector; no demonstrated source blocker, no execution."
+  },
+  "protectedTrees": {
+    "Source": "f0bfdbf5ee81d59365588df581bc2acb3cb48735",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1"
+  },
+  "newTestExecutions": 0,
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "fixture": "Original miniTest10 only, no production acceptance",
+  "open": [
+    "Actual system AppIntent/native execution",
+    "Full Reader restoration, selection/viewport/TOC",
+    "Production, relaunch, multiwindow, VoiceOver and physical QA",
+    "Full Native116/Release114+2 on final production candidate",
+    "Original owner signatures, target merge and signed TestFlight"
+  ]
+}
