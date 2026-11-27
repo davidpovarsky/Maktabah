@@ -1,0 +1,9 @@
+{
+  "publisherWholeFileInverseExact": true,
+  "publisherOriginalBytes": 12945,
+  "publisherOriginalSHA256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b",
+  "unrelatedContentTailExact": true,
+  "contentTailBytes": 1543,
+  "contentTailSHA256": "b839c595c8cf31b70fc6c3b0339c9d8124ac14e5f015a0eeabe108392298c242",
+  "storageChanges": 0
+}

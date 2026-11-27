@@ -1,0 +1,511 @@
+{
+  "status": "PASS",
+  "base": "ce4fe5a327168524f6f1fef1e7792a275ece0ebe",
+  "steps": [
+    {
+      "name": "compile-baseline",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "-D",
+        "BASELINE",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/Boundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/Controls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/LibraryBackendModels.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/ReaderDestinationResolver.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/baseline/Reader+Content.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/baseline/ReaderContentLoadCoordinator.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/baseline"
+      ],
+      "startAttempted": true,
+      "freeBefore": 9312059392,
+      "allocatedBefore": 139796480,
+      "started": "2026-11-27T18:34:05.121493+00:00",
+      "owner": {
+        "pid": 1757386,
+        "parent": 1757286,
+        "group": 1757386,
+        "startTicks": 733151695
+      },
+      "exit": 0,
+      "finished": "2026-11-27T18:34:11.593672+00:00",
+      "freeAfter": 9310633984,
+      "allocatedAfter": 141131776,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "run-baseline",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/baseline"
+      ],
+      "startAttempted": true,
+      "freeBefore": 9310633984,
+      "allocatedBefore": 141131776,
+      "started": "2026-11-27T18:34:11.680889+00:00",
+      "owner": {
+        "pid": 1758348,
+        "parent": 1757286,
+        "group": 1758348,
+        "startTicks": 733152351
+      },
+      "exit": 1,
+      "finished": "2026-11-27T18:34:11.931657+00:00",
+      "freeAfter": 9310629888,
+      "allocatedAfter": 141135872,
+      "logs": {
+        "stdout": {
+          "bytes": 914,
+          "sha256": "8f3e577b08bb0256cee0993f8138d84e29cce2ac9a3d5011bb6fc67257c97f58"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "compile-candidate",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/Boundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/Controls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/LibraryBackendModels.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/common/ReaderDestinationResolver.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/candidate/ActualReaderSourceReservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/candidate/GroupBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/candidate/Reader+Content.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/candidate/ReaderContentLoadCoordinator.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/inputs/compiled/candidate/ReaderInitialContentRequest.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/candidate"
+      ],
+      "startAttempted": true,
+      "freeBefore": 9310629888,
+      "allocatedBefore": 141135872,
+      "started": "2026-11-27T18:34:12.034665+00:00",
+      "owner": {
+        "pid": 1758461,
+        "parent": 1757286,
+        "group": 1758461,
+        "startTicks": 733152387
+      },
+      "exit": 0,
+      "finished": "2026-11-27T18:34:22.063290+00:00",
+      "freeAfter": 9309007872,
+      "allocatedAfter": 142745600,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "run-candidate",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127/attempt-1/output/candidate"
+      ],
+      "startAttempted": true,
+      "freeBefore": 9309007872,
+      "allocatedBefore": 142745600,
+      "started": "2026-11-27T18:34:22.172422+00:00",
+      "owner": {
+        "pid": 1760618,
+        "parent": 1757286,
+        "group": 1760618,
+        "startTicks": 733153400
+      },
+      "exit": 0,
+      "finished": "2026-11-27T18:34:22.405646+00:00",
+      "freeAfter": 9309003776,
+      "allocatedAfter": 142749696,
+      "logs": {
+        "stdout": {
+          "bytes": 3673,
+          "sha256": "adb56c0cfd074f79fe314563d32492b9b99981ac2059ee14f08013023e45e291"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "started": "2026-11-27T18:34:04.625664+00:00",
+  "scope": "Actual original content/coordinator/request/model/resolver and exact Group Reader-source reservation. Explicit domain, async transport, rendering, Store and UI boundary shells.",
+  "runner": {
+    "file": {
+      "bytes": 15872,
+      "sha256": "ff27bc9c964c9a86c0869e83f679e105ff773807a73777fc32241f36538c9b0c"
+    },
+    "exactFunctionSHA256": "fc597b3333f830fc97f73edaa34644645956f8e35cbdcea11c26f9957d6daba8"
+  },
+  "inputs": [
+    {
+      "path": "compiled/SOURCE_INPUTS.json",
+      "bytes": 5499,
+      "sha256": "1bfd0c20c8a014083966b42f7b966eace6ca140d21ef6d0867fc7186605a15fb"
+    },
+    {
+      "path": "compiled/baseline/Reader+Content.swift",
+      "bytes": 9738,
+      "sha256": "636388ffd7a3ee44618e2f5da26211648046248ae2b98b6043f60d54c8653608"
+    },
+    {
+      "path": "compiled/baseline/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "compiled/candidate/ActualReaderSourceReservation.swift",
+      "bytes": 9422,
+      "sha256": "0869deb8e91ff5c08fa29004f26021ab6a10c9891d69b3c81363a4604c2ae704"
+    },
+    {
+      "path": "compiled/candidate/GroupBoundary.swift",
+      "bytes": 1481,
+      "sha256": "f81a3b6571f1a41822a8233e38541e5bd219e06a4a889ebd8d1220612b3b86e1"
+    },
+    {
+      "path": "compiled/candidate/Reader+Content.swift",
+      "bytes": 19448,
+      "sha256": "d590fdc4ad86d5a6b578e788b9c7487cd3a0b0fec21f0b4ad344f33b95410e96"
+    },
+    {
+      "path": "compiled/candidate/ReaderContentLoadCoordinator.swift",
+      "bytes": 12513,
+      "sha256": "0a38966b7d39d46e658f7d6779ba8c56a85605d030d5479083a93ff2ee5e42ef"
+    },
+    {
+      "path": "compiled/candidate/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "compiled/common/Boundary.swift",
+      "bytes": 6325,
+      "sha256": "c0fd055cc72d6a7c74f07f14206a53c5610098419e3691005c2285d53b7c133c"
+    },
+    {
+      "path": "compiled/common/Controls.swift",
+      "bytes": 15693,
+      "sha256": "890126884da53f1e5fa0a5b7b82407e798adfb56868335459227d7eb20c4990c"
+    },
+    {
+      "path": "compiled/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "compiled/common/ReaderDestinationResolver.swift",
+      "bytes": 4737,
+      "sha256": "715d5fef2cde466eebb2767a75f5e5d4fb6fb86d56c7c81cc90a8b1f260fb4d3"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 80067,
+      "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 24666,
+      "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+    },
+    {
+      "path": "candidate/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 21002,
+      "sha256": "fadc9772b84b0f13ce3d9a1b563f4dc259f8cfb898f3face8e4e59b32c8daec2"
+    },
+    {
+      "path": "candidate/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 12945,
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    },
+    {
+      "path": "baseline/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "baseline/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    },
+    {
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 23388,
+      "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50"
+    },
+    {
+      "path": "baseline/Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 11292,
+      "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+    },
+    {
+      "path": "baseline/Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 12945,
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    }
+  ],
+  "sourceJoins": [
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 11292,
+      "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 12945,
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift",
+      "bytes": 4737,
+      "sha256": "715d5fef2cde466eebb2767a75f5e5d4fb6fb86d56c7c81cc90a8b1f260fb4d3"
+    }
+  ],
+  "compiler": {
+    "path": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+    "bytes": 35095592,
+    "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+  },
+  "cacheWritersBefore": [],
+  "baseline": {
+    "fail": 4,
+    "pass": 3,
+    "rows": [
+      {
+        "name": "history_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "cancelled_history_cannot_replace_destination_or_token",
+        "pass": "false"
+      },
+      {
+        "name": "navigation_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "cancelled_navigation_cannot_clear_new_task_or_publish_old_items",
+        "pass": "false"
+      },
+      {
+        "name": "reentrant_TOC_cannot_resume_outer_handoff",
+        "pass": "false"
+      },
+      {
+        "name": "section_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "original_content_callback_keeps_new_loading_state_and_task",
+        "pass": "false"
+      }
+    ],
+    "scope": "Actual original content functions/coordinator/issuer and actual Group reader-source reservation; explicit domain, async transport, rendering and UI boundaries. No native/Apple acceptance."
+  },
+  "candidate": {
+    "fail": 0,
+    "pass": 35,
+    "rows": [
+      {
+        "name": "history_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "cancelled_history_cannot_replace_destination_or_token",
+        "pass": "true"
+      },
+      {
+        "name": "navigation_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "cancelled_navigation_cannot_clear_new_task_or_publish_old_items",
+        "pass": "true"
+      },
+      {
+        "name": "reentrant_TOC_cannot_resume_outer_handoff",
+        "pass": "true"
+      },
+      {
+        "name": "section_wait_reached",
+        "pass": "true"
+      },
+      {
+        "name": "original_content_callback_keeps_new_loading_state_and_task",
+        "pass": "true"
+      },
+      {
+        "name": "no_pending_loaded_owner_has_current_observation",
+        "pass": "true"
+      },
+      {
+        "name": "original_start_retires_old_observation_before_callback",
+        "pass": "true"
+      },
+      {
+        "name": "pre_token_start_does_not_need_a_render_publication",
+        "pass": "true"
+      },
+      {
+        "name": "already_pending_capture_is_current_but_not_idle",
+        "pass": "true"
+      },
+      {
+        "name": "equal_restart_irrevocably_retires_first",
+        "pass": "true"
+      },
+      {
+        "name": "retired_handle_cannot_claim_or_mutate",
+        "pass": "true"
+      },
+      {
+        "name": "same_handle_claim_and_token_are_single_use",
+        "pass": "true"
+      },
+      {
+        "name": "second_issuer_handoff_refused",
+        "pass": "true"
+      },
+      {
+        "name": "real_completion_keeps_token_and_stable_no_pending_observation",
+        "pass": "true"
+      },
+      {
+        "name": "original_direct_token_issuer_retires_pre_token_source",
+        "pass": "true"
+      },
+      {
+        "name": "original_invalidate_retires_stable_source",
+        "pass": "true"
+      },
+      {
+        "name": "actual_Observable_book_ABA_retires_pending_source",
+        "pass": "true"
+      },
+      {
+        "name": "backend_generation_ABA_blocks_old_resume",
+        "pass": "true"
+      },
+      {
+        "name": "foreign_registered_ID_cannot_change_original_work",
+        "pass": "true"
+      },
+      {
+        "name": "original_explicit_line_zero_is_not_first_heading",
+        "pass": "true"
+      },
+      {
+        "name": "ordinary_UI_has_no_native_deadline",
+        "pass": "true"
+      },
+      {
+        "name": "expired_competing_start_cannot_preserve_old_source",
+        "pass": "true"
+      },
+      {
+        "name": "revision_overflow_permanently_refuses",
+        "pass": "true"
+      },
+      {
+        "name": "overflow_never_resets",
+        "pass": "true"
+      },
+      {
+        "name": "group_keeps_own_request_while_token_does_not_exist",
+        "pass": "true"
+      },
+      {
+        "name": "group_adopts_only_its_original_issuer_token",
+        "pass": "true"
+      },
+      {
+        "name": "group_original_reader_loaded_source_validates",
+        "pass": "true"
+      },
+      {
+        "name": "group_cannot_borrow_later_equal_token",
+        "pass": "true"
+      },
+      {
+        "name": "qualified_original_locator_path_keeps_real_token",
+        "pass": "true"
+      },
+      {
+        "name": "group_duplicate_original_load_is_refused",
+        "pass": "true"
+      },
+      {
+        "name": "group_release_failure_cancels_exact_pending_work",
+        "pass": "true"
+      },
+      {
+        "name": "same_native_absolute_end_blocks_late_initial_resume",
+        "pass": "true"
+      },
+      {
+        "name": "unqualified_original_archive_UI_still_loads_without_deadline",
+        "pass": "true"
+      }
+    ],
+    "scope": "Actual original content functions/coordinator/issuer and actual Group reader-source reservation; explicit domain, async transport, rendering and UI boundaries. No native/Apple acceptance."
+  },
+  "freeFinal": 9308999680,
+  "rootFreeFinal": 2522431488,
+  "allocatedFinal": 142753792,
+  "finished": "2026-11-27T18:34:22.512087+00:00"
+}

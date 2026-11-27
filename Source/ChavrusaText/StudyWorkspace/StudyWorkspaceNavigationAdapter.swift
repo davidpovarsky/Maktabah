@@ -640,6 +640,7 @@ final class StudyWorkspaceNavigationAdapter {
     private func invalidateNativeGroupSelection(_ reservation: StudyWorkspaceNativeGroupSelectionReservation) {
         guard groupSelectionReservation === reservation, !reservation.didInvalidateNativeSource else { return }
         reservation.didInvalidateNativeSource = true
+        reservation.invalidateOriginalLoads()
         reservation.policy.invalidate()
         // Leave admission unavailable until the original publication/release
         // finishes. Never expose old native values with a new ready epoch.
@@ -911,14 +912,17 @@ final class StudyWorkspaceNavigationAdapter {
         guard performOriginalGroupOperation(.installTabs, selection: selection, manager: manager, owner: owner, body: { manager.openTabs = staged }) else { return }
         for document in documents {
             guard let tab = staged.first(where: { $0.id == document.id }), tab.viewModel.contentText.isEmpty else { continue }
+            let initialRequest: ReaderInitialContentRequest?
             if let reservation = owner {
-                do { try validateNativeGroupSelection(reservation); try reservation.willLoadOriginal(tab: tab) }
-                catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation); return }
-            }
+                do {
+                    try validateNativeGroupSelection(reservation)
+                    initialRequest = try reservation.willLoadOriginal(tab: tab)
+                } catch { reservation.recordPublicationFailure(error); invalidateNativeGroupSelection(reservation); return }
+            } else { initialRequest = nil }
             if let locator = document.session.locator {
-                tab.viewModel.loadBackendContent(locator)
+                tab.viewModel.loadBackendContent(locator, continuing: initialRequest)
             } else {
-                tab.viewModel.loadInitialContent(initialContentId: document.session.contentId)
+                tab.viewModel.loadInitialContent(initialContentId: document.session.contentId, continuing: initialRequest)
             }
             tab.viewModel.loadTOC(book: tab.book)
             if let reservation = owner {
@@ -1176,10 +1180,11 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
         let book: BooksData
         let bookLocator: TextLocator
         let needsLoad: Bool
+        let input: ReaderInitialContentRequest.Input
+        let sourceObservation: ReaderInitialContentSourceObservation
         let previousToken: ReaderContentRequestToken?
-        let expectedGeneration: UInt64?
-        var token: ReaderContentRequestToken?
-        var destination: LibraryReaderDestination?
+        let previousDestination: LibraryReaderDestination?
+        var initialRequest: ReaderInitialContentRequest?
         var issuing = false
         var issued = false
     }
@@ -1190,6 +1195,7 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
     let backendObservation: StudyWorkspaceGroupBackendObservation
     private(set) var readerSources: [UUID: ReaderSource] = [:]
     private(set) var publicationFailure: Error?
+    private var initialContentDeadline: UInt64?
 
     init(policy: StudyWorkspaceGroupSelectionReservation, prepared: StudyWorkspacePreparedGroupSelection,
          backendObservation: StudyWorkspaceGroupBackendObservation) {
@@ -1197,30 +1203,30 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
     }
     func recordPublicationFailure(_ error: Error) { publicationFailure = publicationFailure ?? error }
 
+    func bindInitialContentDeadline(_ deadline: UInt64) throws {
+        guard initialContentDeadline == nil, policy.phase == .prepared,
+              DispatchTime.now().uptimeNanoseconds < deadline,
+              readerSources.values.allSatisfy({ !$0.issuing && !$0.issued }) else { throw StudyWorkspaceError.invalidMembership }
+        initialContentDeadline = deadline
+    }
+
     func captureOriginalReaderSources() throws {
         guard readerSources.isEmpty else { throw StudyWorkspaceError.invalidMembership }
         for tab in prepared.staged {
             guard let document = prepared.documents.first(where: { $0.id == tab.id }),
                   let book = tab.book.backendLocator, book.backend == policy.backend,
                   tab.viewModel.currentBook === tab.book,
-                  book.workKey == (document.session.backendLocator?.workKey ?? document.session.locator?.workKey) else {
-                throw StudyWorkspaceError.unavailableBook
-            }
+                  book.workKey == (document.session.backendLocator?.workKey ?? document.session.locator?.workKey),
+                  let observation = tab.viewModel.contentLoadCoordinator.initialContentSourceObservation(),
+                  observation.isCurrent, observation.pendingRequestID == nil else { throw StudyWorkspaceError.unavailableBook }
             let prior = tab.viewModel.contentLoadCoordinator.currentRequestToken()
             let empty = tab.viewModel.contentText.isEmpty
-            let expectedGeneration: UInt64?
-            if empty {
-                // The legacy loadInitialContent path starts an unretained Task
-                // before issuing its original token. It remains unavailable to
-                // this bounded route; do not guess a token or read a substitute.
-                guard let locator = document.session.locator,
-                      locator.backend == policy.backend, locator.workKey == book.workKey else {
-                    throw StudyWorkspaceError.unavailableBook
-                }
-                if let prior, prior.generation < .max { expectedGeneration = prior.generation + 1 }
-                else if prior == nil, prepared.freshlyHydratedIDs.contains(tab.id) { expectedGeneration = 1 }
-                else { throw StudyWorkspaceError.unavailableBook }
-            } else {
+            let input: ReaderInitialContentRequest.Input
+            if let locator = document.session.locator {
+                guard locator.backend == policy.backend, locator.workKey == book.workKey else { throw StudyWorkspaceError.unavailableBook }
+                input = .locator(locator)
+            } else { input = .initial(document.session.contentId) }
+            if !empty {
                 guard case .loaded = tab.viewModel.state, let prior,
                       let destination = tab.viewModel.currentDestination,
                       prior.backend == policy.backend, prior.workKey == book.workKey,
@@ -1228,11 +1234,13 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
                       tab.viewModel.contentLoadCoordinator.canApplyContent(token: prior, currentBookLocator: book) else {
                     throw StudyWorkspaceError.unavailableBook
                 }
-                expectedGeneration = nil
             }
+            // The original backendLoadTask IS retained. The former limitation
+            // was missing pre-token invocation identity, now supplied by the
+            // original coordinator; no expected-generation guess is required.
             readerSources[tab.id] = .init(tab: tab, book: tab.book, bookLocator: book, needsLoad: empty,
-                previousToken: prior, expectedGeneration: expectedGeneration, token: prior,
-                destination: tab.viewModel.currentDestination)
+                input: input, sourceObservation: observation, previousToken: prior,
+                previousDestination: tab.viewModel.currentDestination)
         }
     }
 
@@ -1242,43 +1250,75 @@ extension StudyWorkspaceNavigationAdapter: StudyWorkspaceSnapshotObserver {
             guard actual.count == 1, let tab = actual.first,
                   tab.book === source.book, tab.viewModel === source.tab.viewModel,
                   source.book.backendLocator == source.bookLocator,
-                  tab.viewModel.currentBook === source.book, !source.issuing,
-                  tab.viewModel.contentLoadCoordinator.currentRequestToken() == source.token,
-                  tab.viewModel.currentDestination == source.destination else {
-                throw StudyWorkspaceError.invalidMembership
-            }
-            if source.needsLoad && !source.issued {
-                guard tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.invalidMembership }
-            } else if !source.needsLoad {
-                guard case .loaded = tab.viewModel.state, !tab.viewModel.contentText.isEmpty else {
-                    throw StudyWorkspaceError.unavailableBook
+                  tab.viewModel.currentBook === source.book, !source.issuing else { throw StudyWorkspaceError.invalidMembership }
+            if source.issued {
+                guard let request = source.initialRequest, let actual = request.state,
+                      request.source.reader == ObjectIdentifier(tab.viewModel), request.source.book == ObjectIdentifier(source.book),
+                      request.source.bookID == source.book.id, request.source.bookLocator == source.bookLocator,
+                      request.source.input == source.input, request.source.backend == policy.backend,
+                      request.source.backendGeneration == prepared.previousGeneration,
+                      request.deadlineUptimeNanoseconds == initialContentDeadline,
+                      tab.viewModel.currentDestination == actual.destination else { throw StudyWorkspaceError.invalidMembership }
+                if let token = actual.token {
+                    guard token == request.issuedToken, token == tab.viewModel.contentLoadCoordinator.currentRequestToken(),
+                          token.backend == policy.backend, token.workKey == source.bookLocator.workKey,
+                          token.sectionLocator == actual.destination?.sectionLocator,
+                          tab.viewModel.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: source.bookLocator) else {
+                        throw StudyWorkspaceError.invalidMembership
+                    }
+                } else {
+                    guard actual.phase == .resolving, tab.viewModel.contentText.isEmpty,
+                          tab.viewModel.contentLoadCoordinator.currentRequestToken() == nil else { throw StudyWorkspaceError.invalidMembership }
+                }
+            } else {
+                guard source.sourceObservation.isCurrent,
+                      tab.viewModel.contentLoadCoordinator.currentRequestToken() == source.previousToken,
+                      tab.viewModel.currentDestination == source.previousDestination else { throw StudyWorkspaceError.invalidMembership }
+                if source.needsLoad {
+                    guard tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.invalidMembership }
+                } else {
+                    guard case .loaded = tab.viewModel.state, !tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.unavailableBook }
                 }
             }
         }
     }
 
-    func willLoadOriginal(tab: iOSNavigationManager.ReaderTab) throws {
+    func willLoadOriginal(tab: iOSNavigationManager.ReaderTab) throws -> ReaderInitialContentRequest {
         guard policy.phase == .publishing, var source = readerSources[tab.id],
               source.tab.viewModel === tab.viewModel, source.tab.book === tab.book,
-              source.needsLoad, !source.issuing, !source.issued,
+              source.needsLoad, !source.issuing, !source.issued, source.sourceObservation.isCurrent,
               tab.viewModel.contentLoadCoordinator.currentRequestToken() == source.previousToken,
-              tab.viewModel.contentText.isEmpty else { throw StudyWorkspaceError.invalidMembership }
-        // Consumed before the original load can invoke any callback.
+              tab.viewModel.contentText.isEmpty, let deadline = initialContentDeadline else { throw StudyWorkspaceError.invalidMembership }
+        // Consume before the original callback; retain its issuer, not a token
+        // sampled from the Reader after asynchronous initial resolution.
         source.issuing = true; readerSources[tab.id] = source
+        let request: ReaderInitialContentRequest?
+        switch source.input {
+        case .initial(let contentID):
+            request = tab.viewModel.makeInitialContentRequest(initialContentId: contentID, deadlineUptimeNanoseconds: deadline)
+        case .locator(let locator):
+            request = tab.viewModel.makeBackendContentRequest(locator: locator, deadlineUptimeNanoseconds: deadline)
+        case .destination: throw StudyWorkspaceError.invalidMembership
+        }
+        guard let request, request.isCurrent else { throw StudyWorkspaceError.invalidMembership }
+        source.initialRequest = request; readerSources[tab.id] = source
+        return request
     }
 
     func didLoadOriginal(tab: iOSNavigationManager.ReaderTab) throws {
         guard policy.phase == .publishing, var source = readerSources[tab.id], source.issuing, !source.issued,
               source.tab.viewModel === tab.viewModel, source.tab.book === tab.book,
-              let token = tab.viewModel.contentLoadCoordinator.currentRequestToken(),
-              token.generation == source.expectedGeneration, token.id != source.previousToken?.id,
-              token.backend == policy.backend, token.workKey == source.bookLocator.workKey,
-              let destination = tab.viewModel.currentDestination, destination.sectionLocator == token.sectionLocator,
-              tab.viewModel.contentLoadCoordinator.canApplyContent(token: token, currentBookLocator: source.bookLocator) else {
-            throw StudyWorkspaceError.invalidMembership
+              let state = source.initialRequest?.state,
+              state.phase == .resolving || state.phase == .issued else { throw StudyWorkspaceError.invalidMembership }
+        source.issuing = false; source.issued = true; readerSources[tab.id] = source
+        try validateOriginalReaderSources()
+    }
+
+    func invalidateOriginalLoads() {
+        for source in readerSources.values {
+            guard let request = source.initialRequest, request.state?.phase != .completed else { continue }
+            request.invalidate()
         }
-        source.token = token; source.destination = destination; source.issuing = false; source.issued = true
-        readerSources[tab.id] = source
     }
 
     var selectedTab: iOSNavigationManager.ReaderTab? {

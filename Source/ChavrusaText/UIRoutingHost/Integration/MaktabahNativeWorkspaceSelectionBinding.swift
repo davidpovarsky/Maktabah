@@ -103,11 +103,22 @@ final class MaktabahNativeWorkspaceSelectionBinding {
                       token.sectionLocator == existing.viewModel.currentDestination?.sectionLocator else { return false }
                 return true
             }
-            guard let locator = document.session.locator,
-                  locator.backend == document.backend, locator.workKey == work else { return false }
-            // Cached cold Readers with no extant token have an unknown private
-            // generation; newly hydrated original Readers start at generation 1.
-            return existing == nil || existing?.viewModel.contentLoadCoordinator.currentRequestToken().map { $0.generation < .max } == true
+            if let existing {
+                guard let observation = existing.viewModel.contentLoadCoordinator.initialContentSourceObservation(),
+                      observation.isCurrent, observation.pendingRequestID == nil else { return false }
+            }
+            if let locator = document.session.locator {
+                return locator.backend == document.backend && locator.workKey == work
+            }
+            if let contentID = document.session.contentId {
+                if let registered = LegacyIdentityRegistry.shared.locator(for: contentID) {
+                    return registered.backend == document.backend && registered.workKey == work
+                }
+                return document.backend == .otzaria && contentID >= 0
+            }
+            // No saved position: the ORIGINAL initial resolver chooses recent
+            // content/first bounded unit under its exact pre-token invocation.
+            return true
         }
     }
 
@@ -196,7 +207,7 @@ final class MaktabahNativeWorkspaceSelectionBinding {
     var observedSurface: MaktabahNativeSceneProjection.Surface {
         isEmpty ? (MaktabahApp.isIpad ? .emptyReader : .library) : .reader
     }
-    func invalidate() { valid = false; viewerParent?.invalidate() }
+    func invalidate() { valid = false; reservation?.invalidateOriginalLoads(); viewerParent?.invalidate() }
 
     func validate() throws {
         try Task.checkCancellation()
@@ -293,11 +304,13 @@ final class MaktabahNativeWorkspaceSelectionBinding {
         try validate()
     }
 
-    func begin(validateLifetime: @escaping @MainActor () throws -> Void) throws {
+    func begin(deadlineUptimeNanoseconds: UInt64? = nil,
+               validateLifetime: @escaping @MainActor () throws -> Void) throws {
         try validate()
         guard isPrepared, canonicalLifetime == nil, !isApplied else {
             throw UIRouteError(.staleState, "native_workspace_selection_already_begun")
         }
+        if let deadlineUptimeNanoseconds { try reservation?.bindInitialContentDeadline(deadlineUptimeNanoseconds) }
         try validateLifetime()
         try validate()
         canonicalLifetime = validateLifetime
@@ -379,8 +392,19 @@ final class MaktabahNativeWorkspaceSelectionBinding {
             state: .init(workspaceID: original.state.workspaceID, profileID: original.state.profileID), focus: nil)
     }
 
+    /// Set only after the SAME original receipt and final native source check.
+    /// Started inactive-tab loads may finish within their original deadline;
+    /// a failed/cancelled public operation cannot leave pending work authorized.
+    private var validatedCompletion = false
+    func didValidateCompletion() throws {
+        try validate()
+        guard isApplied else { throw UIRouteError(.staleState, "native_workspace_selection_not_applied") }
+        validatedCompletion = true
+    }
+
     func release() {
         valid = false; canonicalLifetime = nil
+        if !validatedCompletion { reservation?.invalidateOriginalLoads() }
         viewerParent?.release()
         if let reservation { workspace.releaseNativeGroupSelection(reservation) }
         else { backendObservation.retire() }

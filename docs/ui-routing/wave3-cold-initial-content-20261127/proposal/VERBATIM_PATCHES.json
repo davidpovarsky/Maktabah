@@ -1,0 +1,19 @@
+{
+  "patches": [
+    {
+      "path": "proposal/SOURCE.patch.gz",
+      "rawBytes": 56867,
+      "rawSHA256": "5f5b4a3e68ceb4309b6849b2b3378c58d6e8b948596e5f2b9602ea2657677511",
+      "bytes": 9996,
+      "sha256": "e3b2c7da8f17e1aedba128701d03bd4a3ff3a7dcdead95670a17f9b474d9cc53"
+    },
+    {
+      "path": "proposal/SESSION.patch.gz",
+      "rawBytes": 1051,
+      "rawSHA256": "fd20cf588ac5948be6477587afbeabb1c0deec49bcf6b4326539e2c7b25e13fc",
+      "bytes": 484,
+      "sha256": "7e2aa58089f2fff54c77dee5fc21140cf66b695dcc97257ac699bf462fb85427"
+    }
+  ],
+  "lossless": true
+}

@@ -1,0 +1,32 @@
+{
+  "rawBytes": 891180,
+  "rawSHA256": "82b08c7c29ff394126a90faa6815bfa5f324d6c9ecabe40135bf55fc85292da2",
+  "gzipBytes": 169311,
+  "gzipSHA256": "00f30568f06d218c12faf6ec168ca6e7cf5addea1d0ebed293c18143d903e379",
+  "files": [
+    {
+      "path": "base/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 156114,
+      "sha256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+    },
+    {
+      "path": "base-proposal/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 156227,
+      "sha256": "a9cc0272d2911881497a7dd845a7c7b0ef17fbc20aeed6191b60f828d56bab94"
+    },
+    {
+      "path": "observed-root/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177536,
+      "sha256": "97b5991b052e6acc06ff42699146d884aa915cadbd5e1b8bd3bfd2c09514ff5c"
+    },
+    {
+      "path": "observed-root-proposal/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+    }
+  ],
+  "rootOnly": true,
+  "observedRootHEAD": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+  "hunks": 2,
+  "inverseExact": true
+}

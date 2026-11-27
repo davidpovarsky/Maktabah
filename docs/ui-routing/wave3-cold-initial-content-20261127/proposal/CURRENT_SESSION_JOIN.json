@@ -1,0 +1,14 @@
+{
+  "rootHEAD": "e142c1c461f886d62c98cf29f46e41a4fa0af100",
+  "before": {
+    "bytes": 177536,
+    "sha256": "97b5991b052e6acc06ff42699146d884aa915cadbd5e1b8bd3bfd2c09514ff5c"
+  },
+  "after": {
+    "bytes": 177649,
+    "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6"
+  },
+  "hunks": 2,
+  "inverseExact": true,
+  "rootOnly": true
+}

@@ -1,0 +1,17 @@
+{
+  "reviewer": "/root/navigation_fix",
+  "scope": "Read-only original pre-token invocation, one-token issuance, callback/publication and exact terminal retirement; no rerun or native claim.",
+  "firstDraft": {
+    "readerContentSHA256": "fadc9772b84b0f13ce3d9a1b563f4dc259f8cfb898f3face8e4e59b32c8daec2",
+    "findings": [
+      "The actual updateContentState continued later original fields after a synchronous replacement. The first35 fixture did not contain that original publisher body.",
+      "CancellationError or staleRequest can be thrown without Task.isCancelled; terminal returns left pending invocation metadata alive."
+    ]
+  },
+  "finalRead": {
+    "readerContentSHA256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48",
+    "readerViewModelSHA256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905",
+    "conclusion": "Both concrete source findings are closed. The same retained request/book validator fences original callback-bearing publications before further writes; terminal errors and failed exact source comparisons retire only that request. Default-nil calls retain the original sequence. No replacement-token sampling was introduced."
+  },
+  "notEstablished": ["Apple SDK typing", "UIKit/rendering", "system intents", "native acceptance"]
+}

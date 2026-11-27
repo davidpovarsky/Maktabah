@@ -1,0 +1,80 @@
+    func updateContentState(with content: BookContent, validating isCurrent: (() -> Bool)? = nil) {
+        guard isCurrent?() ?? true else { return }
+        let previousContentId = currentContentId
+        contentText = content.nash
+        guard isCurrent?() ?? true else { return }
+        #if os(macOS)
+        contentPayload = ContentRenderPayload(bookId: currentBook?.id, text: content.nash, content: content, keepScrollPosition: false)
+        guard isCurrent?() ?? true else { return }
+        onPayloadChanged?(contentPayload)
+        guard isCurrent?() ?? true else { return }
+        #endif
+        currentPart = content.part
+        guard isCurrent?() ?? true else { return }
+        currentPage = content.page
+        guard isCurrent?() ?? true else { return }
+        currentHeRef = content.heRef
+        guard isCurrent?() ?? true else { return }
+        currentID = content.id
+        guard isCurrent?() ?? true else { return }
+        currentContentId = content.id
+        guard isCurrent?() ?? true else { return }
+
+        if recordHistory, let locator = content.backendLocator, let title = currentBook?.book {
+            Task { try? await QualifiedLocatorStore.shared.record(locator, title: title) }
+            guard isCurrent?() ?? true else { return }
+        } else if recordHistory, let bookId = currentBook?.id {
+            historyVM.updateLastContentId(content.id, for: bookId)
+            guard isCurrent?() ?? true else { return }
+        }
+
+        loadAnnotations()
+        guard isCurrent?() ?? true else { return }
+
+        #if os(macOS)
+        onContentChanged?(content)
+        guard isCurrent?() ?? true else { return }
+        updateWindowTitle(
+            book: currentBook, page: currentPage, part: currentPart
+        )
+        guard isCurrent?() ?? true else { return }
+        onNavigationLimitsChanged?()
+        guard isCurrent?() ?? true else { return }
+        #endif
+
+        #if os(iOS)
+        if currentBook?.backendLocator == nil,
+           let searchEvent,
+           let eventContentId = searchEvent.contentId,
+           eventContentId != content.id {
+            self.searchEvent = nil
+            guard isCurrent?() ?? true else { return }
+        }
+        if let annotationEvent, annotationEvent.annotation.contentId != content.id {
+            self.annotationEvent = nil
+            guard isCurrent?() ?? true else { return }
+        }
+        // Sync to state
+        readerState.currentBook = currentBook
+        guard isCurrent?() ?? true else { return }
+        readerState.currentID = content.id
+        guard isCurrent?() ?? true else { return }
+        readerState.currentPart = content.part
+        guard isCurrent?() ?? true else { return }
+        readerState.currentPage = content.page
+        guard isCurrent?() ?? true else { return }
+        readerState.currentLocator = content.backendLocator ?? backendSection?.locator ?? currentBook?.backendLocator
+        guard isCurrent?() ?? true else { return }
+        // Clear saved scroll/selection so it scrolls to top on page change
+        readerState.scrollPosition = nil
+        guard isCurrent?() ?? true else { return }
+        readerState.selectedRange = nil
+        guard isCurrent?() ?? true else { return }
+        if previousContentId != content.id {
+            clearOtzariaLineSelectionForContentChange()
+            guard isCurrent?() ?? true else { return }
+        }
+        updateNavigationLimits()
+        guard isCurrent?() ?? true else { return }
+        #endif
+    }

@@ -1,0 +1,234 @@
+{
+  "files": [
+    {
+      "path": "CALL_SITE_AUDIT.json",
+      "bytes": 12735,
+      "sha256": "8a2451d059d43ed2fe9dfbc5a290ba091a28c7396c8aaac8eab03d4a1bdd1015"
+    },
+    {
+      "path": "CONTROL_JOB_RESULTS.json",
+      "bytes": 3039,
+      "sha256": "7e5efa5a709ecaf554a16b5734f9db814b7722845be3ec4b97d136f54ef0e21e"
+    },
+    {
+      "path": "ORIGINAL_PINS.json",
+      "bytes": 3333,
+      "sha256": "8645e9dfbfb6abad785fdb01b618c838514ab89fcef3e786f1f52534beb6a990"
+    },
+    {
+      "path": "PEER_REVIEW.json",
+      "bytes": 1303,
+      "sha256": "cd8d1fdada278f8f2cb617d71516a44f9b4a739a6d0f0cb9b5fc19ddcda3a336"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9063,
+      "sha256": "5a44f710a847c26def1f2eeb414c003facfde48d6e2e4219b3a2d4adbc26c42a"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 7521,
+      "sha256": "63834ea4d616ce04164a56f4496b88e052035de89c1c072ba3a2f5cc9d2a9a79"
+    },
+    {
+      "path": "controls/exact_bounded_subprocess.py",
+      "bytes": 3540,
+      "sha256": "fc597b3333f830fc97f73edaa34644645956f8e35cbdcea11c26f9957d6daba8"
+    },
+    {
+      "path": "controls/initial/Boundary.swift",
+      "bytes": 6325,
+      "sha256": "c0fd055cc72d6a7c74f07f14206a53c5610098419e3691005c2285d53b7c133c"
+    },
+    {
+      "path": "controls/initial/Controls.swift",
+      "bytes": 15693,
+      "sha256": "890126884da53f1e5fa0a5b7b82407e798adfb56868335459227d7eb20c4990c"
+    },
+    {
+      "path": "controls/initial/GroupBoundary.swift",
+      "bytes": 1481,
+      "sha256": "f81a3b6571f1a41822a8233e38541e5bd219e06a4a889ebd8d1220612b3b86e1"
+    },
+    {
+      "path": "controls/initial/generate.py",
+      "bytes": 3859,
+      "sha256": "9b38f6363fdfb6af47b9d6dec2e98bcffa4c53f48fb942e6ce4a81da1b7b5d34"
+    },
+    {
+      "path": "controls/initial/run.py",
+      "bytes": 5460,
+      "sha256": "3221bcb052faefc77423ee3d0288824b6cff581a9a15438b4fa1732a3064b89a"
+    },
+    {
+      "path": "controls/initial/runner-attempt-1.py",
+      "bytes": 122619,
+      "sha256": "778dfde08382c8eb4c3a942740ac047cf7f6f08e2a08ef198faa3dd94747c33e"
+    },
+    {
+      "path": "controls/publisher/Boundary.swift",
+      "bytes": 8830,
+      "sha256": "7504187fa5da1ea338ad4e0c8393fb5bd3c410b919b06acad3a973e5eda0595b"
+    },
+    {
+      "path": "controls/publisher/Controls.swift",
+      "bytes": 10037,
+      "sha256": "18ca482a0057fe6cf7d3d8541c21acc5c02d7d71f2fc2d24f9413a04b2532f3c"
+    },
+    {
+      "path": "controls/publisher/generate.py",
+      "bytes": 4313,
+      "sha256": "d844df83c3d960cb7d0398aa084c13090bd032518e4b267bc0a0a84a90d864dd"
+    },
+    {
+      "path": "controls/publisher/run.py",
+      "bytes": 5915,
+      "sha256": "c8b958f6c80ac5346d5689e7d18ff77861478d883473ef6c590c5abaa506cf83"
+    },
+    {
+      "path": "evidence/FINAL_RESULT.json",
+      "bytes": 44868,
+      "sha256": "21bb0736ae9ea538c32effc8f231ed2c832f01cb0ca25a61d38c8f26bd95e89e"
+    },
+    {
+      "path": "evidence/FIRST35_RESULT.json",
+      "bytes": 18226,
+      "sha256": "94fbbe73d5d5762431387eacf74315e8ce354451791f7baaffdc3c5fdb9bd706"
+    },
+    {
+      "path": "evidence/PUBLICATION_ATTEMPT1.json",
+      "bytes": 8074,
+      "sha256": "d82fc50cc8b780e98a1563ac82675fe4a03afd1ce914c7710f210ac37a409cd6"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz",
+      "bytes": 798848,
+      "sha256": "f706d8a2469206f43eccee06271df0011ba8e500b0508fe31c2986ae86d4525c"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.json.gz.manifest.json",
+      "bytes": 32423,
+      "sha256": "5977c2f8f7b49bbcca5aba431b8359edbd6bb93ca74a0c627a3c9634774f9b07"
+    },
+    {
+      "path": "proposal/CURRENT_SESSION_JOIN.json",
+      "bytes": 360,
+      "sha256": "1c846f00c149716860e19ee8238ee7640ae31711114f17f00f318a1a74c164e2"
+    },
+    {
+      "path": "proposal/PRESERVED_ORIGINALS.json",
+      "bytes": 356,
+      "sha256": "6bc166aea48d85c4856888e555f6ee6972d5eab159a58f1a85c722716740c392"
+    },
+    {
+      "path": "proposal/READER_PUBLISHER_CANDIDATE.swiftfrag",
+      "bytes": 3512,
+      "sha256": "79cee483f3e16c40c9b61ad39ed9ee1e7f5300ab930dfb28969cf117cc196396"
+    },
+    {
+      "path": "proposal/READER_PUBLISHER_ORIGINAL.swiftfrag",
+      "bytes": 2123,
+      "sha256": "ab8265d6357bd4edee4cef31763c1af5f14d3c3fbb0c837fff76227dfb82a6a3"
+    },
+    {
+      "path": "proposal/SESSION.patch.gz",
+      "bytes": 484,
+      "sha256": "7e2aa58089f2fff54c77dee5fc21140cf66b695dcc97257ac699bf462fb85427"
+    },
+    {
+      "path": "proposal/SESSION_EDITS.json",
+      "bytes": 4149,
+      "sha256": "2b6faf658745331b57109ea690aa17168eb68a3770fa2fa270dc7b9577c9b796"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz",
+      "bytes": 169311,
+      "sha256": "00f30568f06d218c12faf6ec168ca6e7cf5addea1d0ebed293c18143d903e379"
+    },
+    {
+      "path": "proposal/SOURCE.json.gz.manifest.json",
+      "bytes": 1272,
+      "sha256": "1c84e74aec4e6d2a9029920cb7904acd35cb72c902255b0407f38d41913dab1b"
+    },
+    {
+      "path": "proposal/SOURCE.patch.gz",
+      "bytes": 9996,
+      "sha256": "e3b2c7da8f17e1aedba128701d03bd4a3ff3a7dcdead95670a17f9b474d9cc53"
+    },
+    {
+      "path": "proposal/SOURCE_PINS.json",
+      "bytes": 2174,
+      "sha256": "54ce4578aef6a94990988cf97f38137b4bdc0e15f0f523cb4784811539c698d1"
+    },
+    {
+      "path": "proposal/VERBATIM_PATCHES.json",
+      "bytes": 583,
+      "sha256": "57a346e4d51643e6788e12f01e5ea234a42e426cd975c336dc12c805b9677402"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "after": {
+        "bytes": 12268,
+        "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+      },
+      "before": {
+        "bytes": 4610,
+        "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderInitialContentRequest.swift",
+      "after": {
+        "bytes": 2841,
+        "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+      },
+      "before": null
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "after": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "before": {
+        "bytes": 77004,
+        "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "after": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "before": {
+        "bytes": 23388,
+        "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "after": {
+        "bytes": 21681,
+        "sha256": "6d753a647a46ac9f347f6305bc45b73b36d7940fa288243f3b5fe131c18d5f48"
+      },
+      "before": {
+        "bytes": 11292,
+        "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+      }
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "after": {
+        "bytes": 14334,
+        "sha256": "99708a2d6f0c635c2698dc587846b72c784ad5273c7b4ec1498ee483ad075905"
+      },
+      "before": {
+        "bytes": 12945,
+        "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+      }
+    }
+  ]
+}

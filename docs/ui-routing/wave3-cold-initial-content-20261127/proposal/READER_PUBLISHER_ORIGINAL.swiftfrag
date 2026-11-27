@@ -1,0 +1,54 @@
+    func updateContentState(with content: BookContent) {
+        let previousContentId = currentContentId
+        contentText = content.nash
+        #if os(macOS)
+        contentPayload = ContentRenderPayload(bookId: currentBook?.id, text: content.nash, content: content, keepScrollPosition: false)
+        onPayloadChanged?(contentPayload)
+        #endif
+        currentPart = content.part
+        currentPage = content.page
+        currentHeRef = content.heRef
+        currentID = content.id
+        currentContentId = content.id
+
+        if recordHistory, let locator = content.backendLocator, let title = currentBook?.book {
+            Task { try? await QualifiedLocatorStore.shared.record(locator, title: title) }
+        } else if recordHistory, let bookId = currentBook?.id {
+            historyVM.updateLastContentId(content.id, for: bookId)
+        }
+
+        loadAnnotations()
+
+        #if os(macOS)
+        onContentChanged?(content)
+        updateWindowTitle(
+            book: currentBook, page: currentPage, part: currentPart
+        )
+        onNavigationLimitsChanged?()
+        #endif
+
+        #if os(iOS)
+        if currentBook?.backendLocator == nil,
+           let searchEvent,
+           let eventContentId = searchEvent.contentId,
+           eventContentId != content.id {
+            self.searchEvent = nil
+        }
+        if let annotationEvent, annotationEvent.annotation.contentId != content.id {
+            self.annotationEvent = nil
+        }
+        // Sync to state
+        readerState.currentBook = currentBook
+        readerState.currentID = content.id
+        readerState.currentPart = content.part
+        readerState.currentPage = content.page
+        readerState.currentLocator = content.backendLocator ?? backendSection?.locator ?? currentBook?.backendLocator
+        // Clear saved scroll/selection so it scrolls to top on page change
+        readerState.scrollPosition = nil
+        readerState.selectedRange = nil
+        if previousContentId != content.id {
+            clearOtzariaLineSelectionForContentChange()
+        }
+        updateNavigationLimits()
+        #endif
+    }

@@ -1,0 +1,26 @@
+{
+  "ref": "aa88b56b2e5fea1bf91de8a3e993e494ec41d96f",
+  "files": [
+    {
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "bytes": 11292,
+      "sha256": "b4c06e5bd76fb43de4d539d2fcd6bda53c9c3aeda4d5d40ea2d16d3d2ff082ca"
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "bytes": 12945,
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    }
+  ],
+  "callers": "aa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:43:        backendLoadTask?.cancel()\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:44:        backendLoadTask = Task { @MainActor [weak self] in\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:93:                    self.backendLoadTask = nil\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:99:            self.backendLoadTask = nil\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:132:        backendLoadTask?.cancel()\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:135:        let token = contentLoadCoordinator.beginRequest(\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:141:        backendLoadTask = Task { @MainActor [weak self] in\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:171:                    let navGen = self.contentLoadCoordinator.beginNavigationItemsRequest(for: workLocator.workKey)\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift:194:                self.backendLoadTask = nil\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Features/Reader/ViewModel/ReaderViewModel.swift:77:    var backendLoadTask: Task<Void, Never>?\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/LibraryBackend/MaktabahBackendAdapter.swift:114:        reader.backendLoadTask?.cancel()\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/LibraryBackend/MaktabahBackendAdapter.swift:115:        let token = reader.contentLoadCoordinator.beginRequest(\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/LibraryBackend/MaktabahBackendAdapter.swift:118:        reader.backendLoadTask = Task { @MainActor [weak reader] in\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/LibraryBackend/MaktabahBackendAdapter.swift:121:                if reader.contentLoadCoordinator.isTokenActive(token) { reader.backendLoadTask = nil }\naa88b56b2e5fea1bf91de8a3e993e494ec41d96f:Source/Otzaria/Features/Settings/OtzariaLibraryUpdateView.swift:257:            reader.backendLoadTask?.cancel()\n"
+}
