@@ -1,0 +1,32 @@
+{
+  "schema": "otzaria.wave3.finite-public-search-transport-intake.v1",
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "donor": "a4ed8f199091f00f7ade3c51ae93badefa5ba487",
+  "intake": "62f1d12b5f47f33e9990304b9697b42d392f7fd7",
+  "commitPaths": 11,
+  "artifactRows": 10,
+  "rawFilesVerified": 13,
+  "driverBeforeSHA256": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80",
+  "driverAfterSHA256": "16b506e585ef4a111cae9cc7cb767fc58e70a73fdfbb4598f80214ed298f5a80",
+  "changedLines": 2,
+  "wholeDriverInverseExact": true,
+  "originalTestsByteExact": true,
+  "reusedActualPythonSourceControls": {
+    "newPassed": 8,
+    "originalPassed": 18,
+    "originalNewSuiteFailures": 6
+  },
+  "subprocessAndOSDelivery": "Explicit double; no native delivery",
+  "oldGuardsPreserved": "Original token, nonce, simulator, age, size/budget, exact origin/path, argv, timeout, schema and redaction unchanged.",
+  "protectedTrees": {
+    "Source": "7afa76212dec72644917e6aaff3257ca56a14ccf",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "e8f08a3e8be4a79a577c70d0819875be2fee1d1b",
+    "Maktabah-iOSUITests": "1a01fdfe54e13e66c83c03da2405a1f2a56ecf0d",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "production": "NOT_RUN"
+}
