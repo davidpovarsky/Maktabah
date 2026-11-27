@@ -68,9 +68,16 @@ public final class NativeIntentService {
     private func filter(_ values: [Destination], identifiers: [String]?, matching query: String?) throws -> [Destination] {
         guard values.count <= 128, Set(values.map(\.id)).count == values.count else { throw UIRouteError(.failed, "invalid_live_intent_catalog") }
         let requested = identifiers.map(Set.init)
-        return values.filter { value in
-            (requested == nil || requested!.contains(value.id)) && (query == nil || value.title.localizedCaseInsensitiveContains(query!))
+        let candidates = values.filter { requested == nil || requested!.contains($0.id) }
+        guard let query else { return candidates }
+        // Component names such as Search Data must not make the exact Search
+        // destination ambiguous. Window suffixes disambiguate identities, not
+        // the requested feature name; keep ALL exact matches across windows.
+        let exact = candidates.filter {
+            let name = $0.title.components(separatedBy: " — ").first ?? $0.title
+            return name.localizedCaseInsensitiveCompare(query) == .orderedSame
         }
+        return exact.isEmpty ? candidates.filter { $0.title.localizedCaseInsensitiveContains(query) } : exact
     }
 
     /// Re-resolve stale system entities against the current authorized catalog

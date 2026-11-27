@@ -11,9 +11,15 @@ struct MaktabahNativePublicPresentation {
     let tableOfContentsAvailable: Bool
     let witnessedReader: NativeSurfaceState?
     var searchFieldAvailable: Bool = false
+    var availableComponents: [UIDestinationID: Set<UIDestinationID>] = [:]
     var inspectorAvailable: Bool = false
     /// From the independently witnessed original Reader or Inspector; nil is unknown.
     var witnessedInspectorVisible: Bool? = nil
+
+    func componentAvailable(_ anchor: UIDestinationID, in destination: UIDestinationID) -> Bool {
+        if destination.rawValue == "native.search", anchor.rawValue == "native.search.query" { return searchFieldAvailable }
+        return availableComponents[destination]?.contains(anchor) == true
+    }
 }
 
 /// App-target adapter over immutable R44 producer APIs. Not an executor, cache,
@@ -32,6 +38,7 @@ struct MaktabahNativePublicPresentation {
     private let directory: NativeSceneDirectory
     private let backend: any ActionSynchronousBackendStatePort
     private let presentation: @MainActor () throws -> MaktabahNativePublicPresentation
+    private let validateComponentSource: @MainActor (UIDestinationID, UIDestinationID, UUID) throws -> Void
     private let invalidated: @MainActor () -> Void
     private var subscription: StudyWorkspaceMappingSubscription?
     private var retired = false
@@ -41,6 +48,9 @@ struct MaktabahNativePublicPresentation {
          authority: NativeNavigationAuthority, lease: NativeNavigationAuthority.Lease,
          directory: NativeSceneDirectory, backend: any ActionSynchronousBackendStatePort,
          presentation: @escaping @MainActor () throws -> MaktabahNativePublicPresentation,
+         validateComponentSource: @escaping @MainActor (UIDestinationID, UIDestinationID, UUID) throws -> Void = { destination, _, _ in
+             guard destination.rawValue == "native.search" else { throw UIRouteError(.unavailable, "native_component_source_missing") }
+         },
          invalidated: @escaping @MainActor () -> Void) throws {
         guard lease.sceneID == sceneID, workspaceOwner.current === workspace else { throw UIRouteError(.staleState, "public_binding_wrong_lease_or_owner") }
         self.sceneID = sceneID; self.manager = manager; self.workspace = workspace
@@ -48,7 +58,8 @@ struct MaktabahNativePublicPresentation {
         owner = ObjectIdentifier(manager); source = workspace.mappingOwnershipSource
         sourceID = workspace.mappingOwnershipObservation()?.epoch.sourceID
         self.authority = authority; self.lease = lease; self.directory = directory; self.backend = backend
-        self.presentation = presentation; self.invalidated = invalidated
+        self.presentation = presentation; self.validateComponentSource = validateComponentSource
+        self.invalidated = invalidated
         ownerObservation = try workspaceOwner.observe(self)
         subscription = source.subscribeInvalidation(owner: self) { adapter, _ in adapter.revokeOriginalLease() }
     }
@@ -91,8 +102,11 @@ struct MaktabahNativePublicPresentation {
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         if let component {
-            guard destination.rawValue == "native.search", presentation == .currentTab,
-                  component.rawValue == "native.search.query", !hasContent else {
+            let search = destination.rawValue == "native.search" && presentation == .currentTab
+                && component.rawValue == "native.search.query"
+            let settings = destination == MaktabahNativeSettingsComponents.destination && presentation == .sheet
+                && MaktabahNativeSettingsComponents.descriptors.contains { $0.anchor == component }
+            guard !hasContent, search || settings else {
                 throw UIRouteError(.notSupported, "public_component_not_installed")
             }
         }
@@ -121,8 +135,12 @@ struct MaktabahNativePublicPresentation {
         guard intent.backend.map({ $0 == snapshot.backend }) ?? true else { throw ActionPortError.staleState }
         let visible = try presentation()
         guard visible.ready else { throw UIRouteError(.unavailable, "native_presentation_in_progress") }
-        if intent.component != nil, !visible.searchFieldAvailable {
-            throw UIRouteError(.unavailable, "native_search_field_not_visible")
+        if let component = intent.component {
+            guard visible.componentAvailable(component, in: intent.destination) else {
+                throw UIRouteError(.unavailable, intent.destination.rawValue == "native.search"
+                    ? "native_search_field_not_visible" : "native_component_unavailable")
+            }
+            try validateComponentSource(intent.destination, component, requestId)
         }
         let tab: UIPublicNavigationObservedID
         let inspector: Bool?
@@ -241,7 +259,7 @@ struct MaktabahNativePublicPresentation {
         guard current == scene else { throw ActionPortError.staleState }
         let visible = try presentation()
         let ready = visible.ready
-            && (variant.component == nil || visible.searchFieldAvailable)
+            && (variant.component.map { visible.componentAvailable($0, in: variant.destination) } ?? true)
             && (variant.destination.rawValue != "native.reader" || variant.presentation == .newTab || visible.witnessedReader != nil)
             && (variant.destination.rawValue != "native.history" || visible.historyRootAvailable)
             && (variant.destination.rawValue != "native.reader.toc" || visible.tableOfContentsAvailable)

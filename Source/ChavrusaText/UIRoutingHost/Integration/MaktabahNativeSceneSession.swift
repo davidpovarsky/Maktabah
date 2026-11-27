@@ -73,6 +73,51 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
     @ObservationIgnored private var searchPresentationOwner: UUID?
     @ObservationIgnored private var searchPresentationBlocked: (@MainActor () -> Bool)?
+    @ObservationIgnored private var componentOwners: [UIDestinationID: MaktabahNativeComponentOwner] = [:]
+    @ObservationIgnored private var retainedComponentOwner: MaktabahNativeComponentOwner?
+    @ObservationIgnored private var componentValidation: (@MainActor (UISceneCommand) throws -> (@MainActor () throws -> Void))?
+    @ObservationIgnored private var componentUpdateScheduled = false
+    private var componentRevision: UInt64 = 0
+
+    func componentOwner(for destination: UIDestinationID) -> MaktabahNativeComponentOwner? { componentOwners[destination] }
+    func retainComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws -> MaktabahNativeComponentOwner {
+        guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
+        try owner.retainSource(requestID: requestID, anchor: anchor)
+        return owner
+    }
+    func validateComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws {
+        if destination == NativeSearchFieldVisibility.destination { return }
+        guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
+        try owner.validateSource(requestID: requestID, anchor: anchor)
+    }
+    func attachComponentOwner(_ owner: MaktabahNativeComponentOwner) {
+        guard componentOwners[owner.destination] == nil else { return }
+        componentOwners[owner.destination] = owner
+        owner.install(changed: { [weak self, weak owner] in
+            guard let self, let owner else { return }
+            componentStateDidChange(owner)
+        }, invalidated: { [weak self] in self?.presentation.revoke() })
+    }
+    func detachComponentOwner(_ owner: MaktabahNativeComponentOwner) {
+        guard componentOwners[owner.destination] === owner else { return }
+        owner.retirePresentation(); componentOwners.removeValue(forKey: owner.destination)
+        try? nativeStateChanged()
+    }
+    func configureComponentValidation(_ validation: @escaping @MainActor (UISceneCommand) throws -> (@MainActor () throws -> Void)) {
+        componentValidation = validation
+    }
+    func componentStateDidChange(_ owner: MaktabahNativeComponentOwner) {
+        guard mounted, componentOwners[owner.destination] === owner else { return }
+        try? nativeStateChanged()
+        // UIKit layout may call this while SwiftUI updates. Only the graph
+        // notification is deferred; ownership invalidation is synchronous.
+        guard !componentUpdateScheduled else { return }
+        componentUpdateScheduled = true
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            componentUpdateScheduled = false; componentRevision &+= 1
+        }
+    }
 
     func attachWindowSource(_ source: MaktabahNativeWindowSource) {
         guard mounted else { return }
@@ -315,6 +360,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         self.bindings = bindings
         workspaceProjectionSource = workspaceSource
         presentation = NativePresentationObserver(sceneID: sceneID)
+        attachComponentOwner(MaktabahNativeSettingsComponents.makeOwner())
     }
 
     func mount(validateLifetime: @escaping NativeSceneDirectory.ValidateLifetime) throws {
@@ -343,14 +389,35 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func beginObservation(_ value: UISceneCommand) throws {
         guard mounted, lease != nil, value.scene.sceneID == sceneID else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
         let field: UISearchTextField?
-        if value.route.route.focus != nil {
-            guard value.route.route.destination == NativeSearchFieldVisibility.destination,
-                  value.route.route.focus == NativeSearchFieldVisibility.focus,
+        if value.route.route.focus != nil, value.route.route.destination == NativeSearchFieldVisibility.destination {
+            guard value.route.route.focus == NativeSearchFieldVisibility.focus,
                   searchFieldAvailable, let original = nativeSearchField else {
                 throw UIRouteError(.unavailable, "native_search_field_not_visible")
             }
             field = original
         } else { field = nil }
+        let component: MaktabahNativeComponentOwner?
+        let renderValidation: (@MainActor () throws -> Void)?
+        if let focus = value.route.route.focus, field == nil {
+            guard focus.kind == .component, focus.locator == nil, focus.range == nil,
+                  let anchor = focus.anchor, let owner = componentOwners[value.route.route.destination],
+                  owner.isAvailable(anchor), let componentValidation else {
+                throw UIRouteError(.unavailable, "native_component_unavailable")
+            }
+            let originalLifetime = try componentValidation(value)
+            component = owner
+            renderValidation = { [weak self, weak owner] in
+                try originalLifetime()
+                guard let self, let owner, mounted, foreground, isPresentationReady,
+                      componentOwners[owner.destination] === owner,
+                      owner.isAvailable(anchor) else { throw UIRouteError(.staleState, "native_component_owner_changed") }
+                let identity = try project().identity()
+                guard value.route.route.state.workspaceID == identity.state.workspaceID,
+                      value.route.route.state.profileID == identity.state.profileID else {
+                    throw UIRouteError(.staleState, "native_workspace_changed")
+                }
+            }
+        } else { component = nil; renderValidation = nil }
         let inspector: MaktabahNativeInspectorBinding?
         if value.route.route.destination.rawValue == "native.reader.inspector" {
             guard try publicBindingPresentation().inspectorAvailable else {
@@ -359,6 +426,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             inspector = try MaktabahNativeInspectorBinding(manager: bindings.manager)
         } else { inspector = nil }
         try presentation.begin(value)
+        do {
+            if let component, let anchor = value.route.route.focus?.anchor, let renderValidation {
+                try component.begin(requestID: value.invocation.requestId, anchor: anchor, validate: renderValidation)
+            }
+        } catch { presentation.end(requestID: value.invocation.requestId); throw error }
+        retainedComponentOwner = component
         inspectorBinding = inspector
         retainedSearchField = field
         lastCompletedSurface = nil
@@ -433,10 +506,18 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             return
         }
         if let focus = route.focus {
-            guard route.destination == NativeSearchFieldVisibility.destination,
-                  focus == NativeSearchFieldVisibility.focus, searchFieldAvailable,
-                  retainedSearchField == nil || retainedSearchField === nativeSearchField else {
-                throw UIRouteError(.unavailable, "native_search_field_not_visible")
+            if route.destination == NativeSearchFieldVisibility.destination {
+                guard focus == NativeSearchFieldVisibility.focus, searchFieldAvailable,
+                      retainedSearchField == nil || retainedSearchField === nativeSearchField else {
+                    throw UIRouteError(.unavailable, "native_search_field_not_visible")
+                }
+            } else {
+                guard focus.kind == .component, focus.locator == nil, focus.range == nil,
+                      let anchor = focus.anchor, let owner = componentOwners[route.destination],
+                      owner.presentation == route.presentation.kind, owner.isAvailable(anchor),
+                      retainedComponentOwner == nil || retainedComponentOwner === owner else {
+                    throw UIRouteError(.unavailable, "native_component_unavailable")
+                }
             }
         }
         guard route.content == nil, route.presentation.tabID == nil,
@@ -490,6 +571,14 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try inspectorBinding.apply()
             return
         }
+        if let owner = retainedComponentOwner, command.route.route.focus != nil {
+            try validateSurface(command)
+            try owner.apply(requestID: command.invocation.requestId)
+            // One guarded, synchronous navigation commit publishes BOTH parent
+            // visibility and exact target. The original view renders that state.
+            try bindings.apply(command)
+            return
+        }
         if command.route.route.focus != nil {
             // Focus only an ALREADY VISIBLE original field. A caller first
             // opens the Search root through this same orchestrator, then
@@ -520,7 +609,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations"].contains(command.route.route.destination.rawValue) {
+        if retainedComponentOwner != nil || ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
                     guard let self, mounted, submissionID == command.invocation.requestId else { return }
@@ -565,6 +654,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             try searchResultsBinding.validateCompleted()
         }
         guard let state = try project().surface(kind) else { return nil }
+        if command?.route.route.focus != nil, let owner = retainedComponentOwner, owner.destination == state.destination {
+            _ = componentRevision
+            return .init(destination: state.destination, presentation: state.presentation,
+                         content: state.content, state: state.state, focus: owner.actualFocus(in: sceneID))
+        }
         // Root navigation does not request or report keyboard focus. For the
         // registered component, the optional focus facet is projected ONLY
         // from the same retained, visible UIKit field's actual responder state.
@@ -591,9 +685,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             guard try project().hasRenderedReaderEvidence(sceneID: sceneID) else { return nil }
         }
         if actual.focus != route.focus {
-            guard route.destination == NativeSearchFieldVisibility.destination,
-                  route.focus == NativeSearchFieldVisibility.focus,
-                  nativeSearchField?.isFirstResponder == true, searchFieldAvailable else { return nil }
+            let searchFocus = route.destination == NativeSearchFieldVisibility.destination
+                && route.focus == NativeSearchFieldVisibility.focus
+                && nativeSearchField?.isFirstResponder == true && searchFieldAvailable
+            let componentFocus = route.focus != nil && componentOwners[route.destination]?.actualFocus(in: sceneID) == route.focus
+            guard searchFocus || componentFocus else { return nil }
         }
         return try project().identity()
     }
@@ -618,7 +714,14 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         return .init(ready: mounted && foreground && isPresentationReady,
             historyRootAvailable: HistoryViewModel.shared.searchText.isEmpty,
             tableOfContentsAvailable: bindings.isRootAvailable(.tableOfContents), witnessedReader: reader,
-            searchFieldAvailable: searchFieldAvailable, inspectorAvailable: inspectorAvailable,
+            searchFieldAvailable: searchFieldAvailable,
+            availableComponents: Dictionary(uniqueKeysWithValues: componentOwners.map { destination, owner in
+                // A pushed Settings child is not the original Form. Do not
+                // pretend setting its existing sheet flag can pop that stack.
+                let presentable = destination != MaktabahNativeSettingsComponents.destination
+                    || !bindings.showSettings.wrappedValue || owner.isMounted
+                return (destination, Set(owner.descriptors.filter { presentable && owner.isAvailable($0.anchor) }.map(\.anchor)))
+            }), inspectorAvailable: inspectorAvailable,
             witnessedInspectorVisible: inspectorWitnessed ? true : reader?.state.inspectorVisible)
     }
     /// Independent source identity for the explicit current-work consent offer;
@@ -748,6 +851,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
            observed.surface.observedRoute(for: command, backend: command.invocation.snapshot) == command.route.route {
             lastCompletedSurface = (command.route.route, observed)
         }
+        retainedComponentOwner?.finish(requestID: requestID, completed: lastCompletedSurface?.route.requestId == requestID)
+        retainedComponentOwner = nil
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
@@ -773,6 +878,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         lastCompletedSurface = nil
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
+        for owner in componentOwners.values { owner.retirePresentation() }
+        componentOwners.removeAll(); retainedComponentOwner = nil; componentValidation = nil
         noteEditorOwner = nil; noteDraftBinding = nil
         windowSource = nil; searchPresentationOwner = nil; searchPresentationBlocked = nil
         searchResultsBinding = nil

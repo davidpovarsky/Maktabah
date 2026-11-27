@@ -372,3 +372,46 @@ import OtzariaUIRouting
         continuation?.resume(returning: values)
     }
 }
+
+
+extension NativeIntentServiceTests {
+    @MainActor
+    func testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows() async throws {
+        let sceneA = UIStableID(rawValue: "scene.A")!, sceneB = UIStableID(rawValue: "scene.B")!
+        let search = UIDestinationID(rawValue: "native.search")!
+        let settings = UIDestinationID(rawValue: "native.settings")!
+        let data = UIDestinationID(rawValue: "native.settings.searchData")!
+        let values: [NativeIntentService.Destination] = [
+            .init(backend: .otzaria, destination: search, title: "Search — Window 1", sceneID: sceneA),
+            .init(backend: .otzaria, destination: search, title: "Search — Window 2", sceneID: sceneB),
+            .init(backend: .otzaria, destination: settings, title: "Search Data — Window 1", sceneID: sceneA, component: data)
+        ]
+        let service = NativeIntentService(discover: { values }, navigate: { _ in .requiresForeground })
+        let exact = try await service.destinations(matching: "search")
+        XCTAssertEqual(exact.map(\.id), Array(values.prefix(2)).map(\.id),
+                       "Exact feature naming preserves independent window identities")
+        let component = try await service.destinations(matching: "Search Data")
+        XCTAssertEqual(component, [values[2]], "The original control remains discoverable by its own name")
+        let partial = try await service.destinations(matching: "Data")
+        XCTAssertEqual(partial, [values[2]])
+        let identifiers = try await service.destinations(identifiers: [values[2].id])
+        XCTAssertEqual(identifiers, [values[2]], "Identifier resolution is unchanged")
+    }
+
+    @MainActor
+    func testExactHebrewFeatureNameDoesNotMatchLongerControlName() async throws {
+        let scene = UIStableID(rawValue: "scene.A")!
+        let values: [NativeIntentService.Destination] = [
+            .init(backend: .otzaria, destination: UIDestinationID(rawValue: "native.search")!,
+                  title: "חיפוש — חלון 1", sceneID: scene),
+            .init(backend: .otzaria, destination: UIDestinationID(rawValue: "native.settings")!,
+                  title: "נתוני חיפוש — חלון 1", sceneID: scene,
+                  component: UIDestinationID(rawValue: "native.settings.searchData")!)
+        ]
+        let service = NativeIntentService(discover: { values }, navigate: { _ in .requiresForeground })
+        let exact = try await service.destinations(matching: "חיפוש")
+        XCTAssertEqual(exact, [values[0]])
+        let control = try await service.destinations(matching: "נתוני חיפוש")
+        XCTAssertEqual(control, [values[1]])
+    }
+}

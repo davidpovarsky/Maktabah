@@ -1,0 +1,23 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-settings-bindings-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build",
+    "--jobs",
+    "1",
+    "--filter",
+    "NativeComponentRevealOwnerTests|NativeIntentServiceTests"
+  ],
+  "returncode": 0,
+  "elapsedSeconds": 15.335712909698486,
+  "log": "/mnt/development/projects/diagnostics/otzaria-wave3-settings-20261127/component-owner-and-intent-tests.log",
+  "logSHA256": "74a11f754f85b41e03a9f78344da80d5b6e752efb9f6370a946fb92607096b0f",
+  "scope": "portable owner and actual intent identity/query service; no Apple SDK or native UI run"
+}
