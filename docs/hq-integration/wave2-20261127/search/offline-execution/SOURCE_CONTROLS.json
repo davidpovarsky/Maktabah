@@ -1,0 +1,9 @@
+{
+  "scope": "SYNTHETIC_SOURCE_VALIDATOR_CONTROLS_ONLY_NO_MAC_PF_NETWORK_OR_UI",
+  "testsRun": 52,
+  "failures": 0,
+  "errors": 0,
+  "sourceSHA256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202",
+  "nativeExecutions": 0,
+  "networkDenialWindows": 0
+}

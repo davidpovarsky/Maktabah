@@ -1,0 +1,27 @@
+{
+  "schema": "otzaria.existing-pinned-ssh-route/1",
+  "status": "EXISTING_UBUNTU_PINNED_ALIAS_READONLY_CLOCK_VERIFIED",
+  "observedStartedOracleUnix": 1795763693.542235,
+  "observedFinishedOracleUnix": 1795763695.3461447,
+  "oracleEUID": 1001,
+  "alias": "scaleway-mac",
+  "hostKeyChecking": "true",
+  "batchMode": true,
+  "controlMaster": false,
+  "explicitControlPath": "none",
+  "observedControlPathValue": null,
+  "configSHA256": "99d55ba6f99792906e04a04d4af639f514aae5fb3f447b642e705b80b32ee20e",
+  "configPrivatePath": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/ubuntu-original-pinned-ssh-config-20261127-attempt5.txt",
+  "dateCommand": "/bin/date",
+  "remoteClockUTC": "2026-11-27T07:14:55Z",
+  "exitCode": 0,
+  "noCredentialsReadOrCopied": true,
+  "pfMutations": 0,
+  "launchdOperations": 0,
+  "networkDenialWindows": 0,
+  "priorReadOnlyAttempt": {
+    "command": "/usr/bin/date",
+    "exitCode": 127,
+    "error": "No such file or directory; authenticated SSH remote shell responded"
+  }
+}
