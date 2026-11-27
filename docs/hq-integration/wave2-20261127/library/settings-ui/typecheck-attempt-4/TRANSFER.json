@@ -1,0 +1,30 @@
+{
+  "sourceHost": "scaleway-mac",
+  "sourceDirectory": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-4",
+  "files": [
+    {
+      "originalName": "RESULT.json",
+      "originalBytes": 2002,
+      "originalSHA256": "8603ff125341f3b021f9837f2b11626a3031ddb23d33c9cba8b7d42f9cea2b02",
+      "storedName": "RESULT.json",
+      "storedBytes": 2002,
+      "storedSHA256": "8603ff125341f3b021f9837f2b11626a3031ddb23d33c9cba8b7d42f9cea2b02"
+    },
+    {
+      "originalName": "compiler.stdout.log",
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedName": "compiler.stdout.log.gz",
+      "storedBytes": 20,
+      "storedSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "originalName": "compiler.stderr.log",
+      "originalBytes": 110884,
+      "originalSHA256": "ff55049f86498d1edbbb0bf4871dbb6a131b786bc4d64a623db69ac2c19de910",
+      "storedName": "compiler.stderr.log.gz",
+      "storedBytes": 9525,
+      "storedSHA256": "62558512250b08232cb200d3815c93e32b5e409f27a0974d456e7e75ed1a713e"
+    }
+  ]
+}

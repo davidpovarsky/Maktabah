@@ -472,8 +472,10 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         try require(element.waitForExistence(timeout: 15) && element.isHittable, description)
     }
 
-    private func createTaggedNoteThroughOriginalUI(_ context: Context, token: String) throws {
-        try tapOriginalToolbar("reader-study-toggle", labels: ["Open Study Tools", "פתיחת כלי לימוד"])
+    private func createTaggedNoteThroughOriginalUI(_ context: Context, token: String, inspectorAlreadyOpen: Bool = false) throws {
+        if !inspectorAlreadyOpen {
+            try tapOriginalToolbar("reader-study-toggle", labels: ["Open Study Tools", "פתיחת כלי לימוד"])
+        }
         let notes = app.segmentedControls["torah-inspector-tools"].buttons["Notes"]
         try require(notes.waitForExistence(timeout: 15) && notes.isHittable, "Original Notes inspector must open")
         notes.tap()
@@ -503,43 +505,6 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         close.tap()
         try attach(["note_token": token, "tag": tag, "creation": "original-study-tools-note-editor-and-tag-field"],
                    name: "settings-update-original-note-fixture")
-    }
-
-    private func prepareFavoriteThroughOriginalUI(_ context: Context) throws {
-        let historyTab = findTabButton(hebrew: "היסטוריה", english: "History")
-        try require(historyTab.waitForExistence(timeout: 15) && historyTab.isHittable, "Original global History tab must be usable")
-        historyTab.tap()
-        try require(app.navigationBars["History & Favorites"].waitForExistence(timeout: 20), "Original History screen must open")
-        let file = URL(fileURLWithPath: context.qualifiedLocatorsPath)
-        let original = try json(file)
-        let before = Set(try XCTUnwrap(original["favorites"] as? [String: Any]).keys)
-        // Exclude the toolbar's Add Favorite sheet launcher. The row's native
-        // star alone calls toggleFavorite(BooksData), preserving source identity.
-        func rowStars(_ label: String) -> [XCUIElement] {
-            let bars = app.navigationBars.allElementsBoundByIndex.map(\.frame)
-            return visible(app.buttons.matching(NSPredicate(format: "label == %@", label))).filter { star in
-                !bars.contains { $0.intersects(star.frame) }
-            }
-        }
-        try wait("The original history must expose actual book-row stars", timeout: 20) {
-            !rowStars("Add Favorite").isEmpty || !rowStars("Remove Favorite").isEmpty
-        }
-        if let star = rowStars("Add Favorite").first {
-            star.tap()
-            try wait("The original row action must persist a new source-qualified favorite", timeout: 20) {
-                let current = try self.json(file)
-                let keys = Set(try XCTUnwrap(current["favorites"] as? [String: Any]).keys)
-                return keys.subtracting(before).contains { $0.hasPrefix("otzaria|") }
-            }
-        } else {
-            try require(before.contains { $0.hasPrefix("otzaria|") } && !rowStars("Remove Favorite").isEmpty,
-                        "An existing source-qualified favorite must also be visible in the original UI")
-        }
-        capture("settings-update-original-history-favorite")
-        let library = findTabButton(hebrew: "ספר", english: "Library")
-        try require(library.exists && library.isHittable, "Return through the original Library tab")
-        library.tap()
-        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 30), "Original reader must return")
     }
 
     private func copyCurrentGroupThroughOriginalUI(_ context: Context, token: String) throws {
@@ -580,13 +545,278 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
                    name: "settings-update-original-group-fixture")
     }
 
-    private func prepareUserDataThroughOriginalUI(_ context: Context, locator: String) throws {
+    private func prepareUserDataThroughOriginalUI(_ context: Context) throws -> SemanticPreservation {
+        let bookID = try currentBookID()
+        let title = app.staticTexts["reader-header-title"].label
+        try require(!title.isEmpty, "An actual canonical book title is required")
+        try requireCanonicalBook(context, id: bookID, title: title)
+        // Resolve the real saved History/Favorite before capturing its source.
+        // Its ordinary route may restore a reading unit within the same book.
+        let favorite = try openFavoriteThroughOriginalUI(context, bookID: bookID, title: title)
+        let locator = app.staticTexts["reader-current-locator"].label
         let token = UUID().uuidString
-        try createTaggedNoteThroughOriginalUI(context, token: token)
-        try prepareFavoriteThroughOriginalUI(context)
+        let reader = app.textViews["reader-text"]
+        try require(reader.waitForExistence(timeout: 30) && reader.isHittable, "Select a real visible source segment before making the note")
+        reader.coordinate(withNormalizedOffset: CGVector(dx: 0.7, dy: 0.4)).tap()
+        try require(app.descendants(matching: .any)["torah-inspector-panel"].waitForExistence(timeout: 30),
+                    "The original paragraph tap must open its source Inspector")
+        try createTaggedNoteThroughOriginalUI(context, token: token, inspectorAlreadyOpen: true)
+        let noteBody = "Library update preservation שלום " + token
+        let found = try rows(context.annotationsPath, "SELECT * FROM annotations WHERE note='" + noteBody + "'")
+        try require(found.count == 1, "The original editor must create exactly the observed note")
+        let note = try XCTUnwrap(found.first)
+        let encodedID = try XCTUnwrap(note["id"])
+        try require(encodedID.hasPrefix("integer:"), "Persisted note ID must be an integer")
+        let noteID = try XCTUnwrap(Int64(encodedID.dropFirst(8)))
+        let savedLocator = try textColumn(note, "backendLocator")
+        let noteLocator = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(savedLocator.utf8)) as? [String: Any])
+        let position = try XCTUnwrap(noteLocator["position"] as? [String: Any])
+        let line = try XCTUnwrap(position["integer"] as? NSNumber).intValue
+        try require(noteLocator["backend"] as? String == "otzaria" && noteLocator["workKey"] as? String == "book:" + String(bookID) &&
+                    position["kind"] as? String == "legacyLine" && line >= 0,
+                    "The original note must persist the actual selected source segment, not an injected locator")
+        let lineIdentity = try rows(context.databasePath, "SELECT id,lineIndex,heRef FROM line WHERE bookId=" + String(bookID) + " AND lineIndex=" + String(line))
+        try require(lineIdentity.count == 1, "The note's actual source locator must resolve in the full pre-update database")
+        let quote = String(sourceText(try textColumn(note, "context")).prefix(160))
+        try require(quote.count >= 12 && sourceText(reader.value as? String ?? "").contains(quote),
+                    "Capture a nontrivial real note context that is also present in the original reader")
+        let original = try currentGroup(context, bookID: bookID)
         try copyCurrentGroupThroughOriginalUI(context, token: token)
-        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 30), "Original reader must remain mounted")
-        try require(app.staticTexts["reader-current-locator"].label == locator, "UI fixture creation changed the original reading unit")
+        let copied = try currentGroup(context, bookID: bookID)
+        try require(copied.id != original.id && copied.documentID != original.documentID && copied.name == "Update preservation " + token,
+                    "The original copy action must activate a distinct persisted group/document")
+        let proof = SemanticPreservation(bookID: bookID, title: title, readerLocator: locator, sourceQuote: quote,
+            noteID: noteID, note: note, tag: "update-preservation-" + token.lowercased(), favorite: favorite,
+            originalGroup: original, copiedGroup: copied)
+        try requireRestoredSource(context, proof: proof, route: "before-update")
+        try attach(["book_id": bookID, "title": title, "reader_locator": locator, "source_quote": quote,
+                    "note_id": noteID, "note_locator": noteLocator, "line_identity_before": lineIdentity,
+                    "favorite_key": favorite.key, "original_group": original.id.uuidString,
+                    "copied_group": copied.id.uuidString, "copied_document": copied.documentID.uuidString,
+                    "scope": "ordinary UI-created saved objects and observed source context, not assumed cross-release ID stability"],
+                   name: "settings-update-semantic-preservation-before")
+        return proof
+    }
+
+    private struct WorkspaceSelection: Decodable, Sendable {
+        struct Session: Decodable, Sendable { let id: UUID }
+        struct Document: Decodable, Sendable { let backend: String; let session: Session }
+        struct Group: Decodable, Sendable {
+            let id: UUID; let profileID: UUID; let name: String
+            let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable, Sendable {
+            let profileID: UUID; let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        let groups: [Group]; let scenes: [String: Scene]; let lastActiveSceneID: String?
+    }
+
+    private struct GroupReference: Sendable {
+        let id: UUID; let name: String; let documentID: UUID; let canonicalSession: Data
+    }
+
+    private struct FavoriteReference: Sendable {
+        let key: String; let canonicalLocator: Data
+    }
+
+    private struct SemanticPreservation: Sendable {
+        let bookID: Int; let title: String; let readerLocator: String; let sourceQuote: String
+        let noteID: Int64; let note: [String: String]; let tag: String
+        let favorite: FavoriteReference; let originalGroup: GroupReference; let copiedGroup: GroupReference
+    }
+
+    private func sourceText(_ value: String) -> String {
+        let marks = CharacterSet(charactersIn: "\u{200E}\u{200F}\u{202A}\u{202B}\u{202C}\u{202D}\u{202E}\u{2066}\u{2067}\u{2068}\u{2069}")
+        let unmarked = String(value.unicodeScalars.filter { !marks.contains($0) })
+        return unmarked.split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
+    }
+
+    private func textColumn(_ row: [String: String], _ column: String) throws -> String {
+        let encoded = try XCTUnwrap(row[column])
+        try require(encoded.hasPrefix("text:"), "Expected the original persisted text column: " + column)
+        return String(encoded.dropFirst(5))
+    }
+
+    private func currentBookID() throws -> Int {
+        let locator = app.staticTexts["reader-current-locator"].label.components(separatedBy: "|")
+        try require(locator.count == 3 && locator[0] == "otzaria" && locator[1].hasPrefix("book:") && locator[2].hasPrefix("line:"),
+                    "Require the current original reader's source-qualified Otzaria locator")
+        return try XCTUnwrap(Int(locator[1].dropFirst(5)))
+    }
+
+    private func requireCanonicalBook(_ context: Context, id: Int, title: String) throws {
+        let books = try rows(context.databasePath, "SELECT id,title FROM book WHERE id=" + String(id))
+        try require(books.count == 1 && books[0]["id"] == "integer:" + String(id), "Saved book ID must resolve in the current production database")
+        try require(sourceText(try textColumn(books[0], "title")) == sourceText(title),
+                    "Saved canonical book ID now resolves to a different title")
+    }
+
+    private func currentGroup(_ context: Context, bookID: Int) throws -> GroupReference {
+        let data = try Data(contentsOf: URL(fileURLWithPath: context.workspacePath))
+        let workspace = try JSONDecoder().decode(WorkspaceSelection.self, from: data)
+        let sceneID = try XCTUnwrap(workspace.lastActiveSceneID)
+        let scene = try XCTUnwrap(workspace.scenes[sceneID])
+        let group = try XCTUnwrap(workspace.groups.first { $0.id == scene.groupID && $0.profileID == scene.profileID })
+        let active = try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID)
+        try require(group.tabs.contains { $0.session.id == active && $0.backend == "otzaria" }, "Current workspace must contain the actual Otzaria reader document")
+        let object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        let groups = try XCTUnwrap(object["groups"] as? [[String: Any]])
+        let raw = try XCTUnwrap(groups.first { ($0["id"] as? String).flatMap(UUID.init(uuidString:)) == group.id })
+        let tabs = try XCTUnwrap(raw["tabs"] as? [[String: Any]])
+        let tab = try XCTUnwrap(tabs.first { (($0["session"] as? [String: Any])?["id"] as? String).flatMap(UUID.init(uuidString:)) == active })
+        let session = try XCTUnwrap(tab["session"] as? [String: Any])
+        let locators = [session["backendLocator"], session["locator"]].compactMap { $0 as? [String: Any] }
+        try require(!locators.isEmpty && locators.allSatisfy { $0["backend"] as? String == "otzaria" && $0["workKey"] as? String == "book:" + String(bookID) },
+                    "The original group's active document must bind the current canonical book")
+        let identity = session.filter { ["id", "bookId", "bookTitle", "backendLocator", "locator", "contentId", "page", "part"].contains($0.key) }
+        return try GroupReference(id: group.id, name: group.name, documentID: active, canonicalSession: canonical(identity))
+    }
+
+    private func historyCard(title: String) throws -> XCUIElement {
+        let matching = app.buttons.matching(NSPredicate(format: "label == %@ OR label BEGINSWITH %@", title, title + ", "))
+        try wait("History must expose the original card for the exact canonical title", timeout: 20) { !self.visible(matching).isEmpty }
+        // The first vertical occurrence is the original History section. Its
+        // optional Favorite duplicate has the same book title and source.
+        return try XCTUnwrap(visible(matching).sorted { $0.frame.minY < $1.frame.minY }.first)
+    }
+
+    private func openFavoriteThroughOriginalUI(_ context: Context, bookID: Int, title: String,
+                                               existing: FavoriteReference? = nil) throws -> FavoriteReference {
+        let history = findTabButton(hebrew: "היסטוריה", english: "History")
+        try require(history.waitForExistence(timeout: 20) && history.isHittable, "Open original History for the saved favorite")
+        history.tap()
+        try require(app.navigationBars["History & Favorites"].waitForExistence(timeout: 20), "Require original History & Favorites")
+        let card = try historyCard(title: title)
+        func stars(_ label: String) -> [XCUIElement] {
+            visible(app.buttons.matching(NSPredicate(format: "label == %@", label))).filter {
+                card.frame.contains(CGPoint(x: $0.frame.midX, y: $0.frame.midY))
+            }
+        }
+        if existing == nil, !stars("Add Favorite").isEmpty {
+            try require(stars("Add Favorite").count == 1, "Only the actual book card's original star may create the favorite")
+            try XCTUnwrap(stars("Add Favorite").first).tap()
+        }
+        let store = URL(fileURLWithPath: context.qualifiedLocatorsPath)
+        try wait("The exact book must remain visibly favorited and source-qualified", timeout: 20) {
+            let state = try self.json(store)
+            let favorites = try XCTUnwrap(state["favorites"] as? [String: Any])
+            return !stars("Remove Favorite").isEmpty && favorites.values.contains {
+                let locator = $0 as? [String: Any]
+                return locator?["backend"] as? String == "otzaria" && locator?["workKey"] as? String == "book:" + String(bookID)
+            }
+        }
+        let state = try json(store)
+        let favorites = try XCTUnwrap(state["favorites"] as? [String: Any]).filter {
+            let locator = $0.value as? [String: Any]
+            return locator?["backend"] as? String == "otzaria" && locator?["workKey"] as? String == "book:" + String(bookID)
+        }
+        try require(favorites.count == 1, "The chosen visible book card must have one unambiguous saved favorite locator")
+        let item = try XCTUnwrap(favorites.first)
+        let favorite = try FavoriteReference(key: item.key, canonicalLocator: canonical(item.value))
+        if let existing {
+            try require(favorite.key == existing.key && favorite.canonicalLocator == existing.canonicalLocator,
+                        "The saved favorite's canonical reference changed during Books Updates")
+        }
+        let entries = try XCTUnwrap(state["history"] as? [[String: Any]])
+        try require(try entries.contains {
+            guard $0["isFavorite"] as? Bool == true, let locator = $0["locator"] else { return false }
+            return try canonical(locator) == favorite.canonicalLocator && sourceText($0["title"] as? String ?? "") == sourceText(title)
+        }, "Original History must retain the favorite's canonical locator and title")
+        capture(existing == nil ? "settings-update-favorite-before-open" : "settings-update-favorite-after-cold-open")
+        try historyCard(title: title).tap()
+        try wait("The original History card must actually open a hittable reader", timeout: 45) {
+            self.app.textViews["reader-text"].exists && self.app.textViews["reader-text"].isHittable &&
+                self.app.staticTexts["reader-current-locator"].exists
+        }
+        try require(try currentBookID() == bookID && sourceText(app.staticTexts["reader-header-title"].label) == sourceText(title),
+                    "The saved favorite opened another canonical book")
+        return favorite
+    }
+
+    private func reopenGroup(_ context: Context, saved: GroupReference, proof: SemanticPreservation) throws {
+        try tapOriginalToolbar("reader-tabs-overview", labels: ["All Tabs", "כל הכרטיסיות"])
+        let overview = app.descendants(matching: .any)["study-groups-overview"]
+        try require(overview.waitForExistence(timeout: 20), "Original group overview must open")
+        let selector = app.segmentedControls["study-group-selector"]
+        if selector.exists {
+            let segment = selector.buttons[saved.name]
+            try require(segment.waitForExistence(timeout: 15) && segment.isHittable, "The saved group must remain an original selectable segment")
+            segment.tap()
+        } else {
+            let menu = app.buttons["study-group-selector"]
+            try require(menu.exists && menu.isHittable, "Original adaptive group menu must be usable")
+            menu.tap()
+            let choices = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", saved.name))
+            try require(choices.firstMatch.waitForExistence(timeout: 15) && choices.count == 1 && choices.firstMatch.isHittable,
+                        "The original group menu must uniquely identify the saved group")
+            choices.firstMatch.tap()
+        }
+        try wait("The original group selector must commit the saved group and document", timeout: 30) {
+            let current = try self.currentGroup(context, bookID: proof.bookID)
+            return current.id == saved.id && current.documentID == saved.documentID && current.canonicalSession == saved.canonicalSession
+        }
+        let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + saved.documentID.uuidString }
+        let cards = overview.collectionViews.cells.matching(NSPredicate(format: "identifier IN %@", ids))
+        try require(cards.firstMatch.waitForExistence(timeout: 20) && cards.count == 1,
+                    "Require the original card with the exact saved document UUID")
+        let card = cards.firstMatch
+        for _ in 0..<30 where !card.isHittable { overview.collectionViews.firstMatch.swipeUp() }
+        try require(card.isHittable && card.isSelected, "The saved document must be the actual selected original card")
+        capture("settings-update-reopen-group-" + saved.id.uuidString)
+        card.tap()
+        try wait("The original card must dismiss the overview and restore its reader", timeout: 30) { !overview.exists }
+        try requireRestoredSource(context, proof: proof, route: "group-" + saved.id.uuidString)
+    }
+
+    private func requireRestoredSource(_ context: Context, proof: SemanticPreservation, route: String) throws {
+        let reader = app.textViews["reader-text"]
+        try wait("Saved " + route + " must display its original source context", timeout: 45) {
+            reader.exists && reader.isHittable && self.app.staticTexts["reader-current-locator"].label == proof.readerLocator &&
+            self.sourceText(self.app.staticTexts["reader-header-title"].label) == self.sourceText(proof.title) &&
+            self.sourceText(reader.value as? String ?? "").contains(proof.sourceQuote)
+        }
+        try require(try currentBookID() == proof.bookID, "Saved route changed canonical book ID")
+        try requireCanonicalBook(context, id: proof.bookID, title: proof.title)
+        try attach(["route": route, "book_id": proof.bookID, "title": proof.title,
+                    "reader_locator": proof.readerLocator, "source_quote": proof.sourceQuote,
+                    "scope": "captured source context in actual cold-restored reading unit; not full-body or all-ID equivalence"],
+                   name: "settings-update-semantic-" + route)
+        capture("settings-update-reader-" + route)
+    }
+
+    private func reopenSavedObjects(_ context: Context, proof: SemanticPreservation) throws {
+        // Force a real group transition before returning to the copied group;
+        // merely inspecting the cold-restored active document is insufficient.
+        try reopenGroup(context, saved: proof.originalGroup, proof: proof)
+        try reopenGroup(context, saved: proof.copiedGroup, proof: proof)
+        try tapOriginalToolbar("reader-study-toggle", labels: ["Open Study Tools", "פתיחת כלי לימוד"])
+        let notes = app.segmentedControls["torah-inspector-tools"].buttons["Notes"]
+        try require(notes.waitForExistence(timeout: 20) && notes.isHittable, "Open original Notes after the library update")
+        notes.tap()
+        let row = app.buttons["torah-inspector-note-" + String(proof.noteID)]
+        try require(row.waitForExistence(timeout: 30) && row.isHittable, "The same persisted note must appear in the actual restored source's Notes panel")
+        try require(row.label == textColumn(proof.note, "note"), "The Inspector note row changed its saved body")
+        row.tap()
+        let editor = app.textViews["annotation-note-text"]
+        try require(editor.waitForExistence(timeout: 20) && editor.isHittable, "Open the original saved note editor")
+        try require(editor.value as? String == textColumn(proof.note, "note"), "The saved note editor did not reopen the original body")
+        let tags = app.textFields["tag1, tag2..."]
+        try revealFormElement(tags, description: "The saved note's original tag field must remain reachable")
+        try require((tags.value as? String ?? "").split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.contains(proof.tag),
+                    "The saved note editor lost its original tag")
+        let stored = try rows(context.annotationsPath, "SELECT * FROM annotations WHERE id=" + String(proof.noteID))
+        try require(stored == [proof.note], "Opening the saved note must preserve its actual locator, source context and fields")
+        capture("settings-update-reopened-original-note-editor")
+        let cancel = app.buttons["annotation-cancel-toolbar"]
+        try require(cancel.exists && cancel.isHittable, "Dismiss the original editor without modifying the note")
+        cancel.tap()
+        try wait("Original note editor must dismiss", timeout: 20) { !editor.exists }
+        let close = app.buttons["torah-inspector-close"]
+        try require(close.exists && close.isHittable, "Return from the original Notes panel to the actual reader")
+        close.tap()
+        try requireRestoredSource(context, proof: proof, route: "saved-note-context")
+        _ = try openFavoriteThroughOriginalUI(context, bookID: proof.bookID, title: proof.title, existing: proof.favorite)
+        try requireRestoredSource(context, proof: proof, route: "saved-favorite-history")
     }
 
     private func openUpdateSettings() throws {
@@ -694,9 +924,8 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         XCUIDevice.shared.orientation = .landscapeLeft
         launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
         try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Existing ordinary production reader must restore")
-        let locator = app.staticTexts["reader-current-locator"].label
-        try require(!locator.isEmpty, "Existing reader needs a real position")
-        try prepareUserDataThroughOriginalUI(context, locator: locator)
+        let preservation = try prepareUserDataThroughOriginalUI(context)
+        let locator = preservation.readerLocator
         let before = try state(context, requirePopulated: true)
         try attach(before, name: "settings-update-user-state-before")
         try require(cacheBytes(downloads) == 0, "Previous database-download work must be accounted for before this UI journey")
@@ -819,6 +1048,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
         XCTAssertEqual(try state(context, requirePopulated: true), before)
         try require(try fileHash(database) == newHash && cacheBytes(downloads) == 0, "Cold launch modified or redownloaded the updated corpus")
+        try reopenSavedObjects(context, proof: preservation)
         try openUpdateSettings()
         try require(app.staticTexts["The library is up to date."].waitForExistence(timeout: 60), "Rechecking the actual current release must show up-to-date")
         try require(!app.buttons["otzaria-update-install"].exists, "Current release must not be offered as another update")

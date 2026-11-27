@@ -1,0 +1,26 @@
+{
+  "scope": "Apple SDK source typecheck; UI_NOT_RUN",
+  "sourceParentCommit": "9d4c6ded641fad00cb9e0ca6fd0b931731e5c3fd",
+  "sourcePath": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+  "finalSourceSHA256": "17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c",
+  "legacyClassesByteIdentical": true,
+  "sourceChanges": "Only additive ManagedLibraryUpdateAcceptanceTests class",
+  "attempts": [
+    {
+      "attempt": 4,
+      "resultSHA256": "8603ff125341f3b021f9837f2b11626a3031ddb23d33c9cba8b7d42f9cea2b02",
+      "sourceSHA256": "e670462246e8b185f6ae862ff62eca953d64bce678e2ec60dca89a0f6c2ffc25",
+      "warningDiagnosticHeaders": 74,
+      "compilerErrors": [],
+      "note": "Original receipt preserved. Attempt 4 warning_count counts diagnostic markers including duplicated rendered annotations; diagnostic headers total 74."
+    },
+    {
+      "attempt": 5,
+      "resultSHA256": "f74b0101a868180b83f48e8299fe942734a043bcb9e4c4b9ca1637c3ba5ec94c",
+      "sourceSHA256": "17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c",
+      "warningDiagnosticHeaders": 74,
+      "compilerErrors": [],
+      "note": "Final source. No warning points to the added ManagedLibraryUpdateAcceptanceTests class."
+    }
+  ]
+}

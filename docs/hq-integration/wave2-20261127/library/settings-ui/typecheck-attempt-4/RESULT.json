@@ -1,0 +1,50 @@
+{
+  "scope": "Apple-SDK typecheck only; not UI execution",
+  "source_parent_commit": "9d4c6ded641fad00cb9e0ca6fd0b931731e5c3fd",
+  "inputs": {
+    "ProductionOtzariaAcceptanceTests.swift": "e670462246e8b185f6ae862ff62eca953d64bce678e2ec60dca89a0f6c2ffc25",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-I",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+    "-module-name",
+    "Maktabah_iOSUITests",
+    "-D",
+    "DEBUG",
+    "-enable-upcoming-feature",
+    "NonisolatedNonsendingByDefault",
+    "-enable-upcoming-feature",
+    "InferIsolatedConformances",
+    "-enable-upcoming-feature",
+    "MemberImportVisibility",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-4/MaktabahUITestBase.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-4/ProductionOtzariaAcceptanceTests.swift"
+  ],
+  "started_at": "2026-11-27T02:12:51.580556+00:00",
+  "free_bytes_before": 24355389440,
+  "exit_code": 0,
+  "status": "PASSED",
+  "finished_at": "2026-11-27T02:12:53.412540+00:00",
+  "free_bytes_after": 24340090880,
+  "inputs_after": {
+    "ProductionOtzariaAcceptanceTests.swift": "e670462246e8b185f6ae862ff62eca953d64bce678e2ec60dca89a0f6c2ffc25",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "warning_count": 148,
+  "errors": []
+}
