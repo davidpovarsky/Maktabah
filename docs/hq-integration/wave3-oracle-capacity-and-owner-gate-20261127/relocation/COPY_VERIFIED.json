@@ -1,0 +1,118 @@
+{
+  "schema": "otzaria.wave3.oracle-relocation-copy.v1",
+  "at": "2026-11-27T10:40:37.156578+00:00",
+  "plan_sha256": "6f71038b317ccc710dfe7d166786114faf2c629694ff614f8de210b12a2d13d8",
+  "status": "ALL_COPIES_VERIFIED_ORIGINALS_UNCHANGED",
+  "scopes": [
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-1",
+      "entries": 2329,
+      "files": 1749,
+      "logical_bytes": 339116550,
+      "allocated_bytes": 343764992,
+      "internal_hardlink_groups": 0,
+      "external_hardlinks": [],
+      "all_source_and_copy_bytes_metadata_verified": true,
+      "xattr_paths": []
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-filtered-controls-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-2",
+      "entries": 58,
+      "files": 48,
+      "logical_bytes": 21386290,
+      "allocated_bytes": 21524480,
+      "internal_hardlink_groups": 0,
+      "external_hardlinks": [],
+      "all_source_and_copy_bytes_metadata_verified": true,
+      "xattr_paths": []
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-3",
+      "entries": 1859,
+      "files": 1349,
+      "logical_bytes": 140460343,
+      "allocated_bytes": 144048128,
+      "internal_hardlink_groups": 0,
+      "external_hardlinks": [],
+      "all_source_and_copy_bytes_metadata_verified": true,
+      "xattr_paths": [
+        {
+          "path": "swift-build/out/CompilationCache.noindex",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Intermediates.noindex",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Intermediates.noindex/EagerLinkingTBDs/Debug-linux-aarch64",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Intermediates.noindex/ExplicitPrecompiledModules",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Intermediates.noindex/SwiftExplicitPrecompiledModules",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/PCH",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Products",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Products/Debug-linux-aarch64",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/Products/Debug-linux-aarch64/PackageFrameworks",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        },
+        {
+          "path": "swift-build/out/SDKExplicitPrecompiledModules",
+          "names": [
+            "user.org.swift.swift-build.CreatedByBuildSystem"
+          ]
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-11-27T10:41:09.727146+00:00",
+  "disks": {
+    "/mnt/development": {
+      "total": 108259958784,
+      "used": 107700715520,
+      "free": 542466048
+    },
+    "/home/ubuntu": {
+      "total": 50884108288,
+      "used": 49052942336,
+      "free": 1814388736
+    }
+  }
+}

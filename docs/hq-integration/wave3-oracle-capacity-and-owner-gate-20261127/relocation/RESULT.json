@@ -1,0 +1,67 @@
+{
+  "schema": "otzaria.wave3.oracle-relocation-result.v1",
+  "status": "RELOCATED_ALL_BYTES_PRESERVED_ORIGINAL_PATHS_ACCESSIBLE",
+  "started_at": "2026-11-27T10:44:49.606427+00:00",
+  "plan_sha256": "6f71038b317ccc710dfe7d166786114faf2c629694ff614f8de210b12a2d13d8",
+  "copy_sha256": "40523599885378ec971b3341d6256ce1090df74932aa11b140604ad0c764d881",
+  "fresh_all_content_metadata_xattrs_equal": true,
+  "open_references": [],
+  "before": {
+    "/mnt/development": {
+      "total": 108259958784,
+      "used": 107700830208,
+      "free": 542351360
+    },
+    "/home/ubuntu": {
+      "total": 50884108288,
+      "used": 49084403712,
+      "free": 1782927360
+    }
+  },
+  "scopes": [
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-1",
+      "original_path_alias_verified": true,
+      "held_original_absent": true,
+      "entries": 2329,
+      "files": 1749,
+      "logical_bytes": 339116550
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-filtered-controls-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-2",
+      "original_path_alias_verified": true,
+      "held_original_absent": true,
+      "entries": 58,
+      "files": 48,
+      "logical_bytes": 21386290
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127",
+      "destination": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/data-3",
+      "original_path_alias_verified": true,
+      "held_original_absent": true,
+      "entries": 1859,
+      "files": 1349,
+      "logical_bytes": 140460343
+    }
+  ],
+  "source_or_git_changes": false,
+  "pre_alias_sha256": "f9ce2e3c1e824e62f863336401f010ac39ecdc280594bec0a3b88bfc6c25b03d",
+  "finished_at": "2026-11-27T10:44:50.391859+00:00",
+  "after": {
+    "/mnt/development": {
+      "total": 108259958784,
+      "used": 107186925568,
+      "free": 1056256000
+    },
+    "/home/ubuntu": {
+      "total": 50884108288,
+      "used": 49084407808,
+      "free": 1782923264
+    }
+  },
+  "development_floor_recovered": true,
+  "home_floor_preserved": true
+}

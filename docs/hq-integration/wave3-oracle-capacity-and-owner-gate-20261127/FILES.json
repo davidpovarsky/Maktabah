@@ -1,0 +1,98 @@
+{
+  "schema": "otzaria.wave3.capacity-owner-proof.files.v1",
+  "files": [
+    {
+      "path": "relocation/COPY_VERIFIED.json",
+      "bytes": 3951,
+      "sha256": "40523599885378ec971b3341d6256ce1090df74932aa11b140604ad0c764d881",
+      "originalPath": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/COPY_VERIFIED.json"
+    },
+    {
+      "path": "relocation/PLAN.json.gz",
+      "bytes": 221083,
+      "sha256": "0210a24b860013addf79f62ab0ce5ceffd3a7234a7559550cc9d59224bba6a1e",
+      "originalPath": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/PLAN.json.gz",
+      "rawBytes": 1972857,
+      "rawSHA256": "6f71038b317ccc710dfe7d166786114faf2c629694ff614f8de210b12a2d13d8"
+    },
+    {
+      "path": "relocation/PRE_ALIAS.json",
+      "bytes": 699,
+      "sha256": "f9ce2e3c1e824e62f863336401f010ac39ecdc280594bec0a3b88bfc6c25b03d",
+      "originalPath": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/PRE_ALIAS.json"
+    },
+    {
+      "path": "relocation/RESULT.json",
+      "bytes": 2385,
+      "sha256": "af20fbca9138897854816358017c99ff06b70ca23d1a586d6720c1161d35a77c",
+      "originalPath": "/home/ubuntu/.codex/artifacts/otzaria-wave3-oracle-capacity-relocation-20261127/RESULT.json"
+    },
+    {
+      "path": "owner-eb532/boundary-guard-report.json.gz",
+      "bytes": 9414,
+      "sha256": "ac8ac8f19bbc1440891a1cbfcda01329967363a55a0206f37072731e79a5ce85",
+      "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/build/wave3-owner-current-eb532cca-20261127/boundary-guard-report.json",
+      "rawBytes": 51413,
+      "rawSHA256": "ecddd27bb371135fecac7ecbc6db36a707284ffa7d9b8bfa40238562c78353f9"
+    },
+    {
+      "path": "owner-eb532/owner-approval-gate.json.gz",
+      "bytes": 1513,
+      "sha256": "d726767f97860ce400473cbe97800f81ba0bebe7e963a3aee9e50a7dc2129a65",
+      "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/build/wave3-owner-current-eb532cca-20261127/owner-approval-gate.json",
+      "rawBytes": 4879,
+      "rawSHA256": "c79efad4963f2ff386eec0611861caf0bf8cf075781c6ab719ccadeb798f9739"
+    },
+    {
+      "path": "owner-eb532/stderr.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/build/wave3-owner-current-eb532cca-20261127/stderr.log",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "owner-eb532/stdout.json.gz",
+      "bytes": 1513,
+      "sha256": "d726767f97860ce400473cbe97800f81ba0bebe7e963a3aee9e50a7dc2129a65",
+      "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/build/wave3-owner-current-eb532cca-20261127/stdout.json",
+      "rawBytes": 4879,
+      "rawSHA256": "c79efad4963f2ff386eec0611861caf0bf8cf075781c6ab719ccadeb798f9739"
+    },
+    {
+      "path": "raw/relocationPlanFailure.json.gz",
+      "bytes": 749,
+      "sha256": "461672b92a76c9ad0435a178923c4a904a18180c35aee60ec38c1e7d4e979653",
+      "rawBytes": 1469,
+      "rawSHA256": "f2b8f39b343007b0f9ae8fefa06bfadea599867c3af4a19b91d3fa2098e6ae75"
+    },
+    {
+      "path": "raw/manifestInspectionFailure.json.gz",
+      "bytes": 320,
+      "sha256": "68e6b504a85e1fe955b106e8d7bb379d14792e96145c02ae9809f497b0f3642a",
+      "rawBytes": 446,
+      "rawSHA256": "c548497591c4e4b7595a52bab573ff8dc94ae5ba8689e2a8b8e59a867eaa48d6"
+    },
+    {
+      "path": "raw/relocationPlanScript.py.gz",
+      "bytes": 2371,
+      "sha256": "3ce11f59940f143098ca805ea96a4e2283bfe81c8833d9521737f52b5e6729a8",
+      "rawBytes": 5427,
+      "rawSHA256": "21da8eb98373198a9424e2fc0b7b5cde75d0db365b6d1fa8bd46a4642376f0ff"
+    },
+    {
+      "path": "raw/relocationCopyScript.py.gz",
+      "bytes": 1610,
+      "sha256": "3d04a170bf2871c7a6ba250337e750ddd4005d0601a5c599b80ba8fad78911a8",
+      "rawBytes": 3701,
+      "rawSHA256": "17a90a659bc6d21693df4b580df7839d5df24edccbcca22ee36dc86b9d7db0f2"
+    },
+    {
+      "path": "raw/relocationAliasScript.py.gz",
+      "bytes": 2239,
+      "sha256": "206c39630625fd196eb75bc0676a1072bdda48c34ce4ef2d3e5bfbaad5f521be",
+      "rawBytes": 5590,
+      "rawSHA256": "2a3ad3680f7dd1f496243ffd6abf4a84ffc18023d8a2c420d35830f785b1ba9d"
+    }
+  ]
+}
