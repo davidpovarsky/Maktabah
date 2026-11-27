@@ -32,6 +32,8 @@ final class MaktabahNativeReaderTabBinding {
     private let sourceObservation: MaktabahNativeComponentSourceObservation
     private let foreignReady: @MainActor () -> Bool
     private let changesTab: Bool
+    private let restoresPhonePresentation: Bool
+    private let activePresentation: iOSNavigationManager.ActiveReaderTabPresentation?
     let viewerParent: MaktabahNativeViewerParentContinuation?
     private var reservation: StudyWorkspaceNativeTabSelectionReservation?
     private var valid = true
@@ -61,7 +63,9 @@ final class MaktabahNativeReaderTabBinding {
             guard let document = group.tabs.first(where: { $0.id == tab.id }),
                   document.backend == backend, document.session.bookId == tab.book.id,
                   manager.activeTabId != tab.id || MaktabahApp.isIpad
-                    || (manager.selectedBook === tab.book && manager.selectedBookPresentationMode == .viewer),
+                    || (manager.selectedBook === tab.book && manager.selectedBookPresentationMode == .viewer)
+                    || (manager.selectedBook == nil && manager.selectedBookPresentationMode == nil
+                        && manager.selectedBookPresentationRevision.map { $0 < .max } == true),
                   let book = tab.book.backendLocator, book.backend == backend,
                   (document.session.backendLocator?.workKey ?? document.session.locator?.workKey) == book.workKey,
                   mapping.projection.targets[tab.id]?.readerOwner == ObjectIdentifier(tab.viewModel),
@@ -106,6 +110,7 @@ final class MaktabahNativeReaderTabBinding {
         self.modeRevision = modeRevision; self.bookRevision = bookRevision
         originalBook = manager.selectedBook; originalBookMode = manager.selectedBookPresentationMode
         changesTab = manager.activeTabId != target.tabID
+        restoresPhonePresentation = !MaktabahApp.isIpad && !changesTab && originalBook == nil
         self.foreignReady = foreignReady
         let retainedParent: MaktabahNativeViewerParentContinuation?
         if bindings.selectedTab.wrappedValue == .viewer, manager.currentMode == .viewer {
@@ -143,7 +148,12 @@ final class MaktabahNativeReaderTabBinding {
             _ = DonationManager.shared.showDonationSheet; _ = bindings.sidebar?.overview.blocksRouting
             readForeignPresentations()
         }
-        do { try validate() } catch { retainedParent?.release(); throw error }
+        do {
+            activePresentation = restoresPhonePresentation
+                ? try manager.retainActiveReaderTabPresentation(requestID: requestID, tab: tab) : nil
+        } catch { retainedParent?.release(); throw error }
+        do { try validate() }
+        catch { activePresentation?.release(); retainedParent?.release(); throw error }
     }
 
     var isReserved: Bool { reservation != nil }
@@ -166,7 +176,7 @@ final class MaktabahNativeReaderTabBinding {
               bindings.rootPublications === root,
               root.settingsRevision == settingsRevision,
               !bindings.showSettings.wrappedValue,
-              changesTab || MaktabahApp.isIpad
+              changesTab || restoresPhonePresentation || MaktabahApp.isIpad
                 || (manager.selectedBook === tab.book && manager.selectedBookPresentationMode == .viewer),
               ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) == target.backend,
               tab.book.backendLocator?.backend.rawValue == target.backend.rawValue,
@@ -184,13 +194,21 @@ final class MaktabahNativeReaderTabBinding {
               actual.book === tab.book, actual.viewModel === tab.viewModel else {
             throw UIRouteError(.staleState, "native_reader_tab_owner_changed")
         }
+        try activePresentation?.validate()
+        guard activePresentation == nil || activePresentation?.requestID == requestID else {
+            throw UIRouteError(.staleState, "native_reader_tab_presentation_changed")
+        }
+        // The already-active nil-hidden phone tab owns exactly one ORIGINAL
+        // presentation, independently of the unchanged tab/store selection.
+        // The permit exposes only its actual completed setter, never a grant.
+        let presentedBook = (isApplied && changesTab) || activePresentation?.hasPublishedBook == true
         let expectedBookRevision: UInt64
-        if isApplied && changesTab {
+        if presentedBook {
             guard bookRevision < .max else { throw UIRouteError(.staleState, "native_reader_tab_revision_exhausted") }
             expectedBookRevision = bookRevision + 1
         } else { expectedBookRevision = bookRevision }
-        let expectedBook = isApplied && changesTab ? tab.book : originalBook
-        let expectedBookMode = isApplied && changesTab ? AppMode.viewer : originalBookMode
+        let expectedBook = presentedBook ? tab.book : originalBook
+        let expectedBookMode = presentedBook ? AppMode.viewer : originalBookMode
         guard manager.selectedBookPresentationRevision == expectedBookRevision,
               manager.selectedBook === expectedBook, manager.selectedBookPresentationMode == expectedBookMode else {
             throw UIRouteError(.staleState, "native_reader_tab_presentation_changed")
@@ -219,7 +237,7 @@ final class MaktabahNativeReaderTabBinding {
     func reserve() throws {
         try validate()
         guard reservation == nil, !isApplied, originalNative.epoch.revision < .max,
-              !changesTab || bookRevision < .max else {
+              !(changesTab || restoresPhonePresentation) || bookRevision < .max else {
             throw UIRouteError(.staleState, "native_reader_tab_reservation_changed")
         }
         let value = try workspace.reserveNativeTabSelection(requestID: requestID, tabID: target.tabID,
@@ -245,7 +263,13 @@ final class MaktabahNativeReaderTabBinding {
         try viewerParent?.validateOriginalSelectionEntry()
         // The canonical orchestrator has just consumed Core's one preparation.
         // This invokes the ORIGINAL action and its actual source-owned setters.
-        try workspace.applyNativeTabSelection(reservation) { bindings.manager.selectTab(id: tab.id) }
+        try workspace.applyNativeTabSelection(reservation) {
+            if let activePresentation {
+                try activePresentation.apply { try validate() }
+            } else {
+                bindings.manager.selectTab(id: tab.id)
+            }
+        }
         isApplied = true
         try viewerParent?.selectionDidApply()
         try validate()
@@ -270,6 +294,7 @@ final class MaktabahNativeReaderTabBinding {
 
     func release() {
         viewerParent?.release()
+        activePresentation?.release()
         guard valid || reservation != nil else { return }
         valid = false
         if let reservation { workspace.releaseNativeTabSelection(reservation) }
