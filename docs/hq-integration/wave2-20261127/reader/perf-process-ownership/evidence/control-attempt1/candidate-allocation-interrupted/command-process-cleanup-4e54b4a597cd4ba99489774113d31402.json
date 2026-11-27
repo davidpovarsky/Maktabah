@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "cleanup_attempted": true,
+  "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt1/candidate-allocation-interrupted/command-process-cleanup-4e54b4a597cd4ba99489774113d31402.json",
+  "command": [
+    "xcrun",
+    "original-export",
+    "--exact"
+  ],
+  "constructor_returned": false,
+  "exit_verified": true,
+  "original_kernel_identity": null,
+  "owned_pid": null,
+  "parent_pid": 5,
+  "phase": "original-command",
+  "spawn_error_type": "KeyboardInterrupt",
+  "start_attempted": false,
+  "status": "CONSTRUCTOR_NEVER_STARTED",
+  "verified": true
+}

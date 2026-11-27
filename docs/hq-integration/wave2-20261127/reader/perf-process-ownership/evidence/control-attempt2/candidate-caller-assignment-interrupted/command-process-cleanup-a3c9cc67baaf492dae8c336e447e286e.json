@@ -1,0 +1,36 @@
+{
+  "attempt": 1,
+  "cleanup_attempted": true,
+  "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-caller-assignment-interrupted/command-process-cleanup-a3c9cc67baaf492dae8c336e447e286e.json",
+  "command": [
+    "xcrun",
+    "original-export",
+    "--exact"
+  ],
+  "constructor_returned": true,
+  "exit_verified": true,
+  "last_verified_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "leader_exit": -2,
+  "original_cleanup": {
+    "group_state": "GONE_CHECKED",
+    "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+    "owned_pgid": 8765
+  },
+  "original_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "owned_pid": 8765,
+  "parent_pid": 5,
+  "phase": "original-command",
+  "start_attempted": true,
+  "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+  "verified": true
+}

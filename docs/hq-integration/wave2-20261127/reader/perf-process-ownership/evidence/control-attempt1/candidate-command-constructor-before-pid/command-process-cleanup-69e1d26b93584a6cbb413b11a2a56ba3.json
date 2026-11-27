@@ -1,0 +1,21 @@
+{
+  "attempt": 1,
+  "cleanup_attempted": true,
+  "cleanup_error_type": "ValueError",
+  "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt1/candidate-command-constructor-before-pid/command-process-cleanup-69e1d26b93584a6cbb413b11a2a56ba3.json",
+  "command": [
+    "xcrun",
+    "original-export",
+    "--exact"
+  ],
+  "constructor_returned": false,
+  "exit_verified": false,
+  "original_kernel_identity": null,
+  "owned_pid": null,
+  "parent_pid": 5,
+  "phase": "original-command",
+  "spawn_error_type": "KeyboardInterrupt",
+  "start_attempted": true,
+  "status": "GROUP_EXIT_UNVERIFIED",
+  "verified": false
+}

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "recordedAtUTC": "2026-11-27T11:11:05.056706+00:00",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "workingDirectory": "/workspace/scratch/ca3b32b82803"
+  },
+  "argv": [
+    "python3",
+    "reader-perf-cleanup-20261127/controls/lifecycle-controls.py",
+    "--baseline",
+    "reader-perf-cleanup-20261127/baseline/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "--candidate",
+    "reader-perf-cleanup-20261127/candidate/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "--interruption",
+    "reader-perf-cleanup-20261127/baseline/Scripts/CI/runtime27_interruption.py",
+    "--output",
+    "reader-perf-cleanup-20261127/evidence/control-attempt2"
+  ],
+  "observedToolExitCode": 0,
+  "observedToolWallSeconds": 0.119364261,
+  "result": {
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/RESULT.json",
+    "bytes": 156538,
+    "sha256": "7832aa815b5e96b00cc0a61f558464f9264ae43fba992b3379e35231294359d0"
+  },
+  "stdout": {
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2.stdout.log",
+    "bytes": 1243,
+    "sha256": "0b5cb5762cde025765d8098892fea2b96dd1101dc9de4aa184907f754b437dbe"
+  },
+  "stderr": {
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2.stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceParse": "ast.parse on final full driver succeeded during preservation check",
+  "nativeOrActualProcessCleanup": "NOT_RUN",
+  "scope": "The actual Python harness executed; every child/process/kernel/signal/time boundary is synthetic. Original helper source/defaults executed unchanged with injected model clock."
+}

@@ -1,0 +1,56 @@
+{
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "dependencies": [
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0",
+      "blob": "77952126169991d431766f44b5d62ecd2567a189"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63",
+      "blob": "8999f5329b0045f56f280c903f40a91e500fd36b"
+    },
+    {
+      "path": "Scripts/CI/reader-full-v32-ui-observation.py",
+      "bytes": 84518,
+      "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
+      "blob": "40d9682bcdea296a7ea3bdf78f2ac460b808dbf3"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "bytes": 45080,
+      "sha256": "5b36b294837af6ea3657db399789851f74ce52f22694ce672b16e5b724741e04",
+      "blob": "7257a506fd72fdeda16f1c6d3fb2885af79c5638",
+      "relevantLines": [
+        {
+          "line": 13,
+          "text": "- PERF-02 actual full-v32 Reader source stress passed 121 outputs / 113,608 independently decoded row appearances with identical content before/after the narrow fetch-lock fix 92e7cd3e. Queued cancellation measured 4,484 ms before and 16 ms after in one instrumented Windows observation per source; focused actual-SQLite RED 23/26 becomes GREEN 26/26, including recursion/acquisition/cleanup. Original lock, statements, decoder ownership and source DB are preserved. Current BookPageCache costs page counts (200/5000), not the historical 50-MB claim; application RSS, Apple/Native and physical/UI gates remain open. See `docs/hq-integration/perf02-full-v32-20261120`."
+        },
+        {
+          "line": 42,
+          "text": "- Books Updates must authorize a typed registered backend at every synchronous file/network/cleanup entry. A saved raw `maktabah` preference and `usesNativeMaktabahDataPath` do not establish ownership. The three current backends are explicitly unavailable; separate archive/FTS/author/main commits still require a genuine native recovery contract before any future enabling. The updater now leaves WAL/SHM cleanup to SQLite and propagates checkpoint errors before its integration-cache publication. Disposable safety fixtures cannot establish full native update acceptance."
+        },
+        {
+          "line": 51,
+          "text": "- Production archive 11001 reports a duplicate Compile Sources entry for OtzariaReaderSourcesInspectorHost.swift. The project file is unchanged from the feature base; verify-otzaria-xcode-project.py checks membership presence but not uniqueness. A separately approved project-membership cleanup and duplicate-detection extension would prevent this warning; no project edit was made during UI restoration."
+        }
+      ]
+    }
+  ],
+  "driverHistory": "fe017f463738342784e6e71dd1b65a7824d5f547 Defer Simulator retention until owned measurement producers exit [skip ci]\nb0fae4b4b2812b5a4b6dbb2070b1498cee957148 Add source-bound v40 per-book mode measurement cases [skip ci]\n",
+  "upstreamPinned": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstreamDriverInventory": "",
+  "isolatedRepository": {
+    "path": "/tmp/otzaria-perf-process-ownership-2224f98e04f2457a9c7b1c992297074b",
+    "branch": "codex/otzaria-wave2-perf-process-ownership-20261127",
+    "device": 2049,
+    "ownerUID": 1001,
+    "head": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+    "status": "CLEAN",
+    "alternateReadOnlySource": "/mnt/development/projects/git-mirrors/Maktabah.git/objects",
+    "freeAfter": 3664986112
+  }
+}

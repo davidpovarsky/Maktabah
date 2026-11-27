@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "cleanup_attempted": true,
+  "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-probe-permission-error/command-process-cleanup-4a1e2a83b7e0430abb23262b51d89907.json",
+  "command": [
+    "xcrun",
+    "original-export",
+    "--exact"
+  ],
+  "constructor_returned": true,
+  "exit_verified": false,
+  "last_verified_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "leader_exit": -9,
+  "original_cleanup": {
+    "group_state": "GONE_CHECKED",
+    "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+    "owned_pgid": 8765,
+    "probe_errors": [
+      "PermissionError"
+    ]
+  },
+  "original_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "owned_pid": 8765,
+  "parent_pid": 5,
+  "phase": "original-command",
+  "start_attempted": true,
+  "status": "GROUP_EXIT_UNVERIFIED",
+  "verified": false
+}

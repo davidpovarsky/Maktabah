@@ -1,0 +1,22 @@
+{
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "rootfs": {
+    "path": "/tmp",
+    "device": 2049,
+    "free": 3674300416
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62",
+      "gitBlob": "c4484e966f3f0b897a673c86d9b1f373f4ebf19c"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "gitBlob": "1fb612721275dc2f3109a955ec97403789e7f7c6"
+    }
+  ]
+}

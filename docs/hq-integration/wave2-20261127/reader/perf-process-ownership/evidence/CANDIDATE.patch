@@ -1,0 +1,262 @@
+--- a/Scripts/CI/reader-v40-perbook-mode-performance.py
++++ b/Scripts/CI/reader-v40-perbook-mode-performance.py
+@@ -447,36 +447,193 @@
+     def __init__(self, core, guard, trace):
+         self.core, self.guard, self.trace = core, guard, trace
+         self.owned_process_groups = []
++        self.spawn_attempt_count = 0
++        self.owned_handles = {}
+ 
+     def __getattr__(self, name):
+         return getattr(self.core, name)
+ 
+-    def finish_process(self, process, phase, path, interruption):
+-        # Retain liveness in memory before writing: an ENOSPC evidence failure
+-        # must not let the outer owner shut down a still-active Simulator.
+-        row = {"phase": phase, "owned_pid": process.pid, "verified": False}
++    def spawn(self, args, *, phase, path, **kwargs):
++        # Count/register before allocating or initializing Popen. A signal in
++        # any later assignment gap cannot turn an attempted spawn into all([]).
++        self.spawn_attempt_count += 1
++        row = {"attempt": self.spawn_attempt_count, "phase": phase, "command": list(args),
++            "cleanup_path": str(path), "parent_pid": os.getpid(), "owned_pid": None,
++            "start_attempted": False, "constructor_returned": False,
++            "cleanup_attempted": False, "exit_verified": False, "verified": False,
++            "original_kernel_identity": None, "receipt": None}
+         self.owned_process_groups.append(row)
+         try:
+-            row["original_cleanup"] = interruption["stop_owned_process_group"](process)
+-            row["verified"] = (row["original_cleanup"].get("group_state") == "GONE_CHECKED"
+-                and row["original_cleanup"].get("owned_pgid") == process.pid)
++            # __init__ may raise after creating its child. Keep the original
++            # object itself before entering it, not just its eventual return.
++            factory = subprocess.Popen
++            process = factory.__new__(factory)
++            self.owned_handles[row["attempt"]] = (process, row)
++            row["start_attempted"] = True
++            factory.__init__(process, args, start_new_session=True, **kwargs)
++            row["constructor_returned"] = True
++            row["owned_pid"] = process.pid
++            self.current_identity(process, row)
++            return process
+         except BaseException as error:
+-            row["error_type"] = type(error).__name__
++            row["spawn_error_type"] = type(error).__name__
++            raise
++
++    def kernel_process(self, pid):
++        require(type(pid) is int and pid > 0, "A directly created positive PID is required")
++        result = subprocess.run(["/bin/ps", "-ww", "-p", str(pid), "-o", "pid=,ppid=,lstart=,command="],
++            capture_output=True, text=True, timeout=2, env={**os.environ, "LC_ALL": "C", "TZ": "UTC"})
++        require(result.returncode in (0, 1) and not result.stderr and len(result.stdout.encode()) <= 32768,
++            "Actual process identity is failed, diagnostic or outside its bound")
++        rows = [line for line in result.stdout.splitlines() if line.strip()]
++        if not rows:
++            return None
++        require(len(rows) == 1, "Ambiguous actual process identity")
++        match = re.fullmatch(r"\s*(\d+)\s+(\d+)\s+([A-Za-z]{3}\s+[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\s+\d{4})\s+(.+)", rows[0])
++        require(match is not None and int(match[1]) == pid, "Malformed actual process identity")
++        return {"pid": pid, "parentPID": int(match[2]), "startUTC": match[3], "command": match[4]}
++
++    def current_identity(self, process, row):
++        require(self.owned_handles.get(row["attempt"], (None, None)) == (process, row)
++            and getattr(process, "_child_created", False) is True
++            and type(getattr(process, "pid", None)) is int and process.pid > 0,
++            "An interrupted constructor has no observable original child handle")
++        require(row["owned_pid"] in (None, process.pid), "Original child PID changed")
++        row["owned_pid"] = process.pid
++        original_exit = process.poll()
++        actual = self.kernel_process(process.pid)
++        if original_exit is not None:
++            require(actual is None, "Refuse a live reused PID after the original child was reaped")
++            return None
++        if actual is None:
++            require(process.poll() is not None and self.kernel_process(process.pid) is None,
++                "Original child has no verifiable live identity or observed exit")
++            return None
++        require(actual.get("pid") == process.pid and actual.get("parentPID") == row["parent_pid"],
++            "Actual created child PID or parent differs")
++        previous = row["original_kernel_identity"]
++        if previous is not None:
++            require(all(actual.get(key) == previous.get(key) for key in ("pid", "parentPID", "startUTC")),
++                "Refuse a replaced original kernel process identity")
++        try:
++            require(os.getpgid(process.pid) == process.pid, "Original child left its created process group")
++        except ProcessLookupError:
++            require(process.poll() is not None and self.kernel_process(process.pid) is None,
++                "Process-group identity vanished without an observed original exit")
++            return None
++        if process.poll() is not None:
++            require(self.kernel_process(process.pid) is None, "A live PID replaced the original child during observation")
++            return None
++        # xcrun may exec a different tool. Preserve actual argv observations;
++        # the live unreaped handle, parent/start and group establish ownership.
++        if previous is None:
++            row["original_kernel_identity"] = dict(actual)
++        row["last_verified_kernel_identity"] = dict(actual)
++        return actual
++
++    def finish_process(self, row):
++        require(any(item is row for item in self.owned_process_groups)
++            and not row["cleanup_attempted"], "Finish a registered attempt only once")
++        row["cleanup_attempted"] = True
++        try:
++            if not row["start_attempted"]:
++                row.update(status="CONSTRUCTOR_NEVER_STARTED", exit_verified=True)
++            else:
++                retained = self.owned_handles.get(row["attempt"])
++                require(retained is not None and retained[1] is row,
++                    "Spawn was attempted without an observable original handle")
++                process = retained[0]
++                self.current_identity(process, row)
++                interruption = runpy.run_path(str(ROOT / "Scripts/CI/runtime27_interruption.py"))
++
++                def guarded_killpg(pgid, kind):
++                    require(pgid == process.pid, "Only this directly created process group may be examined")
++                    identity = self.current_identity(process, row)
++                    if identity is None:
++                        # Reaping the original leader does not identify any
++                        # surviving/recycled group. Only absence can be proved.
++                        os.killpg(pgid, 0)
++                        raise ValueError("A remaining group without its original live leader is unowned")
++                    return os.killpg(pgid, kind)
++
++                row["original_cleanup"] = interruption["stop_owned_process_group"](
++                    process, killpg_fn=guarded_killpg)
++                row["leader_exit"] = process.poll()
++                cleanup = row["original_cleanup"]
++                row["exit_verified"] = (type(row["leader_exit"]) is int
++                    and cleanup.get("group_state") == "GONE_CHECKED"
++                    and cleanup.get("owned_pgid") == process.pid
++                    and not cleanup.get("probe_errors") and not cleanup.get("send_errors")
++                    and self.kernel_process(process.pid) is None)
++                row["status"] = "ORIGINAL_GROUP_EXIT_VERIFIED" if row["exit_verified"] else "GROUP_EXIT_UNVERIFIED"
++        except BaseException as error:
++            row.update(status="GROUP_EXIT_UNVERIFIED", cleanup_error_type=type(error).__name__)
+             raise
+         finally:
+-            self.core.write(path, row)
++            # Receipt failure cannot authorize simulator shutdown even when an
++            # exit was seen. Keep the conservative row alive before disk I/O.
++            payload = {key: value for key, value in row.items() if key != "receipt"}
++            payload["verified"] = row["exit_verified"]
++            self.core.write(Path(row["cleanup_path"]), payload)
++            row["receipt"] = self.core.witness(Path(row["cleanup_path"]))
++            row["verified"] = row["exit_verified"]
+         require(row["verified"], "Owned native/exporter process group cleanup remains unverified")
++
++    def finish_unfinished_handles(self):
++        errors = []
++        for row in tuple(self.owned_process_groups):
++            if row["cleanup_attempted"]:
++                continue
++            try:
++                self.finish_process(row)
++            except BaseException as error:
++                errors.append({"attempt": row["attempt"], "errorType": type(error).__name__})
++        return errors
++
++    def process_exits_verified(self):
++        # An explicitly empty never-spawned inventory is different from a lost
++        # attempted spawn. Compare every original receipt with its retained row.
++        if self.spawn_attempt_count != len(self.owned_process_groups):
++            return False
++        for index, row in enumerate(self.owned_process_groups, 1):
++            if (row.get("attempt") != index or row.get("verified") is not True
++                    or row.get("exit_verified") is not True or row.get("cleanup_attempted") is not True
++                    or not isinstance(row.get("receipt"), dict)):
++                return False
++            try:
++                path = Path(row["cleanup_path"])
++                data = self.core.bounded_read(path, 65536)
++                if row["receipt"] != {"path": str(path.resolve(strict=True)), "bytes": len(data),
++                        "sha256": hashlib.sha256(data).hexdigest()}:
++                    return False
++                if json.loads(data) != {key: value for key, value in row.items() if key != "receipt"}:
++                    return False
++                if row["start_attempted"]:
++                    retained = self.owned_handles.get(index)
++                    cleanup = row.get("original_cleanup", {})
++                    if (retained is None or retained[1] is not row or type(row.get("owned_pid")) is not int
++                            or row["owned_pid"] <= 0 or getattr(retained[0], "pid", None) != row["owned_pid"]
++                            or type(row.get("leader_exit")) is not int
++                            or cleanup.get("group_state") != "GONE_CHECKED"
++                            or cleanup.get("owned_pgid") != row["owned_pid"]
++                            or cleanup.get("probe_errors") or cleanup.get("send_errors")):
++                        return False
++                elif row.get("status") != "CONSTRUCTOR_NEVER_STARTED" or row.get("owned_pid") is not None:
++                    return False
++            except (OSError, ValueError, KeyError, TypeError):
++                return False
++        return set(self.owned_handles).issubset(range(1, self.spawn_attempt_count + 1))
+ 
+     def command(self, args, timeout=90, check=True):
+         # The unchanged original verifier and attachment exporter also run
+         # while the trace is alive. Cover their entire subprocess lifetime,
+         # not just the XCTest Popen interval, with the same owned-byte guard.
+         self.guard.check(); self.trace.require_running()
+-        interruption = runpy.run_path(str(ROOT / "Scripts/CI/runtime27_interruption.py"))
+-        process = subprocess.Popen(args, cwd=ROOT, text=True, stdout=subprocess.PIPE,
+-            stderr=subprocess.PIPE, start_new_session=True)
+-        deadline = time.monotonic() + timeout
+         try:
++            process = self.spawn(args, phase="original-command", path=self.core.OUT /
++                ("command-process-cleanup-" + uuid.uuid4().hex + ".json"), cwd=ROOT,
++                text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
++            deadline = time.monotonic() + timeout
+             while True:
+                 self.guard.check(); self.trace.require_running()
+                 remaining = deadline - time.monotonic()
+@@ -496,18 +653,16 @@
+             self.guard.failure = type(error).__name__
+             raise
+         finally:
+-            self.finish_process(process, "original-command", self.core.OUT /
+-                ("command-process-cleanup-" + uuid.uuid4().hex + ".json"), interruption)
++            require(not self.finish_unfinished_handles(), "Owned command cleanup was incomplete; retain its original attempt")
+ 
+     def bounded(self, args, log, timeout, environment=None):
+         require(args and args[0] == "xcodebuild" and "test-without-building" in args, "Only the original actual native invocation is budget guarded")
+         self.guard.check(); self.trace.require_running()
+-        interruption = runpy.run_path(str(ROOT / "Scripts/CI/runtime27_interruption.py"))
+         with Path(log).open("w") as output:
+-            process = subprocess.Popen(args, cwd=ROOT, env=environment, stdout=output,
+-                stderr=subprocess.STDOUT, start_new_session=True)
+-            deadline = time.monotonic() + timeout
+             try:
++                process = self.spawn(args, phase="original-XCTest", path=Path(log).with_suffix(".process-cleanup.json"),
++                    cwd=ROOT, env=environment, stdout=output, stderr=subprocess.STDOUT)
++                deadline = time.monotonic() + timeout
+                 while process.poll() is None:
+                     self.guard.check(); self.trace.require_running()
+                     remaining = deadline - time.monotonic()
+@@ -522,7 +677,7 @@
+                 self.guard.failure = type(error).__name__
+                 raise
+             finally:
+-                self.finish_process(process, "original-XCTest", Path(log).with_suffix(".process-cleanup.json"), interruption)
++                require(not self.finish_unfinished_handles(), "Owned XCTest cleanup was incomplete; retain its original attempt")
+ 
+ 
+ def stop_owned_runtime(state, *, host, trace, delivery, proxy, start_attempts):
+@@ -589,10 +744,18 @@
+             state["failures"].append({"phase": name, "errorType": type(error).__name__})
+         if row["verified"] is not True:
+             state["failures"].append({"phase": name, "errorType": "OwnedProducerExitUnverified"})
++    groups_verified = proxy is None
++    if proxy is not None:
++        try:
++            sweep_errors = proxy.finish_unfinished_handles()
++            state["owned_process_cleanup_sweep_errors"] = sweep_errors
++            groups_verified = not sweep_errors and proxy.process_exits_verified()
++        except BaseException as error:
++            state["failures"].append({"phase": "native-exporter", "errorType": type(error).__name__})
+     groups = [] if proxy is None else proxy.owned_process_groups
+     state["owned_native_and_exporter_groups"] = groups
+-    groups_verified = all(r.get("verified") is True and r.get("original_cleanup", {}).get("group_state") == "GONE_CHECKED"
+-                          and r["original_cleanup"].get("owned_pgid") == r.get("owned_pid") for r in groups)
++    state["owned_process_attempt_inventory"] = {"attempt_count": 0 if proxy is None else proxy.spawn_attempt_count,
++        "registered_rows": len(groups), "proxy_created": proxy is not None}
+     if not groups_verified:
+         state["failures"].append({"phase": "native-exporter", "errorType": "OwnedProcessGroupExitUnverified"})
+     state["verified"] = groups_verified and all(v.get("verified") is True for v in state["producers"].values())

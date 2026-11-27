@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "reviewers": [
+    "root",
+    "library_v40"
+  ],
+  "method": "Independent source-only read; no tests/runtime by reviewers",
+  "initialCandidate": {
+    "sha256": "462a4cc96b8f8182398cf495207eda01c1be44180cd7794fb03a4397aa3001ee",
+    "bytes": 65407,
+    "finding": "No ownership/receipt gate blocker. Root requested identity-only TZ=UTC, which this SHA includes."
+  },
+  "finalCandidate": {
+    "sha256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100",
+    "bytes": 65732,
+    "followupPatch": {
+      "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch",
+      "bytes": 1736,
+      "sha256": "3f3c1eee2cdf225ad2490275c2d961acecddd39ff25f201ca6f6ea5adc4b22e6"
+    },
+    "finding": "Both reviewers confirmed pre-spawn actual helper import and retained per-attempt dictionary close dependency-order regression. Every other ownership/receipt gate unchanged."
+  },
+  "reviewScope": [
+    "BudgetedOriginalRunner",
+    "native/exporter group admission in stop_owned_runtime",
+    "prefix/suffix byte preservation",
+    "unchanged original interruption helper"
+  ],
+  "nativeAcceptance": false
+}
