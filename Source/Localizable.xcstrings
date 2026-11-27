@@ -1,6 +1,17 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Current Table of Contents Entry": {
+      "extractionState": "manual",
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפרק הנוכחי בתוכן העניינים"
+          }
+        }
+      }
+    },
     "Library contents": {
       "extractionState": "manual",
       "localizations": {
