@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "reviewedDonor": "bfa7d9c319c6508f864a4dd9dd2f18895e4e7473",
+  "file": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+  "beforeSHA256": "30da36f02c8788120f1a4b2ed0d7a5a8d7711f496af9a6e94fcf0f554abf8ad3",
+  "afterSHA256": "b6b00a796aea01ea016bff70731fc71b8fbc63fa4e7667fc5e1f1481df54a296",
+  "sourceChange": "Restore the exact original exists-and-isHittable bounded guard before tapping; retain all new title/enabled/frame/uniqueness checks. No product behavior or canonical diagnostics changed.",
+  "originalGuard": "try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }",
+  "sourceBoundary": "Syntax verification only; no app/native claim",
+  "validation": {
+    "kind": "source_syntax_only",
+    "command": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

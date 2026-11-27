@@ -1465,6 +1465,7 @@ final class MiniAppsAnnotationAcceptanceTests: FaithfulReaderUIBase {
         }
         let confirm = try XCTUnwrap(frames.count == 1 ? controls.last : nil,
             "Require the single native confirmation below the original dialog title")
+        try await requireNativeCondition(timeout: 15) { confirm.exists && confirm.isHittable }
         tap(confirm)
     }
 
