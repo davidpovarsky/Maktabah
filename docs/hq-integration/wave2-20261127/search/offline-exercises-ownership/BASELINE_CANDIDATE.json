@@ -1,0 +1,45 @@
+{
+  "scope": "WHOLE_ORIGINAL_SOURCE_WITH_SYNTHETIC_REAPED_PID_AND_READER_CONTROLS_ONLY",
+  "actualProcesses": 0,
+  "actualSignals": 0,
+  "actualMacOrNetworkActions": 0,
+  "baseline": {
+    "sourceSHA256": "bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f",
+    "observations": {
+      "relay": {
+        "stoppedNewlyAdoptedForeignIdentity": true,
+        "refused": false,
+        "failure": null
+      },
+      "worker": {
+        "stoppedNewlyAdoptedForeignIdentity": true,
+        "refused": false,
+        "failure": null
+      },
+      "streams": {
+        "calledBufferedCloseWithLiveReader": true,
+        "refused": true
+      }
+    }
+  },
+  "candidate": {
+    "sourceSHA256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406",
+    "observations": {
+      "relay": {
+        "stoppedNewlyAdoptedForeignIdentity": false,
+        "refused": true,
+        "failure": "Refuse adopting a live reused PID after the original child was reaped"
+      },
+      "worker": {
+        "stoppedNewlyAdoptedForeignIdentity": false,
+        "refused": true,
+        "failure": "Owned exercise cleanup remains unverified: {'worker': 'ValueError: Refuse adopting a live reused PID after the original child was reaped'}"
+      },
+      "streams": {
+        "calledBufferedCloseWithLiveReader": false,
+        "refused": true
+      }
+    }
+  },
+  "status": "THREE_SOURCE_BASELINE_DEFECTS_REPRODUCED_AND_REJECTED_BY_CANDIDATE"
+}

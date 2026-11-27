@@ -220,6 +220,26 @@ def qualified_stop(value, process):
     return value
 
 
+def created_child_identity(window, child, identity, command, parent_pid):
+    """Never adopt a later process merely because its PID matches our Popen."""
+    require(isinstance(command, list) and command and type(parent_pid) is int,
+            'The original pre-launch argv/parent must be retained')
+    def matches(value):
+        return value is not None and value.get('pid') == child.pid and value.get('parentPID') == parent_pid \
+            and shlex.split(value.get('command', '')) == command
+    if identity is not None:
+        require(matches(identity), 'The original observed identity was never qualified as this child')
+        return identity
+    original_status = child.poll()
+    current = window.process(child.pid)
+    if original_status is not None:
+        require(current is None, 'Refuse adopting a live reused PID after the original child was reaped')
+        return None
+    require(matches(current) and child.poll() is None,
+            'Fallback identity requires the same still-live original child and exact launch argv/parent')
+    return current
+
+
 def stop_owned(window, interruption, child, identity):
     current = window.process(child.pid)
     require(current is None or current == identity, 'Refuse signaling a replaced owned process identity')
@@ -330,6 +350,7 @@ class OwnedOracleRelay:
         self.ready = dict(rendezvous)
         require(self.ready['oracleRelaySource']['sha256'] == self.sources['study-ui-offline-heartbeat.py']['sha256'], 'Oracle/Mac relay source differs')
         self.child = self.identity = self.start_value = self.finished = self.finished_stop = None
+        self.command, self.parent_pid = None, os.getpid()
         self.logs = []
 
     def start(self):
@@ -337,13 +358,13 @@ class OwnedOracleRelay:
         path = self.output / 'heartbeat.jsonl'
         command = [sys.executable, self.sources['study-ui-offline-heartbeat.py']['path'], '--window', self.ready['windowID'],
                    '--deadline-unix', str(self.ready['hardDeadlineUnix']), '--output', str(path)]
+        self.command = command
         try:
             stdout = (self.output / 'relay.stdout.log').open('xb'); self.logs.append(stdout)
             stderr = (self.output / 'relay.stderr.log').open('xb'); self.logs.append(stderr)
             self.child = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
-            self.identity = self.window.process(self.child.pid)
-            require(self.identity is not None and self.identity['parentPID'] == os.getpid()
-                    and shlex.split(self.identity['command']) == command, 'The relay process identity is not the created child')
+            self.identity = created_child_identity(self.window, self.child, None, self.command, self.parent_pid)
+            require(self.identity is not None, 'The relay ended before its original identity was observed')
             self.start_value = {'schema': RELAY_SCHEMA, 'status': 'OWNED_ORIGINAL_RELAY_STARTED', 'windowID': self.ready['windowID'],
                 'oracleEUID': os.geteuid(), 'oracleUser': 'ubuntu', 'existingAlias': 'scaleway-mac', 'supervisorPID': os.getpid(),
                 'process': self.identity, 'command': command, 'startedOracleUnix': time.time(),
@@ -443,8 +464,7 @@ class OwnedOracleRelay:
         result = None
         try:
             if self.child is not None:
-                identity = self.identity or self.window.process(self.child.pid)
-                require(identity is not None or self.child.poll() is not None, 'Unverified relay launch identity')
+                identity = created_child_identity(self.window, self.child, self.identity, self.command, self.parent_pid)
                 result = stop_owned(self.window, self.interruption, self.child, identity)
         finally:
             for handle in self.logs:
@@ -473,6 +493,7 @@ class NoDenialExercise:
         self.request_coordination, self.start_oracle, self.control_oracle = request_coordination, start_oracle, control_oracle
         self.nonce = uuid.uuid4().hex
         self.child = self.identity = self.lease = self.ready = self.heartbeat = self.relay_start = None
+        self.command, self.parent_pid = None, os.getpid()
         self.possible_deployment = self.relay_possible = self.unloaded = False
         self.events, self.errors, self.threads = queue.Queue(maxsize=16), [], []
         self.stderr = bytearray()
@@ -562,11 +583,11 @@ class NoDenialExercise:
         try:
             command = [sys.executable, str(Path(__file__).resolve()), '--worker', self.kind,
                        '--nonce', self.nonce, '--output', str(self.output / 'worker')]
+            self.command = command
             self.child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
             # This try already owns the process: an ENOSPC receipt cannot escape cleanup.
-            self.identity = self.window.process(self.child.pid)
-            require(self.identity is not None and self.identity['parentPID'] == os.getpid()
-                    and shlex.split(self.identity['command']) == command, 'Created child process identity differs')
+            self.identity = created_child_identity(self.window, self.child, None, self.command, self.parent_pid)
+            require(self.identity is not None, 'Owned worker ended before its original identity was observed')
             self.window.private_write(self.output / 'LAUNCH.json', {'command': command, 'process': self.identity, 'sources': self.sources})
             for callback in (self._read_stdout, self._read_stderr):
                 thread = threading.Thread(target=callback, daemon=True); self.threads.append(thread); thread.start()
@@ -662,15 +683,15 @@ class NoDenialExercise:
             raise
 
     def _close_owned_streams(self):
-        try:
-            for thread in self.threads:
-                thread.join(2)
-                require(not thread.is_alive(), 'Owned worker reader remains active')
-        finally:
-            if self.child is not None:
-                for pipe in (self.child.stdin, self.child.stdout, self.child.stderr):
-                    with contextlib.suppress(OSError):
-                        pipe.close()
+        for thread in self.threads:
+            thread.join(2)
+        require(not any(thread.is_alive() for thread in self.threads),
+                'Owned worker reader remains active; defer buffered pipe close')
+        if self.child is not None:
+            require(self.child.poll() is not None, 'Owned worker remains live; defer buffered pipe close')
+            for pipe in (self.child.stdin, self.child.stdout, self.child.stderr):
+                with contextlib.suppress(OSError):
+                    pipe.close()
 
     def abort(self):
         errors = {}
@@ -681,7 +702,7 @@ class NoDenialExercise:
                 errors['watchdog'] = type(error).__name__ + ': ' + str(error)
         if self.child is not None:
             try:
-                identity = self.identity or self.window.process(self.child.pid)
+                identity = created_child_identity(self.window, self.child, self.identity, self.command, self.parent_pid)
                 stop_owned(self.window, self.interruption, self.child, identity)
             except BaseException as error:
                 errors['worker'] = type(error).__name__ + ': ' + str(error)

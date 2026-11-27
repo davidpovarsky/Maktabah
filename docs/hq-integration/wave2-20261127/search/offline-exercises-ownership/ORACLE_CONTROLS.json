@@ -1,0 +1,18 @@
+{
+  "scope": "ORACLE_SYNTHETIC_SOURCE_CONTROLS_ONLY",
+  "checks": [
+    {
+      "script": "source-controls.py",
+      "exit": 0
+    },
+    {
+      "script": "ownership-baseline-control.py",
+      "exit": 0
+    }
+  ],
+  "testsRun": 45,
+  "sourceSHA256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406",
+  "actualSSH": 0,
+  "actualMacOrPF": 0,
+  "actualNative": 0
+}
