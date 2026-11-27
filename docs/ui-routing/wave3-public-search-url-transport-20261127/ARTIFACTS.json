@@ -1,0 +1,58 @@
+{
+  "files": [
+    {
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6311,
+      "sha256": "16b506e585ef4a111cae9cc7cb767fc58e70a73fdfbb4598f80214ed298f5a80"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-public-search-url-delivery.py",
+      "bytes": 6906,
+      "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/BASELINE.json",
+      "bytes": 423,
+      "sha256": "f2266a3683423400edd1918924dd9dcdee43c8e4c87c777dcc20e55c48da164a"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/DRIVER.patch.gz",
+      "bytes": 548,
+      "sha256": "69f3e34eab94144e5b603e2187c9aed9d13daf030fc5de5822d1248bdb50a5ab"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/DRIVER.patch.manifest.json",
+      "bytes": 190,
+      "sha256": "faffc39e50cc48ff0b119cb6eb948b03e556ce48c2de8d95781209d03651d91b"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/RAW_CONTROLS.json.gz",
+      "bytes": 14767,
+      "sha256": "7d4d08c60e4350f238b5979493bfd0d65ed876cf2fdf53007519908c331f7e87"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/RAW_CONTROLS.json.gz.manifest.json",
+      "bytes": 2689,
+      "sha256": "44521703350c209e6c73612cff1d9931266fb64755599c3eae3c24d717f99d99"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/README.md",
+      "bytes": 2666,
+      "sha256": "7050c763c9870fbbc51d6b0c5b8f2bacb6fb0b4ee690b1a269a08009b94d763b"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/RESULT.json",
+      "bytes": 4055,
+      "sha256": "ec62575e6d79466773dbd418d380c13e6c8dca11f7ce8828d93252bdd34b54e7"
+    },
+    {
+      "path": "docs/ui-routing/wave3-public-search-url-transport-20261127/SOURCE_JOIN.json",
+      "bytes": 441,
+      "sha256": "4bc287c603a0b87599605f60260e9fd9c02758f2e18e9fc4a4007ae546ec5ad2"
+    }
+  ],
+  "actualNewTests": 8,
+  "unchangedOriginalTests": 18,
+  "baselineFailures": 6,
+  "nativeRuns": 0
+}

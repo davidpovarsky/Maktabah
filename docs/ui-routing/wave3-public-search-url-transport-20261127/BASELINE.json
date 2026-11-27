@@ -1,0 +1,15 @@
+{
+  "commit": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "files": [
+    {
+      "path": "Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6244,
+      "sha256": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80"
+    },
+    {
+      "path": "Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 9685,
+      "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+    }
+  ]
+}

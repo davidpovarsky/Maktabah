@@ -1,0 +1,73 @@
+{
+  "rawBytes": 84651,
+  "rawSHA256": "091b0691b5bba48251a6a2950dfd77f8bddd821c4deb5e7cbe7d7aeb16163f7a",
+  "gzipBytes": 14767,
+  "gzipSHA256": "7d4d08c60e4350f238b5979493bfd0d65ed876cf2fdf53007519908c331f7e87",
+  "files": [
+    {
+      "path": "baseline/Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6244,
+      "sha256": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80"
+    },
+    {
+      "path": "baseline/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+      "bytes": 6906,
+      "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+    },
+    {
+      "path": "baseline/Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 9685,
+      "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+    },
+    {
+      "path": "candidate/Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6311,
+      "sha256": "16b506e585ef4a111cae9cc7cb767fc58e70a73fdfbb4598f80214ed298f5a80"
+    },
+    {
+      "path": "candidate/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+      "bytes": 6906,
+      "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+    },
+    {
+      "path": "candidate/Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 9685,
+      "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+    },
+    {
+      "path": "evidence/RESULT.json",
+      "bytes": 4055,
+      "sha256": "ec62575e6d79466773dbd418d380c13e6c8dca11f7ce8828d93252bdd34b54e7"
+    },
+    {
+      "path": "evidence/baseline-test-runtime27-public-search-url-delivery.stderr",
+      "bytes": 7419,
+      "sha256": "0e454745514dabcd5da68a79dacbd910e4de130858f7ab794211c27c56599893"
+    },
+    {
+      "path": "evidence/baseline-test-runtime27-public-search-url-delivery.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/candidate-test-runtime27-public-search-url-delivery.stderr",
+      "bytes": 1470,
+      "sha256": "9168bbc69551bfbd5a8f4c921c1b7078830a6cbb137be142c6ef0b92e41e3dcb"
+    },
+    {
+      "path": "evidence/candidate-test-runtime27-public-search-url-delivery.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/candidate-test-runtime27-url-delivery.stderr",
+      "bytes": 2667,
+      "sha256": "332f40ebd5bfd6f6513285879ec2a5747dedb1d290c6b811d3326c7fe5bd6ed7"
+    },
+    {
+      "path": "evidence/candidate-test-runtime27-url-delivery.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
