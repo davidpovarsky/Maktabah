@@ -1,0 +1,117 @@
+{
+  "transport_returncode": 0,
+  "transport_stderr": "",
+  "result": {
+    "written_at": "2026-11-27T02:32:41.738626+00:00",
+    "directory": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01",
+    "cache": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+    "scope": "Five actual production method/property bodies; explicit synthetic UIKit window readiness, parent facets and retained-proof API boundary. Not UIKit/Core admission or app compilation.",
+    "source_files": {
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "50d65a230af92741c7541bc32a5d19f81b24fc37d35ee1ad075aa3d87d49d88f",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "8d75a368172039119c7f38c5b8dfb06fe2377f538d748812382e20121e7642f9"
+    },
+    "swift_version": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+    "available_before": 20648275968,
+    "available_after": 20647333888,
+    "directory_bytes": 818534,
+    "results": [
+      {
+        "variant": "OriginalSettingsBoundaryControls",
+        "source_sha256": "b97a8eda455f501e9346cdea0c0138ae858283076f63445b790983911486d666",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/OriginalSettingsBoundaryControls.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/OriginalSettingsBoundaryControls"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 0,
+        "elapsed_seconds": 0.754,
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/OriginalSettingsBoundaryControls.log",
+        "log_sha256": "2efd25a14ff66bc4d9ffccb3a58dcc4d196f81d6968e3d5f08c7c109b4cfde55",
+        "output": "PASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nPASS preexisting_overview_transition_is_not_a_new_grant\nPASS same_applied_overview_can_wait_for_its_first_host\nPASS different_destination_cannot_borrow_transition\nPASS different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nPASS preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nPASS settings_already_shown_blocks_both_parents\nPASS settings_cannot_be_dismissed_by_same_applied_request\nPASS original_workspace_selection_does_not_clear_settings\nPASS false_settings_binding_is_not_finished_native_dismissal\nPASS missing_original_window_cannot_admit_cold_parent\nPASS begun_unapplied_command_cannot_borrow_foreign_transition\nPASS begun_unapplied_command_cannot_skip_cold_window_gate\nPASS retired_applied_proof_cannot_skip_cold_window_gate\nPASS same_applied_source_can_wait_for_its_original_cold_mount\nPASS stable_visible_original_profile_sheet_uses_its_own_witness\nPASS covered_original_profile_sheet_remains_unavailable\nPASS applied_request_for_other_parent_does_not_skip_cold_window_gate\nTOTAL passed=32 failed=0\n"
+      },
+      {
+        "variant": "NegativeSettingsDismissal",
+        "source_sha256": "5dc5bcea460333559d25de119075f5903ffad90859773e7bdb92c8e579a4cda7",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeSettingsDismissal.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeSettingsDismissal"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 1,
+        "elapsed_seconds": 0.559,
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeSettingsDismissal.log",
+        "log_sha256": "ac1e1e7ed9e35b6708e76fb59fa62fb2649bf8176c4cbfe1254d084ccc34dc1f",
+        "output": "PASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nPASS preexisting_overview_transition_is_not_a_new_grant\nPASS same_applied_overview_can_wait_for_its_first_host\nPASS different_destination_cannot_borrow_transition\nPASS different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nPASS preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nFAIL settings_already_shown_blocks_both_parents\nFAIL settings_cannot_be_dismissed_by_same_applied_request\nFAIL original_workspace_selection_does_not_clear_settings\nPASS false_settings_binding_is_not_finished_native_dismissal\nPASS missing_original_window_cannot_admit_cold_parent\nPASS begun_unapplied_command_cannot_borrow_foreign_transition\nPASS begun_unapplied_command_cannot_skip_cold_window_gate\nPASS retired_applied_proof_cannot_skip_cold_window_gate\nPASS same_applied_source_can_wait_for_its_original_cold_mount\nPASS stable_visible_original_profile_sheet_uses_its_own_witness\nPASS covered_original_profile_sheet_remains_unavailable\nPASS applied_request_for_other_parent_does_not_skip_cold_window_gate\nTOTAL passed=29 failed=3\n"
+      },
+      {
+        "variant": "NegativeColdWindowGate",
+        "source_sha256": "b6f11532aa34637afb58a133c46cdff9006fa42fd43da6cf4e6bb92d34929912",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeColdWindowGate.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeColdWindowGate"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 1,
+        "elapsed_seconds": 0.557,
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeColdWindowGate.log",
+        "log_sha256": "f371eb03c5a04572ea95154df2e547f1b7c51d2a60a98e5abffe58c8feee6b94",
+        "output": "PASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nPASS preexisting_overview_transition_is_not_a_new_grant\nPASS same_applied_overview_can_wait_for_its_first_host\nPASS different_destination_cannot_borrow_transition\nPASS different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nPASS preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nPASS settings_already_shown_blocks_both_parents\nPASS settings_cannot_be_dismissed_by_same_applied_request\nPASS original_workspace_selection_does_not_clear_settings\nFAIL false_settings_binding_is_not_finished_native_dismissal\nFAIL missing_original_window_cannot_admit_cold_parent\nPASS begun_unapplied_command_cannot_borrow_foreign_transition\nFAIL begun_unapplied_command_cannot_skip_cold_window_gate\nFAIL retired_applied_proof_cannot_skip_cold_window_gate\nPASS same_applied_source_can_wait_for_its_original_cold_mount\nPASS stable_visible_original_profile_sheet_uses_its_own_witness\nPASS covered_original_profile_sheet_remains_unavailable\nFAIL applied_request_for_other_parent_does_not_skip_cold_window_gate\nTOTAL passed=27 failed=5\n"
+      },
+      {
+        "variant": "NegativeBegunCommand",
+        "source_sha256": "f79f1632e6c7ffd9db399a13737d9a8867da905d0cb824b9dba41ce2a3b149e2",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeBegunCommand.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeBegunCommand"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 1,
+        "elapsed_seconds": 0.558,
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/settings-boundary-01/NegativeBegunCommand.log",
+        "log_sha256": "16a09db9f609279fa5bfb9036a55b7774aa0b8fcbe91b73d7a991efc252896e7",
+        "output": "PASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nPASS preexisting_overview_transition_is_not_a_new_grant\nPASS same_applied_overview_can_wait_for_its_first_host\nPASS different_destination_cannot_borrow_transition\nPASS different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nPASS preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nPASS settings_already_shown_blocks_both_parents\nPASS settings_cannot_be_dismissed_by_same_applied_request\nPASS original_workspace_selection_does_not_clear_settings\nPASS false_settings_binding_is_not_finished_native_dismissal\nPASS missing_original_window_cannot_admit_cold_parent\nFAIL begun_unapplied_command_cannot_borrow_foreign_transition\nFAIL begun_unapplied_command_cannot_skip_cold_window_gate\nFAIL retired_applied_proof_cannot_skip_cold_window_gate\nPASS same_applied_source_can_wait_for_its_original_cold_mount\nPASS stable_visible_original_profile_sheet_uses_its_own_witness\nPASS covered_original_profile_sheet_remains_unavailable\nPASS applied_request_for_other_parent_does_not_skip_cold_window_gate\nTOTAL passed=29 failed=3\n"
+      }
+    ]
+  },
+  "production_inputs_unchanged": true
+}
