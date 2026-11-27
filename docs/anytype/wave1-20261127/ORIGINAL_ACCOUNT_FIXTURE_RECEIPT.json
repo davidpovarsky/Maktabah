@@ -1,0 +1,41 @@
+{
+  "actual_public_identity": {
+    "account_id": "A6Qqqg3sRwnXkTrwA8pUYgMvgaH5awVXqbyQF6NYTNsPzNrA",
+    "object_id": "bafyreietynqnmss3skbpa2csmnqzjwqls6yamve4x4n7op6hmpt24auofu",
+    "space_id": "bafyreig6aqx5bq77fmsjwgriusnilav2xmmvtcqx5sgyshpghmxavl5bz4.1jrhc3mkvsqk3",
+    "space_title": "Otzaria original network acceptance"
+  },
+  "controller_git_blob": "5ab69f41e7def97068e90823c41be0e323ab8927",
+  "controller_source": "Scripts/CI/original-native-account-fixture.go",
+  "credential_material_in_repository": false,
+  "full_app_pair_acceptance": "PENDING_EXACT_NEW_APP_AND_XCTEST_ARTIFACT",
+  "mac_private_fixture_root": "/Users/m1/builds/otzaria-wave1-anytype-20261127/network-fixture-private",
+  "native_engine_implementation_in_controller": false,
+  "native_provenance": {
+    "client_configuration_sha256": "25c92dc1f09f86cdc9d9ff3921731b5a17532251d8a22dabfde3e41e56a6da54",
+    "controller_binary_sha256": "60782cdc23bb876a0b884304beb890b5918f43ee874abcfa79e17200371e7cec",
+    "controller_source_sha256": "a57317b1ebc695b11d0f32eafe57dda8db4f54ca04fbd0b195bf2f19c45d50ef",
+    "native_cli_binary_sha256": "37ff6ce0d6fe3b0e2b379f31982c20a2c8029180dee86d0d83623ec7f5d65d5b",
+    "native_cli_commit": "073694494d1af2237eea874323f3e6341c1c6b2e",
+    "native_heart_version": "v0.51.9",
+    "product_acceptance_credit": false,
+    "protobuf_client_source_commit": "3ed3ce91547a38a6cc4213383d3b07bf0560c7af",
+    "schema": "otzaria.original.native.fixture-controller-source.v1"
+  },
+  "original_creator_stop": {
+    "account_id": "A6Qqqg3sRwnXkTrwA8pUYgMvgaH5awVXqbyQF6NYTNsPzNrA",
+    "container_pid": 0,
+    "container_running": false,
+    "data_retained": true,
+    "finished_at": "2026-11-27T01:02:49.717050553Z",
+    "native_response_code": 0,
+    "remote_device_acknowledgement": false,
+    "remove_data": false,
+    "schema": "otzaria.original.native.account-stop.v1"
+  },
+  "original_engine_sync_credit": false,
+  "product_acceptance_credit": false,
+  "schema": "otzaria.original.account-fixture.source-receipt.v1",
+  "source_pointer_sha256": "e8354615476e8dd2cd43e85c2c36cacad8df3cb3c2b45afbe8f1a2806ed1a94c",
+  "status": "PREPARED_ORIGINAL_NATIVE_FIXTURE_CREATOR_STOPPED"
+}
