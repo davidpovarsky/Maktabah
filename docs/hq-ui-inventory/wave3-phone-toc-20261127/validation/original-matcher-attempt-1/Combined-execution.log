@@ -1,0 +1,13 @@
+PASS exact SQL bootstrap has no TOC heading
+PASS original surrogate one-point ranges have no current-line heading
+PASS unchanged old iPad selector reproduces missing current row
+PASS new iPad original matcher resolves independent SQL entry643037
+PASS original node object path equals independent SQL ancestry
+PASS original selected title equals independent SQL heading
+PASS exact heading remains selected
+PASS another work cannot match this tree
+PASS position before first heading is unavailable
+PASS next heading uses its original node
+PASS selection preserves original Reader locator and surrogate
+PASS actual registry reverse resolves exact selected heading
+RESULT passed=12 failed=0 nodes=616

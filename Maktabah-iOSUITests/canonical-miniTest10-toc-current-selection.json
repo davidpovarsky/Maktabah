@@ -1,0 +1,47 @@
+{
+  "profileID": "miniTest10",
+  "profileVersion": 6,
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "purpose": "Independent sealed SQLite line_toc ancestry for unchanged original Native Reader bootstrap; actual app registry resolves negative AX identity at runtime. No app-produced expected answer.",
+  "bootstrap": {
+    "id": 3121121,
+    "bookId": 3891,
+    "lineIndex": 523
+  },
+  "defaultStructureID": "default",
+  "selectedPathSQL": "WITH RECURSIVE ancestors(id,parentId,level,lineId,textId) AS (\n SELECT t.id,t.parentId,t.level,t.lineId,t.textId FROM tocEntry t\n JOIN line_toc lt ON lt.tocEntryId=t.id JOIN line l ON l.id=lt.lineId\n WHERE l.bookId=3891 AND l.lineIndex=523\n UNION ALL SELECT t.id,t.parentId,t.level,t.lineId,t.textId\n FROM tocEntry t JOIN ancestors a ON a.parentId=t.id)\nSELECT a.id,a.parentId,a.level,a.lineId,l.lineIndex,tt.text\nFROM ancestors a JOIN tocText tt ON tt.id=a.textId\nLEFT JOIN line l ON l.id=a.lineId ORDER BY a.level",
+  "path": [
+    {
+      "entryID": 642933,
+      "parentEntryID": null,
+      "sqlLevel": 0,
+      "sourceLineID": 3120598,
+      "lineIndex": 0,
+      "title": "ספר החינוך",
+      "locator": {
+        "backend": "otzaria",
+        "workKey": "book:3891",
+        "position": {
+          "kind": "legacyLine",
+          "integer": 0
+        }
+      }
+    },
+    {
+      "entryID": 643037,
+      "parentEntryID": 642933,
+      "sqlLevel": 1,
+      "sourceLineID": 3121120,
+      "lineIndex": 522,
+      "title": "מצוה קב",
+      "locator": {
+        "backend": "otzaria",
+        "workKey": "book:3891",
+        "position": {
+          "kind": "legacyLine",
+          "integer": 522
+        }
+      }
+    }
+  ]
+}

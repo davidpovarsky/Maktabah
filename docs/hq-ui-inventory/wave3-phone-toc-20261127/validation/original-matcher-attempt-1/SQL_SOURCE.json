@@ -1,0 +1,4961 @@
+{
+  "profileID": "miniTest10",
+  "profileVersion": 6,
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "bootstrap": {
+    "id": 3121121,
+    "bookId": 3891,
+    "lineIndex": 523
+  },
+  "allNodesSQL": "SELECT te.id,te.parentId,te.level,te.lineId,COALESCE(ln.lineIndex,0) AS lineIndex,tt.text\nFROM tocEntry te JOIN tocText tt ON tt.id=te.textId\nLEFT JOIN line ln ON ln.id=te.lineId WHERE te.bookId=3891 ORDER BY lineIndex,te.id",
+  "selectedPathSQL": "WITH RECURSIVE ancestors(id,parentId,level,lineId,textId) AS (\n SELECT t.id,t.parentId,t.level,t.lineId,t.textId FROM tocEntry t\n JOIN line_toc lt ON lt.tocEntryId=t.id JOIN line l ON l.id=lt.lineId\n WHERE l.bookId=3891 AND l.lineIndex=523\n UNION ALL SELECT t.id,t.parentId,t.level,t.lineId,t.textId\n FROM tocEntry t JOIN ancestors a ON a.parentId=t.id)\nSELECT a.id,a.parentId,a.level,a.lineId,l.lineIndex,tt.text\nFROM ancestors a JOIN tocText tt ON tt.id=a.textId\nLEFT JOIN line l ON l.id=a.lineId ORDER BY a.level",
+  "path": [
+    {
+      "id": 642933,
+      "parentId": null,
+      "level": 0,
+      "lineId": 3120598,
+      "lineIndex": 0,
+      "text": "ספר החינוך"
+    },
+    {
+      "id": 643037,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121120,
+      "lineIndex": 522,
+      "text": "מצוה קב"
+    }
+  ],
+  "nodes": [
+    {
+      "id": 642933,
+      "parentId": null,
+      "level": 0,
+      "lineId": 3120598,
+      "lineIndex": 0,
+      "text": "ספר החינוך"
+    },
+    {
+      "id": 642934,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120599,
+      "lineIndex": 1,
+      "text": "הקדמת המחבר"
+    },
+    {
+      "id": 642935,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120604,
+      "lineIndex": 6,
+      "text": "איגרת המחבר"
+    },
+    {
+      "id": 642936,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120607,
+      "lineIndex": 9,
+      "text": "מצוה א"
+    },
+    {
+      "id": 642937,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120612,
+      "lineIndex": 14,
+      "text": "מצוה ב"
+    },
+    {
+      "id": 642938,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120617,
+      "lineIndex": 19,
+      "text": "מצוה ג"
+    },
+    {
+      "id": 642939,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120623,
+      "lineIndex": 25,
+      "text": "מצוה ד"
+    },
+    {
+      "id": 642940,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120629,
+      "lineIndex": 31,
+      "text": "מצוה ה"
+    },
+    {
+      "id": 642941,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120634,
+      "lineIndex": 36,
+      "text": "מצוה ו"
+    },
+    {
+      "id": 642942,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120639,
+      "lineIndex": 41,
+      "text": "מצוה ז"
+    },
+    {
+      "id": 642943,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120645,
+      "lineIndex": 47,
+      "text": "מצוה ח"
+    },
+    {
+      "id": 642944,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120650,
+      "lineIndex": 52,
+      "text": "מצוה ט"
+    },
+    {
+      "id": 642945,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120655,
+      "lineIndex": 57,
+      "text": "מצוה י"
+    },
+    {
+      "id": 642946,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120660,
+      "lineIndex": 62,
+      "text": "מצוה יא"
+    },
+    {
+      "id": 642947,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120665,
+      "lineIndex": 67,
+      "text": "מצוה יב"
+    },
+    {
+      "id": 642948,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120670,
+      "lineIndex": 72,
+      "text": "מצוה יג"
+    },
+    {
+      "id": 642949,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120674,
+      "lineIndex": 76,
+      "text": "מצוה יד"
+    },
+    {
+      "id": 642950,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120678,
+      "lineIndex": 80,
+      "text": "מצוה טו"
+    },
+    {
+      "id": 642951,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120683,
+      "lineIndex": 85,
+      "text": "מצוה טז"
+    },
+    {
+      "id": 642952,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120689,
+      "lineIndex": 91,
+      "text": "מצוה יז"
+    },
+    {
+      "id": 642953,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120694,
+      "lineIndex": 96,
+      "text": "מצוה יח"
+    },
+    {
+      "id": 642954,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120699,
+      "lineIndex": 101,
+      "text": "מצוה יט"
+    },
+    {
+      "id": 642955,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120704,
+      "lineIndex": 106,
+      "text": "מצוה כ"
+    },
+    {
+      "id": 642956,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120708,
+      "lineIndex": 110,
+      "text": "מצוה כא"
+    },
+    {
+      "id": 642957,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120714,
+      "lineIndex": 116,
+      "text": "מצוה כב"
+    },
+    {
+      "id": 642958,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120719,
+      "lineIndex": 121,
+      "text": "מצוה כג"
+    },
+    {
+      "id": 642959,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120723,
+      "lineIndex": 125,
+      "text": "מצוה כד"
+    },
+    {
+      "id": 642960,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120728,
+      "lineIndex": 130,
+      "text": "מצוה כה"
+    },
+    {
+      "id": 642961,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120733,
+      "lineIndex": 135,
+      "text": "מצוה כו"
+    },
+    {
+      "id": 642962,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120737,
+      "lineIndex": 139,
+      "text": "מצוה כז"
+    },
+    {
+      "id": 642963,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120742,
+      "lineIndex": 144,
+      "text": "מצוה כח"
+    },
+    {
+      "id": 642964,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120746,
+      "lineIndex": 148,
+      "text": "מצוה כט"
+    },
+    {
+      "id": 642965,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120750,
+      "lineIndex": 152,
+      "text": "מצוה ל"
+    },
+    {
+      "id": 642966,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120767,
+      "lineIndex": 169,
+      "text": "מצוה לא"
+    },
+    {
+      "id": 642967,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120772,
+      "lineIndex": 174,
+      "text": "מצוה לב"
+    },
+    {
+      "id": 642968,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120777,
+      "lineIndex": 179,
+      "text": "מצוה לג"
+    },
+    {
+      "id": 642969,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120782,
+      "lineIndex": 184,
+      "text": "מצוה לד"
+    },
+    {
+      "id": 642970,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120787,
+      "lineIndex": 189,
+      "text": "מצוה לה"
+    },
+    {
+      "id": 642971,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120791,
+      "lineIndex": 193,
+      "text": "מצוה לו"
+    },
+    {
+      "id": 642972,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120795,
+      "lineIndex": 197,
+      "text": "מצוה לז"
+    },
+    {
+      "id": 642973,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120800,
+      "lineIndex": 202,
+      "text": "מצוה לח"
+    },
+    {
+      "id": 642974,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120805,
+      "lineIndex": 207,
+      "text": "מצוה לט"
+    },
+    {
+      "id": 642975,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120809,
+      "lineIndex": 211,
+      "text": "מצוה מ"
+    },
+    {
+      "id": 642976,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120814,
+      "lineIndex": 216,
+      "text": "מצוה מא"
+    },
+    {
+      "id": 642977,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120819,
+      "lineIndex": 221,
+      "text": "מצוה מב"
+    },
+    {
+      "id": 642978,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120824,
+      "lineIndex": 226,
+      "text": "מצוה מג"
+    },
+    {
+      "id": 642979,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120829,
+      "lineIndex": 231,
+      "text": "מצוה מד"
+    },
+    {
+      "id": 642980,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120832,
+      "lineIndex": 234,
+      "text": "מצוה מה"
+    },
+    {
+      "id": 642981,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120836,
+      "lineIndex": 238,
+      "text": "מצוה מו"
+    },
+    {
+      "id": 642982,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120840,
+      "lineIndex": 242,
+      "text": "מצוה מז"
+    },
+    {
+      "id": 642983,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120845,
+      "lineIndex": 247,
+      "text": "מצוה מח"
+    },
+    {
+      "id": 642984,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120850,
+      "lineIndex": 252,
+      "text": "מצוה מט"
+    },
+    {
+      "id": 642985,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120855,
+      "lineIndex": 257,
+      "text": "מצוה נ"
+    },
+    {
+      "id": 642986,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120859,
+      "lineIndex": 261,
+      "text": "מצוה נא"
+    },
+    {
+      "id": 642987,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120862,
+      "lineIndex": 264,
+      "text": "מצוה נב"
+    },
+    {
+      "id": 642988,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120867,
+      "lineIndex": 269,
+      "text": "מצוה נג"
+    },
+    {
+      "id": 642989,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120871,
+      "lineIndex": 273,
+      "text": "מצוה נד"
+    },
+    {
+      "id": 642990,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120876,
+      "lineIndex": 278,
+      "text": "מצוה נה"
+    },
+    {
+      "id": 642991,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120881,
+      "lineIndex": 283,
+      "text": "מצוה נו"
+    },
+    {
+      "id": 642992,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120886,
+      "lineIndex": 288,
+      "text": "מצוה נז"
+    },
+    {
+      "id": 642993,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120890,
+      "lineIndex": 292,
+      "text": "מצוה נח"
+    },
+    {
+      "id": 642994,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120896,
+      "lineIndex": 298,
+      "text": "מצוה נט"
+    },
+    {
+      "id": 642995,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120901,
+      "lineIndex": 303,
+      "text": "מצוה ס"
+    },
+    {
+      "id": 642996,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120905,
+      "lineIndex": 307,
+      "text": "מצוה סא"
+    },
+    {
+      "id": 642997,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120910,
+      "lineIndex": 312,
+      "text": "מצוה סב"
+    },
+    {
+      "id": 642998,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120916,
+      "lineIndex": 318,
+      "text": "מצוה סג"
+    },
+    {
+      "id": 642999,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120921,
+      "lineIndex": 323,
+      "text": "מצוה סד"
+    },
+    {
+      "id": 643000,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120923,
+      "lineIndex": 325,
+      "text": "מצוה סה"
+    },
+    {
+      "id": 643001,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120930,
+      "lineIndex": 332,
+      "text": "מצוה סו"
+    },
+    {
+      "id": 643002,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120934,
+      "lineIndex": 336,
+      "text": "מצוה סז"
+    },
+    {
+      "id": 643003,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120939,
+      "lineIndex": 341,
+      "text": "מצוה סח"
+    },
+    {
+      "id": 643004,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120943,
+      "lineIndex": 345,
+      "text": "מצוה סט"
+    },
+    {
+      "id": 643005,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120948,
+      "lineIndex": 350,
+      "text": "מצוה ע"
+    },
+    {
+      "id": 643006,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120952,
+      "lineIndex": 354,
+      "text": "מצוה עא"
+    },
+    {
+      "id": 643007,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120957,
+      "lineIndex": 359,
+      "text": "מצוה עב"
+    },
+    {
+      "id": 643008,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120962,
+      "lineIndex": 364,
+      "text": "מצוה עג"
+    },
+    {
+      "id": 643009,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120972,
+      "lineIndex": 374,
+      "text": "מצוה עד"
+    },
+    {
+      "id": 643010,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120977,
+      "lineIndex": 379,
+      "text": "מצוה עה"
+    },
+    {
+      "id": 643011,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120982,
+      "lineIndex": 384,
+      "text": "מצוה עו"
+    },
+    {
+      "id": 643012,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120985,
+      "lineIndex": 387,
+      "text": "מצוה עז"
+    },
+    {
+      "id": 643013,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120992,
+      "lineIndex": 394,
+      "text": "מצוה עח"
+    },
+    {
+      "id": 643014,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3120997,
+      "lineIndex": 399,
+      "text": "מצוה עט"
+    },
+    {
+      "id": 643015,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121001,
+      "lineIndex": 403,
+      "text": "מצוה פ"
+    },
+    {
+      "id": 643016,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121006,
+      "lineIndex": 408,
+      "text": "מצוה פא"
+    },
+    {
+      "id": 643017,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121010,
+      "lineIndex": 412,
+      "text": "מצוה פב"
+    },
+    {
+      "id": 643018,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121015,
+      "lineIndex": 417,
+      "text": "מצוה פג"
+    },
+    {
+      "id": 643019,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121020,
+      "lineIndex": 422,
+      "text": "מצוה פד"
+    },
+    {
+      "id": 643020,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121025,
+      "lineIndex": 427,
+      "text": "מצוה פה"
+    },
+    {
+      "id": 643021,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121027,
+      "lineIndex": 429,
+      "text": "מצוה פו"
+    },
+    {
+      "id": 643022,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121032,
+      "lineIndex": 434,
+      "text": "מצוה פז"
+    },
+    {
+      "id": 643023,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121037,
+      "lineIndex": 439,
+      "text": "מצוה פח"
+    },
+    {
+      "id": 643024,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121042,
+      "lineIndex": 444,
+      "text": "מצוה פט"
+    },
+    {
+      "id": 643025,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121047,
+      "lineIndex": 449,
+      "text": "מצוה צ"
+    },
+    {
+      "id": 643026,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121052,
+      "lineIndex": 454,
+      "text": "מצוה צא"
+    },
+    {
+      "id": 643027,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121057,
+      "lineIndex": 459,
+      "text": "מצוה צב"
+    },
+    {
+      "id": 643028,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121062,
+      "lineIndex": 464,
+      "text": "מצוה צג"
+    },
+    {
+      "id": 643029,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121066,
+      "lineIndex": 468,
+      "text": "מצוה צד"
+    },
+    {
+      "id": 643030,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121071,
+      "lineIndex": 473,
+      "text": "מצוה צה"
+    },
+    {
+      "id": 643031,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121088,
+      "lineIndex": 490,
+      "text": "מצוה צו"
+    },
+    {
+      "id": 643032,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121092,
+      "lineIndex": 494,
+      "text": "מצוה צז"
+    },
+    {
+      "id": 643033,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121098,
+      "lineIndex": 500,
+      "text": "מצוה צח"
+    },
+    {
+      "id": 643034,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121104,
+      "lineIndex": 506,
+      "text": "מצוה צט"
+    },
+    {
+      "id": 643035,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121111,
+      "lineIndex": 513,
+      "text": "מצוה ק"
+    },
+    {
+      "id": 643036,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121116,
+      "lineIndex": 518,
+      "text": "מצוה קא"
+    },
+    {
+      "id": 643037,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121120,
+      "lineIndex": 522,
+      "text": "מצוה קב"
+    },
+    {
+      "id": 643038,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121125,
+      "lineIndex": 527,
+      "text": "מצוה קג"
+    },
+    {
+      "id": 643039,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121130,
+      "lineIndex": 532,
+      "text": "מצוה קד"
+    },
+    {
+      "id": 643040,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121134,
+      "lineIndex": 536,
+      "text": "מצוה קה"
+    },
+    {
+      "id": 643041,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121139,
+      "lineIndex": 541,
+      "text": "מצוה קו"
+    },
+    {
+      "id": 643042,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121145,
+      "lineIndex": 547,
+      "text": "מצוה קז"
+    },
+    {
+      "id": 643043,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121150,
+      "lineIndex": 552,
+      "text": "מצוה קח"
+    },
+    {
+      "id": 643044,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121155,
+      "lineIndex": 557,
+      "text": "מצוה קט"
+    },
+    {
+      "id": 643045,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121159,
+      "lineIndex": 561,
+      "text": "מצוה קי"
+    },
+    {
+      "id": 643046,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121164,
+      "lineIndex": 566,
+      "text": "מצוה קיא"
+    },
+    {
+      "id": 643047,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121175,
+      "lineIndex": 577,
+      "text": "מצוה קיב"
+    },
+    {
+      "id": 643048,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121177,
+      "lineIndex": 579,
+      "text": "מצוה קיג"
+    },
+    {
+      "id": 643049,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121186,
+      "lineIndex": 588,
+      "text": "מצוה קיד"
+    },
+    {
+      "id": 643050,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121191,
+      "lineIndex": 593,
+      "text": "מצוה קטו"
+    },
+    {
+      "id": 643051,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121197,
+      "lineIndex": 599,
+      "text": "מצוה קטז"
+    },
+    {
+      "id": 643052,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121203,
+      "lineIndex": 605,
+      "text": "מצוה קיז"
+    },
+    {
+      "id": 643053,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121212,
+      "lineIndex": 614,
+      "text": "מצוה קיח"
+    },
+    {
+      "id": 643054,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121217,
+      "lineIndex": 619,
+      "text": "מצוה קיט"
+    },
+    {
+      "id": 643055,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121222,
+      "lineIndex": 624,
+      "text": "מצוה קכ"
+    },
+    {
+      "id": 643056,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121230,
+      "lineIndex": 632,
+      "text": "מצוה קכא"
+    },
+    {
+      "id": 643057,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121235,
+      "lineIndex": 637,
+      "text": "מצוה קכב"
+    },
+    {
+      "id": 643058,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121244,
+      "lineIndex": 646,
+      "text": "מצוה קכג"
+    },
+    {
+      "id": 643059,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121256,
+      "lineIndex": 658,
+      "text": "מצוה קכד"
+    },
+    {
+      "id": 643060,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121262,
+      "lineIndex": 664,
+      "text": "מצוה קכה"
+    },
+    {
+      "id": 643061,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121267,
+      "lineIndex": 669,
+      "text": "מצוה קכו"
+    },
+    {
+      "id": 643062,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121269,
+      "lineIndex": 671,
+      "text": "מצוה קכז"
+    },
+    {
+      "id": 643063,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121275,
+      "lineIndex": 677,
+      "text": "מצוה קכח"
+    },
+    {
+      "id": 643064,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121280,
+      "lineIndex": 682,
+      "text": "מצוה קכט"
+    },
+    {
+      "id": 643065,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121291,
+      "lineIndex": 693,
+      "text": "מצוה קל"
+    },
+    {
+      "id": 643066,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121300,
+      "lineIndex": 702,
+      "text": "מצוה קלא"
+    },
+    {
+      "id": 643067,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121306,
+      "lineIndex": 708,
+      "text": "מצוה קלב"
+    },
+    {
+      "id": 643068,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121314,
+      "lineIndex": 716,
+      "text": "מצוה קלג"
+    },
+    {
+      "id": 643069,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121319,
+      "lineIndex": 721,
+      "text": "מצוה קלד"
+    },
+    {
+      "id": 643070,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121324,
+      "lineIndex": 726,
+      "text": "מצוה קלה"
+    },
+    {
+      "id": 643071,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121328,
+      "lineIndex": 730,
+      "text": "מצוה קלו"
+    },
+    {
+      "id": 643072,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121333,
+      "lineIndex": 735,
+      "text": "מצוה קלז"
+    },
+    {
+      "id": 643073,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121338,
+      "lineIndex": 740,
+      "text": "מצוה קלח"
+    },
+    {
+      "id": 643074,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121345,
+      "lineIndex": 747,
+      "text": "מצוה קלט"
+    },
+    {
+      "id": 643075,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121349,
+      "lineIndex": 751,
+      "text": "מצוה קמ"
+    },
+    {
+      "id": 643076,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121353,
+      "lineIndex": 755,
+      "text": "מצוה קמא"
+    },
+    {
+      "id": 643077,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121360,
+      "lineIndex": 762,
+      "text": "מצוה קמב"
+    },
+    {
+      "id": 643078,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121362,
+      "lineIndex": 764,
+      "text": "מצוה קמג"
+    },
+    {
+      "id": 643079,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121367,
+      "lineIndex": 769,
+      "text": "מצוה קמד"
+    },
+    {
+      "id": 643080,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121375,
+      "lineIndex": 777,
+      "text": "מצוה קמה"
+    },
+    {
+      "id": 643081,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121380,
+      "lineIndex": 782,
+      "text": "מצוה קמו"
+    },
+    {
+      "id": 643082,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121385,
+      "lineIndex": 787,
+      "text": "מצוה קמז"
+    },
+    {
+      "id": 643083,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121392,
+      "lineIndex": 794,
+      "text": "מצוה קמח"
+    },
+    {
+      "id": 643084,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121405,
+      "lineIndex": 807,
+      "text": "מצוה קמט"
+    },
+    {
+      "id": 643085,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121411,
+      "lineIndex": 813,
+      "text": "מצוה קנ"
+    },
+    {
+      "id": 643086,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121416,
+      "lineIndex": 818,
+      "text": "מצוה קנא"
+    },
+    {
+      "id": 643087,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121423,
+      "lineIndex": 825,
+      "text": "מצוה קנב"
+    },
+    {
+      "id": 643088,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121432,
+      "lineIndex": 834,
+      "text": "מצוה קנג"
+    },
+    {
+      "id": 643089,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121437,
+      "lineIndex": 839,
+      "text": "מצוה קנד"
+    },
+    {
+      "id": 643090,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121443,
+      "lineIndex": 845,
+      "text": "מצוה קנה"
+    },
+    {
+      "id": 643091,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121448,
+      "lineIndex": 850,
+      "text": "מצוה קנו"
+    },
+    {
+      "id": 643092,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121453,
+      "lineIndex": 855,
+      "text": "מצוה קנז"
+    },
+    {
+      "id": 643093,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121462,
+      "lineIndex": 864,
+      "text": "מצוה קנח"
+    },
+    {
+      "id": 643094,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121466,
+      "lineIndex": 868,
+      "text": "מצוה קנט"
+    },
+    {
+      "id": 643095,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121476,
+      "lineIndex": 878,
+      "text": "מצוה קס"
+    },
+    {
+      "id": 643096,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121484,
+      "lineIndex": 886,
+      "text": "מצוה קסא"
+    },
+    {
+      "id": 643097,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121488,
+      "lineIndex": 890,
+      "text": "מצוה קסב"
+    },
+    {
+      "id": 643098,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121493,
+      "lineIndex": 895,
+      "text": "מצוה קסג"
+    },
+    {
+      "id": 643099,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121507,
+      "lineIndex": 909,
+      "text": "מצוה קסד"
+    },
+    {
+      "id": 643100,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121515,
+      "lineIndex": 917,
+      "text": "מצוה קסה"
+    },
+    {
+      "id": 643101,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121520,
+      "lineIndex": 922,
+      "text": "מצוה קסו"
+    },
+    {
+      "id": 643102,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121531,
+      "lineIndex": 933,
+      "text": "מצוה קסז"
+    },
+    {
+      "id": 643103,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121536,
+      "lineIndex": 938,
+      "text": "מצוה קסח"
+    },
+    {
+      "id": 643104,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121541,
+      "lineIndex": 943,
+      "text": "מצוה קסט"
+    },
+    {
+      "id": 643105,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121551,
+      "lineIndex": 953,
+      "text": "מצוה קע"
+    },
+    {
+      "id": 643106,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121556,
+      "lineIndex": 958,
+      "text": "מצוה קעא"
+    },
+    {
+      "id": 643107,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121563,
+      "lineIndex": 965,
+      "text": "מצוה קעב"
+    },
+    {
+      "id": 643108,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121568,
+      "lineIndex": 970,
+      "text": "מצוה קעג"
+    },
+    {
+      "id": 643109,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121574,
+      "lineIndex": 976,
+      "text": "מצוה קעד"
+    },
+    {
+      "id": 643110,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121582,
+      "lineIndex": 984,
+      "text": "מצוה קעה"
+    },
+    {
+      "id": 643111,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121593,
+      "lineIndex": 995,
+      "text": "מצוה קעו"
+    },
+    {
+      "id": 643112,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121598,
+      "lineIndex": 1000,
+      "text": "מצוה קעז"
+    },
+    {
+      "id": 643113,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121603,
+      "lineIndex": 1005,
+      "text": "מצוה קעח"
+    },
+    {
+      "id": 643114,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121610,
+      "lineIndex": 1012,
+      "text": "מצוה קעט"
+    },
+    {
+      "id": 643115,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121615,
+      "lineIndex": 1017,
+      "text": "מצוה קפ"
+    },
+    {
+      "id": 643116,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121620,
+      "lineIndex": 1022,
+      "text": "מצוה קפא"
+    },
+    {
+      "id": 643117,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121624,
+      "lineIndex": 1026,
+      "text": "מצוה קפב"
+    },
+    {
+      "id": 643118,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121629,
+      "lineIndex": 1031,
+      "text": "מצוה קפג"
+    },
+    {
+      "id": 643119,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121633,
+      "lineIndex": 1035,
+      "text": "מצוה קפד"
+    },
+    {
+      "id": 643120,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121638,
+      "lineIndex": 1040,
+      "text": "מצוה קפה"
+    },
+    {
+      "id": 643121,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121644,
+      "lineIndex": 1046,
+      "text": "מצוה קפו"
+    },
+    {
+      "id": 643122,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121649,
+      "lineIndex": 1051,
+      "text": "מצוה קפז"
+    },
+    {
+      "id": 643123,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121654,
+      "lineIndex": 1056,
+      "text": "מצוה קפח"
+    },
+    {
+      "id": 643124,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121666,
+      "lineIndex": 1068,
+      "text": "מצוה קפט"
+    },
+    {
+      "id": 643125,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121670,
+      "lineIndex": 1072,
+      "text": "מצוה קצ"
+    },
+    {
+      "id": 643126,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121674,
+      "lineIndex": 1076,
+      "text": "מצוה קצא"
+    },
+    {
+      "id": 643127,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121679,
+      "lineIndex": 1081,
+      "text": "מצוה קצב"
+    },
+    {
+      "id": 643128,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121685,
+      "lineIndex": 1087,
+      "text": "מצוה קצג"
+    },
+    {
+      "id": 643129,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121690,
+      "lineIndex": 1092,
+      "text": "מצוה קצד"
+    },
+    {
+      "id": 643130,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121692,
+      "lineIndex": 1094,
+      "text": "מצוה קצה"
+    },
+    {
+      "id": 643131,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121698,
+      "lineIndex": 1100,
+      "text": "מצוה קצו"
+    },
+    {
+      "id": 643132,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121702,
+      "lineIndex": 1104,
+      "text": "מצוה קצז"
+    },
+    {
+      "id": 643133,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121708,
+      "lineIndex": 1110,
+      "text": "מצוה קצח"
+    },
+    {
+      "id": 643134,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121710,
+      "lineIndex": 1112,
+      "text": "מצוה קצט"
+    },
+    {
+      "id": 643135,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121713,
+      "lineIndex": 1115,
+      "text": "מצוה ר"
+    },
+    {
+      "id": 643136,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121718,
+      "lineIndex": 1120,
+      "text": "מצוה רא"
+    },
+    {
+      "id": 643137,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121723,
+      "lineIndex": 1125,
+      "text": "מצוה רב"
+    },
+    {
+      "id": 643138,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121726,
+      "lineIndex": 1128,
+      "text": "מצוה רג"
+    },
+    {
+      "id": 643139,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121729,
+      "lineIndex": 1131,
+      "text": "מצוה רד"
+    },
+    {
+      "id": 643140,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121733,
+      "lineIndex": 1135,
+      "text": "מצוה רה"
+    },
+    {
+      "id": 643141,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121737,
+      "lineIndex": 1139,
+      "text": "מצוה רו"
+    },
+    {
+      "id": 643142,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121744,
+      "lineIndex": 1146,
+      "text": "מצוה רז"
+    },
+    {
+      "id": 643143,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121758,
+      "lineIndex": 1160,
+      "text": "מצוה רח"
+    },
+    {
+      "id": 643144,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121763,
+      "lineIndex": 1165,
+      "text": "מצוה רט"
+    },
+    {
+      "id": 643145,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121770,
+      "lineIndex": 1172,
+      "text": "מצוה רי"
+    },
+    {
+      "id": 643146,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121775,
+      "lineIndex": 1177,
+      "text": "מצוה ריא"
+    },
+    {
+      "id": 643147,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121784,
+      "lineIndex": 1186,
+      "text": "מצוה ריב"
+    },
+    {
+      "id": 643148,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121789,
+      "lineIndex": 1191,
+      "text": "מצוה ריג"
+    },
+    {
+      "id": 643149,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121796,
+      "lineIndex": 1198,
+      "text": "מצוה ריד"
+    },
+    {
+      "id": 643150,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121801,
+      "lineIndex": 1203,
+      "text": "מצוה רטו"
+    },
+    {
+      "id": 643151,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121806,
+      "lineIndex": 1208,
+      "text": "מצוה רטז"
+    },
+    {
+      "id": 643152,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121812,
+      "lineIndex": 1214,
+      "text": "מצוה ריז"
+    },
+    {
+      "id": 643153,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121815,
+      "lineIndex": 1217,
+      "text": "מצוה ריח"
+    },
+    {
+      "id": 643154,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121819,
+      "lineIndex": 1221,
+      "text": "מצוה ריט"
+    },
+    {
+      "id": 643155,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121821,
+      "lineIndex": 1223,
+      "text": "מצוה רכ"
+    },
+    {
+      "id": 643156,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121823,
+      "lineIndex": 1225,
+      "text": "מצוה רכא"
+    },
+    {
+      "id": 643157,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121827,
+      "lineIndex": 1229,
+      "text": "מצוה רכב"
+    },
+    {
+      "id": 643158,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121830,
+      "lineIndex": 1232,
+      "text": "מצוה רכג"
+    },
+    {
+      "id": 643159,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121835,
+      "lineIndex": 1237,
+      "text": "מצוה רכד"
+    },
+    {
+      "id": 643160,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121842,
+      "lineIndex": 1244,
+      "text": "מצוה רכה"
+    },
+    {
+      "id": 643161,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121846,
+      "lineIndex": 1248,
+      "text": "מצוה רכו"
+    },
+    {
+      "id": 643162,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121851,
+      "lineIndex": 1253,
+      "text": "מצוה רכז"
+    },
+    {
+      "id": 643163,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121855,
+      "lineIndex": 1257,
+      "text": "מצוה רכח"
+    },
+    {
+      "id": 643164,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121861,
+      "lineIndex": 1263,
+      "text": "מצוה רכט"
+    },
+    {
+      "id": 643165,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121867,
+      "lineIndex": 1269,
+      "text": "מצוה רל"
+    },
+    {
+      "id": 643166,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121873,
+      "lineIndex": 1275,
+      "text": "מצוה רלא"
+    },
+    {
+      "id": 643167,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121878,
+      "lineIndex": 1280,
+      "text": "מצוה רלב"
+    },
+    {
+      "id": 643168,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121883,
+      "lineIndex": 1285,
+      "text": "מצוה רלג"
+    },
+    {
+      "id": 643169,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121889,
+      "lineIndex": 1291,
+      "text": "מצוה רלד"
+    },
+    {
+      "id": 643170,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121894,
+      "lineIndex": 1296,
+      "text": "מצוה רלה"
+    },
+    {
+      "id": 643171,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121899,
+      "lineIndex": 1301,
+      "text": "מצוה רלו"
+    },
+    {
+      "id": 643172,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121907,
+      "lineIndex": 1309,
+      "text": "מצוה רלז"
+    },
+    {
+      "id": 643173,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121911,
+      "lineIndex": 1313,
+      "text": "מצוה רלח"
+    },
+    {
+      "id": 643174,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121916,
+      "lineIndex": 1318,
+      "text": "מצוה רלט"
+    },
+    {
+      "id": 643175,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121921,
+      "lineIndex": 1323,
+      "text": "מצוה רמ"
+    },
+    {
+      "id": 643176,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121926,
+      "lineIndex": 1328,
+      "text": "מצוה רמא"
+    },
+    {
+      "id": 643177,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121931,
+      "lineIndex": 1333,
+      "text": "מצוה רמב"
+    },
+    {
+      "id": 643178,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121934,
+      "lineIndex": 1336,
+      "text": "מצוה רמג"
+    },
+    {
+      "id": 643179,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121939,
+      "lineIndex": 1341,
+      "text": "מצוה רמד"
+    },
+    {
+      "id": 643180,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121945,
+      "lineIndex": 1347,
+      "text": "מצוה רמה"
+    },
+    {
+      "id": 643181,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121953,
+      "lineIndex": 1355,
+      "text": "מצוה רמו"
+    },
+    {
+      "id": 643182,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121958,
+      "lineIndex": 1360,
+      "text": "מצוה רמז"
+    },
+    {
+      "id": 643183,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121965,
+      "lineIndex": 1367,
+      "text": "מצוה רמח"
+    },
+    {
+      "id": 643184,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121972,
+      "lineIndex": 1374,
+      "text": "מצוה רמט"
+    },
+    {
+      "id": 643185,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121976,
+      "lineIndex": 1378,
+      "text": "מצוה רנ"
+    },
+    {
+      "id": 643186,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121980,
+      "lineIndex": 1382,
+      "text": "מצוה רנא"
+    },
+    {
+      "id": 643187,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121985,
+      "lineIndex": 1387,
+      "text": "מצוה רנב"
+    },
+    {
+      "id": 643188,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121990,
+      "lineIndex": 1392,
+      "text": "מצוה רנג"
+    },
+    {
+      "id": 643189,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3121995,
+      "lineIndex": 1397,
+      "text": "מצוה רנד"
+    },
+    {
+      "id": 643190,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122000,
+      "lineIndex": 1402,
+      "text": "מצוה רנה"
+    },
+    {
+      "id": 643191,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122004,
+      "lineIndex": 1406,
+      "text": "מצוה רנו"
+    },
+    {
+      "id": 643192,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122006,
+      "lineIndex": 1408,
+      "text": "מצוה רנז"
+    },
+    {
+      "id": 643193,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122013,
+      "lineIndex": 1415,
+      "text": "מצוה רנח"
+    },
+    {
+      "id": 643194,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122021,
+      "lineIndex": 1423,
+      "text": "מצוה רנט"
+    },
+    {
+      "id": 643195,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122026,
+      "lineIndex": 1428,
+      "text": "מצוה רס"
+    },
+    {
+      "id": 643196,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122031,
+      "lineIndex": 1433,
+      "text": "מצוה רסא"
+    },
+    {
+      "id": 643197,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122036,
+      "lineIndex": 1438,
+      "text": "מצוה רסב"
+    },
+    {
+      "id": 643198,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122041,
+      "lineIndex": 1443,
+      "text": "מצוה רסג"
+    },
+    {
+      "id": 643199,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122047,
+      "lineIndex": 1449,
+      "text": "מצוה רסד"
+    },
+    {
+      "id": 643200,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122054,
+      "lineIndex": 1456,
+      "text": "מצוה רסה"
+    },
+    {
+      "id": 643201,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122059,
+      "lineIndex": 1461,
+      "text": "מצוה רסו"
+    },
+    {
+      "id": 643202,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122065,
+      "lineIndex": 1467,
+      "text": "מצוה רסז"
+    },
+    {
+      "id": 643203,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122072,
+      "lineIndex": 1474,
+      "text": "מצוה רסח"
+    },
+    {
+      "id": 643204,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122077,
+      "lineIndex": 1479,
+      "text": "מצוה רסט"
+    },
+    {
+      "id": 643205,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122082,
+      "lineIndex": 1484,
+      "text": "מצוה רע"
+    },
+    {
+      "id": 643206,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122086,
+      "lineIndex": 1488,
+      "text": "מצוה רעא"
+    },
+    {
+      "id": 643207,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122091,
+      "lineIndex": 1493,
+      "text": "מצוה רעב"
+    },
+    {
+      "id": 643208,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122096,
+      "lineIndex": 1498,
+      "text": "מצוה רעג"
+    },
+    {
+      "id": 643209,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122101,
+      "lineIndex": 1503,
+      "text": "מצוה רעד"
+    },
+    {
+      "id": 643210,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122106,
+      "lineIndex": 1508,
+      "text": "מצוה רעה"
+    },
+    {
+      "id": 643211,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122112,
+      "lineIndex": 1514,
+      "text": "מצוה רעו"
+    },
+    {
+      "id": 643212,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122117,
+      "lineIndex": 1519,
+      "text": "מצוה רעז"
+    },
+    {
+      "id": 643213,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122121,
+      "lineIndex": 1523,
+      "text": "מצוה רעח"
+    },
+    {
+      "id": 643214,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122126,
+      "lineIndex": 1528,
+      "text": "מצוה רעט"
+    },
+    {
+      "id": 643215,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122131,
+      "lineIndex": 1533,
+      "text": "מצוה רפ"
+    },
+    {
+      "id": 643216,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122136,
+      "lineIndex": 1538,
+      "text": "מצוה רפא"
+    },
+    {
+      "id": 643217,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122139,
+      "lineIndex": 1541,
+      "text": "מצוה רפב"
+    },
+    {
+      "id": 643218,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122144,
+      "lineIndex": 1546,
+      "text": "מצוה רפג"
+    },
+    {
+      "id": 643219,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122147,
+      "lineIndex": 1549,
+      "text": "מצוה רפד"
+    },
+    {
+      "id": 643220,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122154,
+      "lineIndex": 1556,
+      "text": "מצוה רפה"
+    },
+    {
+      "id": 643221,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122159,
+      "lineIndex": 1561,
+      "text": "מצוה רפו"
+    },
+    {
+      "id": 643222,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122164,
+      "lineIndex": 1566,
+      "text": "מצוה רפז"
+    },
+    {
+      "id": 643223,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122169,
+      "lineIndex": 1571,
+      "text": "מצוה רפח"
+    },
+    {
+      "id": 643224,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122171,
+      "lineIndex": 1573,
+      "text": "מצוה רפט"
+    },
+    {
+      "id": 643225,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122173,
+      "lineIndex": 1575,
+      "text": "מצוה רצ"
+    },
+    {
+      "id": 643226,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122175,
+      "lineIndex": 1577,
+      "text": "מצוה רצא"
+    },
+    {
+      "id": 643227,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122181,
+      "lineIndex": 1583,
+      "text": "מצוה רצב"
+    },
+    {
+      "id": 643228,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122186,
+      "lineIndex": 1588,
+      "text": "מצוה רצג"
+    },
+    {
+      "id": 643229,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122191,
+      "lineIndex": 1593,
+      "text": "מצוה רצד"
+    },
+    {
+      "id": 643230,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122198,
+      "lineIndex": 1600,
+      "text": "מצוה רצה"
+    },
+    {
+      "id": 643231,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122202,
+      "lineIndex": 1604,
+      "text": "מצוה רצו"
+    },
+    {
+      "id": 643232,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122212,
+      "lineIndex": 1614,
+      "text": "מצוה רצז"
+    },
+    {
+      "id": 643233,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122217,
+      "lineIndex": 1619,
+      "text": "מצוה רצח"
+    },
+    {
+      "id": 643234,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122226,
+      "lineIndex": 1628,
+      "text": "מצוה רצט"
+    },
+    {
+      "id": 643235,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122231,
+      "lineIndex": 1633,
+      "text": "מצוה ש"
+    },
+    {
+      "id": 643236,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122233,
+      "lineIndex": 1635,
+      "text": "מצוה שא"
+    },
+    {
+      "id": 643237,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122238,
+      "lineIndex": 1640,
+      "text": "מצוה שב"
+    },
+    {
+      "id": 643238,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122244,
+      "lineIndex": 1646,
+      "text": "מצוה שג"
+    },
+    {
+      "id": 643239,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122249,
+      "lineIndex": 1651,
+      "text": "מצוה שד"
+    },
+    {
+      "id": 643240,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122251,
+      "lineIndex": 1653,
+      "text": "מצוה שה"
+    },
+    {
+      "id": 643241,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122253,
+      "lineIndex": 1655,
+      "text": "מצוה שו"
+    },
+    {
+      "id": 643242,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122260,
+      "lineIndex": 1662,
+      "text": "מצוה שז"
+    },
+    {
+      "id": 643243,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122265,
+      "lineIndex": 1667,
+      "text": "מצוה שח"
+    },
+    {
+      "id": 643244,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122268,
+      "lineIndex": 1670,
+      "text": "מצוה שט"
+    },
+    {
+      "id": 643245,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122272,
+      "lineIndex": 1674,
+      "text": "מצוה שי"
+    },
+    {
+      "id": 643246,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122274,
+      "lineIndex": 1676,
+      "text": "מצוה שיא"
+    },
+    {
+      "id": 643247,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122282,
+      "lineIndex": 1684,
+      "text": "מצוה שיב"
+    },
+    {
+      "id": 643248,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122284,
+      "lineIndex": 1686,
+      "text": "מצוה שיג"
+    },
+    {
+      "id": 643249,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122293,
+      "lineIndex": 1695,
+      "text": "מצוה שיד"
+    },
+    {
+      "id": 643250,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122296,
+      "lineIndex": 1698,
+      "text": "מצוה שטו"
+    },
+    {
+      "id": 643251,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122298,
+      "lineIndex": 1700,
+      "text": "מצוה שטז"
+    },
+    {
+      "id": 643252,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122300,
+      "lineIndex": 1702,
+      "text": "מצוה שיז"
+    },
+    {
+      "id": 643253,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122305,
+      "lineIndex": 1707,
+      "text": "מצוה שיח"
+    },
+    {
+      "id": 643254,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122309,
+      "lineIndex": 1711,
+      "text": "מצוה שיט"
+    },
+    {
+      "id": 643255,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122311,
+      "lineIndex": 1713,
+      "text": "מצוה שכ"
+    },
+    {
+      "id": 643256,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122313,
+      "lineIndex": 1715,
+      "text": "מצוה שכא"
+    },
+    {
+      "id": 643257,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122317,
+      "lineIndex": 1719,
+      "text": "מצוה שכב"
+    },
+    {
+      "id": 643258,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122320,
+      "lineIndex": 1722,
+      "text": "מצוה שכג"
+    },
+    {
+      "id": 643259,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122328,
+      "lineIndex": 1730,
+      "text": "מצוה שכד"
+    },
+    {
+      "id": 643260,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122335,
+      "lineIndex": 1737,
+      "text": "מצוה שכה"
+    },
+    {
+      "id": 643261,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122341,
+      "lineIndex": 1743,
+      "text": "מצוה שכו"
+    },
+    {
+      "id": 643262,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122344,
+      "lineIndex": 1746,
+      "text": "מצוה שכז"
+    },
+    {
+      "id": 643263,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122346,
+      "lineIndex": 1748,
+      "text": "מצוה שכח"
+    },
+    {
+      "id": 643264,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122351,
+      "lineIndex": 1753,
+      "text": "מצוה שכט"
+    },
+    {
+      "id": 643265,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122356,
+      "lineIndex": 1758,
+      "text": "מצוה של"
+    },
+    {
+      "id": 643266,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122364,
+      "lineIndex": 1766,
+      "text": "מצוה שלא"
+    },
+    {
+      "id": 643267,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122370,
+      "lineIndex": 1772,
+      "text": "מצוה שלב"
+    },
+    {
+      "id": 643268,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122375,
+      "lineIndex": 1777,
+      "text": "מצוה שלג"
+    },
+    {
+      "id": 643269,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122379,
+      "lineIndex": 1781,
+      "text": "מצוה שלד"
+    },
+    {
+      "id": 643270,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122381,
+      "lineIndex": 1783,
+      "text": "מצוה שלה"
+    },
+    {
+      "id": 643271,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122383,
+      "lineIndex": 1785,
+      "text": "מצוה שלו"
+    },
+    {
+      "id": 643272,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122395,
+      "lineIndex": 1797,
+      "text": "מצוה שלז"
+    },
+    {
+      "id": 643273,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122405,
+      "lineIndex": 1807,
+      "text": "מצוה שלח"
+    },
+    {
+      "id": 643274,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122411,
+      "lineIndex": 1813,
+      "text": "מצוה שלט"
+    },
+    {
+      "id": 643275,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122421,
+      "lineIndex": 1823,
+      "text": "מצוה שמ"
+    },
+    {
+      "id": 643276,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122427,
+      "lineIndex": 1829,
+      "text": "מצוה שמא"
+    },
+    {
+      "id": 643277,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122431,
+      "lineIndex": 1833,
+      "text": "מצוה שמב"
+    },
+    {
+      "id": 643278,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122436,
+      "lineIndex": 1838,
+      "text": "מצוה שמג"
+    },
+    {
+      "id": 643279,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122445,
+      "lineIndex": 1847,
+      "text": "מצוה שמד"
+    },
+    {
+      "id": 643280,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122450,
+      "lineIndex": 1852,
+      "text": "מצוה שמה"
+    },
+    {
+      "id": 643281,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122454,
+      "lineIndex": 1856,
+      "text": "מצוה שמו"
+    },
+    {
+      "id": 643282,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122457,
+      "lineIndex": 1859,
+      "text": "מצוה שמז"
+    },
+    {
+      "id": 643283,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122464,
+      "lineIndex": 1866,
+      "text": "מצוה שמח"
+    },
+    {
+      "id": 643284,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122468,
+      "lineIndex": 1870,
+      "text": "מצוה שמט"
+    },
+    {
+      "id": 643285,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122473,
+      "lineIndex": 1875,
+      "text": "מצוה שנ"
+    },
+    {
+      "id": 643286,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122485,
+      "lineIndex": 1887,
+      "text": "מצוה שנא"
+    },
+    {
+      "id": 643287,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122491,
+      "lineIndex": 1893,
+      "text": "מצוה שנב"
+    },
+    {
+      "id": 643288,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122496,
+      "lineIndex": 1898,
+      "text": "מצוה שנג"
+    },
+    {
+      "id": 643289,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122501,
+      "lineIndex": 1903,
+      "text": "מצוה שנד"
+    },
+    {
+      "id": 643290,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122506,
+      "lineIndex": 1908,
+      "text": "מצוה שנה"
+    },
+    {
+      "id": 643291,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122512,
+      "lineIndex": 1914,
+      "text": "מצוה שנו"
+    },
+    {
+      "id": 643292,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122517,
+      "lineIndex": 1919,
+      "text": "מצוה שנז"
+    },
+    {
+      "id": 643293,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122523,
+      "lineIndex": 1925,
+      "text": "מצוה שנח"
+    },
+    {
+      "id": 643294,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122526,
+      "lineIndex": 1928,
+      "text": "מצוה שנט"
+    },
+    {
+      "id": 643295,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122530,
+      "lineIndex": 1932,
+      "text": "מצוה שס"
+    },
+    {
+      "id": 643296,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122538,
+      "lineIndex": 1940,
+      "text": "מצוה שסא"
+    },
+    {
+      "id": 643297,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122544,
+      "lineIndex": 1946,
+      "text": "מצוה שסב"
+    },
+    {
+      "id": 643298,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122549,
+      "lineIndex": 1951,
+      "text": "מצוה שסג"
+    },
+    {
+      "id": 643299,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122554,
+      "lineIndex": 1956,
+      "text": "מצוה שסד"
+    },
+    {
+      "id": 643300,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122561,
+      "lineIndex": 1963,
+      "text": "מצוה שסה"
+    },
+    {
+      "id": 643301,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122568,
+      "lineIndex": 1970,
+      "text": "מצוה שסו"
+    },
+    {
+      "id": 643302,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122572,
+      "lineIndex": 1974,
+      "text": "מצוה שסז"
+    },
+    {
+      "id": 643303,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122575,
+      "lineIndex": 1977,
+      "text": "מצוה שסח"
+    },
+    {
+      "id": 643304,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122582,
+      "lineIndex": 1984,
+      "text": "מצוה שסט"
+    },
+    {
+      "id": 643305,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122585,
+      "lineIndex": 1987,
+      "text": "מצוה שע"
+    },
+    {
+      "id": 643306,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122587,
+      "lineIndex": 1989,
+      "text": "מצוה שעא"
+    },
+    {
+      "id": 643307,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122589,
+      "lineIndex": 1991,
+      "text": "מצוה שעב"
+    },
+    {
+      "id": 643308,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122592,
+      "lineIndex": 1994,
+      "text": "מצוה שעג"
+    },
+    {
+      "id": 643309,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122598,
+      "lineIndex": 2000,
+      "text": "מצוה שעד"
+    },
+    {
+      "id": 643310,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122605,
+      "lineIndex": 2007,
+      "text": "מצוה שעה"
+    },
+    {
+      "id": 643311,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122610,
+      "lineIndex": 2012,
+      "text": "מצוה שעו"
+    },
+    {
+      "id": 643312,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122618,
+      "lineIndex": 2020,
+      "text": "מצוה שעז"
+    },
+    {
+      "id": 643313,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122623,
+      "lineIndex": 2025,
+      "text": "מצוה שעח"
+    },
+    {
+      "id": 643314,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122629,
+      "lineIndex": 2031,
+      "text": "מצוה שעט"
+    },
+    {
+      "id": 643315,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122635,
+      "lineIndex": 2037,
+      "text": "מצוה שפ"
+    },
+    {
+      "id": 643316,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122642,
+      "lineIndex": 2044,
+      "text": "מצוה שפא"
+    },
+    {
+      "id": 643317,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122647,
+      "lineIndex": 2049,
+      "text": "מצוה שפב"
+    },
+    {
+      "id": 643318,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122649,
+      "lineIndex": 2051,
+      "text": "מצוה שפג"
+    },
+    {
+      "id": 643319,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122651,
+      "lineIndex": 2053,
+      "text": "מצוה שפד"
+    },
+    {
+      "id": 643320,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122656,
+      "lineIndex": 2058,
+      "text": "מצוה שפה"
+    },
+    {
+      "id": 643321,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122667,
+      "lineIndex": 2069,
+      "text": "מצוה שפו"
+    },
+    {
+      "id": 643322,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122678,
+      "lineIndex": 2080,
+      "text": "מצוה שפז"
+    },
+    {
+      "id": 643323,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122683,
+      "lineIndex": 2085,
+      "text": "מצוה שפח"
+    },
+    {
+      "id": 643324,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122689,
+      "lineIndex": 2091,
+      "text": "מצוה שפט"
+    },
+    {
+      "id": 643325,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122694,
+      "lineIndex": 2096,
+      "text": "מצוה שצ"
+    },
+    {
+      "id": 643326,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122699,
+      "lineIndex": 2101,
+      "text": "מצוה שצא"
+    },
+    {
+      "id": 643327,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122702,
+      "lineIndex": 2104,
+      "text": "מצוה שצב"
+    },
+    {
+      "id": 643328,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122709,
+      "lineIndex": 2111,
+      "text": "מצוה שצג"
+    },
+    {
+      "id": 643329,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122714,
+      "lineIndex": 2116,
+      "text": "מצוה שצד"
+    },
+    {
+      "id": 643330,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122720,
+      "lineIndex": 2122,
+      "text": "מצוה שצה"
+    },
+    {
+      "id": 643331,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122725,
+      "lineIndex": 2127,
+      "text": "מצוה שצו"
+    },
+    {
+      "id": 643332,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122730,
+      "lineIndex": 2132,
+      "text": "מצוה שצז"
+    },
+    {
+      "id": 643333,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122739,
+      "lineIndex": 2141,
+      "text": "מצוה שצח"
+    },
+    {
+      "id": 643334,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122742,
+      "lineIndex": 2144,
+      "text": "מצוה שצט"
+    },
+    {
+      "id": 643335,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122747,
+      "lineIndex": 2149,
+      "text": "מצוה ת"
+    },
+    {
+      "id": 643336,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122760,
+      "lineIndex": 2162,
+      "text": "מצוה תא"
+    },
+    {
+      "id": 643337,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122765,
+      "lineIndex": 2167,
+      "text": "מצוה תב"
+    },
+    {
+      "id": 643338,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122768,
+      "lineIndex": 2170,
+      "text": "מצוה תג"
+    },
+    {
+      "id": 643339,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122772,
+      "lineIndex": 2174,
+      "text": "מצוה תד"
+    },
+    {
+      "id": 643340,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122774,
+      "lineIndex": 2176,
+      "text": "מצוה תה"
+    },
+    {
+      "id": 643341,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122781,
+      "lineIndex": 2183,
+      "text": "מצוה תו"
+    },
+    {
+      "id": 643342,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122790,
+      "lineIndex": 2192,
+      "text": "מצוה תז"
+    },
+    {
+      "id": 643343,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122795,
+      "lineIndex": 2197,
+      "text": "מצוה תח"
+    },
+    {
+      "id": 643344,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122800,
+      "lineIndex": 2202,
+      "text": "מצוה תט"
+    },
+    {
+      "id": 643345,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122805,
+      "lineIndex": 2207,
+      "text": "מצוה תי"
+    },
+    {
+      "id": 643346,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122811,
+      "lineIndex": 2213,
+      "text": "מצוה תיא"
+    },
+    {
+      "id": 643347,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122816,
+      "lineIndex": 2218,
+      "text": "מצוה תיב"
+    },
+    {
+      "id": 643348,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122821,
+      "lineIndex": 2223,
+      "text": "מצוה תיג"
+    },
+    {
+      "id": 643349,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122824,
+      "lineIndex": 2226,
+      "text": "מצוה תיד"
+    },
+    {
+      "id": 643350,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122830,
+      "lineIndex": 2232,
+      "text": "מצוה תטו"
+    },
+    {
+      "id": 643351,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122835,
+      "lineIndex": 2237,
+      "text": "מצוה תטז"
+    },
+    {
+      "id": 643352,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122840,
+      "lineIndex": 2242,
+      "text": "מצוה תיז"
+    },
+    {
+      "id": 643353,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122845,
+      "lineIndex": 2247,
+      "text": "מצוה תיח"
+    },
+    {
+      "id": 643354,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122850,
+      "lineIndex": 2252,
+      "text": "מצוה תיט"
+    },
+    {
+      "id": 643355,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122858,
+      "lineIndex": 2260,
+      "text": "מצוה תכ"
+    },
+    {
+      "id": 643356,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122866,
+      "lineIndex": 2268,
+      "text": "מצוה תכא"
+    },
+    {
+      "id": 643357,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122876,
+      "lineIndex": 2278,
+      "text": "מצוה תכב"
+    },
+    {
+      "id": 643358,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122879,
+      "lineIndex": 2281,
+      "text": "מצוה תכג"
+    },
+    {
+      "id": 643359,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122885,
+      "lineIndex": 2287,
+      "text": "מצוה תכד"
+    },
+    {
+      "id": 643360,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122891,
+      "lineIndex": 2293,
+      "text": "מצוה תכה"
+    },
+    {
+      "id": 643361,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122897,
+      "lineIndex": 2299,
+      "text": "מצוה תכו"
+    },
+    {
+      "id": 643362,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122902,
+      "lineIndex": 2304,
+      "text": "מצוה תכז"
+    },
+    {
+      "id": 643363,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122907,
+      "lineIndex": 2309,
+      "text": "מצוה תכח"
+    },
+    {
+      "id": 643364,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122912,
+      "lineIndex": 2314,
+      "text": "מצוה תכט"
+    },
+    {
+      "id": 643365,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122920,
+      "lineIndex": 2322,
+      "text": "מצוה תל"
+    },
+    {
+      "id": 643366,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122940,
+      "lineIndex": 2342,
+      "text": "מצוה תלא"
+    },
+    {
+      "id": 643367,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122945,
+      "lineIndex": 2347,
+      "text": "מצוה תלב"
+    },
+    {
+      "id": 643368,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122950,
+      "lineIndex": 2352,
+      "text": "מצוה תלג"
+    },
+    {
+      "id": 643369,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122959,
+      "lineIndex": 2361,
+      "text": "מצוה תלד"
+    },
+    {
+      "id": 643370,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122964,
+      "lineIndex": 2366,
+      "text": "מצוה תלה"
+    },
+    {
+      "id": 643371,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122969,
+      "lineIndex": 2371,
+      "text": "מצוה תלו"
+    },
+    {
+      "id": 643372,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122974,
+      "lineIndex": 2376,
+      "text": "מצוה תלז"
+    },
+    {
+      "id": 643373,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122980,
+      "lineIndex": 2382,
+      "text": "מצוה תלח"
+    },
+    {
+      "id": 643374,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122985,
+      "lineIndex": 2387,
+      "text": "מצוה תלט"
+    },
+    {
+      "id": 643375,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122987,
+      "lineIndex": 2389,
+      "text": "מצוה תמ"
+    },
+    {
+      "id": 643376,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122992,
+      "lineIndex": 2394,
+      "text": "מצוה תמא"
+    },
+    {
+      "id": 643377,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3122998,
+      "lineIndex": 2400,
+      "text": "מצוה תמב"
+    },
+    {
+      "id": 643378,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123002,
+      "lineIndex": 2404,
+      "text": "מצוה תמג"
+    },
+    {
+      "id": 643379,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123005,
+      "lineIndex": 2407,
+      "text": "מצוה תמד"
+    },
+    {
+      "id": 643380,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123009,
+      "lineIndex": 2411,
+      "text": "מצוה תמה"
+    },
+    {
+      "id": 643381,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123012,
+      "lineIndex": 2414,
+      "text": "מצוה תמו"
+    },
+    {
+      "id": 643382,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123017,
+      "lineIndex": 2419,
+      "text": "מצוה תמז"
+    },
+    {
+      "id": 643383,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123021,
+      "lineIndex": 2423,
+      "text": "מצוה תמח"
+    },
+    {
+      "id": 643384,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123026,
+      "lineIndex": 2428,
+      "text": "מצוה תמט"
+    },
+    {
+      "id": 643385,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123032,
+      "lineIndex": 2434,
+      "text": "מצוה תנ"
+    },
+    {
+      "id": 643386,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123037,
+      "lineIndex": 2439,
+      "text": "מצוה תנא"
+    },
+    {
+      "id": 643387,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123050,
+      "lineIndex": 2452,
+      "text": "מצוה תנב"
+    },
+    {
+      "id": 643388,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123056,
+      "lineIndex": 2458,
+      "text": "מצוה תנג"
+    },
+    {
+      "id": 643389,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123059,
+      "lineIndex": 2461,
+      "text": "מצוה תנד"
+    },
+    {
+      "id": 643390,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123065,
+      "lineIndex": 2467,
+      "text": "מצוה תנה"
+    },
+    {
+      "id": 643391,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123068,
+      "lineIndex": 2470,
+      "text": "מצוה תנו"
+    },
+    {
+      "id": 643392,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123073,
+      "lineIndex": 2475,
+      "text": "מצוה תנז"
+    },
+    {
+      "id": 643393,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123076,
+      "lineIndex": 2478,
+      "text": "מצוה תנח"
+    },
+    {
+      "id": 643394,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123080,
+      "lineIndex": 2482,
+      "text": "מצוה תנט"
+    },
+    {
+      "id": 643395,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123083,
+      "lineIndex": 2485,
+      "text": "מצוה תס"
+    },
+    {
+      "id": 643396,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123085,
+      "lineIndex": 2487,
+      "text": "מצוה תסא"
+    },
+    {
+      "id": 643397,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123088,
+      "lineIndex": 2490,
+      "text": "מצוה תסב"
+    },
+    {
+      "id": 643398,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123093,
+      "lineIndex": 2495,
+      "text": "מצוה תסג"
+    },
+    {
+      "id": 643399,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123101,
+      "lineIndex": 2503,
+      "text": "מצוה תסד"
+    },
+    {
+      "id": 643400,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123106,
+      "lineIndex": 2508,
+      "text": "מצוה תסה"
+    },
+    {
+      "id": 643401,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123110,
+      "lineIndex": 2512,
+      "text": "מצוה תסו"
+    },
+    {
+      "id": 643402,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123112,
+      "lineIndex": 2514,
+      "text": "מצוה תסז"
+    },
+    {
+      "id": 643403,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123117,
+      "lineIndex": 2519,
+      "text": "מצוה תסח"
+    },
+    {
+      "id": 643404,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123121,
+      "lineIndex": 2523,
+      "text": "מצוה תסט"
+    },
+    {
+      "id": 643405,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123126,
+      "lineIndex": 2528,
+      "text": "מצוה תע"
+    },
+    {
+      "id": 643406,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123128,
+      "lineIndex": 2530,
+      "text": "מצוה תעא"
+    },
+    {
+      "id": 643407,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123134,
+      "lineIndex": 2536,
+      "text": "מצוה תעב"
+    },
+    {
+      "id": 643408,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123141,
+      "lineIndex": 2543,
+      "text": "מצוה תעג"
+    },
+    {
+      "id": 643409,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123146,
+      "lineIndex": 2548,
+      "text": "מצוה תעד"
+    },
+    {
+      "id": 643410,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123150,
+      "lineIndex": 2552,
+      "text": "מצוה תעה"
+    },
+    {
+      "id": 643411,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123153,
+      "lineIndex": 2555,
+      "text": "מצוה תעו"
+    },
+    {
+      "id": 643412,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123158,
+      "lineIndex": 2560,
+      "text": "מצוה תעז"
+    },
+    {
+      "id": 643413,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123166,
+      "lineIndex": 2568,
+      "text": "מצוה תעח"
+    },
+    {
+      "id": 643414,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123169,
+      "lineIndex": 2571,
+      "text": "מצוה תעט"
+    },
+    {
+      "id": 643415,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123176,
+      "lineIndex": 2578,
+      "text": "מצוה תפ"
+    },
+    {
+      "id": 643416,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123182,
+      "lineIndex": 2584,
+      "text": "מצוה תפא"
+    },
+    {
+      "id": 643417,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123185,
+      "lineIndex": 2587,
+      "text": "מצוה תפב"
+    },
+    {
+      "id": 643418,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123190,
+      "lineIndex": 2592,
+      "text": "מצוה תפג"
+    },
+    {
+      "id": 643419,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123197,
+      "lineIndex": 2599,
+      "text": "מצוה תפד"
+    },
+    {
+      "id": 643420,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123199,
+      "lineIndex": 2601,
+      "text": "מצוה תפה"
+    },
+    {
+      "id": 643421,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123204,
+      "lineIndex": 2606,
+      "text": "מצוה תפו"
+    },
+    {
+      "id": 643422,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123209,
+      "lineIndex": 2611,
+      "text": "מצוה תפז"
+    },
+    {
+      "id": 643423,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123214,
+      "lineIndex": 2616,
+      "text": "מצוה תפח"
+    },
+    {
+      "id": 643424,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123219,
+      "lineIndex": 2621,
+      "text": "מצוה תפט"
+    },
+    {
+      "id": 643425,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123223,
+      "lineIndex": 2625,
+      "text": "מצוה תצ"
+    },
+    {
+      "id": 643426,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123225,
+      "lineIndex": 2627,
+      "text": "מצוה תצא"
+    },
+    {
+      "id": 643427,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123233,
+      "lineIndex": 2635,
+      "text": "מצוה תצב"
+    },
+    {
+      "id": 643428,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123237,
+      "lineIndex": 2639,
+      "text": "מצוה תצג"
+    },
+    {
+      "id": 643429,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123241,
+      "lineIndex": 2643,
+      "text": "מצוה תצד"
+    },
+    {
+      "id": 643430,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123246,
+      "lineIndex": 2648,
+      "text": "מצוה תצה"
+    },
+    {
+      "id": 643431,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123251,
+      "lineIndex": 2653,
+      "text": "מצוה תצו"
+    },
+    {
+      "id": 643432,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123261,
+      "lineIndex": 2663,
+      "text": "מצוה תצז"
+    },
+    {
+      "id": 643433,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123267,
+      "lineIndex": 2669,
+      "text": "מצוה תצח"
+    },
+    {
+      "id": 643434,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123274,
+      "lineIndex": 2676,
+      "text": "מצוה תצט"
+    },
+    {
+      "id": 643435,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123279,
+      "lineIndex": 2681,
+      "text": "מצוה תק"
+    },
+    {
+      "id": 643436,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123284,
+      "lineIndex": 2686,
+      "text": "מצוה תקא"
+    },
+    {
+      "id": 643437,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123288,
+      "lineIndex": 2690,
+      "text": "מצוה תקב"
+    },
+    {
+      "id": 643438,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123292,
+      "lineIndex": 2694,
+      "text": "מצוה תקג"
+    },
+    {
+      "id": 643439,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123296,
+      "lineIndex": 2698,
+      "text": "מצוה תקד"
+    },
+    {
+      "id": 643440,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123301,
+      "lineIndex": 2703,
+      "text": "מצוה תקה"
+    },
+    {
+      "id": 643441,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123305,
+      "lineIndex": 2707,
+      "text": "מצוה תקו"
+    },
+    {
+      "id": 643442,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123313,
+      "lineIndex": 2715,
+      "text": "מצוה תקז"
+    },
+    {
+      "id": 643443,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123322,
+      "lineIndex": 2724,
+      "text": "מצוה תקח"
+    },
+    {
+      "id": 643444,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123327,
+      "lineIndex": 2729,
+      "text": "מצוה תקט"
+    },
+    {
+      "id": 643445,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123333,
+      "lineIndex": 2735,
+      "text": "מצוה תקי"
+    },
+    {
+      "id": 643446,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123338,
+      "lineIndex": 2740,
+      "text": "מצוה תקיא"
+    },
+    {
+      "id": 643447,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123342,
+      "lineIndex": 2744,
+      "text": "מצוה תקיב"
+    },
+    {
+      "id": 643448,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123348,
+      "lineIndex": 2750,
+      "text": "מצוה תקיג"
+    },
+    {
+      "id": 643449,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123353,
+      "lineIndex": 2755,
+      "text": "מצוה תקיד"
+    },
+    {
+      "id": 643450,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123356,
+      "lineIndex": 2758,
+      "text": "מצוה תקטו"
+    },
+    {
+      "id": 643451,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123361,
+      "lineIndex": 2763,
+      "text": "מצוה תקטז"
+    },
+    {
+      "id": 643452,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123366,
+      "lineIndex": 2768,
+      "text": "מצוה תקיז"
+    },
+    {
+      "id": 643453,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123371,
+      "lineIndex": 2773,
+      "text": "מצוה תקיח"
+    },
+    {
+      "id": 643454,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123376,
+      "lineIndex": 2778,
+      "text": "מצוה תקיט"
+    },
+    {
+      "id": 643455,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123381,
+      "lineIndex": 2783,
+      "text": "מצוה תקכ"
+    },
+    {
+      "id": 643456,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123386,
+      "lineIndex": 2788,
+      "text": "מצוה תקכא"
+    },
+    {
+      "id": 643457,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123391,
+      "lineIndex": 2793,
+      "text": "מצוה תקכב"
+    },
+    {
+      "id": 643458,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123396,
+      "lineIndex": 2798,
+      "text": "מצוה תקכג"
+    },
+    {
+      "id": 643459,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123404,
+      "lineIndex": 2806,
+      "text": "מצוה תקכד"
+    },
+    {
+      "id": 643460,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123409,
+      "lineIndex": 2811,
+      "text": "מצוה תקכה"
+    },
+    {
+      "id": 643461,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123414,
+      "lineIndex": 2816,
+      "text": "מצוה תקכו"
+    },
+    {
+      "id": 643462,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123419,
+      "lineIndex": 2821,
+      "text": "מצוה תקכז"
+    },
+    {
+      "id": 643463,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123425,
+      "lineIndex": 2827,
+      "text": "מצוה תקכח"
+    },
+    {
+      "id": 643464,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123427,
+      "lineIndex": 2829,
+      "text": "מצוה תקכט"
+    },
+    {
+      "id": 643465,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123433,
+      "lineIndex": 2835,
+      "text": "מצוה תקל"
+    },
+    {
+      "id": 643466,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123438,
+      "lineIndex": 2840,
+      "text": "מצוה תקלא"
+    },
+    {
+      "id": 643467,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123443,
+      "lineIndex": 2845,
+      "text": "מצוה תקלב"
+    },
+    {
+      "id": 643468,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123448,
+      "lineIndex": 2850,
+      "text": "מצוה תקלג"
+    },
+    {
+      "id": 643469,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123451,
+      "lineIndex": 2853,
+      "text": "מצוה תקלד"
+    },
+    {
+      "id": 643470,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123454,
+      "lineIndex": 2856,
+      "text": "מצוה תקלה"
+    },
+    {
+      "id": 643471,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123459,
+      "lineIndex": 2861,
+      "text": "מצוה תקלו"
+    },
+    {
+      "id": 643472,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123461,
+      "lineIndex": 2863,
+      "text": "מצוה תקלז"
+    },
+    {
+      "id": 643473,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123466,
+      "lineIndex": 2868,
+      "text": "מצוה תקלח"
+    },
+    {
+      "id": 643474,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123472,
+      "lineIndex": 2874,
+      "text": "מצוה תקלט"
+    },
+    {
+      "id": 643475,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123475,
+      "lineIndex": 2877,
+      "text": "מצוה תקמ"
+    },
+    {
+      "id": 643476,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123478,
+      "lineIndex": 2880,
+      "text": "מצוה תקמא"
+    },
+    {
+      "id": 643477,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123481,
+      "lineIndex": 2883,
+      "text": "מצוה תקמב"
+    },
+    {
+      "id": 643478,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123486,
+      "lineIndex": 2888,
+      "text": "מצוה תקמג"
+    },
+    {
+      "id": 643479,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123491,
+      "lineIndex": 2893,
+      "text": "מצוה תקמד"
+    },
+    {
+      "id": 643480,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123494,
+      "lineIndex": 2896,
+      "text": "מצוה תקמה"
+    },
+    {
+      "id": 643481,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123506,
+      "lineIndex": 2908,
+      "text": "מצוה תקמו"
+    },
+    {
+      "id": 643482,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123513,
+      "lineIndex": 2915,
+      "text": "מצוה תקמז"
+    },
+    {
+      "id": 643483,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123516,
+      "lineIndex": 2918,
+      "text": "מצוה תקמח"
+    },
+    {
+      "id": 643484,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123522,
+      "lineIndex": 2924,
+      "text": "מצוה תקמט"
+    },
+    {
+      "id": 643485,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123527,
+      "lineIndex": 2929,
+      "text": "מצוה תקנ"
+    },
+    {
+      "id": 643486,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123532,
+      "lineIndex": 2934,
+      "text": "מצוה תקנא"
+    },
+    {
+      "id": 643487,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123538,
+      "lineIndex": 2940,
+      "text": "מצוה תקנב"
+    },
+    {
+      "id": 643488,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123548,
+      "lineIndex": 2950,
+      "text": "מצוה תקנג"
+    },
+    {
+      "id": 643489,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123553,
+      "lineIndex": 2955,
+      "text": "מצוה תקנד"
+    },
+    {
+      "id": 643490,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123556,
+      "lineIndex": 2958,
+      "text": "מצוה תקנה"
+    },
+    {
+      "id": 643491,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123561,
+      "lineIndex": 2963,
+      "text": "מצוה תקנו"
+    },
+    {
+      "id": 643492,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123566,
+      "lineIndex": 2968,
+      "text": "מצוה תקנז"
+    },
+    {
+      "id": 643493,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123572,
+      "lineIndex": 2974,
+      "text": "מצוה תקנח"
+    },
+    {
+      "id": 643494,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123576,
+      "lineIndex": 2978,
+      "text": "מצוה תקנט"
+    },
+    {
+      "id": 643495,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123581,
+      "lineIndex": 2983,
+      "text": "מצוה תקס"
+    },
+    {
+      "id": 643496,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123586,
+      "lineIndex": 2988,
+      "text": "מצוה תקסא"
+    },
+    {
+      "id": 643497,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123591,
+      "lineIndex": 2993,
+      "text": "מצוה תקסב"
+    },
+    {
+      "id": 643498,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123595,
+      "lineIndex": 2997,
+      "text": "מצוה תקסג"
+    },
+    {
+      "id": 643499,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123600,
+      "lineIndex": 3002,
+      "text": "מצוה תקסד"
+    },
+    {
+      "id": 643500,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123603,
+      "lineIndex": 3005,
+      "text": "מצוה תקסה"
+    },
+    {
+      "id": 643501,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123608,
+      "lineIndex": 3010,
+      "text": "מצוה תקסו"
+    },
+    {
+      "id": 643502,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123613,
+      "lineIndex": 3015,
+      "text": "מצוה תקסז"
+    },
+    {
+      "id": 643503,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123616,
+      "lineIndex": 3018,
+      "text": "מצוה תקסח"
+    },
+    {
+      "id": 643504,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123621,
+      "lineIndex": 3023,
+      "text": "מצוה תקסט"
+    },
+    {
+      "id": 643505,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123626,
+      "lineIndex": 3028,
+      "text": "מצוה תקע"
+    },
+    {
+      "id": 643506,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123632,
+      "lineIndex": 3034,
+      "text": "מצוה תקעא"
+    },
+    {
+      "id": 643507,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123637,
+      "lineIndex": 3039,
+      "text": "מצוה תקעב"
+    },
+    {
+      "id": 643508,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123640,
+      "lineIndex": 3042,
+      "text": "מצוה תקעג"
+    },
+    {
+      "id": 643509,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123645,
+      "lineIndex": 3047,
+      "text": "מצוה תקעד"
+    },
+    {
+      "id": 643510,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123647,
+      "lineIndex": 3049,
+      "text": "מצוה תקעה"
+    },
+    {
+      "id": 643511,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123657,
+      "lineIndex": 3059,
+      "text": "מצוה תקעו"
+    },
+    {
+      "id": 643512,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123662,
+      "lineIndex": 3064,
+      "text": "מצוה תקעז"
+    },
+    {
+      "id": 643513,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123665,
+      "lineIndex": 3067,
+      "text": "מצוה תקעח"
+    },
+    {
+      "id": 643514,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123668,
+      "lineIndex": 3070,
+      "text": "מצוה תקעט"
+    },
+    {
+      "id": 643515,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123689,
+      "lineIndex": 3091,
+      "text": "מצוה תקפ"
+    },
+    {
+      "id": 643516,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123694,
+      "lineIndex": 3096,
+      "text": "מצוה תקפא"
+    },
+    {
+      "id": 643517,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123697,
+      "lineIndex": 3099,
+      "text": "מצוה תקפב"
+    },
+    {
+      "id": 643518,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123702,
+      "lineIndex": 3104,
+      "text": "מצוה תקפג"
+    },
+    {
+      "id": 643519,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123708,
+      "lineIndex": 3110,
+      "text": "מצוה תקפד"
+    },
+    {
+      "id": 643520,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123714,
+      "lineIndex": 3116,
+      "text": "מצוה תקפה"
+    },
+    {
+      "id": 643521,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123719,
+      "lineIndex": 3121,
+      "text": "מצוה תקפו"
+    },
+    {
+      "id": 643522,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123722,
+      "lineIndex": 3124,
+      "text": "מצוה תקפז"
+    },
+    {
+      "id": 643523,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123728,
+      "lineIndex": 3130,
+      "text": "מצוה תקפח"
+    },
+    {
+      "id": 643524,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123733,
+      "lineIndex": 3135,
+      "text": "מצוה תקפט"
+    },
+    {
+      "id": 643525,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123743,
+      "lineIndex": 3145,
+      "text": "מצוה תקצ"
+    },
+    {
+      "id": 643526,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123746,
+      "lineIndex": 3148,
+      "text": "מצוה תקצא"
+    },
+    {
+      "id": 643527,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123751,
+      "lineIndex": 3153,
+      "text": "מצוה תקצב"
+    },
+    {
+      "id": 643528,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123756,
+      "lineIndex": 3158,
+      "text": "מצוה תקצג"
+    },
+    {
+      "id": 643529,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123760,
+      "lineIndex": 3162,
+      "text": "מצוה תקצד"
+    },
+    {
+      "id": 643530,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123765,
+      "lineIndex": 3167,
+      "text": "מצוה תקצה"
+    },
+    {
+      "id": 643531,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123771,
+      "lineIndex": 3173,
+      "text": "מצוה תקצו"
+    },
+    {
+      "id": 643532,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123776,
+      "lineIndex": 3178,
+      "text": "מצוה תקצז"
+    },
+    {
+      "id": 643533,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123779,
+      "lineIndex": 3181,
+      "text": "מצוה תקצח"
+    },
+    {
+      "id": 643534,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123789,
+      "lineIndex": 3191,
+      "text": "מצוה תקצט"
+    },
+    {
+      "id": 643535,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123803,
+      "lineIndex": 3205,
+      "text": "מצוה תר"
+    },
+    {
+      "id": 643536,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123811,
+      "lineIndex": 3213,
+      "text": "מצוה תרא"
+    },
+    {
+      "id": 643537,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123814,
+      "lineIndex": 3216,
+      "text": "מצוה תרב"
+    },
+    {
+      "id": 643538,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123819,
+      "lineIndex": 3221,
+      "text": "מצוה תרג"
+    },
+    {
+      "id": 643539,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123825,
+      "lineIndex": 3227,
+      "text": "מצוה תרד"
+    },
+    {
+      "id": 643540,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123830,
+      "lineIndex": 3232,
+      "text": "מצוה תרה"
+    },
+    {
+      "id": 643541,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123833,
+      "lineIndex": 3235,
+      "text": "מצוה תרו"
+    },
+    {
+      "id": 643542,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123841,
+      "lineIndex": 3243,
+      "text": "מצוה תרז"
+    },
+    {
+      "id": 643543,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123846,
+      "lineIndex": 3248,
+      "text": "מצוה תרח"
+    },
+    {
+      "id": 643544,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123851,
+      "lineIndex": 3253,
+      "text": "מצוה תרט"
+    },
+    {
+      "id": 643545,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123856,
+      "lineIndex": 3258,
+      "text": "מצוה תרי"
+    },
+    {
+      "id": 643546,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123861,
+      "lineIndex": 3263,
+      "text": "מצוה תריא"
+    },
+    {
+      "id": 643547,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123868,
+      "lineIndex": 3270,
+      "text": "מצוה תריב"
+    },
+    {
+      "id": 643548,
+      "parentId": 642933,
+      "level": 1,
+      "lineId": 3123874,
+      "lineIndex": 3276,
+      "text": "מצוה תריג"
+    }
+  ],
+  "scope": "Independent pinned SQL fixture only; not production-v40 acceptance"
+}

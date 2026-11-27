@@ -1,0 +1,7 @@
+/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/phone-lifecycle-attempt-1/Combined.swift:657:6: error: '=' must have consistent whitespace on both sides
+655 |  init(warm:Bool=false,wrongMode:Bool=false) {
+656 |   reader=ReaderViewModel(book:book)
+657 |   tab=.init(id:UUID(),book:book,viewModel:reader)
+    |      `- error: '=' must have consistent whitespace on both sides
+658 |   manager.openTabs=[tab];manager.activeTabId=tab.id
+659 |   workspace=StudyWorkspaceNavigationAdapter(manager:manager,sceneID:"scene-1")

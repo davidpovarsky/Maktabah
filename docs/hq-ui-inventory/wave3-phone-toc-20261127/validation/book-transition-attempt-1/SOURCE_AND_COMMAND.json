@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-27T01:43:05.743468+00:00",
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/book-transition-attempt-1/Combined.swift",
+    "-o",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-phone-toc-20261127/book-transition-controls"
+  ],
+  "compile_exit": 0,
+  "setter_sha256": "6a080428c6547c2e5686b369be7e0dad3ca98474c0350dc0963abc0aacd5fbd8",
+  "policy_sha256": "81be15348a4c124b55d10d25f7be5b29fbff3417f4d9a6c27ca9dd1c1e2a69c0",
+  "manager_sha256": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+  "phone_source_sha256": "050597d574ce04688de57420897cf7ab2d2a6c465698639e57574a1d00eeb39f",
+  "native_ui_executed": 0,
+  "scope": "Actual original setter and actual phone presentation transition policy with declared synthetic domain boundary",
+  "execution_exit": 0
+}

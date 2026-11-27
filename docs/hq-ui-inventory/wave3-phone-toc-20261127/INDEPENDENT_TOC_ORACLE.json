@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-27T02:12:23.689139+00:00",
+  "source_download": {
+    "started": "2026-11-27T01:50:45.404043+00:00",
+    "completed": "2026-11-27T01:50:47.028609+00:00",
+    "url": "https://github.com/davidpovarsky/Maktabah/releases/download/otzaria-miniTest10-v6/miniTest10-seforim.db.zst",
+    "profile_source_commit": "2cd8f255ac581d4739af68ab2e7775aa85d7855a",
+    "compressed_path": "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/miniTest10-seforim.db.zst",
+    "compressed_sha256": "e9e6dedd2ceaadbe46234612c359e5bd8add00c348be8eaeba85cf029fa5c4d3",
+    "compressed_bytes": 7774478,
+    "database_path": "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/canonical-miniTest10-v6.sqlite",
+    "database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+    "database_bytes": 15470592,
+    "purpose": "Read-only independent expected TOC oracle for existing original miniTest10 native selectors; NOT final production acceptance",
+    "production_acceptance": false
+  },
+  "oracle_path": "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json",
+  "oracle_sha256": "9bc6fda67bbc4dc438753d9926c2c928562482f17ba234e17f7e09d0aab54905",
+  "source_database_sha256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "source_sql_evidence": "validation/original-matcher-attempt-1/SQL_SOURCE.json",
+  "provenance": "Read-only SQLite; no app output used for expected node/title/path/Reader position; Native real UI tests pending"
+}
