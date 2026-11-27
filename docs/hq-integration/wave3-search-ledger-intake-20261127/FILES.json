@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "path": "PLAN.json",
+      "bytes": 11952,
+      "sha256": "b438abdf588e537a360ee7a11177da311a115f9122b269017c7ba164c5f7c9d2"
+    },
+    {
+      "path": "RAW_FILES.json",
+      "bytes": 2605,
+      "sha256": "7affdad2bb58911da6ee64aa052b867cf59c6ab6b66f00bcdff0b89c9503f8ff"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2817,
+      "sha256": "4afc9d3e5ceed40448b9c0e056e18edd4e6f632a9dea1ba0c9a31696f98093d9"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1902,
+      "sha256": "679ba0df513c3f08a54ea3b7a33b69c7be81c95eb163ba57e4447b689739ab1b"
+    },
+    {
+      "path": "raw/4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac.stdout.gz",
+      "bytes": 258,
+      "sha256": "42d58ecf6ee3e73665baef9a8496ff8c71b416418a447b91ac1aae66856b39c5"
+    },
+    {
+      "path": "raw/FILES.before_transport.json.gz",
+      "bytes": 581,
+      "sha256": "157265b8e4f01c7cc7a54844e8c6dae16472c3626660c092eccdb93182d8fe88"
+    },
+    {
+      "path": "raw/INTAKE_DIFF_CHECK_FAILURE.stdout.gz",
+      "bytes": 1065,
+      "sha256": "42488dd57a706f0c9c10e039c9ec34c8674047543fe0338e66e1e1f6dc5ba176"
+    },
+    {
+      "path": "raw/INTAKE_PUBLICATION_ATTEMPT1.json.gz",
+      "bytes": 710,
+      "sha256": "96f1a06c1be279929bc83b1b04b49b34970b9334386225a3c49fe264f9d282f2"
+    },
+    {
+      "path": "raw/INTAKE_TRANSPORT_ATTEMPT2.json.gz",
+      "bytes": 823,
+      "sha256": "02c98a97a11a05ee23bcac21cca4398dd962906ec748dd8a5c4254aba326d804"
+    },
+    {
+      "path": "raw/PBX.patch.gz",
+      "bytes": 1288,
+      "sha256": "8169e8021b3c880d5f7d6b6e4263c395be2f67fc6b447f8495eae09c0db90c02"
+    },
+    {
+      "path": "raw/RAW_FILES.before_transport.json.gz",
+      "bytes": 417,
+      "sha256": "6113e9a6c4e3f7f3e1c0ea9ff706610a2a1e45954023d33d6527ca1e118e3e4a"
+    },
+    {
+      "path": "raw/a23ae34c74b1cde8a9344fefd1e41e87101784b0.stderr.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "raw/a23ae34c74b1cde8a9344fefd1e41e87101784b0.stdout.gz",
+      "bytes": 496,
+      "sha256": "438c5632847120692939df74668fe8cc6c45b03deddf818074496620c672d35d"
+    }
+  ]
+}

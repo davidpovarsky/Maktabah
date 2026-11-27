@@ -1,0 +1,271 @@
+{
+  "schema": "otzaria.wave3.search-ledger-intake-plan.v1",
+  "base": "e1daed119ca904d0f43808901552c2857b94f7a3",
+  "donors": [
+    "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+    "4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac"
+  ],
+  "files": [
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+      "bytes": 9858,
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "bytes": 13723,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "bytes": 5237,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "bytes": 31344,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "bytes": 5942,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/ARCHIVE_INDEX.json",
+      "bytes": 15000,
+      "sha256": "7ae2134501a456d4cabdf342fdc5f0cb484512e88591df69396840d30552a48c"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/DOCS_MANIFEST.json",
+      "bytes": 1160,
+      "sha256": "31f66beb2d30e908699b2844c7a2e4a9fe39e84c95feec23fd39ff3c35caf99b"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/PRODUCT_SOURCES.json",
+      "bytes": 2324,
+      "sha256": "454162a985277bb08315c7da1adf1cdce3732c3f4a3feb716f9d002889a6b60e"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/README.md",
+      "bytes": 10001,
+      "sha256": "c9e7f11ca026c6509446e7cf344a5af70db08e8fe963fd7f108967b8a99e8083"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/actual-linux-inputs-and-logs.tar.gz",
+      "bytes": 247958,
+      "sha256": "40042434d172bdd29cd9c75c75b1a2595f085231bdf7d7b5bc7433dc2a2d4613"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PATH_PROVENANCE.json",
+      "bytes": 5949,
+      "sha256": "910edf5863da753dea32dfc19c727dcc91908455ba0550d8dbbfed7b59e863a6"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PRE_EDIT_PATH_MATRIX.md",
+      "bytes": 3383,
+      "sha256": "c77c5aceba7a2bb942d0a08c2c746e91cfde4aae8d99d73df407ba0d2179a98a"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PRE_REVIEW_LEDGER_c05e98ff.swift.txt",
+      "bytes": 7759,
+      "sha256": "c05e98ff267546dd2caf89592f0caa0da241617bf09390f9acaada33fff9a331"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/UPSTREAM_BOARD_DISCOVERY.json",
+      "bytes": 37925,
+      "sha256": "98cfc0a8d36f760a189141e8a8f93c628722f2dd6fcf1dc4292d65712aacdcac"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/UPSTREAM_SOURCE_READ.json",
+      "bytes": 10204,
+      "sha256": "c5a74b665a2b649d023f41fa0199961cf1b8e2b10f2cef119d13e1df6810039d"
+    },
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/WORKTREE_CREATION.json",
+      "bytes": 3370,
+      "sha256": "4cb7e16dd11ae80670d7dadbd8c07818024fce1444a532ebfba5966a0421d56a"
+    },
+    {
+      "donor": "4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/cache-retirement/BEFORE.json",
+      "bytes": 6724,
+      "sha256": "31941e044402e13c03090476604820cc22288afa03dc108ebe1da523308639a1"
+    },
+    {
+      "donor": "4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac",
+      "path": "docs/hq-integration/wave2-20261127/library/search-page-ledger/cache-retirement/RESULT.json",
+      "bytes": 580,
+      "sha256": "3192f4eeaf9216f05fe2c2b669b8649b9413ad8974211eed832e30251d344200"
+    }
+  ],
+  "productSources": {
+    "schema": 1,
+    "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+    "branch": "codex/otzaria-wave2-search-page-ledger-20261127",
+    "original": {
+      "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+        "bytes": 10915,
+        "sha256": "f230a31ddd977dfb3cc24cfb60d38ee0e5302d06b756ba9cc63cdbb9aa2f197c"
+      },
+      "Source/Features/Search/ViewModel/SearchViewModel.swift": {
+        "bytes": 5181,
+        "sha256": "70d360b36ec9225b8a880dd6d687950e238be68cc4902ed632280277a7e4a374"
+      },
+      "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+        "bytes": 28952,
+        "sha256": "fc00f83f94d07b966dda4056898e6dd49ee3c4d85866c158c4242955c89362f8"
+      },
+      "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+        "bytes": 4777,
+        "sha256": "2f6d4853d229583d24fce304b783b009de694b824dc2f9581091b38571bb47c8"
+      }
+    },
+    "candidate": {
+      "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+        "bytes": 9858,
+        "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+      },
+      "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+        "bytes": 13723,
+        "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+      },
+      "Source/Features/Search/ViewModel/SearchViewModel.swift": {
+        "bytes": 5237,
+        "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+      },
+      "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+        "bytes": 31344,
+        "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+      },
+      "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+        "bytes": 5942,
+        "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+      }
+    },
+    "unchangedEncodingDependency": {
+      "bytes": 5330,
+      "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+    },
+    "componentScope": "ACTUAL_FOUNDATION_LEDGER_ONLY_NOT_PROVIDER_OR_UI",
+    "nativeUIExecuted": false,
+    "archiveSHA256": "40042434d172bdd29cd9c75c75b1a2595f085231bdf7d7b5bc7433dc2a2d4613",
+    "actualResultSHA256": {
+      "attempt-1": "1d16886d2d5bf2620f7806ad3e1c0ef704b11b93f6c85cb35b317f5f94ebbf79",
+      "attempt-2": "70a84d22eaea75b8ede0bde4a955cef19a8f6fe1a8af0c65820df67a666adbf5"
+    }
+  },
+  "docsRowsVerified": 8,
+  "archive": {
+    "members": 55,
+    "allHashesVerified": true,
+    "exactCandidateInputs": 5,
+    "originalZayitEncodingDependency": "Vendor/ZayitSearchPort/Swift/ZayitSearchModels.swift",
+    "controls": {
+      "checks": [
+        "new owner has no accepted page",
+        "request bytes equal unchanged original Zayit Encodable output",
+        "offset-zero configuration is independent of page offset",
+        "same attempt reuses one attached terminal capture",
+        "dispatch creates active attempt without accepted-page revision",
+        "a concurrent begin cannot replace the active original attempt",
+        "stale-generation dispatch is a strict no-op",
+        "accepted source page advances page revision exactly once",
+        "capture freezes the actual accepted terminal exactly once",
+        "replayed terminal callbacks cannot change a committed page",
+        "raw progress remains accepted without a displayed-row count gate",
+        "empty accepted terminal advances page revision without cursor progress",
+        "missing source evidence stays missing",
+        "failure preserves prior committed page without page advance",
+        "retry has a distinct attempt identity for the same request",
+        "cancellation is distinct from acceptance and failure",
+        "late completion after a terminal cancellation is ignored",
+        "same-generation invalidation changes authority and clears page facts",
+        "equal-generation ABA cannot adopt an earlier callback",
+        "another owner's attempt cannot commit this source",
+        "another owner's attempt cannot acquire a terminal capture",
+        "old-generation failure and acceptance cannot revoke new authority",
+        "throwing original encoding produces unavailable observation input",
+        "encoding failure has no page authority",
+        "unavailable epoch cannot silently rearm on a request",
+        "real source invalidation rearms a bounded encoding failure",
+        "oversized original request encoding is bounded",
+        "oversized source evidence revokes observation without a commit",
+        "regressive append facts cannot be accepted",
+        "replacement can reset actual prior pagination counts",
+        "raw invalid cursor remains distinct from normalized exhaustion",
+        "accept then invalidate before consumer preserves the actual committed effect",
+        "retained accepted effect does not restore current source authority",
+        "invalidation before late acceptance closes capture without inventing an effect",
+        "retained failure remains a failure after current facts are cleared"
+      ],
+      "nativeUIExecution": false,
+      "overflowBranch": "source-reviewed only; not dynamically reached",
+      "passed": 35,
+      "providerExecution": false,
+      "schema": 1,
+      "scope": "ACTUAL_FOUNDATION_LEDGER_COMPONENT_ONLY_NOT_BACKEND_PROVIDER_OR_UI"
+    },
+    "rerun": false
+  },
+  "diffChecks": [
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "donor": "4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "pbx": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "priorSHA256": "02f3a7c6f3bfb2930d7c98dcdcb89437f69dc307436d58b093beef1209011cb2",
+    "bytes": 634395,
+    "sha256": "a013609d6a15cba287c6c867398f739a739cc72ddc320151cfdc0322133b50f2",
+    "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-search-ledger-intake-plan-20261127/project.pbxproj.candidate",
+    "additiveLines": 8,
+    "fileID": "7A55D6F5DD884ED48CD32727",
+    "targets": [
+      {
+        "phase": "4B3202242EDAFE85003B95D1",
+        "target": "Maktabah",
+        "buildID": "CBD974721F24BC8DB2C27967"
+      },
+      {
+        "phase": "4B7C90A52F83494200454BE1",
+        "target": "Maktabah-Direct",
+        "buildID": "2BF4C79DEF4EBB5BCF6E6051"
+      },
+      {
+        "phase": "F30576E22FA46222005732C6",
+        "target": "Maktabah-iOS",
+        "buildID": "07E7057281BEA64047ED3789"
+      }
+    ],
+    "stripOnlyAdditionsRestoresPriorBytes": true
+  },
+  "sourceControlsRerun": 0,
+  "nativeRuns": 0,
+  "at": "2026-11-27T11:10:47.396192+00:00"
+}

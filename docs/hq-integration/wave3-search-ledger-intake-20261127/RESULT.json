@@ -1,0 +1,54 @@
+{
+  "schema": "otzaria.wave3.search-ledger-intake-result.v1",
+  "base": "e1daed119ca904d0f43808901552c2857b94f7a3",
+  "applied": [
+    {
+      "donor": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+      "integrated": "49a28bcc8d900169a81289f88a0491b02db597c9"
+    },
+    {
+      "donor": "4faee4cfcf38b6a5aa83cb5ac3b746542e1b5fac",
+      "integrated": "cc88352143b0a6684408d7b8dbcf20e0310b97d3"
+    }
+  ],
+  "membershipCommit": "3d8dae9dd9b8158e64ea761933b95ca79e7409d9",
+  "sourceTree": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "planSHA256": "b438abdf588e537a360ee7a11177da311a115f9122b269017c7ba164c5f7c9d2",
+  "fileOccurrencesVerified": 18,
+  "docsRowsVerified": 8,
+  "archiveMembersVerified": 55,
+  "exactProductInputsVerified": 5,
+  "preservedFoundationControls": 35,
+  "sourceControlsRerun": 0,
+  "nativeRuns": 0,
+  "sdkTypecheck": "NOT_RUN",
+  "pbx": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "priorSHA256": "02f3a7c6f3bfb2930d7c98dcdcb89437f69dc307436d58b093beef1209011cb2",
+    "bytes": 634395,
+    "sha256": "a013609d6a15cba287c6c867398f739a739cc72ddc320151cfdc0322133b50f2",
+    "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-search-ledger-intake-plan-20261127/project.pbxproj.candidate",
+    "additiveLines": 8,
+    "fileID": "7A55D6F5DD884ED48CD32727",
+    "targets": [
+      {
+        "phase": "4B3202242EDAFE85003B95D1",
+        "target": "Maktabah",
+        "buildID": "CBD974721F24BC8DB2C27967"
+      },
+      {
+        "phase": "4B7C90A52F83494200454BE1",
+        "target": "Maktabah-Direct",
+        "buildID": "2BF4C79DEF4EBB5BCF6E6051"
+      },
+      {
+        "phase": "F30576E22FA46222005732C6",
+        "target": "Maktabah-iOS",
+        "buildID": "07E7057281BEA64047ED3789"
+      }
+    ],
+    "stripOnlyAdditionsRestoresPriorBytes": true
+  },
+  "at": "2026-11-27T11:12:15.176083+00:00"
+}
