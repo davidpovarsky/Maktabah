@@ -144,10 +144,14 @@ with tempfile.TemporaryDirectory(prefix='source-only-trace-export-') as temporar
             nonlocal calls
             calls+=1
             return 0 if calls==1 else 2000
-        def stop(p):
+        def stop(p, **kwargs):
             stops.append(p);p.returncode=-2;return {'owned_pgid':p.pid,'group_state':'GONE_CHECKED'}
+        def kernel(pid):
+            return None if child.returncode is not None else {'pid':pid,'parentPID':m.os.getpid(),
+                'startUTC':'Fri Nov 27 09:00:00 2026','command':'xcrun xctrace export --input synthetic'}
         with patch.object(m.subprocess,'Popen',side_effect=popen),patch.object(m,'allocated',side_effect=allocation),\
-             patch.object(m.shutil,'disk_usage',return_value=types.SimpleNamespace(free=10**9)):
+             patch.object(m.shutil,'disk_usage',return_value=types.SimpleNamespace(free=10**9)),\
+             patch.object(m,'kernel_process',side_effect=kernel),patch.object(m.os,'getpgid',return_value=child.pid):
             try:
                 m.export_child(['xcrun','xctrace','export','--input','synthetic'],directory=folder,stem='table',timeout=1,
                     hard_deadline=time.monotonic()+(-1 if mode=='expired-before-launch' else 10),output_budget=1000,free_reserve=100,

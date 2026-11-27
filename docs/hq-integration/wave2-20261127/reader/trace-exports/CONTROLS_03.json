@@ -1,0 +1,266 @@
+{
+  "actualExportedTraceTables": 0,
+  "appleToolsExecuted": 0,
+  "controls": [
+    {
+      "name": "synthetic-original-start-stop-with-exact-owned-recorder-group",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-missing-capture",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-unknown-recording-exit-host-toy",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-unverified-owned-group",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-foreign-recorder-group",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-failed-TOC-export",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-boolean-TOC-exit",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-clock-missing",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-clock-reversed",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-float-wall-nanoseconds",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-different-original-command",
+      "passed": true
+    },
+    {
+      "name": "synthetic-complete-observed-run-and-table-selection",
+      "passed": true
+    },
+    {
+      "name": "strict-superset-table-is-excluded-by-attribute-count",
+      "passed": true
+    },
+    {
+      "name": "actual-local-XPath-interpreter-selects-one-not-superset-table",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "absent-schema-cannot-be-guessed",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "schema-only-selection-cannot-omit-observed-target-pid",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "same-selected-table-cannot-be-repeated",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "identical-observed-table-attributes-remain-ambiguous",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "duplicate-actual-run-number-rejected",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "wrong-TOC-root-rejected",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "DTD-expansion-rejected",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "XPath-attribute-name-injection-rejected",
+      "passed": true
+    },
+    {
+      "name": "both-quote-kinds-are-literals-not-XPath-code",
+      "passed": true
+    },
+    {
+      "name": "actual-local-XPath-interpreter-keeps-both-quotes-literal",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-duplicate-key",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-NaN",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-infinite-exponent",
+      "passed": true
+    },
+    {
+      "name": "synthetic-original-epoch-binds-actual-recorded-PID-executable-clocks",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-different-PID",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-foreign-executable",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-before-trace-ready",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-after-trace-stop",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-partial-epoch",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-reversed-samples",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "reject-epoch-fractional-wall-ns",
+      "passed": true
+    },
+    {
+      "name": "actual-retained-installed-schema-snapshot-0",
+      "passed": true
+    },
+    {
+      "name": "actual-retained-installed-schema-snapshot-1",
+      "passed": true
+    },
+    {
+      "name": "actual-retained-installed-schema-snapshot-2",
+      "passed": true
+    },
+    {
+      "name": "actual-tiny-regular-manifest-membership",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "extra-trace-member-is-not-hidden",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "trace-alias-is-not-followed",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "mutated-immutable-witness-rejected",
+      "passed": true
+    },
+    {
+      "name": "raw-rows-never-qualifies-a-performance-metric",
+      "passed": true
+    },
+    {
+      "name": "raw-no-row-elements-never-qualifies-a-performance-metric",
+      "passed": true
+    },
+    {
+      "name": "raw-namespace-never-qualifies-a-performance-metric",
+      "passed": true
+    },
+    {
+      "errorType": null,
+      "name": "partial-XML-rejected-with-raw-file-retained",
+      "passed": true
+    },
+    {
+      "name": "partial-XML-file-is-never-trimmed",
+      "passed": true
+    },
+    {
+      "name": "synthetic-output-cap-stops-exact-created-child-and-retains-partial-file",
+      "passed": true
+    },
+    {
+      "name": "synthetic-expired-whole-session-refuses-new-child",
+      "passed": true
+    }
+  ],
+  "corpusQueries": 0,
+  "helper": {
+    "bytes": 37661,
+    "path": "/workspace/scratch/ca3b32b82803/reader-trace-exports/study-ui-trace-exports.py",
+    "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+  },
+  "nativeExecutions": 0,
+  "passed": 49,
+  "performanceAcceptance": false,
+  "primarySchemaSnapshots": [
+    {
+      "bytes": 7155,
+      "originalPath": "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Packages/SystemTrace.instrdst/Contents/Extensions/com.apple.dt.instruments.system-trace.dtac/schemas.xml",
+      "scope": "Actual retained installed declaration, not trace data/coverage",
+      "sha256": "d47ee1cf7f25c75a8be1a14f6ade12a7d1da09fc2f74c96308ea82efff48c2b1"
+    },
+    {
+      "bytes": 9411,
+      "originalPath": "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Packages/Hitches.instrdst/Contents/Extensions/com.apple.instruments.Hitches.dtac/schemas.xml",
+      "scope": "Actual retained installed declaration, not trace data/coverage",
+      "sha256": "d6a1c625c7c2d0f676870f371faa563cb49ceb4bf3c9096b5df71d4559a34039"
+    },
+    {
+      "bytes": 3222,
+      "originalPath": "/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/Packages/RunloopInstrument.instrdst/Contents/Extensions/com.apple.dt.instruments.RunloopInstrument.dtac/schemas.xml",
+      "scope": "Actual retained installed declaration, not trace data/coverage",
+      "sha256": "b66ffb6b2553ced86af73f50a0b157c76581d5243c6a11fc1936938b06d7b2e3"
+    }
+  ],
+  "schema": "otzaria.trace-export-source-controls/1",
+  "status": "SOURCE_CONTROLS_PASSED_NOT_PERF_ACCEPTANCE",
+  "total": 49
+}

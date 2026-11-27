@@ -145,3 +145,46 @@ There were zero Apple tool invocations, zero native cases, zero production
 corpus queries and zero actual exported trace tables. Full PERF-03 remains
 open until the qualified original UI workloads, actual trace data and their
 correct metric interpretation exist.
+
+## Follow-up: direct-child cleanup ownership
+
+Root's review identified two concrete gaps in the first checkpoint
+`4f3b3e21305cb7bab1e629378dd720c143c28c22`. After `Popen.poll()` or `wait()`
+reaped a child, the original group helper sent its first signal without
+checking whether that PID had been reused. Also, an interruption inside
+`Popen` before assignment was incorrectly labeled as no child created.
+The original helper and all common/v32 sources remain unchanged.
+
+The new exporter retains the exact launch argv and parent before attempting
+creation. It records the created child's actual parent, start time, command
+and process group with a bounded original Darwin `ps` query and an unreaped
+direct `Popen`. Normal `xcrun` to tool `exec` transitions may change the command;
+the observed commands are retained while PID, parent, start and group stay
+bound. Before **each** original group probe or signal, a guarded callback
+checks those same identities again. A later live process at a reaped PID is
+refused, even if it resembles the launch command.
+
+When the original leader has already disappeared, only signal 0 may check
+group absence. A remaining group without a verifiable original live leader
+cannot be adopted or signaled: cleanup stays unverified. This deliberately
+does not infer that surviving descendants or a recycled group belong to us.
+An interrupted start without a returned handle also stays unverified and
+does not authorize any PID search or later cleanup. A failure before the
+start attempt is separately recorded as `SPAWN_NOT_ATTEMPTED`.
+
+`CONTROLS_03.json` retains the 49 general source checks on the updated helper.
+`OWNERSHIP_CONTROLS_01.json` adds 20 targeted synthetic checks: changed
+PID/parent/start/group, a replacement appearing between signal and probe,
+leaderless groups, permitted same-process `exec`, initial identity-read
+failure, expired admission, interrupted spawn, and bounded `ps` parsing.
+The same two original defect scenarios reject the original helper from
+`4f3b3e` and pass against the candidate. All `Popen`, kernel inventory and
+signals in these controls are deterministic doubles. No process was
+actually started or signaled, and no Apple tool or native case was run.
+
+To reproduce the before/after comparison, extract the original helper from
+that exact commit into a separate file, then supply it as `--baseline` to
+`ownership-controls.py`; supply the candidate as `--helper` and a fresh
+receipt path as `--output`. The original baseline bytes/SHA remain in Git
+and in the comparison receipt, without replacing either historical source
+control report.
