@@ -1,0 +1,6 @@
+{
+  "observed": "2026-11-27T12:57:53.415452+00:00",
+  "reason": "actual compiler timed out after original30s control limit",
+  "source_sha256": "69fa0c5bf0eb06bcbc66526e6117c283020cfee87d6dd541fb4b3e10d65b5fdd",
+  "status": "NOT_COMPLETE"
+}

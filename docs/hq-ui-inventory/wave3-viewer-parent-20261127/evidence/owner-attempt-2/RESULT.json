@@ -1,0 +1,69 @@
+{
+  "after_free": 2837393408,
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/module-cache",
+    "-I",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-L",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-lOtzariaActionCore",
+    "-lOtzariaUIRouting",
+    "-lChavrusaUIRoutingHost",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/OwnerControls.swift",
+    "-o",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-2/OwnerControls"
+  ],
+  "before_free": 2837876736,
+  "boundary": "Exact source bodies; explicit UIKit/app-domain boundaries; native NOT_RUN",
+  "compile_exit": 0,
+  "compile_pid": 660432,
+  "files": [
+    {
+      "bytes": 2255,
+      "path": "run.py",
+      "sha256": "789f805087ea541cd2b06c544daf08a6e54c63cbc218b68301075e6e7d7091dd"
+    },
+    {
+      "bytes": 0,
+      "path": "run.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 5223,
+      "path": "run.stderr",
+      "sha256": "b44ddc1f4f4891c05d930aad94108647eedb22ac7d79fbdfdadd3e6934628892"
+    },
+    {
+      "bytes": 471544,
+      "path": "OwnerControls",
+      "sha256": "3fe5d1669e43bf8c00bec85a22b71b57ac43de66cd2fba6f46cf887e4629fcc6"
+    },
+    {
+      "bytes": 41218,
+      "path": "OwnerControls.swift",
+      "sha256": "0ab45d8d2c76cc30f2531751e54e3e0fdbdde6977e6e02be6739901a7c33fc9d"
+    }
+  ],
+  "finished": "2026-11-27T12:49:07.896314+00:00",
+  "own_allocated_bytes": 55349248,
+  "run_exit": -5,
+  "run_pid": 660584,
+  "schema": "otzaria.viewer-parent.owner-source-controls.v1",
+  "source_sha256": "0ab45d8d2c76cc30f2531751e54e3e0fdbdde6977e6e02be6739901a7c33fc9d",
+  "started": "2026-11-27T12:49:04.540423+00:00"
+}

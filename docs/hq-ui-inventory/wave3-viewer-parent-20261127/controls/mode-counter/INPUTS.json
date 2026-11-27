@@ -1,0 +1,8 @@
+{
+  "baselineCommit": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "originalManagerSHA256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+  "declarationsSHA256": "18f605d7627db95e838f5df0518f2506d6fb0a2ce5b72214246e041251c763ce",
+  "harnessSHA256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40",
+  "harnessBytes": 6451,
+  "candidateChange": "Only @ObservationIgnored on passive nativeModePresentationRevision in the local harness, not product source."
+}

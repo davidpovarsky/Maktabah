@@ -1,0 +1,11 @@
+{"started": "2026-11-27T12:35:09.547833+00:00", "pid": 620403, "base": "49f15cd68933b3e75ad8fe9074712c768f793566", "before": {"free_rootfs_bytes": 2901864448, "own_allocated_bytes": 37531648}}
+{"step": "candidate1-OtzariaActionCore", "started": "2026-11-27T12:35:09.747801+00:00", "before": {"free_rootfs_bytes": 2901327872, "own_allocated_bytes": 38072320}}
+{"step": "candidate1-OtzariaActionCore", "exit_code": 0, "after": {"free_rootfs_bytes": 2896285696, "own_allocated_bytes": 41574400}}
+{"step": "candidate1-OtzariaUIRouting", "started": "2026-11-27T12:35:30.235136+00:00", "before": {"free_rootfs_bytes": 2896285696, "own_allocated_bytes": 41574400}}
+{"step": "candidate1-OtzariaUIRouting", "exit_code": 0, "after": {"free_rootfs_bytes": 2894454784, "own_allocated_bytes": 43360256}}
+{"step": "candidate1-ChavrusaUIRoutingHost", "started": "2026-11-27T12:35:35.864649+00:00", "before": {"free_rootfs_bytes": 2894454784, "own_allocated_bytes": 43360256}}
+{"step": "candidate1-ChavrusaUIRoutingHost", "exit_code": 0, "after": {"free_rootfs_bytes": 2892238848, "own_allocated_bytes": 45539328}}
+{"step": "candidate1-harness-compile", "started": "2026-11-27T12:35:42.614340+00:00", "before": {"free_rootfs_bytes": 2892242944, "own_allocated_bytes": 45539328}}
+{"step": "candidate1-harness-compile", "exit_code": 0, "after": {"free_rootfs_bytes": 2891882496, "own_allocated_bytes": 45899776}}
+{"step": "candidate1-controls", "started": "2026-11-27T12:35:44.144827+00:00", "before": {"free_rootfs_bytes": 2891882496, "own_allocated_bytes": 45899776}}
+{"status": "NOT_COMPLETE", "error": "RuntimeError('bounded source-control timeout')", "finished": "2026-11-27T12:36:19.614977+00:00", "after": {"free_rootfs_bytes": 2891595776, "own_allocated_bytes": 45899776}, "result_sha256": "ce0ef2c106dd9a2f3ab3e3f312e36291d7ac565028a7b2e652ac3d3e23cf4f2b"}

@@ -1,0 +1,60 @@
+{
+  "schema": "otzaria.viewer-parent.mode-counter.execution.v1",
+  "startUTC": "2026-11-27T12:08:12.898121+00:00",
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/module-cache",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls.swift",
+    "-o",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/mode-counter-attempt-1/ModeCounterControls"
+  ],
+  "sourceSHA256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40",
+  "freeBefore": 3062157312,
+  "budgetBytes": 104857600,
+  "reserveBytes": 268435456,
+  "compilerPID": 540116,
+  "compileExit": 0,
+  "runExit": 0,
+  "freeAfter": 3044245504,
+  "allocatedBytes": 17895424,
+  "endUTC": "2026-11-27T12:08:15.742101+00:00",
+  "files": [
+    {
+      "path": "ModeCounterControls",
+      "bytes": 102808,
+      "sha256": "236641c35066fdd51fc18b37eca9009935421dd5e7ce44db39e94ff073abe026"
+    },
+    {
+      "path": "ModeCounterControls.swift",
+      "bytes": 6451,
+      "sha256": "0aed11f01b29a075d39d04e2053efcb086dfb8f6689bc15e0be437303c047c40"
+    },
+    {
+      "path": "STARTED.json",
+      "bytes": 801,
+      "sha256": "f6bcac8feaae738880ad286918fb06717fd55b19f24d1e52875dc1455ce1cbb6"
+    },
+    {
+      "path": "compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run.stdout",
+      "bytes": 1491,
+      "sha256": "ade334db987480af697bf9942c2df77f6fe725221fea489e13a84c861256b0df"
+    }
+  ]
+}

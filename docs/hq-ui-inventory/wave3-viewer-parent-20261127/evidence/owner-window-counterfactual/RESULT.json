@@ -1,0 +1,74 @@
+{
+  "after_free": 2832908288,
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/module-cache",
+    "-I",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-L",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-lOtzariaActionCore",
+    "-lOtzariaUIRouting",
+    "-lChavrusaUIRoutingHost",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OwnerControls.swift",
+    "-o",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-window-counterfactual/OwnerControls"
+  ],
+  "before_free": 2833383424,
+  "boundary": "Exact source bodies; explicit UIKit/app-domain boundaries; native NOT_RUN",
+  "compile_exit": 0,
+  "compile_pid": 663627,
+  "files": [
+    {
+      "bytes": 2774,
+      "path": "run.py",
+      "sha256": "72644b66f2b563cddb33be47cdcb6df9d89fe7e8f02f9eca56b665ba75256a38"
+    },
+    {
+      "bytes": 1532,
+      "path": "run.stdout",
+      "sha256": "990e0c471c886f499468ac388902abc10f8dc03e0d7d4eeb110ec83f4407fe35"
+    },
+    {
+      "bytes": 0,
+      "path": "compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4308,
+      "path": "EXACT_BUNDLE_INPUTS.json",
+      "sha256": "08270810cffd8c9690f97864da9df23c9501e28422c3d36cb643e867ce95c454"
+    },
+    {
+      "bytes": 0,
+      "path": "compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 471568,
+      "path": "OwnerControls",
+      "sha256": "0f23655abec5bf94dfd71758d24901246b0250749376edfce8d6c025a9f7323a"
+    },
+    {
+      "bytes": 41152,
+      "path": "OwnerControls.swift",
+      "sha256": "1fa2cab8128441c7bcee34935487214632330fd1f2e65f55a56f4c15e155d24b"
+    }
+  ],
+  "finished": "2026-11-27T12:50:07.579155+00:00",
+  "own_allocated_bytes": 56877056,
+  "run_exit": 1,
+  "run_pid": 663766,
+  "schema": "otzaria.viewer-parent.owner-source-controls.v1",
+  "source_sha256": "1fa2cab8128441c7bcee34935487214632330fd1f2e65f55a56f4c15e155d24b",
+  "started": "2026-11-27T12:50:04.967461+00:00"
+}

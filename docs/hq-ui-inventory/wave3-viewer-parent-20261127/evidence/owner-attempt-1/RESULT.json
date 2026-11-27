@@ -1,0 +1,47 @@
+{
+  "after_free": 2841628672,
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/module-cache",
+    "-I",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-L",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-3/candidate/out",
+    "-lOtzariaActionCore",
+    "-lOtzariaUIRouting",
+    "-lChavrusaUIRoutingHost",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-1/OwnerControls.swift",
+    "-o",
+    "/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-1/OwnerControls"
+  ],
+  "before_free": 2841661440,
+  "boundary": "Exact source bodies; explicit UIKit/app-domain boundaries; native NOT_RUN",
+  "compile_exit": 1,
+  "compile_pid": 657675,
+  "files": [
+    {
+      "bytes": 1103,
+      "path": "compile.stderr",
+      "sha256": "1d35d864d41b5d4a4dc06f62ea472b1f81f512d0c64e3d6ac990de943df96fd2"
+    },
+    {
+      "bytes": 0,
+      "path": "compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 41134,
+      "path": "OwnerControls.swift",
+      "sha256": "829f3648193138dde9144a5afdc636022978b4067d46d4c0a52a0a2bfab12447"
+    }
+  ],
+  "finished": "2026-11-27T12:48:08.642630+00:00",
+  "own_allocated_bytes": 54808576,
+  "schema": "otzaria.viewer-parent.owner-source-controls.v1",
+  "source_sha256": "829f3648193138dde9144a5afdc636022978b4067d46d4c0a52a0a2bfab12447",
+  "started": "2026-11-27T12:48:07.812279+00:00"
+}

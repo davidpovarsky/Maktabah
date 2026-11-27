@@ -1,0 +1,202 @@
+{
+  "files": [
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "sha256": "d25b21be0ff98eed6a663241fde17ce85df41d6b7b1b965d7432e827db89ffcd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift",
+      "sha256": "d14ef9ad32b1903b7b909185f0a4922ecfcd035d784b208527a32b19c00efa89",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+      "sha256": "684dc99eae7c2bbc510532e3cb43538c4b25813e317efe7d9a47974ab53e580a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+      "sha256": "e2ee77411ff2149d515ffdb10e499728eade5f274f131617fcecc0ef02e49223",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "sha256": "d88100268e2179bedac5eecce4941d28a8d9b64b2c525ff733cdc91b0d97afdb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+      "sha256": "7b171d100dcf5e20c2cafca81dd7b19ec9d3dc264f0121c8f18c544445d9d7eb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "sha256": "2814d6c1793e66c295a67d96977f757e71da0e6fd8902982d67f19c6076ff56b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "sha256": "d9d515375ec29ce3ea3d2b574cb02627b737a253bda4361596692cc4a9ea3e72",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/UI/iOS/Views/iPadLayout.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/UI/iOS/Views/iPadLayout.swift",
+      "sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/Source/UI/iOS/Views/iPhoneLayout.swift"
+      ],
+      "exit_code": 0,
+      "file": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/WINDOW_SOURCE_SESSION.resolved.swift"
+      ],
+      "exit_code": 0,
+      "file": "docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/WINDOW_SOURCE_SESSION.resolved.swift",
+      "sha256": "4033be074088f54e2016d76a5f33f261230361e37371cf572068ac362273eeeb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.resolved.swift"
+      ],
+      "exit_code": 0,
+      "file": "docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/READER_TAB_BINDING.resolved.swift",
+      "sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-viewer-parent-20261127/docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.resolved.swift"
+      ],
+      "exit_code": 0,
+      "file": "docs/hq-ui-inventory/wave3-viewer-parent-20261127/proposals/SESSION_VIEWER.resolved.swift",
+      "sha256": "9812a69986659a7867fe06a5de344f0222a2e908a65723350a553e3dc1584cc1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "pass_count": 14,
+  "scope": "Linux Swift frontend Apple-target syntax only; no SDK typecheck/native"
+}

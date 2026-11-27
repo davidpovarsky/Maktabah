@@ -1,0 +1,8 @@
+/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/owner-attempt-1/OwnerControls.swift:682:117: error: operator can throw but expression is not marked with 'try'
+680 |                 let f = try Fixture(), proof = try f.session.retainOriginalWindowObservation()
+681 |                 record("same_original_window_valid", try proof.validate() === f.window)
+682 |                 record("equal_source_observation_is_not_identity_change", !f.source.observe(f.window, from: f.view) && (try proof.validate()) === f.window)
+    |                                                                                                                     |  `- note: call is to 'rethrows' function, but argument function can throw
+    |                                                                                                                     `- error: operator can throw but expression is not marked with 'try'
+683 |                 f.session.attachWindowSource(f.source)
+684 |                 record("equal_source_attachment_preserves_proof", try proof.validate() === f.window)

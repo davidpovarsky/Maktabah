@@ -1,0 +1,7 @@
+/home/ubuntu/.codex/diagnostics/otzaria-wave3-viewer-parent-controls-20261127/actual-modules-attempt-1/candidate1/source/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift:28:32: error: type 'Bundle' has no member 'module'
+26 |     public func descriptor(for action: String) -> ActionDescriptor? { byID[action] }
+27 |     public static func resource(_ name: String) throws -> Data {
+28 |         guard let url = Bundle.module.url(forResource: name, withExtension: nil) else {
+   |                                `- error: type 'Bundle' has no member 'module'
+29 |             throw ActionContractError.invalid("bundled_contract")
+30 |         }
