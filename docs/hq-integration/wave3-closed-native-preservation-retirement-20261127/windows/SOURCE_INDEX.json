@@ -1,0 +1,104 @@
+[
+  {
+    "bytes": 426,
+    "name": "controller/RETIREMENT_CONTROLLER_INTENT.json",
+    "sha256": "b102c8a07044406daac930a75ad9d4a7e4155915d40ee38f655057c4fd04303d",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\RETIREMENT_CONTROLLER_INTENT.json"
+  },
+  {
+    "bytes": 145,
+    "name": "controller/RETIREMENT_CONTROLLER_PROCESS.json",
+    "sha256": "e4b2eca971b7b54c25cc0bbf50fdff86eb0e394413a915d7336b16f622cfa553",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\RETIREMENT_CONTROLLER_PROCESS.json"
+  },
+  {
+    "bytes": 3444,
+    "name": "controller/RETIREMENT_CONTROLLER_RESULT.json",
+    "sha256": "60d50ce1b2c744b20e43e0439e0aaa4624ac38b1af8df801005a12730df129e2",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\RETIREMENT_CONTROLLER_RESULT.json"
+  },
+  {
+    "bytes": 2897,
+    "name": "controller/RETIREMENT_CONTROLLER.stdout.log",
+    "sha256": "bd3e6676e2d7a1e9b5252d392ab21b29d1306efcf27423acd663cf30d8320b17",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\RETIREMENT_CONTROLLER.stdout.log"
+  },
+  {
+    "bytes": 0,
+    "name": "controller/RETIREMENT_CONTROLLER.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\RETIREMENT_CONTROLLER.stderr.log"
+  },
+  {
+    "bytes": 1725,
+    "name": "bridge/MAC_RETIREMENT_SPAWN_INTENT.json",
+    "sha256": "3491914dff6c69cd47243b4c0431b6f8724147bb8a0af28ed843a4464b842d92",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\MAC_RETIREMENT_SPAWN_INTENT.json"
+  },
+  {
+    "bytes": 147,
+    "name": "bridge/MAC_RETIREMENT_PROCESS.json",
+    "sha256": "31997d344f017a2ebcf601d5275da1c3201e8833c6f5944cd82d17ab2b6012cf",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\MAC_RETIREMENT_PROCESS.json"
+  },
+  {
+    "bytes": 430,
+    "name": "bridge/RETIREMENT_ACK.json",
+    "sha256": "c92b4a9f36ba616523169e0f79e019069074828c87eec164161301a2ead56097",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\RETIREMENT_ACK.json"
+  },
+  {
+    "bytes": 0,
+    "name": "bridge/RETIREMENT_STDERR.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\RETIREMENT_STDERR.log"
+  },
+  {
+    "bytes": 0,
+    "name": "bridge/RETIREMENT_EXTRA_STDOUT.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\RETIREMENT_EXTRA_STDOUT.log"
+  },
+  {
+    "bytes": 265,
+    "name": "bridge/RETIREMENT_PREDELETE.json-oracle-copy.stdout.json",
+    "sha256": "9f1bff36a6f08441bccf037337b39abbc7e645acb746822eae5ba2e904c50939",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\RETIREMENT_PREDELETE.json-oracle-copy.stdout.json"
+  },
+  {
+    "bytes": 262,
+    "name": "bridge/RETIREMENT_RESULT.json-oracle-copy.stdout.json",
+    "sha256": "925f7fbec699a2056b5dca8deb45dff8a0e430f1583dee3d586462ee00dae990",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-20261127\\RETIREMENT_RESULT.json-oracle-copy.stdout.json"
+  },
+  {
+    "bytes": 154,
+    "name": "preservation/SOURCE_PROCESS.json",
+    "sha256": "928a7084026d93f5cd7c8b96e6cda6c1d58a8ff724fac61c0898a9c195b7419f",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr\\SOURCE_PROCESS.json"
+  },
+  {
+    "bytes": 154,
+    "name": "preservation/RECEIVER_PROCESS.json",
+    "sha256": "f03655df4b981ff74f53739a0ef05caecf2f3d682652da4f73deec830f242fe5",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr\\RECEIVER_PROCESS.json"
+  },
+  {
+    "bytes": 700,
+    "name": "preservation/SOURCE_SPAWN_INTENT.json",
+    "sha256": "a071a10c53f63ecb5e4486a7b3204de1596c6dd080ce76a07b38064de9ae1f15",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr\\SOURCE_SPAWN_INTENT.json"
+  },
+  {
+    "bytes": 720,
+    "name": "preservation/RECEIVER_SPAWN_INTENT.json",
+    "sha256": "17a092726e873512eda48d615237f1b37667b7232bc7a066aa2489d55adce01f",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr\\RECEIVER_SPAWN_INTENT.json"
+  },
+  {
+    "bytes": 3338,
+    "name": "preservation/BRIDGE_RESULT.json",
+    "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c",
+    "source_path": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr\\BRIDGE_RESULT.json"
+  }
+]

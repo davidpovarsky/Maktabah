@@ -1,0 +1,127 @@
+{
+  "archive": {
+    "bytes": 1463489048,
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/closed-native-self-contained.tar.gz",
+    "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7"
+  },
+  "complete_preservation_sha256": "fc6acb50b51ece3133921d746cbdb06fc8869e0c541f057e4a1240ffe835f6a7",
+  "entry_argv": [
+    "py",
+    "-3",
+    "C:/Users/DAVID/.codex/artifacts/otzaria-wave3-closed-native-retirement-control-20261127/retire_closed_windows.py",
+    "--execute-root-authorized-seven-roots"
+  ],
+  "exact_roots": [
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 63374283,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-candidate-focused-native.EeUZ35lg",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64487998,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/continued-authority-focused.4m2Xqttt",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64991034,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-narrow-application-toolbar-focus.n1VgwMQf",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64042099,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-phone-and-native-witness.Lj8qFaXi",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64952991,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/exact-standalone-reader-release-native.UperJJ5L",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 65090651,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-reader-publication-note-focus.h1iNTzUP",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 66843630,
+      "mode": 16877,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127",
+      "uid": 501
+    }
+  ],
+  "execution_authorization_still_required": true,
+  "execution_performed": false,
+  "files": [
+    {
+      "bytes": 16341,
+      "local_path": "/workspace/scratch/c1c70cc48453/closed-native-preservation/retire_closed_native.py",
+      "name": "retire_closed_native.py",
+      "sha256": "aea27961c4135686539cb9dbc2253bb8530b20452c899345d7abade61e818818"
+    },
+    {
+      "bytes": 3275,
+      "local_path": "/workspace/scratch/c1c70cc48453/closed-native-preservation/current_closed_archive.py",
+      "name": "current_closed_archive.py",
+      "sha256": "d9a9960c983b0684432ddf9f0b933afa7cd38bbec876baa0cbc4d60fd811c275"
+    },
+    {
+      "bytes": 11699,
+      "local_path": "/workspace/scratch/c1c70cc48453/closed-native-preservation/retire_closed_windows.py",
+      "name": "retire_closed_windows.py",
+      "sha256": "4d588b093f92ae2ffe525d151855b80cd35a93e28177192b3413eb90dad0c626"
+    }
+  ],
+  "floors_bytes": {
+    "mac": 2415919104,
+    "oracle_data": 687865856,
+    "windows": 2415919104
+  },
+  "mac_script_destination": "/Users/m1/builds/otzaria-wave3-closed-native-preservation-20261127.o5ye8las/retire_closed_native.py",
+  "no_app_or_native_runs": true,
+  "no_cache_qualification": true,
+  "no_other_roots_or_archives_removed": true,
+  "oracle_verifier_destination": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/current_closed_archive.py",
+  "private_allocation_observation_not_guaranteed_reclaim": 3012206592,
+  "schema": "otzaria.seven-closed-diagnostics-retirement-proposal/1",
+  "sdk_launch_separate": {
+    "authorization": "Existing one-attempt conditional root authorization unchanged",
+    "fresh_free_minimum_bytes": 15032385536,
+    "known_completed_peak": false,
+    "live_stop_reserve_bytes": 2415919104,
+    "no_launch_in_retirement_scripts": true
+  },
+  "sequence": [
+    "Fresh whole archive SHA and exact receipt/stat bindings on Oracle; no redundant member verification",
+    "Owned Windows bridge pre-spawn ledger + retained Popen creation identity",
+    "Fresh full Mac source content/metadata/pathset/source/protected-sibling/dependency/no-use checks",
+    "Mac fsynced PREDELETE; byte-exact Windows fsync/readback and Oracle file+directory fsync/readback",
+    "Send exact current-proof/PREDELETE SHA ACK only after both off-host copies match",
+    "Repeat full path/stat, exact source/protected boundary/dependency/no-use checks",
+    "Fixed parent fd and seven fixed inode-bound roots with symlink-safe rmtree",
+    "Verify all seven roots absent and all protected source/siblings unchanged; preserve terminal or partial failure receipts on three hosts"
+  ],
+  "signals_sent_by_bridge": [],
+  "utc": "2026-11-27T13:11:16.487892+00:00",
+  "windows_control": "C:/Users/DAVID/.codex/artifacts/otzaria-wave3-closed-native-retirement-control-20261127",
+  "windows_result_directory": "C:/Users/DAVID/.codex/artifacts/otzaria-wave3-closed-native-retirement-20261127"
+}

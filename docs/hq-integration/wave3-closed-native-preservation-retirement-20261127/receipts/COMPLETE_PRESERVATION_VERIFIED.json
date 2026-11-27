@@ -1,0 +1,320 @@
+{
+  "all_original_regular_file_bytes_mapped_to_verified_members": true,
+  "all_other_source_metadata_and_content_reverified_equal": true,
+  "archive": {
+    "bytes": 1463489048,
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/closed-native-self-contained.tar.gz",
+    "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7"
+  },
+  "archive_is_self_contained": true,
+  "archive_stat_at_independent_readback": {
+    "ctime_ns": 1795784234152606291,
+    "device": 2064,
+    "inode": 405690,
+    "mtime_ns": 1795784159496179237,
+    "size": 1463489048
+  },
+  "bounded_controller_reference_probes": [
+    {
+      "exit": 1,
+      "repository": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "scopes": [
+        "Tools/OriginalEditor",
+        "Tools/Hanlin",
+        ".github"
+      ],
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "exit": 1,
+      "repository": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah",
+      "scopes": [
+        "Scripts/CI"
+      ],
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "builds": 0,
+  "current_no_use_receipt": {
+    "lsof_exit": 0,
+    "lsof_stderr": "",
+    "open_files": [],
+    "process_references": [],
+    "utc": "2026-11-27T12:57:34.118617+00:00"
+  },
+  "dependency_records": [],
+  "exact_roots": [
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 63374283,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-candidate-focused-native.EeUZ35lg",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64487998,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/continued-authority-focused.4m2Xqttt",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64991034,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-narrow-application-toolbar-focus.n1VgwMQf",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64042099,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-phone-and-native-witness.Lj8qFaXi",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 64952991,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/exact-standalone-reader-release-native.UperJJ5L",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 65090651,
+      "mode": 16832,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-reader-publication-note-focus.h1iNTzUP",
+      "uid": 501
+    },
+    {
+      "device": 16777232,
+      "gid": 20,
+      "inode": 66843630,
+      "mode": 16877,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127",
+      "uid": 501
+    }
+  ],
+  "external_referrers_exhaustively_excluded": false,
+  "free_observations_are_concurrent_not_attributed_reclaim": {
+    "mac_inventory_after": 10361065472,
+    "mac_inventory_before": 10375442432,
+    "mac_source_reverify_after": 15196110848,
+    "mac_stream_after": 9804910592,
+    "oracle_archive_after": 34748416000,
+    "oracle_archive_before": 36253728768
+  },
+  "full_archive_readback_and_every_member_hash_verified": true,
+  "mac_evidence": "/Users/m1/builds/otzaria-wave3-closed-native-preservation-20261127.o5ye8las",
+  "mac_filesystem_restore_executed": false,
+  "metadata_fields": [
+    "type",
+    "path",
+    "mode",
+    "uid",
+    "gid",
+    "device",
+    "inode",
+    "link_count",
+    "atime_ns",
+    "mtime_ns",
+    "ctime_ns",
+    "birthtime_ns",
+    "flags",
+    "rdev",
+    "hardlink_group",
+    "symlink_target",
+    "ACL",
+    "xattr_names_values_hashes"
+  ],
+  "native_runs": 0,
+  "oracle_evidence": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok",
+  "origin_deletions": 0,
+  "original_access_times_preserved": true,
+  "path_stat_sha256": "5791276b8acfe8440569ebc4644b9139a90a58f629ca03732b1826a0de6fc45d",
+  "physical_archive_members": 6475,
+  "prior_archive_references": 0,
+  "receipts": [
+    {
+      "bytes": 7385,
+      "name": "HEADER.json",
+      "sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee"
+    },
+    {
+      "bytes": 804,
+      "name": "STREAM_RESULT.json",
+      "sha256": "b122ee4117355292d6d4fa385d938488aeccbdf16947fe206462febb62dd6e62"
+    },
+    {
+      "bytes": 3884,
+      "name": "SOURCE_REVERIFIED.json",
+      "sha256": "13fd31b5bde07fd7138ac39d9c7db2c0954b42bec0fc711b83cdf333ce790112"
+    },
+    {
+      "bytes": 3117,
+      "name": "ARCHIVE_VERIFIED.json",
+      "sha256": "50987d6a7daa36458322f755068f6730609ad470309ab2fa6cd4e96fdcf0720e"
+    },
+    {
+      "bytes": 3338,
+      "name": "BRIDGE_RESULT.json",
+      "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c"
+    }
+  ],
+  "regular_content_sha256": "3df7e27f8d8051ff511c6b5f3b99358401bf4b22c0bf8d0ee26209582d666cc5",
+  "required_before_any_separately_authorized_retirement": [
+    "Fresh archive identity/hash binding",
+    "Fresh exact source path/stat/content/metadata equality",
+    "Fresh original source and protected-parent/sibling checks",
+    "Fresh bounded no-use and dependency checks",
+    "Durable off-host PREDELETE receipt SHA acknowledgement",
+    "Exact root-only fd-safe symlink-safe removal"
+  ],
+  "restoration_scope": "Verified every archive payload and complete metadata-to-path mapping; no macOS filesystem restoration was run.",
+  "retirement_authorized_by_this_receipt": false,
+  "schema": "otzaria.closed-native-complete-preservation/1",
+  "sdk_or_app_qualification": false,
+  "source_protected_boundary": {
+    "app_source": {
+      "head": "6935f7fdd0f5e982a8deb44fc438bcfecb2cb8a6",
+      "pbx_sha256": "265e73aa8f225f7a883907677967f369fbc47e21ffe609f51108a17984fa62b4",
+      "tracked_status": " M Maktabah.xcodeproj/project.pbxproj\n M Source/PrivacyInfo.xcprivacy\n"
+    },
+    "original_guard_sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171",
+    "protected": [
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 61610714,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 61612127,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 68264285,
+        "mode": 16877,
+        "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 68274394,
+        "mode": 16877,
+        "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Dependencies/Middleware",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 69374540,
+        "mode": 16877,
+        "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Dependencies/Hanlin",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 54396696,
+        "mode": 16877,
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source",
+        "uid": 501
+      }
+    ],
+    "roots": [
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 63374283,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-candidate-focused-native.EeUZ35lg",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 64487998,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/continued-authority-focused.4m2Xqttt",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 64991034,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-narrow-application-toolbar-focus.n1VgwMQf",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 64042099,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-phone-and-native-witness.Lj8qFaXi",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 64952991,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/exact-standalone-reader-release-native.UperJJ5L",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 65090651,
+        "mode": 16832,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-reader-publication-note-focus.h1iNTzUP",
+        "uid": 501
+      },
+      {
+        "device": 16777232,
+        "gid": 20,
+        "inode": 66843630,
+        "mode": 16877,
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127",
+        "uid": 501
+      }
+    ],
+    "sdk_head": "d6090c03b9ac4e5760941e34f4c04478db4ae59f"
+  },
+  "source_read_induced_access_time_changes": 25061,
+  "source_reverification_utc": "2026-11-27T12:57:33.168449+00:00",
+  "source_summary": {
+    "acl_entries": 0,
+    "directories": 2591,
+    "entries": 37238,
+    "files": 34647,
+    "hardlinked_files": 0,
+    "kernel_private_bytes": 3012206592,
+    "logical_bytes": 6249572185,
+    "symlinks": 0,
+    "xattr_entries": 12
+  },
+  "status": "COMPLETE_LOSSLESS_ARCHIVE_AND_SOURCE_MAPPING_VERIFIED_ORIGINS_RETAINED",
+  "unique_payload_bytes": 2764983196,
+  "unique_payloads": 6467,
+  "utc": "2026-11-27T13:03:32.277265+00:00",
+  "windows_bridge_evidence": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-bridge-20261127.msgt7dxr"
+}

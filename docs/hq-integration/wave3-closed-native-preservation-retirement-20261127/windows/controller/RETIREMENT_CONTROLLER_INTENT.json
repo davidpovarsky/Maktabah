@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\DAVID\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-closed-native-retirement-control-20261127\\retire_closed_windows.py",
+    "--execute-root-authorized-seven-roots"
+  ],
+  "parent_pid": 38468,
+  "script_sha256": "4d588b093f92ae2ffe525d151855b80cd35a93e28177192b3413eb90dad0c626",
+  "utc": "2026-11-27T13:13:48.621894+00:00"
+}

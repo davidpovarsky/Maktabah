@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "scaleway-mac",
+    "/usr/bin/python3 -B /Users/m1/builds/otzaria-wave3-closed-native-control-20261127.431ix46_/closed_native.py stream --evidence /Users/m1/builds/otzaria-wave3-closed-native-preservation-20261127.o5ye8las --header-sha256 d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee"
+  ],
+  "binary_stdout_connected_to_owned_receiver": true,
+  "header_sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee",
+  "parent_pid": 16256,
+  "script_sha256": "08db63301219a38ad9175702140ded020278c737216461890067f99f1dd3177c",
+  "utc": "2026-11-27T12:50:46.950360+00:00"
+}

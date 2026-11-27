@@ -1,0 +1,611 @@
+{
+  "deletions": 0,
+  "lsof_exit": 0,
+  "open_files": [],
+  "roots": [
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-candidate-focused-native.EeUZ35lg",
+      "product_reference_files": [
+        {
+          "directory": "verified-847d-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah.app",
+            "preserved.sha256"
+          ]
+        },
+        {
+          "directory": "exact-phone-routing-failure-artifacts.LxiRcvZB",
+          "top_names": [
+            "0747E556-CF42-4506-9A3E-76B4F584974B.mp4",
+            "0B274F75-B39A-4341-BD03-50E87A84F1B7.png",
+            "0CF71786-9993-44ED-BEA0-3AA71FE4C58E.txt",
+            "17F5A3D4-1116-4057-AB85-9B21D78DD131.txt",
+            "1DFC1ACF-B6A5-4BBE-9045-11CC3F7BACD1.json",
+            "258B5272-5130-4C2F-8C4F-D0F8CBBAAA97.txt",
+            "28D74B1A-B24C-44A9-A962-9A835B14FFDB.txt",
+            "2B4B1060-3FA8-4F81-9821-05BD6E1C648E.txt",
+            "2D4B4AAC-1F34-4F69-A24B-5FDDC4990B6A.txt",
+            "3593490D-6DBB-4017-9EB1-0A55202A9EB5.txt",
+            "3B645326-672C-4AA3-8C6D-E51276604669.txt",
+            "3C370405-6E93-4E70-B3F9-BD8488170027",
+            "4116EF34-548C-4402-86EF-6979BD3B9F54",
+            "43345BBB-5918-4779-A360-688B793DD53D.txt",
+            "433635D1-B3E7-4B60-8834-E945309EC5C7.txt",
+            "462477EA-C7D5-4050-8FD3-AB48CB213952.json",
+            "53AB1652-13C2-4F14-82CD-3900183B7578.txt",
+            "5719B213-2ABE-44D6-B81C-452F4F3CA8F3.txt",
+            "5A58DAD9-3BBA-4456-A295-814BFA727306.mp4",
+            "5B9599B3-3B16-44AB-9110-9732C21148E9.txt",
+            "5EF27588-C8E4-4DAF-95E2-5FF46B44851A.txt",
+            "606E361B-380D-494C-A371-BF6F5F0142B5.txt",
+            "62BA8F35-82C2-4ACA-987D-47B2B9E64B1D.txt",
+            "712D2E01-ADF2-4B83-81E7-FB8C896211CF.txt",
+            "73350692-CB6F-43B5-BCB1-6497D3494EE5.txt",
+            "7DE75329-0B4A-44D6-A037-94350BC4C2B7.txt",
+            "7EE4B1EF-E5CA-4C7C-8EF7-455088E512E6.txt",
+            "858826E2-31C5-48D8-B8F3-3278C54725E2.txt",
+            "95C648B4-4E30-4E14-83C1-67F8733815DB.txt",
+            "9B4E920D-CCC5-4B11-AC16-310EFC2CF52F.png",
+            "A2165F3B-A184-4DC3-A4C5-C043729CBF31.txt",
+            "A526E295-8540-4744-A2DD-911782F3B406",
+            "A8F1D92F-7178-4C57-B7C8-698935B2DAE6.txt",
+            "B876B5B6-7B5D-4629-B03E-C2A7ED2FFC9D.txt",
+            "BB41AB00-994D-46E3-B0BE-DE2E84FF042D.txt",
+            "C0BCF6C7-A215-4455-A2C9-B0E2797FC2D7",
+            "C5AC8A30-D4AE-4A61-A90F-EF78DA6F6ACA.txt",
+            "C6CB5552-B09C-40DB-AAD6-7D73231BEA73",
+            "C8B24848-85A3-4A6B-9C47-C9995CBA069F",
+            "E010F688-C92F-443A-822D-8F1F70D80D70.txt"
+          ]
+        }
+      ],
+      "provenance_json": [
+        {
+          "bytes": 46972,
+          "keys": [
+            "appSHA",
+            "testSHA",
+            "baseline",
+            "configuration",
+            "dataProfile",
+            "devices",
+            "fullMatrixAcceptance",
+            "diagnosticCases",
+            "simulatorSDKVersion",
+            "runtimePreference",
+            "selectedRuntimeIdentifier",
+            "releaseManifestSHA256"
+          ],
+          "name": "faithful-ipad-matrix.json",
+          "sha256": "84ea65d8cc76815985e10fbb1cad0537bb7feac15e72fce903edf2a8d361352b",
+          "small_receipt": null
+        }
+      ],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/continued-authority-focused.4m2Xqttt",
+      "product_reference_files": [
+        {
+          "directory": "exact-0855-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun",
+            "Maktabah.app",
+            "application.sha256"
+          ]
+        }
+      ],
+      "provenance_json": [],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "source.txt",
+          "sha256": "1da61e7217180da755b88ae9ea6c4ec4532cead60b54b4f4a394f07d8a5fa554",
+          "text": "0855c68849613b88e7abd3b6870caa7d3e717787\n"
+        },
+        {
+          "bytes": 532,
+          "name": "application.sha256",
+          "sha256": "673dc4f70029d86ba78d7bc3f1bc9d83aac86cd616221d6dee2e05c88d9a58a0",
+          "text": "1a541c69faa06a78b6bed9f540f6c115624aba80136b2ab99b90cbc5a12407c1  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\n468f16642e4bdb98fce6eed7a0a91a9afdbc4ec12b5e43a3ef547aaf0dcf54cb  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-narrow-application-toolbar-focus.n1VgwMQf",
+      "product_reference_files": [
+        {
+          "directory": "exact-native-toolbar-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun",
+            "Maktabah.app",
+            "application.sha256"
+          ]
+        }
+      ],
+      "provenance_json": [],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "application-source.txt",
+          "sha256": "bdfc612bde4e1ad9ed9884f42279de4d8f0128ec42553fdc968c9e1ffffb6cb7",
+          "text": "7f7aeb7401ee00252a551c62dfd318edd5e6065e\n"
+        },
+        {
+          "bytes": 41,
+          "name": "test-checkout.txt",
+          "sha256": "0bb5938b434a54dc2155fbc285923274984e2d5c808eb5ba317972d07402cdec",
+          "text": "a98107acde6499a5e151023e6badf506fab9b4e8\n"
+        },
+        {
+          "bytes": 532,
+          "name": "application.sha256",
+          "sha256": "d47cb82bd3eb7f37830343fbd17bbc15db15466e2a89ce1b661823503fe1680b",
+          "text": "652e36c503efdcdb9705b71efb12b75343bb4a36f5c45bc34da9e9afa3e894ae  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\nae540cb9e22500f82c03ef26feae415fb6f5f49c29625eaf671e010a9fac6cb3  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-phone-and-native-witness.Lj8qFaXi",
+      "product_reference_files": [
+        {
+          "directory": "exact-6e80-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun",
+            "Maktabah.app",
+            "application.sha256"
+          ]
+        }
+      ],
+      "provenance_json": [
+        {
+          "bytes": 46729,
+          "keys": [
+            "appSHA",
+            "testSHA",
+            "baseline",
+            "configuration",
+            "dataProfile",
+            "devices",
+            "fullMatrixAcceptance",
+            "diagnosticCases",
+            "simulatorSDKVersion",
+            "runtimePreference",
+            "selectedRuntimeIdentifier",
+            "releaseManifestSHA256"
+          ],
+          "name": "faithful-ipad-matrix.json",
+          "sha256": "83c00f4abed5dbee79a7dabdb1bdccfe09abe2c74fd9ef38500968c7ebb35416",
+          "small_receipt": null
+        }
+      ],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "source.txt",
+          "sha256": "aa7c133fae0629368a16e82ea82f54520766384e16e863fe4e795337502791c2",
+          "text": "6e80dafb4087b8727554d03410c3a93fd78bb13e\n"
+        },
+        {
+          "bytes": 298,
+          "name": "application.sha256",
+          "sha256": "82564f6fffb6c28ebbf5bab3a31657be3fa42895fe84fd7ebf66f2b328c302cb",
+          "text": "9896b4428cbf1ea39ce628549b35e7858e9affe39cc10aa4f6d82817f7e0c5bd  build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\nd6b4d5a9c06dab925d76bdeef91689abf2428a83397605283c77f1d95841b4b1  build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/exact-standalone-reader-release-native.UperJJ5L",
+      "product_reference_files": [
+        {
+          "directory": "exact-7f7-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun",
+            "Maktabah.app",
+            "application.sha256"
+          ]
+        }
+      ],
+      "provenance_json": [],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "source.txt",
+          "sha256": "bdfc612bde4e1ad9ed9884f42279de4d8f0128ec42553fdc968c9e1ffffb6cb7",
+          "text": "7f7aeb7401ee00252a551c62dfd318edd5e6065e\n"
+        },
+        {
+          "bytes": 532,
+          "name": "application.sha256",
+          "sha256": "e64cf615a60f8abd2ae69381bc42d4eae44e8973bb874e3dd3c2961fe965efba",
+          "text": "691e21665c5129ec35ca3db13118ac97a3d7c85f8bbdb21cb63b52224dd5f215  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\n6282132cba2aab600b39fe2e6a3fde0475683897dc7db9d739cc302e58034268  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/actual-reader-publication-note-focus.h1iNTzUP",
+      "product_reference_files": [
+        {
+          "directory": "exact-6c35-products",
+          "top_names": [
+            "Maktabah-iOSUITests-Runner.app",
+            "Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun",
+            "Maktabah.app",
+            "application.sha256"
+          ]
+        }
+      ],
+      "provenance_json": [
+        {
+          "bytes": 1025,
+          "keys": [
+            "devicesAndConfigurations",
+            "environmentDescription",
+            "expectedFailures",
+            "failedTests",
+            "finishTime",
+            "passedTests",
+            "result",
+            "runtimeWarnings",
+            "skippedTests",
+            "startTime",
+            "statistics",
+            "testFailures",
+            "title",
+            "topInsights",
+            "totalTestCount"
+          ],
+          "name": "actual-apple-ipad-summary.json",
+          "sha256": "3419a1999797259be9f3009f6a6396a4634bf868bd5503d52f0820485aa1ef8a",
+          "small_receipt": {
+            "devicesAndConfigurations": [
+              {
+                "device": {
+                  "architecture": "arm64",
+                  "deviceId": "8C956B03-A007-4CD6-88E1-C6AC8C456CE1",
+                  "deviceName": "Faithful 11-inch 52b55d4c",
+                  "modelName": "iPad Pro 11-inch (M5)",
+                  "osBuildNumber": "24A434",
+                  "osVersion": "27.0",
+                  "platform": "iOS Simulator"
+                },
+                "expectedFailures": 0,
+                "failedTests": 0,
+                "passedTests": 1,
+                "skippedTests": 0,
+                "testPlanConfiguration": {
+                  "configurationId": "1",
+                  "configurationName": "Test Scheme Action"
+                }
+              }
+            ],
+            "environmentDescription": "Maktabah-iOS · Built with macOS 27.0",
+            "expectedFailures": 0,
+            "failedTests": 0,
+            "finishTime": 1795723599.609,
+            "passedTests": 1,
+            "result": "Passed",
+            "runtimeWarnings": [],
+            "skippedTests": 0,
+            "startTime": 1795723529.687,
+            "statistics": [],
+            "testFailures": [],
+            "title": "Test - Maktabah-iOS",
+            "topInsights": [],
+            "totalTestCount": 1
+          }
+        }
+      ],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "source.txt",
+          "sha256": "33815f143d385ebb989412017e869501842c12842a0ee666cb845ebefe24caa1",
+          "text": "6c35242598cf878f3e37f6f7d2fd58dd2a831459\n"
+        },
+        {
+          "bytes": 532,
+          "name": "application.sha256",
+          "sha256": "1a7be2631ad2fe38df5876871b7a3e1e34c41d3116b7ea7640dace0e6bba3427",
+          "text": "de53ec2ec066989919d418e2278f8cec94d5f0ab5da2776a7c4c84abfdee7a52  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\n19a3994e98c52c0f088e6738f5c4a7d2147df0db21abb9147f85658fb5c85873  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib\n"
+        }
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127",
+      "product_reference_files": [],
+      "provenance_json": [
+        {
+          "bytes": 4299,
+          "keys": [
+            "build_exit",
+            "checkout_sha",
+            "native_exit",
+            "native_summary",
+            "product_bindings",
+            "raw_artifacts",
+            "raw_manifest_sha256",
+            "recorded_utc",
+            "scope",
+            "sdk_preparation_sha256",
+            "source_trees"
+          ],
+          "name": "first-native-diagnostic-receipt.json",
+          "sha256": "a12c35e834cb09e4a66365ff08f3467db21bfd84c31d33b976968d2bd9b5c079",
+          "small_receipt": {
+            "build_exit": 0,
+            "checkout_sha": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+            "native_exit": 1,
+            "native_summary": {
+              "devicesAndConfigurations": [
+                {
+                  "device": {
+                    "architecture": "arm64",
+                    "deviceId": "F4DF9BAE-3941-4974-8AAA-67F84B00FCF1",
+                    "deviceName": "Faithful 11-inch 214395be",
+                    "modelName": "iPad Pro 11-inch (M5)",
+                    "osBuildNumber": "24A434",
+                    "osVersion": "27.0",
+                    "platform": "iOS Simulator"
+                  },
+                  "expectedFailures": 0,
+                  "failedTests": 3,
+                  "passedTests": 0,
+                  "skippedTests": 0,
+                  "testPlanConfiguration": {
+                    "configurationId": "1",
+                    "configurationName": "Test Scheme Action"
+                  }
+                }
+              ],
+              "environmentDescription": "Maktabah-iOS · Built with macOS 27.0",
+              "expectedFailures": 0,
+              "failedTests": 3,
+              "finishTime": 1795735605.524,
+              "passedTests": 0,
+              "result": "Failed",
+              "runtimeWarnings": [],
+              "skippedTests": 0,
+              "startTime": 1795735430.985,
+              "statistics": [],
+              "testFailures": [
+                {
+                  "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\") - Root opening needs one canonical actual visible receipt",
+                  "targetName": "Maktabah-iOSUITests",
+                  "testIdentifier": 1,
+                  "testIdentifierString": "NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt()",
+                  "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+                  "testName": "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt()"
+                },
+                {
+                  "failureText": "XCTUnwrap failed: expected non-nil value of type \"String\" - Job-local pinned HID server is mandatory for hardware keyboard acceptance",
+                  "targetName": "Maktabah-iOSUITests",
+                  "testIdentifier": 2,
+                  "testIdentifierString": "R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector()",
+                  "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapNativeWindowResizePaletteAndInspector",
+                  "testName": "testNormalBootstrapNativeWindowResizePaletteAndInspector()"
+                },
+                {
+                  "failureText": "XCTAssertGreaterThan failed: (\"375.0\") is not greater than (\"486.0\")",
+                  "targetName": "Maktabah-iOSUITests",
+                  "testIdentifier": 3,
+                  "testIdentifierString": "R27NativePadTests/testNormalBootstrapPaletteHIDComparison()",
+                  "testIdentifierURL": "test://com.apple.xcode/Maktabah/Maktabah-iOSUITests/R27NativePadTests/testNormalBootstrapPaletteHIDComparison",
+                  "testName": "testNormalBootstrapPaletteHIDComparison()"
+                }
+              ],
+              "title": "Test - Maktabah-iOS",
+              "topInsights": [],
+              "totalTestCount": 3
+            },
+            "product_bindings": {
+              "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah": {
+                "bytes": 40512,
+                "sha256": "6256af9051873bc60c87f58d59fb46c851d89dfaef59aa8b0d7c80a3b71f54ae"
+              },
+              "build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah.debug.dylib": {
+                "bytes": 162813840,
+                "sha256": "a30dbf05f37dd8f6bae54cedbf51e984e0ffb47cdeb36434de80e63a7b79020c"
+              },
+              "build/DerivedData/Build/Products/Maktabah-iOS_iphonesimulator27.0-arm64.xctestrun": {
+                "bytes": 4992,
+                "sha256": "e8074d3ac6336b468191ea466f66df6801df09f3c04dfeba3a819d27a0389277"
+              }
+            },
+            "raw_artifacts": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-native-0db0ab78-20261127/first-native-raw",
+            "raw_manifest_sha256": "72579a299402ea3fc2348bfa601358322123df32cf99deb470714c870d6ea5f3",
+            "recorded_utc": "2026-11-26T23:30:07.964769+00:00",
+            "scope": "RAW_DEBUG_DIAGNOSTIC_NOT_FULL_NATIVE_OR_PRODUCTION_ACCEPTANCE",
+            "sdk_preparation_sha256": "ed682766e1d64bf8dd07ffa50f994f30bd874621d5fd07e74e9ab384b0403ce5",
+            "source_trees": {
+              "Maktabah.xcodeproj": "0d7289dbceb16647270f19f9ef492d455b73f816",
+              "Source": "5be8b3a43a7cb0c7868989abbe845ef7d8f479aa",
+              "Vendor": "206715dd2022ff73184860bec183578c8799d812"
+            }
+          }
+        },
+        {
+          "bytes": 724,
+          "keys": [
+            "cold_scope_link_dependencies",
+            "elapsed_seconds",
+            "entries_checked",
+            "links_checked",
+            "scopes",
+            "skip_reason",
+            "skipped"
+          ],
+          "name": "cold-scope-dependency-scan.json",
+          "sha256": "99bdb881667c4dd1ce1027c3bbb200c8bce4684d3f781df0636c642e84d74ed2",
+          "small_receipt": {
+            "cold_scope_link_dependencies": [],
+            "elapsed_seconds": 7.915145334000001,
+            "entries_checked": 28109,
+            "links_checked": 7122,
+            "scopes": [
+              "build/otzaria-original-sdk-debug-75a98ba",
+              "build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG",
+              "build/SDK-75a98ba-original-device-release-with-host-provider-abi.6FwLl5bc",
+              "build/DerivedData/Build/Products",
+              "Vendor",
+              "Pods"
+            ],
+            "skip_reason": "node_modules source tree not relocation candidate; known root React symlinks separately reported",
+            "skipped": [
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/Vendor/SefariaMobile/Upstream/node_modules"
+            ]
+          }
+        },
+        {
+          "bytes": 1679,
+          "keys": [
+            "source_sha",
+            "candidate_basenames",
+            "scanned_roots",
+            "excluded_directory_names",
+            "counts",
+            "symlink_dependencies",
+            "metadata_reference_candidates",
+            "scope"
+          ],
+          "name": "cold-sdk-stage-dependency-scan.json",
+          "sha256": "9099df797d43cf498af63ab40506271cef10886bbda20b68c07729b3a863af99",
+          "small_receipt": {
+            "candidate_basenames": [
+              "exact-three-sdk-transport-verification.5DfXvIjL",
+              "verified-sdk-apfs-stage.rMF7ypeG"
+            ],
+            "counts": {
+              "entries": 47752,
+              "json_or_text_metadata": 3275,
+              "symlinks": 7148
+            },
+            "excluded_directory_names": [
+              "node_modules"
+            ],
+            "metadata_reference_candidates": [],
+            "scanned_roots": [
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/otzaria-original-sdk-debug-75a98ba",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/SDK-75a98ba-original-release-with-host-provider-abi.zEyhOojG",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/SDK-75a98ba-original-device-release-with-host-provider-abi.6FwLl5bc",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/SourcePackages",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/Pods",
+              "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/Vendor"
+            ],
+            "scope": "Read-only references; no files removed or moved. Metadata candidates require semantic dependency classification.",
+            "source_sha": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56",
+            "symlink_dependencies": []
+          }
+        }
+      ],
+      "source_and_exit_files": [
+        {
+          "bytes": 2,
+          "name": "native.exit",
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "text": "1\n"
+        },
+        {
+          "bytes": 3,
+          "name": "build.exit",
+          "sha256": "979b894f2d91bf199766571d58024f020d1a44a417da5f48e1fa1cdf554a14f5",
+          "text": "65\n"
+        },
+        {
+          "bytes": 2,
+          "name": "build2.exit",
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "text": "0\n"
+        },
+        {
+          "bytes": 41,
+          "name": "candidate.sha",
+          "sha256": "5fbaaebe65cfe346405a515b46ae1c16e471a2dc1d00a16a6e6bb871f9029a10",
+          "text": "0db0ab78cfde4845bfe3a7e2621ca31d630acd56\n"
+        },
+        {
+          "bytes": 260,
+          "name": "application.sha256",
+          "sha256": "b8cd157ca23b5c6a1315affd0d862a28f60b17b54700bc8c101cc8cadc54ee36",
+          "text": "6256af9051873bc60c87f58d59fb46c851d89dfaef59aa8b0d7c80a3b71f54ae  /Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/Maktabah/build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app/Maktabah\n"
+        }
+      ]
+    }
+  ],
+  "source_mutations": 0,
+  "utc": "2026-11-27T12:38:38.938767+00:00",
+  "writes": 0
+}

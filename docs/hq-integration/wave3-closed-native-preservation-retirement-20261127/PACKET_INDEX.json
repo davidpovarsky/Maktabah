@@ -1,0 +1,286 @@
+{
+  "files": [
+    {
+      "bytes": 2693,
+      "path": "PLAN.json",
+      "sha256": "a7020841dad500e79cbda84f1ee85b7eb88225d9153c70d882266c801d97a8cc"
+    },
+    {
+      "bytes": 27048,
+      "path": "PROVENANCE_READONLY.json",
+      "sha256": "3c200d7b6ee48b3c75dcc4388ef5a686fd2928fa0dda2ac6ffb3edee19f94d74"
+    },
+    {
+      "bytes": 9802,
+      "path": "README.md",
+      "sha256": "cc63ea22f26ba8b8dc1d6a2a643ae61acdb3dfd099fa460bc33fa3a99982fc9b"
+    },
+    {
+      "bytes": 5560,
+      "path": "RETIREMENT_PROPOSAL.json",
+      "sha256": "7a7b34a870cbdd6f864609c681f68ec3733696f861882102a76b7b188ed9c5f8"
+    },
+    {
+      "bytes": 1086,
+      "encoding": "lossless-gzip",
+      "path": "raw/cutover-publication/PUBLICATION_ATTEMPT_1.json.gz",
+      "raw_bytes": 5056,
+      "raw_sha256": "c9ba656202a6c3246f76108b1b8e2afe5758a3fe068e475c32ce37983f36a350",
+      "sha256": "b74a35a80c50ea31dedbbb9d1b9bd213d187b08f5c6ab4e706cb29afc8be837b"
+    },
+    {
+      "bytes": 584,
+      "encoding": "lossless-gzip",
+      "path": "raw/cutover-publication/PUBLICATION_ATTEMPT_2.json.gz",
+      "raw_bytes": 1085,
+      "raw_sha256": "a4368130226100c8e4fb4709aae685c1822fa759a4adabe1a80f15736b1a9697",
+      "sha256": "b23ac1fdfa59067758f4d49e320f8d7dca5320d999b872512165fd6812e3934b"
+    },
+    {
+      "bytes": 3456,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/bridge_closed_native.py.gz",
+      "raw_bytes": 10588,
+      "raw_sha256": "21a1d551febfe97690f74ce69d868975c97d869dc3e6f4041b3547a9484cf669",
+      "sha256": "2bdfb9db93dae9ee7c22e1a1d0e238a62d48a682d655a508d4bfd44ccea73d6a"
+    },
+    {
+      "bytes": 6561,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/closed_native.py.gz",
+      "raw_bytes": 21250,
+      "raw_sha256": "08db63301219a38ad9175702140ded020278c737216461890067f99f1dd3177c",
+      "sha256": "5539db1adb84c41a12613939eeeff19c3bc32159eabcc33e9a9516b1a51e2e70"
+    },
+    {
+      "bytes": 1510,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/current_closed_archive.py.gz",
+      "raw_bytes": 3275,
+      "raw_sha256": "d9a9960c983b0684432ddf9f0b933afa7cd38bbec876baa0cbc4d60fd811c275",
+      "sha256": "5797c4c03abe25011e58ae0c229ffc5aa461f72319fa257a8840eeb2a22ff178"
+    },
+    {
+      "bytes": 6362,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/metadata_helper.py.gz",
+      "raw_bytes": 20899,
+      "raw_sha256": "f07264ccf70a75f9b74566d24f65cfdcd6e832e5f3b09231cb6311afae06749e",
+      "sha256": "880e7f16b1f2de6422e962635f04b932fbeb989ac17846709acd88e7fa1df2de"
+    },
+    {
+      "bytes": 3948,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/receive_closed_native.py.gz",
+      "raw_bytes": 11920,
+      "raw_sha256": "132ff06ef8341d689c54c4d0d594e4fbf02ddb05307358cab39ecb68644df9bf",
+      "sha256": "db94c4f8b1488deeb4613b82d5b383280d0e40de3aeb506463fa74ab6b7fd692"
+    },
+    {
+      "bytes": 5438,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/retire_closed_native.py.gz",
+      "raw_bytes": 16341,
+      "raw_sha256": "aea27961c4135686539cb9dbc2253bb8530b20452c899345d7abade61e818818",
+      "sha256": "72ce0e425bf38ecea54787502bb19df75125e8b81cb9d946c5b161103aab1fc6"
+    },
+    {
+      "bytes": 4354,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/retire_closed_windows.py.gz",
+      "raw_bytes": 11699,
+      "raw_sha256": "4d588b093f92ae2ffe525d151855b80cd35a93e28177192b3413eb90dad0c626",
+      "sha256": "17e9aca84576397cd8c7c787698b20a9408cd38833b4048e0e96a160be0fb07e"
+    },
+    {
+      "bytes": 2382,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/seal_complete.py.gz",
+      "raw_bytes": 6453,
+      "raw_sha256": "53e4f72631f0a59e133c55dc9d2e7fd8979e761c8b1a391af91e853ebe5af7f3",
+      "sha256": "ec586e1bdf76aa6f8f9b0929e82d0061883261c893436b4439ae68b74de75873"
+    },
+    {
+      "bytes": 1464,
+      "encoding": "lossless-gzip",
+      "path": "raw/scripts/seal_git_packet.py.gz",
+      "raw_bytes": 3404,
+      "raw_sha256": "79aed2a582c33689804ded3b7b555c7d597a67726e5cbf0521c2abaab7b6fc0b",
+      "sha256": "e313bee2d35cb63fec0fbb8c2ae4a2f0db9e0b0817bd8067e5c7970ba6c83675"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/windows/bridge/RETIREMENT_EXTRA_STDOUT.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/windows/bridge/RETIREMENT_STDERR.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/windows/controller/RETIREMENT_CONTROLLER.stderr.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "bytes": 922,
+      "encoding": "lossless-gzip",
+      "path": "raw/windows/controller/RETIREMENT_CONTROLLER.stdout.log.gz",
+      "raw_bytes": 2897,
+      "raw_sha256": "bd3e6676e2d7a1e9b5252d392ab21b29d1306efcf27423acd663cf30d8320b17",
+      "sha256": "eaab71b3d00f0f13a090f8595566bcc1279544712d1e0de52f8e071a2e664941"
+    },
+    {
+      "bytes": 3117,
+      "path": "receipts/ARCHIVE_VERIFIED.json",
+      "sha256": "50987d6a7daa36458322f755068f6730609ad470309ab2fa6cd4e96fdcf0720e"
+    },
+    {
+      "bytes": 240,
+      "path": "receipts/ASANA_MILESTONE.json",
+      "sha256": "8554c9aa91d583addb52115d21ca97b60b806a9cc8bd95a02c1151dbe97e6a0a"
+    },
+    {
+      "bytes": 3338,
+      "path": "receipts/BRIDGE_RESULT.json",
+      "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c"
+    },
+    {
+      "bytes": 10994,
+      "path": "receipts/COMPLETE_PRESERVATION_VERIFIED.json",
+      "sha256": "fc6acb50b51ece3133921d746cbdb06fc8869e0c541f057e4a1240ffe835f6a7"
+    },
+    {
+      "bytes": 7385,
+      "path": "receipts/HEADER.json",
+      "sha256": "d6b5e2a0d8a403248b7919d4d7fd283df957f2b3524f5239a836f72f364856ee"
+    },
+    {
+      "bytes": 17112,
+      "path": "receipts/MEMORY_AND_BOOTED_SIMULATORS_READONLY.json",
+      "sha256": "58e9844e28fe8b9ce3bb97da4ab4fd8edf7a505e44654715e245bb9217c1028a"
+    },
+    {
+      "bytes": 7580,
+      "path": "receipts/NARROW_TWO_SCOPES_READONLY.json",
+      "sha256": "ac8da7721b91ac5a401d5b5126c50b4a48755517359041519a396ca22818aae5"
+    },
+    {
+      "bytes": 7025,
+      "path": "receipts/RETAINED_GOLDEN_SIMULATOR_BOUNDARY.json",
+      "sha256": "d62a60f720df8133a3bf426999ba67aa90ead5f84963341e0126f4dfcf61f2a7"
+    },
+    {
+      "bytes": 2723,
+      "path": "receipts/RETIREMENT_CURRENT_BINDINGS.json",
+      "sha256": "887b3a7042e6db9ee64d7695074fc54b8c85a1cb55f9570db3fc76c61e53282e"
+    },
+    {
+      "bytes": 3654,
+      "path": "receipts/RETIREMENT_EXECUTION_NOTIFICATION.json",
+      "sha256": "5571a8c286cbc83218a2b8b4e3b9ff8aece2d7838447e474b1ec0923d331bc33"
+    },
+    {
+      "bytes": 14007,
+      "path": "receipts/RETIREMENT_PREDELETE.json",
+      "sha256": "9be16770ad0c790864df3e1018e26446f618caed41c251e6a734bd7336ea351e"
+    },
+    {
+      "bytes": 22572,
+      "path": "receipts/RETIREMENT_RESULT.json",
+      "sha256": "d3f7a4abb77d6a08b7c2bde626e2a05a61ab92c1b2c3f3fd4ba3619eaf669ad5"
+    },
+    {
+      "bytes": 3884,
+      "path": "receipts/SOURCE_REVERIFIED.json",
+      "sha256": "13fd31b5bde07fd7138ac39d9c7db2c0954b42bec0fc711b83cdf333ce790112"
+    },
+    {
+      "bytes": 804,
+      "path": "receipts/STREAM_RESULT.json",
+      "sha256": "b122ee4117355292d6d4fa385d938488aeccbdf16947fe206462febb62dd6e62"
+    },
+    {
+      "bytes": 5182,
+      "path": "windows/SOURCE_INDEX.json",
+      "sha256": "51336b057ae4c1786803c29879bcffd452a534bfba5e93110b626bba7f8d1a16"
+    },
+    {
+      "bytes": 147,
+      "path": "windows/bridge/MAC_RETIREMENT_PROCESS.json",
+      "sha256": "31997d344f017a2ebcf601d5275da1c3201e8833c6f5944cd82d17ab2b6012cf"
+    },
+    {
+      "bytes": 1725,
+      "path": "windows/bridge/MAC_RETIREMENT_SPAWN_INTENT.json",
+      "sha256": "3491914dff6c69cd47243b4c0431b6f8724147bb8a0af28ed843a4464b842d92"
+    },
+    {
+      "bytes": 430,
+      "path": "windows/bridge/RETIREMENT_ACK.json",
+      "sha256": "c92b4a9f36ba616523169e0f79e019069074828c87eec164161301a2ead56097"
+    },
+    {
+      "bytes": 265,
+      "path": "windows/bridge/RETIREMENT_PREDELETE.json-oracle-copy.stdout.json",
+      "sha256": "9f1bff36a6f08441bccf037337b39abbc7e645acb746822eae5ba2e904c50939"
+    },
+    {
+      "bytes": 262,
+      "path": "windows/bridge/RETIREMENT_RESULT.json-oracle-copy.stdout.json",
+      "sha256": "925f7fbec699a2056b5dca8deb45dff8a0e430f1583dee3d586462ee00dae990"
+    },
+    {
+      "bytes": 426,
+      "path": "windows/controller/RETIREMENT_CONTROLLER_INTENT.json",
+      "sha256": "b102c8a07044406daac930a75ad9d4a7e4155915d40ee38f655057c4fd04303d"
+    },
+    {
+      "bytes": 145,
+      "path": "windows/controller/RETIREMENT_CONTROLLER_PROCESS.json",
+      "sha256": "e4b2eca971b7b54c25cc0bbf50fdff86eb0e394413a915d7336b16f622cfa553"
+    },
+    {
+      "bytes": 3444,
+      "path": "windows/controller/RETIREMENT_CONTROLLER_RESULT.json",
+      "sha256": "60d50ce1b2c744b20e43e0439e0aaa4624ac38b1af8df801005a12730df129e2"
+    },
+    {
+      "bytes": 3338,
+      "path": "windows/preservation/BRIDGE_RESULT.json",
+      "sha256": "f71bf7294bdf7b684f85abec02f35734b21068bb8412ac8dbcc6a4ae2c1ec73c"
+    },
+    {
+      "bytes": 154,
+      "path": "windows/preservation/RECEIVER_PROCESS.json",
+      "sha256": "f03655df4b981ff74f53739a0ef05caecf2f3d682652da4f73deec830f242fe5"
+    },
+    {
+      "bytes": 720,
+      "path": "windows/preservation/RECEIVER_SPAWN_INTENT.json",
+      "sha256": "17a092726e873512eda48d615237f1b37667b7232bc7a066aa2489d55adce01f"
+    },
+    {
+      "bytes": 154,
+      "path": "windows/preservation/SOURCE_PROCESS.json",
+      "sha256": "928a7084026d93f5cd7c8b96e6cda6c1d58a8ff724fac61c0898a9c195b7419f"
+    },
+    {
+      "bytes": 700,
+      "path": "windows/preservation/SOURCE_SPAWN_INTENT.json",
+      "sha256": "a071a10c53f63ecb5e4486a7b3204de1596c6dd080ce76a07b38064de9ae1f15"
+    }
+  ],
+  "schema": "otzaria.closed-native-preservation-retirement-git-packet/1",
+  "scope": "Documentation-only; verified lossless preservation and seven exact authorized root removals. No source/build/native acceptance."
+}
