@@ -18,13 +18,6 @@ enum OtzariaDataProfileCompatibility {
             && (profileVersion ?? 1) == OtzariaDataProfileRegistry.activeVersion
     }
 }
-struct OtzariaLibraryRelease {
-    static let repository = "fixture"
-    let id: Int64
-    let tag: String
-    let asset: Asset
-    struct Asset { let id: Int64; let name: String; let compressedSize: Int64; let digest: String? }
-}
 enum FixtureWorld {
     nonisolated(unsafe) static var root = URL(fileURLWithPath: "unused")
     nonisolated(unsafe) static var build: OtzariaSearchEngineBuildInfo!
@@ -39,12 +32,18 @@ enum FixtureWorld {
     static let rawPart = Data("controlled-original-index-payload".utf8)
 }
 final class OtzariaDatabaseAccessController: @unchecked Sendable {
-    enum Source { case managedInternal, external }
+    enum Source: Equatable { case managedInternal, external }
+    struct SelectionObservation: Equatable {
+        let url: URL?; let source: Source; let revision: UInt64
+    }
+    func selectionObservation() -> SelectionObservation {
+        .init(url: FixtureWorld.root.appendingPathComponent("database.db"), source: source, revision: 0)
+    }
     static let shared = OtzariaDatabaseAccessController()
     var source: Source = .managedInternal
 }
 struct OtzariaDatabaseStorage {
-    var installationManifestURL: URL { FixtureWorld.root.appendingPathComponent("database-installation.json") }
+    var installationManifestURL: URL { FixtureWorld.root.appendingPathComponent("seforim-installation.json") }
     init() throws {}
 }
 enum ITorahStorageLock {
@@ -53,9 +52,6 @@ enum ITorahStorageLock {
 enum OtzariaIndexFileLogger {
     static func log(_ value: String) {}
     static func logError(_ value: String, error: Error) {}
-}
-struct OtzariaStorageErrorNormalizer {
-    static func failure(for error: Error) -> Bool? { nil }
 }
 final class OtzariaTantivySearchRepository: Sendable {
     static let shared = OtzariaTantivySearchRepository()

@@ -1,0 +1,404 @@
+{
+  "observedAt": "2026-11-27T02:34:16.136406+00:00",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "variants": {
+    "baseline": {
+      "compileCommand": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-j",
+        "1",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/Boundary.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/Cases.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/Controller.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/Manager.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/OriginalStorageLock.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/OtzariaDatabaseDownloadModels.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/OtzariaSearchArtifactManifest.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/OtzariaSearchArtifactPolicy.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/OtzariaSearchModels.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/Repository.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/ViewModel.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/ZayitCompatibility.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/ZayitSession.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/baseline/control"
+      ],
+      "compileExit": 0,
+      "runExit": 0,
+      "binarySHA256": "02bc61480e5d79c76403842e823672ed69155f0eb61131519614af446fd93572",
+      "result": {
+        "cases": [
+          {
+            "name": "valid_exact_managed_readiness_cache_hit_and_cold_reopen",
+            "passed": true
+          },
+          {
+            "name": "production_qualified_original_producer_preserved",
+            "passed": true
+          },
+          {
+            "name": "mini_qualified_original_producer_preserved",
+            "passed": true
+          },
+          {
+            "detail": "same commit and size admitted without trusted source manifest",
+            "name": "exact_build_identity_alone_cannot_admit_managed_source",
+            "passed": false
+          },
+          {
+            "detail": "readiness admitted missing manifest",
+            "name": "readiness_rejects_missing_database_manifest_same_commit",
+            "passed": false
+          },
+          {
+            "detail": "cached stale source admitted",
+            "name": "cached_query_rejects_missing_database_manifest_before_ffi",
+            "passed": false
+          },
+          {
+            "detail": "readiness admitted missing manifest",
+            "name": "readiness_rejects_missing_index_manifest_same_commit",
+            "passed": false
+          },
+          {
+            "detail": "cached stale source admitted",
+            "name": "cached_query_rejects_missing_index_manifest_before_ffi",
+            "passed": false
+          },
+          {
+            "detail": "new release admitted old ready index",
+            "name": "readiness_rejects_update_same_size",
+            "passed": false
+          },
+          {
+            "detail": "cold query admitted retained old index",
+            "name": "query_rejects_update_same_size_after_engine_close",
+            "passed": false
+          },
+          {
+            "name": "readiness_rejects_update_different_size",
+            "passed": true
+          },
+          {
+            "detail": "cold query admitted retained old index",
+            "name": "query_rejects_update_different_size_after_engine_close",
+            "passed": false
+          },
+          {
+            "detail": "receipt-only replacement reused old engine",
+            "name": "cached_query_rejects_receipt_only_same_size_same_mtime_replacement",
+            "passed": false
+          },
+          {
+            "detail": "query recovered or bypassed absent identity",
+            "name": "query_does_not_recover_missing_identity_but_explicit_readiness_can",
+            "passed": false
+          },
+          {
+            "detail": "count mismatch admitted ready",
+            "name": "readiness_rejects_wrong_managed_document_count",
+            "passed": false
+          },
+          {
+            "detail": "query admitted wrong corpus count",
+            "name": "cold_query_rejects_wrong_managed_document_count",
+            "passed": false
+          },
+          {
+            "detail": "wrong catalogue admitted",
+            "name": "query_rejects_catalogue_identity_mismatch_without_repair",
+            "passed": false
+          },
+          {
+            "detail": "in-flight source change returned stale page",
+            "name": "query_rejects_manifest_change_during_native_boundary",
+            "passed": false
+          },
+          {
+            "detail": "old page published after source receipt changed",
+            "name": "query_publication_rejects_change_after_read_before_main_actor",
+            "passed": false
+          },
+          {
+            "detail": "source error published rows",
+            "name": "query_source_error_revokes_ready_status",
+            "passed": false
+          },
+          {
+            "name": "ordinary_query_error_does_not_reclassify_valid_index_identity",
+            "passed": true
+          },
+          {
+            "detail": "old next page published after source changed",
+            "name": "pagination_publication_rejects_change_after_read_before_main_actor",
+            "passed": false
+          },
+          {
+            "detail": "clear rows retained old ready state",
+            "name": "resource_change_revokes_ready_and_pending_status_generation",
+            "passed": false
+          },
+          {
+            "detail": "Zayit retained old library readiness",
+            "name": "resource_change_revokes_zayit_ready_and_pending_restore_generation",
+            "passed": false
+          },
+          {
+            "name": "legacy_external_exact_identity_remains_supported_without_managed_manifest",
+            "passed": true
+          },
+          {
+            "detail": "external stale fingerprint admitted",
+            "name": "legacy_external_changed_database_fingerprint_is_rejected",
+            "passed": false
+          },
+          {
+            "name": "zayit_valid_production_managed_preserved",
+            "passed": true
+          },
+          {
+            "name": "zayit_valid_mini_managed_preserved",
+            "passed": true
+          },
+          {
+            "detail": "managed Zayit fell through missing manifest",
+            "name": "zayit_managed_missing_manifest_is_rejected",
+            "passed": false
+          },
+          {
+            "name": "zayit_same_size_new_release_is_rejected",
+            "passed": true
+          },
+          {
+            "detail": "same stat reused Zayit ready configuration",
+            "name": "zayit_stamp_changes_for_receipt_bytes_with_preserved_size_mtime",
+            "passed": false
+          },
+          {
+            "detail": "missing receipt did not revoke configuration",
+            "name": "zayit_stamp_changes_when_managed_receipt_disappears",
+            "passed": false
+          },
+          {
+            "name": "zayit_restore_preserves_valid_unchanged_managed_source",
+            "passed": true
+          },
+          {
+            "detail": "old package validation published ready for new source",
+            "name": "zayit_restore_rejects_source_change_across_status_await",
+            "passed": false
+          },
+          {
+            "detail": "old configured engine was relabeled with new receipt",
+            "name": "zayit_restore_rejects_source_change_across_configure_await",
+            "passed": false
+          },
+          {
+            "name": "zayit_explicit_external_folder_contract_preserved",
+            "passed": true
+          },
+          {
+            "detail": "oversized manifest admitted",
+            "name": "managed_manifest_metadata_is_bounded_and_retained_on_rejection",
+            "passed": false
+          }
+        ],
+        "failed": 26,
+        "passed": 11,
+        "scope": "Actual production source bodies, controlled engine/dictionary/UI boundaries; no real corpus, UI or installer acceptance",
+        "total": 37
+      }
+    },
+    "candidate": {
+      "compileCommand": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-j",
+        "1",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/Boundary.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/Cases.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/Controller.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/Manager.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/OriginalStorageLock.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/OtzariaDatabaseDownloadModels.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/OtzariaSearchArtifactManifest.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/OtzariaSearchArtifactPolicy.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/OtzariaSearchModels.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/Repository.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/ViewModel.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/ZayitCompatibility.swift",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/ZayitSession.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/managed-index-source-20261127/attempt4/candidate/control"
+      ],
+      "compileExit": 0,
+      "runExit": 0,
+      "binarySHA256": "7003e172d8b3e63eaf8543dd707fa03d1a95fbb592fcf2d63a19426ca4ff0e7c",
+      "result": {
+        "cases": [
+          {
+            "name": "valid_exact_managed_readiness_cache_hit_and_cold_reopen",
+            "passed": true
+          },
+          {
+            "name": "production_qualified_original_producer_preserved",
+            "passed": true
+          },
+          {
+            "name": "mini_qualified_original_producer_preserved",
+            "passed": true
+          },
+          {
+            "name": "exact_build_identity_alone_cannot_admit_managed_source",
+            "passed": true
+          },
+          {
+            "name": "readiness_rejects_missing_database_manifest_same_commit",
+            "passed": true
+          },
+          {
+            "name": "cached_query_rejects_missing_database_manifest_before_ffi",
+            "passed": true
+          },
+          {
+            "name": "readiness_rejects_missing_index_manifest_same_commit",
+            "passed": true
+          },
+          {
+            "name": "cached_query_rejects_missing_index_manifest_before_ffi",
+            "passed": true
+          },
+          {
+            "name": "readiness_rejects_update_same_size",
+            "passed": true
+          },
+          {
+            "name": "query_rejects_update_same_size_after_engine_close",
+            "passed": true
+          },
+          {
+            "name": "readiness_rejects_update_different_size",
+            "passed": true
+          },
+          {
+            "name": "query_rejects_update_different_size_after_engine_close",
+            "passed": true
+          },
+          {
+            "name": "cached_query_rejects_receipt_only_same_size_same_mtime_replacement",
+            "passed": true
+          },
+          {
+            "name": "query_does_not_recover_missing_identity_but_explicit_readiness_can",
+            "passed": true
+          },
+          {
+            "name": "readiness_rejects_wrong_managed_document_count",
+            "passed": true
+          },
+          {
+            "name": "cold_query_rejects_wrong_managed_document_count",
+            "passed": true
+          },
+          {
+            "name": "query_rejects_catalogue_identity_mismatch_without_repair",
+            "passed": true
+          },
+          {
+            "name": "query_rejects_manifest_change_during_native_boundary",
+            "passed": true
+          },
+          {
+            "name": "query_publication_rejects_change_after_read_before_main_actor",
+            "passed": true
+          },
+          {
+            "name": "query_source_error_revokes_ready_status",
+            "passed": true
+          },
+          {
+            "name": "ordinary_query_error_does_not_reclassify_valid_index_identity",
+            "passed": true
+          },
+          {
+            "name": "pagination_publication_rejects_change_after_read_before_main_actor",
+            "passed": true
+          },
+          {
+            "name": "resource_change_revokes_ready_and_pending_status_generation",
+            "passed": true
+          },
+          {
+            "name": "resource_change_revokes_zayit_ready_and_pending_restore_generation",
+            "passed": true
+          },
+          {
+            "name": "legacy_external_exact_identity_remains_supported_without_managed_manifest",
+            "passed": true
+          },
+          {
+            "name": "legacy_external_changed_database_fingerprint_is_rejected",
+            "passed": true
+          },
+          {
+            "name": "zayit_valid_production_managed_preserved",
+            "passed": true
+          },
+          {
+            "name": "zayit_valid_mini_managed_preserved",
+            "passed": true
+          },
+          {
+            "name": "zayit_managed_missing_manifest_is_rejected",
+            "passed": true
+          },
+          {
+            "name": "zayit_same_size_new_release_is_rejected",
+            "passed": true
+          },
+          {
+            "name": "zayit_stamp_changes_for_receipt_bytes_with_preserved_size_mtime",
+            "passed": true
+          },
+          {
+            "name": "zayit_stamp_changes_when_managed_receipt_disappears",
+            "passed": true
+          },
+          {
+            "name": "zayit_restore_preserves_valid_unchanged_managed_source",
+            "passed": true
+          },
+          {
+            "name": "zayit_restore_rejects_source_change_across_status_await",
+            "passed": true
+          },
+          {
+            "name": "zayit_restore_rejects_source_change_across_configure_await",
+            "passed": true
+          },
+          {
+            "name": "zayit_explicit_external_folder_contract_preserved",
+            "passed": true
+          },
+          {
+            "name": "managed_manifest_metadata_is_bounded_and_retained_on_rejection",
+            "passed": true
+          }
+        ],
+        "failed": 0,
+        "passed": 37,
+        "scope": "Actual production source bodies, controlled engine/dictionary/UI boundaries; no real corpus, UI or installer acceptance",
+        "total": 37
+      }
+    }
+  }
+}

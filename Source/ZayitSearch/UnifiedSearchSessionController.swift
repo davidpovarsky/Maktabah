@@ -744,6 +744,8 @@ final class UnifiedSearchSessionController {
         scope = BackendCoordinator.shared.activeBackendID == .sefariaEmbedded ? .exact : .advanced
         clearFilter()
         clearResults()
+        otzaria.invalidateSourceReadiness()
+        zayitSession.invalidateSourceReadiness()
         query = ""
         resultKitabFilter = ""
     }

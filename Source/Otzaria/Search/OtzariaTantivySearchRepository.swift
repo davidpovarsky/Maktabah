@@ -28,18 +28,48 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
 
     private init() {}
 
-    func engine(databasePath: String) throws -> OtzariaSearchEngineBridge {
+    /// Ordinary reads share the same storage -> cache order as index
+    /// promotion and explicit occurrence preparation. No recovery runs here.
+    private func withSearchReadAccess<T>(databasePath: String, _ body: () throws -> T) throws -> T {
+        let profile = OtzariaDataProfileRegistry.activeProfileID
+        return try ITorahStorageLock.withLock(name: "migration-\(profile)") {
+            try ITorahStorageLock.withLock(name: "database-mutation-\(profile)") {
+                try ITorahStorageLock.withLock(name: "otzaria-search-mutation-\(profile)") {
+                    lock.lock()
+                    defer { lock.unlock() }
+                    guard profile == OtzariaDataProfileRegistry.activeProfileID else {
+                        throw OtzariaSearchArtifactError.incompatible("data profile changed during search")
+                    }
+                    return try body()
+                }
+            }
+        }
+    }
+
+    private func engine(databasePath: String) throws -> OtzariaSearchEngineBridge {
         lock.lock()
         defer { lock.unlock() }
         if indexingDatabasePaths.contains(databasePath) {
             throw OtzariaSearchError.invalidEngineResponse("Otzaria Tantivy indexing is in progress for this database.")
         }
+        let before: OpenIndexStamp
+        let manifest: OtzariaSearchArtifactManifest?
+        do {
+            before = try openIndexStamp(databasePath: databasePath)
+            manifest = try manager.validateCurrentIndexSource(databasePath: databasePath)
+            guard before == (try openIndexStamp(databasePath: databasePath)) else {
+                throw OtzariaSearchArtifactError.incompatible("source changed during index admission")
+            }
+        } catch {
+            invalidate(databasePath: databasePath)
+            throw OtzariaSearchArtifactError.incompatible(error.localizedDescription)
+        }
         if let cached = engineCache[databasePath] {
-            return cached
+            if engineStamps[databasePath] == before { return cached }
+            invalidate(databasePath: databasePath)
         }
         let indexURL = manager.indexURL(for: databasePath)
-        let before = try? openIndexStamp(databasePath: databasePath)
-        let engine = try OtzariaSearchEngineBridge(indexURL: indexURL)
+        let engine = try OtzariaSearchEngineBridge(existingIndexURL: indexURL)
         do {
             try Self.configureRequiredDictionaries(
                 engine: engine,
@@ -47,14 +77,18 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
                 translation: Bundle.main.url(forResource: "dictionary", withExtension: "json"),
                 acronyms: Bundle.main.url(forResource: "Acronyms", withExtension: "json")
             )
+            if let manifest, try engine.documentCount() != manifest.lexicalArtifact.documentCount {
+                throw OtzariaSearchArtifactError.incompatible("managed index document count")
+            }
+            guard before == (try openIndexStamp(databasePath: databasePath)) else {
+                throw OtzariaSearchArtifactError.incompatible("source changed while opening index")
+            }
         } catch {
             engine.close()
             throw error
         }
         engineCache[databasePath] = engine
-        if let before, before == (try? openIndexStamp(databasePath: databasePath)) {
-            engineStamps[databasePath] = before
-        }
+        engineStamps[databasePath] = before
         return engine
     }
 
@@ -455,9 +489,9 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     func documentCount(databasePath: String) throws -> UInt64 {
-        lock.lock()
-        defer { lock.unlock() }
-        return try engine(databasePath: databasePath).documentCount()
+        try withSearchReadAccess(databasePath: databasePath) {
+            try engine(databasePath: databasePath).documentCount()
+        }
     }
 
     func invalidate(databasePath: String) {
@@ -515,10 +549,16 @@ final class OtzariaTantivySearchRepository: @unchecked Sendable {
     }
 
     func search(databasePath: String, request: OtzariaSearchRequest) throws -> OtzariaSearchPage {
-        lock.lock()
-        defer { lock.unlock() }
-        let engine = try engine(databasePath: databasePath)
-        return try engine.search(request)
+        try withSearchReadAccess(databasePath: databasePath) {
+            let engine = try engine(databasePath: databasePath)
+            let before = engineStamps[databasePath]
+            let page = try engine.search(request)
+            guard let before, before == (try? openIndexStamp(databasePath: databasePath)) else {
+                invalidate(databasePath: databasePath)
+                throw OtzariaSearchArtifactError.incompatible("source changed during search")
+            }
+            return page
+        }
     }
 
     func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {

@@ -95,7 +95,13 @@ enum OtzariaSearchArtifactPolicy {
         build: OtzariaSearchEngineBuildInfo,
         trustedManifest: OtzariaSearchArtifactManifest? = nil
     ) -> Bool {
-        guard identity.database.fileSize == currentDatabase.fileSize
+        // Every managed read binds the original producer and catalogue to
+        // the fully validated current installation manifest, including exact
+        // producer builds. Equal database sizes do not identify a release.
+        guard let trustedManifest,
+              identity.upstreamCommit == trustedManifest.lexicalEngine.commit,
+              identity.catalogueHash == trustedManifest.lexicalArtifact.catalogueHash,
+              identity.database.fileSize == currentDatabase.fileSize
             && identity.engineVersion == build.engineVersion
             && identity.indexSchemaVersion == build.indexSchemaVersion
             && identity.defaultGenerationOrder == build.defaultGenerationOrder
@@ -105,8 +111,7 @@ enum OtzariaSearchArtifactPolicy {
         // Older identity files have no repository field. A cross-revision read
         // must also bind to the independently validated original manifest;
         // matching a bare commit or schema is not sufficient provenance.
-        guard let trustedManifest,
-              OtzariaLexicalIndexReadCompatibility.qualifiedContract(
+        guard OtzariaLexicalIndexReadCompatibility.qualifiedContract(
                   manifest: trustedManifest, consumer: build
               ) != nil else { return false }
         return identityMatchesArtifactProducer(identity, manifest: trustedManifest)
@@ -247,6 +252,7 @@ enum OtzariaSearchArtifactPolicy {
               source.assetName == database.assetName,
               source.sourceAssetDigest == (database.digest ?? ""),
               source.compressedBytes == database.compressedSize,
+              database.databaseFileSize == databaseBytes,
               source.databaseBytes == databaseBytes else {
             throw OtzariaSearchArtifactError.incompatible("source database identity")
         }
