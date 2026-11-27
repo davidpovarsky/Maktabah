@@ -1,0 +1,204 @@
+{
+  "schema": "otzaria.wave1.anytype.product-source-receipt.v1",
+  "status": "SOURCE_AND_FOCUSED_COMPILE_VERIFIED_ACCEPTANCE_IN_PROGRESS",
+  "baseline": {
+    "repository": "davidpovarsky/Maktabah",
+    "branch": "codex/otzaria-integration-verified-sdks-20261126",
+    "commit": "29a731e273f9a757c743c49e182fece0e8047d46"
+  },
+  "products": [
+    {
+      "capability": "Original local editor, file identity restoration and relocation journal",
+      "repository": "davidpovarsky/anytype-swift",
+      "productCommit": "bfc80e5e85eabaa52f914e872f2da6c6888ca88c",
+      "requiredJournalCommit": "8b13aa57726ef171fc46e18fe21686779d10400e",
+      "nativeHeart": "b18e6733605deb4086ee95aa4cf755404746cf51",
+      "nativeTree": "94805c1b5ac644d3ef4e12f554b9326d54286aeb",
+      "acceptance": "Prior TextStudio and retained5000 scoped receipts; changed Swift closure recorded separately",
+      "sourceFiles": []
+    },
+    {
+      "capability": "Discover the original synchronized annotation copy in a second full app",
+      "repository": "davidpovarsky/anytype-swift",
+      "productCommit": "f145d6205b3ca7c8eb947779c6a1fa130246b93b",
+      "parentProduct": "bfc80e5e85eabaa52f914e872f2da6c6888ca88c",
+      "files": [
+        "OriginalEditorFramework/AnytypeOriginalAnnotationRevision.swift"
+      ],
+      "acceptance": "Real Debug-Anytype simulator build PASS at composed source5aa96513; paired runtime NOT_RUN",
+      "sourceFiles": [
+        {
+          "path": "OriginalEditorFramework/AnytypeOriginalAnnotationRevision.swift",
+          "gitBlob": "95b6009af547a102a836197366bca0d0a5b5d649",
+          "sha256": "2ad5e6ef3c88808522f48f9e51f17e05724cbcd015d4a26b3e938ca0655ed886"
+        }
+      ]
+    },
+    {
+      "capability": "Receive/Refresh discovery through ordinary selected account and Space",
+      "repository": "davidpovarsky/Maktabah",
+      "productCommit": "2433d032d3f8025ccd2e5fe66b8a95356014ba51",
+      "requiredSDKProduct": "f145d6205b3ca7c8eb947779c6a1fa130246b93b",
+      "files": [
+        "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+        "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+        "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"
+      ],
+      "acceptance": "Integrated app compile and runtime NOT_RUN",
+      "sourceFiles": [
+        {
+          "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+          "gitBlob": "2126fa0e8b4df3ced3f781144a12c7029857b016",
+          "sha256": "7fca51665df2016fc437c27c51a1d71f6c5fc72bad53debf8ac524bb3fcb5f5c"
+        },
+        {
+          "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+          "gitBlob": "45836c8b9e741a291beefe7117937d2ff6131cae",
+          "sha256": "e0a36120496bbca80ab93ea1881b238cb9eae4f73fc7f6b58561735446ca6fe9"
+        },
+        {
+          "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
+          "gitBlob": "cb9549aecad3c7a561e9230c278c3bccb48dc9d0",
+          "sha256": "946d05ad339ddf97aa98c5a43e7763b398a2af023e136dc6a906ff0aee86b54c"
+        }
+      ]
+    },
+    {
+      "capability": "Stable accessibility identifiers for original JSON export/import actions",
+      "repository": "davidpovarsky/Maktabah",
+      "productCommit": "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+      "files": [
+        "Source/Features/Annotations/iOS/AnnotationListView.swift"
+      ],
+      "acceptance": "Original serializer/importer behavior unchanged; paired actual Files journey NOT_RUN",
+      "sourceFiles": [
+        {
+          "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+          "gitBlob": "d05245bd9f92e2d03058d6f5db01f8e085b29fa9",
+          "sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e"
+        }
+      ]
+    },
+    {
+      "capability": "Original network chooser accessibility",
+      "repository": "davidpovarsky/anytype-swift",
+      "productCommit": "6dbc89d6f8d19a884de849fd4232e97a682d519e",
+      "parentProduct": "f145d6205b3ca7c8eb947779c6a1fa130246b93b",
+      "files": [
+        "Anytype/Sources/PresentationLayer/Auth/PrimaryAuthView/PrimaryAuthView.swift",
+        "Anytype/Sources/PresentationLayer/Modules/ServerConfiguration/ServerConfigurationView.swift"
+      ],
+      "acceptance": "Source only; unchanged original picker/storage path, final SDK/app build owned by root",
+      "sourceFiles": [
+        {
+          "path": "Anytype/Sources/PresentationLayer/Auth/PrimaryAuthView/PrimaryAuthView.swift",
+          "gitBlob": "27b045034c2a3fdf993bf7b3e099e5f2d403cad0",
+          "sha256": "2bdc364b2f2bd7bad1d32db849b154c788a024c0c04bea0c2d877a788a86f946"
+        },
+        {
+          "path": "Anytype/Sources/PresentationLayer/Modules/ServerConfiguration/ServerConfigurationView.swift",
+          "gitBlob": "25b1902d7dbd7ab1192e46de0b5ee557737bf02d",
+          "sha256": "47873bc761de3d979ecd115bb53c694a92d07f1f531ae153859d24d83e692054"
+        }
+      ]
+    },
+    {
+      "capability": "Original manifest validation and explicit failed-bootstrap recovery",
+      "repository": "davidpovarsky/anytype-swift",
+      "productCommit": "56ec7acc5b56eb60cb3742b07e659b5a8cc0181f",
+      "requiredCallerProduct": "5abd4d64cacaae6e891d8fb055925c5c7a7a3de7",
+      "diagnosticSource": "349578d2add3975ecf8c1c526bca64979c1d3e17",
+      "testCommit": "2d23675810e8262f2360c2fe8dc3a6e402be4711",
+      "acceptance": "Root-owned real Apple PinkhaKit8/8 PASS; native runtime and historical intermittent cause remain open",
+      "sourceFiles": []
+    }
+  ],
+  "testOnlyCommits": [
+    "87dfd8d0aa1cb06b418823a0c01587b9907be14d",
+    "8c0e9b21cf7f87c18383aa4fc329c65bf974d441"
+  ],
+  "focusedEvidence": [
+    {
+      "kind": "Original SDK build",
+      "source": "5aa96513ff2d22de60bc3f8d1423edd4e4e0e0e0",
+      "components": [
+        "349578d2add3975ecf8c1c526bca64979c1d3e17",
+        "f145d6205b3ca7c8eb947779c6a1fa130246b93b"
+      ],
+      "job": "job_c8ea2c4fb53f",
+      "path": "/Users/m1/builds/otzaria-wave1-anytype-20261127/discovery-build-result.json",
+      "result": "PASS",
+      "runtimeCredit": false
+    },
+    {
+      "kind": "Actual original TextStudio UI diagnostic",
+      "sdkSource": "349578d2add3975ecf8c1c526bca64979c1d3e17",
+      "job": "job_ffff2c46909d",
+      "path": "/Users/m1/builds/otzaria-wave1-anytype-20261127/original-runtime-text/result.json",
+      "result": "PASS_ACTUAL_ORIGINAL_MINIAPPS_SCOPE",
+      "executed": 1,
+      "manifestFailureReproduced": false,
+      "manifestFixProven": false
+    },
+    {
+      "kind": "Whole22-file XCTest target typecheck",
+      "source": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+      "fileSHA256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34",
+      "job": "job_796f204fabc3",
+      "path": "/Users/m1/builds/otzaria-wave1-anytype-20261127/pair-source/typecheck-with-xctest-support-result.json",
+      "result": "PASS",
+      "runtimeCredit": false
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "A",
+      "criterion": "Original editor audit and ADR",
+      "state": "RETAINED",
+      "source": "a6bebba2ef15cfd868cdfc3936e732e5bf75a2f0",
+      "additionalWork": "Final source receipt must include new shared dependency closure"
+    },
+    {
+      "id": "B",
+      "criterion": "Full original native editor in Otzaria; sameUUID and cold reopen",
+      "state": "RETAINED_WITH_CHANGED_SOURCE_SUPPLEMENT_REQUIRED",
+      "supplement": "testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch on exact final candidate"
+    },
+    {
+      "id": "C",
+      "criterion": "Graph, annotation classification, all visibility surfaces, promotion/revert and5000 migration",
+      "state": "PARTIAL",
+      "retained": "Real5000 app migration and four-workspace editor reopen are preserved; source delta reviewed",
+      "remaining": "Current original standalone visibility owner proof plus actual three document lifecycle UI journeys and final source-bound graph/CAS proof"
+    },
+    {
+      "id": "D",
+      "criterion": "Otzaria?Anytype CloudKit import, durable outbox, retry, unlink/remove, dedup and origin suppression",
+      "state": "IMPLEMENTATION_GAP",
+      "finding": "Original AnnotationExchangeLedger.pending/acknowledge/recordIncoming/recordedNativeIdentity have no production callers in this source. Ordinary native UI uses explicit per-note original prepare/read/update and immutable history; current CloudKit sync_pending remains original.",
+      "remaining": "Integrate actual original exchange consumer and explicit link/unlink through existing ledger without automatic fresh-create retry after possible dispatch"
+    },
+    {
+      "id": "E",
+      "criterion": "Bidirectional sync, two complete apps, separate account/Space/ACL and real concurrent rich/delete conflicts",
+      "state": "PARTIAL_SOURCE_RUNTIME_PENDING",
+      "tests": "Five actual UI phases across two new full-app sandboxes; original JSON transfersUUID/plain content, original AnySync carries all rich changes",
+      "remaining": "Actual paired runtime plus genuine two-account/ACL/concurrent/delete-conflict proof; no local result is called remote ACK"
+    },
+    {
+      "id": "F",
+      "criterion": "Real iPad native input, RTL, keyboard, VoiceOver, background and multiple windows",
+      "state": "OPEN",
+      "remaining": "Final full product selectors and actual physical device acceptance coordinated by root/Agent3"
+    }
+  ],
+  "guards": {
+    "releaseMergePerformed": false,
+    "golden5000SimulatorMutated": false,
+    "replicaSQLiteInjected": false,
+    "remoteACKInferred": false,
+    "originalNetworkConfigurationReplaced": false
+  },
+  "formalQualificationOwner": "root: current three SDK configurations and retained three ABI admission",
+  "finalIntegratedCandidate": "PENDING_AGENT3_BUILD"
+}

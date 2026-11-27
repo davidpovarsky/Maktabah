@@ -1,0 +1,95 @@
+{
+  "schema": "otzaria.wave1.anytype.retained5000-equivalence.v1",
+  "historicalApp": "13913f0972ba1a6cb5b686200c3a678d33fdd26a",
+  "historicalSDKLab": "451b4ed38f6b0e054e2b29cb347f0879a3e80632",
+  "currentProduct": "bfc80e5e85eabaa52f914e872f2da6c6888ca88c",
+  "originalJournalProduct": "8b13aa57726ef171fc46e18fe21686779d10400e",
+  "unchangedJournalBlob": "860d7c172726c357c0310613a6a0b7fdc1055a5f",
+  "nativeHeart": "b18e6733605deb4086ee95aa4cf755404746cf51",
+  "nativeTree": "94805c1b5ac644d3ef4e12f554b9326d54286aeb",
+  "swiftFilesCompared": 4419,
+  "unchangedSwiftFiles": 4415,
+  "changedSwiftFiles": [
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalAnnotationImport.swift",
+      "historicalSDKLabBlob": "b9986b294a358313f3afc17800f4d3c78e0330c1",
+      "currentProductBlob": "3880aa8d6166560d4369d3a17669ff49b2c073f4"
+    },
+    {
+      "path": "OriginalEditorFramework/AnytypeOriginalEditorLocalAnnotation.swift",
+      "historicalSDKLabBlob": "8906053920110459f64ab05e13b91c936f3e15bb",
+      "currentProductBlob": "877ed9e6b39e82c6e617be32cddf4821c89f8a00"
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationMaterialization.swift",
+      "historicalSDKLabBlob": "602c83b4f3960c1af85385b3fa2cf300d563fd0b",
+      "currentProductBlob": "3977b6dccbe130013ce7c1066a4e451646091787"
+    },
+    {
+      "path": "OriginalEditorFramework/OriginalEditorLocalAnnotationRuntime.swift",
+      "historicalSDKLabBlob": "2aba21746b80e91d3886795352d6e8c927b61f13",
+      "currentProductBlob": "651beba82d228de6035b869acf80f8ddf8aac53b"
+    }
+  ],
+  "hostFilesCompared": 69,
+  "unchangedHostFiles": 64,
+  "changedHostFiles": [
+    {
+      "currentProduct": "5ee2605d98b09e9f0c234ebcfb9785e976941141",
+      "historicalApp": "323a768d9dfd740e16c4d06e1a2d99e186c3f199",
+      "path": "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillModel.swift"
+    },
+    {
+      "currentProduct": "2126fa0e8b4df3ced3f781144a12c7029857b016",
+      "historicalApp": "d2e6bccd73c4052a50736d7fbb0a8e9f758b9e69",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift"
+    },
+    {
+      "currentProduct": "45836c8b9e741a291beefe7117937d2ff6131cae",
+      "historicalApp": "8a7c456c7f09bbfc323fee10afb5df535a2266bd",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift"
+    },
+    {
+      "currentProduct": "cb9549aecad3c7a561e9230c278c3bccb48dc9d0",
+      "historicalApp": "74f4fb173e123bc322bb75b8ac746ae049131282",
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings"
+    },
+    {
+      "currentProduct": "d05245bd9f92e2d03058d6f5db01f8e085b29fa9",
+      "historicalApp": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift"
+    }
+  ],
+  "deltaReview": "Original plain materialization/create/identity validation is unchanged; return value becomes an observation carrying objectID and an empty imported-file mapping for plain conversion. Rich MiniApps graph imports validate and retain remapped file identity. Snapshot and native archive comparison equal the historical451 SDK. Host BackfillModel delta only removes DEBUG logging; receive/discovery/accessibility changes do not execute in the backfill path.",
+  "changedSourceSupplement": "Final exact app testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch and paired rich-body receive; NOT_RUN at this checkpoint.",
+  "proofs": [
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-wave1-anytype-20261127/retained5000-swift-source-map.json",
+      "sha256": "619d20ae6e8795a1dd7d0e97465205d82d7e71901481978020d5c19a9e9820e4"
+    },
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-wave1-anytype-20261127/retained5000-host-source-map.json",
+      "sha256": "1c85fe530f346e4442d29d95ce9d506fddae9974342ddc86c0c5302811c1978a"
+    },
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-wave1-anytype-20261127/retained5000-runtime-delta.patch",
+      "sha256": "1716edad8a143f783afea02c9d5fbfb5b9270ab25677c712d14e4dd90a9fdf38"
+    },
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-shared-agent1-20261126/anytype-original-app-sqlite-5000-c15e148e-evidence.tar.gz",
+      "sha256": "b7563a1034766a62e0872905d79d72409cc69c4c96e13f74c0d03b68d669c69f",
+      "bytes": 6953561,
+      "scope": "Existing actual product UI acceptance; retained unchanged"
+    },
+    {
+      "path": "/mnt/development/projects/evidence/otzaria-shared-agent1-20261126/anytype-original-four-workspace-editor-reopens-8bcf64b8-evidence.tar.gz",
+      "sha256": "ee38dffc6b47528622af878010acb8711befa27cc61e451bb0c5f33441871250",
+      "bytes": 2641009,
+      "scope": "Existing actual product UI acceptance; retained unchanged"
+    }
+  ],
+  "scaleSuiteRerun": false,
+  "goldenSimulator": "2F225B23-3149-4384-906F-8865483CBE41",
+  "goldenSimulatorMutated": false,
+  "currentFullSourceAcceptance": false
+}
