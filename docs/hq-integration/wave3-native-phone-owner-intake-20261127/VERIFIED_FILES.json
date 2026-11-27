@@ -1,0 +1,146 @@
+[
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/NATIVE_HELPER_ADDITION.swift",
+    "bytes": 13144,
+    "sha256": "25e48b7aec434f0e279ba03dcccaa3171310209d5da03ab0706bca1e6a66fc9a"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/APPEND_ONLY_HELPER.patch",
+    "bytes": 13559,
+    "sha256": "c1d3907007c57cb0db689e88e3ef97d976cd3319d5b6f8ac2054af0130c81713"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/SOURCE_INPUTS.json",
+    "bytes": 1476,
+    "sha256": "5128c8711842abf7ddcf99564bc845511ef3cadf00f281d061320b785ba716ca"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/README.md",
+    "bytes": 9132,
+    "sha256": "33aabdf51eea53a9fc1d3e137ee2fd381ec227246795e0f21104e1605658d53d"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/INTAKE.json",
+    "bytes": 2925,
+    "sha256": "ba5ca952625791e5acc043e701f85c7e1947823f2a7c20cbf87a54477039bb2d"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/SOURCE_PRESERVATION.json",
+    "bytes": 1196,
+    "sha256": "5c0dc5a1547f5bbbb88b53c584b2188b6961d42af0bf93afb385b2544a47affe"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/TRANSPORT_AND_METADATA_ATTEMPTS.json",
+    "bytes": 8138,
+    "sha256": "07f753477443bfd5a27c062ea3d147342627e22b55533b7cfec8e6d680cc85ca"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/RESULT.json",
+    "bytes": 1522,
+    "sha256": "d370ed24d878824af9dbf10cf24621dd06cca3b2299b5822337a219c102fd49a"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/PEER_REVIEW.json",
+    "bytes": 1840,
+    "sha256": "985d61da03dc254d8accc0aa8dd5d6d4aacdd60fbcf36178a6de10dacc9dc938"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/EVIDENCE.zip",
+    "bytes": 114988,
+    "sha256": "20d92d1cb8ad438b5d3044f5b055f49049157df69a0607bc63a982b8de02eb75"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/RAW_INPUTS.json",
+    "bytes": 2790,
+    "sha256": "d29723bbab06b098576f6562f3318efd3e16ec27a8a98632a5b3d766b18f88f1"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/evidence/attempt-1/RESULT.json",
+    "bytes": 2441,
+    "sha256": "07055f566ef84d10a1182773b8f6eedd5261524e0605921649291249f5c77f7b"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/evidence/attempt-1/parse.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/evidence/attempt-1/parse.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/evidence/MEMBERSHIP_READ.json",
+    "bytes": 1672,
+    "sha256": "f518219896b2bcd596e8435e22ebbc8572c3c50cb4fbc3f4654cd9c0fbc87cf7"
+  },
+  {
+    "commit": "87315a4c16198220ac181181477606d03ad7e79a",
+    "path": "docs/hq-ui-inventory/wave3-hidden-phone-reader-native-20261127/evidence/PROVENANCE.json",
+    "bytes": 2297,
+    "sha256": "0d6f574750d47c23c6a88f2e7367f15fa2574b1d2f2fe4d2927c83a2e350ad2f"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/CURRENT_SOURCE_AND_ADMISSION.json",
+    "bytes": 4509,
+    "sha256": "d115bc12c0f40a52126d77f7db90b05e2f64808ae9a22f1ff87cc83aab73d903"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/FINAL_SOURCE_INVENTORY.json",
+    "bytes": 107565,
+    "sha256": "33089825ede3f673dab414c0b2e77ea70a90726880c992aee543933e963ccd7b"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/ORIGINAL_ASANA_REQUIREMENTS.json",
+    "bytes": 10680,
+    "sha256": "42f6576d77560cf2f796d8f2105229300ceab52c5ef1a39add13becab24fbc02"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/README.md",
+    "bytes": 22308,
+    "sha256": "3f3aa55b9e188f39b03604fb31b570449239ae912c3934c9b1159d947f46a5c8"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/READ_ATTEMPTS.json",
+    "bytes": 1920,
+    "sha256": "a7c5b0744efcfbec549c74d557b118b7d4d1b2c2bb5b527c57f41bb99f31355b"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/READ_ONLY_INVENTORY_SCRIPT.py",
+    "bytes": 5076,
+    "sha256": "d78f93fb915dcfaf11b86be880440a1e2058f4800e241873b3268393c4acb7bd"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/SOURCE_INPUTS.json",
+    "bytes": 5406,
+    "sha256": "6a2c7c4521410498581454e5427671672200007530b6955dd4ee2fcb60822306"
+  },
+  {
+    "commit": "dcd8f369c5493f783449a1dffe1e827a409b3d7a",
+    "path": "docs/hq-integration/wave3-final-owner-preflight-20261127/WINDOWS_RUNNER_PREFLIGHT.json",
+    "bytes": 10309,
+    "sha256": "113b4a5ae206acf8cb73b11f61307a47eef3df7d09a037010d556a9f663655e1"
+  }
+]
