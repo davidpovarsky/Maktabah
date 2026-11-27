@@ -6535,6 +6535,7 @@
 				);
 				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidpovarsky.chavrusatext;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6595,6 +6596,7 @@
 				);
 				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidpovarsky.chavrusatext;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "$(CHAVRUSATEXT_PROFILE_SPECIFIER)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
