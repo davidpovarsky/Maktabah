@@ -1,0 +1,45 @@
+{
+  "scope": "Independent source-only read of bounded SDK envelope; structural replay only, no repeated tests, Mac observation, launch or SDK/native acceptance.",
+  "reviewed": [
+    {
+      "path": "supervisor.py",
+      "exactHunks": 5,
+      "beforeSHA256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+      "afterSHA256": "a4b4e94edd9ce1b5fb566960d6ecf0d9b950955468ba945eda1e27666f862f3f",
+      "exactForwardReplay": true
+    },
+    {
+      "path": "completion_watcher.py",
+      "exactHunks": 9,
+      "beforeSHA256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be",
+      "afterSHA256": "0fc2eedd7a8dbf848378b7c6e5d0520663827d111dbbacb7bde6fc00395dbd88",
+      "exactForwardReplay": true
+    },
+    {
+      "path": "launch_owned.py",
+      "exactHunks": 8,
+      "beforeSHA256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72",
+      "afterSHA256": "499a56250dd2eec6a2b9da77c6cbb7e0af951b436dbcb9c1118de39174341067",
+      "exactForwardReplay": true
+    }
+  ],
+  "totalExactHunks": 22,
+  "manifestRowsVerified": 13,
+  "observerSHA256": "9cd008173de4b9ddbd3e9589081159f132bbf6d6c8705bb2c21ef874e2649ecd",
+  "exactEditsSHA256": "004863ff689f5938a82cc07421a571833f01cf6cd044f086571fc919f7e058bc",
+  "manifestSHA256": "6ce77044cd6bb7df20a2e6e58f33fda9b963bd08682666d3c36c2b4bebb500fe",
+  "demonstratedBlockers": [],
+  "findings": [
+    "Original queued root/four-marker predicate retained; finite ps timeout and strict whole-row/header/nonempty refusal do not weaken admission.",
+    "Pinned BSD adapter validates full process accounting including its own live reader, exact UID/start/PGID/type, binary hash before/after; explicit terminal-zombie omission remains original contract.",
+    "Statvfs available bytes and exact 14GiB admission/2GiB+256MiB stop remain separate; unknown completed peak remains explicit.",
+    "Popen returned PID is saved before fallible BSD observation. No watcher SDK signal is introduced; bounded subprocess helper cleanup is distinct.",
+    "Original SDK command tail/17guard validation/3000s framework/180s original restore/finally remain unchanged except reviewed observation substitutions.",
+    "Inherited historical source/recipe documents are explicitly historical, source execution is bound to d609 and recipe677c."
+  ],
+  "limits": [
+    "No actual Mac compiler lease, capacity sufficiency, Apple SDK or new framework acceptance established by this read.",
+    "The BSD adapter binary provenance is the retained exact qualified input; no binary compilation or fresh execution performed.",
+    "Admission is a point-in-time read; root resource coordination and original live stop guard remain mandatory."
+  ]
+}

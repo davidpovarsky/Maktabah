@@ -1,0 +1,19 @@
+test_absent_owned_process_is_unavailable_not_other_identity (__main__.Controls.test_absent_owned_process_is_unavailable_not_other_identity) ... ok
+test_admission_exact_boundary_is_unchanged (__main__.Controls.test_admission_exact_boundary_is_unchanged) ... ok
+test_bsd_read_failure_refuses (__main__.Controls.test_bsd_read_failure_refuses) ... ok
+test_clean_argument_inventory_retains_timeout_and_exact_predicate (__main__.Controls.test_clean_argument_inventory_retains_timeout_and_exact_predicate) ... ok
+test_diagnostic_stderr_refuses (__main__.Controls.test_diagnostic_stderr_refuses) ... ok
+test_foreign_uid_refuses_owned_identity (__main__.Controls.test_foreign_uid_refuses_owned_identity) ... ok
+test_live_compiler_metadata_refuses_without_signaling (__main__.Controls.test_live_compiler_metadata_refuses_without_signaling) ... ok
+test_low_capacity_precedes_any_identity_git_or_process_read (__main__.Controls.test_low_capacity_precedes_any_identity_git_or_process_read) ... ok
+test_owned_identity_preserves_precise_start_and_group (__main__.Controls.test_owned_identity_preserves_precise_start_and_group) ... ok
+test_partial_or_malformed_inventory_refuses (__main__.Controls.test_partial_or_malformed_inventory_refuses) ... ok
+test_process_read_failure_cannot_be_empty_success (__main__.Controls.test_process_read_failure_cannot_be_empty_success) ... ok
+test_queued_python_runner_blocks_even_without_compiler_name (__main__.Controls.test_queued_python_runner_blocks_even_without_compiler_name) ... ok
+test_timeout_cannot_be_empty_success (__main__.Controls.test_timeout_cannot_be_empty_success) ... ok
+test_unrelated_root_does_not_match_original_predicate (__main__.Controls.test_unrelated_root_does_not_match_original_predicate) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.009s
+
+OK

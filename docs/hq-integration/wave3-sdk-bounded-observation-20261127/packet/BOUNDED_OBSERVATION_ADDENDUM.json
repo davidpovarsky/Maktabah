@@ -1,0 +1,48 @@
+{
+  "schema": "otzaria.sdk.bounded-observation-envelope.v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "baseManifestSHA256": "4d69b38000090f59e0fc3f12b4a46acfe36e55b7759a30c04df80833576ff317",
+  "originalControllers": {
+    "launch_owned.py": {
+      "bytes": 5891,
+      "sha256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72"
+    },
+    "completion_watcher.py": {
+      "bytes": 8119,
+      "sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+    },
+    "supervisor.py": {
+      "bytes": 26860,
+      "sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+    }
+  },
+  "sourceSHA": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "recipeSHA256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490",
+  "sourceGuardCount": 17,
+  "sourceGuardChanges": 0,
+  "admissionBytes": 15032385536,
+  "liveStopBytes": 2415919104,
+  "unchanged": [
+    "Original SDK command recipe and fresh execution paths",
+    "17 original source guards",
+    "3,000 second full original framework deadline",
+    "180 second original macro restore deadline and finally",
+    "Original two-second stop reserve sampling and exact child group signaling",
+    "Original queued SDK root plus four argument-marker predicate",
+    "No automatic retry, no prior execution identity or acceptance reuse"
+  ],
+  "changes": [
+    "Capacity refusal precedes process/source observations",
+    "Reuse existing qualified BSD metadata reader for own identity and global compiler names",
+    "Original queued-SDK ps read has five-second timeout and refuses malformed/empty/error observations",
+    "Capacity reads use os.statvfs without a child process",
+    "Local Git metadata reads have30second timeout",
+    "Watcher signal claim is scoped to SDK supervisor; bounded observer helper cleanup is explicit"
+  ],
+  "bsdAdapterSHA256": "24e4bc3832d2e12d66f36c45c749e66687211e514d21362940078801f359229c",
+  "bsdBinarySHA256": "b849e2066b9a41f26bdc25816fe53603957ca43d9c099b93c594877244b5a013",
+  "newBSDReaderCompilation": false,
+  "nativeRuns": 0,
+  "SDKBuilds": 0,
+  "historicalDocuments": "PROPOSAL, COMPLETE_PLAN and original contracts remain unmodified historical inputs; this addendum and exact current manifest identify the new observation-only envelope."
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS_PORTABLE_OBSERVER_BOUNDARIES",
+  "methodsRun": 14,
+  "failures": 0,
+  "errors": 0,
+  "realMacObservations": 0,
+  "SDKBuilds": 0,
+  "scope": "Focused portable refusal controls for the process-observation replacement.\n\nAll OS/process responses are explicit boundaries. These checks do not observe a\nMac, acquire a compiler slot, or establish SDK/native acceptance.\n"
+}

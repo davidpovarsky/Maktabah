@@ -1,0 +1,6 @@
+{
+  "status": "FAILED_LOCAL_PREPARATION_BEFORE_REMOTE_OR_SDK",
+  "reason": "Inverse verifier treated empty replacement as uniquely searchable; deletion needs the recorded exact offset.",
+  "SDKBuilds": 0,
+  "sourceMutations": 0
+}

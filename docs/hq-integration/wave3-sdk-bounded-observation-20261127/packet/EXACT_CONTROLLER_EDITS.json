@@ -1,0 +1,134 @@
+[
+  {
+    "path": "supervisor.py",
+    "offset": 243,
+    "old": "from pathlib import Path\n",
+    "new": "from pathlib import Path\nfrom sdk_process_observation import free_bytes, require_launch_capacity, require_original_sdk_slot, require_compiler_slot\nrequire_launch_capacity()\n"
+  },
+  {
+    "path": "supervisor.py",
+    "offset": 16690,
+    "old": "capture_output=True,check=True).stdout\nif git(",
+    "new": "capture_output=True,check=True,timeout=30).stdout\nif git("
+  },
+  {
+    "path": "supervisor.py",
+    "offset": 17657,
+    "old": "procrows=subprocess.run(['ps','-axo','pid,ppid,command'],capture_output=True,text=True,check=True).stdout\nif any(str(root)in l and any(k in l for k in['run_framework_acceptance.py','prepare_local_execution.py','xcodebuild','swift-frontend'])for l in procrows.splitlines()):raise RuntimeError('SDK slot already active')\n",
+    "new": "sdkSlotObservation=require_original_sdk_slot(root)\nactiveCompilers=require_compiler_slot()\nrequire_launch_capacity()\n"
+  },
+  {
+    "path": "supervisor.py",
+    "offset": 18089,
+    "old": "def free():return int(subprocess.run(['df','-k','/System/Volumes/Data'],capture_output=True,text=True,check=True).stdout.splitlines()[1].split()[3])*1024",
+    "new": "def free():return free_bytes()"
+  },
+  {
+    "path": "supervisor.py",
+    "offset": 19281,
+    "old": "'steps':[],'newFullAppBuilds':0,'newMaktabahNativeTests':0}",
+    "new": "'steps':[],'newFullAppBuilds':0,'newMaktabahNativeTests':0,'sdkSlotObservation':sdkSlotObservation,'activeCompilers':activeCompilers,'capacityObservation':'os.statvfs f_bavail times f_frsize'}"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 196,
+    "old": "import time\n",
+    "new": "import time\nfrom sdk_process_observation import identity, free_bytes, require_launch_capacity\n"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 885,
+    "old": "def identity(pid):\n    p = subprocess.run(\n        [\"/bin/ps\", \"-p\", str(pid), \"-o\", \"pid=,ppid=,pgid=,lstart=,command=\"],\n        capture_output=True, text=True,\n    )\n    raw = p.stdout.strip()\n    fields = raw.split(None, 8)\n    if p.returncode or len(fields) != 9:\n        return {\"pid\": pid, \"observed_at\": utc(), \"available\": False, \"raw\": raw}\n    return {\"pid\": int(fields[0]), \"ppid\": int(fields[1]), \"pgid\": int(fields[2]),\n            \"start\": \" \".join(fields[3:8]), \"command\": fields[8],\n            \"observed_at\": utc(), \"available\": True, \"raw\": raw}\n\n\n",
+    "new": ""
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 885,
+    "old": "def free():\n    p = subprocess.run([\"/bin/df\", \"-k\", \"/System/Volumes/Data\"],\n                       capture_output=True, text=True, check=True)\n    return int(p.stdout.splitlines()[1].split()[3]) * 1024\n",
+    "new": "def free():\n    return free_bytes()\n"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 1573,
+    "old": "    args = ap.parse_args()\n",
+    "new": "    args = ap.parse_args()\n    require_launch_capacity()\n"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 291,
+    "old": "SUPERVISOR_SHA = \"4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b\"",
+    "new": "SUPERVISOR_SHA = \"a4b4e94edd9ce1b5fb566960d6ecf0d9b950955468ba945eda1e27666f862f3f\""
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 4919,
+    "old": "            child_identity = identity(child.pid)\n",
+    "new": "            write(control / \"SUPERVISOR_PROCESS_SPAWNED.json\", {\n                \"schema\": 1, \"status\": \"POPEN_RETURNED_NOT_ACCEPTANCE\",\n                \"popenPID\": child.pid, \"directParent\": os.getpid(), \"observed_at\": utc(),\n                \"supervisorSHA256\": SUPERVISOR_SHA,\n            })\n            child_identity = identity(child.pid)\n"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 2712,
+    "old": "\"processSignalsIssued\": 0}",
+    "new": "\"sdkSupervisorSignalsIssuedByWatcher\": 0,\n               \"observerScope\": \"Pinned BSD reader may clean up only its own bounded helper; watcher never signals SDK supervisor\"}"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 4056,
+    "old": "\"processSignalsIssuedByWatcher\": 0}",
+    "new": "\"sdkSupervisorSignalsIssuedByWatcher\": 0}"
+  },
+  {
+    "path": "completion_watcher.py",
+    "offset": 7093,
+    "old": "\"processSignalsIssuedByWatcher\": 0,",
+    "new": "\"sdkSupervisorSignalsIssuedByWatcher\": 0,"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 181,
+    "old": "import subprocess\n",
+    "new": "import subprocess\nfrom sdk_process_observation import identity, require_launch_capacity, require_original_sdk_slot, require_compiler_slot\n"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 1141,
+    "old": "def identity(pid):\n    p = subprocess.run([\"/bin/ps\", \"-p\", str(pid), \"-o\", \"pid=,ppid=,pgid=,lstart=,command=\"], capture_output=True, text=True)\n    raw = p.stdout.strip()\n    fields = raw.split(None, 8)\n    if p.returncode or len(fields) != 9:\n        return {\"pid\": pid, \"available\": False, \"raw\": raw, \"observed_at\": utc()}\n    return {\"pid\": int(fields[0]), \"ppid\": int(fields[1]), \"pgid\": int(fields[2]),\n            \"start\": \" \".join(fields[3:8]), \"command\": fields[8],\n            \"available\": True, \"raw\": raw, \"observed_at\": utc()}\n\n\n",
+    "new": ""
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 1099,
+    "old": "capture_output=True, check=True).stdout",
+    "new": "capture_output=True, check=True, timeout=30).stdout"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 1293,
+    "old": "    ap.parse_args()\n",
+    "new": "    ap.parse_args()\n    require_launch_capacity()\n"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 2555,
+    "old": "    ps = subprocess.run([\"/bin/ps\", \"-axo\", \"pid,ppid,command\"], capture_output=True, text=True, check=True).stdout\n    assert not any(str(SDK) in line and any(k in line for k in [\"run_framework_acceptance.py\", \"prepare_local_execution.py\", \"xcodebuild\", \"swift-frontend\"])\n                   for line in ps.splitlines()), \"Original SDK slot already active\"\n    compiler_rows = subprocess.run([\"/bin/ps\", \"-axo\", \"pid=,comm=\"], capture_output=True, text=True, check=True).stdout\n    compiler_names = {\"xcodebuild\", \"swiftc\", \"swift-frontend\", \"clang\", \"clang++\", \"cc1\", \"actool\", \"ibtool\", \"ld\", \"gomobile\", \"gobind\"}\n    active_compilers = []\n    for line in compiler_rows.splitlines():\n        fields = line.strip().split(None, 1)\n        if len(fields) == 2 and Path(fields[1]).name in compiler_names:\n            active_compilers.append({\"pid\": int(fields[0]), \"executable\": fields[1]})\n    assert not active_compilers, \"Exclusive compiler slot is occupied; no process is stopped\"\n    df = subprocess.run([\"/bin/df\", \"-k\", \"/System/Volumes/Data\"], capture_output=True, text=True, check=True).stdout\n    available = int(df.splitlines()[1].split()[3]) * 1024\n    assert available >= 15032385536, \"Root fourteen-GiB launch admission not available\"\n",
+    "new": "    sdk_slot_observation = require_original_sdk_slot(SDK)\n    active_compilers = require_compiler_slot()\n    available = require_launch_capacity()\n"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 3186,
+    "old": "\"freeBefore\": available, \"rawDf\": df, \"retryAuthorized\": False}",
+    "new": "\"freeBefore\": available, \"capacityObservation\": \"os.statvfs f_bavail times f_frsize\",\n             \"sdkSlotObservation\": sdk_slot_observation, \"retryAuthorized\": False}"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 3843,
+    "old": "        observed = identity(child.pid)\n",
+    "new": "        save(control / \"WATCHER_PROCESS_SPAWNED.json\", {\n            \"schema\": 1, \"status\": \"POPEN_RETURNED_NOT_ACCEPTANCE\",\n            \"popenPID\": child.pid, \"directParent\": os.getpid(), \"observed_at\": utc(),\n            \"manifestSHA256\": EXPECTED_MANIFEST, \"command\": command,\n        })\n        observed = identity(child.pid)\n"
+  },
+  {
+    "path": "launch_owned.py",
+    "offset": 320,
+    "old": "EXPECTED_MANIFEST = \"4d69b38000090f59e0fc3f12b4a46acfe36e55b7759a30c04df80833576ff317\"",
+    "new": "EXPECTED_MANIFEST = \"6ce77044cd6bb7df20a2e6e58f33fda9b963bd08682666d3c36c2b4bebb500fe\""
+  }
+]

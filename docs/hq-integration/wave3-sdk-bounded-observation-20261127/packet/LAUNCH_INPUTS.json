@@ -1,0 +1,118 @@
+{
+  "approvedSupervisorSHA256": "a4b4e94edd9ce1b5fb566960d6ecf0d9b950955468ba945eda1e27666f862f3f",
+  "files": [
+    {
+      "path": "supervisor.py",
+      "bytes": 26827,
+      "sha256": "a4b4e94edd9ce1b5fb566960d6ecf0d9b950955468ba945eda1e27666f862f3f"
+    },
+    {
+      "path": "FRESH_RUN_COMMANDS.json",
+      "bytes": 7566,
+      "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490"
+    },
+    {
+      "path": "HISTORICAL_OBSERVED_CONTRACT.json",
+      "bytes": 6235,
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+    },
+    {
+      "path": "UNCHANGED_ORIGINAL_GUARDS.json",
+      "bytes": 5109,
+      "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171"
+    },
+    {
+      "path": "PROPOSAL.json",
+      "bytes": 4426,
+      "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b"
+    },
+    {
+      "path": "COMPLETE_PLAN.json",
+      "bytes": 2420,
+      "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c"
+    },
+    {
+      "path": "completion_watcher.py",
+      "bytes": 7949,
+      "sha256": "0fc2eedd7a8dbf848378b7c6e5d0520663827d111dbbacb7bde6fc00395dbd88"
+    },
+    {
+      "path": "CUTOVER_RESULT.json",
+      "bytes": 4248,
+      "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88"
+    },
+    {
+      "path": "sdk_process_observation.py",
+      "bytes": 4710,
+      "sha256": "9cd008173de4b9ddbd3e9589081159f132bbf6d6c8705bb2c21ef874e2649ecd"
+    },
+    {
+      "path": "BOUNDED_OBSERVATION_ADDENDUM.json",
+      "bytes": 2296,
+      "sha256": "8b0cb2d10af5ac112527d50560e2ba869c646d95327693f300d5e2f5a1cd5a3c"
+    },
+    {
+      "path": "ORIGINAL_launch_owned.py.txt",
+      "bytes": 5891,
+      "sha256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72"
+    },
+    {
+      "path": "ORIGINAL_completion_watcher.py.txt",
+      "bytes": 8119,
+      "sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+    },
+    {
+      "path": "ORIGINAL_supervisor.py.txt",
+      "bytes": 26860,
+      "sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+    }
+  ],
+  "minimumLaunchFreeBytes": 15032385536,
+  "minimumLaunchFreeIsNotACompletedPeakOrAcceptance": true,
+  "originalControllerSources": {
+    "launcherSHA256": "583e599ab0a226d3d5be3a070fadae0dd8d895645b2d17706ee8e387cd59448e",
+    "watcherChanges": [
+      "approved supervisor pin",
+      "exact new owned output prefix",
+      "root fourteen-GiB pre-launch admission",
+      "Capacity refusal precedes process/source observations",
+      "Reuse existing qualified BSD metadata reader for own identity and global compiler names",
+      "Original queued-SDK ps read has five-second timeout and refuses malformed/empty/error observations",
+      "Capacity reads use os.statvfs without a child process",
+      "Local Git metadata reads have30second timeout",
+      "Watcher signal claim is scoped to SDK supervisor; bounded observer helper cleanup is explicit"
+    ],
+    "watcherProcessOwnershipObservationAndWaitUnchanged": false,
+    "watcherSHA256": "d3dbbf9b6258d6818e4c58e6026446cf5995f28ddffbeaa7c6e9d9d31437ec23",
+    "boundedObservationBase": {
+      "launch_owned.py": {
+        "bytes": 5891,
+        "sha256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72"
+      },
+      "completion_watcher.py": {
+        "bytes": 8119,
+        "sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+      },
+      "supervisor.py": {
+        "bytes": 26860,
+        "sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+      }
+    },
+    "watcherSignalsSDKSupervisor": false,
+    "boundedObserverMaySignalOwnDiagnosticChild": true,
+    "watcherSignalScope": "No signals to SDK supervisor; existing BSD helper may clean up its own timed-out diagnostic child."
+  },
+  "preflightGuard": {
+    "bytes": 4319,
+    "git_blob": "2628b345d5743bbe1ddc0d1afaeef9fb410f3daf",
+    "matches_committed_head": true,
+    "path": "Tools/PinkhaSimulatorGate/preflight.py",
+    "sha256": "0e1c6491e8bb30d9e97cf65cf3b820a8860d0a32237676f2c3a7613668ddee66"
+  },
+  "schema": 1,
+  "singleAttemptNoAutomaticRetry": true,
+  "sourceSHA": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "status": "CONDITIONAL_ROOT_AUTHORIZATION_NOT_LAUNCHED",
+  "unchangedLiveStopReserveBytes": 2415919104,
+  "observationAddendum": "BOUNDED_OBSERVATION_ADDENDUM.json"
+}

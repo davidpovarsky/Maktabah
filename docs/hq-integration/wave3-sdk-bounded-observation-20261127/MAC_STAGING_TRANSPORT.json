@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "stdout": "{\"receipt\": {\"status\": \"SOURCE_STAGED_NOT_LAUNCHED\", \"utc\": \"2026-11-27T20:57:55.547666+00:00\", \"control\": \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj\", \"members\": 41, \"transportSHA256\": \"cf8e030e83c208e10c5f6e0177ef4b631b9dfa9e6cf1eda54a52c2e00776e862\", \"stagingManifestSHA256\": \"2f1ab6468943d4cd5f72c05404bb52bb70630d10f1cd08a420e6bcf19a16cd2d\", \"launchManifestSHA256\": \"6ce77044cd6bb7df20a2e6e58f33fda9b963bd08682666d3c36c2b4bebb500fe\", \"launcherSHA256\": \"499a56250dd2eec6a2b9da77c6cbb7e0af951b436dbcb9c1118de39174341067\", \"originalSourceSHA\": \"d6090c03b9ac4e5760941e34f4c04478db4ae59f\", \"unchangedOriginalSourceGuards\": 17, \"freeBefore\": 4489416704, \"freeAfter\": 4485513216, \"SDKBuilds\": 0, \"nativeRuns\": 0, \"processInventoryReads\": 0, \"slotClaimed\": false}, \"receiptSHA256\": \"5c66896ea3fb5b98e6eb7060308d025863bcb080f5c295306a4c548eca40ffc3\"}\n",
+  "stderr": ""
+}
