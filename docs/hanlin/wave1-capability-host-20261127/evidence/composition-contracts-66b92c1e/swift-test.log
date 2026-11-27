@@ -1,0 +1,65 @@
+Building for debugging...
+[Pre-planning 1 / 240]
+[Planning deferred tasks]
+[1 / 63]
+[14 / 52] HanlinPlatformContracts
+[15 / 63] OtzariaActionCore
+[16 / 74] HanlinPlatformContracts
+[27 / 78] OtzariaActionCore
+[28 / 78] OtzariaActionCore
+[29 / 78] OtzariaActionCore
+[30 / 78] OtzariaActionCore
+[31 / 78] OtzariaActionCore
+[33 / 78] OtzariaActionCore
+[34 / 78] OtzariaActionCore
+[35 / 78] OtzariaActionCore
+[36 / 78] HanlinPlatformContracts
+[39 / 78] HanlinPlatformContracts
+[40 / 78] HanlinPlatformContracts
+[42 / 81] HanlinHostContracts
+[43 / 81] HanlinPlatformContracts
+[44 / 88] HanlinHostContracts
+[45 / 88] HanlinPlatformContracts
+[47 / 88] HanlinPlatformContracts
+[49 / 90] HanlinPlatformContracts
+[53 / 90] HanlinHostContracts
+[56 / 96] OtzariaHanlinHostAdapter
+[57 / 96] HanlinAgentCore
+[58 / 98] OtzariaHanlinHostAdapter
+[59 / 100] HanlinAgentCore
+[67 / 104] OtzariaHanlinHostAdapter
+[69 / 104] HanlinHostContracts
+[72 / 104] HanlinHostContracts
+[73 / 104] HanlinHostContracts
+[84 / 109] HanlinAgentCore
+[88 / 107] HanlinHostCheck_HanlinPlatformContracts
+[94 / 107] OtzariaHanlinHostAdapterTests-product
+[97 / 110] OtzariaHanlinHostAdapterTests-product
+[100 / 110] OtzariaHanlinHostAdapterTests-product
+[106 / 110] AllIncludingTests
+Build complete! (30,36 secs)
+Test Suite 'Selected tests' started at 2026-11-27 01:34:32.199.
+Test Suite 'OtzariaHanlinHostAdapterTests.xctest' started at 2026-11-27 01:34:32.200.
+Test Suite 'OtzariaHanlinHostAdapterTests' started at 2026-11-27 01:34:32.200.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner]' passed (0.089 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt]' passed (0.082 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt]' passed (0.057 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionKeepsLibraryExecutionInOriginalCore]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionKeepsLibraryExecutionInOriginalCore]' passed (0.055 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch]' passed (0.042 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity]' passed (0.093 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias]' passed (0.059 seconds).
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRevocationCannotDispatchAnAssistantCall]' started.
+Test Case '-[OtzariaHanlinHostAdapterTests.OtzariaHanlinHostAdapterTests testCapabilityCompositionRevocationCannotDispatchAnAssistantCall]' passed (0.070 seconds).
+Test Suite 'OtzariaHanlinHostAdapterTests' passed at 2026-11-27 01:34:32.748.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.548 (0.548) seconds
+Test Suite 'OtzariaHanlinHostAdapterTests.xctest' passed at 2026-11-27 01:34:32.748.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.548 (0.548) seconds
+Test Suite 'Selected tests' passed at 2026-11-27 01:34:32.748.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.548 (0.549) seconds

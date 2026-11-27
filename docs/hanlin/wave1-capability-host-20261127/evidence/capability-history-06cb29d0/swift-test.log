@@ -1,0 +1,104 @@
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 211]
+[Planning deferred tasks]
+[12 / 121]
+[63 / 122]
+[64 / 196]
+[67 / 196]
+[68 / 196]
+[71 / 196]
+[72 / 196]
+[74 / 196] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[77 / 196]
+[79 / 196]
+[80 / 196] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[83 / 196]
+[84 / 196]
+[87 / 196]
+[89 / 196]
+[91 / 196]
+[93 / 196]
+[95 / 196]
+[97 / 196]
+[99 / 196]
+[101 / 196]
+[102 / 196]
+[103 / 196]
+[106 / 196]
+[108 / 196]
+[109 / 196]
+[110 / 196]
+[111 / 196] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[114 / 196]
+[115 / 196]
+[117 / 196]
+[119 / 196]
+[121 / 196]
+[122 / 196]
+[124 / 196]
+[125 / 196]
+[128 / 196]
+[129 / 196]
+[130 / 196]
+[132 / 196] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[134 / 196] HanlinPresentationKit
+[140 / 196] HanlinPresentationKit
+[142 / 196] HanlinPresentationKit
+[143 / 196] HanlinPresentationKit
+[144 / 196] HanlinPresentationKit
+[145 / 196] HanlinPresentationKit
+[145 / 196]
+[148 / 196] OtzariaHanlinStoreProof_HanlinPlatformContracts
+[149 / 197]
+[150 / 208] HanlinPresentationKit
+[152 / 208] HanlinPlatformContracts
+[154 / 208] HanlinPlatformContracts
+[160 / 208] HanlinPlatformContracts
+[162 / 208] HanlinPlatformContracts
+[163 / 208] HanlinPlatformContracts
+[164 / 208] HanlinPlatformContracts
+[165 / 208] HanlinPlatformContracts
+[166 / 208] HanlinPlatformContracts
+[166 / 208] HanlinHostContracts
+[168 / 208]
+[169 / 209] HanlinChatCore
+[170 / 211] HanlinPresentationKit
+[172 / 211] HanlinChatCore
+[180 / 212]
+[182 / 219] HanlinHostContracts
+[184 / 219] HanlinHostContracts
+[190 / 219] HanlinHostContracts
+[191 / 219] OtzariaHanlinConsumerStore
+[192 / 219] OtzariaHanlinConsumerStore
+[193 / 219]
+[196 / 220] OtzariaHanlinConsumerStore
+[198 / 222] OtzariaHanlinConsumerStore
+[199 / 222] OtzariaHanlinConsumerStore
+[210 / 223] OtzariaHanlinConversationStoreTests-product
+[213 / 231]
+[215 / 231]
+[216 / 231]
+[217 / 231]
+[219 / 231] OtzariaHanlinConversationStoreTests-product
+[221 / 231] OtzariaHanlinConversationStoreTests-product
+[227 / 231] AllIncludingTests
+[229 / 231] OtzariaHanlinConversationStoreTests-product
+Build complete! (54,39 secs)
+Test Suite 'Selected tests' started at 2026-11-27 02:03:14.595.
+Test Suite 'OtzariaHanlinConversationStoreTests.xctest' started at 2026-11-27 02:03:14.596.
+Test Suite 'OtzariaHanlinConversationStoreTests' started at 2026-11-27 02:03:14.596.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryCannotBypassExistingStoreByteLimit]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryCannotBypassExistingStoreByteLimit]' passed (0.185 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen]' passed (0.008 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem]' passed (0.006 seconds).
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk]' started.
+Test Case '-[OtzariaHanlinConversationStoreTests.OtzariaHanlinConversationStoreTests testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk]' passed (0.005 seconds).
+Test Suite 'OtzariaHanlinConversationStoreTests' passed at 2026-11-27 02:03:14.802.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.204 (0.205) seconds
+Test Suite 'OtzariaHanlinConversationStoreTests.xctest' passed at 2026-11-27 02:03:14.802.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.204 (0.205) seconds
+Test Suite 'Selected tests' passed at 2026-11-27 02:03:14.802.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.204 (0.207) seconds

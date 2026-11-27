@@ -1,0 +1,7 @@
+{
+  "status": "INFRA_TIMEOUT",
+  "toolJob": "job_c7a8fe8aeedf",
+  "toolTimeoutSeconds": 30,
+  "nativeTestsRun": 0,
+  "retryReason": "Correct Sentinel script_run timeout; identical source and incremental Swift cache"
+}

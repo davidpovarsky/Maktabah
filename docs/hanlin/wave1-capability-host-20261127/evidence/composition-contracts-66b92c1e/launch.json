@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "66b92c1ef3d4493540c2eaa9d87abe507f0d3f60",
+  "productCommits": [
+    "f902bd6ae336b58c475c3f4ddfc7c0669330c5f1",
+    "ecf44c97517f1d942fd4723dc02db4bb9913e21b"
+  ],
+  "sourceHashes": {
+    "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift": "d2eb5d928c52194ccbe9d1afe083c1d25f97137c27ff784ed46f1bce61a6c1f7",
+    "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift": "39fd6facd9b06b01a74c7dd99c8494e914d0f097efa703150b1398f9330dd489"
+  },
+  "command": [
+    "/opt/homebrew/opt/python@3.12/bin/python3.12",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/tools/hq-hanlin-host-contracts.py",
+    "--hanlin-repo",
+    "/Users/m1/builds/otzaria-wave1-hanlin-20261127/source",
+    "--hanlin-sha",
+    "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+    "--artifacts-dir",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-66b92c1e",
+    "--test-prefix",
+    "testCapabilityComposition"
+  ]
+}

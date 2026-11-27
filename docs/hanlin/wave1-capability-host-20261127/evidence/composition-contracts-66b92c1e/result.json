@@ -1,0 +1,42 @@
+{
+  "test_prefix": "testCapabilityComposition",
+  "expected_tests": [
+    "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+    "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt",
+    "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+    "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+    "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+    "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+    "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+    "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"
+  ],
+  "passed_tests": [
+    "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+    "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt",
+    "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+    "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+    "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+    "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+    "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+    "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"
+  ],
+  "warnings": 0,
+  "status": "PASS",
+  "exit_code": 0,
+  "hanlin_sha": "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+  "adapter_sha256": "d2eb5d928c52194ccbe9d1afe083c1d25f97137c27ff784ed46f1bce61a6c1f7",
+  "inputs": 72,
+  "command": [
+    "swift",
+    "test",
+    "--scratch-path",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete",
+    "--filter",
+    "OtzariaHanlinHostAdapterTests/testCapabilityComposition"
+  ],
+  "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+}

@@ -1,0 +1,33 @@
+{
+  "test_prefix": "testCapabilityComposition",
+  "expected_tests": [
+    "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+    "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt",
+    "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+    "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+    "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+    "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+    "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+    "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"
+  ],
+  "passed_tests": [],
+  "warnings": 0,
+  "status": "FAIL",
+  "exit_code": 1,
+  "hanlin_sha": "7ee863657323f314f25a6e58bca0aa9ee669e51b",
+  "adapter_sha256": "a513edb1a296f41743bb0f69a44486dd87fc1183b74af97a4aecf9b939eca29a",
+  "inputs": 72,
+  "command": [
+    "swift",
+    "test",
+    "--scratch-path",
+    "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh",
+    "-j",
+    "1",
+    "-Xswiftc",
+    "-strict-concurrency=complete",
+    "--filter",
+    "OtzariaHanlinHostAdapterTests/testCapabilityComposition"
+  ],
+  "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."
+}

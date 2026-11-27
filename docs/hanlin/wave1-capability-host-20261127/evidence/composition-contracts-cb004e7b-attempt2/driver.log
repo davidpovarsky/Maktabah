@@ -1,0 +1,100 @@
+{"test_prefix": "testCapabilityComposition", "expected_tests": ["testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner", "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt", "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt", "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore", "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch", "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity", "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias", "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"], "passed_tests": [], "warnings": 0, "status": "FAIL", "exit_code": 1, "hanlin_sha": "7ee863657323f314f25a6e58bca0aa9ee669e51b", "adapter_sha256": "a513edb1a296f41743bb0f69a44486dd87fc1183b74af97a4aecf9b939eca29a", "inputs": 72, "command": ["swift", "test", "--scratch-path", "/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh", "-j", "1", "-Xswiftc", "-strict-concurrency=complete", "--filter", "OtzariaHanlinHostAdapterTests/testCapabilityComposition"], "boundary": "Actual frozen SDK Contracts + complete original HostDispatcher + actual ActionCore + actual adapter; explicit backend/authority/native-receipt doubles. No AgentSession, app, provider, native UI or device acceptance."}
+Building for debugging...
+[Computing dependencies]
+[Pre-planning 1 / 240]
+[Planning deferred tasks]
+[12 / 140]
+[69 / 141]
+[71 / 152] OtzariaActionCore
+[74 / 152] OtzariaActionCore
+[80 / 152] OtzariaActionCore
+[81 / 152] OtzariaActionCore
+[83 / 152] OtzariaActionCore
+[84 / 152] OtzariaActionCore
+[85 / 152] OtzariaActionCore
+[86 / 152] OtzariaActionCore
+[86 / 152]
+[88 / 153] HanlinPlatformContracts
+[90 / 164] HanlinPlatformContracts
+[91 / 164] HanlinPlatformContracts
+[92 / 164] HanlinPlatformContracts
+[98 / 164] HanlinPlatformContracts
+[100 / 164] HanlinPlatformContracts
+[101 / 164] HanlinPlatformContracts
+[102 / 164] HanlinPlatformContracts
+[103 / 164] HanlinPlatformContracts
+[104 / 164] HanlinPlatformContracts
+[105 / 164] HanlinPlatformContracts
+[105 / 164] HanlinHostContracts
+[116 / 165]
+[118 / 172] HanlinHostContracts
+[119 / 172] HanlinHostContracts
+[121 / 172] HanlinHostContracts
+[126 / 172] HanlinHostContracts
+[127 / 172] OtzariaHanlinHostAdapter
+[128 / 172] OtzariaHanlinHostAdapter
+[129 / 172] HanlinAgentCore
+[133 / 173]
+[135 / 175] OtzariaHanlinHostAdapter
+[136 / 175] OtzariaHanlinHostAdapter
+[142 / 175]
+[144 / 175] OtzariaActionCore
+[146 / 175] HanlinHostCheck_HanlinPlatformContracts
+[148 / 175]
+[149 / 176]
+[151 / 178] HanlinAgentCore
+[152 / 178] HanlinAgentCore
+[161 / 178]
+[163 / 178]
+[166 / 179] OtzariaHanlinHostAdapterTests-product
+[168 / 215]
+[169 / 215]
+[170 / 215]
+[171 / 215]
+[172 / 215]
+[174 / 215]
+[175 / 215]
+[176 / 215]
+[177 / 215]
+[178 / 215]
+[179 / 215]
+[180 / 215]
+[181 / 215]
+[182 / 215]
+[183 / 215]
+[184 / 215]
+[185 / 215]
+[186 / 215]
+[187 / 215]
+[188 / 215]
+[189 / 215]
+[190 / 215]
+[191 / 215] OtzariaHanlinHostAdapterTests-product
+[193 / 215] OtzariaHanlinHostAdapterTests-product
+[195 / 215]
+[196 / 215]
+[197 / 215]
+[198 / 215]
+[200 / 215]
+[201 / 215]
+error: SwiftCompile normal arm64 failed with a nonzero exit code. Command line:     cd /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-cb004e7b-attempt2
+    
+/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-cb004e7b-attempt2/package/Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift:902:98: [1;31merror: [1;39mmissing argument for parameter 'presentation' in call[0;0m
+ [0;36m900 |[0;0m         let descriptor = try HanlinToolDescriptor(logicalID: logical, descriptorRevision: .init(3),
+ [0;36m901 |[0;0m             owner: .system, title: .init(["en": "Original fixture capability"]),
+ [0;36m902 |[0;0m             summary: .init(["en": "Explicit component double"]), inputSchema: schema, risk: .read)
+     [0;36m|[0;0m                                                                                                  `- [1;31merror: [1;39mmissing argument for parameter 'presentation' in call[0;0m
+ [0;36m903 |[0;0m         tools = [.init(route: .init(alias: "mcp__fixture__echo", logicalToolID: logical, descriptorRevision: .init(3)),
+ [0;36m904 |[0;0m                        descriptor: descriptor, writeGuarantee: .hostManagedMutation, originalInputSchemaJSON: schemaBytes)]
+
+HanlinPlatformContracts.HanlinToolDescriptor.init:2:8: [1;39mnote: [1;39m'init(logicalID:descriptorRevision:owner:title:summary:inputSchema:outputSchema:capabilities:risk:presentation:approval:)' declared here[0;0m
+[0;36m1 |[0;0m struct HanlinToolDescriptor {
+[0;36m2 |[0;0m public init(logicalID: HanlinPlatformContracts.HanlinLogicalToolID, descriptorRevision: HanlinPlatformContracts.HanlinDescriptorRevision, owner: HanlinPlatformContracts.HanlinToolOwner, title: HanlinPlatformContracts.LocalizedValue, summary: HanlinPlatformContracts.LocalizedValue, inputSchema: HanlinPlatformContracts.HanlinJSONSchemaDocument, outputSchema: HanlinPlatformContracts.HanlinJSONSchemaDocument? = nil, capabilities: [HanlinPlatformContracts.HanlinCapabilityID] = [], risk: HanlinPlatformContracts.HanlinRiskLevel, presentation: HanlinPlatformContracts.HanlinToolPresentationDescriptor, approval: HanlinPlatformContracts.HanlinToolApprovalDescriptor? = nil)}
+  [0;36m|[0;0m        `- [1;39mnote: [1;39m'init(logicalID:descriptorRevision:owner:title:summary:inputSchema:outputSchema:capabilities:risk:presentation:approval:)' declared here[0;0m
+[0;36m3 |[0;0m 
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/DerivedSources/test_entry_point.swift /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-cb004e7b-attempt2/package/Tests/OtzariaHanlinHostAdapterTests/AdapterTests.swift -target arm64-apple-macos26.0 -module-can-import-version Testing 2084 0 -module-can-import-version XCTest 25228 0 -disable-cross-import-overlay-search -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/AppKit.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreGraphics.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreImage.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/CoreTransferable.swiftoverlay -swift-module-cross-import Testing /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/Testing.framework/Modules/Testing.swiftcrossimport/Foundation.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing/libTestingMacros.dylib\#\#TestingMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk -I /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Products/Debug/PackageFrameworks -F /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -module-cache-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/SwiftExplicitPrecompiledModules -color-diagnostics -Xcc -fcolor-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -swift-version 6 -Onone -D SWIFT_PACKAGE -D DEBUG -D Xcode -serialize-debugging-options -enable-experimental-feature DebugDescriptionMacro -strict-concurrency\=complete -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-cb004e7b-attempt2 -enable-anonymous-context-mangled-names -file-compilation-dir /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/composition-contracts-cb004e7b-attempt2 -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/SDKStatCaches.noindex/macosx27.0-26A425-a0facfad118c1a7a18f0aad9463f65497231f6df4def33e022ae2eb8f782df1a.sdkstatcache -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -Xcc -I/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Products/Debug/include -Xcc -I/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/DerivedSources-normal/arm64 -Xcc -I/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/DerivedSources/arm64 -Xcc -I/Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name OtzariaHanlinHostAdapterTests -package-name package -const-gather-protocols-file /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests_const_extract_protocols.json -disable-clang-spi -clang-target arm64-apple-macos27.0 -target-sdk-version 27.0 -target-sdk-name macosx27.0 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -emit-module-doc-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests.swiftdoc -emit-module-source-info-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests.swiftsourceinfo -serialize-diagnostics-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests-primary-emit-module.dia -emit-dependencies-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests-primary-emit-module.d -parse-as-library -o /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests.swiftmodule -emit-abi-descriptor-path /Users/m1/builds/otzaria-wave1-hanlin-capability-host-20261127/source/build/hh/out/Intermediates.noindex/HanlinHostCheck.build/Debug/OtzariaHanlinHostAdapterTests-p.build/Objects-normal/arm64/OtzariaHanlinHostAdapterTests.abi.json
+[203 / 215] OtzariaHanlinHostAdapterTests-product
+error: Build failed
+error: fatalError
+
