@@ -57,6 +57,9 @@ final class MaktabahNativeWorkspacePresentationBinding {
 
     let sceneID: UIStableID
     private(set) var renderRevision: UInt64 = 0
+    /// Original setter publications only. Foreign retained routes observe +0;
+    /// layout/appearance notifications never manufacture a state mutation.
+    private(set) var originalStateRevision: UInt64? = 0
     @ObservationIgnored private weak var manager: iOSNavigationManager?
     @ObservationIgnored private weak var sidebar: ReaderSidebarPageCoordinator?
     @ObservationIgnored private let workspaceSource: MaktabahNativeWorkspaceProjectionSource
@@ -203,6 +206,7 @@ final class MaktabahNativeWorkspacePresentationBinding {
         self.sidebar = sidebar; self.selectViewer = selectViewer
         sidebarObservation = sidebar?.observeOverviewRequestChanges { [weak self] in
             guard let self else { return }
+            advanceOriginalStateRevision()
             // Only the exact synchronous original request setter is exempt.
             // The one-shot source proof is never reset after a user state change.
             if ownedChange?.consume(.sidebar) != true { invalidateRetainedSources() }
@@ -370,10 +374,16 @@ final class MaktabahNativeWorkspacePresentationBinding {
     /// Every original @State setter reports before it mutates. A user change
     /// consumes all retained proofs synchronously, including an A→B→A cycle.
     func originalStateWillChange(host kind: Host, stateOwnerID: UUID, change: OriginalChange) {
+        advanceOriginalStateRevision()
         guard let host = hosts[kind], host.stateOwnerID == stateOwnerID else {
             invalidateRetainedSources(); return
         }
         if ownedChange?.consume(.host(kind, host.token, change)) != true { invalidateRetainedSources() }
+    }
+
+    private func advanceOriginalStateRevision() {
+        guard let value = originalStateRevision else { return }
+        originalStateRevision = value < .max ? value + 1 : nil
     }
 
     /// Called only by the original profile NavigationStack's finite reveal

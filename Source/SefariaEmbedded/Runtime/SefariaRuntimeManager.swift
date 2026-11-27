@@ -277,6 +277,8 @@ actor SefariaRuntimeManager {
 
     /// Resets the runtime state after failure or during diagnostics.
     func reset() async {
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
+        defer { transition.finish() }
         resetState()
         _ = await SefariaJSRPCBridge.shared.bumpSessionEpoch()
     }

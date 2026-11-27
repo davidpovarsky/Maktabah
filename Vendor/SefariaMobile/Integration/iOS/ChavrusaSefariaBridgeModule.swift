@@ -51,7 +51,9 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
     override init() {
         super.init()
         NSLog("[ChavrusaSefariaBridgeModule] init() called, registering transport with SefariaJSRPCBridge")
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
         Task {
+            defer { transition.finish() }
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
     }
@@ -70,28 +72,38 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
 
     override func startObserving() {
         NSLog("[ChavrusaSefariaBridgeModule] startObserving() called, active listeners wired")
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
         hasListeners = true
         Task {
+            defer { transition.finish() }
             await SefariaJSRPCBridge.shared.notifyListenersActive(true)
         }
     }
 
     override func stopObserving() {
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
         hasListeners = false
         Task {
+            defer { transition.finish() }
             await SefariaJSRPCBridge.shared.notifyListenersActive(false)
         }
     }
 
     override func invalidate() {
+        let nativeTransition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
+        defer { nativeTransition.finish() }
         hasListeners = false
+        let queuedTransition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
         Task {
+            defer { queuedTransition.finish() }
             await SefariaJSRPCBridge.shared.clearTransportIfMatches(self)
         }
         super.invalidate()
     }
 
     func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
+        defer { transition.finish() }
         self.customExecutor = executor
     }
 
@@ -133,6 +145,11 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
     }
 
     @objc func deliverEvent(_ jsonString: String) {
+        // Parse outside the source lock. Only actual ready/error publications
+        // affect this surface lifetime; other original event behavior is intact.
+        let event = jsonString.data(using: .utf8).flatMap { try? JSONDecoder().decode(SefariaRPCEvent.self, from: $0) }
+        let transition = event?.event == "ready" || event?.event == "bootstrapError"
+            ? SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition() : nil
         #if DEBUG
         if jsonString.count > 300 {
             let prefix = String(jsonString.prefix(200))
@@ -142,6 +159,7 @@ final class ChavrusaSefariaBridgeModule: RCTEventEmitter, SefariaJSTransport, @u
         }
         #endif
         Task {
+            defer { transition?.finish() }
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }
     }
@@ -175,12 +193,16 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
     override init() {
         super.init()
         NSLog("[ChavrusaSefariaBridgeModule] init() called, registering transport with SefariaJSRPCBridge")
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
         Task {
+            defer { transition.finish() }
             await SefariaJSRPCBridge.shared.setTransport(self)
         }
     }
 
     func setJSExecutor(_ executor: @escaping @Sendable (String) async throws -> Void) {
+        let transition = SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition()
+        defer { transition.finish() }
         self.customExecutor = executor
     }
 
@@ -204,7 +226,11 @@ final class ChavrusaSefariaBridgeModule: NSObject, SefariaJSTransport, @unchecke
     }
 
     func deliverEvent(_ jsonString: String) {
+        let event = jsonString.data(using: .utf8).flatMap { try? JSONDecoder().decode(SefariaRPCEvent.self, from: $0) }
+        let transition = event?.event == "ready" || event?.event == "bootstrapError"
+            ? SefariaJSRPCBridge.shared.beginSurfaceLifecycleTransition() : nil
         Task {
+            defer { transition?.finish() }
             await SefariaJSRPCBridge.shared.handleIncomingEvent(jsonString: jsonString)
         }
     }

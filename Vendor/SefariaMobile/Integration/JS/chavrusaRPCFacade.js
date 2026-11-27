@@ -7,6 +7,7 @@
 'use strict';
 
 import { NativeModules } from 'react-native';
+import { ChavrusaVisibleSurfaces } from './ChavrusaVisibleSurfaceRegistry';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as OfflineOnline from '../../Upstream/offlineOnline';
 import * as DownloadControl from '../../Upstream/DownloadControl';
@@ -114,6 +115,11 @@ export class ChavrusaRPCFacade {
       let result = null;
       switch (method) {
         // --- DIAGNOSTICS & RUNTIME ---
+        case 'surface.awaitVisible': {
+          // Read-only observation of the exact original native mount.
+          result = await ChavrusaVisibleSurfaces.awaitVisible(params, sessionGeneration, envelope.timeoutMs);
+          break;
+        }
         case 'runtime.actionContract': {
           // Read-only proof from the actually loaded facade, not Swift's cached
           // capability bits. Never initialize/download anything during discovery.

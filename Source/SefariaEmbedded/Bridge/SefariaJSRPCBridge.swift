@@ -13,18 +13,109 @@ protocol SefariaJSTransport: AnyObject, Sendable {
     func sendToJS(jsonString: String) async throws
 }
 
-/// The single epoch authority. The RPC actor is the only writer; synchronous
-/// commit guards read this same value rather than a MainActor mirror/cache.
-private final class SefariaRPCSessionEpoch: @unchecked Sendable {
-    private let lock = NSLock()
-    private var value: UInt64 = 1
-    func read() -> UInt64 {
+/// A synchronous, source-owned observation of the same RPC lifecycle fields.
+/// The revision also changes for repeated listener/ready lifecycle publications.
+struct SefariaEmbeddedSurfaceRuntimeObservation: Sendable, Equatable {
+    fileprivate(set) var epoch: UInt64 = 1
+    fileprivate(set) var revision: UInt64 = 0
+    fileprivate(set) var ready = false
+    fileprivate(set) var listeners = false
+    fileprivate(set) var transport = false
+    fileprivate(set) var resourceMutation = false
+    fileprivate(set) var transitioning = false
+    fileprivate(set) var exhausted = false
+    var canPresent: Bool { ready && listeners && transport && !resourceMutation && !transitioning && !exhausted }
+}
+
+/// The RPC actor owns its readiness fields. The original native module also
+/// begins invalidation boundaries synchronously, BEFORE queueing actor updates.
+/// The same recursive lock covers native commit/report and these publications.
+/// No actor call or suspension is permitted in that native critical section.
+fileprivate final class SefariaRPCSessionEpoch: @unchecked Sendable {
+    private let lock = NSRecursiveLock()
+    private var state = SefariaEmbeddedSurfaceRuntimeObservation()
+    private var transitionDepth: UInt64 = 0
+    func read() -> UInt64 { surface().epoch }
+    func surface() -> SefariaEmbeddedSurfaceRuntimeObservation {
+        lock.lock(); defer { lock.unlock() }; return state
+    }
+    func update(_ change: (inout SefariaEmbeddedSurfaceRuntimeObservation) -> Void) {
         lock.lock(); defer { lock.unlock() }
+        change(&state)
+        if state.revision == .max { state.exhausted = true } else { state.revision += 1 }
+    }
+    func write(_ value: UInt64) { update { $0.epoch = value } }
+    // The public bump operation is also called directly by RuntimeManager.reset.
+    // Nested callers keep the OUTERMOST lifecycle boundary closed. No callback
+    // or continuation is invoked while this short state-publication lock is held.
+    func beginTransition() {
+        lock.lock(); defer { lock.unlock() }
+        if transitionDepth == .max { state.exhausted = true }
+        else { transitionDepth += 1 }
+        update { $0.transitioning = true }
+    }
+    func endTransition() {
+        lock.lock(); defer { lock.unlock() }
+        guard transitionDepth > 0 else {
+            update { $0.exhausted = true }; return
+        }
+        transitionDepth -= 1
+        update { $0.transitioning = transitionDepth > 0 }
+    }
+    func retainSurface() throws -> SefariaEmbeddedSurfaceRuntimeToken {
+        lock.lock(); defer { lock.unlock() }
+        guard state.canPresent else { throw unavailable() }
+        return .init(authority: self, observation: state)
+    }
+    func validate(_ expected: SefariaEmbeddedSurfaceRuntimeObservation) throws {
+        lock.lock(); defer { lock.unlock() }
+        guard state == expected, state.canPresent else { throw unavailable() }
+    }
+    @MainActor func withSurface<T>(_ expected: SefariaEmbeddedSurfaceRuntimeObservation,
+                                  operation: @MainActor () throws -> T) throws -> T {
+        lock.lock(); defer { lock.unlock() }
+        guard state == expected, state.canPresent else { throw unavailable() }
+        let value = try operation()
+        guard state == expected, state.canPresent else { throw unavailable() }
         return value
     }
-    func write(_ value: UInt64) {
-        lock.lock(); defer { lock.unlock() }
-        self.value = value
+    private func unavailable() -> SefariaRPCError {
+        .init(code: "SURFACE_RUNTIME_CHANGED", message: "The original Sefaria runtime is not available for this retained surface.")
+    }
+}
+
+/// This token cannot be decoded from public navigation input or rearmed after a
+/// lifecycle change. It retains the bridge's authority, not a MainActor cache.
+final class SefariaEmbeddedSurfaceRuntimeToken: @unchecked Sendable {
+    fileprivate let authority: SefariaRPCSessionEpoch
+    let observation: SefariaEmbeddedSurfaceRuntimeObservation
+    fileprivate init(authority: SefariaRPCSessionEpoch, observation: SefariaEmbeddedSurfaceRuntimeObservation) {
+        self.authority = authority; self.observation = observation
+    }
+    func validate() throws { try authority.validate(observation) }
+    @MainActor func withValidRuntime<T>(_ operation: @MainActor () throws -> T) throws -> T {
+        try authority.withSurface(observation, operation: operation)
+    }
+}
+
+/// One exact source-owned native lifecycle boundary. Queueing an actor update
+/// never leaves a window in which its already-started native mutation can borrow
+/// an earlier ready state. Nested/out-of-order boundaries stay closed until all
+/// finish. Dropping an unfinished lease does NOT manufacture completion.
+final class SefariaEmbeddedSurfaceRuntimeTransition: @unchecked Sendable {
+    private let authority: SefariaRPCSessionEpoch
+    private let completionLock = NSLock()
+    private var finished = false
+    fileprivate init(authority: SefariaRPCSessionEpoch) {
+        self.authority = authority
+        authority.beginTransition()
+    }
+    func finish() {
+        completionLock.lock()
+        guard !finished else { completionLock.unlock(); return }
+        finished = true
+        completionLock.unlock()
+        authority.endTransition()
     }
 }
 
@@ -37,19 +128,39 @@ actor SefariaJSRPCBridge {
         let timeoutTask: Task<Void, Never>
     }
 
-    private var transport: (any SefariaJSTransport)?
+    private var transport: (any SefariaJSTransport)? {
+        didSet { epochAuthority.update { $0.transport = transport != nil } }
+    }
     private var inFlightRequests: [String: InFlightRequest] = [:]
     private var eventListeners: [String: [@Sendable (SefariaRPCEvent) -> Void]] = [:]
 
-    private(set) var isReady: Bool = false
-    private(set) var hasActiveListeners: Bool = false
+    private(set) var isReady: Bool {
+        get { epochAuthority.surface().ready }
+        set { epochAuthority.update { $0.ready = newValue } }
+    }
+    private(set) var hasActiveListeners: Bool {
+        get { epochAuthority.surface().listeners }
+        set { epochAuthority.update { $0.listeners = newValue } }
+    }
     private nonisolated let epochAuthority = SefariaRPCSessionEpoch()
     private(set) var sessionEpoch: UInt64 {
         get { epochAuthority.read() }
         set { epochAuthority.write(newValue) }
     }
     nonisolated var currentSessionEpoch: UInt64 { epochAuthority.read() }
-    private var resourceMutationInProgress = false
+    private var resourceMutationInProgress: Bool {
+        get { epochAuthority.surface().resourceMutation }
+        set { epochAuthority.update { $0.resourceMutation = newValue } }
+    }
+    nonisolated var currentSurfaceRuntimeObservation: SefariaEmbeddedSurfaceRuntimeObservation {
+        epochAuthority.surface()
+    }
+    nonisolated func retainSurfaceRuntime() throws -> SefariaEmbeddedSurfaceRuntimeToken {
+        try epochAuthority.retainSurface()
+    }
+    nonisolated func beginSurfaceLifecycleTransition() -> SefariaEmbeddedSurfaceRuntimeTransition {
+        .init(authority: epochAuthority)
+    }
 
     var resourcesAreStable: Bool { !resourceMutationInProgress }
 
@@ -65,12 +176,16 @@ actor SefariaJSRPCBridge {
 
     func setSessionEpoch(_ epoch: UInt64) {
         guard epoch != sessionEpoch else { return }
+        epochAuthority.beginTransition()
+        defer { epochAuthority.endTransition() }
         cancelAll(reason: "Session epoch changed")
         isReady = false
         self.sessionEpoch = epoch
     }
 
     func bumpSessionEpoch() -> UInt64 {
+        epochAuthority.beginTransition()
+        defer { epochAuthority.endTransition() }
         cancelAll(reason: "Session epoch changed")
         sessionEpoch &+= 1
         return sessionEpoch
@@ -78,6 +193,8 @@ actor SefariaJSRPCBridge {
 
     func setTransport(_ transport: (any SefariaJSTransport)?) {
         if let current = self.transport, let transport, current === transport { return }
+        epochAuthority.beginTransition()
+        defer { epochAuthority.endTransition() }
         // A replacement host must repeat its handshake. Old requests and
         // readiness cannot be carried across two Hermes instances.
         _ = bumpSessionEpoch()
@@ -93,6 +210,8 @@ actor SefariaJSRPCBridge {
 
     func clearTransportIfMatches(_ transport: any SefariaJSTransport) {
         if let current = self.transport, (current as AnyObject) === (transport as AnyObject) {
+            epochAuthority.beginTransition()
+            defer { epochAuthority.endTransition() }
             NSLog("[SefariaJSRPCBridge] clearTransportIfMatches: clearing transport")
             self.transport = nil
             _ = bumpSessionEpoch()
@@ -173,13 +292,17 @@ actor SefariaJSRPCBridge {
             if let generation, generation != sessionEpoch {
                 throw SefariaRPCError(code: "STALE_GENERATION", message: "RPC session changed", retryable: true)
             }
+            epochAuthority.beginTransition()
             _ = bumpSessionEpoch()
             resourceMutationInProgress = true
+            epochAuthority.endTransition()
         }
         defer {
             if mutatesResources {
+                epochAuthority.beginTransition()
                 resourceMutationInProgress = false
                 _ = bumpSessionEpoch()
+                epochAuthority.endTransition()
             }
         }
         let requestID = UUID().uuidString
