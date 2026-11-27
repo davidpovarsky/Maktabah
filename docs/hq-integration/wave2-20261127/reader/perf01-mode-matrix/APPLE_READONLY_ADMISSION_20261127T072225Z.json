@@ -1,0 +1,17 @@
+{
+  "capturedAtUTC": "2026-11-27T07:22:25.125424+00:00",
+  "freeBytes": 3413528576,
+  "activeCount": 1,
+  "active": [
+    {
+      "pid": 4732,
+      "parentPID": 4456,
+      "executable": "xcodebuild",
+      "commandPrefix": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /Users/m1/builds/hanlin-testflight-149101-20261125/source/build/SimulatorDerivedData/Build/Products/AI_HLY_iphonesimulator27.0-arm64.xctestrun -destination platform=iOS Simulator,id=D4BAD5EA-771B-4D2A-995A-A227BCDF2E4B -resultBundlePath /Users/m1/builds/hanlin-testflight-149101-20261125/source/simulator-logs-post149101-g21-iphone/iphone_ui_attempt_1.xcresult -parallel-testing-enabled NO -test-timeouts-enabled YES -maximum-test-execution-time-allowance 420 -collect-test-diagnostics never -only-testing:AI_HLYUITests/AgentRuntimeConversationUITests/testFollowLatestArrowTracksRealBottomAcrossScrollAndComposerChanges",
+      "fullLineSHA256": "0eca9b7bb636640ccc72deed0272ebd1e74f8c306d775695dce602d5e6d645ca"
+    }
+  ],
+  "processRows": 1751,
+  "completeProcessInventorySHA256": "5cc3e02d732c1ad5264dba1ffd18f4e4f852694c9fa195be27f7dd85decc1520",
+  "scope": "Read-only current executable/process and capacity admission; no compiler, profiler or UI launched"
+}

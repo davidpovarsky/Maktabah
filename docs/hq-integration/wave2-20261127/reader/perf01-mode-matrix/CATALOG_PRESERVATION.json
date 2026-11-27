@@ -1,0 +1,7 @@
+{
+  "status": "SOURCE_STRUCTURE_ONLY_NOT_SWIFT_COMPILATION",
+  "candidateSHA256": "e0ea195c23e0e0ce55069ee2d9fe43cd64afd2f4d1699d8be978f60fa21d369b",
+  "originalSHA256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992",
+  "originalTargetDefaultAndPreviewBodiesByteIdentical": true,
+  "newBranchLines": 100
+}

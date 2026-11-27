@@ -1,0 +1,20 @@
+{
+  "status": "BYTE_PRESERVATION_ONLY_NOT_APPLE_COMPILATION",
+  "baseCommit": "883660701dd57c049de6da6fcf51a4027675409c",
+  "originalFaithfulSHA256": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf",
+  "candidateFaithfulSHA256": "8f732382df5878978caf9b589b6c376006d848248ea30962f03c81b82d44e220",
+  "entireOriginalFaithfulPrefixByteIdentical": true,
+  "additiveSelectors": [
+    "testFullV40BerakhotLineColdWarmMeasurements",
+    "testFullV40BerakhotParagraphColdWarmMeasurements",
+    "testFullV40BerakhotChapterColdWarmMeasurements",
+    "testFullV40TehillimLineColdWarmMeasurements",
+    "testFullV40TehillimParagraphColdWarmMeasurements",
+    "testFullV40TehillimChapterColdWarmMeasurements",
+    "testFullV40DerashotHaRanLineColdWarmMeasurements",
+    "testFullV40DerashotHaRanParagraphColdWarmMeasurements",
+    "testFullV40DerashotHaRanChapterColdWarmMeasurements"
+  ],
+  "appSourceFilesChanged": [],
+  "sharedOrV32FilesChanged": []
+}
