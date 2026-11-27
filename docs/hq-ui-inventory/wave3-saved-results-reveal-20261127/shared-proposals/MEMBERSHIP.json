@@ -1,0 +1,45 @@
+{
+  "root_owns_project_edits": true,
+  "new_files": [
+    {
+      "path": "Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+      "bytes": 3127,
+      "sha256": "439f61aac96a581b6b5948797c60b6c27c77b5e683271f23facf6f73a35b9975",
+      "membership": "Same app targets and platform coverage as existing ResultsViewModel.swift; shared metadata has no UIKit."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+      "bytes": 8996,
+      "sha256": "a62262899eb138f395b264aa557563c593fa3a0c117cbf1831d1ce598434766f",
+      "membership": "iOS app source only."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+      "bytes": 38667,
+      "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54",
+      "membership": "iOS app source only."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+      "bytes": 11410,
+      "sha256": "426148a7d9ea9338dc99aa398bcda1f3ec37da279746e118bfd0257ef888b9da",
+      "membership": "iOS app source only."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+      "bytes": 11240,
+      "sha256": "176e6943b57f410fe09d9150dbcbc29f5da2b09dd353f1df71a0fa352579de3e",
+      "membership": "Existing SwiftPM ChavrusaUIRoutingHost target source discovery; no duplicate app-source registration."
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+      "bytes": 5472,
+      "sha256": "e13f939d280885783c507a85e1b73e03f22a585aab9384a1c79dea849da241db",
+      "membership": "Existing SwiftPM ChavrusaUIRoutingHost target source discovery; iOS-conditional AppIntents."
+    }
+  ],
+  "original_modified_files_keep_membership": true,
+  "new_resources": [],
+  "native_test_membership": "No new native test file in this source packet. Later tests use the existing synchronized iOS UI-test group, not duplicate PBX entries.",
+  "apple_discovery_build": "NOT_RUN"
+}

@@ -1,0 +1,35 @@
+{
+  "git": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "files": [
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+FolderOps.swift",
+      "bytes": 6242,
+      "sha256": "1a2393682be94d9b7e7ce2be087de1ee46eb3458928eeb230797e13406f85cb6"
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+      "bytes": 1852,
+      "sha256": "efc580fc5558e8a62824ae5a028d1c17a6be96a436c05a2df97d4696bd7dc1f6"
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+ResultOps.swift",
+      "bytes": 5290,
+      "sha256": "94409b6859a0191b045ce2cbdd0e0bc98cb887e5c02249f309ae2f86307779f8"
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Search.swift",
+      "bytes": 1580,
+      "sha256": "834d62dd1d5201f3546bf917f67235d3430f159b407f873721865f1c67ecbea4"
+    },
+    {
+      "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Tree.swift",
+      "bytes": 2598,
+      "sha256": "398df795d2647c6b6b57cbcb8ae721f6d1c31cfb7d1f06a66ad02223b1720a3a"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27583,
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140"
+    }
+  ]
+}

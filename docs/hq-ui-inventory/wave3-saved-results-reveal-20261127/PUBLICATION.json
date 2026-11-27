@@ -1,0 +1,40 @@
+{
+  "schema": "otzaria.wave3.saved-results.publication.v1",
+  "utc": "2026-11-27T16:38:35.548511+00:00",
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "source_commit": "86fb81e5b9231650b457daf13dbcf0d554a902cc",
+  "source_tree": "255b60caa248e6fe0aa95642638c571b579a5d4b",
+  "branch": "codex/otzaria-wave3-saved-results-reveal-20261127",
+  "product_paths": [
+    "Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+    "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift"
+  ],
+  "transport": {
+    "bytes": 578356,
+    "sha256": "f3cb0a95bf3735c3efa854a301dfc2af4048b331f90723724f76e6c51a5e7115",
+    "members": 119,
+    "source": "Local exact packet to existing Oracle Sentinel route"
+  },
+  "transport_retry": {
+    "observation": "One chunk call in parts 12-15 batch returned an unstructured rejected Promise. Readback showed only part-014 absent; absent part was retransmitted, existing parts were verified identical. No source writes preceded complete archive hash verification."
+  },
+  "original_raw_archive": {
+    "bytes": 396278,
+    "sha256": "5fa901d73f300fbae8983ce39886f67ce12e452f0ab2e81b26c563d022a297ab",
+    "members": 79,
+    "every_receipt_member_verified": true
+  },
+  "shared_files": "Proposal copies only; root applies exact shared spans and owns PBX/localization/shortcut",
+  "free_before": 2647748608,
+  "free_after_source_commit": 2643279872,
+  "native": "NOT_RUN",
+  "signatures": "No owner signature or verifier change"
+}

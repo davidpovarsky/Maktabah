@@ -1,0 +1,272 @@
+[
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "    var readySefariaSurface: Bool = false\n",
+    "new": "    var readySefariaSurface: Bool = false\n    var readySavedResults: Bool = false\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "        case \"native.sefariaEmbedded\": return readySefariaSurface\n",
+    "new": "        case \"native.sefariaEmbedded\": return readySefariaSurface\n        case \"native.savedResults\": return readySavedResults\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "                   destination != MaktabahNativeSefariaSurfaceBinding.destination,\n",
+    "new": "                   destination != MaktabahNativeSefariaSurfaceBinding.destination,\n                   destination != MaktabahNativeSavedResultsBinding.destination,\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "workspaceProfiles, workspaceOverview, sefariaEmbedded }",
+    "new": "workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "        case (\"native.sefariaEmbedded\", .sheet, false): return .sefariaEmbedded\n",
+    "new": "        case (\"native.sefariaEmbedded\", .sheet, false): return .sefariaEmbedded\n        case (\"native.savedResults\", .sheet, false): return .savedResults\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "        case .library, .settings, .search, .annotations, .workspaceProfiles, .workspaceOverview, .sefariaEmbedded:\n",
+    "new": "        case .library, .settings, .search, .annotations, .workspaceProfiles, .workspaceOverview, .sefariaEmbedded, .savedResults:\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "old": "            || descriptor.id == MaktabahNativeSefariaSurfaceBinding.destination ? .sheet\n",
+    "new": "            || descriptor.id == MaktabahNativeSefariaSurfaceBinding.destination\n            || descriptor.id == MaktabahNativeSavedResultsBinding.destination ? .sheet\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "old": "workspaceProfiles, workspaceOverview, sefariaEmbedded }",
+    "new": "workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "old": "                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil) throws -> NativeSceneIdentity {",
+    "new": "                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,\n                  savedResults: MaktabahNativeSavedResultsBinding? = nil) throws -> NativeSceneIdentity {",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "old": "            originalSheet = MaktabahNativeSefariaSurfaceBinding.destination\n        } else { originalSheet = nil }",
+    "new": "            originalSheet = MaktabahNativeSefariaSurfaceBinding.destination\n        } else if savedResults?.isRequestedOrMounted == true {\n            originalSheet = MaktabahNativeSavedResultsBinding.destination\n        } else { originalSheet = nil }",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "old": "                 historyRecord: MaktabahNativeHistoryRecordBinding? = nil) throws -> NativeSurfaceState? {",
+    "new": "                 historyRecord: MaktabahNativeHistoryRecordBinding? = nil,\n                 savedResults: MaktabahNativeSavedResultsBinding? = nil,\n                 savedResultsRequestID: UUID? = nil) throws -> NativeSurfaceState? {",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "old": "        switch surface {\n",
+    "new": "        switch surface {\n        case .savedResults:\n            guard !settingsPresented, selectedTab.canonical == .search, manager.currentMode == .search,\n                  let original = savedResults, let requestID = savedResultsRequestID,\n                  original.hasVisibleSurface(requestID: requestID) else { return nil }\n            return .init(destination: MaktabahNativeSavedResultsBinding.destination,\n                presentation: .init(kind: .sheet), content: nil,\n                state: .init(workspaceID: state.workspaceID, profileID: state.profileID,\n                             selectedItemID: original.observedItem(requestID: requestID)), focus: nil)\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    @ObservationIgnored private var retainedHistoryRecord = false\n",
+    "new": "    @ObservationIgnored private var retainedHistoryRecord = false\n    private(set) var savedResultsBinding: MaktabahNativeSavedResultsBinding?\n    @ObservationIgnored private var retainedSavedResults = false\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func retainParentSource(destination: UIDestinationID, requestID: UUID) throws {\n",
+    "new": "    func retainParentSource(destination: UIDestinationID, requestID: UUID) throws {\n        if destination == MaktabahNativeSavedResultsBinding.destination {\n            guard mounted, let original = savedResultsBinding else {\n                throw UIRouteError(.unavailable, \"native_saved_results_owner_missing\")\n            }\n            try original.retain(record: nil, requestID: requestID)\n            return\n        }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {\n",
+    "new": "    func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {\n        if destination == MaktabahNativeSavedResultsBinding.destination {\n            guard let original = savedResultsBinding else {\n                throw UIRouteError(.staleState, \"native_saved_results_owner_detached\")\n            }\n            try original.validateSource(requestID: requestID)\n            return\n        }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func releaseParentSource(destination: UIDestinationID, requestID: UUID) {\n",
+    "new": "    func releaseParentSource(destination: UIDestinationID, requestID: UUID) {\n        if destination == MaktabahNativeSavedResultsBinding.destination {\n            savedResultsBinding?.releaseSource(requestID: requestID)\n            return\n        }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        historyRecordBinding?.retire()\n",
+    "new": "        historyRecordBinding?.retire()\n        savedResultsBinding?.retire()\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        historyRecordBinding?.originalForeignStateWillChange()\n        if retainedSefariaSurface",
+    "new": "        historyRecordBinding?.originalForeignStateWillChange()\n        savedResultsBinding?.retire()\n        if retainedSefariaSurface",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "readerTabBinding == nil && workspaceSelectionBinding == nil && bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface",
+    "new": "readerTabBinding == nil && workspaceSelectionBinding == nil && bindings.isPresentationReady && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface\n            && savedResultsBinding?.isRequestedOrMounted != true",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func isPresentationReady(for destination: UIDestinationID) -> Bool {\n",
+    "new": "    func isPresentationReady(for destination: UIDestinationID) -> Bool {\n        if destination == MaktabahNativeSavedResultsBinding.destination {\n            guard mounted, foreground, let original = savedResultsBinding, original.isAvailable else { return false }\n            if let requestID = submissionID, command?.invocation.requestId == requestID,\n               command?.route.route.destination == destination,\n               original.isContinuingAppliedRequest(requestID: requestID) { return true }\n            if original.isRequestedOrMounted { return original.isStableOriginalPresentation }\n            return windowSource?.isPresentationReady(in: sceneID) == true\n        }\n        guard savedResultsBinding?.isRequestedOrMounted != true else { return false }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface\n            && studyChatPresentationID == nil",
+    "new": "            && !hasOriginalWorkspacePresentation && !hasOriginalSefariaSurface\n            && savedResultsBinding?.isRequestedOrMounted != true\n            && studyChatPresentationID == nil",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func isRootAvailable(_ destination: UIDestinationID) -> Bool {\n",
+    "new": "    func isRootAvailable(_ destination: UIDestinationID) -> Bool {\n        if destination == MaktabahNativeSavedResultsBinding.destination {\n            return savedResultsBinding?.isAvailable == true\n        }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            let sefaria = MaktabahNativeSefariaSurfaceBinding(sceneID: sceneID,\n",
+    "new": "            let saved = MaktabahNativeSavedResultsBinding(sceneID: sceneID, bindings: bindings,\n                workspaceSource: workspaceSource, workspacePresentation: original,\n                commonReady: { [weak self] in\n                    guard let self else { return false }\n                    // Primitive foreign-presentation checks, deliberately not\n                    // recursive isPresentationReady (which blocks this own sheet).\n                    return mounted && readerBinding == nil && readerTabBinding == nil\n                        && workspaceSelectionBinding == nil && searchResultsBinding == nil\n                        && searchContinuationOwner == nil && bindings.isPresentationReady\n                        && !bindings.showSettings.wrappedValue && !hasOriginalWorkspacePresentation\n                        && !hasOriginalSefariaSurface && studyChatPresentationID == nil\n                        && noteEditorOwner?.current == nil && noteEditorOwner?.presentationActive != true\n                }, windowReady: { [weak self] in\n                    guard let self else { return false }\n                    return foreground && windowSource?.isPresentationReady(in: sceneID) == true\n                }, retainWindow: { [weak self] in\n                    guard let self else { throw UIRouteError(.staleState, \"native_saved_results_window_detached\") }\n                    return try retainOriginalWindowObservation()\n                }, readForeignPresentations: { [weak self] in\n                    guard let self else { return }\n                    _ = mounted; _ = studyChatPresentationID\n                    _ = workspacePresentation?.originalStateRevision\n                })\n            savedResultsBinding = saved\n            saved.install(changed: { [weak self, weak saved] in\n                guard let self, let saved, savedResultsBinding === saved else { return }\n                originalPresentationStateDidChange()\n            }, invalidated: { [weak self] in\n                guard let self, retainedSavedResults else { return }\n                presentation.revoke()\n            })\n            let sefaria = MaktabahNativeSefariaSurfaceBinding(sceneID: sceneID,\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        let workspaceSelection = value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination\n",
+    "new": "        let workspaceSelection = value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination\n        let savedResults = value.route.route.destination == MaktabahNativeSavedResultsBinding.destination\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        if workspaceParent != nil || phoneTOC || sefaria || historyRecord {",
+    "new": "        if workspaceParent != nil || phoneTOC || sefaria || historyRecord || savedResults {",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            if historyRecord {\n",
+    "new": "            if savedResults {\n                guard let savedResultsBinding, let parentValidation else {\n                    throw UIRouteError(.unavailable, \"native_saved_results_owner_missing\")\n                }\n                try savedResultsBinding.begin(requestID: value.invocation.requestId, validate: parentValidation)\n            }\n            if historyRecord {\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            historyRecordBinding?.finish(requestID: value.invocation.requestId, completed: false)\n",
+    "new": "            historyRecordBinding?.finish(requestID: value.invocation.requestId, completed: false)\n            savedResultsBinding?.finish(requestID: value.invocation.requestId, completed: false)\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        retainedHistoryRecord = historyRecord\n",
+    "new": "        retainedHistoryRecord = historyRecord\n        retainedSavedResults = savedResults\n        if !savedResults { savedResultsBinding?.clearCompletedProof() }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    /// Typed record metadata is converted into private route state only by the\n",
+    "new": "    func retainSavedResult(_ record: NativeSavedResultIntentService.Record, requestID: UUID) throws\n        -> MaktabahNativeSavedResultsBinding {\n        guard mounted, let original = savedResultsBinding else {\n            throw UIRouteError(.unavailable, \"native_saved_results_owner_missing\")\n        }\n        try original.retain(record: record, requestID: requestID)\n        return original\n    }\n    func prepareSavedResult(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {\n        guard mounted, foreground, scene.sceneID == sceneID, let original = savedResultsBinding else {\n            throw UIRouteError(.staleState, \"native_saved_results_window_changed\")\n        }\n        let selected = try original.selectedItem(requestID: invocation.requestId)\n        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)\n        return RouteSpec(requestId: invocation.requestId, destination: MaktabahNativeSavedResultsBinding.destination,\n            backend: invocation.snapshot.backend, presentation: .init(kind: .sheet),\n            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID, selectedItemID: selected),\n            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),\n            expectedBackendSnapshot: invocation.snapshot)\n    }\n    func validateCompletedSavedResult(_ receipt: UISceneReceipt,\n                                     original: MaktabahNativeSavedResultsBinding) throws {\n        guard savedResultsBinding === original,\n              receipt.route.destination == MaktabahNativeSavedResultsBinding.destination,\n              original.hasVisibleSurface(requestID: receipt.requestId),\n              original.observedItem(requestID: receipt.requestId) == receipt.route.state.selectedItemID else {\n            throw UIRouteError(.staleState, \"native_saved_results_completion_changed\")\n        }\n        try original.validateCompletedSurface(requestID: receipt.requestId)\n        try validateCompletedJourneySurface(receipt)\n        try original.validateSource(requestID: receipt.requestId)\n    }\n\n    /// Typed record metadata is converted into private route state only by the\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        if route.destination == MaktabahNativeHistoryRecords.destination, let itemID = route.state.selectedItemID {\n",
+    "new": "        if route.destination == MaktabahNativeSavedResultsBinding.destination {\n            guard route.backend == .otzaria, route.content == nil, route.focus == nil,\n                  route.presentation == .init(kind: .sheet), let savedResultsBinding,\n                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID,\n                      profileID: identity.state.profileID,\n                      selectedItemID: try savedResultsBinding.selectedItem(requestID: command.invocation.requestId)) else {\n                throw UIRouteError(.staleState, \"native_saved_results_route_changed\")\n            }\n            return\n        }\n        if route.destination == MaktabahNativeHistoryRecords.destination, let itemID = route.state.selectedItemID {\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        if command.route.route.destination == MaktabahNativeHistoryRecords.destination,\n",
+    "new": "        if command.route.route.destination == MaktabahNativeSavedResultsBinding.destination {\n            try validateSurface(command)\n            guard retainedSavedResults, let savedResultsBinding else {\n                throw UIRouteError(.staleState, \"native_saved_results_not_prepared\")\n            }\n            try savedResultsBinding.apply(requestID: command.invocation.requestId)\n            return\n        }\n        if command.route.route.destination == MaktabahNativeHistoryRecords.destination,\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "if retainedComponentOwner != nil || retainedHistoryRecord || [",
+    "new": "if retainedComponentOwner != nil || retainedHistoryRecord || retainedSavedResults || [",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "                                               historyRecord: historySource) else { return nil }",
+    "new": "                                               historyRecord: historySource,\n                                               savedResults: savedResultsBinding,\n                                               savedResultsRequestID: kind == .savedResults\n                                                   ? submissionID ?? lastCompletedSurface?.route.requestId : nil) else { return nil }",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "            readySefariaSurface: mounted && foreground && isPresentationReady(for: MaktabahNativeSefariaSurfaceBinding.destination),\n",
+    "new": "            readySefariaSurface: mounted && foreground && isPresentationReady(for: MaktabahNativeSefariaSurfaceBinding.destination),\n            readySavedResults: mounted && foreground && isPresentationReady(for: MaktabahNativeSavedResultsBinding.destination),\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "    func observe(_ evidence: NativeSurfaceWitness.Evidence) {\n        guard mounted, evidence.sceneID == sceneID else { return }\n",
+    "new": "    func observe(_ evidence: NativeSurfaceWitness.Evidence) {\n        guard mounted, evidence.sceneID == sceneID else { return }\n        if evidence.isVisible, evidence.surface.destination == MaktabahNativeSavedResultsBinding.destination {\n            do {\n                guard retainedSavedResults, let original = savedResultsBinding,\n                      let requestID = evidence.submissionID, submissionID == requestID,\n                      command?.invocation.requestId == requestID else {\n                    throw UIRouteError(.staleState, \"native_saved_results_report_not_owned\")\n                }\n                try original.withValidatedSurface(requestID: requestID) {\n                    guard isPresentationReady(for: evidence.surface.destination),\n                          let actual = try surface(.savedResults), actual == evidence.surface else {\n                        throw UIRouteError(.staleState, \"native_saved_results_report_changed\")\n                    }\n                    recordNativeObservation(evidence)\n                }\n            } catch {\n                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }\n                presentation.revoke()\n            }\n            return\n        }\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        historyRecordBinding?.finish(requestID: requestID, completed: completed && retainedHistoryRecord)\n",
+    "new": "        historyRecordBinding?.finish(requestID: requestID, completed: completed && retainedHistoryRecord)\n        savedResultsBinding?.finish(requestID: requestID, completed: completed && retainedSavedResults)\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        retainedHistoryRecord = false\n",
+    "new": "        retainedHistoryRecord = false\n        retainedSavedResults = false\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        historyRecordBinding?.unmount(); historyRecordBinding = nil; retainedHistoryRecord = false\n",
+    "new": "        historyRecordBinding?.unmount(); historyRecordBinding = nil; retainedHistoryRecord = false\n        savedResultsBinding?.unmount(); savedResultsBinding = nil; retainedSavedResults = false\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "        case \"native.sefariaEmbedded\": .sefariaEmbedded\n",
+    "new": "        case \"native.sefariaEmbedded\": .sefariaEmbedded\n        case \"native.savedResults\": .savedResults\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "old": "identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)",
+    "new": "identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding, savedResults: savedResultsBinding)",
+    "occurrences": 12
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "old": "            .init(id: id(\"native.search.results\"), title: \"Search results\".localized, implementation: .implemented,\n",
+    "new": "            .init(id: MaktabahNativeSavedResultsBinding.destination, title: \"Saved Results\".localized,\n                  implementation: .implemented, supportedBackends: [.otzaria], presentations: [.sheet],\n                  requiredCoreActions: [], allowsPublicRoute: true,\n                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),\n            .init(id: id(\"native.search.results\"), title: \"Search results\".localized, implementation: .implemented,\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "old": "            || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination\n",
+    "new": "            || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination\n            || destination.destination == MaktabahNativeSavedResultsBinding.destination\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "old": "                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination) ? .sheet : .currentTab,",
+    "new": "                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination\n                    || destination.destination == MaktabahNativeSavedResultsBinding.destination) ? .sheet : .currentTab,",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "old": "    /// One typed local record, one exact existing window, one original Core\n",
+    "new": "    private func savedResultsCatalog() throws -> NativeSavedResultIntentService.Catalog {\n        try Task.checkCancellation()\n        let snapshot = try backend.currentBackendSnapshot()\n        guard snapshot.backend == .otzaria else { return .init(snapshot: snapshot, records: []) }\n        var records: [NativeSavedResultIntentService.Record] = []\n        for (id, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {\n            guard entry.session.sceneID == id, let original = entry.session.savedResultsBinding,\n                  original.sceneID == id else { continue }\n            records += try original.catalog()\n        }\n        try Task.checkCancellation()\n        guard try backend.currentBackendSnapshot() == snapshot else { throw ActionPortError.staleState }\n        return .init(snapshot: snapshot, records: records)\n    }\n    private func savedResultsWindows() throws -> [NativeIntentService.Destination] {\n        try intentRootEntities().filter {\n            $0.backend == .otzaria && $0.destination == MaktabahNativeSavedResultsBinding.destination\n                && $0.component == nil\n        }\n    }\n    private func revealSavedResult(_ request: NativeSavedResultIntentService.OpenRequest) async throws\n        -> UISceneAcknowledgement {\n        try Task.checkCancellation()\n        let window = request.window, end = deadline()\n        let matches = try savedResultsWindows().filter { $0 == window }\n        guard matches.count == 1, request.record.sceneID == window.sceneID,\n              window.backend == .otzaria, let original = scenes[window.sceneID],\n              original.session.mounted, let manager = original.manager,\n              ObjectIdentifier(manager) == original.managerID,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_saved_results_window_changed\")\n        }\n        let retained = try original.session.retainSavedResult(request.record, requestID: request.requestID)\n        defer { retained.releaseSource(requestID: request.requestID) }\n        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in\n            try await waitForMount(managerID: original.managerID)\n        }\n        try Task.checkCancellation()\n        guard activated == window.sceneID, let current = scenes[window.sceneID],\n              current.session === original.session, current.managerID == original.managerID,\n              current.manager === manager, current.session.mounted, current.session.foreground,\n              current.session.savedResultsBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_saved_results_activation_changed\")\n        }\n        try retained.validateSource(requestID: request.requestID)\n        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)\n        try issue(context, sceneID: window.sceneID)\n        defer { finish(context, sceneID: window.sceneID) }\n        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,\n                                             deadlineUptimeNanoseconds: end)\n        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)\n        try retained.validateSource(requestID: request.requestID)\n        guard scenes[window.sceneID]?.session === original.session,\n              original.session.savedResultsBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_saved_results_source_changed\")\n        }\n        let route = try original.session.prepareSavedResult(invocation: invocation, scene: scene)\n        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)\n        let result = try await orchestrator.commit(command, context: context)\n        record(result)\n        if case .acknowledged(let receipt) = result {\n            do {\n                try Task.checkCancellation()\n                guard scenes[window.sceneID]?.session === original.session,\n                      original.session.savedResultsBinding === retained,\n                      try backend.currentBackendSnapshot() == request.expectedSnapshot,\n                      SystemActionClock().now() < end else {\n                    throw UIRouteError(.staleState, \"native_saved_results_completion_changed\")\n                }\n                try original.session.validateCompletedSavedResult(receipt, original: retained)\n                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,\n                      receipt.route.state.selectedItemID == request.record.itemID else {\n                    throw UIRouteError(.failed, \"native_effect_uncertain\")\n                }\n            } catch {\n                throw NativeSavedResultIntentService.Failure(acknowledgement: result, underlying: error)\n            }\n        }\n        return result\n    }\n\n    /// One typed local record, one exact existing window, one original Core\n",
+    "occurrences": 1
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "old": "        AppDependencyManager.shared.add(dependency: historyService)\n",
+    "new": "        AppDependencyManager.shared.add(dependency: historyService)\n        let savedService = NativeSavedResultIntentService(read: { [self] in\n            try savedResultsCatalog()\n        }, windows: { [self] in\n            try savedResultsWindows()\n        }, navigate: { [self] in\n            do { return try await revealSavedResult($0) }\n            catch { logIntentFailure(error, stage: \"saved_result\"); throw error }\n        })\n        AppDependencyManager.shared.add(dependency: savedService)\n",
+    "occurrences": 1
+  }
+]

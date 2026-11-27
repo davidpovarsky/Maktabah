@@ -1,0 +1,97 @@
+{
+  "schema": "otzaria.wave3.saved-results.source-only.v1",
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "base_source_tree": "23cdfce49553927656ef79c6db10f654c889e2fc",
+  "product_paths": 10,
+  "new_product_files": 6,
+  "modified_original_files": 4,
+  "shared_wiring": "45 exact proposed hunks, root-owned application; not live shared edits",
+  "controls": {
+    "load_lifetime": {
+      "passed": 14,
+      "failed": 0
+    },
+    "service": {
+      "passed": 12,
+      "failed": 0
+    },
+    "owner_original_paths": {
+      "passed": 28,
+      "failed": 0
+    },
+    "targeted_existing_completed_case": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "boundary": "Actual source with original Core/UIRouting value contracts; explicit UIKit, app, database and backend publisher fixtures. No Core effect or native execution.",
+  "syntax": {
+    "input_count": 18,
+    "exit": 0,
+    "boundary": "Frontend Apple-target parse, not SDK typecheck"
+  },
+  "original_results": [
+    {
+      "attempt": 1,
+      "path": "evidence/remote/controls/attempt-1/RESULT.json",
+      "bytes": 4597,
+      "sha256": "c838cc599b7fdae9c7b19e7e575745e54348b74c457c580cc6fa8c08e2787802"
+    },
+    {
+      "attempt": 2,
+      "path": "evidence/remote/controls/attempt-2/RESULT.json",
+      "bytes": 5269,
+      "sha256": "9cb913291ba6011f87721d6b89a8ec0284e19d88d2647a1f94a98704d40aa35b"
+    },
+    {
+      "attempt": 3,
+      "path": "evidence/remote/controls/attempt-3/RESULT.json",
+      "bytes": 5268,
+      "sha256": "7b2da56770a833d7f25289bb47fd34b8be5109b6f94130daa1afe1472cf49166"
+    },
+    {
+      "attempt": 4,
+      "path": "evidence/remote/controls/attempt-4/RESULT.json",
+      "bytes": 14987,
+      "sha256": "d518b35b5eb271d0558a32c3be24a2d770a7a2be941110d39d519e33cf7f413b"
+    },
+    {
+      "attempt": 5,
+      "path": "evidence/remote/controls/attempt-5/RESULT.json",
+      "bytes": 29140,
+      "sha256": "957b09b5ebcd04d4c509c5dbc6e9b6646375a5c26471a9eacd940a1cf7efa493"
+    },
+    {
+      "attempt": 6,
+      "path": "evidence/remote/controls/attempt-6/RESULT.json",
+      "bytes": 26873,
+      "sha256": "4c1c392894ed4079322c23e685451c8fd355fbbef4fb124f2d46b52d8f90c88e"
+    }
+  ],
+  "raw_archive": {
+    "path": "evidence/SOURCE_CONTROL_RAW_ATTEMPTS_1_6.zip",
+    "bytes": 396278,
+    "sha256": "5fa901d73f300fbae8983ce39886f67ce12e452f0ab2e81b26c563d022a297ab",
+    "members": 79,
+    "transfer_source": "/home/ubuntu/otzaria-wave3-saved-results-reveal-20261127/evidence/SOURCE_CONTROL_RAW_ATTEMPTS_1_6.zip"
+  },
+  "native": {
+    "apple_sdk": "NOT_RUN",
+    "app_intents_metadata": "NOT_RUN",
+    "siri": "NOT_RUN",
+    "simulator": "NOT_RUN",
+    "physical_device": "NOT_RUN",
+    "production_v40": "NOT_RUN",
+    "native116": "UNCHANGED",
+    "release114": "UNCHANGED"
+  },
+  "owner_verification": "Pending integration owner for exact final source; no signatures or gate edits",
+  "unchanged": [
+    "Vendor",
+    "dependency pins",
+    "PBX",
+    "native tests",
+    "existing acceptance assertions",
+    "owner registry/verifier"
+  ]
+}

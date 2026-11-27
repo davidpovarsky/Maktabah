@@ -1,0 +1,46 @@
+{
+  "payload_bytes": 120226,
+  "payload_sha256": "7dc444023c86ef8768bddb6416cd58064cdb512d25471cc2f9e215b76ccec434",
+  "files": [
+    {
+      "path": "evidence/RAW_ARCHIVE_RECEIPT.json",
+      "bytes": 14329,
+      "sha256": "ac44b4a1b9289867ddf65c5ff65af87d8ad0625771240daabd31f7feb138a7cd"
+    },
+    {
+      "path": "controls/attempt-1/RESULT.json",
+      "bytes": 4597,
+      "sha256": "c838cc599b7fdae9c7b19e7e575745e54348b74c457c580cc6fa8c08e2787802"
+    },
+    {
+      "path": "controls/attempt-2/RESULT.json",
+      "bytes": 5269,
+      "sha256": "9cb913291ba6011f87721d6b89a8ec0284e19d88d2647a1f94a98704d40aa35b"
+    },
+    {
+      "path": "controls/attempt-3/RESULT.json",
+      "bytes": 5268,
+      "sha256": "7b2da56770a833d7f25289bb47fd34b8be5109b6f94130daa1afe1472cf49166"
+    },
+    {
+      "path": "controls/attempt-4/RESULT.json",
+      "bytes": 14987,
+      "sha256": "d518b35b5eb271d0558a32c3be24a2d770a7a2be941110d39d519e33cf7f413b"
+    },
+    {
+      "path": "controls/attempt-5/RESULT.json",
+      "bytes": 29140,
+      "sha256": "957b09b5ebcd04d4c509c5dbc6e9b6646375a5c26471a9eacd940a1cf7efa493"
+    },
+    {
+      "path": "controls/attempt-6/RESULT.json",
+      "bytes": 26873,
+      "sha256": "4c1c392894ed4079322c23e685451c8fd355fbbef4fb124f2d46b52d8f90c88e"
+    },
+    {
+      "path": "original-callback/NativeComponentRevealOwner.swift",
+      "bytes": 11780,
+      "sha256": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345"
+    }
+  ]
+}

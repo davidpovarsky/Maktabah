@@ -1,0 +1,38 @@
+{
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "session_sha256": "c4705875ba12e5fea3f8656f727541a0875f02895046f1c8ae2989ebaf6e7930",
+  "original_search_callback": {
+    "method": "originalSearchPresentationWillChange",
+    "sha256": "49155b4ad2905ba3c538bc1ff9914b1ab770c6e2d1effcd8dc860eeedbd2b655",
+    "body": "func originalSearchPresentationWillChange(owner: UUID) {\n        searchEntryBinding?.originalPresentationWillChange(owner: owner)\n        if searchPresentationOwner == owner {\n            searchContinuationOwner?.retire()\n            historyRecordBinding?.originalForeignStateWillChange()\n        }\n    }",
+    "byte_unchanged": true
+  },
+  "notes_only_added_retire": {
+    "body": "func originalNoteEditorStateWillChange(id: UUID, reader: ReaderViewModel) {\n        guard mounted, let owner = noteEditorOwner,\n              owner.id == id, owner.reader === reader else { return }\n        readerTabBinding?.invalidate()\n        workspaceSelectionBinding?.invalidate()\n        searchContinuationOwner?.retire()\n        // Observe the original setter BEFORE its SwiftUI State/presentation\n        // mutation. This also covers a retained source before beginObservation\n        // and completed proof; final-value equality cannot revive either one.\n        sefariaRootSources.values.forEach { $0.invalidate() }\n        completedSefariaRootSource?.invalidate()\n        historyRecordBinding?.originalForeignStateWillChange()\n        savedResultsBinding?.retire()\n        if retainedSefariaSurface { presentation.revoke() }\n    }",
+    "sha256": "c18098162136606879b012718a203601f3d8986ccdf8973ba286f316a47655b4"
+  },
+  "search_entry_original_callbacks": [
+    {
+      "name": "originalPresentationWillChange",
+      "body": "func originalPresentationWillChange(owner original: UUID) {\n        guard presentationOwner == original else { return }\n        retire()\n    }",
+      "sha256": "b99e45a4ab8f88091cbe2a1043cf1f6303a09ef65eaa590cadc2556c74798902"
+    },
+    {
+      "name": "retire",
+      "body": "func retire() {\n        activeSource?.valid = false; completedSource?.valid = false\n        pending = nil; completedSource = nil\n        owner.retirePresentation()\n    }",
+      "sha256": "f83214cf40c3c03b9feb7c4c115aa64e216cfe928c59697557fdb7b6d14e274c"
+    }
+  ],
+  "original_component_retire": {
+    "body": "func retirePresentation() {\n        // This also revokes a source retained before begin(), including a local\n        // overlay that opens and closes while Core is suspended.\n        presentationRevision &+= 1\n        let wasPending = pending != nil\n        pending = nil; renderedAnchor = nil; renderedSource = nil\n        if wasPending { invalidated() }\n    }",
+    "sha256": "9dae40766d29d774d42ca5874df8ba8650a662c03c8dd94d9e7fdf0dd3871026",
+    "reference_path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+    "reference_kind": "Exact original24cd Git blob independently retrieved and byte-verified",
+    "full_source_sha256": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345",
+    "full_source_bytes": 11780,
+    "retained_source": "evidence/remote/original-callback/NativeComponentRevealOwner.swift"
+  },
+  "history_session_callback_guard": "guard let self, retainedHistoryRecord else { return }",
+  "own_path_callback": "sheetStateDidPublish calls renderOriginalContainer and changed; Session changed notifies directory/graph without calling Saved retire",
+  "scope": "Exact source callback trace. Full SwiftUI/Session runtime remains unrun."
+}

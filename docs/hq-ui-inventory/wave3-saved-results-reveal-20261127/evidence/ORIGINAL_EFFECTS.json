@@ -1,0 +1,104 @@
+[
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "method": "commitRename",
+    "bytes": 953,
+    "sha256": "aabbd4fa869455f04d16ced4185e7b6e5a9ec9051a53203fab60839772c26043",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "method": "loadResult",
+    "bytes": 144,
+    "sha256": "83330464836d9b833f33ccbb33f3abcaf0a9331d16c22c02ce6c0f26fb35fc68",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "method": "folder",
+    "bytes": 119,
+    "sha256": "24d0e7439cc8b73482b6ed3976698ab87e05213976db9a7fec6548b33fa430cc",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "method": "result",
+    "bytes": 119,
+    "sha256": "881dac0c636837dcf65652d92ad866756611fffdde424cdadc56bcde86663ff7",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+    "method": "newFolder",
+    "bytes": 135,
+    "sha256": "58e79ac8e0089b7b038d2cbdb89314e4032d547089e19a739e8f64292b497cb0",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "method": "submitSearch",
+    "bytes": 217,
+    "sha256": "f0694049e20eb3ad87b1535ca0a2b7de425a735fa9636f6efc2c122856009a28",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "method": "compactFilterView",
+    "bytes": 490,
+    "sha256": "58887990280f5e15489201067203b34d35cc22803d7f691cd2000fe9cfd686e3",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "method": "searchRegularEmptyState",
+    "bytes": 715,
+    "sha256": "db42c99f9eddfb8c3c3acd7f245b9dd0d5c0c9b0ec2b0a5eaec57f42a53e9e22",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "method": "searchResultsView",
+    "bytes": 971,
+    "sha256": "8ae833eeec0bb17b6d848a4b85c1ec22e3ba87ad6f6802da5201b7e99b121a9c",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "method": "ftsMigrationBanner",
+    "bytes": 2402,
+    "sha256": "0f9706b54552a65f4247bdb8aa83665d546501f6c393ed376ce027628c6a8dc7",
+    "byte_identical": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "inverse": "remove one passive metadata member",
+    "bytes": 2449,
+    "sha256": "5115e7dd961bf93633d02ab2252f1c53a4e1d20cacbc30e7da8da6892a256d49",
+    "byte_identical_inverse": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/Extensions/Results+Load.swift",
+    "inverse": "remove exactly two begin/defer metadata brackets",
+    "bytes": 1852,
+    "sha256": "efc580fc5558e8a62824ae5a028d1c17a6be96a436c05a2df97d4696bd7dc1f6",
+    "byte_identical_inverse": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/Models/FolderNode.swift",
+    "bytes": 1093,
+    "sha256": "66c778b8f703d81974ce0fcec76d0a8eebfd7c752326b1a2ae7c057e18bfff5d",
+    "unchanged_whole_file": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/Models/ResultNode.swift",
+    "bytes": 1135,
+    "sha256": "9925060950de564129ff5c718ef080fab7b317bb52254658d31bad58a97feb0e",
+    "unchanged_whole_file": true
+  },
+  {
+    "path": "Source/Features/Bookmarks/Models/SavedResultsItem.swift",
+    "bytes": 271,
+    "sha256": "0cd4349e0ee02a343be05d7625445185c0a9ec8639c2c2b0987fbd8704f73bc0",
+    "unchanged_whole_file": true
+  }
+]
