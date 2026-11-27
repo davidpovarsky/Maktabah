@@ -205,6 +205,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
     @ObservationIgnored private var noteDraftBinding: MaktabahNativeNoteDraftBinding?
+    @ObservationIgnored private var readerToolEditorPublicationRevision: UInt64? = 0
     private var searchFieldRevision: UInt64 = 0
     @ObservationIgnored private weak var windowSource: MaktabahNativeWindowSource?
     @ObservationIgnored private var windowSourceRevision: UInt64? = 0
@@ -687,9 +688,16 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         }
     }
 
+    private func advanceReaderToolEditorPublication() {
+        guard let revision = readerToolEditorPublicationRevision else { return }
+        let (next, overflow) = revision.addingReportingOverflow(1)
+        readerToolEditorPublicationRevision = overflow ? nil : next
+    }
+
     func attachNoteEditor(id: UUID, reader: ReaderViewModel, annotation: Binding<Annotation?>,
                           presentationID: @escaping @MainActor () -> UUID) {
         if noteEditorOwner?.id == id, noteEditorOwner?.reader === reader { return }
+        advanceReaderToolEditorPublication()
         if noteDraftBinding != nil { presentation.revoke() }
         noteEditorOwner = .init(id: id, reader: reader, annotation: annotation, presentationID: presentationID)
         try? nativeStateChanged()
@@ -697,6 +705,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     func originalNoteEditorStateWillChange(id: UUID, reader: ReaderViewModel) {
         guard mounted, let owner = noteEditorOwner,
               owner.id == id, owner.reader === reader else { return }
+        advanceReaderToolEditorPublication()
         readerTabBinding?.invalidate()
         workspaceSelectionBinding?.invalidate()
         searchContinuationOwner?.retire()
@@ -712,6 +721,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     }
     func detachNoteEditor(id: UUID) {
         guard let owner = noteEditorOwner, owner.id == id else { return }
+        advanceReaderToolEditorPublication()
         // Leaving the Reader normally unmounts its idle editor registration.
         // Revoke only a note-owned presentation, not the admitted Search/root
         // transition that caused this original Reader to disappear.
@@ -955,15 +965,48 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         try bound.validate()
     }
 
+    /// Capture before the first catalog await. Source metadata does not open a
+    /// Reader, construct an Annotation, select a range or acquire a Core grant.
+    func captureReaderToolSource(_ start: NativeReaderToolIntentService.Start,
+        validateOwner: @escaping @MainActor @Sendable () throws -> Void) throws -> MaktabahNativeReaderToolSource {
+        let validateWindow = try captureHistoryReaderWindow()
+        guard let editorRevision = readerToolEditorPublicationRevision,
+              noteEditorOwner?.current == nil, noteEditorOwner?.presentationActive != true else {
+            throw UIRouteError(.unavailable, "reader_tool_original_editor_unavailable")
+        }
+        let editor = noteEditorOwner, manager = bindings.manager
+        let selection: MaktabahNativeReaderToolSelection?
+        switch start.operation {
+        case .commentary: selection = nil
+        case .noteDraft:
+            guard let editor else { throw UIRouteError(.unavailable, "exact_note_selection_unavailable") }
+            selection = try MaktabahNativeReaderToolSelection(manager: manager, owner: editor, locator: start.locator)
+        }
+        return try MaktabahNativeReaderToolSource(start: start, sceneID: sceneID, selection: selection) { [weak self, weak manager] in
+            try validateOwner()
+            try validateWindow()
+            guard let self, let manager, self.bindings.manager === manager,
+                  self.readerToolEditorPublicationRevision == editorRevision,
+                  self.noteEditorOwner === editor, editor?.current == nil,
+                  editor?.presentationActive != true else {
+                throw UIRouteError(.staleState, "reader_tool_original_editor_changed")
+            }
+            try validateWindow()
+            try validateOwner()
+        }
+    }
+
     func canPrepareNoteDraft() -> Bool {
         guard mounted, foreground, isPresentationReady, noteDraftBinding == nil,
               let owner = noteEditorOwner, owner.current == nil,
               (try? publicBindingPresentation().witnessedReader) != nil else { return false }
         return (try? MaktabahNativeNoteDraftBinding.selection(manager: bindings.manager, owner: owner, sceneID: sceneID)) != nil
     }
-    func retainNoteDraft(_ request: ActionNoteDraftRequest) throws -> MaktabahNativeNoteDraftBinding {
+    func retainNoteDraft(_ request: ActionNoteDraftRequest,
+                         sourceFence: (@MainActor () throws -> Void)? = nil) throws -> MaktabahNativeNoteDraftBinding {
         guard canPrepareNoteDraft(), let owner = noteEditorOwner else { throw ActionPortError.unavailable }
-        let bound = try MaktabahNativeNoteDraftBinding(manager: bindings.manager, owner: owner, request: request, sceneID: sceneID)
+        let bound = try MaktabahNativeNoteDraftBinding(manager: bindings.manager, owner: owner,
+            request: request, sceneID: sceneID, sourceFence: sourceFence)
         noteDraftBinding = bound
         return bound
     }

@@ -461,14 +461,17 @@ struct MaktabahNativeSceneBindings {
     private let sourceGuard: MaktabahNativeInspectorBinding
     private let sourceText: String
     private let sceneID: UIStableID
+    private let sourceFence: (@MainActor () throws -> Void)?
     private(set) var isApplied = false
 
-    static func selection(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner,
-                          sceneID: UIStableID) throws -> (ReaderViewModel, TextLocator, NSRange, String) {
+    /// Original source selection, also retained before a system action activates
+    /// this exact existing window. The original visible-selection gate remains
+    /// mandatory in selection(), immediately before draft construction.
+    static func sourceSelection(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner)
+        throws -> (ReaderViewModel, TextLocator, NSRange, String) {
         guard let reader = MaktabahNativeInspectorBinding.currentReader(in: manager), owner.reader === reader,
               owner.current == nil, let locator = reader.selectedSegmentLocator,
-              let range = reader.selectedSegmentRange,
-              reader.isNativeReaderTextVisible?(sceneID.rawValue, range) == true else {
+              let range = reader.selectedSegmentRange else {
             throw UIRouteError(.unavailable, "exact_note_selection_unavailable")
         }
         // These are the original renderer/DB anchor ranges, never a guessed
@@ -485,8 +488,18 @@ struct MaktabahNativeSceneBindings {
         return (reader, locator, range, reader.contentText)
     }
 
+    static func selection(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner,
+                          sceneID: UIStableID) throws -> (ReaderViewModel, TextLocator, NSRange, String) {
+        let selected = try sourceSelection(manager: manager, owner: owner)
+        guard selected.0.isNativeReaderTextVisible?(sceneID.rawValue, selected.2) == true else {
+            throw UIRouteError(.unavailable, "exact_note_selection_unavailable")
+        }
+        return selected
+    }
+
     init(manager: iOSNavigationManager, owner: MaktabahNativeNoteEditorOwner,
-         request: ActionNoteDraftRequest, sceneID: UIStableID) throws {
+         request: ActionNoteDraftRequest, sceneID: UIStableID,
+         sourceFence: (@MainActor () throws -> Void)? = nil) throws {
         let (reader, locator, range, source) = try Self.selection(manager: manager, owner: owner, sceneID: sceneID)
         let actual = try ActionAppIdentityBridge.actionRef(locator)
         let snippet = try ActionNoteDraftSelection.validate(request, observedLocator: actual, sourceText: source, originalRange: range)
@@ -500,9 +513,11 @@ struct MaktabahNativeSceneBindings {
         draft.note = request.proposedText
         self.owner = owner; self.reader = reader; self.request = request; self.draft = draft
         self.sourceGuard = sourceGuard; sourceText = source; self.sceneID = sceneID
+        self.sourceFence = sourceFence
         try validate()
     }
     func validate() throws {
+        try sourceFence?()
         try sourceGuard.validate()
         guard owner.reader === reader, reader.contentText.utf8.elementsEqual(sourceText.utf8) else { throw ActionPortError.staleState }
         if isApplied {
@@ -510,6 +525,7 @@ struct MaktabahNativeSceneBindings {
         } else {
             guard owner.current == nil else { throw ActionPortError.staleState }
         }
+        try sourceFence?()
     }
     func apply() throws {
         try validate()

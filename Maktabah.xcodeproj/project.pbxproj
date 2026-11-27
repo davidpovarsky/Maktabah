@@ -1478,6 +1478,7 @@
 		99CFFF6DD16372CBBAF602C4 /* MaktabahNativeSavedResultsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */; };
 		1B7E2C9E2359B85FA50FB448 /* MaktabahNativeSavedResultsBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */; };
 		49C8885F86E592D87D813F15 /* MaktabahNativeSavedResultsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */; };
+		D39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2337,6 +2338,7 @@
 		146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift"; sourceTree = "<group>"; };
 		52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift"; sourceTree = "<group>"; };
 		D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift"; sourceTree = "<group>"; };
+		6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2433,6 +2435,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */,
 				8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */,
 				146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */,
 				52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */,
@@ -5295,6 +5298,7 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				D39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */,
 				480A37811754BC6F9614551B /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				99CFFF6DD16372CBBAF602C4 /* MaktabahNativeSavedResultsSource.swift in Sources */,
 				1B7E2C9E2359B85FA50FB448 /* MaktabahNativeSavedResultsBinding.swift in Sources */,

@@ -125,8 +125,12 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let context: ActionExecutionContext
         let sceneID: UIStableID
         var receipt: UISceneReceipt?
-        init(route: UIValidatedRoute, context: ActionExecutionContext, sceneID: UIStableID) {
+        var observedReceipt: UISceneReceipt?
+        weak var commentary: CommentaryInvocation?
+        init(route: UIValidatedRoute, context: ActionExecutionContext, sceneID: UIStableID,
+             commentary: CommentaryInvocation? = nil) {
             self.route = route; self.context = context; self.sceneID = sceneID
+            self.commentary = commentary
         }
     }
     private var readerInvocations: [UUID: ReaderInvocation] = [:]
@@ -134,9 +138,13 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let sceneID: UIStableID
         let context: ActionExecutionContext
         let observation: HanlinSourceObservation
+        let readerToolSource: MaktabahNativeReaderToolSource?
+        var observedReceipt: UISceneReceipt?
         var cleanup: (@MainActor () -> Void)?
-        init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation) {
+        init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation,
+             readerToolSource: MaktabahNativeReaderToolSource? = nil) {
             self.sceneID = sceneID; self.context = context; self.observation = observation
+            self.readerToolSource = readerToolSource
         }
     }
     private var commentaryInvocations: [UUID: CommentaryInvocation] = [:]
@@ -146,14 +154,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let context: ActionExecutionContext
         let observation: HanlinSourceObservation
         let request: ActionNoteDraftRequest
+        let readerToolSource: MaktabahNativeReaderToolSource?
+        var observedReceipt: UISceneReceipt?
         var binding: MaktabahNativeNoteDraftBinding?
         var command: UISceneCommand?
         var admitted: ActionNavigationState?
         var receipt: UISceneReceipt?
         var cleanup: (@MainActor () -> Void)?
         init(sceneID: UIStableID, context: ActionExecutionContext, observation: HanlinSourceObservation,
-             request: ActionNoteDraftRequest) {
+             request: ActionNoteDraftRequest, readerToolSource: MaktabahNativeReaderToolSource? = nil) {
             self.sceneID = sceneID; self.context = context; self.observation = observation; self.request = request
+            self.readerToolSource = readerToolSource
         }
     }
     private var noteDraftInvocations: [UUID: NoteDraftInvocation] = [:]
@@ -1939,6 +1950,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               try hanlinSource(sceneID: pending.sceneID, entry: entry) == pending.observation else {
             throw ActionPortError.staleState
         }
+        // The optional system source is consumed once inside the existing Core
+        // preparation sink, immediately before original retention.
+        try pending.readerToolSource?.handOff(invocation)
         // As in open(public:), reservation advances the original workspace
         // epoch BEFORE issuing/admitting the context used by the Core grant.
         let retained = try entry.session.retainReader(destination, requestID: invocation.requestId) { [weak self, weak session = entry.session] in
@@ -1962,7 +1976,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             guard commentaryInvocations[invocation.requestId] === pending, pending.cleanup != nil,
                   contexts[pending.sceneID] == context else { throw ActionPortError.staleState }
             try Task.checkCancellation()
-            readerInvocations[invocation.requestId] = ReaderInvocation(route: route, context: context, sceneID: pending.sceneID)
+            readerInvocations[invocation.requestId] = ReaderInvocation(route: route, context: context,
+                sceneID: pending.sceneID, commentary: pending)
         } catch {
             if let cleanup = pending.cleanup { cleanup(); pending.cleanup = nil }
             else { finish(context, sceneID: pending.sceneID); entry.session.releaseReader(retained) }
@@ -2024,7 +2039,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               try hanlinSource(sceneID: pending.sceneID, entry: entry) == pending.observation else {
             throw ActionPortError.staleState
         }
-        let retained = try entry.session.retainNoteDraft(draft)
+        try pending.readerToolSource?.handOff(invocation)
+        let sourceFence: (@MainActor () throws -> Void)?
+        if let source = pending.readerToolSource { sourceFence = { try source.validateSelection() } }
+        else { sourceFence = nil }
+        let retained = try entry.session.retainNoteDraft(draft, sourceFence: sourceFence)
         do {
             try issue(context, sceneID: pending.sceneID)
             let admitted = try authority.admit(context: context, sceneID: pending.sceneID)
@@ -2056,6 +2075,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               let bound = pending.binding, let entry = scenes[pending.sceneID] else { throw ActionPortError.staleState }
         let prepared = try command.prepareNavigation(noteDraftCommand: note)
         let result = await orchestrator.commitPrepared(prepared, admitted: admitted)
+        // Preserve the actually observed native ACK even if the original final
+        // source check below refuses. This is partial evidence, never authority.
+        if case .acknowledged(let receipt) = result { pending.observedReceipt = receipt }
         guard case .acknowledged(let receipt) = result else {
             if case .requiresForeground = result { return .requiresForeground }
             throw Self.nativeUIFailure(result)
@@ -2117,6 +2139,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let scene = try await directory.currentScene(sceneID: pending.sceneID, context: pending.context, invocation: reader.invocation)
         let command = try UISceneCommand(route: pending.route, invocation: reader.invocation, scene: scene)
         let result = await orchestrator.commit(command, readerCommand: reader, context: pending.context)
+        if case .acknowledged(let receipt) = result {
+            pending.observedReceipt = receipt
+            pending.commentary?.observedReceipt = receipt
+        }
         guard case .acknowledged(let receipt) = result, let coreReceipt = receipt.coreReceipt else {
             if case .requiresForeground = result { return .requiresForeground }
             throw ActionPortError.unavailable
@@ -2312,7 +2338,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             throw UIRouteError(.requiresBackendSwitch, "backend_selection_required")
         }
         let request = ActionRequest(requestId: request.requestId, action: request.action, arguments: request.arguments,
-            expectedBackend: snapshot.backend, expectedGeneration: snapshot.generation, requestedPresentation: .headless)
+            expectedBackend: snapshot.backend, expectedGeneration: snapshot.generation, requestedPresentation: .headless,
+            deadlineMs: request.deadlineMs)
         let context = ActionExecutionContext(subjectID: "maktabah.intent.metadata", origin: .appIntent,
             allowedBackends: [snapshot.backend], scopes: [.discovery])
         let result = await core.execute(request, context: context)
@@ -2426,6 +2453,158 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             }
             throw error
         }
+    }
+
+    /// Retain the explicit existing system window before any catalog await.
+    /// No chooser, new window, reader mutation, note factory or Core admission
+    /// runs here; the retained value is an in-process source witness only.
+    private func retainReaderToolWindow(_ start: NativeReaderToolIntentService.Start) throws
+        -> NativeReaderToolIntentService.RetainedWindow {
+        let matches = try intentRootEntities().filter {
+            $0.id == start.windowIdentifier && $0.destination.rawValue == "native.library" && $0.component == nil
+        }
+        guard matches.count == 1, let window = matches.first,
+              window.backend == start.invocation.snapshot.backend,
+              let original = scenes[window.sceneID], original.session.mounted,
+              let manager = original.manager, original.managerID == ObjectIdentifier(manager),
+              contexts[window.sceneID] == nil,
+              try backend.currentBackendSnapshot() == start.invocation.snapshot else {
+            throw UIRouteError(.staleState, "reader_tool_window_no_longer_available")
+        }
+        let validateOwner: @MainActor @Sendable () throws -> Void = { [weak self, weak manager] in
+            guard let self, let manager, let current = self.scenes[window.sceneID],
+                  current.session === original.session, current.manager === manager,
+                  current.managerID == original.managerID, current.session.mounted,
+                  current.publicBinding === original.publicBinding,
+                  self.contexts[window.sceneID] == nil,
+                  try self.backend.currentBackendSnapshot() == start.invocation.snapshot,
+                  try self.intentRootEntities().filter({ $0 == window }).count == 1 else {
+                throw UIRouteError(.staleState, "reader_tool_original_window_changed")
+            }
+        }
+        let source = try original.session.captureReaderToolSource(start, validateOwner: validateOwner)
+        let validate: @MainActor @Sendable () throws -> Void = { try source.validate() }
+        try validate()
+        return .init(sceneID: window.sceneID, validate: validate, execute: { [weak self] request in
+            guard let self else { throw ActionPortError.unavailable }
+            try validate()
+            return try await self.executeReaderTool(request, window: window, original: original,
+                source: source, validateBeforeHandoff: validate)
+        }, release: { source.release() })
+    }
+
+    private func executeReaderTool(_ input: NativeReaderToolIntentService.Request,
+        window: NativeIntentService.Destination, original: Registration, source: MaktabahNativeReaderToolSource,
+        validateBeforeHandoff: @escaping @MainActor @Sendable () throws -> Void) async throws
+        -> NativeReaderToolIntentService.Execution {
+        let start = input.start, invocation = start.invocation
+        guard invocation == source.start.invocation, start.locator == source.start.locator,
+              start.operation == source.start.operation, start.windowIdentifier == source.start.windowIdentifier,
+              source.sceneID == window.sceneID else {
+            throw UIRouteError(.staleState, "reader_tool_original_request_changed")
+        }
+        try validateBeforeHandoff()
+        let activated = try await NativeObservationDeadline.run(
+            until: invocation.deadlineUptimeNanoseconds, clock: SystemActionClock()) { [self] in
+                try await waitForMount(managerID: original.managerID)
+            }
+        try validateBeforeHandoff()
+        guard activated == window.sceneID, let current = scenes[window.sceneID],
+              current.session === original.session, current.session.foreground,
+              contexts[window.sceneID] == nil else {
+            throw UIRouteError(.staleState, "reader_tool_window_changed_during_activation")
+        }
+        let observed = try hanlinSource(sceneID: window.sceneID, entry: original)
+        guard observed.backend == invocation.snapshot else {
+            throw UIRouteError(.staleState, "reader_tool_original_backend_changed")
+        }
+        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: invocation.snapshot)
+        let now = DispatchTime.now().uptimeNanoseconds
+        guard now < invocation.deadlineUptimeNanoseconds else { throw UIRouteError(.unavailable, "deadline_exceeded") }
+        let remaining = (invocation.deadlineUptimeNanoseconds - now) / 1_000_000
+        guard remaining > 0 else { throw UIRouteError(.unavailable, "deadline_exceeded") }
+        let request = ActionRequest(requestId: invocation.requestId, action: start.operation.action,
+            arguments: try input.arguments(), expectedBackend: invocation.snapshot.backend,
+            expectedGeneration: invocation.snapshot.generation, requestedPresentation: .foreground,
+            deadlineMs: Int(min(remaining, 5_000)))
+
+        switch start.operation {
+        case .commentary:
+            guard commentaryInvocations.count < 16, readerInvocations.count < 16,
+                  commentaryInvocations[request.requestId] == nil, readerInvocations[request.requestId] == nil,
+                  !commentaryInvocations.values.contains(where: { $0.sceneID == window.sceneID }) else {
+                throw UIRouteError(.unavailable, "native_scene_busy")
+            }
+            let pending = CommentaryInvocation(sceneID: window.sceneID, context: context,
+                observation: observed, readerToolSource: source)
+            commentaryInvocations[request.requestId] = pending
+            defer {
+                let cleanup = pending.cleanup; pending.cleanup = nil
+                cleanup?()
+                if commentaryInvocations[request.requestId] === pending {
+                    commentaryInvocations.removeValue(forKey: request.requestId)
+                }
+            }
+            let result = await core.execute(request, context: context)
+            let actual = NativeReaderToolIntentService.Execution(request: request, result: result,
+                nativeReceipt: pending.observedReceipt ?? readerInvocations[request.requestId]?.observedReceipt)
+            do {
+                if result.status == .completed {
+                    let receipt = try validateReaderToolCompletion(actual, original: original, source: source, context: context)
+                    try original.session.validateCompletedJourneySurface(receipt)
+                    record(.acknowledged(receipt))
+                }
+                return actual
+            } catch { throw NativeReaderToolIntentService.Failure(execution: actual, underlying: error) }
+        case .noteDraft(let proposal):
+            guard noteDraftInvocations.count < 16, noteDraftInvocations[request.requestId] == nil,
+                  !noteDraftInvocations.values.contains(where: { $0.sceneID == window.sceneID }),
+                  original.session.canPrepareNoteDraft() else {
+                throw UIRouteError(.unavailable, "exact_note_selection_unavailable")
+            }
+            let draft = ActionNoteDraftRequest(locator: start.locator, proposedText: proposal)
+            let pending = NoteDraftInvocation(sceneID: window.sceneID, context: context,
+                observation: observed, request: draft, readerToolSource: source)
+            noteDraftInvocations[request.requestId] = pending
+            defer {
+                let cleanup = pending.cleanup; pending.cleanup = nil
+                cleanup?()
+                if noteDraftInvocations[request.requestId] === pending {
+                    noteDraftInvocations.removeValue(forKey: request.requestId)
+                }
+            }
+            let result = await core.execute(request, context: context)
+            let actual = NativeReaderToolIntentService.Execution(request: request, result: result,
+                nativeReceipt: pending.observedReceipt)
+            do {
+                if result.status == .completed {
+                    let receipt = try validateReaderToolCompletion(actual, original: original, source: source, context: context)
+                    guard let bound = pending.binding else { throw ActionPortError.staleState }
+                    try original.session.validateNoteDraftCompletion(bound, route: receipt.route)
+                    record(.acknowledged(receipt))
+                }
+                return actual
+            } catch { throw NativeReaderToolIntentService.Failure(execution: actual, underlying: error) }
+        }
+    }
+
+    /// Core has returned, but the original retention/authority cleanup has not
+    /// run yet. Recheck this exact owner and actual native effect synchronously.
+    private func validateReaderToolCompletion(_ actual: NativeReaderToolIntentService.Execution,
+        original: Registration, source: MaktabahNativeReaderToolSource, context: ActionExecutionContext) throws -> UISceneReceipt {
+        try Task.checkCancellation()
+        let invocation = source.start.invocation
+        guard source.isHandedOff, DispatchTime.now().uptimeNanoseconds < invocation.deadlineUptimeNanoseconds,
+              let current = scenes[source.sceneID], current.session === original.session,
+              let manager = original.manager, current.manager === manager,
+              current.managerID == original.managerID, current.publicBinding === original.publicBinding,
+              current.session.mounted, current.session.foreground, contexts[source.sceneID] == context,
+              try backend.currentBackendSnapshot() == invocation.snapshot,
+              let receipt = actual.nativeReceipt, receipt.requestId == invocation.requestId,
+              receipt.backendSnapshot == invocation.snapshot, receipt.sceneID == source.sceneID else {
+            throw UIRouteError(.staleState, "reader_tool_completed_owner_changed")
+        }
+        return receipt
     }
 
     private func openReaderIntent(_ request: NativeReaderIntentService.OpenRequest) async throws -> UISceneAcknowledgement {
@@ -2766,6 +2945,16 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "reader_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: readerService)
+        let readerToolService = NativeReaderToolIntentService(snapshot: { [self] in
+            try backend.currentBackendSnapshot()
+        }, execute: { [self] in
+            do { return try await readerIntentMetadata($0) }
+            catch { logIntentFailure(error, stage: "reader_tool_metadata"); throw error }
+        }, retain: { [self] in
+            do { return try retainReaderToolWindow($0) }
+            catch { logIntentFailure(error, stage: "reader_tool_source"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: readerToolService)
         let tabService = NativeReaderTabIntentService(discover: { [self] in
             do { return try readerTabIntentEntities() }
             catch { logIntentFailure(error, stage: "reader_tab_metadata"); throw error }

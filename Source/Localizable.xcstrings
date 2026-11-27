@@ -1,6 +1,118 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Open commentary at a passage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open commentary at a passage"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת פירוש על קטע"
+          }
+        }
+      }
+    },
+    "Choose a source passage, a commentary book and an existing Maktabah window. Open the original commentary reader in a new tab.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a source passage, a commentary book and an existing Maktabah window. Open the original commentary reader in a new tab."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחרו קטע מקור, ספר פירוש וחלון קיים של אוצריא. הפירוש ייפתח בקורא המקורי בטאב חדש."
+          }
+        }
+      }
+    },
+    "Commentary book": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commentary book"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספר פירוש"
+          }
+        }
+      }
+    },
+    "Prepare an unsaved note for a selected passage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prepare an unsaved note for a selected passage"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכנת טיוטת הערה לקטע שנבחר"
+          }
+        }
+      }
+    },
+    "Choose the exact passage already selected in the original reader and its Maktabah window. Open an unsaved draft in the original note editor for review.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the exact passage already selected in the original reader and its Maktabah window. Open an unsaved draft in the original note editor for review."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחרו את הקטע המדויק שכבר מסומן בקורא המקורי ואת החלון שלו באוצריא. טיוטה שלא נשמרה תיפתח לעיון בעורך ההערות המקורי."
+          }
+        }
+      }
+    },
+    "Selected passage": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selected passage"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקטע שנבחר"
+          }
+        }
+      }
+    },
+    "Unsaved note proposal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsaved note proposal"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצעה לטיוטת הערה"
+          }
+        }
+      }
+    },
     "Saved results folder": {
       "localizations": {
         "en": {
