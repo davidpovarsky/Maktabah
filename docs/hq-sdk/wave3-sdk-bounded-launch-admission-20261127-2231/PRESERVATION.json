@@ -1,0 +1,81 @@
+{
+  "schema": "otzaria.actual-sdk-capacity-refusal-preservation.v1",
+  "utc": "2026-11-27T22:34:53.272321+00:00",
+  "status": "ORIGINAL_ADMISSION_REFUSAL_PRESERVED_NO_COMPILER",
+  "integrationBase": "0db1a361864e1d8316d0b7d025bc5c5743259e67",
+  "actualJob": "job_5fe28301e77f",
+  "allNonDocumentationRootEntries": [
+    "040000 tree 46b478d886ed159784e2c92497b2d984e62c0c50\t.agents",
+    "040000 tree bce7772eb5eb55be69f56b1cdcacc5e5a94a2075\t.codex",
+    "100644 blob a16c1454153ceaee01dbdc7f62f1c72ada757137\t.gitattributes",
+    "040000 tree 9c2a99bc3b2da6ce1e7fdda492ef2360b236597f\t.github",
+    "100755 blob 13e0283e18450fefd77f87532412f30be5a3124b\t.gitignore",
+    "100644 blob dbefe3a99b1c267817d7e95a8979554b08d8f9a8\t.gitmodules",
+    "100644 blob c719a9821dd6acc4f83d068ab856cd195968c3bb\t.swiftformat",
+    "100644 blob 7ac6889dbdee7248e61fc71e4147f41093920a5e\t.swiftlint.yml",
+    "100644 blob c4484e966f3f0b897a673c86d9b1f373f4ebf19c\tAGENTS.md",
+    "100644 blob b527e5f0dba1979adb32d4144b4d8c9e99163824\tCLAUDE.md",
+    "100644 blob 1d7e56a2bc577209712d184c3570ebfb0a7cdd3b\tCONTRIBUTING.md",
+    "040000 tree cafdd94d6b16c7dcb71ef622a5aa7f2270ce2fc7\tCloudKit",
+    "100644 blob 4c193c2178e97201b019c065de62e0b68d2f2c91\tDESIGN_LANGUAGE.md",
+    "100644 blob 0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf\tGEMINI.md",
+    "100644 blob f288702d2fa16d3cdf0035b15a9fcbc552cd88e7\tLICENSE",
+    "040000 tree 2e8b47fb335ed5b9d2b64f7e54514b4390b07f05\tMaktabah-iOSNativeTests",
+    "040000 tree 0a3d5b475c2e72d52d973a66a1e078ba2031db13\tMaktabah-iOSUITests",
+    "040000 tree 4679996b48174eccff2ae350de4c86f87495db85\tMaktabah.xcodeproj",
+    "040000 tree b4ea8d9ef86400672d68948d760d98c936efa8f7\tMaktabahTests",
+    "040000 tree 46a3fd8a407f0c7baf078e82314821024e940f63\tMiniApps",
+    "100644 blob 77952126169991d431766f44b5d62ecd2567a189\tPROJECT_AGENT_GUIDANCE.md",
+    "100644 blob 7257a506fd72fdeda16f1c6d3fb2885af79c5638\tPROJECT_BOARD.md",
+    "100644 blob 29785dbf6a16a5103afabc741ebe8fff3cac1239\tPodfile",
+    "100644 blob 03c10be552d73ce31cdb2e74735ed8116bde4dbd\tREADME.md",
+    "100644 blob 48c1821b3c9db539c3365d4e95a99c194320b438\tREADME_OTZARIA_PHASE1.md",
+    "100644 blob d95d1d2bf5bf5fa433c008346b6b9e81c5d05e54\tSECURITY.md",
+    "100644 blob 85683df893fade45b36030622aa98feb5bc1e430\tSOURCE_TO_PORT_DIFF.md",
+    "040000 tree 283cc4d5ba67ce7b0dd59341dfed707586ebd7d1\tScreenshots",
+    "040000 tree 7bc40e16e64dbc638b001dfe78450b488d15e6d6\tScripts",
+    "040000 tree c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb\tSource",
+    "040000 tree df84d029512d9be03624b14c29297d43b31b7a4e\tTests",
+    "100644 blob b19e9e90d967a30cc0177d7f8d00e398449a4cb7\tUPSTREAM_SYNC_2026-10-21_BASELINE.md",
+    "100644 blob 7d9633fea2daef74e995bf6e6c95624a70239b91\tUPSTREAM_SYNC_CHANGE_COVERAGE.md",
+    "100644 blob 13a2a0c2bf04adca517ea76ddea6326c1a979f48\tUPSTREAM_SYNC_CONFLICT_LEDGER.md",
+    "100644 blob 61a99b6e0dcc2d6d20aac5f0a960a209f3fe4223\tUPSTREAM_SYNC_DOWNSTREAM_PRESERVATION.md",
+    "100644 blob e01198a8a2c8393c08f24f809f9a301b77248a2b\tUPSTREAM_SYNC_FINAL_REPORT.md",
+    "100644 blob 49b89137c68f5c8e69b21da6965f89fd06030d2b\tUPSTREAM_SYNC_V42_FEATURE_PARITY.md",
+    "100644 blob 60f7632e4bc75b3297e256a70f96691a041f102b\tUPSTREAM_SYNC_VALIDATION_MATRIX.md",
+    "040000 tree 2fb868bdbe5d2d52735e857a24933918ff658cef\tVendor",
+    "040000 tree d8272f500d6541ef97d05903c6bda0ad48623417\tci_scripts",
+    "100644 blob f042cbe6520f47ed94743122d2be35a9d64b0892\tmaktabah_otsaria_phase1.zip",
+    "100644 blob 7ffdbe9817810c179af8e56d597dcc4b412e04e1\tmkdocs.yml",
+    "040000 tree 7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5\tscripts",
+    "040000 tree e89d698e2328ed66051db3a372a4f8eec158826c\ttools"
+  ],
+  "files": [
+    {
+      "name": "DISPATCH.py",
+      "bytes": 2210,
+      "sha256": "f0d38b40927644cd40acb72157df74a77400a51fe5bc018f3b5d5b0978d379fa"
+    },
+    {
+      "name": "ORIGINAL_OUTPUT.txt",
+      "bytes": 1124,
+      "sha256": "7edcaec521b5a61e0ae8982974ebb6460f8e5f6f9448fe8db39c20677cbbbbbc"
+    },
+    {
+      "name": "RESULT.json",
+      "bytes": 509,
+      "sha256": "ca0dc7c13d0109b31d999815976ae1f6aaad12536bc1902f2a4cef9869e4dea1"
+    },
+    {
+      "name": "SENTINEL_RESULT.json",
+      "bytes": 3811,
+      "sha256": "dd9e7b879c97cd1df15f8fad6859f55cbe3219effad947e2d206ff4d538861df"
+    }
+  ],
+  "firstGateBytes": 13027074048,
+  "originalAdmissionBytes": 15032385536,
+  "newSDKExecutions": 0,
+  "newAppBuilds": 0,
+  "newNativeRuns": 0,
+  "autoRetry": false
+}

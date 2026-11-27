@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_5fe28301e77f\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"warning\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"failed\",\"exit_code\":1,\"created_at\":1795818660.8261113,\"started_at\":\"2026-11-27T22:31:00.910965+00:00\",\"finished_at\":\"2026-11-27T22:31:02.564729+00:00\",\"duration_s\":1.65,\"error\":null,\"output_truncated\":false,\"timeout_s\":840,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"status\\\": \\\"INVOKING_ORIGINAL_GUARDED_LAUNCHER_NOT_ACCEPTANCE\\\", \\\"utc\\\": \\\"2026-11-27T22:31:02.335489+00:00\\\", \\\"uid\\\": 501, \\\"control\\\": \\\"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj\\\", \\\"command\\\": [\\\"/opt/homebrew/opt/python@3.12/libexec/bin/python3\\\", \\\"-B\\\", \\\"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\\\", \\\"--execute-root-authorized-attempt\\\"]}\\n{\\\"status\\\": \\\"LAUNCHER_RETURNED_RECEIPT_REVIEW_REQUIRED\\\", \\\"exit\\\": 1, \\\"utc\\\": \\\"2026-11-27T22:31:02.507222+00:00\\\"}\\nTraceback (most recent call last):\\n  File \\\"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\\\", line 96, in <module>\\n    main()\\n  File \\\"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\\\", line 42, in main\\n    require_launch_capacity()\\n  File \\\"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/sdk_process_observation.py\\\", line 32, in require_launch_capacity\\n    raise RuntimeError('Original fourteen-GiB launch admission unavailable: ' + str(available))\\nRuntimeError: Original fourteen-GiB launch admission unavailable: 13027074048\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_5fe28301e77f",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795818660.8261113,
+      "started_at": "2026-11-27T22:31:00.910965+00:00",
+      "finished_at": "2026-11-27T22:31:02.564729+00:00",
+      "duration_s": 1.65,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 840,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"INVOKING_ORIGINAL_GUARDED_LAUNCHER_NOT_ACCEPTANCE\", \"utc\": \"2026-11-27T22:31:02.335489+00:00\", \"uid\": 501, \"control\": \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj\", \"command\": [\"/opt/homebrew/opt/python@3.12/libexec/bin/python3\", \"-B\", \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\", \"--execute-root-authorized-attempt\"]}\n{\"status\": \"LAUNCHER_RETURNED_RECEIPT_REVIEW_REQUIRED\", \"exit\": 1, \"utc\": \"2026-11-27T22:31:02.507222+00:00\"}\nTraceback (most recent call last):\n  File \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\", line 96, in <module>\n    main()\n  File \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py\", line 42, in main\n    require_launch_capacity()\n  File \"/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/sdk_process_observation.py\", line 32, in require_launch_capacity\n    raise RuntimeError('Original fourteen-GiB launch admission unavailable: ' + str(available))\nRuntimeError: Original fourteen-GiB launch admission unavailable: 13027074048"
+    }
+  },
+  "isError": false
+}

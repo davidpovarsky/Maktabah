@@ -1,0 +1,10 @@
+{"status": "INVOKING_ORIGINAL_GUARDED_LAUNCHER_NOT_ACCEPTANCE", "utc": "2026-11-27T22:31:02.335489+00:00", "uid": 501, "control": "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj", "command": ["/opt/homebrew/opt/python@3.12/libexec/bin/python3", "-B", "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py", "--execute-root-authorized-attempt"]}
+{"status": "LAUNCHER_RETURNED_RECEIPT_REVIEW_REQUIRED", "exit": 1, "utc": "2026-11-27T22:31:02.507222+00:00"}
+Traceback (most recent call last):
+  File "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py", line 96, in <module>
+    main()
+  File "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/launch_owned.py", line 42, in main
+    require_launch_capacity()
+  File "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj/sdk_process_observation.py", line 32, in require_launch_capacity
+    raise RuntimeError('Original fourteen-GiB launch admission unavailable: ' + str(available))
+RuntimeError: Original fourteen-GiB launch admission unavailable: 13027074048

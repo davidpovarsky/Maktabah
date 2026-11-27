@@ -1,0 +1,16 @@
+{
+  "status": "REFUSED_ORIGINAL_FIRST_CAPACITY_GATE_NO_BUILD",
+  "jobID": "job_5fe28301e77f",
+  "startedAt": "2026-11-27T22:31:00.910965+00:00",
+  "finishedAt": "2026-11-27T22:31:02.564729+00:00",
+  "exit": 1,
+  "freeBytes": 13027074048,
+  "minimumBytes": 15032385536,
+  "launchClaimCreated": false,
+  "newSDKExecutions": 0,
+  "newAppBuilds": 0,
+  "newNativeRuns": 0,
+  "originalGuardsChanged": 0,
+  "retryAuthorized": false,
+  "stage": "/Users/m1/builds/otzaria-wave3-sdk-bounded-launch-20261127.t2mfqqkj"
+}
