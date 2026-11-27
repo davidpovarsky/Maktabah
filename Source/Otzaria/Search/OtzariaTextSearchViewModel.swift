@@ -54,6 +54,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     private let artifactService = OtzariaSearchArtifactService.shared
     private var currentTask: Task<Void, Never>?
     private var searchGeneration: Int = 0
+    let originalPageLedger = OriginalSearchPageLedger()
     private var paginationTask: Task<Void, Never>?
     private var resultStore = OtzariaSearchResultStore<SearchResultItem>()
     private var executedRequest: OtzariaSearchRequest?
@@ -74,6 +75,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
     /// A replaced library invalidates old readiness and all pending status
     /// publications. Clearing result rows alone does not revoke that authority.
     func invalidateSourceReadiness() {
+        originalPageLedger.invalidate(generation: UInt64(searchGeneration))
         statusGeneration += 1
         status = .unavailable
         indexStatusDetail = nil
@@ -439,6 +441,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func search() {
         searchGeneration += 1
+        originalPageLedger.invalidate(generation: UInt64(searchGeneration))
         let generation = searchGeneration
         currentTask?.cancel()
         paginationTask?.cancel()
@@ -480,6 +483,11 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         let profile = OtzariaDataProfileRegistry.activeProfileID
         executedBackendGeneration = backendGeneration
         executedProfileID = profile
+        let attempt = originalPageLedger.begin(
+            generation: UInt64(generation),
+            request: .encode(request, configuration: request, offset: request.offset, limit: request.limit),
+            replacing: true, consumedBefore: resultStore.consumedCount, cursorBefore: request.offset
+        )
 
         currentTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
@@ -500,15 +508,26 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                         return
                     }
                     try self.store(page: page, items: items, replacing: true)
+                    self.originalPageLedger.accept(
+                        attempt, rawCount: page.results.count, mappedCount: items.count,
+                        consumedAfter: self.resultStore.consumedCount,
+                        cursorAfter: self.hasMore ? self.resultStore.consumedCount : nil,
+                        hasMore: self.hasMore, rawNextOffset: self.resultStore.consumedCount,
+                        sourceEvidence: nil
+                    )
                     #if DEBUG
                     self.nativePageObserver?(request, page, self.searchRecords, self.resultStore.consumedCount)
                     #endif
                     self.isSearching = false
                 }
             } catch {
-                if Task.isCancelled { return }
+                if Task.isCancelled {
+                    await MainActor.run { self.originalPageLedger.fail(attempt, cancelled: true) }
+                    return
+                }
                 await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    self.originalPageLedger.fail(attempt, cancelled: error is CancellationError)
                     self.errorMessage = error.localizedDescription
                     self.applyReadFailureToReadiness(error)
                     self.enginePage = nil
@@ -536,6 +555,13 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
         let nextRequest = request
         let backendGeneration = executedBackendGeneration
         let profile = executedProfileID
+        var configuration = nextRequest
+        configuration.offset = 0
+        let attempt = originalPageLedger.begin(
+            generation: UInt64(generation),
+            request: .encode(nextRequest, configuration: configuration, offset: nextRequest.offset, limit: nextRequest.limit),
+            replacing: false, consumedBefore: resultStore.consumedCount, cursorBefore: nextRequest.offset
+        )
 
         paginationTask = Task.detached(priority: .userInitiated) { [repository] in
             do {
@@ -556,6 +582,13 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                         return
                     }
                     try self.store(page: page, items: items, replacing: false)
+                    self.originalPageLedger.accept(
+                        attempt, rawCount: page.results.count, mappedCount: items.count,
+                        consumedAfter: self.resultStore.consumedCount,
+                        cursorAfter: self.hasMore ? self.resultStore.consumedCount : nil,
+                        hasMore: self.hasMore, rawNextOffset: self.resultStore.consumedCount,
+                        sourceEvidence: nil
+                    )
                     #if DEBUG
                     self.nativePageObserver?(nextRequest, page, self.searchRecords, self.resultStore.consumedCount)
                     #endif
@@ -563,9 +596,13 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
                     self.isLoadingMore = false
                 }
             } catch {
-                if Task.isCancelled { return }
+                if Task.isCancelled {
+                    await MainActor.run { self.originalPageLedger.fail(attempt, cancelled: true) }
+                    return
+                }
                 await MainActor.run {
                     guard self.searchGeneration == generation else { return }
+                    self.originalPageLedger.fail(attempt, cancelled: error is CancellationError)
                     self.isLoadingMore = false
                     self.errorMessage = error.localizedDescription
                     self.applyReadFailureToReadiness(error)
@@ -576,6 +613,7 @@ final class OtzariaTextSearchViewModel: ObservableObject, @unchecked Sendable {
 
     func clear() {
         searchGeneration += 1
+        originalPageLedger.invalidate(generation: UInt64(searchGeneration))
         currentTask?.cancel()
         paginationTask?.cancel()
         query = ""

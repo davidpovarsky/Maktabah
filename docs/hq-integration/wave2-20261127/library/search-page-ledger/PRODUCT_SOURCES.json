@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "branch": "codex/otzaria-wave2-search-page-ledger-20261127",
+  "original": {
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 10915,
+      "sha256": "f230a31ddd977dfb3cc24cfb60d38ee0e5302d06b756ba9cc63cdbb9aa2f197c"
+    },
+    "Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5181,
+      "sha256": "70d360b36ec9225b8a880dd6d687950e238be68cc4902ed632280277a7e4a374"
+    },
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 28952,
+      "sha256": "fc00f83f94d07b966dda4056898e6dd49ee3c4d85866c158c4242955c89362f8"
+    },
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 4777,
+      "sha256": "2f6d4853d229583d24fce304b783b009de694b824dc2f9581091b38571bb47c8"
+    }
+  },
+  "candidate": {
+    "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+      "bytes": 9858,
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+    },
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 13723,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    "Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5237,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 31344,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 5942,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    }
+  },
+  "unchangedEncodingDependency": {
+    "bytes": 5330,
+    "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+  },
+  "componentScope": "ACTUAL_FOUNDATION_LEDGER_ONLY_NOT_PROVIDER_OR_UI",
+  "nativeUIExecuted": false,
+  "archiveSHA256": "40042434d172bdd29cd9c75c75b1a2595f085231bdf7d7b5bc7433dc2a2d4613",
+  "actualResultSHA256": {
+    "attempt-1": "1d16886d2d5bf2620f7806ad3e1c0ef704b11b93f6c85cb35b317f5f94ebbf79",
+    "attempt-2": "70a84d22eaea75b8ede0bde4a955cef19a8f6fe1a8af0c65820df67a666adbf5"
+  }
+}

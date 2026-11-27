@@ -1,0 +1,34 @@
+{
+  "PRODUCT_SOURCES.json": {
+    "bytes": 2324,
+    "sha256": "454162a985277bb08315c7da1adf1cdce3732c3f4a3feb716f9d002889a6b60e"
+  },
+  "README.md": {
+    "bytes": 10001,
+    "sha256": "c9e7f11ca026c6509446e7cf344a5af70db08e8fe963fd7f108967b8a99e8083"
+  },
+  "provenance/PATH_PROVENANCE.json": {
+    "bytes": 5949,
+    "sha256": "910edf5863da753dea32dfc19c727dcc91908455ba0550d8dbbfed7b59e863a6"
+  },
+  "provenance/PRE_EDIT_PATH_MATRIX.md": {
+    "bytes": 3383,
+    "sha256": "c77c5aceba7a2bb942d0a08c2c746e91cfde4aae8d99d73df407ba0d2179a98a"
+  },
+  "provenance/PRE_REVIEW_LEDGER_c05e98ff.swift.txt": {
+    "bytes": 7759,
+    "sha256": "c05e98ff267546dd2caf89592f0caa0da241617bf09390f9acaada33fff9a331"
+  },
+  "provenance/UPSTREAM_BOARD_DISCOVERY.json": {
+    "bytes": 37925,
+    "sha256": "98cfc0a8d36f760a189141e8a8f93c628722f2dd6fcf1dc4292d65712aacdcac"
+  },
+  "provenance/UPSTREAM_SOURCE_READ.json": {
+    "bytes": 10204,
+    "sha256": "c5a74b665a2b649d023f41fa0199961cf1b8e2b10f2cef119d13e1df6810039d"
+  },
+  "provenance/WORKTREE_CREATION.json": {
+    "bytes": 3370,
+    "sha256": "4cb7e16dd11ae80670d7dadbd8c07818024fce1444a532ebfba5966a0421d56a"
+  }
+}
