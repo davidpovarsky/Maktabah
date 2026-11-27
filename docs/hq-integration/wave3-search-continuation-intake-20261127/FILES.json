@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "path": "APPLIED.json",
+      "bytes": 257,
+      "sha256": "919fbb4e653081a57e47a0d2032cb75bcd9d2bf5a5d9fbb981f1413138cee3d4"
+    },
+    {
+      "path": "EXACT_GITHUB_OBJECT_TRANSFER.json",
+      "bytes": 3272,
+      "sha256": "f1286356ee79bc7418da9107de33c05aacb851b750a0996a33261ac91306976f"
+    },
+    {
+      "path": "INPUT_INDEX.json",
+      "bytes": 21488,
+      "sha256": "a809617db18162b7bd51a518ca45f5eddbd66266c93cb789f3b9ec34737be869"
+    },
+    {
+      "path": "LOSSLESS_EVIDENCE_TRANSPORT.json",
+      "bytes": 700,
+      "sha256": "cee4d7af2c7a5f4feb7c3ce2ff510a486dcdf2ad50ad4d667cacc5ce6585fa52"
+    },
+    {
+      "path": "PBX_INSERTIONS.json",
+      "bytes": 1587,
+      "sha256": "287516cdcfef69c27f97487d32b168751377b0f495ac11a3e7473862c22417f1"
+    },
+    {
+      "path": "PLAN.json",
+      "bytes": 3253,
+      "sha256": "9249fe9606ed9efbe75050b48a0142cbc73fda21b09c6fc472b09b6501f5254e"
+    },
+    {
+      "path": "PROJECT_REGISTRATION.json",
+      "bytes": 1546,
+      "sha256": "72bbbde525bf60ddcc35c6f044ee3060823e75aed16766ea219741ee633d40d0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1854,
+      "sha256": "e4c0e97c9b64714c572159c646f029a30b6eda9044cf9f126fea26ae98bcb081"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 3198,
+      "sha256": "79394a2380d7cf47b4bef65780952f70214b8a4d13820531054b95fcf6898ffb"
+    },
+    {
+      "path": "SOURCE_AND_PROJECT.patch.gz",
+      "bytes": 18360,
+      "sha256": "50493f51dd3def5158cfd0188b72b4006df086646d47d43060e1b4a78ef58458"
+    }
+  ]
+}
