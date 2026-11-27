@@ -172,6 +172,7 @@ struct Exact9401ViewerToolbar: ViewModifier {
     @State private var showsProfiles = false
     @State private var presentationViewID = UUID()
     @State private var detailWidth: CGFloat = 0
+    @Environment(\.locale) private var locale
     @Environment(\.exact9401Workspace) private var workspace
     @Environment(\.chavrusaReaderSidebar) private var sidebar
     @Environment(\.maktabahNativeRoutingSession) private var routingSession
@@ -213,7 +214,7 @@ struct Exact9401ViewerToolbar: ViewModifier {
                         sidebar.navigationChrome.reveal()
                         sidebar.overview.request()
                     } label: {
-                        Label("כל הכרטיסיות", systemImage: "square.on.square")
+                        Label(StudyWorkspaceText(locale: locale)("All Tabs", "כל הכרטיסיות"), systemImage: "square.on.square")
                     }
                     .accessibilityIdentifier("reader-tabs-overview")
                     .disabled(workspace?.attached != true || sidebar == nil)
@@ -239,7 +240,7 @@ struct Exact9401ViewerToolbar: ViewModifier {
                         }
                         .accessibilityHidden(true)
                     }
-                    .accessibilityLabel("חיפוש מהיר בספרייה")
+                    .accessibilityLabel(Text("Search Library"))
                     .accessibilityValue(manager.libraryViewModel.searchQuery)
                     .accessibilityIdentifier("reader-command-palette-launcher")
                 }

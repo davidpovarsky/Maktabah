@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-27T03:44:34.189712+00:00",
+  "audited_integration_sha": "5f404e7063cd0237963bf7fb4244c309fba98509",
+  "file": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+  "before_sha256": "c2dd78e4f6a7e75a6d622cd86ba09e32189455a071399ffbedfff3fe4e7d04c5",
+  "after_sha256": "96421e6063403149324d2b2f4309b5ddb2aaaefc25d7cd7612f2a91b50aafcf2",
+  "exact_reverse_recovers_original": true,
+  "source_change": "Two original toolbar labels now use the original scene locale. All Tabs reuses the exact existing StudyWorkspaceText pair from StudyGroupsOverview; Search Library reuses the existing translated string-catalog entry. Original actions, controls, AX identifiers, layout and catalog bytes are unchanged.",
+  "catalog_proof": {
+    "path": "Source/Localizable.xcstrings",
+    "sha256": "9f6d3083c526e3c7a685ea340a11538c2d30efb7778d4a1e8c0e369590d9bd11",
+    "key": "Search Library",
+    "entry": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بحث في المكتبة"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search Library"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cari Perpustakaan"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חיפוש בספרייה"
+          }
+        }
+      }
+    },
+    "All Tabs": "Existing StudyGroupsOverview title and StudyWorkspaceText helper; no catalog entry invented."
+  },
+  "validation": {
+    "kind": "syntax_only",
+    "app_sdk_typecheck": false,
+    "native_execution": false,
+    "command": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127/Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "acceptance_boundary": "Source and syntax verification only. Existing English/Hebrew/VoiceOver native acceptance remains pending on final candidate; no new test suite or test weakening."
+}
