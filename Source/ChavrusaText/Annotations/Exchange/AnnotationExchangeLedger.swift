@@ -1059,6 +1059,31 @@ struct AnnotationExchangeNativeLink: Sendable, Equatable {
     let active: Bool
 }
 
+/// A retained read of consent, independent of mutable transport progress.
+/// Link IDs are never reactivated or removed by the original ledger: revocation
+/// keeps the old row and a new opt-in inserts a new ID. The complete historical
+/// set therefore also detects absent -> linked -> unlinked consent cycles.
+struct AnnotationExchangeNativeConsentObservation: Sendable, Equatable {
+    fileprivate struct Entry: Sendable, Equatable {
+        let id: UUID
+        let destination: AnnotationExchangeDestination
+        let objectID: String
+        let active: Bool
+    }
+    fileprivate let namespace: String
+    fileprivate let annotationUUID: UUID
+    fileprivate let entries: [Entry]
+
+    init(namespace: String, annotationUUID: UUID, links: [AnnotationExchangeNativeLink]) throws {
+        guard AnnotationExchangeValidation.identifier(namespace),
+              links.allSatisfy({ $0.namespace == namespace && $0.annotationUUID == annotationUUID }),
+              Set(links.map(\.id)).count == links.count else { throw AnnotationExchangeError.receiptMismatch }
+        self.namespace = namespace; self.annotationUUID = annotationUUID
+        entries = links.map { Entry(id: $0.id, destination: $0.destination, objectID: $0.objectID, active: $0.active) }
+            .sorted { $0.id.uuidString < $1.id.uuidString }
+    }
+}
+
 struct AnnotationExchangeLinkedDelivery: Sendable, Equatable {
     enum State: String, Sendable {
         case pending, dispatchMayHaveOccurred = "dispatch_may_have_occurred"
@@ -1203,6 +1228,21 @@ extension AnnotationExchangeLedger {
                               parameters: [namespace, annotationUUID.uuidString])
     }
 
+    func nativeConsentObservation(namespace: String, annotationUUID: UUID) throws -> AnnotationExchangeNativeConsentObservation {
+        try .init(namespace: namespace, annotationUUID: annotationUUID,
+                  links: nativeLinks(namespace: namespace, annotationUUID: annotationUUID, activeOnly: false))
+    }
+
+    private func requireNativeConsent(_ observed: AnnotationExchangeNativeConsentObservation,
+                                      namespace: String, annotationUUID: UUID) throws {
+        guard observed.namespace == namespace, observed.annotationUUID == annotationUUID else {
+            throw AnnotationExchangeError.receiptMismatch
+        }
+        guard try nativeConsentObservation(namespace: namespace, annotationUUID: annotationUUID) == observed else {
+            throw AnnotationExchangeError.staleRevision
+        }
+    }
+
     private func linkedRows(where predicate: String, parameters: [Any]) throws -> [AnnotationExchangeNativeLink] {
         try database.fetch(query: """
             SELECT link_id, namespace, annotation_uuid, destination, account_id, space_id,
@@ -1224,10 +1264,14 @@ extension AnnotationExchangeLedger {
 
     /// Called inside the SAME original Save transaction, after a sealed native
     /// read is accepted locally. Consent never fabricates a remote identity.
-    func acceptNativeOrigin(_ origin: AnnotationExchangeNativeReadOrigin, version: AnnotationExchangeVersion, enableLink: Bool) throws {
+    func acceptNativeOrigin(_ origin: AnnotationExchangeNativeReadOrigin, version: AnnotationExchangeVersion,
+                            enableLink: Bool, expectedConsent: AnnotationExchangeNativeConsentObservation) throws {
         guard sqlite3_get_autocommit(database.dbPointer) == 0 else { throw AnnotationExchangeError.receiptMismatch }
         try validateNativeOrigin(origin)
         guard try self.version(mutationID: version.mutationID) == version else { throw AnnotationExchangeError.receiptMismatch }
+        // Compare the original read in the SAME Save transaction. A remembered
+        // keep-linked Boolean cannot renew revoked or replaced consent.
+        try requireNativeConsent(expectedConsent, namespace: version.namespace, annotationUUID: version.annotationUUID)
         try installLinkedSyncSchema()
         _ = try recordIncoming(messageID: version.mutationID, destination: origin.destination,
             namespace: version.namespace, annotationUUID: version.annotationUUID, revision: version.revision,
@@ -1504,6 +1548,21 @@ extension AnnotationExchangeLedger {
             // Dispatch uncertainty, versions, the native copy and its history
             // remain untouched. Unlink is not a delete or a synthetic ACK.
         }
+    }
+
+    /// Only this explicit unlink may advance a dialog's retained observation.
+    /// Return its exact post-mutation history before releasing the transaction;
+    /// a later read must not silently adopt an unrelated unlink/relink cycle.
+    func unlinkNativeCopy(_ supplied: AnnotationExchangeNativeLink,
+                          expectedConsent: AnnotationExchangeNativeConsentObservation) throws -> AnnotationExchangeNativeConsentObservation {
+        var after: AnnotationExchangeNativeConsentObservation?
+        try database.transaction {
+            try requireNativeConsent(expectedConsent, namespace: supplied.namespace, annotationUUID: supplied.annotationUUID)
+            try unlinkNativeCopy(supplied)
+            after = try nativeConsentObservation(namespace: supplied.namespace, annotationUUID: supplied.annotationUUID)
+        }
+        guard let after else { throw AnnotationExchangeError.corruptRecord }
+        return after
     }
 
     private func validateNativeOrigin(_ origin: AnnotationExchangeNativeReadOrigin) throws {

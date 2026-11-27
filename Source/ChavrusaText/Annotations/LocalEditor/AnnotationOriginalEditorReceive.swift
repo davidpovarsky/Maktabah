@@ -25,6 +25,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     private var nativeSource: AnytypeOriginalEditorSourceLifetime?
     private var received: AnytypeOriginalAnnotationReadReceipt?
     private var linkedState: AnnotationLocalEditorLinkedState?
+    private var receivedConsent: AnnotationExchangeNativeConsentObservation?
     var keepLinked = false
     private var revisionAttempt: AnnotationOriginalEditorRevisionAttempt?
     private(set) var revisionOutcome: AnnotationOriginalEditorRevisionOutcome?
@@ -208,7 +209,11 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     func readSelected() {
         guard stage == .choosing, operation == nil,
               let mapping = mappings.first(where: { $0.id == selectedMappingID }),
-              let local, let observation, let snapshot, let account else { return }
+              let local, let observation, let snapshot, let account, let linkedState else { return }
+        // Retain before the original native read and every suspension. Delivery
+        // progress may refresh later; consent cannot be silently recaptured.
+        let consent = linkedState.consent
+        receivedConsent = consent
         stage = .reading
         operation = Task { [self] in
             defer { operation = nil }
@@ -238,6 +243,10 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 try observation.requireCurrent()
                 try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
                 try observation.requireCurrent(); try account.validateCurrent()
+                let currentLinks = try await local.linkedState(snapshot: snapshot)
+                try observation.requireCurrent(); try account.validateCurrent()
+                guard currentLinks.consent == consent else { throw AnnotationExchangeError.staleRevision }
+                self.linkedState = currentLinks
                 let current = try AnnotationOriginalEditorMount.nativeBody(in: snapshot)
                 localChangedSinceShare = current.map {
                     SHA256.hash(data: $0.bodyBytes).map { String(format: "%02x", $0) }.joined()
@@ -276,21 +285,28 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
 
     func unlinkSelectedCopy() {
         guard stage == .reviewing, operation == nil, let link = selectedLink,
-              let snapshot, let local, let observation else { return }
+              let snapshot, let local, let observation, let receivedConsent else { return }
         operation = Task { [self] in
             defer { operation = nil }
             do {
                 try observation.requireCurrent()
-                try await local.unlinkNativeCopy(link, snapshot: snapshot)
-                linkedState = try await local.linkedState(snapshot: snapshot)
+                let after = try await local.unlinkNativeCopy(link, snapshot: snapshot, expectedConsent: receivedConsent)
+                try observation.requireCurrent()
+                // This one explicit original mutation returns its own atomic
+                // post-state. No fresh read can adopt another session's consent.
+                linkedState = after
+                self.receivedConsent = after.consent
                 keepLinked = false
             } catch { stage = .changed }
         }
     }
 
     private func synchronizeObservedVersion() async throws {
-        guard let link = selectedLink, let actual = received, let local, let snapshot else { throw AnnotationExchangeError.receiptMismatch }
-        linkedState = try await local.linkedState(snapshot: snapshot)
+        guard let link = selectedLink, let actual = received, let local, let snapshot,
+              let receivedConsent else { throw AnnotationExchangeError.receiptMismatch }
+        let currentLinks = try await local.linkedState(snapshot: snapshot)
+        guard currentLinks.consent == receivedConsent else { throw AnnotationExchangeError.staleRevision }
+        linkedState = currentLinks
         let unsettled = linkedState?.deliveries.filter {
             $0.link.id == link.id && ($0.state == .dispatchMayHaveOccurred || $0.state == .needsReview)
         } ?? []
@@ -300,7 +316,9 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         if let delivery = selectedDelivery {
             guard delivery.link.nativeRootSHA256 == actual.observedNativeRevisionSHA256 else {
                 try await local.requireLinkedReview(delivery, snapshot: snapshot)
-                linkedState = try await local.linkedState(snapshot: snapshot)
+                let reviewedLinks = try await local.linkedState(snapshot: snapshot)
+                guard reviewedLinks.consent == receivedConsent else { throw AnnotationExchangeError.staleRevision }
+                linkedState = reviewedLinks
                 localChangedSinceShare = true; stage = .reviewing; return
             }
             guard Int64(Date().timeIntervalSince1970) >= delivery.notBefore else { stage = .waiting; return }
@@ -325,7 +343,8 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
 
     private func performReceive() async {
         guard let actual = received, let history = retainedHistoryURL, let local,
-              let observation, let snapshot, let account else { return }
+              let observation, let snapshot, let account, let receivedConsent else { return }
+        let enableLink = keepLinked
         stage = .saving
         do {
             try observation.requireCurrent(); try account.validateCurrent()
@@ -336,7 +355,8 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 formatVersion: AnytypeOriginalEditorSnapshot.formatVersion, bytes: native.bodyBytes)
             let intent = try local.prepareSave(snapshot: snapshot, mutationID: id,
                 body: body, textPreview: actual.capture.textPreview, editorRevision: native.nativeArchiveSHA256)
-            let outcome = try await local.saveReceived(intent, actual: actual, enableLink: keepLinked)
+            let outcome = try await local.saveReceived(intent, actual: actual,
+                enableLink: enableLink, expectedConsent: receivedConsent)
             committedOutcome = outcome
             let receipt: AnnotationExchangeCommit
             switch outcome {

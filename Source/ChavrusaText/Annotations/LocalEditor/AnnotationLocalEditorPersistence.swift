@@ -117,12 +117,14 @@ final class AnnotationLocalEditorPersistence: Sendable {
     }
 
     func commit(_ intent: AnnotationLocalEditorIntent) throws -> AnnotationLocalEditorCommitted {
-        try commit(intent, receivedOrigin: nil, enableLink: false)
+        try commit(intent, receivedOrigin: nil, enableLink: false, expectedConsent: nil)
     }
 
     private func commit(_ intent: AnnotationLocalEditorIntent,
                         receivedOrigin: AnnotationExchangeNativeReadOrigin?,
-                        enableLink: Bool) throws -> AnnotationLocalEditorCommitted {
+                        enableLink: Bool,
+                        expectedConsent: AnnotationExchangeNativeConsentObservation?) throws -> AnnotationLocalEditorCommitted {
+        guard (receivedOrigin == nil) == (expectedConsent == nil) else { throw AnnotationLocalEditorError.invalidIntent }
         try requireSnapshotOwner(intent.snapshot)
         // Recompute the command from its original snapshot, never from newer DB
         // contents. This also checks unsupported versions/formats before writes.
@@ -135,6 +137,8 @@ final class AnnotationLocalEditorPersistence: Sendable {
             try requireCurrent()
             if !(try ledger.hasInstalledSchema()) { try ledger.installSchema() }
             if let previous = try ledger.version(mutationID: intent.mutationID) {
+                // A committed replay reports its original receipt without
+                // changing consent, even if the user subsequently unlinked.
                 try ledger.requireNativeOriginReplay(mutationID: intent.mutationID, origin: receivedOrigin, enableLink: enableLink)
                 result = try replayLocked(previous, intent: intent)
                 try requireCurrent()
@@ -182,7 +186,9 @@ final class AnnotationLocalEditorPersistence: Sendable {
                 throw AnnotationLocalEditorError.corruptRecord
             }
             if let receivedOrigin {
-                try ledger.acceptNativeOrigin(receivedOrigin, version: committedVersion, enableLink: enableLink)
+                guard let expectedConsent else { throw AnnotationExchangeError.receiptMismatch }
+                try ledger.acceptNativeOrigin(receivedOrigin, version: committedVersion,
+                    enableLink: enableLink, expectedConsent: expectedConsent)
             }
             try ledger.enqueueLinkedVersion(committedVersion, suppressing: receivedOrigin)
             let after = try snapshotLocked()
@@ -1474,6 +1480,7 @@ struct AnnotationLocalEditorLinkedState: Sendable {
     let links: [AnnotationExchangeNativeLink]
     let deliveries: [AnnotationExchangeLinkedDelivery]
     let unresolvedReconciliationLinks: Set<UUID>
+    let consent: AnnotationExchangeNativeConsentObservation
 }
 
 extension AnnotationLocalEditorPersistence {
@@ -1486,19 +1493,24 @@ extension AnnotationLocalEditorPersistence {
             guard current.source == snapshot.source, current.version == snapshot.version else { throw AnnotationExchangeError.staleRevision }
             let links = try ledger.nativeLinks(namespace: Self.namespace, annotationUUID: annotationUUID)
             result = .init(links: links, deliveries: try links.flatMap { try ledger.linkedDeliveries(for: $0) },
-                           unresolvedReconciliationLinks: try ledger.unresolvedLinkedReconciliations(for: links))
+                           unresolvedReconciliationLinks: try ledger.unresolvedLinkedReconciliations(for: links),
+                           consent: try ledger.nativeConsentObservation(namespace: Self.namespace, annotationUUID: annotationUUID))
             try requireCurrent()
         }
         guard let result else { throw AnnotationLocalEditorError.corruptRecord }
         return result
     }
 
-    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot) throws {
-        _ = try withNativeAttemptCommit {
+    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot,
+                          expectedConsent: AnnotationExchangeNativeConsentObservation) throws -> AnnotationLocalEditorLinkedState {
+        try withNativeAttemptCommit {
             _ = try requireNativeSavedSnapshotLocked(snapshot)
             guard link.namespace == Self.namespace, link.annotationUUID == annotationUUID else { throw AnnotationExchangeError.receiptMismatch }
-            try ledger.unlinkNativeCopy(link)
-            return true
+            let consent = try ledger.unlinkNativeCopy(link, expectedConsent: expectedConsent)
+            let links = try ledger.nativeLinks(namespace: Self.namespace, annotationUUID: annotationUUID)
+            return .init(links: links, deliveries: try links.flatMap { try ledger.linkedDeliveries(for: $0) },
+                         unresolvedReconciliationLinks: try ledger.unresolvedLinkedReconciliations(for: links),
+                         consent: consent)
         }
     }
 
@@ -1525,7 +1537,8 @@ extension AnnotationLocalEditorPersistence {
     /// body/source binding is checked again on the actual SQLite worker.
     func commitReceived(_ intent: AnnotationLocalEditorIntent,
                         actual: AnytypeOriginalAnnotationReadReceipt,
-                        enableLink: Bool) throws -> AnnotationLocalEditorCommitted {
+                        enableLink: Bool,
+                        expectedConsent: AnnotationExchangeNativeConsentObservation) throws -> AnnotationLocalEditorCommitted {
         let snapshot = actual.capture.nativeCapture.snapshot
         let provenance = snapshot.provenance
         guard provenance.annotationUUID == annotationUUID,
@@ -1542,7 +1555,7 @@ extension AnnotationLocalEditorPersistence {
             destination: try .init(destination: "anytype.original", account: provenance.accountID, space: provenance.spaceID),
             objectID: provenance.objectID, nativeRootSHA256: actual.observedNativeRevisionSHA256,
             nativeResponseSHA256: actual.nativeResponseSHA256)
-        return try commit(intent, receivedOrigin: origin, enableLink: enableLink)
+        return try commit(intent, receivedOrigin: origin, enableLink: enableLink, expectedConsent: expectedConsent)
     }
 
     /// The original native drained callback may finish after presentation
