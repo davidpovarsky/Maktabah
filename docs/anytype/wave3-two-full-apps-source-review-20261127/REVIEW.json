@@ -1,0 +1,114 @@
+{
+  "findings": [
+    {
+      "concrete_counterexample": "A manifest can name a correctly signed app A, an unrelated xctestrun B with the same bundle identifier, an arbitrary hashed receipt, and productFiles=[]. All admission checks accept these values; the eventual XCTest may install/run B. This is a source control-flow counterexample, not an executed runtime experiment.",
+      "correction": "Reuse those unchanged original admission functions before any simulator mutation and after phases; require manifest source/receipt/product closure to match their actual values. Resolve the final xctestrun TestHostPath/UITargetAppPath/TestBundlePath and placeholders to that same admitted app and runner; reject missing, aliased or unrelated products and forbidden qualification environments. Bind installed application images after Apple deployment to the admitted closure. Do not turn self-declared hashes into a replacement verifier.",
+      "evidence": "buildReceipt is only hashed, inputs.source is only copied to output, productFiles may be empty, and the xctestrun product paths are never decoded or matched to the separately installed app. No source_context or qualified_build_context call occurs. Source-qualified original SDK/app/runner gates therefore do not protect the eventual PASS.",
+      "id": "B1",
+      "locations": [
+        "Scripts/CI/ordinary-native-two-full-apps.py:104-129",
+        "Scripts/CI/ordinary-native-two-full-apps.py:148-159",
+        "Scripts/CI/ordinary-native-two-full-apps.py:204-235"
+      ],
+      "original_contract": "production-annotation-native.py:52-79 calls the original source_context(require_current_build=True), requires actual SIMULATOR_BUILD_FOR_REAL_UI_PASS at EXPECTED_CHECKOUT_SHA, verifies original SDK routes against the actual app, and closes native app/UI-runner code images. ordinary-native-exchange-ui.py:177-204,520-524,550-553 retains/rechecks those exact values.",
+      "priority": "P1",
+      "title": "New paired controller does not enforce the original qualified source/build/product closure"
+    },
+    {
+      "correction": "Use the unchanged original installer with --profile production and the exact reviewed production release input; validate its actual per-replica profile/version/count/hash receipt. Use TestTier.production only for the new paired selector, including creation and later launches, and assert the actual launched profile. Add an optional tier argument defaulting to .realUI to createAndShareOrdinaryNativeNote so the four existing ordinary selectors retain their original behavior. A new production path must preserve the original installer time allowance (3600 seconds plus original termination allowance), instead of the current outer240-second timeout. No production acceptance credit until these actual native runs pass.",
+      "evidence": "The installer is invoked without --profile, whose original default is miniTest10. The paired test inherits readerTestTier=.realUI; the original shared launch implementation explicitly supplies -OtzariaDataProfile miniTest10 plus both profile environment keys. Merely staging production data or changing the installer alone would not change the subsequent test launch.",
+      "id": "B2",
+      "locations": [
+        "Scripts/CI/ordinary-native-two-full-apps.py:158-161",
+        "Scripts/CI/prepare-faithful-ipad-fixtures.py:22,53-65",
+        "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift:9,791,1299,1305",
+        "Maktabah-iOSUITests/MaktabahUITestBase.swift:104-124"
+      ],
+      "priority": "P1_FOR_PRODUCTION_ACCEPTANCE",
+      "title": "Both fixture installation and paired XCTest launches select miniTest10"
+    },
+    {
+      "correction": "Keep exact created-UDID ownership and protected-device guard. Attempt bounded cleanup for both devices, retain every outcome and any primary test failure, verify each created device is absent after deletion, and return non-PASS/nonzero if an owned device remains. Do not require shutdown exit0 when the exact device was already shutdown; require verified deletion/absence. No broad cleanup.",
+      "evidence": "After status becomes PASS, shutdown/delete return codes are only appended; a nonzero delete still produces PASS and exit0. A timeout on the first cleanup also prevents reaching cleanup for the second device. The original ordinary controller requires ownedSimulatorCleanup=PASS.",
+      "id": "C1",
+      "locations": [
+        "Scripts/CI/ordinary-native-two-full-apps.py:254-269",
+        "Scripts/CI/ordinary-native-exchange-ui.py:560-566"
+      ],
+      "priority": "P2",
+      "title": "Paired PASS does not require successful cleanup of its owned simulators"
+    }
+  ],
+  "limitations": [
+    "This is source review, not proof of two native app execution, AnySync convergence, production-v40 acceptance, physical QA, or SDK qualification.",
+    "The new pair currently uses full application replicas with a miniTest10 corpus; full application does not imply production data.",
+    "No mnemonic, credentials, account repository payloads or live authentication artifacts were read or copied."
+  ],
+  "preserved_contracts": [
+    "Existing four ordinary exchange/lifecycle selectors and Native116/Release114 lists were not removed or relaxed.",
+    "One paired selector must execute exactly once per phase with passedTests=1, failedTests=0 and skippedTests=0; fresh phase outputs are required.",
+    "Two fresh distinct simulator UDIDs are created and only those owned IDs are cleanup targets; protected5000-note device guard is retained.",
+    "JSON transfer is byte-preserving through original export/import UI, original note UUID/native object is retained, and independent SQLite reads use mode=ro.",
+    "Both directions use visible original account/discovery/read/update/receive controls and cold reopen; no code turns local native responses into remote acknowledgement.",
+    "Raw authentication logs/xcresult remain inside fresh0700 owned output with077 umask; controller never opens the recovery key. Existing XCTest uses private expiring local paste and clears it in defer."
+  ],
+  "proposed_controls_not_run": [
+    "Reject empty/incomplete product closure, invalid build status/source, and app-A/xctestrun-B substitution before simulator creation.",
+    "Reject changed current source/product closure before a later phase and before acceptance publication.",
+    "Reject miniTest10 installation or realUI launch on the new production pair while preserving the old four realUI selectors.",
+    "Simulated nonzero delete/timeout cannot leave PASS and cannot prevent trying exact cleanup of the other owned device."
+  ],
+  "review_parent_source": "1a4d64dca46b61ea3d9dbcab5d152dc618f2be39",
+  "reviewed_base": "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+  "reviewed_commits": [
+    "87dfd8d0aa1cb06b418823a0c01587b9907be14d",
+    "8c0e9b21cf7f87c18383aa4fc329c65bf974d441"
+  ],
+  "schema": "otzaria.source-review.two-full-apps/1",
+  "scope": {
+    "app_or_sdk_builds": 0,
+    "controllers_executed": 0,
+    "credential_files_opened": 0,
+    "full_diff_files": [
+      "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "Scripts/CI/ordinary-native-exchange-ui.py",
+      "Scripts/CI/ordinary-native-two-full-apps.py"
+    ],
+    "native_cases_executed": 0,
+    "peer_source_modified": false,
+    "source_only": true
+  },
+  "source_pins": {
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift": {
+      "bytes": 9285,
+      "git_blob": "f0f7296544e040d69dbf98917777925439468d80",
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    },
+    "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift": {
+      "bytes": 93114,
+      "git_blob": "f4a1b730599622b03cd43d8bff43e103eadd3895",
+      "sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34"
+    },
+    "Scripts/CI/ordinary-native-exchange-ui.py": {
+      "bytes": 33096,
+      "git_blob": "c306298b6ee70884c11cbf18bda5970449df4da3",
+      "sha256": "fc96c20f5dc1b3b806b219a65ebf7ceb51a6872dea2b85ae3dcb6c320ece78ea"
+    },
+    "Scripts/CI/ordinary-native-two-full-apps.py": {
+      "bytes": 16982,
+      "git_blob": "a8eb5fbbd0cbda41ec583483ce2b13d668e277a6",
+      "sha256": "4dc2a48287638a0c209f151053cf1b1b4aa0f939bb531ce42ed974e8e22f04c0"
+    },
+    "Scripts/CI/prepare-faithful-ipad-fixtures.py": {
+      "bytes": 4384,
+      "git_blob": "c57fc5d64af1d3e6c8790961ddebed121e2165d4",
+      "sha256": "19c79cbcd58669ec0a2605fff33e4778367c9fe1bec1a7eea4cf888d9485072d"
+    },
+    "Scripts/CI/production-annotation-native.py": {
+      "bytes": 21515,
+      "git_blob": "3d368abcb20ed7432ab7f8e65da032cc5c548598",
+      "sha256": "e1c20b326cbcecf0ded659baa9c53901f3bc2dbf7ea673756ef4c5e1ca57915c"
+    }
+  },
+  "status": "HOLD_SOURCE_ADMISSION_AND_PRODUCTION_FIXTURE"
+}
