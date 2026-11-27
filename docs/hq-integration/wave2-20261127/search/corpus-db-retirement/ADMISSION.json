@@ -1,0 +1,185 @@
+{
+  "authorization": "Root explicitly authorized conditional retirement of this one file after all three lane owners released it; no other file deletion.",
+  "before": {
+    "allocatedBytes": 4355162112,
+    "bytes": 4355063808,
+    "ctimeNs": 1795753435326503158,
+    "device": 2064,
+    "gid": 1001,
+    "inode": 5946339,
+    "mode": 292,
+    "mtimeNs": 1795753058125287433,
+    "nlink": 1,
+    "uid": 1001
+  },
+  "freeBytesBefore": 48726016,
+  "freshFullHash": {
+    "bufferBytes": 4194304,
+    "bytes": 4355063808,
+    "databaseQueries": 0,
+    "seconds": 89.14801262039691,
+    "sha256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+  },
+  "goldenRestoration": {
+    "bytes": 2452,
+    "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESTORE_RESULT.json",
+    "sha256": "768d333cceb7e9d5e05bcb299f1ee579c8acd5174c5aec54c3afe76e0c074afb"
+  },
+  "inAppInstallationClaimed": false,
+  "nativeUIClaimed": false,
+  "otherPathsAuthorizedForDeletion": [],
+  "parents": [
+    {
+      "device": 2064,
+      "inode": 5946335,
+      "mode": 1472,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127",
+      "uid": 1001
+    },
+    {
+      "device": 2064,
+      "inode": 5898867,
+      "mode": 1517,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127",
+      "uid": 0
+    },
+    {
+      "device": 2064,
+      "inode": 5921422,
+      "mode": 1517,
+      "path": "/mnt/development/projects/artifacts",
+      "uid": 0
+    },
+    {
+      "device": 2064,
+      "inode": 5767169,
+      "mode": 1533,
+      "path": "/mnt/development/projects",
+      "uid": 1001
+    },
+    {
+      "device": 2064,
+      "inode": 2,
+      "mode": 1533,
+      "path": "/mnt/development",
+      "uid": 1001
+    },
+    {
+      "device": 2049,
+      "inode": 1668,
+      "mode": 493,
+      "path": "/mnt",
+      "uid": 0
+    },
+    {
+      "device": 2049,
+      "inode": 2,
+      "mode": 493,
+      "path": "/",
+      "uid": 0
+    }
+  ],
+  "publicRecovery": {
+    "assets": [
+      {
+        "availability": {
+          "HTTPStatus": 200,
+          "bytes": 1992294400,
+          "finalHost": "release-assets.githubusercontent.com",
+          "payloadBytesRead": 0
+        },
+        "currentDigest": "sha256:91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+        "id": 782942221,
+        "name": "seforim-schema7.db.zst.part-000",
+        "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+        "size": 1992294400
+      },
+      {
+        "availability": {
+          "HTTPStatus": 200,
+          "bytes": 137608236,
+          "finalHost": "release-assets.githubusercontent.com",
+          "payloadBytesRead": 0
+        },
+        "currentDigest": "sha256:a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+        "id": 782993890,
+        "name": "seforim-schema7.db.zst.part-001",
+        "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+        "size": 137608236
+      },
+      {
+        "availability": {
+          "HTTPStatus": 200,
+          "bytes": 589,
+          "finalHost": "release-assets.githubusercontent.com",
+          "payloadBytesRead": 0
+        },
+        "currentDigest": "sha256:ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+        "id": 782942035,
+        "name": "seforim-schema7.db.zst.manifest.json",
+        "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+        "size": 589
+      }
+    ],
+    "metadataBytes": 33326,
+    "metadataSHA256": "405b960f44f69d9fe5302dc4a85ec70734f7e6f99b2627a02b1a01a63a214149",
+    "originalPartProofs": [
+      {
+        "bytes": 1209,
+        "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESTORE_PART_0.json",
+        "sha256": "f3a618c5f42f8a9341fecffaa458463d543006a3bc8c19e84d8d7e052e650574"
+      },
+      {
+        "bytes": 1205,
+        "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESTORE_PART_1.json",
+        "sha256": "f68a020dec5f85b8d32998c095cd6c6a237840423f5c3ce1088f14b91d994968"
+      }
+    ],
+    "payloadRedownloaded": false,
+    "releaseID": 455390662,
+    "releaseTag": "v40-20261123094345",
+    "unauthenticatedPublicHTTP": true
+  },
+  "referencesBefore": {
+    "matchingReferences": [],
+    "observedUnix": 1795766147.6657674,
+    "permissionGaps": [],
+    "processesEnumerated": 409,
+    "vanishedProcesses": 0
+  },
+  "referencesBeforeUnlink": {
+    "matchingReferences": [],
+    "observedUnix": 1795766238.8111272,
+    "permissionGaps": [],
+    "processesEnumerated": 419,
+    "vanishedProcesses": 2
+  },
+  "releasedOwners": [
+    "search_native",
+    "library_v40",
+    "reader_perf"
+  ],
+  "schema": "otzaria.exact-recovered-corpus-retirement/1",
+  "scriptSHA256": "a4e4a1a98cfb6b7918ccdfb2e2af021b8b24eac57e89fd4986d65d3ca9c4ee8b",
+  "siblingsBefore": [
+    {
+      "identity": {
+        "allocatedBytes": 4096,
+        "bytes": 1700,
+        "ctimeNs": 1795752128223411698,
+        "device": 2064,
+        "gid": 1001,
+        "inode": 5946336,
+        "mode": 420,
+        "mtimeNs": 1795752128223411698,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "RESERVATION.json",
+      "sha256": "8efd950e3b1a792390e754cfdf7f2a7e00ad9c8badfc6b9c1198f3ee8263c48d"
+    }
+  ],
+  "startedUnix": 1795766147.5439131,
+  "status": "ALL_CONDITIONAL_ONE_FILE_RETIREMENT_GATES_PASSED",
+  "target": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim.db"
+}

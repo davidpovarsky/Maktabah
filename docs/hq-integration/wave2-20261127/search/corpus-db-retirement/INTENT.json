@@ -1,0 +1,84 @@
+{
+  "authorization": "Root explicitly authorized conditional retirement of this one file after all three lane owners released it; no other file deletion.",
+  "before": {
+    "allocatedBytes": 4355162112,
+    "bytes": 4355063808,
+    "ctimeNs": 1795753435326503158,
+    "device": 2064,
+    "gid": 1001,
+    "inode": 5946339,
+    "mode": 292,
+    "mtimeNs": 1795753058125287433,
+    "nlink": 1,
+    "uid": 1001
+  },
+  "goldenRestoration": {
+    "bytes": 2452,
+    "path": "docs/hq-integration/wave2-20261127/search/corpus-restore/RESTORE_RESULT.json",
+    "sha256": "768d333cceb7e9d5e05bcb299f1ee579c8acd5174c5aec54c3afe76e0c074afb"
+  },
+  "inAppInstallationClaimed": false,
+  "nativeUIClaimed": false,
+  "otherPathsAuthorizedForDeletion": [],
+  "parents": [
+    {
+      "device": 2064,
+      "inode": 5946335,
+      "mode": 1472,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127",
+      "uid": 1001
+    },
+    {
+      "device": 2064,
+      "inode": 5898867,
+      "mode": 1517,
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127",
+      "uid": 0
+    },
+    {
+      "device": 2064,
+      "inode": 5921422,
+      "mode": 1517,
+      "path": "/mnt/development/projects/artifacts",
+      "uid": 0
+    },
+    {
+      "device": 2064,
+      "inode": 5767169,
+      "mode": 1533,
+      "path": "/mnt/development/projects",
+      "uid": 1001
+    },
+    {
+      "device": 2064,
+      "inode": 2,
+      "mode": 1533,
+      "path": "/mnt/development",
+      "uid": 1001
+    },
+    {
+      "device": 2049,
+      "inode": 1668,
+      "mode": 493,
+      "path": "/mnt",
+      "uid": 0
+    },
+    {
+      "device": 2049,
+      "inode": 2,
+      "mode": 493,
+      "path": "/",
+      "uid": 0
+    }
+  ],
+  "releasedOwners": [
+    "search_native",
+    "library_v40",
+    "reader_perf"
+  ],
+  "schema": "otzaria.exact-recovered-corpus-retirement/1",
+  "scriptSHA256": "a4e4a1a98cfb6b7918ccdfb2e2af021b8b24eac57e89fd4986d65d3ca9c4ee8b",
+  "startedUnix": 1795766147.5439131,
+  "status": "ADMISSION_RUNNING_NO_DELETION_YET",
+  "target": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim.db"
+}

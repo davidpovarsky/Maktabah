@@ -1,0 +1,7 @@
+# One released recovered corpus copy retired
+
+After all three lane owners explicitly released this exact Oracle corpus file, root authorized a conditional one-file retirement. Fresh full SHA-256, complete immutable stat/owner/parent checks, two process/FD/maps/cwd scans with zero matches and zero permission gaps, and current unauthenticated official v40 release metadata plus public HEAD availability all passed. The two part assets and manifest retained exact IDs, sizes and public digests. No payload was downloaded again and no SQL query was performed.
+
+Only corpus-v40-recovery-20261127/seforim.db (device2064/inode5946339, 4,355,063,808 bytes) was unlinked at 2026-11-27 07:57:19 UTC. Its unique allocated size was 4,355,162,112 bytes. Shared free space rose from48,726,016 to4,403,822,592 bytes; the measured delta4,355,096,576 is reported separately because other owners share the volume. The retained RESERVATION.json is byte/stat identical, and no code, SQL/discovery/recovery receipt, public artifact or other path was deleted.
+
+Historical receipts remain evidence for their actual source paths and times. The retired Oracle file was never an in-app installation. Pending native catalogs/SQL and acceptance use the separately admitted original installation on the Mac. No UI or offline acceptance is claimed here. The exact executed script and three original receipts are preserved byte-for-byte.

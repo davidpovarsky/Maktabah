@@ -1,0 +1,49 @@
+{
+  "admission": {
+    "bytes": 5576,
+    "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-db-retirement-20261127/ADMISSION.json",
+    "sha256": "0498c4d5b7220dd034daf352a294e6a769f9a81d5050c60cd3443ba93b91319f"
+  },
+  "afterExists": false,
+  "before": {
+    "allocatedBytes": 4355162112,
+    "bytes": 4355063808,
+    "ctimeNs": 1795753435326503158,
+    "device": 2064,
+    "gid": 1001,
+    "inode": 5946339,
+    "mode": 292,
+    "mtimeNs": 1795753058125287433,
+    "nlink": 1,
+    "uid": 1001
+  },
+  "completedUnix": 1795766239.3251975,
+  "freeBytesAfter": 4403822592,
+  "freeBytesBefore": 48726016,
+  "inAppInstallationClaimed": false,
+  "nativeUIClaimed": false,
+  "originalSourceAndReceiptsPreserved": true,
+  "schema": "otzaria.exact-recovered-corpus-retirement/1",
+  "sharedFreeSpaceDeltaBytes": 4355096576,
+  "siblingsAfter": [
+    {
+      "identity": {
+        "allocatedBytes": 4096,
+        "bytes": 1700,
+        "ctimeNs": 1795752128223411698,
+        "device": 2064,
+        "gid": 1001,
+        "inode": 5946336,
+        "mode": 420,
+        "mtimeNs": 1795752128223411698,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "RESERVATION.json",
+      "sha256": "8efd950e3b1a792390e754cfdf7f2a7e00ad9c8badfc6b9c1198f3ee8263c48d"
+    }
+  ],
+  "status": "EXACT_RELEASED_REPRODUCIBLE_CORPUS_COPY_RETIRED",
+  "target": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim.db",
+  "uniqueAllocatedBytesRetired": 4355162112
+}
