@@ -1,0 +1,17 @@
+{
+  "application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "correction": {
+    "old_R27_sha256": "7439fd761e6661db719259bdf1e32eb59bb9dbdf084747849b92147e7702e004",
+    "reason": "Intaken cf9a3ec8 strictly observes original phone source and real compact controls; original test selector and complete matrix unchanged",
+    "reviewed_R27_sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786",
+    "runtime_driver_inverse_blob": "41268a7e701d9962c6e4ea3cf54764bb9213c3f4",
+    "selection_changed": false,
+    "verifier_changed": false
+  },
+  "error": "Reviewed R27 source digest differs",
+  "initial_control_checkout": "35f95f95d13a480fa2fcba2d0636fb089e523580",
+  "pid": 2471746,
+  "scope": "Initial source-control admission failure retained; no native execution",
+  "state": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 96, in <module>\n  File \"/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/Scripts/CI/runtime27_final_push.py\", line 137, in reviewed_source\n    require(r27_record[\"sha256\"] == r27_sha, \"Reviewed R27 source digest differs\")\n  File \"/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/Scripts/CI/runtime27_final_push.py\", line 42, in require\n    raise ValueError(message)\nValueError: Reviewed R27 source digest differs\n"
+}
