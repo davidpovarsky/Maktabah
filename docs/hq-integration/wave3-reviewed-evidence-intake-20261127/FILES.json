@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "PLAN.json",
+      "bytes": 12866,
+      "sha256": "26f33685ee76895661c523ff0241b2b2b6e606fb210b8f1eebf0ae55fa4e70a7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 786,
+      "sha256": "0be4cfb117d536b25d2edde03a158bfd572658550ab3720f0e6b70d329f4ace5"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 976,
+      "sha256": "1399470518eb3c3beeba7db4f2304468f51ccf83d38d8d387b1593370382686a"
+    }
+  ]
+}

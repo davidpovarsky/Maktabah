@@ -1,0 +1,30 @@
+{
+  "schema": "otzaria.wave3.reviewed-evidence-intake.v1",
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "sourceTreeUnchanged": "0f43c34b97246e049c729c93a8607f5bd6ee3b22",
+  "integrated": [
+    {
+      "donor": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "integrated": "01009e3a8b1c474017fa67ab87b0e5e06eb92b4b"
+    },
+    {
+      "donor": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "integrated": "9897c48e147981280b48452171cd484f1231053f"
+    },
+    {
+      "donor": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "integrated": "7816e4305250da151f0b540ca5ca4fe077defc28"
+    },
+    {
+      "donor": "5e56069cf46cd3e5476c9bcc6891c102932899ea",
+      "integrated": "c1169546367d4e9a1c4bfaa4f965313e25134f32"
+    }
+  ],
+  "proofCommit": "7d7059e9d95e3e80c79b58dd9b4c62d775b0e31e",
+  "filesVerified": 40,
+  "manifestRowsVerified": 34,
+  "gzipRowsVerified": 11,
+  "sourceControlsRerun": 0,
+  "nativeRuns": 0,
+  "at": "2026-11-27T11:05:37.531486+00:00"
+}

@@ -1,0 +1,278 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "sourceTree": "0f43c34b97246e049c729c93a8607f5bd6ee3b22",
+  "donors": [
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "directory": "docs/hq-integration/wave3-wave2-delivery-review-20261127",
+      "manifest": "MANIFEST.json",
+      "manifestSHA256": "caa5d91758aeb9aef4743a995a211681a88b8603ea4e682fd24504c1f1782727",
+      "fileCount": 9
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "directory": "docs/hq-integration/wave3-five-scope-preservation-20261127",
+      "manifest": "PACKET_MANIFEST.json",
+      "manifestSHA256": "4107d4abb2c2b3a44c424c30ab255ebf06995c57a787212187ad365e61015ae7",
+      "fileCount": 22
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "directory": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127",
+      "manifest": "REVIEW_RECORDS_MANIFEST.json",
+      "manifestSHA256": "fe22847190df10b3e40b7d05aeec62404cc7cd150b18568deed48fa0155edc42",
+      "fileCount": 6
+    },
+    {
+      "commit": "5e56069cf46cd3e5476c9bcc6891c102932899ea",
+      "directory": "docs/hq-integration/wave3-study-phase-evidence-review-20261127",
+      "manifest": "REVIEW_RECORDS_MANIFEST.json",
+      "manifestSHA256": "0e04b92a893b756d12596a0a171539aef77cd2d84715c7664413ffdfdf39be9b",
+      "fileCount": 3
+    }
+  ],
+  "fileOccurrences": [
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/CONTROLLER_PRESERVATION.json",
+      "bytes": 14459,
+      "sha256": "f054efd560b85b2efee691af56c6fc1219492a376926a0aa604dec7628655ae4"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/DEPENDENCIES.json",
+      "bytes": 5130,
+      "sha256": "5402c0067da6cf578f2851f106079b1ef7b10f72a25d5197ec275807119a1bd8"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/EVIDENCE_BINDINGS.json",
+      "bytes": 11444,
+      "sha256": "4d263c9f51aab3ab1f295b8d6fe5589a9f3c88fc39d3f17108273875f96aa4d5"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/MANIFEST.json",
+      "bytes": 1347,
+      "sha256": "caa5d91758aeb9aef4743a995a211681a88b8603ea4e682fd24504c1f1782727"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/README.md",
+      "bytes": 14598,
+      "sha256": "4b356f539682d29bde02113b302e51e2b0d82941b10f9c8215657e221a0a18ab"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/READ_INPUTS.json",
+      "bytes": 17277,
+      "sha256": "bcad5f8dd0ed9a33d588235a491d76904daa7a73cb2fbe218d90750d926d018b"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/REVIEW.json",
+      "bytes": 3576,
+      "sha256": "7c71d77ca6b01ed551fe506826711a4c22476168203f93065e1e00b96f5e8ab9"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/SOURCE_FRAGMENTS.json",
+      "bytes": 17300,
+      "sha256": "0aad1c9f4e0dedf88c9188f3e89d10c2cbb024f20b47c524f41eea94d477f0e7"
+    },
+    {
+      "commit": "4732d4b2b83e3cfba1ba383f9d3600a0a4badb0f",
+      "path": "docs/hq-integration/wave3-wave2-delivery-review-20261127/SWIFT_PRESERVATION.json",
+      "bytes": 1727,
+      "sha256": "1f87f17fdfbe5f9cc47909cabfb4f30d6c8838bccb63a4470129a38d6e3fd9e5"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/PACKET_MANIFEST.json",
+      "bytes": 4419,
+      "sha256": "4107d4abb2c2b3a44c424c30ab255ebf06995c57a787212187ad365e61015ae7"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/README.md",
+      "bytes": 7997,
+      "sha256": "7be573b59952c45196e9cad6442ab4586188a3d1d21f6fb7a10ea1fd36a4a7ac"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/COMPLETE_PRESERVATION_VERIFIED.json",
+      "bytes": 9484,
+      "sha256": "ef4ab6539a882c68df77ce8d0d349c2eeb83a2167bbb8b260cb6e2777ebc48a0"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/HEADER.json",
+      "bytes": 8961,
+      "sha256": "8a2e85baf405350e77bebb2cab20a4f430c55ceaddc8689893b5e34d831aa007"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/NEW_ARCHIVE_VERIFIED.json",
+      "bytes": 2362,
+      "sha256": "47b941bffecfb44939c824c928efd62354a8ddb9e0555d4f151161c0609865d3"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/PAIR_REFERENCES_VERIFIED.json",
+      "bytes": 1930,
+      "sha256": "53e59786c6c37cef68d405b5a2faf9c8286cfab4761eb5dfed63d8a361f05b0f"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/RETIREMENT_PREDELETE.json",
+      "bytes": 18117,
+      "sha256": "d734bd7eaf44ebab9784907e6b3c5dda12b3eb6a3b86536542ae398dd572b747"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/RETIREMENT_RESULT.json",
+      "bytes": 22325,
+      "sha256": "31de3721288dddaee455e8d88dd50f3a7cb5918540b19d57dc5223c4901b3f8d"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/SMALL_BUNDLE_PUBLICATION_CHECK.json",
+      "bytes": 385,
+      "sha256": "bb6c1bfded71bdea4d7d44de7d9e8ea6aa4d58a6c601e44ee70db3687f06ad5a"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/evidence/SOURCE_REVERIFIED.json",
+      "bytes": 12730,
+      "sha256": "8726617f8a4af7cd4fbdada202d29b50b118ab2317a8134567d2934f097a0045"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/BRIDGE_ATTEMPT1_TOOL_RESULT.json.gz",
+      "bytes": 1656,
+      "sha256": "6c45659aeed3703ffbdb035535f697cf57d04998ca01a3d6ff61fdd7aad336b1"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/DEPENDENCY_HOLDS_READONLY.json.gz",
+      "bytes": 5311,
+      "sha256": "7bb705ac01a7ea3a7424ab9c10e036c3849051d4a6b11b5d5eb30973be25c650"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/OWN_OUTPUT_OWNERSHIP_CORRECTION.json.gz",
+      "bytes": 162,
+      "sha256": "e5e9c458951e1d2f402d78475c4f4e0357d14b1b11060cbdfc4b32581dc16b67"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/SMALL_WINDOWS_RECEIPTS.json",
+      "bytes": 9612,
+      "sha256": "87510220c6716d7d49dcd4344e670ab2998c4efc7e85089a8198836c1f48d0cd"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/SMALL_WINDOWS_RECEIPTS.tar.gz",
+      "bytes": 36746,
+      "sha256": "23217b52aa573aff211615299b02d276d5b3964e963bc461ffec9df72e2a44b1"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/raw/retire_five.py.gz",
+      "bytes": 4107,
+      "sha256": "ab2ca5ec450446aa439dfe79e63f81b44dadad3e3fe244c1bb9c17e4cdc8087e"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/FRESH_RUN_COMMANDS.json",
+      "bytes": 7356,
+      "sha256": "b9a1cd379f4572e4d142a47a31a51bfceb509f687ede5856226cb01d11ce048d"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/HISTORICAL_OBSERVED_CONTRACT.json",
+      "bytes": 6235,
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/PROPOSAL.json",
+      "bytes": 4166,
+      "sha256": "a078911bef8e0c36a6da4cdeba743648c1c92d4b9da128204546f086ebc3f331"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/SUPERVISOR_DIFF.patch.gz",
+      "bytes": 8499,
+      "sha256": "5db3640dc4ae4599c5f3874325f423a5f47f2605478aa0843d2be48d6d05e196"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/SUPERVISOR_REVIEW_DIFF.patch.gz",
+      "bytes": 3775,
+      "sha256": "58c206b5c980c65224f540c9c4ac9455eacee64e0a2dd6edc328fa31b00c7585"
+    },
+    {
+      "commit": "233cdc801e4794e3e668d07c7cf4874a3dd07b8c",
+      "path": "docs/hq-integration/wave3-five-scope-preservation-20261127/sdk-proposal/supervisor.py",
+      "bytes": 26573,
+      "sha256": "30cb3a7d41201271c53b08494d2bf2dbd027e8dba61f86538f1c75e969dc2416"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/README.md",
+      "bytes": 4876,
+      "sha256": "3eb9e73e57f0238476321dac62725a638d97de5ab271c3a1a9c1411727180741"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/REVIEW_RECORDS_MANIFEST.json",
+      "bytes": 1503,
+      "sha256": "fe22847190df10b3e40b7d05aeec62404cc7cd150b18568deed48fa0155edc42"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/evidence/COMPILED_PACKAGE_EXTRA_SOURCE_JOIN.json.gz",
+      "bytes": 515,
+      "sha256": "c876e7215ae8a297b311f8ca7e6e48738a10d57a61d3dc37e02f592fc28047da"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/evidence/COMPILED_PACKAGE_INITIAL_READ.json.gz",
+      "bytes": 369,
+      "sha256": "a618fa8a20a54a4b2d5f6b070a32b7c7cf1054c5af969257f037717753f5451c"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/evidence/INDEPENDENT_BINDINGS.json.gz",
+      "bytes": 8493,
+      "sha256": "5a5dee2306c5615d2f6151b329f5ab7397b5a541a4c423ebffa1d7c89eb010e7"
+    },
+    {
+      "commit": "ae56caeba5b2d1a5858d3e3be0c5ce8b29e93afe",
+      "path": "docs/hq-ui-inventory/wave3-filtered-history-independent-review-20261127/evidence/SOURCE_CLOSURE.json.gz",
+      "bytes": 4672,
+      "sha256": "b82a98d719b3e96908736df40240087bbbd4d615eefe827288b8dd4c50df79a0"
+    },
+    {
+      "commit": "5e56069cf46cd3e5476c9bcc6891c102932899ea",
+      "path": "docs/hq-integration/wave3-study-phase-evidence-review-20261127/README.md",
+      "bytes": 2569,
+      "sha256": "1bf4f8aa95ebd9d8ba0da31c1334f467fb036f4909dd9c067cbea383a246202d"
+    },
+    {
+      "commit": "5e56069cf46cd3e5476c9bcc6891c102932899ea",
+      "path": "docs/hq-integration/wave3-study-phase-evidence-review-20261127/REVIEW_RECORDS_MANIFEST.json",
+      "bytes": 380,
+      "sha256": "0e04b92a893b756d12596a0a171539aef77cd2d84715c7664413ffdfdf39be9b"
+    },
+    {
+      "commit": "5e56069cf46cd3e5476c9bcc6891c102932899ea",
+      "path": "docs/hq-integration/wave3-study-phase-evidence-review-20261127/evidence/INDEPENDENT_EVIDENCE_JOINS.json.gz",
+      "bytes": 1000,
+      "sha256": "dc4cf39a0f48408a16342267b9ab43b89056319a0b65f4bc072d0062ccaf43ae"
+    }
+  ],
+  "manifestRows": 34,
+  "gzipRows": 11
+}
