@@ -1,0 +1,18 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "preserved_old_root_capsule": "prior-inputs/controls/ActualOriginalRootPublication.swift",
+  "product_controller_sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+  "root_change": "Exact current original fixed source publication included; no assertion or product edit.",
+  "root_publisher": {
+    "bytes": 27762,
+    "capsule_sha256": "d997fbcbb6b18e453cecabd091f3c2fc8986baaf637ca95e45517e201d3c5c39",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+    "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+  },
+  "six_control_sha256": "901f6c638c1d1b2e444c1264db4722235efe3ea1678ed4a3f597cf9f287589ad",
+  "window": {
+    "bytes": 956,
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+    "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+  }
+}

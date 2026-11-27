@@ -1,0 +1,423 @@
+{
+  "status": "PASSED_ACTUAL_CORE_GRANT_AND_COMPOSITION_CONTROLS_NO_NATIVE",
+  "steps": [
+    {
+      "name": "compile-real-core",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/module-cache",
+        "-emit-module",
+        "-emit-library",
+        "-module-name",
+        "OtzariaActionCore",
+        "-emit-module-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+        "-o",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/original-generated-resource_bundle_accessor.swift"
+      ],
+      "startAttempted": true,
+      "started": "2026-11-27T13:20:16.803935+00:00",
+      "freeBefore": 2553556992,
+      "owner": {
+        "pid": 751078,
+        "parent": 751065,
+        "group": 751078,
+        "startTicks": 731268863
+      },
+      "exit": 0,
+      "interruption": null,
+      "freeAfter": 2528739328,
+      "ownedAllocatedBytes": 22286336,
+      "finished": "2026-11-27T13:20:48.455097+00:00",
+      "logs": {
+        "compile-real-core.stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile-real-core.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "compile-controls",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/module-cache",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/controls/SearchContinuationAuthorityControls.swift",
+        "-o",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/search-continuation-authority-controls"
+      ],
+      "startAttempted": true,
+      "started": "2026-11-27T13:20:48.455740+00:00",
+      "freeBefore": 2528739328,
+      "owner": {
+        "pid": 752805,
+        "parent": 751065,
+        "group": 752805,
+        "startTicks": 731272028
+      },
+      "exit": 0,
+      "interruption": null,
+      "freeAfter": 2528538624,
+      "ownedAllocatedBytes": 22487040,
+      "finished": "2026-11-27T13:20:49.464229+00:00",
+      "logs": {
+        "compile-controls.stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile-controls.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "run-controls",
+      "argv": [
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/search-continuation-authority-controls"
+      ],
+      "startAttempted": true,
+      "started": "2026-11-27T13:20:49.464865+00:00",
+      "freeBefore": 2528538624,
+      "owner": {
+        "pid": 752822,
+        "parent": 751065,
+        "group": 752822,
+        "startTicks": 731272129
+      },
+      "exit": 0,
+      "interruption": null,
+      "freeAfter": 2528538624,
+      "ownedAllocatedBytes": 22491136,
+      "finished": "2026-11-27T13:20:49.971522+00:00",
+      "logs": {
+        "run-controls.stdout": {
+          "bytes": 1939,
+          "sha256": "b7e697354d56aff0d13ee5386eae80f55b45817460e20342091baddbd09d5798"
+        },
+        "run-controls.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "compile-actual-composition",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/module-cache",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/controls/SearchCompositionFixtures.swift",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/inputs/controls/ActualSearchCompositionEntry.swift",
+        "-o",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/search-composition-controls"
+      ],
+      "startAttempted": true,
+      "started": "2026-11-27T13:20:49.972721+00:00",
+      "freeBefore": 2528534528,
+      "owner": {
+        "pid": 752845,
+        "parent": 751065,
+        "group": 752845,
+        "startTicks": 731272180
+      },
+      "exit": 0,
+      "interruption": null,
+      "freeAfter": 2528104448,
+      "ownedAllocatedBytes": 22921216,
+      "finished": "2026-11-27T13:20:51.989503+00:00",
+      "logs": {
+        "compile-actual-composition.stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile-actual-composition.stderr": {
+          "bytes": 8593,
+          "sha256": "fc64a5626ae43addfd9133921c733acd7e838e8c857402fddcf29ba68f478a0a"
+        }
+      }
+    },
+    {
+      "name": "run-actual-composition",
+      "argv": [
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/search-composition-controls"
+      ],
+      "startAttempted": true,
+      "started": "2026-11-27T13:20:51.990294+00:00",
+      "freeBefore": 2528104448,
+      "owner": {
+        "pid": 752936,
+        "parent": 751065,
+        "group": 752936,
+        "startTicks": 731272382
+      },
+      "exit": 0,
+      "interruption": null,
+      "freeAfter": 2528096256,
+      "ownedAllocatedBytes": 22925312,
+      "finished": "2026-11-27T13:20:52.499259+00:00",
+      "logs": {
+        "run-actual-composition.stdout": {
+          "bytes": 1337,
+          "sha256": "4f27966c9fb8428e4da215c284034e39faeb2e627179062485ae42b04aa8ef01"
+        },
+        "run-actual-composition.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "sourceScope": "Combined actual Core with reviewed Viewer continuation plus root Search factory/grant, actual Host continuation service and unchanged extracted Composition entry. App/domain fixtures only; no Apple/native/provider execution.",
+  "compilerSHA256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a",
+  "rootfsFloorBytes": 1342177280,
+  "ownedCapBytes": 67108864,
+  "nativeRuns": 0,
+  "providerCalls": 0,
+  "appleSDK": "NOT_RUN",
+  "grantVerdict": {
+    "appleSDK": "NOT_RUN",
+    "cases": [
+      {
+        "name": "freshness does not authorize original execution",
+        "pass": true
+      },
+      {
+        "name": "one actual grant supports live execution and completion",
+        "pass": true
+      },
+      {
+        "name": "next-page operation is one use independently of hit operation",
+        "pass": true
+      },
+      {
+        "name": "different request cannot reuse authority",
+        "pass": true
+      },
+      {
+        "name": "renewed deadline cannot reuse authority",
+        "pass": true
+      },
+      {
+        "name": "different source observation cannot reuse authority",
+        "pass": true
+      },
+      {
+        "name": "reentrant original operation receives no second grant",
+        "pass": true
+      },
+      {
+        "name": "metadata validation callback cannot authorize an effect",
+        "pass": true
+      },
+      {
+        "name": "retirement inside original commit validation is terminal",
+        "pass": true
+      },
+      {
+        "name": "retirement inside execution validation invalidates result",
+        "pass": true
+      },
+      {
+        "name": "retirement before commit cannot be rearmed",
+        "pass": true
+      },
+      {
+        "name": "failed authorization cannot become valid after authority restore",
+        "pass": true
+      },
+      {
+        "name": "authority revision ABA invalidates consumed grant",
+        "pass": true
+      },
+      {
+        "name": "native lifetime replacement invalidates grant",
+        "pass": true
+      },
+      {
+        "name": "backend generation change invalidates consumed grant",
+        "pass": true
+      },
+      {
+        "name": "real RPC epoch change invalidates consumed grant",
+        "pass": true
+      },
+      {
+        "name": "missing required RPC epoch cannot issue grant",
+        "pass": true
+      },
+      {
+        "name": "deadline boundary refuses before native operation",
+        "pass": true
+      },
+      {
+        "name": "deadline after operation refuses completion without new grant",
+        "pass": true
+      },
+      {
+        "name": "discovery alone cannot grant native mutation",
+        "pass": true
+      },
+      {
+        "name": "opaque configuration does not widen limited work scope",
+        "pass": true
+      },
+      {
+        "name": "foreground scene change invalidates grant",
+        "pass": true
+      },
+      {
+        "name": "context revocation invalidates grant",
+        "pass": true
+      },
+      {
+        "name": "actual cancelled task cannot issue grant",
+        "pass": true
+      }
+    ],
+    "failed": 0,
+    "nativeOperations": 0,
+    "passed": 24,
+    "providerQueries": 0,
+    "scope": "Actual Core factory and grant; explicit synthetic live owners and clock"
+  },
+  "compositionVerdict": {
+    "AppleSDK": "NOT_RUN",
+    "cases": [
+      {
+        "name": "one original admission, Core grant, source effect, visible validation and cleanup",
+        "pass": true
+      },
+      {
+        "name": "selector backend drift refuses before the original operation",
+        "pass": true
+      },
+      {
+        "name": "selector failure releases the original owner and admission",
+        "pass": true
+      },
+      {
+        "name": "same scene name with replacement Session after await refuses before effect",
+        "pass": true
+      },
+      {
+        "name": "authority revoke restore after await cannot reuse the original grant",
+        "pass": true
+      },
+      {
+        "name": "owner retirement after a real fixture effect preserves that joined effect",
+        "pass": true
+      },
+      {
+        "name": "late authority revision keeps an exactly joined partial refusal",
+        "pass": true
+      },
+      {
+        "name": "foreign completion remains raw unqualified evidence with its original effect",
+        "pass": true
+      },
+      {
+        "name": "nested unqualified response survives the outer entry without normalization",
+        "pass": true
+      },
+      {
+        "name": "an already busy scene refuses without another retention or admission",
+        "pass": true
+      },
+      {
+        "name": "missing original window refuses before context or grant",
+        "pass": true
+      },
+      {
+        "name": "actual cancelled task refuses before original retention",
+        "pass": true
+      }
+    ],
+    "failed": 0,
+    "nativeOperations": 0,
+    "passed": 12,
+    "providerQueries": 0,
+    "scope": "Exact production Composition entry, actual Core and Host continuation service; explicit app/domain fixture boundaries",
+    "UIKit": "NOT_RUN"
+  },
+  "verdict": {
+    "grantPassed": 24,
+    "grantFailed": 0,
+    "compositionPassed": 12,
+    "compositionFailed": 0,
+    "nativeRuns": 0,
+    "providerQueries": 0,
+    "AppleSDK": "NOT_RUN"
+  },
+  "freeAfter": 2528096256,
+  "ownedAllocatedBytes": 22925312,
+  "finished": "2026-11-27T13:20:52.502798+00:00"
+}

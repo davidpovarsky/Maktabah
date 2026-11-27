@@ -1,0 +1,86 @@
+{
+  "apple_sdk": "NOT_RUN",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "native": "NOT_RUN",
+  "schema": "otzaria.annotation-current-caller-binding.v1",
+  "started": 1795807642.047923,
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ExplicitAnnotationBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ActualWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ActualBindingFixture.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/CallerControls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/CandidateCaller.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/ActualOriginalRootPublication.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807658.7886467,
+      "name": "compile-current-candidate-caller",
+      "pid": 2127572,
+      "start_ticks": "733471770",
+      "started": 1795807645.8717952
+    },
+    {
+      "argv": [
+        "ldd",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807659.3407135,
+      "name": "actual-linked-library-identity",
+      "pid": 2128224,
+      "start_ticks": "733473064",
+      "started": 1795807658.8121767
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807659.8886473,
+      "name": "same-six-current-caller-controls",
+      "pid": 2128293,
+      "start_ticks": "733473119",
+      "started": 1795807659.3629751
+    }
+  ]
+}
