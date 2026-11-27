@@ -162,8 +162,8 @@ let package = Package(name: "AnnotationExchangeAcceptance",
         if run.returncode != 0:
             return run.returncode
         if args.linked_sync_only:
-            if len(report["cases"]) != 11 or any(row["status"] != "PASS" for row in report["cases"]):
-                raise RuntimeError("All eleven linked-state cases must run and pass")
+            if len(report["cases"]) != 15 or any(row["status"] != "PASS" for row in report["cases"]):
+                raise RuntimeError("All fifteen linked-state cases must run and pass")
             if before != {p: sha(ROOT / p) for p in provenance}:
                 raise RuntimeError("Source changed during linked-state execution")
             exit_code = 0

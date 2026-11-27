@@ -677,5 +677,65 @@ extension Acceptance {
             let completed = try f.ledger.linkedDeliveries(for: link)[0]
             try require(completed.state == .verified && completed.delivery.acknowledged, "exact current outgoing body was not acknowledged by its actual handoff data")
         }
+        for newerFirst in [false, true] {
+            let order = newerFirst ? "newer_then_older" : "older_then_newer"
+            test("same_revision_review_callbacks_\(order)_preserve_causal_fences_and_roots") {
+                let name = "linked-review-order-" + order
+                let f = try Fixture(root: root, name: name), origin = try linkedOrigin()
+                let version = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+                let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+                let a = UUID(), b = UUID(), rootA = String(repeating: "c", count: 64), rootB = String(repeating: "d", count: 64)
+                try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: link, version: version, attemptID: a, observedRootSHA256: origin.nativeRootSHA256) }
+                // B's genuine read observes A's native result while A's local
+                // callback is still delayed. Both immutable local revisions match.
+                try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: link, version: version, attemptID: b, observedRootSHA256: rootA) }
+                let reopened = try Fixture(root: root, name: name, create: false)
+                let first = newerFirst ? b : a, firstRoot = newerFirst ? rootB : rootA
+                let second = newerFirst ? a : b, secondRoot = newerFirst ? rootA : rootB
+                try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: first, nativeRootSHA256: firstRoot, nativeResponseSHA256: origin.nativeResponseSHA256)
+                if !newerFirst {
+                    try require(reopened.ledger.unresolvedLinkedReconciliations(for: [link]) == Set([link.id]), "older callback cleared the newer same-revision fence")
+                    try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reconciliations WHERE attempt_id=? AND state='dispatch_may_have_occurred' AND dispatch_sequence=2;", [b.uuidString]) == 1, "newer attempt was superseded by an older callback")
+                }
+                try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: second, nativeRootSHA256: secondRoot, nativeResponseSHA256: origin.nativeResponseSHA256)
+                let final = try reopened.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+                try require(final.nativeRootSHA256 == rootB && final.confirmedLocalRevision == version.revision, "same-revision baseline regressed by callback order")
+                try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_links WHERE confirmed_dispatch_sequence=2 AND dispatch_sequence=2;") == 1, "causal dispatch order was not durable")
+                try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reconciliations WHERE state='verified' AND ((attempt_id=? AND native_root_sha256=?) OR (attempt_id=? AND native_root_sha256=?));", [a.uuidString, rootA, b.uuidString, rootB]) == 2, "actual older/newer receipt history was discarded")
+                try require(reopened.ledger.unresolvedLinkedReconciliations(for: [link]).isEmpty, "actual completed attempts left a stale barrier")
+                // Exact receipt replay is harmless; an altered old receipt is not.
+                try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: a, nativeRootSHA256: rootA, nativeResponseSHA256: origin.nativeResponseSHA256)
+                try rejects(.receiptMismatch) { try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: a, nativeRootSHA256: rootB, nativeResponseSHA256: origin.nativeResponseSHA256) }
+            }
+            test("same_revision_delivery_and_review_callbacks_\(order)_keep_original_attempt_history") {
+                let name = "linked-delivery-review-order-" + order
+                let f = try Fixture(root: root, name: name), origin = try linkedOrigin()
+                _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+                let version = try localLinkedCommit(f, revision: 1)
+                let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+                let queued = try f.ledger.linkedDeliveries(for: link)[0]
+                let a = UUID(), b = UUID(), rootA = String(repeating: "c", count: 64), rootB = String(repeating: "d", count: 64)
+                try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: a, observedRootSHA256: origin.nativeRootSHA256, now: 100) }
+                try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: link, version: version, attemptID: b, observedRootSHA256: rootA) }
+                let reopened = try Fixture(root: root, name: name, create: false)
+                if newerFirst {
+                    try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: b, nativeRootSHA256: rootB, nativeResponseSHA256: origin.nativeResponseSHA256)
+                    let reviewed = try reopened.ledger.linkedDeliveries(for: link)[0]
+                    try require(reviewed.state == .verified && reviewed.delivery.acknowledged && reviewed.attemptID == a, "review replaced the original in-flight attempt identity")
+                    try reopened.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: a, nativeRootSHA256: rootA, nativeResponseSHA256: origin.nativeResponseSHA256)
+                } else {
+                    try reopened.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: a, nativeRootSHA256: rootA, nativeResponseSHA256: origin.nativeResponseSHA256)
+                    try require(reopened.ledger.unresolvedLinkedReconciliations(for: [link]) == Set([link.id]), "ordinary callback cleared a newer explicit attempt")
+                    try reopened.ledger.recordLinkedReconciliationReadback(link: link, version: version, attemptID: b, nativeRootSHA256: rootB, nativeResponseSHA256: origin.nativeResponseSHA256)
+                }
+                let final = try reopened.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+                let completed = try reopened.ledger.linkedDeliveries(for: link)[0]
+                try require(final.nativeRootSHA256 == rootB && final.confirmedLocalRevision == version.revision, "late ordinary readback regressed the reviewed root")
+                try require(completed.state == .verified && completed.delivery.acknowledged && completed.attemptID == a, "ordinary receipt identity/history was not preserved")
+                try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_deliveries WHERE attempt_id=? AND dispatch_sequence=1 AND native_root_sha256=? AND native_response_sha256=?;", [a.uuidString, rootA, origin.nativeResponseSHA256]) == 1, "ordinary sealed result bytes were lost")
+                try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reconciliations WHERE attempt_id=? AND dispatch_sequence=2 AND state='verified' AND native_root_sha256=?;", [b.uuidString, rootB]) == 1, "reviewed result was not retained independently")
+                try reopened.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: a, nativeRootSHA256: rootA, nativeResponseSHA256: origin.nativeResponseSHA256)
+            }
+        }
     }
 }
