@@ -1,0 +1,27 @@
+{
+  "schema": "otzaria.wave3.requirements-audit-intake.v1",
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "donor": "924056aca97ab3b0206069e78070d5d30fa44262",
+  "integrated": "6e29c09d8cce2b80354ff1e8383db7e08097cda5",
+  "verifiedManifestMembers": 16,
+  "verifiedCommitPaths": 17,
+  "manifestSHA256": "a2db079b705193889b6ae685e3fbef9240572f299a0d8f9ddd7526f4289c221f",
+  "resultSHA256": "6ee10736f62ad0e5cb809d50493b69fd7588c9ba951f5e462ceb595abdb8c272",
+  "originalInventoryRows": 294,
+  "originalQAFamilies": 51,
+  "sourceGapGroups": 8,
+  "unchangedTrees": {
+    "Source": "23cdfce49553927656ef79c6db10f654c889e2fc",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    "Scripts": "37c631c05a644b2d502299f63cccf4dd9f93ecf1",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "actualDonorPublicationReceiptSHA256": "d0fe1cdf0eb088e01e72636a368d976dd419b550eaab2369679cdd6dd63d9626",
+  "newTestsRun": 0,
+  "newBuildsRun": 0,
+  "ownerApprovals": 0,
+  "fullAcceptance": "OPEN"
+}
