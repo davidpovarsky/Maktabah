@@ -1,0 +1,47 @@
+[
+  {
+    "name": "syntax",
+    "argv": [
+      "swiftc",
+      "-frontend",
+      "-parse",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0
+  },
+  {
+    "name": "compile",
+    "argv": [
+      "swiftc",
+      "-swift-version",
+      "6",
+      "-strict-concurrency=complete",
+      "-parse-as-library",
+      "-module-cache-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/ControlInput.swift",
+      "-o",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0
+  },
+  {
+    "name": "original-baseline",
+    "argv": [
+      "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls",
+      "--baseline"
+    ],
+    "expected_exit": 1,
+    "actual_exit": 1
+  },
+  {
+    "name": "candidate",
+    "argv": [
+      "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls"
+    ],
+    "expected_exit": 0,
+    "actual_exit": 0
+  }
+]

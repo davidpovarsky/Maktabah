@@ -1,0 +1,101 @@
+[
+  {
+    "original": "attempt-1/ControlInput.swift",
+    "raw_bytes": 21020,
+    "raw_sha256": "a143932f925ec163cdffdbf1a582a634e4cb0b432c16c7e9e982480004896c38",
+    "stored": "evidence/attempt-1/ControlInput.swift.gz",
+    "stored_bytes": 5490,
+    "stored_sha256": "05e14b33a858bfd21295006c61875e1b2b7d3215958ebeac64c7b77d53cc5ea2",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "attempt-1/candidate.swift",
+    "raw_bytes": 118047,
+    "raw_sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1",
+    "stored": "evidence/attempt-1/candidate.swift.gz",
+    "stored_bytes": 23589,
+    "stored_sha256": "793c83213fdf27434016b40b5b3e95c76e239e08f768e1a2cd928db6e76cffab",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "attempt-1/donor.swift",
+    "raw_bytes": 93114,
+    "raw_sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34",
+    "stored": "evidence/attempt-1/donor.swift.gz",
+    "stored_bytes": 17989,
+    "stored_sha256": "65b1c517d1dadbe3d8518f11ea6626c48f5718eb132b9d9410b9f2a524ce077e",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "attempt-1/original-base.swift",
+    "raw_bytes": 9357,
+    "raw_sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424",
+    "stored": "evidence/attempt-1/original-base.swift.gz",
+    "stored_bytes": 2895,
+    "stored_sha256": "f0b7a436ffb0e5f09c80356e22ee1218c1f346814b23d29ec08233aa380a8e6a",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "attempt-1/original-faithful.swift",
+    "raw_bytes": 351993,
+    "raw_sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+    "stored": "evidence/attempt-1/original-faithful.swift.gz",
+    "stored_bytes": 70651,
+    "stored_sha256": "628232b0cb1c77f51a70ed8e869d0244bf09468de8e7379ca40999cd9e6369ce",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "candidate-attempt1.diff",
+    "raw_bytes": 61328,
+    "raw_sha256": "10e54d2a14739df6f8b309ae2ff449b47d7253f36a3866bc106174e08ab5f3e1",
+    "stored": "evidence/candidate-attempt1.diff.gz",
+    "stored_bytes": 13908,
+    "stored_sha256": "f63e96262171e1d20519ed4bfd9c17c2b93a244caf024cfb5da1598c3bf4538c",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "candidate-attempt1.swift",
+    "raw_bytes": 118043,
+    "raw_sha256": "675360ab07dd0ee786665040369847d58a9f8df1ea8dfe06f21e284543b7dfde",
+    "stored": "evidence/candidate-attempt1.swift.gz",
+    "stored_bytes": 23591,
+    "stored_sha256": "e94f5316bbcfda077c2cb8735070a0b44e00ccf36daabf33f73d1f6e6c479134",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "root-base.swift",
+    "raw_bytes": 70406,
+    "raw_sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29",
+    "stored": "evidence/root-base.swift.gz",
+    "stored_bytes": 13637,
+    "stored_sha256": "07ad69401709eee0b3526fce4c8f5d291e28fa4220e79f1c76753eee171620c9",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "wave1-donor.swift",
+    "raw_bytes": 93114,
+    "raw_sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34",
+    "stored": "evidence/wave1-donor.swift.gz",
+    "stored_bytes": 17989,
+    "stored_sha256": "65b1c517d1dadbe3d8518f11ea6626c48f5718eb132b9d9410b9f2a524ce077e",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "candidate-final.diff",
+    "raw_bytes": 80927,
+    "raw_sha256": "0ac182888b50e4a900f5f49f2022b3fc03345808231cd0a5ad156074b4b181f9",
+    "stored": "evidence/candidate-final.diff.gz",
+    "stored_bytes": 19038,
+    "stored_sha256": "fb22bdfe2b16cde2d82edce361170511628da9b1c8ad05338f7cde98871303d2",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  },
+  {
+    "original": "donor-to-candidate.diff",
+    "raw_bytes": 35450,
+    "raw_sha256": "8a11ca1f126df8d7a074d65b812caee08b63d2a4e41ff632591c5aaf9d41997c",
+    "stored": "evidence/donor-to-candidate.diff.gz",
+    "stored_bytes": 8296,
+    "stored_sha256": "a15d144f849646ca4241ce5e15def233658333496c7523b37360966321019f7c",
+    "encoding": "lossless gzip; original bytes retained in private build evidence"
+  }
+]

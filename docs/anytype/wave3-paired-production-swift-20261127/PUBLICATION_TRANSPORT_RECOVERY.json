@@ -1,0 +1,34 @@
+{
+  "first_request": {
+    "error": "McpServerError: Connection timed out.",
+    "error_code": "UNAVAILABLE",
+    "error_data": {
+      "type": "mcp_network_error",
+      "code": "network_error",
+      "message": "Connection timed out.",
+      "url": "https://mcp.sentinelx.app/mcp/mcp"
+    }
+  },
+  "independent_readback": {
+    "ok": true,
+    "interpreter": "powershell",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_5d3ab938dd4047fba65580231a7f79e3\\sentinelx_bootstrap.ps1",
+      "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_5d3ab938dd4047fba65580231a7f79e3\\script.ps1"
+    ],
+    "output": "{\"head\": \"95a8e41c69da9add6e260d6b5afb20fe316fcfe4\", \"status\": \" M Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift\\n?? tools/test_paired_production_swift_source.py\\n\", \"log\": \"95a8e41c69da9add6e260d6b5afb20fe316fcfe4 Record reviewed natural v40 and offline integration boundaries\\nfbe3c10edf608c168d1094137353385abdfcae2b docs(search): preserve exact released corpus retirement proof [skip ci]\\n\", \"remote\": \"\", \"final_pins\": null, \"files\": {\"Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift\": \"0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1\", \"tools/test_paired_production_swift_source.py\": \"981be4364e7056f16871a36f120c211404197ca3695a63225dded82a5ffa478f\"}}",
+    "duration": 1.6,
+    "returncode": 0,
+    "_notice": "You have 17 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+  },
+  "decision": "No mutation observed; original base HEAD, no final pins or remote ref; scoped retry succeeded"
+}

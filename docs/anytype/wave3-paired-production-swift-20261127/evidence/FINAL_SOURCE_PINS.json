@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-11-27T09:15:03.290395+00:00",
+  "base": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "donor": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "bytes": 118047,
+      "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+    },
+    {
+      "path": "tools/test_paired_production_swift_source.py",
+      "bytes": 18966,
+      "sha256": "981be4364e7056f16871a36f120c211404197ca3695a63225dded82a5ffa478f"
+    }
+  ],
+  "source_controls_result_sha256": "5b7d6de8f63a80d44cff7a9dc2f771f005b99478769d68a4a2d1647a074d245b",
+  "actual_controls_completed_at": "2026-11-27T09:11:58.064833+00:00",
+  "cache_lease": "RELEASED after source controls; original cache retained",
+  "status": "SOURCE_READY_NATIVE_NOT_RUN"
+}

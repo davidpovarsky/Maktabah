@@ -1,0 +1,44 @@
+[
+  {
+    "path": "Source/Core/Configuration/AppConfig.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 25258,
+    "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a",
+    "mutated": false
+  },
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 13081,
+    "sha256": "b0339b0b636290daa6a9e88bd00d4e694cba9fac48e4273620b0d772dcb1e7ba",
+    "mutated": false
+  },
+  {
+    "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 72871,
+    "sha256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377",
+    "mutated": false
+  },
+  {
+    "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 102598,
+    "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+    "mutated": false
+  },
+  {
+    "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 9357,
+    "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424",
+    "mutated": false
+  },
+  {
+    "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+    "bytes": 351993,
+    "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+    "mutated": false
+  }
+]

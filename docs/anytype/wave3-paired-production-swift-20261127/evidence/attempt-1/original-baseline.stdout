@@ -1,0 +1,48 @@
+{
+  "actual_launch_arguments" : [
+    "-smokeScenario",
+    "readerDetail",
+    "-OtzariaDataProfile",
+    "miniTest10",
+    "-AppleLanguages",
+    "(en)",
+    "-AppleLocale",
+    "en_US",
+    "-preferredBackend",
+    "otzaria",
+    "-smokeBackend",
+    "otzaria",
+    "-studyWorkspaceTestingNamespace",
+    "DD45828C-7B52-4357-AB6E-1F800044CAA0",
+    "-ChavrusaTextFaithfulReaderUIEnabled",
+    "YES",
+    "-textViewBackgroundColorLight",
+    "0"
+  ],
+  "actual_launch_environment" : {
+    "OTZARIA_DATA_PROFILE" : "miniTest10",
+    "SIMCTL_CHILD_OTZARIA_DATA_PROFILE" : "miniTest10"
+  },
+  "boundary" : "Exact original launch source and actual paired receipt policy with explicit XCUIApplication double; no app, MCM, SQLite, UIKit, simulator, network or native acceptance",
+  "cases" : [
+    {
+      "name" : "actual-original-launch-uses-production",
+      "pass" : false
+    },
+    {
+      "name" : "actual-original-launch-omits-smoke-scenario",
+      "pass" : false
+    },
+    {
+      "name" : "actual-original-launch-omits-UUID-test-workspace",
+      "pass" : false
+    },
+    {
+      "name" : "exact-original-production-launch-contract",
+      "pass" : false
+    }
+  ],
+  "failed" : 4,
+  "mode" : "original-donor-launch",
+  "passed" : 0
+}

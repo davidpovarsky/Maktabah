@@ -1,0 +1,22 @@
+{
+  "schema": "otzaria.wave3.paired-production.pre-edit.v1",
+  "observed_at": "2026-11-27T08:59:13.121108+00:00",
+  "base": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "donor": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+  "file": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+  "root_base_sha256": "84c6085b3d38307c46ac96c5245e27fa959754949445885d4489d11fb5f63d29",
+  "donor_sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34",
+  "base_matches_donor_parent": true,
+  "live_upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstream_object_retained": true,
+  "upstream_file": "",
+  "file_origin": [
+    "c036f3023a6545c5b08340743b21ae34b1173533 Keep local editor source through canonical save and add ordinary UI acceptance"
+  ],
+  "free_before": 2425970688,
+  "scope": [
+    "paired production Swift only; no Python controller edits",
+    "no Mac/native/build",
+    "new data <=100MiB; original source and donor retained"
+  ]
+}

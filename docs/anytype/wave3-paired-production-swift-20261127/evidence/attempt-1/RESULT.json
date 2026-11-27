@@ -1,0 +1,381 @@
+{
+  "schema": "otzaria.wave3.paired-production.source-controls.v1",
+  "completed_at": "2026-11-27T09:11:58.064833+00:00",
+  "status": "SOURCE_CONTROLS_PASS_NATIVE_NOT_RUN",
+  "baseline": {
+    "actual_launch_arguments": [
+      "-smokeScenario",
+      "readerDetail",
+      "-OtzariaDataProfile",
+      "miniTest10",
+      "-AppleLanguages",
+      "(en)",
+      "-AppleLocale",
+      "en_US",
+      "-preferredBackend",
+      "otzaria",
+      "-smokeBackend",
+      "otzaria",
+      "-studyWorkspaceTestingNamespace",
+      "DD45828C-7B52-4357-AB6E-1F800044CAA0",
+      "-ChavrusaTextFaithfulReaderUIEnabled",
+      "YES",
+      "-textViewBackgroundColorLight",
+      "0"
+    ],
+    "actual_launch_environment": {
+      "OTZARIA_DATA_PROFILE": "miniTest10",
+      "SIMCTL_CHILD_OTZARIA_DATA_PROFILE": "miniTest10"
+    },
+    "boundary": "Exact original launch source and actual paired receipt policy with explicit XCUIApplication double; no app, MCM, SQLite, UIKit, simulator, network or native acceptance",
+    "cases": [
+      {
+        "name": "actual-original-launch-uses-production",
+        "pass": false
+      },
+      {
+        "name": "actual-original-launch-omits-smoke-scenario",
+        "pass": false
+      },
+      {
+        "name": "actual-original-launch-omits-UUID-test-workspace",
+        "pass": false
+      },
+      {
+        "name": "exact-original-production-launch-contract",
+        "pass": false
+      }
+    ],
+    "failed": 4,
+    "mode": "original-donor-launch",
+    "passed": 0
+  },
+  "candidate": {
+    "actual_launch_arguments": [
+      "-OtzariaDataProfile",
+      "production",
+      "-preferredBackend",
+      "otzaria",
+      "-smokeBackend",
+      "otzaria",
+      "-AppleLanguages",
+      "(en)",
+      "-AppleLocale",
+      "en_US"
+    ],
+    "actual_launch_environment": {
+      "OTZARIA_DATA_PROFILE": "production",
+      "SIMCTL_CHILD_OTZARIA_DATA_PROFILE": "production"
+    },
+    "boundary": "Exact original launch source and actual paired receipt policy with explicit XCUIApplication double; no app, MCM, SQLite, UIKit, simulator, network or native acceptance",
+    "cases": [
+      {
+        "name": "actual-original-launch-uses-production",
+        "pass": true
+      },
+      {
+        "name": "actual-original-launch-omits-smoke-scenario",
+        "pass": true
+      },
+      {
+        "name": "actual-original-launch-omits-UUID-test-workspace",
+        "pass": true
+      },
+      {
+        "name": "exact-original-production-launch-contract",
+        "pass": true
+      },
+      {
+        "name": "fixed-complete-v40-source-contract",
+        "pass": true
+      },
+      {
+        "name": "reject-schema",
+        "pass": true
+      },
+      {
+        "name": "reject-bundle_id",
+        "pass": true
+      },
+      {
+        "name": "reject-profile",
+        "pass": true
+      },
+      {
+        "name": "reject-udid",
+        "pass": true
+      },
+      {
+        "name": "reject-different-release",
+        "pass": true
+      },
+      {
+        "name": "reject-absent-actual-simulator",
+        "pass": true
+      },
+      {
+        "name": "reject-missing-app-owner-witness",
+        "pass": true
+      },
+      {
+        "name": "reject-missing-corpus-owner-witness",
+        "pass": true
+      },
+      {
+        "name": "reject-missing-original-installer-receipt",
+        "pass": true
+      },
+      {
+        "name": "reject-incomplete-corpus-book",
+        "pass": true
+      },
+      {
+        "name": "reject-incomplete-corpus-line",
+        "pass": true
+      },
+      {
+        "name": "reject-incomplete-corpus-link",
+        "pass": true
+      },
+      {
+        "name": "reject-foreign-corpus-shape",
+        "pass": true
+      },
+      {
+        "name": "reject-different-book",
+        "pass": true
+      },
+      {
+        "name": "reject-empty-title",
+        "pass": true
+      },
+      {
+        "name": "reject-unbounded-title",
+        "pass": true
+      },
+      {
+        "name": "reject-installed-database-bytes",
+        "pass": true
+      },
+      {
+        "name": "reject-installed-database-sha256",
+        "pass": true
+      },
+      {
+        "name": "reject-manifest-witness-bytes-0",
+        "pass": true
+      },
+      {
+        "name": "reject-manifest-witness-path-relative",
+        "pass": true
+      },
+      {
+        "name": "reject-manifest-witness-sha256-invalid",
+        "pass": true
+      },
+      {
+        "name": "reject-manifest-witness-sha256-GGGGGGGG",
+        "pass": true
+      },
+      {
+        "name": "runner-production-profile-remains-allowed",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_SHARED_ROOT_OVERRIDE",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_PRODUCTION_DB_PATH",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-CHAVRUSA_READER_VIEWPORT_REPORT",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-FAITHFUL_VIEWPORT_DIRECTORY",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_ORIGINAL_EDITOR_QUALIFICATION",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-presence-OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-storage-TEST_RUNNER_",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-mini-profile-TEST_RUNNER_",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-storage-SIMCTL_CHILD_",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-mini-profile-SIMCTL_CHILD_",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-storage-TEST_RUNNER_SIMCTL_CHILD_TEST_RUNNER_",
+        "pass": true
+      },
+      {
+        "name": "reject-runner-aliased-mini-profile-TEST_RUNNER_SIMCTL_CHILD_TEST_RUNNER_",
+        "pass": true
+      },
+      {
+        "name": "reject-extra-app-arguments--smokeScenario",
+        "pass": true
+      },
+      {
+        "name": "reject-extra-app-arguments--smokeBypassBootstrap",
+        "pass": true
+      },
+      {
+        "name": "reject-extra-app-arguments--studyWorkspaceTestingNamespace",
+        "pass": true
+      },
+      {
+        "name": "reject-extra-app-arguments--foreignFlag",
+        "pass": true
+      },
+      {
+        "name": "reject-network-test-flag-in-app",
+        "pass": true
+      },
+      {
+        "name": "reject-app-mini-profile",
+        "pass": true
+      }
+    ],
+    "failed": 0,
+    "mode": "corrected-production-launch-and-policy",
+    "passed": 49
+  },
+  "preserved_original_cases": [
+    {
+      "name": "testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination",
+      "bytes": 12868,
+      "sha256": "1e8de8fc58d9a48be2ea66d771a3ff108faac015023213a3bf43d1d8c915ac6e"
+    },
+    {
+      "name": "testOrdinaryPreparationConvertsSavedNoteOnceAndReopensNativeBodyAfterColdLaunch",
+      "bytes": 7645,
+      "sha256": "7f6a3a40071a047762f7dd9253ada429252aca2c1efff22b7d45318cb53d545e"
+    },
+    {
+      "name": "testOrdinarySharedNoteUpdatesSameObjectAndReceivesSavedContent",
+      "bytes": 4926,
+      "sha256": "b389c3c7b7bb48f394b3a2636ce676d71dad2b10a50eeca0117d2e222ead406d"
+    },
+    {
+      "name": "testOrdinaryNativeCopyChiddushLifecyclePreservesIdentity",
+      "bytes": 223,
+      "sha256": "788fcf4ddeacec7c00c62ab96fb20a13f5d93738f122198e1bedb69e2384d2d5"
+    },
+    {
+      "name": "testOrdinaryNativeCopyArticleLifecyclePreservesIdentity",
+      "bytes": 220,
+      "sha256": "43aa8dfc714baceede9f6ce55b08167d2f57e83fe2eafe756293fb6428e63daf"
+    },
+    {
+      "name": "testOrdinaryNativeCopyResearchLifecyclePreservesIdentity",
+      "bytes": 221,
+      "sha256": "d4b8ccbdece2e3f56007a278c0d3a5238a6e481e37bfb1e8f194f16fd8ddaa0e"
+    }
+  ],
+  "input_pins": {
+    "candidate": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "bytes": 118047,
+      "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+    },
+    "original_base": {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "bytes": 9357,
+      "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424"
+    },
+    "original_faithful": {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 351993,
+      "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618"
+    },
+    "donor": {
+      "path": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+      "bytes": 93114,
+      "sha256": "d9121cc11b76096476cd05542835785658745a910bdc7e1b94ec7c11d6341a34"
+    },
+    "control_input": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/ControlInput.swift",
+      "bytes": 21020,
+      "sha256": "a143932f925ec163cdffdbf1a582a634e4cb0b432c16c7e9e982480004896c38"
+    }
+  },
+  "commands": [
+    {
+      "name": "syntax",
+      "argv": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/ControlInput.swift",
+        "-o",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0
+    },
+    {
+      "name": "original-baseline",
+      "argv": [
+        "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls",
+        "--baseline"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1
+    },
+    {
+      "name": "candidate",
+      "argv": [
+        "/mnt/development/projects/worktrees/Maktabah-wave3-paired-production-swift-20261127/build/paired-production-source-controls-20261127/attempt-1/controls"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0
+    }
+  ],
+  "native": "NOT_RUN; Apple typecheck, actual MCM, production installation, original UI and two-app transport pending",
+  "free_after": 2026295296
+}

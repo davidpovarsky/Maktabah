@@ -1,0 +1,220 @@
+{
+  "actual_launch_arguments" : [
+    "-OtzariaDataProfile",
+    "production",
+    "-preferredBackend",
+    "otzaria",
+    "-smokeBackend",
+    "otzaria",
+    "-AppleLanguages",
+    "(en)",
+    "-AppleLocale",
+    "en_US"
+  ],
+  "actual_launch_environment" : {
+    "OTZARIA_DATA_PROFILE" : "production",
+    "SIMCTL_CHILD_OTZARIA_DATA_PROFILE" : "production"
+  },
+  "boundary" : "Exact original launch source and actual paired receipt policy with explicit XCUIApplication double; no app, MCM, SQLite, UIKit, simulator, network or native acceptance",
+  "cases" : [
+    {
+      "name" : "actual-original-launch-uses-production",
+      "pass" : true
+    },
+    {
+      "name" : "actual-original-launch-omits-smoke-scenario",
+      "pass" : true
+    },
+    {
+      "name" : "actual-original-launch-omits-UUID-test-workspace",
+      "pass" : true
+    },
+    {
+      "name" : "exact-original-production-launch-contract",
+      "pass" : true
+    },
+    {
+      "name" : "fixed-complete-v40-source-contract",
+      "pass" : true
+    },
+    {
+      "name" : "reject-schema",
+      "pass" : true
+    },
+    {
+      "name" : "reject-bundle_id",
+      "pass" : true
+    },
+    {
+      "name" : "reject-profile",
+      "pass" : true
+    },
+    {
+      "name" : "reject-udid",
+      "pass" : true
+    },
+    {
+      "name" : "reject-different-release",
+      "pass" : true
+    },
+    {
+      "name" : "reject-absent-actual-simulator",
+      "pass" : true
+    },
+    {
+      "name" : "reject-missing-app-owner-witness",
+      "pass" : true
+    },
+    {
+      "name" : "reject-missing-corpus-owner-witness",
+      "pass" : true
+    },
+    {
+      "name" : "reject-missing-original-installer-receipt",
+      "pass" : true
+    },
+    {
+      "name" : "reject-incomplete-corpus-book",
+      "pass" : true
+    },
+    {
+      "name" : "reject-incomplete-corpus-line",
+      "pass" : true
+    },
+    {
+      "name" : "reject-incomplete-corpus-link",
+      "pass" : true
+    },
+    {
+      "name" : "reject-foreign-corpus-shape",
+      "pass" : true
+    },
+    {
+      "name" : "reject-different-book",
+      "pass" : true
+    },
+    {
+      "name" : "reject-empty-title",
+      "pass" : true
+    },
+    {
+      "name" : "reject-unbounded-title",
+      "pass" : true
+    },
+    {
+      "name" : "reject-installed-database-bytes",
+      "pass" : true
+    },
+    {
+      "name" : "reject-installed-database-sha256",
+      "pass" : true
+    },
+    {
+      "name" : "reject-manifest-witness-bytes-0",
+      "pass" : true
+    },
+    {
+      "name" : "reject-manifest-witness-path-relative",
+      "pass" : true
+    },
+    {
+      "name" : "reject-manifest-witness-sha256-invalid",
+      "pass" : true
+    },
+    {
+      "name" : "reject-manifest-witness-sha256-GGGGGGGG",
+      "pass" : true
+    },
+    {
+      "name" : "runner-production-profile-remains-allowed",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_SHARED_ROOT_OVERRIDE",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_PRODUCTION_DB_PATH",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-CHAVRUSA_READER_VIEWPORT_REPORT",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-FAITHFUL_VIEWPORT_DIRECTORY",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_ORIGINAL_EDITOR_QUALIFICATION",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-presence-OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-storage-TEST_RUNNER_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-mini-profile-TEST_RUNNER_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-storage-SIMCTL_CHILD_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-mini-profile-SIMCTL_CHILD_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-storage-TEST_RUNNER_SIMCTL_CHILD_TEST_RUNNER_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-runner-aliased-mini-profile-TEST_RUNNER_SIMCTL_CHILD_TEST_RUNNER_",
+      "pass" : true
+    },
+    {
+      "name" : "reject-extra-app-arguments--smokeScenario",
+      "pass" : true
+    },
+    {
+      "name" : "reject-extra-app-arguments--smokeBypassBootstrap",
+      "pass" : true
+    },
+    {
+      "name" : "reject-extra-app-arguments--studyWorkspaceTestingNamespace",
+      "pass" : true
+    },
+    {
+      "name" : "reject-extra-app-arguments--foreignFlag",
+      "pass" : true
+    },
+    {
+      "name" : "reject-network-test-flag-in-app",
+      "pass" : true
+    },
+    {
+      "name" : "reject-app-mini-profile",
+      "pass" : true
+    }
+  ],
+  "failed" : 0,
+  "mode" : "corrected-production-launch-and-policy",
+  "passed" : 49
+}
