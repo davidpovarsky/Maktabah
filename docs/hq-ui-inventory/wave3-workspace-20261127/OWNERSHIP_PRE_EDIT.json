@@ -1,0 +1,81 @@
+{
+  "observed_at": "2026-11-27T00:44:04.630180+00:00",
+  "base": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "actual_upstream_sha": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "scope": "Finite original Workspace surface/component binding and passive witnesses; original store, management, confirmation, layout and presentation owners retained. Shared Session/registry/public wiring and PBX are separately owned. This matrix is pre-edit evidence, not owner-signature approval.",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": null,
+      "ownership": "DOWNSTREAM_NEW",
+      "introduction": []
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": null,
+      "ownership": "DOWNSTREAM_NEW",
+      "introduction": []
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": "100644 blob 3fac970b1b0563a8fce00dd61401379ce3c8def6\tSource/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "ownership": "DOWNSTREAM_EXISTING",
+      "introduction": [
+        "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e Rebuild faithful iPad reader composition from 9401 and original UI sources"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": "100644 blob 7c3e1c09c2c08af0b7c6b07f40732fd0bfe32554\tSource/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "ownership": "DOWNSTREAM_EXISTING",
+      "introduction": [
+        "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e Rebuild faithful iPad reader composition from 9401 and original UI sources"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": "100644 blob 7e68dee6c06fde765e435dac838e45586625e86f\tSource/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "ownership": "DOWNSTREAM_EXISTING",
+      "introduction": [
+        "2a46d52c90ff983cf9112fdc9e799ad4aba1b67e Rebuild faithful iPad reader composition from 9401 and original UI sources"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": "100644 blob 9613fb857a8f5b96e10ec974d0f5d876f6862f4e\tSource/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+      "ownership": "DOWNSTREAM_EXISTING",
+      "introduction": [
+        "77707561a6c2cec4879ff225c233c785eb337c5c Connect compact source overview and preserve foreign-book order on close"
+      ]
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "observed_at": "2026-11-27T01:26:33.992342+00:00",
+      "base": "0c93d1de3b4ba9734c3341e3b088ca41818fb619",
+      "upstream_tree_record": "100644 blob 9ad82bcfaf091056c7ea12a029a2856a89611653\tSource/UI/iOS/Views/iPadLayout.swift",
+      "base_tree_record": "100644 blob 8ae501fe792d354f2a3813de146763fcfb7dcf48\tSource/UI/iOS/Views/iPadLayout.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "scope": "Forward the exact original scene session through the pre-existing ReaderOverviewPresentation hosting boundary; no original UI/state replacement."
+    }
+  ],
+  "original_parent_owners": {
+    "ipad_profiles": "Exact9401ViewerToolbar.showsProfiles",
+    "ipad_overview": "ReaderSidebarPageCoordinator.overview and original iPadLayout ReaderOverviewPresentation",
+    "phone_overview": "CompactStudyWorkspaceHostModifier.showsOverview via manager.showingTabsList",
+    "phone_profiles": "StudyGroupsOverview.showsProfiles inside the original phone overview"
+  },
+  "source_identity": "Authoritative workspace projection source, actual scene and manager, store.mappingObservation and adapter.mappingOwnershipObservation; no cloned profile/group/tab persistence.",
+  "acceptance_pending": [
+    "Original parent cold/warm mounted surface proof",
+    "Finite original controls actual clipped viewport evidence",
+    "Core admission/deadline and ABA controls",
+    "Native iPad/iPhone acceptance on final source"
+  ]
+}

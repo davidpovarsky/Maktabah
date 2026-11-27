@@ -15,7 +15,20 @@ final class ReaderSidebarPageCoordinator {
     var page: Page = .library
     var contentsQuery = ""
     var requestsLibrary = false
-    var overview = ReaderOverviewPresentationState()
+    var overview = ReaderOverviewPresentationState() {
+        willSet {
+            if newValue.requestID != overview.requestID || newValue.isRequested != overview.isRequested {
+                for notify in Array(overviewRequestObservers.values) { notify() }
+            }
+        }
+    }
+    @ObservationIgnored private var overviewRequestObservers: [UUID: @MainActor () -> Void] = [:]
+
+    func observeOverviewRequestChanges(_ notify: @escaping @MainActor () -> Void) -> UUID {
+        let token = UUID(); overviewRequestObservers[token] = notify; return token
+    }
+
+    func removeOverviewRequestObserver(_ token: UUID) { overviewRequestObservers.removeValue(forKey: token) }
     var navigationChrome = ReaderNavigationChromeState()
     @ObservationIgnored private weak var navigationChromeWindowOwner: UIView?
     @ObservationIgnored private weak var navigationChromeWindow: UIWindow?
@@ -157,9 +170,16 @@ extension EnvironmentValues {
 struct Exact9401ViewerToolbar: ViewModifier {
     let manager: iOSNavigationManager
     @State private var showsProfiles = false
+    @State private var presentationViewID = UUID()
     @State private var detailWidth: CGFloat = 0
     @Environment(\.exact9401Workspace) private var workspace
     @Environment(\.chavrusaReaderSidebar) private var sidebar
+    @Environment(\.maktabahNativeRoutingSession) private var routingSession
+
+    private var profilesBinding: Binding<Bool> {
+        maktabahWorkspaceOriginalBinding($showsProfiles, binding: routingSession?.workspacePresentation,
+            host: .tabletToolbar, stateOwnerID: presentationViewID, change: .profiles)
+    }
 
     private var isPresented: Bool { sidebar?.librarySearchIsPresented == true }
     private var compactSearchWidth: CGFloat {
@@ -170,12 +190,26 @@ struct Exact9401ViewerToolbar: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .background {
+                if let workspace {
+                    Color.clear.modifier(MaktabahNativeWorkspaceOriginalHost(
+                        binding: routingSession?.workspacePresentation, kind: .tabletToolbar, stateOwnerID: presentationViewID,
+                        workspace: workspace, manager: manager,
+                        profilesPresented: { showsProfiles },
+                        presentProfiles: {
+                            sidebar?.dismissLibrarySearch()
+                            sidebar?.navigationChrome.reveal()
+                            profilesBinding.wrappedValue = true
+                        },
+                        blocked: { workspace.isSwitching || workspace.errorMessage != nil }))
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         guard workspace?.attached == true, let sidebar else { return }
                         sidebar.dismissLibrarySearch()
-                        showsProfiles = false
+                        profilesBinding.wrappedValue = false
                         sidebar.navigationChrome.reveal()
                         sidebar.overview.request()
                     } label: {
@@ -215,15 +249,16 @@ struct Exact9401ViewerToolbar: ViewModifier {
                         StudyProfileMenu(workspace: workspace, manager: manager, usesNativeToolbar: true) {
                             sidebar?.dismissLibrarySearch()
                             sidebar?.navigationChrome.reveal()
-                            showsProfiles = true
+                            profilesBinding.wrappedValue = true
                         }
                     }
                 }
             }
             .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { detailWidth = $0 }
-            .sheet(isPresented: $showsProfiles) {
+            .sheet(isPresented: profilesBinding) {
                 if let workspace {
                     StudyProfileManagementView(workspace: workspace, manager: manager)
+                        .environment(\.maktabahNativeRoutingSession, routingSession)
                 }
             }
             #if DEBUG
@@ -233,9 +268,9 @@ struct Exact9401ViewerToolbar: ViewModifier {
             #endif
             .onChange(of: workspace?.selection?.profileID) { _, _ in sidebar?.dismissLibrarySearch() }
             .onChange(of: sidebar?.overview.requestID) { _, id in
-                if id != nil { sidebar?.dismissLibrarySearch(); showsProfiles = false }
+                if id != nil { sidebar?.dismissLibrarySearch(); profilesBinding.wrappedValue = false }
             }
-            .onDisappear { sidebar?.dismissLibrarySearch(); showsProfiles = false }
+            .onDisappear { sidebar?.dismissLibrarySearch(); profilesBinding.wrappedValue = false }
     }
 }
 

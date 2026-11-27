@@ -7,18 +7,34 @@ struct StudyGroupsOverview: View {
     let onOpenLibrary: () -> Void
     let onClose: () -> Void
     @Environment(\.locale) private var locale
+    @Environment(\.maktabahNativeRoutingSession) private var routingSession
     @State private var showsNamePrompt = false
     @State private var name = ""
     @State private var copiesCurrent = false
     @State private var renamesCurrent = false
     @State private var confirmsDelete = false
     @State private var showsProfiles = false
+    @State private var presentationViewID = UUID()
     @AppStorage("chavrusa.study-tabs.layout") private var tabSwitcherLayoutRaw = ReaderTabSwitcherLayout.grid.rawValue
 
     private var localized: StudyWorkspaceText { StudyWorkspaceText(locale: locale) }
 
     private var tabSwitcherLayout: ReaderTabSwitcherLayout {
         ReaderTabSwitcherLayout(rawValue: tabSwitcherLayoutRaw) ?? .grid
+    }
+
+    private var componentOwner: MaktabahNativeComponentOwner? {
+        routingSession?.componentOwner(for: MaktabahNativeWorkspacePresentationBinding.Parent.overview.destination)
+    }
+
+    private var blocksOriginalPresentation: Bool {
+        showsNamePrompt || confirmsDelete || workspace.isSwitching || workspace.errorMessage != nil
+    }
+
+    private func originalBinding<Value: Equatable>(_ value: Binding<Value>,
+        change: MaktabahNativeWorkspacePresentationBinding.OriginalChange = .draft) -> Binding<Value> {
+        maktabahWorkspaceOriginalBinding(value, binding: routingSession?.workspacePresentation,
+            host: .overview, stateOwnerID: presentationViewID, change: change)
     }
 
     var body: some View {
@@ -36,6 +52,8 @@ struct StudyGroupsOverview: View {
                 },
                 contextMenu: contextMenu
             )
+            .maktabahWorkspaceOverviewComponent(tabSwitcherLayout == .grid ? .grid : .list,
+                                                workspace: workspace, manager: manager)
             .overlay {
                 if workspace.group?.tabs.isEmpty != false {
                     ContentUnavailableView {
@@ -57,18 +75,20 @@ struct StudyGroupsOverview: View {
                 .frame(height: 49)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
+                .maktabahWorkspaceOverviewComponent(.groups, workspace: workspace, manager: manager)
             }
             .toolbar {
                 if !MaktabahApp.isIpad {
                     ToolbarItem(placement: .secondaryAction) {
-                        StudyProfileMenu(workspace: workspace, manager: manager, compact: true) { showsProfiles = true }
+                        StudyProfileMenu(workspace: workspace, manager: manager, compact: true) { originalBinding($showsProfiles, change: .profiles).wrappedValue = true }
+                            .maktabahWorkspaceOverviewComponent(.profileMenu, workspace: workspace, manager: manager)
                     }
                     .readerSourceGlassBackground()
                 }
                 ToolbarItem(placement: .confirmationAction) { Button(localized("Done", "סיום")) { onClose() } }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        tabSwitcherLayoutRaw = tabSwitcherLayout == .grid
+                        originalBinding($tabSwitcherLayoutRaw, change: .layout).wrappedValue = tabSwitcherLayout == .grid
                             ? ReaderTabSwitcherLayout.list.rawValue
                             : ReaderTabSwitcherLayout.grid.rawValue
                     } label: {
@@ -78,22 +98,24 @@ struct StudyGroupsOverview: View {
                         )
                     }
                     .accessibilityIdentifier("study-tabs-layout-toggle")
+                    .maktabahWorkspaceOverviewComponent(.layout, workspace: workspace, manager: manager)
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
                         Button(localized("New empty group", "קבוצה ריקה"), systemImage: "plus") { prompt(copy: false) }
                         Button(localized("New group from current tabs", "קבוצה מהכרטיסיות הנוכחיות"), systemImage: "square.on.square") { prompt(copy: true) }
                         Button(localized("Rename group", "שינוי שם הקבוצה"), systemImage: "pencil") {
-                            renamesCurrent = true; name = workspace.group?.name ?? ""; showsNamePrompt = true
+                            originalBinding($renamesCurrent).wrappedValue = true; originalBinding($name).wrappedValue = workspace.group?.name ?? ""; originalBinding($showsNamePrompt).wrappedValue = true
                         }
-                        Button(localized("Delete group", "מחיקת קבוצה"), systemImage: "trash", role: .destructive) { confirmsDelete = true }
+                        Button(localized("Delete group", "מחיקת קבוצה"), systemImage: "trash", role: .destructive) { originalBinding($confirmsDelete).wrappedValue = true }
                     } label: { Label(localized("Tab Groups", "קבוצות כרטיסיות"), systemImage: "ellipsis.circle") }
                     .accessibilityLabel(localized("Tab group actions", "פעולות בקבוצת הכרטיסיות"))
                     .accessibilityIdentifier("study-group-actions-menu")
+                    .maktabahWorkspaceOverviewComponent(.actions, workspace: workspace, manager: manager)
                 }
             }
-            .alert(localized("Tab group name", "שם קבוצת הכרטיסיות"), isPresented: $showsNamePrompt) {
-                TextField(localized("Name", "שם"), text: $name)
+            .alert(localized("Tab group name", "שם קבוצת הכרטיסיות"), isPresented: originalBinding($showsNamePrompt)) {
+                TextField(localized("Name", "שם"), text: originalBinding($name))
                 Button(localized("Save", "שמירה")) {
                     let value = name.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !value.isEmpty else { return }
@@ -104,7 +126,7 @@ struct StudyGroupsOverview: View {
                 }
                 Button(localized("Cancel", "ביטול"), role: .cancel) {}
             }
-            .confirmationDialog(localized("Delete this group and its tabs?", "למחוק את הקבוצה והכרטיסיות שלה?"), isPresented: $confirmsDelete, titleVisibility: .visible) {
+            .confirmationDialog(localized("Delete this group and its tabs?", "למחוק את הקבוצה והכרטיסיות שלה?"), isPresented: originalBinding($confirmsDelete), titleVisibility: .visible) {
                 Button(localized("Delete group", "מחיקת קבוצה"), role: .destructive) {
                     guard let old = workspace.group?.id, let replacement = workspace.groups.first(where: { $0.id != old }) else {
                         workspace.errorMessage = StudyWorkspaceError.lastGroup.localizedDescription; return
@@ -118,10 +140,20 @@ struct StudyGroupsOverview: View {
                 }
             }
         }
+        .modifier(MaktabahNativeComponentContainer(owner: componentOwner,
+            blocked: { blocksOriginalPresentation || showsProfiles }, reveal: { _ in }))
+        .modifier(MaktabahNativeWorkspaceOriginalHost(
+            binding: routingSession?.workspacePresentation, kind: .overview, stateOwnerID: presentationViewID,
+            workspace: workspace, manager: manager,
+            profilesPresented: { showsProfiles },
+            presentProfiles: { if !MaktabahApp.isIpad { originalBinding($showsProfiles, change: .profiles).wrappedValue = true } },
+            blocked: { blocksOriginalPresentation }))
+        .background { MaktabahNativeRoutingWitness(kind: .workspaceOverview) }
         .themeTint()
         .onAppear { workspace.synchronize(manager) }
-        .sheet(isPresented: $showsProfiles) {
+        .sheet(isPresented: originalBinding($showsProfiles, change: .profiles)) {
             StudyProfileManagementView(workspace: workspace, manager: manager)
+                .environment(\.maktabahNativeRoutingSession, routingSession)
         }
         .alert(localized("Unable to change the study workspace", "לא ניתן לשנות את סביבת הלימוד"), isPresented: Binding(
             get: { workspace.errorMessage != nil }, set: { if !$0 { workspace.errorMessage = nil } })) {
@@ -130,7 +162,12 @@ struct StudyGroupsOverview: View {
         .accessibilityIdentifier("study-groups-overview")
     }
 
-    private func prompt(copy: Bool) { renamesCurrent = false; copiesCurrent = copy; name = ""; showsNamePrompt = true }
+    private func prompt(copy: Bool) {
+        originalBinding($renamesCurrent).wrappedValue = false
+        originalBinding($copiesCurrent).wrappedValue = copy
+        originalBinding($name).wrappedValue = ""
+        originalBinding($showsNamePrompt).wrappedValue = true
+    }
 
     private func openDocument(_ document: ReaderTabSwitcherDocument) {
         // Like returning to the browser's already-selected tab: no navigation

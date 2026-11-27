@@ -7,9 +7,16 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
     let manager: iOSNavigationManager
     @State private var workspaceOwner = MaktabahNativeWorkspaceOwner()
     private var workspace: StudyWorkspaceNavigationAdapter? { workspaceOwner.current }
+    private var routingSession: MaktabahNativeSceneSession? { workspaceOwner.nativeRoutingSession }
     @State private var sceneID = ""
     @State private var showsOverview = false
+    @State private var presentationViewID = UUID()
     @Environment(\.scenePhase) private var scenePhase
+
+    private var overviewBinding: Binding<Bool> {
+        maktabahWorkspaceOriginalBinding($showsOverview, binding: routingSession?.workspacePresentation,
+            host: .compactRoot, stateOwnerID: presentationViewID, change: .overview)
+    }
 
     private static var isEnabled: Bool {
         !MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled
@@ -33,6 +40,14 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
                     ReaderSceneIdentityReader { sceneID = $0 }
                         .frame(width: 0, height: 0).accessibilityHidden(true)
                     if let workspace {
+                        Color.clear.modifier(MaktabahNativeWorkspaceOriginalHost(
+                            binding: routingSession?.workspacePresentation, kind: .compactRoot,
+                            stateOwnerID: presentationViewID, workspace: workspace, manager: manager,
+                            overviewPresented: { showsOverview },
+                            presentOverview: {
+                                overviewBinding.wrappedValue = true
+                                manager.showingTabsList = true
+                            }, blocked: { workspace.isSwitching || workspace.errorMessage != nil }))
                         StudyWorkspaceCheckpointObserver(manager: manager, workspace: workspace)
                     }
                     #if DEBUG
@@ -59,11 +74,11 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
                 if phase != .active { workspace?.synchronize(manager) }
             }
             .onChange(of: manager.showingTabsList, initial: true) { _, showing in
-                if Self.isEnabled && showing { showsOverview = true }
+                if Self.isEnabled && showing { overviewBinding.wrappedValue = true }
             }
             .overlay {
                 if Self.isEnabled {
-                    ReaderOverviewPresentation(isPresented: $showsOverview, onDismiss: {
+                    ReaderOverviewPresentation(isPresented: overviewBinding, onDismiss: {
                         manager.showingTabsList = false
                         workspace?.synchronize(manager)
                     }) {
@@ -72,7 +87,8 @@ struct CompactStudyWorkspaceHostModifier: ViewModifier {
                                 manager.switchToMode(.viewer)
                                 // Keep the original phone NavigationStack's Back action.
                                 manager.selectedBook = nil
-                            }, onClose: { showsOverview = false })
+                            }, onClose: { overviewBinding.wrappedValue = false })
+                                .environment(\.maktabahNativeRoutingSession, routingSession)
                         } else {
                             ProgressView().accessibilityLabel("טעינת סביבת הלימוד")
                         }
