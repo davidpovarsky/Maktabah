@@ -1,0 +1,10 @@
+{
+  "compressed": "SOURCE_BOUNDARIES.json.gz",
+  "compressedBytes": 28651,
+  "compressedSHA256": "b56a1b1fdc30d08dcc4ad7c48a9f97d498ec59e66e6267b97f9ffc3fe8719c0c",
+  "losslessRoundTrip": true,
+  "original": "SOURCE_BOUNDARIES.json",
+  "originalBytes": 107380,
+  "originalSHA256": "6d64fa41c99f13778ebf2dcbdfb5e6c969e879bd8a8ee24bc4e4f8eba6ede3f2",
+  "schema": "otzaria.lossless-evidence-compression/1"
+}

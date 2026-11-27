@@ -1,0 +1,29 @@
+{
+  "changes": [
+    {
+      "compressedSHA256": "9ec711bc4c2ef109821a3ca3ecafb01ed6d8200eca0fe855f62d96c0f6be8129",
+      "inputBytes": 5375,
+      "inputSHA256": "c74fa4b00e5859b65e87a6622efac43b3a49c9def12a5807c6f4da44c36df63b",
+      "operation": "Remove only one surplus final LF in newly authored prose; original SDK evidence unchanged",
+      "originalCompressedPath": "raw/README.md.before-formatting.gz",
+      "outputBytes": 5374,
+      "outputSHA256": "d044e2454f7e7f0f7ce60863e90b590f3f3f7d2b01763af540cc43bb0ed58654",
+      "path": "README.md"
+    },
+    {
+      "compressedSHA256": "ee4d082a9469e206669edda5fe11e5fa3cb67df8ac94a40d26a202c8fb12944d",
+      "inputBytes": 8191,
+      "inputSHA256": "2b3386819896bc867b045101a4a40125aa1543025f9e00618690ac556178497e",
+      "operation": "Remove only one surplus final LF in newly authored prose; original SDK evidence unchanged",
+      "originalCompressedPath": "raw/ORIGINAL_NEXT_RUN_CONTRACT.md.before-formatting.gz",
+      "outputBytes": 8190,
+      "outputSHA256": "a7c265099dbb1285391ed10f28c026ecdf3b69f51232c9e0678310609f5f8be0",
+      "path": "ORIGINAL_NEXT_RUN_CONTRACT.md"
+    }
+  ],
+  "failedFormattingCheckRawSHA256": "775c2be98b9654afc8aa65baebe11b419c570a21c0d858ea5e2338fe83bf5253",
+  "inputPacketIndexSHA256": "bd1bceeed96e0d8c4a2bb9b2d7029e91671f2353a275b01e79482af9a83b9862",
+  "newRuns": 0,
+  "originalArchiveChanged": false,
+  "schema": "otzaria.authored-prose-formatting-finalization/1"
+}

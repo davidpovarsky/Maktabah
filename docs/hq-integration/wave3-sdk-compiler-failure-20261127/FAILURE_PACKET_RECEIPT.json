@@ -1,0 +1,21 @@
+{
+  "status": "EXACT_COMPILER_FAILURE_PACKET_FULLY_VERIFIED",
+  "finished_at": "2026-11-27T11:00:01.443316+00:00",
+  "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-sdk-fresh-after-five-launch-20261127\\compiler-failure-packet\\original-sdk-compiler-failure.tar.gz",
+  "archiveBytes": 963787,
+  "archiveSHA256": "6acd6fa09f46c4b3037c84654266618be5605137eea0ad3fa3158453039993c5",
+  "regularMembersVerified": 48,
+  "manifestSHA256": "f57f9302e8ad2c9cbbe1b9f65b66eda088627015411cb37c6b9663df31675f92",
+  "summarySHA256": "d5676d91cf738c772bfae69602fd282bcf66e06ca39af7f9468994c943710883",
+  "sourceScriptSHA256": "85341433ba92531defa44454ec043da021fe1f323420af49e8d7e351b319c6d3",
+  "receiverSHA256": "62d89967f1e6b4d2cbc037f823c0c83cb28c2e7108b8926dbca69d2f41b69f6f",
+  "compilerFailure": {
+    "logLine": 49263,
+    "text": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Anytype/Sources/ServiceLayer/Block/Pastboard/PasteboardHelper.swift:88:88: error: missing argument for parameter 'options' in call"
+  },
+  "actualXcodebuildExit": 65,
+  "newRuns": 0,
+  "macPacketFilesWritten": 0,
+  "oracleWrites": 0,
+  "windowsFreeAfter": 9823240192
+}

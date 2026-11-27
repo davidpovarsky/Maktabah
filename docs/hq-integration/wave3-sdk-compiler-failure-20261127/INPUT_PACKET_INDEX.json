@@ -1,0 +1,79 @@
+{
+  "createdAt": "2026-11-27T11:10:57.613544+00:00",
+  "files": [
+    {
+      "bytes": 2994,
+      "path": "BRIDGE_SOURCE_BINDINGS.json",
+      "sha256": "d8e35239367309ca8204dfb10b5642d335089af89167e9f59a9f4488c3bf9079"
+    },
+    {
+      "bytes": 1160,
+      "path": "FAILURE_PACKET_RECEIPT.json",
+      "sha256": "7475e87836bee0e829d20779bd9209b446717828465d557b8418714a089730ac"
+    },
+    {
+      "bytes": 17961,
+      "path": "FILE_MANIFEST.json",
+      "sha256": "f57f9302e8ad2c9cbbe1b9f65b66eda088627015411cb37c6b9663df31675f92"
+    },
+    {
+      "bytes": 963787,
+      "path": "original-sdk-compiler-failure.tar.gz",
+      "sha256": "6acd6fa09f46c4b3037c84654266618be5605137eea0ad3fa3158453039993c5"
+    },
+    {
+      "bytes": 8191,
+      "path": "ORIGINAL_NEXT_RUN_CONTRACT.md",
+      "sha256": "2b3386819896bc867b045101a4a40125aa1543025f9e00618690ac556178497e"
+    },
+    {
+      "bytes": 8427,
+      "path": "raw/actual-failure-preservation-bridge.ps1.gz",
+      "sha256": "16af7914bc234b0ac1090921f40aa1be0ddc3e8c90422482260990512c8ed94e"
+    },
+    {
+      "bytes": 45887,
+      "path": "raw/actual-launch-bridge.ps1.gz",
+      "sha256": "d81455a978a9fb299f1c4f1e4e85c9c2585c4ccc6a8c9576669ab41eb1ba6440"
+    },
+    {
+      "bytes": 1568,
+      "path": "raw/bridge_run.py.gz",
+      "sha256": "a8b582260848a6b3a97bd5f08c8484e7279c4ebefecc01ffdd90b7afaffecf9c"
+    },
+    {
+      "bytes": 3729,
+      "path": "raw/build_error_packet.py.gz",
+      "sha256": "649d24da72b4643d2ac5b918108832267f3e2c17373b147809294c2f2b5554be"
+    },
+    {
+      "bytes": 275,
+      "path": "raw/PREPARATION_FAILURE.json.gz",
+      "sha256": "9de1235f011630cdc24704a22a948c233a248c1b059546a35eec5e5ee919390a"
+    },
+    {
+      "bytes": 1503,
+      "path": "raw/receive_error_packet.py.gz",
+      "sha256": "187c77614e7e9859f18cfa02861d3d4fc88b5d0a8ad87a2e288a167922f18171"
+    },
+    {
+      "bytes": 5375,
+      "path": "README.md",
+      "sha256": "c74fa4b00e5859b65e87a6622efac43b3a49c9def12a5807c6f4da44c36df63b"
+    },
+    {
+      "bytes": 28651,
+      "path": "SOURCE_BOUNDARIES.json.gz",
+      "sha256": "b56a1b1fdc30d08dcc4ad7c48a9f97d498ec59e66e6267b97f9ffc3fe8719c0c"
+    },
+    {
+      "bytes": 405,
+      "path": "SOURCE_BOUNDARIES_BINDING.json",
+      "sha256": "8e941823afa488c0e8671d80d2ad452d6b403a7618ca9e3544b6b4b1ae2d1c31"
+    }
+  ],
+  "newRuns": 0,
+  "productEdits": 0,
+  "schema": "otzaria.sdk-compiler-failure-git-packet/1",
+  "source": "1be970356c655bcef3688ddf1d129d5029bbc533"
+}
