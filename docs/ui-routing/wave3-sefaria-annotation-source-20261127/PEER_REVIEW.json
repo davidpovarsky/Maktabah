@@ -1,0 +1,8 @@
+{
+  "annotation_facet_evidence": "fd1407823dc346ea800cfba20523b56b98de8f08",
+  "annotation_facet_source": "8f7142bba6efb8f4a93c4e325ee6cdb835041bb5",
+  "finding": "Fixed publication registers before first actual blocker getter. Both capture error and one-way latch invalidation fail capture. Same validator and latch checked at both ends; off-main claim receives only the registered latch. No callback under claim, source recapture or new effect permission. No demonstrated blocker in this scope.",
+  "patch_sha256": "e7bec634b0598d595c3996dd1c288d33569f7c1863e8bd847364ba0feeecf968",
+  "reviewer": "/root/navigation_fix",
+  "scope": "FOUR_RN_SHARED_SOURCE_HUNKS_ONLY_NO_RERUN_NO_MERGED_SESSION_CLAIM"
+}

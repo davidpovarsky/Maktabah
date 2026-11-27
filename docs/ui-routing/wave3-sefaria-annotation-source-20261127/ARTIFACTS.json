@@ -1,0 +1,80 @@
+{
+  "artifacts": [
+    {
+      "bytes": 6726,
+      "path": "ARCHIVE_INDEX.json",
+      "sha256": "f17fb3ad6619c7f06c79b0eee8ab03e211ca81936df370d28a5d1f96040e1ae6"
+    },
+    {
+      "bytes": 704,
+      "path": "PEER_REVIEW.json",
+      "sha256": "456d6a3974d00d50848d40dce5682cfac4971f25326a7539094547cd941c1f01"
+    },
+    {
+      "bytes": 656,
+      "path": "PROPOSAL.json",
+      "sha256": "63bcdf4d62f7c48dfea1aed632203932b9740bacfba002e6a07f07a1c61cedb3"
+    },
+    {
+      "bytes": 2148,
+      "path": "README.md",
+      "sha256": "246222f9aed8e11a89fa0c41063a1d41055edbfc3259bb9789568125ac1504ce"
+    },
+    {
+      "bytes": 3253,
+      "path": "RESULT.json",
+      "sha256": "77b06ff0dcc51bba5e699a4ba2895d65acac683d5a84764f8ebd1fa960267732"
+    },
+    {
+      "bytes": 4853,
+      "path": "RN_ANNOTATION_FACET.patch",
+      "sha256": "e7bec634b0598d595c3996dd1c288d33569f7c1863e8bd847364ba0feeecf968"
+    },
+    {
+      "bytes": 1525,
+      "path": "SYNTAX.json",
+      "sha256": "30add3ea655269a0429315d1b9667aba8d85f63e7e61c48bffc41a6f660cbefc"
+    },
+    {
+      "bytes": 146647,
+      "path": "actual-root-facet-source-controls.tar.gz",
+      "sha256": "51aaa129c23b8df71b70d51f00462c44b99f5b92a0f6d652e5531a2e2b02c1ed"
+    },
+    {
+      "bytes": 1238,
+      "path": "controllers/controller-attempt-1.py.gz",
+      "sha256": "611bc7cdc89f572a64c57e3274766cb1ed3bdb04fcca30e395277fb78be77971"
+    },
+    {
+      "bytes": 1211,
+      "path": "controllers/controller-attempt-2.py.gz",
+      "sha256": "295ae34c94daf07a6b124b5f810ab4e5878e8f3115665819bf31f1c435a2aacf"
+    },
+    {
+      "bytes": 2186,
+      "path": "failure/compiler-locator-attempt-1.json",
+      "sha256": "68240c1189e44e8d1146107f755841335d3a311d625492b684381373207dc16d"
+    },
+    {
+      "bytes": 0,
+      "path": "syntax/debug.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "syntax/debug.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "syntax/release.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "syntax/release.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "SOURCE_ONLY_NATIVE_NOT_RUN"
+}

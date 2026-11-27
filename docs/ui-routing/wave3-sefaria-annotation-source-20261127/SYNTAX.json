@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/proposal/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "mode": "debug",
+      "source_sha256": "8544ad37fc954f8d17b374f0fc0cf6a0ce672f5b7fe60e017c7eb58b32047662",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/proposal/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "mode": "release",
+      "source_sha256": "8544ad37fc954f8d17b374f0fc0cf6a0ce672f5b7fe60e017c7eb58b32047662",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "LINUX_FRONTEND_TARGET27_ONLY_NOT_APPLE_SDK"
+}
