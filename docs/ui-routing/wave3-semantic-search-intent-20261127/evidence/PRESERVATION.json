@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "status": "PRESERVED_AND_BYTE_VERIFIED",
+  "utc": "2026-11-27T07:29:59.019857+00:00",
+  "original_cache": "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/build/feature-intent-service-controls-20261127/swift-build",
+  "original_products": "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/build/feature-intent-service-controls-20261127/swift-build/out/Products/Debug-linux-aarch64",
+  "preserved_products": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/preserved-previous-products",
+  "product_bytes": 49175365,
+  "free_before": 548601856,
+  "free_after": 499027968,
+  "entries": [
+    {
+      "path": "ChavrusaUIRoutingHost.o",
+      "kind": "file",
+      "bytes": 3151040,
+      "sha256": "9b20fba470312df436c0f2659cc07eedf2957354267b852fa91aed8251c24a0d",
+      "mtime_ns": 1795755477520366206
+    },
+    {
+      "path": "ChavrusaUIRoutingHost.swiftmodule/Project/aarch64-unknown-linux-gnu.swiftsourceinfo",
+      "kind": "file",
+      "bytes": 65844,
+      "sha256": "55e5dd7b804066520e1db46184518c72b8c6c9b07c55d3fd771a4b3b87a9e49f",
+      "mtime_ns": 1795755467249306659
+    },
+    {
+      "path": "ChavrusaUIRoutingHost.swiftmodule/aarch64-unknown-linux-gnu.swiftdoc",
+      "kind": "file",
+      "bytes": 26960,
+      "sha256": "7295c264810da688faf101596fafd8b556b1788e920fced7e846b59415a5a0c6",
+      "mtime_ns": 1795755467245306636
+    },
+    {
+      "path": "ChavrusaUIRoutingHost.swiftmodule/aarch64-unknown-linux-gnu.swiftmodule",
+      "kind": "file",
+      "bytes": 220656,
+      "sha256": "1edfcde25f0518ff6f0866c34155d5a88e164d99772584491a5e3155d4369435",
+      "mtime_ns": 1795755467238306595
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests-test-runner",
+      "kind": "file",
+      "bytes": 1328672,
+      "sha256": "4e866de024fd28734d799c696978129caccfe139687d6c4066d77bc28c208868",
+      "mtime_ns": 1795755487248422604
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests.so",
+      "kind": "file",
+      "bytes": 15322120,
+      "sha256": "d0d8f0956def27dce702c5772594032fe9e9bdf151316881a5529f874ced7efc",
+      "mtime_ns": 1795755481278387993
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests.swiftmodule/Project/aarch64-unknown-linux-gnu.swiftsourceinfo",
+      "kind": "file",
+      "bytes": 79840,
+      "sha256": "25db58e4b1237a2f5eaf795e24f5421612a347b78a0319305bc48e57b89ff2dd",
+      "mtime_ns": 1795755476899362605
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests.swiftmodule/aarch64-unknown-linux-gnu.swiftdoc",
+      "kind": "file",
+      "bytes": 4964,
+      "sha256": "687c78de2a44680e07aa3ea82959980c86d3ddc9a60c738224d78c69cc170ac7",
+      "mtime_ns": 1795755476895362582
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests.swiftmodule/aarch64-unknown-linux-gnu.swiftmodule",
+      "kind": "file",
+      "bytes": 289720,
+      "sha256": "610ffa54e5d53f29de665bd8bebcf41f2dbb23106e01abdce916f53357d8220c",
+      "mtime_ns": 1795755476890362553
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests_test_runner.swiftmodule/Project/aarch64-unknown-linux-gnu.swiftsourceinfo",
+      "kind": "file",
+      "bytes": 1504,
+      "sha256": "a1cef5795a07ff16c4f18161f44cfd01555ded5afd62a5d732bc8c64366bbbc9",
+      "mtime_ns": 1795755484624407391
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests_test_runner.swiftmodule/aarch64-unknown-linux-gnu.swiftdoc",
+      "kind": "file",
+      "bytes": 408,
+      "sha256": "318b3f926f6f75b1cd268bb624b92642522214a211baa48c06db93f0d3fc40ab",
+      "mtime_ns": 1795755484622407380
+    },
+    {
+      "path": "ChavrusaUIRoutingHostTests_test_runner.swiftmodule/aarch64-unknown-linux-gnu.swiftmodule",
+      "kind": "file",
+      "bytes": 24112,
+      "sha256": "251f1f16a898c394dde937a7d5549a0cba668227719914a2af59fbeee8530210",
+      "mtime_ns": 1795755484618407357
+    },
+    {
+      "path": "OtzariaActionCore.o",
+      "kind": "file",
+      "bytes": 8361040,
+      "sha256": "6e9609cc86793a9a436e6fa23cd09fd9795bccccde53568d243b78dee7206ba2",
+      "mtime_ns": 1795755477370365336
+    },
+    {
+      "path": "OtzariaActionCore.swiftmodule/Project/aarch64-unknown-linux-gnu.swiftsourceinfo",
+      "kind": "file",
+      "bytes": 139592,
+      "sha256": "f6705ad221bd7ee6b307943fb4bdbc129282b5c01582d06ba28adf15e90a6cb2",
+      "mtime_ns": 1795755442553163482
+    },
+    {
+      "path": "OtzariaActionCore.swiftmodule/aarch64-unknown-linux-gnu.swiftdoc",
+      "kind": "file",
+      "bytes": 33068,
+      "sha256": "c935146c427f6ed2f899580e86ce1fa620eb940d545a6728d078e792908b268a",
+      "mtime_ns": 1795755442550163465
+    },
+    {
+      "path": "OtzariaActionCore.swiftmodule/aarch64-unknown-linux-gnu.swiftmodule",
+      "kind": "file",
+      "bytes": 646048,
+      "sha256": "ec3e0f80c0823fe902059aec6410a1554aa30ec645a130f185592c33fc55d84c",
+      "mtime_ns": 1795755442546163442
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "kind": "file",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "mtime_ns": 1795755426883072633
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "kind": "file",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "mtime_ns": 1795755426895072703
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "kind": "file",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "mtime_ns": 1795755426892072685
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "kind": "file",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "mtime_ns": 1795755426890072674
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "kind": "file",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "mtime_ns": 1795755426888072662
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "kind": "file",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "mtime_ns": 1795755426887072656
+    },
+    {
+      "path": "OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "kind": "file",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "mtime_ns": 1795755426887792661
+    },
+    {
+      "path": "OtzariaUIRouting.o",
+      "kind": "file",
+      "bytes": 3423216,
+      "sha256": "8196d89485bf60582db930f52ce23706bc685c29939a31a8a05538a04647f190",
+      "mtime_ns": 1795755477461365864
+    },
+    {
+      "path": "OtzariaUIRouting.swiftmodule/Project/aarch64-unknown-linux-gnu.swiftsourceinfo",
+      "kind": "file",
+      "bytes": 69468,
+      "sha256": "02b3587f9149ce3e0c8495c37770e0a596e8958a96dc5b67926900d18d413f03",
+      "mtime_ns": 1795755452086218751
+    },
+    {
+      "path": "OtzariaUIRouting.swiftmodule/aarch64-unknown-linux-gnu.swiftdoc",
+      "kind": "file",
+      "bytes": 22240,
+      "sha256": "a0fc7df9d9783f6cbf8020a2ea7a94e1a850667b30a8dfd74744ed37d8d58895",
+      "mtime_ns": 1795755452079218710
+    },
+    {
+      "path": "OtzariaUIRouting.swiftmodule/aarch64-unknown-linux-gnu.swiftmodule",
+      "kind": "file",
+      "bytes": 304124,
+      "sha256": "856601b9c33a6852dcb5d997fe80610a76cc7701ba9a758b01fac77274785795",
+      "mtime_ns": 1795755452039218478
+    },
+    {
+      "path": "OtzariaUIRouting_OtzariaUIRouting.bundle/Info.plist",
+      "kind": "file",
+      "bytes": 529,
+      "sha256": "6ad920171aa7411d45de587b80c9c349ebb4fa8f5d88113546a6113c3bac82d1",
+      "mtime_ns": 1795755426878072604
+    },
+    {
+      "path": "OtzariaUIRouting_OtzariaUIRouting.bundle/catalog-status.json",
+      "kind": "file",
+      "bytes": 79,
+      "sha256": "3b33f3498fb32e5af369bf040b6478f225d2e872c689fbebf9a9095598e507b2",
+      "mtime_ns": 1795755426862072511
+    },
+    {
+      "path": "libChavrusaUIRoutingHost.a",
+      "kind": "file",
+      "bytes": 15469158,
+      "sha256": "6eabebf4b8b68b2a91fe38511a4bf3f89a43f6c1a305e697875476834f8bedb0",
+      "mtime_ns": 1795755477601366675
+    }
+  ],
+  "controls": [
+    {
+      "name": "workspace-state.json",
+      "bytes": 1178,
+      "sha256": "828b6ec78a5ecac310f9eb018be0daaa6497718cec2eeb11c4998986a2997a5c"
+    },
+    {
+      "name": "manifest.pif",
+      "bytes": 229940,
+      "sha256": "9f6d8eaeb48179e730daad597a71a3fab57c527304288d959aecaead6089576c"
+    },
+    {
+      "name": ".buildSystem_debug",
+      "bytes": 10,
+      "sha256": "cd1ba1c9604b794d71cd3cb482cc02e4c16bdea56c361333fabe801a74db2b90"
+    },
+    {
+      "name": "original35-RESULT.json",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/RESULT.json",
+      "bytes": 1288,
+      "sha256": "13d750b3ab19037e0c54239a923944407743efef04be48f5723e9d2b7aba596f"
+    },
+    {
+      "name": "original35-stdout.log",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/stdout.log",
+      "bytes": 9689,
+      "sha256": "7459eb0c89565f0a3ba177408e327356d26220cc19204b6afac891488fb714f9"
+    },
+    {
+      "name": "original35-stderr.log",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/docs/hq-ui-inventory/wave3-feature-intents-20261127/evidence/linux/stderr.log",
+      "bytes": 1012,
+      "sha256": "a0aea71451e8c8ee5ac788bf0b21bd6ed68c236e729e7c54a86c850c19791d64"
+    }
+  ],
+  "claim": "These are the currently retained products. Their bytes are now preserved before cache reuse; the original35 immutable logs remain unchanged. No historical test result is retagged to this new source."
+}

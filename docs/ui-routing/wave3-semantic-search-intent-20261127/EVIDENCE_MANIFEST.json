@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "files": {
+    "evidence/linux/START.json": {
+      "bytes": 1301,
+      "sha256": "54d89b12fbbbe3f25b7bf6d8a0e3a782be03d89a91b7d2a0ec9e8b4c71dc5c05",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/START.json"
+    },
+    "evidence/linux/RESULT.json": {
+      "bytes": 1735,
+      "sha256": "591c5e99798f9c6cf65af034f5db7140b523545968765e371a37796e36904579",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/RESULT.json"
+    },
+    "evidence/linux/SOURCE_INPUTS.json": {
+      "bytes": 35232,
+      "sha256": "41fe235b7ac0f84953c17609092eb709e00138cfc815968f259d5134f067a56d",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/SOURCE_INPUTS.json"
+    },
+    "evidence/linux/DISK_SAMPLES.json": {
+      "bytes": 1953,
+      "sha256": "d4df284139c7ba2f1a9819490b270b8a952920e178fd6d1ef879ad705119dd48",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/DISK_SAMPLES.json"
+    },
+    "evidence/linux/stdout.log": {
+      "bytes": 18659,
+      "sha256": "20a972ca9de53c1ec35831741ba45711149c7f7e723ebe4f7a4c209122f2cca1",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/stdout.log"
+    },
+    "evidence/linux/stderr.log": {
+      "bytes": 924,
+      "sha256": "7b5a63c3d81445f1fa29f37af027dd0df118bae2110ffa8d2f51362f71eda075",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/attempt-1/stderr.log"
+    },
+    "evidence/apple-syntax/RESULT.json": {
+      "bytes": 1588,
+      "sha256": "a10c324ae115bd9452ea668fb506c8cd53a5f25406e0f9ede70473e02a8b2381",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/apple-syntax/RESULT.json"
+    },
+    "evidence/apple-syntax/NativeSearchIntents.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/apple-syntax/NativeSearchIntents.log"
+    },
+    "evidence/apple-syntax/MaktabahNativeRoutingComposition.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/apple-syntax/MaktabahNativeRoutingComposition.log"
+    },
+    "evidence/apple-shortcut-syntax/RESULT.json": {
+      "bytes": 664,
+      "sha256": "040668321bd4cc0fd26a6f2c46eb4f130a913abe71afc4d320c80bbc0036b340",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/apple-shortcut-syntax/RESULT.json"
+    },
+    "evidence/apple-shortcut-syntax/MaktabahNativeIntents.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/apple-shortcut-syntax/MaktabahNativeIntents.log"
+    },
+    "evidence/PRESERVATION.json": {
+      "bytes": 10227,
+      "sha256": "7a92424d52ae713f1552a9bbad04ad98cc419e27c260f9b8741250d0f696d046",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/PRESERVATION.json"
+    },
+    "evidence/run-attempt-1.py": {
+      "bytes": 3870,
+      "sha256": "78ac5e9539903efe0e3746546a15a6c19c1990f6c1f01f09abd3c9db3a5a41bd",
+      "original": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/build/search-intent-service-controls-20261127/run-attempt-1.py"
+    }
+  }
+}

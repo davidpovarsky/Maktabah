@@ -1,0 +1,151 @@
+Test Suite 'Selected tests' started at 2026-11-27 07:31:50.782
+Test Suite 'NativeFeatureIntentServiceTests' started at 2026-11-27 07:31:50.794
+Test Case 'NativeFeatureIntentServiceTests.testBoundsAndCancellationStopBeforeHostMetadataResolution' started at 2026-11-27 07:31:50.794
+Test Case 'NativeFeatureIntentServiceTests.testBoundsAndCancellationStopBeforeHostMetadataResolution' passed (0.003 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testCancelledForegroundPreparationCannotRunNativeNavigation' started at 2026-11-27 07:31:50.797
+Test Case 'NativeFeatureIntentServiceTests.testCancelledForegroundPreparationCannotRunNativeNavigation' passed (0.104 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testCatalogExposesOnlyExistingSettingsAndContentsAnchorsAndHistoryRoot' started at 2026-11-27 07:31:50.901
+Test Case 'NativeFeatureIntentServiceTests.testCatalogExposesOnlyExistingSettingsAndContentsAnchorsAndHistoryRoot' passed (0.001 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testFeatureFilterPrecedesOriginalExactTitleMatchingWithoutChangingGenericQuery' started at 2026-11-27 07:31:50.902
+Test Case 'NativeFeatureIntentServiceTests.testFeatureFilterPrecedesOriginalExactTitleMatchingWithoutChangingGenericQuery' passed (0.001 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testFeatureMetadataStillRequiresFreshOriginalForegroundDiscovery' started at 2026-11-27 07:31:50.903
+Test Case 'NativeFeatureIntentServiceTests.testFeatureMetadataStillRequiresFreshOriginalForegroundDiscovery' passed (0.0 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testHebrewQueryKeepsBackendAndWindowIdentitiesDistinct' started at 2026-11-27 07:31:50.903
+Test Case 'NativeFeatureIntentServiceTests.testHebrewQueryKeepsBackendAndWindowIdentitiesDistinct' passed (0.001 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testNarrowFeatureCannotHideInvalidCompleteOriginalCatalog' started at 2026-11-27 07:31:50.904
+Test Case 'NativeFeatureIntentServiceTests.testNarrowFeatureCannotHideInvalidCompleteOriginalCatalog' passed (0.0 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testOriginalNoncompletionIsNeverConvertedToSuccessfulIntent' started at 2026-11-27 07:31:50.904
+Test Case 'NativeFeatureIntentServiceTests.testOriginalNoncompletionIsNeverConvertedToSuccessfulIntent' passed (0.001 seconds)
+Test Case 'NativeFeatureIntentServiceTests.testWrongFeatureEntityCannotRequestForegroundOrNavigate' started at 2026-11-27 07:31:50.905
+Test Case 'NativeFeatureIntentServiceTests.testWrongFeatureEntityCannotRequestForegroundOrNavigate' passed (0.0 seconds)
+Test Suite 'NativeFeatureIntentServiceTests' passed at 2026-11-27 07:31:50.905
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.111 (0.111) seconds
+Test Suite 'NativeIntentServiceTests' started at 2026-11-27 07:31:50.905
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' started at 2026-11-27 07:31:50.905
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate' started at 2026-11-27 07:31:50.906
+Test Case 'NativeIntentServiceTests.testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testCancelledForegroundWaitCannotNavigate' started at 2026-11-27 07:31:50.906
+Test Case 'NativeIntentServiceTests.testCancelledForegroundWaitCannotNavigate' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testCancelledReaderWindowQueryNeverStartsHostResolution' started at 2026-11-27 07:31:50.907
+Test Case 'NativeIntentServiceTests.testCancelledReaderWindowQueryNeverStartsHostResolution' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene' started at 2026-11-27 07:31:50.907
+Test Case 'NativeIntentServiceTests.testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata' started at 2026-11-27 07:31:50.907
+Test Case 'NativeIntentServiceTests.testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' started at 2026-11-27 07:31:50.907
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows' started at 2026-11-27 07:31:50.908
+Test Case 'NativeIntentServiceTests.testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows' passed (0.009 seconds)
+Test Case 'NativeIntentServiceTests.testExactHebrewFeatureNameDoesNotMatchLongerControlName' started at 2026-11-27 07:31:50.917
+Test Case 'NativeIntentServiceTests.testExactHebrewFeatureNameDoesNotMatchLongerControlName' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority' started at 2026-11-27 07:31:50.917
+Test Case 'NativeIntentServiceTests.testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery' started at 2026-11-27 07:31:50.918
+Test Case 'NativeIntentServiceTests.testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-27 07:31:50.918
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities' started at 2026-11-27 07:31:50.919
+Test Case 'NativeIntentServiceTests.testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities' passed (0.003 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate' started at 2026-11-27 07:31:50.921
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations' started at 2026-11-27 07:31:50.922
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowQueryBoundsAreCheckedBeforeHostResolution' started at 2026-11-27 07:31:50.922
+Test Case 'NativeIntentServiceTests.testReaderWindowQueryBoundsAreCheckedBeforeHostResolution' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution' started at 2026-11-27 07:31:50.922
+Test Case 'NativeIntentServiceTests.testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver' started at 2026-11-27 07:31:50.923
+Test Case 'NativeIntentServiceTests.testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver' passed (0.1 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowsPreserveExistingInitializerFallback' started at 2026-11-27 07:31:51.023
+Test Case 'NativeIntentServiceTests.testReaderWindowsPreserveExistingInitializerFallback' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity' started at 2026-11-27 07:31:51.024
+Test Case 'NativeIntentServiceTests.testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testResolvedMetadataCannotBorrowAnotherBackendOrWindow' started at 2026-11-27 07:31:51.024
+Test Case 'NativeIntentServiceTests.testResolvedMetadataCannotBorrowAnotherBackendOrWindow' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' started at 2026-11-27 07:31:51.025
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' started at 2026-11-27 07:31:51.025
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' started at 2026-11-27 07:31:51.025
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' started at 2026-11-27 07:31:51.026
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testUnknownEntityCannotRequestForegroundPreparation' started at 2026-11-27 07:31:51.026
+Test Case 'NativeIntentServiceTests.testUnknownEntityCannotRequestForegroundPreparation' passed (0.0 seconds)
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-27 07:31:51.026
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.121 (0.121) seconds
+Test Suite 'NativeReaderIntentServiceTests' started at 2026-11-27 07:31:51.026
+Test Case 'NativeReaderIntentServiceTests.testActualCoreMetadataRequestAndAmbiguityRemainSeparateChoices' started at 2026-11-27 07:31:51.026
+Test Case 'NativeReaderIntentServiceTests.testActualCoreMetadataRequestAndAmbiguityRemainSeparateChoices' passed (0.003 seconds)
+Test Case 'NativeReaderIntentServiceTests.testCachedSourceRevalidatesBeforePassingExactSnapshotToOriginalHost' started at 2026-11-27 07:31:51.029
+Test Case 'NativeReaderIntentServiceTests.testCachedSourceRevalidatesBeforePassingExactSnapshotToOriginalHost' passed (0.001 seconds)
+Test Case 'NativeReaderIntentServiceTests.testCancellationBeforeExecutionDoesNotCallCoreOrNativeHost' started at 2026-11-27 07:31:51.031
+Test Case 'NativeReaderIntentServiceTests.testCancellationBeforeExecutionDoesNotCallCoreOrNativeHost' passed (0.0 seconds)
+Test Case 'NativeReaderIntentServiceTests.testChangedCachedSourceOrWrongBookCannotNavigate' started at 2026-11-27 07:31:51.031
+Test Case 'NativeReaderIntentServiceTests.testChangedCachedSourceOrWrongBookCannotNavigate' passed (0.001 seconds)
+Test Case 'NativeReaderIntentServiceTests.testCoreRequestAndGenerationMismatchAreRejected' started at 2026-11-27 07:31:51.032
+Test Case 'NativeReaderIntentServiceTests.testCoreRequestAndGenerationMismatchAreRejected' passed (0.101 seconds)
+Test Case 'NativeReaderIntentServiceTests.testDuplicateStoredIDsRevalidateOnceAndDoNotCreateDuplicateEntities' started at 2026-11-27 07:31:51.133
+Test Case 'NativeReaderIntentServiceTests.testDuplicateStoredIDsRevalidateOnceAndDoNotCreateDuplicateEntities' passed (0.001 seconds)
+Test Case 'NativeReaderIntentServiceTests.testLocationQueryUsesSelectedWorkAndOriginalSection' started at 2026-11-27 07:31:51.133
+Test Case 'NativeReaderIntentServiceTests.testLocationQueryUsesSelectedWorkAndOriginalSection' passed (0.001 seconds)
+Test Case 'NativeReaderIntentServiceTests.testMissingSourceIsEmptyButUnavailableIsNeverAnEmptySuccess' started at 2026-11-27 07:31:51.134
+Test Case 'NativeReaderIntentServiceTests.testMissingSourceIsEmptyButUnavailableIsNeverAnEmptySuccess' passed (0.0 seconds)
+Test Case 'NativeReaderIntentServiceTests.testNoncanonicalAndMalformedEntitiesFailBeforeCore' started at 2026-11-27 07:31:51.134
+Test Case 'NativeReaderIntentServiceTests.testNoncanonicalAndMalformedEntitiesFailBeforeCore' passed (0.0 seconds)
+Test Case 'NativeReaderIntentServiceTests.testStableQualifiedIdentityPreservesZeroRevisionAndEntityKind' started at 2026-11-27 07:31:51.135
+Test Case 'NativeReaderIntentServiceTests.testStableQualifiedIdentityPreservesZeroRevisionAndEntityKind' passed (0.101 seconds)
+Test Suite 'NativeReaderIntentServiceTests' passed at 2026-11-27 07:31:51.235
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.209 (0.209) seconds
+Test Suite 'NativeSearchIntentServiceTests' started at 2026-11-27 07:31:51.236
+Test Case 'NativeSearchIntentServiceTests.testAllThreeBackendsUseTheirOwnSnapshotForSupportedPhrase' started at 2026-11-27 07:31:51.236
+Test Case 'NativeSearchIntentServiceTests.testAllThreeBackendsUseTheirOwnSnapshotForSupportedPhrase' passed (0.002 seconds)
+Test Case 'NativeSearchIntentServiceTests.testBackendABAWhileCoreMetadataAwaitsCannotPublishOldEntity' started at 2026-11-27 07:31:51.238
+Test Case 'NativeSearchIntentServiceTests.testBackendABAWhileCoreMetadataAwaitsCannotPublishOldEntity' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testBoundsAndDuplicateScopesFailBeforeWindowResolution' started at 2026-11-27 07:31:51.238
+Test Case 'NativeSearchIntentServiceTests.testBoundsAndDuplicateScopesFailBeforeWindowResolution' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testByteExactQueryAndQualifiedScopesReachOneOriginalActionRequest' started at 2026-11-27 07:31:51.239
+Test Case 'NativeSearchIntentServiceTests.testByteExactQueryAndQualifiedScopesReachOneOriginalActionRequest' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testCancellationBeforeExecutionNeverCallsMetadataOrNativeHost' started at 2026-11-27 07:31:51.240
+Test Case 'NativeSearchIntentServiceTests.testCancellationBeforeExecutionNeverCallsMetadataOrNativeHost' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testCancellationDuringNativeAwaitRetainsObservedEffect' started at 2026-11-27 07:31:51.240
+Test Case 'NativeSearchIntentServiceTests.testCancellationDuringNativeAwaitRetainsObservedEffect' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testCompletedCoreResultWithoutActualNativeReceiptIsUncertain' started at 2026-11-27 07:31:51.242
+Test Case 'NativeSearchIntentServiceTests.testCompletedCoreResultWithoutActualNativeReceiptIsUncertain' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testCorruptReceiptOrCoreIdentityCannotBeAcknowledged' started at 2026-11-27 07:31:51.243
+Test Case 'NativeSearchIntentServiceTests.testCorruptReceiptOrCoreIdentityCannotBeAcknowledged' passed (0.003 seconds)
+Test Case 'NativeSearchIntentServiceTests.testCrossBackendScopeDoesNotSelectOrSwitchTheLibrary' started at 2026-11-27 07:31:51.245
+Test Case 'NativeSearchIntentServiceTests.testCrossBackendScopeDoesNotSelectOrSwitchTheLibrary' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testDuplicateCatalogCannotBeHiddenBySelectedWindowFilter' started at 2026-11-27 07:31:51.246
+Test Case 'NativeSearchIntentServiceTests.testDuplicateCatalogCannotBeHiddenBySelectedWindowFilter' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testEveryNoncompletionKeepsTheOriginalResultAndNeverAcknowledges' started at 2026-11-27 07:31:51.246
+Test Case 'NativeSearchIntentServiceTests.testEveryNoncompletionKeepsTheOriginalResultAndNeverAcknowledges' passed (0.003 seconds)
+Test Case 'NativeSearchIntentServiceTests.testFreshBackendAndRPCEpochAreCheckedAfterNativeAwait' started at 2026-11-27 07:31:51.249
+Test Case 'NativeSearchIntentServiceTests.testFreshBackendAndRPCEpochAreCheckedAfterNativeAwait' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testMalformedAndNoncanonicalScopeCannotReachTheHost' started at 2026-11-27 07:31:51.250
+Test Case 'NativeSearchIntentServiceTests.testMalformedAndNoncanonicalScopeCannotReachTheHost' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testMissingWindowDoesNotChooseTheOtherAvailableScene' started at 2026-11-27 07:31:51.251
+Test Case 'NativeSearchIntentServiceTests.testMissingWindowDoesNotChooseTheOtherAvailableScene' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testNonOtzariaScopesAndCatalogRevisionsAreNotSilentlyDropped' started at 2026-11-27 07:31:51.251
+Test Case 'NativeSearchIntentServiceTests.testNonOtzariaScopesAndCatalogRevisionsAreNotSilentlyDropped' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testOriginalBackendSortRestrictionsRemainExplicit' started at 2026-11-27 07:31:51.252
+Test Case 'NativeSearchIntentServiceTests.testOriginalBackendSortRestrictionsRemainExplicit' passed (0.001 seconds)
+Test Case 'NativeSearchIntentServiceTests.testOriginalUnsupportedModesAndMatchNeverNavigate' started at 2026-11-27 07:31:51.253
+Test Case 'NativeSearchIntentServiceTests.testOriginalUnsupportedModesAndMatchNeverNavigate' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testPresentHitAndCursorIncludingEmptyCannotBeDiscarded' started at 2026-11-27 07:31:51.253
+Test Case 'NativeSearchIntentServiceTests.testPresentHitAndCursorIncludingEmptyCannotBeDiscarded' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testRepeatedInvocationsUseIndependentRequestIdentity' started at 2026-11-27 07:31:51.254
+Test Case 'NativeSearchIntentServiceTests.testRepeatedInvocationsUseIndependentRequestIdentity' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testScopeEntityMetadataUsesExistingCoreAndPreservesMissingVsUnavailable' started at 2026-11-27 07:31:51.254
+Test Case 'NativeSearchIntentServiceTests.testScopeEntityMetadataUsesExistingCoreAndPreservesMissingVsUnavailable' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testSearchWindowMetadataDoesNotIncludeComponentsOrOtherRoots' started at 2026-11-27 07:31:51.254
+Test Case 'NativeSearchIntentServiceTests.testSearchWindowMetadataDoesNotIncludeComponentsOrOtherRoots' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testUnsupportedScopeMetadataDoesNotAdvertiseAnotherBackend' started at 2026-11-27 07:31:51.255
+Test Case 'NativeSearchIntentServiceTests.testUnsupportedScopeMetadataDoesNotAdvertiseAnotherBackend' passed (0.0 seconds)
+Test Case 'NativeSearchIntentServiceTests.testWindowMetadataBoundsNeverInvokeOriginalHost' started at 2026-11-27 07:31:51.255
+Test Case 'NativeSearchIntentServiceTests.testWindowMetadataBoundsNeverInvokeOriginalHost' passed (0.0 seconds)
+Test Suite 'NativeSearchIntentServiceTests' passed at 2026-11-27 07:31:51.255
+	 Executed 23 tests, with 0 failures (0 unexpected) in 0.019 (0.019) seconds
+Test Suite 'Selected tests' passed at 2026-11-27 07:31:51.255
+	 Executed 68 tests, with 0 failures (0 unexpected) in 0.46 (0.46) seconds

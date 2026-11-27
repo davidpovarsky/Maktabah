@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PACKET_COMPLETE_NATIVE_PENDING",
+  "base": "1a4d64dca46b61ea3d9dbcab5d152dc618f2be39",
+  "upstream": {
+    "url": "https://github.com/bismillah-100/Maktabah.git",
+    "liveMain": "4203de5fd77beb119e5826e039be1a61325f7be0",
+    "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+    "existingCompositionPathPresent": false,
+    "observedOn": "2026-11-27"
+  },
+  "originalRequirements": {
+    "parent": "1220542361135050",
+    "ui03": "1220542361203468",
+    "ui04": "1220542420331748",
+    "ui05": "1220542420330496",
+    "ui06": "1220542467495722",
+    "ui07": "1220542416158970"
+  },
+  "scope": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "ownership": "new downstream system adapter",
+      "purpose": "Project only original search.openResults semantics, explicitly selected original window and its actual Core/native result"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+      "ownership": "new downstream AppIntents metadata adapter",
+      "purpose": "Meaningful foreground ShowSearchResultsIntent and source-owned entity queries"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "ownership": "new downstream source controls",
+      "purpose": "Bounded unsupported fields, explicit original window, current source, cancellation and genuine receipt/result agreement"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "ownership": "existing downstream composition seam; no corresponding path in live upstream",
+      "baseSHA256": "d40fc6112d075009ee1939798699aacbdb6cd88f8b554eb847846cd33daf4752",
+      "allowedHunks": [
+        "Original openSearchResults entry overload/factoring for exact .appIntent origin and window",
+        "Per-process dependency registration immediately after original readerService registration"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "ownership": "existing downstream app-bundle shortcut registration",
+      "baseSHA256": "827f1160986abd9b80def9f7fed84e9737f07330beba4f37fffb4eeae351281b",
+      "allowedHunks": [
+        "One fixed ShowSearchResultsIntent AppShortcut entry; original two entries preserved verbatim"
+      ],
+      "authorization": "Root explicit follow-up; original Apple metadata/Siri acceptance remains NOT_RUN"
+    }
+  ],
+  "originalOwners": [
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "role": "strict UI query fields and unsupported-mode/paging gate",
+      "modified": false
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+      "sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "role": "backend query/scope/sort restrictions",
+      "modified": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+      "sha256": "3ff5c2d87135b4707b28d953331a34c0c686cc36a1f6e7a115299f2ead7db8cd",
+      "role": "existing Core catalog metadata and canonical work identity",
+      "modified": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "role": "original retained query/session/engine and single native submission",
+      "modified": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "role": "original UIKit window, visible results witness and source completion",
+      "modified": false
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "role": "canonical scope resolution, one-use navigation authorization and final completion",
+      "modified": false
+    }
+  ],
+  "explicitlyOpen": [
+    "Original selected-hit and cursor/paging owner contract; reject any supplied value, including empty, until genuinely implemented",
+    "Native iPad/iPhone cold/warm/multiwindow AppIntents/Shortcuts/Siri acceptance",
+    "Apple SDK AppIntents metadata compilation and final app membership"
+  ],
+  "noChanges": [
+    "search engines or data",
+    "Core query/action schema",
+    "registry and Session/Bindings/Host",
+    "upstream pins and libraries",
+    "existing assertions, selectors, ownership signatures and acceptance gates",
+    "SDK/app build or Mac resources"
+  ],
+  "evidencePolicy": "Source controls exercise actual compiled package source with explicitly injected provider/navigation doubles. They do not establish actual UIKit/Siri acceptance.",
+  "verification": {
+    "portableTests": 68,
+    "newSearchTests": 23,
+    "existingTests": 45,
+    "failures": 0,
+    "appleSyntaxFiles": 3,
+    "appleSDKTypecheck": "NOT_RUN",
+    "nativeTests": 0,
+    "sourceInputClosure": "44c09a6f15bde0e12606eb945d926f9f87dab3c261f22071248cf551dd181807"
+  }
+}

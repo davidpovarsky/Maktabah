@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "status": "RUNNING",
+  "started_at": "2026-11-27T07:30:57.655811+00:00",
+  "command": [
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/build/feature-intent-service-controls-20261127/swift-build",
+    "--jobs",
+    "2",
+    "--filter",
+    "Native(Search|Reader|Feature)?IntentServiceTests"
+  ],
+  "cwd": "/mnt/development/projects/worktrees/Maktabah-wave3-search-results-intent-20261127",
+  "scope": "Actual original Core/UIRouting/Host package compilation and selected source-bound XCTest classes. Catalog/native transports are explicitly injected doubles; Apple AppIntents SDK and native UI acceptance NOT_RUN.",
+  "source_inputs_sha256": "41fe235b7ac0f84953c17609092eb709e00138cfc815968f259d5134f067a56d",
+  "cache_preservation_sha256": "7a92424d52ae713f1552a9bbad04ad98cc419e27c260f9b8741250d0f696d046",
+  "free_before": 430936064,
+  "reserve_bytes": 268435456,
+  "termination_threshold_bytes": 301989888,
+  "version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "pid": 3880164,
+  "pgid": 3880164
+}
