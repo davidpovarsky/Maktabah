@@ -328,6 +328,10 @@ def observation_host(previous_host, core, book, mode, catalog_sha):
 
         def environment(self):
             values = super().environment()
+            # These additive cases decode their own 27-target schema. None of
+            # their reused route/source/overview helpers calls fullV32Catalog.
+            # Do not advertise a nonexistent historical ten-target catalog.
+            values.pop("TEST_RUNNER_FULL_V32_CATALOG_FILE", None)
             values.update(TEST_RUNNER_PERF01_READER_CATALOG_FILE=str(self.catalog_dir / "reader-mode-matrix.json"),
                 TEST_RUNNER_PERF01_READER_CATALOG_SHA256=catalog_sha, TEST_RUNNER_PERF01_CELL=str(book) + "-" + mode)
             return values
@@ -442,9 +446,26 @@ class BudgetedOriginalRunner:
     """
     def __init__(self, core, guard, trace):
         self.core, self.guard, self.trace = core, guard, trace
+        self.owned_process_groups = []
 
     def __getattr__(self, name):
         return getattr(self.core, name)
+
+    def finish_process(self, process, phase, path, interruption):
+        # Retain liveness in memory before writing: an ENOSPC evidence failure
+        # must not let the outer owner shut down a still-active Simulator.
+        row = {"phase": phase, "owned_pid": process.pid, "verified": False}
+        self.owned_process_groups.append(row)
+        try:
+            row["original_cleanup"] = interruption["stop_owned_process_group"](process)
+            row["verified"] = (row["original_cleanup"].get("group_state") == "GONE_CHECKED"
+                and row["original_cleanup"].get("owned_pgid") == process.pid)
+        except BaseException as error:
+            row["error_type"] = type(error).__name__
+            raise
+        finally:
+            self.core.write(path, row)
+        require(row["verified"], "Owned native/exporter process group cleanup remains unverified")
 
     def command(self, args, timeout=90, check=True):
         # The unchanged original verifier and attachment exporter also run
@@ -473,9 +494,10 @@ class BudgetedOriginalRunner:
             return result
         except BaseException as error:
             self.guard.failure = type(error).__name__
-            cleanup = interruption["stop_owned_process_group"](process)
-            self.core.write(self.core.OUT / ("command-process-cleanup-" + uuid.uuid4().hex + ".json"), cleanup)
             raise
+        finally:
+            self.finish_process(process, "original-command", self.core.OUT /
+                ("command-process-cleanup-" + uuid.uuid4().hex + ".json"), interruption)
 
     def bounded(self, args, log, timeout, environment=None):
         require(args and args[0] == "xcodebuild" and "test-without-building" in args, "Only the original actual native invocation is budget guarded")
@@ -498,13 +520,95 @@ class BudgetedOriginalRunner:
                 return process.returncode
             except BaseException as error:
                 self.guard.failure = type(error).__name__
-                cleanup = interruption["stop_owned_process_group"](process)
-                self.core.write(Path(log).with_suffix(".process-cleanup.json"), cleanup)
                 raise
+            finally:
+                self.finish_process(process, "original-XCTest", Path(log).with_suffix(".process-cleanup.json"), interruption)
+
+
+def stop_owned_runtime(state, *, host, trace, delivery, proxy, start_attempts):
+    """Stop only the actual owned producers; acceptance and exit are separate.
+
+    Each record starts unverified, so an interrupted/failed stop cannot silently
+    turn into permission to terminate the app. Original trace-group receipts
+    and actual Thread/Popen state remain the liveness authorities.
+    """
+    state.update(status="OWNED_RUNTIME_CLEANUP_IN_PROGRESS", verified=False, producers={}, failures=[])
+    for name, value in (("observer", host), ("trace", trace), ("url_delivery", delivery)):
+        row = {"verified": False}
+        state["producers"][name] = row
+        if value is None:
+            row.update(status="NOT_CREATED", verified=True)
+            continue
+        try:
+            if name == "observer":
+                ident, alive = value.ident, value.is_alive()
+                row.update(thread_ident=ident, alive_before=alive)
+                if ident is None:
+                    # Thread.start can fail/interruption can arrive while a
+                    # start is pending. Only a start never attempted proves
+                    # no thread; joining an unstarted Thread itself raises.
+                    value.stop_event.set()
+                    row.update(status="START_ATTEMPT_WITHOUT_IDENT_UNVERIFIED" if start_attempts[name]
+                               else "THREAD_NEVER_STARTED",
+                               verified=not start_attempts[name] and not alive)
+                else:
+                    try:
+                        value.stop()
+                    finally:
+                        row.update(alive_after=value.is_alive())
+                        row["verified"] = row["alive_after"] is False
+                        row["status"] = "THREAD_EXIT_OBSERVED" if row["verified"] else "THREAD_LIVE_OR_UNKNOWN"
+                    if value.error is not None:
+                        state["failures"].append({"phase": name, "errorType": "OriginalObserverError"})
+            else:
+                process = value.process
+                row.update(owned_pid=None if process is None else process.pid)
+                if process is None and not start_attempts[name]:
+                    row.update(status="PROCESS_NEVER_STARTED", verified=True)
+                    continue
+                try:
+                    closed = value.stop()
+                    if name == "trace":
+                        row["actual_continuous_trace"] = closed
+                        if not isinstance(closed, dict) or closed.get("status") != "ACTUAL_TRACE_RETAINED_COVERAGE_AND_SCHEMA_REVIEW_REQUIRED":
+                            state["failures"].append({"phase": name, "errorType": "OriginalTraceNotQualified"})
+                finally:
+                    if name == "trace":
+                        original = value.record.get("owned_process_group_cleanup", {})
+                        row["original_owned_group_cleanup"] = original
+                        row["verified"] = (process is not None and original.get("owned_pgid") == process.pid
+                            and original.get("group_state") == "GONE_CHECKED")
+                        row["status"] = "ORIGINAL_GROUP_EXIT_VERIFIED" if row["verified"] else "RECORDER_GROUP_LIVE_OR_UNKNOWN"
+                    else:
+                        code = None if process is None else process.poll()
+                        row.update(returncode=code, verified=type(code) is int,
+                            status="ORIGINAL_TRANSPORT_EXIT_OBSERVED" if type(code) is int else "TRANSPORT_LIVE_OR_UNKNOWN",
+                            scope="Actual original URL transport Popen exit; no claim about off-process Simulator agents")
+        except BaseException as error:
+            row["stop_error_type"] = type(error).__name__
+            state["failures"].append({"phase": name, "errorType": type(error).__name__})
+        if row["verified"] is not True:
+            state["failures"].append({"phase": name, "errorType": "OwnedProducerExitUnverified"})
+    groups = [] if proxy is None else proxy.owned_process_groups
+    state["owned_native_and_exporter_groups"] = groups
+    groups_verified = all(r.get("verified") is True and r.get("original_cleanup", {}).get("group_state") == "GONE_CHECKED"
+                          and r["original_cleanup"].get("owned_pgid") == r.get("owned_pid") for r in groups)
+    if not groups_verified:
+        state["failures"].append({"phase": "native-exporter", "errorType": "OwnedProcessGroupExitUnverified"})
+    state["verified"] = groups_verified and all(v.get("verified") is True for v in state["producers"].values())
+    state["status"] = "OWNED_RUNTIME_EXIT_VERIFIED" if state["verified"] else "OWNED_RUNTIME_EXIT_UNVERIFIED"
+    return state
+
+
+def retain_only_after_runtime_cleanup(owner, udid, states):
+    if any(state.get("verified") is not True for state in states):
+        return {"status": "NOT_SHUT_DOWN_HOST_CLEANUP_UNVERIFIED", "udid": udid}, False
+    return owner.retain_simulator(udid), True
 
 
 def run_cell(*, base_core, study, settings, owner, udid, test_run, build, source, installation,
-             catalog_dir, catalog, inventory, output, book, mode, case, budget):
+             catalog_dir, catalog, inventory, output, book, mode, case, budget, runtime_state):
+    runtime_state.update(schema=1, case=case, verified=False, status="CELL_RUNTIME_NOT_YET_FINALIZED")
     core = support("reader-full-v40-ui-observation.py").load_core()
     core.OUT = output; output.mkdir()
     core.write(output / "source-before.json", source)
@@ -518,7 +622,8 @@ def run_cell(*, base_core, study, settings, owner, udid, test_run, build, source
         "source_before": source, "build_before": build, "simulatorUDID": udid,
         "missing_or_unqualified_metrics": MISSING, "full_performance_acceptance": False,
         "native_case_directory": str(output / "native")}
-    host = delivery = trace = None
+    host = delivery = trace = proxy = None
+    start_attempts = {"observer": False, "trace": False, "url_delivery": False}
     error, cleanup = None, []
     try:
         guard.check()
@@ -529,12 +634,16 @@ def run_cell(*, base_core, study, settings, owner, udid, test_run, build, source
         environment.update(TEST_RUNNER_FAITHFUL_PRODUCTION_WORKSPACE_FILE=str(container / "Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json"),
             TEST_RUNNER_RUNTIME27_RECORD_CONFIGURATION="1", TEST_RUNNER_READER_OBSERVATION_CORPUS="full-v40")
         delivery = runpy.run_path(str(ROOT / "Scripts/CI/runtime27-url-delivery.py"))["NativeURLDelivery"](udid, container, "full-v32", output)
+        start_attempts["url_delivery"] = True
         environment.update(delivery.start())
         trace = core.AppleTraceCapture(udid, inventory)
+        start_attempts["trace"] = True
         trace.start(); guard.check()
         Host = observation_host(core.ObservationHost, core, book, mode, catalog_sha)
         host = Host(udid, container, catalog_dir, catalog, installation, trace)
-        environment.update(host.environment()); host.start()
+        environment.update(host.environment())
+        start_attempts["observer"] = True
+        host.start()
         proxy = BudgetedOriginalRunner(core, guard, trace)
         result["native_attempt"] = study.run_original_case(proxy, test_run, udid, case, 600,
             output / "native", environment, private_values=(host.token, delivery.token))
@@ -549,19 +658,13 @@ def run_cell(*, base_core, study, settings, owner, udid, test_run, build, source
         error = failure
         result.update(status="FAILED_OR_INCOMPLETE", error_type=type(failure).__name__, error=str(failure))
     finally:
-        for name, value in (("observer", host), ("trace", trace), ("url_delivery", delivery)):
-            if value is None:
-                continue
-            try:
-                closed = value.stop()
-                if name == "observer":
-                    require(host.error is None and not host.is_alive(), "Original observer did not stop cleanly")
-                elif name == "trace":
-                    result["actual_continuous_trace"] = closed
-                    require(closed.get("status") == "ACTUAL_TRACE_RETAINED_COVERAGE_AND_SCHEMA_REVIEW_REQUIRED"
-                            and closed.get("owned_process_group_cleanup", {}).get("group_state") == "GONE_CHECKED", "Actual trace/owned recorder cleanup incomplete")
-            except Exception as failure:
-                cleanup.append({"phase": name, "errorType": type(failure).__name__})
+        stop_owned_runtime(runtime_state, host=host, trace=trace, delivery=delivery,
+            proxy=proxy, start_attempts=start_attempts)
+        cleanup.extend(runtime_state["failures"])
+        result["owned_runtime_cleanup"] = runtime_state
+        trace_result = runtime_state["producers"].get("trace", {}).get("actual_continuous_trace")
+        if trace_result is not None:
+            result["actual_continuous_trace"] = trace_result
         try:
             guard.check()
             result["source_after"] = source_context(core, True)
@@ -634,6 +737,8 @@ def execute(args, core, source):
         "native116_acceptance": False, "physical_device_acceptance": False, "missing_or_unqualified_metrics": MISSING,
         "comparison_status": "CANDIDATE_ONLY_NO_SECOND_GENUINELY_QUALIFIED_BUILD"}
     failure, post = None, []
+    runtime_states = []
+    report["owned_runtime_cleanup"] = runtime_states
     lifecycle = False
     database = installation = None
     try:
@@ -649,9 +754,12 @@ def execute(args, core, source):
         report["mode_catalog"] = core.witness(catalog_dir / "reader-mode-matrix.json")
         inventory = core.instrument_inventory()
         for book, mode, case in CELLS:
+            runtime_state = {"schema": 1, "case": case, "verified": False}
+            runtime_states.append(runtime_state)
             report["case_results"].append(run_cell(base_core=core, study=study, settings=settings, owner=owner, udid=udid,
                 test_run=test_run, build=build, source=source, installation=installation, catalog_dir=catalog_dir,
-                catalog=catalog, inventory=inventory, output=output / (str(book) + "-" + mode), book=book, mode=mode, case=case, budget=budget))
+                catalog=catalog, inventory=inventory, output=output / (str(book) + "-" + mode), book=book, mode=mode,
+                case=case, budget=budget, runtime_state=runtime_state))
             core.write(output / "PROGRESS.json", report)
         require(len(report["case_results"]) == 9, "Every separate exact registered cell must complete")
         report.update(status=STATUS, actual_opens=108, actual_cold_warm_pairs=54,
@@ -685,7 +793,9 @@ def execute(args, core, source):
             post.append({"phase": "source-build", "errorType": type(error).__name__})
         if lifecycle:
             try:
-                report["owned_cleanup"] = owner.retain_simulator(udid)
+                report["owned_cleanup"], cleanup_verified = retain_only_after_runtime_cleanup(owner, udid, runtime_states)
+                if not cleanup_verified:
+                    post.append({"phase": "retained-simulator", "errorType": "SimulatorRetentionDeferredUntilOwnedRuntimeExit"})
             except Exception as error:
                 post.append({"phase": "retained-simulator", "errorType": type(error).__name__})
         report["post_verification_failures"] = post
