@@ -1,0 +1,23 @@
+{
+  "sealedAtUTC": "2026-11-27T08:16:58.404840+00:00",
+  "sourceCommit": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+  "testsRun": 0,
+  "sourceMutations": 0,
+  "files": [
+    {
+      "path": "ASANA_CRITERIA.json",
+      "size": 3267,
+      "sha256": "4e98277562718278288177945e9ad1d7ea8e05e0d7dddac6d8560ac8c53511cf"
+    },
+    {
+      "path": "AUDIT.json",
+      "size": 8417,
+      "sha256": "25d3ec0800300bab1c8918c7c440277b6fa569364739f83f2bda0dd6c086d5de"
+    },
+    {
+      "path": "NEXT_NATIVE_PROOF.md",
+      "size": 4572,
+      "sha256": "d41c08eacfb1e9b32a3b80ba6d1f6dbfcb6bddfd89babdd5a7ccafee7642dde4"
+    }
+  ]
+}
