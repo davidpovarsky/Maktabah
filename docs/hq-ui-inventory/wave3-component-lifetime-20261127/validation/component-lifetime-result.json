@@ -1,0 +1,27 @@
+{
+  "base": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build",
+    "--jobs",
+    "1",
+    "--filter",
+    "NativeComponentRevealOwnerTests|NativeComponentSourceObservationTests|NativeIntentServiceTests"
+  ],
+  "returncode": -15,
+  "elapsed_seconds": 7.053,
+  "cancelled_for_capacity": true,
+  "available_bytes_before": 90517504,
+  "minimum_sampled_available_bytes": 90517504,
+  "available_bytes_after": 90464256,
+  "log_sha256": "c8f8384f4851336ddaaa421c1c26e256531fa82f451f6ed3bec2038ee3c03edb",
+  "source_snapshot_sha256": "f0265322d54b2c7bfc61d193f9df2889ba79ff645170828f61540f2681027e59"
+}

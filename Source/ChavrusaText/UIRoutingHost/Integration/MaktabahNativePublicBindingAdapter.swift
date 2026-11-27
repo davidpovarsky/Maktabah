@@ -106,7 +106,11 @@ struct MaktabahNativePublicPresentation {
                 && component.rawValue == "native.search.query"
             let settings = destination == MaktabahNativeSettingsComponents.destination && presentation == .sheet
                 && MaktabahNativeSettingsComponents.descriptors.contains { $0.anchor == component }
-            guard !hasContent, search || settings else {
+            let library = destination == MaktabahNativeLibraryComponents.destination && presentation == .currentTab
+                && MaktabahNativeLibraryComponents.descriptors.contains { $0.anchor == component }
+            let tableOfContents = destination == MaktabahNativeTOCComponents.destination && presentation == .currentTab
+                && MaktabahNativeTOCComponents.descriptors.contains { $0.anchor == component }
+            guard !hasContent, search || settings || library || tableOfContents else {
                 throw UIRouteError(.notSupported, "public_component_not_installed")
             }
         }

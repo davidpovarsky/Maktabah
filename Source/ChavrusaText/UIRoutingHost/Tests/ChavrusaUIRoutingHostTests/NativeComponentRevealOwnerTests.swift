@@ -177,4 +177,17 @@ import OtzariaUIRouting
         XCTAssertFalse(owner.isAvailable(anchor))
         XCTAssertNil(owner.actualFocus(in: scene))
     }
+    func testLocalOverlayABARevokesSourceRetainedBeforeBegin() async throws {
+        let source = Source(), owner = owner(source), id = UUID()
+        try owner.retainSource(requestID: id, anchor: anchor)
+        // Original State setters retire synchronously on both transitions.
+        // This does not assume a later SwiftUI onChange callback is delivered.
+        owner.retirePresentation()
+        owner.retirePresentation()
+        XCTAssertThrowsError(try owner.validateSource(requestID: id, anchor: anchor))
+        XCTAssertThrowsError(try owner.begin(requestID: id, anchor: anchor, validate: {}))
+        XCTAssertEqual(source.captures, 1)
+        XCTAssertEqual(owner.renderRevision, 0)
+    }
+
 }

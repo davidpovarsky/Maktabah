@@ -1,0 +1,28 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/usr/local/bin/swiftc",
+    "-typecheck",
+    "-swift-version",
+    "6",
+    "-module-name",
+    "ChavrusaUIRoutingHost",
+    "-I",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build/aarch64-unknown-linux-gnu/debug/Modules",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build/aarch64-unknown-linux-gnu/debug/ModuleCache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift"
+  ],
+  "returncode": 1,
+  "elapsed_seconds": 16.082,
+  "output": "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift:3:8: error: no such module 'OtzariaUIRouting'\n 1 | import Observation\n 2 | import Synchronization\n 3 | import OtzariaUIRouting\n   |        `- error: no such module 'OtzariaUIRouting'\n 4 | \n 5 | /// A one-shot cancellation witness over ORIGINAL observable source reads.\n",
+  "scope": "actual portable owner/latch typecheck using existing unchanged dependency modules; NOT full XCTest run or Apple SDK",
+  "sources": {
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "439bbc4855bd33bfab5ada49537ce7fb9ef3ecee6ab66c383faff3d1cd760184"
+  }
+}

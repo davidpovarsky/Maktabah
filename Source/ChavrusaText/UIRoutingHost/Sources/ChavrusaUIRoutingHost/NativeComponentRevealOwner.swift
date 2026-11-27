@@ -38,6 +38,7 @@ public final class NativeComponentRevealOwner {
     @ObservationIgnored private var checks: [UIDestinationID: (UUID, @MainActor () -> NativeComponentEvidence?)] = [:]
     @ObservationIgnored private var pending: Pending?
     @ObservationIgnored private var renderedAnchor: UIDestinationID?
+    @ObservationIgnored private var presentationRevision: UInt64 = 0
 
     private struct Pending {
         let requestID: UUID
@@ -72,7 +73,14 @@ public final class NativeComponentRevealOwner {
         guard sources.isEmpty, pending == nil, isAvailable(anchor) else {
             throw UIRouteError(.unavailable, "native_component_source_busy")
         }
-        let validate = try captureSource(anchor)
+        let source = try captureSource(anchor)
+        let revision = presentationRevision
+        let validate: @MainActor () throws -> Void = { [weak self] in
+            guard let self, self.presentationRevision == revision else {
+                throw UIRouteError(.staleState, "native_component_presentation_changed")
+            }
+            try source()
+        }
         try validate()
         guard isAvailable(anchor) else { throw UIRouteError(.staleState, "native_component_source_changed") }
         sources[requestID] = (anchor, validate)
@@ -179,6 +187,9 @@ public final class NativeComponentRevealOwner {
         if !completed { renderedAnchor = nil; renderedSource = nil }
     }
     public func retirePresentation() {
+        // This also revokes a source retained before begin(), including a local
+        // overlay that opens and closes while Core is suspended.
+        presentationRevision &+= 1
         let wasPending = pending != nil
         pending = nil; renderedAnchor = nil; renderedSource = nil
         if wasPending { invalidated() }

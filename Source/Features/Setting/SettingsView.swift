@@ -45,6 +45,7 @@ struct SettingsView: View {
                             #if os(macOS)
                             SettingsActions.showFtsMigrationModal()
                             #else
+                            MaktabahNativeSettingsComponents.originalOverlayWillChange(nativeRoutingSession)
                             showFtsMigrationOverlay = true
                             #endif
                         } label: {
@@ -164,11 +165,15 @@ extension SettingsView {
                     .zIndex(10)
                 FtsMigrationProgressView(
                     onCancel: {
+                        MaktabahNativeSettingsComponents.originalOverlayWillChange(nativeRoutingSession)
                         showFtsMigrationOverlay = false
                     },
                     onUpdate: {
                         try await ftsManager.performMigration()
-                        await MainActor.run { showFtsMigrationOverlay = false }
+                        await MainActor.run {
+                            MaktabahNativeSettingsComponents.originalOverlayWillChange(nativeRoutingSession)
+                            showFtsMigrationOverlay = false
+                        }
                     }
                 )
                 .zIndex(11)
