@@ -94,7 +94,18 @@
     "Scripts/CI/library-v40-focused-native.py",
     "docs/hq-integration/wave2-20261127/v40-source-identity/RESULT.json",
     "docs/hq-integration/wave2-20261127/v40-source-identity/query_v40_chapter_identity.py",
-    "Source/LibraryBackend/LibraryBackendModels.swift"
+    "Source/LibraryBackend/LibraryBackendModels.swift",
+    "Scripts/CI/reader-v40-natural-inspector-catalog.py",
+    "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SELECTED_CANDIDATES.json",
+    "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json",
+    "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift",
+    "Source/Otzaria/Domain/OtzariaModels.swift",
+    "Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift",
+    "Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+    "Source/LibraryBackend/LibraryBackendProtocols.swift",
+    "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
+    "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
+    "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/MEMBERSHIP_MATERIALIZATION.json"
   ],
   "input_sha256": {},
   "torah_inspector_commit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
@@ -147,5 +158,10 @@
     "same_numeric_book_ids_as_v32": "Independently queried on hash-bound v40; no v32 catalog/evidence transfer",
     "prior_installation_acceptance_attributed_only_to_original_source": true,
     "fresh_read_only_query_sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b"
+  },
+  "natural_inspector_catalog": {
+    "candidates_file": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SELECTED_CANDIDATES.json",
+    "core_manifest": "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json",
+    "swift_source": "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift"
   }
 }

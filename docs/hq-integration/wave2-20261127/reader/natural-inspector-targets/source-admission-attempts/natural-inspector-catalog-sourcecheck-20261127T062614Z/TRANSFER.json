@@ -1,0 +1,141 @@
+{
+  "name": "natural-inspector-catalog-sourcecheck-20261127T062614Z",
+  "originalMacDirectory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z",
+  "files": {
+    "INPUT.json": {
+      "bytes": 3632,
+      "sha256": "b67b183f7edde27a2d2d40a50369cc0f656c1eba6a7a42180d433929e9d69dcd"
+    },
+    "RESULT.json": {
+      "bytes": 4518,
+      "sha256": "3d29eace8ddc3ef7c23dee367150d8b3495a25469d92b36956a93a9d4a59f197"
+    },
+    "run-focused-apple-source-check.py": {
+      "bytes": 6565,
+      "sha256": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a"
+    },
+    "launcher.stdout.log": {
+      "bytes": 298,
+      "sha256": "b1dfb42a8080edb59e389f39bbaac34c7e20e11a32f87cc28bc7495b0c555e7b"
+    },
+    "FullV40InspectorNaturalTargets.swift": {
+      "bytes": 13922,
+      "sha256": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392"
+    }
+  },
+  "originalInputWitnesses": [
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/FullV40InspectorNaturalTargets.swift",
+      "bytes": 13922,
+      "sha256": "cb2dd642f79b180428908cec89c467e8f78a0463387e501fe238ae02f124c392"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 349760,
+      "sha256": "7af689805998e75f0db1fde303f6052385765f79f6f532c22489c661a4b386da"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json",
+      "bytes": 2319,
+      "sha256": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/run-focused-apple-source-check.py",
+      "bytes": 6565,
+      "sha256": "4800900228a92e096ca5d8ede036c1519b2df4c3f689a05074ca7bf04b70701a"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Core/Database/SQLiteDatabase.swift",
+      "bytes": 28139,
+      "sha256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Core/Database/ZstdShim.swift",
+      "bytes": 3213,
+      "sha256": "bfc512481130211dc1865f2334204f730512058c90e6f8706869c5965142c999"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Core/OtzariaSQLiteError.swift",
+      "bytes": 1363,
+      "sha256": "4efcd109c42e95d78710ae031cc2ee750186691c596660542f81752807232dad"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Core/OtzariaSQLiteStatement.swift",
+      "bytes": 2487,
+      "sha256": "c7f9baa8540c0940e93cafc3e487b0427ea9740bd738d350c4e1590e0b455307"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Core/String+OtzariaText.swift",
+      "bytes": 5243,
+      "sha256": "f751ac5b16bac42d3a937ab8b40d7fc0b6876b55182934eaae6fbf146b00fda1"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Data/OtzariaSchema.swift",
+      "bytes": 8773,
+      "sha256": "feabd62c4a170d5762bcc6bef09b27d1e736f122aa385dd5c2a148acb24829ad"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Data/OtzariaBookSchemaCompatibility.swift",
+      "bytes": 10284,
+      "sha256": "42c0f319f3483278c201d1f6a63878c0e94fd63bf30a4a1a6bd69a743aec3fc1"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Domain/OtzariaModels.swift",
+      "bytes": 4723,
+      "sha256": "12ad63da275f52eb98b8c89fae7b71c0189756fb482e5d461106a64af44e9c68"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaReadingUnit.swift",
+      "bytes": 3536,
+      "sha256": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift",
+      "bytes": 2146,
+      "sha256": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaLineAnchor.swift",
+      "bytes": 199,
+      "sha256": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaReadingUnitService.swift",
+      "bytes": 31632,
+      "sha256": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaCategoryPathResolver.swift",
+      "bytes": 571,
+      "sha256": "ba469fd3bda902397b4170ffe79d341591354e737bae3b6845ce1e8d099d759f"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaRelationshipClassifier.swift",
+      "bytes": 13357,
+      "sha256": "97197c59f64f96073bae1b99154dbef788464a1485d80e9c68a9494cb0534ae5"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Source/Otzaria/Reading/OtzariaLineSourcesService.swift",
+      "bytes": 24184,
+      "sha256": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/Tests/HQ/sqlite/UnusedZstdBoundary.swift",
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/MaktabahUITestBase.swift",
+      "bytes": 9285,
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    }
+  ],
+  "originalFullProcessInventoryPreservedOnMac": {
+    "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/natural-inspector-catalog-sourcecheck-20261127T062614Z/actual-process-admission.txt",
+    "bytes": 463281,
+    "sha256": "5b3e911f4e23890a1cd1127cfff3cf57b79c206ea10499068bb29b4c8513d540"
+  },
+  "cacheExists": false,
+  "compilerCommandsExecuted": 0,
+  "nativeUIExecuted": 0
+}

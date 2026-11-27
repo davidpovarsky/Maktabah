@@ -1,0 +1,58 @@
+{
+  "Scripts/CI/reader-v40-natural-inspector-catalog.py": {
+    "sha256": "9d9892ffa03b2d3bc79676607a86de0f229942befd5f37ff1d54828c850487e4",
+    "bytes": 35424
+  },
+  "Scripts/CI/reader-full-v40-ui-observation.py": {
+    "sha256": "7dfd0d9df898540be943f9efd9c6419feacb3d83f800152024d4ed50a371828a",
+    "bytes": 24850
+  },
+  "Scripts/CI/reader-full-v40-ui-observation.inputs.json": {
+    "sha256": "890190283da26a584fc1a2f3a91fd7759ef900849537f6f2c16bf3297c7d6e08",
+    "bytes": 7980
+  },
+  "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift": {
+    "sha256": "db77b9fcacc081e1b3f86d9902b3db522047cb461a16c5df0ea8bcd5c390b197",
+    "bytes": 351533
+  },
+  "docs/hq-integration/wave2-20261127/reader/FullV40InspectorNaturalTargets.swift": {
+    "sha256": "d8c92dbfe2c5daac1356da1651b82ba3ec2e8338691f2c40f309edf2f2595bb3",
+    "bytes": 19714
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/README.md": {
+    "sha256": "62498bead288970df4a63fb3556ac6359dd9b6a18d1d515e82106fefc521cc50",
+    "bytes": 9603
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/TORAH_INSPECTOR_CORE_CANONICAL_BLOBS.json": {
+    "sha256": "970998c728f6096054c0005aa93ef5c23a299c341b48052d47588fdb707f47e4",
+    "bytes": 2319
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/source-controls.py": {
+    "sha256": "5739df7e1003bac86465ff04affc6eafa4044cf3a3624e836544563384e2ece4",
+    "bytes": 14541
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SOURCE_CONTROLS_RESULT.json": {
+    "sha256": "11977d526f2698a4b153c5d4f18f53f7bb91810b8b8f78e2dd8c43d757bba750",
+    "bytes": 4231
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/SWIFT_PRESERVATION.json": {
+    "sha256": "e9f295051f292bc0c8612f21fb60c9f86d1fd09291410aab258868cfe6fb2aef",
+    "bytes": 723
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/ORIGINAL_REQUIREMENT_TASKS.json": {
+    "sha256": "c96c9585b1f2f05f83c01b38b49b56d9b462de68b3a557a9e1dd5a28ffc3a3dd",
+    "bytes": 25298
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/PRE_CONTRACT_CORRECTION_SOURCE_CONTROLS_RESULT.json": {
+    "sha256": "fce6dd954499ead1fc8bc5855637b2f6968e52633606a8c3089ca0152c7141ce",
+    "bytes": 2371
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/collect-source-admission-stops.py": {
+    "sha256": "a7036bcde975487d51c7a682829d9997fcdbd022e184db049a43ef0f36e89386",
+    "bytes": 3426
+  },
+  "docs/hq-integration/wave2-20261127/reader/natural-inspector-targets/run-focused-apple-source-check.py": {
+    "sha256": "73dee407c24030a8be085dd5554fe87ab17105443f85993416a1b852f51fff82",
+    "bytes": 6932
+  }
+}

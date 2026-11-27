@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "sourceSHA256": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e",
+  "sourceBytes": 45857,
+  "startByteInclusive": 44465,
+  "endByteExclusive": 45850,
+  "completeEnumSHA256": "03613d7c85f7adca47027a184f677020b0c2cb26825990f369bcfa118a1a0915",
+  "completeEnumBytes": 1385,
+  "compiledFileSHA256": "85b5c2613d4b84a61110ba5abb8d289f7669eeef198cba3e8a2f838bab1c4708",
+  "compiledFileBytes": 1430,
+  "boundaryReason": "The original adapter file is iOS-conditional; this macOS source oracle compiles its byte-exact complete Formatting enum, not the whole adapter lifecycle.",
+  "addedPrefix": "import Foundation\nimport TorahInspectorCore\n\n",
+  "scope": "Unchanged formatting projection only; whole original provider.map and canonical Core.id compiled separately; native complete cache comparison remains required"
+}

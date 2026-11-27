@@ -345,6 +345,7 @@ def main():
     parser.add_argument("phase", choices=["source-check", "execute"])
     parser.add_argument("--owned-simulator")
     parser.add_argument("--installation-result", type=Path)
+    parser.add_argument("--inspector-core-source", type=Path)
     args = parser.parse_args()
     core = load_core()
     if args.phase == "execute":
@@ -355,6 +356,16 @@ def main():
                     and {p.name for p in core.OUT.iterdir()} <= {"source-only-admission.json"},
                     "Never overwrite prior v40 native observation evidence")
         core.REUSED_INSTALLATION = RetainedV40Installation(core, args.owned_simulator, args.installation_result)
+        require(args.inspector_core_source is not None,
+                "The existing pinned TorahInspectorCore source directory is required for complete natural-workload validation")
+        path = ROOT / "Scripts/CI/reader-v40-natural-inspector-catalog.py"
+        spec = importlib.util.spec_from_file_location("full_v40_natural_inspector_catalog", path)
+        require(spec is not None and spec.loader is not None, "Natural Inspector host helper is unavailable")
+        natural = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(natural)
+        # Execute-only: other study/Groups controllers keep the strict original
+        # load_core()/ten-target catalog even while a natural scale is missing.
+        natural.install(core, core_source=args.inspector_core_source)
     sys.argv = [sys.argv[0], args.phase]
     core.main()
     if args.phase == "execute":

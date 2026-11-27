@@ -1,0 +1,11 @@
+{
+  "originalFileSHA256": "30ad15184de4acda706f0a8be292bc8c80976da2fe86a1332f54d6fe60788112",
+  "candidateFileSHA256": "db77b9fcacc081e1b3f86d9902b3db522047cb461a16c5df0ea8bcd5c390b197",
+  "sharedInspectorFunctionBodySHA256": "38606b75cf5b7762a988c551e437ffe14cfc14e3aa837dbb95d06f3ecf0ac9ec",
+  "sharedInspectorFunctionBodyByteIdentical": true,
+  "originalPrefixChangedOnlyV40WrapperCall": true,
+  "appendedHelperSeparatorBytes": 1,
+  "loadCoreByteIdentical": true,
+  "oldExactGateByteIdenticalRootOwnsContractCorrection": true,
+  "scope": "Original v32 helper bodies and twenty Reader workload unaffected; existing v40 Inspector wrapper alone selects a separate appended helper. One newline separates appended source."
+}
