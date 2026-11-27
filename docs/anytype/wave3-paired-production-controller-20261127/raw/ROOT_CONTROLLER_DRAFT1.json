@@ -1,0 +1,15 @@
+{
+  "sourceFiles": [
+    {
+      "path": "Scripts/CI/ordinary-native-two-full-apps.py",
+      "bytes": 39805,
+      "sha256": "f3f25d462ba16d197ec6cd518aee1642447f7ecb40f0e0eead554165eb8286ca"
+    },
+    {
+      "path": "Scripts/CI/ordinary-native-exchange-ui.py",
+      "bytes": 33392,
+      "sha256": "5812f6780cd90fb585d3fabf49659ecc746767f1dafce9086168f75cce3fa6aa"
+    }
+  ],
+  "nativeRuns": 0
+}

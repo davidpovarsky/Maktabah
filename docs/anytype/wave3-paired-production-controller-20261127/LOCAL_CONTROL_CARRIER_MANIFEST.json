@@ -1,0 +1,93 @@
+{
+  "bytes": 17488,
+  "sha256": "c7cccdca7044e4c5f070d26bb11470b7410963bc5792942b9830e1ee87dd5336",
+  "entries": [
+    {
+      "path": "tools/test_two_full_apps_controller.py",
+      "bytes": 20944,
+      "sha256": "5191b91f2746492c6cc5fa1d9a750c2e172360228e9bdcf99f2636abf6bb8a52"
+    },
+    {
+      "path": "build/controls-attempt1/RESULT.json",
+      "bytes": 3914,
+      "sha256": "f8188a3803199689daab93737bfb7247f8869b483a7189e9511ac289b9559a80"
+    },
+    {
+      "path": "build/LOCAL_EXECUTION_CONTEXT.json",
+      "bytes": 412,
+      "sha256": "9263910fae9aaeacf6c88b93a54d5abdea21aadb00cc0a56a2c790ecfec9357a"
+    },
+    {
+      "path": "build/counterfactuals/COUNTERFACTUALS.json",
+      "bytes": 1421,
+      "sha256": "de017ed54f8d7833b76f3cda8e111cd51866559b59563c102aa7de9487a14a7d"
+    },
+    {
+      "path": "build/counterfactuals/cleanup-false-success/CONTROLLED_MUTANT.py",
+      "bytes": 39804,
+      "sha256": "16e030efbbefa944f7611af679fd22d113278f53355521e7f6cfa6f1b59676e3"
+    },
+    {
+      "path": "build/counterfactuals/cleanup-false-success/RESULT.json",
+      "bytes": 8598,
+      "sha256": "5630b6ad57dcc0843610111676f2e3222559bce098d1aa92d0314a5c012f77ec"
+    },
+    {
+      "path": "build/counterfactuals/cleanup-false-success/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/counterfactuals/cleanup-false-success/stdout.log",
+      "bytes": 536,
+      "sha256": "ac6e3536bb748b4dec2e46644e148a7f55ce6eaa3acf0404b810085cd6a60fe4"
+    },
+    {
+      "path": "build/counterfactuals/empty-product-closure/CONTROLLED_MUTANT.py",
+      "bytes": 39843,
+      "sha256": "183c3a72cdc8f87024b0831098114aee26248b700a56a515f9531025fc4d3df7"
+    },
+    {
+      "path": "build/counterfactuals/empty-product-closure/RESULT.json",
+      "bytes": 5996,
+      "sha256": "4d166aab95bbf7447718af015670e62dfa7a4eb89fd59e9396a3c7b9fd46b5b5"
+    },
+    {
+      "path": "build/counterfactuals/empty-product-closure/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/counterfactuals/empty-product-closure/stdout.log",
+      "bytes": 536,
+      "sha256": "a31d5fbb0ba746b9cd50deb53c77fa130f606cfbd864ad4d150585a32aac442c"
+    },
+    {
+      "path": "build/counterfactuals/old-mini-profile-and-budget/CONTROLLED_MUTANT.py",
+      "bytes": 39803,
+      "sha256": "d753caa560dabe693e3abf2d2bbb1366318f043e9fc5b9b5110d812442ba899d"
+    },
+    {
+      "path": "build/counterfactuals/old-mini-profile-and-budget/RESULT.json",
+      "bytes": 4807,
+      "sha256": "27cb7a848c632568e102ae839a882ae9a795c47f2a315ade92422832aa0a79c2"
+    },
+    {
+      "path": "build/counterfactuals/old-mini-profile-and-budget/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "build/counterfactuals/old-mini-profile-and-budget/stdout.log",
+      "bytes": 542,
+      "sha256": "35e2f2a320a8d7204dd3f220def2304c55bb0e18a0d083b6e5e6c4556716f797"
+    }
+  ],
+  "execution": {
+    "scope": "Local Linux source controls with explicit Apple/domain doubles; no native execution",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "controllerSourceSHA256": "f3f25d462ba16d197ec6cd518aee1642447f7ecb40f0e0eead554165eb8286ca",
+    "controlSourceSHA256": "5191b91f2746492c6cc5fa1d9a750c2e172360228e9bdcf99f2636abf6bb8a52"
+  }
+}

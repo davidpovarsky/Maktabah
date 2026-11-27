@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_f38d5933f894",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795772442.264391,
+    "started_at": "2026-11-27T09:40:42.352617+00:00",
+    "finished_at": "2026-11-27T09:40:43.132004+00:00",
+    "duration_s": 0.78,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 240,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 21, in <module>\n  File \"<stdin>\", line 5, in g\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', '-C', '/mnt/development/projects/worktrees/Maktabah-wave3-paired-controller-20261127', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-c', 'user.name=ChatGPT', '-c', 'user.email=chatgpt-agent@users.noreply.github.com', 'diff', '--cached', '--check']' returned non-zero exit status 2."
+  }
+}

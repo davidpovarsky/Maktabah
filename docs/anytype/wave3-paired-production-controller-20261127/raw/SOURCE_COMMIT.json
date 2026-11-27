@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "head": "4a6e7bdc9b9bad42586210ba19fac7ebaa3a47e3",
+  "sourceFiles": {
+    "Scripts/CI/ordinary-native-two-full-apps.py": "f3f25d462ba16d197ec6cd518aee1642447f7ecb40f0e0eead554165eb8286ca",
+    "Scripts/CI/ordinary-native-exchange-ui.py": "5812f6780cd90fb585d3fabf49659ecc746767f1dafce9086168f75cce3fa6aa",
+    "tools/test_two_full_apps_controller.py": "00d9d8f0974e38e22067f454c657ffaec844dd12b9c19dd5dec6a07584ee8772"
+  },
+  "executedControlSourceSHA256": "5191b91f2746492c6cc5fa1d9a750c2e172360228e9bdcf99f2636abf6bb8a52",
+  "committedControlASTIdentical": true,
+  "localCarrierSHA256": "c7cccdca7044e4c5f070d26bb11470b7410963bc5792942b9830e1ee87dd5336",
+  "localSourceControls": {
+    "passed": 35,
+    "failed": 0
+  },
+  "nativeRuns": 0,
+  "clean": true,
+  "utc": "2026-11-27T09:32:18.770378+00:00"
+}

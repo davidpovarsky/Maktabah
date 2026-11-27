@@ -1,0 +1,9 @@
+{
+  "originalExecutedControlSHA256": "5191b91f2746492c6cc5fa1d9a750c2e172360228e9bdcf99f2636abf6bb8a52",
+  "committedControlSHA256": "00d9d8f0974e38e22067f454c657ffaec844dd12b9c19dd5dec6a07584ee8772",
+  "exactDifference": "one extra blank line at EOF removed",
+  "ASTIdentical": true,
+  "applicationControllerUnchanged": true,
+  "originalDonorControllerModeRestored": "100755",
+  "historicalResultsReattributed": false
+}
