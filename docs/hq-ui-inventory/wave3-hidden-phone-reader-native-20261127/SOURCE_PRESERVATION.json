@@ -1,0 +1,23 @@
+{
+  "schema": "otzaria.wave3.hidden-phone-native.source-preservation.v1",
+  "base": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "prefix": {
+    "bytes": 259080,
+    "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad",
+    "exact": true
+  },
+  "oldSelectorOccurrencesPreserved": 67,
+  "addedPhoneSelectors": [
+    "testPhoneSystemReaderTabIntentRestoresAlreadyActiveHiddenReaderFromLibrary",
+    "testPhoneSystemReaderTabIntentRestoresAlreadyActiveHiddenReaderFromBackground",
+    "testPhoneSystemReaderTabIntentRestoresAlreadyActiveHiddenReaderFromHistory",
+    "testPhoneSystemReaderTabIntentRejectsCachedHiddenReaderAfterOriginalGroupDeparture",
+    "testPhoneSystemReaderTabIntentRejectsCachedHiddenReaderAfterOriginalGroupDepartureFromBackground"
+  ],
+  "existingTestFileChanged": false,
+  "newHelperDelivery": "Separate exact append-only suffix and patch; root integrates it with the new synchronized-target test file. Candidate syntax input is reproducibly original prefix + suffix.",
+  "scope": "Byte identity and selector collision inspection only; no runtime assertion evaluated.",
+  "native": "NOT_RUN",
+  "sdkTypecheck": "NOT_RUN",
+  "physical": "NOT_RUN"
+}

@@ -1,0 +1,14 @@
+{
+  "base": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "pbx": {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "bytes": 639844,
+    "sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+    "blocks": {
+      "F30578032FA46222005732C6": "\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSUITests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};",
+      "F30578012FA46222005732C6": "\t\tF30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget \"Maktabah-iOSUITests\" */;\n\t\t\tbuildPhases = (\n\t\t\t\tF30578042FA46222005732C6 /* Sources */,\n\t\t\t\tF30578052FA46222005732C6 /* Frameworks */,\n\t\t\t\tF30578062FA46222005732C6 /* Resources */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\tF30578082FA46222005732C6 /* PBXTargetDependency */,\n\t\t\t);\n\t\t\tfileSystemSynchronizedGroups = (\n\t\t\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */,\n\t\t\t);\n\t\t\tname = \"Maktabah-iOSUITests\";\n\t\t\tproductName = \"Maktabah-iOSUITests\";\n\t\t\tproductReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;\n\t\t\tproductType = \"com.apple.product-type.bundle.ui-testing\";\n\t\t};"
+    }
+  },
+  "membership": "Inherited synchronized test target inclusion; no manual PBX registration. Actual Apple build/discovery NOT_RUN.",
+  "testPathHistory": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points\n"
+}

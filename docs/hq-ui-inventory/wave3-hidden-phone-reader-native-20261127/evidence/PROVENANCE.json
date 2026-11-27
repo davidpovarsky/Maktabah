@@ -1,0 +1,49 @@
+{
+  "base": "7fbe04c6eef8c072d6a9ff9c0e6c78791b3db97b",
+  "sourceTree": "1e36b8942c4f43e551f5b1eb814139fac651e56b",
+  "originalSourceInputs": [
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52788,
+      "sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d",
+      "gitBlob": "cd203b75868d3f3a71c2630488d53ce1ec991876",
+      "edit": "none; read-only original source used by the native selector"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 18354,
+      "sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+      "gitBlob": "aeab9d03c47fdbd2fe7eef5d16f69d5eec96b51d",
+      "edit": "none; read-only original source used by the native selector"
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "bytes": 7677,
+      "sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e",
+      "gitBlob": "737d991d089e6663b71e2150953da7a46a0d7b4c",
+      "edit": "none; read-only original source used by the native selector"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+      "gitBlob": "3dd3c00d5ec6eb844616bfc2da75d60d1ff9806e",
+      "edit": "none; read-only original source used by the native selector"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "gitBlob": "6c161747e134f3a6e7248fc0f817b5adaf7e77b7",
+      "edit": "none; read-only original source used by the native selector"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad",
+      "gitBlob": "a090278d0df02a30777053b5cb5defb9662d4332",
+      "edit": "none; read-only original source used by the native selector"
+    }
+  ],
+  "newTestOwnership": "Downstream additive XCTest selectors; no protected app source, dependency, gate, fixture or PBX edit."
+}
