@@ -18,6 +18,7 @@ final class ZayitSearchViewModel: ObservableObject {
 
     private let repository: ZayitSearchRepository
     private var generation = 0
+    let originalPageLedger = OriginalSearchPageLedger()
     private var searchTask: Task<Void, Never>?
     private var executedRequest: ZayitSearchRequest?
     private var nextOffset = 0
@@ -54,6 +55,7 @@ final class ZayitSearchViewModel: ObservableObject {
 
     func cancelSearch() {
         generation += 1
+        originalPageLedger.invalidate(generation: UInt64(generation))
         searchTask?.cancel()
         searchTask = nil
         executedRequest = nil
@@ -89,6 +91,15 @@ final class ZayitSearchViewModel: ObservableObject {
 
     private func fetch(_ request: ZayitSearchRequest, replacing: Bool) {
         let currentGeneration = generation
+        let configuration = ZayitSearchRequest(
+            query: request.query, near: request.near, limit: request.limit,
+            offset: 0, filters: request.filters
+        )
+        let attempt = originalPageLedger.begin(
+            generation: UInt64(currentGeneration),
+            request: .encode(request, configuration: configuration, offset: request.offset, limit: request.limit),
+            replacing: replacing, consumedBefore: nextOffset, cursorBefore: nextOffset
+        )
         if replacing { isLoading = true } else { isLoadingMore = true }
         errorMessage = nil
         searchTask = Task {
@@ -96,7 +107,10 @@ final class ZayitSearchViewModel: ObservableObject {
                 let page = try await repository.search(query: request.query, near: request.near,
                                                        offset: request.offset, limit: request.limit,
                                                        filters: request.filters)
-                guard currentGeneration == generation, !Task.isCancelled else { return }
+                guard currentGeneration == generation, !Task.isCancelled else {
+                    originalPageLedger.fail(attempt, cancelled: Task.isCancelled)
+                    return
+                }
                 var seen = Set(replacing ? [] : hits.map(\.id))
                 let fresh = page.hits.filter { seen.insert($0.id).inserted }
                 hits = replacing ? fresh : hits + fresh
@@ -104,10 +118,16 @@ final class ZayitSearchViewModel: ObservableObject {
                 nextOffset = request.offset + page.hits.count
                 totalHits = page.totalHits
                 hasMore = !page.isLastPage && !page.hits.isEmpty
+                originalPageLedger.accept(
+                    attempt, rawCount: page.hits.count, mappedCount: page.hits.count,
+                    consumedAfter: nextOffset, cursorAfter: hasMore ? nextOffset : nil,
+                    hasMore: hasMore, rawNextOffset: nextOffset, sourceEvidence: nil
+                )
                 #if DEBUG
                 nativePageObserver?(request, page, hits, nextOffset)
                 #endif
             } catch {
+                originalPageLedger.fail(attempt, cancelled: Task.isCancelled || error is CancellationError)
                 guard currentGeneration == generation, !Task.isCancelled else { return }
                 errorMessage = error.localizedDescription
                 if replacing { hits = []; hasMore = false }

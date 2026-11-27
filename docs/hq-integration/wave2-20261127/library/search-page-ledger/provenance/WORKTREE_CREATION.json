@@ -1,0 +1,104 @@
+{
+  "time": "2026-11-27T10:04:48.680303+00:00",
+  "freeBefore": 980463616,
+  "floor": 687865856,
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+  "branch": "codex/otzaria-wave2-search-page-ledger-20261127",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "--git-dir",
+        "/mnt/development/projects/git-mirrors/Maktabah.git",
+        "worktree",
+        "add",
+        "--no-checkout",
+        "-b",
+        "codex/otzaria-wave2-search-page-ledger-20261127",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "15d283aa0ccbbfe6966f26a2c182810cb39fdafa"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "Preparing worktree (new branch 'codex/otzaria-wave2-search-page-ledger-20261127')\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "sparse-checkout",
+        "set",
+        "--no-cone",
+        "--no-sparse-index",
+        "--stdin"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "checkout",
+        "15d283aa0ccbbfe6966f26a2c182810cb39fdafa"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "Note: switching to '15d283aa0ccbbfe6966f26a2c182810cb39fdafa'.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by switching back to a branch.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -c with the switch command. Example:\n\n  git switch -c <new-branch-name>\n\nOr undo this operation with:\n\n  git switch -\n\nTurn off this advice by setting config variable advice.detachedHead to false\n\nHEAD is now at 15d283aa Record verified Sefaria late-reply and owned capacity packet intake\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "status",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "switch",
+        "codex/otzaria-wave2-search-page-ledger-20261127"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "Switched to branch 'codex/otzaria-wave2-search-page-ledger-20261127'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "gc.auto=0",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa\n",
+      "stderr": ""
+    }
+  ],
+  "head": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "freeAfter": 977760256
+}

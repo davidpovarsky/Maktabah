@@ -1,0 +1,404 @@
+{
+  "archive": {
+    "bytes": 247958,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/docs/hq-integration/wave2-20261127/library/search-page-ledger/actual-linux-inputs-and-logs.tar.gz",
+    "sha256": "40042434d172bdd29cd9c75c75b1a2595f085231bdf7d7b5bc7433dc2a2d4613"
+  },
+  "cacheRetainedNotArchived": {
+    "activeDependency": false,
+    "allocatedBytes": 17764352,
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache"
+  },
+  "createdAt": "2026-11-27T10:22:11.346429+00:00",
+  "files": {
+    "LAUNCH_1.json": {
+      "bytes": 403,
+      "device": 2064,
+      "inode": 1225429,
+      "mtimeNs": 1795774631507864597,
+      "sha256": "b9bf91ceabe748707cb66ca899924a9e7f07818d7968288644528c708292cc94"
+    },
+    "LAUNCH_2.json": {
+      "bytes": 437,
+      "device": 2064,
+      "inode": 1225538,
+      "mtimeNs": 1795774769949801581,
+      "sha256": "1f3e322d2080e34fa435301a9264cc07f38153e850607f472df4cbf6126f7bfd"
+    },
+    "SOURCE_APPLY_1.json": {
+      "bytes": 2732,
+      "device": 2064,
+      "inode": 1222287,
+      "mtimeNs": 1795774631506256628,
+      "sha256": "d1e4865ac91317605b33fa03d9808d4a1734cfb866f27e7c152df7abe66670f1"
+    },
+    "SOURCE_APPLY_2.json": {
+      "bytes": 410,
+      "device": 2064,
+      "inode": 1225425,
+      "mtimeNs": 1795774769947462047,
+      "sha256": "3fa096f6a217ef655550e36bb089b97a2384ad9763615c28b0f2b45da07d49ee"
+    },
+    "attempt-1-launcher.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225428,
+      "mtimeNs": 1795774631506256628,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-1-launcher.stdout": {
+      "bytes": 463,
+      "device": 2064,
+      "inode": 1225427,
+      "mtimeNs": 1795774634755140673,
+      "sha256": "e727dd622ebf48078a00a5932fe627885b593e091c5b8c09b33d74b2d4ad4f5d"
+    },
+    "attempt-1/INPUTS.json": {
+      "bytes": 47243,
+      "device": 2064,
+      "inode": 1225455,
+      "mtimeNs": 1795774632015124746,
+      "sha256": "a9dd689139e0c47a71cd700bd5c9edd3808df9ad801f4fc6121dd12ffbef5d14"
+    },
+    "attempt-1/RESULT.json": {
+      "bytes": 53397,
+      "device": 2064,
+      "inode": 1225465,
+      "mtimeNs": 1795774634754999472,
+      "sha256": "1d16886d2d5bf2620f7806ad3e1c0ef704b11b93f6c85cb35b317f5f94ebbf79"
+    },
+    "attempt-1/component-compile.stderr": {
+      "bytes": 5481,
+      "device": 2064,
+      "inode": 1225464,
+      "mtimeNs": 1795774634745140615,
+      "sha256": "8be53cbdaf97b43f19c3b3017e5c93e6150bd8d9b607fc1a4e53fd8961a6c1fb"
+    },
+    "attempt-1/component-compile.stdout": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225463,
+      "mtimeNs": 1795774632179125699,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-1/inputs/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+      "bytes": 9839,
+      "device": 2064,
+      "inode": 1225437,
+      "mtimeNs": 1795774631570874884,
+      "sha256": "8d3cb179fcc20742751154757ee2e49990243b717873882f808fefee09665aa5"
+    },
+    "attempt-1/inputs/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 13723,
+      "device": 2064,
+      "inode": 1225442,
+      "mtimeNs": 1795774631571216726,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    "attempt-1/inputs/Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5237,
+      "device": 2064,
+      "inode": 1225443,
+      "mtimeNs": 1795774631571411927,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    "attempt-1/inputs/Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 31344,
+      "device": 2064,
+      "inode": 1225446,
+      "mtimeNs": 1795774631571782489,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    "attempt-1/inputs/Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 5942,
+      "device": 2064,
+      "inode": 1225450,
+      "mtimeNs": 1795774631572096131,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    "attempt-1/inputs/controls/OriginalSearchPageLedgerControls.swift": {
+      "bytes": 13128,
+      "device": 2064,
+      "inode": 1225452,
+      "mtimeNs": 1795774631572350972,
+      "sha256": "f2f16ac11ddd9619d9a43c2ee810770c1c2cd6734e150b64ae64f60fc64f8f8f"
+    },
+    "attempt-1/inputs/dependencies/ZayitSearchModels.swift": {
+      "bytes": 5330,
+      "device": 2064,
+      "inode": 1225454,
+      "mtimeNs": 1795774631572600454,
+      "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+    },
+    "attempt-1/swift-version.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225457,
+      "mtimeNs": 1795774632016124752,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-1/swift-version.stdout": {
+      "bytes": 76,
+      "device": 2064,
+      "inode": 1225456,
+      "mtimeNs": 1795774632109125292,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    },
+    "attempt-1/whole-file-syntax.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225462,
+      "mtimeNs": 1795774632124125380,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-1/whole-file-syntax.stdout": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225461,
+      "mtimeNs": 1795774632124125380,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-2-launcher.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225537,
+      "mtimeNs": 1795774769947462047,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-2-launcher.stdout": {
+      "bytes": 453,
+      "device": 2064,
+      "inode": 1225536,
+      "mtimeNs": 1795774772338215542,
+      "sha256": "c5387aa34bac086b5e19b475d813553a53d99cdf0c19f51546301c2cd6602bf5"
+    },
+    "attempt-2/INPUTS.json": {
+      "bytes": 51737,
+      "device": 2064,
+      "inode": 1225563,
+      "mtimeNs": 1795774770399334713,
+      "sha256": "6439e91fca598c113375a0593bc797320cd0e366655f0eaa6673f2ee5d65f197"
+    },
+    "attempt-2/OriginalSearchPageLedgerControls": {
+      "bytes": 408864,
+      "device": 2064,
+      "inode": 1225578,
+      "mtimeNs": 1795774772241939783,
+      "sha256": "47e243aafcd71e4d8b7a1bbf6c439eb56d8fcce1cf242602ae43045f42aec170"
+    },
+    "attempt-2/RESULT.json": {
+      "bytes": 58993,
+      "device": 2064,
+      "inode": 1225568,
+      "mtimeNs": 1795774772338215542,
+      "sha256": "70a84d22eaea75b8ede0bde4a955cef19a8f6fe1a8af0c65820df67a666adbf5"
+    },
+    "attempt-2/component-compile.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225565,
+      "mtimeNs": 1795774770405929112,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-2/component-compile.stdout": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225564,
+      "mtimeNs": 1795774770404929106,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-2/component-run.stderr": {
+      "bytes": 0,
+      "device": 2064,
+      "inode": 1225567,
+      "mtimeNs": 1795774772276939986,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-2/component-run.stdout": {
+      "bytes": 2532,
+      "device": 2064,
+      "inode": 1225566,
+      "mtimeNs": 1795774772296940102,
+      "sha256": "e2b3e1f07a11b5301045db5258cc8d92bea955fd73874a7be9403eaba826f102"
+    },
+    "attempt-2/inputs/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+      "bytes": 9858,
+      "device": 2064,
+      "inode": 1225545,
+      "mtimeNs": 1795774770006409430,
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+    },
+    "attempt-2/inputs/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 13723,
+      "device": 2064,
+      "inode": 1225550,
+      "mtimeNs": 1795774770006820552,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    "attempt-2/inputs/Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5237,
+      "device": 2064,
+      "inode": 1225551,
+      "mtimeNs": 1795774770007015153,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    "attempt-2/inputs/Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 31344,
+      "device": 2064,
+      "inode": 1225554,
+      "mtimeNs": 1795774770008324681,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    "attempt-2/inputs/Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 5942,
+      "device": 2064,
+      "inode": 1225558,
+      "mtimeNs": 1795774770008706923,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    "attempt-2/inputs/controls/OriginalSearchPageLedgerControls.swift": {
+      "bytes": 13128,
+      "device": 2064,
+      "inode": 1225560,
+      "mtimeNs": 1795774770009691729,
+      "sha256": "f2f16ac11ddd9619d9a43c2ee810770c1c2cd6734e150b64ae64f60fc64f8f8f"
+    },
+    "attempt-2/inputs/dependencies/ZayitSearchModels.swift": {
+      "bytes": 5330,
+      "device": 2064,
+      "inode": 1225562,
+      "mtimeNs": 1795774770009900610,
+      "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+    },
+    "source-packet-1/PACKAGE.json": {
+      "bytes": 2213,
+      "device": 2064,
+      "inode": 1225399,
+      "mtimeNs": 1795774631418443558,
+      "sha256": "ebac720ba4f2d868be18532ae03de186ed3a73de62829827f0648f163ac06d18"
+    },
+    "source-packet-1/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+      "bytes": 9839,
+      "device": 2064,
+      "inode": 1225404,
+      "mtimeNs": 1795774631418778240,
+      "sha256": "8d3cb179fcc20742751154757ee2e49990243b717873882f808fefee09665aa5"
+    },
+    "source-packet-1/candidate/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 13723,
+      "device": 2064,
+      "inode": 1225409,
+      "mtimeNs": 1795774631419182922,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    "source-packet-1/candidate/Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5237,
+      "device": 2064,
+      "inode": 1225410,
+      "mtimeNs": 1795774631419337483,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    "source-packet-1/candidate/Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 31344,
+      "device": 2064,
+      "inode": 1225413,
+      "mtimeNs": 1795774631419663125,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    "source-packet-1/candidate/Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 5942,
+      "device": 2064,
+      "inode": 1225417,
+      "mtimeNs": 1795774631419926366,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    "source-packet-1/controls/OriginalSearchPageLedgerControls.swift": {
+      "bytes": 13128,
+      "device": 2064,
+      "inode": 1225419,
+      "mtimeNs": 1795774631420168888,
+      "sha256": "f2f16ac11ddd9619d9a43c2ee810770c1c2cd6734e150b64ae64f60fc64f8f8f"
+    },
+    "source-packet-1/controls/run-oracle-controls.py": {
+      "bytes": 9617,
+      "device": 2064,
+      "inode": 1225420,
+      "mtimeNs": 1795774631420458809,
+      "sha256": "aa5d96c42f0b48c86d34804b156a16287908682488fd3580254428de796376a5"
+    },
+    "source-packet-1/dependencies/ZayitSearchModels.swift": {
+      "bytes": 5330,
+      "device": 2064,
+      "inode": 1225422,
+      "mtimeNs": 1795774631420690411,
+      "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+    },
+    "source-packet-2/PACKAGE.json": {
+      "bytes": 2376,
+      "device": 2064,
+      "inode": 1225511,
+      "mtimeNs": 1795774769940172925,
+      "sha256": "85750d3e9b2143cf065edb179eb3af272937772b6dc55943ce05cb3143e032de"
+    },
+    "source-packet-2/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift": {
+      "bytes": 9858,
+      "device": 2064,
+      "inode": 1225516,
+      "mtimeNs": 1795774769940541607,
+      "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+    },
+    "source-packet-2/candidate/Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "bytes": 13723,
+      "device": 2064,
+      "inode": 1225521,
+      "mtimeNs": 1795774769940866329,
+      "sha256": "de5d17979c59d18bf61f899ac6feaf450383f48f5cae5dbdef5ea2d1873d35c8"
+    },
+    "source-packet-2/candidate/Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "bytes": 5237,
+      "device": 2064,
+      "inode": 1225522,
+      "mtimeNs": 1795774769941012010,
+      "sha256": "5a4814d73b7620e566a24d85d1c72634b68470290fdbdfd58f01e67476083bcd"
+    },
+    "source-packet-2/candidate/Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "bytes": 31344,
+      "device": 2064,
+      "inode": 1225525,
+      "mtimeNs": 1795774769941263971,
+      "sha256": "f3aaf0c70bc229393a192d565dc4feff0986bd446012efd8d3cac6d8fbf2974e"
+    },
+    "source-packet-2/candidate/Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "bytes": 5942,
+      "device": 2064,
+      "inode": 1225529,
+      "mtimeNs": 1795774769941486372,
+      "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+    },
+    "source-packet-2/controls/OriginalSearchPageLedgerControls.swift": {
+      "bytes": 13128,
+      "device": 2064,
+      "inode": 1225531,
+      "mtimeNs": 1795774769941747694,
+      "sha256": "f2f16ac11ddd9619d9a43c2ee810770c1c2cd6734e150b64ae64f60fc64f8f8f"
+    },
+    "source-packet-2/controls/run-oracle-corrected-controls.py": {
+      "bytes": 10677,
+      "device": 2064,
+      "inode": 1225532,
+      "mtimeNs": 1795774769941900775,
+      "sha256": "d9598e7d9c83a58bde1b44f5e992ea075755f50662bfa19204bd0ef9262b0cf1"
+    },
+    "source-packet-2/dependencies/ZayitSearchModels.swift": {
+      "bytes": 5330,
+      "device": 2064,
+      "inode": 1225534,
+      "mtimeNs": 1795774769942048416,
+      "sha256": "0562a5c95d409b1dfda55e7929f50fdb9ebf5a589791c1b54b0dba929bb5bd83"
+    }
+  },
+  "freeAfterArchive": 728813568,
+  "root": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127",
+  "schema": 1,
+  "scope": "ACTUAL_LINUX_SOURCE_COMPONENT_AND_SYNTAX_ONLY_NOT_UI"
+}

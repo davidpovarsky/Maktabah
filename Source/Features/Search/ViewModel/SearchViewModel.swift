@@ -41,6 +41,7 @@ final class SearchViewModel: ViewModelBase {
     var backendPaginationErrorMessage: String?
     var hasMoreBackendResults: Bool { paginationState.hasMore }
     var backendSearchGeneration: UInt64 = 0
+    let originalPageLedger = OriginalSearchPageLedger()
     let loadMoreBackendWork = Mutex<Task<Void, Never>?>(nil)
     let backendPageSize = 100
 
