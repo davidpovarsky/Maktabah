@@ -1,0 +1,32 @@
+{
+  "status": "EXACT_V40_READ_ONLY_HASH_ADMITTED",
+  "database_path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/v40-index-fixture/seforim.db",
+  "database_sha256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+  "stat_before": {
+    "device": 2064,
+    "inode": 6323524,
+    "bytes": 4355063808,
+    "mtime_ns": 1795652330365173510,
+    "ctime_ns": 1795652637138021936,
+    "mode": 33060
+  },
+  "stat_after": {
+    "device": 2064,
+    "inode": 6323524,
+    "bytes": 4355063808,
+    "mtime_ns": 1795652330365173510,
+    "ctime_ns": 1795652637138021936,
+    "mode": 33060
+  },
+  "started_at": "2026-11-27T00:28:01.781862+00:00",
+  "finished_at": "2026-11-27T00:29:54.015493+00:00",
+  "count_receipt_commit": "b33c7eb11d7c2a6f9aa8891fc2a3843d2acdc830",
+  "count_receipt_sha256": "e7b68681b47f881f13bd33b3af8ba457c591b2b5b2c18cd418ba073837b80f3b",
+  "counts": {
+    "book": 8259,
+    "line": 7925185,
+    "link": 7001824
+  },
+  "counts_scope": "Reused actual prior count receipt for the same complete SHA256; not recounted in this run",
+  "ui_acceptance": false
+}
