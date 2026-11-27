@@ -1,0 +1,7 @@
+{
+  "baselineCommit": "780ede48ca90c65bcda1d8349b059dd2dd095ac3",
+  "sourcePath": "Source/Features/Search/iOS/SearchResultsListView.swift",
+  "baselineSHA256": "f2e04982fed6c3f6fa83fa57255c693ae7b96ad1a1c11f46b9053e4af01f0ec7",
+  "candidateSHA256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+  "scope": "Original SwiftUI preview task source publication fence; native execution pending"
+}
