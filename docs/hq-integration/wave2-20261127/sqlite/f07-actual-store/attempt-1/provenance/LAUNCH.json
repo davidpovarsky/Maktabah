@@ -1,0 +1,13 @@
+{
+  "pid": 48250,
+  "startedUTC": "2026-11-27T00:24:33.638056+00:00",
+  "command": [
+    "/opt/homebrew/bin/python3.12",
+    "/Users/m1/builds/otzaria-wave2-f07-20261127/source/tools/hq-f07-annotation-cycles.py",
+    "--artifacts-dir",
+    "/Users/m1/builds/otzaria-wave2-f07-20261127/attempt-1"
+  ],
+  "source": "/Users/m1/builds/otzaria-wave2-f07-20261127/source",
+  "archiveSHA256": "6fd9df14e71370fe1c085ce75007f4fa8463458cfa2ee89fbdc21e66d3955258",
+  "freeBytes": 4007677952
+}

@@ -1,0 +1,76 @@
+{
+  "origin": "/Users/m1/builds/otzaria-wave2-f07-20261127/attempt-1",
+  "copiedUTC": "2026-11-27T00:26:58.403132+00:00",
+  "files": [
+    {
+      "original": "RESULT.json",
+      "stored": "RESULT.json",
+      "originalBytes": 51997,
+      "originalSHA256": "79e2c2abd6a498fdee7edbd5659175a9c6547a6d4cadcbaa88b199772924ac37",
+      "storedSHA256": "79e2c2abd6a498fdee7edbd5659175a9c6547a6d4cadcbaa88b199772924ac37"
+    },
+    {
+      "original": "compile.log",
+      "stored": "compile.log.gz",
+      "originalBytes": 1229,
+      "originalSHA256": "bc01a96886f84a1905c338977123c71560389afdd626effd6eb112198ada0d2a",
+      "storedSHA256": "f904c9700a83d68aa19f04dfb484bac4c83c242c568308527b7f20a4fe1a7c59"
+    },
+    {
+      "original": "controls.log",
+      "stored": "controls.log.gz",
+      "originalBytes": 507,
+      "originalSHA256": "42f51f1feb870c86eb4f658eb4467de22d3198629b5034dcbb67ff1c8c7b05ce",
+      "storedSHA256": "bf83fbcb087f8771cfde33b5ca57375f5708aab7424d2bfa4cc159d2d252f595"
+    },
+    {
+      "original": "cold-write.log",
+      "stored": "cold-write.log.gz",
+      "originalBytes": 71,
+      "originalSHA256": "e0e343c36d7eb08415ce868c3b6d9ff61a7dcb9b22735c7cf1ec876ad0e0e542",
+      "storedSHA256": "672b87f4e66b19995141832523199f8939fc6db0086669486f9687c8c4f10b48"
+    },
+    {
+      "original": "cold-reopen.log",
+      "stored": "cold-reopen.log.gz",
+      "originalBytes": 72,
+      "originalSHA256": "c03f810bec579317e621ba5ae2955380abb6f6f063ffbece77fbc51e2c185143",
+      "storedSHA256": "8c9055e40959f8997a8421307af84ee43bb5f7e2cc5d7126e9f5d24c23fdbace"
+    },
+    {
+      "original": "fixtures/CASES.json",
+      "stored": "fixtures/CASES.json",
+      "originalBytes": 656,
+      "originalSHA256": "ff7a0c8792ff99dfd939b8764059a6faece05a471ebf0c01cae8b9a59ca562ec",
+      "storedSHA256": "ff7a0c8792ff99dfd939b8764059a6faece05a471ebf0c01cae8b9a59ca562ec"
+    },
+    {
+      "original": "fixtures/cold-write.json",
+      "stored": "fixtures/cold-write.json",
+      "originalBytes": 274,
+      "originalSHA256": "a9d2d5e44a7260049ba2be99192b2f56a1a6087eca9963289c7a2967ea139947",
+      "storedSHA256": "a9d2d5e44a7260049ba2be99192b2f56a1a6087eca9963289c7a2967ea139947"
+    },
+    {
+      "original": "fixtures/cold-reopen.json",
+      "stored": "fixtures/cold-reopen.json",
+      "originalBytes": 276,
+      "originalSHA256": "4fc9f28642b37d6e5b819298a03d90fc0703d91bfd42343e2b9d54d4bd2427e9",
+      "storedSHA256": "4fc9f28642b37d6e5b819298a03d90fc0703d91bfd42343e2b9d54d4bd2427e9"
+    },
+    {
+      "original": "provenance/LAUNCH.json",
+      "stored": "provenance/LAUNCH.json",
+      "originalBytes": 481,
+      "originalSHA256": "8a8bc28793f0aaaec8cc74358949a13a997201de9ab03f30eab946069726fc9d",
+      "storedSHA256": "8a8bc28793f0aaaec8cc74358949a13a997201de9ab03f30eab946069726fc9d"
+    },
+    {
+      "original": "provenance/SOURCE_BINDING.json",
+      "stored": "provenance/SOURCE_BINDING.json",
+      "originalBytes": 16040,
+      "originalSHA256": "20e9b081e88b0941b01fa2b7de3067d1a3971f17de5cbbd10d9dcc53d5e99e30",
+      "storedSHA256": "20e9b081e88b0941b01fa2b7de3067d1a3971f17de5cbbd10d9dcc53d5e99e30"
+    }
+  ]
+}
