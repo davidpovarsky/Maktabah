@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-v40-perbook-mode-performance.py", line 835, in <module>
+    main()
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-v40-perbook-mode-performance.py", line 824, in main
+    context = source_context(core, args.phase == "execute")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-v40-perbook-mode-performance.py", line 80, in source_context
+    context = core.source_context(require_frozen=frozen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v40-ui-observation.py", line 276, in source_context
+    return original(require_frozen)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 129, in source_context
+    require(local.is_file() and not local.is_symlink(), "Missing exact execution input: " + path)
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 49, in require
+    raise ValueError(message)
+ValueError: Missing exact execution input: .github/workflows/otzaria-reader-groups-full-v32.yml
