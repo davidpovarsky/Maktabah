@@ -1,0 +1,221 @@
+{
+  "schema": "otzaria.reader-tab.native-source.v1",
+  "utc": "2026-11-27T11:10:42.856289+00:00",
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "tree": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-native-20261127",
+  "sources": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 237451,
+      "sha256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "bytes": 1583,
+      "sha256": "2af6d183cdb25f2c1676dda1640f1fd92d3a06ae17b16be57d5d54f5c29decb1"
+    }
+  ],
+  "original_native_prefix": {
+    "bytes": 221244,
+    "sha256": "84032054d2c3e10ae91f7703e13d305866810bdbda516064d7cd1f49730724b0",
+    "exact": true
+  },
+  "unchanged_existing_native_files": 30,
+  "original_native_files": [
+    {
+      "path": "Maktabah-iOSUITests/BackendTransitionAcceptanceTests.swift",
+      "bytes": 5997,
+      "sha256": "d01812c706ae6753e721b64081956bb0ef0f69b95a5ad13aef9779b47458a7fd",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+      "bytes": 5480,
+      "sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "bytes": 102598,
+      "sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/Build8601ThreeRegressionsAcceptanceTests.swift",
+      "bytes": 5521,
+      "sha256": "52bdd5ab72f3405d5da91bd9f0678a7fc0f32a4ce791ceb2c14b59327aaced18",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+      "bytes": 55496,
+      "sha256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 351993,
+      "sha256": "48b472606d6b370241ed19aed35fb1dd1a54fde55b480a3bbbabb9808a288618",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+      "bytes": 196969,
+      "sha256": "054a6cdaf282164a0b1995e89b31619def32c026e1537a177895afc201fd86da",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+      "bytes": 53252,
+      "sha256": "cb412ebbbfa34d57dd855bceb4798ece816c6b8725f4d0535a653882f22db3d0",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+      "bytes": 4123,
+      "sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/HistoryLocalizationAcceptanceTests.swift",
+      "bytes": 3648,
+      "sha256": "99d93b13bd0fbbd092d9320e618af55afd77647036a195637845aa95d2e3c50c",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "bytes": 9357,
+      "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+      "bytes": 114262,
+      "sha256": "b6b00a796aea01ea016bff70731fc71b8fbc63fa4e7667fc5e1f1481df54a296",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "bytes": 2840,
+      "sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "bytes": 13565,
+      "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 221244,
+      "sha256": "84032054d2c3e10ae91f7703e13d305866810bdbda516064d7cd1f49730724b0",
+      "unchanged": false
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "bytes": 1121,
+      "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "bytes": 10779,
+      "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+      "bytes": 692,
+      "sha256": "abc3d1e80f7a0268fdb7097233ab62bac867ac30f2fbd59fb48b17cb1bed06ed",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeStudySheetAcceptanceTests.swift",
+      "bytes": 33147,
+      "sha256": "963e90d9810b83e50e9763db5965396ab2d7bdabec41e58fefac29fde99a7628",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+      "bytes": 5758,
+      "sha256": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/OriginalEditorAnnotationAcceptanceTests.swift",
+      "bytes": 22385,
+      "sha256": "d02dec78c501096c82d4cf07b57c94e1844db612abb86d127ff86d3cc41e0994",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "bytes": 118047,
+      "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+      "bytes": 72871,
+      "sha256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/PullNavigationAcceptanceTests.swift",
+      "bytes": 4954,
+      "sha256": "0bd7a4b833ef9d8036b077238d179053df6e6b0f1596382b7e59c2f55ceb41b5",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+      "bytes": 36297,
+      "sha256": "7f1816d21f8933e675beab48df1d23a6115178fc685245417b0d19a448d7f786",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+      "bytes": 32332,
+      "sha256": "65145c30861efa74994edd9539c93d748d8b67dd4a77beb8332a4295960acba3",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/Sidebar11201AcceptanceTests.swift",
+      "bytes": 19775,
+      "sha256": "f34fcdda9abd7e8fded43d02c8105655298d201dc34a3d5bb7ce4e2007527be8",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-metadata.json",
+      "bytes": 349131,
+      "sha256": "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
+      "bytes": 8134,
+      "sha256": "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json",
+      "bytes": 1737,
+      "sha256": "9bc6fda67bbc4dc438753d9926c2c928562482f17ba234e17f7e09d0aab54905",
+      "unchanged": true
+    },
+    {
+      "path": "Maktabah-iOSUITests/iPadTabBarAcceptanceTests.swift",
+      "bytes": 3665,
+      "sha256": "1e3b18971be087a618d282d486c1a8826035a6f94a34fd247af0114538f6309f",
+      "unchanged": true
+    }
+  ],
+  "syntax": {
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "scope": "syntax-only Linux Swift 6.4.3"
+  },
+  "diff_check_exit_code": 0,
+  "apple_sdk_typecheck": "NOT_RUN",
+  "native_execution": "NOT_RUN",
+  "free_bytes": 1290383360
+}

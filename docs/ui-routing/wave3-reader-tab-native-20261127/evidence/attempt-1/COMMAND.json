@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-native-20261127/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-native-20261127/Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift"
+  ],
+  "cwd": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-native-20261127",
+  "scope": "Linux frontend syntax only; no Apple SDK typecheck, app build, system Intent or native execution"
+}

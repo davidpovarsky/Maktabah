@@ -1,0 +1,123 @@
+{
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "source": "f5428b47eddac14da929c38ff2e308109607084f",
+  "upstream_live_head": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "ownership": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "class": "DOWNSTREAM_OWNED",
+      "origin": "d337c60896c6ef24af277697e6012ae1595c0335",
+      "delta": "append-only private-helper extension, exact old prefix preserved"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "class": "DOWNSTREAM_OWNED",
+      "origin": "f5428b47eddac14da929c38ff2e308109607084f",
+      "delta": "six additive actual-system selectors"
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 237451,
+      "sha256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8",
+      "git_blob": "cd199a5818f4dc39ffa2ec1d4d7fd6d8f5064609"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "bytes": 1583,
+      "sha256": "2af6d183cdb25f2c1676dda1640f1fd92d3a06ae17b16be57d5d54f5c29decb1",
+      "git_blob": "1302224f7b75f7eb067768ca0a3fed44d46a0d8c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 15478,
+      "sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa",
+      "git_blob": "cfaa9e023cf4e974ed49ea8b771377cd458121d0"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 106920,
+      "sha256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41",
+      "git_blob": "2d8b929f48f70308526156292145dfd5134e9dd8"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 194285,
+      "sha256": "4efcc3994a1cd5bf63a2b5c410e77fe0763818ff6b2f001973ec51bd88062573",
+      "git_blob": "be55574d5b0f099c006a3c0751ad262120684986"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "bytes": 6946,
+      "sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "git_blob": "772c738e826aabdc22c4fd9a2e1083a3e7aad00b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "git_blob": "6c161747e134f3a6e7248fc0f817b5adaf7e77b7"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "git_blob": "88ed8daaa6951bb9f4477c781945d571cd54813d"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "bytes": 3855,
+      "sha256": "13b3ada73d2f8de8bdc318ccebf9d6e74449a0530c4d6f5fa38c663f1944c20a",
+      "git_blob": "ce5930b1a2e0267d38196ce3b1609b39f9622f30"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+      "git_blob": "3dd3c00d5ec6eb844616bfc2da75d60d1ff9806e"
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "bytes": 16422,
+      "sha256": "96421e6063403149324d2b2f4309b5ddb2aaaefc25d7cd7612f2a91b50aafcf2",
+      "git_blob": "bb1288386d12c6bb1f62dc79bd812b593ed68146"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "bytes": 13136,
+      "sha256": "5e598293fa98f1480926a9ccd6d1ec5fceda9571b61db52d87261a89a4bd682e",
+      "git_blob": "d7df4a7e272ec2d48d2b6b1089410af4c9025fd2"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "bytes": 20177,
+      "sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+      "git_blob": "a0a5ac04fb95f8abc1a45f1ce715cc4c176478dc"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+      "bytes": 34275,
+      "sha256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+      "git_blob": "6c99ea0b60e92398a4edceeae5aa5f54add3d41c"
+    }
+  ],
+  "original_fixture_files": [
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-metadata.json",
+      "bytes": 349131,
+      "sha256": "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b"
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-reader-lines.json",
+      "bytes": 8134,
+      "sha256": "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc"
+    },
+    {
+      "path": "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json",
+      "bytes": 1737,
+      "sha256": "9bc6fda67bbc4dc438753d9926c2c928562482f17ba234e17f7e09d0aab54905"
+    }
+  ]
+}

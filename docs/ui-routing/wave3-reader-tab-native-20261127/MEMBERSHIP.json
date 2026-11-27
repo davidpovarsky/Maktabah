@@ -1,0 +1,14 @@
+{
+  "new_sources": [
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "target": "Maktabah-iOSUITests",
+      "phase": "Sources",
+      "platform": "iOS XCTest target",
+      "status": "PENDING_ROOT_INTEGRATION"
+    }
+  ],
+  "product_sources": [],
+  "resources": [],
+  "catalog_changes": []
+}
