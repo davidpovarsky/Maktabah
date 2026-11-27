@@ -1,0 +1,41 @@
+{
+  "schema": "otzaria.wave3.scoped-viewer-and-profile-tests-intake.v1",
+  "base": "dd4b28f42950689713a5980dbd3dae21eb414f26",
+  "applied": [
+    {
+      "donor": "a7643567335f8bd24f34688d7be62f57798f1943",
+      "rootCommit": "8dc63ef32d6499f5d85be685e8513ff4baf695ad"
+    },
+    {
+      "donor": "b07c5b0f1c92fb94f57be17302f733962504528b",
+      "rootCommit": "0704af51b8e5b8bc3c3393d035d87d4dd1dea187"
+    },
+    {
+      "donor": "5ee4094fdb9f05cbf935a5029790b1f6cf359fdd",
+      "rootCommit": "99dac20ad231045e1abedd99024d589f7df58a72"
+    }
+  ],
+  "Source": "f42718fcbbaa6780556640f58888f1abebb35ba9",
+  "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "projectSHA256Preserved": "ab245c2c715d8ee7cb4550f1a6d9d7b26f3955c53faf3bfc295f35cb5b547f43",
+  "viewerProductFiles": 11,
+  "viewerEvidenceFiles": 157,
+  "manifestRowsVerified": 156,
+  "losslessRawMembersVerified": 11,
+  "nativeSourceFiles": 2,
+  "nativeEvidenceFiles": 10,
+  "originalNativePrefixBytesPreserved": 237451,
+  "originalNativePrefixSHA256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8",
+  "sourceEvidence": {
+    "CoreUIHost": "31/0 vs preserved28/3",
+    "owner": "21/0 vs revision omission17/4",
+    "UIKitCallbackBodyWithDoubles": "7/0 vs old2/5"
+  },
+  "nativeSelectorsAdded": 8,
+  "actualNativeSelectorsRun": 0,
+  "AppleSDKTypecheck": "NOT_RUN",
+  "physicalTests": "NOT_RUN",
+  "rootReview": "Read source contracts and all new343 helper lines/eight selectors; actual system intent.run-only path; positive cached entity before deletion; independent Source/window/receipt/state checks. Release peer concurred. All previous selectors/acceptance gates preserved.",
+  "remaining": "Root-owned explicit Session/ReaderTab proposal merge, Search owner wiring, seven iOS PBX memberships/strings/shortcuts; original hidden active phone Reader presentation follow-up; final native/owner/release qualification.",
+  "at": "2026-11-27T13:18:28.441066+00:00"
+}
