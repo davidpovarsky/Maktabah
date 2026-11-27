@@ -1569,3 +1569,567 @@ extension FullV40ReaderModeAcceptanceTests {
             "Both original continuous contacts must preserve the same actual production installation")
     }
 }
+
+// MARK: - Separate genuine pending-fetch correctness workload (full v40)
+
+private struct FullV40PendingSQLCatalog: Decodable {
+    struct Target: Decodable {
+        let key: String
+        let bookID: Int
+        let bookTitle: String
+        let focusLineIndex: Int
+        let unitID: String
+        let unitMode: String
+        let unitStartLineIndex: Int
+        let unitEndLineIndex: Int
+        let unitRowCount: Int
+        let sourceFile: String
+        let sourceSHA256: String
+        let sourceUTF16Length: Int
+        let sourceUTF8Bytes: Int
+        let allOriginalAnchorsChecked: Int
+        let anchorsIdentitySHA256: String
+        let sectionLocator: String
+        let focusLocator: String
+    }
+    let schema: Int
+    let status: String
+    let corpusProfile: String
+    let databaseSHA256: String
+    let catalogCompileInputsSHA256: String
+    let sourceServiceSHA256: String
+    let presentationSourceSHA256: String
+    let targets: [Target]
+}
+
+extension FullV40ReaderModeAcceptanceTests {
+    private func pendingCatalog() throws -> (FullV40PendingSQLCatalog, URL) {
+        let path = URL(fileURLWithPath: try XCTUnwrap(environment["PENDING_SQL_MODES_CATALOG"])).standardizedFileURL
+        let bytes = try bounded(path, maximum: 8 * 1024 * 1024)
+        try demand(path.lastPathComponent == "pending-sql-modes.json"
+            && hash(bytes) == environment["PENDING_SQL_MODES_CATALOG_SHA256"],
+            "Require the byte-sealed original complete pending-mode catalog")
+        let value = try JSONDecoder().decode(FullV40PendingSQLCatalog.self, from: bytes)
+        try demand(value.schema == 1 && value.corpusProfile == "full-v40"
+            && value.status == "ORIGINAL_SOURCE_PENDING_SQL_MODES_ONLY_NOT_UI_OR_PERFORMANCE"
+            && value.databaseSHA256 == expectedDatabaseSHA256
+            && [value.catalogCompileInputsSHA256, value.sourceServiceSHA256, value.presentationSourceSHA256].allSatisfy { $0.count == 64 }
+            && value.targets.count == 3 && Set(value.targets.map(\.unitMode)) == ["line", "paragraph", "chapter"]
+            && value.targets.allSatisfy { $0.bookID == 8042 && $0.focusLineIndex == 26166
+                && $0.key == "8042-pending-sql-" + $0.unitMode
+                && $0.allOriginalAnchorsChecked == $0.unitRowCount && $0.anchorsIdentitySHA256.count == 64 },
+            "Use all three original source-generated units, never a fabricated pending SQL fixture")
+        let chapter = try XCTUnwrap(value.targets.first { $0.unitMode == "chapter" })
+        try demand(chapter.unitID == "toc:1948815" && chapter.unitStartLineIndex == 0
+            && chapter.unitEndLineIndex == 52331 && chapter.unitRowCount == 52332
+            && chapter.sourceUTF16Length == 8307947,
+            "Keep the actual full 52,332-row / 8,307,947-UTF16 chapter, without truncation")
+        for target in value.targets {
+            let url = path.deletingLastPathComponent().appendingPathComponent(target.sourceFile).standardizedFileURL
+            try demand(url.deletingLastPathComponent() == path.deletingLastPathComponent(), "Original source cannot escape the admitted catalog")
+            let source = try bounded(url, maximum: 64 * 1024 * 1024)
+            let text = try XCTUnwrap(String(data: source, encoding: .utf8))
+            try demand(source.count == target.sourceUTF8Bytes && hash(source) == target.sourceSHA256
+                && text.utf16.count == target.sourceUTF16Length,
+                "Bind complete actual original source bytes before UI work; this is not an app acceptance claim")
+        }
+        return (value, path.deletingLastPathComponent())
+    }
+
+    private func pendingWorkspace(_ value: Installation) throws -> Workspace {
+        try JSONDecoder().decode(Workspace.self, from: bounded(value.container.appendingPathComponent(
+            "Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json"), maximum: 8 * 1024 * 1024))
+    }
+
+    private func pendingDocument(_ value: Installation) throws -> Workspace.Session {
+        let state = try pendingWorkspace(value)
+        let scene = try XCTUnwrap(state.scenes[try XCTUnwrap(state.lastActiveSceneID)])
+        let group = try XCTUnwrap(state.groups.first { $0.id == scene.groupID })
+        let selected = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID
+        return try XCTUnwrap(group.tabs.first { $0.session.id == selected }?.session)
+    }
+
+    private func pendingAnnotationState(_ value: Installation) throws -> [String: Any] {
+        let path = try annotationDatabase(value)
+        var connection: OpaquePointer?
+        try demand(sqlite3_open_v2(path.path, &connection, SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX, nil) == SQLITE_OK,
+                   "Observe existing user annotations without creating or modifying a database")
+        let db = try XCTUnwrap(connection); defer { sqlite3_close(db) }
+        try demand(sqlite3_db_readonly(db, "main") == 1, "Annotation preservation observation is read-only")
+        var raw: OpaquePointer?
+        try demand(sqlite3_prepare_v2(db, "SELECT * FROM annotations ORDER BY id LIMIT 10001", -1, &raw, nil) == SQLITE_OK,
+                   "Read all original annotation columns in actual persisted row order")
+        let statement = try XCTUnwrap(raw); defer { sqlite3_finalize(statement) }
+        let columns = Int(sqlite3_column_count(statement))
+        try demand(columns > 0 && columns <= 64, "Bound the original persisted annotation schema")
+        let names = (0..<columns).map { String(cString: sqlite3_column_name(statement, Int32($0))) }
+        try demand(Set(names).count == names.count && names.contains("id") && names.contains("backendLocator")
+            && names.contains("startIndex") && names.contains("length") && names.contains("context"),
+            "Preserve canonical locator, exact UTF16 range and original user context")
+        var rows: [[[String: String]]] = []; var retainedBytes = 0
+        var step = sqlite3_step(statement)
+        while step == SQLITE_ROW && rows.count < 10001 {
+            var row: [[String: String]] = []
+            for column in 0..<columns {
+                let index = Int32(column), type = sqlite3_column_type(statement, Int32(column))
+                let encoded: String
+                switch type {
+                case SQLITE_NULL: encoded = ""
+                case SQLITE_INTEGER: encoded = String(sqlite3_column_int64(statement, index))
+                case SQLITE_FLOAT: encoded = String(sqlite3_column_double(statement, index).bitPattern)
+                case SQLITE_TEXT, SQLITE_BLOB:
+                    let count = Int(sqlite3_column_bytes(statement, index))
+                    try demand(count >= 0 && count <= 1024 * 1024, "An original annotation cell exceeds this declared bounded witness")
+                    let pointer = sqlite3_column_blob(statement, index)
+                    try demand(count == 0 || pointer != nil, "Actual annotation bytes are unavailable")
+                    encoded = count == 0 ? "" : Data(bytes: try XCTUnwrap(pointer), count: count).base64EncodedString()
+                default: throw Rejected(reason: "Unrecognized original SQLite column type")
+                }
+                retainedBytes += encoded.utf8.count
+                try demand(retainedBytes <= 8 * 1024 * 1024, "Complete original annotations exceed this witness bound; do not truncate them")
+                row.append(["column": names[column], "sqliteType": String(type), "bytesOrNumber": encoded])
+            }
+            rows.append(row); step = sqlite3_step(statement)
+        }
+        try demand(step == SQLITE_DONE && !rows.isEmpty && rows.count <= 10000,
+                   "This ordered workload requires real existing nonempty annotations; never seed or delete user rows")
+        let bytes = try JSONSerialization.data(withJSONObject: rows, options: [.sortedKeys])
+        return ["path": path.path, "columns": names, "rowCount": rows.count,
+                "logicalRowsSHA256": hash(bytes), "logicalBytes": bytes.count,
+                "scope": "Complete original persisted annotation rows and SQLite value types; no raw user DB writes"]
+    }
+
+    @MainActor
+    private func pendingHost(_ action: String, installation value: Installation,
+                             fields: [String: Any] = [:]) throws -> [String: Any] {
+        let token = try XCTUnwrap(environment["FULL_V32_OBSERVER_TOKEN"])
+        let udid = try XCTUnwrap(environment["R27_URL_UDID"])
+        try demand(udid == environment["SIMULATOR_UDID"], "Use the same actually owned runtime for original observation transport")
+        let nonce = UUID().uuidString
+        let prefix = value.container.appendingPathComponent("Documents/full-v32-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        var payload = fields
+        payload.merge(["schema": 1, "token": token, "nonce": nonce, "udid": udid, "action": action]) { _, new in new }
+        let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        try demand(bytes.count <= 262144 && !FileManager.default.fileExists(atPath: request.path), "Fresh bounded original observer request required")
+        try bytes.write(to: request, options: .withoutOverwriting)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil)
+        try demand(XCTWaiter.wait(for: [ready], timeout: 30) == .completed, "Original owned observer must acknowledge the exact actual request")
+        let resultBytes = try bounded(ack, maximum: 262144)
+        try demand(String(decoding: resultBytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil,
+                   "Original observer ACK must be credential-free")
+        let result = try XCTUnwrap(JSONSerialization.jsonObject(with: resultBytes) as? [String: Any])
+        try demand(result["schema"] as? Int == 1 && result["nonce"] as? String == nonce
+            && result["udid"] as? String == udid && result["action"] as? String == action && result["ok"] as? Bool == true,
+            "Original observer rejected this request; keep its actual failure receipt")
+        return result
+    }
+
+    @MainActor
+    private func pendingWait(_ statusPath: URL, cohortID: String, installation value: Installation,
+                             predicate: ([String: Any]) -> Bool) throws -> [String: Any] {
+        try demand(statusPath == value.container.appendingPathComponent("Documents/pending-sql-" + cohortID + ".status.json"),
+                   "Only this actual owned cohort's status is eligible")
+        var latest: [String: Any]?
+        for _ in 0..<160 {
+            if let next = try? object(statusPath, maximum: 32768), next["cohortID"] as? String == cohortID {
+                latest = next
+                if predicate(next) { return next }
+                if (next["error"] != nil && !(next["error"] is NSNull))
+                    || (next["terminalObserved"] != nil && !(next["terminalObserved"] is NSNull)) { break }
+            }
+            // This waits on the actual passive status only. No private XCTest
+            // idling override or elapsed-time proxy is used as UI evidence.
+            RunLoop.current.run(until: Date().addingTimeInterval(0.05))
+        }
+        if let latest { try attach(latest, "pending-sql-unqualified-status-" + cohortID) }
+        throw Rejected(reason: "The genuine original fetch did not retain the required pending UI overlap; no post-open substitute")
+    }
+
+    @MainActor
+    private func pendingSample(_ value: Installation, ui: OriginalSearchContextUI) throws -> [String: Any] {
+        let id = UUID().uuidString
+        let request = value.container.appendingPathComponent("Documents/" + viewportName + ".request")
+        try demand(!FileManager.default.fileExists(atPath: request.path), "The passive host is still the request writer")
+        let bytes = Data(id.utf8)
+        try bytes.write(to: request, options: .withoutOverwriting)
+        defer {
+            if let current = try? bounded(request, maximum: 36), current == bytes {
+                try? FileManager.default.removeItem(at: request)
+            } else { XCTFail("Do not retire a changed or foreign source observation request") }
+        }
+        return try readNativeRequest(id, installation: value, ui: ui)
+    }
+
+    @MainActor
+    private func pendingAssertSource(_ target: FullV40PendingSQLCatalog.Target, directory: URL,
+                                     installation value: Installation, ui: OriginalSearchContextUI) throws -> [String: Any] {
+        try ui.wait("The original exact mode must settle before its separate final source check", timeout: 120) {
+            self.app.staticTexts["reader-current-locator"].label == target.sectionLocator
+                && self.getRenderedHighlightSnapshot()?.locator == target.sectionLocator
+                && (try? self.actualPreferences(value)["otzaria_reader_unit_mode"] as? String) == target.unitMode
+        }
+        let title = try ui.require("reader-header-title").label
+        try demand(title == target.bookTitle,
+                   "The actual visible Reader must keep its original canonical title")
+        let before = try pendingDocument(value)
+        try demand(before.backendLocator?.backend == "otzaria" && before.backendLocator?.workKey == "book:8042",
+                   "Actual original ordinary workspace must identify the measured work")
+        let report = try pendingSample(value, ui: ui)
+        let sample = try XCTUnwrap(report["fullV32SourceObservation"] as? [String: Any])
+        let native = try XCTUnwrap(report["nativeSelectionObservation"] as? [String: Any])
+        let source = try bounded(directory.appendingPathComponent(target.sourceFile), maximum: 64 * 1024 * 1024)
+        let text = try XCTUnwrap(String(data: source, encoding: .utf8)) as NSString
+        let location = try XCTUnwrap((sample["rangeLocation"] as? NSNumber)?.intValue)
+        let length = try XCTUnwrap((sample["rangeLength"] as? NSNumber)?.intValue)
+        try demand(hash(source) == target.sourceSHA256 && source.count == target.sourceUTF8Bytes
+            && text.length == target.sourceUTF16Length && sample["status"] as? String == "AVAILABLE"
+            && (sample["sourceUTF16Length"] as? NSNumber)?.intValue == text.length
+            && location >= 0 && location <= text.length && length > 0 && length <= 256 && length <= text.length - location,
+            "Use the complete original unit length and exact actual UTF16 source slice")
+        let actual = try XCTUnwrap(sample["sourceUTF8"] as? String)
+        let after = try pendingDocument(value)
+        try demand(Data(actual.utf8) == Data(text.substring(with: NSRange(location: location, length: length)).utf8)
+            && native["locator"] as? String == target.sectionLocator
+            && before.id == after.id,
+            "Independent source bytes, canonical locator and actual ordinary document must agree")
+        return ["targetKey": target.key, "documentID": before.id.uuidString, "canonicalLocator": target.sectionLocator,
+                "sourceSHA256": target.sourceSHA256, "sourceUTF16Length": target.sourceUTF16Length, "actualViewport": report,
+                "actualPersistedOriginalUnitMode": target.unitMode,
+                "scope": "Complete source oracle identity/length plus exact bounded actual UIKit source slice; not every pixel of the full chapter"]
+    }
+
+    @MainActor
+    private func pendingLibrary(_ ui: OriginalSearchContextUI) throws {
+        let buttons = app.tabBars.buttons.matching(NSPredicate(format: "label == %@", "Library"))
+        try ui.wait("Select the original unique Library tab") { buttons.allElementsBoundByIndex.filter { $0.isHittable }.count == 1 }
+        try XCTUnwrap(buttons.allElementsBoundByIndex.first { $0.isHittable }).tap()
+    }
+
+    @MainActor
+    private func pendingPalette(_ title: String, ui: OriginalSearchContextUI) throws {
+        try ui.require("reader-command-palette-launcher").tap()
+        let palette = try ui.require("reader-library-command-palette")
+        let field = palette.textFields.firstMatch
+        try demand(field.waitForExistence(timeout: 20) && field.isHittable, "Use the original library's actual command field")
+        field.tap(); field.typeKey("a", modifierFlags: .command); field.typeText(title)
+        let candidates = palette.buttons.matching(NSPredicate(format: "label == %@", title))
+        try ui.wait("The actual canonical book choice must be unique", timeout: 60) {
+            field.value as? String == title && candidates.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
+        }
+        try XCTUnwrap(candidates.allElementsBoundByIndex.first { $0.isHittable }).tap()
+        try ui.wait("The original book's Reader must become visible", timeout: 120) {
+            self.app.staticTexts["reader-header-title"].label == title && self.app.textViews["reader-text"].exists
+        }
+    }
+
+    @MainActor
+    private func pendingUnit(_ mode: String, ui: OriginalSearchContextUI, beforeTap: (() throws -> Void)? = nil) throws {
+        try ui.require("reader-more-menu").tap()
+        try ui.require("reader-display-unit-menu").tap()
+        let selected = try ui.require("reader-display-unit-" + mode)
+        try demand(selected.isHittable, "Original Display by action must actually be hittable")
+        try beforeTap?()
+        selected.tap()
+    }
+
+    @MainActor
+    private func pendingOpenFocus(_ target: FullV40PendingSQLCatalog.Target, installation value: Installation,
+                                  ui: OriginalSearchContextUI) throws {
+        let log = value.container.appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        func receipts() throws -> [String] {
+            guard FileManager.default.fileExists(atPath: log.path) else { return [] }
+            return String(decoding: try bounded(log, maximum: 32 * 1024 * 1024), as: UTF8.self)
+                .split(separator: "\n").map(String.init)
+                .filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") }
+        }
+        let previous = try receipts()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        try demand(springboard.alerts.count == 0, "Never approve an unrelated preexisting system prompt")
+        let ref: [String: Any] = ["backend": "otzaria", "workKey": "book:8042",
+                                  "position": ["kind": "legacyLine", "value": target.focusLineIndex]]
+        let route: [String: Any] = ["version": 2, "destination": "native.reader", "backend": "otzaria",
+            "presentation": "currentTab", "content": ["sectionLocator": ref, "focusLocator": ref, "presentationMode": "sameTab"]]
+        let encoded = try JSONSerialization.data(withJSONObject: route, options: [.sortedKeys]).base64EncodedString()
+            .replacingOccurrences(of: "+", with: "-").replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        let token = try XCTUnwrap(environment["R27_URL_TOKEN"]), udid = try XCTUnwrap(environment["R27_URL_UDID"])
+        let nonce = UUID().uuidString
+        let prefix = value.container.appendingPathComponent("Documents/r27-url-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json"), ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        let payload = ["token": token, "nonce": nonce, "udid": udid, "url": "maktabah-debug://action/v2/native.reader?route=" + encoded]
+        try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys]).write(to: request, options: .withoutOverwriting)
+        let delivered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil)
+        try demand(XCTWaiter.wait(for: [delivered], timeout: 20) == .completed, "Original system open-URL transport did not acknowledge")
+        let raw = try bounded(ack, maximum: 262144)
+        let response = try XCTUnwrap(JSONSerialization.jsonObject(with: raw) as? [String: Any])
+        try demand(Set(response.keys) == ["udid", "transport", "delivered", "nonce", "time"]
+            && response["udid"] as? String == udid && response["nonce"] as? String == nonce
+            && response["transport"] as? String == "simctl-system-openurl" && response["delivered"] as? Bool == true
+            && (response["time"] as? Double)?.isFinite == true
+            && String(decoding: raw, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil,
+            "Transport must be genuine and credential-free; ACK alone is not Reader acceptance")
+        var actualReceipt: String?
+        try ui.wait("The actual original Core reader/glyph receipt must follow this one public route", timeout: 120) {
+            if springboard.alerts.count == 1 {
+                let alert = springboard.alerts.firstMatch
+                let titles = ["Open in \u{201C}ChavrusaText\u{201D}?", "Open in \"ChavrusaText\"?"]
+                let open = alert.buttons.matching(NSPredicate(format: "label == %@", "Open"))
+                if titles.contains(alert.label) || titles.contains(where: { alert.staticTexts[$0].exists }) {
+                    if open.count == 1 && open.firstMatch.isHittable { open.firstMatch.tap() }
+                }
+            }
+            guard let rows = try? receipts(), rows.count == previous.count + 1, Array(rows.prefix(previous.count)) == previous else { return false }
+            actualReceipt = rows.last
+            return self.app.staticTexts["reader-current-locator"].label == target.sectionLocator
+        }
+        let line = try XCTUnwrap(actualReceipt)
+        let components = line.split(separator: " ", maxSplits: 2)
+        try demand(components.count == 3, "Original navigation receipt format changed")
+        var fields: [String: String] = [:]
+        for item in components[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            try demand(pair.count == 2 && fields[String(pair[0])] == nil, "Native receipt fields must be unique")
+            fields[String(pair[0])] = String(pair[1])
+        }
+        let revision = (fields["revision"] ?? "").components(separatedBy: "->")
+        let state = try pendingWorkspace(value)
+        try demand(Set(fields.keys) == ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"]
+            && fields["request"].flatMap(UUID.init(uuidString:)) != nil
+            && fields["backend"] == "otzaria" && fields["destination"] == "native.reader" && fields["presentation"] == "currentTab"
+            && fields["epoch"] == "none" && fields["generation"].flatMap(UInt64.init) != nil
+            && revision.count == 2 && revision.allSatisfy { UInt64($0) != nil }
+            && UInt64(revision[1])! > UInt64(revision[0])!
+            && state.scenes[fields["scene"] ?? ""] != nil,
+            "Require the authentic original advancing Core receipt in the actual ordinary scene")
+        try attach(["nativeReceipt": line, "transport": response, "focusLocator": target.focusLocator,
+            "scope": "Original public v2 Reader route setup, outside the pending workload"], "pending-sql-original-focus-route-" + nonce)
+    }
+
+    @MainActor
+    private func pendingCloseOverview(_ ui: OriginalSearchContextUI) throws {
+        let overview = ui.control("study-groups-overview")
+        guard overview.exists else { return }
+        let buttons = overview.buttons.matching(NSPredicate(format: "label == %@", "סיום"))
+        try demand(buttons.count == 1 && buttons.firstMatch.isHittable, "Dismiss only the original overview's unique Done button")
+        buttons.firstMatch.tap()
+        try ui.wait("The original overview must actually dismiss") { !overview.exists }
+    }
+
+    @MainActor
+    private func pendingSelectTab(_ id: UUID, installation value: Installation, ui: OriginalSearchContextUI,
+                                  beforeTap: (() throws -> Void)? = nil) throws {
+        var overview = ui.control("study-groups-overview")
+        if !overview.exists { try ui.require("reader-tabs-overview").tap(); overview = try ui.require("study-groups-overview") }
+        let choices = overview.collectionViews.cells.matching(NSPredicate(format: "identifier == %@ OR identifier == %@",
+            "tab-switcher-grid-cell-" + id.uuidString, "tab-switcher-list-cell-" + id.uuidString))
+        for _ in 0..<30 {
+            if choices.allElementsBoundByIndex.contains(where: { $0.isHittable }) { break }
+            try ui.dragVisible(overview, up: true)
+        }
+        let visible = choices.allElementsBoundByIndex.filter { $0.isHittable && !$0.frame.isEmpty && $0.frame.intersects(overview.frame) }
+        try demand(visible.count == 1, "Use the actual original card for this persisted ordinary document UUID")
+        try beforeTap?()
+        try XCTUnwrap(visible.first).tap()
+        try ui.wait("The original workspace must commit the selected actual tab") { (try? self.pendingDocument(value).id) == id }
+        try pendingCloseOverview(ui)
+    }
+
+    @MainActor
+    private func pendingSwitchBackend(_ backend: String, installation value: Installation,
+                                      ui: OriginalSearchContextUI, beforeTap: (() throws -> Void)? = nil) throws {
+        try ui.returnToOriginalSearch()
+        try ui.require("main-settings-button").tap()
+        try ui.require("settings-library-source-picker").tap()
+        let names = ["otzaria": "אוצריא", "sefaria": "ספריא (ישן)"]
+        let item = try originalMenuAction(try XCTUnwrap(names[backend]), ui: ui)
+        try beforeTap?()
+        item.tap()
+        try ui.wait("Original Settings must complete the real backend transition", timeout: 120) {
+            self.app.staticTexts["settings-active-backend-id"].label == backend
+                && self.app.staticTexts["settings-transition-state"].label == "idle"
+                && (try? self.actualPreferences(value)["activeLibraryBackend.v1"] as? String) == backend
+        }
+        try ui.require("settings-done-button").tap()
+        try pendingLibrary(ui)
+    }
+
+    @MainActor
+    private func pendingLaunch() throws {
+        for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH"] {
+            try demand(environment[key] == nil, "Use the actual managed original library; no alternate corpus path")
+        }
+        launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US", extraEnvironment: [
+            "CHAVRUSA_READER_VIEWPORT_REPORT": viewportName,
+            "CHAVRUSA_FULL_V32_SOURCE_OBSERVATION": "1", "CHAVRUSA_READER_SELECTION_OBSERVATION": "1"
+        ])
+        try demand(!app.launchArguments.contains("-studyWorkspaceTestingNamespace")
+            && !app.launchArguments.contains("-smokeScenario") && !app.launchArguments.contains("-smokeBypassBootstrap")
+            && !app.launchArguments.contains("-otzaria_reader_unit_mode"),
+            "Original production namespace and ordinary menu choices only; no seeded or forced pending state")
+    }
+
+    @MainActor
+    func testOriginalLargeChapterPendingFetchRemainsInteractiveAndRejectsSupersededContent() throws {
+        let (catalog, directory) = try pendingCatalog()
+        let line = try XCTUnwrap(catalog.targets.first { $0.unitMode == "line" })
+        let chapter = try XCTUnwrap(catalog.targets.first { $0.unitMode == "chapter" })
+        XCUIDevice.shared.orientation = .landscapeLeft
+        try pendingLaunch()
+        var installed = try installation()
+        let initialOwner = hash(installed.owner), initialManifest = hash(installed.manifest)
+        let annotationBefore = try pendingAnnotationState(installed)
+        try attach(annotationBefore, "pending-sql-original-nonempty-annotations-before")
+        var declarations: [[String: Any]] = []; var failures: [String] = []
+        // Keep actual XCTest failures recorded while attempting every declared
+        // cohort. This does not turn any failed assertion into a passing test.
+        let priorContinuation = continueAfterFailure
+        continueAfterFailure = true
+        defer { continueAfterFailure = priorContinuation }
+        for cohort in ["overview", "unit-supersession", "backend-and-tab"] {
+            let cohortID = UUID().uuidString
+            var began = false
+            do {
+                let ui = OriginalSearchContextUI(app: app, test: self)
+                try pendingLibrary(ui)
+                var otherTab: Workspace.Session?
+                if cohort == "backend-and-tab" {
+                    try pendingPalette("ברכות", ui: ui)
+                    otherTab = try pendingDocument(installed)
+                    try demand(otherTab?.backendLocator?.backend == "otzaria" && otherTab?.backendLocator?.workKey == "book:103",
+                               "Use a genuine second canonical original tab; never inject a workspace row")
+                }
+                try pendingPalette(line.bookTitle, ui: ui)
+                try pendingUnit("line", ui: ui)
+                try pendingOpenFocus(line, installation: installed, ui: ui)
+                _ = try pendingAssertSource(line, directory: directory, installation: installed, ui: ui)
+                let original = try pendingDocument(installed)
+                // Process-cold is literal new application process only. No OS
+                // cache flushing, corpus rewriting or storage delay is used.
+                app.terminate(); try pendingLaunch()
+                installed = try installation()
+                try demand(hash(installed.owner) == initialOwner && hash(installed.manifest) == initialManifest,
+                           "All three cohorts must retain this same original installation owner/manifest")
+                let freshUI = OriginalSearchContextUI(app: app, test: self)
+                try pendingLibrary(freshUI)
+                _ = try pendingAssertSource(line, directory: directory, installation: installed, ui: freshUI)
+                let restored = try pendingDocument(installed)
+                try demand(restored.id == original.id,
+                           "Cold launch must restore the same actual original ordinary tab")
+                try freshUI.require("reader-more-menu").tap()
+                try freshUI.require("reader-display-unit-menu").tap()
+                let chapterAction = try freshUI.require("reader-display-unit-chapter")
+                try demand(chapterAction.isHittable, "Prepare the real Chapter menu action before the passive baseline")
+                let start = try pendingHost("pending_sql_begin", installation: installed, fields: [
+                    "cohort": cohort, "cohortID": cohortID, "viewportBasename": viewportName
+                ])
+                began = true
+                let status = URL(fileURLWithPath: try XCTUnwrap(start["statusPath"] as? String))
+                _ = try pendingHost("pending_sql_mark", installation: installed, fields: ["cohortID": cohortID, "event": "chapter-request"])
+                chapterAction.tap()
+                _ = try pendingWait(status, cohortID: cohortID, installation: installed) { $0["armedOperation"] is [String: Any] }
+                _ = try pendingHost("pending_sql_mark", installation: installed, fields: ["cohortID": cohortID, "event": "overview-action"])
+                try freshUI.require("reader-tabs-overview").tap()
+                _ = try pendingWait(status, cohortID: cohortID, installation: installed) { $0["changedWhilePending"] as? Bool == true }
+                var semantic: [String: Any] = ["cohort": cohort, "cohortID": cohortID, "originalDocumentID": original.id.uuidString]
+                if cohort == "overview" {
+                    _ = try pendingWait(status, cohortID: cohortID, installation: installed) {
+                        $0["watcherStopped"] as? Bool == true && $0["ownedRequestRetirementVerified"] as? Bool == true
+                    }
+                    try pendingCloseOverview(freshUI)
+                    semantic["finalReader"] = try pendingAssertSource(chapter, directory: directory, installation: installed, ui: freshUI)
+                } else if cohort == "unit-supersession" {
+                    try pendingCloseOverview(freshUI)
+                    try pendingUnit("line", ui: freshUI) {
+                        _ = try self.pendingHost("pending_sql_mark", installation: installed, fields: ["cohortID": cohortID, "event": "unit-replacement"])
+                    }
+                    _ = try pendingWait(status, cohortID: cohortID, installation: installed) {
+                        $0["watcherStopped"] as? Bool == true && $0["ownedRequestRetirementVerified"] as? Bool == true
+                    }
+                    semantic["finalReader"] = try pendingAssertSource(line, directory: directory, installation: installed, ui: freshUI)
+                    semantic["cancellationScope"] = "Actual passive cancelled/non-normal terminal is separately required; task flag is not an exception-class oracle"
+                } else {
+                    let second = try XCTUnwrap(otherTab)
+                    try demand(second.id != original.id, "Two actual distinct ordinary tab identities are required")
+                    try pendingSelectTab(second.id, installation: installed, ui: freshUI) {
+                        _ = try self.pendingHost("pending_sql_mark", installation: installed, fields: ["cohortID": cohortID, "event": "tab-change"])
+                    }
+                    let selectedSecond = try pendingDocument(installed)
+                    try demand(selectedSecond.backendLocator?.workKey == "book:103",
+                               "The original tab action must commit the second canonical work")
+                    try pendingSwitchBackend("sefaria", installation: installed, ui: freshUI) {
+                        _ = try self.pendingHost("pending_sql_mark", installation: installed, fields: ["cohortID": cohortID, "event": "backend-change"])
+                    }
+                    _ = try pendingWait(status, cohortID: cohortID, installation: installed) {
+                        $0["watcherStopped"] as? Bool == true && $0["ownedRequestRetirementVerified"] as? Bool == true
+                    }
+                    try pendingPalette("בראשית", ui: freshUI)
+                    let other = try pendingDocument(installed)
+                    let canonical = try freshUI.require("reader-current-locator").label
+                    try demand(other.backendLocator?.backend == "sefaria" && other.backendLocator?.workKey == "Genesis"
+                        && canonical.hasPrefix("sefaria|Genesis|ref:"),
+                        "The real changed backend must commit its own canonical Reader, not stale Otzaria content")
+                    let otherReport = try pendingSample(installed, ui: freshUI)
+                    let otherSource = try XCTUnwrap(otherReport["fullV32SourceObservation"] as? [String: Any])
+                    let native = try XCTUnwrap(otherReport["nativeSelectionObservation"] as? [String: Any])
+                    try demand(otherSource["status"] as? String == "AVAILABLE"
+                        && ((otherSource["sourceUTF16Length"] as? NSNumber)?.intValue ?? 0) > 0
+                        && native["locator"] as? String == canonical && native["status"] as? String == "EMPTY",
+                        "Actual changed-backend Reader must have source and no carried-over UIKit selection")
+                    semantic["changedBackend"] = ["canonicalLocator": canonical, "documentID": other.id.uuidString,
+                        "actualViewport": otherReport, "scope": "Actual canonical backend and bounded native source; no independent full Sefaria body/version claim"]
+                    try pendingSwitchBackend("otzaria", installation: installed, ui: freshUI)
+                    try pendingSelectTab(original.id, installation: installed, ui: freshUI)
+                    try pendingUnit("line", ui: freshUI)
+                    try pendingOpenFocus(line, installation: installed, ui: freshUI)
+                    semantic["finalReader"] = try pendingAssertSource(line, directory: directory, installation: installed, ui: freshUI)
+                    semantic["secondDocumentID"] = second.id.uuidString
+                }
+                let after = try pendingAnnotationState(installed)
+                try demand(after["logicalRowsSHA256"] as? String == annotationBefore["logicalRowsSHA256"] as? String
+                    && after["rowCount"] as? Int == annotationBefore["rowCount"] as? Int,
+                    "All original nonempty annotations, locators and exact UTF16 ranges must survive the actual actions")
+                semantic["annotations"] = after
+                let finalDocument = try pendingDocument(installed)
+                try demand(finalDocument.id == original.id,
+                           "The exact original ordinary tab must survive the completed cohort")
+                let finalMode = cohort == "overview" ? "chapter" : "line"
+                let finish = try pendingHost("pending_sql_finish", installation: installed, fields: [
+                    "cohortID": cohortID, "finalMode": finalMode, "semanticOutcome": semantic
+                ])
+                began = false
+                semantic["host"] = finish
+                try attach(semantic, "pending-sql-original-cohort-" + cohort)
+                freshUI.capture("pending-sql-original-final-" + cohort)
+                declarations.append(semantic)
+                if finish["status"] as? String != "ACTUAL_PENDING_FETCH_UI_OVERLAP_OBSERVED_NATIVE_SEMANTIC_VERIFICATION_REQUIRED" {
+                    failures.append(cohort + ": actual pending operation/UI evidence was not qualified")
+                }
+            } catch {
+                var safeReason = String(describing: error)
+                for key in ["FULL_V32_OBSERVER_TOKEN", "R27_URL_TOKEN"] {
+                    if let token = environment[key], !token.isEmpty { safeReason = safeReason.replacingOccurrences(of: token, with: "<redacted>") }
+                }
+                let reason = String(safeReason.prefix(1800))
+                failures.append(cohort + ": " + reason)
+                try? attach(["cohort": cohort, "cohortID": cohortID, "error": reason, "began": began,
+                    "scope": "Retain this declared failed attempt; later cohorts cannot hide it"], "pending-sql-original-failed-" + cohort)
+                let aborted = try pendingHost("pending_sql_abort", installation: installed, fields: [
+                    "cohort": cohort, "cohortID": cohortID, "nativeFailure": reason
+                ])
+                try demand(aborted["ownedProbeWriterExited"] as? Bool == true,
+                           "Do not relaunch or hand off this simulator while an owned probe's start/exit is unverified")
+                // Restart through the ordinary original production bootstrap.
+                // Do not repair app data or retry this same declared cohort.
+                app.terminate(); try pendingLaunch(); installed = try installation()
+            }
+        }
+        try attach(["cohorts": declarations, "failures": failures, "fullPerformanceAcceptance": false,
+            "scope": "Three declared genuine pending-fetch correctness cohorts; exact SQL stepping/mapping and performance remain separate"],
+            "pending-sql-original-three-cohort-summary")
+        try demand(failures.isEmpty && declarations.count == 3, "All three actual pending cohorts are required; no successful subset qualifies")
+        let completion = try pendingHost("pending_sql_complete", installation: installed,
+            fields: ["nativeDeclaration": ["cohortCount": declarations.count, "actualAssertionsCompleted": true]])
+        try attach(completion, "pending-sql-original-host-completion")
+    }
+}
