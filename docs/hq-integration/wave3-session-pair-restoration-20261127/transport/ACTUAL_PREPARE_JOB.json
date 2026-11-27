@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_1d707ab36360",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795821163.5731218,
+    "started_at": "2026-11-27T23:12:43.687460+00:00",
+    "finished_at": "2026-11-27T23:13:03.770222+00:00",
+    "duration_s": 20.08,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 3000,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"EXACT_BOUND_TOOLS_STAGED_PREPARE_ONLY\", \"utc\": \"2026-11-27T23:12:43.740311+00:00\", \"rootFreeBefore\": 2246410240, \"attempt\": \"f0d875eb-2b71-49af-a2f9-1f2f7b85c792\", \"files\": [{\"name\": \"restore_session_pair_differential.py\", \"bytes\": 33944, \"sha256\": \"0c70a1f0801f777b47b1ffb1589da49172b91273437a4eb367fc15c45dbafa39\"}, {\"name\": \"retire_session_pair_differential.py\", \"bytes\": 20603, \"sha256\": \"3118489cb4e9e344e4b5d507f1471cf8bcf23c4ccfd7ee07011729ec5c564eed\"}, {\"name\": \"SESSION_PAIR_TRANSPORT_TERMINAL_JOB.json\", \"bytes\": 1861, \"sha256\": \"b9ff599b5da607379f5cd6535c7a04db5e6c5e043d1eb4852e3b2be214e19257\"}, {\"name\": \"SESSION_PAIR_FINAL_RECEIPT_PUBLISHED.json\", \"bytes\": 603, \"sha256\": \"3005be20cf8c2f2ff26f64597f6726709f53df4900a97948326bc93999e6960c\"}], \"restoration\": false, \"retirement\": false}\n{\"status\": \"PREPARED_ORIGINAL_RETAINED\", \"predelete\": {\"path\": \"/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127/retire-f0d875eb-2b71-49af-a2f9-1f2f7b85c792/PREDELETE.json\", \"bytes\": 18117, \"sha256\": \"93738162a5ffc0f36cffe31eb2638cfa37081140477536ba9355a4f892c043ba\"}, \"pointer\": {\"path\": \"/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127/retire-f0d875eb-2b71-49af-a2f9-1f2f7b85c792/RESTORATION_POINTER.json\", \"bytes\": 29938, \"sha256\": \"82f75ca26fcd83af71031383168879ad774153d8fad2fddee96be68b908471db\"}, \"restorationScript\": {\"path\": \"/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127/retire-f0d875eb-2b71-49af-a2f9-1f2f7b85c792/restore_session_pair_differential.py\", \"bytes\": 33944, \"sha256\": \"0c70a1f0801f777b47b1ffb1589da49172b91273437a4eb367fc15c45dbafa39\"}, \"removed\": false}"
+  }
+}

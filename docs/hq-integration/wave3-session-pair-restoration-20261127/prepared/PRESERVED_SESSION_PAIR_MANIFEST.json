@@ -1,0 +1,491 @@
+{
+  "fullTreeRestore": false,
+  "localRetirement": false,
+  "metadataArchive": {
+    "all12RegularMembersVerified": true,
+    "bytes": 20247355,
+    "identity": {
+      "bytes": 20247355,
+      "ctime_ns": "1795818782706954078",
+      "device": 2049,
+      "gid": 0,
+      "inode": 630324,
+      "mode": 420,
+      "mtime_ns": "1795818782706954078",
+      "nlink": 1,
+      "uid": 0
+    },
+    "name": "session-pair-preservation-metadata-20261127.tar.gz",
+    "sha256": "43e303295a389ee1bbe300993070dc1c6f9bd906d408705c68b6ff4aad9366c2"
+  },
+  "metadataMembers": [
+    {
+      "bytes": 7243,
+      "identity": {
+        "bytes": 7243,
+        "ctime_ns": "1795770747016507686",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723023,
+        "mode": 436,
+        "mtime_ns": "1795770747016507686",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "COMPLETE_PRESERVATION_VERIFIED.json",
+      "restoreMetadata": {
+        "atime_ns": "1795770747018518178",
+        "xattrs": {}
+      },
+      "sha256": "313e1e60aa516ae218bf709e8d106e7c5b8c64b8a72a61136a78394913e5909d"
+    },
+    {
+      "bytes": 5231,
+      "identity": {
+        "bytes": 5231,
+        "ctime_ns": "1795770148967368935",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723002,
+        "mode": 420,
+        "mtime_ns": "1795770148967368935",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "HEADER.json",
+      "restoreMetadata": {
+        "atime_ns": "1795770149115044714",
+        "xattrs": {}
+      },
+      "sha256": "ce9ebccb6c36704448b659ee5354c44391e514a78f4df08073326eff18e6cf3b"
+    },
+    {
+      "bytes": 1718,
+      "identity": {
+        "bytes": 1718,
+        "ctime_ns": "1795770184095411057",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723007,
+        "mode": 420,
+        "mtime_ns": "1795770184095411057",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "NEW_ARCHIVE_VERIFIED.json",
+      "restoreMetadata": {
+        "atime_ns": "1795770270324749887",
+        "xattrs": {}
+      },
+      "sha256": "8ec65743855d522d25f7e8b63c71d24c472b7087b3ca3c061d7529faf6e791e3"
+    },
+    {
+      "bytes": 107952,
+      "identity": {
+        "bytes": 107952,
+        "ctime_ns": "1795770184089248261",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723006,
+        "mode": 420,
+        "mtime_ns": "1795770184089248261",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "PRIOR_REFERENCES.json",
+      "restoreMetadata": {
+        "atime_ns": "1795770269937747636",
+        "xattrs": {}
+      },
+      "sha256": "58987ac07e18cf5be1cb88902345e557ca14ee1a6e91a55fb34f1fa2a817fcec"
+    },
+    {
+      "bytes": 2359,
+      "identity": {
+        "bytes": 2359,
+        "ctime_ns": "1795769999701069846",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 722996,
+        "mode": 436,
+        "mtime_ns": "1795769999701069846",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "RECEIVE_RESULT.json",
+      "restoreMetadata": {
+        "atime_ns": "1795770148711042363",
+        "xattrs": {}
+      },
+      "sha256": "b473e8a3a15af0c74d0d2de6681f25878070ba2f33a25ee65856d5a79337e3c2"
+    },
+    {
+      "bytes": 10864,
+      "identity": {
+        "bytes": 10864,
+        "ctime_ns": "1795771510361202243",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723096,
+        "mode": 436,
+        "mtime_ns": "1795771510361202243",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "RETIREMENT_PREDELETE.json",
+      "restoreMetadata": {
+        "atime_ns": "1795771510362961694",
+        "xattrs": {}
+      },
+      "sha256": "4990f5818663f85f12e4efc71db26e635f5c2bb93278199a8a1dfb442ce027b0"
+    },
+    {
+      "bytes": 12564,
+      "identity": {
+        "bytes": 12564,
+        "ctime_ns": "1795771528971824565",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723097,
+        "mode": 436,
+        "mtime_ns": "1795771528971824565",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "RETIREMENT_RESULT.json",
+      "restoreMetadata": {
+        "atime_ns": "1795771528985070082",
+        "xattrs": {}
+      },
+      "sha256": "d9e57b059eddb12238581f007591f44b8054d594d9ef870f56b665c9dba22701"
+    },
+    {
+      "bytes": 6145,
+      "identity": {
+        "bytes": 6145,
+        "ctime_ns": "1795771063725006521",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723025,
+        "mode": 436,
+        "mtime_ns": "1795771063725006521",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "SOURCE_REVERIFIED.json",
+      "restoreMetadata": {
+        "atime_ns": "1795771063727356935",
+        "xattrs": {}
+      },
+      "sha256": "5834032a8d367869ccb57a251ce89c8da1daf3c8a32fae944063621b3263c2ae"
+    },
+    {
+      "bytes": 15884473,
+      "identity": {
+        "bytes": 15884473,
+        "ctime_ns": "1795770149243045459",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723003,
+        "mode": 420,
+        "mtime_ns": "1795770149243045459",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "entries.jsonl.gz",
+      "restoreMetadata": {
+        "atime_ns": "1795770151141056507",
+        "xattrs": {}
+      },
+      "sha256": "84eb7dc3280106120c54fe731a23b196b583bff45d85a8db0d79ab861f298bfe"
+    },
+    {
+      "bytes": 4419157,
+      "identity": {
+        "bytes": 4419157,
+        "ctime_ns": "1795770149364046164",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723004,
+        "mode": 420,
+        "mtime_ns": "1795770149364046164",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "new-payloads.jsonl.gz",
+      "restoreMetadata": {
+        "atime_ns": "1795770149393046332",
+        "xattrs": {}
+      },
+      "sha256": "8c57a12eb797bcb6116e71a417dbe2788f774632fba91d6ef90cd0cdd252136a"
+    },
+    {
+      "bytes": 14047,
+      "identity": {
+        "bytes": 14047,
+        "ctime_ns": "1795769675018225915",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 722980,
+        "mode": 448,
+        "mtime_ns": "1795769675018225915",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "oracle_receiver_verify.py",
+      "restoreMetadata": {
+        "atime_ns": "1795769675018319715",
+        "xattrs": {}
+      },
+      "sha256": "597683bca42bf9b4b82ff173f3a991c15b9cba949a8e749d45301bbad0353710"
+    },
+    {
+      "bytes": 18331,
+      "identity": {
+        "bytes": 18331,
+        "ctime_ns": "1795770149389939834",
+        "device": 2064,
+        "gid": 1001,
+        "inode": 723005,
+        "mode": 420,
+        "mtime_ns": "1795770149389939834",
+        "nlink": 1,
+        "uid": 1001
+      },
+      "name": "session_pair.py",
+      "restoreMetadata": {
+        "atime_ns": "1795770270717752172",
+        "xattrs": {}
+      },
+      "sha256": "5e1f6d9f7f5a56abda50f3cdc76170fa3e4ca78d4d1d7a2ce7db7a5d8f427948"
+    }
+  ],
+  "originalArchive": {
+    "bytes": 1342747334,
+    "identity": {
+      "bytes": 1342747334,
+      "ctime_ns": "1795769999699174315",
+      "device": 2064,
+      "gid": 1001,
+      "inode": 722981,
+      "mode": 436,
+      "mtime_ns": "1795769999644173994",
+      "nlink": 1,
+      "uid": 1001
+    },
+    "name": "session-pair-differential.tar.gz",
+    "restoreMetadata": {
+      "atime_ns": "1795770120148876083",
+      "xattrs": {}
+    },
+    "sha256": "d0743bef81222350ed4cae139504585c81f1592ec084e31884933e79c22a5e8d"
+  },
+  "originalInventorySHA256": "c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2",
+  "privateRepository": {
+    "full_name": "davidpovarsky/Maktabah-preserved-evidence",
+    "id": 1474927804,
+    "private": true
+  },
+  "qualification": "Exact opaque differential and metadata transport only; historical Windows verification is retained unchanged, not refreshed. No SDK, app, native or physical acceptance.",
+  "schema": "otzaria.private-session-pair-differential-transport/1",
+  "selfContained": false,
+  "sourceDirectory": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127",
+  "sourceParent": {
+    "device": 2064,
+    "gid": 1001,
+    "inode": 722979,
+    "mode": 1472,
+    "uid": 1001
+  },
+  "unchangedExternalDependencies": {
+    "baseArchives": [
+      {
+        "archive_bytes": 1699905882,
+        "archive_sha256": "36b384277403ef416a22150724bd857b65b5d85043c884378630e7f1c6414efb",
+        "counts": {
+          "entries": 47372,
+          "new_payloads": 0
+        },
+        "id": "app-generated",
+        "manifest": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-app-generated-cache-preservation-20261127.6acrz1dj/MEMBER_MANIFEST.json",
+        "manifest_sha256": "5e6fd1ffe65b62333b6543d4b8d189109b56ae66f0d12bfda334aa11db424518"
+      },
+      {
+        "archive_bytes": 5238640114,
+        "archive_sha256": "2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda",
+        "counts": {
+          "entries": 138339,
+          "new_payloads": 0
+        },
+        "id": "old-sdk-producer",
+        "manifest": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-interrupted-sdk-work-preservation-20261127.811pvzsd/MEMBER_MANIFEST.json",
+        "manifest_sha256": "558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94"
+      },
+      {
+        "archive_bytes": 944883233,
+        "archive_sha256": "3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee",
+        "counts": {
+          "entries": 121147,
+          "new_payloads": 22521
+        },
+        "id": "fresh-sdk-differential",
+        "manifest": "/Users/m1/builds/otzaria-wave3-fresh-producer-preservation-20261127.hhz749_k/MANIFEST.json",
+        "manifest_sha256": "d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb"
+      },
+      {
+        "archive_bytes": 1291853917,
+        "archive_sha256": "f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b",
+        "counts": {
+          "entries": 65204,
+          "new_payloads": 3973
+        },
+        "id": "qualified-snapshot-differential",
+        "manifest": "/Users/m1/builds/otzaria-wave3-qualified-snapshot-preservation-20261127.2117vow6/MANIFEST.json",
+        "manifest_sha256": "70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660"
+      }
+    ],
+    "baseVerificationPerformedNow": false,
+    "fullTreeRestorePerformed": false,
+    "historicalArchiveBindings": [
+      {
+        "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\inactive-app-generated-caches.tar.gz",
+        "archive_bytes": 1699905882,
+        "archive_identity": {
+          "bytes": 1699905882,
+          "ctime_ns": 1795754031374798900,
+          "device": 5400942862240111193,
+          "inode": 26458647811059226,
+          "mtime_ns": 1795754242681846000
+        },
+        "archive_sha256": "36b384277403ef416a22150724bd857b65b5d85043c884378630e7f1c6414efb",
+        "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\VERIFIED_ARCHIVE.json",
+        "full_member_receipt_identity": {
+          "bytes": 1092,
+          "ctime_ns": 1795754625707737400,
+          "device": 5400942862240111193,
+          "inode": 65020719620421682,
+          "mtime_ns": 1795754625709291500
+        },
+        "full_member_receipt_sha256": "83126774b56474c0406918f423372f75b97ccf55e67b8b3450e73fac62133606",
+        "full_member_status": "COMPLETE_ARCHIVE_AND_EVERY_MEMBER_VERIFIED_NOT_REMOVED",
+        "id": "app-generated",
+        "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-app-generated-caches-20261127\\MEMBER_MANIFEST.json",
+        "manifest_identity": {
+          "bytes": 16815628,
+          "ctime_ns": 1795754625640468500,
+          "device": 5400942862240111193,
+          "inode": 12384898975553784,
+          "mtime_ns": 1795754625650557700
+        },
+        "manifest_sha256": "5e6fd1ffe65b62333b6543d4b8d189109b56ae66f0d12bfda334aa11db424518",
+        "referenced_members": 3
+      },
+      {
+        "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\interrupted-original-sdk-work.tar.gz",
+        "archive_bytes": 5238640114,
+        "archive_identity": {
+          "bytes": 5238640114,
+          "ctime_ns": 1795755704056118000,
+          "device": 5400942862240111193,
+          "inode": 21955048183724307,
+          "mtime_ns": 1795756294281474100
+        },
+        "archive_sha256": "2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda",
+        "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\VERIFIED_ARCHIVE.json",
+        "full_member_receipt_identity": {
+          "bytes": 885,
+          "ctime_ns": 1795757184998599600,
+          "device": 5400942862240111193,
+          "inode": 17451448556406643,
+          "mtime_ns": 1795757184998599600
+        },
+        "full_member_receipt_sha256": "7588011139c99fd2c6bad995fd799a74cafcac1a7e8e5378e0d615cbf7792424",
+        "full_member_status": "COMPLETE_ARCHIVE_AND_EVERY_MEMBER_VERIFIED_NOT_REMOVED",
+        "id": "old-sdk-producer",
+        "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-interrupted-sdk-work-20261127\\MEMBER_MANIFEST.json",
+        "manifest_identity": {
+          "bytes": 53858783,
+          "ctime_ns": 1795757184738564400,
+          "device": 5400942862240111193,
+          "inode": 52354345668480152,
+          "mtime_ns": 1795757184805191800
+        },
+        "manifest_sha256": "558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94",
+        "referenced_members": 97
+      },
+      {
+        "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\fresh-producer-differential.tar.gz",
+        "archive_bytes": 944883233,
+        "archive_identity": {
+          "bytes": 944883233,
+          "ctime_ns": 1795761459251521000,
+          "device": 5400942862240111193,
+          "inode": 12947848928777298,
+          "mtime_ns": 1795761540882596500
+        },
+        "archive_sha256": "3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee",
+        "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\VERIFIED_DIFFERENTIAL.json",
+        "full_member_receipt_identity": {
+          "bytes": 3929,
+          "ctime_ns": 1795761655710888000,
+          "device": 5400942862240111193,
+          "inode": 37999121856194675,
+          "mtime_ns": 1795761655711895100
+        },
+        "full_member_receipt_sha256": "485d1842dd531c9f6211a9498bddaa1139089fac92efee2abb436a716fced53f",
+        "full_member_status": "COMPLETE_DIFFERENTIAL_AND_ALL_REFERENCES_VERIFIED_NOT_REMOVED",
+        "id": "fresh-sdk-differential",
+        "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-fresh-producer-preservation-20261127\\MANIFEST.json",
+        "manifest_identity": {
+          "bytes": 93784007,
+          "ctime_ns": 1795761616478841200,
+          "device": 5400942862240111193,
+          "inode": 14636698789341979,
+          "mtime_ns": 1795761616693475700
+        },
+        "manifest_sha256": "d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb",
+        "referenced_members": 0
+      },
+      {
+        "archive": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\qualified-snapshot-differential.tar.gz",
+        "archive_bytes": 1291853917,
+        "archive_identity": {
+          "bytes": 1291853917,
+          "ctime_ns": 1795763610781859100,
+          "device": 5400942862240111193,
+          "inode": 11258999068627783,
+          "mtime_ns": 1795763696874289200
+        },
+        "archive_sha256": "f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b",
+        "full_member_receipt": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\VERIFIED_DIFFERENTIAL.json",
+        "full_member_receipt_identity": {
+          "bytes": 8013,
+          "ctime_ns": 1795763846001532200,
+          "device": 5400942862240111193,
+          "inode": 18295873486424569,
+          "mtime_ns": 1795763846002530800
+        },
+        "full_member_receipt_sha256": "1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9",
+        "full_member_status": "COMPLETE_QUALIFIED_SNAPSHOT_DIFFERENTIAL_AND_ALL_REFERENCES_VERIFIED_NOT_RETIRED",
+        "id": "qualified-snapshot-differential",
+        "manifest": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-qualified-snapshot-preservation-20261127\\MANIFEST.json",
+        "manifest_identity": {
+          "bytes": 49280191,
+          "ctime_ns": 1795763803024225600,
+          "device": 5400942862240111193,
+          "inode": 34902897112352880,
+          "mtime_ns": 1795763803091685200
+        },
+        "manifest_sha256": "70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660",
+        "referenced_members": 326
+      }
+    ],
+    "historicalCompleteReceiptSHA256": "313e1e60aa516ae218bf709e8d106e7c5b8c64b8a72a61136a78394913e5909d",
+    "priorOriginalFileOccurrences": 2802,
+    "priorPhysicalMembers": 426,
+    "priorReferenceLedgerSHA256": "58987ac07e18cf5be1cb88902345e557ca14ee1a6e91a55fb34f1fa2a817fcec",
+    "selfContained": false,
+    "windowsCurrentlyOffline": true
+  },
+  "windowsAccess": false
+}

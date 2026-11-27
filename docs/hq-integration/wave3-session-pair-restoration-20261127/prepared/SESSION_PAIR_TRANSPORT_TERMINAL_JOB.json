@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_429fd8747557",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795819945.8595953,
+    "started_at": "2026-11-27T22:52:25.959140+00:00",
+    "finished_at": "2026-11-27T23:02:57.171735+00:00",
+    "duration_s": 631.21,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 3000,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"EXACT_SAME_DRAFT_CONTINUATION_STAGED\", \"utc\": \"2026-11-27T22:52:26.011091+00:00\", \"releaseID\": 461122448, \"freeBefore\": 2239811584, \"files\": [{\"name\": \"continue_session_pair_upload.py\", \"bytes\": 17746, \"sha256\": \"eb335d25427585006e2cdae62140821852d8aee1b8d3a92b5978b70ceb786310\"}, {\"name\": \"FAILURE_SCOPE_READ.json\", \"bytes\": 7518, \"sha256\": \"a2711edae5a4e17135d999089def7303ae637a0f4c26af5a8a371f6c16010f76\"}], \"retirement\": false}\n{\"status\": \"EXACT_PRIVATE_DIFFERENTIAL_AND_12_METADATA_FULL_BYTES_READBACK_VERIFIED_ORIGINALS_RETAINED\", \"receipt\": {\"path\": \"/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127/VERIFIED_PRIVATE_SESSION_PAIR_TRANSPORT.json\", \"bytes\": 12987, \"sha256\": \"0c07d1c5b25136331d7790f88436aef3a3d7aef5b82e4cd23ca61ba848ffb05a\"}, \"releaseID\": 461122448, \"selfContained\": false, \"localRetirement\": false}\n/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_7158afe719494ef3bc28c715e0fded89/script.py:17: SyntaxWarning: invalid decimal literal\n  require(stat.S_ISREG(s.st_mode)and s.st_nlink==1and len(b)==row['bytes']and hashlib.sha256(b).hexdigest()==row['sha256'],'Originalstagedsourcechanged')"
+  }
+}
