@@ -1,0 +1,68 @@
+{
+  "commit": "8de1c26e36dc15c5641eeba0a182279714ac687b",
+  "files": [
+    {
+      "path": "Scripts/CI/library-v40-focused-native.py",
+      "mode": "100755",
+      "gitBlobSHA": "27fd45b6a621b4520b894548071e7f2da6caf30f",
+      "bytes": 24369,
+      "sha256": "6eb5768fe51a5c3339b107c839afd84e70cb02d093176cd166107b71beddaff0"
+    },
+    {
+      "path": "Scripts/run-otzaria-native-bootstrap-acceptance.sh",
+      "mode": "100755",
+      "gitBlobSHA": "9bf5aa56fa2fab1827bd2f762bf2662956fcbc88",
+      "bytes": 7614,
+      "sha256": "62d88c5c8c6ad1e2e05a290bb2d6c398db677b3389cd28edf38766ad66ae8f10"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift",
+      "mode": "100644",
+      "gitBlobSHA": "197272a5d3aecfd16e40b686443368c140f40305",
+      "bytes": 31738,
+      "sha256": "33411f699c3131be5a027a81d4c3a2ec7c6b83d36bcd78dd3389014d5cc2aeda"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift",
+      "mode": "100644",
+      "gitBlobSHA": "d8c19519716662f3edc9b06106d96b4ebbf2f785",
+      "bytes": 23174,
+      "sha256": "57b459d6f43bd143236a2616dd9f8298ed48387e727e3903077caa178c5315f3"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+      "mode": "100644",
+      "gitBlobSHA": "b1aa0e494e51e17bf3d8039a08b2a95a20e4f2ac",
+      "bytes": 11234,
+      "sha256": "8c138198f41830eca491508e57b8c67508a580eeb36e00c0a61d7600eabbdff5"
+    },
+    {
+      "path": "Source/Otzaria/Bootstrap/OtzariaZstdStreamExtractor.swift",
+      "mode": "100644",
+      "gitBlobSHA": "17d02cbf37e543a5240ea804da06534257f4c174",
+      "bytes": 8365,
+      "sha256": "e8b560ca268a943dbbfb095130773cc53a47ef7443bbc195f01c840fb7203fa9"
+    },
+    {
+      "path": "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift",
+      "mode": "100644",
+      "gitBlobSHA": "134b92952f980a0d7821b65329c452a92e64f0b6",
+      "bytes": 13447,
+      "sha256": "eb867ef684f6515c23fc539f26216c7f8c9e5167a40bd9584852434f3dde2ddf"
+    },
+    {
+      "path": "docs/hq-integration/library-acceptance-20261125/seforim-schema7.db.zst.manifest.json",
+      "mode": "100644",
+      "gitBlobSHA": "a3c5b175834abc0e7594a13ca1fb5210466a30cf",
+      "bytes": 589,
+      "sha256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/inspector-v40/SOURCE_IDENTITY.json",
+      "mode": "100644",
+      "gitBlobSHA": "b9be19af30e50a94995daba4b5f66ea9f5656636",
+      "bytes": 1112,
+      "sha256": "9b9077fb62991b0c0a1859343989ee8607de286ae9f470ca96a2f3c311e23c88"
+    }
+  ]
+}
