@@ -1,0 +1,8 @@
+{
+  "scope": "Original v40 source-check only; no native execution",
+  "exit": 1,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 1315,
+  "stderr_sha256": "6df9037cf367d95602f21ac3df07c4093a42bdfd420a39089774bb4eb7854d16"
+}

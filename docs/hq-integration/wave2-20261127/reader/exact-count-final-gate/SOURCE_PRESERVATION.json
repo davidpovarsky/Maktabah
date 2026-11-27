@@ -1,0 +1,7 @@
+{
+  "original_wrapper_sha256": "42d3ae8d6738fe6987622bdfc1ff844929ec7a0fb088e24d096ebec02a6ec74c",
+  "candidate_wrapper_sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+  "original_wrapper_recovered_byte_for_byte": true,
+  "unchanged_common_v32_sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
+  "scope": "source preservation only; no native execution"
+}

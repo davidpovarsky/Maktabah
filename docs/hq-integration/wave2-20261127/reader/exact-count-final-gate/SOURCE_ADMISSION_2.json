@@ -1,0 +1,29 @@
+{
+  "scope": "Original v40 source-check only; no native execution",
+  "exit": 0,
+  "status": "SOURCE_ONLY_UNFINALIZED",
+  "execution_input_count": 50,
+  "declarations": {
+    "status": "DECLARATIONS_MATCH",
+    "suites": [
+      {
+        "expected": [
+          "testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch"
+        ],
+        "selection": "FaithfulProductionReleaseTests/testTwentyOriginalFullV40ReaderOpensAndForcedRelaunch",
+        "status": "DECLARATIONS_MATCH",
+        "suite": "FaithfulProductionReleaseTests"
+      },
+      {
+        "expected": [
+          "testOriginalFullV40InspectorRelationshipScalesAndReturn"
+        ],
+        "selection": "FaithfulProductionReleaseTests/testOriginalFullV40InspectorRelationshipScalesAndReturn",
+        "status": "DECLARATIONS_MATCH",
+        "suite": "FaithfulProductionReleaseTests"
+      }
+    ]
+  },
+  "report_sha256": "df7b6a87076af6df3375a22742a797b73645aeabc01fcfc5c21e3672f33a5700",
+  "collection_note": "The source-check command returned zero with no stdout and wrote its original source-only-admission.json. The first collection wrapper then failed by parsing empty stdout as JSON; this preserves that successful report without rerunning the check. The initial source-check failure on an omitted sparse Git input is retained separately."
+}
