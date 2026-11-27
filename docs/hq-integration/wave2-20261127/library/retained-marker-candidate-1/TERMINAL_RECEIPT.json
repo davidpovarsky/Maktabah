@@ -1,0 +1,20 @@
+{
+  "job": "job_efc45ee9533a",
+  "exit_code": 0,
+  "started_at": "2026-11-27T00:07:59.314804+00:00",
+  "finished_at": "2026-11-27T00:08:08.352675+00:00",
+  "result_sha256": "08377cf24e3c2c2eb25adb0056d1f7455d54336d88e46c85a7b6e41e5144dc72",
+  "negative_evidence_sha": "d9e299787302a7c6ac6475120ada760de80781ba",
+  "product_sha": "3f062f6c97c12709ae0757fdeb1f7ece86674332",
+  "same_control_sha256": "1bf7513e57ae772870395dad9637717892a69c3f80c90dc2e3092084d33ab16b",
+  "same_runner_sha256": "86d50c0c325138ed1982236d0b75112348aef95eef074fa320da2d077fb8a8ac",
+  "inputs_unchanged": true,
+  "summary": {
+    "failed": 0,
+    "passed": 10,
+    "scope": "real-filesystem-SQLite-component",
+    "skipped": 0,
+    "ui_acceptance": false
+  },
+  "ui_acceptance": false
+}
