@@ -1,0 +1,6 @@
+{
+  "exit": 0,
+  "stdout": "{\"status\": \"EXACT_CLOSED_CONTROLS_RELOCATED_ALL_ORIGINAL_PATH_ALIASES_VERIFIED\", \"receiptSHA256\": \"45383c2a0fe849e8e62947d5a701e8111882bb602e3cb651e43d98e6a0d8de5b\", \"scopes\": 15, \"after\": {\"rootFree\": 1959624704, \"dataFree\": 1990823936}}\n",
+  "stderr": "",
+  "utc": "2026-11-27T21:27:43.074747+00:00"
+}

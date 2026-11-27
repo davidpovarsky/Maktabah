@@ -1,0 +1,19 @@
+{
+  "reviewer": "/root/release_preflight",
+  "scope": "Narrow source-only re-review of the original three findings and parent-directory durability completion",
+  "controllerSHA256": "fa0ea1728f77e0481c7098629d64c80efd75638b97a948398ef28f1a57f54d57",
+  "controllerBytes": 15955,
+  "planSHA256": "276c2a46ecfd64a1b99faa604bc1e7ee091d5c0bf0fe2c6ebf91eadbd5399c74",
+  "initialReviewSHA256": "1ba51823eedf46f260114ce5b8c79d22075df47eb76bd44fad6e6c8c34f1e366",
+  "result": "NO_REMAINING_DEMONSTRATED_BLOCKER_IN_REVIEWED_SCOPE",
+  "corrected": [
+    "sync_copy fsyncs each no-follow regular file and bottom-up directory hierarchy after final timestamp restoration in both preparation and cutover.",
+    "The newly created destination parent entry is fsynced immediately after mkdir/chown, before the PREPARED receipt.",
+    "Relative links lexically escaping the exact copied scope fail closed; absolute link target bytes and permitted internal relative topology remain preserved.",
+    "Full retired-tree content/metadata equality and a fresh bounded no-use observation of retired origin, original alias and destination precede fd-safe removal."
+  ],
+  "retained": "The exact fifteen-root plan, immutable PREPARED/manifest binding, original regular-file hashes and identity checks, protected paths, resource reserves, no process signals and original failure-preservation behavior remain unchanged.",
+  "executionLimits": "No host mutation, relocation, test or build performed by reviewer. Preparation changes no Data origin. A later cutover still requires the exact actual PREPARED digest, all original current-source/no-use/capacity guards, and root's separate execution decision. This is not a runtime durability or free-space result.",
+  "nativeRuns": 0,
+  "builds": 0
+}

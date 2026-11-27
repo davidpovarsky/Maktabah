@@ -1,0 +1,39 @@
+{
+  "reviewer": "/root/release_preflight",
+  "scope": "Read-only source review; no relocation, build, test or process action",
+  "controllerSHA256": "ab0749082f8601515719798ff7f073649461b42ce542087a294d50cea00dc7ce",
+  "planSHA256": "276c2a46ecfd64a1b99faa604bc1e7ee091d5c0bf0fe2c6ebf91eadbd5399c74",
+  "read": "Complete controller and all fifteen plan scopes/protected paths",
+  "findings": [
+    {
+      "id": "copied-file-durability",
+      "status": "BLOCKS_ORIGIN_REMOVAL",
+      "evidence": "prepare runs cp --archive and hash/metadata verification, then fsyncs manifest files and their parent only. Copied regular files and their directory hierarchy have no explicit durability fence before PREPARED and later origin removal.",
+      "correction": "After the final copied timestamps are restored, fsync each copied regular file opened without symlink following and fsync directories bottom-up. Preserve failures and leave all originals intact on failure. Any later copied metadata changes require the corresponding durability fence."
+    },
+    {
+      "id": "relative-symlink-semantics",
+      "status": "REQUIRES_EXACT_INVENTORY_GUARD",
+      "evidence": "The inventory records raw symlink target bytes, but relocation changes the parent directory used to resolve relative targets. A relative link escaping the copied scope can preserve text yet refer to a different object.",
+      "correction": "Either prove every old/new resolved target against the exact source-to-destination mapping, or refuse escaping relative links. Retain original link bytes and metadata. No finding that such a link actually exists is claimed."
+    },
+    {
+      "id": "retired-scope-no-use",
+      "status": "REQUIRES_FRESH_PRE_REMOVAL_CHECK",
+      "evidence": "The last no-use observation precedes all cutover renames and full per-scope inventories. A reader that opens before an alias is installed can still hold the renamed original.",
+      "correction": "Before fd-safe rmtree, repeat the bounded exact no-use observation for that renamed original. Keep both verified copies and the usable alias on any refusal. Do not signal a process."
+    }
+  ],
+  "preserved_contracts": [
+    "The allowlist has fifteen distinct exact roots and excludes declared protected consumers.",
+    "A supplied immutable PREPARED digest binds the plan and per-scope manifest digests.",
+    "Every regular file is rehashed and original inode/device/ctime changes are rejected.",
+    "Nested Git, special files, cross-device entries and hardlinked regular files are refused.",
+    "The fixed-parent fd and symlink-resistant rmtree retain a narrow removal scope.",
+    "Root filesystem floor, additional agent reserve and 512 MiB copied allocation admission are retained.",
+    "Failures before removal leave unique source content present; per-scope ready/done receipts retain partial progress."
+  ],
+  "limits": "This source review does not prove actual directory closure, symlink inventory, current capacity, metadata durability or execution. Those require the original runtime guards and receipts. No optional duplicate tests were run.",
+  "nativeRuns": 0,
+  "builds": 0
+}

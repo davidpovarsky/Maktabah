@@ -1,0 +1,8 @@
+{
+  "status": "PREPARE_FINISHED",
+  "exit": 0,
+  "stdout": "{\"status\": \"FULL_COPY_AND_METADATA_VERIFIED_DATA_ORIGINS_UNCHANGED\", \"receiptSHA256\": \"3839447e40bbec67c26e0f2d0af10cf2b31aac912fe4b0051b36548a5c38fbf9\", \"scopes\": 15, \"entries\": 2150, \"allocatedSourceBytes\": 363614208, \"after\": {\"rootFree\": 1960144896, \"dataFree\": 1627303936}}\n",
+  "stderr": "",
+  "utc": "2026-11-27T21:25:56.576767+00:00",
+  "controllerSHA256": "fa0ea1728f77e0481c7098629d64c80efd75638b97a948398ef28f1a57f54d57"
+}

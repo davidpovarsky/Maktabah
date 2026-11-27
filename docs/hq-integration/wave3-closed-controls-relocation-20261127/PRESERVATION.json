@@ -1,0 +1,477 @@
+{
+  "schema": "otzaria.closed-controls.relocation-preservation.v1",
+  "status": "COMPLETED_RELOCATION_PROOF_PRESERVED_ORIGINAL_ALIASES_REVERIFIED",
+  "utc": "2026-11-27T21:45:39.777073+00:00",
+  "integrationBase": "c24eae33049e83a800d80e61948f1d1d800e9bc7",
+  "allNonDocumentationRootEntries": [
+    "040000 tree 46b478d886ed159784e2c92497b2d984e62c0c50\t.agents",
+    "040000 tree bce7772eb5eb55be69f56b1cdcacc5e5a94a2075\t.codex",
+    "100644 blob a16c1454153ceaee01dbdc7f62f1c72ada757137\t.gitattributes",
+    "040000 tree 9c2a99bc3b2da6ce1e7fdda492ef2360b236597f\t.github",
+    "100755 blob 13e0283e18450fefd77f87532412f30be5a3124b\t.gitignore",
+    "100644 blob dbefe3a99b1c267817d7e95a8979554b08d8f9a8\t.gitmodules",
+    "100644 blob c719a9821dd6acc4f83d068ab856cd195968c3bb\t.swiftformat",
+    "100644 blob 7ac6889dbdee7248e61fc71e4147f41093920a5e\t.swiftlint.yml",
+    "100644 blob c4484e966f3f0b897a673c86d9b1f373f4ebf19c\tAGENTS.md",
+    "100644 blob b527e5f0dba1979adb32d4144b4d8c9e99163824\tCLAUDE.md",
+    "100644 blob 1d7e56a2bc577209712d184c3570ebfb0a7cdd3b\tCONTRIBUTING.md",
+    "040000 tree cafdd94d6b16c7dcb71ef622a5aa7f2270ce2fc7\tCloudKit",
+    "100644 blob 4c193c2178e97201b019c065de62e0b68d2f2c91\tDESIGN_LANGUAGE.md",
+    "100644 blob 0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf\tGEMINI.md",
+    "100644 blob f288702d2fa16d3cdf0035b15a9fcbc552cd88e7\tLICENSE",
+    "040000 tree 2e8b47fb335ed5b9d2b64f7e54514b4390b07f05\tMaktabah-iOSNativeTests",
+    "040000 tree 0a3d5b475c2e72d52d973a66a1e078ba2031db13\tMaktabah-iOSUITests",
+    "040000 tree 4679996b48174eccff2ae350de4c86f87495db85\tMaktabah.xcodeproj",
+    "040000 tree b4ea8d9ef86400672d68948d760d98c936efa8f7\tMaktabahTests",
+    "040000 tree 46a3fd8a407f0c7baf078e82314821024e940f63\tMiniApps",
+    "100644 blob 77952126169991d431766f44b5d62ecd2567a189\tPROJECT_AGENT_GUIDANCE.md",
+    "100644 blob 7257a506fd72fdeda16f1c6d3fb2885af79c5638\tPROJECT_BOARD.md",
+    "100644 blob 29785dbf6a16a5103afabc741ebe8fff3cac1239\tPodfile",
+    "100644 blob 03c10be552d73ce31cdb2e74735ed8116bde4dbd\tREADME.md",
+    "100644 blob 48c1821b3c9db539c3365d4e95a99c194320b438\tREADME_OTZARIA_PHASE1.md",
+    "100644 blob d95d1d2bf5bf5fa433c008346b6b9e81c5d05e54\tSECURITY.md",
+    "100644 blob 85683df893fade45b36030622aa98feb5bc1e430\tSOURCE_TO_PORT_DIFF.md",
+    "040000 tree 283cc4d5ba67ce7b0dd59341dfed707586ebd7d1\tScreenshots",
+    "040000 tree 7bc40e16e64dbc638b001dfe78450b488d15e6d6\tScripts",
+    "040000 tree c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb\tSource",
+    "040000 tree df84d029512d9be03624b14c29297d43b31b7a4e\tTests",
+    "100644 blob b19e9e90d967a30cc0177d7f8d00e398449a4cb7\tUPSTREAM_SYNC_2026-10-21_BASELINE.md",
+    "100644 blob 7d9633fea2daef74e995bf6e6c95624a70239b91\tUPSTREAM_SYNC_CHANGE_COVERAGE.md",
+    "100644 blob 13a2a0c2bf04adca517ea76ddea6326c1a979f48\tUPSTREAM_SYNC_CONFLICT_LEDGER.md",
+    "100644 blob 61a99b6e0dcc2d6d20aac5f0a960a209f3fe4223\tUPSTREAM_SYNC_DOWNSTREAM_PRESERVATION.md",
+    "100644 blob e01198a8a2c8393c08f24f809f9a301b77248a2b\tUPSTREAM_SYNC_FINAL_REPORT.md",
+    "100644 blob 49b89137c68f5c8e69b21da6965f89fd06030d2b\tUPSTREAM_SYNC_V42_FEATURE_PARITY.md",
+    "100644 blob 60f7632e4bc75b3297e256a70f96691a041f102b\tUPSTREAM_SYNC_VALIDATION_MATRIX.md",
+    "040000 tree 2fb868bdbe5d2d52735e857a24933918ff658cef\tVendor",
+    "040000 tree d8272f500d6541ef97d05903c6bda0ad48623417\tci_scripts",
+    "100644 blob f042cbe6520f47ed94743122d2be35a9d64b0892\tmaktabah_otsaria_phase1.zip",
+    "100644 blob 7ffdbe9817810c179af8e56d597dcc4b412e04e1\tmkdocs.yml",
+    "040000 tree 7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5\tscripts",
+    "040000 tree e89d698e2328ed66051db3a372a4f8eec158826c\ttools"
+  ],
+  "sourceTree": "c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb",
+  "actualPrepareJob": "job_b8edcfda17a1",
+  "actualCutoverJob": "job_125eb3c41295",
+  "preparedSHA256": "3839447e40bbec67c26e0f2d0af10cf2b31aac912fe4b0051b36548a5c38fbf9",
+  "cutoverSHA256": "45383c2a0fe849e8e62947d5a701e8111882bb602e3cb651e43d98e6a0d8de5b",
+  "scopes": 15,
+  "manifestEntries": 2150,
+  "allocatedBytesRelocated": 363614208,
+  "aliases": [
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-controls-20261127-attempt1",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-controls-20261127-attempt1",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-controls-20261127-attempt2",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-controls-20261127-attempt2",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-reader-controls-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-history-reader-controls-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/Maktabah-wave3-history-reader-controls-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-rn-semantic-source-controls-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-rn-semantic-source-controls-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-hidden-group-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-hidden-group-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-search-entry-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-search-entry-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-toc-oracle-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-toc-oracle-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tool-cold-20261127-attempt1",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-reader-tool-cold-20261127-attempt1",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-reader-tool-cold-20261127-attempt1",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-reader-object-identity-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-reader-object-identity-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-five-scope-preservation-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-five-scope-preservation-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-five-scope-preservation-20261127",
+      "aliasVerified": true
+    },
+    {
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-cold-initial-content-20261127",
+      "destination": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-cold-initial-content-20261127",
+      "symlinkText": "/home/ubuntu/otzaria-wave3-closed-controls-relocated-20261127/otzaria-wave3-cold-initial-content-20261127",
+      "aliasVerified": true
+    }
+  ],
+  "files": [
+    {
+      "path": "completed/CONTROLLER.py",
+      "bytes": 15955,
+      "sha256": "fa0ea1728f77e0481c7098629d64c80efd75638b97a948398ef28f1a57f54d57"
+    },
+    {
+      "path": "completed/CUTOVER-00-DONE.json",
+      "bytes": 258,
+      "sha256": "7df31103a20a1d1cb9f95c63cee452007bf8d1f250a893d8ec3caac5692c6594"
+    },
+    {
+      "path": "completed/CUTOVER-00-READY.json",
+      "bytes": 480,
+      "sha256": "14809303b84aeda3f747e22ff19748c9df79c6122dabd09c51f96de43009742a"
+    },
+    {
+      "path": "completed/CUTOVER-01-DONE.json",
+      "bytes": 258,
+      "sha256": "2bf8ccccdb4ed1d041ba73454df798cbd8c709e2c1cdb6b59ffc03196c6f4c62"
+    },
+    {
+      "path": "completed/CUTOVER-01-READY.json",
+      "bytes": 480,
+      "sha256": "2d5f134daa2c65953f27a7fa65ffe56347cd8dc2cf8b2f9f82ae9c68e74c3473"
+    },
+    {
+      "path": "completed/CUTOVER-02-DONE.json",
+      "bytes": 272,
+      "sha256": "fbd96110ada28078a98849bbc55698daedcd6813f92f2c8f0664abb3ab456a19"
+    },
+    {
+      "path": "completed/CUTOVER-02-READY.json",
+      "bytes": 501,
+      "sha256": "ee35f8026da2469b504a9a4b90785d704b3d36685e90b10243c8ad170687cae9"
+    },
+    {
+      "path": "completed/CUTOVER-03-DONE.json",
+      "bytes": 268,
+      "sha256": "8634d50de991fca32d5c815472fad23cd152d8ce86efd5ca0b6959b166549091"
+    },
+    {
+      "path": "completed/CUTOVER-03-READY.json",
+      "bytes": 495,
+      "sha256": "d4392c3ebd0e3f452f2f983048f0f3110a23474c82cbe556f36fff8b5208820b"
+    },
+    {
+      "path": "completed/CUTOVER-04-DONE.json",
+      "bytes": 268,
+      "sha256": "4087c825d386aeb362fffbd72d9553480cd9f56f8b958ee121e79b30b3c99ab9"
+    },
+    {
+      "path": "completed/CUTOVER-04-READY.json",
+      "bytes": 495,
+      "sha256": "9d08b7fc7ba41f3a5ce32d53435166b26c2677a131c8eafcd002ca82f6b4a654"
+    },
+    {
+      "path": "completed/CUTOVER-05-DONE.json",
+      "bytes": 268,
+      "sha256": "3069c20f10e4370212cfe167cb58de3149090f43031c9380128981885a227985"
+    },
+    {
+      "path": "completed/CUTOVER-05-READY.json",
+      "bytes": 495,
+      "sha256": "c755651d3208b9c191750654879358cf83fc1129a2588ee4603ab01252613ee1"
+    },
+    {
+      "path": "completed/CUTOVER-06-DONE.json",
+      "bytes": 244,
+      "sha256": "b34342b45db55b4e85d55bab63270caac326ddf735df0096a188002a99d6f79f"
+    },
+    {
+      "path": "completed/CUTOVER-06-READY.json",
+      "bytes": 459,
+      "sha256": "8ece703e44b6c3c73ff17f97d48f57f87ea2ace7cfd91b0d6389550fbb16f4a8"
+    },
+    {
+      "path": "completed/CUTOVER-07-DONE.json",
+      "bytes": 252,
+      "sha256": "f109f7d93cc94f68c8cd8da794fa827134e6b8a85e85ece22a90ac2ef55ff833"
+    },
+    {
+      "path": "completed/CUTOVER-07-READY.json",
+      "bytes": 472,
+      "sha256": "bd55c0420e7c48247dfb2b4297485dad6c8e7e44b62f2523b0d01ceffd88dbfa"
+    },
+    {
+      "path": "completed/CUTOVER-08-DONE.json",
+      "bytes": 222,
+      "sha256": "1dfcf30ba71902f8bdd95c954b946d1aacd17693d7ecde5bf0329ecc6df26d58"
+    },
+    {
+      "path": "completed/CUTOVER-08-READY.json",
+      "bytes": 427,
+      "sha256": "2c34f085c9ef084064fb917e2055d13de1b26ac095d3d749339da6f3f518b085"
+    },
+    {
+      "path": "completed/CUTOVER-09-DONE.json",
+      "bytes": 222,
+      "sha256": "29f68038ae126930048790e846a6856ae80857a473f56aa57dc10bf738df5629"
+    },
+    {
+      "path": "completed/CUTOVER-09-READY.json",
+      "bytes": 427,
+      "sha256": "c6c67d7af07c3a1acae528aeda45a09e35bf697c6cc259d4b1a3a65c0823110b"
+    },
+    {
+      "path": "completed/CUTOVER-10-DONE.json",
+      "bytes": 218,
+      "sha256": "9210ba820e9dd6fd5d4fcd03dbe5274c960efa788e1e9e29746d565e208f6eca"
+    },
+    {
+      "path": "completed/CUTOVER-10-READY.json",
+      "bytes": 421,
+      "sha256": "990e048a9680363208cc03e4a1ffad4aadd0b00ba8eb1b8a966cedfc2acbfc93"
+    },
+    {
+      "path": "completed/CUTOVER-11-DONE.json",
+      "bytes": 248,
+      "sha256": "63c6236b136a1d22bf6f6cab8078d0fbf5ae8ef5d5e3ed8e24ee05484f81c2b0"
+    },
+    {
+      "path": "completed/CUTOVER-11-READY.json",
+      "bytes": 466,
+      "sha256": "ee655a9a03051bb7f146ba7ddb7b32dd40634fcc08579cf80e248533c3eca80f"
+    },
+    {
+      "path": "completed/CUTOVER-12-DONE.json",
+      "bytes": 242,
+      "sha256": "8f5b94eb3932dd3c9da7b1fa5323fe6281d3c540258687817b678b8c4bc48bf1"
+    },
+    {
+      "path": "completed/CUTOVER-12-READY.json",
+      "bytes": 457,
+      "sha256": "25355a7092a333c2aa539c5f0411755c10a0f5534927299ede6eafd51918c2b3"
+    },
+    {
+      "path": "completed/CUTOVER-13-DONE.json",
+      "bytes": 244,
+      "sha256": "9417d8492ab18a452e8ea48d7f0f44732c6b219c92502f309663743b0ea2baaa"
+    },
+    {
+      "path": "completed/CUTOVER-13-READY.json",
+      "bytes": 460,
+      "sha256": "0c1c70d8d6ae155ddee293dafc55a4aaf609e504c0aa6b1c27c97ae061e82430"
+    },
+    {
+      "path": "completed/CUTOVER-14-DONE.json",
+      "bytes": 238,
+      "sha256": "de9a03c6b9650828681173f60c319a6e100563021d7860d2e0c65c500ae45158"
+    },
+    {
+      "path": "completed/CUTOVER-14-READY.json",
+      "bytes": 451,
+      "sha256": "ca12836e60f7ff797e9066cf12313857c21114c27cfec276cd8fa8c343a1c1bc"
+    },
+    {
+      "path": "completed/CUTOVER_RESULT.json",
+      "bytes": 4245,
+      "sha256": "45383c2a0fe849e8e62947d5a701e8111882bb602e3cb651e43d98e6a0d8de5b"
+    },
+    {
+      "path": "completed/MANIFEST-00.json",
+      "bytes": 46886,
+      "sha256": "1f93c4947493fee278aef2e964691d6b5cafdbf7187efb7aad18074371fa7274"
+    },
+    {
+      "path": "completed/MANIFEST-01.json",
+      "bytes": 42684,
+      "sha256": "8a956898c5ec43226562a3c8c82c2cf68a19f8439c49613e8b9291a795a4f6c0"
+    },
+    {
+      "path": "completed/MANIFEST-02.json",
+      "bytes": 52959,
+      "sha256": "825784d0b0dfcd1a5b68b921bea2b7c4fc98b95abcd0bbbff599b9f36ceb9b04"
+    },
+    {
+      "path": "completed/MANIFEST-03.json",
+      "bytes": 24352,
+      "sha256": "0c3c79f35f1ea1723896cccd3fe8898806adc2e4c8bc8f19fa783389d6606162"
+    },
+    {
+      "path": "completed/MANIFEST-04.json",
+      "bytes": 23921,
+      "sha256": "cdc52e21db97b6d75edd92fb7435c0d94505e8177472374a2cf91813bce2905e"
+    },
+    {
+      "path": "completed/MANIFEST-05.json",
+      "bytes": 30339,
+      "sha256": "caedfc330f2907110b62b4573ec86abc7634a271b22111ce4e82fb5fa6b2c578"
+    },
+    {
+      "path": "completed/MANIFEST-06.json",
+      "bytes": 83976,
+      "sha256": "0693399acd85f779c4138c41402988f542eb94d051e4f97ddbea37a34ed7ab69"
+    },
+    {
+      "path": "completed/MANIFEST-07.json",
+      "bytes": 428863,
+      "sha256": "a5d173cd3d3a104c5c7911606ac7b844f768d2537c349d4be757e6fd8ec1667a"
+    },
+    {
+      "path": "completed/MANIFEST-08.json",
+      "bytes": 480907,
+      "sha256": "c16abc6aac803e32072d84be0d4999a2d7f758a2eef7996ee1609c960df31937"
+    },
+    {
+      "path": "completed/MANIFEST-09.json",
+      "bytes": 17541,
+      "sha256": "3adc33cf5c47e50946c2124502c01e10bf58fe7074c40286f968e0ab5cdc196f"
+    },
+    {
+      "path": "completed/MANIFEST-10.json",
+      "bytes": 9613,
+      "sha256": "3903da24a751f625ae8a7167602a72724c2499bea1ac108ef527e473bccf2772"
+    },
+    {
+      "path": "completed/MANIFEST-11.json",
+      "bytes": 29201,
+      "sha256": "981be6527358259d45fa2efe7814cf982894c181e5a8b45b8404a22b677c826e"
+    },
+    {
+      "path": "completed/MANIFEST-12.json",
+      "bytes": 10951,
+      "sha256": "580202162f3a96ccb49987e6ca8dc534311b4d655257ed64588055d028c74eb5"
+    },
+    {
+      "path": "completed/MANIFEST-13.json",
+      "bytes": 15863,
+      "sha256": "25d63f6cf0045d9e18fa6abb60aca78b4579a3ca92b46e613e755ea578142001"
+    },
+    {
+      "path": "completed/MANIFEST-14.json",
+      "bytes": 168089,
+      "sha256": "8040d62082e89fd389f240a9af48dca80c90c25e048e41c03c82e03ebbf86ca9"
+    },
+    {
+      "path": "completed/PLAN.json",
+      "bytes": 8847,
+      "sha256": "144b3fb7a374f130c4129c527a32c5c23c6f286a919c84d7a17a7e2847e3242c"
+    },
+    {
+      "path": "completed/PREPARED.json",
+      "bytes": 5710,
+      "sha256": "3839447e40bbec67c26e0f2d0af10cf2b31aac912fe4b0051b36548a5c38fbf9"
+    },
+    {
+      "path": "completed/PRE_CUTOVER.json",
+      "bytes": 202,
+      "sha256": "71d8bb3961b7ec2a44bf97541c5be893d91ff430521be7e2f115d73d66bb3cea"
+    },
+    {
+      "path": "controller/CUTOVER.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controller/CUTOVER.stdout",
+      "bytes": 239,
+      "sha256": "46ed76fa47989a81fc8e78d6ad6f3a07ebdb5140ed89ef246d1e0d168113483b"
+    },
+    {
+      "path": "controller/CUTOVER_TRANSPORT.json",
+      "bytes": 349,
+      "sha256": "62f5c1fc4bc5c53aa3826b97b77d9f18c15d9f83ec13bc00e4e735659d485acb"
+    },
+    {
+      "path": "controller/PEER_SOURCE_REVIEW_FINAL.json",
+      "bytes": 1768,
+      "sha256": "26f04ffee6f7876321db96965149a1f351e2d957743d69464391f7a374c051ad"
+    },
+    {
+      "path": "controller/PEER_SOURCE_REVIEW_INITIAL.json",
+      "bytes": 3146,
+      "sha256": "1ba51823eedf46f260114ce5b8c79d22075df47eb76bd44fad6e6c8c34f1e366"
+    },
+    {
+      "path": "controller/PLAN.json",
+      "bytes": 11999,
+      "sha256": "276c2a46ecfd64a1b99faa604bc1e7ee091d5c0bf0fe2c6ebf91eadbd5399c74"
+    },
+    {
+      "path": "controller/PREPARE.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controller/PREPARE.stdout",
+      "bytes": 279,
+      "sha256": "e3dc5a812c2de9c014582647301a0e556612f1e4f2a24055e49fd571b7a7fc94"
+    },
+    {
+      "path": "controller/PREPARE_TRANSPORT.json",
+      "bytes": 515,
+      "sha256": "da2d76ce53e6883d9edf1f6f1e454da024bd24fb5ea3686444eb3bd43674a3a9"
+    },
+    {
+      "path": "controller/relocate_closed_controls.py",
+      "bytes": 15955,
+      "sha256": "fa0ea1728f77e0481c7098629d64c80efd75638b97a948398ef28f1a57f54d57"
+    },
+    {
+      "path": "controller/review/controller-before-parent-sync.py",
+      "bytes": 15794,
+      "sha256": "74da26f4c97e448abe99c157ba992e9123fe6b6f87d52ff4df767a5e6a6f6362"
+    },
+    {
+      "path": "controller/review/controller-initial-peer-reviewed.py",
+      "bytes": 14633,
+      "sha256": "ab0749082f8601515719798ff7f073649461b42ce542087a294d50cea00dc7ce"
+    }
+  ],
+  "uniqueEvidenceDeleted": 0,
+  "builds": 0,
+  "testRuns": 0,
+  "guardFloorsUnchanged": {
+    "root": 1342177280,
+    "data": 2147483648
+  },
+  "limitations": [
+    "Filesystem capacity readings are concurrent observations.",
+    "The completed cutover still left Data below its unchanged admission floor.",
+    "This documentation checkpoint does not admit a compiler or rerun controls.",
+    "All original preserved payloads remain at exact rootfs destinations behind original-path symlinks."
+  ]
+}
