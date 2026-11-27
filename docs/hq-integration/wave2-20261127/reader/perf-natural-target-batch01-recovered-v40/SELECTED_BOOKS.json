@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 1,
+      "bookTitle": "בראשית",
+      "declaredTotalLines": 1584,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 2,
+      "bookTitle": "שמות",
+      "declaredTotalLines": 1251,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 3,
+      "bookTitle": "ויקרא",
+      "declaredTotalLines": 887,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 4,
+      "bookTitle": "במדבר",
+      "declaredTotalLines": 1325,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 5,
+      "bookTitle": "דברים",
+      "declaredTotalLines": 991,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 6,
+      "bookTitle": "יהושע",
+      "declaredTotalLines": 683,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 7,
+      "bookTitle": "שופטים",
+      "declaredTotalLines": 640,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 8,
+      "bookTitle": "שמואל א",
+      "declaredTotalLines": 843,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 9,
+      "bookTitle": "שמואל ב",
+      "declaredTotalLines": 720,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 10,
+      "bookTitle": "מלכים א",
+      "declaredTotalLines": 840,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 11,
+      "bookTitle": "מלכים ב",
+      "declaredTotalLines": 745,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 12,
+      "bookTitle": "ישעיהו",
+      "declaredTotalLines": 1358,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 13,
+      "bookTitle": "ירמיהו",
+      "declaredTotalLines": 1417,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 14,
+      "bookTitle": "יחזקאל",
+      "declaredTotalLines": 1322,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 15,
+      "bookTitle": "הושע",
+      "declaredTotalLines": 212,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 17,
+      "bookTitle": "עמוס",
+      "declaredTotalLines": 156,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 20,
+      "bookTitle": "מיכה",
+      "declaredTotalLines": 113,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 25,
+      "bookTitle": "זכריה",
+      "declaredTotalLines": 226,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 29,
+      "bookTitle": "איוב",
+      "declaredTotalLines": 1113,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 30,
+      "bookTitle": "משלי",
+      "declaredTotalLines": 947,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 31,
+      "bookTitle": "שיר השירים",
+      "declaredTotalLines": 126,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 32,
+      "bookTitle": "קהלת",
+      "declaredTotalLines": 235,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 33,
+      "bookTitle": "איכה",
+      "declaredTotalLines": 160,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 34,
+      "bookTitle": "אסתר",
+      "declaredTotalLines": 178,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 35,
+      "bookTitle": "דניאל",
+      "declaredTotalLines": 370,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 36,
+      "bookTitle": "עזרא",
+      "declaredTotalLines": 291,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 37,
+      "bookTitle": "נחמיה",
+      "declaredTotalLines": 419,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 38,
+      "bookTitle": "דברי הימים א",
+      "declaredTotalLines": 973,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 39,
+      "bookTitle": "דברי הימים ב",
+      "declaredTotalLines": 859,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 44,
+      "bookTitle": "משנה שביעית",
+      "declaredTotalLines": 100,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 45,
+      "bookTitle": "משנה תרומות",
+      "declaredTotalLines": 113,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 51,
+      "bookTitle": "משנה שבת",
+      "declaredTotalLines": 164,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 52,
+      "bookTitle": "משנה עירובין",
+      "declaredTotalLines": 107,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 53,
+      "bookTitle": "משנה פסחים",
+      "declaredTotalLines": 100,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 63,
+      "bookTitle": "משנה יבמות",
+      "declaredTotalLines": 145,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 64,
+      "bookTitle": "משנה כתובות",
+      "declaredTotalLines": 125,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 65,
+      "bookTitle": "משנה נדרים",
+      "declaredTotalLines": 102,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 71,
+      "bookTitle": "משנה בבא מציעא",
+      "declaredTotalLines": 112,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 78,
+      "bookTitle": "משנה אבות",
+      "declaredTotalLines": 115,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 80,
+      "bookTitle": "משנה זבחים",
+      "declaredTotalLines": 116,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "defb38bb159fbb156212169534a5ef75d01932bd",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}
