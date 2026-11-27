@@ -1,0 +1,35 @@
+{
+  "failed" : 0,
+  "passed" : 7,
+  "results" : [
+    {
+      "name" : "original State publication changes foreign-source revision without a Workspace grant",
+      "passed" : true
+    },
+    {
+      "name" : "one authorized original setter is still a publication to foreign retained routes",
+      "passed" : true
+    },
+    {
+      "name" : "equal and A-B-A original setter calls cannot collapse to one state",
+      "passed" : true
+    },
+    {
+      "name" : "stale original host setter still invalidates the foreign source",
+      "passed" : true
+    },
+    {
+      "name" : "owned Sidebar request publication remains visible to a foreign route",
+      "passed" : true
+    },
+    {
+      "name" : "Sidebar request\/isRequested publications each advance original revision",
+      "passed" : true
+    },
+    {
+      "name" : "original revision exhausts permanently and never wraps",
+      "passed" : true
+    }
+  ],
+  "scope" : "verbatim original Workspace setter revision controls; native NOT_RUN"
+}

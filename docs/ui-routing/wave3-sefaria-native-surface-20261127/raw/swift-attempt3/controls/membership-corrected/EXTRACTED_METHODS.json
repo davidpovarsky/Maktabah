@@ -1,0 +1,32 @@
+[
+  {
+    "sha256": "f28b76993fd55d3e252961666a808cd11e158ef5b56584a75831c6346d314c81",
+    "signature": "    func releaseSource(requestID:",
+    "text": "    func releaseSource(requestID: UUID) {\n        guard let entry = sources.removeValue(forKey: requestID) else { return }\n        // Only the exact completed receipt may retain its proof after the outer\n        // public operation releases its map membership. An early/reentrant\n        // release revokes the active operation and joins its normal cleanup.\n        let retainsCompleted = pending == nil && completed?.observed.source === entry\n        if !retainsCompleted { entry.original.invalidate() }\n        if pending?.requestID == requestID { finish(requestID: requestID, completed: false) }\n    }"
+  },
+  {
+    "sha256": "67ec1b2a8e4ffba64bd67ee0e8fd709da73b7425670d406b52b42b09534531a6",
+    "signature": "    func begin(requestID:",
+    "text": "    func begin(requestID: UUID, validate: @escaping @MainActor () throws -> Void) throws {\n        guard pending == nil, let entry = sources[requestID] else {\n            throw UIRouteError(.unavailable, \"native_sefaria_surface_busy\")\n        }\n        try self.validate(entry); try validate()\n        guard pending == nil, sources[requestID] === entry else {\n            throw UIRouteError(.staleState, \"native_sefaria_observation_changed\")\n        }\n        try self.validate(entry)\n        completed = nil\n        pending = .init(requestID: requestID, validate: validate)\n    }"
+  },
+  {
+    "sha256": "9f690111ba99f0b6701a6bdf0ceb7ffd13c6893a5ae296fcb4b4a7a0f5a53562",
+    "signature": "    private func withSource<T>(requestID:",
+    "text": "    private func withSource<T>(requestID: UUID, operation: @MainActor (SourceEntry) throws -> T) throws -> T {\n        try withSource(request: retainedRequest(requestID), operation: operation)\n    }"
+  },
+  {
+    "sha256": "7c9fdaddd643d5c3075b80b6d70c7b862c6e26e13d144dbf259d3ffd935bfff5",
+    "signature": "    private func retainedRequest(",
+    "text": "    private func retainedRequest(_ requestID: UUID) throws -> RetainedRequest {\n        guard let entry = sources[requestID], let pending, pending.requestID == requestID else {\n            throw UIRouteError(.staleState, \"native_sefaria_observation_changed\")\n        }\n        return .init(requestID: requestID, pendingToken: pending.token, source: entry)\n    }"
+  },
+  {
+    "sha256": "f229a693a50bdf94dd0493bfcfd5efb082d217dd7ad974f880a0005ea9d0e94f",
+    "signature": "    private func validateMembership(",
+    "text": "    private func validateMembership(_ request: RetainedRequest) throws {\n        guard sources[request.requestID] === request.source,\n              pending?.requestID == request.requestID, pending?.token == request.pendingToken else {\n            throw UIRouteError(.staleState, \"native_sefaria_observation_changed\")\n        }\n    }"
+  },
+  {
+    "sha256": "c3b51730edef67577aac9c0b7ae7df2f16f02ccb9f0692dbd28039bf0ea66d98",
+    "signature": "    private func withSource<T>(request:",
+    "text": "    private func withSource<T>(request: RetainedRequest, operation: @MainActor (SourceEntry) throws -> T) throws -> T {\n        try validateMembership(request)\n        let entry = request.source\n        return try entry.original.runtime.withValidRuntime {\n            try validateMembership(request); try validate(entry)\n            guard let validateAdmission = pending?.validate else {\n                throw UIRouteError(.staleState, \"native_sefaria_observation_changed\")\n            }\n            try validateAdmission()\n            try validateMembership(request); try validate(entry)\n            let value = try operation(entry)\n            try validateMembership(request); try validate(entry)\n            try validateAdmission()\n            try validateMembership(request); try validate(entry)\n            return value\n        }\n    }"
+  }
+]

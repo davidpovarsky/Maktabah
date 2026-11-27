@@ -1,0 +1,20 @@
+{
+  "cleanup": true,
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_011637edb1e1426aaebea8f725222690\\sentinelx_bootstrap.ps1",
+    "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_011637edb1e1426aaebea8f725222690\\script.ps1"
+  ],
+  "cwd": null,
+  "duration": 27.62,
+  "interpreter": "powershell",
+  "ok": true,
+  "output": "SOURCE Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift 95b3dde91360046280da3d4d60a8f8bc81ccc1743d61ca26480d791c15b4ad53\nSOURCE Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift b3943ac1bf97f178a977daef4cf6a311cad2921026162aaa632a8507febe5516\nSOURCE Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift 906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389\nSOURCE Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift 697d561ca178ce63d7d8eb712d1f7b94d4ee050544c21772b186f7170f4634c0\nSOURCE tools/test_sefaria_visible_surface_runtime.swift 22375117572c530827e5955614d874e02bda93dea59282c7b6eea152df9cd772\nSOURCE tools/test_sefaria_visible_surface_membership.swift 51a63e8034dbca031ed15892f2034d5ace8dee3570f9b6903515a2d16720e33e\nSOURCE tools/run_sefaria_visible_surface_source_controls.py 735682a421ba16baf5c633a71c02bda2c012a22ca1d2bd407b76963a6a348b3c\nCOMMAND [\"python3\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/tools/run_sefaria_visible_surface_source_controls.py\", \"--source-root\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127\", \"--output\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt2/controls\", \"--module-cache\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt1/module-cache\", \"--baseline-binding\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt2/peer-baseline-MaktabahNativeSefariaSurfaceBinding.swift\", \"--baseline-bridge\", \"/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-native-surface-20261127/build/rn-surface-source-controls-20261127-attempt2/peer-baseline-SefariaJSRPCBridge.swift\"]\n{\"name\": \"runtime-corrected\", \"compileExit\": 0, \"runExit\": 0, \"passed\": 21, \"failed\": 0, \"expectedOutcomeObserved\": true}\n{\"name\": \"runtime-original-bump-boundary\", \"compileExit\": 0, \"runExit\": 1, \"passed\": 20, \"failed\": 1, \"expectedOutcomeObserved\": true}\n{\"name\": \"runtime-weakened-revision\", \"compileExit\": 0, \"runExit\": 1, \"passed\": 13, \"failed\": 8, \"expectedOutcomeObserved\": true}\n{\"name\": \"runtime-weakened-nesting\", \"compileExit\": 0, \"runExit\": 1, \"passed\": 20, \"failed\": 1, \"expectedOutcomeObserved\": true}\n{\"name\": \"runtime-weakened-synchronous-lock\", \"compileExit\": 0, \"runExit\": 1, \"passed\": 20, \"failed\": 1, \"expectedOutcomeObserved\": true}\n{\"name\": \"membership-original-peer-draft\", \"compileExit\": 0, \"runExit\": 1, \"passed\": 2, \"failed\": 12, \"expectedOutcomeObserved\": true}\n{\"name\": \"membership-corrected\", \"compileExit\": 0, \"runExit\": 0, \"passed\": 14, \"failed\": 0, \"expectedOutcomeObserved\": true}\nEXIT 0 FREE 1258098688\nRESULT_SHA 367b77029e914a9db87a7db23ce201e69d49c41bb6c9ec912f8382df4da5e60a",
+  "returncode": 0,
+  "sudo": false
+}

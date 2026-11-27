@@ -1,0 +1,7 @@
+{
+  "chunk_id": "b86111",
+  "exit_code": 1,
+  "original_token_count": 337,
+  "output": "{\"variant\": \"omit-completed-init\", \"exit\": 1, \"passed\": 23, \"failed\": 1, \"failures\": [{\"name\": \"original completed-init flag is mandatory\", \"passed\": false, \"error\": \"AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\\n+ actual - expected\\n\\n+ 'fulfilled'\\n- 'pending'\\n\"}]}\n{\"variant\": \"omit-mount-identity\", \"exit\": 1, \"passed\": 23, \"failed\": 1, \"failures\": [{\"name\": \"reject wrong original mountID\", \"passed\": false, \"error\": \"AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\\n+ actual - expected\\n\\n+ 'fulfilled'\\n- 'rejected'\\n\"}]}\nTraceback (most recent call last):\n  File \"<stdin>\", line 5, in <module>\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n",
+  "wall_time_seconds": 0.347515349
+}

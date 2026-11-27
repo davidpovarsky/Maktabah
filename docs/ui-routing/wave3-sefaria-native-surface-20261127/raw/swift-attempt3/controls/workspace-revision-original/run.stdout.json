@@ -1,0 +1,42 @@
+{
+  "failed" : 7,
+  "passed" : 0,
+  "results" : [
+    {
+      "detail" : "RevisionFailure(message: \"foreign original publication was invisible\")",
+      "name" : "original State publication changes foreign-source revision without a Workspace grant",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"owned setter hid its original publication\")",
+      "name" : "one authorized original setter is still a publication to foreign retained routes",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"equal original publications were coalesced\")",
+      "name" : "equal and A-B-A original setter calls cannot collapse to one state",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"wrong-host publication was ignored\")",
+      "name" : "stale original host setter still invalidates the foreign source",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"owned sidebar request hid its publication\")",
+      "name" : "owned Sidebar request publication remains visible to a foreign route",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"sidebar publication cycle disappeared\")",
+      "name" : "Sidebar request\/isRequested publications each advance original revision",
+      "passed" : false
+    },
+    {
+      "detail" : "RevisionFailure(message: \"original revision wrapped or remained available\")",
+      "name" : "original revision exhausts permanently and never wraps",
+      "passed" : false
+    }
+  ],
+  "scope" : "verbatim original Workspace setter revision controls; native NOT_RUN"
+}
