@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "scope": "small exact preservation receipts, executable script bytes and report; no product changes",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 10783,
+      "sha256": "af28bc9eee405eb1ed5ffef718dc492c84a11386ddf2925e141089614a3d9062"
+    },
+    {
+      "path": "PREFLIGHT_RECEIPTS.json",
+      "bytes": 7839,
+      "sha256": "2c13c574343babffdd61800a2d6599d4e339ecda01e99a76c82c527eba7d8955"
+    },
+    {
+      "path": "EXECUTION_JOBS.json",
+      "bytes": 8600,
+      "sha256": "87b058a5985c702b6cc305bd9c322368286a136596713d0b841b66b1eaea8a89"
+    },
+    {
+      "path": "producer_preservation.py",
+      "bytes": 24212,
+      "sha256": "24372da550343461d9526bc327da1dc24d75495b6e78a95557b31d427edc929d"
+    },
+    {
+      "path": "windows_differential.py",
+      "bytes": 16288,
+      "sha256": "61d2ca24578b6335825e1333e65aa5359ed5afc728df8485c41b9ddec3199c5f"
+    },
+    {
+      "path": "validation/mac/CURRENT_REVERIFICATION.json",
+      "bytes": 10468,
+      "sha256": "fc64009b14ce50d38338605af642ec305f10d55e9887fa08d96bc09a7eaf03ca"
+    },
+    {
+      "path": "validation/mac/INVENTORY_RESULT.json",
+      "bytes": 854,
+      "sha256": "1dacea5f88ca14860ec2fd7055e7b5f0c34ec8e9debe43dbe594e7dbe44be04b"
+    },
+    {
+      "path": "validation/mac/REMAINING_CAPACITY_DU_STAT.json",
+      "bytes": 74240,
+      "sha256": "cd1668797fe0a728ed4b182e23dabc3419f256677ca18d9f45bc2d0caeba02ba"
+    },
+    {
+      "path": "validation/mac/RETIREMENT_RESULT.json",
+      "bytes": 11070,
+      "sha256": "8074c6a9603132247a61cb4ade2afe8edbd8c12a5f49ce7957042a1a621861c4"
+    },
+    {
+      "path": "validation/mac/STREAM_RESULT.json",
+      "bytes": 783,
+      "sha256": "ca02a546b23e0e3ac662e29334aca92368d234ea9f66030a3a568890e79aa4a2"
+    },
+    {
+      "path": "validation/mac/WINDOWS_VERIFIED_DIFFERENTIAL.json",
+      "bytes": 3929,
+      "sha256": "485d1842dd531c9f6211a9498bddaa1139089fac92efee2abb436a716fced53f"
+    },
+    {
+      "path": "validation/windows/BASE_ARCHIVE_READBACK.json",
+      "bytes": 818,
+      "sha256": "5ae585804613127fb803e48dc6ecf7a54aefaf45f21e670df6bb59a91e97c7ca"
+    },
+    {
+      "path": "validation/windows/MAC_STREAM.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/windows/MAC_STREAM_RESULT.json",
+      "bytes": 783,
+      "sha256": "ca02a546b23e0e3ac662e29334aca92368d234ea9f66030a3a568890e79aa4a2"
+    },
+    {
+      "path": "validation/windows/RECEIVE_PREFLIGHT.json",
+      "bytes": 2693,
+      "sha256": "65d5ff4b0bec73f654d09e58f60c6412065dc122ed23e1779d93d562b65b4526"
+    },
+    {
+      "path": "validation/windows/RECEIVE_RESULT.json",
+      "bytes": 1256,
+      "sha256": "3e325eb8da56a7df906b13971244b5633089e1a19ce9ca24986aee107c727d7c"
+    },
+    {
+      "path": "validation/windows/VERIFIED_DIFFERENTIAL.json",
+      "bytes": 3929,
+      "sha256": "485d1842dd531c9f6211a9498bddaa1139089fac92efee2abb436a716fced53f"
+    }
+  ]
+}

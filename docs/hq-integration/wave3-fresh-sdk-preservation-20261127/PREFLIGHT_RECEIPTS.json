@@ -1,0 +1,123 @@
+{
+  "inventory": {
+    "ok": true,
+    "job": {
+      "id": "job_dc0058ad5ce4",
+      "type": "job_result",
+      "source": "exec@host_4b47bdb65d00e49d",
+      "severity": "info",
+      "tool": "exec",
+      "host": "host_4b47bdb65d00e49d",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795761020.0484867,
+      "started_at": "2026-11-27T06:30:20.104365+00:00",
+      "finished_at": "2026-11-27T06:30:57.195664+00:00",
+      "duration_s": 37.09,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 900,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"COMPLETE_HASHED_INVENTORY_NOT_REMOVED\", \"utc\": \"2026-11-27T06:30:57.014465+00:00\", \"manifest_sha256\": \"d47acc0b42ed579d076355901595b66c2b4548a391ae906d27b48a3b210686bb\", \"manifest_bytes\": 93784007, \"summary\": {\"entries\": 121147, \"regular_files\": 102063, \"directories\": 18845, \"symlinks\": 239, \"logical_file_bytes\": 49890963733, \"observed_allocated_bytes_including_shared_extents\": 10413191168, \"base_reused_files\": 78509, \"base_reused_logical_bytes\": 47086345732, \"new_unique_payloads\": 22521, \"new_unique_payload_bytes\": 2659619569, \"entries_with_xattrs\": 88, \"entries_with_acl\": 0, \"entries_with_flags\": 0, \"hardlinked_names\": 0}, \"free_before\": 6825193472, \"free_after\": 6729596928, \"df\": \"Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\\n/dev/disk3s5   482797652 430243608   6571872    99% 6807568 65718720    9%   /System/Volumes/Data\\n\"}"
+    }
+  },
+  "base_full_member_verification": {
+    "ok": true,
+    "job": {
+      "id": "job_6f9fcedf19df",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795756754.32005,
+      "started_at": "2026-11-27T05:19:14.398666+00:00",
+      "finished_at": "2026-11-27T05:26:25.374573+00:00",
+      "duration_s": 430.98,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 1200,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"COMPLETE_ARCHIVE_AND_EVERY_MEMBER_VERIFIED_NOT_REMOVED\", \"utc\": \"2026-11-27T05:26:24.806155+00:00\", \"archive\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\interrupted-original-sdk-work.tar.gz\", \"archiveBytes\": 5238640114, \"archiveSHA256\": \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\", \"manifestSHA256\": \"558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94\", \"entries\": 138339, \"regularFiles\": 119155, \"logicalFileBytes\": 51270645844, \"source_root\": \"/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work\", \"scopes\": [\"producer-derived\"], \"mac_evidence\": \"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-interrupted-sdk-work-preservation-20261127.811pvzsd\", \"mac_preservation_only\": true}"
+    }
+  },
+  "base_archive_rehash": {
+    "ok": true,
+    "job": {
+      "id": "job_5a22802cb180",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795760559.5190322,
+      "started_at": "2026-11-27T06:22:39.599183+00:00",
+      "finished_at": "2026-11-27T06:25:05.987676+00:00",
+      "duration_s": 146.39,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 180,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"python\": \"C:\\\\Users\\\\DAVID\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\", \"version\": \"3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)]\"}\r\n{\r\n    \"archive\":  \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\interrupted-original-sdk-work.tar.gz\",\r\n    \"manifest\":  \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\MEMBER_MANIFEST.json\",\r\n    \"manifestSHA256\":  \"558af6b185c0accd75906fbfdba747c8511c1448447819a2bc2a43028d766e94\",\r\n    \"priorFullMemberVerification\":  \"job_6f9fcedf19df\",\r\n    \"utc\":  \"2026-11-27T06:25:05.6560777Z\",\r\n    \"preflightAttempt1\":  \"Existing Python ran but inline quoting caused NameError; failed before archive hashing; no source retired\",\r\n    \"sha256\":  \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\",\r\n    \"bytes\":  5238640114,\r\n    \"status\":  \"EXACT_PREVIOUSLY_ALL_MEMBER_VERIFIED_ARCHIVE_REHASHED\",\r\n    \"windowsFreeBytes\":  5348036608\r\n}"
+    }
+  },
+  "base_rehash_failed_quoting": {
+    "ok": true,
+    "job": {
+      "id": "job_b5e2f96c5c06",
+      "type": "job_result",
+      "source": "script_run@host_7ec8382e82747448",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_7ec8382e82747448",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795760333.4993625,
+      "started_at": "2026-11-27T06:18:53.578811+00:00",
+      "finished_at": "2026-11-27T06:18:54.506164+00:00",
+      "duration_s": 0.93,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 180,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\nNameError: name 'python' is not defined\r\nExisting Python unavailable\r\nAt C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_47b8935fed7349bd8996d4cedb8c2a64\\script.ps1:6 char:28\r\n+ if ($LASTEXITCODE -ne 0) { throw 'Existing Python unavailable' }\r\n+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : OperationStopped: (Existing Python unavailable:String) [], RuntimeException\r\n    + FullyQualifiedErrorId : Existing Python unavailable"
+    }
+  },
+  "metadata_probe_first_failure": {
+    "ok": true,
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 11, in <module>\nAssertionError: (None, 2)",
+    "duration": 0.1,
+    "returncode": 1
+  },
+  "metadata_probe_corrected": {
+    "ok": true,
+    "output": "{\"exists\": true, \"acl_pointer_present\": false, \"acl_errno\": 2, \"safe_rmtree\": true, \"stat_flags\": 0, \"birthtime\": 1795757783.0255024}\n-rw-r--r--  1 m1  staff  365 Nov 27 06:36 /Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work/producer-derived/info.plist\n\n['#define XATTR_SHOWCOMPRESSION 0x0020', '/* See the ATTR_CMN_FNDRINFO section of getattrlist(2) for details on FinderInfo */']\n['#define FSOPT_NOFOLLOW          0x00000001', '#define FSOPT_NOFOLLOW_ANY       0x00000800', ' * getattrlist() and setattrlist() system calls (vnop_getattrlist', ' * ATTR_VOL_NAME attribute for both getattrlist() and setattrlist().', '#define ATTR_CMN_CRTIME                         0x00000200', ' * ATTR_CMN_RETURNED_ATTRS is only valid with getattrlist(2) and', ' * ATTR_CMN_CRTIME']\n{\"birth_buffer_bytes\": 20, \"birthtime_sec\": 1795757783, \"birthtime_nsec\": 25502328}",
+    "duration": 0.11,
+    "returncode": 0,
+    "_notice": "You have 18 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+  }
+}
