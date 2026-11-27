@@ -1,0 +1,141 @@
+{
+  "at": "2026-11-27T03:06:17.561038+00:00",
+  "reviewer": "release_preflight",
+  "reviewType": "Read-only exact source and retained evidence review; zero reruns and peer mutations",
+  "rootReference": "0de2755595e7f1b57a33be99d36119783b432574",
+  "testOnlyCommits": [
+    "cb004e7b066183b3b3719be8d0da2eccb9ac432d",
+    "b220a0d90c00b25e1557f5840ca7c904f92d75f5",
+    "edd8092df383025ccd6b052b16a34c3988773868",
+    "66b92c1ef3d4493540c2eaa9d87abe507f0d3f60",
+    "06cb29d07f5c7da936daa3b90aed52ec907441e8"
+  ],
+  "receiptCommit": "186cc69f64ef56cda47b857e6d2cf139d136e0b1",
+  "conclusion": "No blocking defect found in stated focused test changes; recommend selective intake with original native/provider acceptance pending",
+  "originalPreservation": {
+    "host": {
+      "path": "Tests/HQ/hanlin-host/OtzariaHanlinHostAdapterTests.swift",
+      "originalSHA256": "c1dc64c38e2c8c40e95467b960b0405668507a007388aa5a3e5cb52b130c8d6a",
+      "rootSHA256": "c1dc64c38e2c8c40e95467b960b0405668507a007388aa5a3e5cb52b130c8d6a",
+      "candidateSHA256": "39fd6facd9b06b01a74c7dd99c8494e914d0f097efa703150b1398f9330dd489",
+      "originalMatchesRoot": true,
+      "originalEntirePrefixPreserved": true,
+      "originalTests": 50,
+      "finalTests": 58,
+      "addedTests": [
+        "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+        "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+        "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+        "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+        "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall",
+        "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+        "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+        "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt"
+      ],
+      "executed": {
+        "status": "PASS",
+        "exit": 0,
+        "passedLog": [
+          "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+          "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt",
+          "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+          "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+          "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+          "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+          "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+          "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"
+        ],
+        "failedLog": [],
+        "expected": [
+          "testCapabilityCompositionCancellationDuringAdmissionNeverEntersOwner",
+          "testCapabilityCompositionCancellationRetainsOriginalUncertainReceipt",
+          "testCapabilityCompositionKeepsExactInputIdentityAndOriginalReceipt",
+          "testCapabilityCompositionKeepsLibraryExecutionInOriginalCore",
+          "testCapabilityCompositionRejectsChangedConstituentRevisionBeforeDispatch",
+          "testCapabilityCompositionRejectsDuplicateAliasAndLogicalIdentity",
+          "testCapabilityCompositionRetainsOriginalStepExposureAndRejectsUnknownAlias",
+          "testCapabilityCompositionRevocationCannotDispatchAnAssistantCall"
+        ],
+        "rawLogSHA256": "caebecb550fed82e8966cc30ab9913463412e4f3f268eadf9db4ff1c12f78be0",
+        "exactDeclaredAddedTests": true,
+        "allOriginalTestsRerun": false
+      }
+    },
+    "store": {
+      "path": "Tests/HQ/hanlin-consumer/OtzariaHanlinConversationStoreTests.swift",
+      "originalSHA256": "45bb2a82e110fcccfe41e7c68ca4ccc26aa74e8e0cba0f8542657cb996f5af3a",
+      "rootSHA256": "45bb2a82e110fcccfe41e7c68ca4ccc26aa74e8e0cba0f8542657cb996f5af3a",
+      "candidateSHA256": "16a6354c7d3cec4868cc9024085d80dfb7e7a8f1163fe0b1108a850efbc826bd",
+      "originalMatchesRoot": true,
+      "originalEntirePrefixPreserved": true,
+      "originalTests": 11,
+      "finalTests": 15,
+      "addedTests": [
+        "testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem",
+        "testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen",
+        "testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk",
+        "testCapabilityHistoryCannotBypassExistingStoreByteLimit"
+      ],
+      "executed": {
+        "status": "PASS_ACTUAL_SCOPED_FILESYSTEM_STORE",
+        "exit": 0,
+        "passedLog": [
+          "testCapabilityHistoryCannotBypassExistingStoreByteLimit",
+          "testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen",
+          "testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem",
+          "testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk"
+        ],
+        "failedLog": [],
+        "expected": [
+          "testCapabilityHistoryCannotBypassExistingStoreByteLimit",
+          "testCapabilityHistoryFreezesSentSelectionAcrossDraftEditAndDiskReopen",
+          "testCapabilityHistoryReadsLegacyBytesWithoutRewritingThem",
+          "testCapabilityHistoryRejectsDuplicateAndForeignMessageSelectionsWithoutChangingDisk"
+        ],
+        "rawLogSHA256": "6d18f5f32e547f08a1a67c2a17f0397a0c655cb65aa0d9cd67c821ae01e43111",
+        "exactDeclaredAddedTests": true,
+        "allOriginalTestsRerun": false
+      }
+    },
+    "strictVerifier": {
+      "root": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+      "final": "6a955fea0df8bb0b98ec140dc09c209608497dee7a6d83a5cfacd74bfb8298b7",
+      "unchanged": true
+    }
+  },
+  "driverReview": {
+    "defaultCoverage": "Host default declares all58; store default declares all15. Original50/11 remain intact. Focused runs execute only8/4 additions and do not claim full rerun.",
+    "focusGate": "Host prefix restricted to test/alphanumeric/underscore, declaration-derived expected names must be nonempty and equal actual passed names. Store exact suite/method selection passes unchanged strict XCTest verifier; nonempty expected and EXECUTED_PASS required.",
+    "fixedElevenGuard": "Old fixed11 count removed because15 declarations now exist. Full default still derives all declared methods; the strict verifier is unchanged.",
+    "sourceBoundary": "Actual complete original SDK contract modules and HostDispatcher, actual ActionCore and complete thin adapter; explicit capability/backend/authority/native-receipt doubles. Store uses complete real persistence owner, actual SDK value modules and unchanged message DTO. No AgentSession/model/provider/native UI executed.",
+    "SDKSource": "Executed7ee863657323f314f25a6e58bca0aa9ee669e51b. Receipt pins identical relevant package trees for retained9bcdecfc829d446a773a78b249e894e204b1bcaa; root separately owns117 input/archive verification."
+  },
+  "negativeAssertions": {
+    "composition": [
+      "changed constituent revision rejects before owner dispatch",
+      "duplicate aliases/logical identity rejected",
+      "native or composed revocation prevents dispatch",
+      "unknown active alias rejected while original exposure retained",
+      "cancellation during admission never enters capability owner",
+      "cancellation after owner entry retains original uncertain receipt"
+    ],
+    "history": [
+      "foreign or assistant message selections reject with disk unchanged",
+      "duplicate selection identity or logical capability rejects with disk unchanged",
+      "oversized capability state rejects at original byte limit with disk unchanged"
+    ]
+  },
+  "coverageCaveats": [
+    "The four focused history cases use explicit generated filesystem value fixtures. They prove persistence of sent selections despite draft edits; they do not execute actual ChatSession send or native capability selection.",
+    "The generic store boundary string mentions scoped lease rejection and platform filesystem write failure. Those original11-suite cases were not rerun in the focused4; do not credit fresh passes for them.",
+    "No mutational product baseline is claimed. The three retained failed attempts are orchestration/fixture compile failures, not native regressions.",
+    "This reviewer did not rerun117 source-input validation or original evidence archive verification already assigned to root."
+  ],
+  "failedAttemptsRetained": [
+    "cb004 orchestration timeout",
+    "cb004 attempt2 missing required fixture presentation argument",
+    "b220 missing fixture try;66b reuses descriptor's validated revision"
+  ],
+  "nativeUIExecutedByReviewer": 0,
+  "providerExecutedByReviewer": false
+}
