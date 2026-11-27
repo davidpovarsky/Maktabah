@@ -9,13 +9,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 13536,
-      "sha256": "d7f0c34d40e8175b9e476731efdc5a661ee945f68b36201321aea53776a05a1c"
+      "bytes": 13891,
+      "sha256": "154a9a2465a8e0f7048c6653add36176172daf2f2f21f953143b6f679dbd8b53"
     },
     {
       "path": "ROOT_LOSSLESS_STORAGE.json",
-      "bytes": 826,
-      "sha256": "5388c1fae08eda264ee335467e61dedfe611669fb8ac7d19a71f4483b27ef835"
+      "bytes": 1194,
+      "sha256": "9adcaefcdb3da43f18c69222e22f0d84c34a198a4c311d0c259c13eb90a83941"
     },
     {
       "path": "scripts/bridge_windows.py.gz",
@@ -73,9 +73,9 @@
       "sha256": "8ec65743855d522d25f7e8b63c71d24c472b7087b3ca3c061d7529faf6e791e3"
     },
     {
-      "path": "validation/PACKET_DIFF_CHECK.txt",
-      "bytes": 20965,
-      "sha256": "e870d09b86c7f3539d179a84789831d9280cacc2698133cd229061fbd4f47528"
+      "path": "validation/PACKET_DIFF_CHECK.txt.gz",
+      "bytes": 3150,
+      "sha256": "991e84566816d7890657a211125e1ade2834cdf873c3ffe9093e43e9f69d28d3"
     },
     {
       "path": "validation/PACKET_VERIFICATION.json",

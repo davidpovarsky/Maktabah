@@ -16,6 +16,14 @@
       "storedPath": "PACKET_INDEX.json.gz",
       "storedBytes": 2640,
       "storedSHA256": "e5a07181a0d6d19e33f47fb46bc325d63066915773f8bd75b064547fbd69eb54"
+    },
+    {
+      "originalPath": "validation/PACKET_DIFF_CHECK.txt",
+      "originalBytes": 20965,
+      "originalSHA256": "e870d09b86c7f3539d179a84789831d9280cacc2698133cd229061fbd4f47528",
+      "storedPath": "validation/PACKET_DIFF_CHECK.txt.gz",
+      "storedBytes": 3150,
+      "storedSHA256": "991e84566816d7890657a211125e1ade2834cdf873c3ffe9093e43e9f69d28d3"
     }
   ],
   "executedBytesChanged": false,

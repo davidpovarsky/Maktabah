@@ -104,3 +104,5 @@ The actual executed Windows bridge_windows.py is preserved with its original 121
 ## Root intake storage of executed Windows evidence
 
 After exact donor intake, root retained the executed bridge script as lossless scripts/bridge_windows.py.gz. Its 121 CRLF line endings and every raw byte are unchanged. The original packet index is retained as PACKET_INDEX.json.gz; the current index identifies this storage change. The historical raw whitespace-check result remains evidence of the original packet, and root checks the final integrated tree without disabling or changing the check. This is storage of executed evidence, not a re-execution or source normalization.
+
+The captured original whitespace diagnostic also contains the same CRLF bytes. Its exact content is now retained as validation/PACKET_DIFF_CHECK.txt.gz, with both raw and stored hashes in ROOT_LOSSLESS_STORAGE.json. The initial integrated-tree check that detected this log is retained with the root intake evidence. No raw diagnostic bytes were changed.
