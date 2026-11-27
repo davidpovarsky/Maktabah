@@ -62,6 +62,8 @@ def git(*args):
 
 
 def configuration():
+    image_guard = runpy.run_path(str(ROOT / "Scripts/CI/miniapps_runtime_image_origin.py"))
+    image_guard["require_full_acceptance_inputs"](os.environ, "canonical MiniApps process environment")
     value = json.loads(INPUTS.read_text())
     require(re.fullmatch(r"[a-f0-9]{40}", value["producer_source_sha"]), "Producer source must be frozen")
     require(value["producer_repository"] == "davidpovarsky/hanlin-ai", "Unexpected producer source repository")

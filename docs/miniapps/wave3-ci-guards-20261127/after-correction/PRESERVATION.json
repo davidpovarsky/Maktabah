@@ -1,0 +1,63 @@
+{
+  "unchanged_files": [
+    {
+      "path": "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+      "sha256": "30da36f02c8788120f1a4b2ed0d7a5a8d7711f496af9a6e94fcf0f554abf8ad3",
+      "identical_to_4e057e45": true
+    },
+    {
+      "path": "Scripts/CI/test_miniapps_runtime_image_origin.py",
+      "sha256": "387838bc42bcd1b7cd12a985a49fc21ca276f8e67487aa3f022386070a07fcb4",
+      "identical_to_4e057e45": true
+    },
+    {
+      "path": "Scripts/CI/run-faithful-ipad-matrix.py",
+      "sha256": "35691ad98247eacbeaf3eac2ebbe128e5d60529bf37c86cad79a52e5d3724bd1",
+      "identical_to_4e057e45": true
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.inputs.json",
+      "sha256": "11da7f7f32b99fbcbd1c423925d6b4fc7cb6997c3d0125585dd664fd631c3292",
+      "identical_to_4e057e45": true
+    },
+    {
+      "path": "Scripts/CI/miniapps-source-equivalence-9565-9bcdecfc.json",
+      "sha256": "415b927e5ddca90b31e5edf15c1939a77a1455e44f9a980ca549b5ebb789f67f",
+      "identical_to_4e057e45": true
+    }
+  ],
+  "unchanged_acceptance_methods": [
+    {
+      "path": "Scripts/CI/miniapps_runtime_image_origin.py",
+      "name": "ImageAudit",
+      "original_ast_unchanged": true
+    },
+    {
+      "path": "Scripts/CI/miniapps_runtime_image_origin.py",
+      "name": "sample_image_uuids",
+      "original_ast_unchanged": true
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "name": "collect",
+      "original_ast_unchanged": true
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "name": "matrix",
+      "original_ast_unchanged": true
+    },
+    {
+      "path": "Scripts/CI/otzaria-miniapps-native.py",
+      "name": "run_from_existing_native_workflow",
+      "original_ast_unchanged": true
+    }
+  ],
+  "original_selectors": [
+    "MiniAppsAnnotationAcceptanceTests/testOriginalNoteReturnsTextFromActualMiniAppsAndPersistsAfterRelaunch",
+    "MiniAppsAnnotationAcceptanceTests/testOriginalNativeFilesRoundTripAndReplayAfterColdReopen",
+    "MiniAppsAnnotationAcceptanceTests/testSharedPickerHebrewRTLUsesNativeEditingAndPersistsPreferences"
+  ],
+  "miniTest10_requirement": "Original collect() and run_from_existing_native_workflow() bodies are identical; production acceptance is still an independent open requirement.",
+  "native_tests_executed": 0
+}

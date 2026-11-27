@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-27T02:54:29.721825+00:00",
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-miniapps-ci-guards-20261127/Scripts/CI/test_miniapps_acceptance_guards.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "script_sha256": "69711536f8235ae143a7d61e961b96058aec7a7e247b95cafbea61b69d0a57af",
+  "image_module_sha256": "491fd2e958350771b0c55037ad5256149b4b3a0654d01db95c6fa6aed8b061bc",
+  "canonical_runner_sha256": "a1f84e7118d18192026eb7acea4f7e725cf2a77ccda4ae9f28005cfdd1cdb382",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "2fdfdf75b0c50749ff7ec6a5e64ddb4e8bc5341f4a78fe5efdf2c66ccf67e148",
+  "native_tests_executed": 0
+}

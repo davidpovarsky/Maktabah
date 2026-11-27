@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-27T02:54:25.861786+00:00",
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-miniapps-ci-guards-20261127/Scripts/CI/test_miniapps_runtime_image_origin.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "script_sha256": "387838bc42bcd1b7cd12a985a49fc21ca276f8e67487aa3f022386070a07fcb4",
+  "image_module_sha256": "491fd2e958350771b0c55037ad5256149b4b3a0654d01db95c6fa6aed8b061bc",
+  "canonical_runner_sha256": "a1f84e7118d18192026eb7acea4f7e725cf2a77ccda4ae9f28005cfdd1cdb382",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "361c22104f1c223f81a858f262ab7eb44fed0ca4abf3d49491640aeb5496cc20",
+  "native_tests_executed": 0
+}

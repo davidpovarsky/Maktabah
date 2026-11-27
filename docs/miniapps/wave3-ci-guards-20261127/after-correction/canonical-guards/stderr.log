@@ -1,0 +1,13 @@
+test_actual_optimized_canonical_configuration_is_rejected (__main__.CanonicalAcceptanceGuardTests.test_actual_optimized_canonical_configuration_is_rejected) ... ok
+test_actual_optimized_python_processes_cannot_import_acceptance (__main__.CanonicalAcceptanceGuardTests.test_actual_optimized_python_processes_cannot_import_acceptance) ... ok
+test_canonical_configuration_rejects_every_diagnostic_name_by_presence (__main__.CanonicalAcceptanceGuardTests.test_canonical_configuration_rejects_every_diagnostic_name_by_presence) ... ok
+test_clean_configuration_preserves_original_targets_selectors_and_environment (__main__.CanonicalAcceptanceGuardTests.test_clean_configuration_preserves_original_targets_selectors_and_environment) ... ok
+test_final_configuration_rejects_diagnostic_keys_in_every_environment (__main__.CanonicalAcceptanceGuardTests.test_final_configuration_rejects_diagnostic_keys_in_every_environment) ... ok
+test_final_configuration_rejects_inherited_diagnostic_names (__main__.CanonicalAcceptanceGuardTests.test_final_configuration_rejects_inherited_diagnostic_names) ... ok
+test_normal_python_preserves_canonical_configuration (__main__.CanonicalAcceptanceGuardTests.test_normal_python_preserves_canonical_configuration) ... ok
+test_optimized_process_cannot_accept_known_wrong_uuid_fixture (__main__.CanonicalAcceptanceGuardTests.test_optimized_process_cannot_accept_known_wrong_uuid_fixture) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.983s
+
+OK

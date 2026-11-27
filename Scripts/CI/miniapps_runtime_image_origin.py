@@ -2,7 +2,35 @@
 The original native runner, selected methods and result verifiers remain unchanged.
 """
 from pathlib import Path
+from collections.abc import Mapping
 import hashlib, json, os, plistlib, re, runpy, subprocess, sys, threading, time, datetime
+
+# This must remain an ordinary runtime check: -O removes assert statements,
+# including the original image-identity checks that follow.
+if sys.flags.optimize:
+    raise RuntimeError("MiniApps image-origin acceptance forbids optimized Python (-O/-OO/PYTHONOPTIMIZE)")
+
+FULL_ACCEPTANCE_DIAGNOSTIC_FLAGS = (
+    "MINIAPPS_NATIVE_RICH_ONLY_ORIGINAL_DB",
+    "MINIAPPS_NATIVE_CALLBACK_ACCEPTANCE_ONLY",
+    "MINIAPPS_RICH_ORIGINAL_TEXTSTUDIO_SEED",
+    "MINIAPPS_RICH_ORIGINAL_PASTE_SEED",
+)
+
+def require_full_acceptance_inputs(value, context):
+    """Reject diagnostic branch selection, including Xcode's runner aliases."""
+    if isinstance(value, Mapping):
+        present = [name for flag in FULL_ACCEPTANCE_DIAGNOSTIC_FLAGS
+                   for name in (flag, "TEST_RUNNER_" + flag) if name in value]
+        if present:
+            raise RuntimeError("Canonical MiniApps acceptance forbids diagnostic branch flags in "
+                               + context + ": " + ", ".join(present))
+        for name, child in value.items():
+            require_full_acceptance_inputs(child, context + "." + str(name))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            require_full_acceptance_inputs(child, context + "[" + str(index) + "]")
+
 def digest(path):
     h=hashlib.sha256()
     with Path(path).open("rb") as f:
@@ -222,6 +250,7 @@ class ImageAudit:
         self.save("actual-image-origin-result.json",result)
         return result
 def create_bundled_ui_configuration(root,e,app,derived,target_name="Maktabah-iOSUITests"):
+    require_full_acceptance_inputs(os.environ, "MiniApps xctestrun process environment")
     products=Path(derived)/"Build/Products"
     originals=list(products.glob("Maktabah-iOS_*.xctestrun"));assert len(originals)==1,originals
     original=originals[0];raw=original.read_bytes();data=plistlib.loads(raw)
@@ -239,6 +268,7 @@ def create_bundled_ui_configuration(root,e,app,derived,target_name="Maktabah-iOS
     after["__XPC_DYLD_FRAMEWORK_PATH"]=str(Path(app)/"Frameworks")
     after.pop("DYLD_LIBRARY_PATH",None);after.pop("__XPC_DYLD_LIBRARY_PATH",None)
     target["UITargetAppEnvironmentVariables"]=after
+    require_full_acceptance_inputs(data, "effective MiniApps xctestrun")
     e=Path(e);(e/"original-built.xctestrun").write_bytes(raw)
     output=e/"ActualBundledMiniAppsConsumer.xctestrun";output.write_bytes(plistlib.dumps(data))
     changes={"source_configuration":str(original),"source_sha256":hashlib.sha256(raw).hexdigest(),"effective_configuration":str(output),"effective_sha256":digest(output),"change":"Resolve TESTROOT because the copy has a different directory; constrain only actual UI application framework lookup to its own verified bundled frameworks and remove target debug-library relocation overrides.","ui_environment_before":before,"ui_environment_after":after,"all_original_targets_retained":True,"native_unit_and_runner_environments_unchanged_after_path_resolution":True}

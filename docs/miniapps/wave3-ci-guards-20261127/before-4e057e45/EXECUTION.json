@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-27T02:52:09.451018+00:00",
+  "purpose": "Expected baseline failure of new source-integrity controls before corrective source edits; not native acceptance",
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-miniapps-ci-guards-20261127/Scripts/CI/test_miniapps_acceptance_guards.py",
+    "-v"
+  ],
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.17.0-1020-oracle-aarch64-with-glibc2.39",
+  "exit_code": 1,
+  "inputs": {
+    "image_module_sha256": "7e86d43f84334313de9c270b68f17d42e1b4a2737787d176704124cb6398fe52",
+    "canonical_runner_sha256": "39c663ca6ec02b831bc35cdfc12c702ca127cddd59e86501db8164066a8568f1",
+    "new_controls_sha256": "69711536f8235ae143a7d61e961b96058aec7a7e247b95cafbea61b69d0a57af",
+    "existing_image_controls_sha256": "387838bc42bcd1b7cd12a985a49fc21ca276f8e67487aa3f022386070a07fcb4"
+  },
+  "outputs": {
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "6ea2739af9859bb899d2a47e426d7fb0533878693862976f85f3164e85aec363"
+  },
+  "native_tests_executed": 0
+}
