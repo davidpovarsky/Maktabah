@@ -1,0 +1,23 @@
+{
+  "bytes": 377242,
+  "sha256": "dc4bb150025a6682ed05b06a54bd2db9e505418fa7fe71c3f78314114a18a9aa",
+  "gzipBytes": 64067,
+  "gzipSHA256": "875689659b54abf03259b8905ae4de846853058bdb5667c3c17538d96e7ff94d",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 232658,
+      "sha256": "d64ec6d5c6e49d89d263e370ad77ed03fc5af9f478d0ba430362ebf449aa8d24"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 134023,
+      "sha256": "7e09f61a11debd875040d0fc8837a8cbb80a097742859ba559170e86917be322"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+      "bytes": 2150,
+      "sha256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45"
+    }
+  ]
+}

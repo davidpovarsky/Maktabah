@@ -1,0 +1,125 @@
+{
+  "status": "ROOT_OWNED_PROPOSAL_ONLY_NOT_APPLIED",
+  "appSourceMembers": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationCatalog.swift",
+      "target": "Maktabah iOS app Sources only; original regular PBXGroup requires explicit membership"
+    }
+  ],
+  "swiftPackageAutomaticMembers": [
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift"
+  ],
+  "packageTestsAutomaticMembers": [
+    "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicSearchReferenceV2Tests.swift",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchContinuationIntentServiceTests.swift"
+  ],
+  "localization": {
+    "path": "Source/Localizable.xcstrings",
+    "baseSHA256": "c2fb42c37739065a100a6d1c03865dc3dfdfe3f75cdd059a4857251468b6e7dc",
+    "originalKeys": 735,
+    "newKeys": [
+      {
+        "key": "Search target",
+        "en": "Search target",
+        "he": "יעד חיפוש"
+      },
+      {
+        "key": "Search result",
+        "en": "Search result",
+        "he": "תוצאת חיפוש"
+      },
+      {
+        "key": "Search page",
+        "en": "Search page",
+        "he": "עמוד תוצאות חיפוש"
+      },
+      {
+        "key": "Show a loaded search result",
+        "en": "Show a loaded search result",
+        "he": "הצגת תוצאת חיפוש שנטענה"
+      },
+      {
+        "key": "Reveal an existing result in its original search window. The current query and filters are preserved.",
+        "en": "Reveal an existing result in its original search window. The current query and filters are preserved.",
+        "he": "הצגת תוצאה קיימת בחלון החיפוש המקורי שלה, תוך שמירת השאילתה והמסננים."
+      },
+      {
+        "key": "Load the next search page",
+        "en": "Load the next search page",
+        "he": "טעינת עמוד התוצאות הבא"
+      },
+      {
+        "key": "Load the next page of the selected existing search. The original search determines the next page.",
+        "en": "Load the next page of the selected existing search. The original search determines the next page.",
+        "he": "טעינת העמוד הבא של החיפוש הקיים שנבחר. החיפוש המקורי קובע איזה עמוד ייטען."
+      },
+      {
+        "key": "Get a search link",
+        "en": "Get a search link",
+        "he": "קבלת קישור לחיפוש"
+      },
+      {
+        "key": "Create a link to a current search result or next page. The link contains no query text and expires when the original search changes.",
+        "en": "Create a link to a current search result or next page. The link contains no query text and expires when the original search changes.",
+        "he": "יצירת קישור לתוצאת חיפוש קיימת או לעמוד הבא. הקישור אינו מכיל את טקסט השאילתה, והוא פג כשמקור החיפוש משתנה."
+      },
+      {
+        "key": "Next search page",
+        "en": "Next search page",
+        "he": "עמוד התוצאות הבא"
+      },
+      {
+        "key": "Show ${result}",
+        "en": "Show ${result}",
+        "he": "הצגת ${result}"
+      },
+      {
+        "key": "Load ${page}",
+        "en": "Load ${page}",
+        "he": "טעינת ${page}"
+      },
+      {
+        "key": "Get a link to ${target}",
+        "en": "Get a link to ${target}",
+        "he": "קבלת קישור אל ${target}"
+      },
+      {
+        "key": "Show search result",
+        "en": "Show search result",
+        "he": "הצגת תוצאת חיפוש"
+      },
+      {
+        "key": "Loaded search result",
+        "en": "Loaded search result",
+        "he": "תוצאת חיפוש שנטענה"
+      }
+    ],
+    "preserve": "All original entries, ordering and translations; authentic exact-diff approval remains a final integration gate"
+  },
+  "appShortcuts": {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "baseBytes": 1736,
+    "baseSHA256": "cf7a6176a4e1ff9a36b2b87350265ba74aa140ffd932ded48659997c873aa7b4",
+    "candidateBytes": 2207,
+    "candidateSHA256": "0b1dc0afed0104abcb005d3773e12cb74f71b8983960238e94fe87cef9d13088",
+    "originalEntries": 6,
+    "additionalEntries": 2,
+    "inversePreservesAllOriginalBytes": true,
+    "patch": "root-proposals/MaktabahNativeIntents.swift.patch.gz",
+    "catalogPath": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+    "catalogBaseSHA256": "80193ca8edff967eb8bbc23eeecfb8563fac0db99c8538ee0cdb0695f46f47b3",
+    "phraseKeys": [
+      {
+        "key": "Show ${result} in ${applicationName}",
+        "he": "הצג ${result} באפליקציה ${applicationName}"
+      },
+      {
+        "key": "Load the next search page in ${applicationName}",
+        "he": "טען את עמוד התוצאות הבא באפליקציה ${applicationName}"
+      }
+    ]
+  },
+  "nativeTestMembership": "Future separate files in Maktabah-iOSUITests use existing synchronized group F30578032FA46222005732C6; no explicit PBX test-source addition",
+  "qualification": "App SDK, AppIntents metadata extraction, actual Shortcuts/Siri and native execution NOT_RUN"
+}

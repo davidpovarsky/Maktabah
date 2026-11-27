@@ -1,0 +1,15 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"output\":\"{\\\"exit\\\": 0, \\\"receiptSHA256\\\": \\\"a8f1a77d82af6be1d77132d1ddf1c2f398b2eada0950ce73775420b619b1a8b0\\\", \\\"stderr\\\": \\\"\\\"}\",\"duration\":0.22,\"returncode\":0}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "output": "{\"exit\": 0, \"receiptSHA256\": \"a8f1a77d82af6be1d77132d1ddf1c2f398b2eada0950ce73775420b619b1a8b0\", \"stderr\": \"\"}",
+    "duration": 0.22,
+    "returncode": 0
+  },
+  "isError": false
+}

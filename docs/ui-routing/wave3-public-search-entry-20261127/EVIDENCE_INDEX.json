@@ -1,0 +1,72 @@
+[
+  {
+    "name": "public-search-portable-attempt-1",
+    "fileCount": 51,
+    "bytes": 444492,
+    "sha256": "76849d016fe22d6dcae0f8f18c9b5a10c2419b2c22c22cfa5155a08158a7c30f",
+    "gzipBytes": 81475,
+    "gzipSHA256": "adf6e2d403b97440b8e50f272e0dfa169e777880faf000cee6747d6edf7231e8",
+    "status": "FAILED_OR_BLOCKED",
+    "summary": [],
+    "resultSHA256": "75a467d0156c979095871ccf04c29724cabd67309d4b76499864413e159f4e7e"
+  },
+  {
+    "name": "public-search-portable-attempt-2",
+    "fileCount": 49,
+    "bytes": 446655,
+    "sha256": "2232f45a397f7ee930271d9bccb5001714c4fe565ed268958d8af3586864d697",
+    "gzipBytes": 83080,
+    "gzipSHA256": "ca8becbb3aea6cf8a7730297131659873872b5f1fd18f42f080e6d6ebd6357b0",
+    "status": "PASS_ACTUAL_PORTABLE_SOURCES_NOT_NATIVE",
+    "summary": [
+      [
+        "40",
+        "0"
+      ]
+    ],
+    "resultSHA256": "ed10f3e1e6324c585d8b545e7f4435b631b4808ab7a44c4baf296071fb4b44df"
+  },
+  {
+    "name": "public-search-portable-attempt-3",
+    "fileCount": 51,
+    "bytes": 426642,
+    "sha256": "daea17fd2028d88ed2fc6fa988894cb480d5d22de6149b96ec133e2e191b7284",
+    "gzipBytes": 78875,
+    "gzipSHA256": "eb54f3da1d3be2fed7537cc090b8257553814bec01fe1a63208d9861a2a69c3e",
+    "status": "INTERRUPTED_NO_FINAL_RESULT",
+    "summary": [],
+    "resultSHA256": "8b893642e7474366d8137b66bd67e0b34a215387b08cbab67dd25c8b4370cb5d"
+  },
+  {
+    "name": "public-search-portable-attempt-4",
+    "fileCount": 49,
+    "bytes": 455978,
+    "sha256": "851dcccabe09a0e14a325b5bb77579ad639a306e0f2dfcf19061d0cab4db1e4e",
+    "gzipBytes": 80994,
+    "gzipSHA256": "a88d06a26fbde059ddd778b191f067ffcbbd7bbf7d84849454c38fda88a39f72",
+    "status": "FAILED_OR_BLOCKED",
+    "summary": [
+      [
+        "8",
+        "27"
+      ]
+    ],
+    "resultSHA256": "a4914488e2efcff454a58f685089cd9df22eb8a72d3df4385d2f443298ec5369"
+  },
+  {
+    "name": "public-search-catalog-attempt-1",
+    "fileCount": 12,
+    "bytes": 133195,
+    "sha256": "85d81870eaae23158566b4965d3030b800d326a11ee93fd32d74aebe731d0d0b",
+    "gzipBytes": 27185,
+    "gzipSHA256": "8cef8c1005d68c52c5ce2d7e17042c967092b52e17e8adf4297bf78c5ffdc0df",
+    "status": "PASS_ACTUAL_POLICY_EXPLICIT_UI_BOUNDARY",
+    "summary": [
+      [
+        "19",
+        "0"
+      ]
+    ],
+    "resultSHA256": "9010f58c1498c2f9ce281b82734321ed5c16ff813b5766774a983a51018227a5"
+  }
+]

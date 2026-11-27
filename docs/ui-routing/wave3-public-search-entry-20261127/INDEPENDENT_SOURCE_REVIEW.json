@@ -1,0 +1,17 @@
+{
+  "reviewer": "/root/navigation_fix",
+  "scope": "Read-only source review; no tests run and no root scene/URL integration review",
+  "policyPins": {
+    "dto": "486c333b (reviewed draft; final source pin and actual controls are in SOURCE_INPUTS)",
+    "schema": "b73aaeada",
+    "publicRegistry": "c2b59bdb",
+    "registry": "b97a2983"
+  },
+  "policyFinding": "No demonstrated blocker: two finite currentTab nonmutating destinations, explicit backend, strict lower-case UUID, content/component exclusion, generic discovery/validation/bind refusal before host/Core work. Existing non-reference policy preserved.",
+  "lifetimePins": {
+    "catalog": "fe9037fb (before explicit nested MainActor annotations and Foundation localization only; exact final catalog d4aa2f49 compiled in 19-case controls)",
+    "metadata": "ae173de3",
+    "service": "7ea77009"
+  },
+  "lifetimeFinding": "No demonstrated blocker: discovery grants no authority; exact entry is consumed before validation; choose consumes phase before callbacks; fresh original observation joins exact source/hit; callback boundaries recheck retained membership; finish cannot rearm. Post-effect reporting retains actual command/outcome."
+}
