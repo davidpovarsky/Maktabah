@@ -1,0 +1,130 @@
+{
+  "files": [
+    {
+      "bytes": 9086,
+      "path": "README.md",
+      "sha256": "b0762e339e959b7c310b3ef21dd4fca5795a10daccdcf6156d786adf0195939d"
+    },
+    {
+      "bytes": 4235,
+      "path": "jobs/01-base-archives.json",
+      "sha256": "1d054234b906f9509897f7b9e66f55f09b22d07accf11a226c18692da444b85f"
+    },
+    {
+      "bytes": 1653,
+      "path": "jobs/02-inventory.json",
+      "sha256": "eb4e30fb49c916d746802d1952e66e108297d68fbe682dd7a91ddcd539faec56"
+    },
+    {
+      "bytes": 2436,
+      "path": "jobs/03-stream.json",
+      "sha256": "4757031a79b5527a10fb945fd3d7f09e34d29a1e5adb757d9544b22e3ad533a4"
+    },
+    {
+      "bytes": 5984,
+      "path": "jobs/04-member-verification.json",
+      "sha256": "1a02d1aa3e2286ccdaaa7d0c5cbf83aba0619a4e797cc80a65c906b91957ba49"
+    },
+    {
+      "bytes": 1823,
+      "path": "jobs/05-current-reverification.json",
+      "sha256": "b517f7921dbe9de7d446cf12f20be705d2d5344f4b529ed9dac0dd5df66976e4"
+    },
+    {
+      "bytes": 3445,
+      "path": "jobs/06-final-archive-rehash.json",
+      "sha256": "fca6c6e6f134f514d259b6c593446547767d66aea5984c8f586b4c8df2f7cf82"
+    },
+    {
+      "bytes": 15812,
+      "path": "jobs/07-disk-process-attribution.json",
+      "sha256": "4e843d4b9b2ad7c72bb82bb1888802d708d8650222b007d491e1b7e1b9f899c1"
+    },
+    {
+      "bytes": 4980,
+      "path": "jobs/08-exact-retirement.json",
+      "sha256": "2ed1ff3d34535e319abba51aab87be101a6a230399f77a8ed318808059e7746c"
+    },
+    {
+      "bytes": 1059,
+      "path": "receipts/mac/CURRENT_REVERIFICATION.json",
+      "sha256": "dfaca9048386625c234264ba8f71b563fb93a0d5ce5d12d2d113a83c97d015c3"
+    },
+    {
+      "bytes": 14794,
+      "path": "receipts/mac/DISK_PROCESS_ATTRIBUTION_BEFORE.json",
+      "sha256": "f178bcb0e12fa4e17b9c574095a4a6d2d2a8387e7bf809d4299fbb23d3b158a1"
+    },
+    {
+      "bytes": 920,
+      "path": "receipts/mac/INVENTORY_RESULT.json",
+      "sha256": "9f1f82c07a1f609eff21a8589bfd95df0fe69e1c498b1bbe470bd91d6366dfaa"
+    },
+    {
+      "bytes": 7875,
+      "path": "receipts/mac/MEMORY_DISK_ATTRIBUTION.json",
+      "sha256": "a8bc740fa652a952ee2f2f415512898004e182123582ed736542763078dba69b"
+    },
+    {
+      "bytes": 36713,
+      "path": "receipts/mac/RETIREMENT_CURRENT_REVERIFICATION.json",
+      "sha256": "386ae2dd4b40096958b7e1794c1aae68bafea75201d72730b57d0ee84422ac0e"
+    },
+    {
+      "bytes": 71196,
+      "path": "receipts/mac/RETIREMENT_RESULT.json",
+      "sha256": "e6695058a14d86a2968a4c0ad059588aae9b34a77d5dd7de4bd20311df2f9a43"
+    },
+    {
+      "bytes": 750,
+      "path": "receipts/mac/STREAM_RESULT.json",
+      "sha256": "34e1d3af5f5374c99306391fc05ca243d79472303ed53b8dcd740962729212ea"
+    },
+    {
+      "bytes": 8013,
+      "path": "receipts/mac/WINDOWS_VERIFIED_DIFFERENTIAL.json",
+      "sha256": "1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9"
+    },
+    {
+      "bytes": 3202,
+      "path": "receipts/windows/BASE_ARCHIVES.json",
+      "sha256": "5b1f9b85fc969594d6925ffb57e11cfec24da950ffee89c2cd458e83ea5d29cb"
+    },
+    {
+      "bytes": 2399,
+      "path": "receipts/windows/FINAL_ARCHIVE_BINDINGS.json",
+      "sha256": "f86f3f4784e20b486bf5e578b3b20fa0de0183655e28e0866c09aab3e1e669af"
+    },
+    {
+      "bytes": 1608,
+      "path": "receipts/windows/RECEIVE_RESULT.json",
+      "sha256": "9e8c6270f5b609c618df30cdf964702a478bd635ce56ff31afab009e3edd8638"
+    },
+    {
+      "bytes": 8013,
+      "path": "receipts/windows/VERIFIED_DIFFERENTIAL.json",
+      "sha256": "1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9"
+    },
+    {
+      "bytes": 2440,
+      "path": "scripts/final-archive-recheck.ps1",
+      "sha256": "fcaea2772b898eae26c75800faae3bc11088bc6c736b85d883b4c21284982d91"
+    },
+    {
+      "bytes": 20899,
+      "path": "scripts/qualified_preservation.py",
+      "sha256": "f07264ccf70a75f9b74566d24f65cfdcd6e832e5f3b09231cb6311afae06749e"
+    },
+    {
+      "bytes": 9438,
+      "path": "scripts/qualified_retirement.py",
+      "sha256": "3a5bcbe99157e29ce95db1df4635375f3835079a9686cad554d7171c8d441aae"
+    },
+    {
+      "bytes": 16768,
+      "path": "scripts/windows_qualified.py",
+      "sha256": "022ac34161b555f3c72055dd570ae24cba6cf07915204a0d8e95cd05530a7ac2"
+    }
+  ],
+  "schema": "otzaria.qualified-snapshot-preservation-packet/1"
+}

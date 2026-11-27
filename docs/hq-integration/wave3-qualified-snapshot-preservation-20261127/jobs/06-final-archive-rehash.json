@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795764444.769313,
+    "duration_s": 47.44,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-27T07:28:12.290952+00:00",
+    "host": "host_7ec8382e82747448",
+    "id": "job_75b012382568",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "{\"receipt\": {\"status\": \"ALL_FOUR_VERIFIED_ARCHIVES_REHASHED_UNCHANGED_BEFORE_EXACT_RETIREMENT\", \"utc\": \"2026-11-27T07:28:12.164399+00:00\", \"source_root\": \"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-qualified-6935f7fd-20261127\", \"manifest_sha256\": \"70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660\", \"member_verification_receipt_sha256\": \"1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9\", \"base_archives_proof_sha256\": \"5b1f9b85fc969594d6925ffb57e11cfec24da950ffee89c2cd458e83ea5d29cb\", \"reference_plan_sha256\": \"ff591293df6c4c8965f4c085c5f3cd35d5b38751a8dd21a0122ec75cf6644f33\", \"archives\": [{\"id\": \"app-generated\", \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-app-generated-caches-20261127\\\\inactive-app-generated-caches.tar.gz\", \"sha256\": \"36b384277403ef416a22150724bd857b65b5d85043c884378630e7f1c6414efb\", \"bytes\": 1699905882, \"identity\": {\"bytes\": 1699905882, \"device\": 5400942862240111193, \"inode\": 26458647811059226, \"mtime_ns\": 1795754242681846000, \"ctime_ns\": 1795754031374798900}}, {\"id\": \"old-sdk-producer\", \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\interrupted-original-sdk-work.tar.gz\", \"sha256\": \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\", \"bytes\": 5238640114, \"identity\": {\"bytes\": 5238640114, \"device\": 5400942862240111193, \"inode\": 21955048183724307, \"mtime_ns\": 1795756294281474100, \"ctime_ns\": 1795755704056118000}}, {\"id\": \"fresh-sdk-differential\", \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-fresh-producer-preservation-20261127\\\\fresh-producer-differential.tar.gz\", \"sha256\": \"3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee\", \"bytes\": 944883233, \"identity\": {\"bytes\": 944883233, \"device\": 5400942862240111193, \"inode\": 12947848928777298, \"mtime_ns\": 1795761540882596500, \"ctime_ns\": 1795761459251521000}}, {\"id\": \"qualified-snapshot-differential\", \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-qualified-snapshot-preservation-20261127\\\\qualified-snapshot-differential.tar.gz\", \"sha256\": \"f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b\", \"bytes\": 1291853917, \"identity\": {\"bytes\": 1291853917, \"device\": 5400942862240111193, \"inode\": 11258999068627783, \"mtime_ns\": 1795763696874289200, \"ctime_ns\": 1795763610781859100}}], \"free_before\": 2975764480, \"free_after\": 2974228480, \"seconds\": 46.53100000001723, \"anything_deleted\": false}, \"bytes\": 2399, \"sha256\": \"f86f3f4784e20b486bf5e578b3b20fa0de0183655e28e0866c09aab3e1e669af\"}",
+    "output_truncated": false,
+    "read": false,
+    "severity": "info",
+    "source": "script_run@host_7ec8382e82747448",
+    "started_at": "2026-11-27T07:27:24.847097+00:00",
+    "status": "succeeded",
+    "timeout_s": 300,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}

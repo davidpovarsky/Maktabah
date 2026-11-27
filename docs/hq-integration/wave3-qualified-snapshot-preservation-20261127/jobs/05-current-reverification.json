@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795764151.6822908,
+    "duration_s": 24.08,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-27T07:22:55.817052+00:00",
+    "host": "host_4b47bdb65d00e49d",
+    "id": "job_0cc90aebd37c",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"FULL_CURRENT_SNAPSHOT_PRESERVED_AND_REVERIFIED_NOT_RETIRED\", \"utc\": \"2026-11-27T07:22:55.726546+00:00\", \"source_root\": \"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-qualified-6935f7fd-20261127\", \"manifest_sha256\": \"70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660\", \"reference_plan_sha256\": \"ff591293df6c4c8965f4c085c5f3cd35d5b38751a8dd21a0122ec75cf6644f33\", \"windows_receipt_sha256\": \"1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9\", \"archive_sha256\": \"f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b\", \"archive_bytes\": 1291853917, \"entries_reverified\": 65204, \"open_use_before\": {\"utc\": \"2026-11-27T07:22:33.158562+00:00\", \"lsof_exit_code\": 0, \"lsof_stderr\": \"\", \"open_paths\": [], \"process_references\": []}, \"open_use_after\": {\"utc\": \"2026-11-27T07:22:55.726490+00:00\", \"lsof_exit_code\": 0, \"lsof_stderr\": \"\", \"open_paths\": [], \"process_references\": []}, \"free_after\": 2884497408, \"anything_deleted\": false, \"retirement_authorized\": false, \"new_sdk_qualification\": false}",
+    "output_truncated": false,
+    "read": false,
+    "severity": "info",
+    "source": "script_run@host_4b47bdb65d00e49d",
+    "started_at": "2026-11-27T07:22:31.739425+00:00",
+    "status": "succeeded",
+    "timeout_s": 600,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}
