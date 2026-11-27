@@ -1,0 +1,8 @@
+[codex/otzaria-wave3-integration-20261127 3dfdee13] Document original Sefaria late-reply proof boundary and exact native gap
+ Author: Otzaria Wave3 Navigation <otzaria-integration@users.noreply.github.com>
+ Date: Fri Nov 27 08:16:58 2026 +0000
+ 4 files changed, 242 insertions(+)
+ create mode 100644 docs/ui-routing/wave3-sefaria-late-reply-audit-20261127/ASANA_CRITERIA.json
+ create mode 100644 docs/ui-routing/wave3-sefaria-late-reply-audit-20261127/AUDIT.json
+ create mode 100644 docs/ui-routing/wave3-sefaria-late-reply-audit-20261127/MANIFEST.json
+ create mode 100644 docs/ui-routing/wave3-sefaria-late-reply-audit-20261127/NEXT_NATIVE_PROOF.md

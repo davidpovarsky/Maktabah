@@ -1,0 +1,8 @@
+Auto-merging Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift
+[codex/otzaria-wave3-integration-20261127 02be9b3f] Expose original search results through foreground App Intents
+ Author: Otzaria Wave3 Navigation <otzaria-integration@users.noreply.github.com>
+ Date: Fri Nov 27 07:54:08 2026 +0000
+ 5 files changed, 820 insertions(+), 4 deletions(-)
+ create mode 100644 Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift
+ create mode 100644 Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift
+ create mode 100644 Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "sourceHead": "206d52b644daf93781611ef1f62bf6b29c2400fe",
+  "localizable": {
+    "beforeSHA256": "6074aa3444c7029eb787ccf37c81d13193e98fa8e210907ab325f617450cb5d1",
+    "afterSHA256": "f2b4ab29b72e4049200064bdaa4c17f95af8f17cc79fda5c0c2fdcdbf6ec63bf",
+    "preservedOriginalEntries": 703,
+    "addedEntries": [
+      "Search book filter",
+      "Search mode",
+      "Exact phrase",
+      "Search order",
+      "Book order",
+      "Show search results",
+      "Search for an exact phrase in the current library and display its results in the selected Maktabah window. Book filters are available in the Otzaria library. Sorting choices depend on the selected library.",
+      "Search phrase",
+      "Books (optional)",
+      "Sort results"
+    ],
+    "reusedUnmodifiedEntries": [
+      "Relevance",
+      "Chronological",
+      "Window",
+      "Search"
+    ],
+    "finalEntries": 713
+  },
+  "appShortcuts": {
+    "beforeSHA256": "db1eda45b527d1474f136ae1651c4edf14389624153d0a1e2329782dd9cef404",
+    "afterSHA256": "eb1dde0853ff9d68da2ee00efd9df438ae13b82c8d23b4b703c9ff13cbab8e16",
+    "preservedOriginalEntries": 2,
+    "addedKey": "Show search results in ${applicationName}",
+    "placeholderBasis": "Both existing original AppShortcuts keys use the literal ${applicationName}; the fixed new Swift provider phrase uses the same original interpolation.",
+    "metadataExtraction": "NOT_RUN"
+  },
+  "parameterSummary": "Await original Apple metadata extraction for exact dynamic query/window placeholders; no guessed catalog key.",
+  "nativeHE_EN_Siri": "NOT_RUN"
+}

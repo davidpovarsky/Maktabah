@@ -1,0 +1,8 @@
+[codex/otzaria-wave3-integration-20261127 70b46fcb] Record actual Mac SQLite companion clock compatibility [skip ci]
+ Date: Fri Nov 27 07:05:25 2026 +0000
+ 5 files changed, 818 insertions(+)
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/apple-clock-20261127/README.md
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/apple-clock-20261127/RESULT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/apple-clock-20261127/TRANSFER.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/apple-clock-20261127/TRANSFER_ATTEMPTS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/apple-clock-20261127/actual-apple-files.tar.gz

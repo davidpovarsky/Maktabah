@@ -1,0 +1,11 @@
+[codex/otzaria-wave3-integration-20261127 a612fd77] Add bounded v40 SQLite wait companion evidence collector [skip ci]
+ Date: Fri Nov 27 06:57:47 2026 +0000
+ 8 files changed, 2004 insertions(+)
+ create mode 100755 Scripts/CI/study-ui-sqlite-wait.py
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/ARCHIVE_CONTENTS.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/CAPTURE_BUDGET_SOURCE.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/EVIDENCE.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/README.md
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/SOURCE_SNAPSHOT.json
+ create mode 100644 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/source-controls-inputs-and-receipts-v2.tar.gz
+ create mode 100755 docs/hq-integration/wave2-20261127/library/sqlite-wait-collector/source-controls.py

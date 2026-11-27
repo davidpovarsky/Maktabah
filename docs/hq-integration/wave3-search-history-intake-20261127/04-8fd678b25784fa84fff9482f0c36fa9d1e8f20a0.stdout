@@ -1,0 +1,20 @@
+[codex/otzaria-wave3-integration-20261127 20b1ac8d] docs: reconcile original UI scope after retained native routing
+ Author: Codex <chatgpt-agent@users.noreply.github.com>
+ Date: Fri Nov 27 07:27:54 2026 +0000
+ 16 files changed, 22138 insertions(+)
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/AUDIT_CONTRACT.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/COMPONENTS.md
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/COMPONENT_RECONCILIATION.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/DECLARED_NATIVE_TESTS.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/EVIDENCE_MANIFEST.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/NATIVE_FOCUSED_SELECTION.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/QA_51_RECONCILIATION.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/README.md
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/RECONCILIATION.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/RECONCILIATION.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/SOURCE_PROVENANCE.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/SUMMARY.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/attempt-1-RECONCILIATION.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/attempt-1-RECONCILIATION.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/attempt-1-SUMMARY.json
+ create mode 100644 docs/hq-ui-inventory/wave3-record-scope-20261127/reconcile.py

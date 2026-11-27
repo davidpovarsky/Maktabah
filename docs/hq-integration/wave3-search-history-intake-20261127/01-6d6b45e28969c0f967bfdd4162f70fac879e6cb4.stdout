@@ -1,0 +1,26 @@
+[codex/otzaria-wave3-integration-20261127 1a305e6f] Preserve semantic Search intent source acceptance and remaining contracts
+ Author: Otzaria Wave3 Navigation <otzaria-integration@users.noreply.github.com>
+ Date: Fri Nov 27 08:00:15 2026 +0000
+ 22 files changed, 2013 insertions(+)
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/EVIDENCE_MANIFEST.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/INTAKE.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/LOCALIZATION_ADDITIONS.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/ORIGINAL_RESULT_OWNERS.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/PEER_SOURCE_REVIEW.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/PORTABLE_INPUT_CLOSURE.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/PROVENANCE.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/README.md
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/RESULT_SELECTION_AND_PAGING_PROPOSAL.md
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/PRESERVATION.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/apple-shortcut-syntax/MaktabahNativeIntents.log
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/apple-shortcut-syntax/RESULT.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/apple-syntax/MaktabahNativeRoutingComposition.log
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/apple-syntax/NativeSearchIntents.log
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/apple-syntax/RESULT.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/DISK_SAMPLES.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/RESULT.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/SOURCE_INPUTS.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/START.json
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/stderr.log
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/linux/stdout.log
+ create mode 100644 docs/ui-routing/wave3-semantic-search-intent-20261127/evidence/run-attempt-1.py

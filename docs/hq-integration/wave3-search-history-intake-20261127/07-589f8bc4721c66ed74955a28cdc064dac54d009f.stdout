@@ -1,0 +1,30 @@
+[codex/otzaria-wave3-integration-20261127 a2a38407] docs: preserve and retire exact qualified6935 snapshot
+ Author: ChatGPT (release-preflight) <noreply@openai.com>
+ Date: Fri Nov 27 07:40:30 2026 +0000
+ 26 files changed, 1393 insertions(+)
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/PACKET_FILES.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/README.md
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/01-base-archives.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/02-inventory.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/03-stream.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/04-member-verification.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/05-current-reverification.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/06-final-archive-rehash.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/07-disk-process-attribution.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/jobs/08-exact-retirement.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/CURRENT_REVERIFICATION.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/DISK_PROCESS_ATTRIBUTION_BEFORE.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/INVENTORY_RESULT.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/MEMORY_DISK_ATTRIBUTION.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/RETIREMENT_CURRENT_REVERIFICATION.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/RETIREMENT_RESULT.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/STREAM_RESULT.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/mac/WINDOWS_VERIFIED_DIFFERENTIAL.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/windows/BASE_ARCHIVES.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/windows/FINAL_ARCHIVE_BINDINGS.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/windows/RECEIVE_RESULT.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/receipts/windows/VERIFIED_DIFFERENTIAL.json
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/scripts/final-archive-recheck.ps1
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/scripts/qualified_preservation.py
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/scripts/qualified_retirement.py
+ create mode 100644 docs/hq-integration/wave3-qualified-snapshot-preservation-20261127/scripts/windows_qualified.py

@@ -1,0 +1,33 @@
+[codex/otzaria-wave3-integration-20261127 523e3d69] fix: drop obsolete original History load results
+ Author: Codex <chatgpt-agent@users.noreply.github.com>
+ Date: Fri Nov 27 08:12:46 2026 +0000
+ 31 files changed, 2923 insertions(+)
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/.gitignore
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/EVIDENCE_MANIFEST.json
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/PRODUCTION_EQUIVALENCE.json
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/README.md
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/ORIGINAL_LOAD.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/PROPOSED_GUARD.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/PROPOSED_HELPER.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/SOURCE_INPUTS.json
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/Controls.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/RESULT.json
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/compile.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/compile.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/run.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/run.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/Controls.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/RESULT.json
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/compile.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/compile.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/run.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/run.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/inputs/Source/Features/History/ViewModel/Extensions/History+Database.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/inputs/Source/Features/History/ViewModel/HistoryViewModel.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/inputs/Source/LibraryBackend/LibraryBackendModels.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/inputs/Source/LibraryBackend/QualifiedLocatorStore.swift
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/generate.stderr.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/generate.stdout.log
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/make-controls.py
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/production.diff.gz
+ create mode 100644 docs/hq-ui-inventory/wave3-history-late-publication-20261127/run-original-controls.py

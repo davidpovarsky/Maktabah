@@ -20,6 +20,16 @@
           }
         }
       }
+    },
+    "Show search results in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצג תוצאות חיפוש באפליקציה ${applicationName}"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

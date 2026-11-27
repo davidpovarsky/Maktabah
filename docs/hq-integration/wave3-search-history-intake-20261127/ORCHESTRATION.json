@@ -1,0 +1,14 @@
+{
+  "initialMutationToolCall": "MCP internal error; no job identity returned",
+  "freshReadbackBeforeRetry": {
+    "HEAD": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+    "status": "clean",
+    "partialReceipt": null,
+    "result": null,
+    "logs": []
+  },
+  "successfulJob": "job_411e3886d1e9",
+  "executedFromUTC": "2026-11-27T08:22:50.063154+00:00",
+  "finishedUTC": "2026-11-27T08:22:53.935218+00:00",
+  "rootNewNativeRuns": 0
+}
