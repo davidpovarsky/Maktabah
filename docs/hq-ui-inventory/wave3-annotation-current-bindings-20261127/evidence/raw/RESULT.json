@@ -1,0 +1,137 @@
+{
+  "apple_sdk": "NOT_RUN",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "current_module_counts": {
+    "Core": 31,
+    "Host": 41,
+    "UI": 13
+  },
+  "data_free": 6553264128,
+  "failed": 0,
+  "finished": 1795807659.8979397,
+  "native": "NOT_RUN",
+  "passed": 6,
+  "reused_products": [
+    {
+      "bytes": 444488,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+      "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3097048,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+      "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 315448,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+      "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 1578856,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+      "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 708952,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+      "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3002144,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+      "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+      "use": "read-only existing original compiled product"
+    }
+  ],
+  "root_free": 2336518144,
+  "schema": "otzaria.annotation-current-caller-binding.v1",
+  "scope": "Same six actual binding/full caller/helper source controls, current original Core/UI/Host products, exact current root publisher. Explicit UIKit/Combine/Store/backend/workspace boundaries; no app or native execution. Original eleven and old compile diagnostic not rerun.",
+  "started": 1795807642.047923,
+  "status": "PASS_CURRENT_BINDINGS_SOURCE_CONTROLS_ONLY",
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ExplicitAnnotationBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ActualWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/ActualBindingFixture.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/CallerControls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/prior-inputs/controls/CandidateCaller.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/current-source/ActualOriginalRootPublication.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807658.7886467,
+      "name": "compile-current-candidate-caller",
+      "pid": 2127572,
+      "start_ticks": "733471770",
+      "started": 1795807645.8717952
+    },
+    {
+      "argv": [
+        "ldd",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807659.3407135,
+      "name": "actual-linked-library-identity",
+      "pid": 2128224,
+      "start_ticks": "733473064",
+      "started": 1795807658.8121767
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/caller-current-bindings-attempt-1/output/current-caller-controls"
+      ],
+      "exit": 0,
+      "finished": 1795807659.8886473,
+      "name": "same-six-current-caller-controls",
+      "pid": 2128293,
+      "start_ticks": "733473119",
+      "started": 1795807659.3629751
+    }
+  ],
+  "task_bytes": 30986240
+}

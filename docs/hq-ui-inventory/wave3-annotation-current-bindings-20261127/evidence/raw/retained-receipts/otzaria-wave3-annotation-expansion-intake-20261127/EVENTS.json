@@ -1,0 +1,2125 @@
+[
+  {
+    "args": [
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "f5e796b6978e07ca76da23b8c2a51532cd3058e4c5d237556410df0315564f3c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "status",
+      "--porcelain"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "symbolic-ref",
+      "--short",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "6163f935db0db74491c29a5be647b9910c9f695fc95315bb447586e8cacecc59",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "-c",
+      "credential.helper=!gh auth git-credential",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/otzaria-wave3-integration-20261127"
+    ],
+    "exit": 0,
+    "stdoutBytes": 93,
+    "stdoutSHA256": "28bf60d00346893473107b0bd3f865b6b6c1d38decae33f5193686e8fae58d2f",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "fetch",
+      "--no-tags",
+      "--no-write-fetch-head",
+      "/home/ubuntu/otzaria-wave3-annotation-expansion-caller-published-20261127/source",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "rev-parse",
+      "56a6ff0c4d9437924479444660b51ce62e59db7e^"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "736f363b7103e32bbd3d20cb7aedb49005026b6cbebed737cb09acfa5d41758d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "rev-parse",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32^"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "8e0dc8c1b56a02fd887439a3379e22e1a69a5e56bbedda94669b9366f0685172",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "rev-parse",
+      "7f8223232a82b25502090617860459674cc49f2a^"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "7eb4f77fe8fcfb2acdadadc41a57444ae3a1a51898f4e3a3cfb1f6c8eeae01b7",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "rev-parse",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd^"
+    ],
+    "exit": 0,
+    "stdoutBytes": 41,
+    "stdoutSHA256": "8657ae053ecdf4f029c449708380a76f809cfd640db486a3159256ef4109da59",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 31823,
+    "stdoutSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "fd1407823dc346ea800cfba20523b56b98de8f08:Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 31823,
+    "stdoutSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4952,
+    "stdoutSHA256": "75c78c28fe41862358a8d1e690214b52f55a499e1cac4fdd7c31421cd7141e09",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff-tree",
+      "--no-commit-id",
+      "--name-only",
+      "-r",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2783,
+    "stdoutSHA256": "901b96ae56ea272cc43cfb74bc06c48fffd1aca84ae92a67f2a848f2f7670c5f",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/README.md"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4122,
+    "stdoutSHA256": "079b983969401290c28ae0a7fd138103521c6f0a69a67d02aca161d289f80386",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2313,
+    "stdoutSHA256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3733,
+    "stdoutSHA256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/RAW.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32067,
+    "stdoutSHA256": "19a02a8e13ae2877e75336b19414bbf2e33e7ee58d07196f0e72147b1e2d4b60",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1047,
+    "stdoutSHA256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2676,
+    "stdoutSHA256": "6c480608aca103be170cc4a2fba5c9099f04a2c7bd183c0fdfc56cb72f0622c4",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25523,
+    "stdoutSHA256": "242f25295e10ee61cd08ab1184dc226e9e4304e79bbd854385ed25397e5397ed",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1047,
+    "stdoutSHA256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3219,
+    "stdoutSHA256": "a2c6af42117154e8f440be4df4c3dd954a36cc8edd4c9db269affc4b6ca3b045",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1972,
+    "stdoutSHA256": "463b15a45120c6df08055ce740bfb4aec65a446573b57d0bc650d7cff96bd7d6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10319,
+    "stdoutSHA256": "1e23d72f21802c9a12e2b35d07586dec71c70cdec420e6e157e8e67f3e8e73f0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4249,
+    "stdoutSHA256": "4dded951bb3b11a4bfeed573bdae876bcc9de6725ef426e70df0c7be09148956",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/candidate-full-ios-syntax.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/candidate-full-ios-syntax.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/INPUTS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1583,
+    "stdoutSHA256": "2a302c17078c91bfe6aec0997877ad12e713d7283e4ecfc0df4879e96698019d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2313,
+    "stdoutSHA256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3733,
+    "stdoutSHA256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 31823,
+    "stdoutSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32313,
+    "stdoutSHA256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/CandidateExpansion.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1928,
+    "stdoutSHA256": "a99feb0fc1f7129f319ca62683c84d7629e06e33c744b378655b49e72961bce2",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/ExpansionControls.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4063,
+    "stdoutSHA256": "40f8d18ebc84965dc2ab84d1032a6db66c39355225634feea2024d2008d860b1",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/ExplicitUIKitBoundary.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2319,
+    "stdoutSHA256": "6b1ac16d490e28cce7c0acb0ffd2114c87eb8bf7be11373149afe5475c162485",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/OriginalExpansion.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1463,
+    "stdoutSHA256": "fc4192b123e6362eb26c1a2679b2b9c345cd3bbd3f583f5ce869750afa30f704",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/prepare.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4911,
+    "stdoutSHA256": "80d0cdc0f76265bb658b6ec1e3ec74ffb0aefa4eba37b6fd4dec13f8ba86b5da",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/run.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5833,
+    "stdoutSHA256": "1720fcc758dc687f484dddc8b2bbdffbd405328bb1f01c21a5d620946bd98912",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1972,
+    "stdoutSHA256": "463b15a45120c6df08055ce740bfb4aec65a446573b57d0bc650d7cff96bd7d6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1047,
+    "stdoutSHA256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2676,
+    "stdoutSHA256": "6c480608aca103be170cc4a2fba5c9099f04a2c7bd183c0fdfc56cb72f0622c4",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25523,
+    "stdoutSHA256": "242f25295e10ee61cd08ab1184dc226e9e4304e79bbd854385ed25397e5397ed",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1047,
+    "stdoutSHA256": "b28652d89c814218b2bf973c9dca2e0c76426afc2cd963aec0ca21cd04c7e9de",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3219,
+    "stdoutSHA256": "a2c6af42117154e8f440be4df4c3dd954a36cc8edd4c9db269affc4b6ca3b045",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10319,
+    "stdoutSHA256": "1e23d72f21802c9a12e2b35d07586dec71c70cdec420e6e157e8e67f3e8e73f0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4249,
+    "stdoutSHA256": "4dded951bb3b11a4bfeed573bdae876bcc9de6725ef426e70df0c7be09148956",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/candidate-full-ios-syntax.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/candidate-full-ios-syntax.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/RAW.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32067,
+    "stdoutSHA256": "19a02a8e13ae2877e75336b19414bbf2e33e7ee58d07196f0e72147b1e2d4b60",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1972,
+    "stdoutSHA256": "463b15a45120c6df08055ce740bfb4aec65a446573b57d0bc650d7cff96bd7d6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/INPUTS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1583,
+    "stdoutSHA256": "2a302c17078c91bfe6aec0997877ad12e713d7283e4ecfc0df4879e96698019d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2313,
+    "stdoutSHA256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3733,
+    "stdoutSHA256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 31823,
+    "stdoutSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32313,
+    "stdoutSHA256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/CandidateExpansion.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1928,
+    "stdoutSHA256": "a99feb0fc1f7129f319ca62683c84d7629e06e33c744b378655b49e72961bce2",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/ExpansionControls.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4063,
+    "stdoutSHA256": "40f8d18ebc84965dc2ab84d1032a6db66c39355225634feea2024d2008d860b1",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/ExplicitUIKitBoundary.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2319,
+    "stdoutSHA256": "6b1ac16d490e28cce7c0acb0ffd2114c87eb8bf7be11373149afe5475c162485",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/controls/OriginalExpansion.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1463,
+    "stdoutSHA256": "fc4192b123e6362eb26c1a2679b2b9c345cd3bbd3f583f5ce869750afa30f704",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/prepare.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4911,
+    "stdoutSHA256": "80d0cdc0f76265bb658b6ec1e3ec74ffb0aefa4eba37b6fd4dec13f8ba86b5da",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/inputs/run.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5833,
+    "stdoutSHA256": "1720fcc758dc687f484dddc8b2bbdffbd405328bb1f01c21a5d620946bd98912",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 9081,
+    "stdoutSHA256": "c292a58a28e9446ada2d58e12cf04c16b990362d54cde67520ce55321e576b48",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff-tree",
+      "--no-commit-id",
+      "--name-only",
+      "-r",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5867,
+    "stdoutSHA256": "3d9f6f46f1a6d36dd3d09244de56f8965c203c3c515a5444683bbe2b0858889c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/README.md"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4516,
+    "stdoutSHA256": "1f46d1d5f46c8f298baf85a97b206500ecf5034c06630b91bde814d8f4f052b7",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 787,
+    "stdoutSHA256": "c7084bb1ae7d2c2fdff26874d61e7340a37f194c286af487d24387aac2956867",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1036,
+    "stdoutSHA256": "79addf2936c50db3471363b9bc1429bf7d4e7ca48ecd015a6227504dd301b21e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/RAW.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 122373,
+    "stdoutSHA256": "481e1c7926199616845d2379f7258ad039b2a73c595fc6261bb6dd8d438dd432",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3151,
+    "stdoutSHA256": "c35e1c35988e59198036b0fb9658785bb8cb52d433ceccab29f63ba19023faec",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 63929,
+    "stdoutSHA256": "0381587802165c689424fa17d8d8c68fc5df7a3b5a772bf63611a1bf3f042cf9",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5628,
+    "stdoutSHA256": "fe6561af4aa6b00f6070bbb1f279253fbd79e1e646607aacce40cc0ccf661e22",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5281,
+    "stdoutSHA256": "437e58a65598acc2dfa5cc7b5401b9ce4fdd10e81338f45d8da1b606bb4694d6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/actual-old-caller-typecheck.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/actual-old-caller-typecheck.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/full-ios-syntax-only.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/full-ios-syntax-only.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 68103,
+    "stdoutSHA256": "e9a21050cfe02a474dc13d908d2aa6189ebf64a7b64aef0cfe812fb50e9c864d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 27648,
+    "stdoutSHA256": "63415a94517b961fea07adc7688dc68a21a1d29b548feaf3f8b9e4c893b9c1fe",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 9059,
+    "stdoutSHA256": "99413316fc51a0a5d98568d2b028877534ef96fa566c7adca5d431df0842c252",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 940,
+    "stdoutSHA256": "96bb5c672ff0f0c699e8043876e446bcad2b1984b3a9756bc801277b335e633e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-old-caller-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1563,
+    "stdoutSHA256": "efee10fa525c69e5c20db5d927a0d3c6345b97c6da57d31055b2dc1fd7306b49",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-old-caller-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/full-ios-syntax-only.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/full-ios-syntax-only.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/INPUTS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4197,
+    "stdoutSHA256": "9b0229ae6817bd07546d4ea8a5a5b2a23506697c25251b3088f78695cf1c1637",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 787,
+    "stdoutSHA256": "c7084bb1ae7d2c2fdff26874d61e7340a37f194c286af487d24387aac2956867",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1036,
+    "stdoutSHA256": "79addf2936c50db3471363b9bc1429bf7d4e7ca48ecd015a6227504dd301b21e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32313,
+    "stdoutSHA256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2810,
+    "stdoutSHA256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25322,
+    "stdoutSHA256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10885,
+    "stdoutSHA256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3105,
+    "stdoutSHA256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 12050,
+    "stdoutSHA256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 14696,
+    "stdoutSHA256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 6232,
+    "stdoutSHA256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32323,
+    "stdoutSHA256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualBindingFixture.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3486,
+    "stdoutSHA256": "4a1888f9f14bb0291f1069443f87536d70afdafba2281dc1684192ce57794dfa",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualOriginalRootPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 962,
+    "stdoutSHA256": "af3fe5ff898cfd27f4ef17be9422994aa8f5c60aced00752d65ef2f93536f143",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualWindowObservation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 924,
+    "stdoutSHA256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/CallerControls.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4167,
+    "stdoutSHA256": "901f6c638c1d1b2e444c1264db4722235efe3ea1678ed4a3f597cf9f287589ad",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/CandidateCaller.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11136,
+    "stdoutSHA256": "68f0b5b1a72088ca0783e38cef5b6de4f7bbc97ca822d55999918c976ee10904",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ExplicitAnnotationBoundary.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11936,
+    "stdoutSHA256": "f725543ff0b111f0a88ebffcef812a68b0a7f61201746954d05758b138fb50cb",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/OriginalCaller.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11126,
+    "stdoutSHA256": "47b21b2de6607c88398b5f20cb86301490fd227d6b220bc5d6f881f417051cea",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/prepare.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4629,
+    "stdoutSHA256": "a0a2ddcf34a2e81f4667afa6d91dd1529bcc5836b2577af9260df71f6df01a1b",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/run.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11174,
+    "stdoutSHA256": "6c6fdf6277dfb57c59c811f27c9cf263215075ebc2dc2156cc6e7a251cee79ff",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/run_attempt2.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11193,
+    "stdoutSHA256": "4e926b7a2f1dfb4754f91d782735ddee50989617bd043efe2a2d478e3bf39c40",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2810,
+    "stdoutSHA256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25322,
+    "stdoutSHA256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3151,
+    "stdoutSHA256": "c35e1c35988e59198036b0fb9658785bb8cb52d433ceccab29f63ba19023faec",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 63929,
+    "stdoutSHA256": "0381587802165c689424fa17d8d8c68fc5df7a3b5a772bf63611a1bf3f042cf9",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5628,
+    "stdoutSHA256": "fe6561af4aa6b00f6070bbb1f279253fbd79e1e646607aacce40cc0ccf661e22",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5281,
+    "stdoutSHA256": "437e58a65598acc2dfa5cc7b5401b9ce4fdd10e81338f45d8da1b606bb4694d6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/actual-old-caller-typecheck.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/actual-old-caller-typecheck.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/full-ios-syntax-only.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-1/full-ios-syntax-only.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/INPUTS.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 68103,
+    "stdoutSHA256": "e9a21050cfe02a474dc13d908d2aa6189ebf64a7b64aef0cfe812fb50e9c864d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 27648,
+    "stdoutSHA256": "63415a94517b961fea07adc7688dc68a21a1d29b548feaf3f8b9e4c893b9c1fe",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/STATUS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 9059,
+    "stdoutSHA256": "99413316fc51a0a5d98568d2b028877534ef96fa566c7adca5d431df0842c252",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-controls.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 940,
+    "stdoutSHA256": "96bb5c672ff0f0c699e8043876e446bcad2b1984b3a9756bc801277b335e633e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-old-caller-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1563,
+    "stdoutSHA256": "efee10fa525c69e5c20db5d927a0d3c6345b97c6da57d31055b2dc1fd7306b49",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-old-caller-compile.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/full-ios-syntax-only.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/full-ios-syntax-only.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/RAW.zip"
+    ],
+    "exit": 0,
+    "stdoutBytes": 122373,
+    "stdoutSHA256": "481e1c7926199616845d2379f7258ad039b2a73c595fc6261bb6dd8d438dd432",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/RAW_MANIFEST.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3151,
+    "stdoutSHA256": "c35e1c35988e59198036b0fb9658785bb8cb52d433ceccab29f63ba19023faec",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/INPUTS.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4197,
+    "stdoutSHA256": "9b0229ae6817bd07546d4ea8a5a5b2a23506697c25251b3088f78695cf1c1637",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/SOURCE.diff"
+    ],
+    "exit": 0,
+    "stdoutBytes": 787,
+    "stdoutSHA256": "c7084bb1ae7d2c2fdff26874d61e7340a37f194c286af487d24387aac2956867",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1036,
+    "stdoutSHA256": "79addf2936c50db3471363b9bc1429bf7d4e7ca48ecd015a6227504dd301b21e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32313,
+    "stdoutSHA256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2810,
+    "stdoutSHA256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25322,
+    "stdoutSHA256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10885,
+    "stdoutSHA256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3105,
+    "stdoutSHA256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 12050,
+    "stdoutSHA256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 14696,
+    "stdoutSHA256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 6232,
+    "stdoutSHA256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32323,
+    "stdoutSHA256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualBindingFixture.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3486,
+    "stdoutSHA256": "4a1888f9f14bb0291f1069443f87536d70afdafba2281dc1684192ce57794dfa",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualOriginalRootPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 962,
+    "stdoutSHA256": "af3fe5ff898cfd27f4ef17be9422994aa8f5c60aced00752d65ef2f93536f143",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ActualWindowObservation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 924,
+    "stdoutSHA256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/CallerControls.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4167,
+    "stdoutSHA256": "901f6c638c1d1b2e444c1264db4722235efe3ea1678ed4a3f597cf9f287589ad",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/CandidateCaller.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11136,
+    "stdoutSHA256": "68f0b5b1a72088ca0783e38cef5b6de4f7bbc97ca822d55999918c976ee10904",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/ExplicitAnnotationBoundary.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11936,
+    "stdoutSHA256": "f725543ff0b111f0a88ebffcef812a68b0a7f61201746954d05758b138fb50cb",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/controls/OriginalCaller.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11126,
+    "stdoutSHA256": "47b21b2de6607c88398b5f20cb86301490fd227d6b220bc5d6f881f417051cea",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/prepare.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4629,
+    "stdoutSHA256": "a0a2ddcf34a2e81f4667afa6d91dd1529bcc5836b2577af9260df71f6df01a1b",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/run.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11174,
+    "stdoutSHA256": "6c6fdf6277dfb57c59c811f27c9cf263215075ebc2dc2156cc6e7a251cee79ff",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/run_attempt2.py"
+    ],
+    "exit": 0,
+    "stdoutBytes": 11193,
+    "stdoutSHA256": "4e926b7a2f1dfb4754f91d782735ddee50989617bd043efe2a2d478e3bf39c40",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2810,
+    "stdoutSHA256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/inputs/unchanged/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 25322,
+    "stdoutSHA256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff-tree",
+      "--no-commit-id",
+      "--name-only",
+      "-r",
+      "56a6ff0c4d9437924479444660b51ce62e59db7e"
+    ],
+    "exit": 0,
+    "stdoutBytes": 66,
+    "stdoutSHA256": "dd9e082a5297f5faa4b4fb8f2051dd49a0e885bdd9e871df772e2165f62d94a9",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff",
+      "--check",
+      "56a6ff0c4d9437924479444660b51ce62e59db7e^",
+      "56a6ff0c4d9437924479444660b51ce62e59db7e"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff-tree",
+      "--no-commit-id",
+      "--name-only",
+      "-r",
+      "7f8223232a82b25502090617860459674cc49f2a"
+    ],
+    "exit": 0,
+    "stdoutBytes": 66,
+    "stdoutSHA256": "dd9e082a5297f5faa4b4fb8f2051dd49a0e885bdd9e871df772e2165f62d94a9",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "diff",
+      "--check",
+      "7f8223232a82b25502090617860459674cc49f2a^",
+      "7f8223232a82b25502090617860459674cc49f2a"
+    ],
+    "exit": 0,
+    "stdoutBytes": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3733,
+    "stdoutSHA256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/SOURCE_INVERSE.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1036,
+    "stdoutSHA256": "79addf2936c50db3471363b9bc1429bf7d4e7ca48ecd015a6227504dd301b21e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 31823,
+    "stdoutSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "56a6ff0c4d9437924479444660b51ce62e59db7e:Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32313,
+    "stdoutSHA256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "7f8223232a82b25502090617860459674cc49f2a:Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 32323,
+    "stdoutSHA256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10319,
+    "stdoutSHA256": "1e23d72f21802c9a12e2b35d07586dec71c70cdec420e6e157e8e67f3e8e73f0",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/OriginalExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3219,
+    "stdoutSHA256": "a2c6af42117154e8f440be4df4c3dd954a36cc8edd4c9db269affc4b6ca3b045",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "2914be3e5ad4c2d857a962d526b5e2c6ec8dde32:docs/hq-ui-inventory/wave3-annotation-expansion-20261127/evidence/raw/CandidateExpansion-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2676,
+    "stdoutSHA256": "6c480608aca103be170cc4a2fba5c9099f04a2c7bd183c0fdfc56cb72f0622c4",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/RESULT.json"
+    ],
+    "exit": 0,
+    "stdoutBytes": 27648,
+    "stdoutSHA256": "63415a94517b961fea07adc7688dc68a21a1d29b548feaf3f8b9e4c893b9c1fe",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-old-caller-compile.stderr"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1563,
+    "stdoutSHA256": "efee10fa525c69e5c20db5d927a0d3c6345b97c6da57d31055b2dc1fd7306b49",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "d2a9d19fdecd57636cbb3896b2e96f33c1a72acd:docs/hq-ui-inventory/wave3-annotation-expansion-caller-20261127/evidence/raw/caller-followup-attempt-2/actual-candidate-caller-controls.stdout"
+    ],
+    "exit": 0,
+    "stdoutBytes": 940,
+    "stdoutSHA256": "96bb5c672ff0f0c699e8043876e446bcad2b1984b3a9756bc801277b335e633e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1618,
+    "stdoutSHA256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1747,
+    "stdoutSHA256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4725,
+    "stdoutSHA256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 12045,
+    "stdoutSHA256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 9437,
+    "stdoutSHA256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3725,
+    "stdoutSHA256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2619,
+    "stdoutSHA256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1275,
+    "stdoutSHA256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5097,
+    "stdoutSHA256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 7473,
+    "stdoutSHA256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1862,
+    "stdoutSHA256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 8009,
+    "stdoutSHA256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5919,
+    "stdoutSHA256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4589,
+    "stdoutSHA256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2353,
+    "stdoutSHA256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 10506,
+    "stdoutSHA256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5278,
+    "stdoutSHA256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 9216,
+    "stdoutSHA256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 3154,
+    "stdoutSHA256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 71880,
+    "stdoutSHA256": "65285328fcb28406f6211c593a83a9dcb88493c6aa3f68ee16f4d20697592507",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 14414,
+    "stdoutSHA256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1673,
+    "stdoutSHA256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 4844,
+    "stdoutSHA256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 7952,
+    "stdoutSHA256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 12181,
+    "stdoutSHA256": "d88100268e2179bedac5eecce4941d28a8d9b64b2c525ff733cdc91b0d97afdb",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 1327,
+    "stdoutSHA256": "7b171d100dcf5e20c2cafca81dd7b19ec9d3dc264f0121c8f18c544445d9d7eb",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 8189,
+    "stdoutSHA256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 5039,
+    "stdoutSHA256": "fadde3192ca5d03ea9537c72265e883881b0b89ecfecc42021bb81685af26903",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2110,
+    "stdoutSHA256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 2922,
+    "stdoutSHA256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 28048,
+    "stdoutSHA256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "show",
+      "b463ffd03a76026cea06c79c608df97d00094152:Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
+    ],
+    "exit": 0,
+    "stdoutBytes": 12146,
+    "stdoutSHA256": "8e02c43fe534d2f703be0539a6b910bb99759b140966c1ea560654fc41669ad4",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "error": "AssertionError('Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift')",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/development/projects/diagnostics/otzaria-wave3-annotation-expansion-intake-20261127/RUN.py\", line 74, in <module>\n    for row in caller['original_source_join']:pin(show(BASE,row['path']),row)\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/development/projects/diagnostics/otzaria-wave3-annotation-expansion-intake-20261127/RUN.py\", line 22, in pin\n    def pin(b,row):assert len(b)==row['bytes']and sha(b)==row['sha256'],row.get('path','unnamed')\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift\n"
+}
