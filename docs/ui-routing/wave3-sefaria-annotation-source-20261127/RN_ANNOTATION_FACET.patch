@@ -1,0 +1,80 @@
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift
+@@ -87,6 +87,7 @@
+ @MainActor private final class MaktabahNativeSefariaRootSource {
+     private let observation: NativeComponentSourceObservation
+     private let originalWindow: MaktabahNativeWindowObservation?
++    private let annotationValidation: @MainActor () throws -> Void
+     private let managerID: ObjectIdentifier
+     private let root: MaktabahNativeRootPublicationSource
+     private weak var workspacePresentation: MaktabahNativeWorkspacePresentationBinding?
+@@ -116,12 +117,20 @@
+          workspace: MaktabahNativeWorkspacePresentationBinding,
+          originalWindow: MaktabahNativeWindowObservation? = nil,
+          windowPublication: NativeComponentSourcePublication? = nil,
++         annotationPublication: NativeComponentSourcePublication,
++         retainAnnotationObservation: @MainActor () throws -> (@MainActor () throws -> Void),
+          readForeignPresentations: @MainActor () -> Void) throws {
+         let manager = bindings.manager
+         self.originalWindow = originalWindow
+         let publications = [bindings.rootPublications?.nativePublication,
+-            manager.nativeModePresentationPublication, windowPublication].compactMap { $0 }
+-        observation = NativeComponentSourceObservation(publications: publications) {
++            manager.nativeModePresentationPublication, windowPublication, annotationPublication].compactMap { $0 }
++        var retainedAnnotation: (@MainActor () throws -> Void)?
++        var annotationError: (any Error)?
++        let captured = NativeComponentSourceObservation(publications: publications) {
++            // The fixed publisher is registered before the first original
++            // modal getter. Its callback cannot make an old source current.
++            do { retainedAnnotation = try retainAnnotationObservation() }
++            catch { annotationError = error }
+             _ = bindings.rootPublications?.selectionRevision; _ = bindings.rootPublications?.settingsRevision
+             _ = manager.nativeModePresentationRevision; _ = manager.selectedBookPresentationRevision
+             _ = manager.currentMode; _ = manager.selectedBook; _ = manager.selectedBookPresentationMode
+@@ -132,6 +141,12 @@
+             _ = workspace.originalStateRevision
+             readForeignPresentations()
+         }
++        if let annotationError { throw annotationError }
++        guard let retainedAnnotation else {
++            throw UIRouteError(.unavailable, "native_sefaria_annotation_source_unavailable")
++        }
++        try captured.validate()
++        observation = captured; annotationValidation = retainedAnnotation
+         guard Self.isAvailable(bindings, workspace: workspace),
+               let root = bindings.rootPublications,
+               let selection = root.selectionRevision, let settings = root.settingsRevision,
+@@ -154,6 +169,8 @@
+                   workspace: MaktabahNativeWorkspacePresentationBinding?) throws {
+         try observation.validate()
+         _ = try originalWindow?.validate()
++        try annotationValidation()
++        try observation.validate()
+         let manager = bindings.manager
+         guard ObjectIdentifier(manager) == managerID, bindings.rootPublications === root,
+               let workspace, workspacePresentation === workspace,
+@@ -169,6 +186,8 @@
+         }
+         try observation.validate()
+         _ = try originalWindow?.validate()
++        try annotationValidation()
++        try observation.validate()
+     }
+     var claimObservation: NativeComponentSourceObservation { observation }
+     func invalidate() { observation.invalidate() }
+@@ -260,7 +279,14 @@
+             let originalWindowSource = windowSource
+             let root = try MaktabahNativeSefariaRootSource(bindings: bindings, workspace: workspacePresentation,
+                 originalWindow: originalWindow,
+-                windowPublication: target == nil ? nil : originalWindowSource?.nativePublication) { [weak self] in
++                windowPublication: target == nil ? nil : originalWindowSource?.nativePublication,
++                annotationPublication: originalAnnotationPresentationPublication,
++                retainAnnotationObservation: { [weak self] in
++                    guard let self else {
++                        throw UIRouteError(.staleState, "native_sefaria_annotation_owner_released")
++                    }
++                    return try self.retainOriginalAnnotationPresentationObservation()
++                }) { [weak self] in
+                 guard let self else { return }
+                 _ = mounted; _ = foreground; _ = studyChatPresentationID
+                 // The original note editor owns SwiftUI State, not Observable

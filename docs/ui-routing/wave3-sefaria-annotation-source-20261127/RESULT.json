@@ -1,0 +1,73 @@
+{
+  "scope": "ACTUAL_COMPLETE_RN_ROOT_SOURCE_AND_ANNOTATION_FACET_WITH_DECLARED_BOUNDARIES",
+  "results": [
+    {
+      "name": "original-baseline",
+      "source_sha256": "d7874fcce6515226583f8cc555f4bdfd6785db100a841a4dca13b44c627cd069",
+      "compile_argv": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/original-baseline.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/original-baseline/controls"
+      ],
+      "compile_exit": 0,
+      "seconds": 1.4979221820831299,
+      "run_exit": 1,
+      "passed": 2,
+      "failed": 8,
+      "executable_sha256": "eb079b84ff9985dbdbf15450416906947d2acb795b2198f173abd784c7eef7aa"
+    },
+    {
+      "name": "candidate",
+      "source_sha256": "26e066c3162862c84eeea840ee3dcbf8a211ed3d162152c0e4e400d65d0cea84",
+      "compile_argv": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/candidate.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/candidate/controls"
+      ],
+      "compile_exit": 0,
+      "seconds": 1.3909227848052979,
+      "run_exit": 0,
+      "passed": 10,
+      "failed": 0,
+      "executable_sha256": "ec31e403b413b9810574e9ef7390fe48c51457be9e0e3ac54729d1fc11ffb6d9"
+    },
+    {
+      "name": "omit-annotation-publication-registration",
+      "source_sha256": "abe1090fe4044c5afaaf9820b05b5890d90b9d399bf94bbc681b30178578790e",
+      "compile_argv": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/omit-annotation-publication-registration.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/omit-annotation-publication-registration/controls"
+      ],
+      "compile_exit": 0,
+      "seconds": 1.4460484981536865,
+      "run_exit": 1,
+      "passed": 5,
+      "failed": 5,
+      "executable_sha256": "1d0e3b03314c2ae27a84657bc60a65c04c60e01c4c38c1f34690a586a60e8745"
+    }
+  ],
+  "sdk": "NOT_RUN",
+  "native": "NOT_RUN"
+}

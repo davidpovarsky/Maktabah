@@ -1,0 +1,11 @@
+{
+  "scope": "ROOT_ONLY_SHARED_PROPOSAL_DEPENDS_ON_ACTUAL_NAV_ANNOTATIONS_FACET",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+  "before_sha256": "ccb03fccc09f49f6591f8fa7d1635fce02e73b045217bb222d2ef671d5fea83c",
+  "after_sha256": "8544ad37fc954f8d17b374f0fc0cf6a0ce672f5b7fe60e017c7eb58b32047662",
+  "patch_sha256": "e7bec634b0598d595c3996dd1c288d33569f7c1863e8bd847364ba0feeecf968",
+  "annotation_provider_review_input": "6a260e9ec1347a33feee74c30a48fb700f051716d1e992d02adfe78a5b85d686",
+  "vendor_source_unchanged": "d4e25c0cf5581427d6742ade1d4d1e0f3ddaa1a3",
+  "native": "NOT_RUN",
+  "sdk": "NOT_RUN"
+}
