@@ -1,0 +1,9 @@
+PASS current qualified load keeps original order and favorite subset
+FAIL older async load cannot replace newer visible cards: Failed(reason: "obsolete result replaced original visible-model cards: [\"otzaria|book:1|line:3\"]")
+FAIL different backend cannot consume an older actor result: Failed(reason: "obsolete result replaced original visible-model cards: [\"sefaria|book:7|line:3\"]")
+FAIL backend A B A cannot apply old cards: Failed(reason: "obsolete result replaced original visible-model cards: [\"otzaria|book:1|line:3\"]")
+FAIL same backend resource replacement rejects old cards: Failed(reason: "obsolete result replaced original visible-model cards: [\"otzaria|book:1|line:3\"]")
+FAIL aborted source transition rejects old cards: Failed(reason: "obsolete result replaced original visible-model cards: [\"otzaria|book:1|line:3\"]")
+FAIL sidecar change during pending read rejects old cards: Failed(reason: "obsolete result replaced original visible-model cards: [\"otzaria|book:1|line:3\"]")
+PASS original native data-path legacy arrays remain unchanged
+RESULT 2 PASS / 6 FAIL

@@ -1,0 +1,22 @@
+{
+  "base": "1330c29fd259ce74d30b3e39b2e020b60bb57700",
+  "inputs": [
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "sha256": "469a99e702dcd331dca2fd2a55154de8239ef9b5599befcaf398a56b347065df"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "sha256": "62baf2ad5d539c1bf6fc99f3f1ef34996028faa2973aee6da99669bee4951751"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "sha256": "a61a9f14715ac3a4cadbfd80e52f413621c136a446ffb847a22213a70993a68c"
+    }
+  ],
+  "boundary": "Verbatim original load body plus test-only completion defer; controlled actor completion, backend, catalog and original object boundaries are explicit substitutes. No app/UIKit/native claim."
+}
