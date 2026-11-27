@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/negative-store-publications/Controls.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/negative-store-publications/publication-controls"
+  ],
+  "compile_exit": 0,
+  "compile_seconds": 1.7114107608795166,
+  "free_before": 4542361600,
+  "free_after": 4541906944,
+  "source_sha256": "57d9e4b0e9c7550b6e4c0857c5e81c7c1f92fb03761db85e9b96ba5260a27364",
+  "scope": "actual source/domain component; no SDK/app/Core/native claim",
+  "run_exit": 1,
+  "result_line": "RESULT 23 PASS / 8 FAIL",
+  "failed_cases": [
+    "FAIL record invalidates retained publication before persistence: ControlFailure(message: \"record retained stale authority\")",
+    "FAIL favorite mutation invalidates retained publication: ControlFailure(message: \"favorite retained stale authority\")",
+    "FAIL equal favorite publication invalidates: ControlFailure(message: \"equal write was ignored\")",
+    "FAIL favorite ABA cannot renew old proof: ControlFailure(message: \"ABA renewed old proof\")",
+    "FAIL history deletion invalidates: ControlFailure(message: \"deletion retained old proof\")",
+    "FAIL favorite history suppression invalidates: ControlFailure(message: \"suppression retained old proof\")",
+    "FAIL legacy association mutation retires source: ControlFailure(message: \"association mutation was omitted\")",
+    "FAIL retired source never executes report callback: ControlFailure(message: \"retired source executed report\")"
+  ],
+  "binary_sha256": "f2f781bbefcca9534537c5e88a38a5e37efb807b48d59b1911cc4ae106a4869f"
+}

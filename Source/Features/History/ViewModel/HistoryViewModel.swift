@@ -13,6 +13,33 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
     var favoriteBooks: [BooksData] = []
     var searchText: String = ""
 
+    /// Passive provenance only. The original arrays remain the UI's data owner;
+    /// unqualified or obsolete publications never become record-route authority.
+    private(set) var qualifiedPublication: HistoryQualifiedPublication?
+    private var qualifiedLoadRevision: UInt64? = 0
+
+    func beginQualifiedPublication() -> HistoryQualifiedPublication.Load {
+        qualifiedPublication = nil
+        if let revision = qualifiedLoadRevision, revision < .max {
+            qualifiedLoadRevision = revision + 1
+        } else {
+            qualifiedLoadRevision = nil
+        }
+        return .init(revision: qualifiedLoadRevision)
+    }
+
+    func invalidateQualifiedPublication() { qualifiedPublication = nil }
+
+    func completeQualifiedPublication(_ load: HistoryQualifiedPublication.Load,
+                                      entries: QualifiedLocatorStore.PublishedEntries) {
+        qualifiedPublication = nil
+        guard let revision = load.revision, qualifiedLoadRevision == revision,
+              load.isCurrent, let observation = entries.observation, observation.isCurrent,
+              let publication = HistoryQualifiedPublication(
+                model: self, load: load, entries: entries.entries, observation: observation) else { return }
+        qualifiedPublication = publication
+    }
+
     func filterBooks(_ books: [BooksData]) -> [BooksData] {
         guard !searchText.isEmpty else { return books }
         let normalizedSearchText = searchText.normalizeArabic(false)
@@ -159,5 +186,90 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
 
     func notifyHistoryChanged() {
         NotificationCenter.default.post(name: .historyDidChange, object: self)
+    }
+}
+
+/// Source-owned correlation between the actual original cards and the exact
+/// qualified entries that produced them. This is not a second History model.
+@MainActor
+final class HistoryQualifiedPublication {
+    @MainActor struct Load {
+        let revision: UInt64?
+        let backend: BackendID
+        let generation: UInt64
+        let transition: UInt64
+        let qualified: Bool
+
+        init(revision: UInt64?) {
+            let source = BackendCoordinator.shared
+            self.revision = revision
+            backend = source.activeBackendID; generation = source.generation
+            transition = source.activeTransitionToken
+            qualified = !source.usesNativeMaktabahDataPath && !source.isTransitioning
+        }
+        var isCurrent: Bool {
+            let source = BackendCoordinator.shared
+            return revision != nil && qualified && !source.usesNativeMaktabahDataPath
+                && !source.isTransitioning && source.activeBackendID == backend
+                && source.generation == generation && source.activeTransitionToken == transition
+        }
+    }
+    struct Card {
+        let book: BooksData
+        let locator: TextLocator
+        let recordID: String
+    }
+    let load: Load
+    let history: [Card]
+    let favorites: [Card]
+    private weak var model: HistoryViewModel?
+    private let observation: QualifiedLocatorStore.PublicationSource.Observation
+
+    init?(model: HistoryViewModel, load: Load,
+          entries: [QualifiedLocatorStore.HistoryEntry],
+          observation: QualifiedLocatorStore.PublicationSource.Observation) {
+        guard load.isCurrent, observation.isCurrent else { return nil }
+        let relevant = entries.filter { $0.locator.backend == load.backend }
+        guard Set(relevant.map(\.id)).count == relevant.count else { return nil }
+        let byID = Dictionary(uniqueKeysWithValues: relevant.map { ($0.id, $0) })
+        func cards(_ books: [BooksData], favorite: Bool) -> [Card]? {
+            // The original ForEach uses numeric work IDs. Two positions of the
+            // same work cannot be distinguished by that original row identity.
+            guard Set(books.map(\.id)).count == books.count else { return nil }
+            var result: [Card] = []
+            for book in books {
+                guard let locator = book.backendLocator, locator.backend == load.backend,
+                      let entry = byID[locator.persistenceKey], entry.locator == locator,
+                      favorite ? entry.isFavorite : entry.lastOpened != .distantPast else { return nil }
+                result.append(Card(book: book, locator: locator, recordID: entry.id))
+            }
+            return result
+        }
+        guard let history = cards(model.historyBooks, favorite: false),
+              let favorites = cards(model.favoriteBooks, favorite: true) else { return nil }
+        self.model = model; self.load = load; self.observation = observation
+        self.history = history; self.favorites = favorites
+    }
+
+    func isCurrent(in model: HistoryViewModel) -> Bool {
+        guard self.model === model, model.qualifiedPublication === self,
+              load.isCurrent, observation.isCurrent else { return false }
+        func matches(_ cards: [Card], _ books: [BooksData]) -> Bool {
+            cards.count == books.count && zip(cards, books).allSatisfy {
+                $0.book === $1 && $1.backendLocator == $0.locator
+                    && $0.recordID == $0.locator.persistenceKey
+            }
+        }
+        return matches(history, model.historyBooks) && matches(favorites, model.favoriteBooks)
+    }
+
+    /// Atomic only with respect to the original actor's publication metadata;
+    /// callers still must validate the exact scene/view/route before reporting.
+    func withCurrent<Result>(in model: HistoryViewModel,
+                             _ operation: () throws -> Result) rethrows -> Result? {
+        try observation.withCurrent {
+            guard isCurrent(in: model) else { return nil as Result? }
+            return try operation()
+        } ?? nil
     }
 }

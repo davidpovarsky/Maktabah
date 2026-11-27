@@ -5,6 +5,54 @@ import Foundation
 actor QualifiedLocatorStore {
     static let shared = QualifiedLocatorStore()
 
+    /// Read-only provenance for the exact actor-owned history publication.
+    /// The lock guards only this monotonically advancing metadata. Existing
+    /// state mutation, persistence and actor ordering remain the original path.
+    final class PublicationSource: @unchecked Sendable {
+        private let lock = NSRecursiveLock()
+        private var revision: UInt64? = 0
+
+        struct Observation: Sendable {
+            fileprivate let source: PublicationSource
+            fileprivate let revision: UInt64
+            var isCurrent: Bool { source.matches(revision) }
+            /// The final synchronous native report may revalidate this same
+            /// token. No actor call or suspension belongs inside this boundary.
+            func withCurrent<Result>(_ operation: () throws -> Result) rethrows -> Result? {
+                try source.withCurrent(revision, operation)
+            }
+        }
+
+        fileprivate func capture() -> Observation? {
+            lock.lock(); defer { lock.unlock() }
+            guard let revision else { return nil }
+            return Observation(source: self, revision: revision)
+        }
+        fileprivate func willChange() {
+            lock.lock(); defer { lock.unlock() }
+            guard let revision, revision < .max else { self.revision = nil; return }
+            self.revision = revision + 1
+        }
+        private func matches(_ expected: UInt64) -> Bool {
+            lock.lock(); defer { lock.unlock() }
+            return revision == expected
+        }
+        private func withCurrent<Result>(_ expected: UInt64,
+                                         _ operation: () throws -> Result) rethrows -> Result? {
+            lock.lock(); defer { lock.unlock() }
+            guard revision == expected else { return nil }
+            let value = try operation()
+            guard revision == expected else { return nil }
+            return value
+        }
+    }
+
+    struct PublishedEntries: Sendable {
+        let entries: [HistoryEntry]
+        let observation: PublicationSource.Observation?
+    }
+    private let publicationSource = PublicationSource()
+
     private struct State: Codable {
         var schemaVersion = 1
         var locatorsByLegacyKey: [String: TextLocator] = [:]
@@ -35,6 +83,7 @@ actor QualifiedLocatorStore {
     }
 
     func associate(_ locator: TextLocator, withLegacyKey key: String) async throws {
+        publicationSource.willChange()
         state.locatorsByLegacyKey[key] = locator
         try persist()
     }
@@ -42,6 +91,7 @@ actor QualifiedLocatorStore {
     func locator(forLegacyKey key: String) -> TextLocator? { state.locatorsByLegacyKey[key] }
 
     func record(_ locator: TextLocator, title: String) async throws {
+        publicationSource.willChange()
         let favorite = state.favorites[locator.persistenceKey] != nil
         state.history.removeAll { $0.id == locator.persistenceKey }
         state.history.insert(.init(locator: locator, title: title, lastOpened: Date(), isFavorite: favorite), at: 0)
@@ -50,6 +100,7 @@ actor QualifiedLocatorStore {
     }
 
     func setFavorite(_ favorite: Bool, locator: TextLocator, title: String) async throws {
+        publicationSource.willChange()
         if favorite { state.favorites[locator.persistenceKey] = locator }
         else { state.favorites.removeValue(forKey: locator.persistenceKey) }
         if let index = state.history.firstIndex(where: { $0.id == locator.persistenceKey }) {
@@ -62,8 +113,14 @@ actor QualifiedLocatorStore {
 
     func entries() -> [HistoryEntry] { state.history }
 
+    /// No suspension separates the original entries and their source token.
+    func entriesWithObservation() -> PublishedEntries {
+        PublishedEntries(entries: state.history, observation: publicationSource.capture())
+    }
+
     func removeHistory(_ locator: TextLocator) async throws {
         if let index = state.history.firstIndex(where: { $0.id == locator.persistenceKey }) {
+            publicationSource.willChange()
             if state.history[index].isFavorite {
                 state.history[index].lastOpened = .distantPast
             } else {

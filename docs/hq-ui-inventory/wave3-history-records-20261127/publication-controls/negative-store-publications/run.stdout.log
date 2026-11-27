@@ -1,0 +1,32 @@
+PASS same actor entries and exact published objects
+PASS full position identity distinct from numeric work identity
+FAIL record invalidates retained publication before persistence: ControlFailure(message: "record retained stale authority")
+FAIL favorite mutation invalidates retained publication: ControlFailure(message: "favorite retained stale authority")
+FAIL equal favorite publication invalidates: ControlFailure(message: "equal write was ignored")
+FAIL favorite ABA cannot renew old proof: ControlFailure(message: "ABA renewed old proof")
+FAIL history deletion invalidates: ControlFailure(message: "deletion retained old proof")
+FAIL favorite history suppression invalidates: ControlFailure(message: "suppression retained old proof")
+PASS no-op absent deletion preserves publication
+FAIL legacy association mutation retires source: ControlFailure(message: "association mutation was omitted")
+PASS publication source overflow permanently refuses
+PASS new load retires original publication before arrays change
+PASS stale load cannot publish after newer load
+PASS backend changed during actor await refuses publication
+PASS backend A B A generation invalidates
+PASS same backend resources replace generation
+PASS failed transition publication invalidates without backend change
+PASS active transition cannot publish
+PASS native legacy arrays cannot infer qualified identity
+PASS duplicate original numeric row identities refuse
+PASS duplicate full qualified entry identity refuses
+PASS favorite section cannot invent membership
+PASS same numeric id replacement is a different original object
+PASS actual card locator mutation refuses
+PASS wrong backend locator cannot acquire qualified provenance
+PASS original model owner cannot be substituted
+PASS load revision overflow refuses without resetting
+PASS native data path remains explicitly unqualified
+PASS synchronous report can revalidate the same source token
+FAIL retired source never executes report callback: ControlFailure(message: "retired source executed report")
+PASS reentrant source invalidation cannot return confirmed report
+RESULT 23 PASS / 8 FAIL

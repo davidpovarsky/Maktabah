@@ -1,0 +1,913 @@
+import Foundation
+
+enum BackendID: String, Codable, CaseIterable, Identifiable, Sendable {
+    case otzaria
+    case sefaria
+    case sefariaEmbedded
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .otzaria: return "אוצריא"
+        case .sefaria: return "ספריא (ישן)"
+        case .sefariaEmbedded: return "ספריא"
+        }
+    }
+
+    var englishDisplayName: String {
+        switch self {
+        case .otzaria: return "Otzaria"
+        case .sefaria: return "Sefaria (Legacy)"
+        case .sefariaEmbedded: return "Sefaria"
+        }
+    }
+}
+
+struct BackendCapabilities: OptionSet, Codable, Sendable {
+    let rawValue: Int
+
+    static let catalog = Self(rawValue: 1 << 0)
+    static let reading = Self(rawValue: 1 << 1)
+    static let navigation = Self(rawValue: 1 << 2)
+    static let search = Self(rawValue: 1 << 3)
+    static let authors = Self(rawValue: 1 << 4)
+    static let links = Self(rawValue: 1 << 5)
+    static let versions = Self(rawValue: 1 << 6)
+    static let offlineLibrary = Self(rawValue: 1 << 7)
+    static let offlineSearch = Self(rawValue: 1 << 8)
+    static let workMetadata = Self(rawValue: 1 << 9)
+}
+
+enum TextPosition: Codable, Hashable, Sendable, CustomStringConvertible {
+    case legacyLine(Int)
+    case canonicalRef(String)
+
+    private enum CodingKeys: String, CodingKey { case kind, integer, string }
+    private enum Kind: String, Codable { case legacyLine, canonicalRef }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        switch try values.decode(Kind.self, forKey: .kind) {
+        case .legacyLine: self = .legacyLine(try values.decode(Int.self, forKey: .integer))
+        case .canonicalRef: self = .canonicalRef(try values.decode(String.self, forKey: .string))
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .legacyLine(let value): return "line:\(value)"
+        case .canonicalRef(let value): return value
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .legacyLine(let value):
+            try values.encode(Kind.legacyLine, forKey: .kind)
+            try values.encode(value, forKey: .integer)
+        case .canonicalRef(let value):
+            try values.encode(Kind.canonicalRef, forKey: .kind)
+            try values.encode(value, forKey: .string)
+        }
+    }
+}
+
+struct TextLocator: Codable, Hashable, Sendable {
+    let backend: BackendID
+    let workKey: String
+    let position: TextPosition
+
+    var persistenceKey: String {
+        let positionKey: String
+        switch position {
+        case .legacyLine(let value): positionKey = "line:\(value)"
+        case .canonicalRef(let value): positionKey = "ref:\(value)"
+        }
+        return "\(backend.rawValue)|\(workKey)|\(positionKey)"
+    }
+}
+
+/// A canonical reader destination: load the section, optionally focus on a
+/// specific segment within it.  Used by TOC, search-hit-to-reader routing,
+/// and history restoration.
+struct LibraryReaderDestination: Codable, Hashable, Sendable {
+    /// The section to load (e.g., "Genesis 1" or a reading-unit locator).
+    let sectionLocator: TextLocator
+    /// An optional segment within the section to highlight/scroll to
+    /// (e.g., "Genesis 1:3" or a specific line index).
+    let focusLocator: TextLocator?
+}
+
+/// A navigable unit within a work, supplied by the backend provider.
+/// The bottom-bar navigator uses these to show a picker/stepper of
+/// chapters, folios, or reading-units instead of the legacy part/page sliders.
+struct LibraryNavigationItem: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let title: String
+    let index: Int
+
+    var id: String { locator.persistenceKey }
+}
+
+enum LibraryReadingUnitPolicy {
+    static func isWorkRoot(_ locator: TextLocator) -> Bool {
+        switch locator.position {
+        case .canonicalRef(let ref):
+            return ref == locator.workKey
+        case .legacyLine(let line):
+            return line == 0
+        }
+    }
+
+    static func resolve(_ locator: TextLocator, navigationItems: [LibraryNavigationItem]) throws -> TextLocator {
+        guard isWorkRoot(locator) else { return locator }
+        guard let first = navigationItems.first(where: { !isWorkRoot($0.locator) }) else {
+            throw LibraryBackendError.invalidResponse("work root has no bounded reading unit")
+        }
+        return first.locator
+    }
+
+    static func requiresBoundedResolution(_ locator: TextLocator, hasExplicitLocator: Bool) -> Bool {
+        isWorkRoot(locator) && !hasExplicitLocator
+    }
+
+    static func preferringRecent(_ locator: TextLocator, recentLocator: TextLocator?) -> TextLocator {
+        guard isWorkRoot(locator), let recentLocator,
+              recentLocator.backend == locator.backend,
+              recentLocator.workKey == locator.workKey,
+              !isWorkRoot(recentLocator) else { return locator }
+        return recentLocator
+    }
+}
+
+struct LibraryWork: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let title: String
+    let heTitle: String?
+    let categories: [String]
+    let description: String?
+    /// Backend-authored path used for scoped search. This must come from the
+    /// backend catalog rather than localized presentation category labels.
+    var searchPath: String? = nil
+
+    var id: String { locator.persistenceKey }
+}
+
+struct LibraryAuthor: Codable, Hashable, Identifiable, Sendable {
+    let id: String
+    let name: String
+    let biography: String?
+}
+
+struct LibraryCatalogNode: Codable, Hashable, Identifiable, Sendable {
+    enum Kind: String, Codable, Sendable { case category, work }
+    let id: String
+    let kind: Kind
+    let title: String
+    let heTitle: String?
+    let work: LibraryWork?
+    let children: [LibraryCatalogNode]
+}
+
+struct LibraryCatalogIdentityCollision: Equatable, Sendable {
+    enum Kind: String, Sendable { case categoryIdentifier, workLocator }
+
+    let kind: Kind
+    let identifier: String
+    let title: String
+    let paths: [[String]]
+}
+
+enum LibraryCatalogIntegrityAudit {
+    static func collisions(in roots: [LibraryCatalogNode]) -> [LibraryCatalogIdentityCollision] {
+        struct Occurrence {
+            let kind: LibraryCatalogIdentityCollision.Kind
+            let identifier: String
+            let title: String
+            let path: [String]
+        }
+
+        var occurrences: [Occurrence] = []
+        func collect(_ nodes: [LibraryCatalogNode], parentPath: [String]) {
+            for node in nodes {
+                if let work = node.work {
+                    occurrences.append(.init(
+                        kind: .workLocator,
+                        identifier: work.locator.persistenceKey,
+                        title: work.title,
+                        path: parentPath
+                    ))
+                } else {
+                    let path = parentPath + [node.title]
+                    occurrences.append(.init(
+                        kind: .categoryIdentifier,
+                        identifier: node.id,
+                        title: node.title,
+                        path: path
+                    ))
+                    collect(node.children, parentPath: path)
+                }
+            }
+        }
+        collect(roots, parentPath: [])
+
+        return Dictionary(grouping: occurrences) { "\($0.kind.rawValue)|\($0.identifier)" }
+            .values
+            .filter { $0.count > 1 }
+            .map { group in
+                LibraryCatalogIdentityCollision(
+                    kind: group[0].kind,
+                    identifier: group[0].identifier,
+                    title: group[0].title,
+                    paths: group.map(\.path)
+                )
+            }
+            .sorted { lhs, rhs in
+                if lhs.kind.rawValue != rhs.kind.rawValue { return lhs.kind.rawValue < rhs.kind.rawValue }
+                return lhs.identifier < rhs.identifier
+            }
+    }
+}
+
+struct LibraryTOCNode: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let title: String
+    let children: [LibraryTOCNode]
+    var id: String { locator.persistenceKey }
+}
+
+struct LibraryNavigationStructure: Codable, Hashable, Identifiable, Sendable {
+    let id: String
+    let title: String
+    let nodes: [LibraryTOCNode]
+}
+
+struct LibraryMetadataField: Codable, Hashable, Identifiable, Sendable {
+    let key: String
+    let label: String
+    let value: String
+
+    var id: String { key }
+
+    init(key: String, label: String, value: String) {
+        self.key = key
+        self.label = label
+        self.value = value
+    }
+}
+
+struct LibraryWorkMetadata: Codable, Hashable, Sendable {
+    let workKey: String
+    let title: String
+    let heTitle: String?
+    let authors: [String]
+    let description: String?
+    let categories: [String]
+    let factualFields: [LibraryMetadataField]
+
+    init(
+        workKey: String,
+        title: String,
+        heTitle: String? = nil,
+        authors: [String] = [],
+        description: String? = nil,
+        categories: [String] = [],
+        factualFields: [LibraryMetadataField] = []
+    ) {
+        self.workKey = workKey
+        self.title = title
+        self.heTitle = heTitle
+        self.authors = authors
+        self.description = description
+        self.categories = categories
+        self.factualFields = factualFields
+    }
+}
+
+struct TextVersionMetadata: Codable, Hashable, Sendable {
+    let title: String
+    let language: String
+    let actualLanguage: String?
+    let sourceURL: URL?
+    let license: String?
+    let notes: String?
+    let isPrimary: Bool
+}
+
+struct LibraryTextSegment: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let heRef: String?
+    let primaryText: String
+    let translation: String?
+    var id: String { locator.persistenceKey }
+
+    /// Backend-neutral name used by the reader. `primaryText` remains encoded for
+    /// compatibility with already persisted values.
+    var sourceText: String { primaryText }
+}
+
+enum LibraryReaderTextMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case source
+    case translation
+    case both
+
+    var id: String { rawValue }
+}
+
+enum LibraryPresentationPolicy {
+    static func prefersHebrew(localeIdentifier: String? = Locale.preferredLanguages.first) -> Bool {
+        guard let language = localeIdentifier?.lowercased() else { return false }
+        return language.hasPrefix("he") || language.hasPrefix("iw")
+    }
+
+    static func defaultReaderMode(localeIdentifier: String? = Locale.preferredLanguages.first) -> LibraryReaderTextMode {
+        prefersHebrew(localeIdentifier: localeIdentifier) ? .source : .translation
+    }
+
+    static func text(
+        source: String,
+        translation: String?,
+        mode: LibraryReaderTextMode
+    ) -> String {
+        let source = source.readerPlainText
+        let translation = translation?.readerPlainText ?? ""
+        switch mode {
+        case .source:
+            return source.isEmpty ? translation : source
+        case .translation:
+            return translation.isEmpty ? source : translation
+        case .both:
+            return [source, translation].filter { !$0.isEmpty }.joined(separator: "\n")
+        }
+    }
+}
+
+enum LibraryTextDirection: String, Codable, Hashable, Sendable {
+    case leftToRight
+    case rightToLeft
+    case natural
+
+    static func inferred(from language: String?) -> Self {
+        switch language?.lowercased() {
+        case "he", "hebrew", "ar", "arabic", "arc", "aramaic": .rightToLeft
+        case nil, "": .natural
+        default: .leftToRight
+        }
+    }
+}
+
+struct LibraryReaderCapabilities: Codable, Hashable, Sendable {
+    let availableModes: [LibraryReaderTextMode]
+    let sourceDirection: LibraryTextDirection
+    let translationDirection: LibraryTextDirection
+
+    var supportsTranslation: Bool { availableModes.contains(.translation) }
+}
+
+public struct TextDeltaEvent: Codable, Hashable, Sendable {
+    public let oldOffset: Int
+    public let delta: Int
+
+    public init(oldOffset: Int, delta: Int) {
+        self.oldOffset = oldOffset
+        self.delta = delta
+    }
+
+    public static func mapRange(_ range: NSRange, with events: [TextDeltaEvent]) -> NSRange {
+        guard !events.isEmpty else { return range }
+        var locDelta = 0
+        for event in events {
+            if range.location >= event.oldOffset {
+                locDelta = event.delta
+            } else {
+                break
+            }
+        }
+        let newLocation = range.location + locDelta
+
+        var endDelta = 0
+        let rangeEnd = range.location + range.length
+        for event in events {
+            if rangeEnd >= event.oldOffset {
+                endDelta = event.delta
+            } else {
+                break
+            }
+        }
+        let newEnd = rangeEnd + endDelta
+        let newLength = max(0, newEnd - newLocation)
+        return NSRange(location: max(0, newLocation), length: newLength)
+    }
+
+    public static func reverseMapOffset(_ displayedOffset: Int, with events: [TextDeltaEvent]) -> Int {
+        var currentDelta = 0
+        for event in events {
+            let newPoint = event.oldOffset + event.delta
+            if displayedOffset < newPoint {
+                let oldPoint = event.oldOffset + currentDelta
+                if displayedOffset >= oldPoint {
+                    return max(0, event.oldOffset - 1)
+                }
+                break
+            }
+            currentDelta = event.delta
+        }
+        return max(0, displayedOffset - currentDelta)
+    }
+}
+
+struct LibraryRenderedSegment: Codable, Hashable, Identifiable, Sendable {
+    let rangeLocation: Int
+    let rangeLength: Int
+    let visualRangeLocation: Int
+    let visualRangeLength: Int
+    let segment: LibraryTextSegment
+
+    var id: String { segment.id }
+    var range: NSRange { NSRange(location: rangeLocation, length: rangeLength) }
+    var visualRange: NSRange { NSRange(location: visualRangeLocation, length: visualRangeLength) }
+    var locator: TextLocator { segment.locator }
+
+    init(
+        rangeLocation: Int,
+        rangeLength: Int,
+        visualRangeLocation: Int? = nil,
+        visualRangeLength: Int? = nil,
+        segment: LibraryTextSegment
+    ) {
+        self.rangeLocation = rangeLocation
+        self.rangeLength = rangeLength
+        self.visualRangeLocation = visualRangeLocation ?? rangeLocation
+        self.visualRangeLength = visualRangeLength ?? rangeLength
+        self.segment = segment
+    }
+
+    func contains(characterIndex: Int) -> Bool {
+        characterIndex >= rangeLocation && characterIndex < rangeLocation + rangeLength
+    }
+}
+
+/// Immutable reader payload that keeps semantic identity alongside the legacy
+/// plain string consumed by Maktabah's existing text view.
+struct LibraryReaderRenderModel: Codable, Hashable, Sendable {
+    let text: String
+    let mode: LibraryReaderTextMode
+    let capabilities: LibraryReaderCapabilities
+    let renderedSegments: [LibraryRenderedSegment]
+
+    /// Pure Foundation preprocessing runs outside the UI actor. UIKit/TextKit
+    /// mutation stays with the original reader after its request-token fence.
+    nonisolated static func prepare(
+        section: LibraryTextSection, preferredMode: LibraryReaderTextMode
+    ) async throws -> LibraryReaderRenderModel {
+        try Task.checkCancellation()
+        let task = Task.detached(priority: .userInitiated) {
+            try Task.checkCancellation()
+            let model = try LibraryReaderRenderModel(
+                section: section, preferredMode: preferredMode, checkCancellation: Task.checkCancellation
+            )
+            try Task.checkCancellation()
+            return model
+        }
+        return try await withTaskCancellationHandler {
+            let model = try await task.value
+            try Task.checkCancellation()
+            return model
+        } onCancel: { task.cancel() }
+    }
+
+    init(section: LibraryTextSection, preferredMode: LibraryReaderTextMode) {
+        self.init(section: section, preferredMode: preferredMode, checkCancellation: {})
+    }
+
+    init(
+        section: LibraryTextSection, preferredMode: LibraryReaderTextMode, checkCancellation: () throws -> Void
+    ) rethrows {
+        let hasSource = try section.segments.contains {
+            try checkCancellation()
+            return !$0.sourceText.readerPlainText.isEmpty
+        }
+        let hasTranslation = try section.segments.contains {
+            try checkCancellation()
+            return !($0.translation?.readerPlainText ?? "").isEmpty
+        }
+        var modes: [LibraryReaderTextMode] = []
+        if hasSource { modes.append(.source) }
+        if hasTranslation { modes.append(.translation) }
+        if hasSource && hasTranslation { modes.append(.both) }
+        if modes.isEmpty { modes = [.source] }
+
+        let resolvedMode = modes.contains(preferredMode) ? preferredMode : (hasSource ? .source : .translation)
+        let sourceVersion = section.versions.first(where: { $0.isPrimary })
+            ?? section.versions.first(where: { LibraryTextDirection.inferred(from: $0.actualLanguage ?? $0.language) == .rightToLeft })
+            ?? section.versions.first
+        let translationVersion = section.versions.first(where: { version in
+            guard let sourceVersion else { return true }
+            return version.title != sourceVersion.title || version.language != sourceVersion.language
+        })
+        capabilities = LibraryReaderCapabilities(
+            availableModes: modes,
+            sourceDirection: .inferred(from: sourceVersion?.actualLanguage ?? sourceVersion?.language),
+            translationDirection: .inferred(from: translationVersion?.actualLanguage ?? translationVersion?.language)
+        )
+        mode = resolvedMode
+
+        var output = ""
+        var currentUTF16Offset = 0
+        var mappings: [LibraryRenderedSegment] = []
+        for segment in section.segments {
+            try checkCancellation()
+            let source = segment.sourceText.readerPlainText
+            let translation = segment.translation?.readerPlainText ?? ""
+            let block: String
+            switch resolvedMode {
+            case .source:
+                block = Self.directional(source, direction: capabilities.sourceDirection)
+            case .translation:
+                block = Self.directional(translation, direction: capabilities.translationDirection)
+            case .both:
+                let parts = [
+                    Self.directional(source, direction: capabilities.sourceDirection),
+                    Self.directional(translation, direction: capabilities.translationDirection)
+                ].filter { !$0.isEmpty }
+                block = parts.joined(separator: "\n")
+            }
+            guard !block.isEmpty else { continue }
+            if !output.isEmpty {
+                output += "\n\n"
+                currentUTF16Offset += 2
+            }
+            let location = currentUTF16Offset
+            output += block
+            let utf16 = block.utf16
+            let fullLength = utf16.count
+            currentUTF16Offset += fullLength
+
+            var leadTrim = 0
+            for codeUnit in utf16 {
+                if codeUnit == 0x202A || codeUnit == 0x202B || codeUnit == 0x202C {
+                    leadTrim += 1
+                } else {
+                    break
+                }
+            }
+            var trailTrim = 0
+            for codeUnit in utf16.reversed() {
+                if (leadTrim + trailTrim) >= fullLength { break }
+                if codeUnit == 0x202A || codeUnit == 0x202B || codeUnit == 0x202C {
+                    trailTrim += 1
+                } else {
+                    break
+                }
+            }
+            let visualLocation = location + leadTrim
+            let visualLength = max(0, fullLength - leadTrim - trailTrim)
+
+            mappings.append(LibraryRenderedSegment(
+                rangeLocation: location,
+                rangeLength: fullLength,
+                visualRangeLocation: visualLocation,
+                visualRangeLength: visualLength,
+                segment: segment
+            ))
+        }
+        text = output
+        renderedSegments = mappings
+    }
+
+    func renderedSegment(at characterIndex: Int) -> LibraryRenderedSegment? {
+        renderedSegments.first { $0.contains(characterIndex: characterIndex) }
+    }
+
+    func renderedSegment(for locator: TextLocator?) -> LibraryRenderedSegment? {
+        guard let locator else { return nil }
+        return renderedSegments.first { $0.locator == locator }
+    }
+
+    private static func directional(_ value: String, direction: LibraryTextDirection) -> String {
+        guard !value.isEmpty else { return "" }
+        switch direction {
+        case .rightToLeft: return "\u{202B}\(value)\u{202C}"
+        case .leftToRight: return "\u{202A}\(value)\u{202C}"
+        case .natural: return value
+        }
+    }
+}
+
+extension String {
+    var readerPlainText: String {
+        var value = self
+        // Preserve transformation order: decoded literal markup must not be
+        // stripped, and entities produced by later passes are not re-decoded.
+        if value.utf8.contains(0x3C) { // <
+            value = value.replacingOccurrences(of: #"(?i)<br\s*/?>"#, with: "\n", options: .regularExpression)
+                .replacingOccurrences(of: #"<[^>]+>"#, with: "", options: .regularExpression)
+        }
+        if value.utf8.contains(0x26) { // &
+            value = value.replacingOccurrences(of: "&nbsp;", with: " ")
+                .replacingOccurrences(of: "&thinsp;", with: "\u{2009}")
+                .replacingOccurrences(of: "&#8201;", with: "\u{2009}")
+                .replacingOccurrences(of: "&ensp;", with: "\u{2002}")
+                .replacingOccurrences(of: "&emsp;", with: "\u{2003}")
+                .replacingOccurrences(of: "&amp;", with: "&")
+                .replacingOccurrences(of: "&lt;", with: "<")
+                .replacingOccurrences(of: "&gt;", with: ">")
+                .replacingOccurrences(of: "&quot;", with: "\"")
+        }
+        if value.utf8.contains(0x7B) { // {
+            value = value.replacingOccurrences(of: #"\{[psפס]\}"#, with: "\n", options: .regularExpression)
+        }
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+struct LibraryTextLink: Codable, Hashable, Sendable {
+    let ref: String?
+    let heRef: String?
+    let category: String?
+    let type: String?
+    let anchorRef: String?
+    let sourceRef: String?
+}
+
+struct LibraryRelatedSource: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let displayRef: String
+    let heRef: String?
+    let category: String
+    let type: String
+    let collectiveTitle: String?
+    let heCollectiveTitle: String?
+    let primaryText: String?
+    let translation: String?
+    let versionTitle: String?
+    let heVersionTitle: String?
+    let license: String?
+    let anchorRefs: [String]
+
+    init(
+        locator: TextLocator,
+        displayRef: String,
+        heRef: String?,
+        category: String,
+        type: String,
+        collectiveTitle: String?,
+        heCollectiveTitle: String?,
+        primaryText: String?,
+        translation: String?,
+        versionTitle: String?,
+        heVersionTitle: String?,
+        license: String?,
+        anchorRefs: [String] = []
+    ) {
+        self.locator = locator
+        self.displayRef = displayRef
+        self.heRef = heRef
+        self.category = category
+        self.type = type
+        self.collectiveTitle = collectiveTitle
+        self.heCollectiveTitle = heCollectiveTitle
+        self.primaryText = primaryText
+        self.translation = translation
+        self.versionTitle = versionTitle
+        self.heVersionTitle = heVersionTitle
+        self.license = license
+        self.anchorRefs = anchorRefs
+    }
+
+    var id: String {
+        "\(locator.persistenceKey)|\(type)|\(category)|\(versionTitle ?? "")|\(anchorRefs.joined(separator: ","))"
+    }
+}
+
+struct LibraryRelatedTopic: Codable, Hashable, Identifiable, Sendable {
+    let slug: String
+    let titleHe: String?
+    let titleEn: String?
+
+    var id: String { slug }
+}
+
+struct LibraryTextSection: Codable, Hashable, Sendable {
+    enum Origin: String, Codable, Sendable { case offline, remote, diskCache }
+    let locator: TextLocator
+    let displayRef: String
+    let heRef: String?
+    let segments: [LibraryTextSegment]
+    let previous: TextLocator?
+    let next: TextLocator?
+    let versions: [TextVersionMetadata]
+    let links: [LibraryTextLink]
+    let origin: Origin
+}
+
+struct LibrarySearchRequest: Codable, Hashable, Sendable {
+    let query: String
+    let offset: Int
+    let limit: Int
+    var filters: [String] = []
+    /// Canonical work identities for backends that need a safe unfiltered
+    /// fallback when no authoritative server-side filter is available.
+    var scopeWorkKeys: [String] = []
+    var options = LibrarySearchOptions()
+}
+
+enum ReaderSearchHighlightPolicy {
+    static func clear(
+        searchText: inout String,
+        highlightTerms: inout [String]?,
+        focusLocator: inout TextLocator?,
+        selectedLocator: inout TextLocator?,
+        inspectorIsVisible: Bool
+    ) {
+        searchText = ""
+        highlightTerms = nil
+        if !inspectorIsVisible, selectedLocator == focusLocator {
+            selectedLocator = nil
+        }
+        focusLocator = nil
+    }
+
+    static func shouldClearAfterManualScroll(
+        startOffsetY: Double?,
+        currentOffsetY: Double,
+        viewportHeight: Double,
+        hasActiveHighlight: Bool
+    ) -> Bool {
+        guard hasActiveHighlight, let startOffsetY else { return false }
+        return abs(currentOffsetY - startOffsetY) >= max(96, viewportHeight * 0.2)
+    }
+}
+
+enum LibrarySearchMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case phrase
+    case contains
+    case or
+    case near
+
+    var id: Self { self }
+}
+
+enum LibrarySearchMatchMode: String, Codable, CaseIterable, Identifiable, Sendable {
+    case exact
+    case hebrewLemmatized
+
+    var id: Self { self }
+}
+
+enum LibrarySearchSortOrder: String, Codable, CaseIterable, Identifiable, Sendable {
+    case relevance
+    case canonical
+    case chronological
+
+    var id: Self { self }
+}
+
+struct LibrarySearchOptions: Codable, Hashable, Sendable {
+    var searchMode: LibrarySearchMode = .phrase
+    var matchMode: LibrarySearchMatchMode = .hebrewLemmatized
+    var wordDistance: Int = 10
+    var sortOrder: LibrarySearchSortOrder = .relevance
+    var reverseSort = false
+}
+
+struct LibrarySearchHit: Codable, Hashable, Identifiable, Sendable {
+    let locator: TextLocator
+    let displayRef: String
+    let heRef: String?
+    let snippet: String
+    let score: Double?
+    var versionTitle: String? = nil
+    var language: String? = nil
+    var id: String {
+        "\(locator.persistenceKey)|\(versionTitle ?? "")|\(language ?? "")"
+    }
+}
+
+struct LibrarySearchPage: Codable, Hashable, Sendable {
+    struct SourceEvidence: Codable, Hashable, Sendable {
+        let backend: BackendID
+        let rawHitCount: Int
+        let allRowsMapped: Bool
+        /// Verbatim source relation. Missing/unrecognized is never inferred eq.
+        let totalRelation: String?
+    }
+    let hits: [LibrarySearchHit]
+    let total: Int
+    let nextOffset: Int?
+    var sourceEvidence: SourceEvidence? = nil
+}
+
+/// Encapsulates generic backend pagination continuation state, truthful monotonic totals,
+/// and protection against non-advancing offset loops.
+public struct BackendPaginationState: Sendable, Equatable {
+    public private(set) var nextOffset: Int?
+    public private(set) var totalResults: Int
+    public private(set) var loadedCount: Int
+    public private(set) var lastCommittedOffset: Int?
+
+    public var lastRequestedOffset: Int? { lastCommittedOffset }
+
+    public init(
+        nextOffset: Int? = nil,
+        totalResults: Int = 0,
+        loadedCount: Int = 0,
+        lastCommittedOffset: Int? = nil
+    ) {
+        self.nextOffset = nextOffset
+        self.totalResults = totalResults
+        self.loadedCount = loadedCount
+        self.lastCommittedOffset = lastCommittedOffset
+    }
+
+    /// `nextOffset` is the authoritative continuation signal, validated against non-advancing loops.
+    public var hasMore: Bool {
+        guard let next = nextOffset, next > 0 else { return false }
+        if let last = lastCommittedOffset, next <= last { return false }
+        return true
+    }
+
+    /// Resets state for a new search generation.
+    public mutating func reset() {
+        nextOffset = nil
+        totalResults = 0
+        loadedCount = 0
+        lastCommittedOffset = nil
+    }
+
+    /// Applies the first page of results from the backend.
+    public mutating func applyInitialPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+        self.lastCommittedOffset = 0
+        self.loadedCount = count
+        if let next = nextOffset, next > 0 {
+            self.nextOffset = next
+        } else {
+            self.nextOffset = nil
+        }
+        let lowerBound = count + (self.nextOffset != nil ? 1 : 0)
+        self.totalResults = max(pageTotal, lowerBound)
+    }
+
+    /// Applies a subsequent page of results from the backend, validating continuation against the requested offset.
+    public mutating func applyNextPage(requestedOffset: Int, pageTotal: Int, nextOffset: Int?, count: Int) {
+        self.lastCommittedOffset = requestedOffset
+        self.loadedCount += count
+
+        // Loop protection: if the backend returned a non-advancing offset, terminate safely.
+        if let next = nextOffset, next > requestedOffset {
+            self.nextOffset = next
+        } else {
+            self.nextOffset = nil
+        }
+
+        // Monotonic total: totals never shrink on later pages, and lower bound respects loaded count.
+        let lowerBound = self.loadedCount + (self.nextOffset != nil ? 1 : 0)
+        self.totalResults = max(self.totalResults, max(pageTotal, lowerBound))
+    }
+
+    public mutating func applyNextPage(pageTotal: Int, nextOffset: Int?, count: Int) {
+        let req = self.nextOffset ?? 0
+        applyNextPage(requestedOffset: req, pageTotal: pageTotal, nextOffset: nextOffset, count: count)
+    }
+}
+
+enum LibraryBackendError: LocalizedError, Equatable, Sendable {
+    case capabilityUnavailable
+    case staleRequest
+    case invalidLocator
+    case unavailableOffline
+    case unsupportedSchema(found: String, supported: [String])
+    case invalidResponse(String)
+    case httpStatus(Int)
+    case corruptData(String)
+    case insufficientDiskSpace(required: Int64, available: Int64)
+
+    var errorDescription: String? {
+        switch self {
+        case .capabilityUnavailable:
+            return NSLocalizedString("This library source does not provide that capability.", comment: "")
+        case .staleRequest:
+            return NSLocalizedString("The library source changed before the request completed.", comment: "")
+        case .invalidLocator:
+            return NSLocalizedString("The saved text location is invalid.", comment: "")
+        case .unavailableOffline:
+            return NSLocalizedString("This text is not downloaded and the network is unavailable.", comment: "")
+        case .unsupportedSchema(let found, let supported):
+            return String(format: NSLocalizedString(
+                "Sefaria offline schema %@ requires an app update (supported: %@).", comment: ""
+            ), found, supported.joined(separator: ", "))
+        case .invalidResponse(let reason):
+            return String(format: NSLocalizedString("Invalid server response: %@", comment: ""), reason)
+        case .httpStatus(let status):
+            return String(format: NSLocalizedString("The server returned HTTP %lld.", comment: ""), Int64(status))
+        case .corruptData(let reason):
+            return String(format: NSLocalizedString("Downloaded library data is corrupt: %@", comment: ""), reason)
+        case .insufficientDiskSpace(let required, let available):
+            return String(format: NSLocalizedString(
+                "Not enough free space (requires %lld bytes; %lld available).", comment: ""
+            ), required, available)
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "Source/LibraryBackend/QualifiedLocatorStore.swift": {
+    "reverse_metadata_exactly_recovers_base": true,
+    "base_sha256": "fd6f8558634ef0add0d94086c864f4c862c93aca5df4160863b164033891698d"
+  },
+  "Source/Features/History/ViewModel/HistoryViewModel.swift": {
+    "reverse_metadata_exactly_recovers_base": true,
+    "base_sha256": "c454ea739bb5ff28c79817343f8b88cb374a5da4a90d067adefab43c64bb4221"
+  },
+  "Source/Features/History/ViewModel/Extensions/History+Database.swift": {
+    "reverse_metadata_exactly_recovers_base": true,
+    "base_sha256": "bd4049d3ba0823c93b04db41f5b46e3771743d474a7ce92cc968007d2c191ca8"
+  }
+}

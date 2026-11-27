@@ -1,0 +1,6 @@
+{
+  "candidate": "attempt-3/Controls.swift",
+  "boundary": "Deliberate metadata-fence removal only. Never shipped or used to claim product acceptance.",
+  "replaced": "        guard let revision = load.revision, qualifiedLoadRevision == revision,",
+  "replacement": "        guard let revision = load.revision, revision == revision,"
+}

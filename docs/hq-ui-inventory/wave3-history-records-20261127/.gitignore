@@ -1,0 +1,4 @@
+publication-controls/**/publication-controls
+publication-controls/attempt-1/compile.stderr.log
+publication-controls/negative-store-publications/counterfactual.diff
+publication-controls/negative-load-provenance/counterfactual.diff

@@ -1,0 +1,26 @@
+{
+  "source_ref": "5d4b110a61882dea413c110b3d4f8026f4aa2b54 + uncommitted exact three-file metadata candidate",
+  "inputs": [
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "bytes": 5402,
+      "sha256": "b27b6e0e9868c55d2e0211525a62bfc0ebee6166a637040901aeace103e93ecb"
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "bytes": 10504,
+      "sha256": "42a44c7a3adadfd1de0aac0ce3ab080d8f93bc9ceb873bdbcbaa1da5dc4b1aac"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "bytes": 3204,
+      "sha256": "a61a9f14715ac3a4cadbfd80e52f413621c136a446ffb847a22213a70993a68c"
+    }
+  ],
+  "scope": "actual source/domain component; no SDK/native claim"
+}

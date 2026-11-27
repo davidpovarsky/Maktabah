@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/attempt-3/Controls.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/attempt-3/publication-controls"
+  ],
+  "compile_exit": 0,
+  "compile_seconds": 5.213063955307007,
+  "free_before": 4543193088,
+  "free_after": 4542533632,
+  "source_sha256": "93427ed8c4c536b15576cefda020678fc5f367a07aa0c6b35e93eddc7fd1173b",
+  "scope": "actual source/domain component; no SDK/app/Core/native claim",
+  "run_exit": 0,
+  "result_line": "RESULT 31 PASS / 0 FAIL",
+  "failed_cases": [],
+  "binary_sha256": "2ad5889937b11bd6f77a4295bb7f8207ebd1c6d2f382227bc50c4954f80e0b63"
+}
