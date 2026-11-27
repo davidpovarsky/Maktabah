@@ -1,0 +1,246 @@
+{
+  "source": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "files": [
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before_sha256": "1b369b56eed1845ab01b9f301bdd8177b09f796b4554e54a9e9cc8f7a29d3dfd",
+      "after_sha256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before_sha256": "4531ceb3137913be7de8b4eb80449913fed25fb0aaf7cb01acde18268e748af1",
+      "after_sha256": "5edb19c6dff09a93e8e306f8ca00572bba9fae5792c042dfeb3ee48deee5a43d"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "before_sha256": "81532d95104407a4a127fbc17698ca70fbc5e2c6cd84d79b9c25190728c831d9",
+      "after_sha256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before_sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e",
+      "after_sha256": "9e6b26e5965c82ac6ae8350a51e543ef1b586650a3e41113de5681d7f1b514b9"
+    }
+  ],
+  "edits": [
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var state: ViewModelState = .loading",
+      "after": "    #if os(iOS)\n    @ObservationIgnored let nativeRoutingPublication = MaktabahNativeAnnotationListPublication()\n    #endif\n    var state: ViewModelState = .loading {\n        willSet { nativeRoutingInputWillChange() }\n    }\n\n    private func nativeRoutingInputWillChange() {\n        #if os(iOS)\n        nativeRoutingPublication.willPublish()\n        #endif\n    }\n    private func nativeRoutingBeginSearch() -> UUID? {\n        #if os(iOS)\n        return nativeRoutingPublication.beginOriginalSearch()\n        #else\n        return nil\n        #endif\n    }\n    private func nativeRoutingFinishSearch(_ token: UUID?) {\n        #if os(iOS)\n        if let token { nativeRoutingPublication.finishOriginalSearch(token) }\n        #endif\n    }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var searchText: String = \"\" {",
+      "after": "    var searchText: String = \"\" {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var searchScope: AnnotationSearchScope = .all {",
+      "after": "    var searchScope: AnnotationSearchScope = .all {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var groupingMode: AnnotationGroupingMode = UserDefaults.standard.selectedAnnGroupingMode {",
+      "after": "    var groupingMode: AnnotationGroupingMode = UserDefaults.standard.selectedAnnGroupingMode {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var sortField: AnnotationSortField = UserDefaults.standard.selectedAnnSortField {",
+      "after": "    var sortField: AnnotationSortField = UserDefaults.standard.selectedAnnSortField {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var sortAscending: Bool = UserDefaults.standard.selectedAnnAscending {",
+      "after": "    var sortAscending: Bool = UserDefaults.standard.selectedAnnAscending {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var selectedTags: Set<String> = [] {",
+      "after": "    var selectedTags: Set<String> = [] {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    var tagFilterMode: TagFilterMode = .or {",
+      "after": "    var tagFilterMode: TagFilterMode = .or {\n        willSet { nativeRoutingInputWillChange() }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "            searchTask?.cancel()\n            searchTask = Task { [weak self] in",
+      "after": "            searchTask?.cancel()\n            let nativeSearch = nativeRoutingBeginSearch()\n            searchTask = Task { [weak self] in\n                defer { self?.nativeRoutingFinishSearch(nativeSearch) }"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    private func handleTreeDiff(_ diff: AnnotationTreeDiff?) {",
+      "after": "    private func handleTreeDiff(_ diff: AnnotationTreeDiff?) {\n        nativeRoutingInputWillChange()"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "        guard let callback = onIncrementalUpdate else { return }\n        for diff in bufferedDiffs {",
+      "after": "        guard let callback = onIncrementalUpdate else { return }\n        if !bufferedDiffs.isEmpty { nativeRoutingInputWillChange() }\n        for diff in bufferedDiffs {"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    func loadAnnotations() async {",
+      "after": "    func loadAnnotations() async {\n        nativeRoutingInputWillChange()"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before": "    func applyFilter() {",
+      "after": "    func applyFilter() {\n        nativeRoutingInputWillChange()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    weak var viewModel: AnnotationViewModel?",
+      "after": "    weak var viewModel: AnnotationViewModel? {\n        willSet {\n            if viewModel !== newValue { nativeRoutingPublication.willPublish() }\n        }\n    }\n    let nativeRoutingPublication = MaktabahNativeAnnotationListPublication()\n    private weak var nativeRoutingBinding: MaktabahNativeAnnotationSelectionBinding?\n    private var nativeRoutingOwner: UUID?\n    private var nativeRoutingLastLayout: String?"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    // MARK: - Full Rebuild (nodes passed from ViewModel)",
+      "after": "    override func viewDidAppear(_ animated: Bool) {\n        super.viewDidAppear(animated)\n        nativeRoutingPublishLayout()\n    }\n    override func viewDidDisappear(_ animated: Bool) {\n        super.viewDidDisappear(animated)\n        nativeRoutingPublishLayout()\n    }\n    override func viewDidLayoutSubviews() {\n        super.viewDidLayoutSubviews()\n        nativeRoutingPublishLayout()\n    }\n\n    // MARK: - Full Rebuild (nodes passed from ViewModel)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    func handleTreeUpdate(nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode) {",
+      "after": "    func handleTreeUpdate(nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode) {\n        nativeRoutingPublication.willPublish()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    func handleIncrementalUpdate(diff: AnnotationTreeDiff) {",
+      "after": "    func handleIncrementalUpdate(diff: AnnotationTreeDiff) {\n        nativeRoutingPublication.willPublish()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    func applyNodes(_ nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode, animated: Bool = false) {",
+      "after": "    func applyNodes(_ nodes: [SwiftUIAnnotationNode], groupingMode: AnnotationGroupingMode, animated: Bool = false) {\n        nativeRoutingPublication.willPublish()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "                guard let self else { return }\n                var snap = dataSource.snapshot()",
+      "after": "                guard let self else { return }\n                nativeRoutingPublication.willPublish()\n                var snap = dataSource.snapshot()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "                guard let self else { return }\n                var snap = self.dataSource.snapshot()",
+      "after": "                guard let self else { return }\n                self.nativeRoutingPublication.willPublish()\n                var snap = self.dataSource.snapshot()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    private func toggleGroup(_ node: SwiftUIAnnotationNode) {\n        let id = node.id\n        let wasExpanded = expandedGroups.contains(id)\n        let willExpand = !wasExpanded\n",
+      "after": "    private func toggleGroup(_ node: SwiftUIAnnotationNode) {\n        nativeRoutingPublication.willPublish()\n        let wasExpanded = expandedGroups.contains(node.id)\n        setOriginalGroupExpanded(node, willExpand: !wasExpanded, animated: true)\n    }\n\n    /// The existing expansion owner serves both ordinary taps and the single\n    /// canonical reveal. Ordinary toggle arguments and effects are unchanged.\n    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool) {\n        let id = node.id\n"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: true)",
+      "after": "        dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    @objc private func handleRefresh() {\n        onRefreshRequested?()",
+      "after": "    @objc private func handleRefresh() {\n        nativeRoutingPublication.willPublish()\n        onRefreshRequested?()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": "    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {\n        guard let item",
+      "after": "    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {\n        nativeRoutingPublication.willPublish()\n        guard let item"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "append": "\n// MARK: - Original list navigation observation\n\nimport OtzariaUIRouting\n\nextension iOSAnnotationViewController {\n    struct NativeRoutingRow {\n        let section: String\n        let group: SwiftUIAnnotationNode\n        let item: AnnotationItem\n        let annotation: Annotation\n        var itemIdentity: String { item.node.id }\n    }\n\n    func nativeRoutingAttach(binding: MaktabahNativeAnnotationSelectionBinding?, owner: UUID?,\n                             blocked: @escaping @MainActor () -> Bool) {\n        guard let binding, let owner, let model = viewModel else { nativeRoutingDetach(); return }\n        if nativeRoutingBinding !== binding || nativeRoutingOwner != owner {\n            nativeRoutingDetach()\n            nativeRoutingBinding = binding; nativeRoutingOwner = owner\n        }\n        binding.attach(controller: self, model: model, owner: owner, blocked: blocked)\n        guard nativeRoutingBinding === binding, nativeRoutingOwner == owner else { return }\n        nativeRoutingPublishLayout()\n    }\n\n    func nativeRoutingDetach() {\n        let previous = nativeRoutingBinding, owner = nativeRoutingOwner\n        nativeRoutingPublication.willPublish()\n        nativeRoutingBinding = nil; nativeRoutingOwner = nil; nativeRoutingLastLayout = nil\n        if let owner { previous?.detach(controller: self, owner: owner) }\n    }\n\n    /// Metadata is derived from the ORIGINAL diffable snapshot, including its\n    /// section path. One annotation appearing under two tags is two distinct\n    /// original rows and is never collapsed to its numeric database ID.\n    func nativeRoutingRows() throws -> [NativeRoutingRow] {\n        guard isViewLoaded, let dataSource, let collectionView,\n              collectionView.refreshControl?.isRefreshing != true else {\n            throw UIRouteError(.unavailable, \"native_annotation_list_not_ready\")\n        }\n        let sections = dataSource.snapshot().sectionIdentifiers\n        guard sections.count <= 1_000 else {\n            throw UIRouteError(.unavailable, \"native_annotation_catalog_limit\")\n        }\n        var rows: [NativeRoutingRow] = []\n        for section in sections {\n            let items = dataSource.snapshot(for: section).items\n            let groups = items.filter(\\.isGroup)\n            guard groups.count == 1, let group = groups.first, group.node.id == section else {\n                throw UIRouteError(.staleState, \"native_annotation_section_ambiguous\")\n            }\n            var identities: Set<String> = []\n            for item in items where !item.isGroup {\n                guard let annotation = item.node.annotation, let id = annotation.id, id > 0,\n                      identities.insert(item.node.id).inserted, rows.count < 1_000 else {\n                    throw UIRouteError(.staleState, \"native_annotation_row_ambiguous\")\n                }\n                rows.append(.init(section: section, group: group.node, item: item, annotation: annotation))\n            }\n        }\n        return rows\n    }\n\n    func nativeRoutingMatches(_ row: NativeRoutingRow) -> Bool {\n        guard let rows = try? nativeRoutingRows() else { return false }\n        let matches = rows.filter { $0.section == row.section && $0.itemIdentity == row.itemIdentity }\n        guard matches.count == 1, let current = matches.first else { return false }\n        return current.annotation == row.annotation && current.group.id == row.group.id\n            && current.group.title.utf8.elementsEqual(row.group.title.utf8)\n            && current.group.kind == row.group.kind\n            && current.item.node.title.utf8.elementsEqual(row.item.node.title.utf8)\n    }\n\n    /// Called only by the retained binding during the ONE canonical apply.\n    /// This never calls didSelectItemAt, onAnnotationSelected, or an editor/\n    /// persistence callback. All effects finish synchronously; later layout\n    /// observation is read-only and cannot resume a feature mutation.\n    func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @MainActor () throws -> Void) throws {\n        func requireCurrent() throws {\n            try validate()\n            guard nativeRoutingMatches(row), isViewLoaded, dataSource != nil, collectionView != nil else {\n                throw UIRouteError(.staleState, \"native_annotation_row_changed\")\n            }\n            try validate()\n        }\n        try requireCurrent()\n        let group = AnnotationItem.group(row.group)\n        if !dataSource.snapshot(for: row.section).isExpanded(group) {\n            setOriginalGroupExpanded(row.group, willExpand: true, animated: false)\n            try requireCurrent()\n        }\n        collectionView.layoutIfNeeded()\n        try requireCurrent()\n        guard let indexPath = dataSource.indexPath(for: row.item),\n              dataSource.itemIdentifier(for: indexPath)?.node.annotation == row.annotation else {\n            throw UIRouteError(.unavailable, \"native_annotation_index_not_published\")\n        }\n        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)\n        try requireCurrent()\n        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])\n        try requireCurrent()\n        collectionView.layoutIfNeeded()\n        try requireCurrent()\n    }\n\n    func nativeRoutingSelectedCell(_ row: NativeRoutingRow) -> UICollectionViewCell? {\n        guard nativeRoutingMatches(row), let indexPath = dataSource.indexPath(for: row.item),\n              collectionView.indexPathsForSelectedItems == [indexPath],\n              let cell = collectionView.cellForItem(at: indexPath), cell.isSelected,\n              let configured = cell.contentConfiguration as? AnnotationContentConfiguration,\n              configured.annotation == row.annotation else { return nil }\n        return cell\n    }\n\n    fileprivate func nativeRoutingPublishLayout() {\n        guard let binding = nativeRoutingBinding, let owner = nativeRoutingOwner else { return }\n        let original = viewIfLoaded\n        let visible = collectionView?.visibleCells.sorted { ObjectIdentifier($0).hashValue < ObjectIdentifier($1).hashValue }\n            .map { \"\\(ObjectIdentifier($0)):\\($0.frame):\\($0.isSelected)\" }.joined(separator: \"|\") ?? \"\"\n        let signature = \"\\(original?.window.map(ObjectIdentifier.init).description ?? \"nil\")|\\(original?.frame.description ?? \"nil\")|\\(visible)|\\(isBeingDismissed)|\\(isMovingFromParent)\"\n        guard signature != nativeRoutingLastLayout else { return }\n        nativeRoutingLastLayout = signature\n        binding.hostLayoutChanged(controller: self, owner: owner)\n    }\n}\n"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "before": "    var onShowBookInfo: ((BooksData) -> Void)?",
+      "after": "    var onShowBookInfo: ((BooksData) -> Void)?\n    var nativeRoutingBinding: MaktabahNativeAnnotationSelectionBinding? = nil\n    var nativeRoutingOwner: UUID? = nil\n    var nativeRoutingBlocked: @MainActor () -> Bool = { true }"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "before": "        uiViewController.updateTagFilterHeader()\n    }",
+      "after": "        uiViewController.updateTagFilterHeader()\n        uiViewController.nativeRoutingAttach(binding: nativeRoutingBinding, owner: nativeRoutingOwner,\n                                              blocked: nativeRoutingBlocked)\n    }\n\n    static func dismantleUIViewController(_ controller: iOSAnnotationViewController, coordinator: Coordinator) {\n        controller.nativeRoutingDetach()\n    }"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "    @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager",
+      "after": "    @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager\n    @Environment(\\.maktabahNativeRoutingSession) private var nativeRoutingSession\n    @State private var nativeRoutingOwner = UUID()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "            onEditAnnotation: { editingAnnotation = $0 },\n            onShowBookInfo: { navigationManager.selectedBookForInfo = $0 }",
+      "after": "            onEditAnnotation: { nativeModalWillChange(); editingAnnotation = $0 },\n            onShowBookInfo: { navigationManager.selectedBookForInfo = $0 },\n            nativeRoutingBinding: nativeRoutingSession?.annotationSelectionBinding,\n            nativeRoutingOwner: nativeRoutingOwner,\n            nativeRoutingBlocked: {\n                isExporting || isImporting || showOverwriteDialog || showImportAlert\n                    || showMissingBookAlert || editingAnnotation != nil\n            }"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "            Button {\n                isImporting = true",
+      "after": "            Button {\n                nativeModalWillChange()\n                isImporting = true"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "                    exportDocument = AnnotationJsonDocument(jsonString: jsonString)",
+      "after": "                    nativeModalWillChange()\n                    exportDocument = AnnotationJsonDocument(jsonString: jsonString)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "                        pendingImportAnnotations = decoded",
+      "after": "                        nativeModalWillChange()\n                        pendingImportAnnotations = decoded"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "    private func showImportAlert(title: String, message: String) {",
+      "after": "    private func showImportAlert(title: String, message: String) {\n        nativeModalWillChange()"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "        let annotations = pendingImportAnnotations\n        pendingImportAnnotations = []",
+      "after": "        let annotations = pendingImportAnnotations\n        nativeModalWillChange()\n        pendingImportAnnotations = []"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "                    importAlertTitle = String(localized: .Annotation.importAnnotations)",
+      "after": "                    nativeModalWillChange()\n                    importAlertTitle = String(localized: .Annotation.importAnnotations)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "                    importAlertTitle = \"Import Failed\".localized",
+      "after": "                    nativeModalWillChange()\n                    importAlertTitle = \"Import Failed\".localized"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "    private func exportAnnotations() {",
+      "after": "    private func nativeModalWillChange() {\n        nativeRoutingSession?.annotationSelectionBinding?.originalModalWillChange(owner: nativeRoutingOwner)\n    }\n\n    /// Preserve the exact original State setter; only publication metadata is\n    /// invalidated, including an equal write from a presentation binding.\n    private func nativeModalBinding<Value>(_ original: Binding<Value>) -> Binding<Value> {\n        Binding(get: { original.wrappedValue }, set: { value in\n            nativeModalWillChange(); original.wrappedValue = value\n        })\n    }\n\n    private func exportAnnotations() {"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$showMissingBookAlert",
+      "after": "nativeModalBinding($showMissingBookAlert)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$isExporting",
+      "after": "nativeModalBinding($isExporting)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$isImporting",
+      "after": "nativeModalBinding($isImporting)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$showOverwriteDialog",
+      "after": "nativeModalBinding($showOverwriteDialog)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$pendingImportAnnotations",
+      "after": "nativeModalBinding($pendingImportAnnotations)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$showImportAlert",
+      "after": "nativeModalBinding($showImportAlert)"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "$editingAnnotation",
+      "after": "nativeModalBinding($editingAnnotation)"
+    }
+  ]
+}

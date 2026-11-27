@@ -1,0 +1,43 @@
+{
+  "integration_ios_only": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+  ],
+  "host_package_ordinary_source_discovery": [
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift"
+  ],
+  "manual_pbx_applied": false,
+  "new_shortcut_provider_entries": 0,
+  "existing_ten_shortcuts_preserved": true,
+  "apple_metadata_discovery_and_typecheck": "NOT_RUN",
+  "localization_proposals": [
+    {
+      "key": "Annotation record",
+      "en": "Annotation record",
+      "he": "רשומת הערה"
+    },
+    {
+      "key": "Show an annotation",
+      "en": "Show an annotation",
+      "he": "הצגת הערה"
+    },
+    {
+      "key": "Annotations window",
+      "en": "Annotations window",
+      "he": "חלון הערות"
+    },
+    {
+      "key": "Select an existing annotation in its original list.",
+      "en": "Select an existing annotation in its original list.",
+      "he": "בחירת הערה קיימת ברשימה המקורית שלה."
+    }
+  ],
+  "root_owned_shared_dependencies": {
+    "closed_publication_source_sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+    "shared_edit_count": 37,
+    "private_destination": "native.annotations.record",
+    "new_public_codec_or_url_fields": false,
+    "rn_join": "Separate RN_ANNOTATION_FACET follow-up; register original publication before getter"
+  }
+}

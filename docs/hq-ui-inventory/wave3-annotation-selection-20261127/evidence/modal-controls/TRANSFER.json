@@ -1,0 +1,8 @@
+{
+  "original_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-{4,5}",
+  "bytes": 13044,
+  "sha256": "69d2ad00bb15095099cd1a41fc514418d99d515b6bc3538ca5a7a66d5793866f",
+  "file_count": 18,
+  "all_members_verified": true,
+  "scope": "Original compiler and runtime logs/receipts only; no native acceptance"
+}

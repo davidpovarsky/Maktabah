@@ -1,0 +1,51 @@
+{
+  "boundary" : "actual new service + original Core\/UIRouting\/Host value types; explicit metadata and navigation boundary; no Core\/app\/native execution",
+  "cases" : [
+    {
+      "name" : "exact original selected annotation canonical return",
+      "pass" : true
+    },
+    {
+      "name" : "metadata carries no query title path or SQL ID",
+      "pass" : true
+    },
+    {
+      "name" : "changed catalog before dispatch refuses without any UI operation",
+      "pass" : true
+    },
+    {
+      "name" : "wrong original window refuses",
+      "pass" : true
+    },
+    {
+      "name" : "malformed reference refuses before metadata or operation",
+      "pass" : true
+    },
+    {
+      "name" : "wrong-request preserves actual host return as failure",
+      "pass" : true
+    },
+    {
+      "name" : "wrong-parent preserves actual host return as failure",
+      "pass" : true
+    },
+    {
+      "name" : "missing-row preserves actual host return as failure",
+      "pass" : true
+    },
+    {
+      "name" : "source retirement after actual ACK cannot become service success",
+      "pass" : true
+    },
+    {
+      "name" : "window removal after actual ACK preserves original receipt and refuses",
+      "pass" : true
+    },
+    {
+      "name" : "post-effect cancellation retains actual return",
+      "pass" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 11
+}

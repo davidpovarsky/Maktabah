@@ -1,0 +1,45 @@
+{
+  "scope": "Exact byte inverse of all 47 original feature edits including controller factoring, passive publication and 3 final followups. No original DB/CloudKit/editor/Reader or backend business logic removed. Actual UIKit execution remains pending.",
+  "files": [
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "before_bytes": 10684,
+      "before_sha256": "1b369b56eed1845ab01b9f301bdd8177b09f796b4554e54a9e9cc8f7a29d3dfd",
+      "after_bytes": 12050,
+      "after_sha256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe",
+      "inverse_bytes": 10684,
+      "inverse_sha256": "1b369b56eed1845ab01b9f301bdd8177b09f796b4554e54a9e9cc8f7a29d3dfd",
+      "byte_exact_inverse": true
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before_bytes": 23762,
+      "before_sha256": "4531ceb3137913be7de8b4eb80449913fed25fb0aaf7cb01acde18268e748af1",
+      "after_bytes": 31823,
+      "after_sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+      "inverse_bytes": 23762,
+      "inverse_sha256": "4531ceb3137913be7de8b4eb80449913fed25fb0aaf7cb01acde18268e748af1",
+      "byte_exact_inverse": true
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "before_bytes": 5710,
+      "before_sha256": "81532d95104407a4a127fbc17698ca70fbc5e2c6cd84d79b9c25190728c831d9",
+      "after_bytes": 6232,
+      "after_sha256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2",
+      "inverse_bytes": 5710,
+      "inverse_sha256": "81532d95104407a4a127fbc17698ca70fbc5e2c6cd84d79b9c25190728c831d9",
+      "byte_exact_inverse": true
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before_bytes": 12791,
+      "before_sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e",
+      "after_bytes": 14696,
+      "after_sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+      "inverse_bytes": 12791,
+      "inverse_sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e",
+      "byte_exact_inverse": true
+    }
+  ]
+}

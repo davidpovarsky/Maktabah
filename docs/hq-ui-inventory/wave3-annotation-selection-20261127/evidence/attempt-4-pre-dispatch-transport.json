@@ -1,0 +1,6 @@
+{
+  "status": "NOT_EXECUTED",
+  "failure": "local tool JSON output was truncated for oversized payload; functions JSON decoder rejected before Sentinel dispatch",
+  "repair": "transport exact shared edit plan and reconstruct against pinned Git preimages instead of repeating whole shared sources",
+  "new_input_bytes": 64973
+}

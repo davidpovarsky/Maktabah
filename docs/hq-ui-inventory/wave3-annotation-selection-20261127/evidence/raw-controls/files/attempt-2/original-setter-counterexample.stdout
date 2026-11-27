@@ -1,0 +1,12 @@
+{
+  "boundary" : "Exact publication source plus original search setter\/debounce bodies; applyFilter is an explicit domain boundary; no UIKit\/DB\/Core\/app\/native execution",
+  "cases" : [
+    {
+      "error" : "ControlFailure(message: \"unexpected acceptance\")",
+      "name" : "original equal search setter revokes before its didSet no-op",
+      "pass" : false
+    }
+  ],
+  "failed" : 1,
+  "passed" : 0
+}

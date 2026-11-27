@@ -1,0 +1,7 @@
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-4/inputs/controls/AnnotationModalControls.swift:15:13: error: implicit use of 'self' in closure; use 'self.' to make capture semantics explicit
+ 13 | private func nativeModalBinding<Value>(_ original: Binding<Value>) -> Binding<Value> {
+ 14 |         Binding(get: { original.wrappedValue }, set: { value in
+ 15 |             nativeModalWillChange(); original.wrappedValue = value
+    |             `- error: implicit use of 'self' in closure; use 'self.' to make capture semantics explicit
+ 16 |         })
+ 17 |     }

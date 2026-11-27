@@ -1,0 +1,53 @@
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/original/ActualPublication.swift:15:28: error: call to main actor-isolated initializer 'init(read:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+13 |         fileprivate init(owner: MaktabahNativeAnnotationListPublication, revision: UInt64) {
+14 |             self.owner = owner; self.revision = revision
+15 |             invalidation = NativeComponentSourceObservation(read: {})
+   |                            `- error: call to main actor-isolated initializer 'init(read:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+16 |         }
+17 |         func validate() throws {
+
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/original/NativeComponentSourceObservation.swift:12:12: note: calls to initializer 'init(read:)' from outside of its actor context are implicitly asynchronous
+10 | 
+11 |     @MainActor
+12 |     public init(read: @MainActor () -> Void) {
+   |            `- note: calls to initializer 'init(read:)' from outside of its actor context are implicitly asynchronous
+13 |         withObservationTracking {
+14 |             read()
+
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/original/ActualPublication.swift:19:36: error: main actor-isolated property 'revision' can not be referenced from a nonisolated context
+15 |             invalidation = NativeComponentSourceObservation(read: {})
+16 |         }
+17 |         func validate() throws {
+   |              `- note: add '@MainActor' to make instance method 'validate()' part of global actor 'MainActor'
+18 |             try invalidation.validate()
+19 |             guard let owner, owner.revision == revision, !owner.searchPending else {
+   |                                    `- error: main actor-isolated property 'revision' can not be referenced from a nonisolated context
+20 |                 throw UIRouteError(.staleState, "native_annotation_publication_changed")
+21 |             }
+   :
+26 |         init(_ value: Witness) { self.value = value }
+27 |     }
+28 |     private(set) var revision: UInt64? = 0
+   |                      `- note: property declared here
+29 |     private var witnesses: [WeakWitness] = []
+30 |     private var search: UUID?
+
+/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/original/ActualPublication.swift:19:65: error: main actor-isolated property 'searchPending' can not be referenced from a nonisolated context
+15 |             invalidation = NativeComponentSourceObservation(read: {})
+16 |         }
+17 |         func validate() throws {
+   |              `- note: add '@MainActor' to make instance method 'validate()' part of global actor 'MainActor'
+18 |             try invalidation.validate()
+19 |             guard let owner, owner.revision == revision, !owner.searchPending else {
+   |                                                                 `- error: main actor-isolated property 'searchPending' can not be referenced from a nonisolated context
+20 |                 throw UIRouteError(.staleState, "native_annotation_publication_changed")
+21 |             }
+   :
+29 |     private var witnesses: [WeakWitness] = []
+30 |     private var search: UUID?
+31 |     var searchPending: Bool { search != nil }
+   |         `- note: property declared here
+32 | 
+33 |     /// Called BEFORE an original mutation. Fixed one-way invalidation invokes
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>

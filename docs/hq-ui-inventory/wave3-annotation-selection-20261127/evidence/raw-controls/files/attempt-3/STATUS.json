@@ -1,0 +1,92 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/candidate/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift"
+      ],
+      "exit": 0,
+      "finished": 1795803141.1065938,
+      "free": 10206011392,
+      "name": "full-ios-syntax-only",
+      "pid": 1644882,
+      "root_free": 2548985856,
+      "startTicks": "733021242",
+      "started": 1795803140.5990572,
+      "task_bytes": 21602304
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/output",
+        "-lChavrusaUIRoutingHost",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/original/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/original/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/controls/ExplicitAnnotationBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/controls/ActualOriginalRootPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/controls/ActualWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/controls/ActualAnnotationControllerCapsule.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/inputs/controls/AnnotationOwnerControls.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/output/owner-controls"
+      ],
+      "exit": 0,
+      "finished": 1795803149.8016315,
+      "free": 10133819392,
+      "name": "actual-owner-controls-compile",
+      "pid": 1644940,
+      "root_free": 2548957184,
+      "startTicks": "733021296",
+      "started": 1795803141.1318066,
+      "task_bytes": 22487040
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-3/output/owner-controls"
+      ],
+      "exit": 0,
+      "finished": 1795803150.3214605,
+      "free": 10133581824,
+      "name": "actual-owner-controls",
+      "pid": 1645428,
+      "root_free": 2548957184,
+      "startTicks": "733022164",
+      "started": 1795803149.814759,
+      "task_bytes": 22491136
+    }
+  ]
+}

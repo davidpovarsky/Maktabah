@@ -1,0 +1,25 @@
+PASS actual caller allows stable absent Annotations owner
+PASS actual caller allows stable original Annotations owner
+PASS same-owner original observation preserves a stable proof
+PASS wrong owner State notification does not revoke exact owner
+PASS wrong owner disappearance does not remove exact owner
+PASS actual will callback detects original Annotations open-close ABA
+PASS actual will callback detects equal original State publication
+PASS actual observe callback detects owner A-B-A
+PASS actual disappearance and same-owner return remain retired
+PASS actual caller rejects already blocked original presentation
+PASS blocker callback cannot publish equal State then return false
+PASS blocker callback cannot replace owner A-B-A then return false
+PASS will metadata is revoked before original entry callback
+PASS owner replacement is revoked before original retirement callback
+PASS disappearance is revoked before original retirement callback
+PASS full original unmount revokes before its FIRST retirement callback
+PASS publication exhaustion is terminal across later original callbacks
+PASS actual caller retains Annotations history BEFORE window capture callback
+PASS actual caller rechecks Annotations AFTER final window callback
+PASS actual caller rechecks Annotations AFTER original readiness callback
+PASS closed RN latch invalidates before original modal callback
+PASS closed RN latch registration precedes reentrant initial getter
+PASS blocked original disappearance preserves its actual modal owner
+PASS removal blocker callback cannot clear a replacement owner
+RESULT passed=24 failed=0

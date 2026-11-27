@@ -1,0 +1,15 @@
+{
+  "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+  "before_sha256": "9e6b26e5965c82ac6ae8350a51e543ef1b586650a3e41113de5681d7f1b514b9",
+  "after_sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+  "edits": [
+    {
+      "before": "            .task {\n                await viewModel.loadAnnotations()\n            }\n",
+      "after": "            .task {\n                await viewModel.loadAnnotations()\n            }\n            .onAppear {\n                nativeRoutingSession?.observeAnnotationPresentation(owner: nativeRoutingOwner, isBlocked: {\n                    isExporting || isImporting || showOverwriteDialog || showImportAlert\n                        || showMissingBookAlert || editingAnnotation != nil\n                })\n            }\n            .onDisappear { nativeRoutingSession?.removeAnnotationPresentation(owner: nativeRoutingOwner) }\n"
+    },
+    {
+      "before": "        nativeRoutingSession?.annotationSelectionBinding?.originalModalWillChange(owner: nativeRoutingOwner)",
+      "after": "        nativeRoutingSession?.originalAnnotationPresentationWillChange(owner: nativeRoutingOwner)"
+    }
+  ]
+}

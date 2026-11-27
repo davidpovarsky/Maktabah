@@ -1,0 +1,4 @@
+{
+  "status": "LOCAL_SEAL_FAILED_BEFORE_PUBLICATION",
+  "cause": "The first three original raw control outputs are JSON, but the seal expected PASS text lines; raw results and all product source unchanged. Correct the parser to verify JSON case counts and passed/failed totals."
+}
