@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "macInputDirectory": "/Users/m1/builds/otzaria-wave2-search-20261127/warm-update-ui-typecheck/attempt1",
+  "inputs": [
+    {
+      "name": "COMPILE_RUN.json",
+      "bytes": 1591,
+      "sha256": "26f624a96c0514c21aa495281ecc1d288898f5aea7aea084721376752761326c"
+    },
+    {
+      "name": "ExtractedPublishedContextTests.swift",
+      "bytes": 108128,
+      "sha256": "e6f503c323a37a5edc9546c9fcc286f1df6a540d45cdd928704fef4a4201f914"
+    },
+    {
+      "name": "GlobalSearchNativeAcceptanceTests.swift",
+      "bytes": 196835,
+      "sha256": "6acb1e26a37bef05706662049e8ba755ccfd72d83e060a6c9405459ecec8ac37"
+    },
+    {
+      "name": "INPUT.json",
+      "bytes": 810,
+      "sha256": "abeaaedc43681d84bdbf0fee4506074b5e27b36f0039c3c4740caab938be5b62"
+    },
+    {
+      "name": "LAUNCH.json",
+      "bytes": 1095,
+      "sha256": "9310141660ef2fd347e35da33241905e97051937aebd6df146a9170540052c20"
+    },
+    {
+      "name": "MaktabahUITestBase.swift",
+      "bytes": 9285,
+      "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+    },
+    {
+      "name": "RESULT.json",
+      "bytes": 2979,
+      "sha256": "3b73be22772fb169afeab91d39461bfe438fa26329d864c6c653e5a471a80b73"
+    },
+    {
+      "name": "WarmSearchReadiness.swift",
+      "bytes": 12438,
+      "sha256": "0c50eda55965421f80cdd94f0e6e365c7399265ea527bb4bd543ec8c59abf36f"
+    },
+    {
+      "name": "actual-xctest-typecheck.stderr.log",
+      "bytes": 82428,
+      "sha256": "6751b3a9c7749e1cdd7dab15092a26bcb04679f55785dafb20c3d5ff894f5f7a"
+    },
+    {
+      "name": "actual-xctest-typecheck.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "run-typecheck.py",
+      "bytes": 2510,
+      "sha256": "87ab90bae03c7433b5f850d341f2f54af5a659947ce92c9735827677201a3277"
+    },
+    {
+      "name": "runner.log",
+      "bytes": 2622,
+      "sha256": "73f862e5449f7526270d794681a5420711bd734645797d458f457ae3d377f70b"
+    },
+    {
+      "name": "whole-file-parse.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "whole-file-parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "archive": {
+    "path": "apple-inputs-and-logs.tar.gz",
+    "bytes": 80831,
+    "sha256": "17b0ce4a088d70dff96e480e95eceaec0a806c9fc69a65d11f9fddbdc9c150fd"
+  },
+  "warningLocations": [
+    "ExtractedPublishedContextTests.swift:950:63",
+    "ExtractedPublishedContextTests.swift:950:68",
+    "MaktabahUITestBase.swift:145:13",
+    "MaktabahUITestBase.swift:148:17",
+    "MaktabahUITestBase.swift:150:13",
+    "MaktabahUITestBase.swift:175:31",
+    "MaktabahUITestBase.swift:175:44",
+    "MaktabahUITestBase.swift:176:24",
+    "MaktabahUITestBase.swift:176:78",
+    "MaktabahUITestBase.swift:179:28",
+    "MaktabahUITestBase.swift:179:37",
+    "MaktabahUITestBase.swift:180:21",
+    "MaktabahUITestBase.swift:180:72",
+    "MaktabahUITestBase.swift:189:24",
+    "MaktabahUITestBase.swift:189:31",
+    "MaktabahUITestBase.swift:190:17",
+    "MaktabahUITestBase.swift:191:21",
+    "MaktabahUITestBase.swift:191:44",
+    "MaktabahUITestBase.swift:191:65",
+    "MaktabahUITestBase.swift:192:34",
+    "MaktabahUITestBase.swift:192:41",
+    "MaktabahUITestBase.swift:193:38",
+    "MaktabahUITestBase.swift:194:24",
+    "MaktabahUITestBase.swift:194:85",
+    "MaktabahUITestBase.swift:196:32",
+    "MaktabahUITestBase.swift:197:18",
+    "MaktabahUITestBase.swift:197:79",
+    "MaktabahUITestBase.swift:202:16",
+    "MaktabahUITestBase.swift:202:23",
+    "MaktabahUITestBase.swift:203:29",
+    "MaktabahUITestBase.swift:203:36",
+    "MaktabahUITestBase.swift:204:161",
+    "MaktabahUITestBase.swift:204:34",
+    "MaktabahUITestBase.swift:204:42",
+    "MaktabahUITestBase.swift:205:25",
+    "MaktabahUITestBase.swift:206:26",
+    "MaktabahUITestBase.swift:213:30",
+    "MaktabahUITestBase.swift:213:38",
+    "MaktabahUITestBase.swift:214:32",
+    "MaktabahUITestBase.swift:217:44",
+    "MaktabahUITestBase.swift:218:30",
+    "MaktabahUITestBase.swift:218:50",
+    "MaktabahUITestBase.swift:223:27",
+    "MaktabahUITestBase.swift:232:30",
+    "MaktabahUITestBase.swift:233:90",
+    "MaktabahUITestBase.swift:238:18",
+    "MaktabahUITestBase.swift:238:26",
+    "MaktabahUITestBase.swift:36:15",
+    "MaktabahUITestBase.swift:39:159",
+    "MaktabahUITestBase.swift:39:32",
+    "MaktabahUITestBase.swift:39:40",
+    "MaktabahUITestBase.swift:40:23",
+    "MaktabahUITestBase.swift:41:24",
+    "MaktabahUITestBase.swift:59:29",
+    "MaktabahUITestBase.swift:68:39",
+    "MaktabahUITestBase.swift:68:46",
+    "MaktabahUITestBase.swift:70:31",
+    "MaktabahUITestBase.swift:87:19"
+  ]
+}

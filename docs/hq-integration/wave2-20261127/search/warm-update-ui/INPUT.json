@@ -1,0 +1,10 @@
+{
+  "hashes": {
+    "GlobalSearchNativeAcceptanceTests.swift": "6acb1e26a37bef05706662049e8ba755ccfd72d83e060a6c9405459ecec8ac37",
+    "ExtractedPublishedContextTests.swift": "e6f503c323a37a5edc9546c9fcc286f1df6a540d45cdd928704fef4a4201f914",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "baselineCommit": "f76b392ba5198766588b728a86396f63fa747582",
+  "originalTestSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+  "scope": "Whole registered GlobalSearch parse; exact preserved PublishedProduction/context/R08 and new warm SearchData helper plus complete actual MaktabahUITestBase XCTest SDK typecheck. No actual Settings caller typecheck here; library owner covers that separately. No application build or native UI."
+}
