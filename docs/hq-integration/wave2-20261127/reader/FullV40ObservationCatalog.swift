@@ -61,7 +61,8 @@ private func sha(_ data: Data) -> String {
         var writtenUnits = Set<String>()
 
         func target(bookID: Int, focus: Int, position: String, expectedCount: Int?,
-                    mode: OtzariaUnitMode = .chapter, includeAnchorDetails: Bool = false) throws -> [String: Any] {
+                    mode: OtzariaUnitMode = .chapter, includeAnchorDetails: Bool = false,
+                    includeNeighbors: Bool = false) throws -> [String: Any] {
             let titles = try database.fetch(query: "SELECT title FROM book WHERE id = ?", parameters: [bookID]) { $0.string(at: 0) }
             try require(titles.count == 1 && titles[0]?.isEmpty == false, "Exact actual book identity missing")
             guard let descriptor = try service.descriptor(bookId: bookID, containingLineIndex: focus, mode: mode),
@@ -143,6 +144,50 @@ private func sha(_ data: Data) -> String {
                      "previewPlainText": preview, "previewPlainTextSHA256": sha(Data(preview.utf8)),
                      "previewUTF16Length": preview.utf16.count]
                 }
+                // Global Search resolves an Otzaria locator through
+                // MaktabahBackendAdapter.resolveBook and the backend reader.
+                // Its original render model adds directional marks and a
+                // two-newline separator. The native unit route is a distinct
+                // path and continues to use the raw source fields above.
+                let section = LibraryTextSection(
+                    locator: TextLocator(backend: .otzaria, workKey: "book:\(bookID)",
+                                         position: .legacyLine(unit.startLineIndex)),
+                    displayRef: unit.title ?? unit.heRef ?? "", heRef: unit.heRef,
+                    segments: unit.lineAnchors.map {
+                        LibraryTextSegment(locator: TextLocator(backend: .otzaria, workKey: "book:\(bookID)",
+                            position: .legacyLine($0.lineIndex)), heRef: $0.heRef,
+                            primaryText: $0.text, translation: nil)
+                    }, previous: nil, next: nil,
+                    versions: [TextVersionMetadata(title: "Otzaria local library", language: "he",
+                        actualLanguage: "he", sourceURL: nil, license: nil, notes: nil, isPrimary: true)],
+                    links: [], origin: .offline)
+                let rendered = LibraryReaderRenderModel(section: section, preferredMode: .source)
+                let focusedSegment = rendered.renderedSegments.first {
+                    $0.locator.position == .legacyLine(focus)
+                }
+                try require(focusedSegment != nil, "Actual source focus must have a nonempty original rendered segment")
+                result["backendReaderSourceUTF8"] = rendered.text
+                result["backendReaderSourceSHA256"] = sha(Data(rendered.text.utf8))
+                result["backendReaderSourceUTF16Length"] = rendered.text.utf16.count
+                result["backendReaderMode"] = rendered.mode.rawValue
+                result["backendReaderSegments"] = rendered.renderedSegments.map {
+                    ["segmentID": $0.id, "rangeLocation": $0.rangeLocation, "rangeLength": $0.rangeLength,
+                     "visualRangeLocation": $0.visualRangeLocation, "visualRangeLength": $0.visualRangeLength] as [String: Any]
+                }
+                result["backendReaderFocusRangeLocation"] = focusedSegment!.visualRangeLocation
+                result["backendReaderFocusRangeLength"] = focusedSegment!.visualRangeLength
+                result["previousStartLineIndex"] = descriptor.previousStartLineIndex as Any? ?? NSNull()
+                result["nextStartLineIndex"] = descriptor.nextStartLineIndex as Any? ?? NSNull()
+                if includeNeighbors {
+                    var neighbors: [String: Any] = [:]
+                    for (name, index) in [("previous", descriptor.previousStartLineIndex), ("next", descriptor.nextStartLineIndex)] {
+                        if let index {
+                            neighbors[name] = try target(bookID: bookID, focus: index, position: position + "-" + name,
+                                expectedCount: nil, mode: mode, includeAnchorDetails: true)
+                        }
+                    }
+                    result["neighbors"] = neighbors
+                }
             }
             return result
         }
@@ -195,7 +240,7 @@ private func sha(_ data: Data) -> String {
                             "Preview targets must have unique actual book/line/mode identities")
                 targets.append(try target(bookID: request.bookID, focus: request.focusLineIndex,
                     position: "preview-\(request.mode)-\(index)", expectedCount: nil,
-                    mode: mode, includeAnchorDetails: true))
+                    mode: mode, includeAnchorDetails: true, includeNeighbors: true))
             }
             let previews: [String: Any] = [
                 "schema": 1, "status": "ORIGINAL_SOURCE_PREVIEW_CATALOG_ONLY_NOT_SEARCH_OR_UI",
