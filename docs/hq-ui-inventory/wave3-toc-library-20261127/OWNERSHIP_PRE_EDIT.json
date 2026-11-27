@@ -1,0 +1,46 @@
+{
+  "observed_at": "2026-11-26T23:48:25.319520+00:00",
+  "base": "9aa3becfadffc652b8fcd0340cc1f21db676abb4",
+  "actual_upstream_sha": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "merge_base_exit": 0,
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "upstream_tree_record": "100644 blob 823c616083095ea89a2c5d90cc88ee58cfe64c57\tSource/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "base_tree_record": "100644 blob d5fce9af93f7de8c666b18e2d6c571241714c53a\tSource/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "ownership": "UPSTREAM_OWNED"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "upstream_tree_record": "100644 blob 6bd384431b52e40083545d7e6dcf5e374209e2f7\tSource/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "base_tree_record": "100644 blob 850dcefe3c8726da93cd3a73414bbced244aea4d\tSource/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "ownership": "UPSTREAM_OWNED"
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "upstream_tree_record": "100644 blob b85ba06507a0ff68c9195831552c50ac9824b93c\tSource/Features/Library/iOS/iOSLibraryView.swift",
+      "base_tree_record": "100644 blob 46f202177491274e37e140326913cfcbf716883b\tSource/Features/Library/iOS/iOSLibraryView.swift",
+      "ownership": "UPSTREAM_OWNED"
+    },
+    {
+      "path": "Source/Features/Library/iOS/LibraryViewControllerWrapper.swift",
+      "upstream_tree_record": "100644 blob 46cc1ee7a2395b06f55ced8396a16040acb4338a\tSource/Features/Library/iOS/LibraryViewControllerWrapper.swift",
+      "base_tree_record": "100644 blob 479c8860469b6fa15749c1057a85bbabab56d46f\tSource/Features/Library/iOS/LibraryViewControllerWrapper.swift",
+      "ownership": "UPSTREAM_OWNED"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": null,
+      "ownership": "DOWNSTREAM_NEW"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+      "upstream_tree_record": null,
+      "base_tree_record": null,
+      "ownership": "DOWNSTREAM_NEW"
+    }
+  ],
+  "new_swift_membership": "9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2272:/* Begin PBXFileSystemSynchronizedRootGroup section */\n9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2274:\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2279:\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2284:\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2288:/* End PBXFileSystemSynchronizedRootGroup section */\n9aa3becfadffc652b8fcd0340cc1f21db676abb4:Maktabah.xcodeproj/project.pbxproj:2768:\t\t\tpath = Source;\n"
+}

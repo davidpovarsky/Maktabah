@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scope": "Additional actual UI-03 original component navigation; native execution pending",
+  "base": "9aa3becfadffc652b8fcd0340cc1f21db676abb4",
+  "sharedHelper": "NativeRoutingAcceptanceTests.runOriginalComponentSystemIntent",
+  "helperOwner": "/root/ui_acceptance",
+  "rewritesOriginalSelectors": false,
+  "destinations": [
+    {
+      "idiom": "iPad",
+      "selectors": [
+        "Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+        "Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentLibraryGroupingFromHistoryDoesNotOpenMenu",
+        "Maktabah-iOSUITests/NativeRoutingAcceptanceTests/testSystemAppIntentTOCContentsFromHistoryPreservesReader"
+      ]
+    },
+    {
+      "idiom": "iPhone",
+      "selectors": [
+        "Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentLibraryContentsFromHistoryPreservesReader",
+        "Maktabah-iOSUITests/NativeRoutingPhoneAcceptanceTests/testPhoneSystemAppIntentLibraryOptionsFromBackgroundDoesNotOpenMenu"
+      ]
+    }
+  ],
+  "requiredEvidence": [
+    "Actual AppIntentsTesting discovery/execution",
+    "Original target accessible and hittable",
+    "One correlated native component and canonical navigation receipt",
+    "Original workspace preserved",
+    "Library Menus remain closed when only revealed"
+  ],
+  "remaining": [
+    "Apple compile and exact candidate native execution",
+    "Original multiple-structure TOC fixture and native structure picker",
+    "Original bundle-mode Downloaded control fixture",
+    "Private current-selected-row bounded expansion/render",
+    "Hebrew, VoiceOver, HID and physical-device acceptance"
+  ]
+}
