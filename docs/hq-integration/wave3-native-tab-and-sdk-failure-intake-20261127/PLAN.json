@@ -1,0 +1,286 @@
+{
+  "base": "da1dccc6befc8d76bc80d5de9dec8f4ea1d1b77c",
+  "donors": [
+    "b16d3c305be3d54706f032b11cac442d6075d7ad",
+    "f5428b47eddac14da929c38ff2e308109607084f",
+    "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+    "62b3792a3dfa23be79b2470f52aa74223e768628"
+  ],
+  "files": [
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/BRIDGE_SOURCE_BINDINGS.json",
+      "bytes": 2994,
+      "sha256": "d8e35239367309ca8204dfb10b5642d335089af89167e9f59a9f4488c3bf9079"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/FAILURE_PACKET_RECEIPT.json",
+      "bytes": 1160,
+      "sha256": "7475e87836bee0e829d20779bd9209b446717828465d557b8418714a089730ac"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/FILE_MANIFEST.json",
+      "bytes": 17961,
+      "sha256": "f57f9302e8ad2c9cbbe1b9f65b66eda088627015411cb37c6b9663df31675f92"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/FORMATTING_FINALIZATION.json",
+      "bytes": 1471,
+      "sha256": "ba70a5a7d67d18743f7d97e1b5afbd5a78002e132e04377857effec2045f2174"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/GIT_TRANSFER_VERIFICATION.json",
+      "bytes": 975,
+      "sha256": "067d9048323a48728aea70d8b559c522337e713eaff4301b9cfbc08372787369"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/INPUT_PACKET_INDEX.json",
+      "bytes": 2500,
+      "sha256": "bd1bceeed96e0d8c4a2bb9b2d7029e91671f2353a275b01e79482af9a83b9862"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/ORIGINAL_NEXT_RUN_CONTRACT.md",
+      "bytes": 8190,
+      "sha256": "a7c265099dbb1285391ed10f28c026ecdf3b69f51232c9e0678310609f5f8be0"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/PACKET_INDEX.json",
+      "bytes": 3757,
+      "sha256": "a02aa7272341c1422d2de88da91a843632a2263470a353576559191204d8bf4e"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/README.md",
+      "bytes": 5374,
+      "sha256": "d044e2454f7e7f0f7ce60863e90b590f3f3f7d2b01763af540cc43bb0ed58654"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/SOURCE_BOUNDARIES.json.gz",
+      "bytes": 28651,
+      "sha256": "b56a1b1fdc30d08dcc4ad7c48a9f97d498ec59e66e6267b97f9ffc3fe8719c0c"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/SOURCE_BOUNDARIES_BINDING.json",
+      "bytes": 405,
+      "sha256": "8e941823afa488c0e8671d80d2ad452d6b403a7618ca9e3544b6b4b1ae2d1c31"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/original-sdk-compiler-failure.tar.gz",
+      "bytes": 963787,
+      "sha256": "6acd6fa09f46c4b3037c84654266618be5605137eea0ad3fa3158453039993c5"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/GIT_TRANSFER_VERIFICATION.original.json.gz",
+      "bytes": 507,
+      "sha256": "cbb090ade8eb5442fadedb538af4a03a5ef672097fc6084cc61498bd8d168c54"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/ORIGINAL_NEXT_RUN_CONTRACT.md.before-formatting.gz",
+      "bytes": 3435,
+      "sha256": "ee4d082a9469e206669edda5fe11e5fa3cb67df8ac94a40d26a202c8fb12944d"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/PREPARATION_FAILURE.json.gz",
+      "bytes": 275,
+      "sha256": "9de1235f011630cdc24704a22a948c233a248c1b059546a35eec5e5ee919390a"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/README.md.before-formatting.gz",
+      "bytes": 2666,
+      "sha256": "9ec711bc4c2ef109821a3ca3ecafb01ed6d8200eca0fe855f62d96c0f6be8129"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/actual-failure-preservation-bridge.ps1.gz",
+      "bytes": 8427,
+      "sha256": "16af7914bc234b0ac1090921f40aa1be0ddc3e8c90422482260990512c8ed94e"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/actual-launch-bridge.ps1.gz",
+      "bytes": 45887,
+      "sha256": "d81455a978a9fb299f1c4f1e4e85c9c2585c4ccc6a8c9576669ab41eb1ba6440"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/bridge_run.py.gz",
+      "bytes": 1568,
+      "sha256": "a8b582260848a6b3a97bd5f08c8484e7279c4ebefecc01ffdd90b7afaffecf9c"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/build_error_packet.py.gz",
+      "bytes": 3729,
+      "sha256": "649d24da72b4643d2ac5b918108832267f3e2c17373b147809294c2f2b5554be"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/first-publication-formatting-failure.log.gz",
+      "bytes": 400,
+      "sha256": "982a47a1aea1d21757c9d73a90939326681d87e648b3cd9786f0aa8a1b2a08f3"
+    },
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "path": "docs/hq-integration/wave3-sdk-compiler-failure-20261127/raw/receive_error_packet.py.gz",
+      "bytes": 1503,
+      "sha256": "187c77614e7e9859f18cfa02861d3d4fc88b5d0a8ad87a2e288a167922f18171"
+    },
+    {
+      "donor": "f5428b47eddac14da929c38ff2e308109607084f",
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "bytes": 1583,
+      "sha256": "2af6d183cdb25f2c1676dda1640f1fd92d3a06ae17b16be57d5d54f5c29decb1"
+    },
+    {
+      "donor": "f5428b47eddac14da929c38ff2e308109607084f",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 237451,
+      "sha256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/MANIFEST.json",
+      "bytes": 3033,
+      "sha256": "0126e5dd3c9ddd886f94c2b8f3fa4637e88b8e15837c3ae0674c96c4f105a651"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/MEMBERSHIP.json",
+      "bytes": 329,
+      "sha256": "5ab6aa703477483a2498e91dbb92f9cc20bcb67c2fb5554321d42ca4480e8d42"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/NATIVE_SELECTORS.json",
+      "bytes": 3068,
+      "sha256": "a223b7d86527d8ed595d36d66271923e36411509f4bb4078dc13afd79b59b4e6"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/README.md",
+      "bytes": 8593,
+      "sha256": "cc7807ee36da906d16a2f0743e73ba5975658b98b9e94c26ca8a4b4f53828bbf"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/SOURCE_PROVENANCE.json",
+      "bytes": 5184,
+      "sha256": "a1b9cfe71fef30e761889f1ad525a1c064425bc3e1a4564d84972dcbf4d9f4dc"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/SOURCE_REVIEW.md",
+      "bytes": 846,
+      "sha256": "1c377e0e52a4bddcebb818fef136f691c9eed9bae27a390468697c31261c4f1e"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/attempt-1/COMMAND.json",
+      "bytes": 604,
+      "sha256": "46661fe2a44738da26f9fda55976d6765f1ae149d2a1c698565bd698ad520ac5"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/attempt-1/RESULT.json",
+      "bytes": 7907,
+      "sha256": "4bd86431a6d02181b4f863246a74fa882986acab3f1f0623df6c4e8265c3a664"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/attempt-1/git-diff-check.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/attempt-1/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/attempt-1/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/operations/commit_attempt_1.txt.gz",
+      "bytes": 764,
+      "sha256": "60c2c847014624c2aea87859736daebb42aecf3382c2969d1b7a42d47c8c3183"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/operations/commit_identity_inspection.txt.gz",
+      "bytes": 105,
+      "sha256": "9578665c039e7f7e802c0e82b16f9d1d75b08585ed3f10cedf0a8407e458b1c3"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/operations/published.txt.gz",
+      "bytes": 435,
+      "sha256": "c342c41a7d609a9a6f2a0c7779dad918831f48bfb9b23fb029e9d9738eae3315"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/evidence/operations/read_only_sparse_grep_attempt_1.txt.gz",
+      "bytes": 670,
+      "sha256": "93b4eab509c3decfc89f31d7b8759ee0f4c327908d8ad1e961c5018ef8b1f6d9"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/MANIFEST.json",
+      "bytes": 3357,
+      "sha256": "526782206a38b80ceec9e57ea72ba67feddc8db8872cc36e208b9536b9a8c0cf"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/MEMBERSHIP.json",
+      "bytes": 704,
+      "sha256": "18c6a1eebfab63f8cf7c906025f9432b7f05ce69e9a4a4d502f89eedad44d26e"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/MEMBERSHIP_CORRECTION.md",
+      "bytes": 1255,
+      "sha256": "410223f95c71ad27cdfb43c863e19695bc431cdc140efe8ce8fd16b273cda9a1"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/PROJECT_MEMBERSHIP_PROOF.json",
+      "bytes": 3600,
+      "sha256": "148c7b8d4af1889601c2e605b5cf17aa0450cf5d90270539c661d56d4c74899f"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/README.md",
+      "bytes": 8939,
+      "sha256": "4ecff8eac6219709fefcec71f9a1213fd66c2232a9af479d3a6eece04026b37a"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "path": "docs/ui-routing/wave3-reader-tab-native-20261127/SOURCE_REVIEW.md",
+      "bytes": 1813,
+      "sha256": "7483721deaea4a06cc067b5976e96243e8e3bf5c0aae7e95adbea021b863d3f6"
+    }
+  ],
+  "sourceTreeUnchanged": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+  "vendorTreeUnchanged": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "projectSHA256Unchanged": "a013609d6a15cba287c6c867398f739a739cc72ddc320151cfdc0322133b50f2",
+  "sdkPacketIndexSHA256": "a02aa7272341c1422d2de88da91a843632a2263470a353576559191204d8bf4e",
+  "nativeFinalManifestSHA256": "526782206a38b80ceec9e57ea72ba67feddc8db8872cc36e208b9536b9a8c0cf"
+}

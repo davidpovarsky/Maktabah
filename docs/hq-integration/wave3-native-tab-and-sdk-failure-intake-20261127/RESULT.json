@@ -1,0 +1,44 @@
+{
+  "schema": "otzaria.wave3.native-tab-sdk-failure-intake.v1",
+  "base": "da1dccc6befc8d76bc80d5de9dec8f4ea1d1b77c",
+  "applied": [
+    {
+      "donor": "b16d3c305be3d54706f032b11cac442d6075d7ad",
+      "integrated": "a42e72c9590c6d20f0cffb493c0fd88f0a52fc0c"
+    },
+    {
+      "donor": "f5428b47eddac14da929c38ff2e308109607084f",
+      "integrated": "59e2e5e1562f1e93f113906e4ac5613ed9b721ad"
+    },
+    {
+      "donor": "be3ed07f476de5127bab2a70da5d32086d9a30d2",
+      "integrated": "b8ebfa2673c201bed373e2de4250c5adf54e6d93"
+    },
+    {
+      "donor": "62b3792a3dfa23be79b2470f52aa74223e768628",
+      "integrated": "6fd2591bc920308a6e7d514672b3ea5f4d8e9750"
+    }
+  ],
+  "sourceTreeUnchanged": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+  "vendorTreeUnchanged": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "projectSHA256Unchanged": "a013609d6a15cba287c6c867398f739a739cc72ddc320151cfdc0322133b50f2",
+  "fileOccurrencesVerified": 45,
+  "sdkManifestRowsVerified": 21,
+  "sdkInitialManifestRowsVerified": 14,
+  "sdkBridgeRawRowsVerified": 6,
+  "sdkArchiveMembersVerified": 48,
+  "nativeManifestRowsVerified": {
+    "be3ed07f": 14,
+    "62b3792a": 16
+  },
+  "nativeDecodedGzipRowsVerifiedPerVersion": 4,
+  "existingNativePrefixBytes": 221244,
+  "existingNativePrefixSHA256": "84032054d2c3e10ae91f7703e13d305866810bdbda516064d7cd1f49730724b0",
+  "original30OtherNativeFilesUnchanged": true,
+  "newSelectors": 6,
+  "testMembership": "INHERITED_EXISTING_SYNCHRONIZED_ROOT_GROUP_NO_PROJECT_EDIT",
+  "sourceControlsRerun": 0,
+  "newSDKRuns": 0,
+  "nativeRuns": 0,
+  "at": "2026-11-27T11:24:08.734311+00:00"
+}

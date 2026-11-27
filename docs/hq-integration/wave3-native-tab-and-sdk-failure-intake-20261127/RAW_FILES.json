@@ -1,0 +1,30 @@
+[
+  {
+    "path": "raw/sdkPacketVerification.json.gz",
+    "rawBytes": 5435,
+    "rawSHA256": "047c73c4f4b4f22d42f598aa015c81d7946f1bc496ef91037fa1a3951a7f84d5",
+    "bytes": 2558,
+    "sha256": "34748a876ceda7e5c032cc9ca4798157ac689546252262171c3e3872a57a5812"
+  },
+  {
+    "path": "raw/nativeOriginalOracles.json.gz",
+    "rawBytes": 6538,
+    "rawSHA256": "f8e08c887171473aa9ef8f0f86123fc11f242111a7168326fb164b9d659391ae",
+    "bytes": 2106,
+    "sha256": "7023e7ad6b4460dfa1b0ea328d6d8bf611c9c6390d0ed30935f7ec021019afa6"
+  },
+  {
+    "path": "raw/nativeMembershipCorrectionReview.json.gz",
+    "rawBytes": 10858,
+    "rawSHA256": "6013dfb2eea68b6d04ad2737b40094a344052643c1be1b28e5f2285f2a06ab2a",
+    "bytes": 3286,
+    "sha256": "f3bf160721e065cd58bfe666b2c606f73e93326074b7d8209f3ff2c429eea9e1"
+  },
+  {
+    "path": "raw/cherryPickOutputs.json.gz",
+    "rawBytes": 5729,
+    "rawSHA256": "c2592d52537757c25677651a7a93c48d4ec5801f27b7a976d9f87cf8fde4d06e",
+    "bytes": 1252,
+    "sha256": "7d02c7adbf9cd0e5b7d65907d148fadd96ef2b0acb50fd7faab180248f4e9c84"
+  }
+]
