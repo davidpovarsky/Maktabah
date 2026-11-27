@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_TRANSITION_REVIEW_READY_NOT_FINAL_APP_ACCEPTANCE",
+  "original39": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0
+  },
+  "actual_root50_preserved": {
+    "tests": 50,
+    "failures": 2,
+    "errors": 0,
+    "failing_method_count": 1
+  },
+  "focused_original3": {
+    "methods": 1,
+    "routes": 3,
+    "failures": 0,
+    "errors": 0,
+    "controller_exit": 0
+  },
+  "full_final50_rerun": false,
+  "production_bytes_equal_actual_root_full_run": true,
+  "only_test_change": "Install exact original validator at actual ROOT dynamic load site before unchanged refusal assertions.",
+  "archive_members": 110,
+  "archive_bytes": 483328,
+  "native": "NOT_RUN",
+  "metro": "NOT_RUN",
+  "app_sdk": "NOT_RUN",
+  "final_manifest": "NOT_GENERATED"
+}

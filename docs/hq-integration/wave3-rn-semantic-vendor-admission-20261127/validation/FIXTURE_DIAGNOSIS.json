@@ -1,0 +1,54 @@
+{
+  "original_result_sha256": "d16bbe90730068c5595456fb19ccd85202b9d2c44f7d5e71e590d85b473fd422",
+  "original_stderr_sha256": "a1f2cd33f02f9e03bdd9d5844fdd3fea6bd6e4b964064927307b58157c02d17b",
+  "original_status": "50 tests, 2 subtest failures, 0 errors",
+  "cause": "Original focused wrapper loads runpy from ROOT/Scripts/CI/final_integration_source.py. Test set ROOT to candidate fixture without replacing the physical new validator. Original normal adapter delegates to the same wrapper. Direct old validator correctly refused.",
+  "old_wrapper_path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-2-root-a0e/semantic50/original-source/hq-stage2-focused-apple.py",
+  "old_adapter_path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-2-root-a0e/semantic50/original-source/prepare-normal-ios-workspace.py",
+  "actual_old_wrapper_load_path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-2-root-a0e/semantic50/control-checkout/Scripts/CI/final_integration_source.py",
+  "loaded_candidate_sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079",
+  "corrected_methods": [
+    "test_actual_original_three_routes_reject_current_source"
+  ],
+  "all_existing_assertions_identical": true,
+  "all_production_and_contract_bytes_identical_to_attempt2": true,
+  "inputs": {
+    "Scripts/CI/final_integration_source.py": {
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    "Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json": {
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    "Scripts/CI/reviewed-vendor-semantics.inputs.json": {
+      "bytes": 44186,
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+    },
+    "Scripts/CI/reviewed-vendor-source.inputs.json": {
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    "Scripts/CI/test-reviewed-semantic-vendor-source.py": {
+      "bytes": 28789,
+      "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea"
+    },
+    "Scripts/CI/test-reviewed-vendor-source.py": {
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+    }
+  },
+  "scope": "ONLY original route 3 subcases; no other 49 methods, old39, Metro, SDK or native rerun"
+}

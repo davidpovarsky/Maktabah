@@ -1,0 +1,559 @@
+{
+  "archive": "source-controls.tar.gz",
+  "bytes": 483328,
+  "sha256": "1f62d895b01d53214acda1579f2468a9ef842dd94b9f9a8af572752ff61eb705",
+  "all_members_verified": true,
+  "member_count": 110,
+  "members": [
+    {
+      "path": "controller-and-preparation/ACTUAL_ROOT_GENERATOR.py",
+      "bytes": 8232,
+      "sha256": "f823508ad785a4f88830fc0dbb5285c127198074b6dd4cb57b35e94ff5e28a09"
+    },
+    {
+      "path": "controller-and-preparation/COMPRESSED_RAW_IDENTITIES.json",
+      "bytes": 1918,
+      "sha256": "7f7c823b05b41977b6a9d6f4f4fb58652b40ad07821d737a7c943b989633c2de"
+    },
+    {
+      "path": "controller-and-preparation/PRESERVED_FUNCTIONS.json",
+      "bytes": 1146,
+      "sha256": "58d6791c129da31feff74cc26fed7f3ad46a77ae9143ba669cb39e73ea156a67"
+    },
+    {
+      "path": "controller-and-preparation/attempt2-controller.py.gz",
+      "bytes": 4679,
+      "sha256": "32c8a36688fea45207cb4f5aa5dc6046cf516c4b70cedd23d0e84fd0f5372d24"
+    },
+    {
+      "path": "controller-and-preparation/attempt2-terminal.json.gz",
+      "bytes": 1440,
+      "sha256": "c7190c2d6747955dd720630811fd64386fc0c2738f49602067723d3d54ccd798"
+    },
+    {
+      "path": "controller-and-preparation/attempt3-controller.py.gz",
+      "bytes": 3135,
+      "sha256": "d6edce99699621acffa17695471b08086c10991c0ba4cf0bdf06b71332d53315"
+    },
+    {
+      "path": "controller-and-preparation/attempt3-terminal.json.gz",
+      "bytes": 1278,
+      "sha256": "f8270331e0bb9524a759e9df0923b7093c10fa06cf69e2a28dc908c65d979b8b"
+    },
+    {
+      "path": "controller-and-preparation/attempt3-trace-failure-read.json.gz",
+      "bytes": 1487,
+      "sha256": "df3fda19a30e9026f5d1ec56d07a63e5689cb00afaf9cf41b0550e7ee8c422ca"
+    },
+    {
+      "path": "controller-and-preparation/attempt4-controller.py.gz",
+      "bytes": 1323,
+      "sha256": "aa66c42ab971ed7ac1adb14d29f2d2ad97cfdd557884f46ddb5e64a77c9a5539"
+    },
+    {
+      "path": "controller-and-preparation/attempt4-terminal.json.gz",
+      "bytes": 1513,
+      "sha256": "dbf975fabd72365bc8d24ea10e4403fbdee8d13ab67016e6a39d4f6e3354a3ed"
+    },
+    {
+      "path": "controller-and-preparation/generate-semantic-vendor-contract.py",
+      "bytes": 8232,
+      "sha256": "f823508ad785a4f88830fc0dbb5285c127198074b6dd4cb57b35e94ff5e28a09"
+    },
+    {
+      "path": "controller-and-preparation/prepare-semantic-vendor-controls.py",
+      "bytes": 5609,
+      "sha256": "28ac64af119c24c211f83a57ae8d0d5c83b7fdb12b9d6272bcd5cb61def5f910"
+    },
+    {
+      "path": "controller-and-preparation/prepare-semantic-vendor-validator.py",
+      "bytes": 3995,
+      "sha256": "b6a3194d07de7ca963a54af67f7b87d12cebef77425679396111e064cd89123f"
+    },
+    {
+      "path": "controller-and-preparation/semantic-vendor-extension.py.fragment",
+      "bytes": 13474,
+      "sha256": "1aa16d8d270971e67f3597c5ccabe3db75c78fccc91aa39e06042e6990738f92"
+    },
+    {
+      "path": "controls-attempt-1/INPUTS.json",
+      "bytes": 1789,
+      "sha256": "d123ef7fa728abfcf31f3b0ad438b68b0726574c76adab1ca1526956b88b7618"
+    },
+    {
+      "path": "controls-attempt-1/RESULT.json",
+      "bytes": 1327,
+      "sha256": "35fd498fb0e3250b80b236469afc5139fca8c2d46426f7147a3c46f05cf87bc6"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "19505b024332540163cce4f954bc03cb36b14afbd84c58e6cfd8b8a1125f1a89"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/reviewed-vendor-semantics.inputs.json",
+      "bytes": 44186,
+      "sha256": "1ea9bf12ab6c3157b58877bebeacbd836b541568a3ed5e577e1f44cc1adace49"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/reviewed-vendor-source.inputs.json",
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/test-normal-ios-workspace.py",
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "bytes": 28222,
+      "sha256": "6b394034a229722b78a184667d379cb76cc3c358aaa8ae7556aac79a94af4dbb"
+    },
+    {
+      "path": "controls-attempt-1/candidate/Scripts/CI/test-reviewed-vendor-source.py",
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+    },
+    {
+      "path": "controls-attempt-1/previous39/CONTROL_FIXTURE.json",
+      "bytes": 23295,
+      "sha256": "d35763cf0f4e5ef9035e77324ff3b021bb79f3c52206a757c842770f357aa433"
+    },
+    {
+      "path": "controls-attempt-1/previous39/RESULT.json",
+      "bytes": 124477,
+      "sha256": "322533601b8470c3b453b97dd7ab9fe3c6bc39b31f04129a962511193a34cdf2"
+    },
+    {
+      "path": "controls-attempt-1/previous39/original-source/final_integration_source.py",
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198"
+    },
+    {
+      "path": "controls-attempt-1/previous39/original-source/hq-stage2-focused-apple.py",
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+    },
+    {
+      "path": "controls-attempt-1/previous39/original-source/prepare-normal-ios-workspace.py",
+      "bytes": 10766,
+      "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52"
+    },
+    {
+      "path": "controls-attempt-1/previous39.stderr",
+      "bytes": 4203,
+      "sha256": "9f3ee99ae50b8a3f045ec51bfd23a9c76ae4f4bc8a425bf7f8aa59125e9860d8"
+    },
+    {
+      "path": "controls-attempt-1/previous39.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-attempt-1/semantic50/CONTROL_FIXTURE.json",
+      "bytes": 27365,
+      "sha256": "c70f91207a2508a6a8f13ed35b597eebc3d2e1b703f9a9ae1742117ddc976fbb"
+    },
+    {
+      "path": "controls-attempt-1/semantic50/RESULT.json",
+      "bytes": 146478,
+      "sha256": "dce9d9aa70b8601efb22ed6589a3120a1080d936231aaf261d59e67b43a743b6"
+    },
+    {
+      "path": "controls-attempt-1/semantic50/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "controls-attempt-1/semantic50/original-source/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-1/semantic50/original-source/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/controller_source.identity.json",
+      "bytes": 193,
+      "sha256": "7edb8eff5071573ce4d41d803baca65938b580cce1ea5422464d620776752d54"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/controller_source.raw.gz",
+      "bytes": 1185,
+      "sha256": "35b8f95bef3eb8e3517a714bb434bb0ad8fa79cf7d4d011381501f0d7e88f7ff"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/owned_child_read.identity.json",
+      "bytes": 193,
+      "sha256": "9246baf530690dd43405b63360aaa80848aa657a2eb1a0d9ef0b9b8484fce15d"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/owned_child_read.raw.gz",
+      "bytes": 1143,
+      "sha256": "f22c02f3ed7fcfec712a23db0e641488ba3892b0e686e922875b3a204109b84c"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/terminal.identity.json",
+      "bytes": 193,
+      "sha256": "1baff764eb6cab4889be1ee8141f478d164f5736204437a7f229e3a42afce3e9"
+    },
+    {
+      "path": "controls-attempt-1-preserved-terminal/terminal.raw.gz",
+      "bytes": 1176,
+      "sha256": "0317c5ab1db6383ce1e34f6c775021adabd6f64c4e7479c70bd0f55d53ca3a91"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/INPUTS.json",
+      "bytes": 1989,
+      "sha256": "90c75d03d42f52076e56dbae1de2305f109d5ac933e66970ad73ce41a8fa7d5a"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/PROCESS.json",
+      "bytes": 679,
+      "sha256": "968c62a001cd76d87023a0566f08017fd055fec831b001a3fc691d24e6fb86fb"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/RESULT.json",
+      "bytes": 1413,
+      "sha256": "f2a6e7e0c6a9bccfcc5199720dd2559775316aaf67005d54ddc046eea3632da3"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/reviewed-vendor-semantics.inputs.json",
+      "bytes": 44186,
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/reviewed-vendor-source.inputs.json",
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/test-normal-ios-workspace.py",
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "bytes": 28252,
+      "sha256": "b6664088a65f54295c31674849732c7feea77ca505c4eb5c6b7599b8a18ae876"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/candidate/Scripts/CI/test-reviewed-vendor-source.py",
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/fetch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/fetch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50/CONTROL_FIXTURE.json",
+      "bytes": 27906,
+      "sha256": "e6504e0d4e58bc6f6097323a8e486e75e1754fbbed8e664567ec35894f9b9d18"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50/RESULT.json",
+      "bytes": 172622,
+      "sha256": "d16bbe90730068c5595456fb19ccd85202b9d2c44f7d5e71e590d85b473fd422"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50/original-source/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50/original-source/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50.stderr",
+      "bytes": 7773,
+      "sha256": "a1f2cd33f02f9e03bdd9d5844fdd3fea6bd6e4b964064927307b58157c02d17b"
+    },
+    {
+      "path": "controls-attempt-2-root-a0e/semantic50.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/FIXTURE_DIAGNOSIS.json",
+      "bytes": 3043,
+      "sha256": "0e3866d440f815a20f17cbe72fb9cde8527d8183a3409f48e0f9b200f7025b45"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/FIXTURE_ONLY.patch",
+      "bytes": 1055,
+      "sha256": "960dec0fe47d4c3422da4bb8335f883698f610ff89a6fd78ab65a9d21563a7d5"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/PROCESS.json",
+      "bytes": 338,
+      "sha256": "cbbbd3767714a1f25d5deaf578fbc4b3678da88dd1bfcadc2e02c7dc16b8f86d"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/RESULT.json",
+      "bytes": 1021,
+      "sha256": "1386fa88016c05e57222fe323f8376faa7f0635d2b094ad1b45ccfb8893ad143"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/reviewed-vendor-semantics.inputs.json",
+      "bytes": 44186,
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/reviewed-vendor-source.inputs.json",
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/test-normal-ios-workspace.py",
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "bytes": 28789,
+      "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/candidate/Scripts/CI/test-reviewed-vendor-source.py",
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original-test-before.py",
+      "bytes": 28252,
+      "sha256": "b6664088a65f54295c31674849732c7feea77ca505c4eb5c6b7599b8a18ae876"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original3/CONTROL_FIXTURE.json",
+      "bytes": 27906,
+      "sha256": "2b515f985ea4dcf4f4a6bb24dc375ed04b932a9612e64f3a13c5616c471769c1"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original3/RESULT.json",
+      "bytes": 2172,
+      "sha256": "2ab1fbd14b2a1607fea3e9d9a82c810632217644f7dcfc01a8018a59869b5441"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original3/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original3/original-source/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/original3/original-source/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/run-original3.py",
+      "bytes": 2198,
+      "sha256": "c5ee96dfd8fdde300485b152400651661340c70fb179d91bc8f2e58b4c61bfa2"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/stderr",
+      "bytes": 551,
+      "sha256": "109dcb4efe51bfd6dc3d8e1195520f0f4e98026295788262f9d8c8b895fde164"
+    },
+    {
+      "path": "controls-attempt-3-original-route-binding/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/PROCESS.json",
+      "bytes": 371,
+      "sha256": "06c9eecc3a2692330056e7c6dd4a1d77d2cbd7f7959baad018a76163205ef3aa"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/RESULT.json",
+      "bytes": 2190,
+      "sha256": "4ca39fb8d6cd0e1cdffc6a066f9df6c651ac00c5e7ebbf439b0b69457be6776e"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/TRACE_CORRECTION.json",
+      "bytes": 493,
+      "sha256": "d3f583c6acb0981cc65b6c2e2a7e3a9bf9d74da0892f4210d41e9dcd4f2af346"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json",
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/reviewed-vendor-semantics.inputs.json",
+      "bytes": 44186,
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/reviewed-vendor-source.inputs.json",
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/test-normal-ios-workspace.py",
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "bytes": 28789,
+      "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/candidate/Scripts/CI/test-reviewed-vendor-source.py",
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/original3/CONTROL_FIXTURE.json",
+      "bytes": 27906,
+      "sha256": "d9d181e631771e22fa253f331a5baf1430b71685d5e4fbd5d8f02459b34a17c7"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/original3/RESULT.json",
+      "bytes": 5495,
+      "sha256": "d9a4645c2c44d18861ff1986de79b7846537f50c886d32c770448f6cbbce4363"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/original3/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/original3/original-source/hq-stage2-focused-apple.py",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/original3/original-source/prepare-normal-ios-workspace.py",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/run-original3.py",
+      "bytes": 2361,
+      "sha256": "b3ddddeb3c3a44c29851abff432814217d26b938582994d523b87fc69e4479c8"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/stderr",
+      "bytes": 245,
+      "sha256": "8e93553f73c0dd335c6b380a7290eac61226cbef166897060abd29867093ccf4"
+    },
+    {
+      "path": "controls-attempt-4-original-load-trace/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "root-intake-binding-a0e3b05d/RESULT.json",
+      "bytes": 1899,
+      "sha256": "7130bc6855fce960e3cbae95cbddf51e1b08b53156ed52954e87adca100dc6a2"
+    },
+    {
+      "path": "root-intake-binding-a0e3b05d/generation.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "root-intake-binding-a0e3b05d/generation.stdout",
+      "bytes": 907,
+      "sha256": "6fa6fe1d9c13fc59ce9c865e7a16083b0cdd59095db45412dd487840232b3653"
+    },
+    {
+      "path": "root-intake-binding-a0e3b05d/reviewed-vendor-semantics.inputs.json",
+      "bytes": 44186,
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+    }
+  ]
+}

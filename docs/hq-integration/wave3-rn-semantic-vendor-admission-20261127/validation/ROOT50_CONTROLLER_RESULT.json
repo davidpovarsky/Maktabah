@@ -1,0 +1,45 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-2-root-a0e/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+    "--repository",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+    "--output",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-2-root-a0e/semantic50"
+  ],
+  "started_at": 1795805571.7897315,
+  "scope": "REAL_GIT_SOURCE_CONTROLS_ONLY",
+  "native": "NOT_RUN",
+  "metro": "NOT_RUN",
+  "pid": 1917194,
+  "pgid": 1917194,
+  "exit": 1,
+  "seconds": 943.5207033157349,
+  "result": {
+    "app_sdk_typecheck": "NOT_RUN",
+    "duration_s": 943.2978870868683,
+    "errors": 0,
+    "failures": 2,
+    "metro_executed": false,
+    "native": "NOT_RUN",
+    "native_qualified": false,
+    "scope": "ACTUAL_SOURCE_VALIDATORS_AND_REAL_GIT_ONLY",
+    "status": "FAIL",
+    "tests": 50
+  },
+  "result_sha256": "d16bbe90730068c5595456fb19ccd85202b9d2c44f7d5e71e590d85b473fd422",
+  "outputs": {
+    "semantic50.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "semantic50.stderr": {
+      "bytes": 7773,
+      "sha256": "a1f2cd33f02f9e03bdd9d5844fdd3fea6bd6e4b964064927307b58157c02d17b"
+    }
+  }
+}

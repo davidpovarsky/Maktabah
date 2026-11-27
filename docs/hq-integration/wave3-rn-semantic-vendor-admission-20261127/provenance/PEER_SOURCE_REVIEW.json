@@ -1,0 +1,7 @@
+{
+  "reviewer": "/root/navigation_fix",
+  "reviewed_donor_validator_sha256": "19505b024332540163cce4f954bc03cb36b14afbd84c58e6cfd8b8a1125f1a89",
+  "reviewed_donor_contract_sha256": "1ea9bf12ab6c3157b58877bebeacbd836b541568a3ed5e577e1f44cc1adace49",
+  "scope": "Source-only review of strict chained dispatch, snapshot/mode/patch/ancestry/full build binding and Metro source checks. No demonstrated blocker. Actual root constants-only rebind independently compared; no reviewer test/native execution claimed.",
+  "root_intake_required": "Actual root a0e lineage is now bound; application final manifest remains root-owned."
+}

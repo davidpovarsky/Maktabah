@@ -1,0 +1,2191 @@
+{
+  "app_sdk_typecheck": "NOT_RUN",
+  "duration_s": 512.4507083892822,
+  "errors": 0,
+  "failures": 0,
+  "metro_executed": false,
+  "native": "NOT_RUN",
+  "native_qualified": false,
+  "records": [
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "An original engine or shared vendor changed without review",
+      "outcome": "REFUSED",
+      "route": "original_final_source",
+      "test": "__main__.AdmissionTests.test_actual_original_three_routes_reject_current_source"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed prebuilt engine source drift: Vendor/ZayitSearchPort",
+      "outcome": "REFUSED",
+      "route": "original_focused_preflight",
+      "test": "__main__.AdmissionTests.test_actual_original_three_routes_reject_current_source"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed Embedded resource overlay",
+      "outcome": "REFUSED",
+      "route": "original_normal_source_plan",
+      "test": "__main__.AdmissionTests.test_actual_original_three_routes_reject_current_source"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1f40b2c191177b1298c869d57a70fe249aaa2570",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed integrated manifest bytes changed",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_backdated_declaration_cannot_select_legacy_on_current_checkout"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1f40b2c191177b1298c869d57a70fe249aaa2570",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Final source profile digest differs",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_backdated_declaration_cannot_select_legacy_on_current_checkout"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1f40b2c191177b1298c869d57a70fe249aaa2570",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Final source profile digest differs",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_backdated_declaration_cannot_select_legacy_on_current_checkout"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bef2a8ace11c45daaaa951e47e5af04b231a13aa",
+        "contract_sha256": "3a5787169c3743eb85441b7aec5ed8e42849e0dcd795c7d12cced53e625fe2c9",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed Vendor contract bytes changed or are uncommitted",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_contract_byte_tamper"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bef2a8ace11c45daaaa951e47e5af04b231a13aa",
+        "contract_sha256": "3a5787169c3743eb85441b7aec5ed8e42849e0dcd795c7d12cced53e625fe2c9",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed Vendor contract bytes changed or are uncommitted",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_contract_byte_tamper"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bef2a8ace11c45daaaa951e47e5af04b231a13aa",
+        "contract_sha256": "3a5787169c3743eb85441b7aec5ed8e42849e0dcd795c7d12cced53e625fe2c9",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed Vendor contract bytes changed or are uncommitted",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_contract_byte_tamper"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Scripts/CI/reviewed-vendor-source.inputs.json",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_contract_symlink_is_rejected"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Scripts/CI/reviewed-vendor-source.inputs.json",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_contract_symlink_is_rejected"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Scripts/CI/reviewed-vendor-source.inputs.json",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_contract_symlink_is_rejected"
+    },
+    {
+      "outcome": "SOURCE_ONLY_PASS",
+      "result": {
+        "additional_product_objects_verified": 242,
+        "application_source_sha": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+        "application_trees": {
+          "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+          "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+          "Source": "23cdfce49553927656ef79c6db10f654c889e2fc",
+          "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+        },
+        "build_input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "hanlin_source": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+        "historical_control_source": "602659607a3a6a2586a7c4a8d7ce6114eec8cd86",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f",
+        "native_stageb_qualified": false,
+        "new_native_build_required": true,
+        "new_runtime_acceptance_required": true,
+        "preserved_build_inputs_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+        "previous_application_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
+        "product_paths": [
+          "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+          "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+          "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+          "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+          "Maktabah-iOSUITests/HanlinConsumerAcceptanceTests.swift",
+          "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+          "Maktabah-iOSUITests/MiniAppsAnnotationAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeHiddenActivePhoneReaderTabAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+          "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+          "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+          "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+          "Maktabah-iOSUITests/R27NativeInteractionAcceptanceTests.swift",
+          "Maktabah-iOSUITests/SefariaEmbeddedAcceptanceTests.swift",
+          "Maktabah-iOSUITests/canonical-miniTest10-toc-current-selection.json",
+          "Maktabah.xcodeproj/project.pbxproj",
+          "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+          "Maktabah.xcodeproj/xcshareddata/xcschemes/Maktabah-iOSNativeTests.xcscheme",
+          "Source/ChavrusaText-iOS.entitlements",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfill.xcstrings",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillPlanner.swift",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillView.swift",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillCatalog.swift",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillModel.swift",
+          "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillSection.swift",
+          "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift",
+          "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorImport.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorLifecycle.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorLifecycleUI.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorMount.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+          "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings",
+          "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+          "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatSession.swift",
+          "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinChatView.swift",
+          "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinConversationStore.swift",
+          "Source/ChavrusaText/HanlinHostAdapter/OtzariaHanlinHostAdapter.swift",
+          "Source/ChavrusaText/MiniApps/OtzariaMiniAppsCoordinator.swift",
+          "Source/ChavrusaText/MiniApps/OtzariaMiniAppsDocument.swift",
+          "Source/ChavrusaText/MiniApps/OtzariaMiniAppsPersistence.swift",
+          "Source/ChavrusaText/MiniApps/OtzariaMiniAppsReceiptJournal.swift",
+          "Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+          "Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift",
+          "Source/ChavrusaText/ReaderHost/CompactStudyWorkspaceHostModifier.swift",
+          "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+          "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+          "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+          "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+          "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyGroupSwitchPerformanceObservation.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+          "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+          "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+          "Source/ChavrusaText/StudyWorkspace/UI/ScrollableGroupsHost.swift",
+          "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+          "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+          "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+          "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift",
+          "Source/ChavrusaText/ThirdPartyNotices/Hanlin-LICENSE.txt",
+          "Source/ChavrusaText/ThirdPartyNotices/Maktabah-and-Sefaria-LICENSE.txt",
+          "Source/ChavrusaText/ThirdPartyNotices/NOTICE.txt",
+          "Source/ChavrusaText/ThirdPartyNotices/OriginalAnytype-LICENSE.md",
+          "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+          "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationOwner.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentWitness.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+          "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+          "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentSourceObservationTests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeFeatureIntentServiceTests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeHistoryRecordIntentServiceTests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativePublicNavigationURLV2Tests.swift",
+          "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+          "Source/Core/Database/SQLiteDatabase.swift",
+          "Source/Features/Annotations/Database/AnnotationRepository.swift",
+          "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+          "Source/Features/Annotations/Models/AnnotationEvent.swift",
+          "Source/Features/Annotations/iOS/AnnotationListView.swift",
+          "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+          "Source/Features/History/ViewModel/HistoryViewModel.swift",
+          "Source/Features/History/iOS/HistoryComponents.swift",
+          "Source/Features/History/iOS/iOSHistoryView.swift",
+          "Source/Features/Library/iOS/iOSLibraryView.swift",
+          "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+          "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+          "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+          "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+          "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+          "Source/Features/Reader/iOS/ViewOptionsView.swift",
+          "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+          "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+          "Source/Features/Reader/iOS/iOSReaderView.swift",
+          "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+          "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+          "Source/Features/Search/ViewModel/SearchViewModel.swift",
+          "Source/Features/Search/iOS/SearchModeView.swift",
+          "Source/Features/Search/iOS/SearchResultsListView.swift",
+          "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+          "Source/Features/Setting/SettingsView.swift",
+          "Source/LibraryBackend/BackendCoordinator.swift",
+          "Source/LibraryBackend/LibraryBackendModels.swift",
+          "Source/LibraryBackend/LibraryBackendProtocols.swift",
+          "Source/LibraryBackend/QualifiedLocatorStore.swift",
+          "Source/Localizable.xcstrings",
+          "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift",
+          "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+          "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/CatalogAuthorsActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NavigationItemsActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NavigationStructuresActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OfflinePackageObservationTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ReadSectionActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/RelatedRefsAndTopicsActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/RelatedSourcesActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/TableOfContentsActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/VersionListActionTests.swift",
+          "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift",
+          "Source/Otzaria/Bootstrap/OtzariaBootstrapAdapter.swift",
+          "Source/Otzaria/Bootstrap/OtzariaDatabaseBootstrapService.swift",
+          "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloader.swift",
+          "Source/Otzaria/Bootstrap/OtzariaDatabaseInstaller.swift",
+          "Source/Otzaria/Bootstrap/OtzariaLibraryReleaseClient.swift",
+          "Source/Otzaria/Bootstrap/OtzariaLibraryUpdatePolicy.swift",
+          "Source/Otzaria/Core/OtzariaDatabaseAccessController.swift",
+          "Source/Otzaria/Core/String+OtzariaText.swift",
+          "Source/Otzaria/Features/Settings/OtzariaLibraryUpdateView.swift",
+          "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift",
+          "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+          "Source/Otzaria/Search/Distribution/OtzariaPrebuiltSearchAcceptanceRunner.swift",
+          "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift",
+          "Source/Otzaria/Search/OtzariaSearchIndexManager.swift",
+          "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+          "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+          "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+          "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+          "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+          "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Guides/GuidedNavigationTests.swift",
+          "Source/Sefaria/Domain/SefariaModels.swift",
+          "Source/Sefaria/Domain/SefariaNavigationParser.swift",
+          "Source/Sefaria/Network/SefariaRemoteStore.swift",
+          "Source/Sefaria/Reading/SefariaHybridStore.swift",
+          "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+          "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+          "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+          "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+          "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+          "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+          "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+          "Source/UI/iOS/Views/iOSMainView.swift",
+          "Source/UI/iOS/Views/iPadLayout.swift",
+          "Source/UI/iOS/Views/iPhoneLayout.swift",
+          "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+          "Source/UI/macOS/TextView/IbarotTextView.swift",
+          "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+          "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+          "Source/ZayitSearch/ZayitSearchDistribution.swift",
+          "Source/ZayitSearch/ZayitSearchSessionController.swift",
+          "Source/iOS-Info.plist",
+          "Vendor/HanlinSDK",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+          "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+          "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+          "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+        ],
+        "reviewed_build_input_transition": {
+          "after": [
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "before": [
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "current_common_sha256": "b17e95aa3a0b9488e8f00923d882ce61a6978148dee1acf183ea0edff39794f8",
+          "field": "embedded_js_overlay_paths",
+          "historical_common_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8"
+        },
+        "reviewed_vendor_source": {
+          "application_source_sha": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+          "build_inputs": {
+            "accepted_canonical_sha256": "b17e95aa3a0b9488e8f00923d882ce61a6978148dee1acf183ea0edff39794f8",
+            "after": [
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "baseline_canonical_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+            "baseline_common": {
+              "artifacts": [
+                {
+                  "destination": "Vendor/OtzariaSearchEngine",
+                  "id": 14596463166,
+                  "name": "ios-build-otzaria-xcframework",
+                  "producer_attempt": 1,
+                  "producer_job": 136041463727,
+                  "producer_job_name": "Build or restore Otzaria framework",
+                  "producer_required_steps": [
+                    "Build Otzaria production semantic XCFramework",
+                    "Verify Otzaria framework and semantic host build",
+                    "Confirm exact pinned and pristine upstream checkout",
+                    "Run actions/upload-artifact@v4"
+                  ],
+                  "producer_run": 44661774024,
+                  "producer_run_conclusion": "failure",
+                  "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+                  "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+                  "size_in_bytes": 201330360,
+                  "tar": "OtzariaSearchEngine.xcframework.tar"
+                },
+                {
+                  "destination": "Vendor/ZayitSearchPort/build",
+                  "id": 14595389912,
+                  "name": "ios-build-zayit-xcframework",
+                  "producer_attempt": 1,
+                  "producer_job": 136041463406,
+                  "producer_job_name": "Build or restore Zayit framework",
+                  "producer_required_steps": [
+                    "Build Zayit XCFramework",
+                    "Verify Zayit framework",
+                    "Run actions/upload-artifact@v4"
+                  ],
+                  "producer_run": 44661774024,
+                  "producer_run_conclusion": "failure",
+                  "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+                  "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+                  "size_in_bytes": 123727544,
+                  "tar": "MaktabahZayitSearch.xcframework.tar"
+                },
+                {
+                  "destination": "build",
+                  "id": 12763481138,
+                  "name": "ios-build-swift-packages",
+                  "producer_run": 40566258679,
+                  "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+                  "tar": "SourcePackages.tar"
+                },
+                {
+                  "id": 13658066283,
+                  "name": "sefaria-embedded-validation-manifests",
+                  "producer_run": 42577170165,
+                  "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
+                }
+              ],
+              "embedded_js_overlay_paths": [
+                "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+              ],
+              "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+              "engine_trees": {
+                "Vendor/OtzariaSearchEngine": "5a6c6501c021ffadcde31254239617f10cd1a362",
+                "Vendor/ZayitSearchPort": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+                "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+                "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
+              },
+              "mac_shared_composition": {
+                "historic_receipts_preserved": true,
+                "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+                "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+                "new_runtime_acceptance_required": true,
+                "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+              },
+              "rebuild_zayit_framework": false,
+              "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+              "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+              "resources": {
+                "sources/calendar.json": {
+                  "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7",
+                  "size": 1651059
+                },
+                "sources/hebrew_categories.json": {
+                  "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d",
+                  "size": 16121
+                },
+                "sources/packages.json": {
+                  "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba",
+                  "size": 238990
+                },
+                "sources/people.json": {
+                  "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4",
+                  "size": 52354
+                },
+                "sources/search_toc.json": {
+                  "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05",
+                  "size": 829599
+                },
+                "sources/toc.json": {
+                  "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963",
+                  "size": 4172545
+                },
+                "sources/topic_toc.json": {
+                  "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c",
+                  "size": 1810962
+                }
+              },
+              "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+            },
+            "before": [
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "single_reviewed_field": "embedded_js_overlay_paths"
+          },
+          "manifest": "Scripts/CI/reviewed-vendor-source.inputs.json",
+          "manifest_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "native_qualified": false,
+          "new_app_build_required": true,
+          "new_metro_bundle_required": true,
+          "physical_source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840",
+            "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+          },
+          "preserved_historical_vendor_entries": 195,
+          "producer_scopes": {
+            "sefaria": {
+              "current_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c",
+              "preserved_producer_entries": 8,
+              "producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+              "producer_tree": "d1f16ed47a5809e9cfc9a0e33c7fb5e7533a0f51",
+              "reviewed_changed_paths": [
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+                "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+                "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+              ]
+            },
+            "zayit": {
+              "current_tree": "716ee730970cebd1a8826b11a695c731430aabe2",
+              "preserved_producer_entries": 42,
+              "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+              "producer_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+              "reviewed_changed_paths": [
+                "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+              ]
+            }
+          },
+          "reviewed_product_source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+          "reviewed_vendor_changes": 7,
+          "scope": "EXACT_DOWNSTREAM_SOURCE_IDENTITY_AND_PRODUCER_ATTRIBUTION_ONLY",
+          "vendor_tree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+        },
+        "swift_ai_sdk_source": "abf0921c6e89e6521cc2b510ff11016b45a0ef08"
+      },
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_exact_current_real_git_source_passes_all_three_routes"
+    },
+    {
+      "outcome": "SOURCE_ONLY_PASS",
+      "result": {
+        "application_source_sha": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+        "application_trees": {
+          "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+          "Source": "23cdfce49553927656ef79c6db10f654c889e2fc",
+          "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+        },
+        "canonical_project_sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "embedded_bundle_build": {
+          "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+          "mode": "REBUILD_EXACT_REVIEWED_JS",
+          "native_bridge_build_required": true,
+          "native_source_paths": [
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+          ],
+          "overlay_paths": [
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+        },
+        "hanlin_gitlink": "9565a9e4775901a4cee6f0402d7fd2978fab6612",
+        "inputs_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "otzaria_test_additions": {
+          "binary_attribution": "PRODUCER_TREE_ONLY_NOT_CURRENT_WHOLE_TREE",
+          "current_whole_tree": "424e157913f36db2b5cc4c6204056f56c3194dd9",
+          "excluded_build_inputs": {
+            "Maktabah.xcodeproj/project.pbxproj": "85e7c4d78198e5aaa6f9f9a484ad842577822c3c",
+            "Vendor/OtzariaSearchEngine/build_xcframework.sh": "c144bfd775b393c4621b41bd2688fad16f79c315",
+            "Vendor/OtzariaSearchEngine/ios_bridge/Cargo.toml": "0d92196706d534d91041373676e9699b023c9528",
+            "Vendor/OtzariaSearchEngine/ios_bridge/build.rs": "6bd9288a85e67132e9283ab7516435cfa442c74a"
+          },
+          "manifest_sha256_lf": "b7fe38fce0f3c59a04cabb6b60b6dc8b8ef7316c3aa8847818ed498b646d738a",
+          "mode": "EXACT_NEW_TEST_FILES_ONLY",
+          "preserved_producer_entries": 43,
+          "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+          "producer_whole_tree": "5a6c6501c021ffadcde31254239617f10cd1a362",
+          "reviewed_added_regular_files": 78
+        },
+        "package_pins": {
+          "a2ui": "3ed9601862ecc78027e20ac80ad8b1b98a5d9079",
+          "anchoredpopup": "f93c51e75ff4e5242328ac24c8fb12f1f1e84eda",
+          "equatable": "597c2bb34af0c51331eb3b5e705f942d8ee20daa",
+          "floatingpanel": "3db567a19ff81d2d3ce00399021ee87a4fccf7e0",
+          "hanlin-streaming-markdown": "5cbb4b6c950051f98f02a0b0ae56756f5174a9b8",
+          "highlightswift": "99c431b38a1444a5fd6a4978307fbbefe3a7af53",
+          "iosmath": "ba9ab7729b151329c54fd895a7c1859981d9484c",
+          "opentelemetry-swift-core": "c6fcee77cfc21ba400366f12475217c7b6e1d605",
+          "sparkle": "066e75a8b3e99962685d6a90cdd5293ebffd9261",
+          "swift-ai-sdk": "abf0921c6e89e6521cc2b510ff11016b45a0ef08",
+          "swift-argument-parser": "6a52f3251125d74daf04fcbd5e6f08a75d074382",
+          "swift-atomics": "0442cb5a3f98ab802acb777929fdb446bda11a34",
+          "swift-cmark": "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+          "swift-collections": "7b847a3b7008b2dc2f47ca3110d8c782fb2e5c7e",
+          "swift-json-schema": "c0a9375ea9cd3fd47d875c98ed7f027ea61c03cb",
+          "swift-markdown": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+          "swift-syntax": "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+          "swiftsoup": "bba848db50462894e7fc0891d018dfecad4ef11e",
+          "swiftui-shimmer": "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+          "swiftyjson": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+          "torahinspectorkit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+          "zipfoundation": "22787ffb59de99e5dc1fbfe80b19c97a904ad48d",
+          "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99"
+        },
+        "package_resolved_sha256": "5512565a7da55281e3c4dbb2fa090670022103c19c34644e693b1775d1af8cb4",
+        "project_sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+        "reviewed_vendor_source": {
+          "application_source_sha": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+          "build_inputs": {
+            "accepted_canonical_sha256": "b17e95aa3a0b9488e8f00923d882ce61a6978148dee1acf183ea0edff39794f8",
+            "after": [
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "baseline_canonical_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+            "baseline_common": {
+              "artifacts": [
+                {
+                  "destination": "Vendor/OtzariaSearchEngine",
+                  "id": 14596463166,
+                  "name": "ios-build-otzaria-xcframework",
+                  "producer_attempt": 1,
+                  "producer_job": 136041463727,
+                  "producer_job_name": "Build or restore Otzaria framework",
+                  "producer_required_steps": [
+                    "Build Otzaria production semantic XCFramework",
+                    "Verify Otzaria framework and semantic host build",
+                    "Confirm exact pinned and pristine upstream checkout",
+                    "Run actions/upload-artifact@v4"
+                  ],
+                  "producer_run": 44661774024,
+                  "producer_run_conclusion": "failure",
+                  "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+                  "sha256": "efc73de90d74fdd380ffecfa334fe9dcece38519832b89cf3fb2a5741dcc25ad",
+                  "size_in_bytes": 201330360,
+                  "tar": "OtzariaSearchEngine.xcframework.tar"
+                },
+                {
+                  "destination": "Vendor/ZayitSearchPort/build",
+                  "id": 14595389912,
+                  "name": "ios-build-zayit-xcframework",
+                  "producer_attempt": 1,
+                  "producer_job": 136041463406,
+                  "producer_job_name": "Build or restore Zayit framework",
+                  "producer_required_steps": [
+                    "Build Zayit XCFramework",
+                    "Verify Zayit framework",
+                    "Run actions/upload-artifact@v4"
+                  ],
+                  "producer_run": 44661774024,
+                  "producer_run_conclusion": "failure",
+                  "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+                  "sha256": "64f4ba7b8d6cfced525732699fd1958ca0cc5ec836369dcf839d91df855914d7",
+                  "size_in_bytes": 123727544,
+                  "tar": "MaktabahZayitSearch.xcframework.tar"
+                },
+                {
+                  "destination": "build",
+                  "id": 12763481138,
+                  "name": "ios-build-swift-packages",
+                  "producer_run": 40566258679,
+                  "sha256": "9c0eb8afe950b93d40ed78507da45a7050babc39945f7fa3ae47d29db1686fdd",
+                  "tar": "SourcePackages.tar"
+                },
+                {
+                  "id": 13658066283,
+                  "name": "sefaria-embedded-validation-manifests",
+                  "producer_run": 42577170165,
+                  "sha256": "12cc781436c0459acb05060211ef5f3e109791e7f5297d8bf61e1b38c74f8cda"
+                }
+              ],
+              "embedded_js_overlay_paths": [
+                "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+              ],
+              "engine_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+              "engine_trees": {
+                "Vendor/OtzariaSearchEngine": "5a6c6501c021ffadcde31254239617f10cd1a362",
+                "Vendor/ZayitSearchPort": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+                "Vendor/ZayitSearchPort/Rust": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8",
+                "Vendor/ZayitSearchPort/Upstream": "db6dc60006a51db83ec2c6feed1158e4da1a617b"
+              },
+              "mac_shared_composition": {
+                "historic_receipts_preserved": true,
+                "manifest": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+                "manifest_sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+                "new_runtime_acceptance_required": true,
+                "previous_application_source_sha": "7d5510dd29af2b66d740de136352916868c341ed"
+              },
+              "rebuild_zayit_framework": false,
+              "resource_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+              "resource_producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+              "resources": {
+                "sources/calendar.json": {
+                  "sha256": "9613a13f8ce57d20bb1b5b480dc93acca4b354956e30ac0056d617c997025ca7",
+                  "size": 1651059
+                },
+                "sources/hebrew_categories.json": {
+                  "sha256": "f3dd97c47a9a4dadb9d2b29d1cceeeb26d25b56b36dbf7518a1b40faaa008f1d",
+                  "size": 16121
+                },
+                "sources/packages.json": {
+                  "sha256": "3c472a17c8716929c6e0b941f6e2916ae798493a0f29719fd6ff47e7f5ddeaba",
+                  "size": 238990
+                },
+                "sources/people.json": {
+                  "sha256": "b9befdeea0c67a0a519e49e8ca108f16ab46843a238c667db665bf6095c930c4",
+                  "size": 52354
+                },
+                "sources/search_toc.json": {
+                  "sha256": "6d90cc6d333333f8f6bd6aeda723a3b3fb8a2733d6b3b518baa808a86c058c05",
+                  "size": 829599
+                },
+                "sources/toc.json": {
+                  "sha256": "0622b6567fd9e5d1950315007abd9d0e93f8716a9f8c92431b44116eb3a8a963",
+                  "size": 4172545
+                },
+                "sources/topic_toc.json": {
+                  "sha256": "282603e38c227de9c345c215193de2849ecf66d40c17cf874a63ac068f1a225c",
+                  "size": 1810962
+                }
+              },
+              "sefaria_gitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c"
+            },
+            "before": [
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "single_reviewed_field": "embedded_js_overlay_paths"
+          },
+          "embedded_bundle_build": {
+            "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+            "mode": "REBUILD_EXACT_REVIEWED_JS",
+            "native_bridge_build_required": true,
+            "native_source_paths": [
+              "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+            ],
+            "overlay_paths": [
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+            "source_sha256": {
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+              "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+            },
+            "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+          },
+          "input_transition": {
+            "after": [
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+              "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "before": [
+              "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+            ],
+            "current_common_sha256": "b17e95aa3a0b9488e8f00923d882ce61a6978148dee1acf183ea0edff39794f8",
+            "field": "embedded_js_overlay_paths",
+            "historical_common_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8"
+          },
+          "manifest": "Scripts/CI/reviewed-vendor-source.inputs.json",
+          "manifest_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "native_qualified": false,
+          "new_app_build_required": true,
+          "new_metro_bundle_required": true,
+          "physical_source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840",
+            "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+          },
+          "preserved_historical_vendor_entries": 195,
+          "producer_scopes": {
+            "sefaria": {
+              "current_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c",
+              "preserved_producer_entries": 8,
+              "producer_sha": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+              "producer_tree": "d1f16ed47a5809e9cfc9a0e33c7fb5e7533a0f51",
+              "reviewed_changed_paths": [
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+                "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+                "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+                "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+              ]
+            },
+            "zayit": {
+              "current_tree": "716ee730970cebd1a8826b11a695c731430aabe2",
+              "preserved_producer_entries": 42,
+              "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+              "producer_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+              "reviewed_changed_paths": [
+                "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+              ]
+            }
+          },
+          "reviewed_product_source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+          "reviewed_vendor_changes": 7,
+          "scope": "EXACT_DOWNSTREAM_SOURCE_IDENTITY_AND_PRODUCER_ATTRIBUTION_ONLY",
+          "vendor_tree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+        },
+        "validator_sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4",
+        "workflow_sha256": "a498b99ec37f50b03348cc32b801a45bf1f50839d302702a02229fa2ccacb224",
+        "zayit_framework": {
+          "baseline_producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+          "build_script": "Vendor/ZayitSearchPort/Scripts/build-ios-xcframework.sh",
+          "build_script_git_blob": "a4f123b144b236fc1ec691060cf144e3e9da2cf9",
+          "changed_paths": [],
+          "mode": "UNCHANGED_PRODUCTION_PREBUILT",
+          "source_tree": "13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8"
+        },
+        "zayit_swift_consumer_source": {
+          "current_tree": "716ee730970cebd1a8826b11a695c731430aabe2",
+          "preserved_producer_entries": 42,
+          "producer_sha": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+          "producer_tree": "a121537e72fb10ce7c710ad55f7d084a0427cf2d",
+          "reviewed_changed_paths": [
+            "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+          ]
+        }
+      },
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_exact_current_real_git_source_passes_all_three_routes"
+    },
+    {
+      "outcome": "SOURCE_ONLY_PASS",
+      "result": {
+        "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+        "mode": "REBUILD_EXACT_REVIEWED_JS",
+        "native_bridge_build_required": true,
+        "native_source_paths": [
+          "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+        ],
+        "overlay_paths": [
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+          "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+        ],
+        "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "source_sha256": {
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+          "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+          "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+          "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+        },
+        "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+      },
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_exact_current_real_git_source_passes_all_three_routes"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "e32f2ad085bd2bff235ab5e00b79e01dc2cd1ff8",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Historical receipt was edited or relabelled: Scripts/CI/runtime27-final-source-composition.inputs.json",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_historical_receipt_remains_immutable"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1805edc23b14818fd2dc422831f3dc751b8ab406",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "69a1d87bcf4723cf9b9ce1548d763873234a6abb8844f47d8add17b4df19ed95",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_artifact_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1805edc23b14818fd2dc422831f3dc751b8ab406",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "69a1d87bcf4723cf9b9ce1548d763873234a6abb8844f47d8add17b4df19ed95",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_artifact_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1805edc23b14818fd2dc422831f3dc751b8ab406",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "69a1d87bcf4723cf9b9ce1548d763873234a6abb8844f47d8add17b4df19ed95",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_artifact_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "00bab53bb31e5ebeba1189a3785cbcf8d1068e15",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "bf09cf6328331c72ee00592b725bc7915e073eebe6f672f9219b44ccc1acd124",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_artifact_id"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "00bab53bb31e5ebeba1189a3785cbcf8d1068e15",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "bf09cf6328331c72ee00592b725bc7915e073eebe6f672f9219b44ccc1acd124",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_artifact_id"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "00bab53bb31e5ebeba1189a3785cbcf8d1068e15",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "bf09cf6328331c72ee00592b725bc7915e073eebe6f672f9219b44ccc1acd124",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_artifact_id"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1b77d6a897644fbeb16af546691b1c417bab0968",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a1acd16b7a769adc8f825a3ad0b956b128bbc2e31f726b239b85494588155ec",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_job"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1b77d6a897644fbeb16af546691b1c417bab0968",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a1acd16b7a769adc8f825a3ad0b956b128bbc2e31f726b239b85494588155ec",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_job"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1b77d6a897644fbeb16af546691b1c417bab0968",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "5a1acd16b7a769adc8f825a3ad0b956b128bbc2e31f726b239b85494588155ec",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_job"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5c40b213e09020997a91f22c9607a0e81fe6c768",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9f1133829d0512acf4c4af6af7470a02ef105d568ad40101245140b76c32c128",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_run"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5c40b213e09020997a91f22c9607a0e81fe6c768",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9f1133829d0512acf4c4af6af7470a02ef105d568ad40101245140b76c32c128",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_run"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5c40b213e09020997a91f22c9607a0e81fe6c768",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9f1133829d0512acf4c4af6af7470a02ef105d568ad40101245140b76c32c128",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_artifact_producer_run"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "700906daf4e280d090fdcbbf5004f64518dc56ac",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "534bd6a6cf3b26e83bb21cf6c9e9b52e185ea3dadd72feff01ac4b920786b84a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_drop_js_input"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "700906daf4e280d090fdcbbf5004f64518dc56ac",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "534bd6a6cf3b26e83bb21cf6c9e9b52e185ea3dadd72feff01ac4b920786b84a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_drop_js_input"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "700906daf4e280d090fdcbbf5004f64518dc56ac",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "534bd6a6cf3b26e83bb21cf6c9e9b52e185ea3dadd72feff01ac4b920786b84a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_drop_js_input"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c2c5c09691a0dbb278ddf6ea0c184af8d2fb0cde",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "be37a1db6d8becfea8192b9ba05ba6588c96fe433e406862b5af1e4cec81894c",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_engine_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c2c5c09691a0dbb278ddf6ea0c184af8d2fb0cde",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "be37a1db6d8becfea8192b9ba05ba6588c96fe433e406862b5af1e4cec81894c",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Framework producer SHA mismatch",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_engine_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c2c5c09691a0dbb278ddf6ea0c184af8d2fb0cde",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "be37a1db6d8becfea8192b9ba05ba6588c96fe433e406862b5af1e4cec81894c",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_engine_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ea06b62e408ac492ee7f2ef2d21ecfc443ebb6a1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9ee1ec2873a8052171b802e474635c4ba9c2183876cf5bc386f868765a4b8993",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_hanlin_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ea06b62e408ac492ee7f2ef2d21ecfc443ebb6a1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9ee1ec2873a8052171b802e474635c4ba9c2183876cf5bc386f868765a4b8993",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_hanlin_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ea06b62e408ac492ee7f2ef2d21ecfc443ebb6a1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "9ee1ec2873a8052171b802e474635c4ba9c2183876cf5bc386f868765a4b8993",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_hanlin_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "f37348646524ec627a9667221ca4dd7cfa82c8dc",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "def0e35fdc28fe2659ea9748d74bc6f3bcd33e01756ca7b2962c3217e587ccc4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_native_as_js"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "f37348646524ec627a9667221ca4dd7cfa82c8dc",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "def0e35fdc28fe2659ea9748d74bc6f3bcd33e01756ca7b2962c3217e587ccc4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_native_as_js"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "f37348646524ec627a9667221ca4dd7cfa82c8dc",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "def0e35fdc28fe2659ea9748d74bc6f3bcd33e01756ca7b2962c3217e587ccc4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_native_as_js"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "98763dab34e4a34a4519a4be20531de716c530e5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "903fc4d53bf5cd2ea8bf34669455734568d90e1e5f449fc5ae99c3390cf9d8d4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_old_single_overlay"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "98763dab34e4a34a4519a4be20531de716c530e5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "903fc4d53bf5cd2ea8bf34669455734568d90e1e5f449fc5ae99c3390cf9d8d4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_old_single_overlay"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "98763dab34e4a34a4519a4be20531de716c530e5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "903fc4d53bf5cd2ea8bf34669455734568d90e1e5f449fc5ae99c3390cf9d8d4",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_old_single_overlay"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5bd1bd8574851709dfe64c2c9396726dd490cb5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "b9466b094f66dc86f946d964fc83598d0b2bfcf60a103285704073140d289bd0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_resource_baseline_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5bd1bd8574851709dfe64c2c9396726dd490cb5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "b9466b094f66dc86f946d964fc83598d0b2bfcf60a103285704073140d289bd0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_resource_baseline_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5bd1bd8574851709dfe64c2c9396726dd490cb5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "b9466b094f66dc86f946d964fc83598d0b2bfcf60a103285704073140d289bd0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_resource_baseline_digest"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ec5e62d10315a3bc1dbe443e2fe9a9c3ad8f714d",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "0f4ce320418bf3f8fbf0c385e48189e7a6a72370743a2f34213f8c24347bdbf8",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_resource_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ec5e62d10315a3bc1dbe443e2fe9a9c3ad8f714d",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "0f4ce320418bf3f8fbf0c385e48189e7a6a72370743a2f34213f8c24347bdbf8",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_resource_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ec5e62d10315a3bc1dbe443e2fe9a9c3ad8f714d",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "0f4ce320418bf3f8fbf0c385e48189e7a6a72370743a2f34213f8c24347bdbf8",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_resource_producer"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "6c502b3d298395d4500f32514de4c0f1963ba2b0",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "76508adfc17471f44980d1dc6718334f04bf3f18eca0200be65b310bb438c3b0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_resource_record"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "6c502b3d298395d4500f32514de4c0f1963ba2b0",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "76508adfc17471f44980d1dc6718334f04bf3f18eca0200be65b310bb438c3b0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_resource_record"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "6c502b3d298395d4500f32514de4c0f1963ba2b0",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "76508adfc17471f44980d1dc6718334f04bf3f18eca0200be65b310bb438c3b0",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_resource_record"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "fb37cccf6c43af2c71ca5671979d179556cb66e1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "08a066ddae129e63826e4bbf3ac278086252659bae0817a03fa1781013b79914",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_test_additions_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "fb37cccf6c43af2c71ca5671979d179556cb66e1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "08a066ddae129e63826e4bbf3ac278086252659bae0817a03fa1781013b79914",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_test_additions_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "fb37cccf6c43af2c71ca5671979d179556cb66e1",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "08a066ddae129e63826e4bbf3ac278086252659bae0817a03fa1781013b79914",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Integrated build is not bound to the exact reviewed source",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_test_additions_binding"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d3a537ec62229d78f3557adb67ec2e3a838f3bb",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "c92b8dd3d2397c171b1a0c5e29ae8bf1388b038158cb5312099d3cbbc3069a3a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_input_unknown_field"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d3a537ec62229d78f3557adb67ec2e3a838f3bb",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "c92b8dd3d2397c171b1a0c5e29ae8bf1388b038158cb5312099d3cbbc3069a3a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_input_unknown_field"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d3a537ec62229d78f3557adb67ec2e3a838f3bb",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "c92b8dd3d2397c171b1a0c5e29ae8bf1388b038158cb5312099d3cbbc3069a3a",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Unreviewed engine, resource, artifact or build input transition",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_input_unknown_field"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d6825ee5caa7671fc859edcf65367f0309639b7",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "75cc22465538c7f9aec5cdf6b49bc1d80f0462be07056f0fac71985b45a0ea2d",
+        "manifest_sha256": "d70194b0f98cbf6c395b64258810ce9323f791a05a68d86572467876a0a4535a"
+      },
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_missing_contract_cannot_downgrade"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d6825ee5caa7671fc859edcf65367f0309639b7",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "75cc22465538c7f9aec5cdf6b49bc1d80f0462be07056f0fac71985b45a0ea2d",
+        "manifest_sha256": "d70194b0f98cbf6c395b64258810ce9323f791a05a68d86572467876a0a4535a"
+      },
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_missing_contract_cannot_downgrade"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "7d6825ee5caa7671fc859edcf65367f0309639b7",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "75cc22465538c7f9aec5cdf6b49bc1d80f0462be07056f0fac71985b45a0ea2d",
+        "manifest_sha256": "d70194b0f98cbf6c395b64258810ce9323f791a05a68d86572467876a0a4535a"
+      },
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_missing_contract_cannot_downgrade"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_missing_new_source"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_missing_new_source"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Missing or aliased source admission file: Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_missing_new_source"
+    },
+    {
+      "boundary": "METRO_NOT_EXECUTED",
+      "calls": [
+        {
+          "argv": [
+            "npx",
+            "--no-install",
+            "react-native",
+            "bundle",
+            "--config",
+            "../Integration/metro.config.embedded.js",
+            "--platform",
+            "ios",
+            "--dev",
+            "false",
+            "--entry-file",
+            "../Integration/index.embedded.js",
+            "--bundle-output",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle/main.jsbundle",
+            "--assets-dest",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle"
+          ],
+          "cwd": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/Vendor/SefariaMobile/Upstream",
+          "filename": "matching-embedded-bundle.log"
+        }
+      ],
+      "report": {
+        "embedded_bundle_build": {
+          "bundle_sha256": "083fa1a93521e37886118a31bd7bd9f3d93519ac31a5915894a835cc7d5a4662",
+          "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+          "historical_bundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530",
+          "mode": "REBUILD_EXACT_REVIEWED_JS",
+          "native_bridge_build_required": true,
+          "native_source_paths": [
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+          ],
+          "overlay_paths": [
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "overlay_source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+          },
+          "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "reviewed_source_before_after": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+        },
+        "resource_inputs": {
+          "jsbundle_sha256": "083fa1a93521e37886118a31bd7bd9f3d93519ac31a5915894a835cc7d5a4662"
+        }
+      },
+      "test": "__main__.AdmissionTests.test_original_metro_command_new_bundle_and_before_after_source"
+    },
+    {
+      "error": "Historical bundle cannot be relabelled as the newly built current bundle",
+      "outcome": "REFUSED",
+      "test": "__main__.AdmissionTests.test_original_metro_rejects_old_bundle_relabel"
+    },
+    {
+      "boundary": "METRO_NOT_EXECUTED",
+      "calls": [
+        {
+          "argv": [
+            "npx",
+            "--no-install",
+            "react-native",
+            "bundle",
+            "--config",
+            "../Integration/metro.config.embedded.js",
+            "--platform",
+            "ios",
+            "--dev",
+            "false",
+            "--entry-file",
+            "../Integration/index.embedded.js",
+            "--bundle-output",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle/main.jsbundle",
+            "--assets-dest",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle"
+          ],
+          "cwd": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/Vendor/SefariaMobile/Upstream",
+          "filename": "matching-embedded-bundle.log"
+        }
+      ],
+      "report": {
+        "embedded_bundle_build": {
+          "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+          "mode": "REBUILD_EXACT_REVIEWED_JS",
+          "native_bridge_build_required": true,
+          "native_source_paths": [
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+          ],
+          "overlay_paths": [
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+        },
+        "resource_inputs": {
+          "jsbundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530"
+        }
+      },
+      "test": "__main__.AdmissionTests.test_original_metro_rejects_old_bundle_relabel"
+    },
+    {
+      "error": "Working Vendor source differs: Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "outcome": "REFUSED",
+      "test": "__main__.AdmissionTests.test_original_metro_rejects_source_change_during_command"
+    },
+    {
+      "boundary": "METRO_NOT_EXECUTED",
+      "calls": [
+        {
+          "argv": [
+            "npx",
+            "--no-install",
+            "react-native",
+            "bundle",
+            "--config",
+            "../Integration/metro.config.embedded.js",
+            "--platform",
+            "ios",
+            "--dev",
+            "false",
+            "--entry-file",
+            "../Integration/index.embedded.js",
+            "--bundle-output",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle/main.jsbundle",
+            "--assets-dest",
+            "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/build/jsbundle"
+          ],
+          "cwd": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-1/previous39/control-checkout/Vendor/SefariaMobile/Upstream",
+          "filename": "matching-embedded-bundle.log"
+        }
+      ],
+      "report": {
+        "embedded_bundle_build": {
+          "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+          "mode": "REBUILD_EXACT_REVIEWED_JS",
+          "native_bridge_build_required": true,
+          "native_source_paths": [
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+          ],
+          "overlay_paths": [
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+          ],
+          "review_contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+          "source_sha256": {
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1",
+            "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb",
+            "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+            "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+          },
+          "source_tree": "12abbbdafe53cd44cf822198821956ed225c8f0c"
+        },
+        "resource_inputs": {
+          "jsbundle_sha256": "9094dbbfd97292abc5329213c5c3476476bff4afe63bcf798a06b1fb77eb9530"
+        }
+      },
+      "test": "__main__.AdmissionTests.test_original_metro_rejects_source_change_during_command"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Working Vendor source differs: Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Working Vendor source differs: Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Working Vendor source differs: Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed working source content or executable mode changed",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed working source content or executable mode changed",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "48076b8969c6456eb1870488e3d670bd289c9c5b",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Reviewed working source content or executable mode changed",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_uncommitted_allowed_source_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1017a75343a71db23dc77216996aa8293c6270d5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_build_script"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1017a75343a71db23dc77216996aa8293c6270d5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_build_script"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1017a75343a71db23dc77216996aa8293c6270d5",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_build_script"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5498140bc44d108abb3b34744c054912ac1eb511",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_dependency_lock"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5498140bc44d108abb3b34744c054912ac1eb511",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_dependency_lock"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "5498140bc44d108abb3b34744c054912ac1eb511",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_dependency_lock"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ce4bf917362025ce9651d1f9e389ec6881ea7611",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_executable_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ce4bf917362025ce9651d1f9e389ec6881ea7611",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_executable_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "ce4bf917362025ce9651d1f9e389ec6881ea7611",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_executable_mode"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bd6caae6712d69097c6d5778b9987981680cc357",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_extra_path"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bd6caae6712d69097c6d5778b9987981680cc357",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_extra_path"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "bd6caae6712d69097c6d5778b9987981680cc357",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_extra_path"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "2a9ca2b2dba77bb973f0ba22375b1b3f6ca63b33",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_hanlin_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "2a9ca2b2dba77bb973f0ba22375b1b3f6ca63b33",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_hanlin_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "2a9ca2b2dba77bb973f0ba22375b1b3f6ca63b33",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_hanlin_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "9115a401034e75dd1306866c1edf6eae46abbe3e",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_imported_rust"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "9115a401034e75dd1306866c1edf6eae46abbe3e",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_imported_rust"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "9115a401034e75dd1306866c1edf6eae46abbe3e",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_imported_rust"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "299c3dff9be889b6390eca327b68839f9c83365a",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_named_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "299c3dff9be889b6390eca327b68839f9c83365a",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_named_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "299c3dff9be889b6390eca327b68839f9c83365a",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_named_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1033b714ccb4cfdbc45bc191309ca57fb5841a06",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_resource_configuration"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1033b714ccb4cfdbc45bc191309ca57fb5841a06",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_resource_configuration"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1033b714ccb4cfdbc45bc191309ca57fb5841a06",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_resource_configuration"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "4d66e653b333204e22ae2fafd2433ecdcf3ac27f",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_sefaria_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "4d66e653b333204e22ae2fafd2433ecdcf3ac27f",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_sefaria_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "4d66e653b333204e22ae2fafd2433ecdcf3ac27f",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_sefaria_gitlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1870f3af155c2d96780c55013713215aedc26803",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_swift_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1870f3af155c2d96780c55013713215aedc26803",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_swift_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "1870f3af155c2d96780c55013713215aedc26803",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_swift_extra_hunk"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c676dcedfbe5fef4c7c296e02d8dd80de8ebc954",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Current product or XCTest trees differ from the reviewed integrated source",
+      "outcome": "REFUSED",
+      "route": "final_source",
+      "test": "__main__.AdmissionTests.test_vendor_symlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c676dcedfbe5fef4c7c296e02d8dd80de8ebc954",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "focused_preflight",
+      "test": "__main__.AdmissionTests.test_vendor_symlink"
+    },
+    {
+      "actual_inputs": {
+        "checkout_sha": "c676dcedfbe5fef4c7c296e02d8dd80de8ebc954",
+        "contract_sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+        "input_sha256": "e6cbab3dcbfba2b85c4a0edace451be5bb45028497037a92c7b81032f1a53408",
+        "manifest_sha256": "5e43f7c1a01e88d56c446031b39784b6ea2f52e9d499db258a17ec13d651643f"
+      },
+      "error": "Preparation is not bound to the actual application source trees",
+      "outcome": "REFUSED",
+      "route": "normal_source_plan",
+      "test": "__main__.AdmissionTests.test_vendor_symlink"
+    }
+  ],
+  "scope": "ACTUAL_SOURCE_VALIDATORS_AND_REAL_GIT_ONLY",
+  "status": "PASS",
+  "tests": 39
+}

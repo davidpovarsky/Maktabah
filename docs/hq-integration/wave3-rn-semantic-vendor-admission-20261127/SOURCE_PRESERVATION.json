@@ -1,0 +1,121 @@
+{
+  "source": "a0e3b05df9d914cc886b843524915c509f70a852",
+  "accepted_vendor_tree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "delivery_parent": "947f6f531b5a927919d60e365f806286ce564ca4",
+  "files": [
+    {
+      "path": "Scripts/CI/final_integration_source.py",
+      "before": {
+        "bytes": 27814,
+        "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+        "git_blob": "3fb8a8b71b3daa93111e50ce7532a697993ef8af"
+      },
+      "after": {
+        "bytes": 41693,
+        "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079",
+        "git_blob": "d76c8d80a1ced3a54d5be6924802f40696e1f353"
+      }
+    },
+    {
+      "path": "Scripts/CI/reviewed-vendor-semantics.inputs.json",
+      "before": null,
+      "after": {
+        "bytes": 44186,
+        "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208",
+        "git_blob": "5e33f9b37f0048b72c774814acbf53e68bfa39ae"
+      }
+    },
+    {
+      "path": "Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "before": null,
+      "after": {
+        "bytes": 28789,
+        "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea",
+        "git_blob": "2e4f60947ed72560142f43399fdf8997bbb49167"
+      }
+    }
+  ],
+  "unchanged_files": {
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4",
+      "git_blob": "f1d71ad3a827d98b4f67eee239afe618c0ae57e6"
+    },
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4",
+      "git_blob": "c6f127e90a49f655dc809058205e049e658192fb"
+    },
+    "Scripts/CI/reviewed-vendor-source.inputs.json": {
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+      "git_blob": "461666a5480479a1ee544d078f0478bd57ccaddf"
+    },
+    "Scripts/CI/test-reviewed-vendor-source.py": {
+      "bytes": 24977,
+      "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828",
+      "git_blob": "a24d5e82ffd760f655940f0b7ce5d1d9d9662bb8"
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77",
+      "git_blob": "b9ac42d4018dd3d88dbbdb5bab725ba524f259ad"
+    },
+    "Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json": {
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0",
+      "git_blob": "a4bf1227b869efa62ba211daa7af8bc7a8f3a2b5"
+    }
+  },
+  "original_function_count": 24,
+  "unchanged_original_functions": [
+    "require",
+    "sha",
+    "canonical",
+    "git",
+    "text",
+    "relative_file",
+    "committed_bytes",
+    "source_object",
+    "strict_json",
+    "source_is_ancestor",
+    "requires_reviewed_vendor",
+    "vendor_entries",
+    "vendor_patch",
+    "regular_source_bytes",
+    "load_vendor_review",
+    "verify_vendor_scope",
+    "verify_shape",
+    "verify_rows",
+    "verify_build_binding",
+    "verify_additions",
+    "verify"
+  ],
+  "changed_original_functions": [
+    "verify_reviewed_vendor",
+    "verify_reviewed_build_inputs",
+    "reviewed_vendor_source_plan"
+  ],
+  "new_functions": [
+    "requires_semantic_vendor",
+    "verify_vendor_snapshot",
+    "load_semantic_vendor_review",
+    "verify_semantic_vendor",
+    "verify_semantic_build_inputs",
+    "reviewed_vendor_consumer_paths"
+  ],
+  "BINDING_FIELDS_unchanged": true,
+  "all_previous_test_assertions_unchanged": true,
+  "root_rebind_production_function_bodies_equal_donor": true,
+  "protected_trees_before": {
+    "Source": "fecd5475208cc75f3ba8683045b513b7c4a747fd",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Maktabah.xcodeproj": "e8f08a3e8be4a79a577c70d0819875be2fee1d1b",
+    "Maktabah-iOSUITests": "1a01fdfe54e13e66c83c03da2405a1f2a56ecf0d",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "native": "NOT_RUN",
+  "metro": "NOT_RUN",
+  "final_application_freeze": false
+}
