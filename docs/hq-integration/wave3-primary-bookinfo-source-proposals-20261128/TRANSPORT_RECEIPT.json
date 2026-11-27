@@ -1,0 +1,186 @@
+{
+  "schema": "otzaria.source-proposal-chunk-transfer/1",
+  "admission": {
+    "ok": true,
+    "job": {
+      "id": "job_d417ba31f2bc",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "info",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "succeeded",
+      "exit_code": 0,
+      "created_at": 1795823516.8941643,
+      "started_at": "2026-11-27T23:51:56.975010+00:00",
+      "finished_at": "2026-11-27T23:51:57.045676+00:00",
+      "duration_s": 0.07,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 30,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"READ_ONLY_CHECKPOINT_ADMISSION\", \"head\": \"40b558c03f26d4f4919f2de2d1c7b27e856fcdbf\", \"root_free\": 2224279552, \"data_free_observed\": 1129398272, \"planned_maximum_bytes\": 50331648, \"target_absent\": true}"
+    }
+  },
+  "initialization": {
+    "ok": true,
+    "mode": "chunked",
+    "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+    "target_path": "/var/lib/sentinelx/uploads/otzaria-wave3-primary-bookinfo-proposals-20261128.zip",
+    "total_size": 5683581,
+    "max_chunk_bytes": 1048576,
+    "chunk_hint": "Send at most 1 MiB of file data per sentinel_upload_chunk (about 1.4 MB of base64); a larger chunk is refused."
+  },
+  "chunks": [
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 0,
+      "chunk_size": 262144,
+      "_notice": "You have 27 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 1,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 2,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 3,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 4,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 5,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 6,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 7,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 8,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 9,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 10,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 11,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 12,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 13,
+      "chunk_size": 262144,
+      "_notice": "You have 27 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 14,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 15,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 16,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 17,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 18,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 19,
+      "chunk_size": 262144
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 20,
+      "chunk_size": 262144,
+      "_notice": "You have 26 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+    },
+    {
+      "ok": true,
+      "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+      "index": 21,
+      "chunk_size": 178557
+    }
+  ],
+  "completion": {
+    "ok": true,
+    "mode": "chunked",
+    "upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+    "target_path": "/var/lib/sentinelx/uploads/otzaria-wave3-primary-bookinfo-proposals-20261128.zip",
+    "size": 5683581,
+    "sha256": "df641fafd9b470eaa22307025fff8599f6c60cc18196c6aed1d900adb43c94eb",
+    "filename": "PROPOSALS.zip"
+  },
+  "all_application_and_test_actions": 0
+}

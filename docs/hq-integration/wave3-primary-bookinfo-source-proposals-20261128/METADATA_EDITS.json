@@ -1,0 +1,82 @@
+{
+  "status": "LOCAL_SOURCE_PROPOSAL_NOT_APPLIED_NOT_COMPILED",
+  "memberships": [
+    {
+      "name": "MaktabahNativeBookInfoSetterPublication.swift",
+      "buildID": "8C2DF45F45A920A50D3B0015",
+      "fileReferenceID": "ECC6FB53848F4CD0F229BED6"
+    },
+    {
+      "name": "MaktabahNativeBookInfoPresentation.swift",
+      "buildID": "6FD99D085A54F478AED8C149",
+      "fileReferenceID": "C108DA6DF5D57219B3E584E8"
+    },
+    {
+      "name": "MaktabahNativeBookInfoSheet.swift",
+      "buildID": "FC7901E9AEC31CFE5427F9D8",
+      "fileReferenceID": "74FE88EA87F0252D207C937E"
+    }
+  ],
+  "new_EN_HE_keys": {
+    "Open book information": "פתיחת פרטי ספר",
+    "Show the original information sheet for a book in the Library.": "הצגת חלון המידע המקורי של ספר בספרייה."
+  },
+  "reused_existing_keys": [
+    "Book",
+    "Library window"
+  ],
+  "files": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before_bytes": 651692,
+      "before_sha256": "d28844ac06a705e8de87ea75d0e3c336f698977ff29b752c5b528e65cca6140e",
+      "after_bytes": 653486,
+      "after_sha256": "6aa25ecc8e13dc1ef5a46550d6a4eb13b10f66e3aa9e5da7e75ef6b84b62fa38",
+      "exact_inverse": true
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "before_bytes": 408424,
+      "before_sha256": "2e6e0e9a906fb4d8cdc6edcde7703b34c899a250afe0f0e81baff16f51168e6f",
+      "after_bytes": 409279,
+      "after_sha256": "87dd2474745016d38a4aaf303a79bbf134d0e10a1c210de1010d6284414b4153",
+      "exact_inverse": true
+    }
+  ],
+  "edits": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "kind": "build",
+      "before": "\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };\n",
+      "after": "\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };\n\t\t8C2DF45F45A920A50D3B0015 /* MaktabahNativeBookInfoSetterPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC6FB53848F4CD0F229BED6 /* MaktabahNativeBookInfoSetterPublication.swift */; };\n\t\t6FD99D085A54F478AED8C149 /* MaktabahNativeBookInfoPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108DA6DF5D57219B3E584E8 /* MaktabahNativeBookInfoPresentation.swift */; };\n\t\tFC7901E9AEC31CFE5427F9D8 /* MaktabahNativeBookInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FE88EA87F0252D207C937E /* MaktabahNativeBookInfoSheet.swift */; };\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "kind": "reference",
+      "before": "\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\"; sourceTree = \"<group>\"; };\n",
+      "after": "\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\"; sourceTree = \"<group>\"; };\n\t\tECC6FB53848F4CD0F229BED6 /* MaktabahNativeBookInfoSetterPublication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeBookInfoSetterPublication.swift\"; sourceTree = \"<group>\"; };\n\t\tC108DA6DF5D57219B3E584E8 /* MaktabahNativeBookInfoPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeBookInfoPresentation.swift\"; sourceTree = \"<group>\"; };\n\t\t74FE88EA87F0252D207C937E /* MaktabahNativeBookInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeBookInfoSheet.swift\"; sourceTree = \"<group>\"; };\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "kind": "group",
+      "before": "\t\t\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,\n",
+      "after": "\t\t\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,\n\t\t\t\tECC6FB53848F4CD0F229BED6 /* MaktabahNativeBookInfoSetterPublication.swift */,\n\t\t\t\tC108DA6DF5D57219B3E584E8 /* MaktabahNativeBookInfoPresentation.swift */,\n\t\t\t\t74FE88EA87F0252D207C937E /* MaktabahNativeBookInfoSheet.swift */,\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "kind": "source",
+      "before": "\t\t\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,\n",
+      "after": "\t\t\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,\n\t\t\t\t8C2DF45F45A920A50D3B0015 /* MaktabahNativeBookInfoSetterPublication.swift in Sources */,\n\t\t\t\t6FD99D085A54F478AED8C149 /* MaktabahNativeBookInfoPresentation.swift in Sources */,\n\t\t\t\tFC7901E9AEC31CFE5427F9D8 /* MaktabahNativeBookInfoSheet.swift in Sources */,\n"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "kind": "two additive EN/HE keys",
+      "before": "  \"strings\": {\n",
+      "after": "  \"strings\": {\n    \"Open book information\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Open book information\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"פתיחת פרטי ספר\"\n          }\n        }\n      }\n    },\n    \"Show the original information sheet for a book in the Library.\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Show the original information sheet for a book in the Library.\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"הצגת חלון המידע המקורי של ספר בספרייה.\"\n          }\n        }\n      }\n    },\n"
+    }
+  ],
+  "package_membership": "Two Host files remain in the original SwiftPM target directory; Apple discovery is unrun.",
+  "native_runs": 0,
+  "compiler_invocations": 0,
+  "remote_actions": 0
+}

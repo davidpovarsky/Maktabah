@@ -1,0 +1,15 @@
+{
+  "status": "SOURCE_PREPARATION_AND_EXISTING_EVIDENCE_ONLY_NOT_PRODUCT_INTAKE",
+  "scopes": 11,
+  "files": 779,
+  "unique_blobs": 546,
+  "logical_bytes": 29120030,
+  "manifest_bytes": 199173,
+  "manifest_sha256": "2f99156e4a3c4bd969342c2e30e42c529ed2c53b00794435ee69af1ca0eed737",
+  "archive_bytes": 5683581,
+  "archive_sha256": "df641fafd9b470eaa22307025fff8599f6c60cc18196c6aed1d900adb43c94eb",
+  "all_source_and_archive_bytes_rejoined": true,
+  "compiler_invocations": 0,
+  "native_runs": 0,
+  "remote_actions": 0
+}

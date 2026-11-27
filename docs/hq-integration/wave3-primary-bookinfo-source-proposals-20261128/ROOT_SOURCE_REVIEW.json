@@ -1,0 +1,160 @@
+{
+  "status": "ROOT_INDEPENDENT_SOURCE_REVIEW_NO_DEMONSTRATED_BLOCKER_IN_REVIEWED_SCOPE",
+  "source_preparation_only": true,
+  "shared_ledger_sha256": "b533af94fec04ebe2ffb42789fdd4a86d122e08829c8abe38ca94478b5f3dcfc",
+  "root_read_scope": [
+    "All43 exact shared edits; final41+42 completion body read together, not superseded36.",
+    "Session typed retained original-window source and final Notes/Workspace/owner identity fence.",
+    "Original sheet setter/child/Library coverage ordering and same actual owner lifetime.",
+    "Actual Root NativeBookInfoIntentService body b04198dd and full receipt checks.",
+    "Typed AppDependency registration; private descriptor; generic public binder refusal.",
+    "All4 complete forward/inverse source replays and10 exact frozen feature dependencies."
+  ],
+  "source_conclusions": [
+    "Original book row/window/source is retained before first await; no replacement Library lookup after own sheet coverage.",
+    "Actual receipt and original request/lease/session/manager/owner/deadline association survive to final service validation.",
+    "Completion is consumed before callbacks; final source check follows the final backend getter, then pure identity/deadline.",
+    "Navigation failure removes only its own association. Weak per-scene association is bounded and cannot revalidate another receipt.",
+    "Three iOS application memberships and two EN/HE keys are additive; all primary metadata bytes and translations survive exact inverse."
+  ],
+  "source_files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before_bytes": 224867,
+      "before_sha256": "dff139210794a3c1c19d44525b4062891e325cbbbeb626312b4b9cebb3f99a15",
+      "after_bytes": 246933,
+      "after_sha256": "23a85649e65fcb9e9dc5e5ff1cace7a9cf381177e2875af0c714bdaefb6c2615",
+      "inverse": "BYTE_EXACT",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-shared-wiring-proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "root_exact_forward_and_reverse_replay": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before_bytes": 297268,
+      "before_sha256": "b94b643fc3fbbd11694b35b318a9be07da11ad9f79d0731333922153b52c932b",
+      "after_bytes": 311826,
+      "after_sha256": "1511df2a578324d71dea5098b959304650d9efab9fa2c15ef57b3460d8c71902",
+      "inverse": "BYTE_EXACT",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-shared-wiring-proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "root_exact_forward_and_reverse_replay": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before_bytes": 30763,
+      "before_sha256": "e3712ce2139fb8bb1ef95bb803f0194adec49dd1963230216cefb4244e06535b",
+      "after_bytes": 31618,
+      "after_sha256": "28a4c94e070bc9fc2cbec31063112e13a9a7af087a5977a3b5f5eecfdf4e8dd3",
+      "inverse": "BYTE_EXACT",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-shared-wiring-proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "root_exact_forward_and_reverse_replay": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "before_bytes": 23515,
+      "before_sha256": "ef2db05cbb391fef37b46c64a414324ed73d80d3a76adb481d6c67be4921cad8",
+      "after_bytes": 23705,
+      "after_sha256": "4cd6818efca5c0ab04f0f9c9e2f573becca49203771eb8d54e31132b09a44de7",
+      "inverse": "BYTE_EXACT",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-shared-wiring-proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "root_exact_forward_and_reverse_replay": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoSetterPublication.swift",
+      "bytes": 7213,
+      "sha256": "22a645c86a9ace54531f74c8559c4f093a5d2bb60c5ce420b869d26c35f5a71b",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-setter-publication-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoSetterPublication.swift",
+      "new_file": true
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 53267,
+      "sha256": "b3848a6259e57fe1640475a259d3cb742d692b67da1b3f1f3ac20adf099ccdf7",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-setter-publication-implementation/candidate/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "new_file": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoPresentation.swift",
+      "bytes": 25744,
+      "sha256": "8db58fbed574a3ba7dedaea281856d747caf3dccacbec0795db2ec73a49801d9",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-presentation-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoPresentation.swift",
+      "new_file": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoSheet.swift",
+      "bytes": 6068,
+      "sha256": "e813f6bae74b0aff9ef8bc28234a285aab0710513d7b951ca15347ee5a5e9621",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-presentation-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeBookInfoSheet.swift",
+      "new_file": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibrarySelectionBinding.swift",
+      "bytes": 42675,
+      "sha256": "7b55055b317fbca5974b961d897cfc64abca85e38b30ca3444c553440557a60e",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-library-source-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibrarySelectionBinding.swift",
+      "new_file": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryListPublication.swift",
+      "bytes": 10530,
+      "sha256": "64b5b72a90a1e6734cbe5285537d70a9b1bf4121f2c91d06e076d7b8a084e065",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-library-source-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryListPublication.swift",
+      "new_file": false
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryViewController.swift",
+      "bytes": 20663,
+      "sha256": "f5840f2254b9887dc68ec2c053bfd266a027341dae1b0baff48eb80d26005251",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-library-source-implementation/candidate/Source/Features/Library/iOS/iOSLibraryViewController.swift",
+      "new_file": false
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBookInfoIntentService.swift",
+      "bytes": 10282,
+      "sha256": "b04198ddc230f53ec60cac3432f15aae6bb35bb8056864cec28a4899296f3ffe",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-presentation-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBookInfoIntentService.swift",
+      "new_file": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBookInfoIntents.swift",
+      "bytes": 2610,
+      "sha256": "fcba030b5f352ff91069f3252729f8da98e6c101b99975597636a00ec8f55de9",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-presentation-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBookInfoIntents.swift",
+      "new_file": true
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "bytes": 34817,
+      "sha256": "09d8eb175c45167ede93acbd11e4fe1fa2ab182acd93cff0cceec073f316bda4",
+      "source": "/workspace/scratch/c1c70cc48453/bookinfo-presentation-implementation/candidate/Source/UI/iOS/Views/iOSMainView.swift",
+      "new_file": false
+    }
+  ],
+  "metadata_files": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before_bytes": 651692,
+      "before_sha256": "d28844ac06a705e8de87ea75d0e3c336f698977ff29b752c5b528e65cca6140e",
+      "after_bytes": 653486,
+      "after_sha256": "6aa25ecc8e13dc1ef5a46550d6a4eb13b10f66e3aa9e5da7e75ef6b84b62fa38",
+      "exact_inverse": true
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "before_bytes": 408424,
+      "before_sha256": "2e6e0e9a906fb4d8cdc6edcde7703b34c899a250afe0f0e81baff16f51168e6f",
+      "after_bytes": 409279,
+      "after_sha256": "87dd2474745016d38a4aaf303a79bbf134d0e10a1c210de1010d6284414b4153",
+      "exact_inverse": true
+    }
+  ],
+  "limits": [
+    "No Swift typing, owner/service controls, Apple compilation, AppIntents discovery or native acceptance has run for this combined proposal.",
+    "Frozen service cancellation or receipt-shape failure before ValidateCompletion cannot notify this association immediately; weak entry expires and clears on next capture/unmount.",
+    "Synchronous Library coverage inside the original setter before return is refused; real UIKit timing is unrun.",
+    "Presentation acknowledgement does not establish metadata correctness, all segments, accessibility, restoration, production or Release acceptance.",
+    "Original Annotation/Library/Inspector proposals and their capacity-held controls remain separate required prerequisites."
+  ],
+  "native_runs": 0,
+  "compiler_invocations": 0,
+  "remote_source_mutations": 0
+}

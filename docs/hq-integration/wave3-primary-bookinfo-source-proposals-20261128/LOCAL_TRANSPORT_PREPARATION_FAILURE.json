@@ -1,0 +1,11 @@
+{
+  "status": "LOCAL_TOOL_RESULT_PARSE_FAILED_BEFORE_ANY_CHUNK_UPLOAD",
+  "utc": "2026-11-27T23:53:38.841202+00:00",
+  "operation": "Read six1048576-byte local archive chunks through exec_command output, then JSON.parse",
+  "observed_error": "SyntaxError: Bad control character in string literal in JSON at position524288 (line1 column524289)",
+  "source_archive_sha256": "df641fafd9b470eaa22307025fff8599f6c60cc18196c6aed1d900adb43c94eb",
+  "already_created_empty_upload_id": "b2120a85df724bb9ba3dcb0ed3bac8a6",
+  "remote_chunk_uploads": 0,
+  "source_or_archive_changes": false,
+  "next_correction": "Use262144-byte chunks within the observed output boundary; retain same initialized upload session."
+}
