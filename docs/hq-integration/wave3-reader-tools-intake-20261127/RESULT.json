@@ -1,0 +1,204 @@
+{
+  "schema": "otzaria.wave3.reader-tools-intake.v1",
+  "base": "ce4fe5a327168524f6f1fef1e7792a275ece0ebe",
+  "productCommit": "74f8dfd5eeae6291db71aa0b535f03742ac07077",
+  "productFiles": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 644546,
+      "sha256": "34e34dcee566795945a61f4e0ee881c2df3424431afec23345a4d555edfeb368",
+      "beforeSHA256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift",
+      "bytes": 5845,
+      "sha256": "54b3155815d3df7c8886175ad46b44f0f88523e7128c735a8d28cfe6e98b1c4b",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 265535,
+      "sha256": "326e52be2ba28577819ebab557fda886c39a9de95f8aad2010309feb2a89ae61",
+      "beforeSHA256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085",
+      "beforeSHA256": "3932e90ea2ef1e0d042cee70efe00ca891b5e8d1d768ee6339293e9649dee2f5"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 158545,
+      "sha256": "48055b6e6c2b991391332c5534dcfdbe011bfed9d0d4d85a1bdc0b16c6fe16ff",
+      "beforeSHA256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift",
+      "bytes": 17186,
+      "sha256": "09ef279f8be48a2f31bdca1d14c36b2267cbaefd106566ea4e34576e9408b6e7",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift",
+      "bytes": 4649,
+      "sha256": "7f6fdd1b1ec05f5e3fc84ab48303dd5ee6319e329311df3f44ca481bb2a8e786",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "bytes": 401058,
+      "sha256": "da695e62500ccfeec9f397c61569d15b1e4d7cc7f77e11b2b3ef34fe448e7c42",
+      "beforeSHA256": "9fe897f96bec395994c5c8759b5328a2a9eb7d0a9a950e820c299c9e0ad26bf2"
+    }
+  ],
+  "sourceTree": "75a2356fa4b819f3bc79720fe72aadb3aa409b2c",
+  "sharedHunks": 24,
+  "groupSessionHunksPreserved": 13,
+  "commutedSessionJoin": {
+    "groupHunks": 13,
+    "readerToolSessionHunks": 7,
+    "commuteExactly": true,
+    "groupSourceSHA256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16",
+    "combinedBytes": 158545,
+    "combinedSHA256": "48055b6e6c2b991391332c5534dcfdbe011bfed9d0d4d85a1bdc0b16c6fe16ff"
+  },
+  "PBXAndCatalogRegistration": {
+    "schema": "otzaria.wave3.reader-tools-registration.v1",
+    "files": [
+      {
+        "path": "Maktabah.xcodeproj/project.pbxproj",
+        "beforeSHA256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557",
+        "afterSHA256": "34e34dcee566795945a61f4e0ee881c2df3424431afec23345a4d555edfeb368",
+        "afterBytes": 644546,
+        "inverseExact": true
+      },
+      {
+        "path": "Source/Localizable.xcstrings",
+        "beforeSHA256": "9fe897f96bec395994c5c8759b5328a2a9eb7d0a9a950e820c299c9e0ad26bf2",
+        "afterSHA256": "da695e62500ccfeec9f397c61569d15b1e4d7cc7f77e11b2b3ef34fe448e7c42",
+        "afterBytes": 401058,
+        "addedKeys": [
+          "Open commentary at a passage",
+          "Choose a source passage, a commentary book and an existing Maktabah window. Open the original commentary reader in a new tab.",
+          "Commentary book",
+          "Prepare an unsaved note for a selected passage",
+          "Choose the exact passage already selected in the original reader and its Maktabah window. Open an unsaved draft in the original note editor for review.",
+          "Selected passage",
+          "Unsaved note proposal"
+        ],
+        "reusedKeys": [],
+        "inverseExact": true
+      }
+    ],
+    "newAppSource": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift",
+    "target": "Maktabah-iOS",
+    "newPBXObjects": [
+      "6CE1F0B3427A9C3611E2DF3F",
+      "D39C8A156976C56FA1E16C38"
+    ],
+    "projectInsertions": [
+      {
+        "offset": 241701,
+        "text": "\t\tD39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */; };\n"
+      },
+      {
+        "offset": 406507,
+        "text": "\t\t6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift\"; sourceTree = \"<group>\"; };\n"
+      },
+      {
+        "offset": 410488,
+        "text": "\t\t\t\t6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */,\n"
+      },
+      {
+        "offset": 551415,
+        "text": "\t\t\t\tD39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */,\n"
+      }
+    ],
+    "SwiftPMAutoSources": [
+      "NativeReaderToolIntentService.swift",
+      "NativeReaderToolIntents.swift"
+    ],
+    "curatedShortcutCount": 10,
+    "curatedShortcutSourceSHA256": "327969eaf71bb33017e1fb0aa46b485e246d2c1a70b5ac6d914ed371f7e45c8c",
+    "originalObjectsOrderingAndCatalogEntriesPreserved": true,
+    "AppIntentsMetadataAndSummaryExtraction": "Requires actual Apple SDK extraction; NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "rawControlFiles": 165,
+  "retainedProductFiles": 23,
+  "rawArchive": {
+    "bytes": 366959,
+    "sha256": "70f2069070a0d38354ed0264e47e6c0d5e9cc2d254ee3e831fa117d9e9420f81"
+  },
+  "sourceEvidence": {
+    "initialService": "30/30 on ec19d433, final UTF8 delta separately verified",
+    "sourceSelection": "20/20 vs18/20",
+    "receiveACK": "10/10 vs2/10",
+    "finalUTF8Service": "6/6 vs4/6"
+  },
+  "newCombinedSessionSyntax": [
+    {
+      "mode": "release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tools-intake-20261127/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "mode": "debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-tools-intake-20261127/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "preservedFailedAttempts": [
+    [
+      "service-attempt1",
+      "Maktabah-wave3-reader-tools-controls-20261127-attempt1",
+      "d4f8657dc9be063ba46fdfd1babd0c983378534e89cbcf8419cd86e49ba7e6ea"
+    ],
+    [
+      "utf8-attempt1",
+      "Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1",
+      "f91b6d843aa9b08601c6c7a3d46b80eb29305bd920dd5349635055af2348d972"
+    ]
+  ],
+  "protectedTrees": {
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Source/Otzaria/Actions": "0c9b1ca50eb9d9583567c4277a3506fe3d4b5679",
+    "Scripts": "3b08c2291bc87d99bca1f6056328bc3362a66a7f",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b"
+  },
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "CoreExecution": "NOT_RUN",
+  "curatedShortcutCount": 10,
+  "open": [
+    "Cold initial-content readonly source fence join",
+    "Original Annotations modal source join",
+    "Precise original Inspector tabs",
+    "Actual App Intents SDK and metadata extraction",
+    "Final Native116/Release114+2/production/owner gates",
+    "Signed production release and physical owner QA"
+  ]
+}

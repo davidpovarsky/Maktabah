@@ -1,0 +1,140 @@
+[
+  {
+    "path": "service-attempt1/output/ChavrusaUIRoutingHost.swiftdoc",
+    "bytes": 8336,
+    "sha256": "6514a4f3f58b4aebad38a94f8a9c9d84f329151f12516bf917452336d9f651c6",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/ChavrusaUIRoutingHost.swiftdoc"
+  },
+  {
+    "path": "service-attempt1/output/ChavrusaUIRoutingHost.swiftmodule",
+    "bytes": 103360,
+    "sha256": "90629189bfa285d5daff5c449d2aa6170d71b3d9de4f588a100d8724a439a16a",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/ChavrusaUIRoutingHost.swiftmodule"
+  },
+  {
+    "path": "service-attempt1/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "bytes": 28352,
+    "sha256": "160f7549c0e80f1e8aa4a47e92e141a8ee3b01205f4852963b0676eebcf77895",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/ChavrusaUIRoutingHost.swiftsourceinfo"
+  },
+  {
+    "path": "service-attempt1/output/OtzariaUIRouting.swiftdoc",
+    "bytes": 23572,
+    "sha256": "b6e5978859ae707698d7f339f9b161371ec50c5415f010215cd874966985325c",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/OtzariaUIRouting.swiftdoc"
+  },
+  {
+    "path": "service-attempt1/output/OtzariaUIRouting.swiftmodule",
+    "bytes": 316884,
+    "sha256": "553f7e984bf83098211a7111e5bbbd0295832aa2b60d03cf02532e9b9832bcea",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/OtzariaUIRouting.swiftmodule"
+  },
+  {
+    "path": "service-attempt1/output/OtzariaUIRouting.swiftsourceinfo",
+    "bytes": 67616,
+    "sha256": "dab90ce260036bb03d68f876a4c506806f8ebc2514b73b33ae88400ee068bede",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/OtzariaUIRouting.swiftsourceinfo"
+  },
+  {
+    "path": "service-attempt1/output/libChavrusaUIRoutingHost.so",
+    "bytes": 625648,
+    "sha256": "f8274f9c220ae5ed8c5222beba083a8a20fae43413ec8a06f8668f87bba35b53",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/libChavrusaUIRoutingHost.so"
+  },
+  {
+    "path": "service-attempt1/output/libOtzariaUIRouting.so",
+    "bytes": 1513360,
+    "sha256": "fd74ebfd367cfcfd56581cf08796d5046942968e6295e64afec7c5b9f28ee2c5",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/libOtzariaUIRouting.so"
+  },
+  {
+    "path": "service-attempt2/output/reader-tool-service-controls",
+    "bytes": 285976,
+    "sha256": "085cd66c6e97125b0ea84ff1915b93b417a76174c52c3b87c983d534dc83699a",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/output/reader-tool-service-controls"
+  },
+  {
+    "path": "source-attempt1/output/candidate",
+    "bytes": 674040,
+    "sha256": "fbad2e1bd79fa3d6858f46cccabed1241c84cae533653b492888625e245cd302",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/candidate"
+  },
+  {
+    "path": "source-attempt1/output/initial",
+    "bytes": 669184,
+    "sha256": "5eb5f0d2ea4df90ddc7457bfddb614f025e2d16bf63367b80b858d80829b6cd8",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/initial"
+  },
+  {
+    "path": "sink-attempt1/output/candidate",
+    "bytes": 344984,
+    "sha256": "78e4c4ce4af2242b0c62f954a8cdc7bd38e028aa63ba0973a83b9450d53c1b1a",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/candidate"
+  },
+  {
+    "path": "sink-attempt1/output/initial",
+    "bytes": 344024,
+    "sha256": "0bf1b946fc807d3e84d4ca29e826d040cbd83512e537637ded2031ba84a59dd8",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/initial"
+  },
+  {
+    "path": "utf8-attempt1/output/initial/ChavrusaUIRoutingHost.swiftdoc",
+    "bytes": 8336,
+    "sha256": "6514a4f3f58b4aebad38a94f8a9c9d84f329151f12516bf917452336d9f651c6",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/ChavrusaUIRoutingHost.swiftdoc"
+  },
+  {
+    "path": "utf8-attempt1/output/initial/ChavrusaUIRoutingHost.swiftmodule",
+    "bytes": 103360,
+    "sha256": "5df33f3452d282df347515572f3066dbc12530038eb4a4e05bf4537f49cac25c",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/ChavrusaUIRoutingHost.swiftmodule"
+  },
+  {
+    "path": "utf8-attempt1/output/initial/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "bytes": 28064,
+    "sha256": "8f7ac38aee51504501b30aff0f91c6d76a917e8b516d752f13c201b67ac71d97",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/ChavrusaUIRoutingHost.swiftsourceinfo"
+  },
+  {
+    "path": "utf8-attempt1/output/initial/libChavrusaUIRoutingHost.so",
+    "bytes": 625616,
+    "sha256": "02b875ae9ba1be3df4239962b3bc2fcda9465e90f2c7afe81762a35a5bc6d2fb",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/libChavrusaUIRoutingHost.so"
+  },
+  {
+    "path": "utf8-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftdoc",
+    "bytes": 8336,
+    "sha256": "6514a4f3f58b4aebad38a94f8a9c9d84f329151f12516bf917452336d9f651c6",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftdoc"
+  },
+  {
+    "path": "utf8-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftmodule",
+    "bytes": 103360,
+    "sha256": "08bcd827e9e1bc927f8e6bacaa0ec6685b7e353da46876dd50ec65c205279873",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftmodule"
+  },
+  {
+    "path": "utf8-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftsourceinfo",
+    "bytes": 28068,
+    "sha256": "256e2a8f80247e02f89ed5396c44b5b45ef0cc0aef801a117c4287b29f0205a2",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftsourceinfo"
+  },
+  {
+    "path": "utf8-attempt2/output/candidate/controls",
+    "bytes": 186904,
+    "sha256": "96015e37085fdb8877d89774b4d6c2e3c81be6db19045c1f46c926b9d9a47b83",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/controls"
+  },
+  {
+    "path": "utf8-attempt2/output/candidate/libChavrusaUIRoutingHost.so",
+    "bytes": 625976,
+    "sha256": "a3040cc5da08b5471b6832e7c7ccf777ce1b44a7aab1d55fad757f59300c4a2b",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/libChavrusaUIRoutingHost.so"
+  },
+  {
+    "path": "utf8-attempt2/output/initial/controls",
+    "bytes": 186904,
+    "sha256": "217a637ce5e09f55e81316f67122c723d80ff19c671c0eb776249912027017d5",
+    "preservedAt": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/initial/controls"
+  }
+]

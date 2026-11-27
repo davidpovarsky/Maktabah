@@ -1,0 +1,1830 @@
+{
+  "service-attempt1": {
+    "AppleSDK": "NOT_RUN",
+    "error": "RuntimeError('compile-service-controls failed, exit 1')",
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 20705280,
+    "status": "FAILED",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-emit-module",
+          "-emit-library",
+          "-module-name",
+          "OtzariaUIRouting",
+          "-emit-module-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/OtzariaUIRouting.swiftmodule",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/libOtzariaUIRouting.so",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/PublicNavigationV2Codec.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteCodec.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/RouteSpec.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/PublicNavigationLocalBinding.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationDescriptor.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDiscoveryCancellationScope.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795800535.9899285,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-actual-ui-routing",
+        "ownedAllocatedBytes": 19918848,
+        "pid": 1520696,
+        "startTicks": "732759878",
+        "startedEpoch": 1795800526.9512498
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-enable-testing",
+          "-emit-module",
+          "-emit-library",
+          "-module-name",
+          "ChavrusaUIRoutingHost",
+          "-emit-module-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/ChavrusaUIRoutingHost.swiftmodule",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/libChavrusaUIRoutingHost.so",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795800539.0051773,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-actual-reader-tool-service",
+        "ownedAllocatedBytes": 20697088,
+        "pid": 1521120,
+        "startTicks": "732760782",
+        "startedEpoch": 1795800535.9926598
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lChavrusaUIRoutingHost",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/inputs/controls/ReaderToolServiceControls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output/reader-tool-service-controls"
+        ],
+        "exit": 1,
+        "finishedEpoch": 1795800539.5134737,
+        "logs": {
+          ".stderr": {
+            "bytes": 1409,
+            "sha256": "cc3c45fc89d5b45ca1b0ed9d36e6e90bfb183e5e7da25ce09695eb7f549ece3a"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-service-controls",
+        "ownedAllocatedBytes": 20705280,
+        "pid": 1521320,
+        "startTicks": "732761083",
+        "startedEpoch": 1795800539.0081415
+      }
+    ],
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 95, in <module>\n  File \"<stdin>\", line 41, in run\nRuntimeError: compile-service-controls failed, exit 1\n"
+  },
+  "service-attempt2": {
+    "AppleSDK": "NOT_RUN",
+    "CoreExecution": "NOT_RUN",
+    "dataFree": 11808063488,
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 18284544,
+    "rootFree": 2327621632,
+    "status": "PASSED_PORTABLE_SERVICE_CONTROLS_AND_APP_SYNTAX_ONLY",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lChavrusaUIRoutingHost",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/inputs/controls/ReaderToolServiceControls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/output/reader-tool-service-controls"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795800787.433864,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-service-controls",
+        "ownedAllocatedBytes": 18280448,
+        "pid": 1533085,
+        "startTicks": "732785575",
+        "startedEpoch": 1795800783.9227378
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/output/reader-tool-service-controls"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795800787.938639,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 2939,
+            "sha256": "7dcfda0e980b8b2ac473d2fb763d8a039c160ead7bc995502774887bd200e2cb"
+          }
+        },
+        "name": "run-service-controls",
+        "ownedAllocatedBytes": 18284544,
+        "pid": 1533234,
+        "startTicks": "732785926",
+        "startedEpoch": 1795800787.4364662
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795800788.4437468,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-apple-integration-only",
+        "ownedAllocatedBytes": 18284544,
+        "pid": 1533239,
+        "startTicks": "732785977",
+        "startedEpoch": 1795800787.9413548
+      }
+    ],
+    "verdict": {
+      "AppleSDK": "NOT_RUN",
+      "CoreExecution": "NOT_RUN",
+      "cases": [
+        {
+          "name": "explicit otzaria commentary over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "explicit otzaria draft over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "explicit sefaria commentary over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "explicit sefaria draft over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "explicit sefariaEmbedded commentary over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "explicit sefariaEmbedded draft over original entity codec and resolution",
+          "pass": true
+        },
+        {
+          "name": "original optional draft proposal preserved: nil",
+          "pass": true
+        },
+        {
+          "name": "original optional draft proposal preserved: Optional(\"\")",
+          "pass": true
+        },
+        {
+          "name": "original optional draft proposal preserved: Optional(\" \")",
+          "pass": true
+        },
+        {
+          "name": "original optional draft proposal preserved: Optional(\"הצעה 🕎\\noriginal\")",
+          "pass": true
+        },
+        {
+          "name": "cached source metadata must re-resolve exactly: missing-commentary",
+          "pass": true
+        },
+        {
+          "name": "cached source metadata must re-resolve exactly: replaced-commentary",
+          "pass": true
+        },
+        {
+          "name": "cached source metadata must re-resolve exactly: replaced-location",
+          "pass": true
+        },
+        {
+          "name": "source retained before first catalog call and revoked during metadata",
+          "pass": true
+        },
+        {
+          "name": "generation changes during metadata refuse before native",
+          "pass": true
+        },
+        {
+          "name": "original metadata and native effects share decreasing remaining budget",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: foreign-focus",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: foreign-scene",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: changed-proposal",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: saved-note",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: missing-native",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: core-refusal",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: throw-after-effect",
+          "pass": true
+        },
+        {
+          "name": "partial or unqualified actual execution retained: released-during-effect",
+          "pass": true
+        },
+        {
+          "name": "source lease rejects nested execution and remains consumed after return",
+          "pass": true
+        },
+        {
+          "name": "late deadline refuses with original effect preserved",
+          "pass": true
+        },
+        {
+          "name": "late generation refuses with original effect preserved",
+          "pass": true
+        },
+        {
+          "name": "malformed identity backend mismatch proposal bound and overflow precede source capture",
+          "pass": true
+        },
+        {
+          "name": "real task cancellation precedes source capture",
+          "pass": true
+        },
+        {
+          "name": "original combined intent still rejects incomplete commentary draft",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "nativeRuns": 0,
+      "passed": 30,
+      "scope": "Actual new ReaderTool and unchanged original Reader services; real Core/UIRouting value contracts; explicit app source, metadata, clock and native effect boundaries"
+    }
+  },
+  "source-attempt1": {
+    "AppleSDK": "NOT_RUN",
+    "CoreExecution": "NOT_RUN",
+    "candidate": {
+      "AppleSDK": "NOT_RUN",
+      "CoreExecution": "NOT_RUN",
+      "cases": [
+        {
+          "name": "original source capture makes no Annotation or selection effect",
+          "pass": true
+        },
+        {
+          "name": "background source can be retained but original visible draft gate remains",
+          "pass": true
+        },
+        {
+          "name": "one original factory and original unsaved editor after source handoff",
+          "pass": true
+        },
+        {
+          "name": "selected paragraph ABA remains retired through original draft validation",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after text ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after destination ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after range ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after loading ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after backend ABA",
+          "pass": true
+        },
+        {
+          "name": "retained source is tied to original full record and owner Reader",
+          "pass": true
+        },
+        {
+          "name": "original editor equal setter publication invalidates captured metadata",
+          "pass": true
+        },
+        {
+          "name": "idle same-owner registration does not invent a publication",
+          "pass": true
+        },
+        {
+          "name": "detach and same-reader reattach cannot renew original editor source",
+          "pass": true
+        },
+        {
+          "name": "editor publication overflow retires retained and future source",
+          "pass": true
+        },
+        {
+          "name": "original source window boundary remains retained across awaits",
+          "pass": true
+        },
+        {
+          "name": "reentrant source read cannot steal the current handoff",
+          "pass": true
+        },
+        {
+          "name": "a failed source check permanently retires the same capsule",
+          "pass": true
+        },
+        {
+          "name": "release inside original read cannot be overwritten",
+          "pass": true
+        },
+        {
+          "name": "different Core request and renewed deadline cannot claim source",
+          "pass": true
+        },
+        {
+          "name": "real task cancellation prevents original handoff",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "nativeRuns": 0,
+      "passed": 20,
+      "scope": "Actual original Inspector/editor/selection and new tool source/Session bodies; original identity values and portable observation; explicit domain/renderer/window/SwiftUI/Combine boundaries"
+    },
+    "dataFree": 11161477120,
+    "expectedCounterexamples": [
+      "reentrant source read cannot steal the current handoff",
+      "a failed source check permanently retires the same capsule"
+    ],
+    "initial": {
+      "AppleSDK": "NOT_RUN",
+      "CoreExecution": "NOT_RUN",
+      "cases": [
+        {
+          "name": "original source capture makes no Annotation or selection effect",
+          "pass": true
+        },
+        {
+          "name": "background source can be retained but original visible draft gate remains",
+          "pass": true
+        },
+        {
+          "name": "one original factory and original unsaved editor after source handoff",
+          "pass": true
+        },
+        {
+          "name": "selected paragraph ABA remains retired through original draft validation",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after text ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after destination ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after range ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after loading ABA",
+          "pass": true
+        },
+        {
+          "name": "original selection source cannot revive after backend ABA",
+          "pass": true
+        },
+        {
+          "name": "retained source is tied to original full record and owner Reader",
+          "pass": true
+        },
+        {
+          "name": "original editor equal setter publication invalidates captured metadata",
+          "pass": true
+        },
+        {
+          "name": "idle same-owner registration does not invent a publication",
+          "pass": true
+        },
+        {
+          "name": "detach and same-reader reattach cannot renew original editor source",
+          "pass": true
+        },
+        {
+          "name": "editor publication overflow retires retained and future source",
+          "pass": true
+        },
+        {
+          "name": "original source window boundary remains retained across awaits",
+          "pass": true
+        },
+        {
+          "error": "UIRouteError(status: OtzariaActionCore.ActionStatus.staleState, code: \"reader_tool_original_source_retired\")",
+          "name": "reentrant source read cannot steal the current handoff",
+          "pass": false
+        },
+        {
+          "error": "SourceCheckFailure(message: \"expected refusal\")",
+          "name": "a failed source check permanently retires the same capsule",
+          "pass": false
+        },
+        {
+          "name": "release inside original read cannot be overwritten",
+          "pass": true
+        },
+        {
+          "name": "different Core request and renewed deadline cannot claim source",
+          "pass": true
+        },
+        {
+          "name": "real task cancellation prevents original handoff",
+          "pass": true
+        }
+      ],
+      "failed": 2,
+      "nativeRuns": 0,
+      "passed": 18,
+      "scope": "Actual original Inspector/editor/selection and new tool source/Session bodies; original identity values and portable observation; explicit domain/renderer/window/SwiftUI/Combine boundaries"
+    },
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 19746816,
+    "rootFree": 2320130048,
+    "status": "PASSED_ACTUAL_SOURCE_WITH_DECLARED_BOUNDARIES_AND_APP_SYNTAX_ONLY",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lOtzariaUIRouting",
+          "-lChavrusaUIRoutingHost",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ReaderToolSourceControls.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualInspectorBinding.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualReaderTextMode.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualActionAppIdentityBridge.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualOtzariaLineAnchor.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualNoteDraftPreparation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualNoteEditorOwner.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualBackendPublicationObservation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ExplicitSourceBoundary.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualLibraryIdentityTypes.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/initial-ReaderToolSource.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/initial"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802311.6565373,
+        "logs": {
+          ".stderr": {
+            "bytes": 4652,
+            "sha256": "cb8ae2b2529d8fe72f0789e9caf2d9ef65ed19a3e60ba85c175e553c3ef15c46"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-initial",
+        "pid": 1603581,
+        "startTicks": "732937647",
+        "startedEpoch": 1795802304.6407387
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/initial"
+        ],
+        "exit": 1,
+        "finishedEpoch": 1795802312.1594548,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 2183,
+            "sha256": "a1fc4e60616c4386da0e1e6d6ff283aed5daf749cef2384d2496cabeccd64383"
+          }
+        },
+        "name": "run-initial",
+        "pid": 1603922,
+        "startTicks": "732938348",
+        "startedEpoch": 1795802311.6579003
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "-lOtzariaUIRouting",
+          "-lChavrusaUIRoutingHost",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-controls-20261127-attempt1/output",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ReaderToolSourceControls.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualInspectorBinding.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualReaderTextMode.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualActionAppIdentityBridge.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualOtzariaLineAnchor.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualNoteDraftPreparation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualNoteEditorOwner.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualBackendPublicationObservation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ExplicitSourceBoundary.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/ActualLibraryIdentityTypes.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/source-inputs/candidate-ReaderToolSource.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/candidate"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802317.1742651,
+        "logs": {
+          ".stderr": {
+            "bytes": 4652,
+            "sha256": "cb8ae2b2529d8fe72f0789e9caf2d9ef65ed19a3e60ba85c175e553c3ef15c46"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-candidate",
+        "pid": 1603948,
+        "startTicks": "732938399",
+        "startedEpoch": 1795802312.1611316
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/output/candidate"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802317.6776035,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 2000,
+            "sha256": "5f2627ced522476e299af7b72b18e8c802cce4424cc9ef556554fc878bbdd908"
+          }
+        },
+        "name": "run-candidate",
+        "pid": 1604245,
+        "startTicks": "732938900",
+        "startedEpoch": 1795802317.175915
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802318.181169,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-0",
+        "pid": 1604250,
+        "startTicks": "732938951",
+        "startedEpoch": 1795802317.6794448
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802318.6847892,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-1",
+        "pid": 1604254,
+        "startTicks": "732939001",
+        "startedEpoch": 1795802318.1829133
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802319.1884375,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-2",
+        "pid": 1604256,
+        "startTicks": "732939051",
+        "startedEpoch": 1795802318.6864927
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802319.6919036,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-3",
+        "pid": 1604259,
+        "startTicks": "732939102",
+        "startedEpoch": 1795802319.1901898
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802320.1954901,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-4",
+        "pid": 1604320,
+        "startTicks": "732939152",
+        "startedEpoch": 1795802319.6937916
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802320.6991374,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-release-5",
+        "pid": 1604342,
+        "startTicks": "732939202",
+        "startedEpoch": 1795802320.1974208
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802321.2039123,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-0",
+        "pid": 1604383,
+        "startTicks": "732939253",
+        "startedEpoch": 1795802320.7011893
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802321.707721,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-1",
+        "pid": 1604395,
+        "startTicks": "732939303",
+        "startedEpoch": 1795802321.2059317
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802322.2121923,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-2",
+        "pid": 1604521,
+        "startTicks": "732939354",
+        "startedEpoch": 1795802321.7096488
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802322.716209,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-3",
+        "pid": 1604572,
+        "startTicks": "732939404",
+        "startedEpoch": 1795802322.2142575
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802323.2202024,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-4",
+        "pid": 1604577,
+        "startTicks": "732939454",
+        "startedEpoch": 1795802322.7183259
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-source-controls-20261127-attempt1/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795802323.724751,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "parse-debug-5",
+        "pid": 1604579,
+        "startTicks": "732939505",
+        "startedEpoch": 1795802323.2223957
+      }
+    ]
+  },
+  "sink-attempt1": {
+    "AppleSDK": "NOT_RUN",
+    "CoreExecution": "NOT_RUN",
+    "candidate": {
+      "cases": [
+        {
+          "name": "note-success",
+          "pass": true
+        },
+        {
+          "name": "note-late-source",
+          "pass": true
+        },
+        {
+          "name": "note-late-cancel",
+          "pass": true
+        },
+        {
+          "name": "note-wrong-ack",
+          "pass": true
+        },
+        {
+          "name": "note-retired-in-effect",
+          "pass": true
+        },
+        {
+          "name": "note-replaced-in-effect",
+          "pass": true
+        },
+        {
+          "name": "note-no-native",
+          "pass": true
+        },
+        {
+          "name": "note-stale-before-effect",
+          "pass": true
+        },
+        {
+          "name": "reader-success",
+          "pass": true
+        },
+        {
+          "name": "reader-missing-core",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "passed": 10,
+      "scope": "Actual production receive bodies and receipt values; explicit directory/command/native/source-observation boundaries. No Core execution, Apple SDK, or native acceptance."
+    },
+    "dataFree": 8339312640,
+    "expectedCounterexamples": [
+      "note-late-source",
+      "note-late-cancel",
+      "note-wrong-ack",
+      "note-retired-in-effect",
+      "note-replaced-in-effect",
+      "reader-missing-core"
+    ],
+    "initial": {
+      "cases": [
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-success",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-late-source",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-late-cancel",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-wrong-ack",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-retired-in-effect",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual ACK retained before all final source/identity checks\")",
+          "name": "note-replaced-in-effect",
+          "pass": false
+        },
+        {
+          "name": "note-no-native",
+          "pass": true
+        },
+        {
+          "name": "note-stale-before-effect",
+          "pass": true
+        },
+        {
+          "error": "SinkFailure(message: \"actual Reader and Commentary ACK evidence survives qualification\")",
+          "name": "reader-success",
+          "pass": false
+        },
+        {
+          "error": "SinkFailure(message: \"actual Reader and Commentary ACK evidence survives qualification\")",
+          "name": "reader-missing-core",
+          "pass": false
+        }
+      ],
+      "failed": 8,
+      "passed": 2,
+      "scope": "Actual production receive bodies and receipt values; explicit directory/command/native/source-observation boundaries. No Core execution, Apple SDK, or native acceptance."
+    },
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 18792448,
+    "rootFree": 2556239872,
+    "status": "PASS_ACTUAL_RECEIVE_SOURCE_WITH_DECLARED_BOUNDARIES",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/inputs/initial-ActualReceiveControls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/initial"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803393.884333,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-initial",
+        "pid": 1658142,
+        "startTicks": "733045915",
+        "startedEpoch": 1795803387.3245769
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/initial"
+        ],
+        "exit": 1,
+        "finishedEpoch": 1795803394.389016,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 1423,
+            "sha256": "72b62e3ee9872ebcb3b079686f6f58c77f427deb2bd4a05f85fe979a79fe85ac"
+          }
+        },
+        "name": "run-initial",
+        "pid": 1658698,
+        "startTicks": "733046571",
+        "startedEpoch": 1795803393.8852808
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/inputs/candidate-ActualReceiveControls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/candidate"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803396.4052365,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-candidate",
+        "pid": 1658715,
+        "startTicks": "733046622",
+        "startedEpoch": 1795803394.3938904
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/output/candidate"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803396.913469,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 632,
+            "sha256": "b1fd4d415f5bf827c81e67d12bd8e10161228d8d8ae144d540ffd6ea168a8689"
+          }
+        },
+        "name": "run-candidate",
+        "pid": 1658823,
+        "startTicks": "733046823",
+        "startedEpoch": 1795803396.4090288
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/inputs/MaktabahNativeRoutingComposition.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803397.4173725,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "full-composition-parse-release",
+        "pid": 1658853,
+        "startTicks": "733046874",
+        "startedEpoch": 1795803396.9155376
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-frontend",
+          "-parse",
+          "-target",
+          "arm64-apple-ios27.0-simulator",
+          "-D",
+          "DEBUG",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-sink-controls-20261127-attempt1/inputs/MaktabahNativeRoutingComposition.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803397.9225104,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "full-composition-parse-debug",
+        "pid": 1658868,
+        "startTicks": "733046925",
+        "startedEpoch": 1795803397.4195879
+      }
+    ]
+  },
+  "utf8-attempt1": {
+    "AppleSDK": "NOT_RUN",
+    "error": "RuntimeError('compile-controls-initial failed, exit 1')",
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 18661376,
+    "status": "FAILED",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-enable-testing",
+          "-emit-module",
+          "-emit-library",
+          "-module-name",
+          "ChavrusaUIRoutingHost",
+          "-emit-module-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/ChavrusaUIRoutingHost.swiftmodule",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/libChavrusaUIRoutingHost.so",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/NativeIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/NativeIntentOutcome.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/NativeComponentSourceObservation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/NativeReaderIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/initial-NativeReaderToolIntentService.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803620.2921174,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-service-initial",
+        "pid": 1669572,
+        "startTicks": "733068060",
+        "startedEpoch": 1795803608.773004
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "-lChavrusaUIRoutingHost",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/inputs/ReaderToolUTF8Controls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial/controls"
+        ],
+        "exit": 1,
+        "finishedEpoch": 1795803620.794483,
+        "logs": {
+          ".stderr": {
+            "bytes": 3948,
+            "sha256": "fb21539b9059f72daee0350e3c83b0bc55febf905dd6b2a003611b4cae64f7c4"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-controls-initial",
+        "pid": 1670343,
+        "startTicks": "733069212",
+        "startedEpoch": 1795803620.2931957
+      }
+    ],
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 77, in <module>\n  File \"<stdin>\", line 34, in run\nRuntimeError: compile-controls-initial failed, exit 1\n"
+  },
+  "utf8-attempt2": {
+    "AppleSDK": "NOT_RUN",
+    "CoreExecution": "NOT_RUN",
+    "candidate": {
+      "cases": [
+        {
+          "name": "UTF8-0-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-1-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-2-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-3-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-4-composed-rewrite",
+          "pass": true
+        },
+        {
+          "name": "UTF8-5-decomposed-rewrite",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "passed": 6,
+      "scope": "Actual full service and original Core text equality; metadata/native/time boundaries, no Core execution or SDK/native claim."
+    },
+    "dataFree": 10021015552,
+    "initial": {
+      "cases": [
+        {
+          "name": "UTF8-0-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-1-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-2-ok",
+          "pass": true
+        },
+        {
+          "name": "UTF8-3-ok",
+          "pass": true
+        },
+        {
+          "error": "CheckFailure(message: \"canonical-equivalent different bytes must not qualify\")",
+          "name": "UTF8-4-composed-rewrite",
+          "pass": false
+        },
+        {
+          "error": "CheckFailure(message: \"canonical-equivalent different bytes must not qualify\")",
+          "name": "UTF8-5-decomposed-rewrite",
+          "pass": false
+        }
+      ],
+      "failed": 2,
+      "passed": 4,
+      "scope": "Actual full service and original Core text equality; metadata/native/time boundaries, no Core execution or SDK/native claim."
+    },
+    "nativeRuns": 0,
+    "ownedAllocatedBytes": 19050496,
+    "rootFree": 2552983552,
+    "status": "PASS_ACTUAL_SERVICE_UTF8_PROPOSAL_WITH_DECLARED_BOUNDARIES",
+    "steps": [
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt1/output/initial",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lChavrusaUIRoutingHost",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/ReaderToolUTF8Controls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/initial/controls"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803749.4519095,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-controls-initial",
+        "pid": 1676297,
+        "startTicks": "733081827",
+        "startedEpoch": 1795803746.4471655
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/initial/controls"
+        ],
+        "exit": 1,
+        "finishedEpoch": 1795803749.9543378,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 584,
+            "sha256": "e24ad8d3ef0873b8a8bd0c6e31c59fe4896ae18b981f6ec55e4ff72e07bc7b14"
+          }
+        },
+        "name": "run-initial",
+        "pid": 1676402,
+        "startTicks": "733082128",
+        "startedEpoch": 1795803749.453069
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-enable-testing",
+          "-emit-module",
+          "-emit-library",
+          "-module-name",
+          "ChavrusaUIRoutingHost",
+          "-emit-module-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/ChavrusaUIRoutingHost.swiftmodule",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/libChavrusaUIRoutingHost.so",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/NativeIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/NativeIntentOutcome.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/NativeComponentSourceObservation.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/NativeReaderIntentService.swift",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/candidate-NativeReaderToolIntentService.swift"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803752.9620893,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-service-candidate",
+        "pid": 1676426,
+        "startTicks": "733082178",
+        "startedEpoch": 1795803749.9562535
+      },
+      {
+        "argv": [
+          "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+          "-I",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate",
+          "-L",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/module-cache",
+          "-I",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-L",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-lOtzariaActionCore",
+          "-I",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-L",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lOtzariaUIRouting",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+          "-Xlinker",
+          "-rpath",
+          "-Xlinker",
+          "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/group-parent-portable-attempt-2/output",
+          "-lChavrusaUIRoutingHost",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/inputs/ReaderToolUTF8Controls.swift",
+          "-o",
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/controls"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803753.9665384,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "name": "compile-controls-candidate",
+        "pid": 1676626,
+        "startTicks": "733082479",
+        "startedEpoch": 1795803752.9639637
+      },
+      {
+        "argv": [
+          "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tools-utf8-controls-20261127-attempt2/output/candidate/controls"
+        ],
+        "exit": 0,
+        "finishedEpoch": 1795803754.4699242,
+        "logs": {
+          ".stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          ".stdout": {
+            "bytes": 400,
+            "sha256": "d547cc9288dcdd1e4b35fc8c3b600114de19f3e4ea2b20a303732e5b28085776"
+          }
+        },
+        "name": "run-candidate",
+        "pid": 1676664,
+        "startTicks": "733082579",
+        "startedEpoch": 1795803753.9684935
+      }
+    ]
+  }
+}

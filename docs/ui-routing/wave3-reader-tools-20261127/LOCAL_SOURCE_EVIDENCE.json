@@ -1,0 +1,290 @@
+[
+  {
+    "path": "BINDING_INPUTS.json.gz",
+    "bytes": 236,
+    "sha256": "8082fdd0e5cf10ab0f43ee8bb8de307ab30b372f72555bfcb704bdf71d085cf0",
+    "uncompressedPath": "BINDING_INPUTS.json",
+    "uncompressedBytes": 288,
+    "uncompressedSHA256": "39c07480d482acfc2ccc961e554b8f49c9bf43fa81ca3c03aa38bd1e4fbad83d"
+  },
+  {
+    "path": "REGISTRATION.json.gz",
+    "bytes": 1131,
+    "sha256": "092aa29e911822966052394049b83a675d5fbf86cb34beffe0505443cc654cac",
+    "uncompressedPath": "REGISTRATION.json",
+    "uncompressedBytes": 2691,
+    "uncompressedSHA256": "5e5232812046c5ba9b758864f11fb65a6bb2dcacf48a3d2803d63ecdcdaafee9"
+  },
+  {
+    "path": "ReaderToolComposition.swiftfrag.gz",
+    "bytes": 2331,
+    "sha256": "32a4b0f4dad0adcaabf310a208f00a02af86d34d0b5d62ad1142edd0c955cbd3",
+    "uncompressedPath": "ReaderToolComposition.swiftfrag",
+    "uncompressedBytes": 9866,
+    "uncompressedSHA256": "11f6b8fd85e0bedc9169724dbfa3105a79595512e93b52040455548b21633d32"
+  },
+  {
+    "path": "SESSION_GROUP_JOIN.json.gz",
+    "bytes": 218,
+    "sha256": "c63177ee75aea3e2d8fb2d265a951e3ce0947f0f8af49d45616cb4314b0a84a3",
+    "uncompressedPath": "SESSION_GROUP_JOIN.json",
+    "uncompressedBytes": 286,
+    "uncompressedSHA256": "e3f93e5a9dfad1b960460783830eb2a7a0d6d7a2ce22a0099f7bf3e440b2791f"
+  },
+  {
+    "path": "SHARED_EDITS.json.gz",
+    "bytes": 5135,
+    "sha256": "ad044fbe86d151d1a477056741db51c46c9e2f7a21756d484b3b6ed314f1f13e",
+    "uncompressedPath": "SHARED_EDITS.json",
+    "uncompressedBytes": 30073,
+    "uncompressedSHA256": "2a8b829c7534da16f2ba08fd901542c47cd62aa8ed38b4e5973611dd3971eaaf"
+  },
+  {
+    "path": "SOURCE_INPUTS.json.gz",
+    "bytes": 221,
+    "sha256": "3bc038ad70725f68f49401e75b7c015bd890aa0e0b54b601fe659402b99e5b99",
+    "uncompressedPath": "SOURCE_INPUTS.json",
+    "uncompressedBytes": 267,
+    "uncompressedSHA256": "a0e09040fddf5c5aba921e4dd8aa15164e60683b9433f37a8455102e27753f60"
+  },
+  {
+    "path": "UTF8_PROPOSAL_EDIT.json.gz",
+    "bytes": 365,
+    "sha256": "ba2645671ac1c7cf2080a3aca7e08d00177641d3e1874d9a608b55da7ca0c2dc",
+    "uncompressedPath": "UTF8_PROPOSAL_EDIT.json",
+    "uncompressedBytes": 722,
+    "uncompressedSHA256": "975de8955264fda32c6168017d374b8baf12e68ad68d9fad469e2dedba23891c"
+  },
+  {
+    "path": "controls/ReaderToolServiceControls.swift.gz",
+    "bytes": 4550,
+    "sha256": "58def364c96aca571ef343d522e2c2d2027a7dfa377d80e46200fa4ec6163886",
+    "uncompressedPath": "controls/ReaderToolServiceControls.swift",
+    "uncompressedBytes": 17000,
+    "uncompressedSHA256": "7bfc09edb113c9dde1c8164521776a53aa418ed24535141150949824eb1e9e0c"
+  },
+  {
+    "path": "controls/ReaderToolSinkBoundary.swift.gz",
+    "bytes": 3072,
+    "sha256": "59702f4109ad9dcd941d1a64d066272d251c3fa782eb0320af9d5e933a8663af",
+    "uncompressedPath": "controls/ReaderToolSinkBoundary.swift",
+    "uncompressedBytes": 10385,
+    "uncompressedSHA256": "0015fc375fd0da56ada3170ad87c07aaaff55622cb0d736c6009450ad5289745"
+  },
+  {
+    "path": "controls/ReaderToolSourceBoundary.swift.gz",
+    "bytes": 3241,
+    "sha256": "dc29908b30a20b7c6817ec9addd6d967c3f9ce6fd655a0e5b0a70be54edd5579",
+    "uncompressedPath": "controls/ReaderToolSourceBoundary.swift",
+    "uncompressedBytes": 9979,
+    "uncompressedSHA256": "c232677777927f4d0dad8e21f36409934da7f8fdd6be874d466a79186ff9f885"
+  },
+  {
+    "path": "controls/ReaderToolSourceControls.swift.gz",
+    "bytes": 2591,
+    "sha256": "70fc22545366409e6a6edadd9fcd8939286bdc60d2c706b1ded892102a54a721",
+    "uncompressedPath": "controls/ReaderToolSourceControls.swift",
+    "uncompressedBytes": 11956,
+    "uncompressedSHA256": "8469b912462477416fcd5adba3a97b6cdb5fa8c3c67d3aa76a29b7e584f5a614"
+  },
+  {
+    "path": "controls/ReaderToolUTF8Controls.swift.gz",
+    "bytes": 3464,
+    "sha256": "4828f5626db2432ff0a1e937310fbe2aee1ce4197b6023235e553bf24e391866",
+    "uncompressedPath": "controls/ReaderToolUTF8Controls.swift",
+    "uncompressedBytes": 11060,
+    "uncompressedSHA256": "66c930ec935c8bd0f18b50fabb0f88bc3f048e0b0fa6e9de468e047f8b07783b"
+  },
+  {
+    "path": "controls/SINK_EXTRACT.json.gz",
+    "bytes": 685,
+    "sha256": "7e517dd62f767d4b092f017dfa00233d69b84122beff22d73f7aefca1a399f4c",
+    "uncompressedPath": "controls/SINK_EXTRACT.json",
+    "uncompressedBytes": 1356,
+    "uncompressedSHA256": "34b9c6982f157422cb7be75b75e025cdd253db6445aacf2636c5d1f76897a232"
+  },
+  {
+    "path": "controls/SOURCE_EXTRACT.json.gz",
+    "bytes": 1692,
+    "sha256": "2aa65c1fa1b8f6198401134d4f228989bd67c5b300e0b072d84d89b834f91a85",
+    "uncompressedPath": "controls/SOURCE_EXTRACT.json",
+    "uncompressedBytes": 5206,
+    "uncompressedSHA256": "de6f9bb02f2742305d75b84f07f3dff1c0ed631b5a3833e51de5abed2e81a283"
+  },
+  {
+    "path": "controls/attempt1_launch.py.gz",
+    "bytes": 18469,
+    "sha256": "81cabad4c318e52d4181565ee49c0d9527f3de6da528dfb612d0f5c614a97617",
+    "uncompressedPath": "controls/attempt1_launch.py",
+    "uncompressedBytes": 27768,
+    "uncompressedSHA256": "c2481a353172938cd223dc4cb2dbdc1c2620c8ef4bc3da18fc123fedc3336841"
+  },
+  {
+    "path": "controls/attempt1_runner.py.gz",
+    "bytes": 18369,
+    "sha256": "fbb40dbc47bc3c01631ce5d169f9de661ef97aa501820f90446c0acf45b7669b",
+    "uncompressedPath": "controls/attempt1_runner.py",
+    "uncompressedBytes": 27516,
+    "uncompressedSHA256": "e422fe784d3dadf4b12ba43c71831922714d4eaae349d54643dccefe5f56cb23"
+  },
+  {
+    "path": "controls/attempt2_launch.py.gz",
+    "bytes": 18780,
+    "sha256": "585bc1d9b1342bbb2c8d04beff9eee1feced103a5ac752c820abd04b14223dd2",
+    "uncompressedPath": "controls/attempt2_launch.py",
+    "uncompressedBytes": 28529,
+    "uncompressedSHA256": "de525ff0adf1878e664c381d9701f41ca8b2cba62f101d5b5b77015baa1b82c2"
+  },
+  {
+    "path": "controls/attempt2_runner.py.gz",
+    "bytes": 18679,
+    "sha256": "14a0e0ba100e7aba57e73bec36a3b640041592c0efd517aa1ca81b8f235cc9ce",
+    "uncompressedPath": "controls/attempt2_runner.py",
+    "uncompressedBytes": 28268,
+    "uncompressedSHA256": "58651a93a5d6fa77c3d0fc842e1020ad90f45a778a1422a770420e1f5c274b08"
+  },
+  {
+    "path": "controls/preserved-initial/MaktabahNativeReaderToolSource.swift.gz",
+    "bytes": 1539,
+    "sha256": "1e9ca0eebb49ec7af26825f05076a36a7d0831b17334d76001a2e5ddc0e63e82",
+    "uncompressedPath": "controls/preserved-initial/MaktabahNativeReaderToolSource.swift",
+    "uncompressedBytes": 5351,
+    "uncompressedSHA256": "95e79dab81bf59c7dcf1cbe2b4a81d351ee66c887d162e3046e60203e767cc51"
+  },
+  {
+    "path": "controls/preserved-pre-observed-ack-capture/MaktabahNativeRoutingComposition.swift.gz",
+    "bytes": 45467,
+    "sha256": "04242eb94681264ff80e3ac0fb243bb8edbaa2cd0f549a5bd2c82c4743aefacf",
+    "uncompressedPath": "controls/preserved-pre-observed-ack-capture/MaktabahNativeRoutingComposition.swift",
+    "uncompressedBytes": 264752,
+    "uncompressedSHA256": "2e2b532f7c961396916657aec07e166016ec74a0fde9ade89bf226e8f13b4015"
+  },
+  {
+    "path": "controls/preserved-pre-observed-ack-capture/prepare_composition_draft.py.gz",
+    "bytes": 1680,
+    "sha256": "cc7ffa42aaa25816468c8b8720a954af6c1fa56040e319536fea385676748585",
+    "uncompressedPath": "controls/preserved-pre-observed-ack-capture/prepare_composition_draft.py",
+    "uncompressedBytes": 5995,
+    "uncompressedSHA256": "1f5338d74099a27c11ebfb2c4d9034dd5c9bc65767fef4367b9a143a9352327f"
+  },
+  {
+    "path": "controls/preserved-pre-utf8-proposal/NativeReaderToolIntentService.swift.gz",
+    "bytes": 3971,
+    "sha256": "4c224254c471f706f834aaa0cb645a5ed3debc5797140046a95d35f7cb3822b9",
+    "uncompressedPath": "controls/preserved-pre-utf8-proposal/NativeReaderToolIntentService.swift",
+    "uncompressedBytes": 16958,
+    "uncompressedSHA256": "ec19d433b608be05738a01c7ee2759f7483c1a0a1efe68d6807cc1fc661ab5f8"
+  },
+  {
+    "path": "controls/sink_attempt1_runner.py.gz",
+    "bytes": 88528,
+    "sha256": "23c3cc189cd0efba073bd4acb52038d42db9702eaaa41dd5d9b6f6933807fc85",
+    "uncompressedPath": "controls/sink_attempt1_runner.py",
+    "uncompressedBytes": 119026,
+    "uncompressedSHA256": "1e658864418b8977858d0aabaac996d55338b9c6a37f75bf2aeb674192345db5"
+  },
+  {
+    "path": "controls/sink_runner_template.py.gz",
+    "bytes": 3130,
+    "sha256": "f1ed559d4666ca23257f1d1763b5f59966201d5fab3a4a783d1da8a5325d2a7b",
+    "uncompressedPath": "controls/sink_runner_template.py",
+    "uncompressedBytes": 6552,
+    "uncompressedSHA256": "3e3352e4a16d3ffc57b8105295db0d9540d243f283856e9861b7a5a5edac4f30"
+  },
+  {
+    "path": "controls/source_attempt1_launch.py.gz",
+    "bytes": 163763,
+    "sha256": "a23886937496672c63abdaff29d448063b6a6a65349e3b279822d6eceeba5429",
+    "uncompressedPath": "controls/source_attempt1_launch.py",
+    "uncompressedBytes": 219093,
+    "uncompressedSHA256": "c7de07c9c02eb8b112425d9592a892c8f7eb65e492cbd48b22ea27bde6a2f59c"
+  },
+  {
+    "path": "controls/source_attempt1_runner.py.gz",
+    "bytes": 163656,
+    "sha256": "1794d6d27fa71bab59722f4c8fd5ba19d35d2e636b9f374745b204d660a20e0f",
+    "uncompressedPath": "controls/source_attempt1_runner.py",
+    "uncompressedBytes": 218855,
+    "uncompressedSHA256": "60fa045b7c6e2acb0385e0feb17934e957cf98b00ce7c52600be90ae1cdb3f70"
+  },
+  {
+    "path": "controls/source_runner_template.py.gz",
+    "bytes": 3235,
+    "sha256": "45349c3c8722a1a805384a88d928a23f991ee096fc679a27a2228c1295b7b6e1",
+    "uncompressedPath": "controls/source_runner_template.py",
+    "uncompressedBytes": 7213,
+    "uncompressedSHA256": "8397d73fb89018be10b3a0721337aaeb68dc6fee26d794faaf3a5a06675832d9"
+  },
+  {
+    "path": "controls/utf8_attempt1_runner.py.gz",
+    "bytes": 15334,
+    "sha256": "bb0889065b9ee36d6b5a1e10c2d763c0444a820171fbf21824424c3976b7e564",
+    "uncompressedPath": "controls/utf8_attempt1_runner.py",
+    "uncompressedBytes": 23084,
+    "uncompressedSHA256": "4aeb8bd923cf70c15635435323a8e1aa0e35e612fd5fc4a971bce88a199d764d"
+  },
+  {
+    "path": "controls/utf8_attempt2_runner.py.gz",
+    "bytes": 15695,
+    "sha256": "cd118107dbf28ab99abc11255415555c82925922b16c27663a7de57f4cd6b22e",
+    "uncompressedPath": "controls/utf8_attempt2_runner.py",
+    "uncompressedBytes": 24189,
+    "uncompressedSHA256": "60a5a5675504324d8356c88b8fd431eec08958144a0ff74bc697efc5266d3c80"
+  },
+  {
+    "path": "controls/utf8_runner_attempt2_template.py.gz",
+    "bytes": 3539,
+    "sha256": "10ba7adde888cfb6674e4d0eefc54597bfe3f511fdd6bd24e81f4f708e02c20a",
+    "uncompressedPath": "controls/utf8_runner_attempt2_template.py",
+    "uncompressedBytes": 8211,
+    "uncompressedSHA256": "61e281b10d7ab63cd3f149beb20cde8411f834da7261fe7c94394e58e875c615"
+  },
+  {
+    "path": "controls/utf8_runner_template.py.gz",
+    "bytes": 3174,
+    "sha256": "4af637ec30d2aaa2c569e7257bf8506975363440504ed12cef13a6b7e53cf3ee",
+    "uncompressedPath": "controls/utf8_runner_template.py",
+    "uncompressedBytes": 7106,
+    "uncompressedSHA256": "e11a34ea7a42d8ef317ae7faa6667da875947540f9bc841b83ba0da65f061ae4"
+  },
+  {
+    "path": "prepare_composition_draft.py.gz",
+    "bytes": 2122,
+    "sha256": "bfd9bd2801704951f56594b761260ffff589c2ffebd736b8e6f08c358148c09e",
+    "uncompressedPath": "prepare_composition_draft.py",
+    "uncompressedBytes": 8599,
+    "uncompressedSHA256": "7e02edbfcfe98a498aceba68d1d6a1c00b9f8b0b1a333006dd4c6b5fbb328360"
+  },
+  {
+    "path": "prepare_shared_draft.py.gz",
+    "bytes": 2477,
+    "sha256": "bb2447de48df115a76a50638087b0878ca8e95c14013237e0620f4fa20c74a29",
+    "uncompressedPath": "prepare_shared_draft.py",
+    "uncompressedBytes": 9141,
+    "uncompressedSHA256": "4b9296e2a231dad278ecd2954f37a8a13f2823e58be02de5af9d86f9fbba886a"
+  },
+  {
+    "path": "prepare_sink_controls.py.gz",
+    "bytes": 951,
+    "sha256": "a02b472f28311c7e6284a0d7ae4dd5b1d313fbcd37568740d41a9db74f3b8173",
+    "uncompressedPath": "prepare_sink_controls.py",
+    "uncompressedBytes": 1870,
+    "uncompressedSHA256": "a4f1468d4eb7cd0c1837d8d9ed1c705b800076f93764e4fe5338b8f8665ef6bd"
+  },
+  {
+    "path": "prepare_source_controls.py.gz",
+    "bytes": 2224,
+    "sha256": "02d5b3b07aabfe570375362b9e4ad96db9ea3c12d3eeb56cacb5e7af9d2ce276",
+    "uncompressedPath": "prepare_source_controls.py",
+    "uncompressedBytes": 6098,
+    "uncompressedSHA256": "aef14594cb6e6b3c2d72b386c46132a2e10cc7978d751d56201cd5dc3961ea78"
+  },
+  {
+    "path": "register_sources.py.gz",
+    "bytes": 2594,
+    "sha256": "cc0d4b0fa965cde7fa95f392dd3766250d641cdf9629df19041d152259962ce3",
+    "uncompressedPath": "register_sources.py",
+    "uncompressedBytes": 5988,
+    "uncompressedSHA256": "76cb388539b856d08ae284e235145e28e5f8c75e9a94091c179757161a484698"
+  }
+]

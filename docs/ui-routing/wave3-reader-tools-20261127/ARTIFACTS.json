@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "path": "BINDING_INPUTS.json.gz",
+      "bytes": 236,
+      "sha256": "8082fdd0e5cf10ab0f43ee8bb8de307ab30b372f72555bfcb704bdf71d085cf0"
+    },
+    {
+      "path": "LOCAL_SOURCE_EVIDENCE.json",
+      "bytes": 12569,
+      "sha256": "5b7b84d764ba345fbd46eaec15e74ad5e74cc9f3f8f19fb5a41735c014bf7b3e"
+    },
+    {
+      "path": "PRODUCT_FILES.json",
+      "bytes": 2108,
+      "sha256": "7c189ca54bee0f01e067d542b106d0b144d01b2369b8f490da69b6749987958a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4066,
+      "sha256": "0c73dc0809eeea4b92c3ca3e8b889c6b853f7658223fb5a647a70ab63c7cfc66"
+    },
+    {
+      "path": "REGISTRATION.json.gz",
+      "bytes": 1131,
+      "sha256": "092aa29e911822966052394049b83a675d5fbf86cb34beffe0505443cc654cac"
+    },
+    {
+      "path": "ReaderToolComposition.swiftfrag.gz",
+      "bytes": 2331,
+      "sha256": "32a4b0f4dad0adcaabf310a208f00a02af86d34d0b5d62ad1142edd0c955cbd3"
+    },
+    {
+      "path": "SESSION_GROUP_JOIN.json.gz",
+      "bytes": 218,
+      "sha256": "c63177ee75aea3e2d8fb2d265a951e3ce0947f0f8af49d45616cb4314b0a84a3"
+    },
+    {
+      "path": "SHARED_EDITS.json.gz",
+      "bytes": 5135,
+      "sha256": "ad044fbe86d151d1a477056741db51c46c9e2f7a21756d484b3b6ed314f1f13e"
+    },
+    {
+      "path": "SOURCE_INPUTS.json.gz",
+      "bytes": 221,
+      "sha256": "3bc038ad70725f68f49401e75b7c015bd890aa0e0b54b601fe659402b99e5b99"
+    },
+    {
+      "path": "UTF8_PROPOSAL_EDIT.json.gz",
+      "bytes": 365,
+      "sha256": "ba2645671ac1c7cf2080a3aca7e08d00177641d3e1874d9a608b55da7ca0c2dc"
+    },
+    {
+      "path": "controls/ReaderToolServiceControls.swift.gz",
+      "bytes": 4550,
+      "sha256": "58def364c96aca571ef343d522e2c2d2027a7dfa377d80e46200fa4ec6163886"
+    },
+    {
+      "path": "controls/ReaderToolSinkBoundary.swift.gz",
+      "bytes": 3072,
+      "sha256": "59702f4109ad9dcd941d1a64d066272d251c3fa782eb0320af9d5e933a8663af"
+    },
+    {
+      "path": "controls/ReaderToolSourceBoundary.swift.gz",
+      "bytes": 3241,
+      "sha256": "dc29908b30a20b7c6817ec9addd6d967c3f9ce6fd655a0e5b0a70be54edd5579"
+    },
+    {
+      "path": "controls/ReaderToolSourceControls.swift.gz",
+      "bytes": 2591,
+      "sha256": "70fc22545366409e6a6edadd9fcd8939286bdc60d2c706b1ded892102a54a721"
+    },
+    {
+      "path": "controls/ReaderToolUTF8Controls.swift.gz",
+      "bytes": 3464,
+      "sha256": "4828f5626db2432ff0a1e937310fbe2aee1ce4197b6023235e553bf24e391866"
+    },
+    {
+      "path": "controls/SINK_EXTRACT.json.gz",
+      "bytes": 685,
+      "sha256": "7e517dd62f767d4b092f017dfa00233d69b84122beff22d73f7aefca1a399f4c"
+    },
+    {
+      "path": "controls/SOURCE_EXTRACT.json.gz",
+      "bytes": 1692,
+      "sha256": "2aa65c1fa1b8f6198401134d4f228989bd67c5b300e0b072d84d89b834f91a85"
+    },
+    {
+      "path": "controls/attempt1_launch.py.gz",
+      "bytes": 18469,
+      "sha256": "81cabad4c318e52d4181565ee49c0d9527f3de6da528dfb612d0f5c614a97617"
+    },
+    {
+      "path": "controls/attempt1_runner.py.gz",
+      "bytes": 18369,
+      "sha256": "fbb40dbc47bc3c01631ce5d169f9de661ef97aa501820f90446c0acf45b7669b"
+    },
+    {
+      "path": "controls/attempt2_launch.py.gz",
+      "bytes": 18780,
+      "sha256": "585bc1d9b1342bbb2c8d04beff9eee1feced103a5ac752c820abd04b14223dd2"
+    },
+    {
+      "path": "controls/attempt2_runner.py.gz",
+      "bytes": 18679,
+      "sha256": "14a0e0ba100e7aba57e73bec36a3b640041592c0efd517aa1ca81b8f235cc9ce"
+    },
+    {
+      "path": "controls/preserved-initial/MaktabahNativeReaderToolSource.swift.gz",
+      "bytes": 1539,
+      "sha256": "1e9ca0eebb49ec7af26825f05076a36a7d0831b17334d76001a2e5ddc0e63e82"
+    },
+    {
+      "path": "controls/preserved-pre-observed-ack-capture/MaktabahNativeRoutingComposition.swift.gz",
+      "bytes": 45467,
+      "sha256": "04242eb94681264ff80e3ac0fb243bb8edbaa2cd0f549a5bd2c82c4743aefacf"
+    },
+    {
+      "path": "controls/preserved-pre-observed-ack-capture/prepare_composition_draft.py.gz",
+      "bytes": 1680,
+      "sha256": "cc7ffa42aaa25816468c8b8720a954af6c1fa56040e319536fea385676748585"
+    },
+    {
+      "path": "controls/preserved-pre-utf8-proposal/NativeReaderToolIntentService.swift.gz",
+      "bytes": 3971,
+      "sha256": "4c224254c471f706f834aaa0cb645a5ed3debc5797140046a95d35f7cb3822b9"
+    },
+    {
+      "path": "controls/sink_attempt1_runner.py.gz",
+      "bytes": 88528,
+      "sha256": "23c3cc189cd0efba073bd4acb52038d42db9702eaaa41dd5d9b6f6933807fc85"
+    },
+    {
+      "path": "controls/sink_runner_template.py.gz",
+      "bytes": 3130,
+      "sha256": "f1ed559d4666ca23257f1d1763b5f59966201d5fab3a4a783d1da8a5325d2a7b"
+    },
+    {
+      "path": "controls/source_attempt1_launch.py.gz",
+      "bytes": 163763,
+      "sha256": "a23886937496672c63abdaff29d448063b6a6a65349e3b279822d6eceeba5429"
+    },
+    {
+      "path": "controls/source_attempt1_runner.py.gz",
+      "bytes": 163656,
+      "sha256": "1794d6d27fa71bab59722f4c8fd5ba19d35d2e636b9f374745b204d660a20e0f"
+    },
+    {
+      "path": "controls/source_runner_template.py.gz",
+      "bytes": 3235,
+      "sha256": "45349c3c8722a1a805384a88d928a23f991ee096fc679a27a2228c1295b7b6e1"
+    },
+    {
+      "path": "controls/utf8_attempt1_runner.py.gz",
+      "bytes": 15334,
+      "sha256": "bb0889065b9ee36d6b5a1e10c2d763c0444a820171fbf21824424c3976b7e564"
+    },
+    {
+      "path": "controls/utf8_attempt2_runner.py.gz",
+      "bytes": 15695,
+      "sha256": "cd118107dbf28ab99abc11255415555c82925922b16c27663a7de57f4cd6b22e"
+    },
+    {
+      "path": "controls/utf8_runner_attempt2_template.py.gz",
+      "bytes": 3539,
+      "sha256": "10ba7adde888cfb6674e4d0eefc54597bfe3f511fdd6bd24e81f4f708e02c20a"
+    },
+    {
+      "path": "controls/utf8_runner_template.py.gz",
+      "bytes": 3174,
+      "sha256": "4af637ec30d2aaa2c569e7257bf8506975363440504ed12cef13a6b7e53cf3ee"
+    },
+    {
+      "path": "evidence/CONTROL_RESULTS.json",
+      "bytes": 77323,
+      "sha256": "34ef1ae0be3c0071bdc30eec4b0d9be33d34f3d41ef029871e3cbc322313864d"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS.zip",
+      "bytes": 366959,
+      "sha256": "70f2069070a0d38354ed0264e47e6c0d5e9cc2d254ee3e831fa117d9e9420f81"
+    },
+    {
+      "path": "evidence/RAW_CONTROLS_INDEX.json",
+      "bytes": 30727,
+      "sha256": "16d8cd986a6966f91500ada1db25b883828e0e22bfdee59ea361cedbae4840e4"
+    },
+    {
+      "path": "evidence/RETAINED_PRODUCTS.json",
+      "bytes": 7593,
+      "sha256": "5a05d05e81af8e3e06212c87831f2140d33ea1f8134ed9c6a72a4211383b45b3"
+    },
+    {
+      "path": "prepare_composition_draft.py.gz",
+      "bytes": 2122,
+      "sha256": "bfd9bd2801704951f56594b761260ffff589c2ffebd736b8e6f08c358148c09e"
+    },
+    {
+      "path": "prepare_shared_draft.py.gz",
+      "bytes": 2477,
+      "sha256": "bb2447de48df115a76a50638087b0878ca8e95c14013237e0620f4fa20c74a29"
+    },
+    {
+      "path": "prepare_sink_controls.py.gz",
+      "bytes": 951,
+      "sha256": "a02b472f28311c7e6284a0d7ae4dd5b1d313fbcd37568740d41a9db74f3b8173"
+    },
+    {
+      "path": "prepare_source_controls.py.gz",
+      "bytes": 2224,
+      "sha256": "02d5b3b07aabfe570375362b9e4ad96db9ea3c12d3eeb56cacb5e7af9d2ce276"
+    },
+    {
+      "path": "register_sources.py.gz",
+      "bytes": 2594,
+      "sha256": "cc0d4b0fa965cde7fa95f392dd3766250d641cdf9629df19041d152259962ce3"
+    }
+  ],
+  "productCommit": "74f8dfd5eeae6291db71aa0b535f03742ac07077"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "bytes": 644546,
+    "sha256": "34e34dcee566795945a61f4e0ee881c2df3424431afec23345a4d555edfeb368",
+    "beforeSHA256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift",
+    "bytes": 5845,
+    "sha256": "54b3155815d3df7c8886175ad46b44f0f88523e7128c735a8d28cfe6e98b1c4b",
+    "beforeSHA256": null
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "bytes": 265535,
+    "sha256": "326e52be2ba28577819ebab557fda886c39a9de95f8aad2010309feb2a89ae61",
+    "beforeSHA256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "bytes": 38602,
+    "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085",
+    "beforeSHA256": "3932e90ea2ef1e0d042cee70efe00ca891b5e8d1d768ee6339293e9649dee2f5"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "bytes": 158545,
+    "sha256": "48055b6e6c2b991391332c5534dcfdbe011bfed9d0d4d85a1bdc0b16c6fe16ff",
+    "beforeSHA256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift",
+    "bytes": 17186,
+    "sha256": "09ef279f8be48a2f31bdca1d14c36b2267cbaefd106566ea4e34576e9408b6e7",
+    "beforeSHA256": null
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift",
+    "bytes": 4649,
+    "sha256": "7f6fdd1b1ec05f5e3fc84ab48303dd5ee6319e329311df3f44ca481bb2a8e786",
+    "beforeSHA256": null
+  },
+  {
+    "path": "Source/Localizable.xcstrings",
+    "bytes": 401058,
+    "sha256": "da695e62500ccfeec9f397c61569d15b1e4d7cc7f77e11b2b3ef34fe448e7c42",
+    "beforeSHA256": "9fe897f96bec395994c5c8759b5328a2a9eb7d0a9a950e820c299c9e0ad26bf2"
+  }
+]
