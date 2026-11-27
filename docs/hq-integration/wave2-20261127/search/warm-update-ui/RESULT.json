@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_TYPECHECK_ONLY_NOT_NATIVE_UI",
+  "completedAt": "2026-11-27T04:37:17.841349+00:00",
+  "scope": "Whole registered GlobalSearch parse; exact preserved PublishedProduction/context/R08 and new warm SearchData helper plus complete actual MaktabahUITestBase XCTest SDK typecheck. No actual Settings caller typecheck here; library owner covers that separately. No application build or native UI.",
+  "sourceHashes": {
+    "GlobalSearchNativeAcceptanceTests.swift": "6acb1e26a37bef05706662049e8ba755ccfd72d83e060a6c9405459ecec8ac37",
+    "ExtractedPublishedContextTests.swift": "e6f503c323a37a5edc9546c9fcc286f1df6a540d45cdd928704fef4a4201f914",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "baselineCommit": "f76b392ba5198766588b728a86396f63fa747582",
+  "originalTestSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "records": [
+    {
+      "name": "whole-file-parse",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse",
+        "GlobalSearchNativeAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 0.528201416,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "name": "actual-xctest-typecheck",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-typecheck",
+        "-swift-version",
+        "6",
+        "-D",
+        "DEBUG",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+        "-module-cache-path",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+        "MaktabahUITestBase.swift",
+        "ExtractedPublishedContextTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 1.6414353750000001,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "6751b3a9c7749e1cdd7dab15092a26bcb04679f55785dafb20c3d5ff894f5f7a",
+      "warnings": 116,
+      "errors": 0
+    }
+  ],
+  "nativeExecutions": 0,
+  "appBuilds": 0
+}

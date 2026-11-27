@@ -1,0 +1,50 @@
+[
+  {
+    "name": "whole-file-parse",
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-parse",
+      "GlobalSearchNativeAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "seconds": 0.528201416,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "warnings": 0,
+    "errors": 0
+  },
+  {
+    "name": "actual-xctest-typecheck",
+    "command": [
+      "xcrun",
+      "swiftc",
+      "-parse-as-library",
+      "-typecheck",
+      "-swift-version",
+      "6",
+      "-D",
+      "DEBUG",
+      "-Xfrontend",
+      "-strict-concurrency=complete",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+      "-module-cache-path",
+      "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+      "MaktabahUITestBase.swift",
+      "ExtractedPublishedContextTests.swift"
+    ],
+    "exit": 0,
+    "seconds": 1.6414353750000001,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "6751b3a9c7749e1cdd7dab15092a26bcb04679f55785dafb20c3d5ff894f5f7a",
+    "warnings": 116,
+    "errors": 0
+  }
+]
