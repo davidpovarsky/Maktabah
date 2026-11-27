@@ -9,8 +9,8 @@ import AnytypeOriginalEditor
 /// editor transaction. Historical mappings choose data, never native authority.
 @MainActor @Observable
 final class AnnotationOriginalEditorReceivePresentation: Identifiable {
-    enum OperationKind { case receive, update }
-    enum Stage { case opening, authenticating, discovering, choosing, reading, reviewing, saving, saved, updating, updated, conflict, unverified, noMapping, changed, failed, closing, closeFailed, closed }
+    enum OperationKind { case receive, update, synchronize }
+    enum Stage { case opening, authenticating, discovering, choosing, reading, reviewing, saving, saved, updating, updated, synchronized, waiting, conflict, unverified, noMapping, changed, failed, closing, closeFailed, closed }
     let operationKind: OperationKind
     let id = UUID()
     let annotation: Annotation
@@ -24,6 +24,8 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     private var account: AnytypeOriginalEditorAccountSession?
     private var nativeSource: AnytypeOriginalEditorSourceLifetime?
     private var received: AnytypeOriginalAnnotationReadReceipt?
+    private var linkedState: AnnotationLocalEditorLinkedState?
+    var keepLinked = false
     private var revisionAttempt: AnnotationOriginalEditorRevisionAttempt?
     private(set) var revisionOutcome: AnnotationOriginalEditorRevisionOutcome?
     private var allMappings: [AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping] = []
@@ -34,14 +36,15 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     enum CopyChoice: Identifiable {
         case historical(AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping)
         case discovered(AnytypeOriginalAnnotationDiscoveredCopy)
+        case linked(AnnotationExchangeNativeLink)
         var accountID: String {
-            switch self { case .historical(let value): value.accountID; case .discovered(let value): value.accountID }
+            switch self { case .historical(let value): value.accountID; case .discovered(let value): value.accountID; case .linked(let value): value.destination.account }
         }
         var spaceID: String {
-            switch self { case .historical(let value): value.spaceID; case .discovered(let value): value.spaceID }
+            switch self { case .historical(let value): value.spaceID; case .discovered(let value): value.spaceID; case .linked(let value): value.destination.space }
         }
         var objectID: String {
-            switch self { case .historical(let value): value.objectID; case .discovered(let value): value.objectID }
+            switch self { case .historical(let value): value.objectID; case .discovered(let value): value.objectID; case .linked(let value): value.objectID }
         }
         var id: String { accountID + ":" + spaceID + ":" + objectID }
         var sharedBodyDigest: String? {
@@ -86,6 +89,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 throw AnnotationLocalEditorError.wrongOwner
             }
             snapshot = captured
+            linkedState = try await local.linkedState(snapshot: captured)
             allMappings = try await Task.detached {
                 try AnnotationOriginalEditorNativeReceiptFile.mappings(
                     annotationUUID: captured.annotationUUID, capturedDatabaseURL: captured.databaseURL)
@@ -114,6 +118,15 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
             guard let observation else { throw AnnotationLocalEditorError.retired }
             try observation.requireCurrent(); try session.validateCurrent()
             account = session
+            if operationKind == .synchronize {
+                mappings = (linkedState?.links ?? []).filter {
+                    $0.destination.account == session.identity.accountID && $0.destination.space == session.identity.spaceID
+                }.map(CopyChoice.linked)
+                selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
+                stage = mappings.isEmpty ? .noMapping : .choosing
+                if mappings.count == 1 { readSelected() }
+                return
+            }
             mappings = allMappings.filter {
                 $0.accountID.utf8.elementsEqual(session.identity.accountID.utf8)
                     && $0.spaceID.utf8.elementsEqual(session.identity.spaceID.utf8)
@@ -230,8 +243,13 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                     SHA256.hash(data: $0.bodyBytes).map { String(format: "%02x", $0) }.joined()
                         != mapping.sharedBodyDigest
                 } ?? true
+                keepLinked = selectedLink != nil
                 stage = .reviewing
+                if operationKind == .synchronize { try await synchronizeObservedVersion() }
             } catch {
+                if let pending = selectedDelivery, retainedHistoryURL == nil {
+                    try? await local.deferLinkedRead(pending, snapshot: snapshot)
+                }
                 if stage != .closing && stage != .closed {
                     stage = retainedHistoryURL == nil ? .failed : .changed
                 }
@@ -239,81 +257,140 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         }
     }
 
-    /// Explicit user choice. Nothing is applied automatically after a read or
-    /// on resolving a conflict. The original immutable local version remains
-    /// in its ledger and in the received comparison history.
-    func acceptReceivedVersion() {
-        guard operationKind == .receive, stage == .reviewing, operation == nil, let actual = received,
-              let history = retainedHistoryURL, let local, let observation,
-              let snapshot, let account else { return }
-        stage = .saving
-        operation = Task { [self] in
-            defer { operation = nil }
-            do {
-                try observation.requireCurrent(); try account.validateCurrent()
-                try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
-                try observation.requireCurrent()
-                let native = actual.capture.nativeCapture.snapshot
-                let body = TorahAnnotationEnvelope.RichBody(format: AnytypeOriginalEditorSnapshot.format,
-                    formatVersion: AnytypeOriginalEditorSnapshot.formatVersion, bytes: native.bodyBytes)
-                let intent = try local.prepareSave(snapshot: snapshot, mutationID: id,
-                    body: body, textPreview: actual.capture.textPreview,
-                    editorRevision: native.nativeArchiveSHA256)
-                let outcome = try await local.save(intent)
-                // A returned commit survives retired presentation ownership.
-                // No later disk/cancellation failure turns it into rollback.
-                committedOutcome = outcome
-                let receipt: AnnotationExchangeCommit
-                switch outcome {
-                case .committed(let saved): receipt = saved.receipt
-                case .completedWithoutOwnership(let saved): receipt = saved
-                }
-                _ = try? await Task.detached {
-                    try AnnotationOriginalEditorReceiveHistory.recordCommit(receipt, beside: history)
-                }.value
-                observation.retire(); local.retire()
-                if stage != .closed && stage != .closing { stage = .saved }
-            } catch {
-                if stage != .closed && stage != .closing { stage = .changed }
-            }
+    private var selectedLink: AnnotationExchangeNativeLink? {
+        guard let mapping = mappings.first(where: { $0.id == selectedMappingID }) else { return nil }
+        return linkedState?.links.first {
+            $0.destination.account == mapping.accountID && $0.destination.space == mapping.spaceID && $0.objectID == mapping.objectID
         }
     }
 
+    var isSelectedCopyLinked: Bool { selectedLink != nil }
 
-    /// A new explicit choice targets this observed object only. A conflict or
-    /// unknown result cannot refresh the token, create a copy or retry itself.
-    func updateExistingVersion() {
-        guard operationKind == .update, stage == .reviewing, operation == nil,
-              let actual = received, let readSource = nativeSource,
-              let historyURL = retainedHistoryURL, let local, let observation,
-              let snapshot, let account else { return }
-        stage = .updating
+    private var selectedDelivery: AnnotationExchangeLinkedDelivery? {
+        guard let link = selectedLink else { return nil }
+        return linkedState?.deliveries.last {
+            $0.link.id == link.id && [.pending, .dispatchMayHaveOccurred, .needsReview].contains($0.state)
+                && $0.delivery.revision == snapshot?.revision
+        }
+    }
+
+    func unlinkSelectedCopy() {
+        guard stage == .reviewing, operation == nil, let link = selectedLink,
+              let snapshot, let local, let observation else { return }
         operation = Task { [self] in
             defer { operation = nil }
             do {
-                let prepared = try await AnnotationOriginalEditorRevisionAttempt.prepare(
-                    local: local, snapshot: snapshot, observation: observation,
-                    readSource: readSource, read: actual, retainedReadURL: historyURL, account: account)
-                switch prepared {
-                case .recordedWithoutOwnership:
-                    stage = .changed
-                case .prepared(let attempt):
-                    revisionAttempt = attempt
-                    let invoked = try await attempt.invoke()
-                    switch invoked {
-                    case .recordedWithoutOwnership:
-                        stage = .unverified
-                    case .nativeAwaitReturned:
-                        applyRevisionOutcome(try await attempt.history.durableOutcome())
-                    }
+                try observation.requireCurrent()
+                try await local.unlinkNativeCopy(link, snapshot: snapshot)
+                linkedState = try await local.linkedState(snapshot: snapshot)
+                keepLinked = false
+            } catch { stage = .changed }
+        }
+    }
+
+    private func synchronizeObservedVersion() async throws {
+        guard let link = selectedLink, let actual = received, let local, let snapshot else { throw AnnotationExchangeError.receiptMismatch }
+        linkedState = try await local.linkedState(snapshot: snapshot)
+        let unsettled = linkedState?.deliveries.filter {
+            $0.link.id == link.id && ($0.state == .dispatchMayHaveOccurred || $0.state == .needsReview)
+        } ?? []
+        if !unsettled.isEmpty { localChangedSinceShare = true; stage = .reviewing; return }
+        if let delivery = selectedDelivery {
+            guard delivery.link.nativeRootSHA256 == actual.observedNativeRevisionSHA256 else {
+                try await local.requireLinkedReview(delivery, snapshot: snapshot)
+                linkedState = try await local.linkedState(snapshot: snapshot)
+                localChangedSinceShare = true; stage = .reviewing; return
+            }
+            guard Int64(Date().timeIntervalSince1970) >= delivery.notBefore else { stage = .waiting; return }
+            await performUpdate(explicitReview: false)
+        } else if link.nativeRootSHA256 != actual.observedNativeRevisionSHA256 {
+            keepLinked = true
+            await performReceive()
+        } else {
+            stage = .synchronized
+        }
+    }
+
+    /// Explicit choice consumes the actual sealed read. Its origin and optional
+    /// link consent commit atomically with the complete local rich body.
+    func acceptReceivedVersion() {
+        guard operationKind != .update, stage == .reviewing, operation == nil else { return }
+        operation = Task { [self] in
+            defer { operation = nil }
+            await performReceive()
+        }
+    }
+
+    private func performReceive() async {
+        guard let actual = received, let history = retainedHistoryURL, let local,
+              let observation, let snapshot, let account else { return }
+        stage = .saving
+        do {
+            try observation.requireCurrent(); try account.validateCurrent()
+            try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
+            try observation.requireCurrent()
+            let native = actual.capture.nativeCapture.snapshot
+            let body = TorahAnnotationEnvelope.RichBody(format: AnytypeOriginalEditorSnapshot.format,
+                formatVersion: AnytypeOriginalEditorSnapshot.formatVersion, bytes: native.bodyBytes)
+            let intent = try local.prepareSave(snapshot: snapshot, mutationID: id,
+                body: body, textPreview: actual.capture.textPreview, editorRevision: native.nativeArchiveSHA256)
+            let outcome = try await local.saveReceived(intent, actual: actual, enableLink: keepLinked)
+            committedOutcome = outcome
+            let receipt: AnnotationExchangeCommit
+            switch outcome {
+            case .committed(let saved): receipt = saved.receipt
+            case .completedWithoutOwnership(let saved): receipt = saved
+            }
+            _ = try? await Task.detached {
+                try AnnotationOriginalEditorReceiveHistory.recordCommit(receipt, beside: history)
+            }.value
+            observation.retire(); local.retire()
+            if stage != .closed && stage != .closing { stage = .saved }
+        } catch {
+            if stage != .closed && stage != .closing { stage = .changed }
+        }
+    }
+
+    /// Explicit review may resolve prior uncertainty through a NEW original
+    /// locked read and conditional revision. Automatic replay never does so.
+    func updateExistingVersion() {
+        guard operationKind != .receive, stage == .reviewing, operation == nil else { return }
+        operation = Task { [self] in
+            defer { operation = nil }
+            await performUpdate(explicitReview: true)
+        }
+    }
+
+    private func performUpdate(explicitReview: Bool) async {
+        guard let actual = received, let readSource = nativeSource,
+              let historyURL = retainedHistoryURL, let local, let observation,
+              let snapshot, let account else { return }
+        stage = .updating
+        do {
+            var delivery = selectedDelivery
+            if let current = delivery, explicitReview {
+                delivery = try await local.acceptLinkedReview(current, snapshot: snapshot, actual: actual)
+                linkedState = try await local.linkedState(snapshot: snapshot)
+            }
+            let prepared = try await AnnotationOriginalEditorRevisionAttempt.prepare(
+                local: local, snapshot: snapshot, observation: observation,
+                readSource: readSource, read: actual, retainedReadURL: historyURL, account: account,
+                linkedDelivery: delivery)
+            switch prepared {
+            case .recordedWithoutOwnership:
+                stage = .changed
+            case .prepared(let attempt):
+                revisionAttempt = attempt
+                switch try await attempt.invoke() {
+                case .recordedWithoutOwnership: stage = .unverified
+                case .nativeAwaitReturned: applyRevisionOutcome(try await attempt.history.durableOutcome())
                 }
-            } catch {
-                if let attempt = revisionAttempt,
-                   let outcome = try? await attempt.history.recordedOutcomeIfDrained() {
-                    applyRevisionOutcome(outcome)
-                } else if stage != .closing && stage != .closed {
-                    stage = revisionAttempt?.history.dispatch == nil ? .changed : .unverified
-                }
+            }
+        } catch {
+            if let attempt = revisionAttempt, let outcome = try? await attempt.history.recordedOutcomeIfDrained() {
+                applyRevisionOutcome(outcome)
+            } else if stage != .closing && stage != .closed {
+                stage = revisionAttempt?.history.dispatch == nil ? .changed : .unverified
             }
         }
     }
@@ -364,6 +441,7 @@ struct AnnotationOriginalEditorReceiveView: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var model: AnnotationOriginalEditorReceivePresentation
     @State private var confirmReplacement = false
+    @State private var confirmUpdate = false
 
     var body: some View {
         NavigationStack {
@@ -407,6 +485,23 @@ struct AnnotationOriginalEditorReceiveView: View {
                             header: { Text("Saved on this device", tableName: "OriginalAnnotationEditor") }
                         Section { Text(model.remotePreview).textSelection(.enabled) }
                             header: { Text("Read from Anytype", tableName: "OriginalAnnotationEditor") }
+                        if model.operationKind != .update {
+                            Section {
+                                Toggle(isOn: $model.keepLinked) {
+                                    Text("Keep this note linked to this Anytype copy", tableName: "OriginalAnnotationEditor")
+                                }
+                                .accessibilityIdentifier("annotation-anytype-link-toggle")
+                                .disabled(model.isSelectedCopyLinked)
+                                if model.isSelectedCopyLinked {
+                                    Button { model.unlinkSelectedCopy() } label: {
+                                        Text("Unlink this copy", tableName: "OriginalAnnotationEditor")
+                                    }
+                                    .accessibilityIdentifier("annotation-anytype-unlink")
+                                }
+                            } footer: {
+                                Text("Future saves are queued for this copy. Sync uses the selected original account. Unlink keeps both notes and their history.", tableName: "OriginalAnnotationEditor")
+                            }
+                        }
                         Section {
                             Button { confirmReplacement = true } label: {
                                 if model.operationKind == .update {
@@ -416,6 +511,12 @@ struct AnnotationOriginalEditorReceiveView: View {
                                 }
                             }
                             .accessibilityIdentifier(model.operationKind == .update ? "annotation-anytype-update-accept" : "annotation-anytype-receive-accept")
+                            if model.operationKind == .synchronize {
+                                Button { confirmUpdate = true } label: {
+                                    Text("Update this copy in Anytype", tableName: "OriginalAnnotationEditor")
+                                }
+                                .accessibilityIdentifier("annotation-anytype-linked-review-update")
+                            }
                             Button { model.close() } label: {
                                 Text("Keep both versions unchanged", tableName: "OriginalAnnotationEditor")
                             }
@@ -425,6 +526,20 @@ struct AnnotationOriginalEditorReceiveView: View {
                     }
                     .accessibilityIdentifier("annotation-anytype-receive-review")
 
+                case .synchronized:
+                    ContentUnavailableView {
+                        Label { Text("Linked note is up to date", tableName: "OriginalAnnotationEditor") }
+                            icon: { Image(systemName: "checkmark.circle") }
+                    }
+                    .accessibilityIdentifier("annotation-anytype-linked-current")
+                case .waiting:
+                    ContentUnavailableView {
+                        Label { Text("Linked sync is waiting", tableName: "OriginalAnnotationEditor") }
+                            icon: { Image(systemName: "clock") }
+                    } description: {
+                        Text("The saved queue is retained. Close and resume sync after the current retry delay.", tableName: "OriginalAnnotationEditor")
+                    }
+                    .accessibilityIdentifier("annotation-anytype-linked-waiting")
                 case .updated:
                     ContentUnavailableView {
                         Label { Text("Update verified in Anytype", tableName: "OriginalAnnotationEditor") }
@@ -527,6 +642,15 @@ struct AnnotationOriginalEditorReceiveView: View {
                     Text("Both complete versions are retained. Your note ID, source anchor, tags and local permissions stay with this note.", tableName: "OriginalAnnotationEditor")
                 }
             }
+        }
+        .confirmationDialog(Text("Update this existing Anytype note?", tableName: "OriginalAnnotationEditor"),
+                            isPresented: $confirmUpdate, titleVisibility: .visible) {
+            Button { model.updateExistingVersion() } label: {
+                Text("Update this copy in Anytype", tableName: "OriginalAnnotationEditor")
+            }
+            Button(role: .cancel) {} label: { Text("Cancel", tableName: "OriginalAnnotationEditor") }
+        } message: {
+            Text("Only your saved rich note will update the reviewed Anytype object. The original engine will check its version again before writing. Both full versions are retained.", tableName: "OriginalAnnotationEditor")
         }
         .task { await model.begin() }
         .onDisappear { model.removed() }

@@ -337,7 +337,8 @@ extension AnnotationLocalEditorSession {
     func prepareNativeRevision(
         snapshot: AnnotationLocalEditorSnapshot,
         comparison: AnnotationLocalEditorNativeComparison,
-        target: AnnotationLocalEditorNativeRevisionTarget
+        target: AnnotationLocalEditorNativeRevisionTarget,
+        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil
     ) async throws -> AnnotationLocalEditorNativeRevisionPreparationOutcome {
         guard !busy else { throw AnnotationLocalEditorError.busy }
         guard isCurrent else { throw AnnotationLocalEditorError.retired }
@@ -345,7 +346,7 @@ extension AnnotationLocalEditorSession {
         defer { busy = false }
         let storage = persistence, owner = persistence.owner
         let worker = Task.detached {
-            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target)
+            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery)
         }
         return try await withTaskCancellationHandler {
             let prepared = try await worker.value
@@ -427,3 +428,67 @@ extension AnnotationLocalEditorSession {
     }
 }
 #endif
+
+
+extension AnnotationLocalEditorSession {
+    func linkedState(snapshot: AnnotationLocalEditorSnapshot) async throws -> AnnotationLocalEditorLinkedState {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true; defer { busy = false }
+        let storage = persistence
+        let value = try await Task.detached { try storage.linkedState(snapshot: snapshot) }.value
+        try storage.requireUnchanged(snapshot)
+        return value
+    }
+
+    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot) async throws {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true; defer { busy = false }
+        let storage = persistence
+        try await Task.detached { try storage.unlinkNativeCopy(link, snapshot: snapshot) }.value
+    }
+
+    func deferLinkedRead(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot) async throws {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        let storage = persistence
+        try await Task.detached { try storage.deferLinkedRead(delivery, snapshot: snapshot) }.value
+    }
+
+    func requireLinkedReview(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot) async throws {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        let storage = persistence
+        try await Task.detached { try storage.requireLinkedReview(delivery, snapshot: snapshot) }.value
+    }
+
+    #if os(iOS) && canImport(AnytypeOriginalEditor)
+    func saveReceived(_ intent: AnnotationLocalEditorIntent, actual: AnytypeOriginalAnnotationReadReceipt,
+                      enableLink: Bool) async throws -> AnnotationLocalEditorOutcome {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true; defer { busy = false }
+        let storage = persistence, owner = persistence.owner
+        let worker = Task.detached { try storage.commitReceived(intent, actual: actual, enableLink: enableLink) }
+        return try await withTaskCancellationHandler {
+            let saved = try await worker.value
+            let canDeliver = storage.canDeliver(saved)
+            if !saved.receipt.replayed { didCommit(saved, canDeliver) }
+            guard canDeliver && storage.isOwned else { return .completedWithoutOwnership(saved.receipt) }
+            return .committed(saved)
+        } onCancel: { owner.retire(); worker.cancel() }
+    }
+
+    func acceptLinkedReview(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot,
+                            actual: AnytypeOriginalAnnotationReadReceipt) async throws -> AnnotationExchangeLinkedDelivery {
+        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
+        busy = true; defer { busy = false }
+        let storage = persistence
+        let result = try await Task.detached { try storage.acceptLinkedReview(delivery, snapshot: snapshot, actual: actual) }.value
+        try storage.requireUnchanged(snapshot)
+        return result
+    }
+
+    func linkedRevisionCompletion(_ prepared: AnnotationLocalEditorNativeRevisionPreparation)
+        -> @Sendable (AnytypeOriginalAnnotationRevisionHistory) throws -> Void {
+        let storage = persistence
+        return { actual in try storage.completeLinkedRevision(prepared, actual: actual) }
+    }
+    #endif
+}
