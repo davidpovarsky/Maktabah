@@ -1,0 +1,43 @@
+{
+  "scope": "LOCAL_RETAINED_SOURCE_API_INPUTS_NOT_A_RUNTIME_ADMISSION",
+  "files": {
+    "rootControllerReviewedAPI": {
+      "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+      "bytes": 58294,
+      "sha256": "60dd4c89e7ba872e285c14c3f7cba0077ad5f5b59a34b0d0326e8d070ebfb4d8"
+    },
+    "exerciseHelperAfterOwnershipFix": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-exercises/study-ui-offline-exercises.py",
+      "bytes": 54090,
+      "sha256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406"
+    },
+    "executionJoin": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-execution/study-ui-offline-execution.py",
+      "bytes": 62459,
+      "sha256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202"
+    },
+    "watchdog": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-host/study-ui-offline-window.py",
+      "bytes": 78428,
+      "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+    },
+    "relay": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-host/study-ui-offline-heartbeat.py",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9"
+    },
+    "coordinator": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-oracle/study-ui-offline-oracle.py",
+      "bytes": 60113,
+      "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+    },
+    "controls": {
+      "path": "/workspace/scratch/ca3b32b82803/offline-oracle/source-controls.py",
+      "bytes": 31372,
+      "sha256": "628ec3da7d33eb2f1345f052f0a68b6bdb0e70ee44c2d90097372dc6f35276a0"
+    }
+  },
+  "actualSSH": 0,
+  "actualMacOrPF": 0,
+  "actualNative": 0
+}

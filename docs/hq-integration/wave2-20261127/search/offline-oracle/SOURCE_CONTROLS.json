@@ -1,0 +1,12 @@
+{
+  "scope": "SYNTHETIC_SOURCE_ADMISSION_LIFECYCLE_AND_LOCAL_TEMPFILE_CONTROLS_ONLY",
+  "sourceSHA256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244",
+  "testsRun": 43,
+  "failures": 0,
+  "errors": 0,
+  "actualSSH": 0,
+  "actualMac": 0,
+  "actualNetworkDenial": 0,
+  "actualNativeCases": 0,
+  "actualSignals": 0
+}
