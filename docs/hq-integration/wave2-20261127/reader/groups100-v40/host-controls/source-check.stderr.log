@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-groups100-v40-focused-native.py", line 519, in <module>
+    main()
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-groups100-v40-focused-native.py", line 510, in main
+    print(json.dumps({"status": "SOURCE_ONLY_NOT_UI", "source": source_context(core, False)}, indent=2))
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-groups100-v40-focused-native.py", line 356, in source_context
+    context = core.source_context(require_frozen=frozen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v40-ui-observation.py", line 275, in source_context
+    return original(require_frozen)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 129, in source_context
+    require(local.is_file() and not local.is_symlink(), "Missing exact execution input: " + path)
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/reader-full-v32-ui-observation.py", line 49, in require
+    raise ValueError(message)
+ValueError: Missing exact execution input: .github/workflows/otzaria-reader-groups-full-v32.yml
