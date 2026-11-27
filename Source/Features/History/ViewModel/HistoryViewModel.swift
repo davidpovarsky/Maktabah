@@ -40,6 +40,11 @@ class HistoryViewModel: ViewModelBase, ObservableObject {
         qualifiedPublication = publication
     }
 
+    func isCurrentQualifiedLoad(_ load: HistoryQualifiedPublication.Load) -> Bool {
+        guard let revision = load.revision else { return false }
+        return qualifiedLoadRevision == revision && load.isCurrent
+    }
+
     func filterBooks(_ books: [BooksData]) -> [BooksData] {
         guard !searchText.isEmpty else { return books }
         let normalizedSearchText = searchText.normalizeArabic(false)

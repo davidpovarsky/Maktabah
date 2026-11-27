@@ -1,0 +1,9 @@
+PASS current qualified load keeps original order and favorite subset
+PASS older async load cannot replace newer visible cards
+PASS different backend cannot consume an older actor result
+PASS backend A B A cannot apply old cards
+PASS same backend resource replacement rejects old cards
+PASS aborted source transition rejects old cards
+PASS sidecar change during pending read rejects old cards
+PASS original native data-path legacy arrays remain unchanged
+RESULT 8 PASS / 0 FAIL

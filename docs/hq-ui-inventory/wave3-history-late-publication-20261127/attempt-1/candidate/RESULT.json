@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/Controls.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/candidate/controls"
+  ],
+  "compile_exit": 0,
+  "source_sha256": "37f0e229a6b888d4edccd10144b279bd1af9a73b05de8901182fdb9bfb270d79",
+  "scope": "source/domain asynchronous load component, not actual app/native execution",
+  "run_exit": 0,
+  "seconds": 0.013837099075317383,
+  "stdout": "PASS current qualified load keeps original order and favorite subset\nPASS older async load cannot replace newer visible cards\nPASS different backend cannot consume an older actor result\nPASS backend A B A cannot apply old cards\nPASS same backend resource replacement rejects old cards\nPASS aborted source transition rejects old cards\nPASS sidecar change during pending read rejects old cards\nPASS original native data-path legacy arrays remain unchanged\nRESULT 8 PASS / 0 FAIL\n",
+  "stderr": "",
+  "binary_sha256": "ca0be10b17fb2bb3ed625bcf4e5c86554ca2fc70360c9f5a5234787243fc9b62"
+}

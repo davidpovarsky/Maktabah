@@ -66,6 +66,8 @@ extension HistoryViewModel {
             let qualified = publicationEntries.entries
             await MainActor.run {
                 guard let self else { return }
+                guard self.isCurrentQualifiedLoad(publicationLoad),
+                      publicationEntries.observation?.isCurrent == true else { return }
                 let active = BackendCoordinator.shared.activeBackendID
                 if BackendCoordinator.shared.usesNativeMaktabahDataPath { return }
                 let relevant = qualified.filter { $0.locator.backend == active }

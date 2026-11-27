@@ -1,0 +1,19 @@
+{
+  "base": "1330c29fd259ce74d30b3e39b2e020b60bb57700",
+  "sourceInputs": [
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "bytes": 11196,
+      "sha256": "1c9c6427d22e6785c37b238d2ee9024290b37cc73b48d3f61da0319b03a107df"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "bytes": 3360,
+      "sha256": "4a07073a687e31a8d929d1483a6bad73020adcaaea65f536ae4df4afc2d208ac"
+    }
+  ],
+  "actualLoadBodyEqualsPreviouslyCompiledProposedBody": true,
+  "actualHelperEqualsPreviouslyCompiledProposedHelper": true,
+  "onlyHarnessInstrumentation": "one completion defer in Task; no data change/await",
+  "unchangedCurrentAndLegacyControls": "8PASS0FAIL already executed before source application; no duplicate rerun"
+}

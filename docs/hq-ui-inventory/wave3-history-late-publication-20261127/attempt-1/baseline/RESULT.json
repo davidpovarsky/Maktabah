@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/Controls.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-late-publication-20261127/attempt-1/baseline/controls"
+  ],
+  "compile_exit": 0,
+  "source_sha256": "e162f270455fb2f6a2ecfb9f18ca07730e3c28874cf6ef43afa828942116af0a",
+  "scope": "source/domain asynchronous load component, not actual app/native execution",
+  "run_exit": 1,
+  "seconds": 0.04124903678894043,
+  "stdout": "PASS current qualified load keeps original order and favorite subset\nFAIL older async load cannot replace newer visible cards: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"otzaria|book:1|line:3\\\"]\")\nFAIL different backend cannot consume an older actor result: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"sefaria|book:7|line:3\\\"]\")\nFAIL backend A B A cannot apply old cards: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"otzaria|book:1|line:3\\\"]\")\nFAIL same backend resource replacement rejects old cards: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"otzaria|book:1|line:3\\\"]\")\nFAIL aborted source transition rejects old cards: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"otzaria|book:1|line:3\\\"]\")\nFAIL sidecar change during pending read rejects old cards: Failed(reason: \"obsolete result replaced original visible-model cards: [\\\"otzaria|book:1|line:3\\\"]\")\nPASS original native data-path legacy arrays remain unchanged\nRESULT 2 PASS / 6 FAIL\n",
+  "stderr": "",
+  "binary_sha256": "32b2249dc2eb798a94ce34a8c350c0e6029ff81b93088223b53455e5ee34c2ce"
+}
