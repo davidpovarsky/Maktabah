@@ -1,0 +1,164 @@
+{
+  "bytes": 185431,
+  "sha256": "9dfd2a6a50d6759d0d64ba5547835e96356fd80d45b711f3dd39496ef9cf6c9e",
+  "gzipBytes": 32412,
+  "gzipSHA256": "d8f41bf9c0c6b53dd485c160c94378d641f2b3225afc13e9574dacb5d806cd01",
+  "files": [
+    {
+      "path": "INPUTS.json",
+      "bytes": 13590,
+      "sha256": "20dc03925c55514a40a7955395090391a6f0d36a87972027731302923bb21ff5"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 15893,
+      "sha256": "ff86706f76b180b1552159def78a1e95c9a688c72415e70a422630373a72555d"
+    },
+    {
+      "path": "STATUS.json",
+      "bytes": 9316,
+      "sha256": "dfd9fbde719bfc51da7bf32ae621c7e53c85eaa8ed579bb9c285c242b2895621"
+    },
+    {
+      "path": "compile-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile-candidate.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile-initial.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile-initial.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "inputs/ActualNativeObservationDeadline.swift",
+      "bytes": 1041,
+      "sha256": "bce22578534f69f4f24fb4472c54786431b427e09e754443f662b0e78fd95943"
+    },
+    {
+      "path": "inputs/EXTRACTION.json",
+      "bytes": 1428,
+      "sha256": "864f24f447f4fabc7766fbcb358f1a3d8bc923e1e6eb7b51e6af9dcbc9f3e50e"
+    },
+    {
+      "path": "inputs/HistoryCompositionBoundary.swift",
+      "bytes": 8169,
+      "sha256": "64cb5794bdcd6ec3d36a4b9c2ef501a7e774c15bea3c801f7b7f35cb3f33d563"
+    },
+    {
+      "path": "inputs/HistoryCompositionControls.swift",
+      "bytes": 10726,
+      "sha256": "74651a50e7f123077b0d265a964cebe2339f7f9977fd8df56e150b78aad1b976"
+    },
+    {
+      "path": "inputs/REUSED_MODULE_INPUTS.json",
+      "bytes": 14302,
+      "sha256": "997cc5f66a4f6f3c9ce14333f02ea64c9d7521a8c751065903b3ff5a7d8fce69"
+    },
+    {
+      "path": "inputs/REUSED_SOURCE_INPUTS.json",
+      "bytes": 5105,
+      "sha256": "991724e164afa605382cc04237be1b154840111efefa784fd6ef444a85830f9e"
+    },
+    {
+      "path": "inputs/candidate/EnabledComposition.swift",
+      "bytes": 13346,
+      "sha256": "e1756544fdd84d3237e92678ce53be8e5968f3159eb6a9652ac042dd6bf11926"
+    },
+    {
+      "path": "inputs/candidate-actual-method.swift",
+      "bytes": 5268,
+      "sha256": "4cb52eea1dbf6d72a42845e951775c780d49d2f7b1386df6e909c4acc41fd0fe"
+    },
+    {
+      "path": "inputs/combined-actual-method.swift",
+      "bytes": 5268,
+      "sha256": "4cb52eea1dbf6d72a42845e951775c780d49d2f7b1386df6e909c4acc41fd0fe"
+    },
+    {
+      "path": "inputs/initial/EnabledComposition.swift",
+      "bytes": 13144,
+      "sha256": "1783e46a3799c40e6669af99c780192ee31c5005cf2771dab37d11f9d433ea08"
+    },
+    {
+      "path": "inputs/initial-actual-method.swift",
+      "bytes": 5066,
+      "sha256": "dfa736e534c7c3b3a509828fdc465d083559f6ab72d90e981ab6d46e311cb751"
+    },
+    {
+      "path": "inputs/reused/ActualActionAppIdentityBridge.swift",
+      "bytes": 3008,
+      "sha256": "adfec7a43d818cc9759d38f413ca0757d2addbc7a7eeefae9bcb9a81caac39c0"
+    },
+    {
+      "path": "inputs/reused/ActualBackendPublicationObservation.swift",
+      "bytes": 1164,
+      "sha256": "00be327351ab394ccc81e12aab97112cd1254897714ff963bdada5f62bbfbdeb"
+    },
+    {
+      "path": "inputs/reused/ActualHistoryQualifiedPublication.swift",
+      "bytes": 4102,
+      "sha256": "552f5c9ac115b6a6b58265a0e3e216a843fb6180e41cfa2896311aecbbe4248a"
+    },
+    {
+      "path": "inputs/reused/ActualLibraryIdentityTypes.swift",
+      "bytes": 3464,
+      "sha256": "9013328f2d28c9dfe65060b222b0f4cb98f3b62788444716b20101eea17a0342"
+    },
+    {
+      "path": "inputs/reused/ActualQualifiedLocatorStore.swift",
+      "bytes": 6357,
+      "sha256": "df1ead30fcef9800b928f18cae35fdfca82203159d0783e457fa49ca897a8898"
+    },
+    {
+      "path": "inputs/reused/HistorySourceFixtures.swift",
+      "bytes": 7765,
+      "sha256": "a81f13ac2592283ff8c1831d2e1287cdd6f0d51fa09ddf1734e076be1b05261e"
+    },
+    {
+      "path": "inputs/reused/ReaderDestinationResolver.swift",
+      "bytes": 4737,
+      "sha256": "715d5fef2cde466eebb2767a75f5e5d4fb6fb86d56c7c81cc90a8b1f260fb4d3"
+    },
+    {
+      "path": "inputs/reused/ReadingEntry.swift",
+      "bytes": 1340,
+      "sha256": "f50d516c245af69fe4218f1afe07f5b80963ccbcabe7a308b1273c07641e636f"
+    },
+    {
+      "path": "inputs/reused/candidate/EnabledHistoryReaderSource.swift",
+      "bytes": 14253,
+      "sha256": "bdba0dedbcce10f9271203d4f7a96b3df2ad2c91d262f35d43b36860e709fa8f"
+    },
+    {
+      "path": "run-candidate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-candidate.stdout",
+      "bytes": 1819,
+      "sha256": "077d076e58a5d6fd066bcd33756e5b22cde53e0afba0e6ce6fbec1df1b5bb21e"
+    },
+    {
+      "path": "run-initial.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-initial.stdout",
+      "bytes": 3026,
+      "sha256": "d802e082f7453e058f4348d60b866cace8a6145e94cac6b29452fb28887ebd59"
+    }
+  ],
+  "resultSHA256": "ff86706f76b180b1552159def78a1e95c9a688c72415e70a422630373a72555d"
+}
