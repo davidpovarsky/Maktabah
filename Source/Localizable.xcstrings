@@ -8189,6 +8189,12 @@
             "state": "translated",
             "value": "Kartu Kitab"
           }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרטי הספר"
+          }
         }
       }
     },
@@ -8271,6 +8277,12 @@
             "state": "translated",
             "value": "Tentang Kitab"
           }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "על הספר"
+          }
         }
       }
     },
@@ -8292,6 +8304,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tentang Penulis"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "על המחבר"
           }
         }
       }
