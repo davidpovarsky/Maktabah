@@ -1,0 +1,1207 @@
+{
+  "bookID": 286,
+  "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+  "declaredTotalLines": 409,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.11034119129180908,
+  "resolvedAnchorRows": 5867,
+  "units": [
+    {
+      "unitID": "toc:25150",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        0,
+        1,
+        2
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 2,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "434026bd98ff2d8a2fb346c89ae9de006d1e2a6862832b6b3cd86e51de36d5c5",
+      "rawMembershipSHA256": "d573826d8da26f38d88e947a257aeee84856c91fbf75009a239d354b7b422210"
+    },
+    {
+      "unitID": "toc:25151",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        3,
+        4,
+        5
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 3,
+      "unitEndLineIndex": 5,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 36,
+      "sourceIndicesSHA256": "251e3c94506e86df03eedb498e73490db6ee18a5218e27977f64c8399006937a",
+      "rawMembershipSHA256": "7c7e4fafbebb7e4575852b1b6fbbf6ad1890ef9b503b39863e4d1009c133010e"
+    },
+    {
+      "unitID": "toc:25152",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        6,
+        7
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 6,
+      "unitEndLineIndex": 7,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 43,
+      "sourceIndicesSHA256": "946ec11a25d8ec678f5b4ed3ceb77c3f2ff2fbabe01e03070c3cc2f60dc619cb",
+      "rawMembershipSHA256": "3863336d232b9cf947301cc40e303900c8c64134ca0725840edd2d420f42df84"
+    },
+    {
+      "unitID": "toc:25153",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 8,
+      "unitEndLineIndex": 59,
+      "unitRowCount": 52,
+      "candidateRawRelationshipCount": 922,
+      "sourceIndicesSHA256": "107b28c1152585a3d438c8c34f2d46fdb03d83030142b510b82cb609fb96d8a8",
+      "rawMembershipSHA256": "a6ba750768543306b7d6382172c4339ce9ad30bb91867a8fd086b0ac93514cbf"
+    },
+    {
+      "unitID": "toc:25154",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 60,
+      "unitEndLineIndex": 81,
+      "unitRowCount": 22,
+      "candidateRawRelationshipCount": 374,
+      "sourceIndicesSHA256": "835019f673c06b1c619f99cec525f3f0e64d7df1056d594868f7f3f077b70ee3",
+      "rawMembershipSHA256": "36929c982ac20c8cfea56bdb8163a077b904dfed488d687fb777cb08f6e298ee"
+    },
+    {
+      "unitID": "toc:25155",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 82,
+      "unitEndLineIndex": 111,
+      "unitRowCount": 30,
+      "candidateRawRelationshipCount": 568,
+      "sourceIndicesSHA256": "eb2ceee9137bbb440c1ba7d98f03a2cf8c0367d4bad2d3ce17c071be29680dd8",
+      "rawMembershipSHA256": "f8fb919ca84ffb38554ac7ba81ebea99dbf1cbd98ed32941ab326ccade45a8ad"
+    },
+    {
+      "unitID": "toc:25156",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 112,
+      "unitEndLineIndex": 139,
+      "unitRowCount": 28,
+      "candidateRawRelationshipCount": 738,
+      "sourceIndicesSHA256": "79bc70f636080b19cfc5aa19cce12efc907a4202ea527cd1f2edc20104af79d8",
+      "rawMembershipSHA256": "05ddae8959d270cd0cc1f1f6f78654792fc37d252d69f18a4a339c6d78cc8622"
+    },
+    {
+      "unitID": "toc:25157",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 140,
+      "unitEndLineIndex": 173,
+      "unitRowCount": 34,
+      "candidateRawRelationshipCount": 131,
+      "sourceIndicesSHA256": "515b678e1a692c397a696616fbdc6d8a036653df7bc951dd51f535772d7bf860",
+      "rawMembershipSHA256": "efd9d580625e99c27298b1e75008dda2769ab74e4e4a9cf6e39005dbfd32c7c8"
+    },
+    {
+      "unitID": "toc:25158",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 174,
+      "unitEndLineIndex": 190,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "d0c54e0fe1051c9f3cdc6f1afbe8612b429e8d0720843a6bdc47a74b784725a7",
+      "rawMembershipSHA256": "da883a33e12a72008a9331b781c6f51153605c150475fda4d482a43a0ad70085",
+      "candidateRawMembership": [
+        [
+          657906,
+          3130,
+          1881169
+        ],
+        [
+          657910,
+          3130,
+          1881170
+        ],
+        [
+          657915,
+          3130,
+          1881172
+        ],
+        [
+          657919,
+          3130,
+          1881174
+        ],
+        [
+          657922,
+          3130,
+          1881175
+        ],
+        [
+          657927,
+          3130,
+          1881177
+        ],
+        [
+          657945,
+          3130,
+          1881178
+        ],
+        [
+          657947,
+          3130,
+          1881180
+        ],
+        [
+          657950,
+          3130,
+          1881182
+        ],
+        [
+          657954,
+          3130,
+          1881183
+        ],
+        [
+          657963,
+          3130,
+          1881184
+        ],
+        [
+          657974,
+          3130,
+          1881158
+        ],
+        [
+          657977,
+          3130,
+          1881160
+        ],
+        [
+          657978,
+          3130,
+          1881161
+        ],
+        [
+          657982,
+          3130,
+          1881163
+        ],
+        [
+          657984,
+          3130,
+          1881165
+        ],
+        [
+          657990,
+          3130,
+          1881167
+        ],
+        [
+          873699,
+          263,
+          184201
+        ],
+        [
+          2095680,
+          264,
+          184340
+        ],
+        [
+          2314313,
+          2992,
+          1601664
+        ],
+        [
+          2478130,
+          286,
+          216157
+        ],
+        [
+          2478539,
+          240,
+          140766
+        ],
+        [
+          2478837,
+          271,
+          197729
+        ],
+        [
+          2478844,
+          240,
+          136518
+        ],
+        [
+          6302669,
+          14,
+          6185722
+        ],
+        [
+          6447943,
+          14,
+          6186582
+        ],
+        [
+          6875989,
+          256,
+          6304412
+        ],
+        [
+          6971179,
+          256,
+          6304531
+        ],
+        [
+          6988286,
+          256,
+          6304558
+        ],
+        [
+          7032729,
+          259,
+          6305966
+        ],
+        [
+          7175007,
+          256,
+          6304791
+        ],
+        [
+          7474556,
+          1,
+          6173666
+        ],
+        [
+          7729314,
+          1,
+          6173813
+        ],
+        [
+          7879200,
+          34,
+          6193142
+        ],
+        [
+          7918868,
+          8,
+          6180441
+        ],
+        [
+          7974435,
+          34,
+          6193266
+        ],
+        [
+          8022624,
+          8,
+          6180028
+        ],
+        [
+          8090639,
+          39,
+          6195505
+        ],
+        [
+          8091670,
+          39,
+          6195506
+        ],
+        [
+          8239996,
+          112,
+          6220881
+        ],
+        [
+          8240365,
+          112,
+          6220882
+        ],
+        [
+          8396964,
+          9,
+          6180823
+        ],
+        [
+          8397474,
+          9,
+          6180826
+        ],
+        [
+          8468559,
+          9,
+          6180956
+        ],
+        [
+          8511569,
+          1848,
+          6759957
+        ],
+        [
+          8511582,
+          280,
+          6309091
+        ],
+        [
+          8511594,
+          28,
+          6190440
+        ],
+        [
+          8511607,
+          277,
+          6308124
+        ],
+        [
+          8511620,
+          280,
+          6309091
+        ],
+        [
+          8511644,
+          28,
+          6189221
+        ],
+        [
+          8511658,
+          257,
+          6305083
+        ],
+        [
+          8511670,
+          289,
+          6313210
+        ],
+        [
+          8511683,
+          4,
+          6176911
+        ],
+        [
+          8511708,
+          257,
+          6305083
+        ],
+        [
+          8511721,
+          4,
+          6177116
+        ],
+        [
+          8511747,
+          4,
+          6176979
+        ],
+        [
+          8741561,
+          2,
+          6174862
+        ],
+        [
+          8742457,
+          2,
+          6174871
+        ],
+        [
+          8743945,
+          2,
+          6174873
+        ],
+        [
+          8745635,
+          2,
+          6174874
+        ],
+        [
+          8746668,
+          2,
+          6174875
+        ],
+        [
+          8748625,
+          2,
+          6174876
+        ],
+        [
+          8749408,
+          2,
+          6174877
+        ],
+        [
+          8752229,
+          2,
+          6174863
+        ],
+        [
+          8754170,
+          2,
+          6174864
+        ],
+        [
+          8754684,
+          2,
+          6174865
+        ],
+        [
+          8755308,
+          2,
+          6174866
+        ],
+        [
+          8756042,
+          2,
+          6174867
+        ],
+        [
+          8756821,
+          2,
+          6174868
+        ],
+        [
+          8758340,
+          2,
+          6174869
+        ],
+        [
+          8760320,
+          2,
+          6174870
+        ],
+        [
+          8889496,
+          5,
+          6178437
+        ],
+        [
+          9178748,
+          133,
+          6273308
+        ],
+        [
+          9275695,
+          5,
+          6177876
+        ],
+        [
+          10525915,
+          4,
+          6176911
+        ],
+        [
+          10525916,
+          4,
+          6177116
+        ],
+        [
+          10525917,
+          9,
+          6180956
+        ],
+        [
+          10525918,
+          14,
+          6185722
+        ],
+        [
+          10525919,
+          5,
+          6178437
+        ],
+        [
+          10525920,
+          4,
+          6176979
+        ],
+        [
+          10525921,
+          39,
+          6195505
+        ],
+        [
+          10525923,
+          28,
+          6190440
+        ],
+        [
+          10525924,
+          5,
+          6177876
+        ],
+        [
+          10525925,
+          1,
+          6173666
+        ],
+        [
+          10525926,
+          8,
+          6180441
+        ],
+        [
+          10525927,
+          34,
+          6193142
+        ],
+        [
+          10525928,
+          34,
+          6193266
+        ],
+        [
+          10525929,
+          8,
+          6180028
+        ],
+        [
+          10525930,
+          9,
+          6180823
+        ],
+        [
+          10525931,
+          28,
+          6189221
+        ],
+        [
+          12828368,
+          14,
+          6186577
+        ],
+        [
+          13297240,
+          39,
+          6195506
+        ],
+        [
+          13297241,
+          34,
+          6193153
+        ],
+        [
+          13406152,
+          58,
+          6197296
+        ],
+        [
+          13406153,
+          110,
+          6219547
+        ],
+        [
+          13406154,
+          285,
+          214916
+        ],
+        [
+          13406155,
+          4,
+          6177223
+        ],
+        [
+          13406156,
+          278,
+          10350229
+        ],
+        [
+          13407019,
+          2,
+          6174872
+        ],
+        [
+          13530387,
+          4,
+          6177223
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:25159",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 191,
+      "unitEndLineIndex": 217,
+      "unitRowCount": 27,
+      "candidateRawRelationshipCount": 201,
+      "sourceIndicesSHA256": "f7da1b339067cac0edcf5cc2a32a373fed9e07681fcbd2ce96dbe3239c6f1aef",
+      "rawMembershipSHA256": "5581f8c91ccd054c8f1d59adc9831410e0bcd72f23f5d2134583c8cdfb24756f"
+    },
+    {
+      "unitID": "toc:25160",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 218,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 26,
+      "candidateRawRelationshipCount": 316,
+      "sourceIndicesSHA256": "7549d644982843ead4b374aa9bedd85d8f37861f430360520b5c5e6d57704c31",
+      "rawMembershipSHA256": "f4f5229b71ed098b98fc95cdcd65e7b7f6d261b46e489547779fb09edbe449dc"
+    },
+    {
+      "unitID": "toc:25161",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 267,
+      "unitRowCount": 24,
+      "candidateRawRelationshipCount": 538,
+      "sourceIndicesSHA256": "ae5350ce1aab873ca045fdc94d3f104d1e28077e319d7efe8f1e96ed1a3b3b7c",
+      "rawMembershipSHA256": "277fb5d4487cdf7b44ff66263e172e7db280cf34e2004d6f7aa5af5dadc9c89e"
+    },
+    {
+      "unitID": "toc:25162",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 268,
+      "unitEndLineIndex": 305,
+      "unitRowCount": 38,
+      "candidateRawRelationshipCount": 691,
+      "sourceIndicesSHA256": "29f60858cd10c968e536088688a675e7cbd4b53979bc28a1bec01c0813ad47a1",
+      "rawMembershipSHA256": "bc4051e82cef36a8a8396060f5f29c327835f82a5546fbd36b673a74f37e8d1f"
+    },
+    {
+      "unitID": "toc:25163",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 306,
+      "unitEndLineIndex": 336,
+      "unitRowCount": 31,
+      "candidateRawRelationshipCount": 490,
+      "sourceIndicesSHA256": "c749a3118274830567e240ea8c520a4aa05616c48ed4c8e12dc62e980cbff2ef",
+      "rawMembershipSHA256": "4d0959b9fbe6767646995a8c440754dfbc0439a35f68e3fb44e04ed04acf9de6"
+    },
+    {
+      "unitID": "toc:25164",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 337,
+      "unitEndLineIndex": 354,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 230,
+      "sourceIndicesSHA256": "2afb6d2933533ec47c8be9b8339ddee4ce9cb84d269fa0706c454e93d06c35f8",
+      "rawMembershipSHA256": "ca65bfa4f5d73b1271b81435adf8b39856a6753c1b2cd6491b9b0ad1ac6efdcd"
+    },
+    {
+      "unitID": "toc:25165",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 355,
+      "unitEndLineIndex": 361,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 76,
+      "sourceIndicesSHA256": "67cccba3f8ec7033a80edd724f5a73e7ae958d029b0a17425d27cd40498ee47e",
+      "rawMembershipSHA256": "3a0f10aa4e4340d21452206ed29929c275cb8c2e8f5b8c67feb3d64476e59a86"
+    },
+    {
+      "unitID": "toc:25166",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 362,
+      "unitEndLineIndex": 377,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 70,
+      "sourceIndicesSHA256": "357c2a4823c7af8da02711ea31a95c6a8c4ce77358408c987ce0ac07bc823559",
+      "rawMembershipSHA256": "0f47b24c7a16e5971f3ed6319b9d0be41f788775de71ea8069a39550923e6ec0"
+    },
+    {
+      "unitID": "toc:25167",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        378,
+        379,
+        380,
+        381
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 378,
+      "unitEndLineIndex": 381,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 53,
+      "sourceIndicesSHA256": "1a3b705bd1e96a72c4148056d2516439c9ab6eb63347ad546c1b8cb7a5917b3a",
+      "rawMembershipSHA256": "b570051a018e6aab4e1acf2bed71825c41a496c81b5186dbdf6cc7f8e8139137"
+    },
+    {
+      "unitID": "toc:25168",
+      "rawUnitTitle": "הוספה",
+      "sourceLineIndices": [
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408
+      ],
+      "bookID": 286,
+      "bookTitle": "מכילתא דרבי שמעון בן יוחאי",
+      "mode": "chapter",
+      "unitStartLineIndex": 382,
+      "unitEndLineIndex": 408,
+      "unitRowCount": 27,
+      "candidateRawRelationshipCount": 235,
+      "sourceIndicesSHA256": "bc9031d1e0e9f903eb337b8d13db130329f08c919a45090f0bac1011068f5189",
+      "rawMembershipSHA256": "afe62d1ff014c73b6f6c662bb66673c45adf6364f2207d962baec75b925bc279"
+    }
+  ]
+}

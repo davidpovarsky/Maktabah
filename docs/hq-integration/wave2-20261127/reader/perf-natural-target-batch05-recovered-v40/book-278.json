@@ -1,0 +1,1382 @@
+{
+  "bookID": 278,
+  "bookTitle": "פסיקתא רבתי",
+  "declaredTotalLines": 134,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.08633605390787125,
+  "resolvedAnchorRows": 5639,
+  "units": [
+    {
+      "unitID": "toc:23254",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 2,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 84,
+      "sourceIndicesSHA256": "434026bd98ff2d8a2fb346c89ae9de006d1e2a6862832b6b3cd86e51de36d5c5",
+      "rawMembershipSHA256": "abab21188ef648ead8c80e95cf30d45a86fd927c25174bddd0ccaf2a3d66dcda"
+    },
+    {
+      "unitID": "toc:23255",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        3,
+        4
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 3,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 72,
+      "sourceIndicesSHA256": "8be6d66e9099c68d8feb52ce42478d2153cac2763b784174ae6ae96cd636b596",
+      "rawMembershipSHA256": "3b7d3dde2e1cd55788158e5f2dc27c758e4650edd822906d6a75b3a61e8a5847"
+    },
+    {
+      "unitID": "toc:23256",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        5,
+        6
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 6,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 110,
+      "sourceIndicesSHA256": "2f9cf80b937f44b41379ae3765c65668e5e96241d19d2088e76d72d18ea324b2",
+      "rawMembershipSHA256": "e26fd3865e4a70a1752e223ee73c1d1c2aac5d521e0540f900da09a5f9433716"
+    },
+    {
+      "unitID": "toc:23257",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        7,
+        8
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 7,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "def4fe4f74f38325f2f5e330fcb0e51d476035250b64f6158662026485f0e557",
+      "rawMembershipSHA256": "bf1d9c44ff9fe20e87acc1731a8b859e6c6e055643c02f1704cb2ef6eca4a6de",
+      "candidateRawMembership": [
+        [
+          59352,
+          3574,
+          2464491
+        ],
+        [
+          647050,
+          240,
+          140817
+        ],
+        [
+          649327,
+          240,
+          138028
+        ],
+        [
+          2169974,
+          278,
+          205023
+        ],
+        [
+          6117722,
+          12,
+          6184288
+        ],
+        [
+          6121704,
+          12,
+          6184309
+        ],
+        [
+          6133886,
+          12,
+          6184310
+        ],
+        [
+          6316083,
+          4,
+          6176784
+        ],
+        [
+          6322085,
+          4,
+          6176814
+        ],
+        [
+          6573073,
+          256,
+          6304017
+        ],
+        [
+          6839310,
+          256,
+          6304365
+        ],
+        [
+          6882628,
+          3124,
+          6677497
+        ],
+        [
+          6894232,
+          259,
+          6305812
+        ],
+        [
+          7042563,
+          256,
+          6304624
+        ],
+        [
+          7235718,
+          26,
+          6188018
+        ],
+        [
+          7399268,
+          15,
+          6187140
+        ],
+        [
+          7403929,
+          15,
+          6187142
+        ],
+        [
+          7645499,
+          10,
+          6181973
+        ],
+        [
+          7671804,
+          10,
+          6182106
+        ],
+        [
+          7672372,
+          10,
+          6182116
+        ],
+        [
+          7674678,
+          10,
+          6182123
+        ],
+        [
+          7685378,
+          10,
+          6182159
+        ],
+        [
+          7685767,
+          10,
+          6182160
+        ],
+        [
+          7687684,
+          10,
+          6182165
+        ],
+        [
+          7690038,
+          10,
+          6182168
+        ],
+        [
+          7695861,
+          10,
+          6182186
+        ],
+        [
+          7700203,
+          10,
+          6182178
+        ],
+        [
+          7702573,
+          10,
+          6182184
+        ],
+        [
+          8008221,
+          2993,
+          7702687
+        ],
+        [
+          8167257,
+          3,
+          6176445
+        ],
+        [
+          8210288,
+          107,
+          6214450
+        ],
+        [
+          8210303,
+          262,
+          6306246
+        ],
+        [
+          8210319,
+          111,
+          6219819
+        ],
+        [
+          8210333,
+          107,
+          6214134
+        ],
+        [
+          8210348,
+          125,
+          6255991
+        ],
+        [
+          8210366,
+          28,
+          6190321
+        ],
+        [
+          8210381,
+          28,
+          6190322
+        ],
+        [
+          8256232,
+          11,
+          6182924
+        ],
+        [
+          8261100,
+          1,
+          6174379
+        ],
+        [
+          8278221,
+          11,
+          6182341
+        ],
+        [
+          8419034,
+          3,
+          6175852
+        ],
+        [
+          8749129,
+          2,
+          6174876
+        ],
+        [
+          9044253,
+          5,
+          6177843
+        ],
+        [
+          9123015,
+          2,
+          6175068
+        ],
+        [
+          9133542,
+          2,
+          6175059
+        ],
+        [
+          9186371,
+          5,
+          6178683
+        ],
+        [
+          9276837,
+          2,
+          6174452
+        ],
+        [
+          9322358,
+          4,
+          6176942
+        ],
+        [
+          9347541,
+          2,
+          6175326
+        ],
+        [
+          9348561,
+          5,
+          6177956
+        ],
+        [
+          9359537,
+          2,
+          6175339
+        ],
+        [
+          9360341,
+          2,
+          6175340
+        ],
+        [
+          9378616,
+          4,
+          6177098
+        ],
+        [
+          9390645,
+          2,
+          6175370
+        ],
+        [
+          9424411,
+          2,
+          6175377
+        ],
+        [
+          9432360,
+          12,
+          6183121
+        ],
+        [
+          9441353,
+          5,
+          6178055
+        ],
+        [
+          9446762,
+          260,
+          6306200
+        ],
+        [
+          9475081,
+          2,
+          6174458
+        ],
+        [
+          9476551,
+          2,
+          6174467
+        ],
+        [
+          9492082,
+          2,
+          6174459
+        ],
+        [
+          10295017,
+          10,
+          6182160
+        ],
+        [
+          10295018,
+          28,
+          6190321
+        ],
+        [
+          10295019,
+          12,
+          6184310
+        ],
+        [
+          10295020,
+          1,
+          6174379
+        ],
+        [
+          10295021,
+          15,
+          6187140
+        ],
+        [
+          10295022,
+          2,
+          6174467
+        ],
+        [
+          10295023,
+          26,
+          6188018
+        ],
+        [
+          10295024,
+          5,
+          6178683
+        ],
+        [
+          10295025,
+          10,
+          6182123
+        ],
+        [
+          10295026,
+          15,
+          6187142
+        ],
+        [
+          10295027,
+          2,
+          6174452
+        ],
+        [
+          10295028,
+          10,
+          6182116
+        ],
+        [
+          10295029,
+          2,
+          6175068
+        ],
+        [
+          10295030,
+          11,
+          6182341
+        ],
+        [
+          10295031,
+          4,
+          6177098
+        ],
+        [
+          10295032,
+          10,
+          6182106
+        ],
+        [
+          10295033,
+          2,
+          6175377
+        ],
+        [
+          10295034,
+          10,
+          6182186
+        ],
+        [
+          10295035,
+          2,
+          6175340
+        ],
+        [
+          10295036,
+          2,
+          6175339
+        ],
+        [
+          10295037,
+          10,
+          6182159
+        ],
+        [
+          10295038,
+          2,
+          6175370
+        ],
+        [
+          10295039,
+          10,
+          6182184
+        ],
+        [
+          10295040,
+          2,
+          6174458
+        ],
+        [
+          10295041,
+          2,
+          6174459
+        ],
+        [
+          10295042,
+          5,
+          6177843
+        ],
+        [
+          10295043,
+          10,
+          6182165
+        ],
+        [
+          10295044,
+          5,
+          6178055
+        ],
+        [
+          10295045,
+          2,
+          6175326
+        ],
+        [
+          10295046,
+          2,
+          6175059
+        ],
+        [
+          10295047,
+          5,
+          6177956
+        ],
+        [
+          10295048,
+          3,
+          6175852
+        ],
+        [
+          10295049,
+          10,
+          6182168
+        ],
+        [
+          10295050,
+          2,
+          6174876
+        ],
+        [
+          10295051,
+          12,
+          6184309
+        ],
+        [
+          10295052,
+          11,
+          6182924
+        ],
+        [
+          10295053,
+          4,
+          6176942
+        ],
+        [
+          10295054,
+          3,
+          6176445
+        ],
+        [
+          13405722,
+          278,
+          10350229
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:23258",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        9,
+        10
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 187,
+      "sourceIndicesSHA256": "11e07e7bb591992307e25655831247578120a67b9436b172b61a4df9ba743557",
+      "rawMembershipSHA256": "f798617bb85b80ff4017ae11e19477a245b6a8ea4c54910669b2f317b837c517"
+    },
+    {
+      "unitID": "toc:23259",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        11,
+        12
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 12,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 82,
+      "sourceIndicesSHA256": "2e96afc0e9b31d97254a398e034dd89ae673b8958ef903ee31144c9742fd63be",
+      "rawMembershipSHA256": "a6615fe21be5271d4a55a56f71ce9fa95c7b9588bdf24ed9f522b9c898a89ece"
+    },
+    {
+      "unitID": "toc:23260",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        13,
+        14
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 13,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 82,
+      "sourceIndicesSHA256": "eb18eeb3c385eb89930335264dc8ded657169ecd0251918ea0382c465e8975a5",
+      "rawMembershipSHA256": "4b3525e08df4d4e4ed8c7bcdb21a8d60a969e538b5c30669465d9a841769128f"
+    },
+    {
+      "unitID": "toc:23261",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        15,
+        16
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 16,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 72,
+      "sourceIndicesSHA256": "1a2d14c94f55b2b79673a42a042dfd095cff4089fb431d7af4ff8f4c7831dc58",
+      "rawMembershipSHA256": "461e6cc99b5a3f6f2bcc4ba47a8127b762e78473c8cf064eed1d4e9fd10c33ea"
+    },
+    {
+      "unitID": "toc:23262",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        17,
+        18
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 17,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 44,
+      "sourceIndicesSHA256": "bdc12f336463816ea4cda690c2d7b45d072350f850982330eebc53463975ac47",
+      "rawMembershipSHA256": "d284a27db9e75d6b299aa65017b20dc2bd85be2b0c15613a5e165eff56562007"
+    },
+    {
+      "unitID": "toc:23263",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 186,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "2121042c9ec546703695b7fe94d9f91af5206c4cd7c5fc786171819d7ac6f17e"
+    },
+    {
+      "unitID": "toc:23264",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        21,
+        22
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 144,
+      "sourceIndicesSHA256": "16f2380a3e0b5e5b1c2d4f701b94a23cff01b0676f32c88b60f22fcd84a26da8",
+      "rawMembershipSHA256": "41fd0c945bd0f9b71e70ed846fe139efd47cd1dd1475cb8868031c8cf63003b0"
+    },
+    {
+      "unitID": "toc:23265",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        23,
+        24
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 24,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 147,
+      "sourceIndicesSHA256": "c7235bde31989b3c728ce3f0c5ef87e2a573679410d884dac4a307bad46c17eb",
+      "rawMembershipSHA256": "eb8e58ea06e65f4d172b585a03516af24e8bc4085ab582a52800bd303fb1afa7"
+    },
+    {
+      "unitID": "toc:23266",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        25,
+        26
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 25,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 88,
+      "sourceIndicesSHA256": "15dbd358e2e04b82fd900a1d83cb419298abe633792313e491cae32562e52596",
+      "rawMembershipSHA256": "3e3a0d80d608fdc9f4f726519d9ca1354d594a7a93fb4bbda409285954b482e0"
+    },
+    {
+      "unitID": "toc:23267",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        27,
+        28
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 27,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 291,
+      "sourceIndicesSHA256": "174b4f0e4c4348c546001862b6173cad8da801b308af0497bb80400774e413a9",
+      "rawMembershipSHA256": "73c036c19505cdbcb72719d37abbfe52ae868c61e83556a7b272766b15055ef2"
+    },
+    {
+      "unitID": "toc:23268",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        29,
+        30
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 346,
+      "sourceIndicesSHA256": "8195aa19b2860c12ecd1600d71b1464c7d78613b4732e54d1d8289d94d7e5956",
+      "rawMembershipSHA256": "ba57745c17606bf5d8a6f90765e4669cd69a7eb4ea9b84941ba26c99b0f96867"
+    },
+    {
+      "unitID": "toc:23269",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        31,
+        32
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 32,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 138,
+      "sourceIndicesSHA256": "548e49f2adc8c7db5148842e7ce3ebd153854a45593caa8098fec884a076558c",
+      "rawMembershipSHA256": "e523c9b98b0cf0b1d26d481e43a602f779870bd69d2c10b7fd5a44005880959f"
+    },
+    {
+      "unitID": "toc:23270",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        33,
+        34
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 33,
+      "unitEndLineIndex": 34,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 131,
+      "sourceIndicesSHA256": "4cb60f21c2d87f231b117e6ecf4f706c005975d17ea53a0344bfecdd9609a798",
+      "rawMembershipSHA256": "6e55bef375ff5618aa2e411ff7250af2b456dfec63824b1193cd69129caf432f"
+    },
+    {
+      "unitID": "toc:23271",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        35,
+        36
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 35,
+      "unitEndLineIndex": 36,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 70,
+      "sourceIndicesSHA256": "582b6c28537dcfef03d18ecfbd0e7d01263671d4eff3625cc91529c7672f0bb3",
+      "rawMembershipSHA256": "b8f4a5325fcfa42bb506edad9c56df73d0a37f5ab0d0ba03fc0ba9ffc02429a0"
+    },
+    {
+      "unitID": "toc:23272",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        37,
+        38
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 37,
+      "unitEndLineIndex": 38,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "ab728d276526135c663a8efdb98231005daaa8eb9c9ac4ffc3e574b80bb85908",
+      "rawMembershipSHA256": "e93e8c5f00439c8dcb935b8e21a8ef99878ca329ba8bbcd0996c898fde46498a"
+    },
+    {
+      "unitID": "toc:23273",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        39,
+        40
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 39,
+      "unitEndLineIndex": 40,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 58,
+      "sourceIndicesSHA256": "5872b00edeffaec86c3442c936a657cccb70fe852d98194d109e8b7f68b5ef52",
+      "rawMembershipSHA256": "67e022688578c02e7d3f85d033ca418bc5d6e601a3ea470e14a7b215e74e11ef"
+    },
+    {
+      "unitID": "toc:23274",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        41,
+        42
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 41,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 302,
+      "sourceIndicesSHA256": "3beeee5787f850dd0de404ae4972f02cf353a6c3ea882ec293543c19ca1c96d0",
+      "rawMembershipSHA256": "bb4d564c330a97dc693998d72c86a2414bdaf08fddeac3820b66dc907219361b"
+    },
+    {
+      "unitID": "toc:23275",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        43,
+        44
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 44,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 89,
+      "sourceIndicesSHA256": "aad30a04371b8b2be214e3be4c8bf0620765c35779b118658de42c73602dad05",
+      "rawMembershipSHA256": "2c2aaf3c45522007014657f385d3095435d790496381436371be5e486c41ea7f"
+    },
+    {
+      "unitID": "toc:23276",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        45,
+        46
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 45,
+      "unitEndLineIndex": 46,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 145,
+      "sourceIndicesSHA256": "e89e53648e5e8ad35ab530d2b8a71c63fd15faeddb8e3a3574e89fec632d2c89",
+      "rawMembershipSHA256": "56a226e839f55502f2ca0675e36d54df08121094b3a8fb65a15a6fc3040cafa3"
+    },
+    {
+      "unitID": "toc:23277",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        47,
+        48
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 47,
+      "unitEndLineIndex": 48,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "8a63a90c1b7258c2a838017f93418c58f3e50a532e419918d22d6186410be1fa",
+      "rawMembershipSHA256": "2cb02d7ab70fc45b15c6071ae84383959e6cdc066d9318d9e983d95e980f5eef"
+    },
+    {
+      "unitID": "toc:23278",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        49,
+        50
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 49,
+      "unitEndLineIndex": 50,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 63,
+      "sourceIndicesSHA256": "73e2f935c623ad7dc1a376377fea137c64097d765f415e996289924a308b0b5b",
+      "rawMembershipSHA256": "7d5d457a75fd49bc60f660826217abbe224dddd0edb6d15f5ae30430b2ef1f20"
+    },
+    {
+      "unitID": "toc:23279",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        51,
+        52
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 51,
+      "unitEndLineIndex": 52,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 65,
+      "sourceIndicesSHA256": "e8ddb1a4d528f6e3867557f8bd88cb8925ee02d4fd4fc77b6ac1b993080db359",
+      "rawMembershipSHA256": "250741709375a35bc79e114fdda2e198eba85aac017117c57793954c233f3080"
+    },
+    {
+      "unitID": "toc:23280",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        53,
+        54
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 53,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 147,
+      "sourceIndicesSHA256": "5b0078cd414c695e4cf5e745fa5cf3a7d09c1cc637ac3a06c3263f4c0d54690a",
+      "rawMembershipSHA256": "cac64b52465d7c1c1499444b2ccdaa13d74d4c59b17486b357782b0d988ebb4b"
+    },
+    {
+      "unitID": "toc:23281",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        55,
+        56
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 56,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 58,
+      "sourceIndicesSHA256": "40f276946b410720c53563b485e27443a82807dae11bacd4eede251b1d7eec0d",
+      "rawMembershipSHA256": "e3d89f15af731de6cad5b3a24e2649709c0a2900f27cff7c91283e252b3d8cc9"
+    },
+    {
+      "unitID": "toc:23282",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        57,
+        58
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 57,
+      "unitEndLineIndex": 58,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 194,
+      "sourceIndicesSHA256": "5179480ffa76c258df09205d843af16b841286358a939e2066561b6b2aeae21d",
+      "rawMembershipSHA256": "c8176be4ae17e85291a9155203adebf23106de41f99b3957ff8fee254ab252a2"
+    },
+    {
+      "unitID": "toc:23283",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        59,
+        60
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 59,
+      "unitEndLineIndex": 60,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 69,
+      "sourceIndicesSHA256": "feed0c470b28473effc2ef5000f5de7ce9637912d84f044d540ad43255e6ea7f",
+      "rawMembershipSHA256": "d32f343ebb6ca873560005286c71ec3622252b5aa5e0219934d3282eb96d2db6"
+    },
+    {
+      "unitID": "toc:23284",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        61,
+        62
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 61,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 141,
+      "sourceIndicesSHA256": "384b88c1aeec78f8cfb80907012f68bcc2fba913bd4863b72134e09c40952783",
+      "rawMembershipSHA256": "1e2dd0eabe0cedf128dea656e11f831d13e463a33fe88b9144276009c5830314"
+    },
+    {
+      "unitID": "toc:23285",
+      "rawUnitTitle": "פרק לב",
+      "sourceLineIndices": [
+        63,
+        64
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 64,
+      "sourceIndicesSHA256": "e7812173fe1fd0cc36fa630876e68718ed74d452ad69100aff9948415e2488c8",
+      "rawMembershipSHA256": "b0735be742da54ff4089d6726310ab669406eef060cd1f9dcffa3452d48908c8"
+    },
+    {
+      "unitID": "toc:23286",
+      "rawUnitTitle": "פרק לג",
+      "sourceLineIndices": [
+        65,
+        66
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 395,
+      "sourceIndicesSHA256": "44f65a6052fe627180092b01e155115b4e4cd4764e28c025cae892f3bec835ae",
+      "rawMembershipSHA256": "e21f6b428a04bfebfc3b03072713710fea24a381e8f34f960356b37934a9ee10"
+    },
+    {
+      "unitID": "toc:23287",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        67,
+        68
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "0e1b0dfa2323dce336b99189db29844694241142538a04b2377a3b9313d5db0c",
+      "rawMembershipSHA256": "6a6582080633c6239db360890b5641aaae77611c63abd74b5e72c18286d62738"
+    },
+    {
+      "unitID": "toc:23288",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        69,
+        70
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 70,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 50,
+      "sourceIndicesSHA256": "751f7637240c9ba24c4257cda33ff13f2d55da93d4feb49aceaa62128b1b2222",
+      "rawMembershipSHA256": "f5f422e99d4864ad0642a17833e725ee4d386ff6fd4b374c28df60e162002a9a"
+    },
+    {
+      "unitID": "toc:23289",
+      "rawUnitTitle": "פרק לו",
+      "sourceLineIndices": [
+        71,
+        72
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 71,
+      "unitEndLineIndex": 72,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 87,
+      "sourceIndicesSHA256": "99513b578cfd6a5375d0eb49d6663a4a03efd1ca97cd11540a463d564391fb34",
+      "rawMembershipSHA256": "538a6abacbf8f9329537572051aa6095e7d3c2fd4925686dbbb29aa039d09173"
+    },
+    {
+      "unitID": "toc:23290",
+      "rawUnitTitle": "פרק לז",
+      "sourceLineIndices": [
+        73,
+        74
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 73,
+      "unitEndLineIndex": 74,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "fb5120dfb0091e772df4125711ffe21f681ed77dc168d2565a2335555853a489",
+      "rawMembershipSHA256": "f1c83b3663aad5fd8a7a61ed466adacb19b3b3571dcff74aeee9fbd4760db079"
+    },
+    {
+      "unitID": "toc:23291",
+      "rawUnitTitle": "פרק לח",
+      "sourceLineIndices": [
+        75,
+        76
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 75,
+      "unitEndLineIndex": 76,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "fb299af5efc4fb37df00bc1a6e9a1fda9abd6670b62b2460c62ce2326acb9d49",
+      "rawMembershipSHA256": "b3f0b6492c76540bb40c9485f73ae98d335748188b019fd8686bc96155497a6a"
+    },
+    {
+      "unitID": "toc:23292",
+      "rawUnitTitle": "פרק לט",
+      "sourceLineIndices": [
+        77,
+        78
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 77,
+      "unitEndLineIndex": 78,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "0047fce5ed8c38aa65514e989fe1a5cda586b6ce9ac40f20b864090810c58c2e",
+      "rawMembershipSHA256": "9f0abf90a67ee1c245fe0f96dbd7e5ea105fe68025e4bcf04b47b5a396e55c33"
+    },
+    {
+      "unitID": "toc:23293",
+      "rawUnitTitle": "פרק מ",
+      "sourceLineIndices": [
+        79,
+        80
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 79,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 131,
+      "sourceIndicesSHA256": "48822fc5c23ad543d016e2db2fcfb2e2a8c61980d957af7b919a953edc802a83",
+      "rawMembershipSHA256": "4e89dc8c03880acf2fb314d7a1fe8004b2265ef92a518fdb5bfffb396ad5cc81"
+    },
+    {
+      "unitID": "toc:23294",
+      "rawUnitTitle": "פרק מא",
+      "sourceLineIndices": [
+        81,
+        82
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 59,
+      "sourceIndicesSHA256": "fd9b3391e05daff42f0a20cf579b049d88b473e7cbb9120b8e36d859eece2e20",
+      "rawMembershipSHA256": "b1e77bab4e4eb3480142f59ee8d50cd431291ed077178e8bed5ddab339b1b248"
+    },
+    {
+      "unitID": "toc:23295",
+      "rawUnitTitle": "פרק מב",
+      "sourceLineIndices": [
+        83,
+        84
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 84,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 154,
+      "sourceIndicesSHA256": "d931b7221739c41a0e26e44011f03d4439db9e6647bbeef3e6a3817d23ea0eb5",
+      "rawMembershipSHA256": "aa453aae13aed41f814e6551821d64997f6bab0393dd64e5d8ccca4c6c8182d8"
+    },
+    {
+      "unitID": "toc:23296",
+      "rawUnitTitle": "פרק מג",
+      "sourceLineIndices": [
+        85,
+        86
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 85,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 98,
+      "sourceIndicesSHA256": "8154f7f6aa97f0e7d84eb8eeb5a704948dc1c13c7f4568448ecdd6a0d2e072c5",
+      "rawMembershipSHA256": "95e4391890618f72a05b1b88f898297f25e82f81fe0b44f0f695832a6c2b5713"
+    },
+    {
+      "unitID": "toc:23297",
+      "rawUnitTitle": "פרק מד",
+      "sourceLineIndices": [
+        87,
+        88
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 87,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 104,
+      "sourceIndicesSHA256": "743b2a08658e9f6493f1288e1dc5adcbd2cae15a370524ccaea4ba4be74ae129",
+      "rawMembershipSHA256": "afa083151fdb8ba5a4924568f8f47bcb8ae2a58891ff4f69c97f5c2ec2fa8330"
+    },
+    {
+      "unitID": "toc:23298",
+      "rawUnitTitle": "פרק מה",
+      "sourceLineIndices": [
+        89,
+        90
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 90,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "11a618f72c700daf3be36deb5b88bf957653aef622cbf29b6aedfdd2b8a05167",
+      "rawMembershipSHA256": "ad30d3864fb42b1aa56807788a1e411bca7bcdc5f0bc45e9c0bfa083792a96b0"
+    },
+    {
+      "unitID": "toc:23299",
+      "rawUnitTitle": "פרק מו",
+      "sourceLineIndices": [
+        91,
+        92
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 91,
+      "unitEndLineIndex": 92,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 75,
+      "sourceIndicesSHA256": "b793acdfa0525fded54c5a24fa448ad64e6db25fd52e9754017667e7bbe9c519",
+      "rawMembershipSHA256": "e13224f8abc2eed1f337481008dfb5e49b29fa5b0a7feae884d4f761c0df6d8e"
+    },
+    {
+      "unitID": "toc:23300",
+      "rawUnitTitle": "פרק מז",
+      "sourceLineIndices": [
+        93,
+        94
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 93,
+      "unitEndLineIndex": 94,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 109,
+      "sourceIndicesSHA256": "fd24e96ad2b3b7626e10a76b42c43627a1c7a9a6e345d6f7c624707664c3ff0f",
+      "rawMembershipSHA256": "9d8d457e8c7d3a434e6e76465613142a1e01a896bd2506c4815ff3514110c893"
+    },
+    {
+      "unitID": "toc:23301",
+      "rawUnitTitle": "הוספה א",
+      "sourceLineIndices": [
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 95,
+      "unitEndLineIndex": 131,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 388,
+      "sourceIndicesSHA256": "93ee6c9ef37e8639a94b135f61fd25847406fd3cf13c606835794f0059780549",
+      "rawMembershipSHA256": "03348b917d978b67d192f596f9b813d339dc3b0644fcbf461c3ca8e0e66dcb35"
+    },
+    {
+      "unitID": "toc:23306",
+      "rawUnitTitle": "הוספה ב",
+      "sourceLineIndices": [
+        132,
+        133
+      ],
+      "bookID": 278,
+      "bookTitle": "פסיקתא רבתי",
+      "mode": "chapter",
+      "unitStartLineIndex": 132,
+      "unitEndLineIndex": 133,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7354a3e123e18d3077c2c53a815a530712f793e7bae0c221a7fbfa2c536254e0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

@@ -1,0 +1,2187 @@
+{
+  "bookID": 137,
+  "bookTitle": "מעילה",
+  "declaredTotalLines": 557,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.10590945463627577,
+  "resolvedAnchorRows": 6137,
+  "units": [
+    {
+      "unitID": "toc:6740",
+      "rawUnitTitle": "דף ב.",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 15,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 135,
+      "sourceIndicesSHA256": "4939a292c2f5164ddcf27a07ddc7ef96928baa3e8967453a7294a9ecebf0a5c3",
+      "rawMembershipSHA256": "3b3d21d17bd07cacaa6b03565babe12af328f726d10a9330852935d0f0b375cb"
+    },
+    {
+      "unitID": "toc:6741",
+      "rawUnitTitle": "דף ב:",
+      "sourceLineIndices": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 16,
+      "unitEndLineIndex": 27,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 162,
+      "sourceIndicesSHA256": "425d54993ff7489e3be4171dd6bf9cf86ddd24415baa82fe1ac23d16b97e5272",
+      "rawMembershipSHA256": "7db0361f67e193284bba6b23acaa031e6bb2b927aa0ca9c214546b101634ce0c"
+    },
+    {
+      "unitID": "toc:6742",
+      "rawUnitTitle": "דף ג.",
+      "sourceLineIndices": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 28,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 114,
+      "sourceIndicesSHA256": "164a67977165eceef4305f19a2d70649e78ebd65694db4c85538e0c2ae962144",
+      "rawMembershipSHA256": "f4c51c7de8176aad555a7d2ddeadd35124c06e89abaaf3d962011f1bb3a972a3"
+    },
+    {
+      "unitID": "toc:6743",
+      "rawUnitTitle": "דף ג:",
+      "sourceLineIndices": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 53,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 124,
+      "sourceIndicesSHA256": "94f53f8d451de3fb7747f7b2dbc2705e9fe22e5454a921d9d5f80ef93605a5ea",
+      "rawMembershipSHA256": "07f5feb4a1fa8fc39dc1a51921798acf1a0434be26846f0f9470dc3d9436bd9d"
+    },
+    {
+      "unitID": "toc:6744",
+      "rawUnitTitle": "דף ד.",
+      "sourceLineIndices": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 54,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 70,
+      "sourceIndicesSHA256": "86c62cfa2f5cec4c3f4da4b47a2b16af264127aaf09a270631bf1c28f6610f05",
+      "rawMembershipSHA256": "e0df36788c52eee4cfe1d6704ae029a8987aa83dbf152249825437823d31fad0"
+    },
+    {
+      "unitID": "toc:6745",
+      "rawUnitTitle": "דף ד:",
+      "sourceLineIndices": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 82,
+      "sourceIndicesSHA256": "dd7e96c1872023f02a4f210e1d5ed8a5e391ad8472954fc7c60f6b720fb71c15",
+      "rawMembershipSHA256": "5a7bc2aa31381371b4f2b1c7abfb51ab905966d06677951e72ff753526a978d8"
+    },
+    {
+      "unitID": "toc:6746",
+      "rawUnitTitle": "דף ה.",
+      "sourceLineIndices": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 95,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 97,
+      "sourceIndicesSHA256": "a4c48900e14980fae536f33af1e7e4d5c57184ac135a36d3a370241b3ef47412",
+      "rawMembershipSHA256": "c4450ece8354ba2bd1c94ef19f27a9d56bf6d8f6e8b8a846ad7a185658a6f93f"
+    },
+    {
+      "unitID": "toc:6747",
+      "rawUnitTitle": "דף ה:",
+      "sourceLineIndices": [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 96,
+      "unitEndLineIndex": 110,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 78,
+      "sourceIndicesSHA256": "881058b20b8dce4b98229b7bb91e714c3e8c1e6ec577a279a9d0da9919fa18ed",
+      "rawMembershipSHA256": "351f0d20af52aa11aeadc041b34eeaf5dbf2cb4697e0f2ce2e915d49b9217540"
+    },
+    {
+      "unitID": "toc:6748",
+      "rawUnitTitle": "דף ו.",
+      "sourceLineIndices": [
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 111,
+      "unitEndLineIndex": 130,
+      "unitRowCount": 20,
+      "candidateRawRelationshipCount": 67,
+      "sourceIndicesSHA256": "6827ef8013353048bb5722d0941cb5db43a13edcfae939e0614c760d5f58a528",
+      "rawMembershipSHA256": "381a3a40cbd2395b66341a458ef0ed24a2a514ab1371e9a0e226ccd453cdcba9"
+    },
+    {
+      "unitID": "toc:6749",
+      "rawUnitTitle": "דף ו:",
+      "sourceLineIndices": [
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 131,
+      "unitEndLineIndex": 146,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 127,
+      "sourceIndicesSHA256": "9612d1ad18f49edd64acab77539286f83d951639ec73f2a16334ce6656d81823",
+      "rawMembershipSHA256": "9672197fbad2f5d3d9ab35a2f5eb8addeae2baedeed09bac772cb64f5e3d6e15"
+    },
+    {
+      "unitID": "toc:6750",
+      "rawUnitTitle": "דף ז.",
+      "sourceLineIndices": [
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 147,
+      "unitEndLineIndex": 159,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 112,
+      "sourceIndicesSHA256": "530f20460399e1b6c1248d4cac1e3dce5a160a0e1f4b8b70e284572c43b45cd3",
+      "rawMembershipSHA256": "06af0b75b3038387fd3bd05ab1fec6fa11eb61cd6c9646205d4e09f0dd7cb5c2"
+    },
+    {
+      "unitID": "toc:6751",
+      "rawUnitTitle": "דף ז:",
+      "sourceLineIndices": [
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 160,
+      "unitEndLineIndex": 179,
+      "unitRowCount": 20,
+      "candidateRawRelationshipCount": 150,
+      "sourceIndicesSHA256": "a7cb77065121b312b32c352287505fb783a2a9c396d27d905bd7d23932ac2a7d",
+      "rawMembershipSHA256": "e4bf596346a4abfc65a068a25a7fcf84632bd57e452aa33d13fbab2be214f941"
+    },
+    {
+      "unitID": "toc:6752",
+      "rawUnitTitle": "דף ח.",
+      "sourceLineIndices": [
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 180,
+      "unitEndLineIndex": 186,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "9830eaf0c4dcff6f0a6de6ac0bcc58419b41722365635d538fafc613828391e4",
+      "rawMembershipSHA256": "7eb60a6cb1ba460efb800f488aaab2986cf30eb33f4a84b8983162357b2b2dd8",
+      "candidateRawMembership": [
+        [
+          6910821,
+          5469,
+          7584887
+        ],
+        [
+          6932671,
+          5468,
+          7583098
+        ],
+        [
+          8342304,
+          2187,
+          6879464
+        ],
+        [
+          8342319,
+          2098,
+          6943335
+        ],
+        [
+          8342334,
+          2098,
+          6943336
+        ],
+        [
+          8342349,
+          4531,
+          7610715
+        ],
+        [
+          8342364,
+          1905,
+          6982472
+        ],
+        [
+          8342378,
+          953,
+          636901
+        ],
+        [
+          8342393,
+          662,
+          6461436
+        ],
+        [
+          8342407,
+          1936,
+          6989506
+        ],
+        [
+          8342421,
+          2187,
+          6879465
+        ],
+        [
+          8342426,
+          2187,
+          6879466
+        ],
+        [
+          8342433,
+          1931,
+          6984926
+        ],
+        [
+          8342437,
+          1931,
+          6984927
+        ],
+        [
+          8342444,
+          1931,
+          6984928
+        ],
+        [
+          8342451,
+          1931,
+          6984929
+        ],
+        [
+          8342468,
+          345,
+          6326476
+        ],
+        [
+          8342480,
+          371,
+          6330635
+        ],
+        [
+          8342486,
+          367,
+          6329913
+        ],
+        [
+          8342500,
+          343,
+          6325981
+        ],
+        [
+          8342515,
+          2098,
+          6943337
+        ],
+        [
+          8342531,
+          2519,
+          7174742
+        ],
+        [
+          8342546,
+          5771,
+          7389035
+        ],
+        [
+          8342563,
+          3647,
+          2520147
+        ],
+        [
+          8342581,
+          2519,
+          7174718
+        ],
+        [
+          8342611,
+          87,
+          6199159
+        ],
+        [
+          8342626,
+          87,
+          6199157
+        ],
+        [
+          8342642,
+          87,
+          6199158
+        ],
+        [
+          8342657,
+          87,
+          6199156
+        ],
+        [
+          8342672,
+          1992,
+          6792103
+        ],
+        [
+          8342688,
+          2187,
+          6879467
+        ],
+        [
+          8342703,
+          2187,
+          6879468
+        ],
+        [
+          8342718,
+          1931,
+          6984930
+        ],
+        [
+          8342732,
+          1931,
+          6984931
+        ],
+        [
+          8342747,
+          1931,
+          6984932
+        ],
+        [
+          8342762,
+          1931,
+          6984933
+        ],
+        [
+          8342778,
+          1931,
+          6984934
+        ],
+        [
+          8342791,
+          1931,
+          6984935
+        ],
+        [
+          8342806,
+          1931,
+          6984936
+        ],
+        [
+          8342821,
+          1931,
+          6984937
+        ],
+        [
+          8342835,
+          1931,
+          6984938
+        ],
+        [
+          8342851,
+          1931,
+          6984939
+        ],
+        [
+          8342867,
+          1931,
+          6984940
+        ],
+        [
+          8342882,
+          1931,
+          6984941
+        ],
+        [
+          8342896,
+          1931,
+          6984942
+        ],
+        [
+          8342910,
+          1931,
+          6984943
+        ],
+        [
+          8342925,
+          1931,
+          6984944
+        ],
+        [
+          8342940,
+          1931,
+          6984945
+        ],
+        [
+          8342956,
+          1931,
+          6984946
+        ],
+        [
+          8342972,
+          1931,
+          6984947
+        ],
+        [
+          8342987,
+          1931,
+          6984948
+        ],
+        [
+          8343001,
+          1931,
+          6984949
+        ],
+        [
+          8343015,
+          345,
+          6326476
+        ],
+        [
+          8343031,
+          2098,
+          6943338
+        ],
+        [
+          8343046,
+          2098,
+          6943339
+        ],
+        [
+          8343062,
+          2519,
+          7174744
+        ],
+        [
+          8343078,
+          2519,
+          7174746
+        ],
+        [
+          8343093,
+          2519,
+          7174747
+        ],
+        [
+          8343109,
+          2519,
+          7174748
+        ],
+        [
+          8343124,
+          2519,
+          7174749
+        ],
+        [
+          8343140,
+          2519,
+          7174750
+        ],
+        [
+          8343154,
+          2598,
+          7195124
+        ],
+        [
+          8343169,
+          4531,
+          7610704
+        ],
+        [
+          8343184,
+          2187,
+          6879469
+        ],
+        [
+          8343200,
+          1931,
+          6984950
+        ],
+        [
+          8343216,
+          2098,
+          6943340
+        ],
+        [
+          8343232,
+          1936,
+          6988812
+        ],
+        [
+          8343250,
+          2700,
+          7209148
+        ],
+        [
+          8343265,
+          2505,
+          7162797
+        ],
+        [
+          8343282,
+          5786,
+          7379097
+        ],
+        [
+          8343298,
+          1905,
+          6982472
+        ],
+        [
+          8343314,
+          1990,
+          6801222
+        ],
+        [
+          8343330,
+          1936,
+          6989506
+        ],
+        [
+          8343345,
+          2187,
+          6879470
+        ],
+        [
+          8343360,
+          2187,
+          6879471
+        ],
+        [
+          8343376,
+          2098,
+          6943341
+        ],
+        [
+          8343391,
+          2098,
+          6943342
+        ],
+        [
+          8343408,
+          940,
+          633167
+        ],
+        [
+          8343423,
+          1936,
+          6988812
+        ],
+        [
+          8389830,
+          4467,
+          7633171
+        ],
+        [
+          8935991,
+          4258,
+          7653647
+        ],
+        [
+          8961254,
+          1072,
+          6425321
+        ],
+        [
+          8979715,
+          1060,
+          6426751
+        ],
+        [
+          9096499,
+          1976,
+          6954293
+        ],
+        [
+          9448366,
+          2939,
+          7157257
+        ],
+        [
+          9813038,
+          6808,
+          5297363
+        ],
+        [
+          9813039,
+          6808,
+          5297364
+        ],
+        [
+          11388058,
+          6736,
+          5012793
+        ],
+        [
+          11398502,
+          6667,
+          4982607
+        ],
+        [
+          11398503,
+          6667,
+          4982608
+        ],
+        [
+          11398504,
+          6667,
+          4982609
+        ],
+        [
+          11398505,
+          6667,
+          4982610
+        ],
+        [
+          11593052,
+          7578,
+          8429451
+        ],
+        [
+          11593053,
+          7578,
+          8429435
+        ],
+        [
+          11593054,
+          7578,
+          8429445
+        ],
+        [
+          12605465,
+          6808,
+          9940809
+        ],
+        [
+          12605466,
+          6808,
+          9940810
+        ],
+        [
+          12605467,
+          6808,
+          9940812
+        ],
+        [
+          13491685,
+          6808,
+          10571546
+        ],
+        [
+          13491686,
+          6808,
+          10571548
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:6753",
+      "rawUnitTitle": "דף ח:",
+      "sourceLineIndices": [
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 187,
+      "unitEndLineIndex": 198,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 119,
+      "sourceIndicesSHA256": "ac0429cab3465ab850b2fd39da5953f54d5753cdee6de4267c8719ab0d2fcb62",
+      "rawMembershipSHA256": "e27431d14b59ba21802e6554781f4d01a21da54a6b76f16a29077a30ac70663c"
+    },
+    {
+      "unitID": "toc:6754",
+      "rawUnitTitle": "דף ט.",
+      "sourceLineIndices": [
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 199,
+      "unitEndLineIndex": 218,
+      "unitRowCount": 20,
+      "candidateRawRelationshipCount": 309,
+      "sourceIndicesSHA256": "3730727b77998e8ce5bfeb206aacd27e0240685c56094e782f5596de45208a13",
+      "rawMembershipSHA256": "43c1ef6605d336a595b3fd59195c6a6cd5ae68ae851d49474ec44801eda15455"
+    },
+    {
+      "unitID": "toc:6755",
+      "rawUnitTitle": "דף ט:",
+      "sourceLineIndices": [
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 219,
+      "unitEndLineIndex": 229,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 132,
+      "sourceIndicesSHA256": "c2addf9e7f947c100e9223a871cfa417754d4503c4b3bacca3a705b081f13a39",
+      "rawMembershipSHA256": "390b4d4cd57304f83bfd588c158a3df530d972752ab56c56675a20a688ac9983"
+    },
+    {
+      "unitID": "toc:6756",
+      "rawUnitTitle": "דף י.",
+      "sourceLineIndices": [
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 230,
+      "unitEndLineIndex": 239,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 166,
+      "sourceIndicesSHA256": "d6d1cb7f450bbc1c50668c97aec8f11f1357fcb062fa7f156991b18cb61624a5",
+      "rawMembershipSHA256": "bee396b4c95e6e1a8d1a4ea4af65628c11db203392f5cc99c6247d6c0b115637"
+    },
+    {
+      "unitID": "toc:6757",
+      "rawUnitTitle": "דף י:",
+      "sourceLineIndices": [
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 240,
+      "unitEndLineIndex": 248,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 96,
+      "sourceIndicesSHA256": "0f64d18bd6026b380e324bf04023c660d716b39a1b048d7ddf7f9a3dc0982b5a",
+      "rawMembershipSHA256": "1cd3fae9e45e21cc44c045165794de5ea1764f756709dabd898a175293c56373"
+    },
+    {
+      "unitID": "toc:6758",
+      "rawUnitTitle": "דף יא.",
+      "sourceLineIndices": [
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 249,
+      "unitEndLineIndex": 266,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 200,
+      "sourceIndicesSHA256": "6496c75fe0bbab711d34c4efb80ad0ce3de3cc108086318826ce4e4802802544",
+      "rawMembershipSHA256": "b48369ca80a78922010d6846c053a0818ee747191e155fa9c63b2fe1c384bd9e"
+    },
+    {
+      "unitID": "toc:6759",
+      "rawUnitTitle": "דף יא:",
+      "sourceLineIndices": [
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 267,
+      "unitEndLineIndex": 286,
+      "unitRowCount": 20,
+      "candidateRawRelationshipCount": 190,
+      "sourceIndicesSHA256": "e1179c6f4bc7ef5a0f956804e18e65cb2fd0129b78006cb86d05e81089f6063e",
+      "rawMembershipSHA256": "f4d92b257263e35f88362d7c260618e7ec2aa8497888f9f370bb92e4649a14f9"
+    },
+    {
+      "unitID": "toc:6760",
+      "rawUnitTitle": "דף יב.",
+      "sourceLineIndices": [
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 287,
+      "unitEndLineIndex": 302,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 164,
+      "sourceIndicesSHA256": "9ed9b04c921783f390baa4e565fa3a7724c0bbc105e71d339dcedb076c1cf04d",
+      "rawMembershipSHA256": "1f69fc1bee6b070f1f954e21caa7398b5b40351525b2c03d7076a1396c4ac1e6"
+    },
+    {
+      "unitID": "toc:6761",
+      "rawUnitTitle": "דף יב:",
+      "sourceLineIndices": [
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 303,
+      "unitEndLineIndex": 314,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 160,
+      "sourceIndicesSHA256": "26134665fee23b11b35bbdc0e761017ff6979ad0961e4a07da68473c74ff40f7",
+      "rawMembershipSHA256": "42b691999d48375eae3b3b3f8a9c14949ad4119761fb0757818451c695fa005f"
+    },
+    {
+      "unitID": "toc:6762",
+      "rawUnitTitle": "דף יג.",
+      "sourceLineIndices": [
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 315,
+      "unitEndLineIndex": 328,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 153,
+      "sourceIndicesSHA256": "6dc42aef3920a60dd523413c72acd38eb886add71027b88bd58650c820b4b320",
+      "rawMembershipSHA256": "1fe161cb7ff91c35316eb609f00e453e24c9500331c89ac007e64a9310fac83a"
+    },
+    {
+      "unitID": "toc:6763",
+      "rawUnitTitle": "דף יג:",
+      "sourceLineIndices": [
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 329,
+      "unitEndLineIndex": 339,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 128,
+      "sourceIndicesSHA256": "e79a1dc1ed99a940131f54abfead2d3164b6aefec0344f344166c002e1ae7f4b",
+      "rawMembershipSHA256": "4980e114f69353564266ddfb8ea6d126b1d1006a48188c6d2fd37b36cb7d5443"
+    },
+    {
+      "unitID": "toc:6764",
+      "rawUnitTitle": "דף יד.",
+      "sourceLineIndices": [
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 340,
+      "unitEndLineIndex": 353,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 120,
+      "sourceIndicesSHA256": "3bca788e198ea450524e1ef798e70d5e7ee96bf90e66211635ae9b66658760cd",
+      "rawMembershipSHA256": "9ee1b74d2373fecedad4d80ca7f3259d0b6eb13b853f190a80b665121f26bbc1"
+    },
+    {
+      "unitID": "toc:6765",
+      "rawUnitTitle": "דף יד:",
+      "sourceLineIndices": [
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 354,
+      "unitEndLineIndex": 364,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 105,
+      "sourceIndicesSHA256": "d34786a153640c9a6678dd0eab016604be4b21540edfc5f01636641cfd96990d",
+      "rawMembershipSHA256": "274a0c975b1b75a123c28658bf4bd9b98589adafe2213432b228e593b66fcdb8"
+    },
+    {
+      "unitID": "toc:6766",
+      "rawUnitTitle": "דף טו.",
+      "sourceLineIndices": [
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 365,
+      "unitEndLineIndex": 378,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 140,
+      "sourceIndicesSHA256": "0762209abf5fce6ca0f7f52f90a9a9d651b83ee5b16f93177bc67bdbecf5f2a1",
+      "rawMembershipSHA256": "cd49ba9d77f345b8c90f907070efa293f0e7d1c7a56df84ab130779da03eb218"
+    },
+    {
+      "unitID": "toc:6767",
+      "rawUnitTitle": "דף טו:",
+      "sourceLineIndices": [
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 379,
+      "unitEndLineIndex": 394,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 174,
+      "sourceIndicesSHA256": "7095b4366f976ad62d66c9066f921d8bbd8b16aec70ceacec501cab0131b3508",
+      "rawMembershipSHA256": "9c5ea6de00887ac006a3458a4f4c5f2d642db9de7dc4373f67e3f3a93b9c2e6c"
+    },
+    {
+      "unitID": "toc:6768",
+      "rawUnitTitle": "דף טז.",
+      "sourceLineIndices": [
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 395,
+      "unitEndLineIndex": 402,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "9c643d4b357da3dd7e53904d6fa5fcacb0e95627188de32e720f8ce31e8aabd6",
+      "rawMembershipSHA256": "36f96b0a6c28f4f2a828413d686a6c9bbef5ebbc443cd139bf0cb98d2486f44a",
+      "candidateRawMembership": [
+        [
+          6697388,
+          5057,
+          7587849
+        ],
+        [
+          6780580,
+          2973,
+          7216667
+        ],
+        [
+          7520224,
+          3779,
+          2664903
+        ],
+        [
+          7547432,
+          1485,
+          7372617
+        ],
+        [
+          7886025,
+          5762,
+          3515954
+        ],
+        [
+          7886258,
+          5762,
+          3515964
+        ],
+        [
+          7886304,
+          5762,
+          3515966
+        ],
+        [
+          8308115,
+          2187,
+          6879731
+        ],
+        [
+          8308127,
+          2187,
+          6879732
+        ],
+        [
+          8308140,
+          323,
+          6321504
+        ],
+        [
+          8308167,
+          2098,
+          6943579
+        ],
+        [
+          8308177,
+          2098,
+          6943580
+        ],
+        [
+          8308185,
+          2098,
+          6943581
+        ],
+        [
+          8308195,
+          2519,
+          7174839
+        ],
+        [
+          8308210,
+          5395,
+          7631536
+        ],
+        [
+          8308221,
+          4548,
+          7611693
+        ],
+        [
+          8308232,
+          2187,
+          6879733
+        ],
+        [
+          8308240,
+          1931,
+          6985069
+        ],
+        [
+          8308261,
+          2098,
+          6943582
+        ],
+        [
+          8308272,
+          2098,
+          6943583
+        ],
+        [
+          8308285,
+          2519,
+          7174840
+        ],
+        [
+          8308294,
+          5395,
+          7631536
+        ],
+        [
+          8308306,
+          2187,
+          6879734
+        ],
+        [
+          8308314,
+          2187,
+          6879735
+        ],
+        [
+          8308323,
+          1931,
+          6985070
+        ],
+        [
+          8308347,
+          2098,
+          6943584
+        ],
+        [
+          8308355,
+          2098,
+          6943585
+        ],
+        [
+          8308368,
+          5814,
+          3623981
+        ],
+        [
+          8308383,
+          3129,
+          1878597
+        ],
+        [
+          8308429,
+          4548,
+          7611732
+        ],
+        [
+          8308439,
+          2187,
+          6879736
+        ],
+        [
+          8308448,
+          2187,
+          6879737
+        ],
+        [
+          8308458,
+          1931,
+          6985071
+        ],
+        [
+          8308469,
+          323,
+          6321510
+        ],
+        [
+          8308495,
+          2098,
+          6943586
+        ],
+        [
+          8308503,
+          2098,
+          6943587
+        ],
+        [
+          8308514,
+          4548,
+          7611726
+        ],
+        [
+          8308527,
+          4548,
+          7611740
+        ],
+        [
+          8308536,
+          2187,
+          6879738
+        ],
+        [
+          8308543,
+          2187,
+          6879739
+        ],
+        [
+          8308554,
+          1931,
+          6985072
+        ],
+        [
+          8308579,
+          2098,
+          6943588
+        ],
+        [
+          8308589,
+          2187,
+          6879740
+        ],
+        [
+          8308597,
+          2187,
+          6879741
+        ],
+        [
+          8308607,
+          1931,
+          6985073
+        ],
+        [
+          8308626,
+          2098,
+          6943589
+        ],
+        [
+          8308633,
+          2098,
+          6943590
+        ],
+        [
+          8308647,
+          3886,
+          3112633
+        ],
+        [
+          8308656,
+          5395,
+          7631537
+        ],
+        [
+          8308670,
+          4822,
+          7622330
+        ],
+        [
+          8308686,
+          4548,
+          7611852
+        ],
+        [
+          8308703,
+          4548,
+          7611726
+        ],
+        [
+          8308713,
+          2187,
+          6879742
+        ],
+        [
+          8308723,
+          2187,
+          6879743
+        ],
+        [
+          8308749,
+          1922,
+          6975425
+        ],
+        [
+          8308761,
+          2098,
+          6943591
+        ],
+        [
+          8308772,
+          2098,
+          6943592
+        ],
+        [
+          8308781,
+          2098,
+          6943593
+        ],
+        [
+          8308797,
+          2519,
+          7174841
+        ],
+        [
+          8308813,
+          3823,
+          7523889
+        ],
+        [
+          8308829,
+          4531,
+          7610746
+        ],
+        [
+          8308846,
+          4548,
+          7611779
+        ],
+        [
+          8308862,
+          2520,
+          7173770
+        ],
+        [
+          8308878,
+          2588,
+          7194364
+        ],
+        [
+          8366679,
+          4489,
+          7633714
+        ],
+        [
+          8394713,
+          4471,
+          7632893
+        ],
+        [
+          8980312,
+          2878,
+          7095526
+        ],
+        [
+          9383782,
+          2941,
+          7156571
+        ],
+        [
+          9813382,
+          6808,
+          5297967
+        ],
+        [
+          9813383,
+          6808,
+          5297969
+        ],
+        [
+          9813387,
+          6808,
+          5297976
+        ],
+        [
+          9813388,
+          6808,
+          5297978
+        ],
+        [
+          9813390,
+          6808,
+          5297981
+        ],
+        [
+          9813391,
+          6808,
+          5297982
+        ],
+        [
+          9813394,
+          6808,
+          5297985
+        ],
+        [
+          11388084,
+          6736,
+          5012835
+        ],
+        [
+          11388085,
+          6736,
+          5012837
+        ],
+        [
+          11398594,
+          6667,
+          4982722
+        ],
+        [
+          11398595,
+          6667,
+          4982723
+        ],
+        [
+          11398596,
+          6667,
+          4982724
+        ],
+        [
+          11398597,
+          6667,
+          4982725
+        ],
+        [
+          11398599,
+          6667,
+          4982727
+        ],
+        [
+          11398600,
+          6667,
+          4982728
+        ],
+        [
+          11398601,
+          6667,
+          4982729
+        ],
+        [
+          11593164,
+          7578,
+          8430322
+        ],
+        [
+          11593165,
+          7578,
+          8430326
+        ],
+        [
+          11593166,
+          7578,
+          8430333
+        ],
+        [
+          11593167,
+          7578,
+          8430391
+        ],
+        [
+          11593168,
+          7578,
+          8430335
+        ],
+        [
+          11593169,
+          7578,
+          8430361
+        ],
+        [
+          11593170,
+          7578,
+          8430374
+        ],
+        [
+          12605649,
+          6808,
+          9941051
+        ],
+        [
+          12605650,
+          6808,
+          9941052
+        ],
+        [
+          12605651,
+          6808,
+          9941054
+        ],
+        [
+          12605652,
+          6808,
+          9941057
+        ],
+        [
+          12605654,
+          6808,
+          9941059
+        ],
+        [
+          13491760,
+          6808,
+          10571633
+        ],
+        [
+          13491761,
+          6808,
+          10571634
+        ],
+        [
+          13491762,
+          6808,
+          10571635
+        ],
+        [
+          13491763,
+          6808,
+          10571636
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:6769",
+      "rawUnitTitle": "דף טז:",
+      "sourceLineIndices": [
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 403,
+      "unitEndLineIndex": 411,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 130,
+      "sourceIndicesSHA256": "4e0f2615a8f81d7dd67a0bea71b5a367c06500f990649033ddbf33f214100894",
+      "rawMembershipSHA256": "e767056c87db36bdc17f38535e3f49271c439026a7a99f1e29d0ea9cb6417e44"
+    },
+    {
+      "unitID": "toc:6770",
+      "rawUnitTitle": "דף יז.",
+      "sourceLineIndices": [
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 412,
+      "unitEndLineIndex": 427,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 217,
+      "sourceIndicesSHA256": "b849bf877f08e5fd49c91ef9033306b5f7dca692e9a323ce5b015b8e9fbbad9b",
+      "rawMembershipSHA256": "3a26bc24f683746561b9bf69d8e69ed7680cedf3f279e32ee6cf7f34790aebfd"
+    },
+    {
+      "unitID": "toc:6771",
+      "rawUnitTitle": "דף יז:",
+      "sourceLineIndices": [
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 428,
+      "unitEndLineIndex": 441,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 224,
+      "sourceIndicesSHA256": "9db19e52e68b1b04afe8af25cce843591e49e9a0f8bdf9f1f2d571d99d87a29f",
+      "rawMembershipSHA256": "e9c18e0c8fa163d9a9546bd140b6e26ea4da0625c21176142103a8d5a37a659e"
+    },
+    {
+      "unitID": "toc:6772",
+      "rawUnitTitle": "דף יח.",
+      "sourceLineIndices": [
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 442,
+      "unitEndLineIndex": 456,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 206,
+      "sourceIndicesSHA256": "ee66087bf44c86a778ae9b6f359e72e8bf7d9d58943be922b5baeececb84e76b",
+      "rawMembershipSHA256": "91a5b2c7f318a5f17fa28a91d8c8a10f262c99dc127afd0acd2902ae14fc7e00"
+    },
+    {
+      "unitID": "toc:6773",
+      "rawUnitTitle": "דף יח:",
+      "sourceLineIndices": [
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 457,
+      "unitEndLineIndex": 469,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 151,
+      "sourceIndicesSHA256": "6f82328a42e85365118f35d30620bf0e30209cdab10ec601787fed6d63f8ac8c",
+      "rawMembershipSHA256": "10aa6e72982115ec37d68800767e10c9c67eb68228fed4f56bffe4543e0ab26d"
+    },
+    {
+      "unitID": "toc:6774",
+      "rawUnitTitle": "דף יט.",
+      "sourceLineIndices": [
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 470,
+      "unitEndLineIndex": 481,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 137,
+      "sourceIndicesSHA256": "349fcd3e3dc5c81e6e7a336ea9e6afa3e377e8660563fc85b2deac4ebffc1fcd",
+      "rawMembershipSHA256": "c65eb47d611019801e9e246fb6414f5287278501a01563228b392e7915b247fb"
+    },
+    {
+      "unitID": "toc:6775",
+      "rawUnitTitle": "דף יט:",
+      "sourceLineIndices": [
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 482,
+      "unitEndLineIndex": 494,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 179,
+      "sourceIndicesSHA256": "9c78195624bcf3816ed0881a3314ff1fe5b5e099b585aaccaf427bfa46e6c42b",
+      "rawMembershipSHA256": "886f2f1af4f21ae2f0bfef859d6cc3bef36dcee7a2e9b79b226d7fae84819420"
+    },
+    {
+      "unitID": "toc:6776",
+      "rawUnitTitle": "דף כ.",
+      "sourceLineIndices": [
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 495,
+      "unitEndLineIndex": 508,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 159,
+      "sourceIndicesSHA256": "0e439120df7b36da364f9dcdcd209f637ed90e5feb5d7de320f7892cb3a06740",
+      "rawMembershipSHA256": "974b49130a9d67a9ce93b0146728dd279c7f63bb09370fcae556af9cf19f75a5"
+    },
+    {
+      "unitID": "toc:6777",
+      "rawUnitTitle": "דף כ:",
+      "sourceLineIndices": [
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 509,
+      "unitEndLineIndex": 520,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 108,
+      "sourceIndicesSHA256": "306ea4f3d0b4e3b4eb48ccaf29a5661f64b13894b7d0ce5da1a4b05af3b1cf95",
+      "rawMembershipSHA256": "6177c4bd52bfc29abb00bb838c21150fe351aee0295894c078c43409266bf571"
+    },
+    {
+      "unitID": "toc:6778",
+      "rawUnitTitle": "דף כא.",
+      "sourceLineIndices": [
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 521,
+      "unitEndLineIndex": 537,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 189,
+      "sourceIndicesSHA256": "a5bcaa6e9b958b47bc87c4a8beb935899c450430f799c697842fd8ee58758ce0",
+      "rawMembershipSHA256": "016dd086f739e018cfea8a52c8b607276d1502bbac113afedb8e8085ebde5354"
+    },
+    {
+      "unitID": "toc:6779",
+      "rawUnitTitle": "דף כא:",
+      "sourceLineIndices": [
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 538,
+      "unitEndLineIndex": 551,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 147,
+      "sourceIndicesSHA256": "5fc1177bbc693aaafdae317d25b0376ea1b16961e0a3c4b45ebfe5791c4a2d74",
+      "rawMembershipSHA256": "2f7d9cba47a93169fc6b04e10aa1c4cd61136ea7275a2d54eaa371dba9f6ebc0"
+    },
+    {
+      "unitID": "toc:6780",
+      "rawUnitTitle": "דף כב.",
+      "sourceLineIndices": [
+        552,
+        553,
+        554,
+        555,
+        556
+      ],
+      "bookID": 137,
+      "bookTitle": "מעילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 552,
+      "unitEndLineIndex": 556,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 49,
+      "sourceIndicesSHA256": "1ef4809643a144f35cd49216d24610fd61ce92b465c36853b8bf07c1016726b6",
+      "rawMembershipSHA256": "6780bcfe227e63e5f1aa912c58bacc0bd26ed7c28ffc8b1d2763fb373e0604e9"
+    }
+  ]
+}

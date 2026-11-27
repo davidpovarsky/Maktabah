@@ -1,0 +1,816 @@
+{
+  "bookID": 217,
+  "bookTitle": "תוספתא זבחים",
+  "declaredTotalLines": 108,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.1389725524932146,
+  "resolvedAnchorRows": 1070,
+  "units": [
+    {
+      "unitID": "toc:9781",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 109,
+      "sourceIndicesSHA256": "6c301cda718f48575f1c55c0f3ae8b643bad3d8a7967046ce3f8fad0abde4343",
+      "rawMembershipSHA256": "35b9bbaf422ad9f0947188e6706f6d8f2722ddd0c3455875ca0f9152cd677fab"
+    },
+    {
+      "unitID": "toc:9782",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "fe7fafe28b19ab15b2c9bf876ca0afcf35a0140d1a18079cdc44acd8b90c40e2",
+      "rawMembershipSHA256": "e36c31128cbee680f4731f6ef45e10be0ca112e71b42201a37fe38d530ac8e28",
+      "candidateRawMembership": [
+        [
+          6604415,
+          4182,
+          7597150
+        ],
+        [
+          6693037,
+          132,
+          6272402
+        ],
+        [
+          6693124,
+          132,
+          6272403
+        ],
+        [
+          6996989,
+          5471,
+          7582609
+        ],
+        [
+          6997838,
+          5471,
+          7582625
+        ],
+        [
+          6998375,
+          5471,
+          7582664
+        ],
+        [
+          6998543,
+          5471,
+          7582665
+        ],
+        [
+          6998734,
+          5471,
+          7582667
+        ],
+        [
+          6998775,
+          5471,
+          7582671
+        ],
+        [
+          6999949,
+          5471,
+          7582659
+        ],
+        [
+          7003417,
+          5471,
+          7582732
+        ],
+        [
+          7003449,
+          5471,
+          7582732
+        ],
+        [
+          7003600,
+          5471,
+          7582737
+        ],
+        [
+          7066007,
+          132,
+          6270333
+        ],
+        [
+          7411911,
+          3396,
+          2204119
+        ],
+        [
+          7490503,
+          81,
+          6198786
+        ],
+        [
+          7490595,
+          81,
+          6198786
+        ],
+        [
+          7491063,
+          81,
+          6198787
+        ],
+        [
+          7491259,
+          81,
+          6198787
+        ],
+        [
+          7492709,
+          81,
+          6198793
+        ],
+        [
+          7851667,
+          106,
+          6213747
+        ],
+        [
+          8119369,
+          210,
+          6296894
+        ],
+        [
+          8164248,
+          218,
+          6297243
+        ],
+        [
+          8164310,
+          218,
+          6297243
+        ],
+        [
+          8164354,
+          218,
+          6297244
+        ],
+        [
+          8164367,
+          218,
+          6297244
+        ],
+        [
+          8164425,
+          218,
+          6297246
+        ],
+        [
+          8164497,
+          218,
+          6297246
+        ],
+        [
+          8164527,
+          218,
+          6297247
+        ],
+        [
+          8164570,
+          218,
+          6297248
+        ],
+        [
+          8164583,
+          218,
+          6297248
+        ],
+        [
+          8164597,
+          218,
+          6297248
+        ],
+        [
+          8165009,
+          218,
+          6297272
+        ],
+        [
+          8165022,
+          218,
+          6297272
+        ],
+        [
+          8165127,
+          218,
+          6297273
+        ],
+        [
+          8165182,
+          218,
+          6297275
+        ],
+        [
+          8165546,
+          218,
+          6297276
+        ],
+        [
+          8165640,
+          218,
+          6297277
+        ],
+        [
+          8166494,
+          218,
+          6297304
+        ],
+        [
+          8220355,
+          217,
+          6297142
+        ],
+        [
+          8220551,
+          130,
+          6262157
+        ],
+        [
+          8220566,
+          217,
+          6297151
+        ],
+        [
+          8220579,
+          217,
+          6297178
+        ],
+        [
+          8220595,
+          217,
+          6297147
+        ],
+        [
+          8220595,
+          217,
+          6297148
+        ],
+        [
+          8220610,
+          130,
+          6262157
+        ],
+        [
+          8220626,
+          217,
+          6297148
+        ],
+        [
+          8220626,
+          217,
+          6297149
+        ],
+        [
+          8220642,
+          130,
+          6262129
+        ],
+        [
+          8220658,
+          130,
+          6262217
+        ],
+        [
+          8220672,
+          217,
+          6297159
+        ],
+        [
+          8220687,
+          130,
+          6262573
+        ],
+        [
+          8220703,
+          217,
+          6297151
+        ],
+        [
+          8220718,
+          217,
+          6297178
+        ],
+        [
+          8220733,
+          130,
+          6263254
+        ],
+        [
+          8220749,
+          217,
+          6297152
+        ],
+        [
+          8220765,
+          130,
+          6262428
+        ],
+        [
+          8220779,
+          130,
+          6262226
+        ],
+        [
+          8220795,
+          130,
+          6262377
+        ],
+        [
+          8220809,
+          130,
+          6262272
+        ],
+        [
+          8220824,
+          217,
+          6297178
+        ],
+        [
+          8220840,
+          130,
+          6263258
+        ],
+        [
+          8220856,
+          130,
+          6262573
+        ],
+        [
+          8220871,
+          130,
+          6262279
+        ],
+        [
+          8220885,
+          130,
+          6262376
+        ],
+        [
+          8220900,
+          130,
+          6262162
+        ],
+        [
+          8346467,
+          137,
+          6278868
+        ],
+        [
+          8436681,
+          80,
+          6198687
+        ],
+        [
+          8436748,
+          80,
+          6198688
+        ],
+        [
+          8436761,
+          80,
+          6198688
+        ],
+        [
+          8436776,
+          80,
+          6198688
+        ],
+        [
+          8437145,
+          80,
+          6198689
+        ],
+        [
+          8437692,
+          80,
+          6198690
+        ],
+        [
+          8437918,
+          80,
+          6198691
+        ],
+        [
+          8437933,
+          80,
+          6198691
+        ],
+        [
+          8439172,
+          80,
+          6198694
+        ],
+        [
+          8439186,
+          80,
+          6198694
+        ],
+        [
+          8447888,
+          80,
+          6198718
+        ],
+        [
+          8447940,
+          80,
+          6198718
+        ],
+        [
+          8765807,
+          5822,
+          3647780
+        ],
+        [
+          8817351,
+          131,
+          6265367
+        ],
+        [
+          8817376,
+          131,
+          6265367
+        ],
+        [
+          8818272,
+          131,
+          6265369
+        ],
+        [
+          8818551,
+          131,
+          6265373
+        ],
+        [
+          8819018,
+          131,
+          6265394
+        ],
+        [
+          8820701,
+          131,
+          6265425
+        ],
+        [
+          8822246,
+          131,
+          6265455
+        ],
+        [
+          8827874,
+          131,
+          6265562
+        ],
+        [
+          8828010,
+          131,
+          6265547
+        ],
+        [
+          8828196,
+          131,
+          6265547
+        ],
+        [
+          8829356,
+          131,
+          6265580
+        ],
+        [
+          8829419,
+          131,
+          6265581
+        ],
+        [
+          8829517,
+          131,
+          6265582
+        ],
+        [
+          8829556,
+          131,
+          6265583
+        ],
+        [
+          8851324,
+          131,
+          6265853
+        ],
+        [
+          8974283,
+          131,
+          6266969
+        ],
+        [
+          9040572,
+          131,
+          6267614
+        ],
+        [
+          9040632,
+          131,
+          6267614
+        ],
+        [
+          9076749,
+          28,
+          6190224
+        ],
+        [
+          10061370,
+          28,
+          6190224
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:9783",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 109,
+      "sourceIndicesSHA256": "46964c93ecc834bf9917467db8acb0ff5ea76b0f00504e39e48b9ee20db80a9e",
+      "rawMembershipSHA256": "67fba775e13b511f63c6e7ca90bad23c083ba0d6c6471803ac3a74341b141b9f"
+    },
+    {
+      "unitID": "toc:9784",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 25,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 80,
+      "sourceIndicesSHA256": "edd79ff4ec5e6b8045536a5baccbbf17ffd8e11549c6cfea14a4089d4ea5ede6",
+      "rawMembershipSHA256": "f7d9c52cd53f0a35cca88005524581c20afbb66dc79c65adaa0dafa1bed55d3a"
+    },
+    {
+      "unitID": "toc:9785",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 26,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 44,
+      "sourceIndicesSHA256": "faef63cbd5767ef63931678f747c9be1146b621bd9f99901590f321f188d26cb",
+      "rawMembershipSHA256": "77138e5585591c75e51647b34f8f71b09250e743e5709124709500128d613054"
+    },
+    {
+      "unitID": "toc:9786",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 71,
+      "sourceIndicesSHA256": "e1c0c48394b5b8d62b456473cf830947c808684bab23fc6dd54fd14202caf6d8",
+      "rawMembershipSHA256": "25489910834ea468bde32b7e8c87bcf2d74c194f6aecc057be8a84891c3cff01"
+    },
+    {
+      "unitID": "toc:9787",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 49,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 67,
+      "sourceIndicesSHA256": "d4a65234cd2c0f572aecc0041b10c0b8054a4677dc877cee48b36bb693cd3ba0",
+      "rawMembershipSHA256": "993b2da1945b234f7a799ccff190cf46fc841ebb10b072916b2f5f0ef73b59e7"
+    },
+    {
+      "unitID": "toc:9788",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 50,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 95,
+      "sourceIndicesSHA256": "1195515f937c0155f79babbd60f17eb7f1c81a7c1000e84c81a0a40567129029",
+      "rawMembershipSHA256": "202438e6f77b4ee31d05454dc3016e19196f777e435f8689ad923ace5fbcb962"
+    },
+    {
+      "unitID": "toc:9789",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "549a086a86880c23e2f37a085d8ff17634b14359c22e2637b621e9fdac6d1e9a",
+      "rawMembershipSHA256": "59af856676ea2f18bcba1fe661867d00bee7584b8b2ed186232699fff17822d9"
+    },
+    {
+      "unitID": "toc:9790",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 62,
+      "sourceIndicesSHA256": "5f297f060a8459d6232aafc8d8e7f7adf815044a5c304c6feb4d0e5d09919268",
+      "rawMembershipSHA256": "9f853e1184225f9f72ce199629e5f6a5eea787e16ab59e41fd80cf27fb5e0620"
+    },
+    {
+      "unitID": "toc:9791",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 50,
+      "sourceIndicesSHA256": "905f2ce23b31547d1e23acf96a4437976bf9cb603a996730720f3aa077f602c7",
+      "rawMembershipSHA256": "d9b38306e066342d40fb210383cbdb829b6aeeb5a52908e739148bd359a80009"
+    },
+    {
+      "unitID": "toc:9792",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 97,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 103,
+      "sourceIndicesSHA256": "fe4c5d65b61f8c1ef7d0cc61bb41869e93a7c800342224bf803550488806bda7",
+      "rawMembershipSHA256": "53b8b9e8274694f9e97f2bc84f7b83aa97a709fae1254ce37f93bfdd938050ce"
+    },
+    {
+      "unitID": "toc:9793",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "bookID": 217,
+      "bookTitle": "תוספתא זבחים",
+      "mode": "chapter",
+      "unitStartLineIndex": 98,
+      "unitEndLineIndex": 107,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "a4a171085e8b6dc38d5bd5bae01a60b2ed02c8e8e7afb21c798c72dc11746f7c",
+      "rawMembershipSHA256": "10600d1f5fbaad20761c813d79b47a1ad6aa259f5e83c225643cc31eb734b268"
+    }
+  ]
+}
