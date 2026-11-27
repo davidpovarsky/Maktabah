@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "executed_source_sha": "809e35fdbcbd38ad6b04e771266d6f361c13b7ce",
+  "earlier_source_sha": "a2a8af49d141bc11ca2eb76acddccaca7a55ba7b",
+  "source_difference": {
+    "files": [
+      "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentSourceObservationTests.swift"
+    ],
+    "detail": "Two nested test-fixture access modifiers private→fileprivate so generated file-scope Observation conformances can compile. Full Source tree differs; production app/portable implementation files do not."
+  },
+  "outcome": {
+    "status": "PASS",
+    "executed": 46,
+    "failed": 0,
+    "skipped": 0,
+    "reveal_owner": 11,
+    "actual_Observation": 9,
+    "intent_service": 26,
+    "execution_seconds": 0.08,
+    "build_and_run_seconds": 25.762
+  },
+  "executed_cases": [
+    "NativeComponentRevealOwnerTests.testColdMountRequiresRenderedExactVisibleTargetInOriginalScene",
+    "NativeComponentRevealOwnerTests.testDetachAndReattachSameViewIdentityCannotReplay",
+    "NativeComponentRevealOwnerTests.testLocalOverlayABARevokesSourceRetainedBeforeBegin",
+    "NativeComponentRevealOwnerTests.testOneApplyCannotBecomeDeferredReplay",
+    "NativeComponentRevealOwnerTests.testOriginalOverlayBlocksRevealAndVisibleFacet",
+    "NativeComponentRevealOwnerTests.testReplacementViewCannotInheritCommittedRequest",
+    "NativeComponentRevealOwnerTests.testRevokedOriginalAdmissionCannotRenderAfterParentMount",
+    "NativeComponentRevealOwnerTests.testSourceABAAndConditionalAvailabilityAreRecheckedAtRender",
+    "NativeComponentRevealOwnerTests.testSourceIsCapturedOnceBeforeAwaitAndCannotDriftAtBegin",
+    "NativeComponentRevealOwnerTests.testStaleGeometryDismantleCannotEraseNewOriginalWitness",
+    "NativeComponentRevealOwnerTests.testUnknownAnchorAndMissingSourceAreRejectedBeforePublication",
+    "NativeComponentSourceObservationTests.testActualValueABAInvalidatesBeforeSuspensionResumes",
+    "NativeComponentSourceObservationTests.testBlockingPresentationOpenCloseIsNotMissed",
+    "NativeComponentSourceObservationTests.testCompletedFocusRemainsBoundToOriginalObservation",
+    "NativeComponentSourceObservationTests.testInvalidationIsOneShotAcrossFurtherValues",
+    "NativeComponentSourceObservationTests.testOnlyDeclaredSourceFieldsAreObserved",
+    "NativeComponentSourceObservationTests.testOriginalModelReplacementAndRestoreCannotRevalidate",
+    "NativeComponentSourceObservationTests.testOriginalPublisherCanInvalidateAcrossExecutors",
+    "NativeComponentSourceObservationTests.testRetainedOwnerRejectsABAWhileCoreIsSuspendedWithoutRecapture",
+    "NativeComponentSourceObservationTests.testUnchangedOriginalSourceRemainsValid",
+    "NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog",
+    "NativeIntentServiceTests.testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate",
+    "NativeIntentServiceTests.testCancelledForegroundWaitCannotNavigate",
+    "NativeIntentServiceTests.testCancelledReaderWindowQueryNeverStartsHostResolution",
+    "NativeIntentServiceTests.testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene",
+    "NativeIntentServiceTests.testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata",
+    "NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed",
+    "NativeIntentServiceTests.testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows",
+    "NativeIntentServiceTests.testExactHebrewFeatureNameDoesNotMatchLongerControlName",
+    "NativeIntentServiceTests.testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority",
+    "NativeIntentServiceTests.testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery",
+    "NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors",
+    "NativeIntentServiceTests.testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities",
+    "NativeIntentServiceTests.testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate",
+    "NativeIntentServiceTests.testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations",
+    "NativeIntentServiceTests.testReaderWindowQueryBoundsAreCheckedBeforeHostResolution",
+    "NativeIntentServiceTests.testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution",
+    "NativeIntentServiceTests.testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver",
+    "NativeIntentServiceTests.testReaderWindowsPreserveExistingInitializerFallback",
+    "NativeIntentServiceTests.testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity",
+    "NativeIntentServiceTests.testResolvedMetadataCannotBorrowAnotherBackendOrWindow",
+    "NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID",
+    "NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow",
+    "NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged",
+    "NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority",
+    "NativeIntentServiceTests.testUnknownEntityCannotRequestForegroundPreparation"
+  ],
+  "unchanged_inputs": true,
+  "raw_result": {
+    "source_sha": "809e35fdbcbd38ad6b04e771266d6f361c13b7ce",
+    "production_source_sha": "a2a8af49d141bc11ca2eb76acddccaca7a55ba7b",
+    "command": [
+      "runuser",
+      "-u",
+      "ubuntu",
+      "--",
+      "/usr/local/bin/swift",
+      "test",
+      "--package-path",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127/Source/ChavrusaText/UIRoutingHost",
+      "--scratch-path",
+      "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build",
+      "--jobs",
+      "1",
+      "--filter",
+      "NativeComponentRevealOwnerTests|NativeComponentSourceObservationTests|NativeIntentServiceTests"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 25.762,
+    "cancelled_for_capacity": false,
+    "available_bytes_before": 1258008576,
+    "minimum_sampled_available_bytes": 1256636416,
+    "available_bytes_after": 1256640512,
+    "inputs_unchanged": true,
+    "log_sha256": "70338edfab2a2e90002626c57896f3e6f5e177fcbb067c241cc43c5985926542",
+    "source_snapshot_sha256": "306be7fbbe1bc964d11d24742f4e0f508d4e78fac455cbcc03c6148dfc5cad36"
+  },
+  "prior_attempts": {
+    "initial": "Capacity guard stopped actual own process;0 cases executed; original receipt remains unchanged",
+    "retry1": "Actual compiler rejected nested private Model/Manager macro-generated conformances;0 cases executed; raw failed log preserved losslessly"
+  },
+  "apple_sdk_compile": "NOT_RUN_BY_THIS_PROOF",
+  "native_UI": "NOT_RUN_BY_THIS_PROOF",
+  "physical": "NOT_RUN",
+  "artifacts": {
+    "component-lifetime-tests-retry1.log.gz": {
+      "sha256": "7a817de874b647ca3a3bdf1bf4dde4b983e468f2f91cb192d3493d9f583caa10",
+      "decompressed_sha256": "b098931c22cd2291d928537417222e536712b13ab231bfa6234b80003e04bf6b",
+      "lossless_verified": true
+    },
+    "component-lifetime-result-retry1.json": {
+      "sha256": "72f54de965b12fe55d072e2b89e7328b43816f8e8e7926497b20379d3d0da0ba"
+    },
+    "source-snapshot-retry1.json": {
+      "sha256": "f0265322d54b2c7bfc61d193f9df2889ba79ff645170828f61540f2681027e59"
+    },
+    "component-lifetime-tests-retry2.log.gz": {
+      "sha256": "75606bbe8ed5722297207d8dca0a923e70f51293ba495fe2d2f23268a7405b83",
+      "decompressed_sha256": "70338edfab2a2e90002626c57896f3e6f5e177fcbb067c241cc43c5985926542",
+      "lossless_verified": true
+    },
+    "component-lifetime-result-retry2.json": {
+      "sha256": "286fe1451f9494d19de4a1da6ab3e72f3ce6fdebad77a7b58bdc4be0dc6af861"
+    },
+    "source-snapshot-retry2.json": {
+      "sha256": "306be7fbbe1bc964d11d24742f4e0f508d4e78fac455cbcc03c6148dfc5cad36"
+    }
+  }
+}

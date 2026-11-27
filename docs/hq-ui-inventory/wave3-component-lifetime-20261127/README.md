@@ -38,3 +38,12 @@ The protected SettingsView delta needs fresh authentic source-bound attestation 
 - Apple SDK compilation and new native cases are **NOT_RUN** here. Integration manager owns the combined build.
 
 Exact source hashes and raw receipts are in VALIDATION.json and validation/. Rollback is the inverse scoped commit plus its dependent peer adapter ABA delta. Existing controls/data and earlier evidence remain preserved.
+
+
+## Verified retry after restored capacity
+
+Executed source809e35fdbcbd38ad6b04e771266d6f361c13b7ce passed all46 distinct portable cases:11 owner,9 actual Observation and26 intent service;0 failures,0 skipped,0.080seconds execution,25.762seconds build/run. Inputs were hash-verified unchanged before/after. Raw successful log SHA256:70338edfab2a2e90002626c57896f3e6f5e177fcbb067c241cc43c5985926542.
+
+The first capacity-recovered retry on a2a8af49 reached the actual compiler, which rejected the two nested private test fixtures because Observation expands their conformances at file scope. Test-only809 changes those two access modifiers to fileprivate. All test behavior/assertions remain intact. The full Source tree therefore differs from a2; application and portable implementation files are unchanged. No earlier source run is retrospectively marked successful.
+
+VERIFIED_RETRY.json records all46 actual case names, source differences and exact hashes. Both compiler-failure and passing raw logs are preserved losslessly as gzip artifacts alongside their original receipts/snapshots. Initial stopped attempt and earlier failed supplemental path check remain untouched. This portable result does not establish Apple SDK, UIKit, production backend, Siri/Shortcuts, VoiceOver or physical acceptance. Root’s independently frozen app build remains bound to its own source/control SHAs.
