@@ -1,0 +1,20 @@
+{
+  "base": "5d4b110a61882dea413c110b3d4f8026f4aa2b54",
+  "inputs": [
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "sha256": "469a99e702dcd331dca2fd2a55154de8239ef9b5599befcaf398a56b347065df",
+      "bytes": 6136
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "sha256": "62baf2ad5d539c1bf6fc99f3f1ef34996028faa2973aee6da99669bee4951751",
+      "bytes": 10973
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "sha256": "a61a9f14715ac3a4cadbfd80e52f413621c136a446ffb847a22213a70993a68c",
+      "bytes": 3204
+    }
+  ]
+}

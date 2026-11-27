@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-swift-version",
+    "6",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/attempt-2/Controls.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/docs/hq-ui-inventory/wave3-history-records-20261127/publication-controls/attempt-2/publication-controls"
+  ],
+  "compile_exit": 0,
+  "compile_seconds": 2.4552245140075684,
+  "free_before": 380223488,
+  "free_after": 352542720,
+  "scope": "actual source/domain component; no SDK/app/Core/native claim",
+  "run_exit": 0,
+  "stdout": "PASS same actor entries and exact published objects\nPASS full position identity distinct from numeric work identity\nPASS record invalidates retained publication before persistence\nPASS favorite mutation invalidates retained publication\nPASS equal favorite publication invalidates\nPASS favorite ABA cannot renew old proof\nPASS history deletion invalidates\nPASS favorite history suppression invalidates\nPASS no-op absent deletion preserves publication\nPASS legacy association mutation retires source\nPASS publication source overflow permanently refuses\nPASS new load retires original publication before arrays change\nPASS stale load cannot publish after newer load\nPASS backend changed during actor await refuses publication\nPASS backend A B A generation invalidates\nPASS same backend resources replace generation\nPASS failed transition publication invalidates without backend change\nPASS active transition cannot publish\nPASS native legacy arrays cannot infer qualified identity\nPASS duplicate original numeric row identities refuse\nPASS duplicate full qualified entry identity refuses\nPASS favorite section cannot invent membership\nPASS same numeric id replacement is a different original object\nPASS actual card locator mutation refuses\nPASS wrong backend locator cannot acquire qualified provenance\nPASS original model owner cannot be substituted\nPASS load revision overflow refuses without resetting\nPASS native data path remains explicitly unqualified\nRESULT 28 PASS / 0 FAIL\n",
+  "stderr": "",
+  "binary_sha256": "401bd6c6baf28e79bf4abfc12adc233827e8da3ee7f08327fff32cf83c6ab99d"
+}

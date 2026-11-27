@@ -1,0 +1,47 @@
+{
+  "scope": "Linux frontend parse using iOS27 spelling, not Apple SDK typecheck",
+  "results": [
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Source/LibraryBackend/QualifiedLocatorStore.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Source/Features/History/ViewModel/HistoryViewModel.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/Source/Features/History/ViewModel/Extensions/History+Database.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

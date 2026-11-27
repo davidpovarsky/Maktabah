@@ -1,0 +1,6 @@
+{
+  "candidate": "attempt-3/Controls.swift",
+  "boundary": "Deliberate metadata-fence removal only. Never shipped or used to claim product acceptance.",
+  "replaced": "        publicationSource.willChange()",
+  "replacement": "        // NEGATIVE CONTROL: original mutation without publication retirement"
+}
