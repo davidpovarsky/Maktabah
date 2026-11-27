@@ -420,6 +420,23 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         return total
     }
 
+    private func requireOwnedObstruction(_ url: URL, token: Data, requireImmutable: Bool = true) throws {
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        let contents = try Data(contentsOf: url)
+        try require(attributes[.type] as? FileAttributeType == .typeRegular &&
+                    (attributes[.size] as? NSNumber)?.intValue == token.count &&
+                    (!requireImmutable || (attributes[.immutable] as? NSNumber)?.boolValue == true) &&
+                    contents == token,
+                    "The metadata obstruction must still be this test's exact immutable token")
+    }
+
+    private func removeOwnedObstruction(_ url: URL, token: Data) throws {
+        try requireOwnedObstruction(url, token: token, requireImmutable: false)
+        try FileManager.default.setAttributes([.immutable: false], ofItemAtPath: url.path)
+        try require(try Data(contentsOf: url) == token, "Refuse cleanup after obstruction identity changed")
+        try FileManager.default.removeItem(at: url)
+    }
+
     private func visible(_ query: XCUIElementQuery) -> [XCUIElement] {
         let bounds = app.windows.firstMatch.frame.insetBy(dx: -1, dy: -1)
         return query.allElementsBoundByIndex.filter { !$0.frame.isEmpty && bounds.contains($0.frame) && $0.isHittable }
@@ -631,6 +648,16 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         let root = database.deletingLastPathComponent()
         let downloads = URL(fileURLWithPath: context.downloadsPath)
         let manifestURL = root.appendingPathComponent("seforim-installation.json")
+        let obstructionURL = root.appendingPathComponent("seforim-installation.json.previous")
+        let obstructionToken = Data(("ManagedLibraryUpdateAcceptanceTests-owned-obstruction:" + UUID().uuidString).utf8)
+        var ownsObstruction = false
+        defer {
+            if ownsObstruction {
+                app.terminate()
+                do { try removeOwnedObstruction(obstructionURL, token: obstructionToken) }
+                catch { XCTFail("Owned obstruction cleanup requires review: \(error.localizedDescription)") }
+            }
+        }
         try require(database.lastPathComponent == "seforim.db" && root.lastPathComponent == "Otzaria", "A real managed production database is required")
         try require(context.expectedCurrentTag == "v40-20261123094345" &&
                     context.expectedCurrentSHA256 == "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
@@ -693,17 +720,63 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         capture("settings-update-paused")
 
         app.terminate()
+        // This is the same real filesystem fault exercised by the native
+        // rollback control. The app remains the sole installer. Only this
+        // UUID-marked metadata backup file is created; no corpus bytes change.
+        for name in ["seforim.db.previous", "seforim-installation.json.previous", "seforim-installation.json.installing"] {
+            try require(!FileManager.default.fileExists(atPath: root.appendingPathComponent(name).path),
+                        "Do not replace an existing transaction artifact to inject the owned failure")
+        }
+        try obstructionToken.write(to: obstructionURL, options: .withoutOverwriting)
+        ownsObstruction = true
+        try FileManager.default.setAttributes([.immutable: true], ofItemAtPath: obstructionURL.path)
+        try requireOwnedObstruction(obstructionURL, token: obstructionToken)
+        try attach(["path": obstructionURL.path, "token_sha256": hash(obstructionToken),
+                    "fault": "owned immutable metadata backup; corpus unchanged"], name: "settings-update-owned-fault")
         launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
         try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Cold launch must reopen the previous library after interruption")
         XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
         XCTAssertEqual(try state(context, requirePopulated: true), before)
         try require(cacheBytes(downloads) == retainedBytes, "Cold launch changed retained download bytes")
+        try requireOwnedObstruction(obstructionURL, token: obstructionToken)
         try openUpdateSettings()
         install = app.buttons["otzaria-update-install"]
         try require(install.waitForExistence(timeout: 60), "Ordinary Settings must rediscover and resume the same target")
         try require(app.staticTexts[context.expectedTargetTag].exists, "Relaunch offered another release")
         install.tap()
-        try wait("Actual update must finish through Settings", timeout: 3_600) {
+        try wait("Actual metadata promotion must fail through the original Settings UI", timeout: 3_600) {
+            self.app.staticTexts["The library was updated successfully."].exists || self.app.staticTexts["otzaria-update-error"].exists
+        }
+        let failure = app.staticTexts["otzaria-update-error"]
+        try require(failure.exists && failure.label.contains(obstructionURL.lastPathComponent),
+                    "Require the observed metadata-backup failure, not an unrelated network/storage error: " + failure.label)
+        try require(!app.staticTexts["The library was updated successfully."].exists, "Failed metadata promotion must not report success")
+        try require(install.waitForExistence(timeout: 30) && install.isHittable,
+                    "The original install action must remain available to retry the failed update")
+        try requireOwnedObstruction(obstructionURL, token: obstructionToken)
+        try require(try fileHash(database) == context.expectedCurrentSHA256 && Data(contentsOf: manifestURL) == oldManifest,
+                    "Metadata failure must roll back the previous full database and release identity")
+        XCTAssertEqual(try state(context, requirePopulated: true), before, "Failed promotion must preserve logical user data")
+        try attach(["visible_error": failure.label, "old_database_sha256": context.expectedCurrentSHA256,
+                    "old_manifest_sha256": hash(oldManifest), "owned_token_sha256": hash(obstructionToken),
+                    "retained_download_bytes": cacheBytes(downloads)], name: "settings-update-failed-and-rolled-back")
+        capture("settings-update-retry-offered-after-real-failure")
+        app.terminate()
+        try removeOwnedObstruction(obstructionURL, token: obstructionToken)
+        ownsObstruction = false
+        launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
+        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Recovery after failed promotion must cold-open the old reader")
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertEqual(try state(context, requirePopulated: true), before)
+        try require(try fileHash(database) == context.expectedCurrentSHA256 && Data(contentsOf: manifestURL) == oldManifest,
+                    "Cold recovery changed the restored full v40 source")
+        capture("settings-update-recovered-old-reader")
+        try openUpdateSettings()
+        install = app.buttons["otzaria-update-install"]
+        try require(install.waitForExistence(timeout: 60) && install.isHittable && app.staticTexts[context.expectedTargetTag].exists,
+                    "Original Settings Retry must retain the same official target")
+        install.tap()
+        try wait("Actual retry must finish through Settings", timeout: 3_600) {
             self.app.staticTexts["The library was updated successfully."].exists || self.app.staticTexts["otzaria-update-error"].exists
         }
         try require(!app.staticTexts["otzaria-update-error"].exists,
@@ -736,6 +809,8 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         try require(newHash != context.expectedCurrentSHA256, "Update did not replace the old corpus")
         try attach(["installed_manifest": installed, "new_database_sha256": newHash,
                     "paused_download_bytes": retainedBytes, "old_database_sha256": context.expectedCurrentSHA256,
+                    "metadata_promotion_failure": "observed original UI; previous corpus and manifest restored",
+                    "retry_and_recovery": "original Settings action after verified owned-token removal and cold reopen",
                     "scope": "ordinary-Settings-UI-current-to-latest", "http_range_receipt": "separate-native-bootstrap-gate"],
                    name: "settings-update-installed")
         app.terminate()
