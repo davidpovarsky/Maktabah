@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-27T04:46:31.308968+00:00",
+  "scope": "Explicit root approval of only the two original public verified compressed parts after published restore receipts",
+  "sourceSHA256": "82e93e56cc3f6c87f9d07ab08ec359a1061fb2bd25f80f1df3c23cf189c3beff",
+  "parts": [
+    {
+      "schemaVersion": 1,
+      "status": "PUBLIC_PART_DOWNLOADED_SHA_VERIFIED",
+      "startedAt": "2026-11-27T04:08:24.665754+00:00",
+      "completedAt": "2026-11-27T04:14:20.028238+00:00",
+      "index": 0,
+      "assetID": 782942221,
+      "assetName": "seforim-schema7.db.zst.part-000",
+      "originalURL": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.part-000",
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-000.verified",
+      "bytes": 1992294400,
+      "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+      "fileIdentity": {
+        "device": 2064,
+        "inode": 5946337,
+        "bytes": 1992294400,
+        "allocatedBytes": 1992298496,
+        "nlink": 1,
+        "mtimeNs": 1795752857844099411,
+        "ctimeNs": 1795752860027112422
+      },
+      "requests": [
+        {
+          "attempt": 1,
+          "requestedOffset": 0,
+          "startedAt": "2026-11-27T04:08:24.665801+00:00",
+          "httpStatus": 200,
+          "redirectHost": "release-assets.githubusercontent.com",
+          "completedAt": "2026-11-27T04:14:20.017429+00:00",
+          "receivedThrough": 1992294400,
+          "status": "VERIFIED"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "status": "PUBLIC_PART_DOWNLOADED_SHA_VERIFIED",
+      "startedAt": "2026-11-27T04:14:20.116274+00:00",
+      "completedAt": "2026-11-27T04:14:44.775961+00:00",
+      "index": 1,
+      "assetID": 782993890,
+      "assetName": "seforim-schema7.db.zst.part-001",
+      "originalURL": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.part-001",
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-001.verified",
+      "bytes": 137608236,
+      "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+      "fileIdentity": {
+        "device": 2064,
+        "inode": 5946338,
+        "bytes": 137608236,
+        "allocatedBytes": 137613312,
+        "nlink": 1,
+        "mtimeNs": 1795752883388251557,
+        "ctimeNs": 1795752884775259813
+      },
+      "requests": [
+        {
+          "attempt": 1,
+          "requestedOffset": 0,
+          "startedAt": "2026-11-27T04:14:20.116319+00:00",
+          "httpStatus": 200,
+          "redirectHost": "release-assets.githubusercontent.com",
+          "completedAt": "2026-11-27T04:14:44.775784+00:00",
+          "receivedThrough": 137608236,
+          "status": "VERIFIED"
+        }
+      ]
+    }
+  ],
+  "originalReceipts": [
+    {
+      "name": "RESTORE_PART_0.json",
+      "bytes": 1209,
+      "sha256": "f3a618c5f42f8a9341fecffaa458463d543006a3bc8c19e84d8d7e052e650574"
+    },
+    {
+      "name": "RESTORE_PART_1.json",
+      "bytes": 1205,
+      "sha256": "f68a020dec5f85b8d32998c095cd6c6a237840423f5c3ce1088f14b91d994968"
+    }
+  ],
+  "restoreReceiptSHA256": "768d333cceb7e9d5e05bcb299f1ee579c8acd5174c5aec54c3afe76e0c074afb",
+  "databaseBefore": {
+    "device": 2064,
+    "inode": 5946339,
+    "bytes": 4355063808,
+    "allocatedBytes": 4355162112,
+    "nlink": 1,
+    "mtimeNs": 1795753058125287433,
+    "ctimeNs": 1795753435326503158
+  },
+  "activity": {
+    "observedAt": "2026-11-27T04:46:09.645394+00:00",
+    "processesInspected": 430,
+    "processesExitedDuringRead": 2,
+    "references": [],
+    "permissionDenied": []
+  },
+  "runtimeDependencies": [
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-anytype-host-environment-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-anytype-sqlite-backfill-scale-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-anytype-ui-test-actor-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-curated-miniapps-handoff.wYPUl82s/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-current-original-hanlin-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-final-delivery-20261125",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-groups-install-observation-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-guided-tours-agent1-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-live-consent-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-live-reachability-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-live-source-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-read-tools-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-hanlin-source-handoff-diagnostics-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-mac-final-integration-20261124",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-miniapps-ipad-toolbar-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-miniapps-native-picker-gestures-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-native-abi-admission-review-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-native-annotation-controller-receipt.16XSc37W/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-native-core-repairs-20261120",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-native-note-witness.uRQezLH6/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-navigation-metadata-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-offline-package-observation-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-oracle-completion-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-original-annotation-surface.Q4vd0WkI/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-original-editor-process-resume-20261122",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-original-import-host-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-owner-release-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-paired-release-routes.2M9kdBKX/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-reader-groups-full-v32-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-related-refs-topics-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-related-sources-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-release-hanlin-intake.f6yE8JAp/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-semantic-references-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-shared-candidate-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-shared-engines-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-single-native-annotation-search.O66eksHJ/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-toc-english-native-precondition.DcaEZ7Vu/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-toolbar-corner-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-ui-final-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-v40-download-control-intake.IN5nTejy/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-anytype-linked-batch-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-anytype-linked-sync-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-anytype-peer-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-hanlin-capability-host-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-hanlin-native-ui-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave1-miniapps-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-library-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-component-layout-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-component-lifetime-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-inspector-repository-identity-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-library-retained-marker-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-miniapps-ci-guards-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-notes-ack-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-owner-review-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-parent-routing-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-phone-routing-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-object-identity-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-release-preflight-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-search-focus-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-search-loading-reentry-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-settings-bindings-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-toc-library-bindings-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-toc-source-binding-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-ui-contracts-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-workspace-bindings-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/Maktabah-window-system-toolbar.tPXwkzd3/source",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/maktabah-sdk-consumer-20261123",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/otzaria-latest-shared-hanlin-a35694f7-agent1",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/otzaria-miniapps-original-cold-launch-baseline-agent1",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/otzaria-miniapps-original-durable-receipt-verifier-agent1",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/mnt/development/projects/worktrees/otzaria-wave1-hanlin-20261127",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/tmp/Maktabah-action-core-package-cancellation-agent1-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/tmp/Maktabah-anytype-ordinary-sqlite-resumable-agent1-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/tmp/Maktabah-miniapps-original-publication-owner-agent1-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    },
+    {
+      "worktree": "/tmp/Maktabah-miniapps-original-reader-annotation-presenter-agent1-20261126",
+      "exit": 1,
+      "exactRuntimePathMatches": 0
+    }
+  ],
+  "noPlannedUseConfirmedBy": [
+    "root",
+    "root/reader_perf",
+    "root/library_v40"
+  ],
+  "freeBytesBefore": 834142208,
+  "newPartOrDatabaseHashScans": 0,
+  "publicDownloads": 0
+}
