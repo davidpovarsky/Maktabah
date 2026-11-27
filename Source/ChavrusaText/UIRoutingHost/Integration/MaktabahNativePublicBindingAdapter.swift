@@ -14,6 +14,7 @@ struct MaktabahNativePublicPresentation {
     var readyTableOfContents: Bool = false
     var readySefariaSurface: Bool = false
     var readySavedResults: Bool = false
+    var readyAnnotationEditor: Bool = false
     var readyWorkspaceParents: Set<UIDestinationID> = []
     var availableComponents: [UIDestinationID: Set<UIDestinationID>] = [:]
     var inspectorAvailable: Bool = false
@@ -26,6 +27,7 @@ struct MaktabahNativePublicPresentation {
         case "native.sefariaEmbedded", "native.sefariaEmbedded.library", "native.sefariaEmbedded.topics",
              "native.sefariaEmbedded.learningSchedules": return readySefariaSurface
         case "native.savedResults": return readySavedResults
+        case "native.annotations.editor": return readyAnnotationEditor
         case "native.workspace.profiles", "native.workspace.overview":
             return readyWorkspaceParents.contains(destination)
         default: return ready
@@ -69,6 +71,7 @@ struct MaktabahNativePublicPresentation {
              guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) == nil,
                    !MaktabahNativeSefariaSurfaceBinding.accepts(destination),
                    destination != MaktabahNativeSavedResultsBinding.destination,
+                   destination != MaktabahNativeAnnotationEditorControls.destination,
                    MaktabahApp.isIpad || destination != MaktabahNativeTOCComponents.destination else {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
              }
@@ -126,7 +129,7 @@ struct MaktabahNativePublicPresentation {
         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
         return live
     }
-    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader, inspector, workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }
+    private enum Shape { case library, tableOfContents, history, search, annotations, annotationEditor, settings, reader, inspector, workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         if let component {
@@ -142,7 +145,9 @@ struct MaktabahNativePublicPresentation {
                 && presentation == .sheet && MaktabahNativeWorkspaceComponents.Profiles.allCases.contains { $0.id == component }
             let overview = destination == MaktabahNativeWorkspacePresentationBinding.Parent.overview.destination
                 && presentation == .sheet && MaktabahNativeWorkspaceComponents.Overview.allCases.contains { $0.id == component }
-            guard !hasContent, search || settings || library || tableOfContents || profiles || overview else {
+            let editor = destination == MaktabahNativeAnnotationEditorControls.destination && presentation == .sheet
+                && MaktabahNativeAnnotationEditorControls.Anchor.allCases.contains { $0.id == component }
+            guard !hasContent, search || settings || library || tableOfContents || profiles || overview || editor else {
                 throw UIRouteError(.notSupported, "public_component_not_installed")
             }
         }
@@ -154,6 +159,7 @@ struct MaktabahNativePublicPresentation {
             guard MaktabahNativeRootDestination.search.isAvailable else { throw UIRouteError(.notSupported, "native_search_unavailable") }
             return .search
         case ("native.annotations", .currentTab, false): return .annotations
+        case ("native.annotations.editor", .sheet, false): return .annotationEditor
         case ("native.settings", .sheet, false): return .settings
         case ("native.workspace.profiles", .sheet, false): return .workspaceProfiles
         case ("native.workspace.overview", .sheet, false): return .workspaceOverview
@@ -193,7 +199,7 @@ struct MaktabahNativePublicPresentation {
         case .tableOfContents:
             guard visible.tableOfContentsAvailable else { throw UIRouteError(.unavailable, "native_toc_unavailable") }
             tab = .absent; inspector = nil
-        case .library, .settings, .search, .annotations, .workspaceProfiles, .workspaceOverview, .sefariaEmbedded, .savedResults:
+        case .library, .settings, .search, .annotations, .annotationEditor, .workspaceProfiles, .workspaceOverview, .sefariaEmbedded, .savedResults:
             tab = .absent; inspector = nil
         case .inspector:
             guard visible.inspectorAvailable, let actualInspectorVisible = visible.witnessedInspectorVisible,

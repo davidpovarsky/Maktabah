@@ -259,6 +259,11 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+            .init(id: MaktabahNativeAnnotationEditorControls.destination, title: String(localized: "Annotation editor"),
+                  implementation: .implemented, supportedBackends: ActionBackendID.allCases,
+                  presentations: [.sheet], anchors: MaktabahNativeAnnotationEditorControls.Anchor.allCases.map(\.id),
+                  requiredCoreActions: [], publicNavigationV2: .init(rules: [.init(presentation: .sheet,
+                      components: MaktabahNativeAnnotationEditorControls.Anchor.allCases.map(\.id))])),
             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
                   anchors: MaktabahNativeSettingsComponents.descriptors.map(\.anchor), requiredCoreActions: [],
@@ -842,6 +847,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             || (!MaktabahApp.isIpad && destination.destination == MaktabahNativeTOCComponents.destination)
             || MaktabahNativeSefariaSurfaceBinding.accepts(destination.destination)
             || destination.destination == MaktabahNativeSavedResultsBinding.destination
+            || destination.destination == MaktabahNativeAnnotationEditorControls.destination
             || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
@@ -851,7 +857,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                     : (destination.destination.rawValue == "native.settings"
                     || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil
                     || MaktabahNativeSefariaSurfaceBinding.accepts(destination.destination)
-                    || destination.destination == MaktabahNativeSavedResultsBinding.destination) ? .sheet : .currentTab,
+                    || destination.destination == MaktabahNativeSavedResultsBinding.destination
+                    || destination.destination == MaktabahNativeAnnotationEditorControls.destination) ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }

@@ -11,7 +11,7 @@ import ChavrusaUIRoutingHost
 /// target. It neither saves reader state nor resolves a requested locator.
 @MainActor
 struct MaktabahNativeSceneProjection {
-    enum Surface { case library, tableOfContents, reader, emptyReader, history, search, searchResults, annotations, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }
+    enum Surface { case library, tableOfContents, reader, emptyReader, history, search, searchResults, annotations, annotationEditor, settings, inspector, noteDraft, workspaceProfiles, workspaceOverview, sefariaEmbedded, savedResults }
     let manager: iOSNavigationManager
     let selectedTab: iOSTab
     let columnVisibility: NavigationSplitViewVisibility
@@ -29,7 +29,8 @@ struct MaktabahNativeSceneProjection {
 
     func identity(workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
                   sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,
-                  savedResults: MaktabahNativeSavedResultsBinding? = nil) throws -> NativeSceneIdentity {
+                  savedResults: MaktabahNativeSavedResultsBinding? = nil,
+                  annotationEditor: MaktabahNativeAnnotationEditorControls? = nil) throws -> NativeSceneIdentity {
         let reader = activeTab?.viewModel
         let section = try reader?.currentLocator.map(ActionAppIdentityBridge.actionRef)
         var selection: UIUTF16Range?
@@ -50,6 +51,8 @@ struct MaktabahNativeSceneProjection {
             originalSheet = MaktabahNativeSefariaSurfaceBinding.destination
         } else if savedResults?.isRequestedOrMounted == true {
             originalSheet = MaktabahNativeSavedResultsBinding.destination
+        } else if annotationEditor?.isMounted == true {
+            originalSheet = MaktabahNativeAnnotationEditorControls.destination
         } else { originalSheet = nil }
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID), profileID: stable(workspace?.selection?.profileID),
                                selectedItemID: sidebar?.page == .contents ? stable(activeTab?.id) : nil,
@@ -68,11 +71,21 @@ struct MaktabahNativeSceneProjection {
                  historyRecord: MaktabahNativeHistoryRecordBinding? = nil,
                  annotationSelection: MaktabahNativeAnnotationSelectionBinding? = nil,
                  annotationRequestID: UUID? = nil,
+                 annotationEditor: MaktabahNativeAnnotationEditorControls? = nil,
+                 annotationEditorRequestID: UUID? = nil,
                  savedResults: MaktabahNativeSavedResultsBinding? = nil,
                  savedResultsRequestID: UUID? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
+        case .annotationEditor:
+            guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,
+                  let original = annotationEditor, let requestID = annotationEditorRequestID,
+                  original.isAvailable(), (try? original.validateVisible(requestID: requestID)) != nil else { return nil }
+            // Exact original editor/control proof is necessary, but the
+            // separate original sheet UIKit witness still supplies the receipt.
+            return .init(destination: MaktabahNativeAnnotationEditorControls.destination,
+                presentation: .init(kind: .sheet), content: nil, state: state, focus: nil)
         case .savedResults:
             guard !settingsPresented, selectedTab.canonical == .search, manager.currentMode == .search,
                   let original = savedResults, let requestID = savedResultsRequestID,
