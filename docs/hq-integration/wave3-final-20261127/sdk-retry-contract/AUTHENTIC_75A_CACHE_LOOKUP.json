@@ -1,0 +1,280 @@
+{
+  "candidate_paths": [
+    {
+      "exists": false,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Work/producer-derived-preserved"
+    },
+    {
+      "exists": false,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived-preserved"
+    },
+    {
+      "exists": false,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Evidence/consumer-app.zip"
+    }
+  ],
+  "conclusion": "No receipt-backed original producer cache archive identified in these bounded known scopes; this is not an assertion that no copy exists elsewhere.",
+  "direct_archives": [],
+  "mac_writes": 0,
+  "records": [
+    {
+      "bytes": 686713,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Evidence/execution.json",
+      "relevant_references": [
+        {
+          "key": ".actual_consumer_install_names.app",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app"
+        },
+        {
+          "key": ".actual_consumer_install_names.embedded_framework.image.path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app/Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor"
+        },
+        {
+          "key": ".actual_consumer_install_names.framework_loads[0].consumer_image",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app/OriginalEditorConsumer.debug.dylib"
+        },
+        {
+          "key": ".actual_consumer_install_names.reachable_consumer_images[0].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app/OriginalEditorConsumer"
+        },
+        {
+          "key": ".actual_consumer_install_names.reachable_consumer_images[1].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app/OriginalEditorConsumer.debug.dylib"
+        },
+        {
+          "key": ".actual_framework_install_name.image.path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/distribution/Frameworks/AnytypeOriginalEditor.framework/AnytypeOriginalEditor"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[72].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC8SnapshotV18nativeArchiveBytes10Foundation4DataVvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[72].path[1]",
+          "value": "nativeArchiveBytes"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[73].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC8SnapshotV19nativeArchiveSHA256SSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[73].path[1]",
+          "value": "nativeArchiveSHA256"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[83].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC13SnapshotErrorO14invalidArchiveyA2CmF"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[83].path[1]",
+          "value": "invalidArchive"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[86].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC13SnapshotErrorO17unsafeArchivePathyA2CmF"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[86].path[1]",
+          "value": "unsafeArchivePath"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[87].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC13SnapshotErrorO14archiveChangedyA2CmF"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[87].path[1]",
+          "value": "archiveChanged"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[91].identifier",
+          "value": "s:21AnytypeOriginalEditor0abC15SnapshotCaptureV18retainedArchiveURL10Foundation0H0Vvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[91].path[1]",
+          "value": "retainedArchiveURL"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[404].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB23AnnotationImportReceiptV19sourceArchiveSHA256SSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[404].path[1]",
+          "value": "sourceArchiveSHA256"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[405].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB23AnnotationImportReceiptV19nativeArchiveSHA256SSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[405].path[1]",
+          "value": "nativeArchiveSHA256"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[558].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB25AnnotationRevisionReceiptV19nativeArchiveSHA256SSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[558].path[1]",
+          "value": "nativeArchiveSHA256"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[592].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB25AnnotationLifecycleActionO7archiveyA2CmF"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[592].path[1]",
+          "value": "archive"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[609].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB30AnnotationLifecycleObservationV15archiveObjectIDSSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[609].path[1]",
+          "value": "archiveObjectID"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[610].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB30AnnotationLifecycleObservationV12archiveHeadsSaySSGvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[610].path[1]",
+          "value": "archiveHeads"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[611].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB30AnnotationLifecycleObservationV10isArchivedSbvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[611].path[1]",
+          "value": "isArchived"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[622].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB26AnnotationLifecycleReceiptV15archiveObjectIDSSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[622].path[1]",
+          "value": "archiveObjectID"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[623].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB26AnnotationLifecycleReceiptV12archiveHeadsSaySSGvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[623].path[1]",
+          "value": "archiveHeads"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[624].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB26AnnotationLifecycleReceiptV10isArchivedSbvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[624].path[1]",
+          "value": "isArchived"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[629].identifier",
+          "value": "s:21AnytypeOriginalEditor0aB26AnnotationLifecycleReceiptV19nativeArchiveSHA256SSvp"
+        },
+        {
+          "key": ".actual_public_surface.own_public_symbols[629].path[1]",
+          "value": "nativeArchiveSHA256"
+        },
+        {
+          "key": ".actual_source_closure.generated_bundle_accessors[0].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived/Build/Intermediates.noindex/Assets.build/Debug-Anytype-iphonesimulator/Assets-t.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "key": ".actual_source_closure.generated_bundle_accessors[1].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived/Build/Intermediates.noindex/DesignKit.build/Debug-Anytype-iphonesimulator/DesignKit-t.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "key": ".actual_source_closure.generated_bundle_accessors[2].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived/Build/Intermediates.noindex/Loc.build/Debug-Anytype-iphonesimulator/Loc-t.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "key": ".actual_source_closure.lists[0].path",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived/Build/Intermediates.noindex/Anytype.build/Debug-Anytype-iphonesimulator/AnytypeOriginalEditor.build/Objects-normal/arm64/AnytypeOriginalEditor.SwiftFileList"
+        },
+        {
+          "key": ".distribution",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/distribution"
+        },
+        {
+          "key": ".execution_identity.local_execution.work_root",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work"
+        },
+        {
+          "key": ".retained_signed_consumer.archive_name",
+          "value": "consumer-app.zip"
+        },
+        {
+          "key": ".retained_signed_consumer.signature_command.argv[3]",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app"
+        }
+      ],
+      "sha256": "2d026654101cc5c7f3b664b415437f4b17db6d265a3ff19d856b0fa5f9ee0f36",
+      "summary": {
+        "compiler_cache": null,
+        "distribution": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/distribution",
+        "qualified_cache_input": null,
+        "source_sha": "75a98ba98d6455eefc2c98113fa744b0f3c2e7bf",
+        "status": "ACTUAL_ORIGINAL_FRAMEWORK_EXTERNAL_IMPORT_LINK_RESOURCES_PASS"
+      }
+    },
+    {
+      "bytes": 1132,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Evidence/local-execution.json",
+      "relevant_references": [
+        {
+          "key": ".work_root",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work"
+        }
+      ],
+      "sha256": "2faaf4ee4b4c503048061932555911c564011c9efe49e96524d01e36e352d06e"
+    },
+    {
+      "bytes": 404,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Evidence/producer-build-path-absent.json",
+      "relevant_references": [
+        {
+          "key": ".original",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived"
+        },
+        {
+          "key": ".preserved_at",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/producer-derived-preserved"
+        }
+      ],
+      "sha256": "6471479eea42bbc85342c07c24568f8e56d1f9d6c627b4c7121bac559ede8c9c"
+    },
+    {
+      "bytes": 67529,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Evidence/retained-consumer.json",
+      "relevant_references": [
+        {
+          "key": ".archive_name",
+          "value": "consumer-app.zip"
+        },
+        {
+          "key": ".signature_command.argv[3]",
+          "value": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Page-Lifetime-Debug-Work/consumer-derived/Build/Products/Debug-iphonesimulator/OriginalEditorConsumer.app"
+        }
+      ],
+      "sha256": "c62f42aa59124ae0273e6151f61001ac5c804b3256daac0fed1129eda9822948"
+    }
+  ],
+  "recovery_directory": {
+    "direct_entries": 0,
+    "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/restore-exact-debug-qualification.YHQV1o96"
+  },
+  "retained_observation_files": [
+    "source-admission.json",
+    "source-before.json",
+    "local-execution.json",
+    "local-execution.env",
+    "preflight"
+  ],
+  "scope": "Known retained75a Debug evidence and exact recovery directories only"
+}

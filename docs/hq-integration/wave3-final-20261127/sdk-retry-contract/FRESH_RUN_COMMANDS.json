@@ -1,0 +1,146 @@
+{
+  "schema": "otzaria.wave3.original-fresh-sdk-run-recipe/1",
+  "status": "DOCUMENTED_NOT_EXECUTED",
+  "root": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "required_capacity": "Root-owned capacity allocation and exclusive SDK slot; use the authorized owned-process-group supervisor with 2GiB reserve and 256MiB early-stop margin. No fixed peak is inferred.",
+  "preserve_previous_attempts": true,
+  "source_or_pin_changes": false,
+  "cache_reuse": false,
+  "fresh_paths": {
+    "evidence": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence",
+    "work": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work",
+    "abi": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127",
+    "macro": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127"
+  },
+  "identity": {
+    "clear_stale_context_keys": [
+      "GITHUB_SHA",
+      "GITHUB_RUN_ID",
+      "GITHUB_RUN_ATTEMPT",
+      "OTZARIA_LOCAL_EXECUTION",
+      "OTZARIA_LOCAL_EXECUTION_SHA256"
+    ],
+    "new_original_descriptor": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/local-execution.json",
+    "new_original_environment": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/local-execution.env",
+    "reuse_previous_uuid": false,
+    "reuse_old_abi_receipt_adab56": false
+  },
+  "commands": [
+    {
+      "name": "prepare-new-original-local-execution",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_local_execution.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work"
+      ]
+    },
+    {
+      "name": "source-new-original-local-environment",
+      "environment_file": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/local-execution.env",
+      "note": "Read exactly the two original export assignments after original prepare succeeded; do not synthesize UUID or descriptor digest."
+    },
+    {
+      "name": "original-source-only-admission",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/run_framework_acceptance.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work",
+        "--source-only"
+      ]
+    },
+    {
+      "name": "prepare-new-execution-bound-original-donor",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_donor_abi.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--donor",
+        "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127"
+      ]
+    },
+    {
+      "name": "read-actual-new-abi-digest",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "-c",
+        "import hashlib,sys;from pathlib import Path;print(hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest())",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/ABI_DONOR_INPUT.json"
+      ],
+      "result_variable": "ACTUAL_NEW_ABI_SHA256"
+    },
+    {
+      "name": "original-reviewed-macro-prepare",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_reviewed_macro.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127"
+      ]
+    },
+    {
+      "name": "complete-original-framework-acceptance",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/run_framework_acceptance.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work",
+        "--import-abi-receipt",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/ABI_DONOR_INPUT.json",
+        "--import-abi-sha256",
+        {
+          "from_prior_command_stdout": "read-actual-new-abi-digest"
+        }
+      ]
+    },
+    {
+      "name": "original-reviewed-macro-restore-in-finally",
+      "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+      "argv": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_reviewed_macro.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127",
+        "--restore"
+      ],
+      "always_after_macro_attempt": true,
+      "note": "Use the original restoration even after framework failure; preserve both primary and restore exit/result."
+    }
+  ],
+  "acceptance_requirements": "Actual full framework compile/link, complete source/dependency and symbol/public/SPI checks, original resources/signatures/ownership, independent binary consumer build and English/Hebrew runtime observations, ABI before/after and final source guards all remain mandatory.",
+  "not_a_ready_run": "This is a recipe only. The new identity, new donor receipt, its digest and fresh capacity approval must be actual runtime outputs."
+}
