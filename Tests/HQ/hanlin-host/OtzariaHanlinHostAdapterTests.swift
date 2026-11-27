@@ -1073,8 +1073,12 @@ extension OtzariaHanlinHostAdapterTests {
         XCTAssertEqual(Set(prepared.activeAliases), Set(local.tools.map(\.route.alias) + ["mcp__fixture__echo"]))
         XCTAssertEqual(prepared.skillIDs, ["original.skill"])
         XCTAssertEqual(prepared.instructions, ["Original instruction bytes"])
+        await assistant.setActiveAliases(local.tools.map(\.route.alias) + ["mcp__fixture__echo"])
+        let combinedExposure = try await composed.prepareStep(3, session: identity)
+        XCTAssertEqual(combinedExposure.activeAliases, prepared.activeAliases)
+        XCTAssertEqual(Set(combinedExposure.activeAliases).count, combinedExposure.activeAliases.count)
         await assistant.setActiveAliases(["unknown_alias"])
-        do { _ = try await composed.prepareStep(3, session: identity); XCTFail("Unadvertised capability exposed") }
+        do { _ = try await composed.prepareStep(4, session: identity); XCTFail("Unadvertised capability exposed") }
         catch let error as HanlinHostError { XCTAssertEqual(error, .unknownTool) }
     }
 
