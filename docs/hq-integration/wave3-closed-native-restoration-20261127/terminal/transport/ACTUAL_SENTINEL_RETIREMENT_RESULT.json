@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_157aaaf99df2",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795817384.3334618,
+    "started_at": "2026-11-27T22:09:44.419448+00:00",
+    "finished_at": "2026-11-27T22:10:17.589484+00:00",
+    "duration_s": 33.17,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 300,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"exit\": 0, \"gitAcknowledgementHead\": \"643252b92482cdaea33ab22067749577f6a07399\", \"stdout\": \"{\\\"status\\\": \\\"ONE_EXACT_PRIVATELY_PRESERVED_ARCHIVE_LEAF_RETIRED\\\", \\\"receipt\\\": {\\\"path\\\": \\\"/home/ubuntu/otzaria-wave3-private-evidence-publication-20261127/retire-4e93087e-2565-441f-a6cb-9d33296cc916/RETIREMENT_RESULT.json\\\", \\\"bytes\\\": 1413, \\\"sha256\\\": \\\"b0ec2a6446e0eab758eb33cd8dc1ad5e07a388a9f7a423022f50f9d733a28398\\\"}, \\\"removed\\\": true, \\\"freeBefore\\\": 1016082432, \\\"freeAfter\\\": 2477944832}\\n\", \"stderr\": \"\", \"pythonDebug\": true}"
+  }
+}
