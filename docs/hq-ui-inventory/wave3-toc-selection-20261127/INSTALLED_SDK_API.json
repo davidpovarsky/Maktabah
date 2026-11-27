@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-27T01:12:11.892302+00:00",
+  "scope": "read-only installed SDK API declaration; no native compile/run",
+  "records": [
+    {
+      "path": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/SwiftUI.framework/Modules/SwiftUI.swiftmodule/arm64-apple-ios-simulator.swiftinterface",
+      "sha256": "d85933efa5d7a7a8ccae4c5428ba02e6822bdbe815d4d0e4c2cd5871f736f5d4",
+      "findings": [
+        {
+          "line": 17538,
+          "text": "  @available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *)\n  nonisolated public func onScrollPhaseChange(_ action: @escaping (_ oldPhase: SwiftUICore.ScrollPhase, _ newPhase: SwiftUICore.ScrollPhase, _ context: SwiftUI.ScrollPhaseChangeContext) -> Swift.Void) -> some SwiftUICore.View\n  \n  @available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *)\n  nonisolated public func onScrollGeometryChange<T>(for type: T.Type, of transform: @escaping (SwiftUICore.ScrollGeometry) -> T, action: @escaping (_ oldValue: T, _ newValue: T) -> Swift.Void) -> some SwiftUICore.View where T : Swift.Equatable\n  \n}\n@available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *)\npublic struct TabRole : Swift.Hashable, Swift.Sendable {\n  public static var search: SwiftUI.TabRole {\n    get\n  }\n  @available(anyAppleOS 27.0, *)\n  public static var prominent: SwiftUI.TabRole {\n    get\n  }\n  public static func == (a: SwiftUI.TabRole, b: SwiftUI.TabRole) -> Swift.Bool\n  public func hash(into hasher: inout Swift.Hasher)"
+        }
+      ]
+    },
+    {
+      "path": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/System/Library/Frameworks/SwiftUICore.framework/Modules/SwiftUICore.swiftmodule/arm64-apple-ios-simulator.swiftinterface",
+      "sha256": "a75b73f58847d8827a91b6ea8959e6a2c87119ae787f1a2a7cdbf9ec47d3a622",
+      "findings": [
+        {
+          "line": 245,
+          "text": "  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)\n  public typealias RawValue = Swift::Int\n}\n@available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *)\npublic struct ScrollGeometry : Swift::Equatable, Swift::Sendable {\n  public var contentOffset: CoreFoundation::CGPoint {\n    get\n    set\n  }\n  public var contentSize: CoreFoundation::CGSize\n  public var contentInsets: SwiftUICore::EdgeInsets\n  public var containerSize: CoreFoundation::CGSize {\n    get\n    set\n  }\n  public var visibleRect: CoreFoundation::CGRect {\n    get\n  }"
+        }
+      ]
+    }
+  ]
+}

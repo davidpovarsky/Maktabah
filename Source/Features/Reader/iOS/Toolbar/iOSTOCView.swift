@@ -19,6 +19,8 @@ struct iOSTOCView: View {
 
     @State private var searchText = ""
     @State private var expandedPaths: Set<ObjectIdentifier> = []
+    @State private var selectionScrollTask: Task<Void, Never>?
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
     @Environment(\.dismiss) private var dismiss
     @Environment(\.readerSidebarOwnsToggle) private var sidebarOwnsToggle
     @Environment(\.readerSidebarUsesSharedSearch) private var sidebarUsesSharedSearch
@@ -97,7 +99,6 @@ struct iOSTOCView: View {
         .themeTint()
         .listStyle(.plain)
         .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
-        .modifier(MaktabahNativeTOCComponentContainer(model: tocViewModel))
         #if DEBUG && targetEnvironment(simulator)
         .task { await SefariaTOCOwnerAcceptance.observe(tocViewModel, onRetry: onRetry) }
         #endif
@@ -165,13 +166,17 @@ struct iOSTOCView: View {
                                     item: item,
                                     selectedId: selectedId,
                                     onSelect: onSelect,
-                                    expandedPaths: $expandedPaths
+                                    expandedPaths: userExpandedPaths
                                 )
                             }
                         }
+                        .modifier(MaktabahNativeTOCComponentContainer(
+                            model: tocViewModel, selectedId: selectedId, searchText: $searchText,
+                            expandedPaths: $expandedPaths, proxy: proxy,
+                            cancelPendingSelectionScroll: cancelPendingSelectionScroll))
                         .accessibilityIdentifier("toc-content-list")
                         .background { MaktabahNativeTOCComponentMarker(anchor: .contents, model: tocViewModel) }
-                        .modifier(ReaderSidebarContentsSearch(text: $searchText))
+                        .modifier(ReaderSidebarContentsSearch(text: userSearchText))
                         .navigationBarTitleDisplayMode(.inline)
                         .modifier(ReaderContentsNavigationTitle(bookTitle: bookTitle))
                         .toolbar {
@@ -209,6 +214,7 @@ struct iOSTOCView: View {
                         .onAppear {
                             scrollSelected(proxy: proxy)
                         }
+                        .onDisappear { cancelPendingSelectionScroll() }
                         .onChange(of: tocViewModel.tocRanges.count) { _, _ in
                             scrollSelected(proxy: proxy)
                         }
@@ -223,14 +229,46 @@ struct iOSTOCView: View {
         .toolbarBackground(.visible, for: .navigationBar)
     }
 
+    /// Only ORIGINAL user edits retire the retained presentation. The component
+    /// renderer uses the raw expansion binding for its one authorized reveal.
+    private var userSearchText: Binding<String> {
+        Binding(get: { searchText }, set: { value in
+            guard value != searchText else { return }
+            userTOCStateWillChange()
+            searchText = value
+        })
+    }
+
+    private var userExpandedPaths: Binding<Set<ObjectIdentifier>> {
+        Binding(get: { expandedPaths }, set: { value in
+            guard value != expandedPaths else { return }
+            userTOCStateWillChange()
+            expandedPaths = value
+        })
+    }
+
+    private func userTOCStateWillChange() {
+        cancelPendingSelectionScroll()
+        nativeRoutingSession?.componentOwner(for: MaktabahNativeTOCComponents.destination)?.retirePresentation()
+    }
+
+    private func cancelPendingSelectionScroll() {
+        selectionScrollTask?.cancel()
+        selectionScrollTask = nil
+    }
+
     private func scrollSelected(proxy: ScrollViewProxy) {
+        cancelPendingSelectionScroll()
         computeExpandedPaths()
         guard let selectedId else { return }
-        Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(300))
+        selectionScrollTask = Task { @MainActor in
+            do { try await Task.sleep(for: .milliseconds(300)) }
+            catch { return }
+            guard !Task.isCancelled else { return }
             withAnimation {
                 proxy.scrollTo(selectedId, anchor: .center)
             }
+            selectionScrollTask = nil
         }
     }
 }

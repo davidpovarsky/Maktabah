@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-toc-source-binding-20261127/docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/negative-missing-mount-token/Combined.swift",
+    "-o",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-toc-selection-20261127/layout-without-mount-token"
+  ],
+  "compile_exit": 0,
+  "mutation": "Remove activeToken == token only from accepts in a separate extracted negative-control snapshot; actual product unchanged",
+  "mutated_sha256": "74fc9d719d55f04eb1805e1426a275490bd6270d6d5baae5b39f89c9315719de",
+  "at": "2026-11-27T01:12:08.594818+00:00",
+  "execution_exit": 1,
+  "correctly_rejected": true
+}

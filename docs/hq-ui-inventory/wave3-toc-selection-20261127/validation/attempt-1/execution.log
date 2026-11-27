@@ -1,0 +1,18 @@
+PASS mount activation alone is not layout evidence
+PASS empty native frame cannot advance revision
+PASS same live owner and source actual layout is accepted
+PASS duplicate layout cannot advance a second phase
+PASS expansion state mutation alone produces no publication
+PASS queued previous expansion callback is rejected
+PASS wrong marker token is rejected
+PASS new original expansion layout is separately observed
+PASS detached original container cannot publish
+PASS old mount callback cannot inherit identical new source
+PASS queued old retirement cannot erase replacement publisher
+PASS replacement marker requires its own actual layout
+PASS another owner with equal view ID cannot inherit
+PASS empty original list geometry is not publication
+PASS actual list content geometry can publish offscreen expansion
+PASS duplicate list geometry cannot advance revision
+PASS prior original search-state geometry is rejected
+PASS retired marker rejects final queued geometry
