@@ -111,7 +111,8 @@ final class AnnotationOriginalEditorRevisionAttempt {
         read: AnytypeOriginalAnnotationReadReceipt,
         retainedReadURL: URL,
         account: AnytypeOriginalEditorAccountSession,
-        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil
+        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil,
+        linkedReconciliation: AnnotationExchangeNativeLink? = nil
     ) async throws -> AnnotationOriginalEditorRevisionPreparationOutcome {
         try observation.requireCurrent(); try account.validateCurrent()
         try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
@@ -122,7 +123,7 @@ final class AnnotationOriginalEditorRevisionAttempt {
         let target = try AnnotationLocalEditorNativeRevisionTarget(objectID: token.objectID,
             expectedHeads: token.nativeHeads, expectedRootDigest: token.nativeRootSHA256)
         let outcome = try await local.prepareNativeRevision(
-            snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery)
+            snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery, linkedReconciliation: linkedReconciliation)
         let prepared: AnnotationLocalEditorNativeRevisionPreparation
         switch outcome {
         case .recordedWithoutOwnership(let receipt):
