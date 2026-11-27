@@ -41,6 +41,7 @@ private func sha(_ data: Data) -> String {
         let v40Targets: Targets
         let previewTargets: [PreviewTarget]?
         let sourceService: ServiceIdentity?
+        let presentationSource: ServiceIdentity?
     }
     static func main() throws {
         let input = try JSONDecoder().decode(Input.self, from: Data(contentsOf:
@@ -127,10 +128,20 @@ private func sha(_ data: Data) -> String {
             if includeAnchorDetails {
                 result["sourceUTF8"] = unit.plainText
                 result["anchors"] = unit.lineAnchors.map { anchor -> [String: Any] in
-                    ["lineID": anchor.id, "bookID": anchor.bookId, "lineIndex": anchor.lineIndex,
+                    // OtzariaInspectorDocumentMapper supplies anchor.text unchanged
+                    // as primaryText. Use the whole original presentation model,
+                    // including its ordered entity handling, for the UI oracle.
+                    let segment = LibraryTextSegment(
+                        locator: TextLocator(backend: .otzaria, workKey: "book:\(bookID)",
+                                             position: .legacyLine(anchor.lineIndex)),
+                        heRef: anchor.heRef, primaryText: anchor.text, translation: nil)
+                    let preview = segment.primaryText.readerPlainText
+                    return ["lineID": anchor.id, "bookID": anchor.bookId, "lineIndex": anchor.lineIndex,
                      "heRef": anchor.heRef as Any? ?? NSNull(), "rangeLocation": anchor.range.location,
                      "rangeLength": anchor.range.length, "text": anchor.text,
-                     "textSHA256": sha(Data(anchor.text.utf8))]
+                     "textSHA256": sha(Data(anchor.text.utf8)), "segmentID": segment.id,
+                     "previewPlainText": preview, "previewPlainTextSHA256": sha(Data(preview.utf8)),
+                     "previewUTF16Length": preview.utf16.count]
                 }
             }
             return result
@@ -158,6 +169,18 @@ private func sha(_ data: Data) -> String {
             try require(hashes["Source/Otzaria/Reading/OtzariaReadingUnitService.swift"] == identity.sha256
                         && command.contains(identity.path),
                         "The preview oracle must bind the service to its actual catalog compile command")
+            guard let presentation = input.presentationSource else {
+                throw CatalogError(message: "Actual compiled LibraryBackendModels identity is required")
+            }
+            let presentationURL = URL(fileURLWithPath: presentation.path)
+            let presentationBytes = try Data(contentsOf: presentationURL)
+            try require(presentationURL.lastPathComponent == "LibraryBackendModels.swift"
+                        && presentation.sha256.count == 64
+                        && presentation.compileInputsPath == identity.compileInputsPath
+                        && sha(presentationBytes) == presentation.sha256
+                        && hashes["Source/LibraryBackend/LibraryBackendModels.swift"] == presentation.sha256
+                        && command.contains(presentation.path),
+                        "Preview presentation must use the exact whole original compiled model/helper")
             var keys = Set<String>()
             for (index, request) in requests.enumerated() {
                 let mode: OtzariaUnitMode
@@ -178,6 +201,7 @@ private func sha(_ data: Data) -> String {
                 "schema": 1, "status": "ORIGINAL_SOURCE_PREVIEW_CATALOG_ONLY_NOT_SEARCH_OR_UI",
                 "corpusProfile": "full-v40", "databaseSHA256": input.databaseSHA256,
                 "sourceServiceSHA256": identity.sha256,
+                "presentationSourceSHA256": presentation.sha256,
                 "catalogCompileInputsSHA256": sha(compileBytes), "targets": targets,
                 "uiExecuted": 0, "searchProviderExecuted": false,
                 "identityRequirement": "Native test must match the actual provider hit book/line tuple before using these original complete-unit bytes"
