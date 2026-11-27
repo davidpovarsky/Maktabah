@@ -1,0 +1,9 @@
+{
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+  "gitBlob": "b7ce6a0aebcdbf499bf25331db64669daf29d662",
+  "bytes": 55721,
+  "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59",
+  "gitReadback": "Actual read-only sudo-u-ubuntu Git show/rev-parse against existing Oracle bare mirror; exact hash independently compared with local bytes",
+  "scope": "Original driver, no native execution"
+}

@@ -1,0 +1,583 @@
+{
+  "schema": 1,
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "candidateSHA256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100",
+  "files": [
+    {
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 65732,
+      "sha256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/PROVENANCE.json",
+      "bytes": 1477,
+      "sha256": "c303b0dbee8b8c7cf02c628672ce98f0b62f746d25cc15fed72fd0c8e314433e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/README.md",
+      "bytes": 8035,
+      "sha256": "0d889c8f699942a5afcf6af86c1033bad5b6126258245d635264488c99bd06fa"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 55721,
+      "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/controls/lifecycle-controls.py",
+      "bytes": 16962,
+      "sha256": "76a2f62279653b3fbdb74525a8ed730390b34aa4495ceea7a4b64e91fdace9ed"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/BASELINE.json",
+      "bytes": 484,
+      "sha256": "7b2920497784211210adf57e36d5a2219326bc71757be91112a291cc6c1ec20f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch",
+      "bytes": 15957,
+      "sha256": "f6ea80b1bfdeebbb2f957b9e20d0f810bdd175224cc349d51588ce563d6faa7e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch",
+      "bytes": 16287,
+      "sha256": "e940248efaf91cc6effe496a8876756f37bf7add1246c9702f860fbbef40addd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/EXECUTION.json",
+      "bytes": 1878,
+      "sha256": "ab8da409b8e5d5198f9719dcc687bcf30cde77564078abfbc1d433f0b39d6138"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/EXECUTION_FINAL.json",
+      "bytes": 1878,
+      "sha256": "9914de3d1e5e950adba7721d9e11203a3c4f4d055ff6766b8feab6ed7c8c3c46"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch",
+      "bytes": 1736,
+      "sha256": "3f3c1eee2cdf225ad2490275c2d961acecddd39ff25f201ca6f6ea5adc4b22e6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_SOURCE_READBACK.json",
+      "bytes": 594,
+      "sha256": "09b8b8384b15c79c747b919b6925a4a129012f19c57aeabe91878274dd5b7a13"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PEER_REVIEW.json",
+      "bytes": 1195,
+      "sha256": "21593ff365183a313dae08528358dc308723f6a50d3031e18bed289b638a3abe"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PRESERVATION.json",
+      "bytes": 963,
+      "sha256": "6fcca3bded42a47bdbe50658d6444030e08dbff890ecfc67fde3b232aea191a4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PRESERVATION_FINAL.json",
+      "bytes": 963,
+      "sha256": "577cb7225289d48aa94e80c1d1b3eb0c54a323b25955c1663cbe7b26ce066fc9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ROOTFS_SETUP.json",
+      "bytes": 3624,
+      "sha256": "d9e73ab79c20a155322434ec872672689477976d9247ccd0258db8ba5bbaab6e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/candidate-462a4cc9.py",
+      "bytes": 65407,
+      "sha256": "462a4cc96b8f8182398cf495207eda01c1be44180cd7794fb03a4397aa3001ee"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1.stdout.log",
+      "bytes": 1243,
+      "sha256": "fd9152a80cd440ece3f5a73042cec72878b90034439a4efe55437920c308e533"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/RESULT.json",
+      "bytes": 153773,
+      "sha256": "c9f54165a0623a4f7414af31ee77349c9b776f064430916a8a9bc1ea0ed096ad"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 225,
+      "sha256": "06a9c56b9599a29bfabdc980c9257ebb76d18b982041d06c8e3b62a1c43369ab"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-command-reaped-reused-pid/command-process-cleanup-1d3dc9a0c8654f1aaf1ed3f74b0dd238.json",
+      "bytes": 226,
+      "sha256": "030f1bdcd96d0fb80343977a05a3b4ff41d1620330d4749b8b35c0c30152c8f5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-allocation-interrupted/command-process-cleanup-4e54b4a597cd4ba99489774113d31402.json",
+      "bytes": 618,
+      "sha256": "b2a6f4a4232cfbfc5b11d368af392d06936a8bddd6dd421de052beb5069c28bf"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-completed/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-completed/actual.process-cleanup.json",
+      "bytes": 993,
+      "sha256": "752dd303b2ff5eed47c8aa47ce4d40ea1b1af35221bcd6ee701b98fd215e5571"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+      "bytes": 1052,
+      "sha256": "b94ca2a29c9bba0adc9630e8df16b693f8c0661052eb56e69c7108e1d72f72d2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-child-flag/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+      "bytes": 644,
+      "sha256": "8ce84605a9966787471b84d65a7ffc77d1d26867785d893ce1b8fa63fd6c5b7f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+      "bytes": 637,
+      "sha256": "d8fe08141ee4983d11b18c0ccebcd4874209498a0d591f42ba38cd37e064cf86"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-live-failure/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-live-failure/actual.process-cleanup.json",
+      "bytes": 997,
+      "sha256": "d291de8ac3009052c06ed7b5dc83a24648cc9240ce1b519f90100b725763cb1e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 863,
+      "sha256": "566c5384d2e3ccd24d568535bff02bb6e99c02d48dace075495640f0d7b52e16"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-surviving-group/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+      "bytes": 868,
+      "sha256": "6213fb1ff3a222aa3b81f9c98cb2cbcfb0d45169f013b2b5bd614196e0d70c82"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-replacement-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+      "bytes": 870,
+      "sha256": "a8098c84241b1d7164de00e63bc12f4c5d5a95df81dd75ef39fd2d67cc96acc5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-survivor-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+      "bytes": 867,
+      "sha256": "4aaab3111a649e1ea22fcf83bc580c3b4e6061a8d69f8176dcd745e1bc121a06"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-caller-assignment-interrupted/command-process-cleanup-c310636dba8a448094faed46df9640f1.json",
+      "bytes": 1030,
+      "sha256": "b0842a5081cbd92e56ee2ae680f484c23780052d98b24031ca4d06f20e802b19"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-completed/command-process-cleanup-86880eee63a646cda925f088437f773a.json",
+      "bytes": 1017,
+      "sha256": "17e27d96f16ad32f30a7a9e7236131c8aa0350e9692f4bd6af5a562bef1ae443"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-after-child/command-process-cleanup-e37ce3950335450c8fcf9d3f019a1042.json",
+      "bytes": 1076,
+      "sha256": "9c767d29e6208efb0f809b91b2920f3acdd3033c147b532ad5f49f6f9e559aba"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-before-child-flag/command-process-cleanup-1a3a94e3812f4628b4c91f81b3bb14da.json",
+      "bytes": 668,
+      "sha256": "b44a5d9c04928019b88b99307f70d870dac798d74972e03d9600fa6b8caa68ba"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-before-pid/command-process-cleanup-69e1d26b93584a6cbb413b11a2a56ba3.json",
+      "bytes": 661,
+      "sha256": "703d1457f5d0841a82b153434d172071ba3ef60c48e061d0a32794c9ce2c1a43"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-live-failure/command-process-cleanup-888e3d77c9814cc1a9330f9e4fe0c857.json",
+      "bytes": 1021,
+      "sha256": "47cd6343cac63138ff6afd0da5da756ca8726d33ced1821233cabda39ced905d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-reaped-reused-pid/command-process-cleanup-29f0f00bfeab4b469cd31bd16ceec4da.json",
+      "bytes": 887,
+      "sha256": "479e312c32c5079edaac347d228d497cd85774dde5cf894d6b63cfaf45aeb27b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-reaped-surviving-group/command-process-cleanup-0aa29a3a6848413191858dd6fb32910f.json",
+      "bytes": 892,
+      "sha256": "c9a80fb2f294df667b2e01d49c961bfc1c0e4c9fd1137ea278194857bafd1b2e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-replacement-after-signal/command-process-cleanup-ae2ddcaee9e947908967ce524c204e42.json",
+      "bytes": 894,
+      "sha256": "436474e83ae722451dac1125db73166107b02aa15cac91bd25e0b16815e9f41a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-survivor-after-signal/command-process-cleanup-2a4d381da2d94c99960b3791fb7fcbfd.json",
+      "bytes": 891,
+      "sha256": "e60635b894095f55e21b5fed04778710df268b24f3c1209301b4a8a8afedca83"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-counter-with-missing-row/command-process-cleanup-dd93af781526473185b68bb6eac43b3c.json",
+      "bytes": 1024,
+      "sha256": "62b853c86f6ad971c06a7339dd797e576dba4522eccdda91cdf5b59dad999723"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-exec-transition/command-process-cleanup-d38fc4f01dc64e4a8cd4e5ca92f654d1.json",
+      "bytes": 1061,
+      "sha256": "2717de9ea2fdb44a107c99c7f644bf1881fa7620925e5750168eb6d17eeda674"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-group-changed/command-process-cleanup-f56fcf2c642c4f3b8e5531facd112c13.json",
+      "bytes": 875,
+      "sha256": "9a47da5518514cf5d321c792aeeeb38978aa88971f3ed77487d9ef8ed3253342"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-parent-changed/command-process-cleanup-8a71bac211294f0689f71859075386e8.json",
+      "bytes": 876,
+      "sha256": "e23c7134c91f837ca1d11cfc3f019cd8f6ce8955d2e96ee61c5fcd25bbfaaf9c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-probe-permission-error/command-process-cleanup-67e6336ce9c8465f9f04ce6062059e80.json",
+      "bytes": 1071,
+      "sha256": "de86060e23d877be2127083db53bbe342f81165868244b1623f942e3ba8e2458"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-receipt-byte-change/command-process-cleanup-17d31aae12b54977af7b531da36f07ba.json",
+      "bytes": 912,
+      "sha256": "2fb9855afc4434fefd23ddddf843b11cab838e32b92fc93fd3b02e197024a718"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-send-permission-error/command-process-cleanup-fa72e397801640cda4298af18f659c77.json",
+      "bytes": 1129,
+      "sha256": "62708f09da1f3b38db2ca3cb99a48a62eb25c76a05df705101443e671ebb04f6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-start-changed/command-process-cleanup-135b5d8c25b74cc59cb163480113ffdc.json",
+      "bytes": 875,
+      "sha256": "dc8445735e516cea2bb8d3d6b7c944e49b7ffc9e6f2e1f90054fc19c38d08324"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-unqualified-receipt/command-process-cleanup-f00f41f8af5d44b5834fbac03bcd2dfd.json",
+      "bytes": 1019,
+      "sha256": "3d3d233ae49d4ad2c7dcaf020ebba630346ecd5e3d17fb3ff9affd7be43cddb1"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-wrong-original-pgid/command-process-cleanup-fd9cc9498a4a485fb9e622f0cfa8c6c5.json",
+      "bytes": 1019,
+      "sha256": "374189ffed7c9dfb06dffcdb944cf6b1604b4a8ec9d25051fbe497eb3db1a7c4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2.stdout.log",
+      "bytes": 1243,
+      "sha256": "0b5cb5762cde025765d8098892fea2b96dd1101dc9de4aa184907f754b437dbe"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/RESULT.json",
+      "bytes": 156538,
+      "sha256": "7832aa815b5e96b00cc0a61f558464f9264ae43fba992b3379e35231294359d0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 225,
+      "sha256": "06a9c56b9599a29bfabdc980c9257ebb76d18b982041d06c8e3b62a1c43369ab"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-command-reaped-reused-pid/command-process-cleanup-32d9c6645d1f4ade99d1d41ebb9a03b9.json",
+      "bytes": 226,
+      "sha256": "030f1bdcd96d0fb80343977a05a3b4ff41d1620330d4749b8b35c0c30152c8f5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-allocation-interrupted/command-process-cleanup-7dfa5ee1db18431eb16204a89becb5a4.json",
+      "bytes": 618,
+      "sha256": "6f05c752a02904f59ad85289595579f06799a84ea1c5f2aaa2ddd41fd764e49b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-completed/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-completed/actual.process-cleanup.json",
+      "bytes": 993,
+      "sha256": "ac037989018f6b273fa86cecf7e54bc91e9e4afe727c9dc7c69c220c5d89ad00"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+      "bytes": 1052,
+      "sha256": "f3405d44938c65f0d0256b81ed7013d90da0eab5def8b4e5c159a479722c6a61"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+      "bytes": 644,
+      "sha256": "cfac951e8a5b7b229daa9dca580f1e0ab48b273e5d7bc8cd495af445b5613dcf"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+      "bytes": 637,
+      "sha256": "1c40f5c1a8998ded1b648e07a96ed3f45c9542289bb4860f8175798ae5fb507f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-live-failure/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-live-failure/actual.process-cleanup.json",
+      "bytes": 997,
+      "sha256": "fe1a62b746d6a7510e0ac690f3847c061d6795a257c21e6ead90f07470e7b27f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-missing-cleanup-import/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 863,
+      "sha256": "9b6fa8a6b2acb4edfa81eb0d959f368ace5e148e19d73bd28aaa068ed579ab41"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+      "bytes": 868,
+      "sha256": "703ebdbf927f8c01ef6362a78e650e0d9efd137bb49c55c90db10eb03349ddbe"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+      "bytes": 870,
+      "sha256": "4a40da267aade5f4f9c162acabbef1622f3072118d90105ac86fb06c22fb23e1"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+      "bytes": 867,
+      "sha256": "47af0bfac10cf593fe78badb63a47dd32d8690b2af977944558326e8c7b29e42"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-caller-assignment-interrupted/command-process-cleanup-a3c9cc67baaf492dae8c336e447e286e.json",
+      "bytes": 1030,
+      "sha256": "dcebbbd8d71765986cb50d474fa9361ae2d38021fe4777fdefef4ffa588adeb6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-completed/command-process-cleanup-29acdbe6955746be919a0d171cd9b694.json",
+      "bytes": 1017,
+      "sha256": "d605c08b9e060a61b903ef5db30142a7e3cc679e5b6a375937d1ed81118603a5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-after-child/command-process-cleanup-6429153978404d1d9d7ad650a969e32a.json",
+      "bytes": 1076,
+      "sha256": "6430c0b4147311864cb26091912850e2cec2ff0a69f0869a6309ca659893431e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-before-child-flag/command-process-cleanup-d401a2a52b98434a9fe3bec7965d2807.json",
+      "bytes": 668,
+      "sha256": "ca7606b83ca008651dbb7bac2581ed91970dd72550a5dbf5d53db03877c38c04"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-before-pid/command-process-cleanup-6f9dcbfa122544a9934edc04c2c862b5.json",
+      "bytes": 661,
+      "sha256": "0e5c6efe21f77db4e1e953c5a3cd257ca1340111203e99693e966aa0fbf003c5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-live-failure/command-process-cleanup-2b103d52c5e54a8dacfabf15e703120d.json",
+      "bytes": 1021,
+      "sha256": "371487896e36d4447cde8c037ea7e52e61d4e2f2d783ad24b08900809f2bf9a0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-reaped-reused-pid/command-process-cleanup-276a859c522443839a4f4e3fb001bc08.json",
+      "bytes": 887,
+      "sha256": "956bf9493b876ca46a741df17a38999d568a0f03215a3f3c4ef4ddb1e71aafea"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-reaped-surviving-group/command-process-cleanup-8251d887ca114ed18d8548fbbf8d0a60.json",
+      "bytes": 892,
+      "sha256": "0a82c370bc762fee082d126000cedeeedfcfb451b35f1d6949af0e661017495f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-replacement-after-signal/command-process-cleanup-fae4747d5ed6490e97e858887ba2dc29.json",
+      "bytes": 894,
+      "sha256": "afc872f1f73d8b756eba3df697d513954693b33080274b753cb77357d685a6a0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-survivor-after-signal/command-process-cleanup-3d396f93c90b4373b493c4f77422bb1a.json",
+      "bytes": 891,
+      "sha256": "64df9f5fea7c30836211b21f5a5b37d45f1cc70f2f7e3375a6eabec841cb0492"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-counter-with-missing-row/command-process-cleanup-30036623071845539168012e38e632f9.json",
+      "bytes": 1024,
+      "sha256": "f4010ab143b2f21b99cf73f30cd49e47670be241902b887c4b3fd92453085668"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-exec-transition/command-process-cleanup-f12c0078689d4abaaf9a9cab6ddadd5a.json",
+      "bytes": 1061,
+      "sha256": "5f210da88cc048dabc1800b2b1e7609a33a51c4d1f022557b63f103a725f6643"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-group-changed/command-process-cleanup-f4703f9b574840f28c91121858ead9cd.json",
+      "bytes": 875,
+      "sha256": "b7dd94777fefdd64fcb7b5dd7b1e6ac3ee3484eba28ac3b1e05e21f0c81e3804"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-parent-changed/command-process-cleanup-644b38a9ee6f4c1ea7bf3e265b0862c3.json",
+      "bytes": 876,
+      "sha256": "d3faf85e81e6e8b01c6503710cca1cb9c6ac0fded52333a7d5732a2cdd3c12fd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-probe-permission-error/command-process-cleanup-4a1e2a83b7e0430abb23262b51d89907.json",
+      "bytes": 1071,
+      "sha256": "2c06b1bf613882fb4898ba4c06fefa958be266336f2ac4103f5d06c6efe43f90"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-receipt-byte-change/command-process-cleanup-3765b01d55ae46ea93df5b72937b5dc8.json",
+      "bytes": 912,
+      "sha256": "bec8c0ffeb0e7d33c81daf1cfe1a8c4ae5e3bc8fd27c55ed0a492f4c545e8f77"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-send-permission-error/command-process-cleanup-008405724ac14cfd98b60891d7834130.json",
+      "bytes": 1129,
+      "sha256": "fda34b9809b9d49da3e20ef0d9ac107fad692b373dc6965001eee9e2956889c4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-start-changed/command-process-cleanup-3222da8cb38049c6a70ea5817b720ff4.json",
+      "bytes": 875,
+      "sha256": "5dbbe54306195490e9592b8c2e0288d3cd19bf322f6e56505820de0f03c9fa31"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-unqualified-receipt/command-process-cleanup-43174e3ca0b5460b960ef559e0845093.json",
+      "bytes": 1019,
+      "sha256": "f2370f462ab6ce57b848f2b62db29b212b5d69914d781c1322e5654cb2e7ef2b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-wrong-original-pgid/command-process-cleanup-ad208cf7c49b4bdf9134ccb730ed9019.json",
+      "bytes": 1019,
+      "sha256": "85b485ddacaabfeb6c651195b79f9b0f2932ea0e55bc9c83a91ead4846b92696"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/lifecycle-controls-attempt1.py",
+      "bytes": 16201,
+      "sha256": "0bd57bdefb4c7ddb21583b58df01e93162175b651a7811c963283cbf355cb30a"
+    }
+  ],
+  "scope": "Transfer index of original exact local source/evidence; excludes this index itself"
+}

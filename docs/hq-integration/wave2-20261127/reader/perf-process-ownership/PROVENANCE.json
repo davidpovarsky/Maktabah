@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "upstreamPreviouslyObservedPin": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstreamPinScope": "Read-only tree comparison to already observed original Maktabah pin; no new upstream fetch or sync",
+  "matrix": [
+    {
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "classification": "DOWNSTREAM_OWNED",
+      "originCommits": [
+        "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+        "fe017f463738342784e6e71dd1b65a7824d5f547"
+      ],
+      "absentAtPinnedUpstream": true,
+      "scope": "Owned process creation/cleanup/retention only",
+      "alternative": "Use unchanged original helper through its existing killpg_fn injection; no shared helper or application modification",
+      "validation": "39 final synthetic controls, full-file AST parse, exact preservation, independent source reviews; native NOT_RUN"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership",
+      "classification": "DOWNSTREAM_OWNED_NEW_EVIDENCE",
+      "scope": "Source, raw model receipts, execution/provenance/preservation, review and handoff"
+    }
+  ],
+  "sharedV32CommonEdited": false,
+  "SourceEdited": false,
+  "TestsEdited": false,
+  "projectBoardOwner": "root; relevant existing board rows retained in ROOTFS_SETUP.json",
+  "rollback": "Revert only this downstream driver change; keep truthful historical evidence and pending native gates."
+}

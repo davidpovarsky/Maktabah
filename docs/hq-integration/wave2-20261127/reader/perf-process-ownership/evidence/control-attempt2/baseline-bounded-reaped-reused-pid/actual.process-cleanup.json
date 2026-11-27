@@ -1,0 +1,10 @@
+{
+  "original_cleanup": {
+    "group_state": "GONE_CHECKED",
+    "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+    "owned_pgid": 8765
+  },
+  "owned_pid": 8765,
+  "phase": "original-XCTest",
+  "verified": true
+}

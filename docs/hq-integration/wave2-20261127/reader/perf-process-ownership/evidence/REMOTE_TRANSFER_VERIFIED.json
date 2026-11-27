@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "base": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "worktree": "/tmp/otzaria-perf-process-ownership-2224f98e04f2457a9c7b1c992297074b",
+  "archive": {
+    "path": "/tmp/otzaria-perf-process-ownership-2224f98e04f2457a9c7b1c992297074b/.git/reader-evidence/source-inputs.tar.xz",
+    "bytes": 45608,
+    "sha256": "fc09ca435ff0dce9891c41e575635d5077f5392a29a607d18b5771d52742ebe0"
+  },
+  "index": {
+    "path": "/tmp/otzaria-perf-process-ownership-2224f98e04f2457a9c7b1c992297074b/docs/hq-integration/wave2-20261127/reader/perf-process-ownership/INPUT_INDEX.json",
+    "sha256": "1051ddda453b9a2ce68936f6c1e22efffcad0a650ef9c9c79acfe8c728eeb587"
+  },
+  "fileCount": 116,
+  "sourceWhitespaceExit": 0,
+  "allWhitespaceExit": 2,
+  "allWhitespaceOutput": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:9: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:12: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:192: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:217: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:239: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch:240: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:10: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:13: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:197: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:222: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:244: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch:245: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch:8: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch:11: trailing whitespace.\n+ \ndocs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch:33: trailing whitespace.\n+ \n",
+  "freeAfter": 3645186048,
+  "SourceTreeBefore": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "IndexSourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1"
+}

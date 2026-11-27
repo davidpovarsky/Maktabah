@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "baselineSHA256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59",
+  "candidateSHA256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100",
+  "checks": {
+    "entire_prefix_before_BudgetedOriginalRunner_byte_identical": true,
+    "entire_suffix_after_stop_owned_runtime_byte_identical": true,
+    "original_observer_trace_URL_cleanup_byte_identical": true,
+    "command_entire_original_wait_loop_byte_identical": true,
+    "command_signature_default_timeout_AST_identical": true,
+    "bounded_entire_original_wait_loop_byte_identical": true,
+    "bounded_signature_default_timeout_AST_identical": true
+  },
+  "onlyChangedTopLevelDefinitions": [
+    "BudgetedOriginalRunner",
+    "stop_owned_runtime"
+  ],
+  "originalNineSelectorsBooksModesPositionsResourceEpochsCapacityAndCaseAllowances": "Preserved in byte-identical prefix/suffix",
+  "originalSharedV32OrProductFilesEdited": false,
+  "nativeExecuted": 0
+}

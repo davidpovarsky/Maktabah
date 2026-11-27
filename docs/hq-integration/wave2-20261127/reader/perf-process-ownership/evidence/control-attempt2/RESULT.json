@@ -1,0 +1,5340 @@
+{
+  "actualChildrenStartedByModel": 0,
+  "actualSignalsSent": 0,
+  "appleToolsExecuted": 0,
+  "baseline": {
+    "bytes": 55721,
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+  },
+  "candidate": {
+    "bytes": 65732,
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "sha256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100"
+  },
+  "checks": [
+    {
+      "detail": {
+        "observed": "candidate-command-completed",
+        "retentionAllowed": true
+      },
+      "name": "candidate-command-completed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-live-failure",
+        "retentionAllowed": true
+      },
+      "name": "candidate-command-live-failure",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-constructor-after-child",
+        "retentionAllowed": true
+      },
+      "name": "candidate-command-constructor-after-child",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-constructor-before-pid",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-constructor-before-pid",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-constructor-before-child-flag",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-constructor-before-child-flag",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-reaped-reused-pid",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-reaped-reused-pid",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-reaped-surviving-group",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-reaped-surviving-group",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-replacement-after-signal",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-replacement-after-signal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-command-survivor-after-signal",
+        "retentionAllowed": false
+      },
+      "name": "candidate-command-survivor-after-signal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-completed",
+        "retentionAllowed": true
+      },
+      "name": "candidate-bounded-completed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-live-failure",
+        "retentionAllowed": true
+      },
+      "name": "candidate-bounded-live-failure",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-constructor-after-child",
+        "retentionAllowed": true
+      },
+      "name": "candidate-bounded-constructor-after-child",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-constructor-before-pid",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-constructor-before-pid",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-constructor-before-child-flag",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-constructor-before-child-flag",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-reaped-reused-pid",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-reaped-reused-pid",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-reaped-surviving-group",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-reaped-surviving-group",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-replacement-after-signal",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-replacement-after-signal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-bounded-survivor-after-signal",
+        "retentionAllowed": false
+      },
+      "name": "candidate-bounded-survivor-after-signal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-allocation-interrupted",
+        "retentionAllowed": true
+      },
+      "name": "candidate-allocation-interrupted",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-caller-assignment-interrupted",
+        "retentionAllowed": true
+      },
+      "name": "candidate-caller-assignment-interrupted",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-parent-changed",
+        "retentionAllowed": false
+      },
+      "name": "candidate-parent-changed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-start-changed",
+        "retentionAllowed": false
+      },
+      "name": "candidate-start-changed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-group-changed",
+        "retentionAllowed": false
+      },
+      "name": "candidate-group-changed",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-exec-transition",
+        "retentionAllowed": true
+      },
+      "name": "candidate-exec-transition",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-receipt-enospc",
+        "retentionAllowed": false
+      },
+      "name": "candidate-receipt-enospc",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-send-permission-error",
+        "retentionAllowed": false
+      },
+      "name": "candidate-send-permission-error",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-probe-permission-error",
+        "retentionAllowed": false
+      },
+      "name": "candidate-probe-permission-error",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-counter-with-missing-row",
+        "retentionAllowed": false
+      },
+      "name": "candidate-counter-with-missing-row",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-wrong-original-pgid",
+        "retentionAllowed": false
+      },
+      "name": "candidate-wrong-original-pgid",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-receipt-byte-change",
+        "retentionAllowed": false
+      },
+      "name": "candidate-receipt-byte-change",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "candidate-unqualified-receipt",
+        "retentionAllowed": false
+      },
+      "name": "candidate-unqualified-receipt",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-command-constructor-before-pid",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-command-unknown-spawn-falsely-retains",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-command-constructor-after-child",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-command-created-child-is-unregistered",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-command-reaped-reused-pid",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-command-reused-group-is-signaled",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-bounded-constructor-before-pid",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-bounded-unknown-spawn-falsely-retains",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-bounded-constructor-after-child",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-bounded-created-child-is-unregistered",
+      "passed": true
+    },
+    {
+      "detail": {
+        "observed": "baseline-bounded-reaped-reused-pid",
+        "sameContractRejectedBaseline": true
+      },
+      "name": "baseline-bounded-reused-group-is-signaled",
+      "passed": true
+    },
+    {
+      "detail": {
+        "scope": "Actual parser and identity-only environment; ps boundary is synthetic"
+      },
+      "name": "identity-only-ps-parser-and-UTC-environment",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "observed": "candidate-command-missing-cleanup-import",
+          "retentionAllowed": true
+        },
+        {
+          "observed": "candidate-bounded-missing-cleanup-import",
+          "retentionAllowed": true
+        }
+      ],
+      "name": "original-cleanup-import-still-precedes-both-spawn-paths",
+      "passed": true
+    }
+  ],
+  "control": {
+    "bytes": 16962,
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/controls/lifecycle-controls.py",
+    "sha256": "76a2f62279653b3fbdb74525a8ed730390b34aa4495ceea7a4b64e91fdace9ed"
+  },
+  "corpusQueries": 0,
+  "nativeExecutions": 0,
+  "observations": [
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-command-completed",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-completed/command-process-cleanup-29acdbe6955746be919a0d171cd9b694.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1017,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-completed/command-process-cleanup-29acdbe6955746be919a0d171cd9b694.json",
+              "sha256": "d605c08b9e060a61b903ef5db30142a7e3cc679e5b6a375937d1ed81118603a5"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 5,
+      "mode": "live-failure",
+      "name": "candidate-command-live-failure",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-live-failure/command-process-cleanup-2b103d52c5e54a8dacfabf15e703120d.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1021,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-live-failure/command-process-cleanup-2b103d52c5e54a8dacfabf15e703120d.json",
+              "sha256": "371487896e36d4447cde8c037ea7e52e61d4e2f2d783ad24b08900809f2bf9a0"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 4,
+      "mode": "constructor-after-child",
+      "name": "candidate-command-constructor-after-child",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-after-child/command-process-cleanup-6429153978404d1d9d7ad650a969e32a.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1076,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-after-child/command-process-cleanup-6429153978404d1d9d7ad650a969e32a.json",
+              "sha256": "6430c0b4147311864cb26091912850e2cec2ff0a69f0869a6309ca659893431e"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-pid",
+      "name": "candidate-command-constructor-before-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-before-pid/command-process-cleanup-6f9dcbfa122544a9934edc04c2c862b5.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": false,
+            "original_kernel_identity": null,
+            "owned_pid": null,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 661,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-before-pid/command-process-cleanup-6f9dcbfa122544a9934edc04c2c862b5.json",
+              "sha256": "0e5c6efe21f77db4e1e953c5a3cd257ca1340111203e99693e966aa0fbf003c5"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-child-flag",
+      "name": "candidate-command-constructor-before-child-flag",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-before-child-flag/command-process-cleanup-d401a2a52b98434a9fe3bec7965d2807.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": false,
+            "original_kernel_identity": null,
+            "owned_pid": null,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 668,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-constructor-before-child-flag/command-process-cleanup-d401a2a52b98434a9fe3bec7965d2807.json",
+              "sha256": "ca7606b83ca008651dbb7bac2581ed91970dd72550a5dbf5d53db03877c38c04"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 2,
+      "mode": "reaped-reused-pid",
+      "name": "candidate-command-reaped-reused-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-reaped-reused-pid/command-process-cleanup-276a859c522443839a4f4e3fb001bc08.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 887,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-reaped-reused-pid/command-process-cleanup-276a859c522443839a4f4e3fb001bc08.json",
+              "sha256": "956bf9493b876ca46a741df17a38999d568a0f03215a3f3c4ef4ddb1e71aafea"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 3,
+      "mode": "reaped-surviving-group",
+      "name": "candidate-command-reaped-surviving-group",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-reaped-surviving-group/command-process-cleanup-8251d887ca114ed18d8548fbbf8d0a60.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 892,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-reaped-surviving-group/command-process-cleanup-8251d887ca114ed18d8548fbbf8d0a60.json",
+              "sha256": "0a82c370bc762fee082d126000cedeeedfcfb451b35f1d6949af0e661017495f"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 4,
+      "mode": "replacement-after-signal",
+      "name": "candidate-command-replacement-after-signal",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-replacement-after-signal/command-process-cleanup-fae4747d5ed6490e97e858887ba2dc29.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 894,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-replacement-after-signal/command-process-cleanup-fae4747d5ed6490e97e858887ba2dc29.json",
+              "sha256": "afc872f1f73d8b756eba3df697d513954693b33080274b753cb77357d685a6a0"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 4,
+      "mode": "survivor-after-signal",
+      "name": "candidate-command-survivor-after-signal",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-survivor-after-signal/command-process-cleanup-3d396f93c90b4373b493c4f77422bb1a.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 891,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-command-survivor-after-signal/command-process-cleanup-3d396f93c90b4373b493c4f77422bb1a.json",
+              "sha256": "64df9f5fea7c30836211b21f5a5b37d45f1cc70f2f7e3375a6eabec841cb0492"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-bounded-completed",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-completed/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-completed/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 993,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-completed/actual.process-cleanup.json",
+              "sha256": "ac037989018f6b273fa86cecf7e54bc91e9e4afe727c9dc7c69c220c5d89ad00"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 5,
+      "mode": "live-failure",
+      "name": "candidate-bounded-live-failure",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-live-failure/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-live-failure/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 997,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-live-failure/actual.process-cleanup.json",
+              "sha256": "fe1a62b746d6a7510e0ac690f3847c061d6795a257c21e6ead90f07470e7b27f"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 4,
+      "mode": "constructor-after-child",
+      "name": "candidate-bounded-constructor-after-child",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 1052,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+              "sha256": "f3405d44938c65f0d0256b81ed7013d90da0eab5def8b4e5c159a479722c6a61"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-pid",
+      "name": "candidate-bounded-constructor-before-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": false,
+            "original_kernel_identity": null,
+            "owned_pid": null,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 637,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+              "sha256": "1c40f5c1a8998ded1b648e07a96ed3f45c9542289bb4860f8175798ae5fb507f"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-child-flag",
+      "name": "candidate-bounded-constructor-before-child-flag",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": false,
+            "original_kernel_identity": null,
+            "owned_pid": null,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 644,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+              "sha256": "cfac951e8a5b7b229daa9dca580f1e0ab48b273e5d7bc8cd495af445b5613dcf"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 2,
+      "mode": "reaped-reused-pid",
+      "name": "candidate-bounded-reaped-reused-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 863,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+              "sha256": "9b6fa8a6b2acb4edfa81eb0d959f368ace5e148e19d73bd28aaa068ed579ab41"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 3,
+      "mode": "reaped-surviving-group",
+      "name": "candidate-bounded-reaped-surviving-group",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 868,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+              "sha256": "703ebdbf927f8c01ef6362a78e650e0d9efd137bb49c55c90db10eb03349ddbe"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 4,
+      "mode": "replacement-after-signal",
+      "name": "candidate-bounded-replacement-after-signal",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 870,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+              "sha256": "4a40da267aade5f4f9c162acabbef1622f3072118d90105ac86fb06c22fb23e1"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 4,
+      "mode": "survivor-after-signal",
+      "name": "candidate-bounded-survivor-after-signal",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+            "command": [
+              "xcodebuild",
+              "test-without-building",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-XCTest",
+            "receipt": {
+              "bytes": 867,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+              "sha256": "47af0bfac10cf593fe78badb63a47dd32d8690b2af977944558326e8c7b29e42"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 0,
+      "mode": "allocation-interrupted",
+      "name": "candidate-allocation-interrupted",
+      "originalCalls": [],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-allocation-interrupted/command-process-cleanup-7dfa5ee1db18431eb16204a89becb5a4.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": false,
+            "exit_verified": true,
+            "original_kernel_identity": null,
+            "owned_pid": null,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 618,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-allocation-interrupted/command-process-cleanup-7dfa5ee1db18431eb16204a89becb5a4.json",
+              "sha256": "6f05c752a02904f59ad85289595579f06799a84ea1c5f2aaa2ddd41fd764e49b"
+            },
+            "spawn_error_type": "KeyboardInterrupt",
+            "start_attempted": false,
+            "status": "CONSTRUCTOR_NEVER_STARTED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 5,
+      "mode": "caller-assignment-interrupted",
+      "name": "candidate-caller-assignment-interrupted",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-caller-assignment-interrupted/command-process-cleanup-a3c9cc67baaf492dae8c336e447e286e.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1030,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-caller-assignment-interrupted/command-process-cleanup-a3c9cc67baaf492dae8c336e447e286e.json",
+              "sha256": "dcebbbd8d71765986cb50d474fa9361ae2d38021fe4777fdefef4ffa588adeb6"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 2,
+      "mode": "parent-changed",
+      "name": "candidate-parent-changed",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-parent-changed/command-process-cleanup-644b38a9ee6f4c1ea7bf3e265b0862c3.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 876,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-parent-changed/command-process-cleanup-644b38a9ee6f4c1ea7bf3e265b0862c3.json",
+              "sha256": "d3faf85e81e6e8b01c6503710cca1cb9c6ac0fded52333a7d5732a2cdd3c12fd"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 2,
+      "mode": "start-changed",
+      "name": "candidate-start-changed",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-start-changed/command-process-cleanup-3222da8cb38049c6a70ea5817b720ff4.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 875,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-start-changed/command-process-cleanup-3222da8cb38049c6a70ea5817b720ff4.json",
+              "sha256": "5dbbe54306195490e9592b8c2e0288d3cd19bf322f6e56505820de0f03c9fa31"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 2,
+      "mode": "group-changed",
+      "name": "candidate-group-changed",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_error_type": "ValueError",
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-group-changed/command-process-cleanup-f4703f9b574840f28c91121858ead9cd.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 875,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-group-changed/command-process-cleanup-f4703f9b574840f28c91121858ead9cd.json",
+              "sha256": "b7dd94777fefdd64fcb7b5dd7b1e6ac3ee3484eba28ac3b1e05e21f0c81e3804"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 5,
+      "mode": "exec-transition",
+      "name": "candidate-exec-transition",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-exec-transition/command-process-cleanup-f12c0078689d4abaaf9a9cab6ddadd5a.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -2,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1061,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-exec-transition/command-process-cleanup-f12c0078689d4abaaf9a9cab6ddadd5a.json",
+              "sha256": "5f210da88cc048dabc1800b2b1e7609a33a51c4d1f022557b63f103a725f6643"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 5,
+      "mode": "receipt-enospc",
+      "name": "candidate-receipt-enospc",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": true,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-receipt-enospc/command-process-cleanup-f86f2fa987a0455e9496652ab4d77a4a.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": null,
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 107,
+      "mode": "send-permission-error",
+      "name": "candidate-send-permission-error",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 9
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -9,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-send-permission-error/command-process-cleanup-008405724ac14cfd98b60891d7834130.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -9,
+            "original_cleanup": {
+              "group_state": "STILL_PRESENT_UNVERIFIED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765,
+              "send_errors": [
+                {
+                  "error": "PermissionError",
+                  "signal": 2
+                }
+              ]
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1129,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-send-permission-error/command-process-cleanup-008405724ac14cfd98b60891d7834130.json",
+              "sha256": "fda34b9809b9d49da3e20ef0d9ac107fad692b373dc6965001eee9e2956889c4"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": "ValueError",
+      "kernelReadCount": 107,
+      "mode": "probe-permission-error",
+      "name": "candidate-probe-permission-error",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": null,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 2
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": true,
+          "leaderExit": null,
+          "replacement": false,
+          "signal": 9
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -9,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-probe-permission-error/command-process-cleanup-4a1e2a83b7e0430abb23262b51d89907.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": false,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": -9,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765,
+              "probe_errors": [
+                "PermissionError"
+              ]
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1071,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-probe-permission-error/command-process-cleanup-4a1e2a83b7e0430abb23262b51d89907.json",
+              "sha256": "2c06b1bf613882fb4898ba4c06fefa958be266336f2ac4103f5d06c6efe43f90"
+            },
+            "start_attempted": true,
+            "status": "GROUP_EXIT_UNVERIFIED",
+            "verified": false
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-counter-with-missing-row",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 0
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-wrong-original-pgid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-wrong-original-pgid/command-process-cleanup-ad208cf7c49b4bdf9134ccb730ed9019.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8766
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1019,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-wrong-original-pgid/command-process-cleanup-ad208cf7c49b4bdf9134ccb730ed9019.json",
+              "sha256": "85b485ddacaabfeb6c651195b79f9b0f2932ea0e55bc9c83a91ead4846b92696"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-receipt-byte-change",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-receipt-byte-change/command-process-cleanup-3765b01d55ae46ea93df5b72937b5dc8.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": {
+              "bytes": 1019,
+              "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-receipt-byte-change/command-process-cleanup-3765b01d55ae46ea93df5b72937b5dc8.json",
+              "sha256": "0d92773e4fc966a11ff868387433f0beaab2c8810eee69d39b3925c1dc6e8e73"
+            },
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": true,
+      "error": null,
+      "kernelReadCount": 5,
+      "mode": "completed",
+      "name": "candidate-unqualified-receipt",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/candidate",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": false,
+      "retentionCalled": false,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": 0,
+          "replacement": false,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [
+          {
+            "errorType": "OwnedProcessGroupExitUnverified",
+            "phase": "native-exporter"
+          }
+        ],
+        "owned_native_and_exporter_groups": [
+          {
+            "attempt": 1,
+            "cleanup_attempted": true,
+            "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/candidate-unqualified-receipt/command-process-cleanup-43174e3ca0b5460b960ef559e0845093.json",
+            "command": [
+              "xcrun",
+              "original-export",
+              "--exact"
+            ],
+            "constructor_returned": true,
+            "exit_verified": true,
+            "last_verified_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "leader_exit": 0,
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "original_kernel_identity": {
+              "command": "xcrun actual-tool",
+              "parentPID": 5,
+              "pid": 8765,
+              "startUTC": "Fri Nov 27 10:00:00 2026"
+            },
+            "owned_pid": 8765,
+            "parent_pid": 5,
+            "phase": "original-command",
+            "receipt": null,
+            "start_attempted": true,
+            "status": "ORIGINAL_GROUP_EXIT_VERIFIED",
+            "verified": true
+          }
+        ],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 1,
+          "proxy_created": true,
+          "registered_rows": 1
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_UNVERIFIED",
+        "verified": false
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-pid",
+      "name": "baseline-command-constructor-before-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 0,
+      "mode": "constructor-after-child",
+      "name": "baseline-command-constructor-after-child",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": null,
+      "kernelReadCount": 0,
+      "mode": "reaped-reused-pid",
+      "name": "baseline-command-reaped-reused-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcrun",
+            "original-export",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "start_new_session": true,
+            "stderr": -1,
+            "stdout": "-1",
+            "text": true
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": 0,
+          "replacement": true,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": true,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "owned_pid": 8765,
+            "phase": "original-command",
+            "verified": true
+          }
+        ],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 0,
+      "mode": "constructor-before-pid",
+      "name": "baseline-bounded-constructor-before-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/baseline-bounded-constructor-before-pid/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "KeyboardInterrupt",
+      "kernelReadCount": 0,
+      "mode": "constructor-after-child",
+      "name": "baseline-bounded-constructor-after-child",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/baseline-bounded-constructor-after-child/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": null,
+      "kernelReadCount": 0,
+      "mode": "reaped-reused-pid",
+      "name": "baseline-bounded-reaped-reused-pid",
+      "originalCalls": [
+        {
+          "command": [
+            "xcodebuild",
+            "test-without-building",
+            "--exact"
+          ],
+          "kwargs": {
+            "cwd": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline",
+            "env": {
+              "EXACT_ORIGINAL_ENV": "retained"
+            },
+            "start_new_session": true,
+            "stderr": -2,
+            "stdout": "<_io.TextIOWrapper name='/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt2/baseline-bounded-reaped-reused-pid/actual.log' mode='w' encoding='UTF-8'>"
+          }
+        }
+      ],
+      "originalStopCalls": [
+        8765
+      ],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": 0,
+      "signals": [
+        {
+          "groupAlive": true,
+          "leaderExit": 0,
+          "replacement": true,
+          "signal": 2
+        },
+        {
+          "groupAlive": false,
+          "leaderExit": -2,
+          "replacement": true,
+          "signal": 0
+        }
+      ],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [
+          {
+            "original_cleanup": {
+              "group_state": "GONE_CHECKED",
+              "off_group_simulator_agents": "NOT_INDEPENDENTLY_VERIFIED",
+              "owned_pgid": 8765
+            },
+            "owned_pid": 8765,
+            "phase": "original-XCTest",
+            "verified": true
+          }
+        ],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 1,
+      "wrapper": "bounded"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "ImportError",
+      "kernelReadCount": 0,
+      "mode": "cleanup-import-failed",
+      "name": "candidate-command-missing-cleanup-import",
+      "originalCalls": [],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 0,
+          "proxy_created": true,
+          "registered_rows": 0
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "command"
+    },
+    {
+      "createdHandleRetained": false,
+      "error": "ImportError",
+      "kernelReadCount": 0,
+      "mode": "cleanup-import-failed",
+      "name": "candidate-bounded-missing-cleanup-import",
+      "originalCalls": [],
+      "originalStopCalls": [],
+      "receiptWriteFailureInjected": false,
+      "retentionAllowed": true,
+      "retentionCalled": true,
+      "returncode": null,
+      "signals": [],
+      "state": {
+        "failures": [],
+        "owned_native_and_exporter_groups": [],
+        "owned_process_attempt_inventory": {
+          "attempt_count": 0,
+          "proxy_created": true,
+          "registered_rows": 0
+        },
+        "owned_process_cleanup_sweep_errors": [],
+        "producers": {
+          "observer": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "trace": {
+            "status": "NOT_CREATED",
+            "verified": true
+          },
+          "url_delivery": {
+            "status": "NOT_CREATED",
+            "verified": true
+          }
+        },
+        "status": "OWNED_RUNTIME_EXIT_VERIFIED",
+        "verified": true
+      },
+      "stopsBeforeFinalSweep": 0,
+      "wrapper": "bounded"
+    }
+  ],
+  "originalInterruptionHelper": {
+    "bytes": 7650,
+    "path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/baseline/Scripts/CI/runtime27_interruption.py",
+    "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+  },
+  "passed": 39,
+  "performanceAcceptance": false,
+  "schema": "otzaria.perf01-owned-process-lifecycle-controls/1",
+  "status": "SOURCE_CONTROLS_PASS_NOT_NATIVE_OR_PERFORMANCE",
+  "total": 39
+}

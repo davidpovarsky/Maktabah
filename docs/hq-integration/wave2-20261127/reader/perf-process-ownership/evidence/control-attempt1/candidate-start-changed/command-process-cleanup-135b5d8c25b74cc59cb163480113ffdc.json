@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "cleanup_attempted": true,
+  "cleanup_error_type": "ValueError",
+  "cleanup_path": "/workspace/scratch/ca3b32b82803/reader-perf-cleanup-20261127/evidence/control-attempt1/candidate-start-changed/command-process-cleanup-135b5d8c25b74cc59cb163480113ffdc.json",
+  "command": [
+    "xcrun",
+    "original-export",
+    "--exact"
+  ],
+  "constructor_returned": true,
+  "exit_verified": false,
+  "last_verified_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "original_kernel_identity": {
+    "command": "xcrun actual-tool",
+    "parentPID": 5,
+    "pid": 8765,
+    "startUTC": "Fri Nov 27 10:00:00 2026"
+  },
+  "owned_pid": 8765,
+  "parent_pid": 5,
+  "phase": "original-command",
+  "start_attempted": true,
+  "status": "GROUP_EXIT_UNVERIFIED",
+  "verified": false
+}
