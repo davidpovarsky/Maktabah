@@ -3134,13 +3134,15 @@ final class PublishedProductionSearchAfterBooksUpdateTests: MaktabahUITestBase {
         let rows = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "search-result-preview-toggle-"))
         let stale = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             MainActor.assumeIsolated { rows.count > 0 || self.ui.control("global-search-count").exists
-                || self.ui.control("global-search-page-error").exists || !text.exists }
+                || self.ui.control("global-search-page-error").exists
+                || self.ui.control("global-search-loading").exists || !text.exists }
         }, object: nil)
         stale.isInverted = true
         XCTAssertEqual(XCTWaiter.wait(for: [stale], timeout: 3), .completed,
                        "The settled rejection must not be replaced by an old page")
         XCTAssertEqual(field.value as? String, query)
         XCTAssertFalse(ui.control("global-search-dirty").exists)
+        XCTAssertFalse(ui.control("global-search-loading").exists)
         XCTAssertTrue(ui.control("global-search-retry").isHittable)
         XCTAssertEqual(rows.count, 0)
         let after = try trace(receipt, container: container)

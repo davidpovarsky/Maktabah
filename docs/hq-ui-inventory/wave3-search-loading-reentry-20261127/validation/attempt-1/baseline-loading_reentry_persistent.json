@@ -1,0 +1,1 @@
+{"events":[{"at":1795754770.3844104,"event":"initial_settled_rejection","loading":false},{"at":1795754770.3849356,"event":"loading_reentered","rowsEvaluatedBefore":1}],"finishedAt":1795754773.3877687,"fixture":"loading_reentry_persistent","loadingAtEnd":true,"rowsReads":303,"schema":1,"scope":"Synthetic UI-state boundary with real XCTest predicate\/waiter on Linux; no app\/UI"}

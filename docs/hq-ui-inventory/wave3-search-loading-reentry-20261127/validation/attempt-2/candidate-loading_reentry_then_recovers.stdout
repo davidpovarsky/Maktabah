@@ -1,0 +1,13 @@
+Test Suite 'All tests' started at 2026-11-27 04:50:03.870
+Test Suite 'attempt-2.xctest' started at 2026-11-27 04:50:03.871
+Test Suite 'RejectionStabilityTests' started at 2026-11-27 04:50:03.871
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' started at 2026-11-27 04:50:03.871
+/mnt/development/projects/worktrees/Maktabah-wave3-search-loading-reentry-20261127/docs/hq-ui-inventory/wave3-search-loading-reentry-20261127/validation/attempt-2/candidate.swift:76: error: RejectionStabilityTests.testVerbatimOriginalRejectionStability : XCTAssertEqual failed: ("invertedFulfillment") is not equal to ("completed") - The settled rejection must not be replaced by an old page
+/mnt/development/projects/worktrees/Maktabah-wave3-search-loading-reentry-20261127/docs/hq-ui-inventory/wave3-search-loading-reentry-20261127/validation/attempt-2/candidate.swift:80: error: RejectionStabilityTests.testVerbatimOriginalRejectionStability : XCTAssertFalse failed - 
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' failed (0.087 seconds)
+Test Suite 'RejectionStabilityTests' failed at 2026-11-27 04:50:03.958
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.087 (0.087) seconds
+Test Suite 'attempt-2.xctest' failed at 2026-11-27 04:50:03.958
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.087 (0.087) seconds
+Test Suite 'All tests' failed at 2026-11-27 04:50:03.958
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.087 (0.087) seconds
