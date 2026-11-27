@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CONTRACT_AND_API_INTAKE_VERIFIED_NOT_NATIVE_UI_OR_PERF_ACCEPTANCE",
+  "at": "2026-11-27T07:42:49.780143+00:00",
+  "sourceCommit": "ec834a5f4fe109726c91b137bb8b7c33e2ca299e",
+  "priorRoot": "80859d6fd43000d50de141bd0dd5ad68ff2293fa",
+  "donors": [
+    {
+      "donor": "01516c62ba3c7551540de219c3675bf12d2c5bcd",
+      "recipient": "c0f6371bc68d29b60faa76f643dc0a06879c11b8"
+    },
+    {
+      "donor": "8858a2e60212c790ec622b02af5cd6e396bbe587",
+      "recipient": "883660701dd57c049de6da6fcf51a4027675409c"
+    }
+  ],
+  "sourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "combinedFaithfulSHA256": "579cd7e23e7b80a62f568e3b6691a72a92178ebd35991f2d5782512f9f3189cf",
+  "originalRootFaithfulPreservedExceptOneCallAndAddedHelper": true,
+  "unchangedGitBlobs": {
+    "Scripts/CI/reader-full-v32-ui-observation.py": "40d9682bcdea296a7ea3bdf78f2ac460b808dbf3",
+    "Scripts/CI/reader-full-v32-ui-observation.inputs.json": "fbe8453ff7b9f7c5fb30a5c8c6581dd890ddfef0",
+    "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift": "4ad055cb67934a500fb4e768df8a2cdf17b4ac9e"
+  },
+  "loadCoreByteIdentical": true,
+  "sourceControls": {
+    "passed": 9,
+    "total": 9,
+    "kind": "Synthetic contract controls only",
+    "reexecutedOnOracle": false
+  },
+  "originalSourceCheckExit": 0,
+  "records": [
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-check-RESULT.json",
+      "bytes": 1322,
+      "sha256": "72c377874e7fa6dd63ad2dc55a32b87fed07d6528524f4074c8c17b33450a797"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-check-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-check-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-check-prior-source-only-admission.json",
+      "bytes": 10356,
+      "sha256": "df7b6a87076af6df3375a22742a797b73645aeabc01fcfc5c21e3672f33a5700"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/natural-contract-intake/source-check-current-admission.json",
+      "bytes": 12949,
+      "sha256": "cd3349167d98fc148b8e7c2ab0673a7a67246fe44b04eb3e43a6717d4bb06947"
+    }
+  ],
+  "nativeUIExecuted": false,
+  "swiftCompilerExecuted": false,
+  "databaseOpenedByRoot": false,
+  "fullPerformanceAcceptance": false,
+  "missing": "Source-qualified app/test build, actual installed original UI suites/offline exercises and denial, all native PERF scopes."
+}
