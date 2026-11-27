@@ -54,13 +54,17 @@ enum StudyGroupSwitchPerformanceObservation {
     }
 
     /// All inputs are the actual process/registry/defaults values at begin().
-    /// Invalid or production contexts never allocate a token or write a log.
+    /// Ordinary production remains silent. The separate Debug-only opt-in lets
+    /// the owned full-corpus native case observe the same original operation.
     static func admittedNamespace(arguments: [String], environment: [String: String],
-                                  activeProfile: String, enabled: Bool, namespace: String?) -> String? {
+                                  activeProfile: String, enabled: Bool, namespace: String?,
+                                  productionEnabled: Bool = false) -> String? {
         guard arguments.contains("-StudyGroupPerformanceEnabled"), enabled,
-              environment["OTZARIA_DATA_PROFILE"] == "miniTest10",
-              activeProfile == "miniTest10",
               let namespace, UUID(uuidString: namespace) != nil else { return nil }
+        let miniTest = environment["OTZARIA_DATA_PROFILE"] == "miniTest10" && activeProfile == "miniTest10"
+        let explicitProduction = environment["OTZARIA_DATA_PROFILE"] == "production" && activeProfile == "production"
+            && arguments.contains("-StudyGroupProductionPerformanceEnabled") && productionEnabled
+        guard miniTest || explicitProduction else { return nil }
         return namespace
     }
 
@@ -71,7 +75,8 @@ enum StudyGroupSwitchPerformanceObservation {
             environment: ProcessInfo.processInfo.environment,
             activeProfile: OtzariaDataProfileRegistry.activeProfileID,
             enabled: UserDefaults.standard.bool(forKey: "StudyGroupPerformanceEnabled"),
-            namespace: UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace")
+            namespace: UserDefaults.standard.string(forKey: "studyWorkspaceTestingNamespace"),
+            productionEnabled: UserDefaults.standard.bool(forKey: "StudyGroupProductionPerformanceEnabled")
         ), sequence < limit else { return nil }
         sequence += 1
         let operationID = UUID()
