@@ -1095,6 +1095,8 @@ extension AnnotationExchangeLedger {
                     native_object_id TEXT NOT NULL CHECK(length(native_object_id) BETWEEN 1 AND 512),
                     native_root_sha256 TEXT NOT NULL CHECK(length(native_root_sha256) = 64),
                     confirmed_local_revision INTEGER NOT NULL CHECK(typeof(confirmed_local_revision) = 'integer' AND confirmed_local_revision > 0),
+                    dispatch_sequence INTEGER NOT NULL DEFAULT 0 CHECK(typeof(dispatch_sequence) = 'integer' AND dispatch_sequence >= 0),
+                    confirmed_dispatch_sequence INTEGER NOT NULL DEFAULT 0 CHECK(typeof(confirmed_dispatch_sequence) = 'integer' AND confirmed_dispatch_sequence >= 0 AND confirmed_dispatch_sequence <= dispatch_sequence),
                     active INTEGER NOT NULL CHECK(typeof(active) = 'integer' AND active IN (0, 1))
                 )
                 """),
@@ -1108,6 +1110,8 @@ extension AnnotationExchangeLedger {
                     retry_count INTEGER NOT NULL DEFAULT 0 CHECK(typeof(retry_count) = 'integer' AND retry_count BETWEEN 0 AND 1000000),
                     not_before INTEGER NOT NULL DEFAULT 0 CHECK(typeof(not_before) = 'integer' AND not_before >= 0),
                     attempt_id TEXT CHECK(attempt_id IS NULL OR length(attempt_id) = 36),
+                    dispatch_sequence INTEGER CHECK(dispatch_sequence IS NULL OR (typeof(dispatch_sequence) = 'integer' AND dispatch_sequence > 0)),
+                    resolution_attempt_id TEXT CHECK(resolution_attempt_id IS NULL OR length(resolution_attempt_id) = 36),
                     expected_root_sha256 TEXT CHECK(expected_root_sha256 IS NULL OR length(expected_root_sha256) = 64),
                     native_root_sha256 TEXT CHECK(native_root_sha256 IS NULL OR length(native_root_sha256) = 64),
                     native_response_sha256 TEXT CHECK(native_response_sha256 IS NULL OR length(native_response_sha256) = 64),
@@ -1146,6 +1150,7 @@ extension AnnotationExchangeLedger {
                     link_id TEXT NOT NULL CHECK(length(link_id) = 36),
                     mutation_id TEXT NOT NULL CHECK(length(mutation_id) = 36),
                     expected_root_sha256 TEXT NOT NULL CHECK(length(expected_root_sha256) = 64),
+                    dispatch_sequence INTEGER NOT NULL CHECK(typeof(dispatch_sequence) = 'integer' AND dispatch_sequence > 0),
                     state TEXT NOT NULL CHECK(state IN ('dispatch_may_have_occurred', 'verified', 'superseded')),
                     resolution_attempt_id TEXT CHECK(resolution_attempt_id IS NULL OR length(resolution_attempt_id) = 36),
                     native_root_sha256 TEXT CHECK(native_root_sha256 IS NULL OR length(native_root_sha256) = 64),
@@ -1236,7 +1241,7 @@ extension AnnotationExchangeLedger {
         let links = try nativeLinks(namespace: version.namespace, annotationUUID: version.annotationUUID)
         if let link = links.first(where: { $0.destination == origin.destination }) {
             guard link.objectID == origin.objectID else { throw AnnotationExchangeError.receiptMismatch }
-            try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1;",
+            try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ?, confirmed_dispatch_sequence = dispatch_sequence WHERE link_id = ? AND active = 1;",
                 parameters: [origin.nativeRootSHA256, version.revision, link.id.uuidString])
             // A received version supersedes only undispatched local work.
             // An earlier uncertain native call is retained for explicit review.
@@ -1313,8 +1318,9 @@ extension AnnotationExchangeLedger {
               !(try unresolvedLinkedReconciliations(for: [current.link])).contains(current.link.id),
               !(try linkedDeliveries(for: current.link)).contains(where: { $0.state == .dispatchMayHaveOccurred || $0.state == .needsReview }) else { throw AnnotationExchangeError.staleRevision }
         _ = try requireMaterializablePendingDelivery(current.delivery)
-        try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'dispatch_may_have_occurred', attempt_id = ?, expected_root_sha256 = ? WHERE message_id = ? AND state = 'pending';",
-            parameters: [attemptID.uuidString, observedRootSHA256, current.delivery.messageID.uuidString])
+        let sequence = try nextLinkedDispatchSequence(linkID: current.link.id)
+        try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'dispatch_may_have_occurred', attempt_id = ?, dispatch_sequence = ?, expected_root_sha256 = ? WHERE message_id = ? AND state = 'pending';",
+            parameters: [attemptID.uuidString, sequence, observedRootSHA256, current.delivery.messageID.uuidString])
         guard sqlite3_changes64(database.dbPointer) == 1 else { throw AnnotationExchangeError.receiptMismatch }
     }
 
@@ -1325,24 +1331,27 @@ extension AnnotationExchangeLedger {
         guard AnnotationExchangeValidation.digest(nativeRootSHA256), AnnotationExchangeValidation.digest(nativeResponseSHA256) else { throw AnnotationExchangeError.receiptMismatch }
         try database.transaction {
             guard let current = try linkedDelivery(messageID: messageID), current.attemptID == attemptID else { throw AnnotationExchangeError.receiptMismatch }
-            if current.state == .verified {
-                let exact = try database.fetch(query: "SELECT COUNT(*) FROM main.\(LinkedTables.deliveries) WHERE message_id = ? AND native_root_sha256 = ? AND native_response_sha256 = ?;",
-                    parameters: [messageID.uuidString, nativeRootSHA256, nativeResponseSHA256]) { $0.int64(at: 0) }
-                guard exact == [1] else { throw AnnotationExchangeError.receiptMismatch }
+            let attempts = try database.fetch(query: "SELECT dispatch_sequence, native_root_sha256, native_response_sha256 FROM main.\(LinkedTables.deliveries) WHERE message_id = ? AND attempt_id = ?;",
+                parameters: [messageID.uuidString, attemptID.uuidString]) { row in
+                    (row.type(at: 0), row.int64(at: 0), row.string(at: 1), row.string(at: 2))
+                }
+            guard attempts.count == 1, let attempt = attempts.first, attempt.0 == SQLITE_INTEGER, attempt.1 > 0 else { throw AnnotationExchangeError.receiptMismatch }
+            if attempt.2 != nil || attempt.3 != nil {
+                guard current.state == .verified, attempt.2 == nativeRootSHA256, attempt.3 == nativeResponseSHA256 else { throw AnnotationExchangeError.receiptMismatch }
                 return
             }
-            guard current.state == .dispatchMayHaveOccurred else { throw AnnotationExchangeError.receiptMismatch }
+            // An explicit later reconciliation can supersede this intention or
+            // acknowledge the same bytes first. Its receipt never replaces this
+            // original attempt identity. A delayed sealed receipt remains valid
+            // history, and gains an ACK only now that its actual result exists.
+            guard [.dispatchMayHaveOccurred, .needsReview, .superseded, .verified].contains(current.state) else { throw AnnotationExchangeError.receiptMismatch }
             let delivery = current.delivery
             _ = try acknowledge(.init(messageID: messageID, destination: delivery.destination, namespace: delivery.namespace,
                 annotationUUID: delivery.annotationUUID, revision: delivery.revision, payloadDigest: delivery.payloadDigest))
             try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'verified', native_root_sha256 = ?, native_response_sha256 = ? WHERE message_id = ? AND attempt_id = ?;",
                 parameters: [nativeRootSHA256, nativeResponseSHA256, messageID.uuidString, attemptID.uuidString])
-            if current.link.active {
-                // A valid historical R2 completion may arrive after an R3
-                // receive. Keep its ACK, but never roll the live baseline back.
-                try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1 AND confirmed_local_revision <= ?;",
-                    parameters: [nativeRootSHA256, delivery.revision, current.link.id.uuidString, delivery.revision])
-            }
+            try confirmLinkedBaseline(linkID: current.link.id, revision: delivery.revision,
+                                      dispatchSequence: attempt.1, nativeRootSHA256: nativeRootSHA256)
         }
     }
 
@@ -1374,11 +1383,12 @@ extension AnnotationExchangeLedger {
               try nativeLinks(namespace: link.namespace, annotationUUID: link.annotationUUID).contains(link),
               try currentVersion(namespace: link.namespace, annotationUUID: link.annotationUUID) == version,
               version.annotationUUID == link.annotationUUID, version.namespace == link.namespace else { throw AnnotationExchangeError.staleRevision }
+        let sequence = try nextLinkedDispatchSequence(linkID: link.id)
         try database.execute(query: """
             INSERT INTO main.\(LinkedTables.reconciliations)
-            (attempt_id, link_id, mutation_id, expected_root_sha256, state)
-            VALUES (?, ?, ?, ?, 'dispatch_may_have_occurred');
-            """, parameters: [attemptID.uuidString, link.id.uuidString, version.mutationID.uuidString, observedRootSHA256])
+            (attempt_id, link_id, mutation_id, expected_root_sha256, dispatch_sequence, state)
+            VALUES (?, ?, ?, ?, ?, 'dispatch_may_have_occurred');
+            """, parameters: [attemptID.uuidString, link.id.uuidString, version.mutationID.uuidString, observedRootSHA256, sequence])
     }
 
     /// Only the closed receipt of the new reviewed CAS calls this in product.
@@ -1397,17 +1407,22 @@ extension AnnotationExchangeLedger {
                   actualLink.destination == link.destination, actualLink.objectID == link.objectID else {
                 throw AnnotationExchangeError.receiptMismatch
             }
-            let attempts = try database.fetch(query: "SELECT state, native_root_sha256, native_response_sha256 FROM main.\(LinkedTables.reconciliations) WHERE attempt_id = ? AND link_id = ? AND mutation_id = ?;",
+            let attempts = try database.fetch(query: "SELECT state, native_root_sha256, native_response_sha256, dispatch_sequence FROM main.\(LinkedTables.reconciliations) WHERE attempt_id = ? AND link_id = ? AND mutation_id = ?;",
                 parameters: [attemptID.uuidString, link.id.uuidString, version.mutationID.uuidString]) { row in
-                    (try Self.nativeText(row, 0), row.string(at: 1), row.string(at: 2))
+                    (try Self.nativeText(row, 0), row.string(at: 1), row.string(at: 2), row.type(at: 3), row.int64(at: 3))
                 }
-            guard attempts.count == 1, let attempt = attempts.first else { throw AnnotationExchangeError.receiptMismatch }
+            guard attempts.count == 1, let attempt = attempts.first, attempt.3 == SQLITE_INTEGER, attempt.4 > 0 else { throw AnnotationExchangeError.receiptMismatch }
             if attempt.0 == "verified" {
                 guard attempt.1 == nativeRootSHA256, attempt.2 == nativeResponseSHA256 else { throw AnnotationExchangeError.receiptMismatch }
                 return
             }
-            guard attempt.0 == "dispatch_may_have_occurred" else { throw AnnotationExchangeError.receiptMismatch }
+            guard attempt.0 == "dispatch_may_have_occurred" || attempt.0 == "superseded" else { throw AnnotationExchangeError.receiptMismatch }
             for pending in try linkedDeliveries(for: link) where pending.delivery.revision <= version.revision && [.pending, .needsReview, .dispatchMayHaveOccurred].contains(pending.state) {
+                // Resolve only intentions preceding this native dispatch. A
+                // later attempt at the same local revision is a separate fence.
+                let prior = try database.fetch(query: "SELECT COUNT(*) FROM main.\(LinkedTables.deliveries) WHERE message_id = ? AND (dispatch_sequence IS NULL OR dispatch_sequence < ?);",
+                    parameters: [pending.delivery.messageID.uuidString, attempt.4]) { $0.int64(at: 0) }
+                guard prior == [1] else { continue }
                 try database.execute(query: "INSERT INTO main.\(LinkedTables.reviews) (review_id, message_id, prior_state, prior_attempt_id, native_root_sha256, native_response_sha256, resolution_attempt_id) VALUES (?, ?, ?, ?, ?, ?, ?);",
                     parameters: [UUID().uuidString, pending.delivery.messageID.uuidString, pending.state.rawValue,
                         pending.attemptID.map { $0.uuidString as Any } ?? NSNull(), nativeRootSHA256, nativeResponseSHA256, attemptID.uuidString])
@@ -1416,8 +1431,11 @@ extension AnnotationExchangeLedger {
                     _ = try acknowledge(.init(messageID: delivery.messageID, destination: delivery.destination,
                         namespace: delivery.namespace, annotationUUID: delivery.annotationUUID,
                         revision: delivery.revision, payloadDigest: delivery.payloadDigest))
-                    try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'verified', attempt_id = ?, native_root_sha256 = ?, native_response_sha256 = ? WHERE message_id = ?;",
-                        parameters: [attemptID.uuidString, nativeRootSHA256, nativeResponseSHA256, delivery.messageID.uuidString])
+                    // The original attempt and any eventual response stay in
+                    // their own columns. The reviewed CAS proof lives in the
+                    // reconciliation row and is bound here without replacement.
+                    try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'verified', resolution_attempt_id = ? WHERE message_id = ?;",
+                        parameters: [attemptID.uuidString, delivery.messageID.uuidString])
                 } else {
                     try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'superseded' WHERE message_id = ?;", parameters: [pending.delivery.messageID.uuidString])
                 }
@@ -1425,13 +1443,40 @@ extension AnnotationExchangeLedger {
             try database.execute(query: """
                 UPDATE main.\(LinkedTables.reconciliations) SET state = 'superseded', resolution_attempt_id = ?
                 WHERE link_id = ? AND attempt_id != ? AND state = 'dispatch_may_have_occurred'
+                AND dispatch_sequence < ?
                 AND mutation_id IN (SELECT mutation_id FROM \(Self.versions) WHERE namespace = ? AND annotation_uuid = ? AND revision <= ?);
-                """, parameters: [attemptID.uuidString, link.id.uuidString, attemptID.uuidString, link.namespace, link.annotationUUID.uuidString, version.revision])
+                """, parameters: [attemptID.uuidString, link.id.uuidString, attemptID.uuidString, attempt.4, link.namespace, link.annotationUUID.uuidString, version.revision])
             try database.execute(query: "UPDATE main.\(LinkedTables.reconciliations) SET state = 'verified', native_root_sha256 = ?, native_response_sha256 = ? WHERE attempt_id = ?;",
                 parameters: [nativeRootSHA256, nativeResponseSHA256, attemptID.uuidString])
-            try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1 AND confirmed_local_revision <= ?;",
-                parameters: [nativeRootSHA256, version.revision, link.id.uuidString, version.revision])
+            try confirmLinkedBaseline(linkID: link.id, revision: version.revision,
+                                      dispatchSequence: attempt.4, nativeRootSHA256: nativeRootSHA256)
         }
+    }
+
+    /// Both automatic and reviewed calls allocate from one durable per-link
+    /// sequence inside their original outermost dispatch transaction. Wall time,
+    /// UUID ordering and callback order carry no causal authority.
+    private func nextLinkedDispatchSequence(linkID: UUID) throws -> Int64 {
+        guard sqlite3_get_autocommit(database.dbPointer) == 0 else { throw AnnotationExchangeError.receiptMismatch }
+        try database.execute(query: "UPDATE main.\(LinkedTables.links) SET dispatch_sequence = dispatch_sequence + 1 WHERE link_id = ? AND active = 1 AND dispatch_sequence < ?;",
+            parameters: [linkID.uuidString, Int64.max])
+        guard sqlite3_changes64(database.dbPointer) == 1 else { throw AnnotationExchangeError.receiptMismatch }
+        let rows = try database.fetch(query: "SELECT dispatch_sequence FROM main.\(LinkedTables.links) WHERE link_id = ?;", parameters: [linkID.uuidString]) { row in
+            (row.type(at: 0), row.int64(at: 0))
+        }
+        guard rows.count == 1, rows[0].0 == SQLITE_INTEGER, rows[0].1 > 0 else { throw AnnotationExchangeError.corruptRecord }
+        return rows[0].1
+    }
+
+    private func confirmLinkedBaseline(linkID: UUID, revision: Int64, dispatchSequence: Int64, nativeRootSHA256: String) throws {
+        // A later received local version dominates every older receipt. For the
+        // same version, only the later genuine dispatch can advance the root.
+        try database.execute(query: """
+            UPDATE main.\(LinkedTables.links)
+            SET native_root_sha256 = ?, confirmed_local_revision = ?, confirmed_dispatch_sequence = ?
+            WHERE link_id = ? AND active = 1
+            AND (confirmed_local_revision < ? OR (confirmed_local_revision = ? AND confirmed_dispatch_sequence < ?));
+            """, parameters: [nativeRootSHA256, revision, dispatchSequence, linkID.uuidString, revision, revision, dispatchSequence])
     }
 
     func deferLinkedRead(_ supplied: AnnotationExchangeLinkedDelivery, now: Int64) throws {
