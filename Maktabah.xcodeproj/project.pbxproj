@@ -1439,6 +1439,12 @@
 		8B407D0966F045C9C01630E5 /* AnnotationNativeBackfillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98770A6E81F728898180A4A /* AnnotationNativeBackfillCatalog.swift */; };
 		BA7D9899102E1442A7D6170E /* AnnotationNativeBackfillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */; };
 		9B0DE0028DA57DC37A84B004 /* AnnotationNativeBackfillSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */; };
+		FEC56B9B4626DDFBAD6452C5 /* MaktabahNativeComponentBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78760AE5A7FE263578ABA449 /* MaktabahNativeComponentBinding.swift */; };
+		4184FC410D6566A8493672E0 /* MaktabahNativeSettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF36616F1F91AE53C490BC /* MaktabahNativeSettingsComponents.swift */; };
+		AF6BB4B0292A5855233D351E /* MaktabahNativeSettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF36616F1F91AE53C490BC /* MaktabahNativeSettingsComponents.swift */; };
+		A238FAACB059319BEE1D808C /* MaktabahNativeSettingsComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF36616F1F91AE53C490BC /* MaktabahNativeSettingsComponents.swift */; };
+		E9C08C440407379D24047B9F /* MaktabahNativeTOCComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A6AA071133E43C8D5F0AAE /* MaktabahNativeTOCComponents.swift */; };
+		641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2267,6 +2273,10 @@
 		C0B3C959BE1BBA2AACB91DD1 /* AnnotationNativeBackfillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillModel.swift"; sourceTree = "<group>"; };
 		A6AF032B95DC3A973A9AF429 /* AnnotationNativeBackfillSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Annotations/Backfill/AnnotationNativeBackfillSection.swift"; sourceTree = "<group>"; };
 		DA0739AC20CFFFFFB5B5B372 /* Maktabah-iOSNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maktabah-iOSNativeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78760AE5A7FE263578ABA449 /* MaktabahNativeComponentBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift; sourceTree = "<group>"; };
+		EDBF36616F1F91AE53C490BC /* MaktabahNativeSettingsComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift; sourceTree = "<group>"; };
+		86A6AA071133E43C8D5F0AAE /* MaktabahNativeTOCComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift; sourceTree = "<group>"; };
+		122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -3994,6 +4004,10 @@
 				348F3CE98841B091C9694605 /* MaktabahNativeSceneBindings.swift */,
 				3679E7CCB7DA2D4DF51A2FC5 /* MaktabahNativeSceneProjection.swift */,
 				65F87859DF502D48133E2C6E /* MaktabahNativeSceneSession.swift */,
+				78760AE5A7FE263578ABA449 /* MaktabahNativeComponentBinding.swift */,
+				EDBF36616F1F91AE53C490BC /* MaktabahNativeSettingsComponents.swift */,
+				86A6AA071133E43C8D5F0AAE /* MaktabahNativeTOCComponents.swift */,
+				122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */,
 				F20D070C658D432A4CD59CE1 /* MaktabahNativeURLHandler.swift */,
 				346A39685ADFBA6B7F19E3F5 /* MaktabahNativeWorkspaceOwner.swift */,
 				F65E4BEE5F3C1AE7ADBFB345 /* MaktabahNativePublicBindingAdapter.swift */,
@@ -4459,6 +4473,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				AF6BB4B0292A5855233D351E /* MaktabahNativeSettingsComponents.swift in Sources */,
 				9E22D6A1FD6AA0272AD19518 /* AnnotationExchangeIdentity.swift in Sources */,
 				1C53D5E01559154000EB3E70 /* AnnotationBackfillPlanner.swift in Sources */,
 				4C4E1E4F9DC2F168D2260AC8 /* AnnotationExchangeLedger.swift in Sources */,
@@ -4820,6 +4835,7 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				A238FAACB059319BEE1D808C /* MaktabahNativeSettingsComponents.swift in Sources */,
 				1A6FD5E39DE86FB5FCEDDD56 /* AnnotationExchangeIdentity.swift in Sources */,
 				BEC609C5EB684427BF4F9F86 /* AnnotationBackfillPlanner.swift in Sources */,
 				7CFE6AEF1FAFD68BFCEEC502 /* AnnotationExchangeLedger.swift in Sources */,
@@ -5186,6 +5202,10 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				FEC56B9B4626DDFBAD6452C5 /* MaktabahNativeComponentBinding.swift in Sources */,
+				4184FC410D6566A8493672E0 /* MaktabahNativeSettingsComponents.swift in Sources */,
+				E9C08C440407379D24047B9F /* MaktabahNativeTOCComponents.swift in Sources */,
+				641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */,
 				8D1A9D5FD552552489C1F551 /* AnnotationOriginalEditorReceive.swift in Sources */,
 				24DD71FD56C255F6E1ECDB6B /* AnnotationOriginalEditorRevision.swift in Sources */,
 				EC5D1D474E6FAF12EA1BBEF9 /* AnnotationOriginalEditorLifecycleUI.swift in Sources */,
