@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "scope": "Fresh read of original PERF-03 requirement; not execution or acceptance",
+  "taskID": "1219613651433098",
+  "name": "[P0][PERF-03][נועם/מיה] רינדור פרקים גדולים ב־Reader המקורי בלי hitches",
+  "completed": false,
+  "modifiedAt": "2026-11-26T02:08:58.224Z",
+  "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219613651433098",
+  "originalRequirement": "[נועם | DEV] מימוש, [מיה | UX] שמירת UI/RTL, [רוני | QA] אימות. STATUS READY, טרם בוצע. HEAD: 7d47ccd1.\nSource/LibraryBackend/LibraryBackendModels.swift:431-515, LibraryReaderRenderModel init מחבר output ומחשב מחדש אורך UTF16 מצטבר בלולאת segments; למדוד סיכון O(n^2), ולעבור ל-block join יחיד עם utf16Offset רץ ושמירת NSRange/mapping/RTL.\nSource/iOS/Wrappers/iOSIbarotTextView.swift:546-682 עושה render/annotations, textStorage.setAttributedString ו-layoutIfNeeded ב-UI thread; Source/Managers/String/ArabicTextRenderer.swift, Source/Managers/Library/BookPageCache.swift processed key, ReaderViewModel.swift. למדוד ב-Instruments, להעביר רק preprocessing טהור לרקע תוך שמירת UIKit/TextKit על main; להימנע מ-full layout מיותר.\nקבלה: אין hang או viewport/scroll reset, selection+annotations+search highlights+footnotes+nikud+Hebrew/English+RTL נכונים, paragraphs/chapters מלאים; אם windowing מוצדק, חלונות משלימים זה את זה בלי truncation וללא reader UI חלופי. רגרסיות Maktabah רגיל ו-Sefaria. תיעוד p50/p95/CPU/longest main slice.\n",
+  "historicalCommentsScope": "Historical component/source/App build evidence remains separately attributed; no native or performance outcome is inferred here."
+}
