@@ -1,0 +1,10 @@
+{
+  "base": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "path": "Scripts/CI/runtime27-url-delivery.py",
+  "baselineSHA256": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80",
+  "candidateSHA256": "16b506e585ef4a111cae9cc7cb767fc58e70a73fdfbb4598f80214ed298f5a80",
+  "exactInverse": true,
+  "originalTestsSHA256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723",
+  "changedLines": 2,
+  "nativeRuns": 0
+}

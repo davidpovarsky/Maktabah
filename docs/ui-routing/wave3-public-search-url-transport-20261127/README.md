@@ -1,0 +1,13 @@
+# Finite original system URL transport for public Search
+
+This follow-up changes exactly two regular-expression lines in the existing `Scripts/CI/runtime27-url-delivery.py`. It adds only `native.search.result` and `native.search.nextPage`, only in v2, on the existing `maktabah-debug://action/` scheme and the exact verified `https://davidpovarsky.github.io/chavrusatext/action/` origin. Every prior route alternative remains unchanged. No wildcard, payload decoder, permission, grant, query mutation or app execution path is added.
+
+The original authentication token, simulator identity, request filename/nonce, age, seen-request budget, payload/URL size limits, argument array, subprocess timeout, result schema and redaction remain byte-for-byte intact. The exact inverse of the two finite regex additions restores the complete original 6,244-byte driver, SHA256 `b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80`, from immutable `24cd9291dbc87d799c22a41f0bc73a82c6415bfa`.
+
+The new eight-method suite executes the actual `dispatch_request` against real temporary request files and an explicit subprocess/OS-delivery double. On the original driver it failed six assertions, demonstrating that the required finite paths do not reach transport. With the exact two-line candidate, all eight new methods passed. The eighteen original tests were run unchanged and all passed.
+
+Coverage includes both finite custom URLs and both exact HTTPS URLs, original argument/timeout/result shape, repeated transport nonce, wrong job/target/filename/age, original request budgets, uninstalled versions, case changes, additional children/actions, other origins, credentials/ports, encoded paths and extra query/fragment/shell text. An opaque but app-invalid route body still reaches only the transport substitute: the original app parser and actual source/grant/receipt rules remain responsible for its eventual refusal. Transport delivery is never an application acknowledgement.
+
+Actual runs used Python 3.12 in the shared local workspace. The full original/candidate source, unchanged original tests, raw failing and passing output, exact invocation and interpreter details are preserved losslessly. No simulator, Apple SDK, App Intent, native URL delivery, Universal Link, production corpus or physical-device acceptance was executed. This correction supplies a necessary driver prerequisite for the separately published eight public Search native selectors; those remain NOT_RUN.
+
+Root owns final integration and the real native run. No app Source, PublicV2/Core rule, AASA file, runtime owner signature or original native assertion is changed by this packet.

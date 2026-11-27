@@ -1,0 +1,97 @@
+{
+  "scope": "Actual Python transport dispatch with explicit subprocess/OS delivery double; real request fixture files; no native/system delivery",
+  "steps": [
+    {
+      "label": "baseline-test-runtime27-public-search-url-delivery",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "public-search-url-transport-20261127/baseline/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+        "-v"
+      ],
+      "exit": 1,
+      "startEpoch": 1795798536.0002012,
+      "finishEpoch": 1795798536.1169598,
+      "input": {
+        "path": "public-search-url-transport-20261127/baseline/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+        "bytes": 6906,
+        "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+      },
+      "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "0e454745514dabcd5da68a79dacbd910e4de130858f7ab794211c27c56599893"
+    },
+    {
+      "label": "candidate-test-runtime27-public-search-url-delivery",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "public-search-url-transport-20261127/candidate/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+        "-v"
+      ],
+      "exit": 0,
+      "startEpoch": 1795798536.1170976,
+      "finishEpoch": 1795798536.2363424,
+      "input": {
+        "path": "public-search-url-transport-20261127/candidate/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+        "bytes": 6906,
+        "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+      },
+      "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "9168bbc69551bfbd5a8f4c921c1b7078830a6cbb137be142c6ef0b92e41e3dcb"
+    },
+    {
+      "label": "candidate-test-runtime27-url-delivery",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "public-search-url-transport-20261127/candidate/Scripts/CI/test-runtime27-url-delivery.py",
+        "-v"
+      ],
+      "exit": 0,
+      "startEpoch": 1795798536.2364233,
+      "finishEpoch": 1795798536.3569102,
+      "input": {
+        "path": "public-search-url-transport-20261127/candidate/Scripts/CI/test-runtime27-url-delivery.py",
+        "bytes": 9685,
+        "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+      },
+      "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "332f40ebd5bfd6f6513285879ec2a5747dedb1d290c6b811d3326c7fe5bd6ed7"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "baseline/Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6244,
+      "sha256": "b2abff73996b5e01bcd73aa4057438c014f8ee7e42214b63476711d947590a80"
+    },
+    {
+      "path": "baseline/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+      "bytes": 6906,
+      "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+    },
+    {
+      "path": "baseline/Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 9685,
+      "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+    },
+    {
+      "path": "candidate/Scripts/CI/runtime27-url-delivery.py",
+      "bytes": 6311,
+      "sha256": "16b506e585ef4a111cae9cc7cb767fc58e70a73fdfbb4598f80214ed298f5a80"
+    },
+    {
+      "path": "candidate/Scripts/CI/test-runtime27-public-search-url-delivery.py",
+      "bytes": 6906,
+      "sha256": "1f424c012a5789d5a05be13731651d527e91e2b542eb0ddc02cacc44f96eb791"
+    },
+    {
+      "path": "candidate/Scripts/CI/test-runtime27-url-delivery.py",
+      "bytes": 9685,
+      "sha256": "4469d13c99c4591dc810880e2ee7c0da714a21537dcbe922ea379b9a53efb723"
+    }
+  ],
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "sourceChangedLines": 2,
+  "oldTestsUnchanged": true,
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN"
+}
