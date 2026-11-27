@@ -1,0 +1,166 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "sourcePacket": "8223dab6d0031027fb08998a5043bc97228ff983",
+  "originalPrefix": {
+    "bytes": 375434,
+    "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+  },
+  "observedRoot": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "observedPrefix": {
+    "bytes": 407115,
+    "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+  },
+  "suffix": {
+    "bytes": 8969,
+    "sha256": "3848a9225585aab09221f626c6fd951773af06a863938da991d2be478e17b004"
+  },
+  "newSelector": {
+    "bytes": 1636,
+    "sha256": "0eb7a591b11f940e6c04950e7e64c088aa5b3637d81d089ba94c3fa484afa464"
+  },
+  "combinedFrozen": {
+    "bytes": 384403,
+    "sha256": "96cd904628885c0eb64f0ac9661c34b96ef489b0650fb5af32936bf7a5349b86"
+  },
+  "combinedObserved": {
+    "bytes": 416084,
+    "sha256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46"
+  },
+  "prefixUnchanged": true,
+  "native": 0,
+  "SDKTypecheck": 0,
+  "scope": "Frontend parse only; actual-system native selectors NOT_RUN; explicit append-only root proposal.",
+  "started": "2026-11-27T19:49:01.463481+00:00",
+  "steps": [
+    {
+      "name": "frozen-helper",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/native-proposal-attempt-1/NativeRoutingAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "observed-helper",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/native-proposal-attempt-1/ObservedRootWithSuffix.swift"
+      ],
+      "exit": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "selectors",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/native-proposal-attempt-1/NativeHiddenActivePhoneWorkspaceSelectionAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "originalPBX": {
+    "bytes": 648014,
+    "sha256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab"
+  },
+  "testMembership": "Original Maktabah-iOSUITests target uses synchronized root group F30578032FA46222005732C6; no new PBX entry is proposed.",
+  "finished": "2026-11-27T19:49:01.696110+00:00",
+  "status": "PASS_SOURCE_SYNTAX_ONLY_NATIVE_NOT_RUN",
+  "artifacts": [
+    {
+      "path": "NATIVE_HELPER_ADDITION.swift",
+      "bytes": 8969,
+      "sha256": "3848a9225585aab09221f626c6fd951773af06a863938da991d2be478e17b004"
+    },
+    {
+      "path": "NativeHiddenActivePhoneWorkspaceSelectionAcceptanceTests.swift",
+      "bytes": 1636,
+      "sha256": "0eb7a591b11f940e6c04950e7e64c088aa5b3637d81d089ba94c3fa484afa464"
+    },
+    {
+      "path": "NativeRoutingAcceptanceTests.swift",
+      "bytes": 384403,
+      "sha256": "96cd904628885c0eb64f0ac9661c34b96ef489b0650fb5af32936bf7a5349b86"
+    },
+    {
+      "path": "ORIGINAL_PBX.pbxproj",
+      "bytes": 648014,
+      "sha256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab"
+    },
+    {
+      "path": "ObservedRootWithSuffix.swift",
+      "bytes": 416084,
+      "sha256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46"
+    },
+    {
+      "path": "frozen-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "frozen-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "observed-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "observed-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "selectors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "selectors.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

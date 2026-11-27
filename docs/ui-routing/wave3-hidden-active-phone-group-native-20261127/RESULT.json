@@ -1,0 +1,40 @@
+{
+  "sourceDependency": "8223dab6d0031027fb08998a5043bc97228ff983",
+  "originalBase": "b463ffd03a76026cea06c79c608df97d00094152",
+  "originalPrefix": {
+    "bytes": 375434,
+    "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+  },
+  "observedRoot": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "observedPrefix": {
+    "bytes": 407115,
+    "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+  },
+  "suffix": {
+    "bytes": 8969,
+    "sha256": "3848a9225585aab09221f626c6fd951773af06a863938da991d2be478e17b004"
+  },
+  "selector": {
+    "bytes": 1636,
+    "sha256": "0eb7a591b11f940e6c04950e7e64c088aa5b3637d81d089ba94c3fa484afa464"
+  },
+  "combinedObserved": {
+    "bytes": 416084,
+    "sha256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46"
+  },
+  "rootOnlyAppend": true,
+  "sharedHelperWritten": false,
+  "originalAssertionsAndPrefixChanged": false,
+  "syntaxParsesOnly": 3,
+  "selectors": 6,
+  "native": 0,
+  "AppSDKTypecheck": 0,
+  "membership": "Existing filesystem-synchronized target; no PBX entry.",
+  "sourceReview": "Author source read completed; independent optional peer pass requested and not represented as completed here.",
+  "open": [
+    "Actual system AppIntent/native execution",
+    "Full Reader restoration, selection/viewport/TOC",
+    "Production, relaunch, multiwindow, VoiceOver and physical QA"
+  ],
+  "sealedUTC": "2026-11-27T19:50:50.518015+00:00"
+}

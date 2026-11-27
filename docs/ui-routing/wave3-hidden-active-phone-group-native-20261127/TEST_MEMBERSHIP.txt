@@ -1,0 +1,27 @@
+F30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget "Maktabah-iOSUITests" */;
+			buildPhases = (
+				F30578042FA46222005732C6 /* Sources */,
+				F30578052FA46222005732C6 /* Frameworks */,
+				F30578062FA46222005732C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F30578082FA46222005732C6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F30578032FA46222005732C6 /* Maktabah-iOSUITests */,
+			);
+			name = "Maktabah-iOSUITests";
+			productName = "Maktabah-iOSUITests";
+			productReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+
+F30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Maktabah-iOSUITests";
+			sourceTree = "<group>";
+		};

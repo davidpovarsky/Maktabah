@@ -1,0 +1,73 @@
+{
+  "rawBytes": 1968698,
+  "rawSHA256": "dc50a9db62eb1ef8ff602f8bbd4ed38c0ddcb2f6ee5f133f0738360a67308aae",
+  "gzipBytes": 432408,
+  "gzipSHA256": "799edf94e7df8609b8b448b1bb52158c2a48e4027a3269359c1b36b67aaadc62",
+  "files": [
+    {
+      "path": "NATIVE_HELPER_ADDITION.swift",
+      "bytes": 8969,
+      "sha256": "3848a9225585aab09221f626c6fd951773af06a863938da991d2be478e17b004"
+    },
+    {
+      "path": "NativeHiddenActivePhoneWorkspaceSelectionAcceptanceTests.swift",
+      "bytes": 1636,
+      "sha256": "0eb7a591b11f940e6c04950e7e64c088aa5b3637d81d089ba94c3fa484afa464"
+    },
+    {
+      "path": "NativeRoutingAcceptanceTests.swift",
+      "bytes": 384403,
+      "sha256": "96cd904628885c0eb64f0ac9661c34b96ef489b0650fb5af32936bf7a5349b86"
+    },
+    {
+      "path": "ORIGINAL_PBX.pbxproj",
+      "bytes": 648014,
+      "sha256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab"
+    },
+    {
+      "path": "ObservedRootWithSuffix.swift",
+      "bytes": 416084,
+      "sha256": "cb5b5cdb1fb695ae70b42b1124c09b42cd90c7331179752ed9b96c744eac5b46"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 5458,
+      "sha256": "92858c6633bd88cb3ed9dbe25f03f5635d91bdcb232ee2f517117ebca2c7e412"
+    },
+    {
+      "path": "frozen-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "frozen-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "observed-helper.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "observed-helper.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "selectors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "selectors.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validate_native_proposal.py",
+      "bytes": 10186,
+      "sha256": "59850f8c3d72696084b3c859d12bd1c9c7eb3b9bfe560044488fb8efb3a4677f"
+    }
+  ]
+}
