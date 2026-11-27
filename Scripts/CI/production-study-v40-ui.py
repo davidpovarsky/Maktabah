@@ -101,6 +101,7 @@ FILES = [
     "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
     "Maktabah-iOSUITests/MaktabahUITestBase.swift",
     "Scripts/CI/prepare-managed-library-update-context.py",
+    "Scripts/CI/prepare-production-search-preview-oracle.py",
     "Scripts/CI/study-ui-settings-receipts.py",
     "Scripts/CI/study-ui-prerequisites.py",
     "Scripts/CI/study-ui-search-log.py",
