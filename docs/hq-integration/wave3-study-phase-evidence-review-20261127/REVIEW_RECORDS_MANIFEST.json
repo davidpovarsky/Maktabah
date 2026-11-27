@@ -1,0 +1,10 @@
+[
+  {
+    "path": "evidence/INDEPENDENT_EVIDENCE_JOINS.json.gz",
+    "bytes": 1000,
+    "sha256": "dc4cf39a0f48408a16342267b9ab43b89056319a0b65f4bc072d0062ccaf43ae",
+    "uncompressedBytes": 2175,
+    "uncompressedSHA256": "39b6678c25e0260c18a9e5b56d86b401d95c7de91534c4260d1798a892860de2",
+    "scope": "Saved output of independent read-only checks; no new test execution"
+  }
+]
