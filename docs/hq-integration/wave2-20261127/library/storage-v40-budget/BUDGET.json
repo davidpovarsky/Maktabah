@@ -1,0 +1,183 @@
+{
+  "scope": "Read-only source and arithmetic audit; no install, corpus hash/recount, build, cleanup or storage-gate change",
+  "created_at": "2026-11-27T02:36:36.868870+00:00",
+  "source_commit": "8de1c26e36dc15c5641eeba0a182279714ac687b",
+  "basis": {
+    "archive_manifest": "docs/hq-integration/library-acceptance-20261125/seforim-schema7.db.zst.manifest.json",
+    "database_identity_receipt": "docs/hq-integration/wave2-20261127/library/inspector-v40/SOURCE_IDENTITY.json",
+    "database_identity_observed_at": "2026-11-27T00:29:54.015493+00:00",
+    "database_identity_reused_not_rehashed": true,
+    "release_id": 455390662,
+    "release_tag": "v40-20261123094345",
+    "archive_sha256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+    "database_sha256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+  },
+  "amounts": {
+    "compressed_archive_C": {
+      "bytes": 2129902636,
+      "GB_decimal": 2.129902636,
+      "GiB_binary": 1.9836264066398144
+    },
+    "database_D": {
+      "bytes": 4355063808,
+      "GB_decimal": 4.355063808,
+      "GiB_binary": 4.05596923828125
+    },
+    "two_compressed_copies": {
+      "bytes": 4259805272,
+      "GB_decimal": 4.259805272,
+      "GiB_binary": 3.9672528132796288
+    },
+    "logical_corpus_peak": {
+      "bytes": 8614869080,
+      "GB_decimal": 8.61486908,
+      "GiB_binary": 8.023222051560879
+    },
+    "corpus_peak_plus_product_safety_reserve": {
+      "bytes": 9688610904,
+      "GB_decimal": 9.688610904,
+      "GiB_binary": 9.023222051560879
+    },
+    "product_fresh_download_preflight": {
+      "bytes": 18112962912,
+      "GB_decimal": 18.112962912,
+      "GiB_binary": 16.869011253118515
+    },
+    "product_unknown_output_estimate": {
+      "bytes": 12779415816,
+      "GB_decimal": 12.779415816,
+      "GiB_binary": 11.901758439838886
+    },
+    "extraction_free_if_header_declares_D": {
+      "bytes": 5428805632,
+      "GB_decimal": 5.428805632,
+      "GiB_binary": 5.05596923828125
+    },
+    "extraction_free_if_header_unknown": {
+      "bytes": 13853157640,
+      "GB_decimal": 13.85315764,
+      "GiB_binary": 12.901758439838886
+    },
+    "outer_work_constant": {
+      "bytes": 24000000000,
+      "GB_decimal": 24.0,
+      "GiB_binary": 22.351741790771484
+    },
+    "outer_default_OS_margin": {
+      "bytes": 2000000000,
+      "GB_decimal": 2.0,
+      "GiB_binary": 1.862645149230957
+    },
+    "outer_minimum_no_other_reserve": {
+      "bytes": 26000000000,
+      "GB_decimal": 26.0,
+      "GiB_binary": 24.21438694000244
+    },
+    "inner_shell_free_after_setup": {
+      "bytes": 23622320128,
+      "GB_decimal": 23.622320128,
+      "GiB_binary": 22.0
+    },
+    "outer_minimum_headroom_over_inner_gate": {
+      "bytes": 2377679872,
+      "GB_decimal": 2.377679872,
+      "GiB_binary": 2.2143869400024414
+    }
+  },
+  "phases": [
+    {
+      "phase": "download_parts",
+      "retained_parts_bytes": 2129902636,
+      "assembly_or_archive_bytes": 0,
+      "new_staging_or_final_database_bytes": 0,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 2129902636,
+        "GB_decimal": 2.129902636,
+        "GiB_binary": 1.9836264066398144
+      }
+    },
+    {
+      "phase": "assembly_maximum",
+      "retained_parts_bytes": 2129902636,
+      "assembly_or_archive_bytes": 2129902636,
+      "new_staging_or_final_database_bytes": 0,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 4259805272,
+        "GB_decimal": 4.259805272,
+        "GiB_binary": 3.9672528132796288
+      }
+    },
+    {
+      "phase": "verified_archive",
+      "retained_parts_bytes": 2129902636,
+      "assembly_or_archive_bytes": 2129902636,
+      "new_staging_or_final_database_bytes": 0,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 4259805272,
+        "GB_decimal": 4.259805272,
+        "GiB_binary": 3.9672528132796288
+      }
+    },
+    {
+      "phase": "decompression_and_readonly_validation",
+      "retained_parts_bytes": 2129902636,
+      "assembly_or_archive_bytes": 2129902636,
+      "new_staging_or_final_database_bytes": 4355063808,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 8614869080,
+        "GB_decimal": 8.61486908,
+        "GiB_binary": 8.023222051560879
+      }
+    },
+    {
+      "phase": "first_promotion_before_cleanup",
+      "retained_parts_bytes": 2129902636,
+      "assembly_or_archive_bytes": 2129902636,
+      "new_staging_or_final_database_bytes": 4355063808,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 8614869080,
+        "GB_decimal": 8.61486908,
+        "GiB_binary": 8.023222051560879
+      }
+    },
+    {
+      "phase": "successful_cleanup_and_cold_restore",
+      "retained_parts_bytes": 0,
+      "assembly_or_archive_bytes": 0,
+      "new_staging_or_final_database_bytes": 4355063808,
+      "old_managed_database_bytes": 0,
+      "logical_corpus_payload": {
+        "bytes": 4355063808,
+        "GB_decimal": 4.355063808,
+        "GiB_binary": 4.05596923828125
+      }
+    }
+  ],
+  "formulae": {
+    "fresh_payload_peak": "2*C + D + epsilon_metadata",
+    "resume_download_preflight": "(C-min(max(R,0),C)) + 6*C + C + 1GiB",
+    "extraction_preflight": "(declared frame size or 6*C) + existingFinalSize + 1GiB",
+    "outer_gate": "free_at_ROOT >= 24e9 + os_margin_bytes + reserved_other_bytes",
+    "inner_gate": "df_free_at_container_after_boot_install >= 22GiB",
+    "initial_free_combined_gate": "F0 >= max(24e9+M+R_other, setup_growth+concurrent_growth_before_shell+22GiB)"
+  },
+  "assumptions": [
+    "First install uses the newly created owned simulator; no old managed database or orphan staging file exists there.",
+    "Archive assembly and archive destination share one directory; staging and final database share one directory.",
+    "No APFS clone savings, compression or sparse-file savings are credited.",
+    "Logical corpus-file bytes are not a measurement of physical allocated blocks.",
+    "Small atomic JSON sidecars/manifests, filesystem metadata, app boot/user data, simulator growth, app install images, logs, OS/swap and other-owner growth remain separately budgeted.",
+    "The actual zstd header was not reread; both known-size and unknown-size extraction branches are shown.",
+    "Existing runtime and built-app files already charged to the free-space baseline must not be charged again; newly installed app/container growth must be charged."
+  ],
+  "update_scope": {
+    "first_install_old_database_bytes": 0,
+    "logical_named_payload_with_existing_database_O": "O + 2*C + D before promotion; previous O and final D after replacement",
+    "foundation_replace_extra_temp_bytes": "Not measured or guaranteed from caller source; product preflight conservatively adds existingFinalSize to requested free capacity. No old-database copy is inferred for the first-install move branch."
+  }
+}

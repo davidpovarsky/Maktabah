@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-11-27T02:34:18.944313+00:00",
+  "scope": "Owned library-controls module-cache inventory and process command reference check; no deletion or build",
+  "root": "/Users/m1/builds/otzaria-wave2-library-controls-20261127",
+  "module_caches": [
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache",
+      "inode": 69162831,
+      "mtime_ns": 1795744537734564600,
+      "uid": 501
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-1/module-cache",
+      "inode": 69059376,
+      "mtime_ns": 1795744419053581300,
+      "uid": 501
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+      "inode": 67222188,
+      "mtime_ns": 1795735745698249500,
+      "uid": 501
+    }
+  ],
+  "processes_referencing_root": [],
+  "any_reference": false
+}
