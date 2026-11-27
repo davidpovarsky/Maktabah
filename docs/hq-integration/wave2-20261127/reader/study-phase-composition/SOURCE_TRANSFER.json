@@ -1,0 +1,43 @@
+{
+  "schema": "otzaria.source-exact-transfer/1",
+  "headBeforeRootEdits": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+  "files": {
+    "Scripts/CI/production-study-v40-ui.py": {
+      "before": {
+        "bytes": 45455,
+        "sha256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248"
+      },
+      "after": {
+        "bytes": 61274,
+        "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+      }
+    },
+    "Scripts/CI/reader-full-v40-ui-observation.inputs.json": {
+      "before": {
+        "bytes": 8117,
+        "sha256": "c0a2cb31c5dd4da9b9324558dc34c9f5660e42c8e35dd1523258e9465659b659"
+      },
+      "after": {
+        "bytes": 8410,
+        "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+      }
+    },
+    "Scripts/CI/study-ui-pending-execution.py": {
+      "before": null,
+      "after": {
+        "bytes": 19358,
+        "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+      }
+    },
+    "Scripts/CI/study-ui-prerequisites.py": {
+      "before": {
+        "bytes": 48654,
+        "sha256": "0d98a466d3fe9264f6c5562b1f5bb3799e0e81bc8f84ae030509e10a8bb5fe72"
+      },
+      "after": {
+        "bytes": 49535,
+        "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+      }
+    }
+  }
+}

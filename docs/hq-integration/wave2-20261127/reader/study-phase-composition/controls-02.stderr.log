@@ -1,0 +1,27 @@
+test_actual_effective_context_change_prevents_seal (original_study_controls.ControllerChecks.test_actual_effective_context_change_prevents_seal) ... ok
+test_changed_v41_identity_fails_after_both_ui_and_log (original_study_controls.ControllerChecks.test_changed_v41_identity_fails_after_both_ui_and_log) ... ok
+test_failed_native_search_aborts_host_before_retention (original_study_controls.ControllerChecks.test_failed_native_search_aborts_host_before_retention) ... ok
+test_post_settings_success_has_separate_source_scope (original_study_controls.ControllerChecks.test_post_settings_success_has_separate_source_scope) ... ok
+test_pull_transport_failure_with_stopped_workers_is_not_ui_pass (original_study_controls.ControllerChecks.test_pull_transport_failure_with_stopped_workers_is_not_ui_pass) ... ok
+test_settings_seal_happens_after_image_postcheck (original_study_controls.ControllerChecks.test_settings_seal_happens_after_image_postcheck) ... ok
+test_source_change_prevents_settings_seal_after_ui (original_study_controls.ControllerChecks.test_source_change_prevents_settings_seal_after_ui) ... ok
+test_unqualified_prerequisites_never_boot_or_update (original_study_controls.ControllerChecks.test_unqualified_prerequisites_never_boot_or_update) ... ok
+test_unverified_host_cleanup_defers_simulator_shutdown (original_study_controls.ControllerChecks.test_unverified_host_cleanup_defers_simulator_shutdown) ... ok
+test_bad_native_result_never_seals (__main__.OfflineFlow.test_bad_native_result_never_seals) ... ok
+test_each_failed_stage_aborts_and_never_passes_or_seals_early (__main__.OfflineFlow.test_each_failed_stage_aborts_and_never_passes_or_seals_early) ... ok
+test_exception_while_aborting_prevents_simulator_shutdown (__main__.OfflineFlow.test_exception_while_aborting_prevents_simulator_shutdown) ... ok
+test_source_change_after_native_cannot_become_final_phase_pass (__main__.OfflineFlow.test_source_change_after_native_cannot_become_final_phase_pass) ... ok
+test_two_engines_restore_before_original_export_and_final_checks (__main__.OfflineFlow.test_two_engines_restore_before_original_export_and_final_checks) ... ok
+test_unverified_abort_prevents_simulator_shutdown (__main__.OfflineFlow.test_unverified_abort_prevents_simulator_shutdown) ... ok
+test_bounded_private_matching_response (__main__.PrivateRendezvous.test_bounded_private_matching_response) ... ok
+test_extra_field_rejected (__main__.PrivateRendezvous.test_extra_field_rejected) ... ok
+test_hard_link_rejected (__main__.PrivateRendezvous.test_hard_link_rejected) ... ok
+test_other_request_rejected (__main__.PrivateRendezvous.test_other_request_rejected) ... ok
+test_oversized_input_rejected (__main__.PrivateRendezvous.test_oversized_input_rejected) ... ok
+test_readable_by_other_users_rejected (__main__.PrivateRendezvous.test_readable_by_other_users_rejected) ... ok
+test_symbolic_link_rejected (__main__.PrivateRendezvous.test_symbolic_link_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.067s
+
+OK

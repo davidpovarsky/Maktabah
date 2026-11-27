@@ -1,0 +1,34 @@
+{
+  "scope": "Source structural preservation, no execution claim",
+  "originalSHA256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248",
+  "candidateSHA256": "60dd4c89e7ba872e285c14c3f7cba0077ad5f5b59a34b0d0326e8d070ebfb4d8",
+  "byteIdenticalOriginalDefinitions": [
+    "require",
+    "load_core",
+    "load_support",
+    "input_values",
+    "source_context",
+    "observe_inputs",
+    "actual_owner",
+    "install_images",
+    "prepare_context",
+    "official_metadata",
+    "verified_phase",
+    "positive_trace",
+    "updated_snapshot",
+    "admit_updated",
+    "image_resolver"
+  ],
+  "changedOriginalDefinitions": [
+    "run_original_case",
+    "execute",
+    "main"
+  ],
+  "originalZeroSkipDeclarationExportAndPassTailASTIdentical": true,
+  "newDefinitions": [
+    "run_original_native_actions",
+    "verify_original_case",
+    "OfflineRendezvous",
+    "seal_offline"
+  ]
+}

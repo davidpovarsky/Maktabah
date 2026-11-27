@@ -1,0 +1,28 @@
+test_absent_leader_with_remaining_group_is_not_adopted (__main__.OwnedLifetimeControls.test_absent_leader_with_remaining_group_is_not_adopted) ... ok
+test_bounded_timeout_stops_only_verified_live_original_group (__main__.OwnedLifetimeControls.test_bounded_timeout_stops_only_verified_live_original_group) ... ok
+test_command_keeps_original_output_and_seals_actual_exit (__main__.OwnedLifetimeControls.test_command_keeps_original_output_and_seals_actual_exit) ... ok
+test_failed_cleanup_is_not_repeated_by_outer_sweep (__main__.OwnedLifetimeControls.test_failed_cleanup_is_not_repeated_by_outer_sweep) ... ok
+test_known_handle_assignment_gap_is_swept (__main__.OwnedLifetimeControls.test_known_handle_assignment_gap_is_swept) ... ok
+test_live_reused_pid_is_never_signaled_after_original_exit (__main__.OwnedLifetimeControls.test_live_reused_pid_is_never_signaled_after_original_exit) ... ok
+test_passive_observer_receives_original_core_not_command_inventory (__main__.OwnedLifetimeControls.test_passive_observer_receives_original_core_not_command_inventory) ... ok
+test_phase_seal_enospc_preserves_memory_but_not_cleanup_permission (__main__.OwnedLifetimeControls.test_phase_seal_enospc_preserves_memory_but_not_cleanup_permission) ... ok
+test_receipt_enospc_cannot_authorize_handoff (__main__.OwnedLifetimeControls.test_receipt_enospc_cannot_authorize_handoff) ... ok
+test_unknown_interrupted_spawn_does_not_infer_exit (__main__.OwnedLifetimeControls.test_unknown_interrupted_spawn_does_not_infer_exit) ... ok
+test_complete_coordinator_and_pending_source_closures_are_registered (__main__.PendingPhaseControls.test_complete_coordinator_and_pending_source_closures_are_registered) ... ok
+test_failed_native_is_not_accepted_and_host_stops_first (__main__.PendingPhaseControls.test_failed_native_is_not_accepted_and_host_stops_first) ... ok
+test_host_incomplete_cannot_pass_after_native_success (__main__.PendingPhaseControls.test_host_incomplete_cannot_pass_after_native_success) ... ok
+test_original_admission_rejection_never_launches_pending_case (__main__.PendingPhaseControls.test_original_admission_rejection_never_launches_pending_case) ... ok
+test_phase_is_one_separate_required_preupdate_case (__main__.PendingPhaseControls.test_phase_is_one_separate_required_preupdate_case) ... ok
+test_post_source_failure_cannot_promote_completed_host (__main__.PendingPhaseControls.test_post_source_failure_cannot_promote_completed_host) ... ok
+test_start_failure_keeps_owned_host_for_cleanup (__main__.PendingPhaseControls.test_start_failure_keeps_owned_host_for_cleanup) ... ok
+test_success_uses_one_actual_admission_and_owner_before_retention (__main__.PendingPhaseControls.test_success_uses_one_actual_admission_and_owner_before_retention) ... ok
+test_unverified_cleanup_never_retains_simulator (__main__.PendingPhaseControls.test_unverified_cleanup_never_retains_simulator) ... ok
+test_another_native_command_cannot_supply_the_exit_proof (__main__.RetainedCleanupControls.test_another_native_command_cannot_supply_the_exit_proof) ... ok
+test_another_phase_cannot_supply_an_identical_cleanup_file (__main__.RetainedCleanupControls.test_another_phase_cannot_supply_an_identical_cleanup_file) ... ok
+test_changed_original_cleanup_bytes_are_rejected (__main__.RetainedCleanupControls.test_changed_original_cleanup_bytes_are_rejected) ... ok
+test_revalidates_exact_native_and_owned_exit_receipts (__main__.RetainedCleanupControls.test_revalidates_exact_native_and_owned_exit_receipts) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.051s
+
+OK
