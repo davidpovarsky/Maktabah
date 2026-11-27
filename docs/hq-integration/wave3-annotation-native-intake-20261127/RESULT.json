@@ -1,0 +1,100 @@
+{
+  "schema": "otzaria.wave3.annotation-native-selector-intake.v1",
+  "base": "a3c347092bee5fa8fa24ce2fee60198dca4f655d",
+  "picked": [
+    {
+      "donor": "caf02d7b2cf1461c44de7d040f935872f713897f",
+      "intake": "0b7b052a553b027b7fe4078cb230a4070c283901"
+    },
+    {
+      "donor": "0608d4309526539fd4d31ee45bf9deccf7556921",
+      "intake": "fab0f1bcd42b3ecf4bac76eb80e2270a2157a914"
+    }
+  ],
+  "sourceTree": "ff6ea67df0f96753ccdaaec7e01fbb73a30079ec",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "testPaths": 2,
+  "docsPaths": 41,
+  "manifestSHA256": "ea8b9ee06e4ce75fabbc339319b77a12cb56fbe9efd9ef1e27f91a61d3ce8cb8",
+  "manifestRows": 40,
+  "verifiedRawFiles": 31,
+  "originalPrefix": {
+    "path": "annotations-native-acceptance/baseline/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 375434,
+    "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+  },
+  "appendOnlySuffix": {
+    "path": "annotations-native-acceptance/NATIVE_HELPER_ADDITION.swift",
+    "bytes": 31681,
+    "sha256": "9f6af6530cd8ead9d2747a9a6c3a5b1f7f33e95fc2d29781eff8523116be8dc0"
+  },
+  "currentOriginalDependenciesIdentical": [
+    "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+    "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+    "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+    "Source/Features/Annotations/iOS/AnnotationContentView.swift",
+    "Source/UI/iOS/Views/Common/ListContentView.swift",
+    "Source/Core/Configuration/AppConfig.swift",
+    "Source/UI/iOS/Views/iOSMainView.swift",
+    "Source/UI/iOS/Views/iPhoneLayout.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift",
+    "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "Source/Features/Annotations/Models/Annotation.swift",
+    "Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+  ],
+  "separatelyIntegratedProductCorrections": [
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "oldSHA256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714",
+      "currentSHA256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c",
+      "qualification": "Already integrated original helper/caller source correction; no new native execution",
+      "proof": "docs/hq-integration/wave3-annotation-expansion-intake-20261127/RESULT.json"
+    }
+  ],
+  "correctionProofSHA256": "e38b91cecd433c76740446a0ed440161ca9997f554077800be425ff1d2598212",
+  "newSelectorDeclarations": [
+    "testOriginalIPadAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPadAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPhoneAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPhoneAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPadCachedAnnotationRefusesOriginalSearchABAWithoutMutation",
+    "testOriginalIPhoneCachedAnnotationRefusesSearchABAFromBackgroundWithoutMutation"
+  ],
+  "sourceOnlyResultSHA256": "4ec69e698fb83f2c070ce8d4040fcaf390ba03b5df9d63c0dfb1c5ab7e672fe3",
+  "sourceOnlyScope": "Two complete Swift files parsed for iOS only. Original Git/UI/store/AppIntent dependencies rejoined; no Apple SDK typecheck, actual system Intent, UIKit, SQLite instance or native execution.",
+  "originalSynchronizedTargetMembership": {
+    "base": "b463ffd03a76026cea06c79c608df97d00094152",
+    "bytes": 648014,
+    "git_blob": "5340530033e5e20670402b444c8a50eed077a2d4",
+    "group": "F30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSUITests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};",
+    "path": "Maktabah.xcodeproj/project.pbxproj",
+    "policy": "Inherited original filesystem-synchronized UI-test inclusion. No manual PBX entry. Apple discovery/build not run.",
+    "sha256": "fc57161817ff43a7f018a942f6511dc3e759e2b832e47eaac691d13ae8527fab",
+    "target": "F30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget \"Maktabah-iOSUITests\" */;\n\t\t\tbuildPhases = (\n\t\t\t\tF30578042FA46222005732C6 /* Sources */,\n\t\t\t\tF30578052FA46222005732C6 /* Frameworks */,\n\t\t\t\tF30578062FA46222005732C6 /* Resources */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\tF30578082FA46222005732C6 /* PBXTargetDependency */,\n\t\t\t);\n\t\t\tfileSystemSynchronizedGroups = (\n\t\t\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */,\n\t\t\t);\n\t\t\tname = \"Maktabah-iOSUITests\";\n\t\t\tproductName = \"Maktabah-iOSUITests\";\n\t\t\tproductReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;\n\t\t\tproductType = \"com.apple.product-type.bundle.ui-testing\";\n\t\t};"
+  },
+  "protectedTrees": {
+    "Source": "ff6ea67df0f96753ccdaaec7e01fbb73a30079ec",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1"
+  },
+  "newTestExecutions": 0,
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "fixture": "Original miniTest10 fixture only; no production qualification",
+  "open": [
+    "All six actual system-native journeys",
+    "Final Native116 and Release114+2 with production v40",
+    "Siri, VoiceOver, keyboard, locales, cold entry and physical-owner acceptance",
+    "Final original-owner signatures, target merge, signed archive and TestFlight"
+  ]
+}
