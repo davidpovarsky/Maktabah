@@ -1,0 +1,102 @@
+{
+  "schema": "otzaria.wave3.history-capacity-evidence-intake.v1",
+  "base": "aee6fdd1cd635323f6a773f6559a9d0bf717f6b4",
+  "deliveries": [
+    {
+      "donor": "9b69c8c06826ad64c5802d8587bd21ff91fbac4e",
+      "parent": "a65cc9b3b1f802d3fe4b9e0bd57b9e073109d28f",
+      "path": "docs/ui-routing/wave3-history-composition-control-20261127",
+      "commitPaths": 9,
+      "artifactRows": 8,
+      "artifactsSHA256": "493cc2e2ac542d761520e3f0b6971f6213931cd7e2d4092824f449a383a2c4e6",
+      "integrated": "12b905e328d60d9a599be0c1366bad561662bf67"
+    },
+    {
+      "donor": "279b5f62674ccc1cb54a48f6a0ba04b34b267e55",
+      "parent": "a7be0e1fbe915a385c698acaef50b34cbc4b0986",
+      "path": "docs/hq-integration/wave3-runner-capacity-readonly-20261127",
+      "commitPaths": 11,
+      "artifactRows": 10,
+      "artifactsSHA256": "8ab4e67509844fdf427cfd045b968edb32ef600091e9ccdfc6c89af5b3f562f7",
+      "integrated": "aef26a290c0a4f64f5af3e0dace2ed505a82a93e"
+    },
+    {
+      "donor": "1b6d6408413afe2b8731d80f6424c69fe6c36741",
+      "parent": "279b5f62674ccc1cb54a48f6a0ba04b34b267e55",
+      "path": "docs/hq-integration/wave3-held-symbol-compact-closure-20261127",
+      "commitPaths": 28,
+      "artifactRows": 27,
+      "artifactsSHA256": "afa2a019eecf688fde084e1668d5ab7692ca52919f52a2b6d2916bcd95c16011",
+      "integrated": "ae5cdd9a708cf21d55450648c8362fc41e7eb729"
+    }
+  ],
+  "commitPaths": 48,
+  "artifactRows": 45,
+  "historyCapsuleMembers": 31,
+  "historyMethodControls": {
+    "candidatePassed": 16,
+    "candidateFailed": 0,
+    "initialPassed": 8,
+    "initialFailed": 8,
+    "resultSHA256": "ff86706f76b180b1552159def78a1e95c9a688c72415e70a422630373a72555d"
+  },
+  "capacityOriginalReceipts": [
+    {
+      "label": "HELD_PROCESS_AND_HEADERS",
+      "bytes": 96190,
+      "sha256": "f90eb4f0e24dcc6231d1b37fe2573fc0668c958400fa8e974436605a752d4fa2",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "HELD_VNODE_AND_ORIGINAL_LOGS",
+      "bytes": 9691,
+      "sha256": "51c28bf78ef6255f13459137a8b3002ea082e2adea5cdcf58b3927b24fc64478",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "BUILD_CLOSURE_AND_COMPACT_LOCATORS",
+      "bytes": 23310,
+      "sha256": "dd73376ea71caa9879138c71cc628dd85bfb51e5c42323b2b9af47e4bb9b690d",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "LATER_BUILD_CLOSURE",
+      "bytes": 10114,
+      "sha256": "d4dc9493a2e8a4e2e4b2d4a50f680ba78c7d160358d642bf94ae6e88b4897999",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "WHOLE_COMPACT_METADATA",
+      "bytes": 3701857,
+      "sha256": "c2b252aa0409bf35b108da632a1050d8f3c3746339cbc51242219e2eccceb035",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "EXTERNAL_WORKTREES",
+      "bytes": 10322,
+      "sha256": "08a75a44ec9bd1fde1114125da75c195ddd66fc4a8c593e262a23dabaef5952f",
+      "rejoinedActualOriginalReceipt": true
+    },
+    {
+      "label": "EXACT_RECOVERY_INPUTS",
+      "bytes": 36490,
+      "sha256": "2b4dc4291ce8e37a046112c0b96bc6ac5d1829d0dc08af04d552120ffe2db90d",
+      "rejoinedActualOriginalReceipt": true
+    }
+  ],
+  "protectedTreesUnchanged": {
+    "Source": "bf1dc7f05dd3425bf9af3c4535aac5972b777c0f",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    "Scripts/CI": "21e27300cd4f4cd72f97df343190cbc9cf220687",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "macActions": 0,
+  "capacityConclusion": "No adequate safe reclaim established; whole compact root has external common-Git consumers. No deletion or process action authorized by this evidence.",
+  "newSharedHistoryWiring": "PENDING_ROOT_SOURCE_INTAKE",
+  "AppleSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "release": "OPEN"
+}
