@@ -1,0 +1,125 @@
+{
+  "base": "e33fc140c84d20f8e595e9e4f032b9f44d426be5",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+      "bytes": 1937,
+      "sha256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e",
+      "beforeBytes": null,
+      "beforeSHA256": null,
+      "beforeBlob": null
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 337724,
+      "sha256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f",
+      "beforeBytes": 307308,
+      "beforeSHA256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+      "beforeBlob": "1dbbb824b064fb65d87d20909f980bc429f35c8d"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 643968,
+      "sha256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557",
+      "beforeBytes": 639844,
+      "beforeSHA256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+      "beforeBlob": "85e7c4d78198e5aaa6f9f9a484ad842577822c3c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "bytes": 2995,
+      "sha256": "e267873f2a325b799d8ba52913186dc57cb11833fc0237b9a0f09aa56f421494",
+      "beforeBytes": 1823,
+      "beforeSHA256": "80193ca8edff967eb8bbc23eeecfb8563fac0db99c8538ee0cdb0695f46f47b3",
+      "beforeBlob": "c52d4b21d441427ad28f832c635ebca9dad811c0"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryReaderSource.swift",
+      "bytes": 14272,
+      "sha256": "8f1a8140bd57dca796f860589ea77d441bf51fd688a33f580637404fa235d362",
+      "beforeBytes": null,
+      "beforeSHA256": null,
+      "beforeBlob": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "bytes": 2668,
+      "sha256": "327969eaf71bb33017e1fb0aa46b485e246d2c1a70b5ac6d914ed371f7e45c8c",
+      "beforeBytes": 1736,
+      "beforeSHA256": "cf7a6176a4e1ff9a36b2b87350265ba74aa140ffd932ded48659997c873aa7b4",
+      "beforeBlob": "b8898b4a91c240de7ecc549d19d86abfbc01a6a6"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "bytes": 22581,
+      "sha256": "fd70c7e7cdb42bbfd49b9be1a1bdfe048b756134daf99763a81ab08541a14092",
+      "beforeBytes": 22218,
+      "beforeSHA256": "e68ffe454f7345c23e1e27ad2bfbc1f2bbbe715dd5c66e5d5f7c02c536c7d19e",
+      "beforeBlob": "22ac4bb81e1923623a57997aa1c33567aa8a071d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 253472,
+      "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720",
+      "beforeBytes": 224190,
+      "beforeSHA256": "134a01ada9114405437d8c1f655b13cd321ea64ddf3a0b9d3c1b5837e48bd3b4",
+      "beforeBlob": "ca1f8992bb502612a4fb27c9cc3db02746089e40"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 37771,
+      "sha256": "3932e90ea2ef1e0d042cee70efe00ca891b5e8d1d768ee6339293e9649dee2f5",
+      "beforeBytes": 36861,
+      "beforeSHA256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+      "beforeBlob": "ef266f46aa8cf305f3e214a4966119dffb8eff51"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 26609,
+      "sha256": "38d87aabc58d3c2ff3c3d499ca4b26acffe41f964326e8b5efaa4e67cf57c9dc",
+      "beforeBytes": 25611,
+      "beforeSHA256": "c3ca1a2917a334b779e385d4d00cba3d7f28f8e08ed98fccf2d0e3c96ad0d199",
+      "beforeBlob": "a8fcf1424fef8bdcc9229eabe60ebf7714bb5958"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 150931,
+      "sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+      "beforeBytes": 129051,
+      "beforeSHA256": "902b93bfdc8beea69779b7fa5f0acb85d65bcf8178600c3b2d6e38ea0c4201e5",
+      "beforeBlob": "41f86bf7680007c168ed35d74e2ae821be1384ec"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+      "bytes": 2150,
+      "sha256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45",
+      "beforeBytes": 1785,
+      "beforeSHA256": "0e3f598c685479d23a9bb67e6c1aecf012a1fc6291269a26f9888cc40e3e4420",
+      "beforeBlob": "596c683bb3404a2ee4f72bb07fa881e0cbe98a7d"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift",
+      "bytes": 11024,
+      "sha256": "bc0baea0d1912c685e2a597641dabda88c1ec50ed9fb08f2504147d3247486c1",
+      "beforeBytes": null,
+      "beforeSHA256": null,
+      "beforeBlob": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift",
+      "bytes": 3437,
+      "sha256": "c035acc6a5e25d0e23870f32ebf03a218f585568ca9091b67e5e6645db5776a9",
+      "beforeBytes": null,
+      "beforeSHA256": null,
+      "beforeBlob": null
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "bytes": 397672,
+      "sha256": "9fe897f96bec395994c5c8759b5328a2a9eb7d0a9a950e820c299c9e0ad26bf2",
+      "beforeBytes": 386509,
+      "beforeSHA256": "c2fb42c37739065a100a6d1c03865dc3dfdfe3f75cdd059a4857251468b6e7dc",
+      "beforeBlob": "324373e806a0d1ce9e7a01df8414c5ab08f07719"
+    }
+  ]
+}

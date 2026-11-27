@@ -1,0 +1,134 @@
+{
+  "schema": "otzaria.wave3.saved-results-registration.v1",
+  "originalResultsViewModelTargets": [
+    "Maktabah",
+    "Maktabah-Direct",
+    "Maktabah-iOS"
+  ],
+  "files": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "beforeSHA256": "ebdfc5173ce3b5a4f5893374bf7ba0ceaae42366deef6f30f4939fd6f3eb229b",
+      "afterSHA256": "3e860ef6e643061f0cddd086441fc604f122763e76f2a1217e949f607bc8c557",
+      "afterBytes": 643968,
+      "inverseExact": true
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "beforeSHA256": "75b4be39f747cc9fe319a07bf99a4be1c388326647a3d470c29ab40099d99942",
+      "afterSHA256": "9fe897f96bec395994c5c8759b5328a2a9eb7d0a9a950e820c299c9e0ad26bf2",
+      "afterBytes": 397672,
+      "addedKeys": [
+        "Saved results folder",
+        "Saved search result",
+        "Saved results window",
+        "Show a saved results folder",
+        "Show a saved search result",
+        "Show an existing folder in Saved Results.",
+        "Show a saved result without running its search."
+      ],
+      "inverseExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "beforeSHA256": "a6a6c06dd1381dfd438cfde9f5e251a94d50a04732363df44a0755cddd163777",
+      "afterSHA256": "e267873f2a325b799d8ba52913186dc57cb11833fc0237b9a0f09aa56f421494",
+      "afterBytes": 2995,
+      "addedKeys": [
+        "Show saved search result in ${applicationName}"
+      ],
+      "inverseExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "beforeSHA256": "1490fc6ee1ba98ad6fc5970d4a57b4f2f0f7aac169721f557094ada922b2533e",
+      "afterSHA256": "327969eaf71bb33017e1fb0aa46b485e246d2c1a70b5ac6d914ed371f7e45c8c",
+      "afterBytes": 2668,
+      "shortcutCount": 10,
+      "inverseExact": true
+    }
+  ],
+  "additionalAppEntries": [
+    {
+      "path": "Source/ChavrusaText/Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+      "bytes": 3127,
+      "sha256": "439f61aac96a581b6b5948797c60b6c27c77b5e683271f23facf6f73a35b9975",
+      "membership": "Same app targets and platform coverage as existing ResultsViewModel.swift; shared metadata has no UIKit.",
+      "relative": "Bookmarks/OriginalSavedResultsLoadLifetime.swift",
+      "name": "OriginalSavedResultsLoadLifetime.swift",
+      "ref": "8D225141DCD48D57DCCA3201",
+      "builds": {
+        "Maktabah": "87665F06D696E3919AB2B708",
+        "Maktabah-Direct": "F74DC3696387CBB309D0CAE0",
+        "Maktabah-iOS": "480A37811754BC6F9614551B"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+      "bytes": 8996,
+      "sha256": "a62262899eb138f395b264aa557563c593fa3a0c117cbf1831d1ce598434766f",
+      "membership": "iOS app source only.",
+      "relative": "UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift",
+      "name": "MaktabahNativeSavedResultsSource.swift",
+      "ref": "146C06FD27FD96B9BDBE2776",
+      "builds": {
+        "Maktabah-iOS": "99CFFF6DD16372CBBAF602C4"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+      "bytes": 38667,
+      "sha256": "f3bee64ef4e911936b1e188fafc5d2f1d8256cdb2f367660e04d57baa57a1d54",
+      "membership": "iOS app source only.",
+      "relative": "UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift",
+      "name": "MaktabahNativeSavedResultsBinding.swift",
+      "ref": "52E52F68408674BB622991E3",
+      "builds": {
+        "Maktabah-iOS": "1B7E2C9E2359B85FA50FB448"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+      "bytes": 11410,
+      "sha256": "426148a7d9ea9338dc99aa398bcda1f3ec37da279746e118bfd0257ef888b9da",
+      "membership": "iOS app source only.",
+      "relative": "UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift",
+      "name": "MaktabahNativeSavedResultsViews.swift",
+      "ref": "D1FE202D154D5837019E5976",
+      "builds": {
+        "Maktabah-iOS": "49C8885F86E592D87D813F15"
+      }
+    }
+  ],
+  "projectInsertions": [
+    {
+      "offset": 240561,
+      "text": "\t\t87665F06D696E3919AB2B708 /* OriginalSavedResultsLoadLifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */; };\n\t\tF74DC3696387CBB309D0CAE0 /* OriginalSavedResultsLoadLifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */; };\n\t\t480A37811754BC6F9614551B /* OriginalSavedResultsLoadLifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */; };\n\t\t99CFFF6DD16372CBBAF602C4 /* MaktabahNativeSavedResultsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */; };\n\t\t1B7E2C9E2359B85FA50FB448 /* MaktabahNativeSavedResultsBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */; };\n\t\t49C8885F86E592D87D813F15 /* MaktabahNativeSavedResultsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */; };\n"
+    },
+    {
+      "offset": 405381,
+      "text": "\t\t8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"Bookmarks/OriginalSavedResultsLoadLifetime.swift\"; sourceTree = \"<group>\"; };\n\t\t146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeSavedResultsSource.swift\"; sourceTree = \"<group>\"; };\n\t\t52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift\"; sourceTree = \"<group>\"; };\n\t\tD1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift\"; sourceTree = \"<group>\"; };\n"
+    },
+    {
+      "offset": 410067,
+      "text": "\t\t\t\t8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */,\n\t\t\t\t146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */,\n\t\t\t\t52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */,\n\t\t\t\tD1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */,\n"
+    },
+    {
+      "offset": 498587,
+      "text": "\t\t\t\t87665F06D696E3919AB2B708 /* OriginalSavedResultsLoadLifetime.swift in Sources */,\n"
+    },
+    {
+      "offset": 524713,
+      "text": "\t\t\t\tF74DC3696387CBB309D0CAE0 /* OriginalSavedResultsLoadLifetime.swift in Sources */,\n"
+    },
+    {
+      "offset": 550921,
+      "text": "\t\t\t\t480A37811754BC6F9614551B /* OriginalSavedResultsLoadLifetime.swift in Sources */,\n\t\t\t\t99CFFF6DD16372CBBAF602C4 /* MaktabahNativeSavedResultsSource.swift in Sources */,\n\t\t\t\t1B7E2C9E2359B85FA50FB448 /* MaktabahNativeSavedResultsBinding.swift in Sources */,\n\t\t\t\t49C8885F86E592D87D813F15 /* MaktabahNativeSavedResultsViews.swift in Sources */,\n"
+    }
+  ],
+  "originalObjectsAndOrderingPreserved": true,
+  "allExistingCatalogEntriesPreserved": true,
+  "AppleSDK": "NOT_RUN",
+  "AppIntentsMetadata": "NOT_RUN",
+  "native": "NOT_RUN"
+}

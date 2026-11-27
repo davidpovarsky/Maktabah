@@ -1,0 +1,73 @@
+{
+  "schema": "otzaria.wave3.original-entry-wiring-intake.v1",
+  "base": "e33fc140c84d20f8e595e9e4f032b9f44d426be5",
+  "deliveries": [
+    {
+      "donor": "1dd19d4bffe143f85c14568f155d51e4d88ae868",
+      "parent": "b0fd2d88c7f51db3b2004dccd5ecef10a58d9551",
+      "paths": 39,
+      "manifestSHA256": "8894a1eee604cfd2e42e154fd00c6ce2f6e14198d91d85ce85be01675c7e0c60",
+      "manifestRows": 38,
+      "integrated": "1bcae0681fea100048b062ece27665ccd48d3337"
+    },
+    {
+      "donor": "a27694faab405399b9c99c3b76074d70ecc1b7c0",
+      "parent": "9b69c8c06826ad64c5802d8587bd21ff91fbac4e",
+      "paths": 24,
+      "manifestSHA256": "a3d72bcf92bbb1c2f7c4be3f8781802bb888fbad41febd39ae523762ea4de30e",
+      "manifestRows": 22,
+      "integrated": "3d50bcb20446d00d8b997303d2cde6999113a233"
+    }
+  ],
+  "sourceCommit": "e9b81e0cf9e4c7938ff18adcb4722506138244c0",
+  "sourceTree": "7afa76212dec72644917e6aaff3257ca56a14ccf",
+  "candidateFiles": 15,
+  "sourceChangedPaths": 14,
+  "exactPreimages": 11,
+  "newHistoryFiles": 3,
+  "newNativeSelectorFile": 1,
+  "actualHistoryPublicationControls": {
+    "originalPassed": 6,
+    "originalFailed": 15,
+    "intermediatePassed": 20,
+    "intermediateFailed": 1,
+    "finalPassed": 21,
+    "finalFailed": 0
+  },
+  "publicReturnRetentionControls": {
+    "passed": 6,
+    "counterfactualExpectedFailures": 2
+  },
+  "nativeSelectorsAdded": 8,
+  "nativeSelectorsExecuted": 0,
+  "registration": {
+    "appFiles": 6,
+    "newPBXObjects": 14,
+    "existingObjectsAndOrderPreserved": true,
+    "shortcutCount": 10
+  },
+  "completeFrontendParsesOnly": {
+    "debug": 12,
+    "release": 12,
+    "failures": 0
+  },
+  "protectedTrees": {
+    "Source/Otzaria": "61c6ce18116ba56ce7f7e3503f261453958aa51c",
+    "Source/ZayitSearch": "0ea86661d8fb55a7dabe2127d6245129c2e90ec8",
+    "Source/Features": "2153dd960406062fa4bac86a374af398abb7ce5e",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Scripts/CI": "21e27300cd4f4cd72f97df343190cbc9cf220687",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d"
+  },
+  "firstIntakeFailurePreserved": "Before mutation: raw capsule uses lossless base64 bytes, not a text field. Exact publisher shape was read; all36 decoded files still require full byte/hash and original receipt equality.",
+  "secondIntakeFailurePreserved": "Before mutation: one-character compiler SHA transcription error (fa5 instead of actual fa3); original actual binary/known toolchain hash re-read. No compiler, source, control or gate changed.",
+  "historyOtherEvidence": "Actual33 service +22 source +16 method controls retain explicit substitutes; all prior raw failures preserved. Separate21 publication controls join final Session exactly.",
+  "publicDiagnosticBoundary": "Debug I/O occurs before final public service deadline qualification; actual public Intent success and real OS refusal remain separately required.",
+  "remaining": "Actual Apple SDK/app/native/production/Release acceptance; URL transport finite additions; cross-root/cold restoration and other original UI gaps.",
+  "AppleSDK": "NOT_RUN",
+  "Native116": "NOT_RUN_ON_THIS_SOURCE",
+  "Release114plus2": "NOT_RUN_ON_THIS_SOURCE",
+  "ownerApproval": "NOT_GRANTED",
+  "TestFlight": "NOT_UPLOADED"
+}

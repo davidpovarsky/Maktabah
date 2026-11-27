@@ -1,0 +1,23 @@
+{
+  "schema": "otzaria.wave3.original-search-trace-namespace-correction.v1",
+  "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+  "beforeBytes": 307308,
+  "beforeSHA256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+  "afterBytes": 308429,
+  "afterSHA256": "e5e5d6fa742aa88ab49f8159f9d413cd8b1de4cd244b8cb60b16c2a4e3e20acd",
+  "edits": [
+    {
+      "old": "        for language in [\"en\", \"he\"] {\n            let token = UUID(), traceNamespace = UUID().uuidString\n            XCTAssertEqual(isPad, expectedPad)\n",
+      "new": "        for (iteration, language) in [\"en\", \"he\"].enumerated() {\n            let token = UUID(), traceNamespace = workspaceNamespace\n            if iteration > 0 {\n                // miniTest10's ORIGINAL trace uses the workspace namespace.\n                // Preserve the complete preceding launch before starting a\n                // fresh one-process trace; never filter away unexpected events.\n                app.terminate()\n                let trace = try continuationTraceURL(traceNamespace)\n                let originalBytes = try continuationRead(trace, maximum: 8 * 1024 * 1024)\n                let preserved = trace.deletingLastPathComponent().appendingPathComponent(\n                    \"search-native-\\(traceNamespace)-before-relaunch-\\(token.uuidString).jsonl\")\n                XCTAssertFalse(FileManager.default.fileExists(atPath: preserved.path))\n                try FileManager.default.moveItem(at: trace, to: preserved)\n                XCTAssertEqual(try continuationRead(preserved, maximum: 8 * 1024 * 1024), originalBytes,\n                    \"The complete previous original trace must remain byte-identical\")\n                XCTAssertFalse(FileManager.default.fileExists(atPath: trace.path))\n            }\n            XCTAssertEqual(isPad, expectedPad)\n",
+      "occurrences": 1
+    }
+  ],
+  "originalController": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+  "originalControllerSHA256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f",
+  "reason": "miniTest10 writes its original append-only trace under the existing per-test workspace namespace. The old helper read a separate random namespace. The two language launches must also retain separate complete traces, so the prior owned log is moved, byte-verified and retained after terminating that app process.",
+  "allOriginalAssertionsPreserved": true,
+  "oldPrefixOtherwiseByteIdentical": true,
+  "productSourceChanges": 0,
+  "native": "NOT_RUN",
+  "AppleSDK": "NOT_RUN"
+}

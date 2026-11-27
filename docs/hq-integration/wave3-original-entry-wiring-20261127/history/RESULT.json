@@ -1,0 +1,30 @@
+{
+  "schema": "otzaria.wave3.history-source-evidence-preparation.v1",
+  "sourceCapsule": {
+    "bytes": 353000,
+    "sha256": "1e98d04c705154e92827ed47c698ee60155704355fd0657f31c4d0cffd21d8bb",
+    "files": 44
+  },
+  "rawControls": {
+    "bytes": 126831,
+    "sha256": "96337748292f4ead138fcb149970faefa0a571b3359aed5996c30fd98c2c1ab5",
+    "files": 60
+  },
+  "originalRun": "/mnt/development/projects/worktrees/Maktabah-wave3-history-reader-controls-20261127",
+  "originalRunFiles": 93,
+  "originalRunRetainedUnchanged": true,
+  "service": {
+    "passed": 33,
+    "failed": 0,
+    "resultSHA256": "e547715ea4e70a8be52c63724be1acdc2c70e18fd8d8610be671b11d2b8c212e"
+  },
+  "source": {
+    "initialPassed": 17,
+    "initialFailed": 5,
+    "candidatePassed": 22,
+    "candidateFailed": 0,
+    "resultSHA256": "0082e1f2e05f27f4fc74ed6370ab829638e805c24d18b7b08b2bf56e71b44947"
+  },
+  "boundaries": "Actual portable service and catalog/source bodies; explicit app/DB/registry/window/Combine boundaries. Core execution, AppleSDK, UIKit, physical acceptance NOT_RUN.",
+  "pending": "Composition16-case evidence is a separate donor. New original Search-presentation window lifetime fix and final shared wiring are separate; old source capsule is not relabelled as those changes."
+}

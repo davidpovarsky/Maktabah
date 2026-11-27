@@ -1,0 +1,34 @@
+{
+  "schema": "otzaria.wave3.public-native-exact-wiring.v1",
+  "AppleSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "composition": {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "beforeBytes": 246040,
+    "beforeSHA256": "eeb1b4b4758df16bacbcc5cf12d69b12a0bf08cff2ac8017aada2d8916435926",
+    "bytes": 253472,
+    "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720",
+    "exactHunks": 7,
+    "inverseExact": true
+  },
+  "nativeHelper": {
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "beforeBytes": 308429,
+    "beforeSHA256": "e5e5d6fa742aa88ab49f8159f9d413cd8b1de4cd244b8cb60b16c2a4e3e20acd",
+    "bytes": 337724,
+    "sha256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f",
+    "suffixBytes": 29295,
+    "suffixSHA256": "e3d87de5d04582471341381983c11afda7f1d1f7cd46326f83c1e22da87e510b",
+    "correctedExistingPrefixExact": true,
+    "oldAssertionEdits": 0
+  },
+  "newSelectors": {
+    "path": "Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+    "bytes": 1937,
+    "sha256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e",
+    "selectorCount": 8,
+    "targetRegistration": "Existing filesystem-synchronized Maktabah-iOSUITests root; no new PBX mutation"
+  },
+  "instrumentationBoundary": "DEBUG capture after actual Composition execution and before final service deadline qualification. Real Intent.run success or original URL refusal is independently required. No production trigger/grant/fallback or deadline change.",
+  "urlTransportPrerequisite": "Two finite public Search paths require a separately controlled exact runtime27-url-delivery allowlist addition; native execution remains pending."
+}

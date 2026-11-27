@@ -1,0 +1,482 @@
+[
+  {
+    "name": "debug-NativePublicSearchContinuationAcceptanceTests",
+    "path": "Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "started": 1795798989.7065518,
+    "finished": 1795798989.7868283,
+    "sourceSHA256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-NativeRoutingAcceptanceTests",
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "started": 1795798989.7870488,
+    "finished": 1795798989.8599188,
+    "sourceSHA256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeHistoryReaderSource",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryReaderSource.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryReaderSource.swift"
+    ],
+    "exit": 0,
+    "started": 1795798989.8662214,
+    "finished": 1795798989.9323041,
+    "sourceSHA256": "8f1a8140bd57dca796f860589ea77d441bf51fd688a33f580637404fa235d362",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeIntents",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift"
+    ],
+    "exit": 0,
+    "started": 1795798989.9326854,
+    "finished": 1795798989.9802165,
+    "sourceSHA256": "327969eaf71bb33017e1fb0aa46b485e246d2c1a70b5ac6d914ed371f7e45c8c",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativePublicBindingAdapter",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+    ],
+    "exit": 0,
+    "started": 1795798989.9806128,
+    "finished": 1795798990.044818,
+    "sourceSHA256": "fd70c7e7cdb42bbfd49b9be1a1bdfe048b756134daf99763a81ab08541a14092",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeRoutingComposition",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.0452774,
+    "finished": 1795798990.1223416,
+    "sourceSHA256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeSceneBindings",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.1229331,
+    "finished": 1795798990.1803763,
+    "sourceSHA256": "3932e90ea2ef1e0d042cee70efe00ca891b5e8d1d768ee6339293e9649dee2f5",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeSceneProjection",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.1808798,
+    "finished": 1795798990.2322912,
+    "sourceSHA256": "38d87aabc58d3c2ff3c3d499ca4b26acffe41f964326e8b5efaa4e67cf57c9dc",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeSceneSession",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.2327795,
+    "finished": 1795798990.2900405,
+    "sourceSHA256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-MaktabahNativeURLHandler",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.2906573,
+    "finished": 1795798990.3386548,
+    "sourceSHA256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-NativeHistoryReaderIntentService",
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.3391597,
+    "finished": 1795798990.3891084,
+    "sourceSHA256": "bc0baea0d1912c685e2a597641dabda88c1ec50ed9fb08f2504147d3247486c1",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "debug-NativeHistoryReaderIntents",
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift",
+    "mode": "debug",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "-D",
+      "DEBUG",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.3896656,
+    "finished": 1795798990.4387455,
+    "sourceSHA256": "c035acc6a5e25d0e23870f32ebf03a218f585568ca9091b67e5e6645db5776a9",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-NativePublicSearchContinuationAcceptanceTests",
+    "path": "Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Maktabah-iOSUITests/NativePublicSearchContinuationAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.4392986,
+    "finished": 1795798990.5110042,
+    "sourceSHA256": "822da13472beeed20ac2e02a234ea74e86d9586929316b12065b0b661707d35e",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-NativeRoutingAcceptanceTests",
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.511549,
+    "finished": 1795798990.59625,
+    "sourceSHA256": "3bf29c5fc7f3a434d605b8962f2954ca8afdd5521f16ae0b3eea2d1315a1c58f",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeHistoryReaderSource",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryReaderSource.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryReaderSource.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.5971591,
+    "finished": 1795798990.6497977,
+    "sourceSHA256": "8f1a8140bd57dca796f860589ea77d441bf51fd688a33f580637404fa235d362",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeIntents",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.6505253,
+    "finished": 1795798990.711014,
+    "sourceSHA256": "327969eaf71bb33017e1fb0aa46b485e246d2c1a70b5ac6d914ed371f7e45c8c",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativePublicBindingAdapter",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.711645,
+    "finished": 1795798990.777101,
+    "sourceSHA256": "fd70c7e7cdb42bbfd49b9be1a1bdfe048b756134daf99763a81ab08541a14092",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeRoutingComposition",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.7777774,
+    "finished": 1795798990.8950624,
+    "sourceSHA256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeSceneBindings",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.8958957,
+    "finished": 1795798990.947917,
+    "sourceSHA256": "3932e90ea2ef1e0d042cee70efe00ca891b5e8d1d768ee6339293e9649dee2f5",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeSceneProjection",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    ],
+    "exit": 0,
+    "started": 1795798990.948675,
+    "finished": 1795798991.0070956,
+    "sourceSHA256": "38d87aabc58d3c2ff3c3d499ca4b26acffe41f964326e8b5efaa4e67cf57c9dc",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeSceneSession",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    ],
+    "exit": 0,
+    "started": 1795798991.0078204,
+    "finished": 1795798991.0640602,
+    "sourceSHA256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-MaktabahNativeURLHandler",
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift"
+    ],
+    "exit": 0,
+    "started": 1795798991.0648997,
+    "finished": 1795798991.1171865,
+    "sourceSHA256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-NativeHistoryReaderIntentService",
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift"
+    ],
+    "exit": 0,
+    "started": 1795798991.1180446,
+    "finished": 1795798991.1715963,
+    "sourceSHA256": "bc0baea0d1912c685e2a597641dabda88c1ec50ed9fb08f2504147d3247486c1",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "release-NativeHistoryReaderIntents",
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift",
+    "mode": "release",
+    "argv": [
+      "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/diagnostics/otzaria-wave3-original-entry-wiring-20261127/integration-attempt-3/inputs/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift"
+    ],
+    "exit": 0,
+    "started": 1795798991.1723847,
+    "finished": 1795798991.219692,
+    "sourceSHA256": "c035acc6a5e25d0e23870f32ebf03a218f585568ca9091b67e5e6645db5776a9",
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
