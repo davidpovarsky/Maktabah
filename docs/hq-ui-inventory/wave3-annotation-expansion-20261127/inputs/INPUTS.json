@@ -1,0 +1,52 @@
+[
+  {
+    "bytes": 2313,
+    "path": "SOURCE.diff",
+    "sha256": "7c898c225980a254332d2d1a6615d5b46d1c898dfa42772e862c810c6c4d019a"
+  },
+  {
+    "bytes": 3733,
+    "path": "SOURCE_INVERSE.json",
+    "sha256": "da67718da25b3869fead98a3e9ce76d3daeb56f9300f2bf68ed790cd0d8961c0"
+  },
+  {
+    "bytes": 31823,
+    "path": "baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+  },
+  {
+    "bytes": 32313,
+    "path": "candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "sha256": "e38eafa86b8aebdf34166da0d9fe3b182ac44fdcdf5c2549fea8f0d9026a14cd"
+  },
+  {
+    "bytes": 1928,
+    "path": "controls/CandidateExpansion.swift",
+    "sha256": "a99feb0fc1f7129f319ca62683c84d7629e06e33c744b378655b49e72961bce2"
+  },
+  {
+    "bytes": 4063,
+    "path": "controls/ExpansionControls.swift",
+    "sha256": "40f8d18ebc84965dc2ab84d1032a6db66c39355225634feea2024d2008d860b1"
+  },
+  {
+    "bytes": 2319,
+    "path": "controls/ExplicitUIKitBoundary.swift",
+    "sha256": "6b1ac16d490e28cce7c0acb0ffd2114c87eb8bf7be11373149afe5475c162485"
+  },
+  {
+    "bytes": 1463,
+    "path": "controls/OriginalExpansion.swift",
+    "sha256": "fc4192b123e6362eb26c1a2679b2b9c345cd3bbd3f583f5ce869750afa30f704"
+  },
+  {
+    "bytes": 4911,
+    "path": "prepare.py",
+    "sha256": "80d0cdc0f76265bb658b6ec1e3ec74ffb0aefa4eba37b6fd4dec13f8ba86b5da"
+  },
+  {
+    "bytes": 5833,
+    "path": "run.py",
+    "sha256": "1720fcc758dc687f484dddc8b2bbdffbd405328bb1f01c21a5d620946bd98912"
+  }
+]
