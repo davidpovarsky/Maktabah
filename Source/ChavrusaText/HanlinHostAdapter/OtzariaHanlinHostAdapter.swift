@@ -426,3 +426,173 @@ public actor OtzariaHanlinHostAdapter: HanlinHostNavigationTransitionSource {
         return bytes
     }
 }
+
+
+/// Combines the two original authorities without executing tools or storing grants.
+/// Only catalog routing revisions are translated; business input, permissions,
+/// invocation/result identity and each owner's effect receipt stay unchanged.
+actor OtzariaHanlinComposedHost: HanlinHostNavigationTransitionSource, HanlinHostCapabilitySource {
+    nonisolated let apiVersion = HanlinAPIVersion(major: 1, minor: 2)
+    let identity: HanlinHostSession
+    private let library: any HanlinHostIntegration
+    private let assistant: any HanlinHostIntegration & HanlinHostCapabilitySource
+    private enum Owner { case library, assistant }
+    private struct Snapshot {
+        let library: HanlinHostCatalog
+        let assistant: HanlinHostCatalog
+        let combined: HanlinHostCatalog
+    }
+    private var snapshot: Snapshot?
+    private var revision: UInt64 = 0
+    private var revoked = false
+    private var pending = Set<HanlinToolInvocationID>()
+    private var cancelled = Set<HanlinToolInvocationID>()
+    private var routes: [HanlinToolInvocationID: Owner] = [:]
+
+    init(identity: HanlinHostSession, library: any HanlinHostIntegration,
+         assistant: any HanlinHostIntegration & HanlinHostCapabilitySource) {
+        self.identity = identity; self.library = library; self.assistant = assistant
+    }
+
+    func context(for session: HanlinHostSession) async throws -> HanlinHostContext {
+        try Task.checkCancellation()
+        guard !revoked, session == identity else { throw HanlinHostError.staleContext }
+        let local = try await library.context(for: session)
+        let capabilities = try await assistant.context(for: session)
+        try Task.checkCancellation()
+        guard !revoked, local == identity.context, capabilities == identity.context else {
+            throw HanlinHostError.staleContext
+        }
+        return identity.context
+    }
+
+    func catalog(for context: HanlinHostContext) async throws -> HanlinHostCatalog {
+        try await currentSnapshot(for: context).combined
+    }
+
+    private func currentSnapshot(for context: HanlinHostContext) async throws -> Snapshot {
+        guard context == identity.context else { throw HanlinHostError.staleContext }
+        _ = try await self.context(for: identity)
+        let local = try await library.catalog(for: context)
+        let capabilities = try await assistant.catalog(for: context)
+        try local.validate(); try capabilities.validate()
+        guard local.context == context, capabilities.context == context else { throw HanlinHostError.staleContext }
+        _ = try await self.context(for: identity)
+        if let snapshot, Self.sameCatalog(snapshot.library, local),
+           Self.sameCatalog(snapshot.assistant, capabilities) {
+            return snapshot
+        }
+        guard revision < UInt64.max else { throw HanlinHostError.storageLimitExceeded }
+        let combined = HanlinHostCatalog(apiVersion: apiVersion, revision: .init(revision + 1),
+            context: context, tools: local.tools + capabilities.tools)
+        // The original SDK rejects both duplicate aliases and duplicate logical identities.
+        try combined.validate()
+        revision += 1
+        let value = Snapshot(library: local, assistant: capabilities, combined: combined)
+        snapshot = value
+        return value
+    }
+
+    private static func sameCatalog(_ lhs: HanlinHostCatalog, _ rhs: HanlinHostCatalog) -> Bool {
+        guard lhs.apiVersion.major == rhs.apiVersion.major, lhs.apiVersion.minor == rhs.apiVersion.minor,
+              lhs.revision == rhs.revision, lhs.context == rhs.context, lhs.tools.count == rhs.tools.count else { return false }
+        return zip(lhs.tools, rhs.tools).allSatisfy { a, b in
+            a.route == b.route && a.descriptor == b.descriptor
+                && a.writeGuarantee == b.writeGuarantee && a.originalInputSchemaJSON == b.originalInputSchemaJSON
+        }
+    }
+
+    func prepareStep(_ step: Int, session: HanlinHostSession) async throws -> HanlinHostStepPreparation {
+        _ = try await context(for: session)
+        let prepared = try await assistant.prepareStep(step, session: session)
+        let current = try await currentSnapshot(for: session.context)
+        let allowed = Set(current.assistant.tools.map(\.route.alias))
+        guard prepared.activeAliases.allSatisfy(allowed.contains),
+              Set(prepared.activeAliases).count == prepared.activeAliases.count else { throw HanlinHostError.unknownTool }
+        // Existing Core metadata/read authority remains independent of skill/MCP exposure.
+        return .init(activeAliases: current.library.tools.map(\.route.alias) + prepared.activeAliases,
+            skillIDs: prepared.skillIDs, instructions: prepared.instructions)
+    }
+
+    func execute(_ invocation: HanlinHostInvocation,
+                 progress: @escaping HanlinHostProgressHandler) async throws -> HanlinHostExecutionResult {
+        guard !revoked, invocation.session == identity else { throw HanlinHostError.staleContext }
+        let id = invocation.request.id
+        guard pending.insert(id).inserted else { throw HanlinHostError.duplicateInvocation }
+        defer { pending.remove(id); cancelled.remove(id); routes[id] = nil }
+        let current = try await currentSnapshot(for: invocation.session.context)
+        try Task.checkCancellation()
+        guard !revoked, !cancelled.contains(id) else { throw CancellationError() }
+        guard invocation.request.routingTableRevision == current.combined.revision else { throw HanlinHostError.staleContext }
+        let local = current.library.tools.first { $0.route.alias == invocation.request.aliasUsed }
+        let tool = local ?? current.assistant.tools.first { $0.route.alias == invocation.request.aliasUsed }
+        guard let tool, tool.route.logicalToolID == invocation.request.logicalToolID,
+              tool.route.descriptorRevision == invocation.request.descriptorRevision,
+              tool.writeGuarantee == invocation.writeGuarantee else { throw HanlinHostError.unknownTool }
+        let owner: Owner = local == nil ? .assistant : .library
+        let originalRevision = local == nil ? current.assistant.revision : current.library.revision
+        let original = Self.forward(invocation, revision: originalRevision)
+        routes[id] = owner
+        // Original owners revalidate schemas, consent, context and cancellation
+        // at their existing dispatch boundary. Do not infer rollback or replace
+        // an uncertain/committed receipt after an operation has entered there.
+        switch owner {
+        case .library: return try await library.execute(original, progress: progress)
+        case .assistant: return try await assistant.execute(original, progress: progress)
+        }
+    }
+
+    private static func forward(_ invocation: HanlinHostInvocation,
+                                revision: HanlinCatalogRevision) -> HanlinHostInvocation {
+        let value = invocation.request
+        let request = HanlinToolInvocationRequest(id: value.id, logicalToolID: value.logicalToolID,
+            aliasUsed: value.aliasUsed, descriptorRevision: value.descriptorRevision,
+            routingTableRevision: revision, arguments: value.arguments, origin: value.origin,
+            appSessionID: value.appSessionID, runtimeSessionID: value.runtimeSessionID,
+            grantIDs: value.grantIDs, idempotencyKey: value.idempotencyKey,
+            deadline: value.deadline, limits: value.limits)
+        return .init(request: request, session: invocation.session, runID: invocation.runID,
+            step: invocation.step, providerCallID: invocation.providerCallID,
+            writeGuarantee: invocation.writeGuarantee, expectedRevision: invocation.expectedRevision,
+            originalArgumentsJSON: invocation.originalArgumentsJSON, resultID: invocation.resultID)
+    }
+
+    func cancel(_ invocation: HanlinToolInvocationID) async {
+        guard pending.contains(invocation) else { return }
+        cancelled.insert(invocation)
+        switch routes[invocation] {
+        case .library: await library.cancel(invocation)
+        case .assistant: await assistant.cancel(invocation)
+        case nil: break
+        }
+    }
+
+    func revoke() async {
+        guard !revoked else { return }
+        revoked = true; snapshot = nil
+        cancelled.formUnion(pending)
+        let active = routes
+        for (id, owner) in active {
+            switch owner {
+            case .library: await library.cancel(id)
+            case .assistant: await assistant.cancel(id)
+            }
+        }
+    }
+
+    func open(_ destination: HanlinHostDestination) async throws -> HanlinHostNavigationResult {
+        guard destination.context == identity.context else { throw HanlinHostError.staleContext }
+        _ = try await context(for: identity)
+        return try await library.open(destination)
+    }
+
+    func openWithContextTransition(_ destination: HanlinHostDestination,
+                                   session: HanlinHostSession) async throws -> HanlinHostNavigationReceipt {
+        guard destination.context == identity.context else { throw HanlinHostError.staleContext }
+        _ = try await context(for: session)
+        guard let native = library as? any HanlinHostNavigationTransitionSource else {
+            throw HanlinHostError.unsupportedVersion
+        }
+        return try await native.openWithContextTransition(destination, session: session)
+    }
+}
