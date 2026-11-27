@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "status": "ONLY_TWO_APPROVED_PUBLIC_COMPRESSED_PARTS_REMOVED_VERIFIED_DATABASE_RETAINED",
+  "completedAt": "2026-11-27T04:46:31.403026+00:00",
+  "sourceSHA256": "82e93e56cc3f6c87f9d07ab08ec359a1061fb2bd25f80f1df3c23cf189c3beff",
+  "removed": [
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-000.verified",
+      "before": {
+        "device": 2064,
+        "inode": 5946337,
+        "bytes": 1992294400,
+        "allocatedBytes": 1992298496,
+        "nlink": 1,
+        "mtimeNs": 1795752857844099411,
+        "ctimeNs": 1795752860027112422
+      },
+      "removedAt": "2026-11-27T04:46:31.387328+00:00"
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-001.verified",
+      "before": {
+        "device": 2064,
+        "inode": 5946338,
+        "bytes": 137608236,
+        "allocatedBytes": 137613312,
+        "nlink": 1,
+        "mtimeNs": 1795752883388251557,
+        "ctimeNs": 1795752884775259813
+      },
+      "removedAt": "2026-11-27T04:46:31.400057+00:00"
+    }
+  ],
+  "logicalBytesRemoved": 2129902636,
+  "allocatedBytesRemoved": 2129911808,
+  "freeBytesBefore": 834142208,
+  "freeBytesAfter": 2964029440,
+  "observedFreeBytesDelta": 2129887232,
+  "databaseAfter": {
+    "device": 2064,
+    "inode": 5946339,
+    "bytes": 4355063808,
+    "allocatedBytes": 4355162112,
+    "nlink": 1,
+    "mtimeNs": 1795753058125287433,
+    "ctimeNs": 1795753435326503158
+  },
+  "databaseMode": "0444",
+  "originalReceiptsUnchanged": true,
+  "allOtherFilesUntouchedByThisScript": true,
+  "newPartOrDatabaseHashScans": 0,
+  "publicDownloads": 0,
+  "nativeExecutions": 0
+}
