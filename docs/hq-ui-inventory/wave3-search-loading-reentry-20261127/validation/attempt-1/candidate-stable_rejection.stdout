@@ -1,0 +1,11 @@
+Test Suite 'All tests' started at 2026-11-27 04:46:17.759
+Test Suite 'otzaria-wave3-search-loading-reentry-20261127.xctest' started at 2026-11-27 04:46:17.761
+Test Suite 'RejectionStabilityTests' started at 2026-11-27 04:46:17.761
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' started at 2026-11-27 04:46:17.761
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' passed (3.024 seconds)
+Test Suite 'RejectionStabilityTests' passed at 2026-11-27 04:46:20.785
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.024 (3.024) seconds
+Test Suite 'otzaria-wave3-search-loading-reentry-20261127.xctest' passed at 2026-11-27 04:46:20.785
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.024 (3.024) seconds
+Test Suite 'All tests' passed at 2026-11-27 04:46:20.785
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.024 (3.024) seconds

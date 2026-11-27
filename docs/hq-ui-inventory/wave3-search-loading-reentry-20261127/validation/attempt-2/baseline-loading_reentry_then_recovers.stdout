@@ -1,0 +1,11 @@
+Test Suite 'All tests' started at 2026-11-27 04:49:57.085
+Test Suite 'attempt-2.xctest' started at 2026-11-27 04:49:57.086
+Test Suite 'RejectionStabilityTests' started at 2026-11-27 04:49:57.086
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' started at 2026-11-27 04:49:57.086
+Test Case 'RejectionStabilityTests.testVerbatimOriginalRejectionStability' passed (3.006 seconds)
+Test Suite 'RejectionStabilityTests' passed at 2026-11-27 04:50:00.092
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.006 (3.006) seconds
+Test Suite 'attempt-2.xctest' passed at 2026-11-27 04:50:00.092
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.006 (3.006) seconds
+Test Suite 'All tests' passed at 2026-11-27 04:50:00.092
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.006 (3.006) seconds

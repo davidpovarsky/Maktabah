@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "scope": "SOURCE_EXTRACTED_XCTEST_PREDICATE_BOUNDARY_NOT_NATIVE_UI",
+  "baseCommit": "e60a54127f8201e2bd980774b8c73b7345066b9e",
+  "sourcePath": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "beforeSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+  "afterSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+  "startedAt": "2026-11-27T04:46:05.459148+00:00",
+  "swiftVersion": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu",
+  "moduleCache": "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/module-cache",
+  "moduleCacheExisted": true,
+  "boundary": "Verbatim original inverted predicate, original 3-second XCTest wait and final assertion block. Explicit mutable UI-state doubles change only loading or retained original result rows after the first real predicate evaluation. Foundation Timer and actual XCTest/Corelibs execute on the main run loop. No application, simulator, native UI, provider, index, corpus, SDK build or UI result is substituted.",
+  "appSDKCompiled": 0,
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0,
+  "compiles": [
+    {
+      "variant": "baseline",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-search-loading-reentry-20261127/docs/hq-ui-inventory/wave3-search-loading-reentry-20261127/validation/attempt-1/baseline.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-search-loading-reentry-20261127/baseline"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "command": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-reader-object-identity-20261127/module-cache",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-search-loading-reentry-20261127/docs/hq-ui-inventory/wave3-search-loading-reentry-20261127/validation/attempt-1/candidate.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-search-loading-reentry-20261127/candidate"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "extractions": {
+    "baseline": {
+      "verbatim": true,
+      "blockSHA256": "448fbd7d25fb1d8480fb6e288f73e4b24c1eb391a4b67d5623ff72652c09e338",
+      "harnessSHA256": "cb28ed81eb8704b4d0c773b4c92f5a1824ba85c4750e5c60e4594121c0057192"
+    },
+    "candidate": {
+      "verbatim": true,
+      "blockSHA256": "e409151d166440be5dda539e22b1dca61d7a22abca435966e77166c348a16d9e",
+      "harnessSHA256": "d2eb510fe33ba8a24127f6e156f1cb01077d8505337c7b0979db80a262e3a376"
+    }
+  },
+  "cases": [
+    {
+      "variant": "baseline",
+      "fixture": "stable_rejection",
+      "exit": 0,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "passed"
+        ]
+      ],
+      "accepted": true,
+      "rejected": false,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754767.3556733,
+            "event": "initial_settled_rejection",
+            "loading": false
+          }
+        ],
+        "finishedAt": 1795754770.3564203,
+        "fixture": "stable_rejection",
+        "loadingAtEnd": false,
+        "rowsReads": 302,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "3ed5872ef01ff50401926b3fc6886e6cc704ed4509ca5e2c80f50a803abedfe1",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "loading_reentry_persistent",
+      "exit": 0,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "passed"
+        ]
+      ],
+      "accepted": true,
+      "rejected": false,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754770.3844104,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754770.3849356,
+            "event": "loading_reentered",
+            "rowsEvaluatedBefore": 1
+          }
+        ],
+        "finishedAt": 1795754773.3877687,
+        "fixture": "loading_reentry_persistent",
+        "loadingAtEnd": true,
+        "rowsReads": 303,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "7ef3b75ecb2e9af7ca6111d144ed0040e4d8c439e7bf8f19b0f6cca5213bc142",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "loading_reentry_then_recovers",
+      "exit": 0,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "passed"
+        ]
+      ],
+      "accepted": true,
+      "rejected": false,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754773.4558868,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754773.4582663,
+            "event": "loading_reentered",
+            "rowsEvaluatedBefore": 1
+          },
+          {
+            "at": 1795754773.4583092,
+            "event": "loading_recovered"
+          }
+        ],
+        "finishedAt": 1795754776.4580798,
+        "fixture": "loading_reentry_then_recovers",
+        "loadingAtEnd": false,
+        "rowsReads": 303,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "05babb6205df9b632a57ee29391e068007feb13a50563c4afa4139facab9d57c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "baseline",
+      "fixture": "original_result_rows_reenter",
+      "exit": 1,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "failed"
+        ]
+      ],
+      "accepted": false,
+      "rejected": true,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754776.588823,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754776.5904975,
+            "event": "result_rows_reentered",
+            "rowsEvaluatedBefore": 1
+          }
+        ],
+        "finishedAt": 1795754776.5915012,
+        "fixture": "original_result_rows_reenter",
+        "loadingAtEnd": false,
+        "rowsReads": 3,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "eb74832c43286625b662656ee40633769e195fda4c9493ab1fb862cbc1612364",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "stable_rejection",
+      "exit": 0,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "passed"
+        ]
+      ],
+      "accepted": true,
+      "rejected": false,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754777.766352,
+            "event": "initial_settled_rejection",
+            "loading": false
+          }
+        ],
+        "finishedAt": 1795754780.7677155,
+        "fixture": "stable_rejection",
+        "loadingAtEnd": false,
+        "rowsReads": 299,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "f84035ab171089dc9bbf373c9b8cf4cfb1da2602fde091ab073bac78df65f9e3",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "loading_reentry_persistent",
+      "exit": 1,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "failed"
+        ]
+      ],
+      "accepted": false,
+      "rejected": true,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754780.7979264,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754780.7983813,
+            "event": "loading_reentered",
+            "rowsEvaluatedBefore": 1
+          }
+        ],
+        "finishedAt": 1795754780.7986197,
+        "fixture": "loading_reentry_persistent",
+        "loadingAtEnd": true,
+        "rowsReads": 3,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "8d5572eb79c5f36f5bdbed4874c1618981c34839012825e001be99d6f931b97f",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "loading_reentry_then_recovers",
+      "exit": 0,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "passed"
+        ]
+      ],
+      "accepted": true,
+      "rejected": false,
+      "matchesExpectedOutcome": false,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754780.8150582,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754780.8157215,
+            "event": "loading_reentered",
+            "rowsEvaluatedBefore": 1
+          },
+          {
+            "at": 1795754780.815741,
+            "event": "loading_recovered"
+          }
+        ],
+        "finishedAt": 1795754783.815596,
+        "fixture": "loading_reentry_then_recovers",
+        "loadingAtEnd": false,
+        "rowsReads": 303,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "f15591b86dac2b700a5547dabc3052f9a13752819165eb0ddfe84823b3c56b1b",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "variant": "candidate",
+      "fixture": "original_result_rows_reenter",
+      "exit": 1,
+      "xctestCases": [
+        [
+          "RejectionStabilityTests.testVerbatimOriginalRejectionStability",
+          "failed"
+        ]
+      ],
+      "accepted": false,
+      "rejected": true,
+      "matchesExpectedOutcome": true,
+      "observation": {
+        "events": [
+          {
+            "at": 1795754783.8632674,
+            "event": "initial_settled_rejection",
+            "loading": false
+          },
+          {
+            "at": 1795754783.8653965,
+            "event": "result_rows_reentered",
+            "rowsEvaluatedBefore": 1
+          }
+        ],
+        "finishedAt": 1795754783.866385,
+        "fixture": "original_result_rows_reenter",
+        "loadingAtEnd": false,
+        "rowsReads": 3,
+        "schema": 1,
+        "scope": "Synthetic UI-state boundary with real XCTest predicate/waiter on Linux; no app/UI"
+      },
+      "stdoutSHA256": "01cfde4f0fa78690664083453df398c607d78f4afac32283e713a4902b1f0710",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "summary": {
+    "baselineLoadingReentriesIncorrectlyAccepted": 2,
+    "candidateLoadingReentriesRejected": 1,
+    "stableRejectionAcceptedBoth": true,
+    "originalResultRowReentryRejectedBoth": true,
+    "allExpectedOutcomesObserved": false
+  },
+  "finishedAt": "2026-11-27T04:46:23.873353+00:00",
+  "status": "UNEXPECTED_BOUNDARY_CONTROL_OUTCOME"
+}

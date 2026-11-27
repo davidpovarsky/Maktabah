@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "base": "e60a54127f8201e2bd980774b8c73b7345066b9e",
+  "source": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "beforeSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+  "afterSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+  "beforeBytes": 184397,
+  "afterBytes": 184531,
+  "wholeDonorRecoveredByOnlyTwoInverseReplacements": true,
+  "originalThreeSecondWaiterPreserved": true,
+  "applicationSourceChanges": 0,
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}
