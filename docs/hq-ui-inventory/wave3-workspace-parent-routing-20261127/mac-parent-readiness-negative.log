@@ -1,0 +1,30 @@
+/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/OriginalParentReadinessNegativeControl.swift:61:13: warning: initialization of immutable value 'continuing' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+ 59 |         let profiles = binding.presentationFacets(for: .profiles)
+ 60 |         let overview = binding.presentationFacets(for: .overview)
+ 61 |         let continuing = command?.route.route.destination == destination
+    |             `- warning: initialization of immutable value 'continuing' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+ 62 |             && submissionID == command?.invocation.requestId && submissionID != nil
+ 63 |         if profiles.requested || profiles.mounted {
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+PASS cold_original_profiles
+PASS cold_original_overview
+PASS unknown_original_owner_unavailable
+PASS source_unavailable_never_inherits_generic_ready
+FAIL preexisting_overview_transition_is_not_a_new_grant
+PASS same_begun_overview_can_wait_for_its_first_host
+FAIL different_destination_cannot_borrow_transition
+FAIL different_request_cannot_borrow_transition
+PASS stable_profiles_are_navigable
+FAIL preexisting_profile_transition_is_unavailable
+PASS phone_nested_profiles_may_cover_their_original_overview
+PASS overview_cannot_route_behind_original_profiles
+PASS tablet_profiles_do_not_reuse_overview_transition
+PASS unrelated_modal_blocks_same_command
+PASS unsaved_note_blocks_parent
+PASS note_dismissal_lifetime_still_blocks_parent
+PASS original_study_chat_blocks_parent
+PASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed
+PASS generic_roots_wait_for_dismissed_host_to_unmount
+PASS existing_generic_ready_behavior_without_workspace_parent
+TOTAL passed=16 failed=4

@@ -159,6 +159,10 @@ struct MaktabahNativeRoutingHost: ViewModifier {
                       sidebar: bindings.sidebar, workspace: workspace)
             })
             value.attachWindowSource(windowSource)
+            if let workspaceOwner {
+                do { try value.forwardRouting(to: workspaceOwner) }
+                catch { MaktabahNativeRoutingComposition.shared.unmount(value); throw error }
+            }
             session = value
             hanlinChat = .init(manager: manager, session: value, composition: MaktabahNativeRoutingComposition.shared)
             if let definition = try? OtzariaGuidedTourPanel.appTour() {

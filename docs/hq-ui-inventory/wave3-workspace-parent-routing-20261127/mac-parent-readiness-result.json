@@ -1,0 +1,67 @@
+{
+  "transport_returncode": 0,
+  "transport_stderr": "",
+  "production_inputs_unchanged": true,
+  "result": {
+    "written_at": "2026-11-27T02:09:07.457783+00:00",
+    "scope": "Verbatim production predicates; synthetic original-owner facets only. No app SDK typing, UIKit, Core grant, simulator, device or native acceptance.",
+    "directory": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3",
+    "source_sha256": "12295644292c66b4e0bf521527ccacaeb0eceb255b1641a75c108829e1688af4",
+    "swift_version": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+    "available_before": 27628552192,
+    "available_after": 27585413120,
+    "private_directory_bytes": 30822197,
+    "results": [
+      {
+        "variant": "original",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/OriginalParentReadinessControls.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/readiness-original"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 0,
+        "stopped": null,
+        "elapsed_seconds": 2.217,
+        "source_sha256": "330885cb800f4bebab03a53f285ca41bcb05c4d794c812a6648726d8ddb6dc1d",
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/original.log",
+        "log_sha256": "20e6528382e178b59b34a7c88870690bf4ad56dc56616c3b75354a55d5a7616d",
+        "output": "PASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nPASS preexisting_overview_transition_is_not_a_new_grant\nPASS same_begun_overview_can_wait_for_its_first_host\nPASS different_destination_cannot_borrow_transition\nPASS different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nPASS preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nTOTAL passed=20 failed=0\n"
+      },
+      {
+        "variant": "negative",
+        "command": [
+          "xcrun",
+          "--sdk",
+          "macosx",
+          "swiftc",
+          "-parse-as-library",
+          "-swift-version",
+          "6",
+          "-module-cache-path",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/module-cache",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/OriginalParentReadinessNegativeControl.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/readiness-negative"
+        ],
+        "compile_returncode": 0,
+        "run_returncode": 1,
+        "stopped": null,
+        "elapsed_seconds": 0.711,
+        "source_sha256": "8ff1e089e85e494a3d189a365306415bbdb54e970af4713f4c9e701d1b00e7c1",
+        "log_path": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/negative.log",
+        "log_sha256": "3e4ab2d581cdc77439f2f14d916468a295eadf5f7a2fc7bb735aaa5772f8183c",
+        "output": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3/OriginalParentReadinessNegativeControl.swift:61:13: warning: initialization of immutable value 'continuing' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]\n 59 |         let profiles = binding.presentationFacets(for: .profiles)\n 60 |         let overview = binding.presentationFacets(for: .overview)\n 61 |         let continuing = command?.route.route.destination == destination\n    |             `- warning: initialization of immutable value 'continuing' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]\n 62 |             && submissionID == command?.invocation.requestId && submissionID != nil\n 63 |         if profiles.requested || profiles.mounted {\n\n[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>\nPASS cold_original_profiles\nPASS cold_original_overview\nPASS unknown_original_owner_unavailable\nPASS source_unavailable_never_inherits_generic_ready\nFAIL preexisting_overview_transition_is_not_a_new_grant\nPASS same_begun_overview_can_wait_for_its_first_host\nFAIL different_destination_cannot_borrow_transition\nFAIL different_request_cannot_borrow_transition\nPASS stable_profiles_are_navigable\nFAIL preexisting_profile_transition_is_unavailable\nPASS phone_nested_profiles_may_cover_their_original_overview\nPASS overview_cannot_route_behind_original_profiles\nPASS tablet_profiles_do_not_reuse_overview_transition\nPASS unrelated_modal_blocks_same_command\nPASS unsaved_note_blocks_parent\nPASS note_dismissal_lifetime_still_blocks_parent\nPASS original_study_chat_blocks_parent\nPASS generic_roots_blocked_by_real_profiles_even_if_flag_consumed\nPASS generic_roots_wait_for_dismissed_host_to_unmount\nPASS existing_generic_ready_behavior_without_workspace_parent\nTOTAL passed=16 failed=4\n"
+      }
+    ]
+  }
+}

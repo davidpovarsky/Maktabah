@@ -1,0 +1,167 @@
+{
+  "historical_manifest": "docs/hq-ui-inventory/wave3-20261127/CURRENT_CROSSWALK.json",
+  "historical_manifest_sha256": "6971e14335bcb30320d7ad031c7cae657aa5bab7134b914e5453dfc9430aea62",
+  "historical_rows_unchanged": true,
+  "boundary": "This source delta does not close 294 runtime requirements or any backend/ingress cell.",
+  "parents": [
+    {
+      "destination": "native.workspace.profiles",
+      "presentation": "sheet",
+      "original_owner": "Tablet original toolbar sheet; phone original Overview then its nested profile sheet"
+    },
+    {
+      "destination": "native.workspace.overview",
+      "presentation": "sheet",
+      "original_owner": "Tablet original ReaderOverviewPresentation; phone original compact Overview host"
+    }
+  ],
+  "anchors": [
+    {
+      "parent": "native.workspace.profiles",
+      "anchor": "native.workspace.profiles.list",
+      "original": "Original StudyProfileManagementView List",
+      "availability": "Original parent source and actual visible List; draft/child blockers preserved"
+    },
+    {
+      "parent": "native.workspace.profiles",
+      "anchor": "native.workspace.profiles.groups",
+      "original": "Original StudyGroupManagementView through its original NavigationStack",
+      "availability": "Same retained original source and no unsaved draft; actual original group page required"
+    },
+    {
+      "parent": "native.workspace.profiles",
+      "anchor": "native.workspace.profiles.newProfile",
+      "original": "Original New Study Profile button",
+      "availability": "Reveal only; never executes the button or opens/saves a draft"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.groups",
+      "original": "Original ScrollableGroupsHost",
+      "availability": "Same exact group/tab mapping and original visible selector"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.grid",
+      "original": "Original DuckDuckGo TabSwitcherPageHost in grid layout",
+      "availability": "Only current original grid preference and actual original tabs"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.list",
+      "original": "Original DuckDuckGo TabSwitcherPageHost in list layout",
+      "availability": "Only current original list preference and actual original tabs"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.layout",
+      "original": "Original layout toggle",
+      "availability": "Reveal only, original preference remains unchanged by route"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.actions",
+      "original": "Original group actions Menu",
+      "availability": "Reveal only; create/rename/delete remain original manual actions"
+    },
+    {
+      "parent": "native.workspace.overview",
+      "anchor": "native.workspace.overview.profileMenu",
+      "original": "Original phone StudyProfileMenu",
+      "availability": "Phone only, actual original toolbar control visibility required; overflow native behavior pending"
+    }
+  ],
+  "original_inventory_rows": [
+    {
+      "id": "inventory.v1.workspace.reader-tabs",
+      "label": "Native reader tabs",
+      "original_path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "new_source_routes": [],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.tabs-popover",
+      "label": "Original tabs overview popover",
+      "original_path": "Source/Features/Reader/iOS/Toolbar/iOSReaderTabsPopoverView.swift",
+      "new_source_routes": [],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.groups-overview",
+      "label": "Study groups overview",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "new_source_routes": [
+        "native.workspace.overview"
+      ],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.document-tabs",
+      "label": "Document tab strip/reorder",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "new_source_routes": [],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.profile-menu",
+      "label": "Study profile selection menu",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "new_source_routes": [
+        "native.workspace.overview.profileMenu"
+      ],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.management",
+      "label": "Study profile management sheet",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "new_source_routes": [
+        "native.workspace.profiles",
+        "native.workspace.profiles.list"
+      ],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.draft",
+      "label": "New/edit profile draft",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "new_source_routes": [
+        "native.workspace.profiles.newProfile"
+      ],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.groups",
+      "label": "Group rename/move/reorder",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "new_source_routes": [
+        "native.workspace.profiles.groups"
+      ],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.profile.delete",
+      "label": "Delete profile confirmation",
+      "original_path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "new_source_routes": [],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    },
+    {
+      "id": "inventory.v1.workspace.scene-identity",
+      "label": "Per-window workspace identity",
+      "original_path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "new_source_routes": [],
+      "acceptance": "NOT_RUN; original criteria retained",
+      "remaining": "Navigation reveals controls only. Mutation/draft/confirmation, reader strip/tab reordering and full restore/VoiceOver/RTL/backend requirements remain separate original acceptance."
+    }
+  ]
+}

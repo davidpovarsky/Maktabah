@@ -64,6 +64,20 @@ struct MaktabahNativeSceneBindings {
             && sidebar?.overview.blocksRouting != true
     }
 
+    /// Workspace routing separately validates the exact original Overview and
+    /// Profiles hosts. Unrelated original presentations still block that route.
+    var isWorkspaceParentPresentationReady: Bool {
+        !DonationManager.shared.showDonationSheet && manager.selectedBookForInfo == nil
+            && manager.activeReaderViewModel?.isPopoverPresented != true
+    }
+
+    func selectOriginalWorkspaceParent() {
+        showSettings.wrappedValue = false
+        selectedTab.wrappedValue = .viewer
+        // Preserve the original TabView's mode publication and all existing
+        // tabs/models. The actual original parent host must still appear.
+    }
+
     func apply(_ command: UISceneCommand, reservedTab: iOSNavigationManager.ReaderTab? = nil) throws {
         switch command.route.route.destination.rawValue {
         case "native.settings": showSettings.wrappedValue = true

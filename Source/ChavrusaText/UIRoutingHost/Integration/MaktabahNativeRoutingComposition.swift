@@ -186,6 +186,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                                   ui: readerSink, navigationAuthority: authority)
         orchestrator = try NativeSceneNavigationOrchestrator(core: core, backend: backend, authority: authority, directory: directory)
         func id(_ value: String) -> UIDestinationID { UIDestinationID(rawValue: value)! }
+        let workspaceText = StudyWorkspaceText(locale: .current)
         registry = try UIDestinationRegistry(descriptors: [
             .init(id: id("native.library"), title: "Library".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab],
@@ -215,6 +216,18 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   anchors: MaktabahNativeSettingsComponents.descriptors.map(\.anchor), requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet,
                       components: MaktabahNativeSettingsComponents.descriptors.map(\.anchor))])),
+            .init(id: MaktabahNativeWorkspacePresentationBinding.Parent.profiles.destination,
+                  title: workspaceText("Study profile management", "ניהול פרופילי לימוד"), implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
+                  anchors: MaktabahNativeWorkspaceComponents.Profiles.allCases.map(\.id), requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet,
+                      components: MaktabahNativeWorkspaceComponents.Profiles.allCases.map(\.id))])),
+            .init(id: MaktabahNativeWorkspacePresentationBinding.Parent.overview.destination,
+                  title: workspaceText("Study workspace overview", "סקירת סביבת הלימוד"), implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
+                  anchors: MaktabahNativeWorkspaceComponents.Overview.allCases.map(\.id), requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet,
+                      components: MaktabahNativeWorkspaceComponents.Overview.allCases.map(\.id))])),
             .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
@@ -385,6 +398,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             presentation: { [weak session] in
                 guard let session else { throw ActionPortError.unavailable }
                 return try session.publicBindingPresentation()
+            }, validateParentSource: { [weak session] destination, requestID in
+                guard let session else { throw ActionPortError.unavailable }
+                try session.validateParentSource(destination: destination, requestID: requestID)
             }, validateComponentSource: { [weak session] destination, anchor, requestID in
                 guard let session else { throw ActionPortError.unavailable }
                 try session.validateComponentSource(destination: destination, anchor: anchor, requestID: requestID)
@@ -749,13 +765,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard let entry = scenes[destination.sceneID], entry.session.foreground else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
-        if destination.component != nil || destination.destination.rawValue == "native.reader.inspector" {
+        if destination.component != nil || destination.destination.rawValue == "native.reader.inspector"
+            || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
             // executor or caller-supplied authority is added.
             return try await open(public: .init(destination: destination.destination, backend: destination.backend,
                 presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector
-                    : destination.destination.rawValue == "native.settings" ? .sheet : .currentTab,
+                    : (destination.destination.rawValue == "native.settings"
+                    || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil) ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }
@@ -823,6 +841,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
         guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
         let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        // Retain the exact ORIGINAL parent first; a component must inherit
+        // that same proof. Neither operation grants authority or changes UI.
+        try entry.session.retainParentSource(destination: intent.destination, requestID: requestID)
+        defer { entry.session.releaseParentSource(destination: intent.destination, requestID: requestID) }
         // Retain exact original component source BEFORE the first await. This
         // reads identity only; canonical Core still authorizes all navigation.
         let retainedComponent: MaktabahNativeComponentOwner?
@@ -1847,7 +1869,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             ? try entry.session.publicBindingPresentation().inspectorAvailable
             : descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id)
         return .init(sceneID: scene.sceneID, sceneRevision: current.revision, backendSnapshot: current.backendSnapshot,
-                     supported: supported, ready: entry.session.foreground && entry.session.mounted && entry.session.isPresentationReady, allowed: true)
+                     supported: supported,
+                     ready: entry.session.foreground && entry.session.mounted
+                        && entry.session.isPresentationReady(for: descriptor.id), allowed: true)
     }
     private func deadline() -> UInt64 {
         let (value, overflow) = SystemActionClock().now().addingReportingOverflow(5_000_000_000)
