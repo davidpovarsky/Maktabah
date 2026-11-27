@@ -1,0 +1,24 @@
+{
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/whole-view-typecheck/SearchResultContextPreview.verbatim.swift",
+    "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/whole-view-typecheck/SwiftUIViewCompileBoundary.swift"
+  ],
+  "exitCode": 0,
+  "sourceSHA256": {
+    "SearchResultContextPreview.verbatim.swift": "1fea9499b0a6fc9cebb8a4370cee4f2a5b1437656f9f9c5bc383e5c5f276ece9",
+    "SwiftUIViewCompileBoundary.swift": "b630016328471ca6a67a460f0d640bb5a2af602a517adc493eea4acb1a6e749a"
+  },
+  "scope": "Whole original SearchResultContextPreview and SearchPreviewSegment with actual SwiftUI State/AppStorage/task APIs and explicit unrelated model compile boundaries; not full app build or native UI"
+}

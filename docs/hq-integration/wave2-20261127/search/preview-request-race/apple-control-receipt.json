@@ -1,0 +1,54 @@
+{
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "swiftVersion": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "records": [
+    {
+      "variant": "baseline",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/baseline.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/baseline"
+      ],
+      "compileExit": 0,
+      "sourceSHA256": "78b6d14473acb99e544c675fa0dcaca8ba8e59095609a8064c32abfb05fcbac3",
+      "runExit": 0,
+      "runStderr": "",
+      "binarySHA256": "a21734527f13c733da769201c9a5c01d62093fc873c729dc0e0c361d18c0d6cd",
+      "passed": 22,
+      "failed": 15
+    },
+    {
+      "variant": "candidate",
+      "command": [
+        "xcrun",
+        "swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-Xfrontend",
+        "-strict-concurrency=complete",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/candidate.swift",
+        "-o",
+        "/Users/m1/builds/otzaria-wave2-search-20261127/preview-request-race-20261127/candidate"
+      ],
+      "compileExit": 0,
+      "sourceSHA256": "ddd4cfbe9af08bcc6e41503554a6f21c595b92568d39de282b9bfb9ed657c750",
+      "runExit": 0,
+      "runStderr": "",
+      "binarySHA256": "afdbf8e6bdafeda313b1aa21b0766240f08253dda64ad6e91387d624a401e0e4",
+      "passed": 37,
+      "failed": 0
+    }
+  ]
+}

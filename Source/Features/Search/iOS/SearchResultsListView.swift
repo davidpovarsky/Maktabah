@@ -316,6 +316,7 @@ struct SearchResultContextPreview: View {
     @State private var previewError: String?
     @State private var isLoading = false
     @State private var retryToken = 0
+    @State private var activePreviewRequestID: UUID?
     @AppStorage("otzaria_reader_unit_mode") private var otzariaUnitMode = "paragraph"
 
     private var isHebrewBackend: Bool {
@@ -407,6 +408,16 @@ struct SearchResultContextPreview: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("search-result-expanded-preview-\(item.stableID)")
         .task(id: "\(item.stableID):\(item.backendLocator?.backend == .otzaria ? otzariaUnitMode : ""):\(retryToken)") {
+            // Superseded providers may throw an ordinary error after cancellation.
+            // Only this still-current task may publish preview or loading state.
+            guard !Task.isCancelled else { return }
+            let requestID = UUID()
+            activePreviewRequestID = requestID
+            defer {
+                if activePreviewRequestID == requestID, !Task.isCancelled {
+                    isLoading = false
+                }
+            }
             guard let locator = item.backendLocator else {
                 if item.attributedText.string.isEmpty {
                     previewError = String(localized: "The full text for this result is empty.", defaultValue: "הטקסט המלא עבור תוצאה זו ריק.")
@@ -426,6 +437,7 @@ struct SearchResultContextPreview: View {
                     section = try await BackendCoordinator.shared.section(at: locator)
                 }
                 try Task.checkCancellation()
+                guard activePreviewRequestID == requestID else { return }
                 fullSegments = section.segments.compactMap { segment in
                     let primary = segment.primaryText.readerPlainText
                     let translation = segment.translation?.readerPlainText
@@ -442,9 +454,9 @@ struct SearchResultContextPreview: View {
             } catch is CancellationError {
                 return
             } catch {
+                guard activePreviewRequestID == requestID, !Task.isCancelled else { return }
                 previewError = error.localizedDescription
             }
-            isLoading = false
         }
     }
 }
