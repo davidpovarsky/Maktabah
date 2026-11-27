@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "interpreter": "python3",
+  "sudo": false,
+  "cwd": null,
+  "cleanup": true,
+  "command": [
+    "python3",
+    "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_98db59a1743741dbb6e2f410f912d566/script.py"
+  ],
+  "output": "{\"result\": {\"schema\": 1, \"status\": \"FAILED_OR_INCOMPLETE_READ_ONLY_EXPORT\", \"scope\": \"Read-only schema export from retained failed host-only control; original record exit unknown; no app,Simulator,corpus,recording or performance acceptance\", \"originalDriverExit\": 1, \"originalRecordExit\": null, \"originalResultAbsent\": true, \"startedUTC\": \"2026-11-27T07:50:54.558350+00:00\", \"activeNativeProcesses\": [\"20030 19339 /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"], \"errorType\": \"AssertionError\", \"error\": \"Another native process became active\", \"ownedExporterExited\": true, \"artifacts\": [{\"path\": \"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/read-only-export-20261127T0751/admission.ps.txt\", \"bytes\": 486265, \"sha256\": \"1afe04df1531eddc9f87f8ea2d24387618cbca762c7f478b71111e4964233444\", \"device\": 16777232, \"inode\": 72368258, \"mtimeNs\": 1795765854687079967, \"ctimeNs\": 1795765854687079967}], \"finishedUTC\": \"2026-11-27T07:50:54.697885+00:00\"}, \"resultFile\": {\"path\": \"/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/read-only-export-20261127T0751/RESULT.json\", \"bytes\": 1086, \"sha256\": \"8c33dd79814b317da10f33859b01edb902181dbd49e677a47abd84d5da9b0974\", \"device\": 16777232, \"inode\": 72368259, \"mtimeNs\": 1795765854698062187, \"ctimeNs\": 1795765854698062187}, \"toc\": null}",
+  "duration": 1.15,
+  "returncode": 0,
+  "_notice": "You have 16 unread SentinelX notification(s) (job results and/or announcements). Call notifications_check to read them."
+}

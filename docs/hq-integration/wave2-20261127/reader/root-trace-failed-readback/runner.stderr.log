@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py", line 168, in <module>
+    main()
+  File "/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py", line 159, in main
+    report['artifacts'] = [witness(p) for p in sorted(OUT.rglob('*'))
+                           ^^^^^^^^^^
+  File "/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py", line 41, in witness
+    require(before == after, 'File changed during final readback')
+  File "/Users/m1/builds/otzaria-wave2-root-trace-schema-20261127/attempt-20261127T065251Z-b63e2502/run-owned-schema-control.py", line 31, in require
+    raise ValueError(message)
+ValueError: File changed during final readback

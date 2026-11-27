@@ -1,0 +1,171 @@
+{
+  "schema": "otzaria.wave2.offline-oracle-root-intake/1",
+  "startedAtUTC": "2026-11-27T08:51:29.805340+00:00",
+  "base": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+  "sourceBefore": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "scope": "Source-only original coordinator/exercise intake; no actual SSH/PF/Mac/Simulator/native/denial",
+  "mappings": [
+    {
+      "donor": "b303b0aa6238b4353eff07a1c56ced46cf1df0bf",
+      "integration": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "files": {
+        "Scripts/CI/study-ui-offline-exercises.py": {
+          "bytes": 52858,
+          "sha256": "bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/API.md": {
+          "bytes": 12125,
+          "sha256": "f8b01d8f1b843fdb1b3cd50e0672d8d2de5011496585dfd9d2110573870c722f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/INPUT_SOURCE_RECEIPTS.json": {
+          "bytes": 876,
+          "sha256": "dd3a43795695a90d9859ee6ed4e045e261829a9b6e9c9172fdd5cb39597bd63f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.json": {
+          "bytes": 641,
+          "sha256": "963cc976c5596490c2c7b70c4363fb0326cd3fd6e4e43ce89dc7ca124c4b4d0c"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.stderr.log": {
+          "bytes": 4571,
+          "sha256": "52794a56048a2025e24f4be7fdfe4ab47bd85171d6e0a002c2df54bb6a6e9b91"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/SOURCE_CONTROLS.json": {
+          "bytes": 310,
+          "sha256": "211b850a2f288c58f376dd03993e360622dafd2c512727295153986ee617d623"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/controls.stderr.log": {
+          "bytes": 4571,
+          "sha256": "4e2b4bcd375d4691c1e1b3c0b1862eb1d10d817624d0833cb7676feed0e074f6"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises/source-controls.py": {
+          "bytes": 20026,
+          "sha256": "a215e9f3cfa137664b383a2531349a218dd4a83b71ff83cc2f3a39fdcf1ab8c3"
+        }
+      }
+    },
+    {
+      "donor": "8dba94565372a15fe232d8135e3d447494318c9c",
+      "integration": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "files": {
+        "Scripts/CI/study-ui-offline-exercises.py": {
+          "bytes": 54090,
+          "sha256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/BASELINE_CANDIDATE.json": {
+          "bytes": 1449,
+          "sha256": "914fd4ef3c1bbfe511a30117db8efb905f7f15e04f2f4a65840f754e8ce5a0f3"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_CONTROLS.json": {
+          "bytes": 383,
+          "sha256": "7cc76029e2ac6d9f037f210734f64e36b996b3e299e2f5bde414b6c6745442e4"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_ownership-baseline-control.py.stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_ownership-baseline-control.py.stdout.log": {
+          "bytes": 1449,
+          "sha256": "914fd4ef3c1bbfe511a30117db8efb905f7f15e04f2f4a65840f754e8ce5a0f3"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_source-controls.py.stderr.log": {
+          "bytes": 5806,
+          "sha256": "af5319e43f3858771d0213c0dccacfaca85fbef7f0c894f6ada289bbac9e06bf"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_source-controls.py.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/README.md": {
+          "bytes": 2734,
+          "sha256": "fa4120cee9c31c91542362cee72f964782fac009a242acd828ca4196a54ce779"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/SOURCE_CONTROLS.json": {
+          "bytes": 310,
+          "sha256": "e2a543bbf77efc201567db598ddd9112cbd803fc6ec2108c286ab9ebaa499595"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/baseline-b303.py": {
+          "bytes": 52858,
+          "sha256": "bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/controls.stderr.log": {
+          "bytes": 5806,
+          "sha256": "12d9af2e936ffdd1b28a28c5d153f0bdffd39f71e1acf78e51e4286b7652963c"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ownership-baseline-control.py": {
+          "bytes": 3609,
+          "sha256": "0d8686bf380b80f0bc73ed79f51dd3ad5ea12a26bcdae8a1a6d8fd55a84f643d"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/source-controls.py": {
+          "bytes": 24852,
+          "sha256": "56cb5d0cf4c04ec083cc2568e7f41b3ff670509388c7aa8b4740d6abbe051e7c"
+        }
+      }
+    },
+    {
+      "donor": "4cb7590d923746971c9ad53095feacfab566fa60",
+      "integration": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "files": {
+        "Scripts/CI/study-ui-offline-oracle.py": {
+          "bytes": 60113,
+          "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md": {
+          "bytes": 13795,
+          "sha256": "f665b4b22f2e8bc23f34a72c80ed74f85c51f95297a06d4b708cb8d44ae52a59"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/INPUT_SOURCE_RECEIPTS.json": {
+          "bytes": 1750,
+          "sha256": "f7cf0b4b7682199614dfd5979e8d1d7d6647634cecf199c0284f0803d711b736"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.json": {
+          "bytes": 350,
+          "sha256": "b98b5a8f5163d667274ae8529a783afc53e5b99ee03f9fb0964c26da0ba09571"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.stderr.log": {
+          "bytes": 6080,
+          "sha256": "ea0cbb479ba43575024ae3c943a5924a8939dbfde60ae210982772e1b81e86b5"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/SOURCE_CONTROLS.json": {
+          "bytes": 335,
+          "sha256": "7e2852424c31ac2172fa3e0c2239122e6f15b33804a6d045e889462f8f2e957a"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/controls.stderr.log": {
+          "bytes": 6080,
+          "sha256": "365551cc3fce9bbe442041cf184927c48247e829ee8bf615986a423cc1117b1f"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/controls.stdout.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "docs/hq-integration/wave2-20261127/search/offline-oracle/source-controls.py": {
+          "bytes": 31372,
+          "sha256": "628ec3da7d33eb2f1345f052f0a68b6bdb0e70ee44c2d90097372dc6f35276a0"
+        }
+      }
+    }
+  ],
+  "head": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+  "sourceAfter": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "trackedStatus": "",
+  "fileVersionsChecked": 34,
+  "finishedAtUTC": "2026-11-27T08:51:30.709889+00:00",
+  "donorControlsRerun": false,
+  "nativeExecutions": 0,
+  "fullCorpusUIAccepted": false
+}

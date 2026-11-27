@@ -1,0 +1,2 @@
+{"event": "started", "pid": 84487, "threadID": 19442821, "monotonicNs": 246189208957958, "unixNs": 1795762374463540000}
+{"event": "finished", "pid": 84487, "threadID": 19442821, "monotonicNs": 246196259022916, "unixNs": 1795762381513589000, "iterations": 188309376500}
