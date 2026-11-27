@@ -1,0 +1,79 @@
+    /// Stage 12 opens the exact live search result through the original
+    /// section/focus resolver and canonical Core reader.open. A new original tab
+    /// is reserved so an unrelated existing Reader is not repurposed.
+    func performOriginalSefariaSearchResultAcceptance(locator: TextLocator, epoch: UInt64,
+        manager: iOSNavigationManager) async throws -> SefariaEmbeddedAcceptanceDiagnosticRunner.ReaderEvidence {
+        try Task.checkCancellation()
+        let end = deadline(), managerID = ObjectIdentifier(manager)
+        guard locator.backend == .sefariaEmbedded, epoch > 0,
+              SefariaJSRPCBridge.shared.currentSessionEpoch == epoch else {
+            throw UIRouteError(.staleState, "native_sefaria_search_source_changed")
+        }
+        let snapshot = try backend.currentBackendSnapshot()
+        guard snapshot.backend == .sefariaEmbedded, snapshot.rpcEpoch == epoch else {
+            throw UIRouteError(.staleState, "native_sefaria_search_source_changed")
+        }
+        let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: managerID)
+        }
+        guard let entry = scenes[sceneID], entry.managerID == managerID,
+              entry.manager === manager, entry.session.mounted, entry.session.foreground else {
+            throw UIRouteError(.unavailable, "native_sefaria_search_window_unavailable")
+        }
+        let original = ReaderDestinationResolver.resolve(locator: locator)
+        let content = ActionReaderDestination(
+            sectionLocator: try ActionAppIdentityBridge.actionRef(original.sectionLocator),
+            focusLocator: try original.focusLocator.map(ActionAppIdentityBridge.actionRef),
+            presentationMode: .newTab)
+        let requestID = UUID()
+        let result = try await open(public: .init(destination: UIDestinationID(rawValue: "native.reader")!,
+            backend: .sefariaEmbedded, content: content, presentation: .newTab),
+            sceneID: sceneID, managerID: managerID, expectedSnapshot: snapshot,
+            origin: .inApp, until: end, requestID: requestID)
+        try Task.checkCancellation()
+        guard SystemActionClock().now() <= end,
+              case .acknowledged(let receipt) = result, receipt.requestId == requestID,
+              receipt.sceneID == sceneID, receipt.backendSnapshot == snapshot,
+              receipt.route.destination.rawValue == "native.reader", receipt.route.content == content,
+              receipt.appliedSceneRevision > receipt.basedOnSceneRevision,
+              let coreReceipt = receipt.coreReceipt, coreReceipt.requestId == requestID,
+              coreReceipt.sceneID == sceneID.rawValue, coreReceipt.snapshot == snapshot,
+              coreReceipt.destination == content,
+              let current = scenes[sceneID], current.session === entry.session,
+              current.manager === manager, current.managerID == managerID,
+              current.session.mounted, current.session.foreground,
+              try backend.currentBackendSnapshot() == snapshot,
+              SefariaJSRPCBridge.shared.currentSessionEpoch == epoch,
+              let reader = MaktabahNativeInspectorBinding.currentReader(in: manager),
+              reader.currentDestination == original.destination,
+              let section = reader.backendSection, section.locator == original.sectionLocator,
+              !section.segments.isEmpty,
+              let rendered = reader.backendRenderModel,
+              let visible = reader.isNativeReaderTextVisible else {
+            throw UIRouteError(.failed, "native_sefaria_search_reader_not_acknowledged")
+        }
+        // Bind the completed request to the SAME actual original tab/surface,
+        // including its independent witness. Equal content in another tab is
+        // not a receipt for this navigation.
+        try current.session.validateCompletedJourneySurface(receipt)
+        // This is a fresh read of the existing TextKit viewport, not a second
+        // renderer, test probe, inferred model-only success or delayed UI effect.
+        let range: NSRange?
+        if let focus = original.focusLocator {
+            guard let segment = rendered.renderedSegment(for: focus) else {
+                throw UIRouteError(.failed, "native_sefaria_search_focus_not_rendered")
+            }
+            range = segment.visualRange
+        } else { range = nil }
+        guard visible(sceneID.rawValue, range) else {
+            throw UIRouteError(.failed, "native_sefaria_search_reader_not_visible")
+        }
+        return .init(nativeRequestID: receipt.requestId, nativeSceneID: receipt.sceneID.rawValue,
+            backendID: receipt.backendSnapshot.backend.rawValue, sessionEpoch: epoch,
+            backendGeneration: receipt.backendSnapshot.generation,
+            basedOnSceneRevision: receipt.basedOnSceneRevision,
+            appliedSceneRevision: receipt.appliedSceneRevision,
+            requestedLocator: locator, sectionLocator: section.locator,
+            focusLocator: reader.currentDestination?.focusLocator,
+            displayRef: section.displayRef, segmentCount: section.segments.count)
+    }

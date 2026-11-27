@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "status": "REVIEWED_WITH_RESOLVED_FINDINGS",
+  "reviewer": "/root/navigation_fix",
+  "integrationBase": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "reviewedAt": "2026-11-27T08:03:20.464689+00:00",
+  "scope": "Read-only source/API/lifetime review of exactly the diagnostic runner, new canonical reader evidence helper, and its manager-bound original MainView call site. No source edits, executions or metadata/native reruns by reviewer.",
+  "initialDiffSHA256": "a325c099d0055839c995a68336275ed0ae85d656e076993959684aa339c38375",
+  "finalFiles": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "sha256": "086e78dc363c269f4ef5a8168e2cf53e141d4b2bd3de7ea8176eb1acbaaccb60",
+      "bytes": 176703
+    },
+    "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift": {
+      "sha256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4",
+      "bytes": 21971
+    },
+    "Source/UI/iOS/Views/iOSMainView.swift": {
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a",
+      "bytes": 34750
+    }
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "status": "RESOLVED",
+      "severity": "compile blocker",
+      "finding": "The original ReaderDestinationResolver returns ResolvedReaderDestination, while ReaderViewModel.currentDestination is LibraryReaderDestination?. Comparing currentDestination directly to original is a different-type comparison.",
+      "before": "reader.currentDestination == original",
+      "after": "reader.currentDestination == original.destination",
+      "sourceOwners": [
+        "Source/ChavrusaText/Navigation/ReaderDestinationResolver.swift: ResolvedReaderDestination.destination",
+        "Source/Features/Reader/ViewModel/ReaderViewModel.swift: currentDestination"
+      ],
+      "fixAuthor": "root"
+    },
+    {
+      "id": "R2",
+      "status": "RESOLVED",
+      "severity": "receipt/source binding",
+      "finding": "After awaiting canonical navigation, an already-loaded different tab with the same content could satisfy currentReader and viewport checks without being the tab named by the completed receipt.",
+      "fix": "Call the existing current.session.validateCompletedJourneySurface(receipt) synchronously before the fresh original viewport read.",
+      "sourceOwner": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift: validateCompletedJourneySurface",
+      "invariants": [
+        "same last completed route and request",
+        "same actual current projected tab/surface",
+        "same independent original visible witness",
+        "original rendered TextKit reader evidence"
+      ],
+      "fixAuthor": "root"
+    }
+  ],
+  "verifiedFinalProperties": [
+    "Original ReaderDestinationResolver and canonical reader.open through private public route, with new-tab semantics and exact original manager/scene",
+    "Original request ID, Core/native receipts, backend generation and RPC epoch remain bound",
+    "Actual original foreground session is checked after awaiting the canonical route",
+    "Existing completed-journey validator runs before synchronous original visible TextKit viewport check; no mutation or fresh grant is introduced",
+    "Search errors/empty pages are no longer reported as successful live-search stages or replaced with a canned result",
+    "Only exact STALE_GENERATION rejection is accepted by the added stale-input call"
+  ],
+  "remainingCoverage": [
+    {
+      "area": "Stage 4 late response",
+      "status": "NOT_PROVEN_BY_THIS_STAGE",
+      "detail": "The new explicitly stale request exercises upfront bridge rejection at lines310\u2013311. It does not exercise the separate late in-flight response-generation check at428\u2013434. Stage detail accurately describes the actual stale request; late-response acceptance must remain independently accounted for."
+    },
+    {
+      "area": "Apple app helper SDK typecheck and actual native reader",
+      "status": "NOT_RUN_BY_REVIEWER",
+      "detail": "Source review and original declarations do not establish a compiled/visible iPad/iPhone result."
+    }
+  ],
+  "remainingBlockingFindingsInReviewedHelper": [],
+  "testsRunByReviewer": 0,
+  "sourceEvidence": {
+    "finalHelper": "FINAL_HELPER.swift.txt",
+    "originalBridgeStaleGuards": [
+      "288:         if mutatesResources {",
+      "289:             guard !resourceMutationInProgress else {",
+      "290:                 throw SefariaRPCError(code: \"RESOURCE_BUSY\", message: \"Another resource operation is active\", retryable: true)",
+      "291:             }",
+      "292:             if let generation, generation != sessionEpoch {",
+      "293:                 throw SefariaRPCError(code: \"STALE_GENERATION\", message: \"RPC session changed\", retryable: true)",
+      "294:             }",
+      "295:             epochAuthority.beginTransition()",
+      "296:             _ = bumpSessionEpoch()",
+      "297:             resourceMutationInProgress = true",
+      "306:             }",
+      "307:         }",
+      "308:         let requestID = UUID().uuidString",
+      "309:         let effectiveGeneration = mutatesResources ? sessionEpoch : generation ?? sessionEpoch",
+      "310:         guard effectiveGeneration == sessionEpoch else {",
+      "311:             throw SefariaRPCError(code: \"STALE_GENERATION\", message: \"RPC session changed\", retryable: true)",
+      "312:         }",
+      "313:         guard timeoutMs > 0, timeoutMs <= 600_000 else {",
+      "314:             throw SefariaRPCError(code: \"INVALID_TIMEOUT\", message: \"RPC timeout is outside supported bounds\")",
+      "315:         }",
+      "426:         }",
+      "427: ",
+      "428:         // Strict generation validation: response must match in-flight generation (no zero-bypass)",
+      "429:         if response.sessionGeneration != req.generation || req.generation != sessionEpoch {",
+      "430:             req.continuation.resume(throwing: SefariaRPCError(",
+      "431:                 code: \"STALE_GENERATION\",",
+      "432:                 message: \"Response generation \\(response.sessionGeneration) does not match in-flight generation \\(req.generation)\",",
+      "433:                 retryable: false",
+      "434:             ))",
+      "435:             return"
+    ],
+    "excerptFormatting": "Final helper text preserves original method contents; terminal blank lines normalized to one LF for repository whitespace policy."
+  }
+}
