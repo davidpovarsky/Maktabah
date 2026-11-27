@@ -545,6 +545,64 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
                    name: "settings-update-original-group-fixture")
     }
 
+    private func prepareOrdinaryProductionReader(_ context: Context) throws {
+        let library = findTabButton(hebrew: "ספר", english: "Library")
+        try require(library.waitForExistence(timeout: 30) && library.isHittable,
+                    "The original Library tab must be reachable before preparing saved objects")
+        library.tap()
+        let reader = app.textViews["reader-text"]
+        let locator = app.staticTexts["reader-current-locator"]
+        let launchers = app.buttons.matching(identifier: "reader-command-palette-launcher")
+        func visibleReader() -> Bool {
+            reader.exists && reader.isHittable && locator.exists &&
+                !(reader.value as? String ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+        try wait("The ordinary Library must restore a reader or expose its original book palette", timeout: 60) {
+            visibleReader() || (launchers.firstMatch.exists && launchers.firstMatch.isHittable)
+        }
+        let route: String
+        if visibleReader() {
+            route = "existing-visible-canonical-reader"
+        } else {
+            // Bind the fallback to the actual source database before touching
+            // a result. This is the full-v40 Bavli Berakhot catalog identity.
+            let books = try rows(context.databasePath, "SELECT id,title FROM book WHERE id=103")
+            try require(books.count == 1 && books[0]["id"] == "integer:103",
+                        "The actual full-v40 database must contain the canonical Berakhot book")
+            let title = try textColumn(books[0], "title")
+            try require(sourceText(title) == "ברכות", "The observed Berakhot catalog identity changed")
+            try require(launchers.count == 1 && launchers.firstMatch.isHittable,
+                        "Use the unique original Library palette launcher")
+            launchers.firstMatch.tap()
+            let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+            try require(palette.waitForExistence(timeout: 30), "The original Library palette must open")
+            let input = palette.textFields.firstMatch
+            try require(input.waitForExistence(timeout: 20) && input.isHittable,
+                        "The original Library search field must be usable")
+            input.tap()
+            input.typeKey(XCUIKeyboardKey(rawValue: "a"), modifierFlags: .command)
+            input.typeText(title)
+            try require(input.value as? String == title, "Search the actual canonical title through the original input")
+            let results = palette.buttons.matching(NSPredicate(format: "label == %@", title))
+            try require(results.firstMatch.waitForExistence(timeout: 60) && results.count == 1 && results.firstMatch.isHittable,
+                        "Require one visible original result for the actual Berakhot title")
+            results.firstMatch.tap()
+            try wait("The actual Library result must open a hittable nonempty reader", timeout: 60) {
+                !palette.exists && visibleReader()
+            }
+            try require(try currentBookID() == 103, "The original palette opened a different canonical book")
+            route = "original-library-palette-berakhot"
+        }
+        let bookID = try currentBookID()
+        let title = app.staticTexts["reader-header-title"].label
+        try requireCanonicalBook(context, id: bookID, title: title)
+        try require(visibleReader(), "Saved-object setup must start from the actual visible production reader")
+        try attach(["route": route, "book_id": bookID, "title": title, "reader_locator": locator.label,
+                    "scope": "original Library UI; ordinary production namespace; no state seeding"],
+                   name: "settings-update-reader-prelude-state")
+        capture("settings-update-reader-prelude")
+    }
+
     private func prepareUserDataThroughOriginalUI(_ context: Context) throws -> SemanticPreservation {
         let bookID = try currentBookID()
         let title = app.staticTexts["reader-header-title"].label
@@ -923,7 +981,7 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
 
         XCUIDevice.shared.orientation = .landscapeLeft
         launchWithTier(.production, backend: "otzaria", language: "en", locale: "en_US")
-        try require(app.staticTexts["reader-current-locator"].waitForExistence(timeout: 60), "Existing ordinary production reader must restore")
+        try prepareOrdinaryProductionReader(context)
         let preservation = try prepareUserDataThroughOriginalUI(context)
         let locator = preservation.readerLocator
         let before = try state(context, requirePopulated: true)

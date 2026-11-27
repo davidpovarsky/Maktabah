@@ -1,0 +1,51 @@
+{
+  "scope": "Apple-SDK typecheck only; not UI execution",
+  "source_parent_commit": "bd802b80104d22bcb36075dcf6fed8b2150d35e0",
+  "inputs": {
+    "ProductionOtzariaAcceptanceTests.swift": "122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-I",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+    "-module-name",
+    "Maktabah_iOSUITests",
+    "-D",
+    "DEBUG",
+    "-enable-upcoming-feature",
+    "NonisolatedNonsendingByDefault",
+    "-enable-upcoming-feature",
+    "InferIsolatedConformances",
+    "-enable-upcoming-feature",
+    "MemberImportVisibility",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-6/MaktabahUITestBase.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-6/ProductionOtzariaAcceptanceTests.swift"
+  ],
+  "started_at": "2026-11-27T02:44:08.049441+00:00",
+  "free_bytes_before": 17972523008,
+  "exit_code": 0,
+  "status": "PASSED",
+  "finished_at": "2026-11-27T02:44:09.097385+00:00",
+  "free_bytes_after": 17972400128,
+  "inputs_after": {
+    "ProductionOtzariaAcceptanceTests.swift": "122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94"
+  },
+  "warning_diagnostic_count": 74,
+  "new_class_warnings": [],
+  "errors": []
+}
