@@ -193,6 +193,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     @ObservationIgnored private var workspaceSelectionBinding: MaktabahNativeWorkspaceSelectionBinding?
     private(set) var viewerParentHost: MaktabahNativeViewerParentHost?
     @ObservationIgnored private var readerTabParentObservation: NativeOriginalParentObservation?
+    @ObservationIgnored private var workspaceSelectionParentObservation: NativeOriginalParentObservation?
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
@@ -868,8 +869,9 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
 
     func workspaceSelectionCatalog(windowTitle: String) throws -> [NativeWorkspaceSelectionIntentService.Selection] {
         guard mounted, workspaceSelectionBinding == nil, readerTabBinding == nil, isReaderTabSourceReady,
-              bindings.selectedTab.wrappedValue == .viewer, bindings.manager.currentMode == .viewer,
               let source = workspaceProjectionSource else { return [] }
+        let originalViewer = bindings.selectedTab.wrappedValue == .viewer && bindings.manager.currentMode == .viewer
+        guard originalViewer || viewerParentHost?.isAvailable(bindings: bindings) == true else { return [] }
         return try MaktabahNativeWorkspaceSelectionBinding.catalog(sceneID: sceneID, manager: bindings.manager,
                                                                     source: source, windowTitle: windowTitle)
     }
@@ -882,7 +884,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             throw UIRouteError(.unavailable, "native_workspace_selection_scene_busy")
         }
         let bound = try MaktabahNativeWorkspaceSelectionBinding(requestID: requestID, target: target,
-            bindings: bindings, source: source,
+            bindings: bindings, source: source, viewerParentHost: viewerParentHost,
             foreignReady: { [weak self] in self?.isReaderTabSourceReady == true },
             readForeignPresentations: { [weak self] in
                 guard let self else { return }
@@ -917,7 +919,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
 
     func releaseWorkspaceSelection(_ bound: MaktabahNativeWorkspaceSelectionBinding) {
         guard workspaceSelectionBinding === bound else { return }
-        workspaceSelectionBinding = nil
+        workspaceSelectionBinding = nil; workspaceSelectionParentObservation = nil
         bound.release()
         originalPresentationStateDidChange()
     }
@@ -1231,6 +1233,8 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                       let componentValidation else {
                     throw UIRouteError(.staleState, "native_workspace_selection_owner_missing")
                 }
+                workspaceSelectionParentObservation = nil
+                try bound.viewerParent?.bind(value)
                 let originalLifetime = try componentValidation(value)
                 try bound.begin { [weak self, weak bound] in
                     try originalLifetime()
@@ -1603,10 +1607,23 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         }
     }
 
-    // Opt-in ONLY for an existing Reader-tab request retained on a foreign
-    // original root. The same command/preparation owns both effects; these
+    // Opt-in ONLY for the finite original Reader-tab or prepared workspace
+    // selection retained on a foreign root. The same preparation owns both effects; these
     // methods grant nothing and never call an async feature action from render.
     func originalParentSelectionKind(for value: UISceneCommand) throws -> UIOriginalParentSelectionKind? {
+        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard command == value, let bound = workspaceSelectionBinding,
+                  bound.requestID == value.invocation.requestId, bound.isPrepared else {
+                throw UIRouteError(.staleState, "native_workspace_selection_owner_missing")
+            }
+            guard let kind = try bound.originalParentSelectionKind(), let parent = bound.viewerParent else { return nil }
+            try parent.validates(value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {
+                throw UIRouteError(.staleState, "native_workspace_selection_owner_changed")
+            }
+            try bound.validate()
+            return kind
+        }
         guard value.route.route.destination == MaktabahNativeReaderTabBinding.destination else { return nil }
         guard command == value, let bound = readerTabBinding, bound.requestID == value.invocation.requestId,
               bound.isReserved else { throw UIRouteError(.staleState, "native_reader_tab_owner_missing") }
@@ -1616,6 +1633,21 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         return .readerTab
     }
     func applyOriginalParent(_ value: UISceneCommand) throws {
+        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            try validateSurface(value)
+            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,
+                  bound.requestID == value.invocation.requestId, bound.isPrepared, !bound.isApplied else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            try parent.applyParent(value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            originalPresentationStateDidChange()
+            return
+        }
         try validateSurface(value)
         guard command == value, let bound = readerTabBinding, let parent = bound.viewerParent,
               bound.requestID == value.invocation.requestId, !bound.isApplied else {
@@ -1630,6 +1662,24 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         originalPresentationStateDidChange()
     }
     func waitUntilOriginalParentReady(_ value: UISceneCommand) async throws -> NativeOriginalParentObservation {
+        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,
+                  bound.requestID == value.invocation.requestId, !bound.isApplied else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            let actual = try await parent.waitUntilReady(value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            try parent.validateParent(actual, command: value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            workspaceSelectionParentObservation = actual
+            return actual
+        }
         guard command == value, let bound = readerTabBinding, let parent = bound.viewerParent,
               bound.requestID == value.invocation.requestId else {
             throw UIRouteError(.staleState, "native_viewer_parent_owner_changed")
@@ -1645,6 +1695,20 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         return actual
     }
     func validateOriginalParent(_ actual: NativeOriginalParentObservation, for value: UISceneCommand) throws {
+        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,
+                  bound.requestID == value.invocation.requestId, workspaceSelectionParentObservation == actual else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            try parent.validateParent(actual, command: value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent,
+                  workspaceSelectionParentObservation == actual else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try bound.validate()
+            return
+        }
         guard command == value, let bound = readerTabBinding, let parent = bound.viewerParent,
               bound.requestID == value.invocation.requestId,
               readerTabParentObservation == actual else {
@@ -1657,6 +1721,21 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         }
     }
     func applyOriginalSelection(_ value: UISceneCommand) throws {
+        if value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination {
+            guard command == value, let bound = workspaceSelectionBinding, let parent = bound.viewerParent,
+                  bound.requestID == value.invocation.requestId, let actual = workspaceSelectionParentObservation else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            try validateOriginalParent(actual, for: value)
+            try parent.beginSelection(actual, command: value)
+            guard workspaceSelectionBinding === bound, command == value, bound.viewerParent === parent else {
+                throw UIRouteError(.staleState, "native_workspace_selection_parent_changed")
+            }
+            // The SAME Core terminal capability was just consumed. The complete
+            // original group flush/Store/native publisher stays synchronous.
+            try apply(value)
+            return
+        }
         guard command == value, let bound = readerTabBinding, let parent = bound.viewerParent,
               bound.requestID == value.invocation.requestId, let actual = readerTabParentObservation else {
             throw UIRouteError(.staleState, "native_viewer_parent_owner_changed")
@@ -2354,6 +2433,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         // metadata after its owner has validated the complete visible receipt.
         command = nil; retainedSearchField = nil; inspectorBinding = nil
         readerTabParentObservation = nil
+        workspaceSelectionParentObservation = nil
     }
 
     func validateCompletedJourneySurface(_ receipt: UISceneReceipt) throws {
@@ -2392,7 +2472,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         publicSearchContinuationCatalog?.unmount(); publicSearchContinuationCatalog = nil
         readerTabBinding?.release(); readerTabBinding = nil; readerTabParentObservation = nil
         viewerParentHost?.unmount(); viewerParentHost = nil
-        workspaceSelectionBinding?.release(); workspaceSelectionBinding = nil
+        workspaceSelectionBinding?.release(); workspaceSelectionBinding = nil; workspaceSelectionParentObservation = nil
         forwardingWorkspaceOwner?.detachNativeRoutingSession(self); forwardingWorkspaceOwner = nil
         workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
         phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
