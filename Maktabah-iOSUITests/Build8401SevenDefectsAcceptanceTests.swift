@@ -792,7 +792,11 @@ extension FullV40ReaderModeAcceptanceTests {
             && (selection["processID"] as? NSNumber)?.intValue == (source["processID"] as? NSNumber)?.intValue
             && ((selection["processID"] as? NSNumber)?.intValue ?? 0) > 0,
             "Bind the original source and actual native selection to one fresh process/request")
-        try demand(selection["textViewObject"] as? Int == report["object"] as? Int
+        let selectionObject = try XCTUnwrap(selection["textViewObject"] as? Int,
+            "Require the original native selection's integer UITextView identity")
+        let viewportObject = try XCTUnwrap(report["object"] as? Int,
+            "Require the original viewport's integer UITextView identity")
+        try demand(selectionObject == viewportObject
             && selection["usesTextKit2BeforeObservation"] as? Bool == true
             && selection["usesTextKit2AfterObservation"] as? Bool == true
             && report["usesTextKit2BeforeObservation"] as? Bool == true
@@ -1341,9 +1345,13 @@ extension FullV40ReaderModeAcceptanceTests {
         for report in during {
             let request = try XCTUnwrap(report["requestID"] as? String)
             let selection = try XCTUnwrap(report["nativeSelectionObservation"] as? [String: Any])
+            let selectionObject = try XCTUnwrap(selection["textViewObject"] as? Int,
+                "Require the original native selection's integer UITextView identity")
+            let viewportObject = try XCTUnwrap(report["object"] as? Int,
+                "Require the original viewport's integer UITextView identity")
             try demand(UUID(uuidString: request) != nil && requests.insert(request).inserted
                 && selection["requestID"] as? String == request && selection["processID"] as? Int == pid
-                && selection["textViewObject"] as? Int == report["object"] as? Int
+                && selectionObject == viewportObject
                 && selection["usesTextKit2BeforeObservation"] as? Bool == true
                 && selection["usesTextKit2AfterObservation"] as? Bool == true,
                 "Use fresh actual native samples from this original Reader/process during the real held gesture")
