@@ -1,0 +1,17 @@
+{
+  "executables": [
+    {
+      "bytes": 200872,
+      "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/controls-baseline",
+      "sha256": "3568130b86bed2e9b1baf6ad701cecd7e7278e39fb58cb18e6b6433fa5a4cae5"
+    },
+    {
+      "bytes": 304016,
+      "path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/controls-candidate",
+      "sha256": "069c658a5e4917d8e7748f70a152b4e5abf2f1f89116c755552f207195bbe982"
+    }
+  ],
+  "module_cache": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-1/module-cache",
+  "module_cache_disposition": "Preserved at original absolute path; no relocation, cleanup or qualification of app/SDK outputs.",
+  "task_allocated_bytes": 18903040
+}

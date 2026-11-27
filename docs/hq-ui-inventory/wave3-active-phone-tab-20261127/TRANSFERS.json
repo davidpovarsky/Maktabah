@@ -1,0 +1,89 @@
+{
+  "archive_verified_members": 56,
+  "created_utc": "2026-11-27T13:44:49.882945+00:00",
+  "kind": "exact-local-payload-and-retained-rootfs-evidence",
+  "local_inputs": [
+    {
+      "bytes": 576,
+      "path": "delivery/FINAL_INPUTS.json",
+      "sha256": "259c0994df750f37a799083317ac7118911dd018ab35ca75678e275d005ced2a"
+    },
+    {
+      "bytes": 963,
+      "path": "delivery/FINAL_ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "5284abc6638c799f904d9943bec71b077d8e0c9e66606d1f03ac0047f7e549fb"
+    },
+    {
+      "bytes": 2066,
+      "path": "delivery/INTAKE.json",
+      "sha256": "ccef2674efd6b8ecf27cbdc2f389e60266a6a446a5555096c6701ddbc2353baf"
+    },
+    {
+      "bytes": 4618,
+      "path": "delivery/NATIVE_ACCEPTANCE_PROPOSAL.md",
+      "sha256": "d52a4149cb5081c935b3e51e01c561cec74f8122699651ebc68ca857ace86a0b"
+    },
+    {
+      "bytes": 1282,
+      "path": "delivery/PEER_REVIEW.json",
+      "sha256": "a27ce289db84d2c0e82badd0f4cb96b20ec54e426e2239f0f319b6df37b44240"
+    },
+    {
+      "bytes": 6018,
+      "path": "delivery/README.md",
+      "sha256": "a9bf02e853b0b96fe867651a33f890a0e77acf50d6c2baf8b60181dbc86b4e99"
+    },
+    {
+      "bytes": 576,
+      "path": "review/FINAL_INPUTS.json",
+      "sha256": "259c0994df750f37a799083317ac7118911dd018ab35ca75678e275d005ced2a"
+    },
+    {
+      "bytes": 963,
+      "path": "review/FINAL_ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "5284abc6638c799f904d9943bec71b077d8e0c9e66606d1f03ac0047f7e549fb"
+    },
+    {
+      "bytes": 15652,
+      "path": "review/FINAL_SOURCE.diff",
+      "sha256": "e5e55418a691ab67aadcefdac398301c1ead2b56df7844fe694be9e59428ac62"
+    },
+    {
+      "bytes": 576,
+      "path": "review/INPUTS.json",
+      "sha256": "6e14c5021762539aeb5a258678e56b548eea90d093e896b99de6a2f77b97ed83"
+    },
+    {
+      "bytes": 654,
+      "path": "review/ORDINARY_MANAGER_INVERSE.json",
+      "sha256": "58f1ef985f5ee20aa64275c76c7719db514d8f930c92a08668d2365cc1c408a1"
+    },
+    {
+      "bytes": 6691,
+      "path": "review/Source_ChavrusaText_UIRoutingHost_Integration_MaktabahNativeReaderTabBinding.diff",
+      "sha256": "326deb354c22c122dfd72613033754078d2477bac3b0885f7b9ecf674d320de2"
+    },
+    {
+      "bytes": 8966,
+      "path": "review/Source_UI_iOS_Managers_iOSNavigationManager.diff",
+      "sha256": "f25369fc3985e868b9b0b7e79a938d4f959453a1659d3d76f384a9c4d76cca32"
+    },
+    {
+      "bytes": 16862,
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410"
+    },
+    {
+      "bytes": 45702,
+      "path": "baseline/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2"
+    },
+    {
+      "bytes": 955,
+      "path": "BASE_INPUTS.json",
+      "sha256": "30b7cb8ff0d07b59aa88b4f978c3992a0b71970bb33129ed76ba7e2a98840aee"
+    }
+  ],
+  "rootfs_free": 2390118400,
+  "source_files_already_bound_to_actual_compile_inputs": true
+}

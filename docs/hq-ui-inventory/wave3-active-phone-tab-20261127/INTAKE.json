@@ -1,0 +1,42 @@
+{
+  "schema": "otzaria.wave3.active-phone-reader-tab.intake.v1",
+  "base": "ec5385e863a478e368c7de47264474a440fd0734",
+  "source_commit": "81ea1a360f027993362a9fa690e15fd2b38a4c52",
+  "paths": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "before_sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410",
+      "after_sha256": "6f68f666864d5a59af705ccc2dafaf0071e549ad2a2115f68dafdd26202108fd",
+      "bytes": 18354
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "before_sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2",
+      "after_sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d",
+      "bytes": 52788
+    }
+  ],
+  "source_only": true,
+  "apple_sdk_typecheck": "NOT_RUN",
+  "app_native": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "membership": "Both existing product files retain their existing membership; no PBX or catalog edit.",
+  "shared_files_untouched": [
+    "MaktabahNativeSceneSession.swift",
+    "MaktabahNativeRoutingComposition.swift",
+    "StudyWorkspaceNavigationAdapter.swift",
+    "ActionNavigationAuthority.swift",
+    "NativeRoutingAcceptanceTests.swift"
+  ],
+  "actual_controls": {
+    "candidate_passed": 26,
+    "candidate_failed": 0,
+    "original_counter_only_passed": 3,
+    "original_counter_only_failed": 1,
+    "apple_target_syntax": 2,
+    "result_path": "/home/ubuntu/.codex/diagnostics/otzaria-wave3-active-phone-tab-controls-20261127/attempt-3/RESULT.json",
+    "result_sha256": "8289c18e5b87e83723f8b97a59bce4cac3ffc82316b5d52390f471564ae4d20e"
+  },
+  "scope": "Actual synchronous Manager/setter/helper/opaque-owner bodies. App-domain objects, Group callback boundary and persistCurrentSession are explicit controls fixtures; complete Adapter/Core/SwiftUI/real persistence/UIKit are not executed.",
+  "remaining": "Original-system hidden phone foreground/background/foreign-parent acceptance on qualified final app; proposal only, no selector edited."
+}
