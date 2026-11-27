@@ -6535,6 +6535,8 @@
 				);
 				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidpovarsky.chavrusatext;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
 				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6596,6 +6598,8 @@
 				);
 				OTZARIA_DEFAULT_DATA_PROFILE = production;
 				PRODUCT_BUNDLE_IDENTIFIER = com.davidpovarsky.chavrusatext;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
 				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				PRODUCT_NAME = Maktabah;
 				PROVISIONING_PROFILE_SPECIFIER = "$(CHAVRUSATEXT_PROFILE_SPECIFIER)";
