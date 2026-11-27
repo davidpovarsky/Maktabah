@@ -1,0 +1,14 @@
+{
+  "authorization": "Root explicit 2026-11-27 message: only three released module-cache directories",
+  "dfAfter": "Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\n/dev/disk3s5   482797652 425603212  11212268    98% 6683324 112122680    6%   /System/Volumes/Data\n",
+  "error": "module 'hashlib' has no attribute 'file_digest'",
+  "errorType": "AttributeError",
+  "freeBytesAfter": 11481362432,
+  "freeBytesBefore": 11482411008,
+  "output": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060246Z",
+  "removed": [],
+  "schema": 1,
+  "status": "FAILED_OR_PARTIAL_NO_AUTOMATIC_RETRY",
+  "utcFinished": "2026-11-27T06:02:46.669432+00:00",
+  "utcStarted": "20261127T060246Z"
+}

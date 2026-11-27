@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060246Z/RESULT.json",
+    "bytes": 752,
+    "sha256": "09b961e7a2aefc8681d7256c9a6fe15aea2505a738075abf044f2cca83ccbfb6",
+    "localFile": "attempt-1-RESULT.json",
+    "storedBytes": 752,
+    "storedSHA256": "09b961e7a2aefc8681d7256c9a6fe15aea2505a738075abf044f2cca83ccbfb6"
+  },
+  {
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060449Z/RESULT.json",
+    "bytes": 1358,
+    "sha256": "6081f0cd111c1fd023f580f209ea1298eeba243069ecdebd534d9b8ff6a92e24",
+    "localFile": "attempt-2-RESULT.json",
+    "storedBytes": 1358,
+    "storedSHA256": "6081f0cd111c1fd023f580f209ea1298eeba243069ecdebd534d9b8ff6a92e24"
+  },
+  {
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060449Z/BEFORE.json",
+    "bytes": 250488,
+    "sha256": "4cfb1f1def0a63e1cd40ca569ec708c53f62f39794e3ff7c3683db84c687edf0",
+    "localFile": "before-inventory.json.gz",
+    "storedBytes": 26871,
+    "storedSHA256": "37e756dc9450673ab012fa42873906ca3bf50a290fdceb9cdde62daf1bd55fed"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "adjacentArtifactsUnchanged": true,
+  "authorization": "Root explicit 2026-11-27 message: only three released module-cache directories",
+  "dfAfter": "Filesystem   1024-blocks      Used Available Capacity iused     ifree %iused  Mounted on\n/dev/disk3s5   482797652 425076892  11738588    98% 6687611 117385880    5%   /System/Volumes/Data\n",
+  "freeBytesAfter": 12020314112,
+  "freeBytesBefore": 11301457920,
+  "output": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/cache-retirement-20261127T060449Z",
+  "removed": [
+    {
+      "allocatedKiBBefore": 78936,
+      "memberCount": 127,
+      "originalInode": 69059376,
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-1/module-cache"
+    },
+    {
+      "allocatedKiBBefore": 188496,
+      "memberCount": 262,
+      "originalInode": 69162831,
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/module-cache"
+    },
+    {
+      "allocatedKiBBefore": 97020,
+      "memberCount": 168,
+      "originalInode": 67222188,
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache"
+    }
+  ],
+  "schema": 1,
+  "status": "THREE_RELEASED_OWNED_MODULE_CACHES_REMOVED",
+  "utcFinished": "2026-11-27T06:04:50.725866+00:00",
+  "utcStarted": "20261127T060449Z"
+}
