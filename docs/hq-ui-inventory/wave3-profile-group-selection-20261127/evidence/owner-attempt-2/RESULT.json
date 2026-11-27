@@ -1,0 +1,222 @@
+{
+  "schema": "otzaria.profile-group.original-source-controls.v1",
+  "started": "2026-11-27T11:56:07.582202+00:00",
+  "native": "NOT_RUN",
+  "status": "FAILED_RETAINED",
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/ActualAdapterBoundary.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/AppMode.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendNavigationAdapter.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/BackendSessionIntegrityRepair.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/ExplicitDomainBoundary.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/GroupOwnerControls.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/LibraryBackendModels.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/ReaderContentLoadCoordinator.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspaceGroupSelectionReservation.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspaceMappingOwnership.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspaceModels.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspacePersistence.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspacePreparedGroupSelection.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspaceStore.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/inputs/StudyWorkspaceTabSelectionReservation.swift",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-2/owner-controls"
+      ],
+      "started": "2026-11-27T11:56:07.584756+00:00",
+      "exit": 1,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "d73e71c1f5f0ad50d3bcdb9357875765bff40d48cd6eecebac024161449c499d"
+    }
+  ],
+  "finished": "2026-11-27T11:56:15.674896+00:00",
+  "swiftVersion": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "inputs": [
+    {
+      "path": "ActualAdapterBoundary.swift",
+      "bytes": 74550,
+      "sha256": "3251f1fb4b1d45d03b1d27b296926be45fd54b401e391677386feabfaf7f8125"
+    },
+    {
+      "path": "AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "ExplicitDomainBoundary.swift",
+      "bytes": 13923,
+      "sha256": "df8db32cce0178e1f90d0f038a2196c9491685cf9ea7b55240bc497a80d9195a"
+    },
+    {
+      "path": "GroupOwnerControls.swift",
+      "bytes": 24889,
+      "sha256": "9bd873b9bc4a5b9ce93ed5a2c42eb273c2bc82e760627a44eebe23d72d8a5248"
+    },
+    {
+      "path": "INPUT_INVENTORY.json",
+      "bytes": 5889,
+      "sha256": "1b21492b299a8b4bd56fa24772364ed7159bebca9e5500634422778841425726"
+    },
+    {
+      "path": "LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 4671,
+      "sha256": "637c054f5f7751382cf0a677004de1b5b93ad3465a384c671787689a39359367"
+    },
+    {
+      "path": "StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17442,
+      "sha256": "6c00480093bdbb455dddc94f3fa771ec68a308c36e4431ce3ad0c9fc53a33a53"
+    },
+    {
+      "path": "StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "generators/Boundary.template.swift",
+      "bytes": 8421,
+      "sha256": "cd4cde1bb92f593a2a65570da86f7b7c3f5a61e4a254b613fd1395c38fd2b379"
+    },
+    {
+      "path": "generators/GroupOwnerControls.swift",
+      "bytes": 24889,
+      "sha256": "9bd873b9bc4a5b9ce93ed5a2c42eb273c2bc82e760627a44eebe23d72d8a5248"
+    },
+    {
+      "path": "generators/generate.py",
+      "bytes": 4876,
+      "sha256": "ed5bde14fc444605b2634deb2336db42874105e3f4e28dc7e87c80692399c077"
+    },
+    {
+      "path": "source/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "source/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17442,
+      "sha256": "6c00480093bdbb455dddc94f3fa771ec68a308c36e4431ce3ad0c9fc53a33a53"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 73990,
+      "sha256": "a3872243046320d3b3baa5203c46573bdd7ce1b0b03eaaa9a418d3675ab9acc4"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "source/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "source/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "source/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45682,
+      "sha256": "f94fc0e166b1c8136f20ece5d48ebcc5ee7b145e367d16da95fd9bc5acbb492a"
+    }
+  ],
+  "generatedBytes": 54896561,
+  "rootfsFree": 3098677248
+}

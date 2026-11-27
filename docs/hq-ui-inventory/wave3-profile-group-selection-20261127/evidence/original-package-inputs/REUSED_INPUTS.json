@@ -1,0 +1,84 @@
+{
+  "sourceBase": "aa5092cd",
+  "sourceJoins": 34,
+  "copies": [
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Intermediates.noindex/OtzariaActionCore.build/Debug-linux-aarch64/OtzariaActionCore-t.build/Objects-normal/aarch64/Modules/OtzariaActionCore.swiftmodule",
+      "name": "OtzariaActionCore.swiftmodule",
+      "bytes": 646244,
+      "sha256": "717d7eb259c903199d8b71197ac636bf5f29a41f2fa4a51f2db12eb3ddc4c78e"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-linux-aarch64/OtzariaUIRouting-t.build/Objects-normal/aarch64/Modules/OtzariaUIRouting.swiftmodule",
+      "name": "OtzariaUIRouting.swiftmodule",
+      "bytes": 304316,
+      "sha256": "b888a2d4dc6bd8cb5ac393df875e4c4a7e4e96a7e78660bb8fc631fe96904d15"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore.o",
+      "name": "OtzariaActionCore.o",
+      "bytes": 8364728,
+      "sha256": "79b905e6ae9a727f7dcd922e5b41f5c51dbafa24ec1fbf8b1ec3bb4f5fa9cd00"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaUIRouting.o",
+      "name": "OtzariaUIRouting.o",
+      "bytes": 3424992,
+      "sha256": "3d75564ec045662e66c819f642aeaa299da1b4f9065b04b72836197d3d622682"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "name": "OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaUIRouting_OtzariaUIRouting.bundle/Info.plist",
+      "name": "OtzariaUIRouting_OtzariaUIRouting.bundle/Info.plist",
+      "bytes": 529,
+      "sha256": "6ad920171aa7411d45de587b80c9c349ebb4fa8f5d88113546a6113c3bac82d1"
+    },
+    {
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/OtzariaUIRouting_OtzariaUIRouting.bundle/catalog-status.json",
+      "name": "OtzariaUIRouting_OtzariaUIRouting.bundle/catalog-status.json",
+      "bytes": 79,
+      "sha256": "3b33f3498fb32e5af369bf040b6478f225d2e872c689fbebf9a9095598e507b2"
+    }
+  ]
+}

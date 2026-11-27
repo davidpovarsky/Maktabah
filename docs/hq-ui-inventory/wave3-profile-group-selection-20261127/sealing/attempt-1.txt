@@ -1,0 +1,1 @@
+Local source-preservation script exited1 before any source comparison was completed: extracted block() helper used hashlib, omitted from exec globals. Product sources were not changed. Corrected only harness globals in next attempt.

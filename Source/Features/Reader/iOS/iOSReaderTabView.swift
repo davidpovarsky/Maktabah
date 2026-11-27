@@ -60,6 +60,7 @@ struct iOSReaderTabView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                .modifier(MaktabahNativeRoutingSurface(kind: .emptyReader))
             }
         }
     }

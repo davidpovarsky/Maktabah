@@ -1,0 +1,15 @@
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-3/inputs/GroupOwnerControls.swift:315:37: error: value of type 'BackendNavigationAdapter' has no member 'loadBackendSessionSnapshot'
+313 |                 }
+314 |             } catch {}
+315 |             try require(try adapter.loadBackendSessionSnapshot(backend: .otzaria) == original, "exact previous bytes restored")
+    |                                     `- error: value of type 'BackendNavigationAdapter' has no member 'loadBackendSessionSnapshot'
+316 |         }
+317 |         await test("synchronous original snapshot rollback restores original missing file") {
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/owner-attempt-3/inputs/GroupOwnerControls.swift:326:37: error: value of type 'BackendNavigationAdapter' has no member 'loadBackendSessionSnapshot'
+324 |                 }
+325 |             } catch {}
+326 |             try require(try adapter.loadBackendSessionSnapshot(backend: .otzaria) == nil, "original absence restored")
+    |                                     `- error: value of type 'BackendNavigationAdapter' has no member 'loadBackendSessionSnapshot'
+327 |         }
+328 |         await test("sync rollback refuses nesting with original async rollback owner") {

@@ -1,0 +1,2 @@
+<unknown>:0: error: precompiled file '/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache/UA7LT4M1IAF2/SwiftShims-1QXSX1OVYZY8L.pcm' was compiled with module cache path '/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache/UA7LT4M1IAF2', but the path is currently '/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache/UA7LT4M1IAF2'
+<unknown>:0: error: missing required module 'SwiftShims'

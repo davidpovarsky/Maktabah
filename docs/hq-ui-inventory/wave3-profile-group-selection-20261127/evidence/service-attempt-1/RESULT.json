@@ -1,0 +1,57 @@
+{
+  "scope": "actual service plus original Core/UIRouting; explicit native callback boundary",
+  "native": "NOT_RUN",
+  "commands": [
+    {
+      "name": "compile",
+      "argv": [
+        "swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "-I",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/original-package-inputs",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/inputs/NativeWorkspaceSelectionIntentService.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/inputs/WorkspaceServiceControls.swift",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/original-package-inputs/OtzariaActionCore.o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/original-package-inputs/OtzariaUIRouting.o",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/service-controls"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "6f9c86952bdff7b5160d1b302ba2215a42d5833b6bb266f3f579517f8c022841",
+      "resourceBundlePath": null
+    },
+    {
+      "name": "controls",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/service-controls"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "5ae944034eab0aeea4c7e44be7b82aa37203448d23c39d4d0d293d4071f829a6",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resourceBundlePath": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/original-package-inputs"
+    }
+  ],
+  "started": "2026-11-27T12:21:05.234870+00:00",
+  "inputs": [
+    {
+      "path": "NativeWorkspaceSelectionIntentService.swift",
+      "bytes": 7204,
+      "sha256": "8ca52f5ed14e9d8a01217fcc8d0e6f04e582b27e7a12afce9a208bcdd45d1dfa"
+    },
+    {
+      "path": "WorkspaceServiceControls.swift",
+      "bytes": 11599,
+      "sha256": "0cd2bd171a2ff0c30f8112d4dd431121ac506e5c25d996653c3f353ae1556f26"
+    }
+  ],
+  "status": "PASS_SOURCE_ONLY",
+  "finished": "2026-11-27T12:21:07.364449+00:00",
+  "generatedBytes": 80597244,
+  "free": 2985766912
+}

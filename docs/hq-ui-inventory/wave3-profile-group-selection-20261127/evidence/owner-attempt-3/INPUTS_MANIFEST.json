@@ -1,0 +1,183 @@
+{
+  "rawJSONBytes": 806134,
+  "rawJSONSHA256": "b49c1d4cefa2eb65fd709f7209228ae20a2477fd2a4b047b16a792681bfb6fc9",
+  "gzipBytes": 191190,
+  "gzipSHA256": "366a23f8cd5e88caa88dfbdb418385f40fad01f81a7ed27d612192659d14986a",
+  "files": [
+    {
+      "path": "ActualAdapterBoundary.swift",
+      "bytes": 77564,
+      "sha256": "b2896bcdd84d79186119cf84aa20fbed433302fe6b96537fe0ac28f5a14342aa"
+    },
+    {
+      "path": "AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "ExplicitDomainBoundary.swift",
+      "bytes": 19901,
+      "sha256": "1c38c9f30b66589a4ef9737468271a1bb25549d8a75627eea4a5d31ff2586cd0"
+    },
+    {
+      "path": "GroupOwnerControls.swift",
+      "bytes": 25154,
+      "sha256": "77e419e12159ce5d3badbf069a8e438e5a252c4fac13c6d6c0ce538f57ac6da0"
+    },
+    {
+      "path": "INPUT_INVENTORY.json",
+      "bytes": 5945,
+      "sha256": "52ab9b85fd18536eaba430da8e11379c7f63935bcbef929d2c06cff385ee4155"
+    },
+    {
+      "path": "LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 5002,
+      "sha256": "06ae16a54b67c92f55e0663058b6ad7ea96be63e9dc1c11d2851d1b640f74c3f"
+    },
+    {
+      "path": "StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "generator/Boundary.template.swift",
+      "bytes": 8425,
+      "sha256": "79824b21b156345b57a22744324e0c31131bca70b69423704e89cedb4cee6c0e"
+    },
+    {
+      "path": "generator/GroupOwnerControls.swift",
+      "bytes": 25154,
+      "sha256": "77e419e12159ce5d3badbf069a8e438e5a252c4fac13c6d6c0ce538f57ac6da0"
+    },
+    {
+      "path": "generator/generate.py",
+      "bytes": 5052,
+      "sha256": "4518f31dbfbdd0fa21743ba1b88c129739be9fc9703d540cc1f48eb70f6aa033"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/Navigation/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/Navigation/ReaderContentLoadCoordinator.swift",
+      "bytes": 4610,
+      "sha256": "ad167b13a3bbb518ad5a0e4b521cdf00313028b7f2109a597b1bedcede3c3ed0"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 17686,
+      "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 77004,
+      "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "raw-source/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "raw-source/Source/Core/AppCoordinator/AppMode.swift",
+      "bytes": 304,
+      "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+    },
+    {
+      "path": "raw-source/Source/LibraryBackend/BackendCoordinator.swift",
+      "bytes": 36198,
+      "sha256": "830076552c95f05093dbf85ff6629f6a834e3bba8c6a9300631cdcfb11439f12"
+    },
+    {
+      "path": "raw-source/Source/LibraryBackend/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "raw-source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45682,
+      "sha256": "f94fc0e166b1c8136f20ece5d48ebcc5ee7b145e367d16da95fd9bc5acbb492a"
+    }
+  ]
+}

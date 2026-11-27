@@ -1,0 +1,133 @@
+{
+  "schema": "otzaria.profile-group.source-packet-result.v1",
+  "recordedUTC": "2026-11-27T12:46:29.801450+00:00",
+  "base": "aa5092cd9452c242a21b49442398e4c645a0d757",
+  "sourceFiles": 14,
+  "runs": [
+    {
+      "name": "owner-attempt-1",
+      "status": "FAILED_RETAINED",
+      "resultSHA256": "0dfc561c3f6b7f2c7bf00a65135cdee17c851344c3e745fae96533463eefc9fd",
+      "inputFiles": 35,
+      "snapshotSHA256": "1895807b7d0ef435fb91e806abdc808b324d9c2d518640f8df54a7df6b2dfe61",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "name": "owner-attempt-2",
+      "status": "FAILED_RETAINED",
+      "resultSHA256": "9072db0314133f7c2404047726597b2303d612c6d49ae908d053ab54c2e7f931",
+      "inputFiles": 35,
+      "snapshotSHA256": "0591eda19430201d17c465beb3769d5a2c42213bb7f6c9d7a3232503a0899039",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "name": "owner-attempt-3",
+      "status": "FAILED_RETAINED",
+      "resultSHA256": "52f04423db79bbd2413780e876bdefff3f3ade5e9cd5ee48d80c763024556635",
+      "inputFiles": 35,
+      "snapshotSHA256": "366a23f8cd5e88caa88dfbdb418385f40fad01f81a7ed27d612192659d14986a",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "name": "owner-attempt-4",
+      "status": "PASS_SOURCE_ONLY",
+      "resultSHA256": "d10ea8244e28eb311791019c4de1b73fe983914dc8b3765429cf818f780ceac5",
+      "inputFiles": 35,
+      "snapshotSHA256": "48a96acd4b4b26ad33198d9ce2ee47245926da47ca772bb1feaee4da13982bd5",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 0
+        },
+        {
+          "name": "controls",
+          "exit": 0
+        }
+      ]
+    },
+    {
+      "name": "binding-attempt-1",
+      "status": "FAILED_RETAINED",
+      "resultSHA256": "230c437a86f3a5f52c51572b16acba3edc0b5e3e0d0ebf9a271629aec3281b67",
+      "inputFiles": 51,
+      "snapshotSHA256": "6129f6a84431f78675ad8381bd04f9992af36c0ee0afa2467f85ab4e1b72617f",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 1
+        }
+      ]
+    },
+    {
+      "name": "binding-attempt-2",
+      "status": "PASS_SOURCE_ONLY",
+      "resultSHA256": "02340853ea5057d663b6450e9896fd9fa26b03071ad92bf94f210f26b3376184",
+      "inputFiles": 51,
+      "snapshotSHA256": "a246a148493a64825f5f2c999859572aa2da312fee05f8077e2ed4a612a0fefe",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 0
+        },
+        {
+          "name": "controls",
+          "exit": 0
+        }
+      ]
+    },
+    {
+      "name": "service-attempt-1",
+      "status": "PASS_SOURCE_ONLY",
+      "resultSHA256": "f64454586d4f911ff38eec4d7ca26656a0e2349ad1c765a805686f702f6043af",
+      "inputFiles": 2,
+      "snapshotSHA256": "7f53c12c5329db7db82dcfb30c79b1147f699c68468007e9f8f9fc661ea160f7",
+      "commands": [
+        {
+          "name": "compile",
+          "exit": 0
+        },
+        {
+          "name": "controls",
+          "exit": 0
+        }
+      ]
+    }
+  ],
+  "actualCounts": {
+    "ownerAttempt4": {
+      "passed": 32,
+      "failed": 0
+    },
+    "combinedBindingAttempt2": {
+      "passed": 56,
+      "failed": 0,
+      "includesOwner32": true
+    },
+    "serviceAttempt1": {
+      "passed": 46,
+      "failed": 0
+    }
+  },
+  "native": "NOT_RUN",
+  "appSDK": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "composition": "Root-owned separate draft2b1a991b",
+  "controlsRoot": "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127",
+  "controlGeneratedBytes": 94030317,
+  "rootfsFree": 2844413952
+}

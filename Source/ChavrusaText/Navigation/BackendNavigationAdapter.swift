@@ -47,38 +47,63 @@ final class BackendNavigationAdapter: BackendSnapshotStaging, @unchecked Sendabl
     /// Keep those writes in memory until all participants have validated.
     @MainActor
     func withSnapshotRollback(_ operation: () async throws -> Void) async throws {
+        try beginSnapshotRollback()
+        do {
+            try await operation()
+            finishSnapshotRollback()
+        } catch {
+            throw restoreSnapshotRollback(after: error)
+        }
+    }
+
+    /// The native Core apply boundary cannot suspend. This scope uses exactly
+    /// the same file transaction as the original asynchronous backend owner.
+    /// It ends at publication, before any native visibility wait.
+    @MainActor
+    func withSynchronousSnapshotRollback(_ operation: () throws -> Void) throws {
+        try beginSnapshotRollback()
+        do {
+            try operation()
+            finishSnapshotRollback()
+        } catch {
+            throw restoreSnapshotRollback(after: error)
+        }
+    }
+
+    private func beginSnapshotRollback() throws {
         try lock.withSnapshotLock {
             guard stagedSnapshots == nil, originalSnapshots.isEmpty else {
                 throw BackendTransitionError.transitionSuperseded
             }
             stagedSnapshots = [:]
         }
-        do {
-            try await operation()
-            lock.withSnapshotLock { stagedSnapshots = nil; originalSnapshots = [:]; flushedBackends = [] }
-        } catch {
-            let originals = lock.withSnapshotLock { () -> [BackendID: OriginalSnapshot] in
-                stagedSnapshots = nil
-                return originalSnapshots.filter { flushedBackends.contains($0.key) }
-            }
-            defer { lock.withSnapshotLock { originalSnapshots = [:]; flushedBackends = [] } }
-            // A flush may have written earlier files before another write or
-            // the workspace transaction failed. Restore exact previous bytes.
-            var restorationError: Error?
-            for (backend, original) in originals {
-                do {
-                    switch original {
-                    case .bytes(let data): try saveBackendSessionSnapshot(backend: backend, sessionData: data)
-                    case .missing:
-                        _ = try clearBackendSessionSnapshot(backend: backend)
-                    }
-                } catch {
-                    restorationError = restorationError ?? error
-                }
-            }
-            if let restorationError { throw restorationError }
-            throw error
+    }
+
+    private func finishSnapshotRollback() {
+        lock.withSnapshotLock { stagedSnapshots = nil; originalSnapshots = [:]; flushedBackends = [] }
+    }
+
+    private func restoreSnapshotRollback(after failure: Error) -> Error {
+        let originals = lock.withSnapshotLock { () -> [BackendID: OriginalSnapshot] in
+            stagedSnapshots = nil
+            return originalSnapshots.filter { flushedBackends.contains($0.key) }
         }
+        defer { lock.withSnapshotLock { originalSnapshots = [:]; flushedBackends = [] } }
+        // A flush may have written earlier files before another write or
+        // the workspace transaction failed. Restore exact previous bytes.
+        var restorationError: Error?
+        for (backend, original) in originals {
+            do {
+                switch original {
+                case .bytes(let data): try saveBackendSessionSnapshot(backend: backend, sessionData: data)
+                case .missing:
+                    _ = try clearBackendSessionSnapshot(backend: backend)
+                }
+            } catch {
+                restorationError = restorationError ?? error
+            }
+        }
+        return restorationError ?? failure
     }
 
     func flushStagedSnapshots() throws {

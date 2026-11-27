@@ -1,0 +1,33 @@
+PASS warm group retains actual original Readers and only selects saved active tab
+PASS profile uses actual first ordered group and changes Store profile together
+PASS same group invokes original no-op selectTab without selectedBook write
+PASS empty group runs original close loop and exact final overview false
+PASS already empty original group remains original empty without invented selection
+PASS qualified cold group uses actual hydrate state and one original issued content token
+PASS legacy unqualified cold route refuses before Store or native publication
+PASS original UI foreign group refuses without silent backend or document change
+PASS typed foreign group refuses before resolver preparation
+PASS profile first-group reorder during catalog await revokes retained source
+PASS inactive saved group A-B-A remains revoked
+PASS backend A-B-A even with unchanged generation revokes during prepare
+PASS equal foreign backend publication is not original terminal clear
+PASS foreign selectedBook equal publication revokes before apply
+PASS foreign overview A-B-A publication revokes before apply
+PASS equal foreign native tabs publication revokes
+PASS book publication overflow refuses before any Store write
+PASS Store revision overflow refuses native preparation
+PASS original flush callback revalidation precedes first persistent group write
+PASS post-Store observer change prevents first native tab installation
+PASS release during original outgoing-state capture prevents Store write
+PASS release during original load prevents later original selectTab
+PASS foreign token reentry during original load prevents later selection
+PASS original session callback release remains uncertain after native effect
+PASS owned terminal clear rejects nested foreign publication
+PASS exact ordinary postcommit checkpoint preserves one retained source
+PASS foreign postcommit no-op Store transaction still revokes
+PASS postcommit real content-token replacement revokes
+PASS normal original UI selection stays executable after native owner release
+PASS synchronous original snapshot rollback restores exact existing bytes
+PASS synchronous original snapshot rollback restores original missing file
+PASS sync rollback refuses nesting with original async rollback owner
+RESULT {"failed":0,"native":"NOT_RUN","passed":32,"scope":"actual source + explicit domain\/Apple boundary controls"}

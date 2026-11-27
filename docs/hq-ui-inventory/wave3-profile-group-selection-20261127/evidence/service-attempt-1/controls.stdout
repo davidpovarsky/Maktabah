@@ -1,0 +1,47 @@
+PASS profile and group are distinct finite entity kinds
+PASS profile identity survives original first ordered group change
+PASS group entity retains exact original group UUID
+PASS group identity retains original profile membership
+PASS actual original scene qualifies selection
+PASS current original backend qualifies selection
+PASS display title is not executable authority
+PASS group identity does not freeze a stale selected document
+PASS profile query cannot return group entities
+PASS group query preserves same-name ambiguity
+PASS exact live identifier query retains order
+PASS foreign entity kind is never silently reinterpreted
+PASS missing original entity is not synthesized
+PASS empty group uses exact declared original target with no synthetic tab
+PASS cached profile resolves actual first group freshly before first await
+PASS removed group refuses before navigation
+PASS profile token cannot invoke group action
+PASS duplicate actual identifiers fail closed
+PASS empty title is not invented by service
+PASS bounded unique query input
+PASS bounded unique query input
+PASS bounded unique query input
+PASS oversize query is not truncated
+PASS Hebrew exact match precedes broader title matches
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS noncompleted original outcome is not relabelled success
+PASS private original selection does not expand public URL schema
+PASS group/profile/empty exact route passes actual original registry and receipt validation
+PASS group/profile/empty exact route passes actual original registry and receipt validation
+PASS group/profile/empty exact route passes actual original registry and receipt validation
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 1 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 2 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 3 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 4 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 5 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 6 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 7 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 8 refused with receipt retained
+PASS wrong request/scene/tab/group/profile/root/state/snapshot/revision 9 refused with receipt retained
+PASS cancellation at observed ACK handoff retains actual receipt
+PASS cancelled action is not silently substituted
+{"failed":0,"native":"NOT_RUN","passed":46,"scope":"actual service with original Core\/UIRouting modules; explicit native callback boundary"}

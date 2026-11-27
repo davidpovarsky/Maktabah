@@ -1,0 +1,37 @@
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/inputs/WorkspaceServiceControls.swift:67:17: warning: 'catalog' mutated after capture by sendable closure
+ 30 |         check(g.id == selection(title: "Renamed title").id, "display title is not executable authority")
+ 31 |         check(g.id == selection(tabID: UUID()).id, "group identity does not freeze a stale selected document")
+ 32 |         var catalog = [p, g, empty], calls = 0, selected: Service.Selection?
+    |             `- note: variable defined here
+ 33 |         var outcome = UISceneAcknowledgement.requiresForeground
+ 34 |         let service = Service(discover: { catalog }, navigate: { target, _ in
+    |                                         | `- note: capturing use
+    |                                         `- note: variable captured by sendable closure
+ 35 |             calls += 1; selected = target; return outcome
+ 36 |         })
+    :
+ 65 |         catalog = [selection(title: "שבת"), selection(groupID: UUID(), title: "שבת א")]
+ 66 |         check(try service.selections(kind: .group, matching: "שבת").count == 1, "Hebrew exact match precedes broader title matches")
+ 67 |         catalog = [g]
+    |                 `- warning: 'catalog' mutated after capture by sendable closure
+ 68 |         let failure = ActionFailure(code: "original_failure", message: "Original failure")
+ 69 |         for value in [UISceneAcknowledgement.queued(handle: "original"), .requiresForeground,
+
+/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/service-attempt-1/inputs/WorkspaceServiceControls.swift:71:21: warning: 'outcome' mutated after capture by sendable closure
+ 31 |         check(g.id == selection(tabID: UUID()).id, "group identity does not freeze a stale selected document")
+ 32 |         var catalog = [p, g, empty], calls = 0, selected: Service.Selection?
+ 33 |         var outcome = UISceneAcknowledgement.requiresForeground
+    |             `- note: variable defined here
+ 34 |         let service = Service(discover: { catalog }, navigate: { target, _ in
+    |                                                                `- note: variable captured by sendable closure
+ 35 |             calls += 1; selected = target; return outcome
+    |                                                   `- note: capturing use
+ 36 |         })
+ 37 |         check(try service.selections(kind: .profile) == [p], "profile query cannot return group entities")
+    :
+ 69 |         for value in [UISceneAcknowledgement.queued(handle: "original"), .requiresForeground,
+ 70 |                       .requiresBackendSwitch(.sefaria), .notSupported(failure), .staleState(failure), .cancelled, .failed(failure)] {
+ 71 |             outcome = value
+    |                     `- warning: 'outcome' mutated after capture by sendable closure
+ 72 |             check(try await service.open(kind: .group, identifier: g.id) == value, "noncompleted original outcome is not relabelled success")
+ 73 |         }
