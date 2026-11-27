@@ -1,0 +1,268 @@
+{
+  "results": [
+    {
+      "artifacts": [
+        {
+          "bytes": 1396,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftdoc",
+          "sha256": "27037a9040d10260bb2ebb884e622b60c1cf7031cf7d01fbbf5dfa95b8143f24"
+        },
+        {
+          "bytes": 30536,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftmodule",
+          "sha256": "0f63c31831844509d14200d6c3c0640cb263f586a647644589a5302d3b5a91d9"
+        },
+        {
+          "bytes": 3136,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+          "sha256": "6d71a827c9ed4453b889a08c12c93c33b0b48abe4caccd396b6a82db7d5ddabc"
+        },
+        {
+          "bytes": 35560,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftdoc",
+          "sha256": "b90be849e52f54b79428e03c78030896087e3f47a6c55b13b2379945747487f6"
+        },
+        {
+          "bytes": 696404,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftmodule",
+          "sha256": "da36f958ad8ca6807046efd469f5aa035d9189210447004c04b8fb4547fa99a0"
+        },
+        {
+          "bytes": 163020,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftsourceinfo",
+          "sha256": "871d95e9f6c4aa881277ef57f28919dfdd6e184978dedc646aae759c685bd460"
+        },
+        {
+          "bytes": 43332,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-catalog.v1.json",
+          "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+        },
+        {
+          "bytes": 1510,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-request.v1.schema.json",
+          "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+        },
+        {
+          "bytes": 3669,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-result.v1.schema.json",
+          "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+        },
+        {
+          "bytes": 95749,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-acceptance-cases.v1.json",
+          "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+        },
+        {
+          "bytes": 36033,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-capability-matrix.v1.json",
+          "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+        },
+        {
+          "bytes": 10140,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/examples.v1.json",
+          "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+        },
+        {
+          "bytes": 99120,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libChavrusaUIRoutingHost.so",
+          "sha256": "0468f373940b360a0841e0577859c61632a54ddf178e792b121915081b6d0eb0"
+        },
+        {
+          "bytes": 2975752,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libOtzariaActionCore.so",
+          "sha256": "75fa75c54862cb21b8d3f7744a881f1e1ee2e6069f667b342cfdab0e427edd4e"
+        },
+        {
+          "bytes": 333,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/resource_bundle_accessor.swift",
+          "sha256": "0b7abc644019bfd190aa0a9adf9354181bc2992d32b555eba4985b9db3d0fb91"
+        }
+      ],
+      "path": "RESULT.json",
+      "sha256": "cee5efbe86c810d61917de9bb57f81725a25725c108a25242bbd32eeca9bd59d",
+      "status": "FAILED",
+      "tool": {
+        "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "bytes": 35095592,
+        "device": 2064,
+        "inode": 11193,
+        "mtimeNs": 1795117971000000000,
+        "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+        "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "bytes": 1396,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftdoc",
+          "sha256": "27037a9040d10260bb2ebb884e622b60c1cf7031cf7d01fbbf5dfa95b8143f24"
+        },
+        {
+          "bytes": 30536,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftmodule",
+          "sha256": "0f63c31831844509d14200d6c3c0640cb263f586a647644589a5302d3b5a91d9"
+        },
+        {
+          "bytes": 3136,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+          "sha256": "6d71a827c9ed4453b889a08c12c93c33b0b48abe4caccd396b6a82db7d5ddabc"
+        },
+        {
+          "bytes": 35560,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftdoc",
+          "sha256": "b90be849e52f54b79428e03c78030896087e3f47a6c55b13b2379945747487f6"
+        },
+        {
+          "bytes": 696404,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftmodule",
+          "sha256": "da36f958ad8ca6807046efd469f5aa035d9189210447004c04b8fb4547fa99a0"
+        },
+        {
+          "bytes": 163020,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftsourceinfo",
+          "sha256": "871d95e9f6c4aa881277ef57f28919dfdd6e184978dedc646aae759c685bd460"
+        },
+        {
+          "bytes": 43332,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-catalog.v1.json",
+          "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+        },
+        {
+          "bytes": 1510,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-request.v1.schema.json",
+          "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+        },
+        {
+          "bytes": 3669,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-result.v1.schema.json",
+          "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+        },
+        {
+          "bytes": 95749,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-acceptance-cases.v1.json",
+          "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+        },
+        {
+          "bytes": 36033,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-capability-matrix.v1.json",
+          "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+        },
+        {
+          "bytes": 10140,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/examples.v1.json",
+          "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+        },
+        {
+          "bytes": 99432,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-baseline-attempt2",
+          "sha256": "48873480a9a23041ac3fcdc70e8874cb5506add9a297ae67a673e92187ae5017"
+        },
+        {
+          "bytes": 99408,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-candidate-attempt2",
+          "sha256": "4321057fad33dacca6eaa04b92838125eb065370d17f76ee767b7c43db91d1df"
+        },
+        {
+          "bytes": 99120,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libChavrusaUIRoutingHost.so",
+          "sha256": "0468f373940b360a0841e0577859c61632a54ddf178e792b121915081b6d0eb0"
+        },
+        {
+          "bytes": 2975752,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libOtzariaActionCore.so",
+          "sha256": "75fa75c54862cb21b8d3f7744a881f1e1ee2e6069f667b342cfdab0e427edd4e"
+        },
+        {
+          "bytes": 333,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/resource_bundle_accessor.swift",
+          "sha256": "0b7abc644019bfd190aa0a9adf9354181bc2992d32b555eba4985b9db3d0fb91"
+        },
+        {
+          "bytes": 301368,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls-attempt2",
+          "sha256": "b3fbfe2a9a9bdfa80a4ce469ab1940f15ecbbd285ea04bf21062394dbd871ec2"
+        }
+      ],
+      "path": "RESULT-attempt2.json",
+      "sha256": "adf3bdfb240436c4b43ce3abea55e12fb4ff36273697568390669abde208983f",
+      "status": "PORTABLE_COMPONENT_CONTROLS_PASSED_APP_NATIVE_NOT_RUN",
+      "tool": {
+        "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "bytes": 35095592,
+        "device": 2064,
+        "inode": 11193,
+        "mtimeNs": 1795117971000000000,
+        "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+        "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "bytes": 1396,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/ChavrusaUIRoutingHost.swiftdoc",
+          "sha256": "27037a9040d10260bb2ebb884e622b60c1cf7031cf7d01fbbf5dfa95b8143f24"
+        },
+        {
+          "bytes": 30536,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/ChavrusaUIRoutingHost.swiftmodule",
+          "sha256": "0f63c31831844509d14200d6c3c0640cb263f586a647644589a5302d3b5a91d9"
+        },
+        {
+          "bytes": 3148,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+          "sha256": "e9bc6c369720ab8e90f066ce4866a04a09236c7a7fe372732b6d818ecdc1aaec"
+        },
+        {
+          "bytes": 36672,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/OtzariaActionCore.swiftdoc",
+          "sha256": "9e443f99d39c72f95b5a2619f3bff6995125163bb51e071993d70ae7dc9e1180"
+        },
+        {
+          "bytes": 697588,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/OtzariaActionCore.swiftmodule",
+          "sha256": "12f0f34247f24517e3dfc7f3580b3da0edf335cc4ccb9ba709ef12f10fc07963"
+        },
+        {
+          "bytes": 163852,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/OtzariaActionCore.swiftsourceinfo",
+          "sha256": "b065e6e3b87c5e241eb66dcddade9d9101e1c2fc383b3f12d24233421b7e4a11"
+        },
+        {
+          "bytes": 106952,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/foreign-outcome-baseline",
+          "sha256": "0cac2272ee2b50fedb6549cbeb4cbbb1b60b58d157ae4fb38d6c6a334121a86d"
+        },
+        {
+          "bytes": 277224,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/foreign-outcome-controls",
+          "sha256": "7301937e1edd2ef8ce07b5075fdb0bf2fd76aba066b378b68b954aee0526f82b"
+        },
+        {
+          "bytes": 100648,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/libChavrusaUIRoutingHost.so",
+          "sha256": "20737e930376834d5e56b831f376b0765a8278aa80a13819dfefb82d144ce6c3"
+        },
+        {
+          "bytes": 2977440,
+          "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-2/output/libOtzariaActionCore.so",
+          "sha256": "d33c8e25a6f1c0722102c0897b654d719b72517d105b0c2aa0ac83412b375383"
+        }
+      ],
+      "path": "revision-2/RESULT.json",
+      "sha256": "6c88e30487b8a76f005858751582ba1b25f456df2c8d6c49c8912a3c607c74d7",
+      "status": "ATTRIBUTION_CONTROLS_PASSED_APP_NATIVE_NOT_RUN",
+      "tool": {
+        "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "bytes": 35095592,
+        "device": 2064,
+        "inode": 11193,
+        "mtimeNs": 1795117971000000000,
+        "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+        "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+      }
+    }
+  ],
+  "scope": "ACTUAL_COMPILED_OUTPUTS_RETAINED_ON_ORACLE_ROOTFS_NOT_EMBEDDED_IN_GIT"
+}

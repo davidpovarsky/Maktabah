@@ -1,0 +1,16 @@
+{
+  "alternates": "/mnt/development/projects/git-mirrors/Maktabah.git/objects",
+  "authorIdentitySourceCommit": "0b5b9375d8462020c7c118d5ab3ff650d1cbf417",
+  "base": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+  "branch": "codex/otzaria-search-continuation-20261127",
+  "dataWrites": false,
+  "gitOptionalLocks": false,
+  "originalIntegratedBase": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "ownedIncrementalMaximumBytes": 41943040,
+  "remotePublication": "ROOT_REVIEW_AND_PUBLICATION_AFTER_THIS_COMMIT",
+  "repository": "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3/repository",
+  "rootfsMinimumBytes": 1073741824,
+  "rootfsRoot": "/tmp/otzaria-search-continuation-publication-4ea15e70e75444b89de36cd93858640f3",
+  "scope": "ISOLATED_ORACLE_ROOTFS_GIT_PUBLICATION_WITH_READ_ONLY_DATA_ALTERNATES",
+  "sourceManifestSHA256": "471e588de928383789a52d311dcd93a37a2e8399f44419d285e8d48930d878ee"
+}

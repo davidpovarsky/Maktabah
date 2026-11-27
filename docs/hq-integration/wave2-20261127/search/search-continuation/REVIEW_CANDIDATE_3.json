@@ -1,0 +1,38 @@
+{
+  "baseline": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "scope": "SOURCE_REVIEW_ONLY_NOT_APP_BUILD_OR_NATIVE",
+  "files": {
+    "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift": {
+      "bytes": 3723,
+      "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift": {
+      "bytes": 43046,
+      "sha256": "3cf002b0ba180b0f592f1c905cbd73910cb0418de3ae9e81a7bb5472d4404c84"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift": {
+      "bytes": 7947,
+      "sha256": "df9d0ff4eecc56b7b936ec78bbbcebbec7f290b6bbb7f159b1a1359b8ff4b057"
+    },
+    "Source/Features/Search/iOS/SearchModeView.swift": {
+      "bytes": 12630,
+      "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e"
+    },
+    "Source/Features/Search/iOS/SearchResultsListView.swift": {
+      "bytes": 22981,
+      "sha256": "826ff7b642ebe62366d44ecb1906ffebcc8e994c2a7d2bbd8d257999540a8f42"
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift": {
+      "bytes": 9635,
+      "sha256": "538c4a63a70c3ef39ea0e125d31ee62eef96516794bd22c95db11ce212acd8fd"
+    },
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": {
+      "bytes": 38402,
+      "sha256": "252849ada7ce942c1d934e35f5ee486e636ea49f00663308e99bbff37185b60f"
+    }
+  },
+  "reviewChanges": [
+    "retained ownership check permits own pending UIKit layout; all admission/final evidence still require current layout",
+    "fresh qualified observation retires expired old outer authority token rather than permanently retaining it"
+  ]
+}

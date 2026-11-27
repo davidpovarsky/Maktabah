@@ -16,6 +16,7 @@ struct SearchResultsListView: View {
     var isLoadingMore: Bool = false
     var hasMore: Bool = false
     var automaticallyLoadsMore: Bool = true
+    var nativeContinuation: MaktabahNativeSearchContinuationSource? = nil
     var onLoadMore: (() -> Void)? = nil
     var onSearchInBook: ((SearchResultItem) -> Void)? = nil
     var query: String = ""
@@ -56,6 +57,7 @@ struct SearchResultsListView: View {
     }
 
     var body: some View {
+        ScrollViewReader { proxy in
         List {
             let groups = groupedResults
             ForEach(Array(groups.enumerated()), id: \.element.id) { index, group in
@@ -65,6 +67,7 @@ struct SearchResultsListView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
                     Button {
+                        nativeContinuation?.originalPresentationWillChange()
                         withAnimation(.snappy(duration: 0.28, extraBounce: 0)) {
                             if expandedResultIDs.remove(group.id) == nil {
                                 expandedResultIDs.insert(group.id)
@@ -79,7 +82,10 @@ struct SearchResultsListView: View {
                                 versionCount: group.versions.count,
                                 selectedVersionIndex: Binding(
                                     get: { selectedVersionIndex[group.id] ?? 0 },
-                                    set: { selectedVersionIndex[group.id] = $0 }
+                                    set: {
+                                        nativeContinuation?.originalPresentationWillChange()
+                                        selectedVersionIndex[group.id] = $0
+                                    }
                                 ),
                                 versions: group.versions,
                                 keywords: keywords,
@@ -96,6 +102,13 @@ struct SearchResultsListView: View {
                     .accessibilityLabel(String(localized: "Preview full search result"))
                     .accessibilityValue(isExpanded ? "Expanded" : "Collapsed")
                     .accessibilityIdentifier("search-result-preview-toggle-\(item.stableID)")
+                    .background {
+                        if let nativeContinuation {
+                            MaktabahSearchContinuationRowHost(source: nativeContinuation,
+                                identity: try? MaktabahSearchContinuationIdentity.bytes(item),
+                                group: group.id, expanded: isExpanded)
+                        }
+                    }
 
                     if isExpanded {
                         SearchResultContextPreview(item: item) {
@@ -131,7 +144,8 @@ struct SearchResultsListView: View {
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 .id(group.id)
                 .onAppear {
-                    if automaticallyLoadsMore, index == groups.count - 5, hasMore, !isLoadingMore {
+                    if automaticallyLoadsMore, nativeContinuation?.permitsOriginalAutomaticPaging != false,
+                       index == groups.count - 5, hasMore, !isLoadingMore {
                         onLoadMore?()
                     }
                 }
@@ -165,6 +179,14 @@ struct SearchResultsListView: View {
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .background(Color.appBackground)
+        .background {
+            if let nativeContinuation {
+                MaktabahSearchContinuationListAdapter.host(source: nativeContinuation,
+                    results: results, groups: groupedResults,
+                    selected: $selectedVersionIndex, expanded: $expandedResultIDs, proxy: proxy)
+            }
+        }
+        }
     }
 }
 

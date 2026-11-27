@@ -1,0 +1,486 @@
+{
+  "resultsBinding": [
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift:567:@MainActor final class MaktabahNativeSearchResultsBinding {"
+  ],
+  "pagingOwners": [],
+  "backendSearch": [],
+  "nativeRowHosts": [
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:122:    private let layoutRevision: UInt64",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:131:        suppliedViewID = nil; layoutRevision = 0; self.componentAvailable = componentAvailable",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:137:    /// not a layout publication and must not manufacture layoutRevision.",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:139:         viewID: UUID, layoutRevision: UInt64,",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:143:        suppliedViewID = viewID; self.layoutRevision = layoutRevision; self.componentAvailable = componentAvailable",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:154:            .onChange(of: layoutRevision) { _, _ in render() }",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift:159:        owner?.render(viewID: viewID, layoutRevision: layoutRevision, reveal: revealPhase)",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:158:        var layoutRevision: UInt64 = 0",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:403:        guard original.layoutRevision < .max else { retire(); return }",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:404:        original.layoutRevision += 1",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift:428:        owner.render(viewID: original.token, layoutRevision: original.layoutRevision) { _, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift:245:                viewID: presentation.viewID, layoutRevision: presentation.layoutRevision,",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift:346:    private(set) var layoutRevision: UInt64 = 0",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift:391:        layoutRevision &+= 1",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift:405:        layoutRevision &+= 1",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift:160:        render(viewID: viewID, layoutRevision: 0) { anchor, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift:169:    public func render(viewID: UUID, layoutRevision: UInt64,",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift:176:            guard layoutRevision > previous else { return }",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift:195:            value.awaitingLayoutAfter = layoutRevision",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:201:        owner.render(viewID: view, layoutRevision: 7) { target, phase in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:208:            owner.render(viewID: view, layoutRevision: revision) { _, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:213:        owner.render(viewID: view, layoutRevision: 8) { target, phase in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:230:            owner.render(viewID: view, layoutRevision: 0) { target, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:234:            owner.render(viewID: view, layoutRevision: 1) { _, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:249:        owner.render(viewID: old, layoutRevision: 0) { target, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:257:            owner.render(viewID: view, layoutRevision: 100) { _, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:272:            owner.render(viewID: view, layoutRevision: revision) { target, phase in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:296:        owner.render(viewID: view, layoutRevision: 0) { _, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:309:        owner.render(viewID: view, layoutRevision: 0) { target, _ in",
+    "15d283aa0ccbbfe6966f26a2c182810cb39fdafa:Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift:311:            owner.render(viewID: view, layoutRevision: 1) { _, _ in"
+  ],
+  "searchExtensions": [
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Library.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Observers.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+Restoration.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+SavedResults.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+iOS.swift",
+    "Source/Features/Search/ViewModel/Extensions/Search+macOS.swift",
+    "Source/Features/Search/ViewModel/SearchHitResolver.swift",
+    "Source/Features/Search/ViewModel/SearchViewModel.swift"
+  ],
+  "boardScan": {
+    "sha256": "5b36b294837af6ea3657db399789851f74ce52f22694ce672b16e5b724741e04",
+    "totalLines": 216,
+    "lines": [
+      {
+        "line": 2,
+        "text": ""
+      },
+      {
+        "line": 3,
+        "text": "This is a living working-memory document for this repository."
+      },
+      {
+        "line": 4,
+        "text": "It is intentionally lightweight. Humans and coding agents should update it when useful discoveries, ideas, plans, optimizations, problems, or follow-up work arise during normal development."
+      },
+      {
+        "line": 5,
+        "text": "Do not turn this into a duplicate issue tracker or a dump of temporary thoughts."
+      },
+      {
+        "line": 6,
+        "text": ""
+      },
+      {
+        "line": 7,
+        "text": "## Inbox"
+      },
+      {
+        "line": 26,
+        "text": "- The existing original-editor StageB journey is a Debug/simulator qualification using an ordinary page in an owned localOnly account. It does not enable the normal production annotation entry, dedicated Annotation visibility or cross-app exchange. A real user account's original editor writes before Host Save, so the ordinary Otzaria UI requires an owned localOnly draft lifecycle with canonical SQLite body/CAS, explicit source retirement and recovery; keep cross-app delivery separate. Implementation is in progress under docs/hq-integration/production-annotation-lifecycle-20261124 (2026-11-24)."
+      },
+      {
+        "line": 27,
+        "text": ""
+      },
+      {
+        "line": 28,
+        "text": "- Guided-tour research: keep explicit tutorial execution on the existing Core/Registry and use native scene-bound coaching; TipKit is for contextual feature discovery. Beacon a177c6fa uses a global coordinator, the first connected scene and automatic missing-target skips, so it is not safe to adopt as-is for this app's exact-scene/receipt contract. No tour SDK or product code was added. See `docs/hq-integration/guided-tours-20261120/GUIDED_TOURS_DECISION.md` for the implementation decision and remaining native/RTL/accessibility gates (2026-11-19)."
+      },
+      {
+        "line": 29,
+        "text": ""
+      },
+      {
+        "line": 30,
+        "text": "- A deliberate chat-source handoff must retain its exact host identity through actual sheet dismissal. The original AgentSession invalidation callback can arrive after presentation revocation; ignore that echo for a closed owner or it cancels the pending source route. API1.2 carries the original request/scene acknowledgement and a newly observed successor separately; Reader/selection freshness must use the original scene projection, never a new content grant. See `docs/hq-integration/hanlin-api12-20261120` for scoped evidence and remaining Native gates (2026-11-20)."
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "- Full v32 prebuilt acceptance can reuse the original native downloader/installer and three-mode/golden-query runner. The explicit `native_existing_v32` workflow mode uses the current source-pinned Xcode27 build and a newly created exact simulator, then checks original query identities across distinct app PIDs. Wrapper controls are not native evidence; installation, complete UI, Zayit and physical-device results remain separate gates (2026-11-19)."
+      },
+      {
+        "line": 33,
+        "text": "- The native v32 partial-download fixture must use the actual production profile cache root (`Maktabah/Otzaria/Downloads`), not the obsolete `SearchDownloads` directory. Run 44628513017 installed/searched/reopened successfully but correctly failed its strict resume gate with 0 seeded bytes. The compiled original-storage parity regression reproduces the old mismatch and checks the corrected seed; corrected native resume remains pending on the final source. See `docs/hq-integration/full-v32-resume-repair-20261120/REVIEW.md`."
+      },
+      {
+        "line": 34,
+        "text": ""
+      },
+      {
+        "line": 35,
+        "text": "- Runtime27's saved xcresult verifier hashes canonical Python JSON (`json.dumps(value, sort_keys=True)`), not the pretty-printed summary/tests file bytes. Reproducing that serialization verifies the recovered `43891893650` receipts; the exact-source reader outcomes are 9 PASS / 13 FAIL, not aggregate acceptance. Also distinguish similarly named HQ evidence folders from the actual run/device before reuse. See `docs/phase1-cezar/MANAGER_EVIDENCE_REVIEW.md` (2026-11-17)."
+      },
+      {
+        "line": 36,
+        "text": ""
+      },
+      {
+        "line": 37,
+        "text": "- Xcode27.1 `XCUIApplication.open` restarted the target PID for nominal warm/replay URLs in Native43844345630; two receipts therefore belonged to separate process lifetimes. The background XCTest Runner's `UIApplication.open` was rejected in43863125434. The Phase1 owned `simctl openurl` fixture retains strict actual same-PID and original canonical receipt/UI checks; its real Native validation remains pending. Do not add persistent replay storage to compensate for a cold-launching warm fixture (2026-11-16)."
+      },
+      {
+        "line": 38,
+        "text": ""
+      },
+      {
+        "line": 39,
+        "text": "- Global Search's loaded book-title filter must disable the original result-row `onAppear` prefetch while keeping explicit Load More, including zero matches. Otherwise rendering a filtered five-row projection triggers an unintended backend page request. The default-true `automaticallyLoadsMore` list argument preserves existing callers (2026-11-15)."
+      },
+      {
+        "line": 40,
+        "text": "- Otzaria's blank custom-spacing text must map to an empty dictionary. A dictionary containing `\"0-1\": \"\"` makes the upstream gap resolver fall back to zero instead of the configured global distance. Preserve empty positional entries only when an actual custom expression is supplied (2026-11-15)."
+      },
+      {
+        "line": 41,
+        "text": ""
+      },
+      {
+        "line": 42,
+        "text": "- Books Updates must authorize a typed registered backend at every synchronous file/network/cleanup entry. A saved raw `maktabah` preference and `usesNativeMaktabahDataPath` do not establish ownership. The three current backends are explicitly unavailable; separate archive/FTS/author/main commits still require a genuine native recovery contract before any future enabling. The updater now leaves WAL/SHM cleanup to SQLite and propagates checkpoint errors before its integration-cache publication. Disposable safety fixtures cannot establish full native update acceptance."
+      },
+      {
+        "line": 43,
+        "text": "- Zayit's lexical cache must retain the selected expansion, not all candidate groups in HashMap order. Otherwise the warm lookup can choose another lemma and an identical query scoped to its own first-hit book can return zero. A real v32 C ABI reproduction and a public 64-token SQLite ambiguity regression cover this. It requires a matching rebuilt runtime binary, not an index/schema rebuild or user-package reset."
+      },
+      {
+        "line": 44,
+        "text": ""
+      },
+      {
+        "line": 45,
+        "text": "- `LibrarySearchPage.total: Int` alone cannot establish genuine zero after source mapping: raw rows may have been dropped and an Elasticsearch total may be a lower bound. Preserve optional raw-hit/mapping/relation evidence at the existing provider boundary. Legacy Action zero requires explicit source `eq`, zero raw rows and complete mapping; absent precision stays unknown."
+      },
+      {
+        "line": 46,
+        "text": ""
+      },
+      {
+        "line": 47,
+        "text": "- Action discovery must avoid `OtzariaTantivySearchRepository.engine`/`documentCount` when the engine is unopened: construction may write an index. Use `observedOpenIndexDocumentCount` with its profile/database/meta/identity stamp, then combine it with canonical artifact/engine and expected production count validation. A cached successful query alone does not establish current installed-index readiness."
+      },
+      {
+        "line": 48,
+        "text": ""
+      },
+      {
+        "line": 49,
+        "text": "- The exact-9401 blob gate passed the 11001 sidebar even though TOC navigation ownership was missing. The native-sidebar repair now adds composition mutations alongside blob identity: inactive navigation trees must be unmounted, the original TOC must own its stack/search, and the existing public split must request a visible native toggle and width-qualified tiling. Page drag is confined to the page-control strip so it cannot compete with native edge/list gestures. These checks remain static; physical iPad geometry and reader continuity still require owner acceptance."
+      },
+      {
+        "line": 50,
+        "text": ""
+      },
+      {
+        "line": 51,
+        "text": "- Production archive 11001 reports a duplicate Compile Sources entry for OtzariaReaderSourcesInspectorHost.swift. The project file is unchanged from the feature base; verify-otzaria-xcode-project.py checks membership presence but not uniqueness. A separately approved project-membership cleanup and duplicate-detection extension would prevent this warning; no project edit was made during UI restoration."
+      },
+      {
+        "line": 52,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "- Genuine 9401 compact-window captures in run 42008440372 show UIKit replacing the overflowed `reader-more-menu` with a native `BottomOverflowBarButtonItem` in the original bottom toolbar. Measure actual visible native controls for reader-body pixel checks; neither a missing overflowed child identifier nor a full-height Toolbar accessibility frame proves that the bottom bar disappeared. The 13-inch window was 375×557 with real text visible; retain its native screenshot/hierarchy as evidence."
+      },
+      {
+        "line": 58,
+        "text": ""
+      },
+      {
+        "line": 59,
+        "text": "- iPadOS 27 cross-tab geometry needs actual flags-off/on comparison. In native 41960978106 captures, a viewer-only safeAreaInset for the 40pt document strip shifted global Search navigation from y=86pt to106pt, while candidate flags off matched immutable 9401. A downstream measured content stack and native navigation-frame assertions are prepared; do not classify this unapproved global movement as a transient screenshot difference."
+      },
+      {
+        "line": 60,
+        "text": ""
+      },
+      {
+        "line": 61,
+        "text": "- Native XCTest acceptance must distinguish durable app state from a pre-install Simulator container UUID. Resolve UUID-scoped test sidecars in the actual installed data container; viewport observation must use the app's current Documents directory. Keep native system-setting/window restoration in XCTest teardown blocks, since an assertion abort can skip a Swift defer and contaminate later tests (including VoiceOver interpreting ordinary taps differently)."
+      },
+      {
+        "line": 62,
+        "text": ""
+      },
+      {
+        "line": 63,
+        "text": "- CoreSimulator runtime/device compatibility and install readiness are separate checks. One M5/27.1 pair was rejected at creation; a later 11-inch/27.0 pair was listed as supported but still timed out during install/launch. Filter `supportedDeviceTypes`, record the exact pair, keep only the current validation simulator active, and collect service diagnostics on timeout. Do not attribute the latter failure to an unsupported profile without evidence."
+      },
+      {
+        "line": 64,
+        "text": ""
+      },
+      {
+        "line": 65,
+        "text": "- Read-only tab/group snapshots must read `fetchScrollPosition` / `fetchSelectedRange` into a local state copy. `ReaderViewModel.saveCurrentState()` also clears search and annotation events, so invoking it merely to update sidecar metadata can consume a pending search highlight before the original reader renders it. The faithful workspace adapter captures without that mutation."
+      },
+      {
+        "line": 66,
+        "text": ""
+      },
+      {
+        "line": 67,
+        "text": "Useful technical discoveries, undocumented behavior, shortcuts, implementation tricks, platform behavior, or reusable knowledge discovered while working."
+      },
+      {
+        "line": 68,
+        "text": ""
+      },
+      {
+        "line": 73,
+        "text": "- Sefaria Relationship Loading Quadratic Elimination: Parsing `/api/related/{sectionRef}` with a single-pass tolerant collection `SefariaRelatedResponseDTO` reduced Genesis 7 (2,317 links) decode time from >20s (quadratic dictionary re-encoding loop) to ~2.29s with zero MainActor lockup and per-request inspector timeouts."
+      },
+      {
+        "line": 74,
+        "text": "- Otzaria Relationship Semantic Classification: SeforimLibrary v32 relationships must retain `rawConnectionType`, `matchedSide`, `sourceBookId`, `targetBookId`, `linkedBookIsBaseBook`, and `linkedBookDependenceType`. Commentary categories (`COMMENTARY`, `SUPER_COMMENTARY`, `PARSHANUT`, `DIBUR_HAMATCHIL`, `ELUCIDATION`, `EXPLICATION`, `FOOTNOTES`) must not be squashed to `'SOURCE'` in SQL queries when `matchedSide == 1`, but classified based on whether the linked book is a commentary or base text."
+      },
+      {
+        "line": 75,
+        "text": "- Multi-Candidate Search Release Resolution: `ZayitSearchArtifactService.resolveArtifact(matching:)` must evaluate database compatibility across all published releases instead of picking the first tag prefix match, gracefully skipping incompatible releases (e.g. v22 vs v32) and presenting `.unavailable` (\"אין עדיין חבילה תואמת לגרסת מסד זו\") without failing search data views."
+      },
+      {
+        "line": 76,
+        "text": "- Otzaria schema 6 stores both `line_content.content` and populated `version_line.content` as dictionary-compressed zstd BLOBs in the official v32 database. Decode by the frame's dictionary ID against `zstd_dict`, retain the 16 MiB safety cap, and never treat these values as plain SQLite text."
+      },
+      {
+        "line": 77,
+        "text": "- Active SQLite prepared statements left unreset cause SQLite to return SQLITE_BUSY / code 5 (`cannot commit transaction - SQL statements in progress`) upon `COMMIT`, `ROLLBACK`, or `RELEASE SAVEPOINT`. Ensure `_executeNoLock` and `_fetchNoLock` always reset statements and clear bindings via `defer`, and call `_resetAllCachedStatements()` before committing or releasing any transaction/savepoint."
+      },
+      {
+        "line": 78,
+        "text": "- TorahLinkedSource parameter order in TorahInspectorKit places `commentatorID`, `commentatorName`, and `workTitle` right after collective titles and before `hebrewText`; `rawProviderPayload` is the final parameter."
+      },
+      {
+        "line": 79,
+        "text": "- Otzaria commentator grouping requires resolving real author identity (via `book_author` or title normalization for Hebrew/English patterns like \"על\", \"on\", \"חידושי\", \"פירוש\", stripping 'ה' on acronyms) so distinct tractates or works by the same author (e.g., Ramban on Torah vs. Talmud) group under one commentator identity while keeping individual work titles distinct."
+      },
+      {
+        "line": 80,
+        "text": "- Search result full-text previews must bind their view identity and async task to `item.stableID` instead of `item.backendLocator?.persistenceKey`, ensuring switching between versions of the same passage resets view state and triggers an immediate reload of the chosen version."
+      },
+      {
+        "line": 81,
+        "text": "- Sefaria's mobile relationship path fetches `/api/related/{sectionRef}` once and assigns rows to segments through `anchorRefExpanded`; an empty local `links` array is complete offline data and must not trigger a network fallback."
+      },
+      {
+        "line": 82,
+        "text": "- Current Sefaria `/api/related` rows may omit `text`/`he` and expose only `displayedText`; use that as the no-extra-request snippet fallback, and sort exact/small `anchorRefExpanded` sets ahead of book-wide relationships for deterministic linked-source navigation."
+      },
+      {
+        "line": 83,
+        "text": "- Sefaria `/api/index` can list one canonical work under multiple category paths (currently `Ten Paths to God`, and intermittently `Celebrating Life; Finding Happiness in Unexpected Places`). Diffable identifiers must therefore describe a stable tree occurrence; `TextLocator`/canonical book IDs remain persistence identity and must not be used alone as UIKit item identifiers."
+      },
+      {
+        "line": 102,
+        "text": "- Two-Stage Commentary Loading & Progressive Hydration: Eagerly decoding commentary Zstd content inside `getLinks` (even in a background task) blocks the SQLite connection when hundreds or thousands of links exist (e.g. Genesis 1:1 with 1,828 links). Separating commentary link metadata query (`includeContent: false`, taking ~2ms) from on-demand batch snippet decompression (`fetchSnippets(for:)` taking ~6ms for visible rows) eliminates reader stalls while populating card previews progressively without UI jumps."
+      },
+      {
+        "line": 103,
+        "text": "- Momentary Database Lock Acquisition: Holding `NSRecursiveLock` across long SQLite query iterations stalls the `@MainActor` whenever UI components touch the container. Capturing `(db, dbGeneration)` under momentary lock acquisition followed by an atomic generation guard check post-query guarantees thread safety without blocking the main thread."
+      },
+      {
+        "line": 104,
+        "text": "- Decoupling Search Data from Library Bootstrap: In bootstrap setup, database activation (`backendCoordinator.commit(.otzaria)`) must precede optional search package installation. Isolating search index downloads and policy checks in a non-fatal `do/catch` block ensures that missing or schema-mismatched search release artifacts (e.g. v22 search packages vs v32 production DB) never block the user from immediately opening and reading library texts."
+      },
+      {
+        "line": 105,
+        "text": "- Scope Separation in TorahInspectorKit: `TorahInspectorSelection.relationshipRef` must branch strictly on `scope`: `.section` returns `canonicalRef` directly (preventing unit commentary lookup from being narrowed to a title/header line with 0 relationships), whereas `.segment` returns `preferredSegmentRef ?? canonicalRef`."
+      },
+      {
+        "line": 106,
+        "text": "- Deterministic Snippet Hydration Lifecycle: Batch hydration in `TorahSegmentDetailView` must clean up `loadingSnippetIDs` via `defer` across all exit paths (empty, partial, throw, cancellation). Missing snippets transition explicitly to `unavailableSnippetIDs` to avoid permanent loading spinners."
+      },
+      {
+        "line": 107,
+        "text": "- Trusted Installed Database Fast-Path on Cold Startup: Running `PRAGMA quick_check(1)` twice on cold startup of a 6.74 GB database causes a ~145.5s launch freeze. Validating file existence, SQLite format 3 magic header (16 bytes), manifest identity, and required tables verifies startup readiness in ~2.93 ms (24,800x faster) while reserving full `quick_check` strictly for initial installation or corruption recovery."
+      },
+      {
+        "line": 112,
+        "text": "- XCUITest SwiftUI NavigationSplitView Detail Accessibility: Placing direct, unobscured accessibility text nodes inside a surface overlay with `.allowsHitTesting(false)` guarantees reliable element discovery for reader titles and locators in XCTest without conflicting with toolbar principal item folding on iPadOS."
+      },
+      {
+        "line": 113,
+        "text": "- XCUITest Hittability vs Existence in Animated Toolbars: Animating toolbar elements (such as bottom bar clear 'X' button) require predicate-based hittability waiting (`isHittable == true`) or coordinate fallback to avoid transient hit-test rejections during layout settling."
+      },
+      {
+        "line": 114,
+        "text": "- SwiftUI TabView Selection Synchronization in Automation Scenarios: Multi-tab automation scenarios (such as `searchOpen`) require explicit programmatic synchronization of both `navigationManager.currentMode` and `@State var selectedTab` in root views to properly activate the destination tab's split view and toolbar controls."
+      },
+      {
+        "line": 115,
+        "text": "- Backend Session Quarantine and Transition Ordering: `iOSNavigationManager.publishTransition` must reset `isSwitchingBackend = false` before calling `persistCurrentSession(immediate: true)`, otherwise the guard inside `persistCurrentSession` silently aborts session persistence, leaving stale foreign-backend tab data on disk. Isolating cross-backend tabs into `QuarantinedSessions/` and normalizing `activeTabId` prevents permanent UI lockout (`foreignBackendLocator`)."
+      },
+      {
+        "line": 116,
+        "text": "- Explicit TOC Loading in Reader Backend Transitions: `loadBackendContent` in `Reader+Content.swift` must explicitly invoke `loadTOC(book: book)`, and `BookTOCViewModel` must track a 4-state lifecycle (`TOCLoadingStatus`: idle, loading, loaded, failed). Guarding `iOSTOCView` against displaying \"אין תוכן עניינים\" while in `idle` or `loading` states prevents premature empty states when opening or restoring books on iPad."
+      },
+      {
+        "line": 117,
+        "text": "- Structured FFI Error Diagnostics vs Null Pointer Assumption: C FFI constructors (such as `otzaria_search_engine_new`) returning a raw null pointer cause Swift wrappers to misdiagnose initialization failures as missing XCFramework binaries. Exposing `otzaria_search_engine_new_with_error` with thread-local structured JSON error info (`code`, `message`, `path`) enables precise localized diagnostics (e.g. `MISSING_DIRECTORY`, `CORRUPTED_METADATA`)."
+      },
+      {
+        "line": 118,
+        "text": "- Swift 6 Key Path Isolation in UI Tests & iPad Simulator Coordinate Taps: In Swift 6 on Xcode 27, `XCUIElement.label` is isolated to `@MainActor`, prohibiting `.map(\\.label)` and requiring `{ elem in elem.label }`. On iOS 27 iPad simulator, `XCTNSPredicateExpectation(isHittable == true)` on small toolbar buttons can crash XCTest with activation point calculation failures; using `coordinate(withNormalizedOffset:).tap()` is safe and robust."
+      },
+      {
+        "line": 119,
+        "text": ""
+      },
+      {
+        "line": 120,
+        "text": ""
+      },
+      {
+        "line": 123,
+        "text": "- Zayit applies its base-book score factor after collecting/skipping raw TopDocs, so changing limit20 to50 can change which document rises to the front. Keep query/near/offset/limit identical for restoration identity acceptance. Investigate global ranking before TopDocs separately against upstream behavior; the v32 cold-oracle-limit log captures the observed page-size dependence. No runtime ranking rewrite was included in the cache fix."
+      },
+      {
+        "line": 124,
+        "text": ""
+      },
+      {
+        "line": 125,
+        "text": "Things worth testing or researching before deciding whether to implement them."
+      },
+      {
+        "line": 126,
+        "text": ""
+      },
+      {
+        "line": 127,
+        "text": "- Baseline 9401's optional DEBUG `writeAcceptanceViewportReport` can assert during rotation **and sidebar width reflow** when `MAKTABAH_SMOKE_READY_FILE` is supplied (`41918768696`, `41926195676`, protected `iOSIbarotTextView.swift:153`). Do not activate it for acceptance. The faithful rebuild prepares a downstream read-only observer of the existing native source-anchor metadata, with fresh request IDs; protected renderer remains unchanged. Exact original JSON/file failure still needs diagnosis before any separately approved renderer fix."
+      },
+      {
+        "line": 128,
+        "text": "- Native `reader-text.value` in 9401 is diagnostic JSON, not book text, because `ReaderRenderedHighlightInspector` overrides UITextView accessibility. Never count its string length as rendered-content evidence. The rebuild preserves the native text value and existing dedicated diagnostics child; immutable-baseline verification requires physical screenshot evidence, with test-side pixel text-region detection prepared. Neither diagnostic counts nor a host identifier prove visible text."
+      },
+      {
+        "line": 138,
+        "text": "- [ ] Tighten the existing sidebar viewport UI test's swipe section: require the"
+      },
+      {
+        "line": 139,
+        "text": "  expected physical direction per RTL/LTR instead of retrying the opposite"
+      },
+      {
+        "line": 140,
+        "text": "  swipe. The old retry can conceal reversed paging. Direction-specific prepared"
+      },
+      {
+        "line": 141,
+        "text": "  coverage is in `Tests/HQ/sidebar/Sidebar11201AcceptanceTests.swift`; runtime,"
+      },
+      {
+        "line": 142,
+        "text": "  native gesture conflicts and physical-iPad acceptance remain NOT_RUN (2026-11-15)."
+      },
+      {
+        "line": 143,
+        "text": "- [ ] Bound the Inspector reference-to-locator cache after canonical source reconstruction is verified. `MaktabahTorahInspectorSession.locatorsByReference` grows for every remembered segment/link although its unit and link-array caches have limits of 20/30; source browsing can retain locators for the entire session. Eviction must preserve exact numbered/complex Sefaria work identities and active source navigation; coordinate with the genuine Embedded catalog fix, rather than reconstructing identities with an invented alias/parser. (I, 2026-11-15)"
+      },
+      {
+        "line": 153,
+        "text": "- [ ] Verify a genuinely compact iPad window below the regular-width size class in the faithful rebuild. `iOSMainView` currently chooses `iPhoneLayout` solely by size class, which can discard the new iPad host when a physical iPad window becomes compact. The prepared window drag currently targets 55% of landscape width and may remain regular. Check actual geometry first; if needed use only the package-authorized minimal Scene routing hook, preserving phone/flags-off defaults and the existing FloatingPanel. Do not fake the size class or broadly rewrite root navigation."
+      },
+      {
+        "line": 154,
+        "text": ""
+      },
+      {
+        "line": 155,
+        "text": "- [ ] Separate native bootstrap search-acceptance expectations by data profile. `OtzariaNativeBootstrapAcceptanceRunner` currently requires exactly `18_879` index documents in its optional search fixture, which is specific to miniTest10. Full production UI provisioning therefore uses the original digest/schema-verified installer with that optional fixture disabled; this is not full production search acceptance. Do not broaden DB/search-engine changes as part of the faithful UI rebuild."
+      },
+      {
+        "line": 156,
+        "text": ""
+      },
+      {
+        "line": 157,
+        "text": "Concrete work that is worth doing but is not part of the current task."
+      },
+      {
+        "line": 158,
+        "text": ""
+      },
+      {
+        "line": 174,
+        "text": "  - Notes: Completed final preflight fixes for embedded Sefaria-Mobile runtime. Verified 15/15 acceptance diagnostic stages and 4/4 UI tests on real iPad Simulator CI (`41323238956`), verified 379/379 portable component assertions, verified signed production Release archive and exported IPA preflight (`41340314211`), and delivered Build 1.0.0 (9401) to Apple TestFlight with valid App Store Connect processing (`41345570389`)."
+      },
+      {
+        "line": 175,
+        "text": ""
+      },
+      {
+        "line": 176,
+        "text": "- [x] Complete Build 6601: Otzaria & Zayit v32 search packages, streaming decode, and TestFlight delivery"
+      },
+      {
+        "line": 177,
+        "text": "  - Implemented: 2026-10-21"
+      },
+      {
+        "line": 178,
+        "text": "  - Commit/PR: `a6a2fd8`"
+      },
+      {
+        "line": 179,
+        "text": "  - Notes: Published official v32 search data releases for Zayit (`zayit-search-data-v32-20261010190601-81cc25fa8fc3`) and Otzaria (`otzaria-search-data-v32-20261010190601-102293b3a63c`). Resolved Genesis 7 quadratic decode via streaming parsing, preserved Otzaria commentary/links split without collapsing to SOURCE, resolved schema projection table aliasing in SQLite queries, verified 37/37 checks in iPad acceptance matrix, and delivered signed Build 6601 (VALID) to TestFlight."
+      },
+      {
+        "line": 180,
+        "text": ""
+      },
+      {
+        "line": 181,
+        "text": "- [x] Make production UI acceptance fail closed"
+      },
+      {
+        "line": 182,
+        "text": "  - Implemented: 2026-10-13"
+      },
+      {
+        "line": 195,
+        "text": "  - Notes: Repository release immutability applies only to future releases. Bump the canonical profile version/tag when enabling it, and pass all assets directly to `gh release create` so GitHub can upload them while the release is a draft and lock the tag and assets atomically on publication."
+      },
+      {
+        "line": 196,
+        "text": ""
+      },
+      {
+        "line": 197,
+        "text": "- [x] Make native bootstrap resume and search screenshots deterministic"
+      },
+      {
+        "line": 198,
+        "text": "  - Implemented: 2026-10-12"
+      },
+      {
+        "line": 199,
+        "text": "  - Notes: A production download may be resumable even when a later unauthenticated GitHub release lookup is rate-limited. Resume only from an app-owned sidecar whose repository, GitHub HTTPS asset URL, production asset name, size, SHA-256, partial file, and strong validator all pass validation. Simulator search evidence now waits for an explicit success marker from the production search controller instead of relying on a fixed sleep."
+      },
+      {
+        "line": 200,
+        "text": ""
+      },
+      {
+        "line": 201,
+        "text": "- [x] Preserve the intended Reader/TOC column and sequence Study-to-TOC transitions in compact layouts"
+      },
+      {
+        "line": 202,
+        "text": "  - Implemented: 2026-10-08"
+      }
+    ]
+  },
+  "actualPublicUpstream": {
+    "exit": 0,
+    "stdout": "ref: refs/heads/main\tHEAD\n4203de5fd77beb119e5826e039be1a61325f7be0\tHEAD\n4203de5fd77beb119e5826e039be1a61325f7be0\trefs/heads/main\n",
+    "stderr": "",
+    "objectAvailable": true
+  }
+}

@@ -20,10 +20,14 @@ extension UnifiedSearchSessionController: ObservableObject {}
 final class UnifiedSearchSessionController {
     // MARK: - Search State
 
-    var query: String = ""
-    var scope: UnifiedSearchScope = .advanced
-    var selectedBookIds: Set<Int> = []
-    var results: [SearchResultItem] = []
+    var query: String = "" { didSet { nativeContinuationInputChanged() } }
+    var scope: UnifiedSearchScope = .advanced { didSet { nativeContinuationInputChanged() } }
+    var selectedBookIds: Set<Int> = [] { didSet { nativeContinuationInputChanged() } }
+    var results: [SearchResultItem] = [] { didSet {
+        #if os(iOS)
+        nativeSearchContinuation.originalResultsDidPublish()
+        #endif
+    } }
     var isSearching: Bool = false
     var errorMessage: String? = nil
     var hasMore: Bool = false
@@ -41,6 +45,7 @@ final class UnifiedSearchSessionController {
 
     var resultKitabFilter: String = "" {
         didSet {
+            nativeContinuationInputChanged()
             // Clearing a loaded filter also remounts rows; it must not initiate a provider page.
             if oldValue != resultKitabFilter { allowsAutomaticPaging = false }
         }
@@ -49,43 +54,43 @@ final class UnifiedSearchSessionController {
 
     // MARK: - Sheet / Disclosure Toggles
 
-    var showsBookFilterSheet: Bool = false
-    var showsAdvancedOptions: Bool = false
-    var showsSearchDataSheet: Bool = false
+    var showsBookFilterSheet: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var showsAdvancedOptions: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var showsSearchDataSheet: Bool = false { didSet { nativeContinuationInputChanged() } }
 
     // MARK: - Engines
 
     let otzaria = OtzariaTextSearchViewModel()
     let zayitSession = ZayitSearchSessionController()
-    weak var searchViewModel: SearchViewModel?
+    weak var searchViewModel: SearchViewModel? { didSet { nativeContinuationInputChanged() } }
 
     // MARK: - Otzaria Advanced Options
 
-    var otzariaOrder: OtzariaSearchOrder = .catalogue
-    var otzariaNegativeQuery: String = ""
-    var otzariaScope: OtzariaSearchScope = .wordDistance
-    var otzariaNegativeScope: OtzariaSearchScope = .wordDistance
-    var otzariaWordMatchMode: OtzariaWordMatchMode = .all
-    var otzariaWordMatchCount: Int = 1
-    var otzariaGrouping: OtzariaResultGrouping? = nil
-    var otzariaDistance: Int = 0
-    var otzariaNegativeDistance: Int = 0
-    var otzariaMatchNikud: Bool = false
-    var otzariaMatchTaamim: Bool = false
-    var otzariaEnablesPrefixes: Bool = false
-    var otzariaEnablesSuffixes: Bool = false
-    var otzariaEnablesSpellingVariants: Bool = false
-    var otzariaEnablesAramaic: Bool = false
-    var otzariaIgnoresQuotes: Bool = false
-    var otzariaCustomSpacingText: String = ""
-    var otzariaAlternativeWordsText: String = ""
+    var otzariaOrder: OtzariaSearchOrder = .catalogue { didSet { nativeContinuationInputChanged() } }
+    var otzariaNegativeQuery: String = "" { didSet { nativeContinuationInputChanged() } }
+    var otzariaScope: OtzariaSearchScope = .wordDistance { didSet { nativeContinuationInputChanged() } }
+    var otzariaNegativeScope: OtzariaSearchScope = .wordDistance { didSet { nativeContinuationInputChanged() } }
+    var otzariaWordMatchMode: OtzariaWordMatchMode = .all { didSet { nativeContinuationInputChanged() } }
+    var otzariaWordMatchCount: Int = 1 { didSet { nativeContinuationInputChanged() } }
+    var otzariaGrouping: OtzariaResultGrouping? = nil { didSet { nativeContinuationInputChanged() } }
+    var otzariaDistance: Int = 0 { didSet { nativeContinuationInputChanged() } }
+    var otzariaNegativeDistance: Int = 0 { didSet { nativeContinuationInputChanged() } }
+    var otzariaMatchNikud: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaMatchTaamim: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaEnablesPrefixes: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaEnablesSuffixes: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaEnablesSpellingVariants: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaEnablesAramaic: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaIgnoresQuotes: Bool = false { didSet { nativeContinuationInputChanged() } }
+    var otzariaCustomSpacingText: String = "" { didSet { nativeContinuationInputChanged() } }
+    var otzariaAlternativeWordsText: String = "" { didSet { nativeContinuationInputChanged() } }
 
     // MARK: - Sefaria Advanced Options
 
-    var sefariaMatchMode: LibrarySearchMatchMode = .exact
-    var sefariaWordDistance: Int = 0
-    var sefariaSortOrder: LibrarySearchSortOrder = .relevance
-    var sefariaReverseSort: Bool = false
+    var sefariaMatchMode: LibrarySearchMatchMode = .exact { didSet { nativeContinuationInputChanged() } }
+    var sefariaWordDistance: Int = 0 { didSet { nativeContinuationInputChanged() } }
+    var sefariaSortOrder: LibrarySearchSortOrder = .relevance { didSet { nativeContinuationInputChanged() } }
+    var sefariaReverseSort: Bool = false { didSet { nativeContinuationInputChanged() } }
 
     // MARK: - Private State
 
@@ -98,6 +103,9 @@ final class UnifiedSearchSessionController {
     private var isPreparingZayitSearch = false
 
     init() {
+        #if os(iOS)
+        nativeSearchContinuation.attach(self)
+        #endif
         setupObservers()
         #if DEBUG
         installNativeSearchPageObservation()
@@ -560,6 +568,9 @@ final class UnifiedSearchSessionController {
     // MARK: - Pagination
 
     func loadNextPage() {
+        #if os(iOS)
+        nativeSearchContinuation.originalPageWillDispatch()
+        #endif
         guard acceptsEngineUpdates, !resultsAreDirty, !isSearching, hasMore, !isLoadingMore else { return }
         paginationRevision += 1
         #if DEBUG
@@ -701,6 +712,7 @@ final class UnifiedSearchSessionController {
     }
 
     private func stopEngineWork() {
+        nativeContinuationInputChanged()
         acceptsEngineUpdates = false
         searchGeneration += 1
         isPreparingZayitSearch = false
@@ -717,7 +729,7 @@ final class UnifiedSearchSessionController {
     }
 
     func cancelSearch() {
-        guard isSearching || isLoadingMore else { return }
+        guard isSearching || isLoadingMore || originalBackendIsBusy else { return }
         cancellationRevision += 1
         stopEngineWork()
         results = []
@@ -732,7 +744,7 @@ final class UnifiedSearchSessionController {
     func configurationDidChange() {
         guard resultsAreDirty else { return }
         configurationInvalidated = true
-        if isSearching || isLoadingMore { stopEngineWork() }
+        if isSearching || isLoadingMore || originalBackendIsBusy { stopEngineWork() }
     }
 
     func clearFilter() {
@@ -749,6 +761,47 @@ final class UnifiedSearchSessionController {
         query = ""
         resultKitabFilter = ""
     }
+
+    // MARK: - Original continuation observation (no provider/cache replacement)
+
+    private var originalBackendIsBusy: Bool {
+        if isSefaria { return searchViewModel.map { $0.isSearching || $0.isLoadingMoreBackendResults } ?? false }
+        if scope == .zayit { return isPreparingZayitSearch || zayitSession.model.isLoading || zayitSession.model.isLoadingMore }
+        return otzaria.isSearching || otzaria.isLoadingMore
+    }
+
+    private func nativeContinuationInputChanged() {
+        #if os(iOS)
+        nativeSearchContinuation.originalInputDidChange()
+        #endif
+    }
+
+    #if os(iOS)
+    let nativeSearchContinuation = MaktabahNativeSearchContinuationSource()
+    var nativeContinuationGeneration: Int { searchGeneration }
+    var nativeContinuationAcceptsUpdates: Bool { acceptsEngineUpdates }
+    var nativeContinuationIsBusy: Bool { originalBackendIsBusy }
+    var nativeContinuationHasMore: Bool {
+        if isSefaria { return searchViewModel?.hasMoreBackendResults == true }
+        return scope == .zayit ? zayitSession.model.hasMore : otzaria.hasMore
+    }
+    var nativeContinuationPageLedger: OriginalSearchPageLedger? {
+        if isSefaria { return searchViewModel?.originalPageLedger }
+        return scope == .zayit ? zayitSession.model.originalPageLedger : otzaria.originalPageLedger
+    }
+    var nativeContinuationPageSnapshot: OriginalSearchPageLedger.Snapshot? { nativeContinuationPageLedger?.snapshot }
+    var nativeContinuationOriginalResults: [SearchResultItem] {
+        if isSefaria { return searchViewModel?.results ?? [] }
+        return scope == .zayit ? mapZayitHits(zayitSession.model.hits) : otzaria.results
+    }
+    func cancelNativeContinuationPageIfOwned(_ attempt: OriginalSearchPageLedger.Attempt) {
+        guard nativeContinuationPageSnapshot?.active == attempt else { return }
+        // The leaf's synchronous loading state closes the queued mirror gap.
+        // cancelSearch remains the original cancellation path and advances its
+        // original generation; a replacement or accepted page is never stopped.
+        cancelSearch()
+    }
+    #endif
 
     // MARK: - Zayit Mapping Helpers
 

@@ -1,0 +1,291 @@
+{
+  "addedObjects": {
+    "398B7A57BFCB8B5C43C972E2": {
+      "fileRef": "C25B81114EFCCDAE8C196042",
+      "isa": "PBXBuildFile"
+    },
+    "5D40916B9B405F964F1C4FA2": {
+      "fileRef": "76229CEA1E4A77CFCDE6CEC4",
+      "isa": "PBXBuildFile"
+    },
+    "617E543E37C9CF0FFDDDAE9B": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "path": "SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "sourceTree": "<group>"
+    },
+    "76229CEA1E4A77CFCDE6CEC4": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "path": "UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "sourceTree": "<group>"
+    },
+    "A831833BE1B0146A96F2045D": {
+      "fileRef": "C25B81114EFCCDAE8C196042",
+      "isa": "PBXBuildFile"
+    },
+    "B1708373FE46DD6EECD20BAE": {
+      "fileRef": "C25B81114EFCCDAE8C196042",
+      "isa": "PBXBuildFile"
+    },
+    "C25B81114EFCCDAE8C196042": {
+      "isa": "PBXFileReference",
+      "lastKnownFileType": "sourcecode.swift",
+      "path": "SearchContinuation/OriginalSearchPageLedger.swift",
+      "sourceTree": "<group>"
+    },
+    "D8970A66DDEA28F01EA4C5AD": {
+      "fileRef": "617E543E37C9CF0FFDDDAE9B",
+      "isa": "PBXBuildFile"
+    }
+  },
+  "allOtherOriginalBytesPreserved": true,
+  "baseline": {
+    "bytes": 630804,
+    "sha256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee"
+  },
+  "baselineBlob": "24ab48b84d61fe4bae88eb41c53506664db44701",
+  "baselineCommit": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "candidate": {
+    "bytes": 633004,
+    "sha256": "60dc6ba2751d84604cc352e670472f7e5cc76763592355b6ebbbd5eb40d1afdf"
+  },
+  "existingCallerMemberships": [
+    {
+      "fileReferenceID": "739545E8313D862EF40C448C",
+      "path": "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "ED93E81DE5D76481A2D6A662"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "9BE4E90A80B4A62A9CEB1921",
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "3A3A14ACE825EE98DEA37664"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "F3D02D582FE0522E0054807F",
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "targets": {
+        "Maktabah": [
+          "F3D02D5A2FE0522E0054807F"
+        ],
+        "Maktabah-Direct": [
+          "F3D02D592FE0522E0054807F"
+        ],
+        "Maktabah-iOS": [
+          "F3D02D5B2FE0522E0054807F"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "F3AE62F7304C5E7C002569BB",
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "targets": {
+        "Maktabah": [
+          "F3AE6312304C5E7C002569BB"
+        ],
+        "Maktabah-Direct": [
+          "F3AE6304304C5E7C002569BB"
+        ],
+        "Maktabah-iOS": [
+          "F3AE630B304C5E7C002569BB"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "FA0000000000000000000005",
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "FA1000000000000000000005"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "F3EB89682FAF72AE00ED75F0",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "F3EB89702FAF94EF00ED75F0"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "F305777B2FA463B1005732C6",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "F30577852FA463B1005732C6"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "F95F1BA3F98DDA37711CAB38",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "08EAB23AB03ED0077FDEADFD"
+        ]
+      }
+    },
+    {
+      "fileReferenceID": "348F3CE98841B091C9694605",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "targets": {
+        "Maktabah-iOS": [
+          "272FA036D80429868E339D38"
+        ]
+      }
+    }
+  ],
+  "inheritedDuplicateKeysUnchanged": [
+    {
+      "identical": true,
+      "key": "240682637A5169A63619E577"
+    },
+    {
+      "identical": true,
+      "key": "FB254BD29A50C530E907662A"
+    },
+    {
+      "identical": true,
+      "key": "FDB5242B5960EB1507BD74A6"
+    },
+    {
+      "identical": true,
+      "key": "3373C7B02164CDBB77BFFF48"
+    },
+    {
+      "identical": true,
+      "key": "C2CCE35AFE445BF8BEF37C5F"
+    }
+  ],
+  "integrationWorktreeOrRefChanges": false,
+  "modifiedExistingObjects": [
+    "4B3202242EDAFE85003B95D1",
+    "4B7C90A52F83494200454BE1",
+    "CFEE00000000000000000001",
+    "F30576E22FA46222005732C6"
+  ],
+  "newSources": [
+    {
+      "buildFileIDsByTarget": {
+        "Maktabah": "A831833BE1B0146A96F2045D",
+        "Maktabah-Direct": "398B7A57BFCB8B5C43C972E2",
+        "Maktabah-iOS": "B1708373FE46DD6EECD20BAE"
+      },
+      "fileReferenceID": "C25B81114EFCCDAE8C196042",
+      "name": "OriginalSearchPageLedger.swift",
+      "observedDeliveredSource": {
+        "bytes": 9858,
+        "path": "/workspace/scratch/ca3b32b82803/search-page-ledger/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+        "sha256": "b3b81fa58bf651d41d4acddb2488473ea5192a1b20e3adb9783d9ea0c489146d"
+      },
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+      "relativeGroupPath": "SearchContinuation/OriginalSearchPageLedger.swift"
+    },
+    {
+      "buildFileIDsByTarget": {
+        "Maktabah-iOS": "D8970A66DDEA28F01EA4C5AD"
+      },
+      "fileReferenceID": "617E543E37C9CF0FFDDDAE9B",
+      "name": "OriginalSearchContinuationClaim.swift",
+      "observedDeliveredSource": {
+        "bytes": 3723,
+        "path": "/workspace/scratch/ca3b32b82803/search-intent-continuation/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "sha256": "a0aca692139000bb764c8e0fe449aa574a566d1609ba68450f2b9bb704096c96"
+      },
+      "path": "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+      "relativeGroupPath": "SearchContinuation/OriginalSearchContinuationClaim.swift"
+    },
+    {
+      "buildFileIDsByTarget": {
+        "Maktabah-iOS": "5D40916B9B405F964F1C4FA2"
+      },
+      "fileReferenceID": "76229CEA1E4A77CFCDE6CEC4",
+      "name": "MaktabahNativeSearchContinuation.swift",
+      "observedDeliveredSource": {
+        "bytes": 43046,
+        "path": "/workspace/scratch/ca3b32b82803/search-intent-continuation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+        "sha256": "3cf002b0ba180b0f592f1c905cbd73910cb0418de3ae9e81a7bb5472d4404c84"
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "relativeGroupPath": "UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift"
+    }
+  ],
+  "oracleDataWrites": false,
+  "ownerApplicationRequired": true,
+  "parser": {
+    "repositoryPath": "docs/hq-integration/verify_source_registration.py",
+    "sha256": "eff5cf3c0935562f9e9b1bbcd296f192c4daf2922cc9185d8fa5ad0ab3246a18"
+  },
+  "patch": {
+    "bytes": 5239,
+    "sha256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce"
+  },
+  "projectPath": "Maktabah.xcodeproj/project.pbxproj",
+  "schema": 1,
+  "sourceCodeChanges": false,
+  "status": "REVIEWABLE_PATCH_ONLY_NOT_APPLIED",
+  "swiftPMOnlySourcesNotRegisteredInApp": [
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift"
+  ],
+  "targets": {
+    "Maktabah": {
+      "after": 359,
+      "before": 358,
+      "sourcePhaseID": "4B3202242EDAFE85003B95D1"
+    },
+    "Maktabah-Direct": {
+      "after": 359,
+      "before": 358,
+      "sourcePhaseID": "4B7C90A52F83494200454BE1"
+    },
+    "Maktabah-iOS": {
+      "after": 583,
+      "before": 580,
+      "sourcePhaseID": "F30576E22FA46222005732C6"
+    },
+    "Maktabah-iOSNativeTests": {
+      "after": 0,
+      "before": 0,
+      "sourcePhaseID": "8E031407F5B8C0AA54243A7C"
+    },
+    "Maktabah-iOSUITests": {
+      "after": 0,
+      "before": 0,
+      "sourcePhaseID": "F30578042FA46222005732C6"
+    },
+    "MaktabahTests": {
+      "after": 0,
+      "before": 0,
+      "sourcePhaseID": "4BD8A4E3307E521A00E04BCB"
+    },
+    "MaktabahWidgetExtension": {
+      "after": 20,
+      "before": 20,
+      "sourcePhaseID": "211C61EBAF37E14B5BD92385"
+    }
+  },
+  "unmodifiedAreas": [
+    "build configurations",
+    "SDK/platform settings",
+    "package references",
+    "frameworks",
+    "resources",
+    "shell phases",
+    "existing source order",
+    "existing object definitions",
+    "test targets",
+    "widget target"
+  ],
+  "verificationScope": "Unchanged original OpenStep parser plus exact additive graph and byte-preservation checks only; no Xcode, Swift build, linkage or UI"
+}

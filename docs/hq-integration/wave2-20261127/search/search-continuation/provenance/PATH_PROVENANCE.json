@@ -1,0 +1,132 @@
+{
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "mergeBase": {
+    "exit": 0,
+    "stdout": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4\n",
+    "stderr": ""
+  },
+  "freeBytes": 1163350016,
+  "minimumReservedBytes": 687865856,
+  "paths": {
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "fc6fa5b6e1abc62d694a7ac2d13e3990fc97d9d2\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "21c757eca78c6ea01d9dced23dec088bec1f016d fix(search): bind cached indexes to the installed library [skip ci]\n9aa3becfadffc652b8fcd0340cc1f21db676abb4 test(search): bind published v40 UI install and pages to original SQL [skip ci]\n2a18db289d725abacbb079d97d840f5130daab0b fix(search): exclude passive Debug storage from Observation macro\n",
+        "stderr": ""
+      }
+    },
+    "Source/Features/Search/iOS/SearchResultsListView.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "1f2289e80e0cca6454c2234c456ece75306b3b6f\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "100644 blob 1ae742e7c369a5797db7c08ed22c36d63bfbe4d5\tSource/Features/Search/iOS/SearchResultsListView.swift\n",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "a581a9d98f3ad847d9b420aeaa1d625d6d98cd3b fix(search): fence superseded preview task publications [skip ci]\nda1838d8ccf1a9171fe3c3b37ba9e23ea546f1cc fix(search): preserve selected Sefaria edition in full context [skip ci]\nbf5e119a833c973e240f0b50e8e3fc3e15d783b1 feat(search): compose native global search with truthful session states [skip ci]\n",
+        "stderr": ""
+      }
+    },
+    "Source/Features/Search/iOS/SearchModeView.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "13d09fdd09e18aa829b2f09a373793afeae04579\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "100644 blob 2a556caa65b0e86802ec4c5a2d69f10f89b79b50\tSource/Features/Search/iOS/SearchModeView.swift\n",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "1ef49822580574091cb7cb17afe306c68b8fc866 Add original Search parent entry with retained field focus\nbfc7f5a6aa849ab7e9a892cf63c693a8f49ac8a1 test: exercise typed actions through original native owners\n80c3c148d396bc70ffe5ffefb49d698764692fea feat(actions): route semantic search through original native search owner\n",
+        "stderr": ""
+      }
+    },
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "885964efcc48d5a7a3e7afc2534c21cb35da36de\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "21c757eca78c6ea01d9dced23dec088bec1f016d fix(search): bind cached indexes to the installed library [skip ci]\na50b0b2bc420aba2dd9d2845edce0ef64b57ca30 fix(search): preserve installer ownership and cancel active downloads [skip ci]\n87b37a1309aee69350868cb37846037dd6b52479 test(search): verify original page metadata and later-result native reading\n",
+        "stderr": ""
+      }
+    },
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "67a23bb47ac6c6012e55a3837355e00da661752d\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "87b37a1309aee69350868cb37846037dd6b52479 test(search): verify original page metadata and later-result native reading\n2c3fd9868ca54ff9cfbe8e923c9462575befac73 fix(search): restore retry, stable hit navigation and paging [skip ci]\n640ebe4ccd53bff2625fc93a583b6d013d40c37b Fix TorahLinkedSource argument order, Otzaria commentator author identity, search preview version switching, and reader selection scope\n",
+        "stderr": ""
+      }
+    },
+    "Source/Features/Search/ViewModel/SearchViewModel.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "566117c44bba83cffbb0664fc700b673e331eb63\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "100644 blob 98ff8f399d666910ce9076eb4536ce03649fc9c1\tSource/Features/Search/ViewModel/SearchViewModel.swift\n",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "bf5e119a833c973e240f0b50e8e3fc3e15d783b1 feat(search): compose native global search with truthful session states [skip ci]\n79cbcf1299a31e7998f3607ee2717f2aa01e06cf fix(build): resolve iOS target compile errors and project source wiring\n66dfe13b9ffee428da7ac3fe40ba27d04e1a4b58 Merge upstream Maktabah v4.2 (a0ed0df) into sync/upstream-v42-full-integration\n",
+        "stderr": ""
+      }
+    },
+    "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift": {
+      "baseBlob": {
+        "exit": 0,
+        "stdout": "0dffa1139c3492834162cdddc52fb3252223eaa8\n",
+        "stderr": ""
+      },
+      "upstreamBlob": {
+        "exit": 0,
+        "stdout": "100644 blob 553a799d1f872c657de3342f72531d4b50e09aa7\tSource/Features/Search/ViewModel/Extensions/Search+Execution.swift\n",
+        "stderr": ""
+      },
+      "history": {
+        "exit": 0,
+        "stdout": "bf5e119a833c973e240f0b50e8e3fc3e15d783b1 feat(search): compose native global search with truthful session states [skip ci]\n71740a69e48a742728f263fb2a05e842ab77d639 fix(build): resolve final iOS compilation errors and access levels\n79cbcf1299a31e7998f3607ee2717f2aa01e06cf fix(build): resolve iOS target compile errors and project source wiring\n",
+        "stderr": ""
+      }
+    }
+  }
+}

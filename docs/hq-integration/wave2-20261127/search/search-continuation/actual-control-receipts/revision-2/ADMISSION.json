@@ -1,0 +1,24 @@
+{
+  "aggregateOwnedMaximumBytes": 41943040,
+  "dataFreeDiagnosticOnly": 1567141888,
+  "dataWrites": false,
+  "initialOwned": 23928832,
+  "initialRootfsFree": 3673968640,
+  "newInputsSHA256": "8cab592453be435ee5d35e62abe512f5420c9796044dd2ef242ff5978a6a1a27",
+  "oldActualResultSHA256": "adf3bdfb240436c4b43ce3abea55e12fb4ff36273697568390669abde208983f",
+  "pid": 337163,
+  "root": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+  "rootfsMinimumBytes": 1073741824,
+  "scope": "TARGETED_ATTRIBUTION_FOLLOWUP_ROOTFS_ONLY",
+  "tool": {
+    "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+    "bytes": 35095592,
+    "device": 2064,
+    "inode": 11193,
+    "mtimeNs": 1795117971000000000,
+    "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+    "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+  },
+  "uid": 1001,
+  "writeDevice": 2049
+}

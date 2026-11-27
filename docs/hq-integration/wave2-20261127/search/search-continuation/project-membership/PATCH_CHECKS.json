@@ -1,0 +1,77 @@
+{
+  "appliedSHA256": "60dc6ba2751d84604cc352e670472f7e5cc76763592355b6ebbbd5eb40d1afdf",
+  "baselineSHA256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+  "byteExactOriginalRestored": true,
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/patch-check",
+        "apply",
+        "--check",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/membership.patch"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/patch-check",
+        "apply",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/membership.patch"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/patch-check",
+        "apply",
+        "--reverse",
+        "--check",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/membership.patch"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/patch-check",
+        "apply",
+        "--reverse",
+        "/workspace/scratch/ca3b32b82803/search-membership-proposal/membership.patch"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "inheritedDuplicateKeysUnchanged": true,
+  "patchSHA256": "55ddca42c82e34881a0ef5e5277b12425e1704c50fe6428d49193e55363ae7ce",
+  "resolvedNewSourcePaths": {
+    "617E543E37C9CF0FFDDDAE9B": [
+      "Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift"
+    ],
+    "76229CEA1E4A77CFCDE6CEC4": [
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift"
+    ],
+    "C25B81114EFCCDAE8C196042": [
+      "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift"
+    ]
+  },
+  "reversedSHA256": "db527467c59ac351b1db13b7208fe4f7f89da089916978302c2d55e68b42b2ee",
+  "schema": 1,
+  "scope": "LOCAL_PATCH_APPLY_REVERSE_AND_OPENSTEP_GRAPH_ONLY_NOT_XCODE_OR_UI",
+  "status": "PASSED_LOCAL_PATCH_CHECKS_ONLY",
+  "time": "2026-11-27T10:50:56.793494+00:00"
+}

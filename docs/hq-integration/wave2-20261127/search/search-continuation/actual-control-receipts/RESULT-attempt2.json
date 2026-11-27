@@ -1,0 +1,454 @@
+{
+  "appSDKTypecheck": "NOT_RUN",
+  "artifacts": [
+    {
+      "bytes": 1396,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftdoc",
+      "sha256": "27037a9040d10260bb2ebb884e622b60c1cf7031cf7d01fbbf5dfa95b8143f24"
+    },
+    {
+      "bytes": 30536,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftmodule",
+      "sha256": "0f63c31831844509d14200d6c3c0640cb263f586a647644589a5302d3b5a91d9"
+    },
+    {
+      "bytes": 3136,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+      "sha256": "6d71a827c9ed4453b889a08c12c93c33b0b48abe4caccd396b6a82db7d5ddabc"
+    },
+    {
+      "bytes": 35560,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftdoc",
+      "sha256": "b90be849e52f54b79428e03c78030896087e3f47a6c55b13b2379945747487f6"
+    },
+    {
+      "bytes": 696404,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftmodule",
+      "sha256": "da36f958ad8ca6807046efd469f5aa035d9189210447004c04b8fb4547fa99a0"
+    },
+    {
+      "bytes": 163020,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftsourceinfo",
+      "sha256": "871d95e9f6c4aa881277ef57f28919dfdd6e184978dedc646aae759c685bd460"
+    },
+    {
+      "bytes": 43332,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-catalog.v1.json",
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+    },
+    {
+      "bytes": 1510,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-request.v1.schema.json",
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+    },
+    {
+      "bytes": 3669,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-result.v1.schema.json",
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+    },
+    {
+      "bytes": 95749,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-acceptance-cases.v1.json",
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+    },
+    {
+      "bytes": 36033,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-capability-matrix.v1.json",
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+    },
+    {
+      "bytes": 10140,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/examples.v1.json",
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+    },
+    {
+      "bytes": 99432,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-baseline-attempt2",
+      "sha256": "48873480a9a23041ac3fcdc70e8874cb5506add9a297ae67a673e92187ae5017"
+    },
+    {
+      "bytes": 99408,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-candidate-attempt2",
+      "sha256": "4321057fad33dacca6eaa04b92838125eb065370d17f76ee767b7c43db91d1df"
+    },
+    {
+      "bytes": 99120,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libChavrusaUIRoutingHost.so",
+      "sha256": "0468f373940b360a0841e0577859c61632a54ddf178e792b121915081b6d0eb0"
+    },
+    {
+      "bytes": 2975752,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libOtzariaActionCore.so",
+      "sha256": "75fa75c54862cb21b8d3f7744a881f1e1ee2e6069f667b342cfdab0e427edd4e"
+    },
+    {
+      "bytes": 333,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/resource_bundle_accessor.swift",
+      "sha256": "0b7abc644019bfd190aa0a9adf9354181bc2992d32b555eba4985b9db3d0fb91"
+    },
+    {
+      "bytes": 301368,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls-attempt2",
+      "sha256": "b3fbfe2a9a9bdfa80a4ce469ab1940f15ecbbd285ea04bf21062394dbd871ec2"
+    }
+  ],
+  "correctedControlSource": {
+    "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-1/SearchContinuationControls.swift",
+    "sha256": "f0fb8812a5ed3a1d831fed76368b0e0ee4b9fc8294bb7237e746653d5738a943"
+  },
+  "dataWrites": false,
+  "error": null,
+  "executedRunner": {
+    "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-1/run-rootfs-controls.py",
+    "sha256": "65fbe56acdeb898f131b2c16f1a882c4c077e168e288efc2440b4c0a1548e6e6"
+  },
+  "focusedHostModuleSwiftFiles": 1,
+  "fullActionCoreOriginalSwiftFiles": 28,
+  "inputManifestSHA256": "9e34d623a7bbe412e90dba7631b1248fb41ac523518a2f57986c0ec2e8699f77",
+  "minimumRootfsFree": 1782042624,
+  "nativeUI": "NOT_RUN",
+  "original68Suite": "NOT_RERUN",
+  "ownedMaximumBytes": 23736320,
+  "phases": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "--version"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776322.96039,
+      "handleReturned": true,
+      "identity": {
+        "group": 285139,
+        "parent": 285103,
+        "pid": 285139,
+        "startTicks": 730339456
+      },
+      "name": "compiler-version-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776322.7303705,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compiler-version-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 76,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compiler-version-attempt2.stdout",
+        "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "-I",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-L",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-lOtzariaActionCore",
+        "-lChavrusaUIRoutingHost",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/revision-1/SearchContinuationControls.swift",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776324.526134,
+      "handleReturned": true,
+      "identity": {
+        "group": 285180,
+        "parent": 285103,
+        "pid": 285180,
+        "startTicks": 730339480
+      },
+      "name": "compile-portable-controls-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776322.9701416,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls-attempt2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776324.6407719,
+      "handleReturned": true,
+      "identity": {
+        "group": 285233,
+        "parent": 285103,
+        "pid": 285233,
+        "startTicks": 730339636
+      },
+      "name": "portable-controls-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776324.5366948,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/portable-controls-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 2972,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/portable-controls-attempt2.stdout",
+        "sha256": "bbf89ff7017c0664bfd207435286ec247880e74eafe28057f8e55fe9a446aab5"
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/controls/prepare-cancellation-control.py",
+        "--baseline",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/baseline/UnifiedSearchSessionController.swift",
+        "--candidate",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+        "--output",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-controls-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776324.7544475,
+      "handleReturned": true,
+      "identity": {
+        "group": 285238,
+        "parent": 285103,
+        "pid": 285238,
+        "startTicks": 730339648
+      },
+      "name": "prepare-cancellation-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776324.6503453,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/prepare-cancellation-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/prepare-cancellation-attempt2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-controls-attempt2/baseline.swift",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-baseline-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776325.2843273,
+      "handleReturned": true,
+      "identity": {
+        "group": 285239,
+        "parent": 285103,
+        "pid": 285239,
+        "startTicks": 730339659
+      },
+      "name": "compile-cancellation-baseline-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776324.7638156,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-cancellation-baseline-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-cancellation-baseline-attempt2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-baseline-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 1,
+      "expectedExit": 1,
+      "finishedUnix": 1795776325.399235,
+      "handleReturned": true,
+      "identity": {
+        "group": 285255,
+        "parent": 285103,
+        "pid": 285255,
+        "startTicks": 730339712
+      },
+      "name": "cancellation-baseline-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776325.294753,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-baseline-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 927,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-baseline-attempt2.stdout",
+        "sha256": "e3c1e1b113094e96f7386e4c8f4637da78a735c474a78ed6182483f1b6e93a7d"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-controls-attempt2/candidate.swift",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-candidate-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776325.933284,
+      "handleReturned": true,
+      "identity": {
+        "group": 285256,
+        "parent": 285103,
+        "pid": 285256,
+        "startTicks": 730339724
+      },
+      "name": "compile-cancellation-candidate-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776325.4094248,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-cancellation-candidate-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-cancellation-candidate-attempt2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/cancellation-candidate-attempt2"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776326.057255,
+      "handleReturned": true,
+      "identity": {
+        "group": 285338,
+        "parent": 285103,
+        "pid": 285338,
+        "startTicks": 730339777
+      },
+      "name": "cancellation-candidate-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776325.9460082,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-candidate-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 922,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/cancellation-candidate-attempt2.stdout",
+        "sha256": "5c5cbe7a51087d55771c06f54bc940d0efecec62a48098046371971b12c81877"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios17.0-simulator",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/Features/Search/iOS/SearchModeView.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/Features/Search/iOS/SearchResultsListView.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ZayitSearch/UnifiedSearchSessionController.swift"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776326.2916307,
+      "handleReturned": true,
+      "identity": {
+        "group": 285344,
+        "parent": 285103,
+        "pid": 285344,
+        "startTicks": 730339790
+      },
+      "name": "candidate-ios-syntax-only-attempt2",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776326.0696905,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate-ios-syntax-only-attempt2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate-ios-syntax-only-attempt2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "reusedPreviousResult": {
+    "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/RESULT.json",
+    "sha256": "cee5efbe86c810d61917de9bb57f81725a25725c108a25242bbd32eeca9bd59d"
+  },
+  "scope": "ROOTFS_ONLY_PORTABLE_COMPONENTS",
+  "status": "PORTABLE_COMPONENT_CONTROLS_PASSED_APP_NATIVE_NOT_RUN",
+  "tool": {
+    "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+    "bytes": 35095592,
+    "device": 2064,
+    "inode": 11193,
+    "mtimeNs": 1795117971000000000,
+    "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+    "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+  },
+  "writeDevice": 2049
+}

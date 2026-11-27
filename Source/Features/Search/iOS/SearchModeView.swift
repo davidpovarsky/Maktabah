@@ -196,6 +196,7 @@ struct SearchModeView: View {
             isLoadingMore: session.isLoadingMore,
             hasMore: session.hasMore,
             automaticallyLoadsMore: session.allowsAutomaticPaging && session.resultKitabFilter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+            nativeContinuation: session.nativeSearchContinuation,
             onLoadMore: {
                 session.loadNextPage()
             },

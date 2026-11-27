@@ -1,0 +1,311 @@
+{
+  "appSDKTypecheck": "NOT_RUN",
+  "artifacts": [
+    {
+      "bytes": 1396,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftdoc",
+      "sha256": "27037a9040d10260bb2ebb884e622b60c1cf7031cf7d01fbbf5dfa95b8143f24"
+    },
+    {
+      "bytes": 30536,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftmodule",
+      "sha256": "0f63c31831844509d14200d6c3c0640cb263f586a647644589a5302d3b5a91d9"
+    },
+    {
+      "bytes": 3136,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftsourceinfo",
+      "sha256": "6d71a827c9ed4453b889a08c12c93c33b0b48abe4caccd396b6a82db7d5ddabc"
+    },
+    {
+      "bytes": 35560,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftdoc",
+      "sha256": "b90be849e52f54b79428e03c78030896087e3f47a6c55b13b2379945747487f6"
+    },
+    {
+      "bytes": 696404,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftmodule",
+      "sha256": "da36f958ad8ca6807046efd469f5aa035d9189210447004c04b8fb4547fa99a0"
+    },
+    {
+      "bytes": 163020,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftsourceinfo",
+      "sha256": "871d95e9f6c4aa881277ef57f28919dfdd6e184978dedc646aae759c685bd460"
+    },
+    {
+      "bytes": 43332,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-catalog.v1.json",
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+    },
+    {
+      "bytes": 1510,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-request.v1.schema.json",
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+    },
+    {
+      "bytes": 3669,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/action-result.v1.schema.json",
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+    },
+    {
+      "bytes": 95749,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-acceptance-cases.v1.json",
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+    },
+    {
+      "bytes": 36033,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/backend-capability-matrix.v1.json",
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+    },
+    {
+      "bytes": 10140,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore_OtzariaActionCore.resources/examples.v1.json",
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+    },
+    {
+      "bytes": 99120,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libChavrusaUIRoutingHost.so",
+      "sha256": "0468f373940b360a0841e0577859c61632a54ddf178e792b121915081b6d0eb0"
+    },
+    {
+      "bytes": 2975752,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libOtzariaActionCore.so",
+      "sha256": "75fa75c54862cb21b8d3f7744a881f1e1ee2e6069f667b342cfdab0e427edd4e"
+    },
+    {
+      "bytes": 333,
+      "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/resource_bundle_accessor.swift",
+      "sha256": "0b7abc644019bfd190aa0a9adf9354181bc2992d32b555eba4985b9db3d0fb91"
+    }
+  ],
+  "dataWrites": false,
+  "error": "AssertionError({'name': 'compile-portable-controls', 'argv': ['/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc', '-swift-version', '6', '-parse-as-library', '-module-cache-path', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache', '-I', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output', '-L', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output', '-Xlinker', '-rpath', '-Xlinker', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output', '-lOtzariaActionCore', '-lChavrusaUIRoutingHost', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/controls/SearchContinuationControls.swift', '-o', '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls'], 'cwd': '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42', 'startedUnix': 1795776104.5134103, 'expectedExit': 0, 'startAttempted': True, 'handleReturned': True, 'ownedGroupAbsent': True, 'identity': {'pid': 273129, 'parent': 270980, 'group': 273129, 'startTicks': 730317634}, 'exit': 1, 'finishedUnix': 1795776105.3603823, 'stdout': {'path': '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls.stdout', 'bytes': 0, 'sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}, 'stderr': {'path': '/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls.stderr', 'bytes': 2266, 'sha256': '2bcb684a9eb394fca588210a90cf0f0e1671e148c9a23b268f4064d058529656'}})",
+  "focusedHostModuleSwiftFiles": 1,
+  "fullActionCoreOriginalSwiftFiles": 28,
+  "inputManifestSHA256": "9e34d623a7bbe412e90dba7631b1248fb41ac523518a2f57986c0ec2e8699f77",
+  "minimumRootfsFree": 1791479808,
+  "nativeUI": "NOT_RUN",
+  "original68Suite": "NOT_RERUN",
+  "ownedMaximumBytes": 27820032,
+  "phases": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "--version"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776065.8016098,
+      "handleReturned": true,
+      "identity": {
+        "group": 270981,
+        "parent": 270980,
+        "pid": 270981,
+        "startTicks": 730312884
+      },
+      "name": "compiler-version",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776057.014173,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compiler-version.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 76,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compiler-version.stdout",
+        "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "-emit-library",
+        "-emit-module",
+        "-enable-testing",
+        "-module-name",
+        "OtzariaActionCore",
+        "-emit-module-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/OtzariaActionCore.swiftmodule",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libOtzariaActionCore.so",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/resource_bundle_accessor.swift"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776103.657637,
+      "handleReturned": true,
+      "identity": {
+        "group": 271367,
+        "parent": 270980,
+        "pid": 271367,
+        "startTicks": 730313768
+      },
+      "name": "compile-core",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776065.8546915,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-core.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-core.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "-I",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-L",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-lOtzariaActionCore",
+        "-emit-library",
+        "-emit-module",
+        "-enable-testing",
+        "-module-name",
+        "ChavrusaUIRoutingHost",
+        "-emit-module-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/ChavrusaUIRoutingHost.swiftmodule",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/libChavrusaUIRoutingHost.so",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 0,
+      "expectedExit": 0,
+      "finishedUnix": 1795776104.5009313,
+      "handleReturned": true,
+      "identity": {
+        "group": 273108,
+        "parent": 270980,
+        "pid": 273108,
+        "startTicks": 730317549
+      },
+      "name": "compile-focused-host-service",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776103.6691527,
+      "stderr": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-focused-host-service.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-focused-host-service.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/module-cache",
+        "-I",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-L",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output",
+        "-lOtzariaActionCore",
+        "-lChavrusaUIRoutingHost",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/candidate/Source/ChavrusaText/SearchContinuation/OriginalSearchContinuationClaim.swift",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/controls/SearchContinuationControls.swift",
+        "-o",
+        "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/output/search-continuation-controls"
+      ],
+      "cwd": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42",
+      "exit": 1,
+      "expectedExit": 0,
+      "finishedUnix": 1795776105.3603823,
+      "handleReturned": true,
+      "identity": {
+        "group": 273129,
+        "parent": 270980,
+        "pid": 273129,
+        "startTicks": 730317634
+      },
+      "name": "compile-portable-controls",
+      "ownedGroupAbsent": true,
+      "startAttempted": true,
+      "startedUnix": 1795776104.5134103,
+      "stderr": {
+        "bytes": 2266,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls.stderr",
+        "sha256": "2bcb684a9eb394fca588210a90cf0f0e1671e148c9a23b268f4064d058529656"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "/tmp/otzaria-search-continuation-checks-c7f9cc7d8f1b41e68627c818389a4d42/compile-portable-controls.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "scope": "ROOTFS_ONLY_PORTABLE_COMPONENTS",
+  "status": "FAILED",
+  "tool": {
+    "argv0": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+    "bytes": 35095592,
+    "device": 2064,
+    "inode": 11193,
+    "mtimeNs": 1795117971000000000,
+    "resolved": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-driver",
+    "sha256": "39d41b0dc9eba623b0e37cea42c3145720168214ba4349d6fa3bd9db9b1e651a"
+  },
+  "writeDevice": 2049
+}

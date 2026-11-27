@@ -1,0 +1,39 @@
+{
+  "appUI" : "NOT_RUN",
+  "cases" : [
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "foreign request failure cannot donate effects",
+      "passed" : false
+    },
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "foreign request acknowledgement cannot donate effects",
+      "passed" : false
+    },
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "same request foreign source acknowledgement cannot donate effects",
+      "passed" : false
+    },
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "same request foreign operation acknowledgement cannot donate effects",
+      "passed" : false
+    },
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "foreign source is joined before late authority refusal",
+      "passed" : false
+    },
+    {
+      "currentRequestWasGivenUnjoinedEffects" : true,
+      "name" : "unattested failure origin is never joined by UUID alone",
+      "passed" : false
+    }
+  ],
+  "failed" : 6,
+  "passed" : 0,
+  "pid" : 337238,
+  "scope" : "PRIOR_ACTUAL_SERVICE_FOREIGN_OUTCOME_COUNTEREXAMPLES_WITH_FIXTURE_RESPONSES"
+}
