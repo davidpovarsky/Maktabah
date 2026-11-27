@@ -1,0 +1,14 @@
+{
+  "written_at": "2026-11-27T02:05:18.613251+00:00",
+  "phase": "before compiler launch",
+  "available_bytes_observed": 409927680,
+  "preflight_threshold_bytes": 536870912,
+  "compile_started": false,
+  "tests_executed": 0,
+  "reason": "The source-readiness harness wrote only its source files, then its own disk preflight stopped before spawning swiftc.",
+  "sentinel_request": "hreq_cb1545ab3a0c4c5e",
+  "sources": {
+    "OriginalParentReadinessControls.swift": "330885cb800f4bebab03a53f285ca41bcb05c4d794c812a6648726d8ddb6dc1d",
+    "OriginalParentReadinessNegativeControl.swift": "8ff1e089e85e494a3d189a365306415bbdb54e970af4713f4c9e701d1b00e7c1"
+  }
+}

@@ -15,6 +15,26 @@ import Observation
     @ObservationIgnored private var token: UUID?
     var current: StudyWorkspaceNavigationAdapter? { changing ? nil : workspace }
     var isPublishing: Bool { changing }
+    #if os(iOS)
+    /// Only the exact original scene host installs this weak forwarding link.
+    /// Outer original presentation modifiers can carry that same session across
+    /// their UIHostingController boundary without looking up a global window.
+    private(set) weak var nativeRoutingSession: MaktabahNativeSceneSession?
+
+    func attachNativeRoutingSession(_ session: MaktabahNativeSceneSession) throws {
+        guard session.mounted, session.usesWorkspaceOwner(self),
+              current?.sceneID == session.sceneID.rawValue,
+              nativeRoutingSession == nil || nativeRoutingSession === session
+                || nativeRoutingSession?.mounted == false else {
+            throw WorkspaceOwnerError.nativeRoutingOwnerMismatch
+        }
+        nativeRoutingSession = session
+    }
+    func detachNativeRoutingSession(_ session: MaktabahNativeSceneSession) {
+        guard nativeRoutingSession === session else { return }
+        nativeRoutingSession = nil
+    }
+    #endif
 
     func replace(with next: StudyWorkspaceNavigationAdapter?) throws {
         guard !changing else { throw WorkspaceOwnerError.reentrantPublication }
@@ -35,7 +55,7 @@ import Observation
         self.token = nil; observer = nil
     }
     isolated deinit { observer?.workspaceOwnerWillChange() }
-    enum WorkspaceOwnerError: Error { case reentrantPublication, observerAlreadyInstalled }
+    enum WorkspaceOwnerError: Error { case reentrantPublication, observerAlreadyInstalled, nativeRoutingOwnerMismatch }
 }
 
 /// Actual mount and refresh both use this fixed weak source. Neither closure

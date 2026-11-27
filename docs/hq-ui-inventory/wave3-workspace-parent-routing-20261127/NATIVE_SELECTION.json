@@ -1,0 +1,25 @@
+{
+  "scope": "Separate focused UI03/UI04 Workspace scenarios. No original Native116/Release114 selector changes.",
+  "source": "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift",
+  "status": "NOT_RUN",
+  "ipad": [
+    "NativeRoutingAcceptanceTests/testSystemWorkspaceProfilesListFromHistoryUsesOriginalSheet",
+    "NativeRoutingAcceptanceTests/testSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+    "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewGroupSelectorFromHistoryPreservesTabs",
+    "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewActionsFromBackgroundDoNotExecuteMenu",
+    "NativeRoutingAcceptanceTests/testSystemWorkspaceOverviewBothOriginalLayoutsRemainBound"
+  ],
+  "iphone": [
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceProfilesListFromBackgroundUsesOriginalNestedSheet",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceGroupsThenCreateRevealsOriginalControlWithoutDraft",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewGroupSelectorPreservesTabs",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewActionsDoNotExecuteMenu",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceProfileMenuIsOriginalVisibleControl",
+    "NativeRoutingPhoneAcceptanceTests/testPhoneSystemWorkspaceOverviewBothOriginalLayoutsRemainBound"
+  ],
+  "system_transport": "AppIntentsTesting actual system NativeDestinationEntity discovery and OpenNativeDestinationIntent execution",
+  "receipt": "Exactly one new canonical root receipt per invocation plus matching request/scene/exact component focus receipt",
+  "preserved": "Actual persisted profile/group IDs, selected Reader tab owner, open tab IDs, backend and book identities",
+  "grid_list": "Real original study-tabs-layout-toggle tap; exact original tab-switcher-grid/list-cell IDs before/after; no UserDefaults writes",
+  "production_v40_acceptance": "NOT_ASSERTED; run against final admitted data/metadata and exact source"
+}

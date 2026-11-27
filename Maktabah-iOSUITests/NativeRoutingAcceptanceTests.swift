@@ -2662,15 +2662,24 @@ extension NativeRoutingAcceptanceTests {
                                          presentation: String = "currentTab",
                                          fromBackground: Bool = false,
                                          launchArgs: [String] = [], expectedValue: String? = nil,
+                                         useCurrentOriginalSurface: Bool = false,
                                          originalTarget: (@MainActor (XCUIApplication) -> XCUIElement)? = nil) async throws {
-        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: launchArgs)
+        if useCurrentOriginalSurface {
+            XCTAssertEqual(isPad, expectedPad)
+            XCTAssertTrue(launchArgs.isEmpty, "A warm original surface does not relaunch with new state")
+            XCTAssertEqual(app.state, .runningForeground)
+        } else {
+            _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: launchArgs)
+        }
         let original = try actualReaderWorkspace().current()
-        // Start on another original page. No Settings/TOC/Library parent is
-        // pre-opened to make the requested component artificially available.
-        let historyRequest = UUID()
-        try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
-        XCTAssertTrue(history.waitForExistence(timeout: 15))
-        try requireRootReceipt(historyRequest, destination: "native.history")
+        if !useCurrentOriginalSurface {
+            // Cold cases start on another original page. Warm cases explicitly
+            // retain the original surface reached by their preceding real action.
+            let historyRequest = UUID()
+            try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15))
+            try requireRootReceipt(historyRequest, destination: "native.history")
+        }
         let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
         let entities = try await system.entities["NativeDestinationEntity"].entities(matching: title)
         XCTAssertEqual(entities.count, 1, "Resolve one exact original component in this window")
@@ -2709,11 +2718,56 @@ extension NativeRoutingAcceptanceTests {
         try requirePreservedOriginalWorkspace(original)
         XCTAssertFalse(app.alerts["Unable to open link"].exists)
         capture("original-component-\(anchor)")
-        if presentation == "sheet" {
+        if destination == "native.settings", presentation == "sheet" {
             let done = app.buttons["settings-done-button"]
             XCTAssertTrue(done.isHittable); done.tap()
             XCTAssertTrue(history.waitForExistence(timeout: 10), "The original underlying page remains selected")
         }
+    }
+
+    /// Both original layouts are exercised through the actual original toggle.
+    /// Each Intent keeps its own exact system receipt; no layout preference is
+    /// injected and no coordinate-only tap or app-private decoder is used.
+    @MainActor
+    func runOriginalWorkspaceLayoutSystemIntents(expectedPad: Bool) async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview", title: "Tab layout",
+            anchor: "native.workspace.overview.layout", identifier: "study-tabs-layout-toggle",
+            presentation: "sheet")
+        let original = try actualReaderWorkspace().current()
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.isHittable)
+        XCTAssertTrue(["List view", "Grid view"].contains(toggle.label))
+        let initialMode = toggle.label == "List view" ? "grid" : "list"
+        let secondMode = initialMode == "grid" ? "list" : "grid"
+        func currentCells(_ mode: String) -> XCUIElementQuery {
+            app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@",
+                "tab-switcher-\(mode)-cell-"))
+        }
+        XCTAssertTrue(currentCells(initialMode).firstMatch.waitForExistence(timeout: 10))
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview",
+            title: initialMode == "grid" ? "Grid view" : "List view",
+            anchor: "native.workspace.overview." + initialMode, identifier: "",
+            presentation: "sheet", useCurrentOriginalSurface: true,
+            originalTarget: { _ in currentCells(initialMode).firstMatch })
+        XCTAssertTrue(toggle.isHittable)
+        toggle.tap()
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            currentCells(secondMode).firstMatch.exists
+                && currentCells(secondMode).firstMatch.isHittable
+                && !currentCells(initialMode).firstMatch.exists
+                && toggle.label == (secondMode == "grid" ? "List view" : "Grid view")
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 15), .completed,
+                       "The original native collection must actually change layout")
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview",
+            title: secondMode == "grid" ? "Grid view" : "List view",
+            anchor: "native.workspace.overview." + secondMode, identifier: "",
+            presentation: "sheet", useCurrentOriginalSurface: true,
+            originalTarget: { _ in currentCells(secondMode).firstMatch })
+        try requirePreservedOriginalWorkspace(original)
     }
 
     @MainActor

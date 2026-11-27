@@ -1,0 +1,90 @@
+{
+  "schema": "otzaria.wave3.workspace-parent-routing.v1",
+  "base": "0c93d1de3b4ba9734c3341e3b088ca41818fb619",
+  "bounded_dependency": "49e334a96cdd336e331650ad755e607908256e84",
+  "bounded_equivalent_parent": "3b49ef58c80263067907f0b44995d3c5e9c1e320",
+  "sources": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "2bbceea0f5a1656fa30231ea8d4d868f33f3d657c719e94e29061cdd0a2599a5",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "f9dc20c1ec1c449593a36d6f1a58456a52a89fa807baddcb90e4431593f32305",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "44043d7d5313b0c82c78d1941bb02b5f41395102e66842a42326c86704464175",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift": "e46e498d748d8529ee692d1586bcc625a0082cd762a593de757a1a03c07ebbbc",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "81f587d2aa712796ea2d95ec97f667867d925e9a16d686904dac19a1e83a9620",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "52268b648d28f094555d674066f2706aa42801162203deee397c589ed93995f9",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "12295644292c66b4e0bf521527ccacaeb0eceb255b1641a75c108829e1688af4",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift": "087f48afc9f223e8498571e5e7dd84ba62020a8d8c50fb516bfe53ed531f2e22",
+    "Maktabah-iOSUITests/NativeWorkspaceComponentAcceptanceTests.swift": "ed705060a498944f220efb23ed59e2be23819b9738a48e3b02f25f46e80fab88"
+  },
+  "syntax": {
+    "passed": 9,
+    "failed": 0,
+    "scope": "arm64-apple-ios27.0 frontend syntax only; NOT Apple SDK typing or native execution"
+  },
+  "source_readiness_controls": {
+    "passed": 20,
+    "failed": 0,
+    "negative_variant_failures": 4,
+    "job_id": "job_95f9bf2e1a56",
+    "predicate_sha256": "834b6f5801a25784c4c936af4b9003f5425f01dccd99af803ff9c26a1177220c",
+    "scope": "Verbatim production predicates; synthetic original-owner facets only. No app SDK typing, UIKit, Core grant, simulator, device or native acceptance.",
+    "mac_directory": "/Users/m1/builds/otzaria-wave3-parent-readiness-20261127.xvzw9sh3",
+    "original_log_sha256": "20e6528382e178b59b34a7c88870690bf4ad56dc56616c3b75354a55d5a7616d",
+    "negative_log_sha256": "3e4ab2d581cdc77439f2f14d916468a295eadf5f7a2fc7bb735aaa5772f8183c"
+  },
+  "native_scenarios": {
+    "declared": 11,
+    "executed": 0,
+    "status": "NOT_RUN"
+  },
+  "original_native_prefix": {
+    "bytes": 170801,
+    "sha256": "788bb653b4e9c1116739b7c5a691fbd89ef3d4c3948c189b7be46906ddbe7bb8",
+    "unchanged": true
+  },
+  "dependencies": {
+    "original_feature_adapter": "Pending separately reviewed navigation_fix Workspace binding/components/hooks packet; stable agreed interfaces consumed here.",
+    "new_app_files_owned_by_peer": [
+      "MaktabahNativeWorkspacePresentationBinding.swift",
+      "MaktabahNativeWorkspaceComponents.swift"
+    ],
+    "project_membership": "Root owns peer app-source PBX membership. Existing app files already belong to target. New UI test uses existing synchronized test target."
+  },
+  "owner_gate": "No attestation or owner signature created or altered. Root must include new source and peer original hooks in authentic final gates.",
+  "minor_ui07_fix": "Replaced pre-existing mojibake separator in native window entity label with the actual em dash used elsewhere.",
+  "artifacts": {
+    "workspace-ios27-parse.json": {
+      "sha256": "91326b00a39f249065c74785dd0e5f3d52ecbdddaed25fc644cb992b735ae093",
+      "bytes": 3326,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/workspace-ios27-parse.json"
+    },
+    "parent-readiness-capacity-stop.json": {
+      "sha256": "3240f69c7c92cb56768b4081ce5d0e2ae160a7b264b577059c4c1ba731d23599",
+      "bytes": 658,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/parent-readiness-capacity-stop.json"
+    },
+    "mac-parent-readiness-result.json": {
+      "sha256": "3caa2f1ae20cdc056500d112b565226072075514defb576b47715bfe55677fbe",
+      "bytes": 5682,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/mac-parent-readiness-result.json"
+    },
+    "mac-parent-readiness-original.log": {
+      "sha256": "20e6528382e178b59b34a7c88870690bf4ad56dc56616c3b75354a55d5a7616d",
+      "bytes": 979,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/mac-parent-readiness-original.log"
+    },
+    "mac-parent-readiness-negative.log": {
+      "sha256": "3e4ab2d581cdc77439f2f14d916468a295eadf5f7a2fc7bb735aaa5772f8183c",
+      "bytes": 1851,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/mac-parent-readiness-negative.log"
+    },
+    "OriginalParentReadinessControls.swift": {
+      "sha256": "330885cb800f4bebab03a53f285ca41bcb05c4d794c812a6648726d8ddb6dc1d",
+      "bytes": 9351,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/OriginalParentReadinessControls.swift"
+    },
+    "OriginalParentReadinessNegativeControl.swift": {
+      "sha256": "8ff1e089e85e494a3d189a365306415bbdb54e970af4713f4c9e701d1b00e7c1",
+      "bytes": 9339,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-parent-routing-20261127/OriginalParentReadinessNegativeControl.swift"
+    }
+  }
+}
