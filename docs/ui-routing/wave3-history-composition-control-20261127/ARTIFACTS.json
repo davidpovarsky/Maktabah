@@ -1,0 +1,45 @@
+{
+  "sourceChange": "NONE",
+  "files": [
+    {
+      "path": "EVIDENCE.json",
+      "bytes": 5503,
+      "sha256": "9b3338c39e578856bb1fb6b992278b03247d0a9a67c7885a70b970b59d3f615a"
+    },
+    {
+      "path": "EXTRACTION.json",
+      "bytes": 1428,
+      "sha256": "864f24f447f4fabc7766fbcb358f1a3d8bc923e1e6eb7b51e6af9dcbc9f3e50e"
+    },
+    {
+      "path": "FINAL_SOURCE_JOIN.json",
+      "bytes": 1854,
+      "sha256": "8fb1b384eb9af2f8e6d8a059e6fe55a37ac237463ba124132182e1c2f4ea23ba"
+    },
+    {
+      "path": "HistoryCompositionBoundary.swift",
+      "bytes": 8169,
+      "sha256": "64cb5794bdcd6ec3d36a4b9c2ef501a7e774c15bea3c801f7b7f35cb3f33d563"
+    },
+    {
+      "path": "HistoryCompositionControls.swift",
+      "bytes": 10726,
+      "sha256": "74651a50e7f123077b0d265a964cebe2339f7f9977fd8df56e150b78aad1b976"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3050,
+      "sha256": "55e8d56bbc4304916f16faf47aa0cf1298944d2182cd6164aa721b7f163ed0e6"
+    },
+    {
+      "path": "evidence.json.gz",
+      "bytes": 32412,
+      "sha256": "d8f41bf9c0c6b53dd485c160c94378d641f2b3225afc13e9574dacb5d806cd01"
+    },
+    {
+      "path": "run_controls.py",
+      "bytes": 9559,
+      "sha256": "c887ebd650b563b10beca6e13a9c5f776b6ec4d808e585366d461c3be5a25bc6"
+    }
+  ]
+}

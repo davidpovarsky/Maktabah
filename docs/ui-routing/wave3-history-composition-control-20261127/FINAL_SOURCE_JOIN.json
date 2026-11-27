@@ -1,0 +1,37 @@
+{
+  "scope": "Exact two original Composition methods with all body bytes preserved; surrounding app/generic-open values are explicit fixtures",
+  "sourceFiles": [
+    {
+      "label": "candidate",
+      "path": "root-history-reader-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 231362,
+      "sha256": "963c3c752ac79c51ddbaa11c36e95ded44ee8c091232d1605fe87458cafde3fe",
+      "methodBytes": 5268,
+      "methodSHA256": "4cb52eea1dbf6d72a42845e951775c780d49d2f7b1386df6e909c4acc41fd0fe"
+    },
+    {
+      "label": "initial",
+      "path": "root-history-reader-implementation/preserved-draft-1-before-receipt-fix/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 231160,
+      "sha256": "ffc217453c8378ceebd757e674ac587af984150698122b8359513016e1331e80",
+      "methodBytes": 5066,
+      "methodSHA256": "dfa736e534c7c3b3a509828fdc465d083559f6ab72d90e981ab6d46e311cb751"
+    },
+    {
+      "label": "combined",
+      "path": "wave3-original-entry-wiring/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 239830,
+      "sha256": "630a53027321c1008f9bd7f969c07b945165cb55ad7fa9bbc1357bde13ca6157",
+      "methodBytes": 5268,
+      "methodSHA256": "4cb52eea1dbf6d72a42845e951775c780d49d2f7b1386df6e909c4acc41fd0fe"
+    },
+    {
+      "label": "combined-with-Saved-Results",
+      "path": "wave3-all-original-entry-wiring/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 246040,
+      "sha256": "eeb1b4b4758df16bacbcc5cf12d69b12a0bf08cff2ac8017aada2d8916435926",
+      "methodBytes": 5268,
+      "methodSHA256": "4cb52eea1dbf6d72a42845e951775c780d49d2f7b1386df6e909c4acc41fd0fe"
+    }
+  ]
+}
