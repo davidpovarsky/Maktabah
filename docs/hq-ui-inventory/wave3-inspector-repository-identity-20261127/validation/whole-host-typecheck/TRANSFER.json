@@ -1,0 +1,17 @@
+{
+  "sourceDirectory": "/Users/m1/builds/otzaria-wave3-inspector-repository-identity-20261127",
+  "files": {
+    "RESULT.json": {
+      "bytes": 6905,
+      "sha256": "05acb04a9adb246f933b368ad6533eb389f972f5c5313bbc960c047c2839089f"
+    },
+    "typecheck.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "typecheck.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

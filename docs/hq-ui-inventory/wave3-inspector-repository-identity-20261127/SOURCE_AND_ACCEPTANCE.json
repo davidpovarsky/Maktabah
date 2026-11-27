@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "baseCommit": "f000c095cea53945eba3859eb8a25c0f60906970",
+  "productPath": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+  "productSHA256": "1fb9c8c8db81b50f86541dd970e22bca8da934434c4c4990d47926f0f710ebb2",
+  "productLinesAdded": 1,
+  "originalModelCasesRerun": 0,
+  "nativeUIRuns": 0,
+  "physicalRuns": 0,
+  "typecheckReceiptSHA256": "05acb04a9adb246f933b368ad6533eb389f972f5c5313bbc960c047c2839089f",
+  "files": {
+    "INDEPENDENT_REVIEW.json": {
+      "bytes": 11261,
+      "sha256": "a09de5484f09231ab383b08e2a92f10a0ea1ebaf133abce28916341952f0a70d"
+    },
+    "README.md": {
+      "bytes": 4041,
+      "sha256": "d2213cf826eeb24c33895808dde6db9f5a287ca1c9c1c2230506dc430095dd92"
+    },
+    "run-whole-host-typecheck.py": {
+      "bytes": 4791,
+      "sha256": "69efa0b478d6d256b4ccac8da3b46fc42ced098bd647de06a6ccf9f96e475199"
+    },
+    "validation/whole-host-typecheck/RESULT.json": {
+      "bytes": 6905,
+      "sha256": "05acb04a9adb246f933b368ad6533eb389f972f5c5313bbc960c047c2839089f"
+    },
+    "validation/whole-host-typecheck/TRANSFER.json": {
+      "bytes": 522,
+      "sha256": "5d7a1f251767a30cd1c2a455fb387ce55a95a76a771fc6558983eca410b18634"
+    },
+    "validation/whole-host-typecheck/typecheck.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation/whole-host-typecheck/typecheck.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
