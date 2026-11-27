@@ -17,3 +17,9 @@ The installer path is downstream-only relative to inspected upstream `bismillah-
 The candidate run uses Wave 3's exact `run_control.py` and ten-case source in a new owned Apple directory, with a fresh input manifest binding the candidate product commit. Its prior nine-pass/one-fail receipt is reused as the negative control; no duplicate baseline rerun is needed. Native candidate results will be committed separately when observed. At this source checkpoint, candidate native status is **NOT_RUN**. No UI or full-production acceptance is claimed.
 
 The earlier Settings retry test's immutable previous-manifest obstruction must be moved to the pending-manifest write after the old reader has cold-opened, because strict retirement now correctly rejects an obstruction at the previous-manifest path before replacement. That tests-only followup is tracked separately; the old test is not claimed as executed acceptance.
+
+## Observed Apple candidate result
+
+`retained-marker-candidate-1/RESULT.json` records **10 PASS / 0 FAIL / 0 SKIP**, actual test exit 0, on candidate `3f062f6c97c12709ae0757fdeb1f7ece86674332`. SentinelX job `job_efc45ee9533a` ran 2026-11-27 00:07:59–00:08:08 UTC. Result SHA-256: `08377cf24e3c2c2eb25adb0056d1f7455d54336d88e46c85a7b6e41e5144dc72`. The exact Wave 3 ten-case source and runner were unchanged, and every admitted source input matched after execution. The original 9-pass/1-fail negative receipt is retained on its original branch; it was not rerun or relabeled.
+
+This closes the focused consecutive-update recovery regression. It does not claim original Settings UI, production-library installation or device acceptance.
