@@ -7,13 +7,13 @@ import OtzariaUIRouting
 /// Actual Observation publications exercise retained-source cancellation.
 /// These controls are not UIKit or end-to-end component acceptance evidence.
 @MainActor final class NativeComponentSourceObservationTests: XCTestCase, @unchecked Sendable {
-    @Observable private final class Model {
+    @Observable fileprivate final class Model {
         var value = "A"
         var blocked = false
         var unrelated = 0
         var captures = 0
     }
-    @Observable private final class Manager {
+    @Observable fileprivate final class Manager {
         var model = Model()
     }
 
