@@ -16,7 +16,11 @@ HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location("normal_ios_workspace", HERE / "prepare-normal-ios-workspace.py")
 adapter = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(adapter)
-ACTUAL_CONFIG = json.loads((HERE / "hq-stage2-focused-apple.inputs.json").read_text())
+# Keep every original scenario/assertion on its exact original input snapshot.
+# The current seven-path contract is exercised separately against real Git.
+LEGACY_CONFIG = (HERE / "fixtures/reviewed-vendor-legacy-inputs.json").read_bytes()
+assert hashlib.sha256(LEGACY_CONFIG).hexdigest() == "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+ACTUAL_CONFIG = json.loads(LEGACY_CONFIG)
 WORKFLOW = (HERE.parents[1] / ".github/workflows/ios-build.yml").read_text()
 
 
@@ -82,6 +86,11 @@ class OriginalPreparationBoundary:
 
     def prepare_matching_embedded_bundle(self, config, report):
         self.calls.append(("bundle", config))
+
+    def reviewed_vendor_source_plan(self, config):
+        self.require(config["application_source_sha"] == ACTUAL_CONFIG["application_source_sha"],
+                     "Original command-boundary controls require the explicit historical source")
+        return None
 
     def install_real_pods(self, report):
         self.calls.append(("pods", None))

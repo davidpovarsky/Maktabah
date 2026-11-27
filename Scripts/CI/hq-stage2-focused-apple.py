@@ -237,8 +237,16 @@ def zayit_build_plan(config):
             "build_script": script, "build_script_git_blob": capture("git", "rev-parse", "HEAD:" + script)}
 
 
+def reviewed_vendor_source_plan(config):
+    # Both preparation routes execute this same source-only validator. The
+    # original standalone runpy loading and dependency registration are retained.
+    module = runpy.run_path(str(ROOT / "Scripts/CI/final_integration_source.py"))
+    return module["reviewed_vendor_source_plan"](ROOT, config)
+
+
 def preflight(config):
     validate_framework_bindings(config)
+    reviewed_vendor = reviewed_vendor_source_plan(config)
     result = {"checkout_sha": capture("git", "rev-parse", "HEAD"), "application_source_sha": config["application_source_sha"],
               "validator_sha256": digest(Path(__file__)), "inputs_sha256": digest(INPUTS),
               "workflow_sha256": digest(ROOT / ".github/workflows/sefaria-embedded-validation.yml"),
@@ -257,6 +265,10 @@ def preflight(config):
                 "Prebuilt engine producer source differs: " + path)
         if path == OTZARIA_ROOT:
             result["otzaria_test_additions"] = verify_otzaria_test_additions(config)
+        elif path == "Vendor/ZayitSearchPort" and reviewed_vendor is not None:
+            # The original compiled Rust/Upstream inputs remain exact. Only
+            # the closed, separately compiled Swift consumer object differs.
+            result["zayit_swift_consumer_source"] = reviewed_vendor["producer_scopes"]["zayit"]
         elif path != "Vendor/ZayitSearchPort/Rust":
             require(capture("git", "rev-parse", "HEAD:" + path) == expected_tree,
                     "Unreviewed prebuilt engine source drift: " + path)
@@ -266,7 +278,10 @@ def preflight(config):
     require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile/Upstream") == config["sefaria_gitlink"], "Sefaria pin drift")
     resource_tree = capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile")
     overlays = config.get("embedded_js_overlay_paths", [])
-    if overlays:
+    if reviewed_vendor is not None:
+        result["reviewed_vendor_source"] = reviewed_vendor
+        result["embedded_bundle_build"] = reviewed_vendor["embedded_bundle_build"]
+    elif overlays:
         # The old immutable resource artifact remains a verified baseline, not
         # a matching bundle for new JS. Rebuild only this reviewed downstream
         # facade overlay using the unchanged pinned upstream and npm lock.
@@ -648,17 +663,29 @@ def observe_installed_pods(report):
 
 
 def prepare_matching_embedded_bundle(config, report):
+    reviewed_vendor = reviewed_vendor_source_plan(config)
     if not config.get("embedded_js_overlay_paths"):
         return
     vendor = ROOT / "Vendor/SefariaMobile/Upstream"
     bundle = ROOT / "build/jsbundle/main.jsbundle"
     historical = digest(bundle)
+    if reviewed_vendor is not None:
+        require(report["embedded_bundle_build"] == reviewed_vendor["embedded_bundle_build"],
+                "Prepared bundle plan differs from the exact current source")
+        require(historical == config["resource_bundle_sha256"],
+                "Metro baseline is not the original verified resource bundle")
     logged(["npx", "--no-install", "react-native", "bundle",
             "--config", "../Integration/metro.config.embedded.js", "--platform", "ios", "--dev", "false",
             "--entry-file", "../Integration/index.embedded.js", "--bundle-output", str(bundle),
             "--assets-dest", str(bundle.parent)], "matching-embedded-bundle.log", report, cwd=vendor)
     require(bundle.is_file() and bundle.stat().st_size > 0, "Matching Metro bundle is missing or empty")
     require(capture("git", "rev-parse", "HEAD:Vendor/SefariaMobile") == report["embedded_bundle_build"]["source_tree"], "Embedded source changed during bundling")
+    if reviewed_vendor is not None:
+        require(reviewed_vendor_source_plan(config) == reviewed_vendor,
+                "Reviewed source changed during the original Metro command")
+        require(digest(bundle) != historical,
+                "Historical bundle cannot be relabelled as the newly built current bundle")
+        report["embedded_bundle_build"]["reviewed_source_before_after"] = reviewed_vendor["embedded_bundle_build"]["source_sha256"]
     report["embedded_bundle_build"].update(historical_bundle_sha256=historical, bundle_sha256=digest(bundle),
         overlay_source_sha256={path: digest(ROOT / path) for path in config["embedded_js_overlay_paths"]})
     report["resource_inputs"]["jsbundle_sha256"] = digest(bundle)

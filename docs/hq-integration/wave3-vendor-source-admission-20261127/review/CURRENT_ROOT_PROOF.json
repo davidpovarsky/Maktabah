@@ -1,0 +1,149 @@
+{
+  "read_only": true,
+  "repo": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+  "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "source_tree": "23cdfce49553927656ef79c6db10f654c889e2fc",
+  "vendor_tree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "vendor_delta": [
+    "Vendor/HanlinSDK",
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+    "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+  ],
+  "vendor_before_entries": 200,
+  "vendor_after_entries": 202,
+  "vendor_unchanged_entries": 195,
+  "vendor_delta_objects": {
+    "Vendor/HanlinSDK": {
+      "before": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+      },
+      "after": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "9565a9e4775901a4cee6f0402d7fd2978fab6612"
+      }
+    },
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js": {
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3d736ec0312cf622694e079f45ac31ee9de00941"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "cac6a68cfbcf7c652f60a25889e2f8625b4e8f82"
+      }
+    },
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "d37aca66489afb5b1268fe183b5adc17aa120535"
+      }
+    },
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js": {
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "e06994f58e3e68376fe785fdcd875d5c4508b6ad"
+      }
+    },
+    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js": {
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5faa35d1e28431c40937b26840cb97127ba82dc4"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "db369aaf2b896b759660705524a5c0d9fcf1dc3e"
+      }
+    },
+    "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift": {
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5abb64ffc21de52daab497185c897e0b925441b7"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "62a8d564a24352037d2ef26e22385cd74bc6a8e1"
+      }
+    },
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift": {
+      "before": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "67a23bb47ac6c6012e55a3837355e00da661752d"
+      },
+      "after": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3c09ba0da39ac8e32f59b24c20133d12bf80efea"
+      }
+    }
+  },
+  "zayit_producer_delta": [
+    "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+  ],
+  "sefaria_producer_delta": [
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+    "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+    "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+    "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+  ],
+  "current_ci": {
+    "Scripts/CI/final_integration_source.py": {
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+    },
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "bytes": 10766,
+      "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52"
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "bytes": 21853,
+      "sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44"
+    }
+  },
+  "component_ancestry": {
+    "791f88f2d2ba643ec39718a5f8b06106ef4af08b": {
+      "exit": 0,
+      "stderr": ""
+    },
+    "c19b672d0b33d1f52ea459e303bb1fa5b83dd323": {
+      "exit": 0,
+      "stderr": ""
+    },
+    "49a28bcc8d900169a81289f88a0491b02db597c9": {
+      "exit": 0,
+      "stderr": ""
+    },
+    "29a731e273f9a757c743c49e182fece0e8047d46": {
+      "exit": 0,
+      "stderr": ""
+    }
+  },
+  "retained_build_inputs": {
+    "canonical_equal": true,
+    "original_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+    "current_sha256": "367149f9f2410551dafb52eb7635206af559940ca77e95082b3318a569553da8",
+    "current_application_source_sha": "64c1e74a5888f807e127e43611c3aab8fa702755"
+  }
+}

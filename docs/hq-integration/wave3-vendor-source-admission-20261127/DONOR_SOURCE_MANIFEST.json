@@ -1,0 +1,122 @@
+{
+  "native": "NOT_RUN",
+  "production_tolerance_for_missing_git_objects_added": false,
+  "source_files": [
+    {
+      "after": {
+        "bytes": 27814,
+        "git_blob": "3fb8a8b71b3daa93111e50ce7532a697993ef8af",
+        "mode": "100644",
+        "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+      },
+      "before": {
+        "bytes": 11675,
+        "git_blob": "5e293124dd536c559d04a69ede5a30b59058fbdc",
+        "kind": "blob",
+        "mode": "100644",
+        "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198"
+      },
+      "path": "Scripts/CI/final_integration_source.py"
+    },
+    {
+      "after": {
+        "bytes": 4889,
+        "git_blob": "a4bf1227b869efa62ba211daa7af8bc7a8f3a2b5",
+        "mode": "100644",
+        "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+      },
+      "before": null,
+      "path": "Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 70942,
+        "git_blob": "f1d71ad3a827d98b4f67eee239afe618c0ae57e6",
+        "mode": "100644",
+        "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+      },
+      "before": {
+        "bytes": 69168,
+        "git_blob": "5577fa3ee5530b40209944e81f467158d78141da",
+        "kind": "blob",
+        "mode": "100644",
+        "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca"
+      },
+      "path": "Scripts/CI/hq-stage2-focused-apple.py"
+    },
+    {
+      "after": {
+        "bytes": 10923,
+        "git_blob": "c6f127e90a49f655dc809058205e049e658192fb",
+        "mode": "100644",
+        "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+      },
+      "before": {
+        "bytes": 10766,
+        "git_blob": "10fd1d4ca32d40ab27edf20dddc964bd10c19725",
+        "kind": "blob",
+        "mode": "100644",
+        "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52"
+      },
+      "path": "Scripts/CI/prepare-normal-ios-workspace.py"
+    },
+    {
+      "after": {
+        "bytes": 25409,
+        "git_blob": "461666a5480479a1ee544d078f0478bd57ccaddf",
+        "mode": "100644",
+        "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+      },
+      "before": null,
+      "path": "Scripts/CI/reviewed-vendor-source.inputs.json"
+    },
+    {
+      "after": {
+        "bytes": 22434,
+        "git_blob": "b9ac42d4018dd3d88dbbdb5bab725ba524f259ad",
+        "mode": "100644",
+        "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+      },
+      "before": {
+        "bytes": 21853,
+        "git_blob": "00cfecdd8a27e3c5aa8941e453e79e388db8cf90",
+        "kind": "blob",
+        "mode": "100644",
+        "sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44"
+      },
+      "path": "Scripts/CI/test-normal-ios-workspace.py"
+    },
+    {
+      "after": {
+        "bytes": 24977,
+        "git_blob": "a24d5e82ffd760f655940f0b7ce5d1d9d9662bb8",
+        "mode": "100644",
+        "sha256": "5d0323a8750005240547cc744fdb540fb46b5e476fb1f882d4fa69a899f06828"
+      },
+      "before": null,
+      "path": "Scripts/CI/test-reviewed-vendor-source.py"
+    }
+  ],
+  "source_only": true,
+  "source_snapshot": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "unchanged_product_trees": {
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Source": "23cdfce49553927656ef79c6db10f654c889e2fc",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+  },
+  "unchanged_source_profile": {
+    "Scripts/CI/final-integration-source.inputs.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.inputs.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    "Scripts/CI/hq-stage2-otzaria-test-additions.json": {
+      "equals_base_git_bytes": true,
+      "sha256": "c8a74947f04d8308835d27eed3fb562c517bbe8365a13ca902ae0be8d33627cf"
+    }
+  }
+}

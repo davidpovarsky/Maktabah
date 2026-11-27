@@ -1,0 +1,224 @@
+{
+  "scope": "PRIVATE_FILTERED_EXACT_SOURCE_CHECKOUT",
+  "source_repo": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+  "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "root": "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+  "started": 1795790828.309299,
+  "floor": 687865856,
+  "owned_budget": 268435456,
+  "steps": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "--initial-branch=codex/otzaria-wave3-vendor-admission-20261127",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127"
+      ],
+      "exit": 0,
+      "stdout": "Initialized empty Git repository in /mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127/.git/\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "remote",
+        "add",
+        "root-input",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "config",
+        "remote.root-input.promisor",
+        "true"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "config",
+        "remote.root-input.partialclonefilter",
+        "blob:none"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "config",
+        "remote.root-input.uploadpack",
+        "git -c uploadpack.allowFilter=true upload-pack"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "config",
+        "gc.auto",
+        "0"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "rev-parse",
+        "FETCH_HEAD"
+      ],
+      "exit": 0,
+      "stdout": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "sparse-checkout",
+        "init",
+        "--no-cone"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "sparse-checkout",
+        "set",
+        "--no-cone",
+        "--stdin"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "checkout",
+        "-B",
+        "codex/otzaria-wave3-vendor-admission-20261127",
+        "24cd9291dbc87d799c22a41f0bc73a82c6415bfa"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "Reset branch 'codex/otzaria-wave3-vendor-admission-20261127'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/davidpovarsky/Maktabah.git"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "rev-parse",
+        "--path-format=absolute",
+        "--git-common-dir"
+      ],
+      "exit": 0,
+      "stdout": "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127/.git\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "free_before": 29347708928,
+  "fetch_process": {
+    "pid": 999038,
+    "process_group": 999038,
+    "started_monotonic": 7317900.192403114,
+    "argv": [
+      "git",
+      "-C",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127",
+      "fetch",
+      "--no-tags",
+      "--no-auto-maintenance",
+      "--filter=blob:none",
+      "root-input",
+      "24cd9291dbc87d799c22a41f0bc73a82c6415bfa"
+    ],
+    "exit": 0,
+    "guard_stop": null,
+    "max_sampled_owned_bytes": 126976,
+    "log_bytes": 156,
+    "log_sha256": "48878daf33a835c751c896568747c7267d3915f6db2e4d7b79d4bd5d4fe792db"
+  },
+  "status": "PREPARED_EXACT_PRIVATE_SOURCE",
+  "head": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "git_common_dir": "/mnt/development/projects/worktrees/Maktabah-wave3-vendor-admission-private-20261127/.git",
+  "tracked_status": "",
+  "existing_alternates_changed": false,
+  "shared_mirror_writes": false,
+  "finished": 1795790830.1365006,
+  "free_after": 29333708800,
+  "owned_allocated_bytes": 14000128
+}
