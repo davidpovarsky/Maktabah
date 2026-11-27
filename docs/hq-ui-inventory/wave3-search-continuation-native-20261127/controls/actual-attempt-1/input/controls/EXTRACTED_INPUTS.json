@@ -1,0 +1,22 @@
+{
+  "retention": {
+    "bytes": 1576,
+    "sha256": "20decf41ccde6c9d193a7bb29257187ce90e2fcbb4c76e1e3e09de639ca07cbb"
+  },
+  "original_reporting_block": {
+    "bytes": 1872,
+    "sha256": "69dcf14c3b255eda40b7d9dfeff099768f5b4ccc12737170800415223086cb75"
+  },
+  "original_reporting_catch": {
+    "bytes": 322,
+    "sha256": "e44a64f9fd8ffb9a0fa9cb1a9f38378631deaac3c02e4160567029926375abfb"
+  },
+  "actual_snapshot_invocation": {
+    "bytes": 805,
+    "sha256": "ff1d5299044e6113bb6756c72589b9c597bbcf5bb9f5754fd2d727c7aac11958"
+  },
+  "actual_continuation_contract": {
+    "bytes": 10506,
+    "sha256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "error": "spawn_failed",
+  "message": "The agent could not start the process ([Errno 7] Argument list too long: 'bash'), so nothing ran.",
+  "hub_request_id": "hreq_5e0302f6867b4aeb",
+  "capsuleBase64Bytes": 180102,
+  "sourceControlsRan": false,
+  "retryChange": "Transfer only the additive sources and controls; reconstruct exact original baselines by immutable Git blob with mandatory hashes."
+}

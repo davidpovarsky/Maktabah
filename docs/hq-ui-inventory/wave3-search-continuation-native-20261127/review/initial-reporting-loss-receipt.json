@@ -1,0 +1,9 @@
+{
+  "baseSHA256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+  "baseBytes": 206640,
+  "candidateSHA256": "05ed0c73a558608f1de1d8291641b2a0809609271c5fc1dd085e14d76926ae3b",
+  "candidateBytes": 220064,
+  "patchSHA256": "cf2526fca2f3acc696f1f9bb048f51dde637017274623e00158891b3b811b518",
+  "originalReconstructionExact": true,
+  "originalMethodUnchanged": true
+}

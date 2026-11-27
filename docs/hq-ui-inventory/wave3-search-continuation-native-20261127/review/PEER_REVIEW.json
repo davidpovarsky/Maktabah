@@ -1,0 +1,27 @@
+{
+  "reviewer": "/root/release_preflight",
+  "scope": "Read-only source review; no native, SDK or control run",
+  "reviewedNativeSuffix": "5f4a92d79f4efe793a4311bebcc94cf04adde7f3f91a8035a7a3170787397452",
+  "selectorSource": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+  "findings": [
+    {
+      "issue": "Optional-to-optional generation and attempt/token comparisons can pass absent == absent.",
+      "resolution": "Require typed original snapshot/source generation, UUID request/operation/hit/attempt/model/witness/row IDs, numeric revisions, source titles and original mode before comparing."
+    },
+    {
+      "issue": "Accumulated VoiceOver title and snippet utterances do not uniquely correlate focus to the measured expanded row/full context.",
+      "resolution": "Code and README explicitly limit these checks to actual source-title/snippet reachability on original Search. Focused-row/full-context traversal remains open; no synthetic observer or focus assumption added."
+    }
+  ],
+  "otherReviewedBoundaries": "Substantive trace to SQL book/line/title join, lossless checkpoint/effects, original one-page arithmetic, real row/list/keyboard geometry and unchanged generic receipt set; no direct route fallback found.",
+  "finalNativeSuffix": "a3480902e1d970a02e28b98ad79989d5fc9f40f60e2836ce97c4dfca8d19bdc7",
+  "finalCombinedNativeSource": "bf280aa2d8df86557a853a069e94edb91c95d4b3ae02d33806f7cbcf95e1134f",
+  "rootDisposition": "Root approved the typed refinements and explicitly limited VoiceOver claim before source intake.",
+  "nativeExecution": "NOT_RUN",
+  "finalNarrowRead": {
+    "reviewer": "/root/release_preflight",
+    "sourceHashVerified": "a3480902e1d970a02e28b98ad79989d5fc9f40f60e2836ce97c4dfca8d19bdc7",
+    "combinedHashVerified": "bf280aa2d8df86557a853a069e94edb91c95d4b3ae02d33806f7cbcf95e1134f",
+    "result": "The two absent-equals-absent seams are closed; VoiceOver claim is explicitly reachability only. No new blocker in this narrow source diff; no SDK/native run."
+  }
+}

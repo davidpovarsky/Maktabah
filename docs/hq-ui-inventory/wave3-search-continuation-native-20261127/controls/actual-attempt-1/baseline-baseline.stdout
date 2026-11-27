@@ -1,0 +1,2 @@
+OBSERVED [["errorType": "CocoaError", "probeError": "continuation_probe_failed", "triggerConsumed": true]]
+FAIL original return lost after observation serialization failure
