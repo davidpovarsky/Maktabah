@@ -11,6 +11,10 @@ struct iOSAnnotationEditorSheet: View {
     // Host-owned visibility observation mounts on the actual editor Form.
     // The editor's default presentation, editing and persistence remain unchanged.
     var nativeSurface: (@MainActor () -> AnyView)? = nil
+    // Optional same-scene original List ownership; other presenters keep nil.
+    var nativeControls: MaktabahNativeAnnotationEditorControls.Attachment? = nil
+    @State private var nativeEditorViewID = UUID()
+    @FocusState private var nativeTagsFocused: Bool
 
     @State private var noteText: String = ""
     @State private var selectedColorHex: String = ""
@@ -69,12 +73,15 @@ struct iOSAnnotationEditorSheet: View {
         NavigationStack {
             ThemeForm {
                 ThemeSection("Note") {
-                    iOSAutoDirectionTextView(text: $noteText, onCreated: {
+                    iOSAutoDirectionTextView(text: nativeEditorBinding($noteText), onCreated: {
+                        nativeEditorStateWillChange()
                         self.editorTextView = $0
                         onNativeTextView?($0)
                     })
                         .frame(minHeight: 80)
                         .disabled(!allowsPlainEditing)
+                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,
+                            viewID: nativeEditorViewID, anchor: .body, bodyTextView: { editorTextView }))
                 }
 
                 #if DEBUG && os(iOS) && targetEnvironment(simulator)
@@ -86,7 +93,7 @@ struct iOSAnnotationEditorSheet: View {
                             && AccessibleAutoDirectionTextView.activeInstance === editorTextView,
                           selectedColorHex: selectedColorHex,
                           isUnderline: isUnderline, tagsText: tagsText)
-                }, closeOriginalSheet: { dismiss() })
+                }, closeOriginalSheet: { nativeEditorStateWillChange(); dismiss() })
                 #endif
 
                 #if os(iOS) && canImport(AnytypeOriginalEditor)
@@ -95,7 +102,7 @@ struct iOSAnnotationEditorSheet: View {
                           nativeEditorIsMounted: editorTextView?.window != nil,
                           selectedColorHex: selectedColorHex, isUnderline: isUnderline,
                           tagsText: tagsText)
-                }, availability: $originalEditorAvailability, present: { originalEditorModal = $0 })
+                }, availability: nativeEditorBinding($originalEditorAvailability), present: { nativeEditorStateWillChange(); originalEditorModal = $0 })
                 #endif
 
                 ThemeSection {
@@ -125,7 +132,7 @@ struct iOSAnnotationEditorSheet: View {
                         .accessibilityLabel("Delete Annotation")
                     }
 
-                    Button(role: .cancel, action: { dismiss() }) {
+                    Button(role: .cancel, action: { nativeEditorStateWillChange(); dismiss() }) {
                         HStack {
                             Spacer()
                             Text("Cancel")
@@ -137,13 +144,17 @@ struct iOSAnnotationEditorSheet: View {
                 }
 
                 ThemeSection("Style") {
-                    Toggle("Underline", isOn: $isUnderline)
+                    Toggle("Underline", isOn: nativeEditorBinding($isUnderline))
+                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,
+                            viewID: nativeEditorViewID, anchor: .style))
                         .onChange(of: isUnderline) { _, newValue in
                             if newValue {
                                 let underlineColor = UserDefaults.standard.recentUnderlineColors.first ?? .label
+                                nativeEditorStateWillChange()
                                 selectedColorHex = (underlineColor == .label) ? "#000000" : underlineColor.hexString()
                             } else {
                                 let highlightColor = UserDefaults.standard.recentHighlightColors.first ?? .yellow
+                                nativeEditorStateWillChange()
                                 selectedColorHex = highlightColor.hexString()
                             }
                         }
@@ -166,8 +177,10 @@ struct iOSAnnotationEditorSheet: View {
                                     )
                                     .onTapGesture {
                                         if isUnderline && color == .label {
+                                            nativeEditorStateWillChange()
                                             selectedColorHex = "#000000"
                                         } else {
+                                            nativeEditorStateWillChange()
                                             selectedColorHex = color.hexString()
                                         }
                                     }
@@ -181,7 +194,11 @@ struct iOSAnnotationEditorSheet: View {
 
                 ThemeSection("Tags (comma separated)") {
                     let isRTL = tagsText.isParagraphRTL
-                    TextField("tag1, tag2...", text: $tagsText)
+                    TextField("tag1, tag2...", text: nativeEditorBinding($tagsText))
+                        .modifier(MaktabahNativeAnnotationEditorTagsFocus(enabled: nativeControls != nil,
+                            focused: $nativeTagsFocused))
+                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,
+                            viewID: nativeEditorViewID, anchor: .tags))
                         .multilineTextAlignment(isRTL ? .trailing : .leading)
                         .environment(\.layoutDirection, isRTL ? .rightToLeft : .leftToRight)
                 }
@@ -189,9 +206,10 @@ struct iOSAnnotationEditorSheet: View {
                 ThemeSection {
                     Button(role: .destructive, action: {
                         if let id = annotation.id {
+                            nativeEditorStateWillChange()
                             try? onDelete(id)
                         }
-                        dismiss()
+                        nativeEditorStateWillChange(); dismiss()
                     }) {
                         HStack {
                             Spacer()
@@ -202,12 +220,20 @@ struct iOSAnnotationEditorSheet: View {
                 }
             }
             .background { nativeSurface?() }
+            .modifier(MaktabahNativeAnnotationEditorForm(attachment: nativeControls,
+                viewID: nativeEditorViewID, snapshot: {
+                    .init(annotation: annotation, note: noteText, nativeNote: editorTextView?.text,
+                        tags: tagsText, color: selectedColorHex, underline: isUnderline,
+                        initialized: hasInitialized, allowsPlainEditing: allowsPlainEditing,
+                        blocked: nativeEditorIsBlocked)
+                }, bodyTextView: { editorTextView }, focusTags: { nativeTagsFocused = true }))
             .navigationTitle(.Annotation.editAnnotation)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if hasRetainedMiniAppFiles {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
+                            nativeEditorStateWillChange()
                             OtzariaMiniAppsCoordinator.shared.shareRetainedFiles(
                                 for: annotation, sourceView: editorTextView)
                         } label: {
@@ -219,6 +245,7 @@ struct iOSAnnotationEditorSheet: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        nativeEditorStateWillChange()
                         OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,
                             draft: editorTextView?.text ?? noteText,
                             selection: editorTextView?.selectedRange,
@@ -232,7 +259,7 @@ struct iOSAnnotationEditorSheet: View {
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
-                        dismiss()
+                        nativeEditorStateWillChange(); dismiss()
                     }
                     .accessibilityIdentifier("annotation-cancel-toolbar")
                     .accessibilityLabel("Cancel")
@@ -260,7 +287,7 @@ struct iOSAnnotationEditorSheet: View {
             #if os(iOS) && canImport(AnytypeOriginalEditor)
             // Own the expanded editor at the sheet root so scrolling or
             // removing a row from the Form cannot end its presentation.
-            .fullScreenCover(item: $originalEditorModal, onDismiss: { dismiss() }) { modal in
+            .fullScreenCover(item: nativeEditorBinding($originalEditorModal), onDismiss: { nativeEditorStateWillChange(); dismiss() }) { modal in
                 modal.content.interactiveDismissDisabled(true)
             }
             #endif
@@ -268,21 +295,30 @@ struct iOSAnnotationEditorSheet: View {
                 OtzariaMiniAppsCoordinator.shared.registerEditor(id: miniAppsEditorID,
                     currentText: { editorTextView?.window == nil ? nil : editorTextView?.text ?? noteText },
                     didCommit: { saved in
+                        nativeEditorStateWillChange()
                         annotation = saved
                         hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: saved)
+                        nativeEditorStateWillChange()
                         noteText = saved.note ?? ""
                         AccessibleAutoDirectionTextView.lastEnteredText = noteText
+                        nativeEditorStateWillChange()
                         editorTextView?.text = noteText
                     })
                 hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
                 guard !hasInitialized else { return }
+                nativeEditorStateWillChange()
                 hasInitialized = true
+                nativeEditorStateWillChange()
                 noteText = annotation.note ?? ""
+                nativeEditorStateWillChange()
                 isUnderline = annotation.type == .underline
+                nativeEditorStateWillChange()
                 selectedColorHex = annotation.colorHex
                 if isUnderline && (selectedColorHex.isEmpty || selectedColorHex == "#000000") {
+                    nativeEditorStateWillChange()
                     selectedColorHex = "#000000"
                 }
+                nativeEditorStateWillChange()
                 tagsText = annotation.tags.joined(separator: ", ")
                 AccessibleAutoDirectionTextView.lastEnteredText = annotation.note
                 #if DEBUG
@@ -293,6 +329,7 @@ struct iOSAnnotationEditorSheet: View {
                 hasRetainedMiniAppFiles = OtzariaMiniAppsCoordinator.shared.hasRetainedFiles(for: annotation)
             }
             .onDisappear {
+                nativeEditorStateWillChange()
                 OtzariaMiniAppsCoordinator.shared.unregisterEditor(id: miniAppsEditorID)
                 onNativeTextView?(nil)
                 if AccessibleAutoDirectionTextView.activeInstance === editorTextView {
@@ -303,18 +340,38 @@ struct iOSAnnotationEditorSheet: View {
                 String(localized: "Could Not Save Annotation"),
                 isPresented: Binding(
                     get: { operationErrorMessage != nil },
-                    set: { if !$0 { operationErrorMessage = nil } }
+                    set: { if !$0 { nativeEditorStateWillChange(); operationErrorMessage = nil } }
                 )
             ) {
-                Button("OK", role: .cancel) { operationErrorMessage = nil }
+                Button("OK", role: .cancel) { nativeEditorStateWillChange(); operationErrorMessage = nil }
             } message: {
                 Text(operationErrorMessage ?? "")
             }
         }
     }
 
+    private var nativeEditorIsBlocked: Bool {
+        #if os(iOS) && canImport(AnytypeOriginalEditor)
+        operationErrorMessage != nil || originalEditorModal != nil
+        #else
+        operationErrorMessage != nil
+        #endif
+    }
+    private func nativeEditorStateWillChange() {
+        nativeControls?.controls.originalStateWillChange(viewID: nativeEditorViewID)
+    }
+    private func nativeEditorBinding<Value>(_ original: Binding<Value>) -> Binding<Value> {
+        guard nativeControls != nil else { return original }
+        return Binding(get: { original.wrappedValue }, set: {
+            nativeEditorStateWillChange()
+            original.wrappedValue = $0
+        })
+    }
+
     private func saveAnnotation() {
+        nativeEditorStateWillChange()
         guard allowsPlainEditing else {
+            nativeEditorStateWillChange()
             operationErrorMessage = String(localized: "Use the expanded editor to change this formatted note.",
                                            table: "OriginalAnnotationEditor")
             return
@@ -352,16 +409,18 @@ struct iOSAnnotationEditorSheet: View {
             #if DEBUG
             Self.appendDebugLog("[saveAnnotation] onSave succeeded\n")
             #endif
-            dismiss()
+            nativeEditorStateWillChange(); dismiss()
         } catch {
             #if DEBUG
             Self.appendDebugLog("[saveAnnotation] onSave threw error: \(error.localizedDescription)\n")
             #endif
+            nativeEditorStateWillChange()
             operationErrorMessage = error.localizedDescription
         }
     }
 
     private func deleteAnnotation(_ id: Int64) {
+        nativeEditorStateWillChange()
         #if DEBUG
         Self.appendDebugLog("[deleteAnnotation] id=\(id)\n")
         #endif
@@ -370,11 +429,12 @@ struct iOSAnnotationEditorSheet: View {
             #if DEBUG
             Self.appendDebugLog("[deleteAnnotation] onDelete succeeded\n")
             #endif
-            dismiss()
+            nativeEditorStateWillChange(); dismiss()
         } catch {
             #if DEBUG
             Self.appendDebugLog("[deleteAnnotation] onDelete threw error: \(error.localizedDescription)\n")
             #endif
+            nativeEditorStateWillChange()
             operationErrorMessage = error.localizedDescription
         }
     }
