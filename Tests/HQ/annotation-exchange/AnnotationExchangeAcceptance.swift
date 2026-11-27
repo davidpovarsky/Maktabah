@@ -504,14 +504,18 @@ private func linkedOrigin(_ space: String = "space-a", root: String = String(rep
 }
 
 private func localLinkedCommit(_ f: Fixture, origin: AnnotationExchangeNativeReadOrigin? = nil,
-                               enableLink: Bool = false, revision: Int64, mutation: UUID = UUID()) throws -> AnnotationExchangeVersion {
+                               enableLink: Bool = false, revision: Int64, mutation: UUID = UUID(),
+                               expectedConsent: AnnotationExchangeNativeConsentObservation? = nil) throws -> AnnotationExchangeVersion {
     var result: AnnotationExchangeVersion?
     try f.db.transaction {
         let source = try f.witness()
         _ = try f.ledger.commitLocal(mutationID: mutation, payload: f.payload(source, preview: "revision \(revision + 1)"),
                                      expectedSource: source, expectedRevision: revision)
         guard let version = try f.ledger.version(mutationID: mutation) else { throw CheckFailure("missing immutable local version") }
-        if let origin { try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: enableLink) }
+        if let origin {
+            let consent = try expectedConsent ?? f.ledger.nativeConsentObservation(namespace: namespace, annotationUUID: f.uuid)
+            try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: enableLink, expectedConsent: consent)
+        }
         try f.ledger.enqueueLinkedVersion(version, suppressing: origin)
         result = version
     }
@@ -772,14 +776,16 @@ private func captureNativeConsent(_ f: Fixture) throws -> CapturedNativeConsent 
 private func consentAwareLocalCommit(_ f: Fixture, captured: CapturedNativeConsent,
                                     origin: AnnotationExchangeNativeReadOrigin, enableLink: Bool,
                                     revision: Int64) throws -> AnnotationExchangeVersion {
-    // Baseline API has no place for the retained observation. The candidate
-    // adapter must pass THIS value, never recapture it at Save time.
-    _ = captured
+    // Bind the SAME frozen read used by the baseline scenarios. The production
+    // Save API now requires it; never recapture consent at Save time.
+    let consent = try AnnotationExchangeNativeConsentObservation(namespace: captured.namespace,
+        annotationUUID: captured.annotationUUID, links: captured.links)
     var committed: AnnotationExchangeVersion?
     try f.db.transaction {
         try f.db.execute(query: "UPDATE annotations SET note='received consent-control body';")
         try f.queue.addPendingSync(ckRecordId: f.uuid.uuidString, operation: "upload")
-        committed = try localLinkedCommit(f, origin: origin, enableLink: enableLink, revision: revision)
+        committed = try localLinkedCommit(f, origin: origin, enableLink: enableLink, revision: revision,
+                                         expectedConsent: consent)
     }
     guard let committed else { throw CheckFailure("missing actual received commitment") }
     return committed
@@ -791,17 +797,23 @@ private func attachOriginAtExistingVersion(_ f: Fixture, origin: AnnotationExcha
     // version. This deliberately keeps annotation revision unchanged while
     // consent changes; it is NOT a claim of a native/UI relink journey.
     try f.db.transaction {
-        try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: true)
+        let consent = try f.ledger.nativeConsentObservation(namespace: namespace, annotationUUID: f.uuid)
+        try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: true, expectedConsent: consent)
     }
 }
 
 private func explicitlyUnlinkObservedCopy(_ f: Fixture, link: AnnotationExchangeNativeLink,
                                          captured: CapturedNativeConsent) throws -> CapturedNativeConsent {
-    _ = captured
+    let consent = try AnnotationExchangeNativeConsentObservation(namespace: captured.namespace,
+        annotationUUID: captured.annotationUUID, links: captured.links)
     var result: CapturedNativeConsent?
     try f.db.transaction {
-        try f.ledger.unlinkNativeCopy(link)
-        result = try captureNativeConsent(f)
+        let returned = try f.ledger.unlinkNativeCopy(link, expectedConsent: consent)
+        let after = try captureNativeConsent(f)
+        let reread = try AnnotationExchangeNativeConsentObservation(namespace: after.namespace,
+            annotationUUID: after.annotationUUID, links: after.links)
+        try require(returned == reread, "explicit unlink returned its exact same-transaction consent")
+        result = after
     }
     guard let result else { throw CheckFailure("missing explicit unlink observation") }
     return result

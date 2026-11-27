@@ -441,11 +441,16 @@ extension AnnotationLocalEditorSession {
         return value
     }
 
-    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot) async throws {
+    func unlinkNativeCopy(_ link: AnnotationExchangeNativeLink, snapshot: AnnotationLocalEditorSnapshot,
+                          expectedConsent: AnnotationExchangeNativeConsentObservation) async throws -> AnnotationLocalEditorLinkedState {
         guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
         busy = true; defer { busy = false }
         let storage = persistence
-        try await Task.detached { try storage.unlinkNativeCopy(link, snapshot: snapshot) }.value
+        let after = try await Task.detached {
+            try storage.unlinkNativeCopy(link, snapshot: snapshot, expectedConsent: expectedConsent)
+        }.value
+        try storage.requireUnchanged(snapshot)
+        return after
     }
 
     func deferLinkedRead(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot) async throws {
@@ -462,11 +467,14 @@ extension AnnotationLocalEditorSession {
 
     #if os(iOS) && canImport(AnytypeOriginalEditor)
     func saveReceived(_ intent: AnnotationLocalEditorIntent, actual: AnytypeOriginalAnnotationReadReceipt,
-                      enableLink: Bool) async throws -> AnnotationLocalEditorOutcome {
+                      enableLink: Bool,
+                      expectedConsent: AnnotationExchangeNativeConsentObservation) async throws -> AnnotationLocalEditorOutcome {
         guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
         busy = true; defer { busy = false }
         let storage = persistence, owner = persistence.owner
-        let worker = Task.detached { try storage.commitReceived(intent, actual: actual, enableLink: enableLink) }
+        let worker = Task.detached {
+            try storage.commitReceived(intent, actual: actual, enableLink: enableLink, expectedConsent: expectedConsent)
+        }
         return try await withTaskCancellationHandler {
             let saved = try await worker.value
             let canDeliver = storage.canDeliver(saved)
