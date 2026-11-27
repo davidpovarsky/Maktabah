@@ -1,0 +1,3 @@
+FAIL actual will callback detects original Annotations open-close ABA
+FAIL actual will callback detects equal original State publication
+RESULT passed=0 failed=2

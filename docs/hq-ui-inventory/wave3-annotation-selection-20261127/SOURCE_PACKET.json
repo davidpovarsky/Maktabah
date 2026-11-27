@@ -1,0 +1,229 @@
+{
+  "schema": "otzaria.original-annotations.selected-record-source.v1",
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "base_source_tree": "7afa76212dec72644917e6aaff3257ca56a14ccf",
+  "product": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+      "bytes": 2810,
+      "sha256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "bytes": 25322,
+      "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+      "bytes": 10885,
+      "sha256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+      "bytes": 3105,
+      "sha256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "bytes": 12050,
+      "sha256": "b6d403789ac4a27846e40f53b014813a0c37999d6228705d73ecbd99a718fdbe"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 14696,
+      "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "bytes": 6232,
+      "sha256": "477e75601faabe57f348061514eed524f8abfb96a13cd21de577b6511c271eb2"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "bytes": 31823,
+      "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+    }
+  ],
+  "original_source_inputs": [
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationContentView.swift",
+      "git_blob": "d286384cb248184d851884fb637de054be587e25",
+      "bytes": 8334,
+      "sha256": "6a495476ea1de42d304b4d5ccddc10a41f5eb73ca255bdccd69c7fe0fca634f9"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "git_blob": "d05245bd9f92e2d03058d6f5db01f8e085b29fa9",
+      "bytes": 12791,
+      "sha256": "a7f3166a1c25d8ecf01aaaef8eec2d0228f0263fb835122d506c08cc0618ab9e"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/AnnotationNode.swift",
+      "git_blob": "aefdacf6d13ea0c13d6fde3ed0b160421006290a",
+      "bytes": 4413,
+      "sha256": "1c73ff3edbc122af24050ecc088d7142c85d886547336167375bfd4d26e48392"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+      "git_blob": "ad70d6812af01a157a58c1836befd2d3253a39ec",
+      "bytes": 10684,
+      "sha256": "1b369b56eed1845ab01b9f301bdd8177b09f796b4554e54a9e9cc8f7a29d3dfd"
+    },
+    {
+      "path": "Source/Features/Annotations/ViewModel/AnnotationTreeFilter.swift",
+      "git_blob": "c2df1198f416b41155f2b05895490be430d6e298",
+      "bytes": 7202,
+      "sha256": "b85adf944409aa06570eab972f029c73034574462c41206f9cc6aeca917e8200"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "git_blob": "3b7addd331a781241c6c84e47610b9a29f67dc72",
+      "bytes": 23762,
+      "sha256": "4531ceb3137913be7de8b4eb80449913fed25fb0aaf7cb01acde18268e748af1"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+      "git_blob": "de9efaaffcf7a2d8b720486b024cdb89423f1b26",
+      "bytes": 5710,
+      "sha256": "81532d95104407a4a127fbc17698ca70fbc5e2c6cd84d79b9c25190728c831d9"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift",
+      "git_blob": "21c5073bfd9c96dacbcfbd75c15958d1b06d4db9",
+      "bytes": 2463,
+      "sha256": "5993b5f5651a70fefaf5f17dd69907d1d13953aa7872ab35231d95e006d89ebc"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSTagFilterHeaderView.swift",
+      "git_blob": "9bcaaeca99619abf10d27133f7d97c898cc566ea",
+      "bytes": 8118,
+      "sha256": "03ae3e9d7dc9f5b05311d7cfbc64d0316d8ff6302a30e9f575a3eefef6bb01ea"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "git_blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "bytes": 24610,
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+    },
+    {
+      "path": "Source/Features/Annotations/Coordinator/AnnotationCoordinator.swift",
+      "git_blob": "ebe6306bf2a4e4ed09f5b975a820f2972f93ee9d",
+      "bytes": 11440,
+      "sha256": "2bea43119da00e1eacae886634b9b9cb41f640874a9a210bb67339506b4791df"
+    },
+    {
+      "path": "Source/Features/Annotations/Database/AnnotationStore.swift",
+      "git_blob": "aed5ca06c5839a1169ac0e41b02967d028047df6",
+      "bytes": 15022,
+      "sha256": "9199ee115f394f89a2b70f2d4a224d817b7fd5def7645f7487f0598fbc143e37"
+    },
+    {
+      "path": "Source/Features/Annotations/Models/Annotation.swift",
+      "git_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+      "bytes": 6351,
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorModels.swift",
+      "git_blob": "162b97b6383ad1d116d9f30f06964eec539e76cb",
+      "bytes": 9699,
+      "sha256": "59ccab3a7cb5004592e7c70889d57ce74a8679209ba7565069441ffb0d70c6dc"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "git_blob": "9413755cb5b0347e7775656086a89a2d75f65a0d",
+      "bytes": 25291,
+      "sha256": "fc234e59a2bb560170a2daabc663f0e88a1141519c34cad2f2c2dc52ea7f959b"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorSourceObservation.swift",
+      "git_blob": "45836c8b9e741a291beefe7117937d2ff6131cae",
+      "bytes": 12757,
+      "sha256": "e0a36120496bbca80ab93ea1881b238cb9eae4f73fc7f6b58561735446ca6fe9"
+    }
+  ],
+  "original_edits": 47,
+  "original_inverse": true,
+  "root_only_shared_hunks": 37,
+  "root_only_shared_files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before_bytes": 150931,
+      "before_sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9",
+      "after_bytes": 164614,
+      "after_sha256": "6a260e9ec1347a33feee74c30a48fb700f051716d1e992d02adfe78a5b85d686",
+      "inverse_byte_exact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before_bytes": 253472,
+      "before_sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720",
+      "after_bytes": 259592,
+      "after_sha256": "450018be15f057708a8c8dbad41809e6e1d4699b48f01002a0e9ef1ba2f66b8b",
+      "inverse_byte_exact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before_bytes": 26609,
+      "before_sha256": "38d87aabc58d3c2ff3c3d499ca4b26acffe41f964326e8b5efaa4e67cf57c9dc",
+      "after_bytes": 27350,
+      "after_sha256": "efeda10cd8e027f160ca0a87fda0edac620e7e1dc8dd0a16a1e4628f8d517738",
+      "inverse_byte_exact": true
+    }
+  ],
+  "source_controls": {
+    "portable_service": {
+      "passed": 11,
+      "failed": 0
+    },
+    "publication": {
+      "passed": 10,
+      "failed": 0
+    },
+    "owner": {
+      "passed": 24,
+      "failed": 0
+    },
+    "modal_and_actual_history_caller": {
+      "passed": 24,
+      "failed": 0
+    },
+    "historical_caller_new_facet_counterexample": {
+      "passed": 0,
+      "failed": 2,
+      "expected": true
+    }
+  },
+  "native": "NOT_RUN",
+  "apple_sdk_typecheck": "NOT_RUN",
+  "raw_archives": [
+    {
+      "path": "evidence/raw-controls/RAW.zip",
+      "bytes": 24393,
+      "sha256": "02f822be00dba2a820b9c0c3132b08d456347a24ed323cfdffeee9e615c93a9b",
+      "verified_raw_files": 34,
+      "verified_members": 35
+    },
+    {
+      "path": "evidence/modal-controls/RAW.zip",
+      "bytes": 13044,
+      "sha256": "69d2ad00bb15095099cd1a41fc514418d99d515b6bc3538ca5a7a66d5793866f",
+      "verified_raw_files": 18,
+      "verified_members": 19
+    }
+  ],
+  "preserved_failures": [
+    "nested Witness actor isolation",
+    "class instead of original struct fixture",
+    "oversized local transport rejected before host dispatch"
+  ],
+  "remaining": [
+    "native original row acceptance",
+    "editor body/tags/style and allowsPlainEditing",
+    "actual filter/tag/group/sort control reveal",
+    "record to original editor",
+    "original Reader book list",
+    "cold or foreign-root record entry",
+    "production v40/full Native116/Release114+2/physical qualification"
+  ]
+}

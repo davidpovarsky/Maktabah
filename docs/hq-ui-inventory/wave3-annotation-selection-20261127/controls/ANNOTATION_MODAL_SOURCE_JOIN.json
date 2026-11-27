@@ -1,0 +1,18 @@
+{
+  "session_sha256": "6a260e9ec1347a33feee74c30a48fb700f051716d1e992d02adfe78a5b85d686",
+  "list_sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+  "closed_publication_sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+  "actual_methods": [
+    "captureHistoryReaderWindow",
+    "unmount",
+    "advanceOriginalSearchPresentationPublication",
+    "observeAnnotationPresentation",
+    "originalAnnotationPresentationWillChange",
+    "removeAnnotationPresentation",
+    "advanceOriginalAnnotationPresentationPublication",
+    "retainOriginalAnnotationPresentationObservation",
+    "nativeModalWillChange",
+    "nativeModalBinding"
+  ],
+  "boundary": "Original methods verbatim; explicit constant UIKit/workspace/backend and private State fixtures; actual closed publisher source; no Core/app/native execution"
+}

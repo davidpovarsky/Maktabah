@@ -1,0 +1,47 @@
+{
+  "boundary" : "Exact publication source plus original search setter\/debounce bodies; applyFilter is an explicit domain boundary; no UIKit\/DB\/Core\/app\/native execution",
+  "cases" : [
+    {
+      "name" : "exact unmodified publication remains live",
+      "pass" : true
+    },
+    {
+      "name" : "source publication permanently revokes a retained witness",
+      "pass" : true
+    },
+    {
+      "name" : "original equal search setter revokes before its didSet no-op",
+      "pass" : true
+    },
+    {
+      "name" : "original debounce refuses catalog while original task is pending",
+      "pass" : true
+    },
+    {
+      "name" : "original search A-B-A does not restore prior witness",
+      "pass" : true
+    },
+    {
+      "name" : "old cancelled task cannot settle a newer original task",
+      "pass" : true
+    },
+    {
+      "name" : "duplicate task completion cannot revoke a new settled witness",
+      "pass" : true
+    },
+    {
+      "name" : "owner lifetime removal refuses retained witness",
+      "pass" : true
+    },
+    {
+      "name" : "bounded observations prune released weak witnesses",
+      "pass" : true
+    },
+    {
+      "name" : "revision exhaustion is terminal and cannot rearm",
+      "pass" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 10
+}

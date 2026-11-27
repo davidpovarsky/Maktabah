@@ -1,0 +1,7 @@
+{
+  "scope": "Fixture-only correction: original AnnotationListView is a struct; retain both exact extracted methods byte-for-byte while supplying reference storage as an explicit State boundary. No product source changes.",
+  "before": "00939f87756f86ef850d6817de8939fd36ac5ca3f40a95151df46650c390d593",
+  "after": "4b51f75b6af016cc7fd4fb57a42869353c11e8839c192703b9006823f956eae3",
+  "failure_result_sha256": "c728b63bafd5df06b2a4988a251fc13fa820e90749e92cbf62805f55315a2579",
+  "failure_stderr_sha256": "313c505cd6a6f7fc3cc64d1837a9603b2ecf85a2529b06bfa3c50407bf0fcc88"
+}

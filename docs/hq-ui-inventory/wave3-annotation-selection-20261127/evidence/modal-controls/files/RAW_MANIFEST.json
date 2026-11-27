@@ -1,0 +1,92 @@
+[
+  {
+    "path": "attempt-4/RESULT.json",
+    "bytes": 5989,
+    "sha256": "c728b63bafd5df06b2a4988a251fc13fa820e90749e92cbf62805f55315a2579"
+  },
+  {
+    "path": "attempt-4/STATUS.json",
+    "bytes": 5638,
+    "sha256": "cbb3aaf448fa197f6fc764a8ec4a2b7711781726fe659c852ff91c7dc23390bc"
+  },
+  {
+    "path": "attempt-4/actual-modal-controls-compile.stderr",
+    "bytes": 610,
+    "sha256": "313c505cd6a6f7fc3cc64d1837a9603b2ecf85a2529b06bfa3c50407bf0fcc88"
+  },
+  {
+    "path": "attempt-4/actual-modal-controls-compile.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-4/full-ios-syntax-only.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-4/full-ios-syntax-only.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-4/full-shared-ios-syntax-only.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-4/full-shared-ios-syntax-only.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/RESULT.json",
+    "bytes": 23728,
+    "sha256": "e52b8364919ba854fb2cf360acb6398f6eca5697e740720a3d5311799ef20e50"
+  },
+  {
+    "path": "attempt-5/STATUS.json",
+    "bytes": 5827,
+    "sha256": "a41e73b907dd19e49cd57dee5b007f947911f8c310661c0d4f824dbac519c942"
+  },
+  {
+    "path": "attempt-5/actual-modal-controls-compile.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/actual-modal-controls-compile.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/actual-modal-controls.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/actual-modal-controls.stdout",
+    "bytes": 1602,
+    "sha256": "3b2902f20e00b35c3d1e7ed4b880bde9022b61faabc1e138057839502f19dfe5"
+  },
+  {
+    "path": "attempt-5/old-caller-annotations-aba.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/old-caller-annotations-aba.stdout",
+    "bytes": 162,
+    "sha256": "e540210a3a0d5e4e34080fb662431e64b238e9efe2070a226768c1663ca80ab5"
+  },
+  {
+    "path": "attempt-5/old-caller-new-facet-compile.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "attempt-5/old-caller-new-facet-compile.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
