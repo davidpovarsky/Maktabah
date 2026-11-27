@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "original_default_diff_check_exit": 2,
+  "warnings": 121,
+  "only_warned_file": "scripts/bridge_windows.py",
+  "original_crlf_lines": 121,
+  "original_script_sha256": "c7791d70b5254a6788a53641021b544e11d385d5b081124cab24e98f5cd256e8",
+  "scripts_parsed": 8,
+  "script_execution_repeated": false,
+  "product_source_files_changed": 0,
+  "sdk_builds": 0,
+  "native_runs": 0,
+  "reason_preserved": "Exact executed Windows source bytes; no normalization of raw evidence"
+}

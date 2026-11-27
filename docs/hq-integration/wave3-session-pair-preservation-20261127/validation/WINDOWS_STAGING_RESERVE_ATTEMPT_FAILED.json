@@ -1,0 +1,33 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"ok\":false,\"interpreter\":\"powershell\",\"sudo\":false,\"cwd\":null,\"cleanup\":true,\"command\":[\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.EXE\",\"-NoProfile\",\"-NonInteractive\",\"-ExecutionPolicy\",\"Bypass\",\"-File\",\"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_eb06c9b981d944bfa9cda93d49084093\\\\sentinelx_bootstrap.ps1\",\"C:\\\\ProgramData\\\\SentinelX\\\\uploads\\\\.sentinelx_uploads\\\\script_job_eb06c9b981d944bfa9cda93d49084093\\\\script.ps1\"],\"output\":\"Traceback (most recent call last):\\r\\n  File \\\"<stdin>\\\", line 5, in <module>\\r\\nAssertionError\",\"duration\":0.97,\"returncode\":1,\"hub_request_id\":\"hreq_3c44c53539d24c04\"}"
+      }
+    ],
+    "structuredContent": {
+      "ok": false,
+      "interpreter": "powershell",
+      "sudo": false,
+      "cwd": null,
+      "cleanup": true,
+      "command": [
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_eb06c9b981d944bfa9cda93d49084093\\sentinelx_bootstrap.ps1",
+        "C:\\ProgramData\\SentinelX\\uploads\\.sentinelx_uploads\\script_job_eb06c9b981d944bfa9cda93d49084093\\script.ps1"
+      ],
+      "output": "Traceback (most recent call last):\r\n  File \"<stdin>\", line 5, in <module>\r\nAssertionError",
+      "duration": 0.97,
+      "returncode": 1,
+      "hub_request_id": "hreq_3c44c53539d24c04"
+    },
+    "isError": false
+  }
+}
