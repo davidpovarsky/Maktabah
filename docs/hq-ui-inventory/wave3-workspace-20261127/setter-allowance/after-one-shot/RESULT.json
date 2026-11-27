@@ -1,0 +1,11 @@
+{
+  "scope": "SOURCE_BOUND_ORIGINAL_SETTER_BOUNDARY_CONTROL_NOT_NATIVE_ACCEPTANCE",
+  "parent_source": "674a9784a52390bf20cc6b8a5c357f78dc3a1f18",
+  "production_binding_sha256": "45ac8713b4628593016a0f779b8655acaa60f14f831a3f60ea7f69dee6254f5c",
+  "control_sha256": "1d3700222047d1997931b7e141af387568f5db17f1aa08fd9fc2735924b05ae4",
+  "syntax_exit": 0,
+  "compile_exit": 0,
+  "control_exit": 0,
+  "stdout": "actual_original_willSet_callbacks=3 retained_source_invalidations=2\nPASS: original reentrant sidebar cycle, one exact host callback, duplicate/third callback and foreign host/token/field\n",
+  "stderr": ""
+}

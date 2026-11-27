@@ -29,3 +29,9 @@ Shared integration 26ebcfe9 was cross-reviewed for parent-before-component reten
 ## Scoped files
 
 Two new downstream adapter/component files, five existing original view/owner hook files, and this evidence directory. iPadLayout changes only read and forward the exact session; its TOC selection code is untouched.
+
+## Follow-up: exact applied readiness and one-shot setter allowance
+
+The initial674a source and its evidence remain preserved. A source-bound control copied the original ReaderOverviewPresentationState and exact sidebar willSet/observer boundary, then reentered that original setter. The pre-correction predicate admitted all three matching callbacks and produced zero invalidations (expected failing exit1). The corrected allowance consumes one exact host/token/field or sidebar publication; the same control produces three callbacks and two invalidations (exit0). Additional exact/duplicate/foreign host-token-field controls passed. The original setter return also revalidates the retained source and original deadline. This is a boundary control, not a native app or release test.
+
+The follow-up exposes isContinuingAppliedRequest(parent:requestID:) as a read-only exact pending/applied/source/host-identity facet for shared readiness. It does not grant authority. Availability discovery now uses the same original identity and coverage inspection without creating transient retained Observation/backend subscriptions; retainSource still creates its one-shot proof exactly once.

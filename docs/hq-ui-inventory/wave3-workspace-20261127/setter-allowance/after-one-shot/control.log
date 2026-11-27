@@ -1,0 +1,2 @@
+actual_original_willSet_callbacks=3 retained_source_invalidations=2
+PASS: original reentrant sidebar cycle, one exact host callback, duplicate/third callback and foreign host/token/field
