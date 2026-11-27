@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "utc": "2026-11-27T04:57:03.139450+00:00",
+  "command": [
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/build/feature-intent-service-controls-20261127/swift-build",
+    "--jobs",
+    "2",
+    "--filter",
+    "Native(Feature)?IntentServiceTests"
+  ],
+  "version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "scope": "Actual original Foundation Core/UIRouting/NativeIntentService SwiftPM build and selected XCTest classes; iOS AppIntents source is platform-conditional, Apple SDK typecheck/native still required",
+  "newNativeTests": 0,
+  "freeBefore": 2818904064,
+  "pid": 3366224,
+  "pgid": 3366224,
+  "exit": 0,
+  "finished_at": "2026-11-27T04:58:09.154682+00:00",
+  "freeAfter": 2606247936,
+  "logs": {
+    "stdout.log": {
+      "bytes": 9689,
+      "sha256": "7459eb0c89565f0a3ba177408e327356d26220cc19204b6afac891488fb714f9"
+    },
+    "stderr.log": {
+      "bytes": 1012,
+      "sha256": "a0aea71451e8c8ee5ac788bf0b21bd6ed68c236e729e7c54a86c850c19791d64"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "status": "PASS_COMPONENT_APPLE_SDK_ONLY",
+  "started_at": "2026-11-27T05:11:09.244768+00:00",
+  "command": [
+    "xcrun",
+    "swift",
+    "build",
+    "--package-path",
+    "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/swift-build",
+    "--triple",
+    "arm64-apple-ios27.0-simulator",
+    "--sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "--target",
+    "ChavrusaUIRoutingHost",
+    "--jobs",
+    "2"
+  ],
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+  "freeBefore": 9890807808,
+  "manifestSHA256": "5530b5df57aa883ed58adf430b144b81a66ce503956e273db36a2c4c40bcba84",
+  "inputFiles": 156,
+  "scope": "Original source Core/UIRouting and complete Host package compilation for actual iOS27 simulator SDK; no app, simulator UI or system Intent invocation",
+  "newNativeTests": 0,
+  "pid": 35022,
+  "pgid": 35022,
+  "buildExit": 0,
+  "localizations": {
+    "command": [
+      "xcrun",
+      "xcstringstool",
+      "compile",
+      "--output-directory",
+      "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/apple-sdk-attempt-1/compiled-localizations",
+      "/Users/m1/builds/otzaria-wave3-feature-intents-20261127/source/Source/Localizable.xcstrings"
+    ],
+    "exit": 0,
+    "outputs": [
+      "he.lproj/Localizable.strings",
+      "ar.lproj/Localizable.strings",
+      "en.lproj/Localizable.strings",
+      "id.lproj/Localizable.strings"
+    ]
+  },
+  "finished_at": "2026-11-27T05:11:31.542880+00:00",
+  "freeAfter": 9700352000,
+  "logs": {
+    "build.stdout.log": {
+      "bytes": 1506,
+      "sha256": "60f88acc92818a6b47249ce2df4a78d6219a2e1c2ebb867cf7ec0594546c0ab7"
+    },
+    "localizations.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "localizations.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "modules": []
+}

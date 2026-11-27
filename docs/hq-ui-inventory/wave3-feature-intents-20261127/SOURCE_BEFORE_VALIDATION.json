@@ -1,0 +1,27 @@
+{
+  "base": "68b191f56c4fc1644d0b2a3478f05e9935770d20",
+  "sourceOnly": true,
+  "originalServicePrefixBytes": 6186,
+  "originalServicePrefixSHA256": "294414f30018f48478fc19f2bfba9fe5bffedf742da2744870a57ff9a6e30f75",
+  "priorCatalogEntries": 693,
+  "newCatalogEntries": 10,
+  "newNativeRuns": 0,
+  "files": {
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": {
+      "bytes": 9765,
+      "sha256": "4ca00592735cfa9787e326537a74938b032a7c48482623fc85f2795266881051"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift": {
+      "bytes": 5503,
+      "sha256": "8dbcb1d117e84d977cc7610ad754bfd39c1ca3d1cc1b3cf5f073001a90dc85b5"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeFeatureIntentServiceTests.swift": {
+      "bytes": 10503,
+      "sha256": "12f85a1927dc5fb9d6f968cb054c71873fe49c8df0e8f4772d11150e47cc59df"
+    },
+    "Source/Localizable.xcstrings": {
+      "bytes": 371567,
+      "sha256": "6074aa3444c7029eb787ccf37c81d13193e98fa8e210907ab325f617450cb5d1"
+    }
+  }
+}

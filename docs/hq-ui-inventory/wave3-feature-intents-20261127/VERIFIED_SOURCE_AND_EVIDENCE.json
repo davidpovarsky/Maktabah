@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T05:23:09.638785+00:00",
+  "baseCommit": "68b191f56c4fc1644d0b2a3478f05e9935770d20",
+  "integrationCompared": "3e6e9b362356a97400521ec12d8471dd6061b341",
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+      "bytes": 9765,
+      "sha256": "4ca00592735cfa9787e326537a74938b032a7c48482623fc85f2795266881051"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+      "bytes": 5503,
+      "sha256": "8dbcb1d117e84d977cc7610ad754bfd39c1ca3d1cc1b3cf5f073001a90dc85b5"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeFeatureIntentServiceTests.swift",
+      "bytes": 10503,
+      "sha256": "12f85a1927dc5fb9d6f968cb054c71873fe49c8df0e8f4772d11150e47cc59df"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "bytes": 371567,
+      "sha256": "6074aa3444c7029eb787ccf37c81d13193e98fa8e210907ab325f617450cb5d1"
+    }
+  ],
+  "originalNativeIntentServicePrefixBytes": 6186,
+  "originalNativeIntentServicePrefixSHA256": "294414f30018f48478fc19f2bfba9fe5bffedf742da2744870a57ff9a6e30f75",
+  "originalCatalogEntriesUnchanged": 693,
+  "addedLocalizedEntries": [
+    "History window",
+    "Open a Settings section",
+    "Open a Settings section or control in the selected Maktabah window.",
+    "Open query input",
+    "Open reading history",
+    "Open reading history in the selected Maktabah window.",
+    "Open the table of contents",
+    "Settings section",
+    "Show the book's table of contents or selected entry in the selected Maktabah window.",
+    "Table of contents"
+  ],
+  "linux": {
+    "schema": 1,
+    "status": "PASS",
+    "utc": "2026-11-27T04:57:03.139450+00:00",
+    "command": [
+      "/usr/local/bin/swift",
+      "test",
+      "--package-path",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/Source/ChavrusaText/UIRoutingHost",
+      "--scratch-path",
+      "/mnt/development/projects/worktrees/Maktabah-wave3-feature-intents-20261127/build/feature-intent-service-controls-20261127/swift-build",
+      "--jobs",
+      "2",
+      "--filter",
+      "Native(Feature)?IntentServiceTests"
+    ],
+    "version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+    "scope": "Actual original Foundation Core/UIRouting/NativeIntentService SwiftPM build and selected XCTest classes; iOS AppIntents source is platform-conditional, Apple SDK typecheck/native still required",
+    "newNativeTests": 0,
+    "freeBefore": 2818904064,
+    "pid": 3366224,
+    "pgid": 3366224,
+    "exit": 0,
+    "finished_at": "2026-11-27T04:58:09.154682+00:00",
+    "freeAfter": 2606247936,
+    "logs": {
+      "stdout.log": {
+        "bytes": 9689,
+        "sha256": "7459eb0c89565f0a3ba177408e327356d26220cc19204b6afac891488fb714f9"
+      },
+      "stderr.log": {
+        "bytes": 1012,
+        "sha256": "a0aea71451e8c8ee5ac788bf0b21bd6ed68c236e729e7c54a86c850c19791d64"
+      }
+    }
+  },
+  "appleResultSHA256": "b5b93aadec62edf67efa9be28fa0b8c1a8a81ea5d76679c7ad6c202ba93a6f2b",
+  "appleArtifactObservationSHA256": "ac95cb3b89899d25350b79c6f70d1ad0f6a7b32314ebab6ccb34989f802a858a",
+  "appleRawEvidenceMembersVerified": 14,
+  "fullAppBuilds": 0,
+  "nativeExecutions": 0,
+  "systemSiriShortcutsInvocations": 0,
+  "pending": "Root integration plus original native/system acceptance and owner/provenance signatures"
+}
