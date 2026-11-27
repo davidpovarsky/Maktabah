@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent source/producer-contract review only; no native execution or new source-control run",
+  "reviewer": "library_v40",
+  "controllerSHA256": "613bbf862725b3b5a1b7171938a34381315e5e3640dcd065637b27f65a2d522a",
+  "prerequisiteSHA256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2",
+  "finding": "No new source-level bypass or producer-shape incompatibility found after reading both full files and original producer snapshots",
+  "knownRuntimeRisk": "A pre-entry XCTest MCM relocation may invalidate absolute native context paths; current code fails closed. Post-run resealing does not repair a failed native case.",
+  "nativeExecutions": 0,
+  "offlinePERFAdmission": "NOT_QUALIFIED until actual source-qualified producer contracts exist"
+}

@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_ONLY_CONTROLS_AND_DECLARATIONS_PASS",
+  "startedUTC": "2026-11-27T05:09:52.229412+00:00",
+  "finishedUTC": "2026-11-27T05:09:54.391662+00:00",
+  "host": "tora-social-oracle",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "baseCheckout": "acadee6801a05ceca81ea5e3b57ca901589b7ea1",
+  "inputs": {
+    "Scripts/CI/production-study-v40-ui.py": {
+      "bytes": 45393,
+      "sha256": "613bbf862725b3b5a1b7171938a34381315e5e3640dcd065637b27f65a2d522a"
+    },
+    "Scripts/CI/study-ui-prerequisites.py": {
+      "bytes": 47638,
+      "sha256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2"
+    },
+    "docs/hq-integration/wave2-20261127/reader/study-ui/test_study_ui_driver.py": {
+      "bytes": 14736,
+      "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+    }
+  },
+  "records": [
+    {
+      "name": "controller-controls",
+      "command": [
+        "python3",
+        "-B",
+        "docs/hq-integration/wave2-20261127/reader/study-ui/test_study_ui_driver.py",
+        "--candidate",
+        "Scripts/CI/production-study-v40-ui.py"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "controller-controls.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "controller-controls.stderr.log",
+          "bytes": 1381,
+          "sha256": "05e4429e3640dc39fdcd173c4854ab57ad5f6d4bf55af323df74012e1eacd2d0"
+        }
+      }
+    },
+    {
+      "name": "source-check-inspector",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "inspector"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-inspector.stdout.log",
+          "bytes": 17150,
+          "sha256": "14c90f12b00e6d2889ef78336bce20a05c8a4c01c46a3502dee6fddd71221ee0"
+        },
+        "stderr": {
+          "path": "source-check-inspector.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-inspector-text-modes",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "inspector-text-modes"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-inspector-text-modes.stdout.log",
+          "bytes": 17177,
+          "sha256": "0f08325d173cc1167873cbdf38b5f6d2c2ece652b794cb06d4553071ead69e38"
+        },
+        "stderr": {
+          "path": "source-check-inspector-text-modes.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-packages",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "packages"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-packages.stdout.log",
+          "bytes": 17163,
+          "sha256": "34dc5729b87f12e0a0bb73ff48d0cbdaf09b39e56849a1618d6d38d706fcb18e"
+        },
+        "stderr": {
+          "path": "source-check-packages.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-pages",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "pages"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-pages.stdout.log",
+          "bytes": 17244,
+          "sha256": "25d909fe9204978238ca20172c03969005b5a7734baa60229222dedb44a6e494"
+        },
+        "stderr": {
+          "path": "source-check-pages.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-preview-hit",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "preview-hit"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-preview-hit.stdout.log",
+          "bytes": 17159,
+          "sha256": "f067eb1f272bc7eb99ffec23513dd20d140280b45ed70fdb7d66ba600a324c72"
+        },
+        "stderr": {
+          "path": "source-check-preview-hit.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-preview-reader",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "preview-reader"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-preview-reader.stdout.log",
+          "bytes": 17283,
+          "sha256": "98c88b33527a5ddd3dcf2b942952104b54154aef076d1bfdf873f39a8bfc128b"
+        },
+        "stderr": {
+          "path": "source-check-preview-reader.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-reader-continuous-pull",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "reader-continuous-pull"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-reader-continuous-pull.stdout.log",
+          "bytes": 17179,
+          "sha256": "3d865e56000144cf9ce1c5a46e11bf4e14e083ae804a8934dd1b57d966e7a34d"
+        },
+        "stderr": {
+          "path": "source-check-reader-continuous-pull.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-reader-selection-navigation",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "reader-selection-navigation"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-reader-selection-navigation.stdout.log",
+          "bytes": 17306,
+          "sha256": "aebb73973a2c7d171efe06a7342a0ef47e331a8286bcdf5ffacb449c79876d68"
+        },
+        "stderr": {
+          "path": "source-check-reader-selection-navigation.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-search-after-settings",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "search-after-settings"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-search-after-settings.stdout.log",
+          "bytes": 17194,
+          "sha256": "d53348df68b2bd69b80865e3908f79f7109ea5b44999797f87ec39158aefc595"
+        },
+        "stderr": {
+          "path": "source-check-search-after-settings.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-sefaria-contexts",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "sefaria-contexts"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-sefaria-contexts.stdout.log",
+          "bytes": 17298,
+          "sha256": "290665cf617e7b92856d5ea589c5b0959a12a371828124840b8b643d84d630a1"
+        },
+        "stderr": {
+          "path": "source-check-sefaria-contexts.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "source-check-settings-update-last",
+      "command": [
+        "python3",
+        "-B",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "settings-update-last"
+      ],
+      "exitCode": 0,
+      "outputs": {
+        "stdout": {
+          "path": "source-check-settings-update-last.stdout.log",
+          "bytes": 17171,
+          "sha256": "5770027cbf0d25bf47b8812baac0fa9d843913435131889821499e8587560a61"
+        },
+        "stderr": {
+          "path": "source-check-settings-update-last.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "uniqueControllerControls": 9,
+  "sourceOnlyPhaseChecks": 11,
+  "nativeExecutions": 0,
+  "simulatorExecutions": 0,
+  "actualDatabaseReads": 0,
+  "frozenProfileFinalized": false,
+  "scope": "Original source/declaration checks and same9 synthetic controller checks only. No app or native result."
+}
