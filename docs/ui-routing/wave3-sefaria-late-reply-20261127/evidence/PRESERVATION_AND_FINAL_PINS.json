@@ -1,0 +1,54 @@
+{
+  "time": "2026-11-27T08:44:40.068649+00:00",
+  "base": "052d2a7f6d26da935a6d7847477e53d981f428cb",
+  "preservedOriginalBridgeExceptObservationalHooks": true,
+  "preservedAllOtherFacadeMethods": true,
+  "preservedRunnerOutsideStage4AndOptionalEvidence": true,
+  "originalComponentAssertionsByteIdenticalAfterRemovingOnlyGenerationCorrections": true,
+  "unchanged": [
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    }
+  ],
+  "files": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+      "size": 31396
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924",
+      "size": 23528
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "sha256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+      "size": 24671
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "sha256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+      "size": 131823
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic.swift",
+      "sha256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+      "size": 17527
+    },
+    {
+      "path": "tools/test_sefaria_late_reply_diagnostic_js.mjs",
+      "sha256": "f7d5557860e72505156d53a37eb28c0c259976fdff37e23ce1a42bb6e546f0d0",
+      "size": 9517
+    }
+  ]
+}

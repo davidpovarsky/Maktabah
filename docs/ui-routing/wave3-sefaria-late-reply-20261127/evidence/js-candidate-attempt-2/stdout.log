@@ -1,0 +1,123 @@
+{
+  "boundary": "actual original JS facade and extracted unchanged original RN forwarding; explicit native/timer/engine doubles; no Hermes/app acceptance",
+  "inputs": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    }
+  ],
+  "originalRootBodySHA256": "f0d7739dc1c0135c982253da7c0cb98a6dbe87e237f4190e93bf44a608ae8227",
+  "caseCount": 26,
+  "passed": 26,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "ordinary Hebrew echo preserves original behavior",
+      "passed": true
+    },
+    {
+      "name": "original error injection remains exact",
+      "passed": true
+    },
+    {
+      "name": "actual JS-start receipt precedes delayed completion",
+      "passed": true
+    },
+    {
+      "name": "unchanged original RN function delivers actual delayed response",
+      "passed": true
+    },
+    {
+      "name": "negative delay fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "zero delay fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "fractional delay fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "oversized delay fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "missing nonce fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "malformed nonce fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "wrong contract fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "unsafe generation fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "zero generation fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "foreign backend fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "wrong protocol fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "invalid request ID fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "delay reaches timeout fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "oversized request deadline fails before timer or receipt",
+      "passed": true
+    },
+    {
+      "name": "explicit invalid diagnostic presence null",
+      "passed": true
+    },
+    {
+      "name": "explicit invalid diagnostic presence false",
+      "passed": true
+    },
+    {
+      "name": "explicit invalid diagnostic presence 0",
+      "passed": true
+    },
+    {
+      "name": "explicit invalid diagnostic presence \"\"",
+      "passed": true
+    },
+    {
+      "name": "original injected error cannot mix with delayed proof",
+      "passed": true
+    },
+    {
+      "name": "second held echo cannot replace first original identity",
+      "passed": true
+    },
+    {
+      "name": "native event failure releases exact timer and record",
+      "passed": true
+    },
+    {
+      "name": "ordinary echo remains independent during held diagnostic",
+      "passed": true
+    }
+  ]
+}

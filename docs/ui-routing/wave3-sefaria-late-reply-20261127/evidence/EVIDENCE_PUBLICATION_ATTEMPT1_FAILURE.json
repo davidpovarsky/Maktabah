@@ -1,0 +1,7 @@
+{
+  "kind": "documentation copy classification guard; not a compiler or test result",
+  "attempt": 1,
+  "returncode": 1,
+  "unclassifiedExplicitInput": "original-inputs/Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+  "correction": "include the already-declared .js source extension; verify all existing copied bytes identical"
+}

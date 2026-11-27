@@ -1,0 +1,29 @@
+{
+  "notCommittedAsPayload": true,
+  "binaries": [
+    {
+      "path": "attempt-1/controls",
+      "size": 1382328,
+      "sha256": "527bbc9843a155b40229492fd7f4604817494ec1ffb1a4038b2c021af238bdc6",
+      "retainedOriginal": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/controls"
+    },
+    {
+      "path": "attempt-2/controls",
+      "size": 1389920,
+      "sha256": "077953a09a5b177dbb980a1a0e706af2fbeb1dee344c79f4fc13fbd45ed6deaa",
+      "retainedOriginal": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/controls"
+    },
+    {
+      "path": "original-rpc-baseline/controls",
+      "size": 569760,
+      "sha256": "29f73c34998f776dfcc66ab3c36475fa63f70bdfc0678f229840401c7b924f72",
+      "retainedOriginal": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-baseline/controls"
+    },
+    {
+      "path": "original-rpc-candidate/controls",
+      "size": 569904,
+      "sha256": "8c592afe08c7eab9ad1c944eaeca5acc64387551c9615091780805ef55c63d82",
+      "retainedOriginal": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/original-rpc-candidate/controls"
+    }
+  ]
+}

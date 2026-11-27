@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "1f5d393266ce775058cdba36d92ea6f4f730c381e4f3f6772f8d0a5ccf764b11",
+      "size": 31337
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "sha256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+      "size": 24671
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "sha256": "471ad683c697ca4f90ed187b2aad6f7a0d782c4c5525f3d5f8559bf3258f93fa",
+      "size": 23446
+    },
+    {
+      "path": "tools/test_chavrusa_text_components.swift",
+      "sha256": "6a7059f3daa6408fa33c43bcd17c422ff6d3be3479826e6ce3fd02887495c2a2",
+      "size": 131823
+    }
+  ],
+  "status": "M Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift\n M Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift\n M Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\n M tools/test_chavrusa_text_components.swift"
+}

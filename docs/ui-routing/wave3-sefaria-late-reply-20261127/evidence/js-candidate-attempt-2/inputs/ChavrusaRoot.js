@@ -1,0 +1,160 @@
+/**
+ * ChavrusaRoot.js
+ * React Native Root component that preserves Sefaria-Mobile's original context providers,
+ * state managers, and error boundaries, while connecting native Swift to the JS engine.
+ */
+
+'use strict';
+
+import React, { useReducer, useEffect } from 'react';
+import { AppRegistry, View, NativeModules, NativeEventEmitter } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ErrorBoundary } from 'react-error-boundary';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
+import {
+  GlobalStateContext,
+  DispatchContext,
+  reducer,
+  DEFAULT_STATE,
+  getTheme,
+} from '../../Upstream/StateManager';
+import ReaderApp from '../../Upstream/ReaderApp';
+import * as DownloadControl from '../../Upstream/DownloadControl';
+import { ChavrusaRPCFacade } from './chavrusaRPCFacade';
+import './ChavrusaVisibleSurface';
+
+const ReaderAppGesturified = gestureHandlerRootHOC(ReaderApp);
+const FallbackView = () => <View style={{ flex: 1, backgroundColor: 'transparent' }} />;
+
+let rpcSubscription = null;
+let progressTrackerAttached = false;
+let bridgeReadyEmitted = false;
+
+const handleIncomingEnvelope = async (envelopeJSON) => {
+  let reqID = 'unknown';
+  let sessionGen = 0;
+  try {
+    const envelope = typeof envelopeJSON === 'string' ? JSON.parse(envelopeJSON) : envelopeJSON;
+    reqID = envelope?.requestID || 'unknown';
+    sessionGen = envelope?.sessionGeneration || 0;
+
+    const response = await ChavrusaRPCFacade.handleNativeEnvelope(envelope);
+    const responseJSON = JSON.stringify(response);
+
+    if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverResponse) {
+      NativeModules.ChavrusaSefariaBridgeModule.deliverResponse(responseJSON);
+    }
+    return responseJSON;
+  } catch (err) {
+    const errResponse = JSON.stringify({
+      protocolVersion: '1.0',
+      requestID: reqID,
+      status: 'error',
+      resultJson: null,
+      error: { code: 'NATIVE_INVOCATION_FAILED', message: err?.message || String(err), retryable: false },
+      sessionGeneration: sessionGen,
+      backendID: 'sefariaEmbedded',
+    });
+    if (NativeModules?.ChavrusaSefariaBridgeModule?.deliverResponse) {
+      NativeModules.ChavrusaSefariaBridgeModule.deliverResponse(errResponse);
+    }
+    return errResponse;
+  }
+};
+
+export const setupChavrusaRPCBridge = (sessionGeneration = 1) => {
+  // 1. Subscribe to NativeEventEmitter for incoming Swift RPC requests (singleton)
+  if (!rpcSubscription) {
+    if (NativeModules?.ChavrusaSefariaBridgeModule) {
+      try {
+        const eventEmitter = new NativeEventEmitter(NativeModules.ChavrusaSefariaBridgeModule);
+        rpcSubscription = eventEmitter.addListener('onSefariaRPCRequest', handleIncomingEnvelope);
+        console.log('[ChavrusaRoot] Successfully wired onSefariaRPCRequest NativeEventEmitter');
+      } catch (e) {
+        console.warn('[ChavrusaRoot] Failed to create NativeEventEmitter:', e);
+      }
+    } else {
+      console.warn('[ChavrusaRoot] NativeModules.ChavrusaSefariaBridgeModule is not yet available');
+    }
+  }
+
+  // 2. Wire DownloadControl Tracker progress events to Native (singleton)
+  if (!progressTrackerAttached) {
+    try {
+      if (DownloadControl?.Tracker?.attachProgressTracker) {
+        DownloadControl.Tracker.attachProgressTracker((bytesWritten, totalBytes) => {
+          const numWritten = Number(bytesWritten) || 0;
+          const numTotal = Number(totalBytes) || 0;
+          const fraction = numTotal > 0 ? Math.min(1.0, Math.max(0.0, numWritten / numTotal)) : 0.0;
+          const downloadSize = Number(DownloadControl?.Tracker?.downloadSize) || null;
+          const activePkg = ChavrusaRPCFacade.activeDownloadingPackage || DownloadControl?.Tracker?.downloadTitle || null;
+
+          ChavrusaRPCFacade.sendEventToNative('downloadProgress', {
+            fraction: fraction,
+            bytesWritten: downloadSize ? Math.round(fraction * downloadSize) : null,
+            totalBytes: downloadSize,
+            rawReceived: numWritten,
+            rawTotal: numTotal,
+            packageTitle: activePkg,
+          });
+        }, 'chavrusaTracker');
+        progressTrackerAttached = true;
+      }
+    } catch (e) {
+      console.warn('[ChavrusaRoot] Failed to attach progress tracker:', e);
+    }
+  }
+
+  // 3. Notify native that JS root is mounted and providers are live (only once per subscription)
+  if (rpcSubscription && !bridgeReadyEmitted) {
+    bridgeReadyEmitted = true;
+    ChavrusaRPCFacade.sendEventToNative('ready', {
+      timestamp: Date.now(),
+      version: '1.0',
+      upstreamLockedSHA: '2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c',
+      generation: sessionGeneration,
+    });
+  }
+};
+
+export const ChavrusaRoot = (props) => {
+  const [globalState, dispatch] = useReducer(reducer, DEFAULT_STATE);
+  const theme = getTheme(globalState.themeStr);
+
+  useEffect(() => {
+    ChavrusaRPCFacade.setDispatch(dispatch);
+    setupChavrusaRPCBridge();
+  }, [dispatch]);
+
+  const renderContent = () => {
+    if (props?.renderFullUI) {
+      return (
+        <ReaderAppGesturified
+          {...globalState}
+          theme={theme}
+          dispatch={dispatch}
+        />
+      );
+    }
+    return (
+      <View style={{ flex: 1, backgroundColor: 'transparent' }} testID="chavrusa-root-container">
+        {props.children}
+      </View>
+    );
+  };
+
+  return (
+    <ErrorBoundary FallbackComponent={FallbackView}>
+      <SafeAreaProvider>
+        <DispatchContext.Provider value={dispatch}>
+          <GlobalStateContext.Provider value={globalState}>
+            {renderContent()}
+          </GlobalStateContext.Provider>
+        </DispatchContext.Provider>
+      </SafeAreaProvider>
+    </ErrorBoundary>
+  );
+};
+
+// Register headless engine root component
+AppRegistry.registerComponent('ChavrusaSefariaRoot', () => ChavrusaRoot);

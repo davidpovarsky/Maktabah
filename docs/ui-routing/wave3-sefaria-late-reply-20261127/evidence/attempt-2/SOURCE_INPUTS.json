@@ -1,0 +1,45 @@
+{
+  "inputs": [
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6",
+      "size": 31396,
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/SefariaJSRPCBridge.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634",
+      "size": 11797,
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/SefariaRuntimeManager.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce",
+      "size": 4566,
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/SefariaRPCModels.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "sha256": "9a947227de7b6b6a9b091529de829989b460ac1037d23c01564964aacd9c8178",
+      "size": 24671,
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/SefariaEmbeddedAcceptanceDiagnosticRunner.swift"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a",
+      "size": 3692,
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/SefariaEmbeddedSurfaceContract.swift"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-1/BoundaryDoubles.swift",
+      "sha256": "e9de9dd29623e1558f5327bf02f0d29c6f330eedd0c67d256c8ebbc42768e3c4",
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/BoundaryDoubles.swift"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/tools/test_sefaria_late_reply_diagnostic.swift",
+      "sha256": "9aca6a80ac41449486549d29f7e2cdb3af6744abde2745e3524966bbe6d58775",
+      "copy": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-late-reply-20261127/build/late-reply-source-controls-20261127/attempt-2/Controls.swift"
+    }
+  ],
+  "boundary": "all complete original product sources copied verbatim; only same-file helper access appended; explicit controlled transport/domain doubles"
+}

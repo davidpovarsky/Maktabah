@@ -1,0 +1,37 @@
+
+--- 36. Testing SefariaJSRPCBridge Generation Epoch & Call Validation ---
+PASS sessionEpoch starts at 1
+PASS bumpSessionEpoch increments to 2
+PASS sessionEpoch reflects incremented value
+PASS setSessionEpoch sets epoch to 42
+
+--- 37. Testing SefariaJSRPCBridge Strict Response Verification ---
+PASS Mismatched generation rejected with STALE_GENERATION (STALE_GENERATION)
+PASS Mismatched protocol rejected with PROTOCOL_VERSION_MISMATCH (PROTOCOL_VERSION_MISMATCH)
+PASS Mismatched backend ID rejected with BACKEND_MISMATCH (BACKEND_MISMATCH)
+PASS Valid response accepted successfully
+PASS Valid response data matches
+
+--- 38. Testing SefariaJSRPCBridge Concurrent Parallel In-Flight Calls ---
+PASS Concurrent call 8 received correct matching response
+PASS Concurrent call 5 received correct matching response
+PASS Concurrent call 18 received correct matching response
+PASS Concurrent call 1 received correct matching response
+PASS Concurrent call 14 received correct matching response
+PASS Concurrent call 2 received correct matching response
+PASS Concurrent call 13 received correct matching response
+PASS Concurrent call 6 received correct matching response
+PASS Concurrent call 4 received correct matching response
+PASS Concurrent call 10 received correct matching response
+PASS Concurrent call 7 received correct matching response
+PASS Concurrent call 15 received correct matching response
+PASS Concurrent call 17 received correct matching response
+PASS Concurrent call 3 received correct matching response
+PASS Concurrent call 12 received correct matching response
+PASS Concurrent call 9 received correct matching response
+PASS Concurrent call 11 received correct matching response
+PASS Concurrent call 0 received correct matching response
+PASS Concurrent call 16 received correct matching response
+PASS Concurrent call 19 received correct matching response
+PASS All 20 concurrent calls resolved successfully
+ORIGINAL_RPC_COUNTS passed=30 failed=0

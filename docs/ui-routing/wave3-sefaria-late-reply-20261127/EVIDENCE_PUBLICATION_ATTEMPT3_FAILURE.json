@@ -1,0 +1,7 @@
+{
+  "kind": "documentation index operation failed before removal; no product/test change",
+  "command": "git rm --cached -- exact-new-evidence-path",
+  "exit": 1,
+  "reason": "new documentation is outside minimal sparse checkout",
+  "correction": "same exact newly added artifact paths with original git --sparse option; compressed bytes verified identical; no sparse configuration change"
+}
