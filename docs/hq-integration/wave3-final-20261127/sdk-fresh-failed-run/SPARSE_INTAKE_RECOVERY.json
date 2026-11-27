@@ -1,0 +1,18 @@
+{
+  "explanation": "Exact docs cherry-pick succeeded; post-intake filesystem read hit expected sparse exclusion. Resume verifies committed Git blobs without expanding unrelated docs. No Source change or second cherry-pick.",
+  "originalFailure": {
+    "ok": false,
+    "interpreter": "python3",
+    "sudo": false,
+    "cwd": null,
+    "cleanup": true,
+    "command": [
+      "python3",
+      "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_d6f1793fcdc84d97a1acb62bc3debb08/script.py"
+    ],
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 29, in <module>\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/docs/hq-integration/wave3-fresh-sdk-preservation-20261127/EXECUTION_JOBS.json'",
+    "duration": 0.62,
+    "returncode": 1,
+    "hub_request_id": "hreq_7ac3759025f14d03"
+  }
+}

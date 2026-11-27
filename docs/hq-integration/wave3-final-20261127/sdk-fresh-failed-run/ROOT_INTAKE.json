@@ -1,0 +1,21 @@
+{
+  "schema": "otzaria.wave3.root.failed-sdk-intake.v1",
+  "at": "2026-11-27T06:54:37.448313+00:00",
+  "rootBefore": "1a4d64dca46b61ea3d9dbcab5d152dc618f2be39",
+  "preservationDonor": "3f4b62a83fcd0665a12801d60d2a0b713e643497",
+  "preservationIntake": "b5081350aeaa7c3af9ae8c59b3cf0b409ce2e5bf",
+  "exactDonorFiles": 18,
+  "archiveSHA256": "73d688afbf0adc80cfea3db7dd94c160b1a2f0a3bdf15da49d4faf464b9422e3",
+  "archiveBytes": 790399,
+  "originalFilesVerified": 57,
+  "originalBytes": 10024146,
+  "originalSDKExecutionSHA256": "578718216641feb5ab424775eb7f30616648c1e2d838b4a5aba90880b8d3fb6f",
+  "sourceBeforeAfterEqual": true,
+  "sourceSnapshotSHA256": "3b18409ea76004b4824c0ec9e6eddb7586c9ea5a10412732072fefbc99888fbe",
+  "originalMacroRecoverySHA256": "28c9ec1bfc8b31d41207d503acf3d2746d21c09e684c5a404ccbac8c06af5992",
+  "macroTrustBeforeAfterEqual": true,
+  "SDKQualified": false,
+  "appBuilt": false,
+  "nativeTestRuns": 0,
+  "sourceTreeUnchanged": "a0bedbc485e0cc70a0148d42ec3545ea8dea400a"
+}

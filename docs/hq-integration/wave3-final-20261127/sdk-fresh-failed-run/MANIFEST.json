@@ -1,0 +1,548 @@
+{
+  "schema": "otzaria.wave3.failed-sdk-run-preservation.v1",
+  "recordedAt": "2026-11-27T06:49:16.805448+00:00",
+  "roots": [
+    {
+      "label": "controller",
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-controller-20261127.4kollynp"
+    },
+    {
+      "label": "supervisor",
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e"
+    },
+    {
+      "label": "sdk-evidence",
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence"
+    },
+    {
+      "label": "native-abi",
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127"
+    },
+    {
+      "label": "reviewed-macro",
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127"
+    }
+  ],
+  "files": [
+    {
+      "label": "controller",
+      "relative": "supervisor.py",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-controller-20261127.4kollynp/supervisor.py",
+      "bytes": 24520,
+      "sha256": "d8a6e3a9dba85e76b27fc0bf6359b4a5a344a2e435df85b1d424ae6277020844",
+      "mode": 420,
+      "mtimeNs": 1795757636775338597
+    },
+    {
+      "label": "supervisor",
+      "relative": "FRESH_RUN_COMMANDS.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/FRESH_RUN_COMMANDS.json",
+      "bytes": 7320,
+      "sha256": "d03b3a9d3856fd7a6ced388f67781e9376df8922297af6ba6d5aee4f615467f2",
+      "mode": 420,
+      "mtimeNs": 1795757637146608592
+    },
+    {
+      "label": "supervisor",
+      "relative": "OBSERVED_CONTRACT.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/OBSERVED_CONTRACT.json",
+      "bytes": 6235,
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2",
+      "mode": 420,
+      "mtimeNs": 1795757637146738634
+    },
+    {
+      "label": "supervisor",
+      "relative": "PRELAUNCH_NOT_EXECUTED.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/PRELAUNCH_NOT_EXECUTED.json",
+      "bytes": 221,
+      "sha256": "49eae245ad2024a65f715d40348c3579210039b16658387934b3318c3cd080db",
+      "mode": 420,
+      "mtimeNs": 1795757637150345041
+    },
+    {
+      "label": "supervisor",
+      "relative": "RESULT.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/RESULT.json",
+      "bytes": 10930,
+      "sha256": "4098e01c27d6021b937c52c5cd13795c5e89262006e9b1e28b844dfa37673a8d",
+      "mode": 420,
+      "mtimeNs": 1795758013485175292
+    },
+    {
+      "label": "supervisor",
+      "relative": "STATUS.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/STATUS.json",
+      "bytes": 10930,
+      "sha256": "4098e01c27d6021b937c52c5cd13795c5e89262006e9b1e28b844dfa37673a8d",
+      "mode": 420,
+      "mtimeNs": 1795758013486003665
+    },
+    {
+      "label": "supervisor",
+      "relative": "complete-original-framework-acceptance.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/complete-original-framework-acceptance.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757689592174359
+    },
+    {
+      "label": "supervisor",
+      "relative": "complete-original-framework-acceptance.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/complete-original-framework-acceptance.stdout.log",
+      "bytes": 67034,
+      "sha256": "578718216641feb5ab424775eb7f30616648c1e2d838b4a5aba90880b8d3fb6f",
+      "mode": 420,
+      "mtimeNs": 1795758011566581187
+    },
+    {
+      "label": "supervisor",
+      "relative": "macro-restore-recovery-attempt2/RESULT.json",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/macro-restore-recovery-attempt2/RESULT.json",
+      "bytes": 1158,
+      "sha256": "28c9ec1bfc8b31d41207d503acf3d2746d21c09e684c5a404ccbac8c06af5992",
+      "mode": 420,
+      "mtimeNs": 1795759500223358868
+    },
+    {
+      "label": "supervisor",
+      "relative": "macro-restore-recovery-attempt2/stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/macro-restore-recovery-attempt2/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795759500223075827
+    },
+    {
+      "label": "supervisor",
+      "relative": "macro-restore-recovery-attempt2/stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/macro-restore-recovery-attempt2/stdout.log",
+      "bytes": 87,
+      "sha256": "79e24cd77c4ad7e78570c07f3848f4305f84c274003514fcbfff5409d993a534",
+      "mode": 420,
+      "mtimeNs": 1795759500223022494
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-reviewed-macro-prepare.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-reviewed-macro-prepare.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757687547243540
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-reviewed-macro-prepare.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-reviewed-macro-prepare.stdout.log",
+      "bytes": 1157,
+      "sha256": "5ede21ecab0ba681322f37759e14a2a6d8f4cf9aefb48ce6238e168f560f63a2",
+      "mode": 420,
+      "mtimeNs": 1795757688339629901
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-reviewed-macro-restore-in-finally.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-reviewed-macro-restore-in-finally.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795758011873572557
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-reviewed-macro-restore-in-finally.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-reviewed-macro-restore-in-finally.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795758011870736814
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-source-only-admission.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-source-only-admission.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757639176468201
+    },
+    {
+      "label": "supervisor",
+      "relative": "original-source-only-admission.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/original-source-only-admission.stdout.log",
+      "bytes": 1950,
+      "sha256": "0ab4b49d31955e1d9ff73e105e57780d7d8384efa520b0d82ee8b645532b07b3",
+      "mode": 420,
+      "mtimeNs": 1795757647249282257
+    },
+    {
+      "label": "supervisor",
+      "relative": "prepare-new-execution-bound-original-donor.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/prepare-new-execution-bound-original-donor.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757649262905699
+    },
+    {
+      "label": "supervisor",
+      "relative": "prepare-new-execution-bound-original-donor.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/prepare-new-execution-bound-original-donor.stdout.log",
+      "bytes": 556,
+      "sha256": "ac50505416e37903983f3189668567c240865183f33407ecee2c654a6ad0fa0c",
+      "mode": 420,
+      "mtimeNs": 1795757683683562481
+    },
+    {
+      "label": "supervisor",
+      "relative": "prepare-new-original-local-execution.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/prepare-new-original-local-execution.stderr.log",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+      "mode": 420,
+      "mtimeNs": 1795757638248460275
+    },
+    {
+      "label": "supervisor",
+      "relative": "prepare-new-original-local-execution.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/prepare-new-original-local-execution.stdout.log",
+      "bytes": 45309,
+      "sha256": "dd789242e7115563b9c903826390386a6fcbce3978fe6cc585d48573f6a7b1a3",
+      "mode": 420,
+      "mtimeNs": 1795757639086258060
+    },
+    {
+      "label": "supervisor",
+      "relative": "read-actual-new-abi-digest.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/read-actual-new-abi-digest.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757685495522488
+    },
+    {
+      "label": "supervisor",
+      "relative": "read-actual-new-abi-digest.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e/read-actual-new-abi-digest.stdout.log",
+      "bytes": 65,
+      "sha256": "9b1531812afdf3b4c256dcbab2083c6f0c07706370f0c8f8633ffa44a458c11a",
+      "mode": 420,
+      "mtimeNs": 1795757685598912386
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-simulator-sdk.command.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-simulator-sdk.command.json",
+      "bytes": 505,
+      "sha256": "1d346f9d3203eb0585c09a982912c5b1ad24a6c4f66a153598ce9b8f29d56783",
+      "mode": 420,
+      "mtimeNs": 1795757712423511083
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-simulator-sdk.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-simulator-sdk.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757712409649244
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-simulator-sdk.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-simulator-sdk.stdout.log",
+      "bytes": 5,
+      "sha256": "7b01c549928398a045692f24bcac7803b348524cdd76f21265b02984b2ba556a",
+      "mode": 420,
+      "mtimeNs": 1795757712418300889
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-swift.command.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-swift.command.json",
+      "bytes": 474,
+      "sha256": "4637c61544c2a73ae7c0913c2a6a678d567c387e6dc16da10fb6fefe9944e8c8",
+      "mode": 420,
+      "mtimeNs": 1795757712567160377
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-swift.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-swift.stderr.log",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+      "mode": 420,
+      "mtimeNs": 1795757712510687274
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "actual-swift.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/actual-swift.stdout.log",
+      "bytes": 98,
+      "sha256": "04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83",
+      "mode": 420,
+      "mtimeNs": 1795757712547922886
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "exact-package-resolution.command.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/exact-package-resolution.command.json",
+      "bytes": 963,
+      "sha256": "c13ad58afafd2b7095ea2cff8cf06b4d57bb88987ddc7064bbf52d128f92aec7",
+      "mode": 420,
+      "mtimeNs": 1795757756677129187
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "exact-package-resolution.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/exact-package-resolution.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 420,
+      "mtimeNs": 1795757712568353583
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "exact-package-resolution.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/exact-package-resolution.stdout.log",
+      "bytes": 21574,
+      "sha256": "bb9096c3654d83a63124c273f677dce3332709d0782f7bf78fe0babd5c0f65b5",
+      "mode": 420,
+      "mtimeNs": 1795757756637732790
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "execution.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/execution.json",
+      "bytes": 67034,
+      "sha256": "578718216641feb5ab424775eb7f30616648c1e2d838b4a5aba90880b8d3fb6f",
+      "mode": 420,
+      "mtimeNs": 1795758007891719096
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "framework-build.command.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/framework-build.command.json",
+      "bytes": 1439,
+      "sha256": "841a9199a5e3bedb9832e78288b1eeab097da86a6019ef4dc25f14297e5f1b37",
+      "mode": 420,
+      "mtimeNs": 1795757982289427894
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "framework-build.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/framework-build.stderr.log",
+      "bytes": 24,
+      "sha256": "23b50d81c65e172a3a39d38234b74de6d8015d338faa77094f07a2f4b38439d1",
+      "mode": 420,
+      "mtimeNs": 1795757982097611808
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "framework-build.stdout.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/framework-build.stdout.log",
+      "bytes": 7663290,
+      "sha256": "46297f9d46221f6b5f1711a654a2d44c7a17af3295579c8e022bfd51f1254f0c",
+      "mode": 420,
+      "mtimeNs": 1795757957216400528
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "import-abi-before.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/import-abi-before.json",
+      "bytes": 18924,
+      "sha256": "4b437520e04c6f3d931b7464e36873359e84ca62667a541786ffd77e3a279112",
+      "mode": 420,
+      "mtimeNs": 1795757711196311559
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "local-execution.env",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/local-execution.env",
+      "bytes": 274,
+      "sha256": "01551ba5322f8194dce96d40e4f7b9b6a05cfbe41bcdf85413949c08d91e58a1",
+      "mode": 420,
+      "mtimeNs": 1795757637463685603
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "local-execution.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/local-execution.json",
+      "bytes": 1043,
+      "sha256": "12b2aae4d774502b9f5b5bd582b82a7b061c202ebef5d29e42c3afd8e61ee61e",
+      "mode": 420,
+      "mtimeNs": 1795757637463530895
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "original-hanlin-snapshot.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/original-hanlin-snapshot.json",
+      "bytes": 843237,
+      "sha256": "1f997b1fe7fae6715e80f752656d63f314cd2c9f3c3abfa67cdc85af07ecdc5c",
+      "mode": 420,
+      "mtimeNs": 1795757712409419870
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "owned-simulator-cleanup.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/owned-simulator-cleanup.json",
+      "bytes": 899,
+      "sha256": "010238ccaee27f6c115452829f70552e1f86b2f507bd4cf7b8f48943755360e9",
+      "mode": 420,
+      "mtimeNs": 1795758011556718046
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "preflight/preflight.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/preflight/preflight.json",
+      "bytes": 43258,
+      "sha256": "a2d88c18c7c761053114b39d039107b6f71235eaccd8cfe60c673bdae4ca2510",
+      "mode": 420,
+      "mtimeNs": 1795757639085631478
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "preflight/simulator-inventory.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/preflight/simulator-inventory.json",
+      "bytes": 134207,
+      "sha256": "bcc026bda197030d28a5c458687a5979aaf1b2591ad0f645f19654fe3bd89d52",
+      "mode": 420,
+      "mtimeNs": 1795757637678202963
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "source-admission.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/source-admission.json",
+      "bytes": 1950,
+      "sha256": "0ab4b49d31955e1d9ff73e105e57780d7d8384efa520b0d82ee8b645532b07b3",
+      "mode": 420,
+      "mtimeNs": 1795757647248875966
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "source-after.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/source-after.json",
+      "bytes": 329535,
+      "sha256": "3b18409ea76004b4824c0ec9e6eddb7586c9ea5a10412732072fefbc99888fbe",
+      "mode": 420,
+      "mtimeNs": 1795758007885114821
+    },
+    {
+      "label": "sdk-evidence",
+      "relative": "source-before.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence/source-before.json",
+      "bytes": 329535,
+      "sha256": "3b18409ea76004b4824c0ec9e6eddb7586c9ea5a10412732072fefbc99888fbe",
+      "mode": 420,
+      "mtimeNs": 1795757647248588092
+    },
+    {
+      "label": "native-abi",
+      "relative": "ABI_DONOR_INPUT.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/ABI_DONOR_INPUT.json",
+      "bytes": 538,
+      "sha256": "39e511464f447621d9fae3df9e2f9eb50fe8b98c040a153e6b1a650e3ffe5efb",
+      "mode": 420,
+      "mtimeNs": 1795757658240263033
+    },
+    {
+      "label": "native-abi",
+      "relative": "RESULT.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/RESULT.json",
+      "bytes": 576,
+      "sha256": "d53316b62b7ed29705113fef5e301bc5aadc928b9a6120d65b5321c2edad8858",
+      "mode": 420,
+      "mtimeNs": 1795757683683363648
+    },
+    {
+      "label": "native-abi",
+      "relative": "VERIFIED_DONOR.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/VERIFIED_DONOR.json",
+      "bytes": 18924,
+      "sha256": "4b437520e04c6f3d931b7464e36873359e84ca62667a541786ffd77e3a279112",
+      "mode": 420,
+      "mtimeNs": 1795757683681752152
+    },
+    {
+      "label": "native-abi",
+      "relative": "consumer-source-before.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127/consumer-source-before.json",
+      "bytes": 329535,
+      "sha256": "3b18409ea76004b4824c0ec9e6eddb7586c9ea5a10412732072fefbc99888fbe",
+      "mode": 420,
+      "mtimeNs": 1795757683679779157
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "macro-approval.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/macro-approval.json",
+      "bytes": 1251,
+      "sha256": "277643639d3bcce0a19aa104185ad2ebbe60cea8c7d0180ef05a35db40c153da",
+      "mode": 420,
+      "mtimeNs": 1795757688339249943
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "macro-restoration.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/macro-restoration.json",
+      "bytes": 93,
+      "sha256": "ce5426fbcda6757bcd65069dfb2b0c0c84690d5843df71de3835439c0ccafa67",
+      "mode": 420,
+      "mtimeNs": 1795759500218424006
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "macros.after.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/macros.after.json",
+      "bytes": 147,
+      "sha256": "7d1821befdef1327439a77047600813d40a3da350f4d1ab7cd6be01f1eebc39c",
+      "mode": 420,
+      "mtimeNs": 1795757688338434487
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "macros.before.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/macros.before.json",
+      "bytes": 147,
+      "sha256": "7d1821befdef1327439a77047600813d40a3da350f4d1ab7cd6be01f1eebc39c",
+      "mode": 420,
+      "mtimeNs": 1795757688338232071
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "owned-trust-state.json",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/owned-trust-state.json",
+      "bytes": 591,
+      "sha256": "f0e24af7bf7f107cbd3eb1e96ad5699b80aeffe73b534b41e0bb1e3ea6ca8f06",
+      "mode": 420,
+      "mtimeNs": 1795757688338708070
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "reviewed-upstream-source.tar.gz",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/reviewed-upstream-source.tar.gz",
+      "bytes": 36068,
+      "sha256": "58816bb9fc940f73660d3f80481d27ba37bbf5a59975b8791926c78828b306ee",
+      "mode": 420,
+      "mtimeNs": 1795757688307695150
+    },
+    {
+      "label": "reviewed-macro",
+      "relative": "source-download.stderr.log",
+      "sourcePath": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127/source-download.stderr.log",
+      "bytes": 476,
+      "sha256": "15d37fc6c23fad0379b3abe450059c1775cbc690231702fe87ed0822ae039a70",
+      "mode": 420,
+      "mtimeNs": 1795757688307665067
+    }
+  ],
+  "sourceHead": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "result": "FAIL_CAPACITY_ORIGINAL_FRAMEWORK_BUILD",
+  "sdkQualified": false,
+  "nativeTestsExecuted": 0,
+  "macroCleanupOriginalExit": 0,
+  "macroTrustStoreChanged": false,
+  "retainedOriginalFailures": true
+}

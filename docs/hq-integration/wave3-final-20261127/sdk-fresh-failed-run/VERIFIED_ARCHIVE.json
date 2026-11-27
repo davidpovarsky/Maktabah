@@ -1,0 +1,11 @@
+{
+  "directory": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-failed-run-preservation-20261127.esxzk_x0",
+  "archive": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-failed-run-preservation-20261127.esxzk_x0/failed-sdk-original-evidence.tar.gz",
+  "archiveBytes": 790399,
+  "archiveSHA256": "73d688afbf0adc80cfea3db7dd94c160b1a2f0a3bdf15da49d4faf464b9422e3",
+  "manifestSHA256": "54ae1b58aae2ea31726778db48ead9f55fdfd7912f67d54a9d93932c8eebfad3",
+  "files": 57,
+  "sourceBytes": 10024146,
+  "allMembersVerified": true,
+  "sourceUnchanged": true
+}
