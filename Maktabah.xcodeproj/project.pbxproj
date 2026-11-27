@@ -1482,6 +1482,8 @@
 		3AF217E9C4FDFAEBFB8D8E24 /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
 		BAF90592723AA4B89CEB6BEC /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
 		A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
+		E1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */; };
+		1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2343,6 +2345,8 @@
 		D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift"; sourceTree = "<group>"; };
 		6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"; sourceTree = "<group>"; };
 		30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSemanticNavigation.swift"; sourceTree = "<group>"; };
+		F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift"; sourceTree = "<group>"; };
+		14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2439,6 +2443,8 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */,
+				F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */,
 				6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */,
 				8D225141DCD48D57DCCA3201 /* OriginalSavedResultsLoadLifetime.swift */,
 				146C06FD27FD96B9BDBE2776 /* MaktabahNativeSavedResultsSource.swift */,
@@ -5305,6 +5311,8 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */,
+				E1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */,
 				A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				D39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */,
 				480A37811754BC6F9614551B /* OriginalSavedResultsLoadLifetime.swift in Sources */,

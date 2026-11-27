@@ -66,6 +66,8 @@ struct MaktabahNativeSceneProjection {
                  phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil,
                  sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,
                  historyRecord: MaktabahNativeHistoryRecordBinding? = nil,
+                 annotationSelection: MaktabahNativeAnnotationSelectionBinding? = nil,
+                 annotationRequestID: UUID? = nil,
                  savedResults: MaktabahNativeSavedResultsBinding? = nil,
                  savedResultsRequestID: UUID? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
@@ -130,6 +132,13 @@ struct MaktabahNativeSceneProjection {
             let root: MaktabahNativeRootDestination = surface == .search ? .search : .annotations
             guard !settingsPresented, root.isAvailable,
                   selectedTab.canonical == root.tab, manager.currentMode == root.tab.appMode else { return nil }
+            if surface == .annotations, let original = annotationSelection {
+                guard let requestID = annotationRequestID, original.hasVisibleSurface(requestID: requestID),
+                      let selected = original.observedItem(requestID: requestID) else { return nil }
+                return .init(destination: MaktabahNativeAnnotationSelectionBinding.destination,
+                    presentation: .init(kind: .currentTab), content: nil,
+                    state: .init(workspaceID: state.workspaceID, profileID: state.profileID, selectedItemID: selected), focus: nil)
+            }
             // Existing private query/note state remains in its original owner.
             // Opening a root never submits a query, creates a draft or writes data.
             return .init(destination: id(root.rawValue), presentation: .init(), content: nil, state: state, focus: nil)
