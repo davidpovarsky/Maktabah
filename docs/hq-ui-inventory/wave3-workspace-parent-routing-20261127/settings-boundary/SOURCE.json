@@ -1,0 +1,23 @@
+{
+  "source_base": "26ebcfe9f264a7513b46049417bc2dd1bf510848",
+  "source_files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "50d65a230af92741c7541bc32a5d19f81b24fc37d35ee1ad075aa3d87d49d88f",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "8d75a368172039119c7f38c5b8dfb06fe2377f538d748812382e20121e7642f9"
+  },
+  "verbatim_units": {
+    "private var hasOriginalWorkspacePresentation:": "684186403151f61411b8f4af24f71020174a7645f22da5670bd40cd8dc1311d4",
+    "var isPresentationReady:": "884403a975c9edd2cb7f8a7ab3485399f5db4e289be17d66f773b5d7b18d5a6a",
+    "func isPresentationReady(for destination:": "c43f00087e827fbc5f8c461553e6eda3ef314e73a9f01766b206c81cad80b984",
+    "var isWorkspaceParentPresentationReady:": "4bb700515422b51821226714cbf267d10f3e045823462614b9f80de6467e4974",
+    "func selectOriginalWorkspaceParent()": "535d048175e98dbbecc1fb42b9b5c15adc3c23eeea8e0074cdc26d56edc8fb4d"
+  },
+  "harness_files": {
+    "OriginalSettingsBoundaryControls.swift": "b97a8eda455f501e9346cdea0c0138ae858283076f63445b790983911486d666",
+    "NegativeSettingsDismissal.swift": "5dc5bcea460333559d25de119075f5903ffad90859773e7bdb92c8e579a4cda7",
+    "NegativeColdWindowGate.swift": "b6f11532aa34637afb58a133c46cdff9006fa42fd43da6cf4e6bb92d34929912",
+    "NegativeBegunCommand.swift": "f79f1632e6c7ffd9db399a13737d9a8867da905d0cb824b9dba41ce2a3b149e2"
+  },
+  "expected_controls": 32,
+  "scope": "Five actual production method/property bodies; explicit synthetic UIKit window readiness, parent facets and retained-proof API boundary. Not UIKit/Core admission or app compilation.",
+  "execution": "NOT_RUN"
+}

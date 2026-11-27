@@ -1,0 +1,14 @@
+{
+  "shared_base": "26ebcfe9f264a7513b46049417bc2dd1bf510848",
+  "feature_packets": [
+    "674a9784a52390bf20cc6b8a5c357f78dc3a1f18",
+    "2135f160a1989da2f9bff2b20c39d15aa0dd4120"
+  ],
+  "peer_review": "Read actual pending/apply/host proof, exact source forwarding, parent-before-component retention, completed-proof invalidation and 2135 one-shot original setter allowance. Read-only continuing predicate does not recurse through Session lifetime validation. No source review blocker found in these integration boundaries. Actual native UI remains unrun.",
+  "receipt_limits": [
+    "No app SDK compilation",
+    "No runtime UIKit evidence",
+    "No Siri or physical device execution",
+    "No aggregate Native116/Release114 acceptance"
+  ]
+}

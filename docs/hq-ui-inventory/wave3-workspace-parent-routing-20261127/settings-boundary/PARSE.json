@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "target": "arm64-apple-ios27.0",
+  "scope": "syntax_only",
+  "source_files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "50d65a230af92741c7541bc32a5d19f81b24fc37d35ee1ad075aa3d87d49d88f",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "8d75a368172039119c7f38c5b8dfb06fe2377f538d748812382e20121e7642f9"
+  }
+}

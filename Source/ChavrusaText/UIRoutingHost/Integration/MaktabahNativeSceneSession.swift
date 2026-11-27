@@ -243,7 +243,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     /// Stable original Workspace sheets may navigate their own components.
     /// Every unrelated modal keeps the existing blockers. A transition can be
-    /// awaited only by its already-begun command, never by fresh discovery.
+    /// awaited only by its already-applied command, never by fresh discovery.
     func isPresentationReady(for destination: UIDestinationID) -> Bool {
         guard let parent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) else {
             return isPresentationReady
@@ -253,8 +253,21 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
               let binding = workspacePresentation, binding.isAvailable(parent: parent) else { return false }
         let profiles = binding.presentationFacets(for: .profiles)
         let overview = binding.presentationFacets(for: .overview)
-        let continuing = command?.route.route.destination == destination
-            && submissionID == command?.invocation.requestId && submissionID != nil
+        let continuing: Bool
+        if let requestID = submissionID, command?.invocation.requestId == requestID,
+           command?.route.route.destination == destination {
+            continuing = binding.isContinuingAppliedRequest(parent: parent, requestID: requestID)
+        } else {
+            continuing = false
+        }
+        // Before the first canonical apply, the ORIGINAL window must have no
+        // unrelated presented controller or unfinished dismissal. A false
+        // SwiftUI sheet binding alone does not prove that UIKit has finished.
+        // Warm original Workspace sheets instead use their exact host evidence.
+        if !profiles.requested && !profiles.mounted && !overview.requested && !overview.mounted
+            && !continuing {
+            guard windowSource?.isPresentationReady(in: sceneID) == true else { return false }
+        }
         if profiles.requested || profiles.mounted {
             guard parent == .profiles,
                   continuing || (profiles.visible && !profiles.transitioning) else { return false }
