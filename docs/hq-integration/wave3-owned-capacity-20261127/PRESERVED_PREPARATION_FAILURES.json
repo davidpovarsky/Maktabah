@@ -1,0 +1,37 @@
+{
+  "failed_direct_plan": {
+    "created_at": 1795767060.8709042,
+    "duration_s": 0,
+    "error": "cannot prepare the work area at '/Users/m1/sentinelx/uploads/.sentinelx_uploads/script_job_711eb0f06832456bb6bc90052c1b71fd': the filesystem is full ([Errno 28]). This is a host condition, not a policy or allowlist issue. Free space on that filesystem (or point `upload_base` in the agent config at one with room) and retry. A full disk also makes the agent itself unstable, so unrelated errors on this host may clear up once space is available.",
+    "exit_code": null,
+    "finished_at": "2026-11-27T08:11:00.932741+00:00",
+    "host": "host_4b47bdb65d00e49d",
+    "id": "job_022bb4d6eaaf",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "",
+    "output_truncated": false,
+    "read": false,
+    "severity": "warning",
+    "source": "script_run@host_4b47bdb65d00e49d",
+    "started_at": "2026-11-27T08:11:00.928161+00:00",
+    "status": "failed",
+    "timeout_s": 900,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "failed_packet_tool": {
+    "error": "McpServerError: Connection timed out.",
+    "error_code": "UNAVAILABLE",
+    "error_data": {
+      "code": "network_error",
+      "message": "Connection timed out.",
+      "type": "mcp_network_error",
+      "url": "https://mcp.sentinelx.app/mcp/mcp"
+    }
+  },
+  "scope": "Host receipts remain authoritative; source scripts and raw preservation receipts are included byte-for-byte."
+}

@@ -1,0 +1,24 @@
+{
+  "created_at": 1795768971.3908322,
+  "duration_s": 0.59,
+  "error": null,
+  "exit_code": 1,
+  "finished_at": "2026-11-27T08:42:52.065685+00:00",
+  "host": "host_299cf75f6b338ecd",
+  "id": "job_364bb116d56a",
+  "notified": {
+    "resend": null,
+    "telegram": null
+  },
+  "notify_spec": {},
+  "output": "Traceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_453e86b3f3bc49b1aca24db453792082/script.py\", line 15, in <module>\n    assert git('show-ref','--verify','refs/heads/'+branch,check=False).returncode==1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+  "output_truncated": false,
+  "read": true,
+  "severity": "warning",
+  "source": "script_run@host_299cf75f6b338ecd",
+  "started_at": "2026-11-27T08:42:51.474724+00:00",
+  "status": "failed",
+  "timeout_s": 120,
+  "tool": "script_run",
+  "type": "job_result"
+}
