@@ -14955,6 +14955,142 @@
           }
         }
       }
+    },
+    "History record": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History record"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשומת היסטוריה"
+          }
+        }
+      }
+    },
+    "Favorite record": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorite record"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשומת מועדף"
+          }
+        }
+      }
+    },
+    "Show a history entry": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a history entry"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת רשומה מההיסטוריה"
+          }
+        }
+      }
+    },
+    "Reveal an existing reading-history card in the selected Maktabah window.": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal an existing reading-history card in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת כרטיס קיים מהיסטוריית הקריאה בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "History entry": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History entry"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשומה מההיסטוריה"
+          }
+        }
+      }
+    },
+    "Show a favorite": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show a favorite"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת מועדף"
+          }
+        }
+      }
+    },
+    "Reveal an existing favorite card in the selected Maktabah window.": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal an existing favorite card in the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת כרטיס מועדף קיים בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Favorite": {
+      "comment": "Native History/Favorites record intent or query entry.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorite"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מועדף"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
