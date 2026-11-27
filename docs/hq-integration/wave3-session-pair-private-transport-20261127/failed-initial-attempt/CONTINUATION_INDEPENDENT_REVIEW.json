@@ -1,0 +1,9 @@
+{
+  "status": "NO_DEMONSTRATED_SOURCE_BLOCKER_NOT_EXECUTED",
+  "reviewer": "root/navigation_fix",
+  "controllerSHA256": "eb335d25427585006e2cdae62140821852d8aee1b8d3a92b5978b70ceb786310",
+  "helperSHA256": "96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d",
+  "scope": "Exact same private draft461122448; original30failedfiles+metadata and13sourceleaves; onePOSTperasset;3fullauthenticatedreadbacks; finalsource/privateidentityfences; unchangedboundedownedcleanup andfloors.",
+  "operationalBoundary": "Require actual terminal success AND FINAL_RECEIPT_PUBLISHED.json before accepting publication. An intermediate verified-receipt file alone is insufficient. This review does not authorize retirement.",
+  "executionByReviewer": false
+}

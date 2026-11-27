@@ -1,0 +1,174 @@
+{
+  "utc": "2026-11-27T22:41:45.778302+00:00",
+  "path": "/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127",
+  "rows": [
+    {
+      "name": "01-repository.PROCESS.json",
+      "bytes": 302,
+      "sha256": "f98dc8b871b293a818948621907e68c3289e466efa0fe7078c8f69c43c1d95db"
+    },
+    {
+      "name": "01-repository.RESULT.json",
+      "bytes": 166,
+      "sha256": "8d624ff513b2bba54509e36c053373a52654054b3da83bac38b44be5a7fbbec9"
+    },
+    {
+      "name": "01-repository.TERMINAL.json",
+      "bytes": 449,
+      "sha256": "77155d1a905184d3162f1f0769d8aed069856e2f79a32b47a1c408f00e28e83f"
+    },
+    {
+      "name": "01-repository.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "01-repository.stdout",
+      "bytes": 6651,
+      "sha256": "d16c3a9e14b1c126dea961e6fd317643f74bbbee96cc4ccf1bcc499afed5d42f"
+    },
+    {
+      "name": "02-absence-of-new-draft-tag.PROCESS.json",
+      "bytes": 361,
+      "sha256": "8ab834fdbdf29310b0a98f074e13626fa11bff3f9a4ae3117ed60e417527e3da"
+    },
+    {
+      "name": "02-absence-of-new-draft-tag.RESULT.json",
+      "bytes": 166,
+      "sha256": "caf7ef8f2228ec4d6ac5b7efccbabc7f5984be7e4c9c29d7d52f5ed4782eaff2"
+    },
+    {
+      "name": "02-absence-of-new-draft-tag.TERMINAL.json",
+      "bytes": 450,
+      "sha256": "32ffbe38cc528b7b3a3fcf0d9269058a34dda1af980956089c73ae99648a4838"
+    },
+    {
+      "name": "02-absence-of-new-draft-tag.stderr",
+      "bytes": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6"
+    },
+    {
+      "name": "02-absence-of-new-draft-tag.stdout",
+      "bytes": 1366,
+      "sha256": "cebdfffae6f2bae72072e17228dc0ee18735315c1d34486fdfd54b543034886c"
+    },
+    {
+      "name": "03-create-new-private-draft.PROCESS.json",
+      "bytes": 451,
+      "sha256": "6d513d037955842bdb3fb42ec95178b60cfc7738a997bc47714a523bfc9268fd"
+    },
+    {
+      "name": "03-create-new-private-draft.RESULT.json",
+      "bytes": 166,
+      "sha256": "09a55f639340f2799571e0be6002d4d8f85cbdf7f7d1e6566a79e31b003fcfeb"
+    },
+    {
+      "name": "03-create-new-private-draft.TERMINAL.json",
+      "bytes": 449,
+      "sha256": "d77f311a3c270c36c29615e99dcdf4fea664e3310317f00a4783fd1cb7722423"
+    },
+    {
+      "name": "03-create-new-private-draft.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "03-create-new-private-draft.stdout",
+      "bytes": 2329,
+      "sha256": "8f9341717e77ce49166c3bd098b646114d376b46e7b2b3410dcb157ec0ff72da"
+    },
+    {
+      "name": "04-repository.PROCESS.json",
+      "bytes": 302,
+      "sha256": "0d6fe7de49092a53261af74e2f52406f7cdfab048b78640a5f1de138560f37b3"
+    },
+    {
+      "name": "04-repository.RESULT.json",
+      "bytes": 166,
+      "sha256": "962c45efacb21e129b4876fa94d127233b65fe0f1eb89e9ad057e11cacb3941d"
+    },
+    {
+      "name": "04-repository.TERMINAL.json",
+      "bytes": 449,
+      "sha256": "7321b651de3f6279708eebcb533af444b04148ee43bc973f9f6d1ef398e6cc20"
+    },
+    {
+      "name": "04-repository.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "04-repository.stdout",
+      "bytes": 6651,
+      "sha256": "f0f67f551b8bad2f1061c8ad5b01c964b5ffc58bb336f6326b75cc5bbd2025d1"
+    },
+    {
+      "name": "05-tag-before-upload.PROCESS.json",
+      "bytes": 344,
+      "sha256": "6eff603abc3967c3be84ffb8d1e7ae1159a0b70c3590a77e62b8b9999ce1da7e"
+    },
+    {
+      "name": "05-tag-before-upload.TERMINAL.json",
+      "bytes": 449,
+      "sha256": "4c6fc8489256939b68ba000ede0910f4562f358c2ffe37fe890157e7cb3e8901"
+    },
+    {
+      "name": "05-tag-before-upload.stderr",
+      "bytes": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6"
+    },
+    {
+      "name": "05-tag-before-upload.stdout",
+      "bytes": 133,
+      "sha256": "010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d"
+    },
+    {
+      "name": "ATTEMPT.json",
+      "bytes": 472,
+      "sha256": "22c788b18de7d1e84d875d7b2a07ef94bde6cb65d4887707823e9a04410cba11"
+    },
+    {
+      "name": "DRAFT_RELEASE_CREATED.json",
+      "bytes": 429,
+      "sha256": "258ec112b9dbb0877cd77b436ff79ed8e019213a82d002a9c04a8abed39097ee"
+    },
+    {
+      "name": "DRAFT_RELEASE_REQUEST.json",
+      "bytes": 730,
+      "sha256": "12e1fd7a0a68976b93d94a78c86909cdc023d1e461ed90b1d4b7d894a530902f"
+    },
+    {
+      "name": "FAILED.json",
+      "bytes": 340,
+      "sha256": "40bc8faaeb761b5b326348d94d442cae6aedb4423772bb4aa3dde19bb8d162ac"
+    },
+    {
+      "name": "PRESERVED_SESSION_PAIR_MANIFEST.json",
+      "bytes": 17372,
+      "sha256": "47755d066e979027fecb45944a236f5284addc62644a9b44a9487f5e9919c0f7"
+    },
+    {
+      "name": "SOURCE_PREFLIGHT.json",
+      "bytes": 16588,
+      "sha256": "a2928a22cbd821a8f0590c4e9bcf6b153b3e345d17aaa1b003e319765914d6e7"
+    },
+    {
+      "name": "session-pair-preservation-metadata-20261127.tar.gz",
+      "bytes": 20247355,
+      "largeContentNotRead": true
+    }
+  ],
+  "details": {
+    "05-tag-before-upload.PROCESS.json": "{\n  \"argv\": [\n    \"sudo\",\n    \"-u\",\n    \"ubuntu\",\n    \"-H\",\n    \"gh\",\n    \"api\",\n    \"repos/davidpovarsky/Maktabah-preserved-evidence/releases/tags/session-pair-20261127-wave3\"\n  ],\n  \"identity\": {\n    \"pgid\": 2626135,\n    \"pid\": 2626135,\n    \"session\": 2626135,\n    \"startTicks\": \"734585737\"\n  },\n  \"utc\": \"2026-11-27T22:33:05.541755+00:00\"\n}\n",
+    "05-tag-before-upload.TERMINAL.json": "{\n  \"noAutomaticRetry\": true,\n  \"pid\": 2626135,\n  \"returncode\": 1,\n  \"startIdentity\": {\n    \"pgid\": 2626135,\n    \"pid\": 2626135,\n    \"session\": 2626135,\n    \"startTicks\": \"734585737\"\n  },\n  \"stderrBytes\": 25,\n  \"stderrSHA256\": \"d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6\",\n  \"stdoutBytes\": 133,\n  \"stdoutSHA256\": \"010563d2cfb8f1e87f700936ce59ee3a33364da46e3db41b0049227918ece74d\",\n  \"utc\": \"2026-11-27T22:33:05.929964+00:00\"\n}\n",
+    "05-tag-before-upload.stderr": "gh: Not Found (HTTP 404)\n",
+    "05-tag-before-upload.stdout": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name\",\"status\":\"404\"}",
+    "DRAFT_RELEASE_CREATED.json": "{\n  \"draft\": true,\n  \"html_url\": \"https://github.com/davidpovarsky/Maktabah-preserved-evidence/releases/tag/untagged-bbabefd89b5b7ffd1820\",\n  \"id\": 461122448,\n  \"repository\": {\n    \"full_name\": \"davidpovarsky/Maktabah-preserved-evidence\",\n    \"id\": 1474927804,\n    \"private\": true\n  },\n  \"tag\": \"session-pair-20261127-wave3\",\n  \"url\": \"https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/461122448\"\n}\n",
+    "FAILED.json": "{\n  \"automaticRetry\": false,\n  \"error\": \"Owned gh command failed; no retry\",\n  \"errorType\": \"AssertionError\",\n  \"localRetirement\": false,\n  \"phase\": \"single-upload-no-clobber\",\n  \"seconds\": 29.831318391487002,\n  \"selfContained\": false,\n  \"status\": \"FAILED_OR_INCOMPLETE_ORIGINALS_NOT_REMOVED\",\n  \"utc\": \"2026-11-27T22:33:05.932069+00:00\"\n}\n"
+  },
+  "uploadStartedMarkerExists": false,
+  "archiveBytesRead": 0,
+  "mutation": false,
+  "zipBytes": 20288,
+  "zipSHA256": "ed217d0f4194bbee27b97673cef1b8d75d2b621296c5eb548b318e8adeb0024c"
+}

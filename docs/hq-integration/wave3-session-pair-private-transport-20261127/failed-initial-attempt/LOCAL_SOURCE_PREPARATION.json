@@ -1,0 +1,59 @@
+{
+  "schema": "otzaria.session-pair-private-transport-local-source/1",
+  "utc": "2026-11-27T22:28:18.190547+00:00",
+  "status": "LOCAL_SOURCE_ONLY_INDEPENDENT_REVIEW_PENDING_NO_DISPATCH",
+  "files": [
+    {
+      "path": "upload_session_pair.py",
+      "bytes": 31089,
+      "sha256": "96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d"
+    },
+    {
+      "path": "FRESH_13_LEAF_INVENTORY.json",
+      "bytes": 4180,
+      "sha256": "c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2"
+    },
+    {
+      "path": "PRIOR_METADATA_SNAPSHOT.json",
+      "bytes": 29425,
+      "sha256": "1da1edf9d8834ed6c27561111e24ae53a85402ba1ad1b753f8c2f7328bb146d6"
+    }
+  ],
+  "syntax": "AST parse and compile only; module not executed",
+  "popenCleanupSourceChecks": [
+    {
+      "line": 216,
+      "nextStatementIsTryFinally": true
+    }
+  ],
+  "explicitEntryArgument": "--execute-reviewed-upload",
+  "outputDirectoryMustBeAbsent": "/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127",
+  "rootReserveBytes": 1593835520,
+  "metadataArchiveCapBytes": 33554432,
+  "totalNewControlBudgetBytes": 50331648,
+  "overallDeadlineSeconds": 2700,
+  "outerSentinelExpectedSeconds": 3000,
+  "dataFilesystemWrites": false,
+  "localRetirementCode": false,
+  "windowsAccess": false,
+  "selfContained": false,
+  "sourceArchiveBytes": 1342747334,
+  "sourceArchiveSHA256": "d0743bef81222350ed4cae139504585c81f1592ec084e31884933e79c22a5e8d",
+  "privateRepoID": 1474927804,
+  "newDraftTag": "session-pair-20261127-wave3",
+  "preservedDependencyCounts": {
+    "app-generated": 3,
+    "old-sdk-producer": 97,
+    "fresh-sdk-differential": 0,
+    "qualified-snapshot-differential": 326
+  },
+  "plannedActualChecks": [
+    "Exact13-leaf current no-follow regular/single-link identity and complete SHA before packing;12metadata names bound to pinned fresh inventory.",
+    "Exact current parent2064/722979 and historical NEW/COMPLETE/SOURCE/RETIREMENT/header/prior-reference join.",
+    "Independent complete12member metadata tar byte verification without extraction; full source metadata/xattrs in manifest.",
+    "Existing private repository identity and absent new draft tag; one draft creation and one gh upload command without clobber/retry.",
+    "Full authenticated streaming readback of all3 assets by validated exact IDs, length and SHA; metadata full readback equality binds the independent12member proof.",
+    "Final original full source hashes/identities and same private draft/tag/asset identities."
+  ],
+  "qualification": "No remote read/write/upload or controller runtime has occurred. This source-only preparation cannot prove transfer, available capacity, complete tree restoration, SDK/app/native acceptance, or future safe leaf retirement."
+}

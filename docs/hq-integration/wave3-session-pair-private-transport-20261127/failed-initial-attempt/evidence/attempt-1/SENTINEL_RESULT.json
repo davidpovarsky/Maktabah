@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_b534de365fe2\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"warning\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"failed\",\"exit_code\":1,\"created_at\":1795818755.8760538,\"started_at\":\"2026-11-27T22:32:35.983138+00:00\",\"finished_at\":\"2026-11-27T22:33:06.142026+00:00\",\"duration_s\":30.16,\"error\":null,\"output_truncated\":false,\"timeout_s\":3000,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"{\\\"status\\\": \\\"EXACT_REVIEWED_UPLOAD_CONTROLLER_STAGED_NO_RETIREMENT\\\", \\\"utc\\\": \\\"2026-11-27T22:32:36.050784+00:00\\\", \\\"stage\\\": \\\"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127\\\", \\\"freeBefore\\\": 2266345472, \\\"files\\\": [{\\\"name\\\": \\\"upload_session_pair.py\\\", \\\"bytes\\\": 31089, \\\"sha256\\\": \\\"96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d\\\"}, {\\\"name\\\": \\\"FRESH_13_LEAF_INVENTORY.json\\\", \\\"bytes\\\": 4180, \\\"sha256\\\": \\\"c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2\\\"}, {\\\"name\\\": \\\"LOCAL_SOURCE_PREPARATION.json\\\", \\\"bytes\\\": 2773, \\\"sha256\\\": \\\"9313a83549991bf0b26651810bbee20cb0744cd8cd8afe5af53160b031f316e3\\\"}, {\\\"name\\\": \\\"INDEPENDENT_SOURCE_REVIEW.json\\\", \\\"bytes\\\": 1351, \\\"sha256\\\": \\\"4a5dd0176ce97bcae2ff87bb57919d40ed96b85579ccb5d727c9c99baebf15de\\\"}]}\\nTraceback (most recent call last):\\n  File \\\"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\\\", line 598, in <module>\\n    main()\\n  File \\\"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\\\", line 537, in main\\n    validate_release(runtime.api('repos/' + REPO + '/releases/tags/' + TAG, 'tag-before-upload'), release_id)\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\\\", line 280, in api\\n    code, raw, _ = self.gh(['api', *extra, endpoint], label)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\\\", line 250, in gh\\n    assert allow_error or code == 0, 'Owned gh command failed; no retry'\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError: Owned gh command failed; no retry\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_b534de365fe2",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795818755.8760538,
+      "started_at": "2026-11-27T22:32:35.983138+00:00",
+      "finished_at": "2026-11-27T22:33:06.142026+00:00",
+      "duration_s": 30.16,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 3000,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "{\"status\": \"EXACT_REVIEWED_UPLOAD_CONTROLLER_STAGED_NO_RETIREMENT\", \"utc\": \"2026-11-27T22:32:36.050784+00:00\", \"stage\": \"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127\", \"freeBefore\": 2266345472, \"files\": [{\"name\": \"upload_session_pair.py\", \"bytes\": 31089, \"sha256\": \"96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d\"}, {\"name\": \"FRESH_13_LEAF_INVENTORY.json\", \"bytes\": 4180, \"sha256\": \"c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2\"}, {\"name\": \"LOCAL_SOURCE_PREPARATION.json\", \"bytes\": 2773, \"sha256\": \"9313a83549991bf0b26651810bbee20cb0744cd8cd8afe5af53160b031f316e3\"}, {\"name\": \"INDEPENDENT_SOURCE_REVIEW.json\", \"bytes\": 1351, \"sha256\": \"4a5dd0176ce97bcae2ff87bb57919d40ed96b85579ccb5d727c9c99baebf15de\"}]}\nTraceback (most recent call last):\n  File \"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\", line 598, in <module>\n    main()\n  File \"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\", line 537, in main\n    validate_release(runtime.api('repos/' + REPO + '/releases/tags/' + TAG, 'tag-before-upload'), release_id)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\", line 280, in api\n    code, raw, _ = self.gh(['api', *extra, endpoint], label)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/otzaria-wave3-private-session-pair-tools-20261127/upload_session_pair.py\", line 250, in gh\n    assert allow_error or code == 0, 'Owned gh command failed; no retry'\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Owned gh command failed; no retry"
+    }
+  },
+  "isError": false
+}

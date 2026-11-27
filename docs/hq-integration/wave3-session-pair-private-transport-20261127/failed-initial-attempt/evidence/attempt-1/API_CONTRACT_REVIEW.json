@@ -1,0 +1,27 @@
+{
+  "schema": "otzaria.session-pair-draft-api-correction.v1",
+  "status": "FAILED_FIRST_ATTEMPT_PRESERVED_CONTINUATION_NOT_EXECUTED",
+  "actualFailureJob": "job_b534de365fe2",
+  "failureRawZipSHA256": "ed217d0f4194bbee27b97673cef1b8d75d2b621296c5eb548b318e8adeb0024c",
+  "createdReleaseID": 461122448,
+  "repositoryID": 1474927804,
+  "sourceArchiveUnchanged": true,
+  "uploadStartedMarkerAbsent": true,
+  "actualError": "05-tag-before-upload returned HTTP404 before any asset upload",
+  "publishedTagEndpoint": "https://docs.github.com/rest/releases/releases#get-a-release-by-tag-name",
+  "exactReleaseUploadEndpointDocumentation": "https://docs.github.com/rest/releases/assets#upload-a-release-asset",
+  "correction": "Use the same actual immutable draft release ID and its exact upload_url; never create a second release, publish, clobber an asset, or retry an uncertain upload.",
+  "freshSameDraftReadJob": "job_ee3f476e8355",
+  "freshSameDraftReadUTC": "2026-11-27T22:43:25.079820+00:00",
+  "freshReleaseResponseSHA256": "8f9341717e77ce49166c3bd098b646114d376b46e7b2b3410dcb157ec0ff72da",
+  "freshAssets": [],
+  "preservedRestrictions": [
+    "All13sourceleaves frozen",
+    "All4Windows archive/manifest/full-member dependency bindings unchanged",
+    "All3authenticated full-byte readbacks and finalsourcefences required",
+    "Originalrootreserve1593835520 and originalperattempt deadlines/caps retained",
+    "No archive retirement before final preservation, reviewed recovery and Git acknowledgement"
+  ],
+  "SDKBuilds": 0,
+  "nativeRuns": 0
+}

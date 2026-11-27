@@ -1,0 +1,65 @@
+{
+  "scope": "Original failed pre-upload attempt and reviewed same-draft continuation source; no archive payload, completed transport or native claim.",
+  "files": [
+    {
+      "path": "upload_session_pair.py",
+      "bytes": 31089,
+      "sha256": "96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d"
+    },
+    {
+      "path": "FRESH_13_LEAF_INVENTORY.json",
+      "bytes": 4180,
+      "sha256": "c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2"
+    },
+    {
+      "path": "LOCAL_SOURCE_PREPARATION.json",
+      "bytes": 2773,
+      "sha256": "9313a83549991bf0b26651810bbee20cb0744cd8cd8afe5af53160b031f316e3"
+    },
+    {
+      "path": "INDEPENDENT_SOURCE_REVIEW.json",
+      "bytes": 1351,
+      "sha256": "4a5dd0176ce97bcae2ff87bb57919d40ed96b85579ccb5d727c9c99baebf15de"
+    },
+    {
+      "path": "continue_session_pair_upload.py",
+      "bytes": 17746,
+      "sha256": "eb335d25427585006e2cdae62140821852d8aee1b8d3a92b5978b70ceb786310"
+    },
+    {
+      "path": "CONTINUATION_INDEPENDENT_REVIEW.json",
+      "bytes": 753,
+      "sha256": "2fa2a71775c738345742a84ae4d704c04bc098b97211acf484c17a8c3b4b8dde"
+    },
+    {
+      "path": "NAVIGATION_CONTINUATION_SOURCE_REVIEW.json",
+      "bytes": 3076,
+      "sha256": "cf25d9b64fea2c39e29680e3e5e14af7e3395be3aeb7589156cd3b1e5e276130"
+    },
+    {
+      "path": "evidence/attempt-1/RAW_FILES.zip",
+      "bytes": 20288,
+      "sha256": "ed217d0f4194bbee27b97673cef1b8d75d2b621296c5eb548b318e8adeb0024c"
+    },
+    {
+      "path": "evidence/attempt-1/FAILURE_SCOPE_READ.json",
+      "bytes": 7518,
+      "sha256": "a2711edae5a4e17135d999089def7303ae637a0f4c26af5a8a371f6c16010f76"
+    },
+    {
+      "path": "evidence/attempt-1/SENTINEL_RESULT.json",
+      "bytes": 5179,
+      "sha256": "f7b2310eeaf166ca026d3e0ee585055880db83432d366bdd515e2e949bf1b7e0"
+    },
+    {
+      "path": "evidence/attempt-1/API_CONTRACT_REVIEW.json",
+      "bytes": 1553,
+      "sha256": "33ba91cac716de2c3f60dcfac992566fabb1defe251f865543cb1c9eec02e58a"
+    },
+    {
+      "path": "evidence/attempt-1/FRESH_DRAFT_ID_READ.json",
+      "bytes": 8402,
+      "sha256": "bc040a37fd1d33d4de78e5404ee5f1ce04da6207ef9e5b41d3d0ca03c1745e38"
+    }
+  ]
+}

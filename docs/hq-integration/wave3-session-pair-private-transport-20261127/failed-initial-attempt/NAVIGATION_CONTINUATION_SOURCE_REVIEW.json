@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-27T22:52:24.236996+00:00",
+  "reviewer": "navigation_fix",
+  "scope": "independent read-only controller source review; no controller import/execution, remote request, source-tree scan, upload or deletion",
+  "inputs": [
+    {
+      "path": "continue_session_pair_upload.py",
+      "bytes": 17746,
+      "sha256": "eb335d25427585006e2cdae62140821852d8aee1b8d3a92b5978b70ceb786310"
+    },
+    {
+      "path": "upload_session_pair.py",
+      "bytes": 31089,
+      "sha256": "96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d"
+    },
+    {
+      "path": "FRESH_13_LEAF_INVENTORY.json",
+      "bytes": 4180,
+      "sha256": "c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2"
+    }
+  ],
+  "conclusion": "No demonstrated blocker in the reviewed source boundary",
+  "reviewed_boundaries": [
+    "Early ordinary optimized-Python refusal before imports/actions",
+    "Pinned helper compiled only as reviewed definitions; its original main is not entered; sole explicit Runtime adaptation is a new exclusive continuation-1 journal",
+    "Exact original pre-upload failure/no upload marker checks and preservation of original metadata bundle/failed-attempt files",
+    "All13 current regular leaves and original parent/identity/size/SHA/xattrs are checked; historical four Windows archive dependencies remain explicitly not freshly read and not self-contained",
+    "Only the same private repository1474927804 and existing draft461122448; exact upload URL; complete currently-known asset set checked before and after each single POST",
+    "No release creation, publication, deletion, overwrite/clobber or automatic retry path in this continuation",
+    "All3 complete authenticated asset readbacks require exact byte count and SHA; final source/historical/private-state fences precede final receipt write",
+    "Imported sole Popen site enters cleanup immediately; fixed process group/session/start identity; no polling/reaping before live signal decision; bounded2700-second total,1200-second child,1MiB buffers and root reserve",
+    "No archive extraction or second local archive; streamed readback bytes are hashed without accumulating their bodies",
+    "Exclusive/fsynced final receipt creation and final original-journal recheck; no local retirement authority"
+  ],
+  "limits": [
+    "This review does not independently verify the remote draft or execute any guard. The failed-attempt snapshot and original full manifests are runtime-pinned inputs, not newly fetched by this reviewer.",
+    "A valid point-in-time receipt may exist before the final original-journal publication checks finish. Operational consumers must require terminal success and FINAL_RECEIPT_PUBLISHED.json, not an intermediate receipt file alone.",
+    "The owned closed-source assumption is retained. Path-based gh --input plus before/after identity and hashes is not an OS exclusion lock against an external concurrent writer.",
+    "No owner approval signature, source admission, SDK qualification or native acceptance is produced by this review."
+  ]
+}

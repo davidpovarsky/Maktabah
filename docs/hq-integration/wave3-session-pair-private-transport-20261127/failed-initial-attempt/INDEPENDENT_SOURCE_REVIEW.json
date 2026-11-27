@@ -1,0 +1,25 @@
+{
+  "schema": "otzaria.private-session-pair-uploader-peer-review/1",
+  "utc": "2026-11-27T22:31:54.439912+00:00",
+  "reviewer": "/root/ui_acceptance",
+  "scope": "Read-only source review; no execution, scans or edits.",
+  "controller": {
+    "bytes": 31089,
+    "sha256": "96d094820d108e098823fba8a9346dec821b00a880088e8f4f9f92f8a45cf61d"
+  },
+  "inventorySHA256": "c2805d00315a0cbfa7b83cd444f0d2eb33b63f12b53067d77f88ec4fcb342de2",
+  "preparationSHA256": "9313a83549991bf0b26651810bbee20cb0744cd8cd8afe5af53160b031f316e3",
+  "conclusion": "No demonstrated blocker in the reviewed single private upload and three full-readback scope.",
+  "checked": [
+    "Original13 leaves and12metadata members",
+    "All four historical Windows dependency claims remain explicit and unchanged",
+    "Bounded metadata/output/deadline",
+    "Immediate Popen cleanup scope",
+    "Exact owned unreaped leader identity before TERM/KILL"
+  ],
+  "limits": [
+    "Cleanup is bounded owned-leader/group cleanup, not proof of arbitrary detached descendants.",
+    "gh opens the fixed source paths. Retain exact source-writer exclusion through upload; before/after identity, full SHA and authenticated readback detect changes but are not an atomic source-file lock.",
+    "No execution, archive transfer, current base availability or full-tree restoration is inferred."
+  ]
+}
