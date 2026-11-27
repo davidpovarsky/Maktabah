@@ -1,0 +1,11 @@
+{
+  "scope": "Exact whole-file source preservation, not runtime acceptance",
+  "baseCommit": "afb968badc19d3085bb26760291b431e699ea0a3",
+  "originalSourceSHA256": "ce0f81985627c57f959d9554bb56768316fe2bebe8e5977d84a4901755beab8b",
+  "candidateSourceSHA256": "30ad15184de4acda706f0a8be292bc8c80976da2fe86a1332f54d6fe60788112",
+  "additionSHA256": "9a6429c50dc6e66e550aca43ebfbe1994582221b3a2657dead3b53c2faab4ed5",
+  "wholeOriginalFileRecoveredExactly": true,
+  "originalMiniCaseAndAllHelpersBytePreserved": true,
+  "originalFullV32CasesBytePreserved": true,
+  "uiExecuted": 0
+}
