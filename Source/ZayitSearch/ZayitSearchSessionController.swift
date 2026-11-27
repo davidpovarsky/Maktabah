@@ -72,6 +72,7 @@ final class ZayitSearchSessionController: ObservableObject {
     }
 
     private func restore(existingSeforimDB: URL?, generation: Int, stamp: String) async {
+        let expectedSource = configurationStamp(existingSeforimDB: existingSeforimDB, includeConfiguredPaths: false)
         await model.reset()
         guard operationGeneration == generation else { return }
 
@@ -79,6 +80,9 @@ final class ZayitSearchSessionController: ObservableObject {
             if let database = existingSeforimDB {
                 let package = await ZayitSearchArtifactService.shared.status(databaseURL: database)
                 guard operationGeneration == generation else { return }
+                guard expectedSource == configurationStamp(existingSeforimDB: existingSeforimDB, includeConfiguredPaths: false) else {
+                    throw ZayitSearchDistributionError.incompatible("database or index changed during validation")
+                }
                 switch package {
                 case .ready:
                     guard let lexical = OtzariaMagicDictionaryManager.shared.validatedDatabaseURL else {
@@ -92,6 +96,9 @@ final class ZayitSearchSessionController: ObservableObject {
                         seforimDB: database, lexicalDB: lexical, indexDirectory: storage.finalIndex)
                     try await model.configure(paths: paths)
                     guard operationGeneration == generation else { return }
+                    guard expectedSource == configurationStamp(existingSeforimDB: existingSeforimDB, includeConfiguredPaths: false) else {
+                        throw ZayitSearchDistributionError.incompatible("database or index changed during configuration")
+                    }
                     configuredPaths = paths
                     configuredStamp = configurationStamp(existingSeforimDB: existingSeforimDB)
                     state = .ready
@@ -113,6 +120,9 @@ final class ZayitSearchSessionController: ObservableObject {
             }
             try await configure(folder: folder, existingSeforimDB: existingSeforimDB)
             guard operationGeneration == generation else { return }
+            guard expectedSource == configurationStamp(existingSeforimDB: existingSeforimDB, includeConfiguredPaths: false) else {
+                throw ZayitSearchDistributionError.incompatible("database or index changed during configuration")
+            }
             configuredStamp = configurationStamp(existingSeforimDB: existingSeforimDB)
             state = .ready
         } catch {
@@ -160,6 +170,16 @@ final class ZayitSearchSessionController: ObservableObject {
         }
     }
 
+    /// Revoke the previous library's ready state synchronously. Queued
+    /// restores may finish, but their older generation cannot publish it again.
+    func invalidateSourceReadiness() {
+        operationGeneration += 1
+        configuredStamp = nil
+        configuredPaths = nil
+        pendingStamp = nil
+        state = .notConfigured
+    }
+
     func invalidate() async {
         configuredStamp = nil
         configuredPaths = nil
@@ -168,9 +188,12 @@ final class ZayitSearchSessionController: ObservableObject {
         await enqueue { _ in await self.model.reset() }
     }
 
-    private func configurationStamp(existingSeforimDB: URL?) -> String {
+    private func configurationStamp(
+        existingSeforimDB: URL?, includeConfiguredPaths: Bool = true,
+        additionalPaths: ZayitSearchDataPaths? = nil
+    ) -> String {
         var urls = [existingSeforimDB, OtzariaMagicDictionaryManager.shared.validatedDatabaseURL].compactMap { $0 }
-        if let paths = configuredPaths {
+        for paths in [includeConfiguredPaths ? configuredPaths : nil, additionalPaths].compactMap({ $0 }) {
             let index = URL(fileURLWithPath: paths.indexDir, isDirectory: true)
             urls += [URL(fileURLWithPath: paths.seforimDb), URL(fileURLWithPath: paths.lexicalDb),
                      index.appendingPathComponent("meta.json"), index.appendingPathComponent("zayit-index-metadata.json")]
@@ -184,8 +207,28 @@ final class ZayitSearchSessionController: ObservableObject {
             return "\(url.path)|\(attributes?[.size] ?? 0)|\(attributes?[.modificationDate] ?? "missing")"
         }
         return ([OtzariaDataProfileRegistry.activeProfileID, String(describing: OtzariaDatabaseAccessController.shared.source),
-                 String(ZayitSearchDataController.shared.revision)] + files)
+                 String(ZayitSearchDataController.shared.revision),
+                 managedDatabaseIdentityStamp(existingSeforimDB: existingSeforimDB)] + files)
             .joined(separator: "\u{1f}")
+    }
+
+    private func managedDatabaseIdentityStamp(existingSeforimDB: URL?) -> String {
+        let selection = OtzariaDatabaseAccessController.shared.selectionObservation()
+        guard selection.source == .managedInternal else { return "external" }
+        guard let database = existingSeforimDB?.standardizedFileURL,
+              database == selection.url?.standardizedFileURL else { return "managed-unavailable" }
+        let url = database.deletingLastPathComponent().appendingPathComponent("seforim-installation.json")
+        // The complete small receipt participates, so a same-size replacement
+        // with a preserved mtime cannot reuse readiness from another release.
+        let maximum = 1_048_576
+        guard let attributes = try? FileManager.default.attributesOfItem(atPath: url.path),
+              attributes[.type] as? FileAttributeType == .typeRegular,
+              let size = attributes[.size] as? NSNumber, size.uint64Value <= UInt64(maximum),
+              let file = try? FileHandle(forReadingFrom: url) else { return "managed-unavailable" }
+        defer { try? file.close() }
+        guard let data = try? file.read(upToCount: maximum + 1),
+              data.count == size.intValue, data.count <= maximum else { return "managed-unavailable" }
+        return "\(selection.revision)|\(data.base64EncodedString())"
     }
 
     private func configure(folder: URL, existingSeforimDB: URL?) async throws {
@@ -193,7 +236,14 @@ final class ZayitSearchSessionController: ObservableObject {
             in: folder,
             existingSeforimDB: existingSeforimDB
         )
+        let expectedSource = configurationStamp(existingSeforimDB: existingSeforimDB,
+            includeConfiguredPaths: false, additionalPaths: paths)
         try await model.configure(paths: paths)
+        guard expectedSource == configurationStamp(existingSeforimDB: existingSeforimDB,
+            includeConfiguredPaths: false, additionalPaths: paths) else {
+            await model.reset()
+            throw ZayitSearchDistributionError.incompatible("database or index changed during configuration")
+        }
         configuredPaths = paths
     }
 }

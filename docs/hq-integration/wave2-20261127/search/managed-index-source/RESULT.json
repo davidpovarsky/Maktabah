@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-11-27T02:41:19.260319+00:00",
+  "base_commit": "8c073dae8345eaf8c84c413019a8eb6141e4c84e",
+  "candidate_scope": "7 production Source files; existing extraction harness compatibility; no native UI or real-corpus acceptance",
+  "all_candidate_source_sha256_match": true,
+  "candidate_source_origins": {
+    "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "unchanged_original_git_blob_in_sparse_checkout",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "working_tree",
+    "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "working_tree",
+    "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": "working_tree",
+    "Source/Otzaria/Search/OtzariaSearchModels.swift": "working_tree",
+    "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift": "working_tree",
+    "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "working_tree",
+    "Source/Otzaria/Storage/ITorahSharedContainer.swift": "unchanged_original_git_blob_in_sparse_checkout",
+    "Source/ZayitSearch/UnifiedSearchSessionController.swift": "working_tree",
+    "Source/ZayitSearch/ZayitSearchDistribution.swift": "working_tree",
+    "Source/ZayitSearch/ZayitSearchSessionController.swift": "working_tree"
+  },
+  "all_baseline_source_sha256_match_original_git_bytes": true,
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "baseline": {
+    "compileExit": 0,
+    "runExit": 0,
+    "binarySHA256": "02bc61480e5d79c76403842e823672ed69155f0eb61131519614af446fd93572"
+  },
+  "candidate": {
+    "compileExit": 0,
+    "runExit": 0,
+    "binarySHA256": "7003e172d8b3e63eaf8543dd707fa03d1a95fbb592fcf2d63a19426ca4ff0e7c"
+  },
+  "baseline_counts": {
+    "pass": 11,
+    "fail": 26
+  },
+  "candidate_counts": {
+    "pass": 37,
+    "fail": 0
+  },
+  "diff_check_exit": 0,
+  "existing_harness_python_ast_parse": "PASS; full older suite not run by this checkpoint",
+  "raw_archive": {
+    "name": "apple-source-controls.tar.gz",
+    "bytes": 88581,
+    "sha256": "ecd3ff10cc19c12b66212c8ca82f005eca43653b39dd7c84719d4daadc75ccc6"
+  },
+  "boundaries": [
+    "Unchanged extracted production functions and complete policy/models",
+    "Original ITorahStorageLock compiled and exercised on Apple Darwin",
+    "Controlled FFI count/open/search and dictionary/provider boundaries",
+    "Real small filesystem/JSON/task publication; synthetic 128-byte DB and fixture release tags",
+    "No published archive downloaded, no full DB/index queried, no UI or offline acceptance"
+  ]
+}
