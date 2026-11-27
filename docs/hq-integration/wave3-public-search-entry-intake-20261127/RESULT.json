@@ -1,0 +1,82 @@
+{
+  "schema": "otzaria.wave3.public-search-entry-intake.v1",
+  "base": "d1ad8d5e003ecf24b32542aeb27d8bc4eac844cc",
+  "sourceDonor": "310db9a9a887b604f422581765feb902465fef99",
+  "docsDonor": "a65cc9b3b1f802d3fe4b9e0bd57b9e073109d28f",
+  "sourceIntake": "833323c868557a0ce371b051d1299ea2575ad2cf",
+  "docsIntake": "757b88c1654ed78c5142e3caba8350f83646cd96",
+  "sourcePaths": 10,
+  "documentationPaths": 38,
+  "verifiedArtifacts": 37,
+  "verifiedCapsuleMembers": 212,
+  "capsules": [
+    {
+      "name": "public-search-portable-attempt-1",
+      "files": 51,
+      "resultSHA256": "75a467d0156c979095871ccf04c29724cabd67309d4b76499864413e159f4e7e",
+      "summary": [],
+      "status": "FAILED_OR_BLOCKED"
+    },
+    {
+      "name": "public-search-portable-attempt-2",
+      "files": 49,
+      "resultSHA256": "ed10f3e1e6324c585d8b545e7f4435b631b4808ab7a44c4baf296071fb4b44df",
+      "summary": [
+        [
+          "40",
+          "0"
+        ]
+      ],
+      "status": "PASS_ACTUAL_PORTABLE_SOURCES_NOT_NATIVE"
+    },
+    {
+      "name": "public-search-portable-attempt-3",
+      "files": 51,
+      "resultSHA256": "8b893642e7474366d8137b66bd67e0b34a215387b08cbab67dd25c8b4370cb5d",
+      "summary": [],
+      "status": "INTERRUPTED_NO_FINAL_RESULT"
+    },
+    {
+      "name": "public-search-portable-attempt-4",
+      "files": 49,
+      "resultSHA256": "a4914488e2efcff454a58f685089cd9df22eb8a72d3df4385d2f443298ec5369",
+      "summary": [
+        [
+          "8",
+          "27"
+        ]
+      ],
+      "status": "FAILED_OR_BLOCKED"
+    },
+    {
+      "name": "public-search-catalog-attempt-1",
+      "files": 12,
+      "resultSHA256": "9010f58c1498c2f9ce281b82734321ed5c16ff813b5766774a983a51018227a5",
+      "summary": [
+        [
+          "19",
+          "0"
+        ]
+      ],
+      "status": "PASS_ACTUAL_POLICY_EXPLICIT_UI_BOUNDARY"
+    }
+  ],
+  "preservedTrees": {
+    "Source/Otzaria/Actions": "0c9b1ca50eb9d9583567c4277a3506fe3d4b5679",
+    "Source/Features": "a618f02a67fa42f22c3062bc0e716f9759f5115b",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "426efe62d768c51c697f426d48d690bc11069fcd",
+    "Maktabah-iOSUITests": "fadbe94eb9c73f91e6ca310a412aa918321aded5",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Scripts/CI": "21e27300cd4f4cd72f97df343190cbc9cf220687"
+  },
+  "originalPublicV2CodecUnchanged": "8c34df7932620a3f3d95e3547493cec2444c31b69493e91fbf1230c3af66df5d",
+  "originalPublicV2TestsUnchanged": "718858647cb58186beb24fed5f79a85feed0fd4bc025d7699572d3ec5e1239eb",
+  "rootSharedProposals": "NOT_YET_APPLIED; combined with original History and SavedResults separately",
+  "registration": "NOT_YET_APPLIED",
+  "AppleSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "ownerApproval": "NOT_GRANTED",
+  "release": "OPEN"
+}

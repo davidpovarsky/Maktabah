@@ -1,0 +1,82 @@
+[
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Contracts/PublicNavigationV2.swift",
+    "bytes": 5392,
+    "sha256": "daf78cca3b668fd23ead28d9724dfcff550157bff97b84552cae4d2b50c85db5",
+    "beforeSHA256": "6874bc23365b990acbaca1cea6957f1ab9fa586fcb3ef41e7a72a32c682f1ed4",
+    "beforeBlob": "83d2e69709b7d8c04f727704b1479811d78111a1",
+    "afterBlob": "ad39cd4a86857357817235458c0afae14317556b"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Codec/UIRouteSchemas.swift",
+    "bytes": 6755,
+    "sha256": "b73aaeadaece2dca0f9d8d4e23939d2babf418b99807060096cfd17d6b82cfc0",
+    "beforeSHA256": "854e094d9d47d94cdf1cb8b86876bcc93c2bc8a038539dcac0d8d94e39bf8fec",
+    "beforeBlob": "4e4748d76374866f23ad8088ce9d96f9913acd90",
+    "afterBlob": "a09266525d34e311c71915adb768e684ab779a88"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationPublicNavigationV2.swift",
+    "bytes": 12169,
+    "sha256": "c2b59bdbf94f379e17d864a5ff6b067eac26286dbfdd86aa5f4960637a181a72",
+    "beforeSHA256": "d3231ae87d31d8571133d64bbda27220a4aae72866f48bd4d1272e9cc7d8c062",
+    "beforeBlob": "23fe365eed368c3aafbb03a0304031338ce2fff6",
+    "afterBlob": "19cffe0e4b7ff4d30758c9cdf9155c837655d54b"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Registry/UIDestinationRegistry.swift",
+    "bytes": 15392,
+    "sha256": "b97a2983845e874cbb827082114197253ccd86a386bcc395bcc7068d3f0e9b6f",
+    "beforeSHA256": "7c5692bfacc3b70a9218df87344cf84dc9fec2d098286f47fa28036b0eb14bee",
+    "beforeBlob": "91f60ef8a78f76b421fd056da0c4e352f0bc4c72",
+    "afterBlob": "35d0fb41101d923494d04fc78510810449def36f"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+    "bytes": 51510,
+    "sha256": "ae173de39c46df7b5180ec1d957fcd62d9689b252f3c409f93f8d34cf6c4b626",
+    "beforeSHA256": "c6ed5b52aa3fab8ea142c5d4d4ed27e134bc5efa1a53091e675e3a784b5c5fc2",
+    "beforeBlob": "a92680ea85870d255baefcd7e2efe55411d44819",
+    "afterBlob": "66810d3524ca57b455d8c18792e7011bd324db78"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationCatalog.swift",
+    "bytes": 17659,
+    "sha256": "d4aa2f49116ce2c7adf1012acff6e83aa69435c221cb8e47466660ed37e8ecfd",
+    "beforeSHA256": null,
+    "beforeBlob": null,
+    "afterBlob": "090bf6514318fd3f7a2e04526a11458299fadeb4"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+    "bytes": 18082,
+    "sha256": "7ea7700979afcf12d42c0226812f172b630d81eaba8fe49496f82e8ef21a990e",
+    "beforeSHA256": null,
+    "beforeBlob": null,
+    "afterBlob": "8f8b35fdab1bd999c15edf3f5f9cd1a806d291c0"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+    "bytes": 5604,
+    "sha256": "a0caa1b1a89e1c130b764982df7b5d69f7efcb61b03b8f43acb0d81ebddbabcc",
+    "beforeSHA256": null,
+    "beforeBlob": null,
+    "afterBlob": "b02e3cb5c749092643f548cf5019d61359fe45d5"
+  },
+  {
+    "path": "Source/Otzaria/UIRouting/Tests/OtzariaUIRoutingTests/Codec/PublicSearchReferenceV2Tests.swift",
+    "bytes": 12040,
+    "sha256": "1def3238c8560b16eaa79b4104f05648fcad1d44545e0b7633166aa642bbef3d",
+    "beforeSHA256": null,
+    "beforeBlob": null,
+    "afterBlob": "c12b82bc68816a2474aa7da5aed7b49a69cbdefb"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchContinuationIntentServiceTests.swift",
+    "bytes": 23534,
+    "sha256": "cacd3da82160a841b3acda191bc33bcd8696af418a652896eafcb091453595dc",
+    "beforeSHA256": null,
+    "beforeBlob": null,
+    "afterBlob": "6cdb26da85604fcfb880602c7d96ab35989ed2f1"
+  }
+]
