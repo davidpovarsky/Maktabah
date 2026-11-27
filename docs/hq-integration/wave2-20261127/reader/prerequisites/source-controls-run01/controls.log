@@ -1,0 +1,23 @@
+test_actual_file_verifier_rejects_skip_even_when_outer_phase_says_pass (__main__.AdmissionControls.test_actual_file_verifier_rejects_skip_even_when_outer_phase_says_pass) ... ok
+test_all_known_producer_shapes_reverify_but_no_offline_or_perf_bypass (__main__.AdmissionControls.test_all_known_producer_shapes_reverify_but_no_offline_or_perf_bypass) ... ok
+test_case_record_must_equal_immutable_result_including_directory (__main__.AdmissionControls.test_case_record_must_equal_immutable_result_including_directory) ... ok
+test_changed_file_duplicate_json_and_symlink_witness_rejected (__main__.AdmissionControls.test_changed_file_duplicate_json_and_symlink_witness_rejected) ... ok
+test_current_build_receipt_from_other_source_fails (__main__.AdmissionControls.test_current_build_receipt_from_other_source_fails) ... ok
+test_current_source_tree_and_checkout_mismatch_fail (__main__.AdmissionControls.test_current_source_tree_and_checkout_mismatch_fail) ... ok
+test_dirty_execution_input_fails_without_native_launch (__main__.AdmissionControls.test_dirty_execution_input_fails_without_native_launch) ... ok
+test_full_v40_requires_twenty_distinct_opens_and_ten_new_pid_restores (__main__.AdmissionControls.test_full_v40_requires_twenty_distinct_opens_and_ten_new_pid_restores) ... ok
+test_groups_cold_requires_new_pid_and_original_export_attachment (__main__.AdmissionControls.test_groups_cold_requires_new_pid_and_original_export_attachment) ... ok
+test_groups_hundred_cohort_and_real_nonce_ack_count_required (__main__.AdmissionControls.test_groups_hundred_cohort_and_real_nonce_ack_count_required) ... ok
+test_groups_metrics_cannot_change_retained_step_or_sequence (__main__.AdmissionControls.test_groups_metrics_cannot_change_retained_step_or_sequence) ... ok
+test_groups_original_export_other_device_rejected (__main__.AdmissionControls.test_groups_original_export_other_device_rejected) ... ok
+test_installed_runner_image_and_manifest_owner_rejected (__main__.AdmissionControls.test_installed_runner_image_and_manifest_owner_rejected) ... ok
+test_lowered_phase_map_cannot_waive_required_study (__main__.AdmissionControls.test_lowered_phase_map_cannot_waive_required_study) ... ok
+test_resource_epoch_requires_actual_pid_bound_samples (__main__.AdmissionControls.test_resource_epoch_requires_actual_pid_bound_samples) ... ok
+test_study_owner_runtime_case_set_build_and_postfailure_rejected (__main__.AdmissionControls.test_study_owner_runtime_case_set_build_and_postfailure_rejected) ... ok
+test_v32_at_least_counts_and_own_udid_remain_accepted (__main__.AdmissionControls.test_v32_at_least_counts_and_own_udid_remain_accepted) ... ok
+test_v40_exact_gate_cannot_relabel_at_least_or_foreign_witness (__main__.AdmissionControls.test_v40_exact_gate_cannot_relabel_at_least_or_foreign_witness) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 6.290s
+
+OK
