@@ -1,0 +1,53 @@
+{
+  "files": [
+    {
+      "rawName": "INITIAL_EMPTY_INDEX_STATUS.txt",
+      "rawBytes": 1385846,
+      "rawSHA256": "71171497788cd3df148a583649847413617d904fb27fa2ec6ff25a617487240b",
+      "storedPath": "raw/INITIAL_EMPTY_INDEX_STATUS.txt.gz",
+      "storedSHA256": "f98830f1f011f5b82168c8ff9493fddeb612c8273529bd012f544a0eb193314f"
+    },
+    {
+      "rawName": "donor-ordinary-native-exchange-ui.py",
+      "rawBytes": 33096,
+      "rawSHA256": "fc96c20f5dc1b3b806b219a65ebf7ceb51a6872dea2b85ae3dcb6c320ece78ea",
+      "storedPath": "raw/donor-ordinary-native-exchange-ui.py.gz",
+      "storedSHA256": "82ec3d7259184ff2f4fc9d0e57c70afd82ccf1baca4791164f3813fd14c8f0b1"
+    },
+    {
+      "rawName": "donor-ordinary-native-two-full-apps.py",
+      "rawBytes": 16982,
+      "rawSHA256": "4dc2a48287638a0c209f151053cf1b1b4aa0f939bb531ce42ed974e8e22f04c0",
+      "storedPath": "raw/donor-ordinary-native-two-full-apps.py.gz",
+      "storedSHA256": "7b21167a38a713026bb64b2c1c55dcad4345c32071f67a06fa067c892439e69c"
+    },
+    {
+      "rawName": "SOURCE_PUSH.stderr",
+      "rawBytes": 378,
+      "rawSHA256": "30f5c2acf4abee47f6fc5f5e8c7eeff6b096d68a91dd9ec940b1a87d0661ef3c",
+      "storedPath": "raw/SOURCE_PUSH.stderr.gz",
+      "storedSHA256": "a95b9f7626d4758f1c677c8c507b3894cbd642a0b2146fcce4a296fa8d36819e"
+    },
+    {
+      "rawName": "EVIDENCE_PUBLICATION_DIFF_CHECK_FAILURE.stdout",
+      "rawBytes": 671,
+      "rawSHA256": "6bea522b6da7b06042de4b5643a6d989c471ce0c54da8f21b5fdacc91052d78d",
+      "storedPath": "raw/EVIDENCE_PUBLICATION_DIFF_CHECK_FAILURE.stdout.gz",
+      "storedSHA256": "9815aff37f844400a1226f7b6971762d352a55cd8e5a0e726ad688a23fba7054"
+    },
+    {
+      "rawName": "EVIDENCE_PUBLICATION_DIFF_CHECK_FAILURE.stderr",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedPath": "raw/EVIDENCE_PUBLICATION_DIFF_CHECK_FAILURE.stderr.gz",
+      "storedSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "rawName": "EVIDENCE_PUBLICATION_ATTEMPT1_FILES.json",
+      "rawBytes": 3335,
+      "rawSHA256": "a6fbcdfdcf54913bffd81cb18277f84675a992dda6237b15e01165e20b210e4b",
+      "storedPath": "raw/EVIDENCE_PUBLICATION_ATTEMPT1_FILES.json.gz",
+      "storedSHA256": "5d55816b621ed57c643483b99367b486262cf431607abaa5ec5b77b65b6c8905"
+    }
+  ]
+}

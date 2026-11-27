@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "sourceCommit": "4a6e7bdc9b9bad42586210ba19fac7ebaa3a47e3",
+  "base": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+  "donor": "8c0e9b21cf7f87c18383aa4fc329c65bf974d441",
+  "sourceStatus": "SOURCE_VALIDATED_NATIVE_PENDING",
+  "sourceControls": {
+    "passed": 35,
+    "failed": 0,
+    "scope": "Local Linux Python3.12.14 actual controller plus explicit Apple/domain/installer doubles"
+  },
+  "counterfactualFailures": {
+    "emptyProductClosure": 2,
+    "miniProfileAndShortBudget": 1,
+    "cleanupFalseSuccess": 6
+  },
+  "nativeRuns": 0,
+  "realInstallations": 0,
+  "accountAccess": false,
+  "pairedSwiftDependency": "2f71c9a2995ed1cf7d8d476df4f33919f06da97b",
+  "peerReviewCommit": "fce87492e2cfec2c01aced4364e43687b7deb165",
+  "utc": "2026-11-27T09:40:42.715481+00:00"
+}
