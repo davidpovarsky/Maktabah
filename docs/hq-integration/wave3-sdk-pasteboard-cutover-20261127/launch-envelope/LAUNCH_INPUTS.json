@@ -1,0 +1,70 @@
+{
+  "approvedSupervisorSHA256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+  "files": [
+    {
+      "bytes": 26860,
+      "path": "supervisor.py",
+      "sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+    },
+    {
+      "bytes": 7566,
+      "path": "FRESH_RUN_COMMANDS.json",
+      "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490"
+    },
+    {
+      "bytes": 6235,
+      "path": "HISTORICAL_OBSERVED_CONTRACT.json",
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+    },
+    {
+      "bytes": 5109,
+      "path": "UNCHANGED_ORIGINAL_GUARDS.json",
+      "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171"
+    },
+    {
+      "bytes": 4426,
+      "path": "PROPOSAL.json",
+      "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b"
+    },
+    {
+      "bytes": 2420,
+      "path": "COMPLETE_PLAN.json",
+      "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c"
+    },
+    {
+      "bytes": 8119,
+      "path": "completion_watcher.py",
+      "sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+    },
+    {
+      "bytes": 4248,
+      "path": "CUTOVER_RESULT.json",
+      "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88"
+    }
+  ],
+  "minimumLaunchFreeBytes": 15032385536,
+  "minimumLaunchFreeIsNotACompletedPeakOrAcceptance": true,
+  "originalControllerSources": {
+    "launcherSHA256": "583e599ab0a226d3d5be3a070fadae0dd8d895645b2d17706ee8e387cd59448e",
+    "watcherChanges": [
+      "approved supervisor pin",
+      "exact new owned output prefix",
+      "root fourteen-GiB pre-launch admission"
+    ],
+    "watcherIssuesProcessSignals": false,
+    "watcherProcessOwnershipObservationAndWaitUnchanged": true,
+    "watcherSHA256": "d3dbbf9b6258d6818e4c58e6026446cf5995f28ddffbeaa7c6e9d9d31437ec23"
+  },
+  "preflightGuard": {
+    "bytes": 4319,
+    "git_blob": "2628b345d5743bbe1ddc0d1afaeef9fb410f3daf",
+    "matches_committed_head": true,
+    "path": "Tools/PinkhaSimulatorGate/preflight.py",
+    "sha256": "0e1c6491e8bb30d9e97cf65cf3b820a8860d0a32237676f2c3a7613668ddee66"
+  },
+  "schema": 1,
+  "singleAttemptNoAutomaticRetry": true,
+  "sourceSHA": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "status": "CONDITIONAL_ROOT_AUTHORIZATION_NOT_LAUNCHED",
+  "unchangedLiveStopReserveBytes": 2415919104
+}

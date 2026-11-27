@@ -1,0 +1,201 @@
+{
+  "utc": "2026-11-27T12:17:38.795283+00:00",
+  "writes": 0,
+  "deletions": 0,
+  "scopes": [
+    {
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build",
+      "device": 16777232,
+      "inode": 68635650,
+      "mtime_ns": 1795780890307531000,
+      "du_exit": 0,
+      "du_allocated_kib_not_private": "0\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work\n516\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-29a415b6-Debug-Evidence\n13516\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence\n352\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127\n60\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestorationAttempt2-20261127\n352\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterCapacity-20261127\n4\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-NativeABI\n15968\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterFiveScopes-20261127-Evidence\n0\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Work\n60\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterFiveScopes-20261127\n512\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-f5524640-Debug-Evidence\n9292\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterCapacity-20261127-Evidence\n60\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterCapacity-20261127\n0\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-f5524640-NativeABI\n352\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterFiveScopes-20261127\n41044\t/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build\n",
+      "stderr": ""
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127",
+      "device": 16777232,
+      "inode": 73662012,
+      "mtime_ns": 1795781086924391700,
+      "du_exit": 0,
+      "du_allocated_kib_not_private": "8\t/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/Anytype\n136\t/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/docs\n135664\t/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/.git\n135832\t/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127\n",
+      "stderr": ""
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave3-ad6-preservation-20261127.n155e60d",
+      "device": 16777232,
+      "inode": 73432278,
+      "mtime_ns": 1795780819776207000,
+      "du_exit": 0,
+      "du_allocated_kib_not_private": "13868\t/Users/m1/builds/otzaria-wave3-ad6-preservation-20261127.n155e60d\n",
+      "stderr": ""
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl",
+      "device": 16777232,
+      "inode": 52933006,
+      "mtime_ns": 1795775853184937000,
+      "du_exit": 0,
+      "du_allocated_kib_not_private": "1022184\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.FK20ACaB\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-diagnostic-input.FKS8t6Z9\n668\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-verified-historical-archive-expansions.9MG61zNM\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-production-compiler-products-retained.2p8cXD3T\n15060\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/split-provider-ownership-probe.9xnqPNH4\n556\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.5a52jHgE\n170072\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-ipad-strip-full-swift-typecheck.BhgYdgVP\n11244\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/ruby33.tVTHHRU7\n929280\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.aMLf6xuF\n16\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-tab-parse.Zs9iJxCJ\n108\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-note-form-witness-parse.kYMWQ0Jq\n23292\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-release-provider-ownership.v84TwYbm\n164\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-multiroute-ui-inventory.PG64s9nO\n456\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-remaining-private-abi-analysis.huvqbpte\n96\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/native-preview-handoff.vEkutdOL\n152\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/commentary-diagnostics-swift-parse.UZpFMhvs\n1001252\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-failed-run-archive-expansions.ruEu6ZwW\n8684\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/owner-verified-current-production-release.0Uv90ibO\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-cancelled-exact-cache-expansion.RMeMKmJQ\n60\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/diagnostic-exact-integrated-phone-routes.i3ktqJmB\n37712\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-complete-nm-order.9FicTU0A\n4600\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-three-sdk-transport-verification.5DfXvIjL\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/debug-products-retained.hmMLBS8M\n9804\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/reviewed-new-original-simulator-sdk-host-admission.nw59FCm9\n288\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/relocated-exact-dfe4739b-test-products.KOlzfd1K\n144\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-current-ui-inventory.g3JNYMg8\n444\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-device-platform-preflight-copies.nkbxh3DW\n23468\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-app-release-production.l99oRFHb\n188\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-capacity-20261127.dkpegb_e\n164\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-current-ui-inventory.w3wnO9oA\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/recloned-exact-original-abi-work.us4bItfe\n3644\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/complete-split-symbol-scan.My4Wgs8M\n924052\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.wlGapj2Q\n24\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/current-testflight-entitlement-preflight.2bLwBzR4\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-apfs-sdk-cache.wRMRuDbT\n2879576\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO\n450072\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/runner\n7008\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-cold-sdk-stages-relocation-20261127\n356\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-multiroute-candidate-apple-parse.XSeG2hjl\n0\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-owner-signed-ui-inventory.oEhSOGz5\n5768\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/reviewed-new-original-device-sdk-host-admission.alNc53Hx\n456\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-finished-pod-projection-dependencies.X0DphCW4\n3772\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-apple-strip-swift-symbol-comparison.RzNBjOcJ\n8356\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/qualified-original-release-simulator-abi-preservation.f1kqiz54\n296\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/curated-miniapps-aligned-source-verification.mD6ATV3h\n4884\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-app-release-production-retry.3Ay5HhXW\n1345312\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.XsIaHMlh\n20620\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-firebase-release-strip-check.EtCAa712\n2585084\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd\n432\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-timeout-stage-duplicates.sxD3MZ5i\n22080\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/stream-actual-native-symbols.uqHL9oEQ\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-bundled-licenses-and-sources.aUIB7Y5N\n6740\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/hanlin-history-original-intake.CkTQ1GWv\n11388\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-cold-native116-build-relocation-20261127\n16\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/release-signing-preflight-readonly.dyBhyvaw\n32900\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/runtime-image-native-parser.qkVstiVN\n16\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/note-editor-witness-parse.9S9TbSrK\n124\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-device-platforms.uWpAOoBx\n17680\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/miniapps-rich-original-intake.Q34M9hwu\n8\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/hooks\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/replaced-rehydrated-product-copies.94LoOWAI\n20\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/hanlin-picker-intake-parse.rRS15oed\n36\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-ipad-original-strip-parse.6JksHBxl\n3520\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-inactive-embedded-node-dependencies.2NuZCY4C\n16432\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-app-generated-cache-preservation-20261127.6acrz1dj\n52628\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-interrupted-sdk-work-preservation-20261127.811pvzsd\n1260\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-release-host-google-utilities-flags.Kt1L9IFt\n220\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/recloned-identical-closed-sqlite-apps.Fftq8zii\n542888\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/immutable-stage2-artifact-inputs.HZMBWCuD\n176\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/live-current-device-transport.1WhnMH1l\n2780\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp\n13260\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72\n8\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-identical-historical-input-downloads.rId4sgfX\n18228180\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt\n944\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-exact-build-preflights.D7HzO3z4\n180\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-five-scopes-20261127.degtfvn6\n804\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-failed-run-preservation-20261127.esxzk_x0\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-native-failed-run-dependency-copies.G3GLl8US\n524\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.fYe7HKTc\n96996\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/full-native-handoff-probe.1uDOPeM3\n4608\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-sdk-apfs-stage.rMF7ypeG\n768\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/release-preserved-firebase-dsym-analysis.iNW5E5CT\n624\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-release-private-definition-delta.XuKioM38\n24\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-controller-20261127.4kollynp\n43832\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/split-provider-dyld-direct.PCjntNNn\n1832\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-duplicate-runner-git-caches.JuNrvwv8\n560\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-failed-app-generated-dependencies.x1k7G1zn\n12\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-closed-sdk-clone-reclamation.Tvlg92Sf\n0\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-current-ui-inventory.VdSy6ECZ\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-original-compiler-module-caches.QIuYXp0J\n10774548\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S\n152\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/physical-device-inventory.VhVfvs8L\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/closed-approved-cache-reclamation.NJspnvEN\n499944\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release-expo-root.qliOcHpp\n1124\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.IwcgXjDo\n24\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-current-production-native-execution.aU8t0Aj2\n3208\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-app-link-projection.WMXtvg2f\n164\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/verified-owner-signed-ui-inventory.Mu7pSIY1\n2784\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-original-input-restoration-20261127.elt9gekq\n56\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-annotation-uikit-scoped-sdk-check.J3Jr5jpM\n20\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/independent-exact-release-app.oyIX9j3U\n206048\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-narrow-window-toolbar-evidence.LjAdyenl\n4\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/retired-exact-failed-app-sdk-copies.MvcL1t6D\n42092152\t/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl\n",
+      "stderr": ""
+    }
+  ],
+  "df": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   482797652 426525156   9241704    98% 6645679 92417040    7%   /System/Volumes/Data\n",
+  "swap": "vm.swapusage: total = 4096.00M  used = 3283.12M  free = 812.88M  (encrypted)",
+  "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3849.\nPages active:                                 208381.\nPages inactive:                               199195.\nPages speculative:                              9187.\nPages throttled:                                   0.\nPages wired down:                             305014.\nPages purgeable:                                  42.\n\"Translation faults\":                    18336930911.\nPages copy-on-write:                       404638404.\nPages zero filled:                       10002190752.\nPages reactivated:                        1109032012.\nPages purged:                               50013445.\nFile-backed pages:                            171304.\nAnonymous pages:                              245459.\nPages stored in compressor:                   877915.\nPages occupied by compressor:                 289284.\nDecompressions:                            829720181.\nCompressions:                             1157709654.\nPageins:                                   960134463.\nPageouts:                                    5248245.\nSwapins:                                     2627241.\nSwapouts:                                    3790639.\n",
+  "retired_work_lexists": false,
+  "known_scope_processes": [
+    {
+      "pid": 18664,
+      "ppid": 1,
+      "start": "Thu Nov 26 21:12:58 2026",
+      "executable": "/bin/sh",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    },
+    {
+      "pid": 18665,
+      "ppid": 18664,
+      "start": "Thu Nov 26 21:12:58 2026",
+      "executable": "/Users/m1/builds",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    },
+    {
+      "pid": 35619,
+      "ppid": 1,
+      "start": "Thu Nov 26 17:01:38 2026",
+      "executable": "/bin/sh",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    },
+    {
+      "pid": 35620,
+      "ppid": 35619,
+      "start": "Thu Nov 26 17:01:38 2026",
+      "executable": "/Users/m1/builds",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    },
+    {
+      "pid": 41371,
+      "ppid": 1,
+      "start": "Thu Nov 26 17:09:32 2026",
+      "executable": "/bin/sh",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    },
+    {
+      "pid": 41372,
+      "ppid": 41371,
+      "start": "Thu Nov 26 17:09:32 2026",
+      "executable": "/Users/m1/builds",
+      "matched_scopes": [
+        "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl"
+      ]
+    }
+  ],
+  "known_scope_open_files": {
+    "count": 15,
+    "entries": [
+      {
+        "pid": "18664",
+        "command": "bash",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah"
+      },
+      {
+        "pid": "18665",
+        "command": "upload-symbols",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah"
+      },
+      {
+        "pid": "18665",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/Pods/FirebaseCrashlytics/upload-symbols"
+      },
+      {
+        "pid": "18665",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      },
+      {
+        "pid": "18665",
+        "command": "upload-symbols",
+        "fd": "3",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/actual-paired-production-release.Hguhbz1S/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      },
+      {
+        "pid": "35619",
+        "command": "bash",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah"
+      },
+      {
+        "pid": "35620",
+        "command": "upload-symbols",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah"
+      },
+      {
+        "pid": "35620",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/Pods/FirebaseCrashlytics/upload-symbols"
+      },
+      {
+        "pid": "35620",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      },
+      {
+        "pid": "35620",
+        "command": "upload-symbols",
+        "fd": "3",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      },
+      {
+        "pid": "41371",
+        "command": "bash",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah"
+      },
+      {
+        "pid": "41372",
+        "command": "upload-symbols",
+        "fd": "cwd",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah"
+      },
+      {
+        "pid": "41372",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/Pods/FirebaseCrashlytics/upload-symbols"
+      },
+      {
+        "pid": "41372",
+        "command": "upload-symbols",
+        "fd": "txt",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      },
+      {
+        "pid": "41372",
+        "command": "upload-symbols",
+        "fd": "3",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/session.ntx0UjXO/runner/_work/Maktabah/Maktabah/build/ReleaseDerivedData/Build/Products/Release-iphonesimulator/Maktabah.app/Maktabah"
+      }
+    ],
+    "truncated": false,
+    "lsof_exit": 0,
+    "stderr": ""
+  }
+}

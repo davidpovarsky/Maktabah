@@ -1,0 +1,53 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-plan-20261127.mr4u8199/cutover_source.py",
+    "--execute-reviewed-cutover"
+  ],
+  "builds_run": 0,
+  "exit": 0,
+  "free_after": 11385499648,
+  "result": {
+    "bytes": 4248,
+    "path": "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-plan-20261127.mr4u8199/CUTOVER_RESULT.json",
+    "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88",
+    "source_after": {
+      "branch": "codex/anytype-wave1-sdk-admission-20261127",
+      "head": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+      "tracked_status": ""
+    },
+    "status": "EXACT_REVIEWED_SOURCE_FAST_FORWARDED_NO_BUILD",
+    "steps": [
+      {
+        "argv": [
+          "update-ref",
+          "refs/otzaria-preserved/sdk-before-pasteboard-options-20261127",
+          "1be970356c655bcef3688ddf1d129d5029bbc533",
+          "0000000000000000000000000000000000000000"
+        ],
+        "exit": 0
+      },
+      {
+        "argv": [
+          "fetch",
+          "--no-tags",
+          "--no-recurse-submodules",
+          "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/.git/EXACT_FIX.bundle",
+          "refs/heads/codex/otzaria-wave3-sdk-pasteboard-fix-20261127:refs/otzaria-reviewed/sdk-pasteboard-options-20261127"
+        ],
+        "exit": 0
+      },
+      {
+        "argv": [
+          "merge",
+          "--ff-only",
+          "--no-edit",
+          "refs/otzaria-reviewed/sdk-pasteboard-options-20261127"
+        ],
+        "exit": 0
+      }
+    ]
+  },
+  "started": "2026-11-27T12:27:59.093016+00:00",
+  "utc": "2026-11-27T12:28:01.179810+00:00"
+}

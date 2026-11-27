@@ -1,0 +1,127 @@
+{
+  "candidate": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "original_driver_changed": false,
+  "original_files": [
+    {
+      "bytes": 47632,
+      "git_blob": "e93f8d247149ccdbf2ac3839a20f992f2cc982dc",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/run_framework_acceptance.py",
+      "sha256": "51944452de1d5fa6ca6d6fc9a9f89097ab7c15445763d2b2d7251a198d21b8b4"
+    },
+    {
+      "bytes": 12279,
+      "git_blob": "099da4c426024c88273171eebbde1083755c928f",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/qualified_cache_seed.py",
+      "sha256": "021bc6aee7adf3e0a6a7b07b8152d49733a0be32c549d04beaaeec27507dd4a6"
+    },
+    {
+      "bytes": 4137,
+      "git_blob": "9e441d810877b24627b0d2dd566c834c0250cb60",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/MiniApps/qualified_cache_seed.json",
+      "sha256": "8466e11954826cfe6f0ab79bd84ce91c720bc3656bbe6f875306f6cbec8013ec"
+    },
+    {
+      "bytes": 6845,
+      "git_blob": "84c5f4bcda17d1e0cd612b43881c10c2337a9cf4",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/relocate_seed_artifacts.py",
+      "sha256": "d34d16acb5b03434545d2812ea5b55f5b98bfd0babb9a3dc96a6a28a8a248941"
+    },
+    {
+      "bytes": 25193,
+      "git_blob": "24c778d64d127884609fe6782e0e1442fffa018a",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/continue_verified_framework.py",
+      "sha256": "633d1e8d8a3e7ab6e5b94535fc1f73db22e9a811897e0bc7fd3dde558f3250de"
+    },
+    {
+      "bytes": 44189,
+      "git_blob": "abdb75da977fa234b69997a1d06be8b0cabbee43",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/run_runtime_continuation.py",
+      "sha256": "afa65f43eee960073c2fd440cca482013a63716181b90aaa3d8f616520ce5c07"
+    },
+    {
+      "bytes": 28928,
+      "git_blob": "ca64a4e713594aa61f9c46b76f86e779d9941d3b",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/run_signed_consumer_continuation.py",
+      "sha256": "154c9257582d144489a61c1fe0f0ede017c4733c2cd6e6018def27e28b5440f8"
+    },
+    {
+      "bytes": 5083,
+      "git_blob": "1fd331cadafbdc944113677898daf4080daafcfa",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/retain_unqualified_products.py",
+      "sha256": "c093e4d51ff752e4f88872d351e83b4e081a3a9000c3ce99f8b933994290b807"
+    },
+    {
+      "bytes": 5754,
+      "git_blob": "4b29ad7274090c786c65622a393ba2088d8b61c4",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/prepare_local_execution.py",
+      "sha256": "fe1b07b02b90d54093fef953dd9f2966091f6f97bbfc6e605b5c32e818395f9a"
+    },
+    {
+      "bytes": 4395,
+      "git_blob": "425d4dc479651c4fff45d7c90f8ab230d0090311",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/local_execution.py",
+      "sha256": "cdc94d827dcb5351315f824baeb5c4f376ff7262dc0421bb0173efb59049924f"
+    },
+    {
+      "bytes": 5201,
+      "git_blob": "af062234f0440746880f111930fe6e70e65664f1",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/prepare_donor_abi.py",
+      "sha256": "8b89c1fddf1e1677a017e554f8854be3f0966dc0a2ded1daf56a4684db386c59"
+    },
+    {
+      "bytes": 14976,
+      "git_blob": "e81bf318f190c84e3801041da48dd8d0d611737a",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/donor_abi_input.py",
+      "sha256": "7f0e2bf498facabfd28a5e889c5a8476fe340a79e5c3538af989c7be1da11aff"
+    },
+    {
+      "bytes": 13035,
+      "git_blob": "8c87987e4c397dcc106e10e8f1f965f72b27d6a5",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/prepare_reviewed_macro.py",
+      "sha256": "e756f385eb130f5de6a679f90f20f4f7644791fb242d0a90be6e1c6c242b5760"
+    },
+    {
+      "bytes": 4906,
+      "git_blob": "6ef67cc060994cc770fe19a275951b69f5b3c5dd",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/reviewed_equatable_macro.json",
+      "sha256": "30fe40f94381a74c70089a89b1ef8360aa70f083aeb74e48c77cd62db12aed59"
+    },
+    {
+      "bytes": 5988,
+      "git_blob": "e38532db0c020eee7fbd4094d95659b0907e55cb",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/MINIAPPS.md",
+      "sha256": "df0506d20494ed76b6a323cbe53b836d412defe2cae477827c06c1322ba388fe"
+    },
+    {
+      "bytes": 6935,
+      "git_blob": "7c00d3832c63298cf3fc9d023ff4d065151fb003",
+      "matches_committed_head": true,
+      "path": "Tools/OriginalEditor/LOCAL_MAC.md",
+      "sha256": "7c7da3e9c1998e376e87fe92f557c9d61a7b20c6f0137af201c4784db4ec9942"
+    },
+    {
+      "bytes": 4319,
+      "git_blob": "2628b345d5743bbe1ddc0d1afaeef9fb410f3daf",
+      "matches_committed_head": true,
+      "path": "Tools/PinkhaSimulatorGate/preflight.py",
+      "sha256": "0e1c6491e8bb30d9e97cf65cf3b820a8860d0a32237676f2c3a7613668ddee66"
+    }
+  ],
+  "source_before": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "verification": "Actual current original bytes compared to exact candidate Git blobs during read-only source review; every listed digest/size matched."
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "otzaria.original-sdk-launch-argv-clarification/1",
+  "prior_complete_plan_sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c",
+  "prior_complete_plan_preserved": true,
+  "status": "DOCUMENTATION_CORRECTION_NO_EXECUTION",
+  "correction": "The prior COMPLETE_PLAN separate_run_argv omitted the supervisor's mandatory execution switch. The unchanged supervisor itself rejects that incomplete argv; no build ran. The actual original owned watcher already passes this exact switch.",
+  "exact_supervisor_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "supervisor.py",
+    "--execute-reviewed-proposal"
+  ],
+  "actual_owned_entrypoint_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "launch_owned.py",
+    "--execute-root-authorized-attempt"
+  ],
+  "unchanged_supervisor_sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+  "conditional_minimum_launch_free_bytes": 15032385536,
+  "unchanged_sampled_stop_reserve_bytes": 2415919104,
+  "native_runs": 0,
+  "builds": 0
+}

@@ -1,0 +1,51 @@
+{
+  "branch": "codex/anytype-wave1-sdk-admission-20261127",
+  "builds": 0,
+  "bundle": {
+    "bytes": 6489,
+    "heads": "d6090c03b9ac4e5760941e34f4c04478db4ae59f refs/heads/codex/otzaria-wave3-sdk-pasteboard-fix-20261127",
+    "path": "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/.git/EXACT_FIX.bundle",
+    "sha256": "830388532b1a69e7549a9075f0777da1253b16e95d51292c2ba1f2108cc3054d",
+    "verify_exit": 0,
+    "verify_stderr": "/Users/m1/builds/otzaria-wave3-sdk-pasteboard-fix-20261127/.git/EXACT_FIX.bundle is okay\n",
+    "verify_stdout": "The bundle contains this ref:\nd6090c03b9ac4e5760941e34f4c04478db4ae59f refs/heads/codex/otzaria-wave3-sdk-pasteboard-fix-20261127\nThe bundle requires this ref:\n1be970356c655bcef3688ddf1d129d5029bbc533 \nThe bundle uses this hash algorithm: sha1\n"
+  },
+  "free_bytes": 9777438720,
+  "fresh_paths": [
+    {
+      "lexists": false,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-d6090c03-Debug-PasteboardOptions-20261127-Evidence"
+    },
+    {
+      "lexists": false,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-d6090c03-Debug-PasteboardOptions-20261127-Work"
+    },
+    {
+      "lexists": false,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-d6090c03-NativeABI-PasteboardOptions-20261127"
+    },
+    {
+      "lexists": false,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-d6090c03-ReviewedMacro-PasteboardOptions-20261127"
+    }
+  ],
+  "head": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "hooks": {
+    "active": [],
+    "disabled": false,
+    "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/.git/hooks"
+  },
+  "refs": {
+    "refs/otzaria-preserved/sdk-before-pasteboard-options-20261127": {
+      "exists": false,
+      "exit": 1
+    },
+    "refs/otzaria-reviewed/sdk-pasteboard-options-20261127": {
+      "exists": false,
+      "exit": 1
+    }
+  },
+  "tracked_status": "",
+  "utc": "2026-11-27T12:26:23.444316+00:00",
+  "writes": 0
+}

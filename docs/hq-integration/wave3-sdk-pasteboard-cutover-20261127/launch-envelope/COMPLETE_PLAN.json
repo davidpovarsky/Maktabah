@@ -1,0 +1,65 @@
+{
+  "actual_new_path_and_hook_precheck": {
+    "active_hooks": [],
+    "all_four_paths_absent": true,
+    "both_refs_absent": true,
+    "bundle_verify_exit": 0,
+    "source_clean_1be": true,
+    "utc": "2026-11-27T12:26:23.444316+00:00"
+  },
+  "builds": 0,
+  "candidate_commit": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "capacity_note": "No completed corrected framework+consumer peak is known. The current shared free sample is not assumed sufficient. The prior failed Work had 11,451,441,643 logical bytes and 8,257,695,744 kernel-private bytes before preservation; neither is a safe complete new-run write bound. The original 2,415,919,104-byte live guard and all original acceptance checks remain unchanged. No reclaim or foreign-process action is included.",
+  "native_runs": 0,
+  "plan_files": [
+    {
+      "bytes": 4426,
+      "path": "PROPOSAL.json",
+      "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b"
+    },
+    {
+      "bytes": 7566,
+      "path": "FRESH_RUN_COMMANDS.json",
+      "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490"
+    },
+    {
+      "bytes": 26860,
+      "path": "supervisor.py",
+      "sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b"
+    },
+    {
+      "bytes": 10442,
+      "path": "cutover_source.py",
+      "sha256": "01c047b138ceed49e107dacbbf627a1b0929510b654c35e9f64d02dadfe4623e"
+    },
+    {
+      "bytes": 5109,
+      "path": "UNCHANGED_ORIGINAL_GUARDS.json",
+      "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171"
+    },
+    {
+      "bytes": 2058,
+      "path": "CUTOVER_READONLY.json",
+      "sha256": "c2eaac368dc1424ce554fee2ffc0e897f2ea575eb4fc69bb7c17344af03d93ef"
+    },
+    {
+      "bytes": 22660,
+      "path": "CAPACITY_READONLY.json",
+      "sha256": "d6efc054a0d43e18e6db94245b8b8cbc493cb0ae137bb7059da5e67244cf01d1"
+    }
+  ],
+  "root_authorization_required_separately_for_cutover_and_run": true,
+  "schema": "otzaria.reviewed-sdk-source-cutover-and-fresh-run/1",
+  "separate_cutover_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "cutover_source.py",
+    "--execute-reviewed-cutover"
+  ],
+  "separate_run_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "supervisor.py"
+  ],
+  "source_before": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "source_mutations": 0,
+  "status": "REVIEW_ONLY_NOT_EXECUTED"
+}
