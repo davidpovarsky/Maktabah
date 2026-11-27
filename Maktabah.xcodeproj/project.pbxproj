@@ -1458,6 +1458,9 @@
 		26A22B6932D96D324776D232 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
 		A3753B4C5A40027BCEAD8DC2 /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
 		9B91FC6DAE7A4D8CB5A88C2D /* SefariaEmbeddedSurfaceContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */; };
+		CBD974721F24BC8DB2C27967 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
+		2BF4C79DEF4EBB5BCF6E6051 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
+		07E7057281BEA64047ED3789 /* OriginalSearchPageLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2301,6 +2304,7 @@
 		57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfaceBinding.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift; sourceTree = "<group>"; };
 		5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfacePresentation.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift; sourceTree = "<group>"; };
 		6AA4C6EAAFCFE280784DC103 /* SefariaEmbeddedSurfaceContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSurfaceContract.swift"; sourceTree = "<group>"; };
+		7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchContinuation/OriginalSearchPageLedger.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2397,6 +2401,7 @@
 		CFEE00000000000000000001 /* ChavrusaText */ = {
 			isa = PBXGroup;
 			children = (
+				7A55D6F5DD884ED48CD32727 /* OriginalSearchPageLedger.swift */,
 				E7117E78E62BEB44CF259B84 /* AnnotationOriginalEditorReceive.swift */,
 				0275BE1B7E407A2BF86459A8 /* AnnotationOriginalEditorRevision.swift */,
 				45EE1A20CB21DCE3C8E3DDCB /* AnnotationOriginalEditorLifecycleUI.swift */,
@@ -4825,6 +4830,7 @@
 				F321E0292FC7050F00CB37DD /* AnnotationSyncHandler.swift in Sources */,
 				F321E02A2FC7050F00CB37DD /* HistorySyncHandler.swift in Sources */,
 				F3D02D5A2FE0522E0054807F /* SearchViewModel.swift in Sources */,
+				CBD974721F24BC8DB2C27967 /* OriginalSearchPageLedger.swift in Sources */,
 				F321E02B2FC7050F00CB37DD /* ResultSyncHandler.swift in Sources */,
 				F3A002012FBB000100000001 /* CloudKitUploadDebouncer.swift in Sources */,
 				F3FF136B2FE757B500E74201 /* TextStorage.swift in Sources */,
@@ -5126,6 +5132,7 @@
 				F3D02D522FE04D580054807F /* ReaderViewModel.swift in Sources */,
 				F3D02D552FE04D580054807F /* ViewModelBase.swift in Sources */,
 				F3D02D592FE0522E0054807F /* SearchViewModel.swift in Sources */,
+				2BF4C79DEF4EBB5BCF6E6051 /* OriginalSearchPageLedger.swift in Sources */,
 				4B7C90DC2F83494200454BE1 /* BookUpdateVM.swift in Sources */,
 				4B7C90DD2F83494200454BE1 /* AnnotationsOutlineDataSource.swift in Sources */,
 				4B7C90DE2F83494200454BE1 /* CustomSplitView.swift in Sources */,
@@ -5554,6 +5561,7 @@
 				F30577842FA463B1005732C6 /* iOSMainView.swift in Sources */,
 				F30577852FA463B1005732C6 /* SearchModeView.swift in Sources */,
 				F3D02D5B2FE0522E0054807F /* SearchViewModel.swift in Sources */,
+				07E7057281BEA64047ED3789 /* OriginalSearchPageLedger.swift in Sources */,
 				F36382662FA761070006636C /* iOSSearchFilterViewController.swift in Sources */,
 				F30577882FA463B1005732C6 /* AuthorModeView.swift in Sources */,
 				F305778B2FA463B1005732C6 /* iOSReaderView.swift in Sources */,
