@@ -1,0 +1,114 @@
+[
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "ff98e86828d6770e8f35247ba2b9ff4779cae623",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
+    "bytes": 3878,
+    "sha256": "d56a7291c8bc664ce3265f6046315f500f04267f24e685f58a8bf266aa91f84f",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "20d383faf6737e5c3c4655863ca4ccdfddcdf3af",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+    "bytes": 4167,
+    "sha256": "6c6d461253cb3891eef0db63bdf9c09ae12ddde133f2dc2841c5ceab8e39eff5",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "596c683bb3404a2ee4f72bb07fa881e0cbe98a7d",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift",
+    "bytes": 1785,
+    "sha256": "0e3f598c685479d23a9bb67e6c1aecf012a1fc6291269a26f9888cc40e3e4420",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "f41dd5e97604e54322aad4cbef3a37906e30cb6b",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+    "bytes": 21276,
+    "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/UI/iOS/Views/iPadLayout.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "c8dfca5f276c595974048001876b16ec08c7657a",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/UI/iOS/Views/iPadLayout.swift",
+    "bytes": 24340,
+    "sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "435ba8dd16ca45036f60767fc9285cfa346b9c69",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "bytes": 46951,
+    "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "03ca99095495e14afd94fa511bc9de99bbc751c1",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+    "bytes": 21240,
+    "sha256": "3ff5c2d87135b4707b28d953331a34c0c686cc36a1f6e7a115299f2ead7db8cd",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/Features/Search/iOS/SearchModeView.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "13b33e6864cdaf83710e819e58e0972fa72ff75b",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Search/iOS/SearchModeView.swift",
+    "bytes": 12630,
+    "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "79ec29212d736192fc40f81cf04f0e618d851ca9",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+    "encoding": "utf-8",
+    "bytes": 77004,
+    "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+    "encoding": "utf-8",
+    "bytes": 5278,
+    "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "docs/release-preflight/wave3-20261127/NATIVE116_BASELINE_FAILURES.json",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "625142c6f810fafb39ab68a08afef6b2ff825fd4",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/docs/release-preflight/wave3-20261127/NATIVE116_BASELINE_FAILURES.json",
+    "encoding": "utf-8",
+    "bytes": 12516,
+    "sha256": "f8bbc31ba82079980d0e5363cd27b590473efe9b9dc2b12ce0ad461a95ce13bd",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  },
+  {
+    "path": "Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+    "git_blob": "c442fc0f811f52ceded9432d9915ebc19fb366d6",
+    "display_url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+    "encoding": "utf-8",
+    "bytes": 2449,
+    "sha256": "5115e7dd961bf93633d02ab2252f1c53a4e1d20cacbc30e7da8da6892a256d49",
+    "transport": "authenticated GitHub fetch_file; exact immutable ref; full blob bytes independently rehashed"
+  }
+]

@@ -1,0 +1,145 @@
+{
+  "source": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+  "files": [
+    {
+      "bytes": 22867,
+      "sha256": "c206773d0a798a5ab3df9ee66f456ea82815b793b044aaa9b69211253ae02aaa",
+      "path": "Source/ChavrusaText/Reader/NativeStudySheetPresenter.swift"
+    },
+    {
+      "bytes": 16422,
+      "sha256": "96421e6063403149324d2b2f4309b5ddb2aaaefc25d7cd7612f2a91b50aafcf2",
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift"
+    },
+    {
+      "bytes": 23038,
+      "sha256": "4549047d28085a9c3b3a638bbcffd8eed6b21db779e838a6ad26379cccaef612",
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift"
+    },
+    {
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift"
+    },
+    {
+      "bytes": 19225,
+      "sha256": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift"
+    },
+    {
+      "bytes": 2785,
+      "sha256": "9ca7694119b4aa74aab2ba1b49c3bb98a190708e712631915b22d75098fcbc24",
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift"
+    },
+    {
+      "bytes": 16413,
+      "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a",
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift"
+    },
+    {
+      "bytes": 5165,
+      "sha256": "85e7cffcb6c0c25cf4ee085ec2bad3b3ae896e59985ebbdda9228f4076c6cc8e",
+      "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift"
+    },
+    {
+      "bytes": 5993,
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift"
+    },
+    {
+      "bytes": 1736,
+      "sha256": "cf7a6176a4e1ff9a36b2b87350265ba74aa140ffd932ded48659997c873aa7b4",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift"
+    },
+    {
+      "bytes": 7115,
+      "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift"
+    },
+    {
+      "bytes": 6531,
+      "sha256": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift"
+    },
+    {
+      "bytes": 10447,
+      "sha256": "d0a5edbf6f7bc1b79af45b01cd19a29c6c758ab7ab2e1ea785a82bf76495c423",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift"
+    },
+    {
+      "bytes": 20094,
+      "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift"
+    },
+    {
+      "bytes": 5503,
+      "sha256": "8dbcb1d117e84d977cc7610ad754bfd39c1ca3d1cc1b3cf5f073001a90dc85b5",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift"
+    },
+    {
+      "bytes": 5489,
+      "sha256": "a4203fdc1251a04a23e06cb74511dfafff83be76fbe1fd77a8a40f34aa5a582f",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift"
+    },
+    {
+      "bytes": 4983,
+      "sha256": "4da5aa29c60f499593a85ed6eeb5488f421f5b084252f8143d7c452aa9944421",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift"
+    },
+    {
+      "bytes": 11134,
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift"
+    },
+    {
+      "bytes": 4647,
+      "sha256": "706ef6ef6f0eeaf77e18518f310397a33f9c4a85feac94e19251b2b9cd34e4ca",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift"
+    },
+    {
+      "bytes": 4580,
+      "sha256": "cef617ef5bd54f470f6fd2f11b4cfd9827d5905491237dc29cdc8c29c5e7cb0b",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift"
+    },
+    {
+      "bytes": 206640,
+      "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "bytes": 36861,
+      "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    },
+    {
+      "bytes": 29317,
+      "sha256": "ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift"
+    },
+    {
+      "bytes": 2814,
+      "sha256": "906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift"
+    },
+    {
+      "bytes": 28857,
+      "sha256": "c2fc8cdce6bdff6b0ee197673f80246a4ffd9013ab0ea18609fa71df8b78441b",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift"
+    },
+    {
+      "bytes": 34750,
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "bytes": 12878,
+      "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
+      "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift"
+    },
+    {
+      "bytes": 3548,
+      "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779",
+      "path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift"
+    }
+  ]
+}

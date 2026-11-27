@@ -1,0 +1,86 @@
+{
+  "schema": "otzaria.wave3.audit-artifacts.v1",
+  "members": [
+    {
+      "path": "AUDIT_EXECUTION_BOUNDARY.json",
+      "bytes": 1316,
+      "sha256": "fc2393c6a94d05170971b25d52d5257209f315a289a8c56e17f37a297e191d53"
+    },
+    {
+      "path": "COMPONENT_RECONCILIATION.json",
+      "bytes": 669193,
+      "sha256": "092c37ddf6c10e2c03e6fe3702c222fd500ef7e7fa3adbee143b00fe7399f5f5"
+    },
+    {
+      "path": "CURRENT_SOURCE_OBJECTS.json",
+      "bytes": 64788,
+      "sha256": "e04a8589085fc3cc28b29e0cf039b3a787465921d8d42287bea0c74e900ad3e6"
+    },
+    {
+      "path": "CURRENT_TEST_INDEX.json",
+      "bytes": 68105,
+      "sha256": "024e8fec2e75ad9a7d7f9afb1b4e93ce1681b9acb03d946338da777ec15e92ae"
+    },
+    {
+      "path": "GITHUB_INPUT_VERIFICATION.json",
+      "bytes": 7380,
+      "sha256": "acab6b4fad899ae05e63b8cda9579b321f878f374972e264ab439614d850ddad"
+    },
+    {
+      "path": "ORIGINAL_REQUIREMENTS.json",
+      "bytes": 149722,
+      "sha256": "8ad3a2715af5737dcdbd5fdb6194fb4632f422767a37199960797aff63cc17ef"
+    },
+    {
+      "path": "QA51_MATRIX.json",
+      "bytes": 84395,
+      "sha256": "098ee9506791b1d25184ec25f05620258f8816278a92c164b3062dd88cf949ab"
+    },
+    {
+      "path": "README.md",
+      "bytes": 21282,
+      "sha256": "21a63e36f62cbc358d8792ff8265255ad669ef32815107aa4f4d45afa7da6361"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 1206,
+      "sha256": "6ee10736f62ad0e5cb809d50493b69fd7588c9ba951f5e462ceb595abdb8c272"
+    },
+    {
+      "path": "SOURCE_GAPS.json",
+      "bytes": 40190,
+      "sha256": "fcb3b2eb8bd6281e63c09a24518a9d5338f4e3fd45e16b6aa11af2dc1fbf3f07"
+    },
+    {
+      "path": "evidence/CURRENT_COMPOSITION_ANCHORS.json",
+      "bytes": 2220,
+      "sha256": "535feabcd9ddf3eaef26fc07723ea7eb5d5942067fea41c3851ddd135c4e1410"
+    },
+    {
+      "path": "evidence/FINALIZER_ATTEMPT1.json",
+      "bytes": 439,
+      "sha256": "616d0a4fa74659656ec3b6f0ab8c5d2a27edbb15cb6651f84e43c53cb787bcc1"
+    },
+    {
+      "path": "evidence/INITIAL_ADAPTER_SOURCE_INPUTS.json",
+      "bytes": 5985,
+      "sha256": "171c2596dfdfe4513261d3c90905cbc04ef8a387db30a0163fa4ccfffaa1fdcc"
+    },
+    {
+      "path": "evidence/INITIAL_ANCHOR_JOIN.json",
+      "bytes": 555841,
+      "sha256": "bc4888618dad618f56a7a46011519306ebe9c507c8912192d18d6b0f1c99f82d"
+    },
+    {
+      "path": "evidence/ROOT_JOIN_READER_ATTEMPT1.json",
+      "bytes": 1990,
+      "sha256": "3156132a184b0826e21ad888735b81ad8cc8425d8807dc7cd5d6bc77f757e332"
+    },
+    {
+      "path": "evidence/SOURCE_PATHS_FOR_GIT_JOIN.json",
+      "bytes": 56289,
+      "sha256": "13a690736a9222efcc3179d5adac0db53ae200f8859ed3bdca696ae950201f18"
+    }
+  ],
+  "scope": "Documentation/evidence only; SHA256 of every deliverable other than this manifest."
+}

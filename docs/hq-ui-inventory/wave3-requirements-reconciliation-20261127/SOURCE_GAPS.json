@@ -1,0 +1,823 @@
+{
+  "schema": "otzaria.wave3.current-ui-source-gaps.v1",
+  "source": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+  "test_source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "execution": "SOURCE_REVIEW_ONLY",
+  "gaps": [
+    {
+      "id": "UI-GAP-01",
+      "title": "Original Saved Results parent/folder/record reveal",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.bookmarks.list",
+        "inventory.v1.bookmarks.folder",
+        "inventory.v1.bookmarks.query"
+      ],
+      "qa": [
+        "Q-UI07-010"
+      ],
+      "source": [
+        {
+          "path": "Source/Features/Search/iOS/SearchModeView.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 12630,
+          "sha256": "f08cefc523a1abe8f41968bde03a6a6521f56e1c042a0f5917e7f4fb7d8ce50e",
+          "git_blob": "13b33e6864cdaf83710e819e58e0972fa72ff75b",
+          "anchor": "iOSSavedResultsView()",
+          "lines": [
+            60
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Search/iOS/SearchModeView.swift"
+        },
+        {
+          "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 12878,
+          "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
+          "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
+          "anchor": ".navigationDestination(for: FolderNode.self)",
+          "lines": [
+            59
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift"
+        },
+        {
+          "path": "Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 2449,
+          "sha256": "5115e7dd961bf93633d02ab2252f1c53a4e1d20cacbc30e7da8da6892a256d49",
+          "git_blob": "c442fc0f811f52ceded9432d9915ebc19fb366d6",
+          "anchor": "var resultById:",
+          "lines": [
+            24
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Features/Bookmarks/ViewModel/ResultsViewModel.swift"
+        }
+      ],
+      "current": "Original UI/store exist; current finite registry and typed History/Favorite service do not expose this sheet, folder or result.",
+      "remaining": "Finite retained original parent and reveal-only folder/record identities, source-owned publication/ABA proof and actual visible row acknowledgement.",
+      "ownership": "Proposed new downstream service/intents/binding; original SearchModeView and SavedResultsView setters/lifecycles plus original ResultsViewModel metadata require a narrow lease. Root owns registry/Composition/Session/PBX. No product writes in this packet.",
+      "prohibitions": [
+        "No replacement Saved Results UI or database",
+        "No public query/name payload",
+        "No implicit Save/Move/Rename/Delete/Import"
+      ],
+      "existing_tests": []
+    },
+    {
+      "id": "UI-GAP-02",
+      "title": "Reopen a History entry at its remembered position",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.history.open-entry"
+      ],
+      "qa": [
+        "Q-UI07-010"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 5489,
+          "sha256": "a4203fdc1251a04a23e06cb74511dfafff83be76fbe1fd77a8a40f34aa5a582f",
+          "git_blob": "5f90a3017d2cb369b22212ec47f61af9eaf5f571",
+          "anchor": "Reveal an existing reading-history card",
+          "lines": [
+            71
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 28857,
+          "sha256": "c2fc8cdce6bdff6b0ee197673f80246a4ffd9013ab0ea18609fa71df8b78441b",
+          "git_blob": "dd12aaf66c9e2e8a7300dfe00a499491dbeb4371",
+          "anchor": "root.reveal(value.source.card.book",
+          "lines": [
+            448
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift"
+        }
+      ],
+      "current": "Typed History and Favorite actions reveal the original card, preserving query/source. This is separate from opening the remembered Reader locator.",
+      "remaining": "Retain the actual qualified history entry and saved position, use the original Reader resolver/Core action, and require actual final Reader/TextKit acknowledgement.",
+      "ownership": "Future original History/store/Reader owner contract; not a change to the existing reveal receipt.",
+      "prohibitions": [
+        "No numeric-only identity",
+        "No new grant after effect",
+        "No card receipt relabelled as Reader success"
+      ],
+      "existing_tests": [
+        {
+          "name": "testHistoryRecordFromOriginalLibraryShowsExactOriginalCardAndReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+              "line": 7,
+              "file_sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift#L7"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testFilteredHistoryRecordFromLibraryPreservesOriginalQueryAndExactCard",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+              "line": 37,
+              "file_sha256": "b68a56f5550c33a82414081467cc29dd95f41a7b05f4a750aaadf40c1f82b6b8",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift#L37"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-03",
+      "title": "Profile/Group entry outside Viewer and legacy cold-token limitation",
+      "original_tasks": [
+        {
+          "id": "1220103384037482",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220103384037482"
+        },
+        {
+          "id": "1220084529541947",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220084529541947"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.workspace.profile-menu",
+        "inventory.v1.workspace.groups-overview"
+      ],
+      "qa": [
+        "Q-UI07-012",
+        "Q-UI07-014",
+        "Q-UI07-017"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 20094,
+          "sha256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8",
+          "git_blob": "fafa8c85b0c2634e2b9c407361979a4d74599f01",
+          "anchor": "bindings.selectedTab.wrappedValue == .viewer",
+          "lines": [
+            189
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 77004,
+          "sha256": "48e518d7b7ab39a6b9ee4cc2ab6093667d3e071d44a39799dc908cd233cd1ae4",
+          "git_blob": "79ec29212d736192fc40f81cf04f0e618d851ca9",
+          "anchor": "The legacy loadInitialContent path starts an unretained Task",
+          "lines": [
+            1213
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift"
+        }
+      ],
+      "current": "Typed selection is deliberately same-backend/current-Viewer and rejects an unqualified legacy deferred load token. ReaderTab has its own newly delivered parent continuation; that does not grant Profile/Group writes.",
+      "remaining": "Same-request original Viewer readiness plus one original authorized group/profile commit, retaining original staging/flush/rollback and final empty/Reader evidence. Legitimate legacy cold load requires an original qualified-token contract.",
+      "ownership": "UI-owned original group reservation/Adapter/Coordinator with root shared merge; no parallel edit from this audit.",
+      "prohibitions": [
+        "No silent backend switch",
+        "No asynchronous Store mutation from a render validator",
+        "No renewed grant/deadline",
+        "No fabricated legacy token"
+      ],
+      "existing_tests": [
+        {
+          "name": "testSystemTabGroupIntentReusesOriginalSavedReaders",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 15,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L15"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemStudyProfileIntentSelectsOriginalFirstGroup",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 48,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L48"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemTabGroupIntentShowsOriginalEmptyLibrary",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift",
+              "line": 43,
+              "file_sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeWorkspaceSelectionAcceptanceTests.swift#L43"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-04",
+      "title": "Production semantic Search loaded-hit / next-page entry",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        },
+        {
+          "id": "1220542420330496",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420330496"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.search.global"
+      ],
+      "qa": [
+        "Q-UI07-006",
+        "Q-UI07-007"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 11134,
+          "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+          "git_blob": "6bc73ee040ef10fa7f587d26e17eda3530997d7b",
+          "anchor": "native_search_hit_not_supported",
+          "lines": [
+            107
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 11134,
+          "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+          "git_blob": "6bc73ee040ef10fa7f587d26e17eda3530997d7b",
+          "anchor": "native_search_cursor_not_supported",
+          "lines": [
+            108
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift"
+        },
+        {
+          "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 5278,
+          "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+          "git_blob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+          "anchor": "native_search_mode_not_supported",
+          "lines": [
+            45
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift"
+        }
+      ],
+      "current": "Semantic Search supplies query/exact-phrase/sort/window and supported scope. It rejects hit/cursor presence. Real loaded-result/page continuation exists, but current native selectors enter it through a finite DEBUG probe.",
+      "remaining": "Finite public/backend-qualified source reference and typed production entry into the real existing continuation, with source lifetime and generic discovery isolation. Other modes/scopes must remain truthfully unavailable until implemented.",
+      "ownership": "ui_acceptance owns next DTO/schema/service/entity proposal; root owns shared actual registry/Composition/URL wiring.",
+      "prohibitions": [
+        "No raw query in public URL",
+        "No client authority/scene/session/offset",
+        "No unsupported mode silently converted",
+        "No synthetic loaded hit"
+      ],
+      "existing_tests": [
+        {
+          "name": "testOriginalSearchContinuationRevealsLoadedHitInEnglishAndHebrew",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 6,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L6"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneOriginalSearchContinuationCommitsOneActualNextPage",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 24,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L24"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testOriginalSearchContinuationActualVoiceOverTraversal",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+              "line": 15,
+              "file_sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift#L15"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-05",
+      "title": "Independent commentary/draft entry and precise Inspector selection",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        },
+        {
+          "id": "1220542467495722",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542467495722"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.inspector.related-source",
+        "inventory.v1.inspector.tool",
+        "inventory.v1.inspector.shared.commentary-group",
+        "inventory.v1.inspector.shared.note-item"
+      ],
+      "qa": [
+        "Q-UI07-005",
+        "Q-UI07-009",
+        "Q-UI07-038"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 21240,
+          "sha256": "3ff5c2d87135b4707b28d953331a34c0c686cc36a1f6e7a115299f2ead7db8cd",
+          "git_blob": "03ca99095495e14afd94fa511bc9de99bbc751c1",
+          "anchor": "switch (commentaryWorkIdentifier, proposedText)",
+          "lines": [
+            192
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 21240,
+          "sha256": "3ff5c2d87135b4707b28d953331a34c0c686cc36a1f6e7a115299f2ead7db8cd",
+          "git_blob": "03ca99095495e14afd94fa511bc9de99bbc751c1",
+          "anchor": "incomplete_intent_commentary_draft",
+          "lines": [
+            204
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 206640,
+          "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+          "git_blob": "355439675c67e0ad19bd9958f48060947edf41b6",
+          "anchor": "id(\"native.reader.inspector\")",
+          "lines": [
+            237
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        }
+      ],
+      "current": "Core commentary and unsaved draft actions plus combined commentary→draft system journey are implemented. The current Book intent accepts either neither extra or both; the Inspector native route registers the parent only.",
+      "remaining": "Independent meaningful commentary-only/draft selection where required, and exact original Inspector tool/commentary group/item owner for the requested selected component.",
+      "ownership": "New thin semantic wrappers may reuse original Core/Reader services; original TorahInspector owner hook needs explicit dependency/source lease. No copied Inspector.",
+      "prohibitions": [
+        "No content-link receipt relabelled as Inspector-row selection",
+        "No automatic save",
+        "No synthetic source/commentary identity"
+      ],
+      "existing_tests": [
+        {
+          "name": "testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2203,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2203"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 2589,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L2589"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 874,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L874"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-06",
+      "title": "Annotations/Notes exact record and editor-control focus",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542420331748",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.tab.annotations",
+        "inventory.v1.annotations.filter",
+        "inventory.v1.annotations.book",
+        "inventory.v1.notes.editor.body",
+        "inventory.v1.notes.editor.tags",
+        "inventory.v1.notes.editor.style"
+      ],
+      "qa": [
+        "Q-UI07-009",
+        "Q-UI07-010"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 206640,
+          "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+          "git_blob": "355439675c67e0ad19bd9958f48060947edf41b6",
+          "anchor": "id(\"native.annotations\")",
+          "lines": [
+            213
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 206640,
+          "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+          "git_blob": "355439675c67e0ad19bd9958f48060947edf41b6",
+          "anchor": "id(\"native.reader.noteDraft\")",
+          "lines": [
+            240
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        }
+      ],
+      "current": "Original annotations root and original unsaved draft exist; finite annotation-ID/filter/body/tags/style control variants are not in current descriptors.",
+      "remaining": "Source-owned selected-record/editor-control identity and original view acknowledgement. The original root navigation regression must also pass on final source.",
+      "ownership": "Separate original Annotation/NoteEditor owner adapter; root shared route integration; preserve original editor and save authority.",
+      "prohibitions": [
+        "No GET persistence",
+        "No second editor/store",
+        "No parent-only acknowledgement as selected-record completion"
+      ],
+      "existing_tests": [
+        {
+          "name": "testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 947,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L947"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+              "line": 1905,
+              "file_sha256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift#L1905"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-07",
+      "title": "Remaining original meaningful fine controls",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542479938540",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542479938540"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.library.category-expansion",
+        "inventory.v1.library.book-info-context",
+        "inventory.v1.reader.text-selection",
+        "inventory.v1.reader.toolbar.search",
+        "inventory.v1.reader.toolbar.view-options",
+        "inventory.v1.toc.query",
+        "inventory.v1.toc.node"
+      ],
+      "qa": [
+        "Q-UI07-001",
+        "Q-UI07-003",
+        "Q-UI07-004",
+        "Q-UI07-008",
+        "Q-UI07-013"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 7115,
+          "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f",
+          "git_blob": "194eb752d8dec120e38375ee5260793d8239d81b",
+          "anchor": "case contents =",
+          "lines": [
+            10
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 206640,
+          "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+          "git_blob": "355439675c67e0ad19bd9958f48060947edf41b6",
+          "anchor": "MaktabahNativeTOCComponents.descriptors",
+          "lines": [
+            198,
+            200
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        }
+      ],
+      "current": "Library has four finite anchors, TOC three, Settings fifteen and Workspace nine; original UI contains many additional meaningful controls. Source inventory presence does not make them supported typed destinations.",
+      "remaining": "Explicit per-owner routes/classification for category/selected work/book info, arbitrary TOC node/query/expansion, Reader text-range/slider/view options/in-book search and Authors/Narrators selections. Do not add missing settings pages that original requirement only asks for where existing.",
+      "ownership": "Separate original feature-owner scopes; no broad UI/Core rewrite or arbitrary path executor.",
+      "prohibitions": [
+        "No decorative action inflation",
+        "No unsourced claim that every inventory row needs an AppIntent",
+        "No replacing original UI"
+      ],
+      "existing_tests": [
+        {
+          "name": "testOriginalLibraryMenusSelectionSettingsAndBookInfoRemainUsable",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+              "line": 1875,
+              "file_sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift#L1875"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testSystemAppIntentCurrentTOCEntryFromHistoryPreservesReader",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+              "line": 49,
+              "file_sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift#L49"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testBookSearchRetainsControlsWithoutGlobalHistory",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift",
+              "line": 57,
+              "file_sha256": "b74b6846391df20795290da565f8b4ed76deaed187875ebd20add6a11c6a59ce",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/BookHistoryScopeAcceptanceTests.swift#L57"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    },
+    {
+      "id": "UI-GAP-08",
+      "title": "Embedded RN inner semantic component coverage",
+      "original_tasks": [
+        {
+          "id": "1220542361135050",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361135050"
+        },
+        {
+          "id": "1220542361203468",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468"
+        },
+        {
+          "id": "1220542479938540",
+          "url": "https://app.asana.com/1/1219597879016953/task/1220542479938540"
+        }
+      ],
+      "inventory_ids": [
+        "inventory.v1.embedded.surface-host",
+        "inventory.v1.embedded.rn-root"
+      ],
+      "qa": [
+        "Q-UI07-020",
+        "Q-UI07-038"
+      ],
+      "source": [
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 206640,
+          "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+          "git_blob": "355439675c67e0ad19bd9958f48060947edf41b6",
+          "anchor": "MaktabahNativeSefariaSurfaceBinding.destination",
+          "lines": [
+            233,
+            781,
+            790,
+            1006,
+            1011
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+        },
+        {
+          "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+          "ref": "c443964ddeaa4716dc5f4c04fa374b0072914e83",
+          "bytes": 2814,
+          "sha256": "906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389",
+          "git_blob": "1eff6752763cea02abba6d8ea1d1634d91cafb2f",
+          "anchor": "SefariaEmbeddedNativeSurfaceHost",
+          "lines": [
+            46
+          ],
+          "url": "https://github.com/davidpovarsky/Maktabah/blob/c443964ddeaa4716dc5f4c04fa374b0072914e83/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift"
+        }
+      ],
+      "current": "Original RN root has real visible host/bridge/epoch/ready plus independent UIKit witness; it is a parent-only contract.",
+      "remaining": "Explicit supported/unavailable/not-appropriate classifications and finite original targets for meaningful inner RN states; 45 source rows are not 45 qualified journeys.",
+      "ownership": "Existing pinned original Sefaria surface/bridge owners and root native registry; retain upstream pin.",
+      "prohibitions": [
+        "No headless echo as visible receipt",
+        "No all45 accepted from root mount",
+        "No automatic public account/destructive/private actions"
+      ],
+      "existing_tests": [
+        {
+          "name": "testSystemSefariaOriginalSurfaceColdAndWarmPreserveWorkspace",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+              "line": 9,
+              "file_sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift#L9"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        },
+        {
+          "name": "testPhoneSystemSefariaOriginalSurfaceColdAndBackgroundWarmPreserveWorkspace",
+          "declaration_locations": [
+            {
+              "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+              "line": 163,
+              "file_sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687",
+              "ref": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+              "url": "https://github.com/davidpovarsky/Maktabah/blob/24cd9291dbc87d799c22a41f0bc73a82c6415bfa/Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift#L163"
+            }
+          ],
+          "execution": "NOT_RUN_BY_THIS_AUDIT",
+          "boundary": "Source declaration, not selected or executed suite membership"
+        }
+      ]
+    }
+  ]
+}

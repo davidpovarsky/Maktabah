@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_00ff9ddbbab5\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"warning\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"failed\",\"exit_code\":1,\"created_at\":1795790214.7016923,\"started_at\":\"2026-11-27T14:36:54.787227+00:00\",\"finished_at\":\"2026-11-27T14:36:57.586926+00:00\",\"duration_s\":2.8,\"error\":null,\"output_truncated\":false,\"timeout_s\":50,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"Traceback (most recent call last):\\n  File \\\"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_b1c588084eee4a038bd1dcd74a5f306f/script.py\\\", line 7, in <module>\\n    path=row['object_path'];raw=g('show',c+':'+path);prior=g('show',old+':'+path)\\n         ~~~^^^^^^^^^^^^^^^\\nKeyError: 'object_path'\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_00ff9ddbbab5",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795790214.7016923,
+      "started_at": "2026-11-27T14:36:54.787227+00:00",
+      "finished_at": "2026-11-27T14:36:57.586926+00:00",
+      "duration_s": 2.8,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 50,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_b1c588084eee4a038bd1dcd74a5f306f/script.py\", line 7, in <module>\n    path=row['object_path'];raw=g('show',c+':'+path);prior=g('show',old+':'+path)\n         ~~~^^^^^^^^^^^^^^^\nKeyError: 'object_path'"
+    }
+  },
+  "isError": false
+}
