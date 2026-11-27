@@ -11,15 +11,28 @@ extension UIDestinationRegistry {
               (1...4).contains(policy.rules.count), Set(policy.rules.map(\.presentation)).count == policy.rules.count else {
             throw UIRouteError(.failed, "invalid_public_policy")
         }
+        if let kind = policy.searchReferenceKind {
+            guard descriptor.id == kind.destination, descriptor.requiredCoreActions.isEmpty,
+                  !descriptor.requiresContent, !descriptor.allowsPrivateState, descriptor.anchors.isEmpty,
+                  descriptor.presentations == [.currentTab], policy.rules.count == 1,
+                  policy.rules[0].presentation == .currentTab, !policy.rules[0].allowsRoot,
+                  policy.rules[0].components.isEmpty else {
+                throw UIRouteError(.failed, "invalid_public_policy")
+            }
+        }
         for rule in policy.rules {
             guard descriptor.presentations.contains(rule.presentation.nativeKind), rule.components.count <= 16,
-                  rule.allowsRoot || !rule.components.isEmpty, Set(rule.components).count == rule.components.count,
+                  rule.allowsRoot || !rule.components.isEmpty || policy.searchReferenceKind != nil,
+                  Set(rule.components).count == rule.components.count,
                   Set(rule.components).isSubset(of: Set(descriptor.anchors)) else { throw UIRouteError(.failed, "invalid_public_policy") }
         }
     }
 
     static func publicVariantsV2(_ descriptor: UIDestinationDescriptor) -> [UIPublicNavigationVariantV2] {
-        (descriptor.publicNavigationV2?.rules ?? []).flatMap { rule in
+        // A reference-required operation is not an unresolved root. Only its
+        // typed live catalog may advertise an actual selectable target.
+        guard descriptor.publicNavigationV2?.searchReferenceKind == nil else { return [] }
+        return (descriptor.publicNavigationV2?.rules ?? []).flatMap { rule in
             var components: [UIDestinationID?] = rule.components.map(Optional.some)
             if rule.allowsRoot { components.insert(nil, at: 0) }
             return components.map { UIPublicNavigationVariantV2(destination: descriptor.id, presentation: rule.presentation, component: $0, requiresContent: descriptor.requiresContent) }
@@ -29,16 +42,36 @@ extension UIDestinationRegistry {
     func validatePublicNavigationV2(_ intent: PublicNavigationSpecV2) throws -> PublicNavigationSpecV2 {
         guard let descriptor = descriptor(for: intent.destination), descriptor.implementation == .implemented,
               let policy = descriptor.publicNavigationV2,
-              let rule = policy.rules.first(where: { $0.presentation == intent.presentation }),
-              intent.component.map({ rule.components.contains($0) }) ?? rule.allowsRoot else {
+              let rule = policy.rules.first(where: { $0.presentation == intent.presentation }) else {
             throw UIRouteError(.notSupported, "public_variant_not_supported")
+        }
+        if let kind = policy.searchReferenceKind {
+            guard descriptor.id == kind.destination, let backend = intent.backend,
+                  intent.presentation == .currentTab, intent.content == nil, intent.component == nil,
+                  let reference = intent.searchReference, reference.utf8.count == 36,
+                  let parsed = UUID(uuidString: reference), parsed.uuidString.lowercased() == reference else {
+                throw UIRouteError(.failed, "invalid_public_search_reference")
+            }
+            guard descriptor.supportedBackends.contains(backend) else {
+                throw UIRouteError(.notSupported, "backend_variant_not_supported")
+            }
+            // A finite metadata reference is not a private RouteSpec. Its
+            // dedicated source-bound executor must still resolve it and obtain
+            // the original Core operation authority. No generic plan exists.
+            return intent
+        } else {
+            guard intent.searchReference == nil else { throw UIRouteError(.failed, "invalid_public_route") }
+            guard intent.component.map({ rule.components.contains($0) }) ?? rule.allowsRoot else {
+                throw UIRouteError(.notSupported, "public_variant_not_supported")
+            }
         }
         let localShape = RouteSpec(destination: intent.destination, backend: intent.backend, content: intent.content,
             presentation: .init(kind: intent.presentation.nativeKind),
             focus: intent.component.map { .init(kind: .component, anchor: $0) })
         let normalized = try validate(localShape)
         return .init(version: intent.version, destination: intent.destination, backend: normalized.route.backend,
-            content: intent.content, presentation: intent.presentation, component: intent.component)
+            content: intent.content, presentation: intent.presentation, component: intent.component,
+            searchReference: intent.searchReference)
     }
 
     private func requirePublicAssessment(_ assessment: UIRouteEligibility, scene: UISceneSnapshot) throws {
@@ -77,6 +110,12 @@ extension UIDestinationRegistry {
                              context: ActionExecutionContext, invocation: ActionPortInvocation, core: ActionExecutor,
                              host: any UIPublicNavigationBindingPort, clock: any ActionClock = SystemActionClock()) async throws -> UIPublicNavigationPlanV2 {
         let normalized = try UIRouteCodec.decodePublicV2(UIRouteCodec.encodePublicV2(intent, registry: self), registry: self)
+        // Search continuation has its own original Core operation/receipt. A
+        // generic content-free surface plan would erase the selected target.
+        // Refuse before observing a local binding or preparing any authority.
+        guard normalized.searchReference == nil else {
+            throw UIRouteError(.notSupported, "typed_search_continuation_required")
+        }
         guard invocation.snapshot == scene.backendSnapshot else { throw UIRouteError(.staleState, "backend_generation_changed") }
         let backend = normalized.backend ?? scene.backendSnapshot.backend
         guard backend == scene.backendSnapshot.backend else { throw UIRouteError(.requiresBackendSwitch, "backend_selection_required") }

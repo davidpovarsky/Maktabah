@@ -22,11 +22,29 @@ public struct PublicNavigationSpecV2: Codable, Sendable, Equatable {
     public let content: ActionReaderDestination?
     public let presentation: Presentation
     public let component: UIDestinationID?
+    /// Untrusted reference to one live Search metadata entry. This is never a
+    /// Core/source token, a query, a cursor, a local scene ID or an authority.
+    /// Only the two explicitly registered reference-required variants accept it.
+    public let searchReference: String?
     public init(version: Int = 2, destination: UIDestinationID, backend: ActionBackendID? = nil,
                 content: ActionReaderDestination? = nil, presentation: Presentation = .currentTab,
-                component: UIDestinationID? = nil) {
+                component: UIDestinationID? = nil, searchReference: String? = nil) {
         self.version = version; self.destination = destination; self.backend = backend
         self.content = content; self.presentation = presentation; self.component = component
+        self.searchReference = searchReference
+    }
+}
+
+/// Finite trusted registration metadata, not a field selected by a public
+/// payload. The destination determines the operation; the opaque reference
+/// must still resolve against the original live source before any authority.
+public enum UIPublicSearchReferenceKindV2: String, Codable, Sendable, CaseIterable, Hashable {
+    case result, nextPage
+    public var destination: UIDestinationID {
+        switch self {
+        case .result: UIDestinationID(rawValue: "native.search.result")!
+        case .nextPage: UIDestinationID(rawValue: "native.search.nextPage")!
+        }
     }
 }
 
@@ -42,7 +60,10 @@ public struct UIPublicNavigationPolicyV2: Codable, Sendable, Equatable {
         }
     }
     public let rules: [Rule]
-    public init(rules: [Rule]) { self.rules = rules }
+    public let searchReferenceKind: UIPublicSearchReferenceKindV2?
+    public init(rules: [Rule], searchReferenceKind: UIPublicSearchReferenceKindV2? = nil) {
+        self.rules = rules; self.searchReferenceKind = searchReferenceKind
+    }
 }
 
 /// Live discovery result for ONE host-verified static variant, not a grant.
