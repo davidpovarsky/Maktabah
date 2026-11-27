@@ -436,6 +436,17 @@ struct AnnotationExchangeAcceptanceMain {
             if results.contains(where: { $0.status != "PASS" }) { throw CheckFailure("linked component case failure") }
             return
         }
+        if mode == "linked-consent-only" {
+            let acceptance = await Acceptance(root: root)
+            await acceptance.linkedConsentCases()
+            let results = await acceptance.results
+            try JSONEncoder().encode(results).write(to: root.appendingPathComponent("CASES.json"))
+            acceptancePrint("CONSENT CASES \(results.count) PASS \(results.filter { $0.status == "PASS" }.count)")
+            if results.count != 7 || results.contains(where: { $0.status != "PASS" }) {
+                throw CheckFailure("linked consent component case failure")
+            }
+            return
+        }
         if mode == "crash-after-commit" || mode == "crash-before-outer-commit" {
             let phase = mode == "crash-after-commit" ? "after" : "before"
             let f = try Fixture(root: root, name: "crash-\(phase)")
@@ -736,6 +747,216 @@ extension Acceptance {
                 try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reconciliations WHERE attempt_id=? AND dispatch_sequence=2 AND state='verified' AND native_root_sha256=?;", [b.uuidString, rootB]) == 1, "reviewed result was not retained independently")
                 try reopened.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: a, nativeRootSHA256: rootA, nativeResponseSHA256: origin.nativeResponseSHA256)
             }
+        }
+    }
+}
+
+// The consent read is retained across a second REAL SQLite connection. Test
+// origins remain explicit component data; no SDK receipt or native UI is faked.
+private struct CapturedNativeConsent {
+    let namespace: String
+    let annotationUUID: UUID
+    let links: [AnnotationExchangeNativeLink]
+}
+
+private func captureNativeConsent(_ f: Fixture) throws -> CapturedNativeConsent {
+    var observed: CapturedNativeConsent?
+    try f.db.transaction {
+        observed = .init(namespace: namespace, annotationUUID: f.uuid,
+            links: try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid, activeOnly: false))
+    }
+    guard let observed else { throw CheckFailure("missing original consent read") }
+    return observed
+}
+
+private func consentAwareLocalCommit(_ f: Fixture, captured: CapturedNativeConsent,
+                                    origin: AnnotationExchangeNativeReadOrigin, enableLink: Bool,
+                                    revision: Int64) throws -> AnnotationExchangeVersion {
+    // Baseline API has no place for the retained observation. The candidate
+    // adapter must pass THIS value, never recapture it at Save time.
+    _ = captured
+    var committed: AnnotationExchangeVersion?
+    try f.db.transaction {
+        try f.db.execute(query: "UPDATE annotations SET note='received consent-control body';")
+        try f.queue.addPendingSync(ckRecordId: f.uuid.uuidString, operation: "upload")
+        committed = try localLinkedCommit(f, origin: origin, enableLink: enableLink, revision: revision)
+    }
+    guard let committed else { throw CheckFailure("missing actual received commitment") }
+    return committed
+}
+
+private func attachOriginAtExistingVersion(_ f: Fixture, origin: AnnotationExchangeNativeReadOrigin,
+                                          version: AnnotationExchangeVersion) throws {
+    // Exercise the actual ledger boundary at an existing unreceived local
+    // version. This deliberately keeps annotation revision unchanged while
+    // consent changes; it is NOT a claim of a native/UI relink journey.
+    try f.db.transaction {
+        try f.ledger.acceptNativeOrigin(origin, version: version, enableLink: true)
+    }
+}
+
+private func explicitlyUnlinkObservedCopy(_ f: Fixture, link: AnnotationExchangeNativeLink,
+                                         captured: CapturedNativeConsent) throws -> CapturedNativeConsent {
+    _ = captured
+    var result: CapturedNativeConsent?
+    try f.db.transaction {
+        try f.ledger.unlinkNativeCopy(link)
+        result = try captureNativeConsent(f)
+    }
+    guard let result else { throw CheckFailure("missing explicit unlink observation") }
+    return result
+}
+
+/// All original and exchange table bytes, including schema and row types. This
+/// uses the actual SQLite connection; it does not infer rollback from a counter.
+private func consentDatabaseImage(_ f: Fixture) throws -> Data {
+    let tables = try f.db.fetch(query: """
+        SELECT name, sql FROM sqlite_master
+        WHERE type='table' AND (name IN ('annotations','sync_pending') OR name LIKE 'otzaria_annotation_exchange_%')
+        ORDER BY name;
+        """) { ($0.string(at: 0) ?? "", $0.string(at: 1) ?? "") }
+    var image: [[String: Any]] = []
+    for (name, sql) in tables {
+        var statement: OpaquePointer?
+        let query = "SELECT * FROM \"" + name.replacingOccurrences(of: "\"", with: "\"\"") + "\";"
+        guard sqlite3_prepare_v2(f.db.dbPointer, query, -1, &statement, nil) == SQLITE_OK,
+              let statement else { throw CheckFailure("cannot read original SQLite table") }
+        defer { sqlite3_finalize(statement) }
+        var rows: [String] = []
+        var status = sqlite3_step(statement)
+        while status == SQLITE_ROW {
+            var values: [[String: Any]] = []
+            for index in 0..<sqlite3_column_count(statement) {
+                let type = sqlite3_column_type(statement, index)
+                let count = Int(sqlite3_column_bytes(statement, index))
+                let bytes = sqlite3_column_blob(statement, index).map { Data(bytes: $0, count: count) } ?? Data()
+                values.append(["type": Int(type), "bytesBase64": bytes.base64EncodedString()])
+            }
+            let bytes = try JSONSerialization.data(withJSONObject: values, options: [.sortedKeys])
+            guard let encoded = String(data: bytes, encoding: .utf8) else { throw CheckFailure("invalid evidence encoding") }
+            rows.append(encoded)
+            status = sqlite3_step(statement)
+        }
+        guard status == SQLITE_DONE else { throw CheckFailure("incomplete original SQLite table read") }
+        image.append(["table": name, "sql": sql, "rows": rows.sorted()])
+    }
+    return try JSONSerialization.data(withJSONObject: image, options: [.sortedKeys])
+}
+
+private func requireRejectedConsentSave(_ f: Fixture, captured: CapturedNativeConsent,
+                                       origin: AnnotationExchangeNativeReadOrigin, revision: Int64,
+                                       evidenceRoot: URL, name: String) throws {
+    let before = try consentDatabaseImage(f)
+    var rejectedStale = false
+    var outcome = "COMMITTED"
+    do { _ = try consentAwareLocalCommit(f, captured: captured, origin: origin, enableLink: true, revision: revision) }
+    catch AnnotationExchangeError.staleRevision { rejectedStale = true; outcome = "REJECTED_STALE_REVISION" }
+    catch { outcome = "OTHER_ERROR: \(error)" }
+    let after = try consentDatabaseImage(f)
+    try before.write(to: evidenceRoot.appendingPathComponent(name + "-before.json"))
+    try after.write(to: evidenceRoot.appendingPathComponent(name + "-after.json"))
+    let record: [String: Any] = [
+        "name": name, "outcome": outcome, "expected": "REJECTED_STALE_REVISION",
+        "capturedLinkIDs": captured.links.map { $0.id.uuidString },
+        "capturedActiveIDs": captured.links.filter(\.active).map { $0.id.uuidString },
+        "observedRevisionBeforeSave": revision,
+        "actualRevisionAfterSave": try f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid),
+        "beforeSHA256": try AcceptanceDigest().sha256(before),
+        "afterSHA256": try AcceptanceDigest().sha256(after),
+        "allTableBytesUnchanged": before == after,
+        "actualSQLite": true, "nativeUI": false, "nativeReceipt": false
+    ]
+    try JSONSerialization.data(withJSONObject: record, options: [.prettyPrinted, .sortedKeys])
+        .write(to: evidenceRoot.appendingPathComponent(name + "-observed.json"))
+    try require(rejectedStale, "stale consent was not rejected: \(outcome)")
+    try require(before == after, "rejected consent changed original body, queue, version, origin, link or history")
+}
+
+extension Acceptance {
+    func linkedConsentCases() {
+        test("retained_link_cannot_resurrect_after_other_connection_unlinks") {
+            let name = "consent-unlink", f = try Fixture(root: root, name: name), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let captured = try captureNativeConsent(f)
+            let peer = try Fixture(root: root, name: name, create: false)
+            try peer.ledger.unlinkNativeCopy(captured.links[0])
+            try require(f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid) == 1, "unlink altered annotation revision")
+            try requireRejectedConsentSave(f, captured: captured, origin: origin, revision: 1, evidenceRoot: root, name: name)
+        }
+        test("retained_link_cannot_adopt_same_scope_relink_at_same_annotation_revision") {
+            let name = "consent-relink", f = try Fixture(root: root, name: name), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let availableVersion = try localLinkedCommit(f, revision: 1)
+            let captured = try captureNativeConsent(f)
+            let peer = try Fixture(root: root, name: name, create: false)
+            try peer.ledger.unlinkNativeCopy(captured.links[0])
+            try attachOriginAtExistingVersion(peer, origin: linkedOrigin(root: String(repeating: "c", count: 64)), version: availableVersion)
+            let replacement = try peer.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)
+            try require(replacement.count == 1 && replacement[0].id != captured.links[0].id, "relink did not create an independent actual identity")
+            try require(f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid) == 2, "consent ABA changed annotation revision")
+            try requireRejectedConsentSave(f, captured: captured, origin: origin, revision: 2, evidenceRoot: root, name: name)
+        }
+        test("retained_absence_cannot_enable_after_other_connection_link_then_unlink") {
+            let name = "consent-absence-aba", f = try Fixture(root: root, name: name), origin = try linkedOrigin()
+            let availableVersion = try localLinkedCommit(f, revision: 0)
+            let captured = try captureNativeConsent(f)
+            try require(captured.links.isEmpty, "fixture already had consent")
+            let peer = try Fixture(root: root, name: name, create: false)
+            try attachOriginAtExistingVersion(peer, origin: origin, version: availableVersion)
+            let added = try peer.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            try peer.ledger.unlinkNativeCopy(added)
+            try require(peer.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid).isEmpty, "visible absence did not return")
+            try require(f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid) == 1, "absence ABA changed annotation revision")
+            try requireRejectedConsentSave(f, captured: captured, origin: origin, revision: 1, evidenceRoot: root, name: name)
+        }
+        test("new_explicit_opt_in_after_observed_unlink_creates_new_identity") {
+            let f = try Fixture(root: root, name: "consent-fresh-opt-in"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let old = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            try f.ledger.unlinkNativeCopy(old)
+            let fresh = try captureNativeConsent(f)
+            _ = try consentAwareLocalCommit(f, captured: fresh, origin: origin, enableLink: true, revision: 1)
+            let history = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid, activeOnly: false)
+            try require(history.count == 2 && history.filter(\.active).count == 1, "fresh explicit consent was lost")
+            try require(history.first(where: { $0.id == old.id })?.active == false && history.first(where: \.active)?.id != old.id, "revoked identity was revived")
+        }
+        test("same_dialog_explicit_unlink_returns_exact_post_transaction_consent_for_receive_only") {
+            let f = try Fixture(root: root, name: "consent-own-unlink"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            let captured = try captureNativeConsent(f), link = captured.links[0]
+            let afterOwnUnlink = try explicitlyUnlinkObservedCopy(f, link: link, captured: captured)
+            try require(afterOwnUnlink.links.count == 1 && afterOwnUnlink.links[0].id == link.id && !afterOwnUnlink.links[0].active, "explicit unlink did not return its exact observed history")
+            let saved = try consentAwareLocalCommit(f, captured: afterOwnUnlink, origin: origin, enableLink: false, revision: 1)
+            try require(saved.revision == 2 && f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid).isEmpty, "receive-only revived consent")
+            try require(f.ledger.pending(for: origin.destination).isEmpty, "receive-only emitted transport")
+        }
+        test("committed_receive_replay_after_unlink_remains_historical_without_relink") {
+            let f = try Fixture(root: root, name: "consent-replay"), origin = try linkedOrigin(), mutation = UUID()
+            let saved = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0, mutation: mutation)
+            let old = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            try f.ledger.unlinkNativeCopy(old)
+            let before = try consentDatabaseImage(f)
+            try f.ledger.requireNativeOriginReplay(mutationID: mutation, origin: origin, enableLink: true)
+            let replay = try f.ledger.commitLocal(mutationID: mutation, payload: saved.payload,
+                expectedSource: f.witness(), expectedRevision: 0)
+            try require(replay.replayed && replay.revision == saved.revision, "durable receipt was hidden after unlink")
+            try require(before == consentDatabaseImage(f), "historical receipt replay renewed consent or changed data")
+        }
+        test("transport_root_and_dispatch_progress_do_not_replace_consent_identity") {
+            let f = try Fixture(root: root, name: "consent-transport-progress"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let captured = try captureNativeConsent(f), link = captured.links[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0], attempt = UUID()
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: attempt,
+                observedRootSHA256: origin.nativeRootSHA256, now: 100) }
+            try f.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: attempt,
+                nativeRootSHA256: String(repeating: "c", count: 64), nativeResponseSHA256: origin.nativeResponseSHA256)
+            let actual = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            try require(actual.id == link.id && actual.nativeRootSHA256 != link.nativeRootSHA256, "transport precondition not exercised")
+            let received = try consentAwareLocalCommit(f, captured: captured,
+                origin: linkedOrigin(root: String(repeating: "d", count: 64)), enableLink: true, revision: 2)
+            try require(received.revision == 3, "ordinary transport progress was mistaken for new consent")
         }
     }
 }
