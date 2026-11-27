@@ -1,0 +1,237 @@
+{
+  "files": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "before": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "after": "a9c5f18796ad4d5e59ed6f363d47e06aa4601771438066caf94794ef5ec7525c",
+      "original_bytes": 24610,
+      "candidate_bytes": 28404
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+      "after": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df",
+      "original_bytes": 14696,
+      "candidate_bytes": 15826
+    }
+  ],
+  "edits": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "    var nativeSurface: (@MainActor () -> AnyView)? = nil\n",
+      "new": "    var nativeSurface: (@MainActor () -> AnyView)? = nil\n    // Optional same-scene original List ownership; other presenters keep nil.\n    var nativeControls: MaktabahNativeAnnotationEditorControls.Attachment? = nil\n    @State private var nativeEditorViewID = UUID()\n    @FocusState private var nativeTagsFocused: Bool\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "iOSAutoDirectionTextView(text: $noteText, onCreated:",
+      "new": "iOSAutoDirectionTextView(text: nativeEditorBinding($noteText), onCreated:",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "                        .frame(minHeight: 80)\n                        .disabled(!allowsPlainEditing)",
+      "new": "                        .frame(minHeight: 80)\n                        .disabled(!allowsPlainEditing)\n                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,\n                            viewID: nativeEditorViewID, anchor: .body, bodyTextView: { editorTextView }))",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "Toggle(\"Underline\", isOn: $isUnderline)",
+      "new": "Toggle(\"Underline\", isOn: nativeEditorBinding($isUnderline))\n                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,\n                            viewID: nativeEditorViewID, anchor: .style))",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "TextField(\"tag1, tag2...\", text: $tagsText)",
+      "new": "TextField(\"tag1, tag2...\", text: nativeEditorBinding($tagsText))\n                        .modifier(MaktabahNativeAnnotationEditorTagsFocus(enabled: nativeControls != nil,\n                            focused: $nativeTagsFocused))\n                        .modifier(MaktabahNativeAnnotationEditorControl(attachment: nativeControls,\n                            viewID: nativeEditorViewID, anchor: .tags))",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "            .background { nativeSurface?() }\n",
+      "new": "            .background { nativeSurface?() }\n            .modifier(MaktabahNativeAnnotationEditorForm(attachment: nativeControls,\n                viewID: nativeEditorViewID, snapshot: {\n                    .init(annotation: annotation, note: noteText, nativeNote: editorTextView?.text,\n                        tags: tagsText, color: selectedColorHex, underline: isUnderline,\n                        initialized: hasInitialized, allowsPlainEditing: allowsPlainEditing,\n                        blocked: nativeEditorIsBlocked)\n                }, bodyTextView: { editorTextView }, focusTags: { nativeTagsFocused = true }))\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "}, availability: $originalEditorAvailability, present: { originalEditorModal = $0 })",
+      "new": "}, availability: nativeEditorBinding($originalEditorAvailability), present: { nativeEditorStateWillChange(); originalEditorModal = $0 })",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": ".fullScreenCover(item: $originalEditorModal, onDismiss:",
+      "new": ".fullScreenCover(item: nativeEditorBinding($originalEditorModal), onDismiss:",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                                selectedColorHex = (underlineColor == .label) ? \"#000000\" : underlineColor.hexString()\n",
+      "new": "\n                                nativeEditorStateWillChange()\n                                selectedColorHex = (underlineColor == .label) ? \"#000000\" : underlineColor.hexString()\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                                selectedColorHex = highlightColor.hexString()\n",
+      "new": "\n                                nativeEditorStateWillChange()\n                                selectedColorHex = highlightColor.hexString()\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                                            selectedColorHex = \"#000000\"\n",
+      "new": "\n                                            nativeEditorStateWillChange()\n                                            selectedColorHex = \"#000000\"\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                                            selectedColorHex = color.hexString()\n",
+      "new": "\n                                            nativeEditorStateWillChange()\n                                            selectedColorHex = color.hexString()\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                        annotation = saved\n",
+      "new": "\n                        nativeEditorStateWillChange()\n                        annotation = saved\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                        noteText = saved.note ?? \"\"\n",
+      "new": "\n                        nativeEditorStateWillChange()\n                        noteText = saved.note ?? \"\"\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                        editorTextView?.text = noteText\n",
+      "new": "\n                        nativeEditorStateWillChange()\n                        editorTextView?.text = noteText\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                hasInitialized = true\n",
+      "new": "\n                nativeEditorStateWillChange()\n                hasInitialized = true\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                noteText = annotation.note ?? \"\"\n",
+      "new": "\n                nativeEditorStateWillChange()\n                noteText = annotation.note ?? \"\"\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                isUnderline = annotation.type == .underline\n",
+      "new": "\n                nativeEditorStateWillChange()\n                isUnderline = annotation.type == .underline\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                selectedColorHex = annotation.colorHex\n",
+      "new": "\n                nativeEditorStateWillChange()\n                selectedColorHex = annotation.colorHex\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                    selectedColorHex = \"#000000\"\n",
+      "new": "\n                    nativeEditorStateWillChange()\n                    selectedColorHex = \"#000000\"\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n                tagsText = annotation.tags.joined(separator: \", \")\n",
+      "new": "\n                nativeEditorStateWillChange()\n                tagsText = annotation.tags.joined(separator: \", \")\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "dismiss()",
+      "new": "nativeEditorStateWillChange(); dismiss()",
+      "occurrences": 7
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "                            OtzariaMiniAppsCoordinator.shared.shareRetainedFiles(\n",
+      "new": "                            nativeEditorStateWillChange()\n                            OtzariaMiniAppsCoordinator.shared.shareRetainedFiles(\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "                        OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,\n",
+      "new": "                        nativeEditorStateWillChange()\n                        OtzariaMiniAppsCoordinator.shared.showEditor(annotation: annotation,\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "            .onDisappear {\n                OtzariaMiniAppsCoordinator.shared.unregisterEditor",
+      "new": "            .onDisappear {\n                nativeEditorStateWillChange()\n                OtzariaMiniAppsCoordinator.shared.unregisterEditor",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "    private func saveAnnotation() {\n",
+      "new": "    private func saveAnnotation() {\n        nativeEditorStateWillChange()\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "    private func deleteAnnotation(_ id: Int64) {\n",
+      "new": "    private func deleteAnnotation(_ id: Int64) {\n        nativeEditorStateWillChange()\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "                        if let id = annotation.id {\n                            try? onDelete(id)",
+      "new": "                        if let id = annotation.id {\n                            nativeEditorStateWillChange()\n                            try? onDelete(id)",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "set: { if !$0 { operationErrorMessage = nil } }",
+      "new": "set: { if !$0 { nativeEditorStateWillChange(); operationErrorMessage = nil } }",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "Button(\"OK\", role: .cancel) { operationErrorMessage = nil }",
+      "new": "Button(\"OK\", role: .cancel) { nativeEditorStateWillChange(); operationErrorMessage = nil }",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n            operationErrorMessage = String(localized: \"Use the expanded editor to change this formatted note.\",\n",
+      "new": "\n            nativeEditorStateWillChange()\n            operationErrorMessage = String(localized: \"Use the expanded editor to change this formatted note.\",\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "\n            operationErrorMessage = error.localizedDescription\n",
+      "new": "\n            nativeEditorStateWillChange()\n            operationErrorMessage = error.localizedDescription\n",
+      "occurrences": 2
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "old": "    private func saveAnnotation() {\n",
+      "new": "    private var nativeEditorIsBlocked: Bool {\n        #if os(iOS) && canImport(AnytypeOriginalEditor)\n        operationErrorMessage != nil || originalEditorModal != nil\n        #else\n        operationErrorMessage != nil\n        #endif\n    }\n    private func nativeEditorStateWillChange() {\n        nativeControls?.controls.originalStateWillChange(viewID: nativeEditorViewID)\n    }\n    private func nativeEditorBinding<Value>(_ original: Binding<Value>) -> Binding<Value> {\n        guard nativeControls != nil else { return original }\n        return Binding(get: { original.wrappedValue }, set: {\n            nativeEditorStateWillChange()\n            original.wrappedValue = $0\n        })\n    }\n\n    private func saveAnnotation() {\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "old": "            editingAnnotation: nativeModalBinding($editingAnnotation),\n            viewModel: viewModel\n",
+      "new": "            editingAnnotation: nativeModalBinding($editingAnnotation),\n            viewModel: viewModel,\n            nativeControls: nativeRoutingSession?.annotationEditorControls,\n            nativeListOwner: nativeRoutingOwner,\n            nativeParentAvailable: {\n                !isExporting && !isImporting && !showOverwriteDialog && !showImportAlert && !showMissingBookAlert\n            }, nativeSurface: nativeRoutingSession.map { session in\n                { AnyView(MaktabahNativeRoutingWitness(kind: .annotationEditor)\n                    .environment(\\.maktabahNativeRoutingSession, session)) }\n            }\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "old": "        editingAnnotation: Binding<Annotation?>,\n        viewModel: AnnotationViewModel\n",
+      "new": "        editingAnnotation: Binding<Annotation?>,\n        viewModel: AnnotationViewModel,\n        nativeControls: MaktabahNativeAnnotationEditorControls? = nil,\n        nativeListOwner: UUID? = nil,\n        nativeParentAvailable: @escaping @MainActor () -> Bool = { true },\n        nativeSurface: (@MainActor () -> AnyView)? = nil\n",
+      "occurrences": 1
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "old": "                    UINotificationFeedbackGenerator().notificationOccurred(.warning)\n                }\n            )\n",
+      "new": "                    UINotificationFeedbackGenerator().notificationOccurred(.warning)\n                }, nativeSurface: nativeSurface,\n                nativeControls: nativeControls.flatMap { controls in\n                    nativeListOwner.map { owner in\n                        .init(controls: controls, listOwner: owner,\n                            parentCurrent: { editingAnnotation.wrappedValue == ann && nativeParentAvailable() })\n                    }\n                }\n            )\n",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "BYTE_EXACT"
+}

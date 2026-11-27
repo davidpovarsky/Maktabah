@@ -1,0 +1,48 @@
+{
+  "base": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "counts": {
+    "Core": 31,
+    "Host": 41,
+    "UI": 13
+  },
+  "products": [
+    {
+      "bytes": 444488,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+      "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3097048,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+      "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 315448,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+      "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 1578856,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+      "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 708952,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+      "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3002144,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+      "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+      "use": "read-only existing original compiled product"
+    }
+  ],
+  "rejoined": 85,
+  "source_join_sha256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef"
+}

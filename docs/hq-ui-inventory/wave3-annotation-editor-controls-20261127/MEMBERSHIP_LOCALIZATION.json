@@ -1,0 +1,32 @@
+{
+  "new_ios_app_source_files": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift"
+  ],
+  "root_owns_pbx": true,
+  "new_app_shortcuts": 0,
+  "public_entry": "Existing finite public-v2/native root and component routes; existing generic Open Native Screen intent",
+  "localization": [
+    {
+      "key": "Annotation editor",
+      "en": "Annotation editor",
+      "he": "עורך הערה"
+    },
+    {
+      "key": "Annotation note body",
+      "en": "Annotation note body",
+      "he": "תוכן ההערה"
+    },
+    {
+      "key": "Annotation tags",
+      "en": "Annotation tags",
+      "he": "תגיות ההערה"
+    },
+    {
+      "key": "Annotation style",
+      "en": "Annotation style",
+      "he": "סגנון ההערה"
+    }
+  ],
+  "native": "NOT_RUN"
+}

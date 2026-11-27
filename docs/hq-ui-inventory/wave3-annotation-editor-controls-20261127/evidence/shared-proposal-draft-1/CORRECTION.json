@@ -1,0 +1,6 @@
+{
+  "before": "901ffac9caf70192224b87989810693650581de086f220925a4d78a4ef77ca69",
+  "after": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+  "change": "Run feature retirement after the original revision has advanced, including overflow, preserving original metadata-before-callback ordering. No original effect reordered.",
+  "native": "NOT_RUN"
+}

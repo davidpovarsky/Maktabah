@@ -1,0 +1,85 @@
+{
+  "session_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+  "capsule_sha256": "7b7424b156fcbbc69229feb16778c635d738cfb7153738f3e4bcae06d67f338c",
+  "actual_methods": [
+    {
+      "signature": "    func observeAnnotationPresentation(",
+      "bytes": 455,
+      "sha256": "c5cff2ed1fde542179cbe5851a063aaff080b74971ac16cee6d3645214c9bb06"
+    },
+    {
+      "signature": "    func originalAnnotationPresentationWillChange(",
+      "bytes": 279,
+      "sha256": "8c9fe9436777f4dea948825a4fa9450c1811dd312a9e1f1acf119a74efc32fe3"
+    },
+    {
+      "signature": "    func removeAnnotationPresentation(",
+      "bytes": 722,
+      "sha256": "9651bd7b2818b0f684a6f8aebc7df3551a8867845eaa2fd8d53ef4f8ce56ac45"
+    },
+    {
+      "signature": "    private func advanceOriginalAnnotationPresentationPublication(",
+      "bytes": 612,
+      "sha256": "490c704360b4da0d3d31c29406a1e56821657af2f48d2ada9e82e78915542e8c"
+    },
+    {
+      "signature": "    func retainOriginalAnnotationPresentationObservation(",
+      "bytes": 1235,
+      "sha256": "3ddf3ae2a56d030ccbd25b503e4878ac0ca20dfb71fd171031cf1ab7272af62c"
+    },
+    {
+      "signature": "    private func retainOriginalAnnotationEditorPresentationObservation(",
+      "bytes": 1607,
+      "sha256": "52e8e80e903cefa9d498edf4c9e7178956f1595aec9d10f7387a0b0fc6b95350"
+    },
+    {
+      "signature": "    func observeSearchPresentation(",
+      "bytes": 490,
+      "sha256": "c6f734e19a4f9483c335a00e6a65d2abd1200fba3534bc31cc3acaab2fab418a"
+    },
+    {
+      "signature": "    func originalSearchPresentationWillChange(",
+      "bytes": 457,
+      "sha256": "9bba2ec2db93e42fc00b993143cd0af2894513d839816ddfce9f07eab69026c8"
+    },
+    {
+      "signature": "    func removeSearchPresentation(",
+      "bytes": 711,
+      "sha256": "47988d4f4ea2d661703ca9d23d129c4ddc8cfa02cffaa9de0f065df5f9f4c18c"
+    },
+    {
+      "signature": "    private func advanceOriginalSearchPresentationPublication(",
+      "bytes": 485,
+      "sha256": "6506563a8b61a28f4c99140e970b258dc8f8da5cf5d82276179777c78e00a6e2"
+    },
+    {
+      "signature": "    private func retainHistorySearchPresentationObservation(",
+      "bytes": 1216,
+      "sha256": "56cba0d9e2e9c2ca9a05937fdd432549787b0eca5d671b16d8bb43420405907b"
+    },
+    {
+      "signature": "    private var isOriginalAnnotationEditorRootReady:",
+      "bytes": 787,
+      "sha256": "2f6b66d9753f8ef9359b92d38a6d44a90cbfdd3b7d7c1c85f159283e322f74ae"
+    },
+    {
+      "signature": "    func captureHistoryReaderWindow()",
+      "bytes": 151,
+      "sha256": "ff615514e77bbbbd7f0a1b4ed224be02adc2c3da10f025864351742c4c88f753"
+    },
+    {
+      "signature": "    private func captureHistoryReaderWindow(",
+      "bytes": 4430,
+      "sha256": "e85ea4fc80f79fc293d6fb9b8aa2614d1d269f92723caf2e454c22588279425b"
+    },
+    {
+      "signature": "    private func captureAnnotationEditorWindow(",
+      "bytes": 1308,
+      "sha256": "6624470907dbf1246e103969f6cca23f992fcc85a61a177e57148b18bf5a43d9"
+    }
+  ],
+  "created_original_sha256": "5e6878ceb179e7edf5e26b2ef98fd990aa42dd60aa6a822d3495c610d4254b97",
+  "created_candidate_sha256": "e8ecfa9965c9540fe94fc8c2e47c6b9835356d83fde69f409ff06de664a4602f",
+  "created_inverse": "EXACT_AFTER_REMOVING_ONE_PREPUBLICATION_LINE",
+  "boundary": "Full actual Session root capture and modal callbacks; explicit app/UI/store/window boundaries. Actual editor owner/source bridge is linked separately."
+}

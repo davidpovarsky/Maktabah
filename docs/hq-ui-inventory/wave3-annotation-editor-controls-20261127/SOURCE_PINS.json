@@ -1,0 +1,89 @@
+{
+  "source_commit": "503c162f02cceb4185b3d0e5cae3d13f38b8ca2c",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "source": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 23921,
+      "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa",
+      "before_sha256": null
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift",
+      "bytes": 12199,
+      "sha256": "c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca",
+      "before_sha256": null
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 15826,
+      "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df",
+      "before_sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "bytes": 28458,
+      "sha256": "a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528",
+      "before_sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+    }
+  ],
+  "original_hooks": [
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "before": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "after": "a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528",
+      "original_bytes": 24610,
+      "candidate_bytes": 28458
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+      "after": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df",
+      "original_bytes": 14696,
+      "candidate_bytes": 15826
+    }
+  ],
+  "original_hook_count": 37,
+  "original_inverse": "BYTE_EXACT",
+  "shared_proposals": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before_bytes": 177649,
+      "before_sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+      "after_bytes": 189298,
+      "after_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+      "edits": 32,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before_bytes": 27361,
+      "before_sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db",
+      "after_bytes": 28434,
+      "after_sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284",
+      "edits": 5,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "before_bytes": 22875,
+      "before_sha256": "719b5ed16eb7d1712c5f539148ba2930abcf6742635daa86866a2f744dfaef8c",
+      "after_bytes": 23430,
+      "after_sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7",
+      "edits": 7,
+      "inverse": "BYTE_EXACT"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before_bytes": 276364,
+      "before_sha256": "d311cf59e9c9c6890fa6c7121ccc1cc018d566f45257e0de520d6e896063bc00",
+      "after_bytes": 277099,
+      "after_sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde",
+      "edits": 3,
+      "inverse": "BYTE_EXACT"
+    }
+  ],
+  "shared_edit_count": 47,
+  "shared_inverse": "BYTE_EXACT",
+  "shared_live_application": "ROOT_ONLY_NOT_APPLIED_BY_THIS_DONOR"
+}

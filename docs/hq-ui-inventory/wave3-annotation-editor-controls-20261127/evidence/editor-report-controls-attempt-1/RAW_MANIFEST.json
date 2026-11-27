@@ -1,0 +1,202 @@
+[
+  {
+    "bytes": 2256,
+    "path": "CURRENT_MODULE_JOIN.json",
+    "sha256": "694685c84615be1a867e8373332e070a5f36bf2eabf5763d19e638f6781ae32b"
+  },
+  {
+    "bytes": 3970,
+    "path": "INPUTS.json",
+    "sha256": "8c0359669d4ae68846e909d5d3a246b9a8e215b6ce0c07253a94f8687665ba7c"
+  },
+  {
+    "bytes": 6191,
+    "path": "RESULT.json",
+    "sha256": "5f8a7cf1ebd2f36fad8cd5910bbb33b1639ffa637b0decd62a073d22e4404458"
+  },
+  {
+    "bytes": 10993,
+    "path": "RUN.py",
+    "sha256": "6fdfe6faeb701d1d822d5d19d4b64cf22797e0842a2407de48a619618fe1061a"
+  },
+  {
+    "bytes": 5461,
+    "path": "STATUS.json",
+    "sha256": "7b60beba6db04202012f49b47f711bada4a790efdd7090f3259c09ac9ae41c01"
+  },
+  {
+    "bytes": 0,
+    "path": "actual-owner-controls.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 331,
+    "path": "actual-owner-controls.stdout",
+    "sha256": "223035b35e9219fdc69c69635f0347d55d0637111176c23681d4c3f06927de44"
+  },
+  {
+    "bytes": 0,
+    "path": "actual-runtime-library-identity.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 3192,
+    "path": "actual-runtime-library-identity.stdout",
+    "sha256": "5b0082bd75b71d06ab5ed1716e90ccffa42d874a0e32c869855fa6032a5d564a"
+  },
+  {
+    "bytes": 23889,
+    "path": "capsules/CandidateOwner.swift",
+    "sha256": "08482b454a3bf494503ebabd2aab71fd0915e66f8fbdd739b003b0476882e92e"
+  },
+  {
+    "bytes": 924,
+    "path": "capsules/OriginalWindowObservation.swift",
+    "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-actual-owner.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-actual-owner.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 4212,
+    "path": "inputs/CONTRACT.md",
+    "sha256": "1e485e1cdc241a531d505737ac2b00b748822158f2c590c6a9489416ddb76cc4"
+  },
+  {
+    "bytes": 15940,
+    "path": "inputs/ORIGINAL_HOOKS.diff",
+    "sha256": "2540504705472faa5b7c970e1010c69c46817e15587b73f483a6dada60d66d23"
+  },
+  {
+    "bytes": 15611,
+    "path": "inputs/ORIGINAL_HOOK_EDITS.json",
+    "sha256": "f9b45c0b0db3d006aae1f521b07c48657c7db4ca54091c34924919d836f19190"
+  },
+  {
+    "bytes": 2170,
+    "path": "inputs/SOURCE_INPUTS.json",
+    "sha256": "948e28c69c15362659eb9b9ebc965bb9ea2fb4a757705caa73009113f618a8a0"
+  },
+  {
+    "bytes": 2951,
+    "path": "inputs/SOURCE_ORIENTATION.json",
+    "sha256": "ec3b35f05f2e3ce38bfaed6651b9e3654db237c4a093685a53e9a02f9029519b"
+  },
+  {
+    "bytes": 23921,
+    "path": "inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+    "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa"
+  },
+  {
+    "bytes": 12199,
+    "path": "inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift",
+    "sha256": "c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca"
+  },
+  {
+    "bytes": 15826,
+    "path": "inputs/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df"
+  },
+  {
+    "bytes": 28404,
+    "path": "inputs/candidate/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "sha256": "a9c5f18796ad4d5e59ed6f363d47e06aa4601771438066caf94794ef5ec7525c"
+  },
+  {
+    "bytes": 1944,
+    "path": "inputs/controls/ActualComponentSourceObservation.swift",
+    "sha256": "e2225a3648027b7171b88d7a73578950e8ff599e3814e1abe7287875b5eba4d4"
+  },
+  {
+    "bytes": 649,
+    "path": "inputs/controls/ActualOriginalEditorSetter.swift",
+    "sha256": "390a69b9d5f20861e1a6228d4add84618401ce6229c0efe21d3279fde7e0d6e8"
+  },
+  {
+    "bytes": 16310,
+    "path": "inputs/controls/EditorControls.swift",
+    "sha256": "525724b452f249a0b0eab0a0b0b3ae89f5b233bd06fe95415265fca0918e8360"
+  },
+  {
+    "bytes": 8214,
+    "path": "inputs/controls/EditorReportControls.swift",
+    "sha256": "d4fb84f295a8b73e27df50c28e97527271dc6ef51b7f5a07ba0b2f7b03d777d1"
+  },
+  {
+    "bytes": 3485,
+    "path": "inputs/controls/ExplicitEditorBoundary.swift",
+    "sha256": "1ec47d3a94c54af6829be6b599979a6dd71a506c6eb08bd9ea4cf676c05670d0"
+  },
+  {
+    "bytes": 956,
+    "path": "inputs/controls/OriginalWindowObservation.swift",
+    "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+  },
+  {
+    "bytes": 14696,
+    "path": "inputs/original/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+  },
+  {
+    "bytes": 24610,
+    "path": "inputs/original/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+  },
+  {
+    "bytes": 3077,
+    "path": "inputs/prepare_controls.py",
+    "sha256": "f7048f2c651a6949372c7bb209a7a3c5e166887394bdc7fbc1826866fd3d8c00"
+  },
+  {
+    "bytes": 9786,
+    "path": "inputs/prepare_original_hooks.py",
+    "sha256": "b18cedb72c082b29700d480eaab873240cf4b665bc2c49fa4a0fd03c8434db68"
+  },
+  {
+    "bytes": 22495,
+    "path": "inputs/preserved-owner-draft-1/MaktabahNativeAnnotationEditorControls.swift",
+    "sha256": "8f95a3a2ea777ba762cff7b2041e489f9a86250df6450bb27e7d1601de1f4b4e"
+  },
+  {
+    "bytes": 11200,
+    "path": "inputs/preserved-owner-draft-1/MaktabahNativeAnnotationEditorViews.swift",
+    "sha256": "795439eed38117999f1b23dc9f64b3e4c935aeb5a52ee33a072e59386a73d368"
+  },
+  {
+    "bytes": 7222,
+    "path": "retained-receipts/CALLER_RESULT.json",
+    "sha256": "ebe40c5edffc71696bda9b7336786a277288ed90510816a7f46de471eb9c6e85"
+  },
+  {
+    "bytes": 53158,
+    "path": "retained-receipts/CURRENT_MODULE_SOURCE_JOIN.json",
+    "sha256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef"
+  }
+]

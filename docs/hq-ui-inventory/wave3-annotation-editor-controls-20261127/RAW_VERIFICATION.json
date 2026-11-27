@@ -1,0 +1,71 @@
+{
+  "schema": "otzaria.annotation-editor.raw-verification.v1",
+  "attempts": [
+    {
+      "attempt": "control-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-attempt-1",
+      "status": "FAILED",
+      "passed": null,
+      "failed": null,
+      "result_sha256": "594885351da8f16b7af08044a50ebb999b0ef94afdb14a84fb93aebb9de09416",
+      "raw_bytes": 91028,
+      "raw_sha256": "a4ca5a7d5e5154ba1e23295c7618c6c95ca73fabb69602c0621321259aaf3ca5",
+      "manifest_sha256": "31d157378000f99c85662f0662862a5ba761a3a6b61ea7f95be83bb1f946f7cc",
+      "raw_files": 32,
+      "zip_members": 33,
+      "all_member_hashes_verified": true,
+      "scope": "Actual compile failure retained before correction",
+      "full_swift_syntax": 0
+    },
+    {
+      "attempt": "control-attempt-2",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-controls-attempt-2",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 25,
+      "failed": 0,
+      "result_sha256": "66654d1650bcd81fa5aeac92ea97bbc6cfdac34ef2c6bb422d47bd3c07a1a00c",
+      "raw_bytes": 101245,
+      "raw_sha256": "acc08f6405c9276a288221ca29c026f393a069a351a74eff773e40af11bee5e1",
+      "manifest_sha256": "99cdb75a4ea9d7c994884df001f69d1a3875ab67e4a99efc0a605ceea095cee8",
+      "raw_files": 59,
+      "zip_members": 60,
+      "all_member_hashes_verified": true,
+      "scope": "Actual owner, original two setter methods, current actual component owner/source/backend/window bridge; explicit Apple/Annotation/backend/window/app admission boundaries. No Core execution, real UI, native receipt, persistence or Apple SDK.",
+      "full_swift_syntax": 8
+    },
+    {
+      "attempt": "editor-report-controls-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-report-controls-attempt-1",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 4,
+      "failed": 0,
+      "result_sha256": "5f8a7cf1ebd2f36fad8cd5910bbb33b1639ffa637b0decd62a073d22e4404458",
+      "raw_bytes": 91242,
+      "raw_sha256": "d4b42b3239025a8d9af6cc0eef4efaddefad33c7f60e3a4e4780ad2437cc5c9a",
+      "manifest_sha256": "94f94d9c7a097152a1e43573fb48c39ae26bc91a31c7da2036d10afa8f402afc",
+      "raw_files": 40,
+      "zip_members": 41,
+      "all_member_hashes_verified": true,
+      "scope": "Actual added active-report method over retained original owner/source/admission; four report completion/release/finish/reentry cases. Current actual component owner/source/backend/window bridge with explicit Apple/Annotation/backend/window/app admission boundaries. No Core execution, real UI, native receipt, persistence or Apple SDK.",
+      "full_swift_syntax": 2
+    },
+    {
+      "attempt": "editor-scene-controls-attempt-1",
+      "remote_scope": "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1",
+      "status": "PASS_SOURCE_ONLY",
+      "passed": 17,
+      "failed": 0,
+      "result_sha256": "5bcc13dc145fc5b8282aa86ab63f8ad1860abed492190ba2ae2feea179667340",
+      "raw_bytes": 220620,
+      "raw_sha256": "2e2341526295f795d9b3198383b59522796a33fd2b28838631ab36b0bcfc8213",
+      "manifest_sha256": "b78a8db1575801ae8f58618f0ffc790b19fea5d29a576d684b5352a0baf0dbc4",
+      "raw_files": 76,
+      "zip_members": 77,
+      "all_member_hashes_verified": true,
+      "scope": "Actual Session modal callbacks, exact original full window/mapping reader caller with editor-only private overload, actual editor owner and original onCreated callback with same current source modules; explicit Apple/app/Store/window/platform boundaries. No Core execution, real UIKit, persistence, native receipt or Apple SDK.",
+      "full_swift_syntax": 10
+    }
+  ],
+  "apple_sdk": "NOT_RUN",
+  "native": "NOT_RUN"
+}

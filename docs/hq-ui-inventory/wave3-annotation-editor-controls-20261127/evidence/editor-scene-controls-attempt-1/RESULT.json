@@ -1,0 +1,342 @@
+{
+  "actual_original_created_counterexample": 1,
+  "apple_sdk": "NOT_RUN",
+  "base": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "data_free": 2934284288,
+  "failed": 0,
+  "finished": 1795810957.4783435,
+  "full_swift_syntax": 10,
+  "native": "NOT_RUN",
+  "original_module_counts": {
+    "Core": 31,
+    "Host": 41,
+    "UI": 13
+  },
+  "passed": 17,
+  "prior_25_control_receipt": "66654d1650bcd81fa5aeac92ea97bbc6cfdac34ef2c6bb422d47bd3c07a1a00c",
+  "prior_report_receipt": "5f8a7cf1ebd2f36fad8cd5910bbb33b1639ffa637b0decd62a073d22e4404458",
+  "root_free": 2278789120,
+  "schema": "otzaria.annotation-editor.source-controls.v1",
+  "scope": "Actual Session modal callbacks, exact original full window/mapping reader caller with editor-only private overload, actual editor owner and original onCreated callback with same current source modules; explicit Apple/app/Store/window/platform boundaries. No Core execution, real UIKit, persistence, native receipt or Apple SDK.",
+  "started": 1795810924.689314,
+  "status": "PASS_SOURCE_ONLY",
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ExplicitEditorBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualComponentSourceObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualOriginalEditorSetter.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorFixture.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorSceneBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualEditorSessionCapsule.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualOriginalEditorCreated.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorSceneControls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/capsules/OriginalWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/capsules/CandidateOwner.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/output/editor-owner-controls"
+      ],
+      "exit": 0,
+      "finished": 1795810943.5999231,
+      "name": "compile-actual-owner",
+      "pid": 2285863,
+      "start_ticks": "733799826",
+      "started": 1795810926.432655
+    },
+    {
+      "argv": [
+        "ldd",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/output/editor-owner-controls"
+      ],
+      "exit": 0,
+      "finished": 1795810944.1385112,
+      "name": "actual-runtime-library-identity",
+      "pid": 2286549,
+      "start_ticks": "733801544",
+      "started": 1795810943.6178806
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/output/editor-owner-controls"
+      ],
+      "exit": 0,
+      "finished": 1795810944.6779516,
+      "name": "actual-owner-controls",
+      "pid": 2286610,
+      "start_ticks": "733801598",
+      "started": 1795810944.157322
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/attempt-1/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ExplicitEditorBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualComponentSourceObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualOriginalEditorSetter.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorFixture.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorSceneBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/ActualEditorSessionCapsule.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/OldOriginalEditorCreated.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/controls/EditorSceneControls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/capsules/OriginalWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/capsules/CandidateOwner.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/output/old-original-created-callback"
+      ],
+      "exit": 0,
+      "finished": 1795810951.492359,
+      "name": "compile-old-original-created-callback",
+      "pid": 2286630,
+      "start_ticks": "733801652",
+      "started": 1795810944.696234
+    },
+    {
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/output/old-original-created-callback"
+      ],
+      "exit": -5,
+      "finished": 1795810952.0331628,
+      "name": "old-original-created-equal-callback-negative",
+      "pid": 2286949,
+      "start_ticks": "733802334",
+      "started": 1795810951.5109935
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/candidate/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810952.573366,
+      "name": "full-ios-syntax-0-Debug",
+      "pid": 2286974,
+      "start_ticks": "733802388",
+      "started": 1795810952.0536985
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/candidate/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810953.1123092,
+      "name": "full-ios-syntax-0-Release",
+      "pid": 2286978,
+      "start_ticks": "733802442",
+      "started": 1795810952.5914848
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810953.650479,
+      "name": "full-ios-syntax-1-Debug",
+      "pid": 2286980,
+      "start_ticks": "733802496",
+      "started": 1795810953.1307561
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810954.1952448,
+      "name": "full-ios-syntax-1-Release",
+      "pid": 2287014,
+      "start_ticks": "733802549",
+      "started": 1795810953.668893
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810954.7329652,
+      "name": "full-ios-syntax-2-Debug",
+      "pid": 2287069,
+      "start_ticks": "733802604",
+      "started": 1795810954.2131467
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810955.27032,
+      "name": "full-ios-syntax-2-Release",
+      "pid": 2287089,
+      "start_ticks": "733802658",
+      "started": 1795810954.7512536
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810955.8270679,
+      "name": "full-ios-syntax-3-Debug",
+      "pid": 2287111,
+      "start_ticks": "733802713",
+      "started": 1795810955.300031
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810956.3676276,
+      "name": "full-ios-syntax-3-Release",
+      "pid": 2287154,
+      "start_ticks": "733802767",
+      "started": 1795810955.8460374
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810956.9252884,
+      "name": "full-ios-syntax-4-Debug",
+      "pid": 2287164,
+      "start_ticks": "733802821",
+      "started": 1795810956.3874729
+    },
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/editor-scene-controls-attempt-1/inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "finished": 1795810957.4698284,
+      "name": "full-ios-syntax-4-Release",
+      "pid": 2287202,
+      "start_ticks": "733802877",
+      "started": 1795810956.9457166
+    }
+  ],
+  "task_bytes": 39890944
+}

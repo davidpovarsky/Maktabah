@@ -1,0 +1,53 @@
+{
+  "source": "b463ffd03a76026cea06c79c608df97d00094152",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62",
+      "blob": "c4484e966f3f0b897a673c86d9b1f373f4ebf19c"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "bytes": 24610,
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 14696,
+      "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447",
+      "blob": "e2259e0a2fcd14e3a0e778b7e557f8fe2af2282b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+      "bytes": 11780,
+      "sha256": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345",
+      "blob": "a378a93d528ab9d9e8c24c5ebece057e7852b80c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "bytes": 8386,
+      "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf",
+      "blob": "a8ba6a13c9fa65ba1128909e3e7e2334420acf2e"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 177649,
+      "sha256": "83f969a8e1836b80d9530e857d839f38e8c8b82e7f44a505f22ea69cfed858e6",
+      "blob": "27d650a5e71c647ba146370fe9f42b6ea050141c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 276364,
+      "sha256": "d311cf59e9c9c6890fa6c7121ccc1cc018d566f45257e0de520d6e896063bc00",
+      "blob": "e738086ff9913c339b941cf84fc2f373709819ab"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 38602,
+      "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085",
+      "blob": "e693b5a14576a5650c2d4e1327f9382295a6159c"
+    }
+  ]
+}

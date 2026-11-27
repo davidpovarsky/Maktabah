@@ -1,0 +1,382 @@
+[
+  {
+    "bytes": 2256,
+    "path": "CURRENT_MODULE_JOIN.json",
+    "sha256": "694685c84615be1a867e8373332e070a5f36bf2eabf5763d19e638f6781ae32b"
+  },
+  {
+    "bytes": 6912,
+    "path": "INPUTS.json",
+    "sha256": "fcdd382745612ac890c22cbc2da0c431d4ad45e388db440364c93e2c22e00754"
+  },
+  {
+    "bytes": 16336,
+    "path": "RESULT.json",
+    "sha256": "5bcc13dc145fc5b8282aa86ab63f8ad1860abed492190ba2ae2feea179667340"
+  },
+  {
+    "bytes": 13831,
+    "path": "RUN.py",
+    "sha256": "04d499209e936ca48c61e391ba85bd0902af3477f4653030e38957a2f04e7f17"
+  },
+  {
+    "bytes": 15471,
+    "path": "STATUS.json",
+    "sha256": "a9e704b9a48c473094139a57c01d2cdfb0715ae33043a091c891cd38dd06721d"
+  },
+  {
+    "bytes": 0,
+    "path": "actual-owner-controls.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 1247,
+    "path": "actual-owner-controls.stdout",
+    "sha256": "40f96530f0ae9fbf44b319f4ece242c77cc3502736cc917ff400b13146e28b95"
+  },
+  {
+    "bytes": 0,
+    "path": "actual-runtime-library-identity.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 3192,
+    "path": "actual-runtime-library-identity.stdout",
+    "sha256": "c991192f0d1cc66b16ccf794cf8df074a32908587029bfc729618e5f7827ea07"
+  },
+  {
+    "bytes": 23889,
+    "path": "capsules/CandidateOwner.swift",
+    "sha256": "08482b454a3bf494503ebabd2aab71fd0915e66f8fbdd739b003b0476882e92e"
+  },
+  {
+    "bytes": 924,
+    "path": "capsules/OriginalWindowObservation.swift",
+    "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-actual-owner.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-actual-owner.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-old-original-created-callback.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "compile-old-original-created-callback.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-0-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-1-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-1-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-1-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-1-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-2-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-2-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-2-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-2-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-3-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-3-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-3-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-3-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-4-Debug.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-4-Debug.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-4-Release.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "full-ios-syntax-4-Release.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 4212,
+    "path": "inputs/CONTRACT.md",
+    "sha256": "1e485e1cdc241a531d505737ac2b00b748822158f2c590c6a9489416ddb76cc4"
+  },
+  {
+    "bytes": 15995,
+    "path": "inputs/ORIGINAL_HOOKS.diff",
+    "sha256": "34e4f2b724889d368b05fa0a3c258da044bfc06c407540994b465c3bba3807ba"
+  },
+  {
+    "bytes": 15915,
+    "path": "inputs/ORIGINAL_HOOK_EDITS.json",
+    "sha256": "0f42e99ff7c9635e68cb011b6ea0bb533ef9e4814a6b37a5b6400384d24ab7e6"
+  },
+  {
+    "bytes": 2170,
+    "path": "inputs/SOURCE_INPUTS.json",
+    "sha256": "948e28c69c15362659eb9b9ebc965bb9ea2fb4a757705caa73009113f618a8a0"
+  },
+  {
+    "bytes": 2951,
+    "path": "inputs/SOURCE_ORIENTATION.json",
+    "sha256": "ec3b35f05f2e3ce38bfaed6651b9e3654db237c4a093685a53e9a02f9029519b"
+  },
+  {
+    "bytes": 23921,
+    "path": "inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+    "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa"
+  },
+  {
+    "bytes": 12199,
+    "path": "inputs/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift",
+    "sha256": "c5f6108d4b6515c018769ef5a0438b1fe2c749949509d5fa07594eda4ec6c7ca"
+  },
+  {
+    "bytes": 15826,
+    "path": "inputs/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df"
+  },
+  {
+    "bytes": 28458,
+    "path": "inputs/candidate/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "sha256": "a66a98a65601cbc779d9dbfd42887c0e2adf3457bdfdcd4cc4c3bf6c5dd2f528"
+  },
+  {
+    "bytes": 1944,
+    "path": "inputs/controls/ActualComponentSourceObservation.swift",
+    "sha256": "e2225a3648027b7171b88d7a73578950e8ff599e3814e1abe7287875b5eba4d4"
+  },
+  {
+    "bytes": 17636,
+    "path": "inputs/controls/ActualEditorSessionCapsule.swift",
+    "sha256": "7b7424b156fcbbc69229feb16778c635d738cfb7153738f3e4bcae06d67f338c"
+  },
+  {
+    "bytes": 859,
+    "path": "inputs/controls/ActualOriginalEditorCreated.swift",
+    "sha256": "6ab6e8c8d2d335c5314ca1680270a9ceb6a7132866140d84bd1ed150c4b18161"
+  },
+  {
+    "bytes": 649,
+    "path": "inputs/controls/ActualOriginalEditorSetter.swift",
+    "sha256": "390a69b9d5f20861e1a6228d4add84618401ce6229c0efe21d3279fde7e0d6e8"
+  },
+  {
+    "bytes": 16310,
+    "path": "inputs/controls/EditorControls.swift",
+    "sha256": "525724b452f249a0b0eab0a0b0b3ae89f5b233bd06fe95415265fca0918e8360"
+  },
+  {
+    "bytes": 5603,
+    "path": "inputs/controls/EditorFixture.swift",
+    "sha256": "e2bd0b2481ec1591bc9ba0e59a4d6fceaf121f69d33452270ac7523f99974408"
+  },
+  {
+    "bytes": 8214,
+    "path": "inputs/controls/EditorReportControls.swift",
+    "sha256": "d4fb84f295a8b73e27df50c28e97527271dc6ef51b7f5a07ba0b2f7b03d777d1"
+  },
+  {
+    "bytes": 4255,
+    "path": "inputs/controls/EditorSceneBoundary.swift",
+    "sha256": "913cfbdbb7e2fafc6d9d627ef88c5adfe88dba3db6e026754380c16439ee0152"
+  },
+  {
+    "bytes": 7666,
+    "path": "inputs/controls/EditorSceneControls.swift",
+    "sha256": "726c2b14b18e1bf15c36fa3a65371c7b1761b3eca6ab75b011bd10396d584069"
+  },
+  {
+    "bytes": 2535,
+    "path": "inputs/controls/EditorSceneFields.swift",
+    "sha256": "b69d4458ddf25e2b3458a6a9453eb2246ef6e2b2157c03db90f58740a7521c6f"
+  },
+  {
+    "bytes": 3485,
+    "path": "inputs/controls/ExplicitEditorBoundary.swift",
+    "sha256": "1ec47d3a94c54af6829be6b599979a6dd71a506c6eb08bd9ea4cf676c05670d0"
+  },
+  {
+    "bytes": 805,
+    "path": "inputs/controls/OldOriginalEditorCreated.swift",
+    "sha256": "43409485185d83230e938ce2d65ade4fe18cb99ea21cf6ff0964e782f94b7f24"
+  },
+  {
+    "bytes": 956,
+    "path": "inputs/controls/OriginalWindowObservation.swift",
+    "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+  },
+  {
+    "bytes": 3465,
+    "path": "inputs/controls/SCENE_EXTRACTION.json",
+    "sha256": "93a5d1de5fe03a386477ac72b0e35c03ed2751d3922f2e6dbe47aa5826431d11"
+  },
+  {
+    "bytes": 14696,
+    "path": "inputs/original/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+  },
+  {
+    "bytes": 24610,
+    "path": "inputs/original/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+  },
+  {
+    "bytes": 3232,
+    "path": "inputs/prepare_controls.py",
+    "sha256": "cd35d1883ff9bbbaf2b4e1faa1e7c4778de89c24b8b92b3aa0e1848ee8ef6331"
+  },
+  {
+    "bytes": 9811,
+    "path": "inputs/prepare_original_hooks.py",
+    "sha256": "989a4960c699bc586dc1a33cf09412f2a03596f29991f690db2a908b9256dfde"
+  },
+  {
+    "bytes": 3740,
+    "path": "inputs/prepare_scene_controls.py",
+    "sha256": "dc8912405c605a28466e7de0d0b4ce531ec309ee06f202962ce1c7e8b1c66b5a"
+  },
+  {
+    "bytes": 24550,
+    "path": "inputs/prepare_shared.py",
+    "sha256": "53c9be9117b8639872a1fec78e7acbb1f871262b5bf98f49622ee87f5c9c6c2e"
+  },
+  {
+    "bytes": 22495,
+    "path": "inputs/preserved-owner-draft-1/MaktabahNativeAnnotationEditorControls.swift",
+    "sha256": "8f95a3a2ea777ba762cff7b2041e489f9a86250df6450bb27e7d1601de1f4b4e"
+  },
+  {
+    "bytes": 11200,
+    "path": "inputs/preserved-owner-draft-1/MaktabahNativeAnnotationEditorViews.swift",
+    "sha256": "795439eed38117999f1b23dc9f64b3e4c935aeb5a52ee33a072e59386a73d368"
+  },
+  {
+    "bytes": 48902,
+    "path": "inputs/proposal/SHARED.patch",
+    "sha256": "d811b41b721349b3c175b3d7fdc0a0363dd975ff7f5807468b0649a54ffbcba0"
+  },
+  {
+    "bytes": 31417,
+    "path": "inputs/proposal/SHARED_EDITS.json",
+    "sha256": "2380a3c061148534e9adfa1391e6143568d48084bd28cfe6e6e316200703b7da"
+  },
+  {
+    "bytes": 23430,
+    "path": "inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+    "sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7"
+  },
+  {
+    "bytes": 277099,
+    "path": "inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+    "sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde"
+  },
+  {
+    "bytes": 28434,
+    "path": "inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284"
+  },
+  {
+    "bytes": 189298,
+    "path": "inputs/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+    "sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8"
+  },
+  {
+    "bytes": 3545,
+    "path": "old-original-created-equal-callback-negative.stderr",
+    "sha256": "443597c3849b161812f58841393f1552dfac6cf320b27e2bbebdc5c0ff258bfd"
+  },
+  {
+    "bytes": 0,
+    "path": "old-original-created-equal-callback-negative.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 7222,
+    "path": "retained-receipts/CALLER_RESULT.json",
+    "sha256": "ebe40c5edffc71696bda9b7336786a277288ed90510816a7f46de471eb9c6e85"
+  },
+  {
+    "bytes": 53158,
+    "path": "retained-receipts/CURRENT_MODULE_SOURCE_JOIN.json",
+    "sha256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef"
+  }
+]

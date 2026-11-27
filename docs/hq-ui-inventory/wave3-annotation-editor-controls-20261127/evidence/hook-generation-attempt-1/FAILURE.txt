@@ -1,0 +1,1 @@
+Actual prepare_original_hooks.py exited 1 before any original candidate file was written. Assertion at line65: selectedColorHex = "#000000" line substring count2 versus expected1. Leading indentation allowed substring matching a more-indented line. The generator requires newline-bounded exact-line matching. No source/runtime acceptance was run.
