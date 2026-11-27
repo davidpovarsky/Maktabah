@@ -1,0 +1,11 @@
+{
+  "hookOrConfigMutationDuringAudit": false,
+  "observedUTC": "2026-11-27T11:19:14.000712+00:00",
+  "observedUnix": 1795778354.0007117,
+  "onlySamples": true,
+  "priorHistoricalInventory": "NOT_CAPTURED_BEFORE_OVERRIDE",
+  "publicationAndOriginalHooksMatchPackageTemplateByNameAndSHA256": true,
+  "rawAuditSHA256": "8134e01cc66755e308b3e551d6f9176c0a8e78f8bc0f6680740da0c51c286c9f",
+  "sampleCountPerOrdinaryDirectory": 14,
+  "scope": "CURRENT_HOOK_INVENTORY_NOT_HISTORICAL_GATE_VERIFICATION"
+}
