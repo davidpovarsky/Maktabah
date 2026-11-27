@@ -1,0 +1,940 @@
+[
+  {
+    "path": "raw/local/WORKSPACE_COMPOSITION_DRAFT.json.gz",
+    "bytes": 394,
+    "sha256": "dba71187bd92fb1556e8d8ba872ebd1677f98a7f9dddbd52b80feb16a5c20deb",
+    "rawBytes": 589,
+    "rawSHA256": "7499aa415035350258d52bc1dd624521499f313aaa035ce51359bdd5dc26b1d6"
+  },
+  {
+    "path": "raw/local/apply_root_wiring.py.gz",
+    "bytes": 4499,
+    "sha256": "0fc24a4320c2ac813a2647e4118f5e62823c15a4cfdcc87d90030074eae7c1d0",
+    "rawBytes": 12061,
+    "rawSHA256": "e45f3f3c8210e5043696d538e6fdfbce2ccd28b5579d3ad32a930a9f3f46dd27"
+  },
+  {
+    "path": "raw/local/composition-input-manifest.json.gz",
+    "bytes": 227,
+    "sha256": "f8b03aa2892bb8d4a5870057f6a05ccc0e71e4947e174779793b78472f5cbb8d",
+    "rawBytes": 269,
+    "rawSHA256": "55f25c3dbb0cb7369d87ca2a3349c108a0472467b1a310ac2c6891f83425bc0d"
+  },
+  {
+    "path": "raw/local/controls/ActualSearchCompositionEntry.swift.gz",
+    "bytes": 1948,
+    "sha256": "59b6510654d35b26d79935f153b6e6cb09c16b300dcc4a6f075cc3537aded85e",
+    "rawBytes": 6454,
+    "rawSHA256": "7296bd65b178ef2e867e2e55a3fcae7a43de06852bc1ca9924c0f4271e7698a2"
+  },
+  {
+    "path": "raw/local/controls/COMBINED_INPUTS.json.gz",
+    "bytes": 2271,
+    "sha256": "5782d8d076f0a6876399745f34132671a5c55990a0cef6746380f3541613e90e",
+    "rawBytes": 7783,
+    "rawSHA256": "54298129164dbf41b341e2f771a873e2978d23e95884bfddf6b1436a9f67ccb4"
+  },
+  {
+    "path": "raw/local/controls/SearchCompositionFixtures.swift.gz",
+    "bytes": 4308,
+    "sha256": "87e50f111e69c89a32c3350acfa0ce1d8cc221bd83aaef9b2e380f7fc38d0de1",
+    "rawBytes": 18754,
+    "rawSHA256": "54cf36c1a220efcaf9aaa7206231a2bcb9237842c17bf1dacce567124c38cfbe"
+  },
+  {
+    "path": "raw/local/controls/SearchContinuationAuthorityControls.swift.gz",
+    "bytes": 3003,
+    "sha256": "d5bf5126c49a69a25d524925796b87e6fbbf0bf7509ba104326532e38c9ccc6d",
+    "rawBytes": 14331,
+    "rawSHA256": "c4efe9ccc0887802edba97bb1757526c44229142b4316dca8b745f8ef96ebea1"
+  },
+  {
+    "path": "raw/local/controls/search_combined_controls_runner_script.py.gz",
+    "bytes": 69151,
+    "sha256": "dc303cec5e6c5a96d4a3ea964b9838dfa9ebb28d18abed8c3db9bac8d94f2a39",
+    "rawBytes": 95017,
+    "rawSHA256": "390cd8fd1a71db2c7406dfe5675276b670d188c406411b42505806b58340a21a"
+  },
+  {
+    "path": "raw/local/controls/search_grant_controls_runner_script.py.gz",
+    "bytes": 93383,
+    "sha256": "d5c9d24f6e71ca9a06cc66f9f9791160cd44ae550616231ff0249416fe1929cb",
+    "rawBytes": 126500,
+    "rawSHA256": "36338047d962fec9f87b7e6de76225bcb54748e5458c2c4249844a9c686d4dbc"
+  },
+  {
+    "path": "raw/local/core-input-manifest.json.gz",
+    "bytes": 1775,
+    "sha256": "c93411d59feab43f47783f38d8c1c318be42a664dba2feb0ba3df0627c6bb105",
+    "rawBytes": 7404,
+    "rawSHA256": "a47688985b79e40f5d31217fc93bd80ba19656ec3411d1f98a6de3a371a1bdf1"
+  },
+  {
+    "path": "raw/local/donor-input-manifest.json.gz",
+    "bytes": 648,
+    "sha256": "9fd14d7b6e1af7528b7134e4b59a7209b390e82bd70db82adf738036c05025b0",
+    "rawBytes": 1774,
+    "rawSHA256": "5fbcfc1bcabaa5406ba05cc15b0472709deefee2e1fb28ff14cc4b03a24ddf97"
+  },
+  {
+    "path": "raw/local/prepare_root_wiring_packet.py.gz",
+    "bytes": 1532,
+    "sha256": "a153c2120c81f1f028d746fb2a03580d1185b3da21ae4536573cf15af5ea1832",
+    "rawBytes": 3367,
+    "rawSHA256": "415e8af9c7d60b399b900322b66581d803a01182de44062fb72f6532cd98427f"
+  },
+  {
+    "path": "raw/local/review/NAVIGATION_FIX_SEARCH_SOURCE_REVIEW.json.gz",
+    "bytes": 2341,
+    "sha256": "6d069a85a3d1ae080f7b1943c5a4ff96c6fc34dd9ba6cc54b1c81d1a43e900f8",
+    "rawBytes": 5924,
+    "rawSHA256": "33c48fe826839840fbd6b6f7ca1c6c9d27f789f72a77369204daf4dd2037c062"
+  },
+  {
+    "path": "raw/local/review/ROOT_WIRING_FILES.json.gz",
+    "bytes": 823,
+    "sha256": "38f308e9961298ecd2ba20ebc50bb8dd09d21d4a48e96952a4bd7a535c8f4941",
+    "rawBytes": 2179,
+    "rawSHA256": "81296cf69f1bbf0155224651ece12988cbb5367182deca516fd9c06f5c331237"
+  },
+  {
+    "path": "raw/local/review/SEARCH_COMPOSITION_METHOD.pre-admission.swift.gz",
+    "bytes": 1856,
+    "sha256": "1781bdd91574679a4973c6e1e603b4bc7fe7553f07def5ae2d02f1230c8a7ee7",
+    "rawBytes": 6197,
+    "rawSHA256": "48f6d81632f8aef449fdf5fb0aefaab6d6fb4d46098f664fa12f8a2efe605ecf"
+  },
+  {
+    "path": "raw/local/review/SEARCH_COMPOSITION_METHOD.swift.gz",
+    "bytes": 1895,
+    "sha256": "7b0828bce27c3b1154be1bf27e11c8040bc37ee80e2f5c527f49b2b424e5b5e0",
+    "rawBytes": 6352,
+    "rawSHA256": "48f9751da614fffcaf15a8903654f018ed36bb8c5558c003114bf99ac0bbce0b"
+  },
+  {
+    "path": "raw/local/review/SEARCH_SESSION.pre-note-foreign-hook.swift.gz",
+    "bytes": 21358,
+    "sha256": "7897dc93a1345ddbd241d548022a30b74f41c660920cec47dd5340e3220fbf2e",
+    "rawBytes": 128879,
+    "rawSHA256": "0421d6613253934c1812c7cf1aaaec565cfe60a41e6a596c2a4ab2f8b2bcbfc5"
+  },
+  {
+    "path": "raw/local/review/SEARCH_SESSION_WIRING.patch.gz",
+    "bytes": 1856,
+    "sha256": "e77bebff8e6329f07a86c184fcdbf193246cd5f3fea60c3ee94069960b968a40",
+    "rawBytes": 6527,
+    "rawSHA256": "0bdd0c80aa54c8f676cc004556eab9e682c613542a8e173b350624e5d004816c"
+  },
+  {
+    "path": "raw/local/review/UI_MEMBERSHIP_ATTEMPT1.json.gz",
+    "bytes": 305,
+    "sha256": "98ee384bc30c1400e03df3df051b180f0f874edde8c4bf7c0cf289c34f5aca0b",
+    "rawBytes": 385,
+    "rawSHA256": "e0ba2eae6e900395d0b20c68bb814bcd0c2b31cf6a4758d1b5b6408e0625d9b2"
+  },
+  {
+    "path": "raw/local/review/UI_MEMBERSHIP_LOCALIZATION.json.gz",
+    "bytes": 1544,
+    "sha256": "9859d09acfdf94aefcf6341be986f43ee0afa51b2351c5efdb58c349a961dbea",
+    "rawBytes": 4875,
+    "rawSHA256": "1ebc6c79607f54843ff1747ecdab8710ae5464ff397ff6fbcffe7ca63a95bcf2"
+  },
+  {
+    "path": "raw/local/review/UI_NAV_SESSION_MERGE.raw.swift.gz",
+    "bytes": 21195,
+    "sha256": "1f56785d625952bc69ebb404cc36409e7b13c1882ddbc3b1fa212165b0b711b0",
+    "rawBytes": 127952,
+    "rawSHA256": "80a5d05ef515f8e2ba801a97774b090a7980bd2a399592c15a4bf8f69f68c427"
+  },
+  {
+    "path": "raw/local/review/UI_NAV_SESSION_MERGE.resolved.swift.gz",
+    "bytes": 20843,
+    "sha256": "b0df0c2a8e0806e87699024c0c0b8d3ece599dd6c2307a104ca42d80a38dff1f",
+    "rawBytes": 125806,
+    "rawSHA256": "c02233f412d3be9e2db3ff52910575f716ab928c8e1396c59b3a7b4ff898cc80"
+  },
+  {
+    "path": "raw/local/review/UI_NAV_SESSION_MERGE_RESOLUTIONS.json.gz",
+    "bytes": 784,
+    "sha256": "ddd737d0971e568f97c4f388d7ef006f292f734057e35adb12be9cc325e38125",
+    "rawBytes": 5035,
+    "rawSHA256": "c69a2e6191ffa357019be9e5b6602a9bf1bf18fb5775c44639ae42a56b7e7cda"
+  },
+  {
+    "path": "raw/local/review/UI_PBX_INSERTIONS.json.gz",
+    "bytes": 867,
+    "sha256": "12d7af1e97ec4674cd21a3678238c23c3b2ed88ceb896e19a4126a9b768ca391",
+    "rawBytes": 4814,
+    "rawSHA256": "9e745a2b95b8b027a2b209c77bc5944dd739d2f3234b78d6f2e08ea28cd27ddf"
+  },
+  {
+    "path": "raw/local/review/wire_ui_membership.attempt1.py.gz",
+    "bytes": 3601,
+    "sha256": "67001c3aeedfeb097a1c68c487434f0a56a18c71ef8ae983edd5ce1c801608ce",
+    "rawBytes": 10765,
+    "rawSHA256": "0c069438a54efe7087d64e5322a576c618e5aa6b3bde2f4d11d87f021b2f39d1"
+  },
+  {
+    "path": "raw/local/review/workspace-composition-candidate1.swift.gz",
+    "bytes": 34195,
+    "sha256": "c672ada4bad7d8a5b1447d0ac4de8b5a65a47aab7379d77db754766653be98f9",
+    "rawBytes": 199947,
+    "rawSHA256": "4b75088977b9b0ca0843dab9e1f7ebd667f0670cf3a41044dadcd26c316ae43e"
+  },
+  {
+    "path": "raw/local/sessionbindings-input-manifest.json.gz",
+    "bytes": 362,
+    "sha256": "fc51a26626d69156d4fb279b230f4b11373c6601b7f6fc8c4f0b746017570ab1",
+    "rawBytes": 799,
+    "rawSHA256": "5e97db449fb0f5e5077167482aa9cee3c28a6d30fff3c0e674631b9d4f2ef532"
+  },
+  {
+    "path": "raw/local/ui-baseline/verify_source_registration.py.gz",
+    "bytes": 2266,
+    "sha256": "85ec0f429ea5e160d9195448718495af96e679dea0c6eec1cb801df6d09aecbb",
+    "rawBytes": 6070,
+    "rawSHA256": "eff5cf3c0935562f9e9b1bbcd296f192c4daf2922cc9185d8fa5ad0ab3246a18"
+  },
+  {
+    "path": "raw/local/wire_ui_membership.py.gz",
+    "bytes": 3599,
+    "sha256": "5d293cea3426fea94e0bf4aa0dfaf9d643f3d461c11b493518e5711668bef045",
+    "rawBytes": 10785,
+    "rawSHA256": "a6af69225a25492baa61a892ae3a5ea17bf2ccab3557c914b6fee0251e976a59"
+  },
+  {
+    "path": "raw/local/wire_workspace_selection.py.gz",
+    "bytes": 2622,
+    "sha256": "ce060acf1540a88a0665ba6c2c99c06b3e84a02c4456be8ecb6c13a3f58cd65b",
+    "rawBytes": 8099,
+    "rawSHA256": "a3c1b725ead2016eb86ca6d6d59a3f4028a81916a31f3e87369b5eb76407f8b3"
+  },
+  {
+    "path": "raw/controls/authority/INPUTS.json.gz",
+    "bytes": 2747,
+    "sha256": "6e83c0d4409bb77c3d05d563ead3825c79bcc4135afed9e007a8d3d76a074786",
+    "rawBytes": 10594,
+    "rawSHA256": "077c900470b12e5cc4469d85295dd0241609e2a8aba09e5280edeb742e9077ea"
+  },
+  {
+    "path": "raw/controls/authority/RESULT.json.gz",
+    "bytes": 2146,
+    "sha256": "cd8c28b84cc3f44923f372a243c973d3a535eff9fda2b6f9145c757b6143f517",
+    "rawBytes": 15235,
+    "rawSHA256": "744fffb46a384b13c62a191df52e670af7c7e02a81efcddebe18cf49c03c8b34"
+  },
+  {
+    "path": "raw/controls/authority/STATUS.json.gz",
+    "bytes": 1487,
+    "sha256": "1e651f4f7b4660fb7a2cb7c089f87c51983f110b05383bf9abe7e39410b07c57",
+    "rawBytes": 12268,
+    "rawSHA256": "4c663e130fa2de76135fbd9ae929d8c8dcfc476110ba45628b5786759e233c67"
+  },
+  {
+    "path": "raw/controls/authority/compile-controls.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/authority/compile-controls.stdout.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/authority/compile-real-core.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/authority/compile-real-core.stdout.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift.gz",
+    "bytes": 600,
+    "sha256": "674eb6531589118d2d5cf955f7e8dc5f540a2f51976681f756c566e05c5757cc",
+    "rawBytes": 1618,
+    "rawSHA256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift.gz",
+    "bytes": 676,
+    "sha256": "edb8dbfb72d59302f11aa396c24020bc62b4a6fc5767c98135b1ced23b0f8066",
+    "rawBytes": 1747,
+    "rawSHA256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift.gz",
+    "bytes": 1522,
+    "sha256": "848831bbea670e4de7585c9cf80215e31854633899e22c9ac17cdaaaa7468f24",
+    "rawBytes": 4725,
+    "rawSHA256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift.gz",
+    "bytes": 2551,
+    "sha256": "764c9cdbaa976dc95d92350bca694a488e631aea666cb5902f0e140a7010a377",
+    "rawBytes": 12045,
+    "rawSHA256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift.gz",
+    "bytes": 2759,
+    "sha256": "37e76eb8989e810820663780070dbd1fcf5e8e9249a909532b62a2d7e10a2bf8",
+    "rawBytes": 9437,
+    "rawSHA256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift.gz",
+    "bytes": 1068,
+    "sha256": "b08088fa4f1b06f872d9e98d358c332c48bb02d7b7c440e2bfbb5c6f58cd014f",
+    "rawBytes": 3725,
+    "rawSHA256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift.gz",
+    "bytes": 812,
+    "sha256": "1dc80cd1fe66726415b28ed3e025c111f5d96ec060e07b04cf8adebd26db8df5",
+    "rawBytes": 2619,
+    "rawSHA256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift.gz",
+    "bytes": 607,
+    "sha256": "a12447d7ec94042b6758ce57a31f4ddae61e0cc7f9aa2dffaca87481b25e9d3b",
+    "rawBytes": 1275,
+    "rawSHA256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift.gz",
+    "bytes": 1584,
+    "sha256": "f7dde0f629444a1de2cbe4aa3510af119326012b114c4ab8c7e2090b725a0fbf",
+    "rawBytes": 5097,
+    "rawSHA256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift.gz",
+    "bytes": 2176,
+    "sha256": "287e5caf1785b9f4c8821aaaa0d3946e77f5369ca753259447d212a1fc898feb",
+    "rawBytes": 7473,
+    "rawSHA256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift.gz",
+    "bytes": 501,
+    "sha256": "1c9e5cb91a530cc29895a6a245abd81471574f2484fe65af3fbc93f94eb5357e",
+    "rawBytes": 1862,
+    "rawSHA256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift.gz",
+    "bytes": 1999,
+    "sha256": "db98c7b3733a7c31d3b322f95ea98085f557a6e46385f4685417ec0204344c33",
+    "rawBytes": 8009,
+    "rawSHA256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift.gz",
+    "bytes": 1548,
+    "sha256": "56b0864eacbad99087fcfe00941fc194d1975946a40f87696e007580c5678900",
+    "rawBytes": 5919,
+    "rawSHA256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift.gz",
+    "bytes": 1518,
+    "sha256": "044815ffaf6ae5bcea018f60e7aab9b952877c892f92c58eb7375c3be8db44ad",
+    "rawBytes": 4589,
+    "rawSHA256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift.gz",
+    "bytes": 706,
+    "sha256": "afdd0934dc5e362d3965d8965c53606e2d1c1044050c55c03ab684b005cb0f24",
+    "rawBytes": 2353,
+    "rawSHA256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift.gz",
+    "bytes": 2585,
+    "sha256": "f2eff7d9997259145312c822e551ee047cfb32ea887903b7739fcf42cb6aeb9c",
+    "rawBytes": 10506,
+    "rawSHA256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift.gz",
+    "bytes": 1735,
+    "sha256": "fbb292279d375d1fa8869f7692d74b067d44d6b1b47f27d58a64cef10c9a1bfd",
+    "rawBytes": 5278,
+    "rawSHA256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift.gz",
+    "bytes": 2640,
+    "sha256": "ff641d9bae0eabb3a941ce97cf1d101ce4e6c3253aa902ab3826add62876fd40",
+    "rawBytes": 9216,
+    "rawSHA256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift.gz",
+    "bytes": 1079,
+    "sha256": "a103072beb70ca2417f580c35f2c4ff324939eb785e56211d848a36a6c236d78",
+    "rawBytes": 3154,
+    "rawSHA256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift.gz",
+    "bytes": 12988,
+    "sha256": "c42b7bccd9e7aa385a5071223bfd6bc21e0d8c22ebe437dbcceefb2decd42518",
+    "rawBytes": 71880,
+    "rawSHA256": "65285328fcb28406f6211c593a83a9dcb88493c6aa3f68ee16f4d20697592507"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift.gz",
+    "bytes": 3488,
+    "sha256": "c46d4771e8a88f4d6a5b0189a0d7c61f17d833975a17be153ccefab974dc90dd",
+    "rawBytes": 14414,
+    "rawSHA256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift.gz",
+    "bytes": 576,
+    "sha256": "ca189b16520a87e1c4ba0f565309a12bbb01d7c2b2ea3c52c22cdc6eb1aafe9b",
+    "rawBytes": 1673,
+    "rawSHA256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift.gz",
+    "bytes": 1405,
+    "sha256": "d1b3eb109bf80791fd5bb5ae017c7df668921631b111271e36f2e3aa9f016f3d",
+    "rawBytes": 4844,
+    "rawSHA256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift.gz",
+    "bytes": 2209,
+    "sha256": "58a5a9aa737a60716b6724e39dd1ee27d6d10cb027b0d674d78ee07466dc6a15",
+    "rawBytes": 7952,
+    "rawSHA256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift.gz",
+    "bytes": 2326,
+    "sha256": "6658ac6740ff04c3148a7ee4221aa7272e83b583a9c29bdd4e3f32b21e94f905",
+    "rawBytes": 8269,
+    "rawSHA256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift.gz",
+    "bytes": 2113,
+    "sha256": "1435e11c631b49760a7cbd4df28372e0409a42765c8f6f5c0df36a59044681f7",
+    "rawBytes": 8189,
+    "rawSHA256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift.gz",
+    "bytes": 1578,
+    "sha256": "e451df8c8418a6512151faca0f0918085ff424ea88e1edc1a3a770e300045722",
+    "rawBytes": 5039,
+    "rawSHA256": "fadde3192ca5d03ea9537c72265e883881b0b89ecfecc42021bb81685af26903"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift.gz",
+    "bytes": 849,
+    "sha256": "9b64af97d0359f9c9a7fe5d02417ab867b7f7e942cc46bec54e74ec840b1d535",
+    "rawBytes": 2110,
+    "rawSHA256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift.gz",
+    "bytes": 1017,
+    "sha256": "4b99062b5d67ae5f3e40f47640979e2516c3ddb6a5375569bc5639f87300afa1",
+    "rawBytes": 2922,
+    "rawSHA256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d"
+  },
+  {
+    "path": "raw/controls/authority/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift.gz",
+    "bytes": 5816,
+    "sha256": "033029e13af75ed6f759c7b97952709401519f1fcbcef55a7d98cbb1f07d73f4",
+    "rawBytes": 28048,
+    "rawSHA256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef"
+  },
+  {
+    "path": "raw/controls/authority/inputs/controls/SearchContinuationAuthorityControls.swift.gz",
+    "bytes": 3003,
+    "sha256": "d5bf5126c49a69a25d524925796b87e6fbbf0bf7509ba104326532e38c9ccc6d",
+    "rawBytes": 14331,
+    "rawSHA256": "c4efe9ccc0887802edba97bb1757526c44229142b4316dca8b745f8ef96ebea1"
+  },
+  {
+    "path": "raw/controls/authority/inputs/original-generated-resource_bundle_accessor.swift.gz",
+    "bytes": 721,
+    "sha256": "6ba9efae89f1dca3e7cb5964fbb1cde08fcd737054164130859a0c0a917bba45",
+    "rawBytes": 1746,
+    "rawSHA256": "f7b40a7f0389fcbc9f05d48696fa07f1f109bfdec95f9f12ec833e2a1d5b84c0"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist.gz",
+    "bytes": 294,
+    "sha256": "2a46cdc1801a27ddf3ae9e027636e22464a7732424056299abeee987ac7d35f1",
+    "rawBytes": 530,
+    "rawSHA256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json.gz",
+    "bytes": 2796,
+    "sha256": "1065537a54d09d09b0dc4801bac6528cc276ac30743e0d9552a64144c8cbd4ec",
+    "rawBytes": 43332,
+    "rawSHA256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json.gz",
+    "bytes": 652,
+    "sha256": "0babb690a8d1fe5d7c60f9cf052855e943eb2faf2ef64c98dab98c1a3501fbc9",
+    "rawBytes": 1510,
+    "rawSHA256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json.gz",
+    "bytes": 934,
+    "sha256": "a397107e1e289fd0cc38ce4c2d5cbbda56d477a65bf13135f41489843842000d",
+    "rawBytes": 3669,
+    "rawSHA256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json.gz",
+    "bytes": 6560,
+    "sha256": "84850785cc59f20d247c58ba6769ffa96c89a1a2c587824aee2ea451eedb7818",
+    "rawBytes": 95749,
+    "rawSHA256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json.gz",
+    "bytes": 6463,
+    "sha256": "941dace0c3698ab615f1a555e2c0688ad2e3e6b67b814eca47c54b736cf4ac3f",
+    "rawBytes": 36033,
+    "rawSHA256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+  },
+  {
+    "path": "raw/controls/authority/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json.gz",
+    "bytes": 1849,
+    "sha256": "40c449f61e3caecbbb9f7a56005a31a2452e327cbdc2ca0cf13ac19cfc588d4e",
+    "rawBytes": 10140,
+    "rawSHA256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+  },
+  {
+    "path": "raw/controls/authority/run-controls.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/authority/run-controls.stdout.gz",
+    "bytes": 671,
+    "sha256": "8f7957c4ae69a32b1aa66a0f931e8d617a4a4a08369bb2f4d37ed58e51aa4e0a",
+    "rawBytes": 1939,
+    "rawSHA256": "b7e697354d56aff0d13ee5386eae80f55b45817460e20342091baddbd09d5798"
+  },
+  {
+    "path": "raw/controls/integrated/INPUTS.json.gz",
+    "bytes": 3076,
+    "sha256": "48babeed08cf2fd73c699e5d118ebd283871a536fbc83157ccc8aa13f66809c6",
+    "rawBytes": 11536,
+    "rawSHA256": "7855be65f64f938180d49026b3c1148f1981b47864bfd3c7082cb63c08edf3cb"
+  },
+  {
+    "path": "raw/controls/integrated/RESULT.json.gz",
+    "bytes": 2990,
+    "sha256": "e8991a88c9becb23cb93e13fa34a66c86934a9739064f47fd9bdb847bce03c88",
+    "rawBytes": 21279,
+    "rawSHA256": "adade63bed54c1b527e41d0d68f81ac652c6916d878235d82081c20f0f942d96"
+  },
+  {
+    "path": "raw/controls/integrated/STATUS.json.gz",
+    "bytes": 2508,
+    "sha256": "54a54811f8881460c2b7a80e96c31d99fe1da63df32a81b8d15449e84f785b89",
+    "rawBytes": 19095,
+    "rawSHA256": "5defd5b4796991ed364d3ed808ea44592d6ea7415b40a6458c51d62da4aa1b90"
+  },
+  {
+    "path": "raw/controls/integrated/compile-actual-composition.stderr.gz",
+    "bytes": 1018,
+    "sha256": "afd18e442cd60456c439da3bc0e6e0c99243468b677f1d70255a97f530f7682d",
+    "rawBytes": 8593,
+    "rawSHA256": "fc64a5626ae43addfd9133921c733acd7e838e8c857402fddcf29ba68f478a0a"
+  },
+  {
+    "path": "raw/controls/integrated/compile-actual-composition.stdout.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/compile-controls.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/compile-controls.stdout.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/compile-real-core.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/compile-real-core.stdout.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift.gz",
+    "bytes": 2271,
+    "sha256": "1700a68404ed7e7c9f8d91030b835b635197ea9c3153cceb320cc8a1156057b9",
+    "rawBytes": 8529,
+    "rawSHA256": "5a785feb7b3ddf76d19024ecbae7faec1c1fbbab10e2e76fa2e1d290635fd48f"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift.gz",
+    "bytes": 600,
+    "sha256": "674eb6531589118d2d5cf955f7e8dc5f540a2f51976681f756c566e05c5757cc",
+    "rawBytes": 1618,
+    "rawSHA256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift.gz",
+    "bytes": 676,
+    "sha256": "edb8dbfb72d59302f11aa396c24020bc62b4a6fc5767c98135b1ced23b0f8066",
+    "rawBytes": 1747,
+    "rawSHA256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift.gz",
+    "bytes": 1522,
+    "sha256": "848831bbea670e4de7585c9cf80215e31854633899e22c9ac17cdaaaa7468f24",
+    "rawBytes": 4725,
+    "rawSHA256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift.gz",
+    "bytes": 2551,
+    "sha256": "764c9cdbaa976dc95d92350bca694a488e631aea666cb5902f0e140a7010a377",
+    "rawBytes": 12045,
+    "rawSHA256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift.gz",
+    "bytes": 2759,
+    "sha256": "37e76eb8989e810820663780070dbd1fcf5e8e9249a909532b62a2d7e10a2bf8",
+    "rawBytes": 9437,
+    "rawSHA256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift.gz",
+    "bytes": 1068,
+    "sha256": "b08088fa4f1b06f872d9e98d358c332c48bb02d7b7c440e2bfbb5c6f58cd014f",
+    "rawBytes": 3725,
+    "rawSHA256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift.gz",
+    "bytes": 812,
+    "sha256": "1dc80cd1fe66726415b28ed3e025c111f5d96ec060e07b04cf8adebd26db8df5",
+    "rawBytes": 2619,
+    "rawSHA256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift.gz",
+    "bytes": 607,
+    "sha256": "a12447d7ec94042b6758ce57a31f4ddae61e0cc7f9aa2dffaca87481b25e9d3b",
+    "rawBytes": 1275,
+    "rawSHA256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift.gz",
+    "bytes": 1584,
+    "sha256": "f7dde0f629444a1de2cbe4aa3510af119326012b114c4ab8c7e2090b725a0fbf",
+    "rawBytes": 5097,
+    "rawSHA256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift.gz",
+    "bytes": 2176,
+    "sha256": "287e5caf1785b9f4c8821aaaa0d3946e77f5369ca753259447d212a1fc898feb",
+    "rawBytes": 7473,
+    "rawSHA256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift.gz",
+    "bytes": 501,
+    "sha256": "1c9e5cb91a530cc29895a6a245abd81471574f2484fe65af3fbc93f94eb5357e",
+    "rawBytes": 1862,
+    "rawSHA256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift.gz",
+    "bytes": 1999,
+    "sha256": "db98c7b3733a7c31d3b322f95ea98085f557a6e46385f4685417ec0204344c33",
+    "rawBytes": 8009,
+    "rawSHA256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift.gz",
+    "bytes": 1548,
+    "sha256": "56b0864eacbad99087fcfe00941fc194d1975946a40f87696e007580c5678900",
+    "rawBytes": 5919,
+    "rawSHA256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift.gz",
+    "bytes": 1518,
+    "sha256": "044815ffaf6ae5bcea018f60e7aab9b952877c892f92c58eb7375c3be8db44ad",
+    "rawBytes": 4589,
+    "rawSHA256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift.gz",
+    "bytes": 706,
+    "sha256": "afdd0934dc5e362d3965d8965c53606e2d1c1044050c55c03ab684b005cb0f24",
+    "rawBytes": 2353,
+    "rawSHA256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchContinuation.swift.gz",
+    "bytes": 2585,
+    "sha256": "f2eff7d9997259145312c822e551ee047cfb32ea887903b7739fcf42cb6aeb9c",
+    "rawBytes": 10506,
+    "rawSHA256": "9bf5428034fe430f3367ab03a5232496b123ede009219c9d00b08c45ad08e250"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift.gz",
+    "bytes": 1735,
+    "sha256": "fbb292279d375d1fa8869f7692d74b067d44d6b1b47f27d58a64cef10c9a1bfd",
+    "rawBytes": 5278,
+    "rawSHA256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift.gz",
+    "bytes": 2640,
+    "sha256": "ff641d9bae0eabb3a941ce97cf1d101ce4e6c3253aa902ab3826add62876fd40",
+    "rawBytes": 9216,
+    "rawSHA256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift.gz",
+    "bytes": 1079,
+    "sha256": "a103072beb70ca2417f580c35f2c4ff324939eb785e56211d848a36a6c236d78",
+    "rawBytes": 3154,
+    "rawSHA256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift.gz",
+    "bytes": 12988,
+    "sha256": "c42b7bccd9e7aa385a5071223bfd6bc21e0d8c22ebe437dbcceefb2decd42518",
+    "rawBytes": 71880,
+    "rawSHA256": "65285328fcb28406f6211c593a83a9dcb88493c6aa3f68ee16f4d20697592507"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift.gz",
+    "bytes": 3488,
+    "sha256": "c46d4771e8a88f4d6a5b0189a0d7c61f17d833975a17be153ccefab974dc90dd",
+    "rawBytes": 14414,
+    "rawSHA256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift.gz",
+    "bytes": 576,
+    "sha256": "ca189b16520a87e1c4ba0f565309a12bbb01d7c2b2ea3c52c22cdc6eb1aafe9b",
+    "rawBytes": 1673,
+    "rawSHA256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift.gz",
+    "bytes": 1405,
+    "sha256": "d1b3eb109bf80791fd5bb5ae017c7df668921631b111271e36f2e3aa9f016f3d",
+    "rawBytes": 4844,
+    "rawSHA256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift.gz",
+    "bytes": 2209,
+    "sha256": "58a5a9aa737a60716b6724e39dd1ee27d6d10cb027b0d674d78ee07466dc6a15",
+    "rawBytes": 7952,
+    "rawSHA256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift.gz",
+    "bytes": 3156,
+    "sha256": "988f13d92fa202c1006cd0e3e7a49072037a254ee2282c437aa29814ddbd06da",
+    "rawBytes": 12181,
+    "rawSHA256": "d88100268e2179bedac5eecce4941d28a8d9b64b2c525ff733cdc91b0d97afdb"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationContinuation.swift.gz",
+    "bytes": 628,
+    "sha256": "09e09dd1226caa4f74f5f0c9c9bc42ff8fb0a81d731b0751daabc91d5bcd5e86",
+    "rawBytes": 1327,
+    "rawSHA256": "7b171d100dcf5e20c2cafca81dd7b19ec9d3dc264f0121c8f18c544445d9d7eb"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift.gz",
+    "bytes": 2113,
+    "sha256": "1435e11c631b49760a7cbd4df28372e0409a42765c8f6f5c0df36a59044681f7",
+    "rawBytes": 8189,
+    "rawSHA256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift.gz",
+    "bytes": 1578,
+    "sha256": "e451df8c8418a6512151faca0f0918085ff424ea88e1edc1a3a770e300045722",
+    "rawBytes": 5039,
+    "rawSHA256": "fadde3192ca5d03ea9537c72265e883881b0b89ecfecc42021bb81685af26903"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift.gz",
+    "bytes": 849,
+    "sha256": "9b64af97d0359f9c9a7fe5d02417ab867b7f7e942cc46bec54e74ec840b1d535",
+    "rawBytes": 2110,
+    "rawSHA256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift.gz",
+    "bytes": 1017,
+    "sha256": "4b99062b5d67ae5f3e40f47640979e2516c3ddb6a5375569bc5639f87300afa1",
+    "rawBytes": 2922,
+    "rawSHA256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift.gz",
+    "bytes": 5816,
+    "sha256": "033029e13af75ed6f759c7b97952709401519f1fcbcef55a7d98cbb1f07d73f4",
+    "rawBytes": 28048,
+    "rawSHA256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/controls/ActualSearchCompositionEntry.swift.gz",
+    "bytes": 1948,
+    "sha256": "59b6510654d35b26d79935f153b6e6cb09c16b300dcc4a6f075cc3537aded85e",
+    "rawBytes": 6454,
+    "rawSHA256": "7296bd65b178ef2e867e2e55a3fcae7a43de06852bc1ca9924c0f4271e7698a2"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/controls/SearchCompositionFixtures.swift.gz",
+    "bytes": 4308,
+    "sha256": "87e50f111e69c89a32c3350acfa0ce1d8cc221bd83aaef9b2e380f7fc38d0de1",
+    "rawBytes": 18754,
+    "rawSHA256": "54cf36c1a220efcaf9aaa7206231a2bcb9237842c17bf1dacce567124c38cfbe"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/controls/SearchContinuationAuthorityControls.swift.gz",
+    "bytes": 3003,
+    "sha256": "d5bf5126c49a69a25d524925796b87e6fbbf0bf7509ba104326532e38c9ccc6d",
+    "rawBytes": 14331,
+    "rawSHA256": "c4efe9ccc0887802edba97bb1757526c44229142b4316dca8b745f8ef96ebea1"
+  },
+  {
+    "path": "raw/controls/integrated/inputs/original-generated-resource_bundle_accessor.swift.gz",
+    "bytes": 721,
+    "sha256": "6ba9efae89f1dca3e7cb5964fbb1cde08fcd737054164130859a0c0a917bba45",
+    "rawBytes": 1746,
+    "rawSHA256": "f7b40a7f0389fcbc9f05d48696fa07f1f109bfdec95f9f12ec833e2a1d5b84c0"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist.gz",
+    "bytes": 294,
+    "sha256": "2a46cdc1801a27ddf3ae9e027636e22464a7732424056299abeee987ac7d35f1",
+    "rawBytes": 530,
+    "rawSHA256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json.gz",
+    "bytes": 2796,
+    "sha256": "1065537a54d09d09b0dc4801bac6528cc276ac30743e0d9552a64144c8cbd4ec",
+    "rawBytes": 43332,
+    "rawSHA256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json.gz",
+    "bytes": 652,
+    "sha256": "0babb690a8d1fe5d7c60f9cf052855e943eb2faf2ef64c98dab98c1a3501fbc9",
+    "rawBytes": 1510,
+    "rawSHA256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json.gz",
+    "bytes": 934,
+    "sha256": "a397107e1e289fd0cc38ce4c2d5cbbda56d477a65bf13135f41489843842000d",
+    "rawBytes": 3669,
+    "rawSHA256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json.gz",
+    "bytes": 6560,
+    "sha256": "84850785cc59f20d247c58ba6769ffa96c89a1a2c587824aee2ea451eedb7818",
+    "rawBytes": 95749,
+    "rawSHA256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json.gz",
+    "bytes": 6463,
+    "sha256": "941dace0c3698ab615f1a555e2c0688ad2e3e6b67b814eca47c54b736cf4ac3f",
+    "rawBytes": 36033,
+    "rawSHA256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7"
+  },
+  {
+    "path": "raw/controls/integrated/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json.gz",
+    "bytes": 1849,
+    "sha256": "40c449f61e3caecbbb9f7a56005a31a2452e327cbdc2ca0cf13ac19cfc588d4e",
+    "rawBytes": 10140,
+    "rawSHA256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1"
+  },
+  {
+    "path": "raw/controls/integrated/run-actual-composition.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/run-actual-composition.stdout.gz",
+    "bytes": 591,
+    "sha256": "2b1367c8c163a7ed065121c547f90c23f1bd280a976acf0b1a4bba2bae11d5ad",
+    "rawBytes": 1337,
+    "rawSHA256": "4f27966c9fb8428e4da215c284034e39faeb2e627179062485ae42b04aa8ef01"
+  },
+  {
+    "path": "raw/controls/integrated/run-controls.stderr.gz",
+    "bytes": 20,
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "rawBytes": 0,
+    "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "raw/controls/integrated/run-controls.stdout.gz",
+    "bytes": 671,
+    "sha256": "8f7957c4ae69a32b1aa66a0f931e8d617a4a4a08369bb2f4d37ed58e51aa4e0a",
+    "rawBytes": 1939,
+    "rawSHA256": "b7e697354d56aff0d13ee5386eae80f55b45817460e20342091baddbd09d5798"
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "schema": "otzaria.wave3.root-search-ui-wiring-input.v1",
+  "base": "d3dae76f6476836755a562756c3b374ef0c0e00e",
+  "products": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 639844,
+      "sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+      "beforeSHA256": "ab245c2c715d8ee7cb4550f1a6d9d7b26f3955c53faf3bfc295f35cb5b547f43"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "bytes": 1823,
+      "sha256": "80193ca8edff967eb8bbc23eeecfb8563fac0db99c8538ee0cdb0695f46f47b3",
+      "beforeSHA256": "4951cfaa279a13dd49649babc42587625f3668da2fc54ca3785e7a6f4066741c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "bytes": 1736,
+      "sha256": "cf7a6176a4e1ff9a36b2b87350265ba74aa140ffd932ded48659997c873aa7b4",
+      "beforeSHA256": "23404297c83bce209dc710e0ffb22e28d767d224c37ca4ae602eb84aad5836a4"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "bytes": 16862,
+      "sha256": "e807ee3e0651aacb34b8bce1c68d6a3411a73b01a21a9d624d6c7e9b0fa26410",
+      "beforeSHA256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 206640,
+      "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45",
+      "beforeSHA256": "4efcc3994a1cd5bf63a2b5c410e77fe0763818ff6b2f001973ec51bd88062573"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 129051,
+      "sha256": "902b93bfdc8beea69779b7fa5f0acb85d65bcf8178600c3b2d6e38ea0c4201e5",
+      "beforeSHA256": "4853b04ebbdf3ea531ac73175edc38a65871b7cc289a83dca2ec73d8dbf08a1b"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuation.swift",
+      "bytes": 43780,
+      "sha256": "c6ed5b52aa3fab8ea142c5d4d4ed27e134bc5efa1a53091e675e3a784b5c5fc2",
+      "beforeSHA256": "2d39de55348df1520fd4d8317440ca35e19eedb09b7f28376e3a944a4762fd50"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchContinuationOwner.swift",
+      "bytes": 5573,
+      "sha256": "239da550c060f08d2ccffec4d5edc1c81d6094ec03aa35d493ff62dcc9193195",
+      "beforeSHA256": null
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "bytes": 386509,
+      "sha256": "c2fb42c37739065a100a6d1c03865dc3dfdfe3f75cdd059a4857251468b6e7dc",
+      "beforeSHA256": "4dc4752b9037289c0c07c30fbb32c05de8a86feb073a6265c9a68c5ed6d0da5c"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "bytes": 71880,
+      "sha256": "65285328fcb28406f6211c593a83a9dcb88493c6aa3f68ee16f4d20697592507",
+      "beforeSHA256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionSearchContinuationAuthority.swift",
+      "bytes": 5039,
+      "sha256": "fadde3192ca5d03ea9537c72265e883881b0b89ecfecc42021bb81685af26903",
+      "beforeSHA256": null
+    }
+  ],
+  "payloadGzipBytes": 790421,
+  "payloadGzipSHA256": "95f07bed64909b8fb664e208a32ba1f8b7d1802d36944a293b656f88e1cf10a9",
+  "payloadRawSHA256": "5634fbaeb3beefbfd7c4bf1fa3be219c36e0d8086f92b7a2b7fcf80e5960c8d8",
+  "inheritedHookAndSigningConfiguration": "",
+  "preserved": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45702,
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2"
+    }
+  ],
+  "coreControls": "24/24 actual Core; integrated Core 24/24 and Composition/service 12/12",
+  "AppleSDKTypecheck": "NOT_RUN",
+  "nativeUI": "NOT_RUN",
+  "physical": "NOT_RUN"
+}

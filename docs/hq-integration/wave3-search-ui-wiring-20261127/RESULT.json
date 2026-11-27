@@ -1,0 +1,35 @@
+{
+  "schema": "otzaria.wave3.root-search-ui-wiring-result.v1",
+  "completedAtUTC": "2026-11-27T13:34:47.958827+00:00",
+  "base": "d3dae76f6476836755a562756c3b374ef0c0e00e",
+  "sourceCommit": "9e6193246b632caf1cd16e1dc7a4082e7688d450",
+  "sourceTree": "10e731eec6b7365687c73958f926800c61fa6461",
+  "vendorTree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "productFiles": 11,
+  "evidenceMembers": 134,
+  "planSHA256": "7cd96255ae26750e0d4958e1f44b68fb5c8c319f196ffe2096c83a2f1d046b73",
+  "artifactIndexSHA256": "23f0f7af4b43f9fdf95dfe27eafdd3b0870aecf04ca5b976c5ceaacfa83d19ef",
+  "preserved": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 45702,
+      "sha256": "2163d9d51b40423a5130b0d9b97e4a063af12c6fb3f1e1ec6b0dc40b753b24a2"
+    }
+  ],
+  "actualCoreControls": {
+    "passed": 24,
+    "failed": 0
+  },
+  "actualCompositionWithDomainFixtures": {
+    "passed": 12,
+    "failed": 0
+  },
+  "AppleSDK": "NOT_RUN",
+  "nativeUI": "NOT_RUN",
+  "physical": "NOT_RUN"
+}
