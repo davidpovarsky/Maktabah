@@ -1,0 +1,117 @@
+{
+  "schema": "otzaria.wave2.stopped-trace-export-source-intake/1",
+  "base": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+  "mappings": [
+    {
+      "donor": "4f3b3e21305cb7bab1e629378dd720c143c28c22",
+      "integration": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "files": {
+        "Scripts/CI/study-ui-trace-exports.py": {
+          "bytes": 33219,
+          "sha256": "53cc03862f1fe406701a8b64f6d97466638f34523359fd8e0c96b37955d0d01f"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_01.json": {
+          "bytes": 6699,
+          "sha256": "5d90b57b61384f6c4580cba0dadbd47d38eaf0cbf150ffbd04c5242f2e46c23a"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_02.json": {
+          "bytes": 6920,
+          "sha256": "4637a629928453798b74a2d52d3a520e3a8bb918259260d65a99f854e08602b5"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/ORIGINAL_REQUIREMENT.json": {
+          "bytes": 1862,
+          "sha256": "4521a91668ee96ba5787213af50494290ace051fa76456d75679165e263537f4"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md": {
+          "bytes": 9938,
+          "sha256": "eb500e136483ad07364c01a02309ae8951901d6ca572b5a7e85a95cf6e5c5ebf"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/source-controls.py": {
+          "bytes": 12943,
+          "sha256": "f115549c57d137e783e47bdabd061b837cf657fa96872754dfda7a72344b44d2"
+        }
+      }
+    },
+    {
+      "donor": "785cd9e02dfe2f27dbe8d01b92e603f94ea0a6ff",
+      "integration": "72ae2474e1341d511b9b56f097c773a791649753",
+      "files": {
+        "Scripts/CI/study-ui-trace-exports.py": {
+          "bytes": 37661,
+          "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_03.json": {
+          "bytes": 6920,
+          "sha256": "0055e5ffffaf8c0a8b2c0b1a3fa65dddc55b418ed7d17e757994a38674f99619"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/OWNERSHIP_CONTROLS_01.json": {
+          "bytes": 5252,
+          "sha256": "b3895c17edacc9ec2ebc8fa9cb88ee6074e63bcb84e462a428c235db2d8ea2fd"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md": {
+          "bytes": 12548,
+          "sha256": "bb3ee44a29b9511bf96261d65e360ed0bf1ffd1364b995fd75f5b4c9218fd20a"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/ownership-controls.py": {
+          "bytes": 11628,
+          "sha256": "169d6c9656806333dd74b7bcf655811391d63886165bbef472836e51af39c622"
+        },
+        "docs/hq-integration/wave2-20261127/reader/trace-exports/source-controls.py": {
+          "bytes": 13302,
+          "sha256": "8d9c153b9c38dee60d8fca039f13fc8ebc6007c3e07e8d91624008fa21a34aee"
+        }
+      }
+    }
+  ],
+  "scope": "Stopped original trace export source only; no recording, Apple, native, corpus or metric execution",
+  "status": "SOURCE_ONLY_CHECKED",
+  "intakeHead": "72ae2474e1341d511b9b56f097c773a791649753",
+  "source": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "changedPaths": [
+    "Scripts/CI/study-ui-trace-exports.py",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_01.json",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_02.json",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_03.json",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/ORIGINAL_REQUIREMENT.json",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/OWNERSHIP_CONTROLS_01.json",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/ownership-controls.py",
+    "docs/hq-integration/wave2-20261127/reader/trace-exports/source-controls.py"
+  ],
+  "helper": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/study-ui-trace-exports.py",
+    "bytes": 37661,
+    "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+  },
+  "cliHelp": {
+    "exit": 0,
+    "stdout": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/trace-export-intake/CLI_HELP.stdout.log",
+      "bytes": 990,
+      "sha256": "1a10a4b4e55da632fc4d589ae89650544a2d303657a2170188a7daabc84ed041"
+    },
+    "stderr": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/trace-export-intake/CLI_HELP.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "fileVersionsChecked": 12,
+  "sourceControlsReused": {
+    "general": 49,
+    "ownership": 20,
+    "originalBaselineCounterexamples": 2,
+    "rootRerun": false
+  },
+  "originalFailedTracePacket": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/README.md",
+    "bytes": 2434,
+    "sha256": "4e7f4265d05853f5db8fb1c6af2a278ccc76858e8b125aa130e891c9772073ba"
+  },
+  "nativeExecuted": 0,
+  "appleExecuted": 0,
+  "actualTraceTablesExported": 0,
+  "corpusQueries": 0,
+  "performanceAcceptance": false,
+  "observedAtUTC": "2026-11-27T09:09:30.398448+00:00"
+}
