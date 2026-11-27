@@ -1,0 +1,31 @@
+{
+  "scope": "Read-only source/receipt review; no Wave2 source mutation or native run",
+  "edition_commit": "e3af7bc78e4cca198150a6a4205aff1a9bc44a8a",
+  "edition_receipt_source_hashes_matched": 10,
+  "edition_component_control_receipt": {
+    "baseline_pass": 12,
+    "baseline_fail": 12,
+    "candidate_pass": 24,
+    "candidate_fail": 0,
+    "native_app_compilation_or_ui": false
+  },
+  "real_sefaria_identity": "SearchResultItem.stableID includes locator/versionTitle/language; Sefaria does not supply backendHitID. Original parent uses .id(item.stableID).",
+  "concrete_preview_race": {
+    "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "source_sha256": "f2e04982fed6c3f6fa83fa57255c693ae7b96ad1a1c11f46b9053e4af01f0ec7",
+    "location": "generic catch and final isLoading publication, lines 442-447 in reviewed commit",
+    "scenario": "The new Otzaria unit-mode task key restarts work on the same preview view identity. Old cancelled task A can fail with a non-CancellationError after B starts, then write previewError and isLoading=false into B state. Success checks cancellation; error/final state publication does not.",
+    "requested_fix": "Fence every result/error/loading publication with actual cancellation and current request ownership. Keep selected-edition stableID identity and original source behavior.",
+    "reproduction_status": "Source-derived concurrency finding, not a native reproduction; root routes to sole Wave2 writer"
+  },
+  "reader_commit": "dfaeaae2d72d8ed783ef837eba0eaf8fe998334d",
+  "reader_receipt_source_hashes_matched": 14,
+  "reader_source_controls": {
+    "passed": 33,
+    "failed": 0,
+    "native_ui_executed": 0,
+    "first_sparse_catalog_failure_preserved": true
+  },
+  "reader_review": "No concrete defect found in reviewed corpus admission/catalog/original-v32 preservation. UNFINALIZED source pins intentionally prevent dispatch until root freeze. Separate v40 retains exact native installation receipts, full corpus identity and current same-checkout app/test/SDK closure; no historical UI attribution transfer.",
+  "reader_scope_limits": "Apple syntax + catalog compile only; actual v40 DB was not opened by compile. Driver remains Debug original-UI observation, not Native116/Release114/device/performance acceptance. Original full-v32 run remains separate."
+}

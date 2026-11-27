@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-11-27T00:30:57.313811+00:00",
+  "scope": "Syntax and source preservation only; original app/native execution pending",
+  "swift": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "exit": 0,
+  "files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift": {
+      "sha256": "9061b890b78239afb043d64c1df8d6e1d38a69ae9900c033c2be429433ed1f04",
+      "prior_body_preserved_outside_observation": true
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift": {
+      "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f",
+      "prior_body_preserved_outside_observation": true
+    }
+  },
+  "shared_api_pending_intake": "MaktabahNativeComponentSourceObservation.init(read:)/validate()",
+  "native_ui_executed": 0,
+  "physical_device_executed": 0
+}

@@ -1,0 +1,74 @@
+{
+  "base": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "read_sets": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift": [
+      "manager.activeTabId",
+      "manager.openTabs",
+      "reader.backendSection",
+      "reader.currentDestination",
+      "reader.currentContentId",
+      "model.tocNodes",
+      "model.tocRanges",
+      "model.navigationStructures",
+      "model.selectedStructureID",
+      "model.isLoading",
+      "model.loadingStatus",
+      "model.loadFailure"
+    ],
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift": [
+      "manager.libraryViewModel",
+      "model.state",
+      "model.hasLoadedLibrary",
+      "model.loadedBackendID",
+      "model.loadedBackendGeneration",
+      "model.updateTrigger",
+      "model.searchQuery",
+      "model.viewMode",
+      "model.showOnlyDownloaded",
+      "model.filterMode",
+      "model.isFlatMode",
+      "model.selectedAuthorId",
+      "model.displayedCategories",
+      "model.isSelectionMode",
+      "model.selectedBookIds",
+      "model.showingImportSheet",
+      "model.showingUpdateSheet",
+      "model.showingDeleteConfirmation",
+      "model.singleBookToDelete",
+      "model.importErrorMessage",
+      "model.showImportSuccessAlert",
+      "model.isDownloadModal"
+    ]
+  },
+  "original_declaration_hashes": {
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": {
+      "sha256": "85abeae6d927076ff831782838e3ffd863bb0f47cca4a38f58b6602b7ecddd78"
+    },
+    "Source/Features/Reader/ViewModel/ReaderViewModel.swift": {
+      "sha256": "edbd1574b07037445dc573a74e3ceda183a9d94beba5b804b639352ba829496b"
+    },
+    "Source/Features/Reader/ViewModel/BookTOCViewModel.swift": {
+      "sha256": "dce77ecd59eec0456da24804ec20f871f72a053e79c3b56ba66eef03ce37e047"
+    },
+    "Source/Features/Library/ViewModel/LibraryViewModel.swift": {
+      "sha256": "abd41c287795a89ccd6541c649c2f9a9c37d57f5d3626ce90aa371b9b3915a52"
+    },
+    "Source/Core/ViewModels/Base/ViewModelBase.swift": {
+      "sha256": "e88982664867a2ad76674348ed57b454b648eed598d4c7d01c3a5513a9de61dd"
+    },
+    "Source/LibraryBackend/BackendCoordinator.swift": {
+      "sha256": "c3815a44393ecec66c0ab6eece436fb763b3c4527cd7e8d9c1ce2ea9c649b0b4"
+    },
+    "Source/Features/Reader/Models/TOCNode.swift": {
+      "sha256": "42c28989766ad887946c01b69a2bebb0e46d0342de8ad63f78f67a1d795f8152"
+    }
+  },
+  "backend": "Shared app-layer wrapper owns original Combine subscription plus identity, active backend, generation and transition checks. BackendCoordinator is not claimed to use Observation.",
+  "non_observable": [
+    "TOCNode.children",
+    "TOCNode.backendLocator",
+    "TOCNode.endID",
+    "ReaderViewModel.tocViewModel (ObservationIgnored lazy)"
+  ],
+  "retained_comparisons": "Every existing exact owner/backend/TOC graph/filter comparison remains. No claim of arbitrary unobserved in-place node history."
+}

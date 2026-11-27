@@ -94,6 +94,22 @@ import OtzariaUIRouting
             throw UIRouteError(.unavailable, "native_toc_component_unavailable")
         }
         let model = reader.tocViewModel
+        // One-shot original Observation detects a change even if values return
+        // to their captured state before Core resumes. It never refreshes source.
+        let observation = MaktabahNativeComponentSourceObservation {
+            _ = manager.activeTabId
+            _ = manager.openTabs
+            _ = reader.backendSection
+            _ = reader.currentDestination
+            _ = reader.currentContentId
+            _ = model.tocNodes
+            _ = model.tocRanges
+            _ = model.navigationStructures
+            _ = model.selectedStructureID
+            _ = model.isLoading
+            _ = model.loadingStatus
+            _ = model.loadFailure
+        }
         let backend = BackendCoordinator.shared.activeBackendID
         let generation = BackendCoordinator.shared.generation
         let destination = reader.currentDestination
@@ -104,6 +120,7 @@ import OtzariaUIRouting
         let structures = model.navigationStructures.map { StructureIdentity(id: $0.id, title: $0.title) }
 
         return { [weak manager, weak reader, weak model] in
+            try observation.validate()
             guard let manager, let reader, let model,
                   manager.activeTabId == tabID, currentReader(manager) === reader,
                   reader.tocViewModel === model,
