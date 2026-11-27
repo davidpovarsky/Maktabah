@@ -207,8 +207,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
             .init(id: id("native.settings"), title: "Settings".localized, implementation: .implemented,
-                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet], requiredCoreActions: [],
-                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+                  supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
+                  anchors: MaktabahNativeSettingsComponents.descriptors.map(\.anchor), requiredCoreActions: [],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet,
+                      components: MaktabahNativeSettingsComponents.descriptors.map(\.anchor))])),
             .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
@@ -291,6 +293,35 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         let session = MaktabahNativeSceneSession(sceneID: sceneID, directory: directory, bindings: bindings, workspaceSource: workspaceSource, project: project)
         session.foreground = foreground
         let lease = try authority.mount(sceneID: sceneID, foreground: foreground)
+        session.configureComponentValidation { [weak self, weak session] command in
+            guard let self, let session, command.scene.sceneID == sceneID else {
+                throw UIRouteError(.staleState, "scene_lifetime_changed")
+            }
+            let original = try authority.navigationState(sceneID: sceneID.rawValue)
+            guard original.active, original.lifetimeID == lease.lifetimeID,
+                  contexts[sceneID] == original.context else {
+                throw UIRouteError(.staleState, "native_context_changed")
+            }
+            // This is read-only liveness of an ALREADY COMMITTED UI projection,
+            // not another authorization, preparation, admission or native receipt.
+            return { [weak self, weak session] in
+                try Task.checkCancellation()
+                guard let self, let session,
+                      SystemActionClock().now() < command.invocation.deadlineUptimeNanoseconds,
+                      let entry = scenes[sceneID], entry.session === session, entry.lease == lease,
+                      session.mounted, session.foreground else {
+                    throw UIRouteError(.staleState, "scene_lifetime_changed")
+                }
+                let snapshot = try backend.currentBackendSnapshot()
+                let current = try authority.navigationState(sceneID: sceneID.rawValue)
+                guard snapshot == command.invocation.snapshot, current.active,
+                      current.context == original.context, contexts[sceneID] == original.context,
+                      current.lifetimeID == original.lifetimeID,
+                      current.authorityRevision == original.authorityRevision else {
+                    throw UIRouteError(.staleState, "native_component_source_changed")
+                }
+            }
+        }
         do {
             try session.mount { [weak self, weak session] context in
                 guard let self, let session, session.mounted, contexts[sceneID] == context, context.foregroundSceneID == sceneID.rawValue,
@@ -350,6 +381,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             presentation: { [weak session] in
                 guard let session else { throw ActionPortError.unavailable }
                 return try session.publicBindingPresentation()
+            }, validateComponentSource: { [weak session] destination, anchor, requestID in
+                guard let session else { throw ActionPortError.unavailable }
+                try session.validateComponentSource(destination: destination, anchor: anchor, requestID: requestID)
             }, invalidated: { [weak self, weak session] in
                 guard let self, let session, self.scenes[session.sceneID]?.session === session else { return }
                 self.contexts.removeValue(forKey: session.sceneID)
@@ -714,9 +748,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if destination.component != nil || destination.destination.rawValue == "native.reader.inspector" {
             // The same live system entity uses the same public binder and
             // original Core fence as a component deep link. No second intent
-            // executor, deferred focus or caller-supplied authority is added.
+            // executor or caller-supplied authority is added.
             return try await open(public: .init(destination: destination.destination, backend: destination.backend,
-                presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector : .currentTab,
+                presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector
+                    : destination.destination.rawValue == "native.settings" ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
         }
@@ -784,6 +819,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         if let requested = intent.backend, requested != snapshot.backend { return .requiresBackendSwitch(requested) }
         guard contexts[sceneID] == nil else { throw UIRouteError(.unavailable, "native_scene_busy") }
         let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot, deadlineUptimeNanoseconds: end)
+        // Retain exact original component source BEFORE the first await. This
+        // reads identity only; canonical Core still authorizes all navigation.
+        let retainedComponent: MaktabahNativeComponentOwner?
+        if let anchor = intent.component, intent.destination.rawValue != "native.search" {
+            retainedComponent = try entry.session.retainComponentSource(destination: intent.destination,
+                anchor: anchor, requestID: requestID)
+        } else { retainedComponent = nil }
+        defer { retainedComponent?.releaseSource(requestID: requestID) }
         // Reserve actual native ownership before issuing/admitting authority;
         // R advances its epoch and invalidates any older mapping context.
         let retainedReader = try intent.content.map { content in
@@ -1515,10 +1558,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             if let binding = entry.publicBinding {
                 let variants = try await registry.discoverPublicV2(scene: scene, context: context, invocation: invocation,
                                                                   core: core, host: binding)
-                for variant in variants where variant.destination.rawValue == "native.search"
-                    && variant.presentation == .currentTab && variant.component?.rawValue == "native.search.query" {
-                    values.append(.init(backend: snapshot.backend, destination: variant.destination,
-                        title: "Search field".localized + " — " + windowLabel, sceneID: id, component: variant.component))
+                for variant in variants {
+                    if variant.destination.rawValue == "native.search", variant.presentation == .currentTab,
+                       variant.component?.rawValue == "native.search.query" {
+                        values.append(.init(backend: snapshot.backend, destination: variant.destination,
+                            title: "Search field".localized + " — " + windowLabel, sceneID: id, component: variant.component))
+                    } else if let anchor = variant.component,
+                              let owner = entry.session.componentOwner(for: variant.destination),
+                              let descriptor = owner.descriptors.first(where: { $0.anchor == anchor }) {
+                        values.append(.init(backend: snapshot.backend, destination: variant.destination,
+                            title: descriptor.title + " — " + windowLabel, sceneID: id, component: anchor))
+                    }
                 }
             }
         }
@@ -1540,6 +1590,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                 guard descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id) else { continue }
                 values.append(.init(backend: snapshot.backend, destination: descriptor.id,
                     title: descriptor.title + " — " + windowLabel, sceneID: id))
+                if !entry.session.foreground, let owner = entry.session.componentOwner(for: descriptor.id) {
+                    // Existing scene/source identity may resolve before the
+                    // system foregrounds it. Execution still discovers afresh.
+                    values += owner.descriptors.filter { owner.isAvailable($0.anchor) }.map {
+                        .init(backend: snapshot.backend, destination: descriptor.id,
+                              title: $0.title + " — " + windowLabel, sceneID: id, component: $0.anchor)
+                    }
+                }
             }
         }
         try Task.checkCancellation()
@@ -1795,9 +1853,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         guard case .acknowledged(let receipt) = result else { return }
         // Only validated native acknowledgement reaches here. No private query,
         // note text, selected text or model arguments enter diagnostic logs.
-        if receipt.route.destination.rawValue == "native.search",
-           receipt.route.focus == FocusSpec(kind: .component, anchor: UIDestinationID(rawValue: "native.search.query")!) {
-            OtzariaFileLogger.shared.log("[NativeFocusReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) component=native.search.query")
+        if let focus = receipt.route.focus, focus.kind == .component,
+           focus.locator == nil, focus.range == nil, let anchor = focus.anchor,
+           registry.descriptor(for: receipt.route.destination)?.anchors.contains(anchor) == true {
+            OtzariaFileLogger.shared.log("[NativeFocusReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) component=\(anchor.rawValue)")
         }
         OtzariaFileLogger.shared.log("[NativeNavigationReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) backend=\(receipt.backendSnapshot.backend.rawValue) generation=\(receipt.backendSnapshot.generation) epoch=\(receipt.backendSnapshot.rpcEpoch.map(String.init) ?? "none") revision=\(receipt.basedOnSceneRevision)->\(receipt.appliedSceneRevision) destination=\(receipt.route.destination.rawValue) presentation=\(receipt.route.presentation.kind.rawValue)")
     }

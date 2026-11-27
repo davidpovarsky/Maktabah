@@ -1,0 +1,99 @@
+Building for debugging...
+[Computing dependencies]
+[Using on-disk description]
+[1 / 5] ChavrusaUIRoutingHost
+[2 / 6] ChavrusaUIRoutingHost
+[5 / 9] ChavrusaUIRoutingHostTests-product
+[6 / 10] ChavrusaUIRoutingHostTests-product
+[11 / 16] ChavrusaUIRoutingHostTests-product
+[13 / 22] OtzariaActionCore_OtzariaActionCore
+[15 / 21] ChavrusaUIRoutingHost
+[18 / 22] ChavrusaUIRoutingHost
+[19 / 22] ChavrusaUIRoutingHostTests-product
+[21 / 23] ChavrusaUIRoutingHostTests-test-runner
+[23 / 25] ChavrusaUIRoutingHostTests-test-runner
+[23 / 26] ChavrusaUIRoutingHostTests-test-runner
+[27 / 27] ChavrusaUIRoutingHostTests-test-runner
+[29 / 32] ChavrusaUIRoutingHostTests-test-runner
+Build complete! (11.72 secs)
+Test Suite 'Selected tests' started at 2026-11-26 23:59:29.073
+Test Suite 'NativeComponentRevealOwnerTests' started at 2026-11-26 23:59:29.090
+Test Case 'NativeComponentRevealOwnerTests.testColdMountRequiresRenderedExactVisibleTargetInOriginalScene' started at 2026-11-26 23:59:29.090
+Test Case 'NativeComponentRevealOwnerTests.testColdMountRequiresRenderedExactVisibleTargetInOriginalScene' passed (0.006 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testDetachAndReattachSameViewIdentityCannotReplay' started at 2026-11-26 23:59:29.095
+Test Case 'NativeComponentRevealOwnerTests.testDetachAndReattachSameViewIdentityCannotReplay' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testOneApplyCannotBecomeDeferredReplay' started at 2026-11-26 23:59:29.096
+Test Case 'NativeComponentRevealOwnerTests.testOneApplyCannotBecomeDeferredReplay' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testOriginalOverlayBlocksRevealAndVisibleFacet' started at 2026-11-26 23:59:29.096
+Test Case 'NativeComponentRevealOwnerTests.testOriginalOverlayBlocksRevealAndVisibleFacet' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testReplacementViewCannotInheritCommittedRequest' started at 2026-11-26 23:59:29.096
+Test Case 'NativeComponentRevealOwnerTests.testReplacementViewCannotInheritCommittedRequest' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testRevokedOriginalAdmissionCannotRenderAfterParentMount' started at 2026-11-26 23:59:29.097
+Test Case 'NativeComponentRevealOwnerTests.testRevokedOriginalAdmissionCannotRenderAfterParentMount' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testSourceABAAndConditionalAvailabilityAreRecheckedAtRender' started at 2026-11-26 23:59:29.097
+Test Case 'NativeComponentRevealOwnerTests.testSourceABAAndConditionalAvailabilityAreRecheckedAtRender' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testSourceIsCapturedOnceBeforeAwaitAndCannotDriftAtBegin' started at 2026-11-26 23:59:29.097
+Test Case 'NativeComponentRevealOwnerTests.testSourceIsCapturedOnceBeforeAwaitAndCannotDriftAtBegin' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testStaleGeometryDismantleCannotEraseNewOriginalWitness' started at 2026-11-26 23:59:29.098
+Test Case 'NativeComponentRevealOwnerTests.testStaleGeometryDismantleCannotEraseNewOriginalWitness' passed (0.0 seconds)
+Test Case 'NativeComponentRevealOwnerTests.testUnknownAnchorAndMissingSourceAreRejectedBeforePublication' started at 2026-11-26 23:59:29.098
+Test Case 'NativeComponentRevealOwnerTests.testUnknownAnchorAndMissingSourceAreRejectedBeforePublication' passed (0.0 seconds)
+Test Suite 'NativeComponentRevealOwnerTests' passed at 2026-11-26 23:59:29.098
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+Test Suite 'NativeIntentServiceTests' started at 2026-11-26 23:59:29.098
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' started at 2026-11-26 23:59:29.098
+Test Case 'NativeIntentServiceTests.testBackendQualifiedEntitiesRemainDistinctAndQueryUsesActualCatalog' passed (0.002 seconds)
+Test Case 'NativeIntentServiceTests.testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate' started at 2026-11-26 23:59:29.100
+Test Case 'NativeIntentServiceTests.testBackgroundIdentityResolvesButOnlyFreshForegroundDiscoveryCanNavigate' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testCancelledForegroundWaitCannotNavigate' started at 2026-11-26 23:59:29.101
+Test Case 'NativeIntentServiceTests.testCancelledForegroundWaitCannotNavigate' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testCancelledReaderWindowQueryNeverStartsHostResolution' started at 2026-11-26 23:59:29.101
+Test Case 'NativeIntentServiceTests.testCancelledReaderWindowQueryNeverStartsHostResolution' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene' started at 2026-11-26 23:59:29.101
+Test Case 'NativeIntentServiceTests.testChangedWindowDuringForegroundWaitCannotSubstituteAnotherScene' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata' started at 2026-11-26 23:59:29.102
+Test Case 'NativeIntentServiceTests.testDuplicateExecutionCatalogFailsDespiteUniqueResolvedMetadata' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' started at 2026-11-26 23:59:29.102
+Test Case 'NativeIntentServiceTests.testDuplicateLiveEntitiesFailClosed' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows' started at 2026-11-26 23:59:29.103
+Test Case 'NativeIntentServiceTests.testExactFeatureNameRemainsResolvableWithComponentTitlesAndMultipleWindows' passed (0.01 seconds)
+Test Case 'NativeIntentServiceTests.testExactHebrewFeatureNameDoesNotMatchLongerControlName' started at 2026-11-26 23:59:29.112
+Test Case 'NativeIntentServiceTests.testExactHebrewFeatureNameDoesNotMatchLongerControlName' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority' started at 2026-11-26 23:59:29.113
+Test Case 'NativeIntentServiceTests.testForegroundWaitDoesNotTurnMetadataIntoExecutionAuthority' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery' started at 2026-11-26 23:59:29.113
+Test Case 'NativeIntentServiceTests.testForegroundWaitUsesExactResolvedIdentityBeforeFreshExecutionDiscovery' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' started at 2026-11-26 23:59:29.113
+Test Case 'NativeIntentServiceTests.testNoncompletionStatusesRemainDistinctSystemIntentErrors' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities' started at 2026-11-26 23:59:29.114
+Test Case 'NativeIntentServiceTests.testReaderWindowCatalogRejectsDuplicateAndExcessiveHostIdentities' passed (0.002 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate' started at 2026-11-26 23:59:29.117
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataDoesNotConsultLiveEntityCatalogOrNavigate' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations' started at 2026-11-26 23:59:29.117
+Test Case 'NativeIntentServiceTests.testReaderWindowMetadataNeverIncludesComponentsOrUnrelatedDestinations' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowQueryBoundsAreCheckedBeforeHostResolution' started at 2026-11-26 23:59:29.118
+Test Case 'NativeIntentServiceTests.testReaderWindowQueryBoundsAreCheckedBeforeHostResolution' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution' started at 2026-11-26 23:59:29.118
+Test Case 'NativeIntentServiceTests.testReaderWindowResultIsDiscardedWhenCancellationWinsDuringHostResolution' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver' started at 2026-11-26 23:59:29.118
+Test Case 'NativeIntentServiceTests.testReaderWindowSourceRefusalNeverFallsBackToGeneralOrLiveResolver' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testReaderWindowsPreserveExistingInitializerFallback' started at 2026-11-26 23:59:29.119
+Test Case 'NativeIntentServiceTests.testReaderWindowsPreserveExistingInitializerFallback' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity' started at 2026-11-26 23:59:29.119
+Test Case 'NativeIntentServiceTests.testRemovedWindowIsOmittedAndCannotBeRecreatedFromCachedEntity' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testResolvedMetadataCannotBorrowAnotherBackendOrWindow' started at 2026-11-26 23:59:29.119
+Test Case 'NativeIntentServiceTests.testResolvedMetadataCannotBorrowAnotherBackendOrWindow' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' started at 2026-11-26 23:59:29.120
+Test Case 'NativeIntentServiceTests.testRootAndComponentEntitiesRemainDistinctAndRetainOriginalRootID' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' started at 2026-11-26 23:59:29.120
+Test Case 'NativeIntentServiceTests.testSameBackendDestinationsBindExactUserSelectedWindow' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' started at 2026-11-26 23:59:29.121
+Test Case 'NativeIntentServiceTests.testStaleEntityFailsBeforeNavigationAndQueuedIsNeverAcknowledged' passed (0.001 seconds)
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' started at 2026-11-26 23:59:29.121
+Test Case 'NativeIntentServiceTests.testUnavailableComponentEntityCannotReuseVisibleRootAuthority' passed (0.0 seconds)
+Test Case 'NativeIntentServiceTests.testUnknownEntityCannotRequestForegroundPreparation' started at 2026-11-26 23:59:29.122
+Test Case 'NativeIntentServiceTests.testUnknownEntityCannotRequestForegroundPreparation' passed (0.0 seconds)
+Test Suite 'NativeIntentServiceTests' passed at 2026-11-26 23:59:29.122
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.023 (0.023) seconds
+Test Suite 'Selected tests' passed at 2026-11-26 23:59:29.122
+	 Executed 36 tests, with 0 failures (0 unexpected) in 0.031 (0.031) seconds

@@ -2553,3 +2553,97 @@ extension NativeRoutingPhoneAcceptanceTests {
         try testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader()
     }
 }
+
+
+// Exact original component acceptance stays separate from the historical
+// Native116 / Release114 selectors. This helper uses real App Intents system
+// discovery/execution, the actual original control, and the canonical receipt.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    func runOriginalComponentSystemIntent(expectedPad: Bool, destination: String,
+                                         title: String, anchor: String, identifier: String,
+                                         presentation: String = "currentTab",
+                                         fromBackground: Bool = false,
+                                         launchArgs: [String] = [], expectedValue: String? = nil) async throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: launchArgs)
+        let original = try actualReaderWorkspace().current()
+        // Start on another original page. No Settings/TOC/Library parent is
+        // pre-opened to make the requested component artificially available.
+        let historyRequest = UUID()
+        try openInExistingProcess(publicRootURL("native.history", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requireRootReceipt(historyRequest, destination: "native.history")
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: title)
+        XCTAssertEqual(entities.count, 1, "Resolve one exact original component in this window")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        if fromBackground { XCUIDevice.shared.press(.home) }
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let control = app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+        let revealed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            control.exists && control.isHittable && !control.frame.isEmpty
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [revealed], timeout: 15), .completed,
+                       "The original target must be visible and accessible, not only its parent")
+        if let expectedValue { XCTAssertEqual(control.value as? String, expectedValue, "Revealing a control must not change its value") }
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: destination, presentation: presentation, before: before)
+        let line = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let fields = line.split(separator: " ")
+        let request = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("request=") })).dropFirst(8))
+        let scene = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("scene=") })).dropFirst(6))
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=\(anchor)"
+        let componentLines = try String(contentsOf: log, encoding: .utf8).split(separator: "\n").filter { $0.hasSuffix(exact) }
+        XCTAssertEqual(componentLines.count, 1, "Exactly the requested original target must belong to the same canonical receipt")
+        let evidence = XCTAttachment(string: componentLines.joined(separator: "\n"))
+        evidence.name = "actual-component-receipt-\(anchor)"; evidence.lifetime = .keepAlways; add(evidence)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("original-component-\(anchor)")
+        if presentation == "sheet" {
+            let done = app.buttons["settings-done-button"]
+            XCTAssertTrue(done.isHittable); done.tap()
+            XCTAssertTrue(history.waitForExistence(timeout: 10), "The original underlying page remains selected")
+        }
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: true, destination: "native.settings",
+            title: "Appearance", anchor: "native.settings.appearance", identifier: "settings-component-appearance",
+            presentation: "sheet", launchArgs: ["-useDefaultTheme", "YES"], expectedValue: "1")
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsSearchDataRevealsOriginalLink() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: true, destination: "native.settings",
+            title: "Search Data", anchor: "native.settings.searchData", identifier: "settings-component-search-data",
+            presentation: "sheet")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhoneSystemAppIntentSettingsAppearanceFromBackgroundDoesNotMutateValue() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: false, destination: "native.settings",
+            title: "Appearance", anchor: "native.settings.appearance", identifier: "settings-component-appearance",
+            presentation: "sheet", fromBackground: true, launchArgs: ["-useDefaultTheme", "YES"], expectedValue: "1")
+    }
+
+    @MainActor
+    func testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: false, destination: "native.settings",
+            title: "Search Data", anchor: "native.settings.searchData", identifier: "settings-component-search-data",
+            presentation: "sheet")
+    }
+}

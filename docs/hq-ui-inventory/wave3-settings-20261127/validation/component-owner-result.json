@@ -1,0 +1,23 @@
+{
+  "command": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-settings-bindings-20261127/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-ui-contracts-20261127/swift-build",
+    "--jobs",
+    "1",
+    "--filter",
+    "NativeComponentRevealOwnerTests"
+  ],
+  "returncode": 0,
+  "elapsedSeconds": 106.34250569343567,
+  "log": "/mnt/development/projects/diagnostics/otzaria-wave3-settings-20261127/component-owner-tests.log",
+  "logSHA256": "75f752b9dd4e98522179e32f4db78cea52a6ee9bf4cb3212fa2c812ea05547ed",
+  "scope": "actual portable owner; no Apple SDK or UIKit runtime evidence"
+}

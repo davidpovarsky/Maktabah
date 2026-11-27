@@ -13,6 +13,7 @@ struct SettingsView: View {
     var ftsManager = FtsMigrationManager.shared
     #if os(iOS)
     @State private var showFtsMigrationOverlay = false
+    @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
     #endif
 
     var body: some View {
@@ -54,6 +55,7 @@ struct SettingsView: View {
                     }
                 }
                 .padding(.vertical, 4)
+                .maktabahSettingsComponent(.searchIndex)
             } header: {
                 Text(.Setting.searchIndex)
             }
@@ -97,6 +99,7 @@ extension SettingsView {
 #if os(iOS)
 extension SettingsView {
     private var iOSForm: some View {
+        ScrollViewReader { proxy in
         Form {
             librarySourceSection
                 .listRowBackground(Color.appCellBackground)
@@ -121,6 +124,7 @@ extension SettingsView {
                     Label("Mini Apps", systemImage: "square.grid.2x2")
                 }
                 .accessibilityIdentifier("settings-miniapps-preferences")
+                .maktabahSettingsComponent(.miniApps)
             }
             .listRowBackground(Color.appCellBackground)
             zayitCreditsSection
@@ -172,6 +176,12 @@ extension SettingsView {
             }
         }
         .animation(.easeInOut, value: showFtsMigrationOverlay)
+        .modifier(MaktabahNativeComponentContainer(
+            owner: nativeRoutingSession?.componentOwner(for: MaktabahNativeSettingsComponents.destination),
+            blocked: { showFtsMigrationOverlay || viewModel.showCollisionAlert },
+            reveal: { anchor in proxy.scrollTo(anchor.rawValue, anchor: .center) }
+        ))
+        }
     }
 
     private var appearanceSection: some View {
@@ -185,6 +195,8 @@ extension SettingsView {
                 }
             }
             .controlSize(.regular)
+            .accessibilityIdentifier("settings-component-appearance")
+            .maktabahSettingsComponent(.appearance)
         } header: {
             Text(.Setting.appearance)
         }
@@ -195,9 +207,12 @@ extension SettingsView {
             NavigationLink("Search Data") {
                 SearchDataView()
             }
+            .accessibilityIdentifier("settings-component-search-data")
+            .maktabahSettingsComponent(.searchData)
             NavigationLink("Zayit Search Credits") {
                 ZayitSearchAttributionView()
             }
+            .maktabahSettingsComponent(.searchCredits)
         }
     }
 
@@ -216,6 +231,7 @@ extension SettingsView {
                 }
             }
             .disabled(viewModel.isVacuuming)
+            .maktabahSettingsComponent(.optimization)
 
             Text(.Setting.optimizationDesc)
                 .padding(2)
@@ -262,6 +278,7 @@ extension SettingsView {
                 }
             }
             .accessibilityIdentifier("settings-library-source-picker")
+            .maktabahSettingsComponent(.backend)
             .disabled(backendCoordinator.isTransitioning)
 
             #if DEBUG
@@ -312,6 +329,7 @@ extension SettingsView {
                 NavigationLink("Manage Offline Library") {
                     OfflineLibraryManagementView()
                 }
+                .maktabahSettingsComponent(.offline)
             }
         }
     }
@@ -329,6 +347,7 @@ extension SettingsView {
                         .foregroundStyle(.secondary)
                 }
             }.controlSize(.regular)
+            .maktabahSettingsComponent(.databaseMode)
         } header: {
             Text(.Setting.databaseMode)
         }
@@ -345,6 +364,8 @@ extension SettingsView {
                 }
             }
             .controlSize(.regular)
+            .accessibilityIdentifier("settings-component-history")
+            .maktabahSettingsComponent(.history)
         } header: {
             Text(.Setting.history)
         }
@@ -402,6 +423,7 @@ extension SettingsView {
                 }
             }
             .controlSize(.regular)
+            .maktabahSettingsComponent(.annotations)
 
             Toggle(isOn: Binding(
                 get: { viewModel.useICloud },
@@ -416,6 +438,7 @@ extension SettingsView {
             }
             .controlSize(.regular)
             .disabled(viewModel.isProcessingICloud)
+            .maktabahSettingsComponent(.cloud)
 
             if viewModel.useICloud {
                 Toggle(isOn: Binding(
@@ -463,6 +486,7 @@ extension SettingsView {
         } label: {
             Text(.Setting.chooseLibraryFolder)
         }
+        .maktabahSettingsComponent(.storage)
 
         Button {
             viewModel.setBundleMode(true)
@@ -549,6 +573,7 @@ extension SettingsView {
                     }
                 }
                 .controlSize(.regular)
+                .maktabahSettingsComponent(.updates)
             }
         } header: {
             Text(.Setting.updates)
@@ -563,6 +588,7 @@ extension SettingsView {
                 } label: {
                     Text(.Setting.downloadFullLibraryGoogleDrive)
                 }
+                .maktabahSettingsComponent(.downloads)
                 #if os(macOS)
                 Button {
                     viewModel.openSelectiveDownload()

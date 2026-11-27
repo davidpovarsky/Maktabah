@@ -1,0 +1,34 @@
+{
+  "base": "b10032f32f83b83e61e5c68dc41d10f33fbe7e8e",
+  "sourceHashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "b5c3a2b7d3fc1c7ec75f258126fb299658be8b173b79730fdb53327ffcc15aa8",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "042aa59cc32739498fa4c20db4fa2b7adf38f7e38e3721cc37b70d30224bd8e4",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "50a9d9643cfd7c7004c5afc9ec36a25a8365910a87b7c4ea56982c49eb07cc17",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "c689d8934e9c9e6857b955a002c678ae8e37c863dbe40f8dc691bd1e25355e4f",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "951642bfb6ef4ff7ed829a9a09ef467367c004a0d62cfe386d4b0571f753f1ba",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift": "c3620bcf9f6f4a3725a4307150e91e8ad3386a45235dca95798f77dc4114cfb6",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "e2545d7bd8a6ad68627f8ceb367cd4c1f3b1caf45e469e319334bb2883a7f4d0",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": "294414f30018f48478fc19f2bfba9fe5bffedf742da2744870a57ff9a6e30f75",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift": "137107823fe07e4f920faaac0adfd6b2e8df8ac44389af8af5da37b2cbc061ae",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeIntentServiceTests.swift": "c8464a495a691f735703408a971bf5fd2afeebda4542f2bbbd3e481a2db05193",
+    "Source/Features/Setting/SettingsView.swift": "46726fa42ece76c444c3bad78e0e4d5bdecc8895a5961d26522f7c2c1be5ca48"
+  },
+  "portable": {
+    "passed": 36,
+    "failed": 0,
+    "testSeconds": 0.031,
+    "buildSeconds": 11.72,
+    "logSHA256": "74a11f754f85b41e03a9f78344da80d5b6e752efb9f6370a946fb92607096b0f"
+  },
+  "iOS27SyntaxParse": "PASS; no Apple SDK typecheck",
+  "nativeCases": "NOT_RUN",
+  "originalNativeAcceptanceExactBytePrefix": true,
+  "originalAnnotationsReobservationPreserved": true,
+  "ownerGate": "FRESH_AUTHENTIC_DELTA_REQUIRED; no signature created",
+  "OSScope": "iOS/iPadOS27.0 only",
+  "historicalLogCompression": {
+    "path": "validation/component-owner-tests.log.gz",
+    "decompressedSHA256": "75f752b9dd4e98522179e32f4db78cea52a6ee9bf4cb3212fa2c812ea05547ed",
+    "losslessVerified": true
+  }
+}
