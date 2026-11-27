@@ -1,0 +1,1044 @@
+{
+  "schema": 1,
+  "head": "aee6fdd1cd635323f6a773f6559a9d0bf717f6b4",
+  "pin": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+  "retrieved_utc": "2026-11-27T16:31:49.211673+00:00",
+  "rows": [
+    {
+      "id": "inventory.v1.embedded.rn.reader",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderApp.js",
+      "object_path": "ReaderApp.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e419bd60980fba1a55925493ed50a11686b40d68",
+      "historical_sha256": "cb088826ca2c14c9e9b20728f108594e76efd3437dbf54a500902213d81d8d1a",
+      "historical_anchor": "class ReaderApp",
+      "historical_occurrence": 1,
+      "current_sha256": "cb088826ca2c14c9e9b20728f108594e76efd3437dbf54a500902213d81d8d1a",
+      "matching_lines": [
+        77
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.library",
+      "path": "Vendor/SefariaMobile/Upstream/TextsPage.js",
+      "object_path": "TextsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "0c337e57dfa8a13ff60d7f3d6e2cf7ad3f8a4d7a",
+      "historical_sha256": "98fa9a858bd8a6b48067a38fda2b46019e4d781752a0367b58ca1dc05ff505ea",
+      "historical_anchor": "TextsPage",
+      "historical_occurrence": 1,
+      "current_sha256": "98fa9a858bd8a6b48067a38fda2b46019e4d781752a0367b58ca1dc05ff505ea",
+      "matching_lines": [
+        37,
+        55,
+        69,
+        78,
+        100
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.category",
+      "path": "Vendor/SefariaMobile/Upstream/TextCategoryPage.js",
+      "object_path": "TextCategoryPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "70eb6519e177bc2f26bb0255628b178af3b0e5bf",
+      "historical_sha256": "77193a9695799df3c7ea682cfcb7aedbcbad49d0d5ace21a6182dfcd1ad7f2a2",
+      "historical_anchor": "TextCategoryPage",
+      "historical_occurrence": 1,
+      "current_sha256": "77193a9695799df3c7ea682cfcb7aedbcbad49d0d5ace21a6182dfcd1ad7f2a2",
+      "matching_lines": [
+        305
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reader-controls",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderControls.js",
+      "object_path": "ReaderControls.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "5f7f413a65183a53c11691429e9b5fc4f41c3a9f",
+      "historical_sha256": "f8d16cb51d08cb638a99fbb0cc8a6699fbe033e3b1c2657c4d8508f1a7ac899a",
+      "historical_anchor": "ReaderControls",
+      "historical_occurrence": 1,
+      "current_sha256": "f8d16cb51d08cb638a99fbb0cc8a6699fbe033e3b1c2657c4d8508f1a7ac899a",
+      "matching_lines": [
+        28,
+        98,
+        109,
+        111
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.text-column",
+      "path": "Vendor/SefariaMobile/Upstream/TextColumn.js",
+      "object_path": "TextColumn.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "cc15944142c01c9cd2ae6f7cb32bbfbd350f21f5",
+      "historical_sha256": "1341233cdc2c5e0580b16e4a2e3e35a582be4b76eedeb84f95da2a58b2a691a7",
+      "historical_anchor": "TextColumn",
+      "historical_occurrence": 1,
+      "current_sha256": "1341233cdc2c5e0580b16e4a2e3e35a582be4b76eedeb84f95da2a58b2a691a7",
+      "matching_lines": [
+        41,
+        970
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.segment",
+      "path": "Vendor/SefariaMobile/Upstream/TextSegment.js",
+      "object_path": "TextSegment.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "d7f5f2cef70497366e29293d67ba1b9fe29b271a",
+      "historical_sha256": "95762036f6055f52f1db0dcacc95469a546dc60c97cd50eb054355cc02a2a0c4",
+      "historical_anchor": "TextSegment",
+      "historical_occurrence": 1,
+      "current_sha256": "95762036f6055f52f1db0dcacc95469a546dc60c97cd50eb054355cc02a2a0c4",
+      "matching_lines": [
+        32,
+        33,
+        128,
+        129,
+        158
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.toc",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderTextTableOfContents.js",
+      "object_path": "ReaderTextTableOfContents.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "ec3955a07e4069c1b13832efc5dd36b253aa3511",
+      "historical_sha256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60",
+      "historical_anchor": "ReaderTextTableOfContents",
+      "historical_occurrence": 1,
+      "current_sha256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60",
+      "matching_lines": [
+        58,
+        144,
+        632
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections",
+      "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanel.js",
+      "object_path": "ConnectionsPanel.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "61f5a030baab62532ecefb05780979af9290f885",
+      "historical_sha256": "6f60a758af9bb1efd6ec33fc82b491427cbcfcab52b7d8e9c45b0554d4213bb5",
+      "historical_anchor": "ConnectionsPanel",
+      "historical_occurrence": 1,
+      "current_sha256": "6f60a758af9bb1efd6ec33fc82b491427cbcfcab52b7d8e9c45b0554d4213bb5",
+      "matching_lines": [
+        12,
+        30,
+        118,
+        373,
+        430,
+        447,
+        454,
+        470,
+        484,
+        491,
+        502,
+        518,
+        529
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections-filter",
+      "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanelHeader.js",
+      "object_path": "ConnectionsPanelHeader.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "1ca617ab96b002cb62e4932489e3bb4f1ad6f140",
+      "historical_sha256": "eaabbae614a3e4d0d4e6036192e2a728d3829a3541e02e55e5ff59949a2fb70b",
+      "historical_anchor": "ConnectionsPanelHeader",
+      "historical_occurrence": 1,
+      "current_sha256": "eaabbae614a3e4d0d4e6036192e2a728d3829a3541e02e55e5ff59949a2fb70b",
+      "matching_lines": [
+        23,
+        178
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.link-content",
+      "path": "Vendor/SefariaMobile/Upstream/LinkContent.js",
+      "object_path": "LinkContent.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "9dcf2c52094d2404114491c709aa5dcc5d3ce2af",
+      "historical_sha256": "204ce0bbb3f3c7fe2a27ff8171ab44ef192f47bab8eb2ef04db403ea7084028d",
+      "historical_anchor": "LinkContent",
+      "historical_occurrence": 1,
+      "current_sha256": "204ce0bbb3f3c7fe2a27ff8171ab44ef192f47bab8eb2ef04db403ea7084028d",
+      "matching_lines": [
+        1,
+        7
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.versions",
+      "path": "Vendor/SefariaMobile/Upstream/VersionBlock.js",
+      "object_path": "VersionBlock.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "381493873d6d636868f0c8df8fdeaa76eaba3c7c",
+      "historical_sha256": "c1a13329d29b9aac20432841a938709ec3c4c8f108afa9431fadfb4166a9feac",
+      "historical_anchor": "VersionBlock",
+      "historical_occurrence": 1,
+      "current_sha256": "c1a13329d29b9aac20432841a938709ec3c4c8f108afa9431fadfb4166a9feac",
+      "matching_lines": [
+        52,
+        69,
+        79,
+        86,
+        88,
+        122,
+        140,
+        150,
+        167
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.translations",
+      "path": "Vendor/SefariaMobile/Upstream/TranslationsBox.js",
+      "object_path": "TranslationsBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "1035a5bb7bc17fcb43df5677daebaee5af5fd30d",
+      "historical_sha256": "eac7be05e8451f8ac22c02b757b11f034977e69c3f48c727c3db96fe1e147a3d",
+      "historical_anchor": "TranslationsBox",
+      "historical_occurrence": 1,
+      "current_sha256": "eac7be05e8451f8ac22c02b757b11f034977e69c3f48c727c3db96fe1e147a3d",
+      "matching_lines": [
+        69,
+        133,
+        142
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dictionary",
+      "path": "Vendor/SefariaMobile/Upstream/LexiconBox.js",
+      "object_path": "LexiconBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "fa7fe943c7763bd42ad0ca6511a1f7fdf3aad800",
+      "historical_sha256": "74bba675f0f1658fbdfec2759ab1f58d69c3327abf0684331a41cac453ba0b76",
+      "historical_anchor": "LexiconBox",
+      "historical_occurrence": 1,
+      "current_sha256": "74bba675f0f1658fbdfec2759ab1f58d69c3327abf0684331a41cac453ba0b76",
+      "matching_lines": [
+        37,
+        91,
+        288
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.display-options",
+      "path": "Vendor/SefariaMobile/Upstream/ReaderDisplayOptionsMenu.js",
+      "object_path": "ReaderDisplayOptionsMenu.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "5c746224cfdbe5ff0c0ed4191c0f0eb5b60c9003",
+      "historical_sha256": "4efddf0e7d6fc23ec4da0ae2ba39f213cffb03f3e5f363090359bf1151031c08",
+      "historical_anchor": "ReaderDisplayOptionsMenu",
+      "historical_occurrence": 1,
+      "current_sha256": "4efddf0e7d6fc23ec4da0ae2ba39f213cffb03f3e5f363090359bf1151031c08",
+      "matching_lines": [
+        20,
+        143,
+        157,
+        173,
+        176,
+        201,
+        209,
+        225,
+        266,
+        295
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchPage.js",
+      "object_path": "search/SearchPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "7843850638aadfd368737266c30cedfc3034fe76",
+      "historical_sha256": "9a9efc584ebf989cd1f98dd27c69b190ff7f19b954d343ff15595f7e7f61b49b",
+      "historical_anchor": "SearchPage",
+      "historical_occurrence": 1,
+      "current_sha256": "9a9efc584ebf989cd1f98dd27c69b190ff7f19b954d343ff15595f7e7f61b49b",
+      "matching_lines": [
+        13,
+        44,
+        63
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-results",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchResultPage.js",
+      "object_path": "search/SearchResultPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "87e5a486ec166a01ccac6b28765b3d7061b40512",
+      "historical_sha256": "374d76e9b9dfd5c671049706cd0e37625638383da139e3df56bc2c7bb79ebc9c",
+      "historical_anchor": "SearchResultPage",
+      "historical_occurrence": 1,
+      "current_sha256": "374d76e9b9dfd5c671049706cd0e37625638383da139e3df56bc2c7bb79ebc9c",
+      "matching_lines": [
+        24
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-filters",
+      "path": "Vendor/SefariaMobile/Upstream/search/SearchFilterPage.js",
+      "object_path": "search/SearchFilterPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "8b09d2eae16b270a6040216feae48efc5ae988ae",
+      "historical_sha256": "aff1409a8ae53aad91712ac7b221e6c51616ada83c277518284d0d9e448a4f49",
+      "historical_anchor": "SearchFilterPage",
+      "historical_occurrence": 1,
+      "current_sha256": "aff1409a8ae53aad91712ac7b221e6c51616ada83c277518284d0d9e448a4f49",
+      "matching_lines": [
+        161,
+        226
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.autocomplete",
+      "path": "Vendor/SefariaMobile/Upstream/search/AutocompletePage.js",
+      "object_path": "search/AutocompletePage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "f031eb1a02a8bd5dcb4a001335464a918a321166",
+      "historical_sha256": "afbbc5cd9e030a04848da48e72b997a9340819ed71b0975f11a5ab1c427daee4",
+      "historical_anchor": "AutocompletePage",
+      "historical_occurrence": 1,
+      "current_sha256": "afbbc5cd9e030a04848da48e72b997a9340819ed71b0975f11a5ab1c427daee4",
+      "matching_lines": [
+        20,
+        118
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.history-saved",
+      "path": "Vendor/SefariaMobile/Upstream/HistorySavedPage.js",
+      "object_path": "HistorySavedPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "45160aff9fd26abc48fe9d3b2fa46602e9b28bb4",
+      "historical_sha256": "466a28fadea885fc51b1407245dd063c485ef94d9c9874799e0e274d07923230",
+      "historical_anchor": "HistorySavedPage",
+      "historical_occurrence": 1,
+      "current_sha256": "466a28fadea885fc51b1407245dd063c485ef94d9c9874799e0e274d07923230",
+      "matching_lines": [
+        32,
+        62,
+        68,
+        76,
+        83,
+        85,
+        86,
+        283,
+        301
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "SettingsPage",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        268,
+        443,
+        613,
+        625
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.account",
+      "path": "Vendor/SefariaMobile/Upstream/AccountNavigationMenu.js",
+      "object_path": "AccountNavigationMenu.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "244387225ae667c0372035924a2bb1de7e54c21d",
+      "historical_sha256": "6ade35d78593afacb0ede6479c69e892b5743a358276c8baeeb31157f1da3432",
+      "historical_anchor": "AccountNavigationMenu",
+      "historical_occurrence": 1,
+      "current_sha256": "6ade35d78593afacb0ede6479c69e892b5743a358276c8baeeb31157f1da3432",
+      "matching_lines": [
+        27,
+        34,
+        36,
+        43,
+        51,
+        65,
+        79,
+        81,
+        85,
+        87,
+        90,
+        92,
+        127,
+        132,
+        139,
+        142,
+        146,
+        153,
+        159,
+        166,
+        172
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.auth",
+      "path": "Vendor/SefariaMobile/Upstream/AuthPage.js",
+      "object_path": "AuthPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "2e8174410eaee70ff2c949ed93cc2f2d06a8a61f",
+      "historical_sha256": "4c242c1e0e8677fb3fc7e7f87ce04a0143a4892a913206368f423d71fce139f3",
+      "historical_anchor": "AuthPage",
+      "historical_occurrence": 1,
+      "current_sha256": "4c242c1e0e8677fb3fc7e7f87ce04a0143a4892a913206368f423d71fce139f3",
+      "matching_lines": [
+        48,
+        108,
+        386,
+        395,
+        401
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reset-password",
+      "path": "Vendor/SefariaMobile/Upstream/ForgotPasswordScreen.js",
+      "object_path": "ForgotPasswordScreen.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "ef43739d72b107dcb8a5003c6e51dd5b1aeae566",
+      "historical_sha256": "85074c913589deb4400b0bae56645ca37d1a12e00d23f85da34c8d120246ac35",
+      "historical_anchor": "ForgotPasswordScreen",
+      "historical_occurrence": 1,
+      "current_sha256": "85074c913589deb4400b0bae56645ca37d1a12e00d23f85da34c8d120246ac35",
+      "matching_lines": [
+        75,
+        212,
+        227
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topics",
+      "path": "Vendor/SefariaMobile/Upstream/TopicPage.js",
+      "object_path": "TopicPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "aa15ea696cb53f3acbeee4792a7b8ddf889956bc",
+      "historical_sha256": "bb6d3904e5509cbb7760196e5189bdf05a85852899bca21d32500c9a4c7795bf",
+      "historical_anchor": "TopicPage",
+      "historical_occurrence": 1,
+      "current_sha256": "bb6d3904e5509cbb7760196e5189bdf05a85852899bca21d32500c9a4c7795bf",
+      "matching_lines": [
+        316,
+        354,
+        394,
+        395,
+        423,
+        446,
+        463,
+        500,
+        754
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topic-list",
+      "path": "Vendor/SefariaMobile/Upstream/TopicList.js",
+      "object_path": "TopicList.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "d08535186d1eaa59e3cc839c81a94d834bf80f54",
+      "historical_sha256": "917af8209a86321fb09eddf511d9bb270bb171f0cceabaf06c119b4537c488e8",
+      "historical_anchor": "TopicList",
+      "historical_occurrence": 1,
+      "current_sha256": "917af8209a86321fb09eddf511d9bb270bb171f0cceabaf06c119b4537c488e8",
+      "matching_lines": [
+        23,
+        35,
+        47,
+        68
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.learning-schedules",
+      "path": "Vendor/SefariaMobile/Upstream/learningSchedules/LearningSchedules.js",
+      "object_path": "learningSchedules/LearningSchedules.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "1bd1596bdd9dc28c3f832e17d0cb43a403cb3e27",
+      "historical_sha256": "119d8d323cbb671108c699642962b7129116ef7fd99ff41cba3e2dc051ca76f2",
+      "historical_anchor": "LearningSchedules",
+      "historical_occurrence": 1,
+      "current_sha256": "119d8d323cbb671108c699642962b7129116ef7fd99ff41cba3e2dc051ca76f2",
+      "matching_lines": [
+        43,
+        51,
+        58
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.sheet",
+      "path": "Vendor/SefariaMobile/Upstream/SheetMeta.js",
+      "object_path": "SheetMeta.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "20e70d01cf3ea8df6c470413ff315aa40d484cff",
+      "historical_sha256": "1b3805f877e9205d1d3abf7d4b816451e74e9681392561f3a1b5d3385a3f4801",
+      "historical_anchor": "SheetMeta",
+      "historical_occurrence": 1,
+      "current_sha256": "1b3805f877e9205d1d3abf7d4b816451e74e9681392561f3a1b5d3385a3f4801",
+      "matching_lines": [
+        24,
+        95
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.about",
+      "path": "Vendor/SefariaMobile/Upstream/AboutBox.js",
+      "object_path": "AboutBox.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "83350346857399f288b42c9179cb53f753f75d7e",
+      "historical_sha256": "16ef128a58aab0c6ede7141a0e346381b90d3160156fb06ae5f4fd59d46caf39",
+      "historical_anchor": "AboutBox",
+      "historical_occurrence": 1,
+      "current_sha256": "16ef128a58aab0c6ede7141a0e346381b90d3160156fb06ae5f4fd59d46caf39",
+      "matching_lines": [
+        17,
+        175,
+        185
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.footer-tabs",
+      "path": "Vendor/SefariaMobile/Upstream/FooterTabBar.js",
+      "object_path": "FooterTabBar.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "949d754ddde0a26293f0df2725c72ec2ac5828ea",
+      "historical_sha256": "5a18c445933c74257de45ce51fdce47cfd5d5f90a24b20278c54ad5a16fe9bb3",
+      "historical_anchor": "FooterTabBar",
+      "historical_occurrence": 1,
+      "current_sha256": "5a18c445933c74257de45ce51fdce47cfd5d5f90a24b20278c54ad5a16fe9bb3",
+      "matching_lines": [
+        16
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.deep-links",
+      "path": "Vendor/SefariaMobile/Upstream/DeepLinkRouter.js",
+      "object_path": "DeepLinkRouter.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "d23a0a6c60d6aea484d3ee3345e56b8c0d0c288d",
+      "historical_sha256": "5e216bd8c68bccc2cea223807677dcb972b53598960c62e5ec37ec1e9862b592",
+      "historical_anchor": "const routes = [",
+      "historical_occurrence": 1,
+      "current_sha256": "5e216bd8c68bccc2cea223807677dcb972b53598960c62e5ec37ec1e9862b592",
+      "matching_lines": [
+        22
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.error",
+      "path": "Vendor/SefariaMobile/Upstream/ErrorBoundaryFallbackComponent.js",
+      "object_path": "ErrorBoundaryFallbackComponent.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e9c7e42caf79b6addf761770befb56073680377e",
+      "historical_sha256": "7cd32c23c1831db3ec4d4167a04683aef81d62d01f9a68b4b72cac176d6d4503",
+      "historical_anchor": "ErrorBoundaryFallbackComponent",
+      "historical_occurrence": 1,
+      "current_sha256": "7cd32c23c1831db3ec4d4167a04683aef81d62d01f9a68b4b72cac176d6d4503",
+      "matching_lines": [
+        9
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.web",
+      "path": "Vendor/SefariaMobile/Upstream/WebViewPage.js",
+      "object_path": "WebViewPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "2fbc306cf51d1cbca9134c80096ace6a48955b21",
+      "historical_sha256": "3c1d1978079073d097b279ee2437cdf06f5182139550525bac83c784242357f3",
+      "historical_anchor": "WebViewPage",
+      "historical_occurrence": 1,
+      "current_sha256": "3c1d1978079073d097b279ee2437cdf06f5182139550525bac83c784242357f3",
+      "matching_lines": [
+        20,
+        38,
+        43
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.interface-language",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "interfaceLanguage:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        78
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.text-language",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "textLanguage:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        77
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.network",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "wifiOnly:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        67
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.offline-library",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "strings.settings.offline_access",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        359
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.debug-destructive",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "Mess up Library",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        382,
+        387
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.email-frequency",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "emailFrequency:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        79
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.reading-history",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "readingHistory:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        80
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.custom",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "preferredCustom:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        81
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.grogger",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "groggerActive:",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        83
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.logout",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "onPress={onLogOut}",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        422
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.delete-account",
+      "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+      "object_path": "SettingsPage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade",
+      "historical_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "historical_anchor": "onPress={deleteAccount}",
+      "historical_occurrence": 1,
+      "current_sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "matching_lines": [
+        433
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dedication",
+      "path": "Vendor/SefariaMobile/Upstream/Dedication.js",
+      "object_path": "Dedication.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "d2d82c3afd7838e423e8a4469c9055346c869f1f",
+      "historical_sha256": "18066086edb2d6ba1151286fb685357323c70b947247eacc688e2401d8f6a8d5",
+      "historical_anchor": "export const Dedication =",
+      "historical_occurrence": 1,
+      "current_sha256": "18066086edb2d6ba1151286fb685357323c70b947247eacc688e2401d8f6a8d5",
+      "matching_lines": [
+        19
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.notice",
+      "path": "Vendor/SefariaMobile/Upstream/InterruptingMessage.js",
+      "object_path": "InterruptingMessage.js",
+      "source_ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+      "git_blob": "fbc19d4234c811f4342bf968cee2a468bae3f976",
+      "historical_sha256": "1c3b75e0b60138aca99b150e8302c9748864ebc94473e6b6b87a2139c73ee343",
+      "historical_anchor": "class InterruptingMessage",
+      "historical_occurrence": 1,
+      "current_sha256": "1c3b75e0b60138aca99b150e8302c9748864ebc94473e6b6b87a2139c73ee343",
+      "matching_lines": [
+        76
+      ],
+      "unchanged_file": true,
+      "status": "ANCHOR_PRESENT"
+    }
+  ],
+  "files": [
+    {
+      "path": "ReaderApp.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ReaderApp.js",
+      "sha256": "cb088826ca2c14c9e9b20728f108594e76efd3437dbf54a500902213d81d8d1a",
+      "bytes": 92088
+    },
+    {
+      "path": "TextsPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TextsPage.js",
+      "sha256": "98fa9a858bd8a6b48067a38fda2b46019e4d781752a0367b58ca1dc05ff505ea",
+      "bytes": 4360
+    },
+    {
+      "path": "TextCategoryPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TextCategoryPage.js",
+      "sha256": "77193a9695799df3c7ea682cfcb7aedbcbad49d0d5ace21a6182dfcd1ad7f2a2",
+      "bytes": 13508
+    },
+    {
+      "path": "ReaderControls.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ReaderControls.js",
+      "sha256": "f8d16cb51d08cb638a99fbb0cc8a6699fbe033e3b1c2657c4d8508f1a7ac899a",
+      "bytes": 3828
+    },
+    {
+      "path": "TextColumn.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TextColumn.js",
+      "sha256": "1341233cdc2c5e0580b16e4a2e3e35a582be4b76eedeb84f95da2a58b2a691a7",
+      "bytes": 37924
+    },
+    {
+      "path": "TextSegment.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TextSegment.js",
+      "sha256": "95762036f6055f52f1db0dcacc95469a546dc60c97cd50eb054355cc02a2a0c4",
+      "bytes": 5570
+    },
+    {
+      "path": "ReaderTextTableOfContents.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ReaderTextTableOfContents.js",
+      "sha256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60",
+      "bytes": 21915
+    },
+    {
+      "path": "ConnectionsPanel.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ConnectionsPanel.js",
+      "sha256": "6f60a758af9bb1efd6ec33fc82b491427cbcfcab52b7d8e9c45b0554d4213bb5",
+      "bytes": 22056
+    },
+    {
+      "path": "ConnectionsPanelHeader.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ConnectionsPanelHeader.js",
+      "sha256": "eaabbae614a3e4d0d4e6036192e2a728d3829a3541e02e55e5ff59949a2fb70b",
+      "bytes": 6697
+    },
+    {
+      "path": "LinkContent.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/LinkContent.js",
+      "sha256": "204ce0bbb3f3c7fe2a27ff8171ab44ef192f47bab8eb2ef04db403ea7084028d",
+      "bytes": 138
+    },
+    {
+      "path": "VersionBlock.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/VersionBlock.js",
+      "sha256": "c1a13329d29b9aac20432841a938709ec3c4c8f108afa9431fadfb4166a9feac",
+      "bytes": 8437
+    },
+    {
+      "path": "TranslationsBox.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TranslationsBox.js",
+      "sha256": "eac7be05e8451f8ac22c02b757b11f034977e69c3f48c727c3db96fe1e147a3d",
+      "bytes": 5699
+    },
+    {
+      "path": "LexiconBox.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/LexiconBox.js",
+      "sha256": "74bba675f0f1658fbdfec2759ab1f58d69c3327abf0684331a41cac453ba0b76",
+      "bytes": 11581
+    },
+    {
+      "path": "ReaderDisplayOptionsMenu.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ReaderDisplayOptionsMenu.js",
+      "sha256": "4efddf0e7d6fc23ec4da0ae2ba39f213cffb03f3e5f363090359bf1151031c08",
+      "bytes": 11483
+    },
+    {
+      "path": "search/SearchPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/search/SearchPage.js",
+      "sha256": "9a9efc584ebf989cd1f98dd27c69b190ff7f19b954d343ff15595f7e7f61b49b",
+      "bytes": 1869
+    },
+    {
+      "path": "search/SearchResultPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/search/SearchResultPage.js",
+      "sha256": "374d76e9b9dfd5c671049706cd0e37625638383da139e3df56bc2c7bb79ebc9c",
+      "bytes": 3560
+    },
+    {
+      "path": "search/SearchFilterPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/search/SearchFilterPage.js",
+      "sha256": "aff1409a8ae53aad91712ac7b221e6c51616ada83c277518284d0d9e448a4f49",
+      "bytes": 12827
+    },
+    {
+      "path": "search/AutocompletePage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/search/AutocompletePage.js",
+      "sha256": "afbbc5cd9e030a04848da48e72b997a9340819ed71b0975f11a5ab1c427daee4",
+      "bytes": 3315
+    },
+    {
+      "path": "HistorySavedPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/HistorySavedPage.js",
+      "sha256": "466a28fadea885fc51b1407245dd063c485ef94d9c9874799e0e274d07923230",
+      "bytes": 15001
+    },
+    {
+      "path": "SettingsPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/SettingsPage.js",
+      "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+      "bytes": 22783
+    },
+    {
+      "path": "AccountNavigationMenu.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/AccountNavigationMenu.js",
+      "sha256": "6ade35d78593afacb0ede6479c69e892b5743a358276c8baeeb31157f1da3432",
+      "bytes": 8166
+    },
+    {
+      "path": "AuthPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/AuthPage.js",
+      "sha256": "4c242c1e0e8677fb3fc7e7f87ce04a0143a4892a913206368f423d71fce139f3",
+      "bytes": 18115
+    },
+    {
+      "path": "ForgotPasswordScreen.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ForgotPasswordScreen.js",
+      "sha256": "85074c913589deb4400b0bae56645ca37d1a12e00d23f85da34c8d120246ac35",
+      "bytes": 10594
+    },
+    {
+      "path": "TopicPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TopicPage.js",
+      "sha256": "bb6d3904e5509cbb7760196e5189bdf05a85852899bca21d32500c9a4c7795bf",
+      "bytes": 27893
+    },
+    {
+      "path": "TopicList.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/TopicList.js",
+      "sha256": "917af8209a86321fb09eddf511d9bb270bb171f0cceabaf06c119b4537c488e8",
+      "bytes": 2384
+    },
+    {
+      "path": "learningSchedules/LearningSchedules.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/learningSchedules/LearningSchedules.js",
+      "sha256": "119d8d323cbb671108c699642962b7129116ef7fd99ff41cba3e2dc051ca76f2",
+      "bytes": 7753
+    },
+    {
+      "path": "SheetMeta.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/SheetMeta.js",
+      "sha256": "1b3805f877e9205d1d3abf7d4b816451e74e9681392561f3a1b5d3385a3f4801",
+      "bytes": 3288
+    },
+    {
+      "path": "AboutBox.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/AboutBox.js",
+      "sha256": "16ef128a58aab0c6ede7141a0e346381b90d3160156fb06ae5f4fd59d46caf39",
+      "bytes": 7817
+    },
+    {
+      "path": "FooterTabBar.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/FooterTabBar.js",
+      "sha256": "5a18c445933c74257de45ce51fdce47cfd5d5f90a24b20278c54ad5a16fe9bb3",
+      "bytes": 1691
+    },
+    {
+      "path": "DeepLinkRouter.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/DeepLinkRouter.js",
+      "sha256": "5e216bd8c68bccc2cea223807677dcb972b53598960c62e5ec37ec1e9862b592",
+      "bytes": 7096
+    },
+    {
+      "path": "ErrorBoundaryFallbackComponent.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/ErrorBoundaryFallbackComponent.js",
+      "sha256": "7cd32c23c1831db3ec4d4167a04683aef81d62d01f9a68b4b72cac176d6d4503",
+      "bytes": 1091
+    },
+    {
+      "path": "WebViewPage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/WebViewPage.js",
+      "sha256": "3c1d1978079073d097b279ee2437cdf06f5182139550525bac83c784242357f3",
+      "bytes": 1088
+    },
+    {
+      "path": "Dedication.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/Dedication.js",
+      "sha256": "18066086edb2d6ba1151286fb685357323c70b947247eacc688e2401d8f6a8d5",
+      "bytes": 3047
+    },
+    {
+      "path": "InterruptingMessage.js",
+      "url": "https://raw.githubusercontent.com/Sefaria/Sefaria-Mobile/2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c/InterruptingMessage.js",
+      "sha256": "1c3b75e0b60138aca99b150e8302c9748864ebc94473e6b6b87a2139c73ee343",
+      "bytes": 7214
+    }
+  ],
+  "source_only": true
+}

@@ -1,0 +1,43 @@
+{
+  "head": "aee6fdd1cd635323f6a773f6559a9d0bf717f6b4",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 1195,
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m",
+      "bytes": 755,
+      "sha256": "6f59be52fb5bf22b13925d8b008d466053161cbc34a4b514257216cd8d75ddb2"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "bytes": 8050,
+      "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/metro.config.embedded.js",
+      "bytes": 2071,
+      "sha256": "abedeb8b3bd8f4adb0fa9d1a38812fd513761c2f4bfc5ef0504cdc551456ed10"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "bytes": 31396,
+      "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "bytes": 7979,
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+    }
+  ],
+  "all_selected_paths": [
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+    "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m",
+    "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+    "Vendor/SefariaMobile/Integration/metro.config.embedded.js",
+    "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+  ]
+}

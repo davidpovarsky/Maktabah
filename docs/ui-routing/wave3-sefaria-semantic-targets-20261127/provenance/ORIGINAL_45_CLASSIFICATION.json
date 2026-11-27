@@ -1,0 +1,1244 @@
+{
+  "schema": "otzaria.rn-original-45-source-classification.v1",
+  "base_source_read": "aee6fdd1cd635323f6a773f6559a9d0bf717f6b4",
+  "original_inventory": {
+    "path": "current-ui-requirements-audit/packet/docs/hq-ui-inventory/wave3-requirements-reconciliation-20261127/COMPONENT_RECONCILIATION.json",
+    "sha256": "092c37ddf6c10e2c03e6fe3702c222fd500ef7e7fa3adbee143b00fe7399f5f5"
+  },
+  "immutable_original_source": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+  "summary": {
+    "rows": 45,
+    "unique_original_files": 34,
+    "classifications": {
+      "existing_parent_only": 1,
+      "proposed_finite_root": 3,
+      "meaningful_unavailable": 31,
+      "container_not_public_action": 2,
+      "data_model_not_ui_target": 1,
+      "infrastructure_not_destination": 1,
+      "not_appropriate": 5,
+      "proposed_finite_guide_root": 1
+    },
+    "new_implemented": 0,
+    "native_passes": 0,
+    "physical_passes": 0
+  },
+  "boundary": "Source classification, not 45 successful UI tests; no original inventory/status or source was modified.",
+  "rows": [
+    {
+      "id": "inventory.v1.embedded.rn.reader",
+      "label": "Original ReaderApp state/navigation",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ReaderApp.js",
+        "object_path": "ReaderApp.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "cb088826ca2c14c9e9b20728f108594e76efd3437dbf54a500902213d81d8d1a",
+        "bytes": 92088,
+        "git_blob": "e419bd60980fba1a55925493ed50a11686b40d68"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "existing_parent_only",
+      "rationale": "Original ReaderApp is already mounted by native.sefariaEmbedded; that root does not select an exact text, version, segment, menu or any of the other 44 rows.",
+      "implementation": "EXISTING_PARENT_ONLY_NOT_EXACT_READER_TARGET",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.library",
+      "label": "RN texts/library navigation",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TextsPage.js",
+        "object_path": "TextsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "98fa9a858bd8a6b48067a38fda2b46019e4d781752a0367b58ca1dc05ff505ea",
+        "bytes": 4360,
+        "git_blob": "0c337e57dfa8a13ff60d7f3d6e2cf7ad3f8a4d7a"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "proposed_finite_root",
+      "rationale": "Call original openNav; require original root navigation state and visible TextsPage header. Original query/filter clearing remains. Arbitrary category paths are separate, unavailable targets.",
+      "implementation": "PROPOSED_UNIMPLEMENTED",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.category",
+      "label": "RN category/text list",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TextCategoryPage.js",
+        "object_path": "TextCategoryPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "77193a9695799df3c7ea682cfcb7aedbcbad49d0d5ace21a6182dfcd1ad7f2a2",
+        "bytes": 13508,
+        "git_blob": "70eb6519e177bc2f26bb0255628b178af3b0e5bf"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Needs a finite/backend-qualified original category/work identity, exact category state, original list row and real visibility; the Library root does not cover it.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reader-controls",
+      "label": "RN Reader controls",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ReaderControls.js",
+        "object_path": "ReaderControls.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "f8d16cb51d08cb638a99fbb0cc8a6699fbe033e3b1c2657c4d8508f1a7ac899a",
+        "bytes": 3828,
+        "git_blob": "5f7f413a65183a53c11691429e9b5fc4f41c3a9f"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "container_not_public_action",
+      "rationale": "The controls container is not one semantic action. Individual original controls require a finite operation and exact reader/context witness; arbitrary semanticControl/selector execution is unavailable.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.text-column",
+      "label": "RN reading column",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TextColumn.js",
+        "object_path": "TextColumn.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "1341233cdc2c5e0580b16e4a2e3e35a582be4b76eedeb84f95da2a58b2a691a7",
+        "bytes": 37924,
+        "git_blob": "cc15944142c01c9cd2ae6f7cb32bbfbd350f21f5"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Exact reading-column reveal needs original backend-qualified text/version identity and loaded original column/position; no root-only receipt can attest it.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.segment",
+      "label": "RN exact text segment selection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TextSegment.js",
+        "object_path": "TextSegment.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "95762036f6055f52f1db0dcacc95469a546dc60c97cd50eb054355cc02a2a0c4",
+        "bytes": 5570,
+        "git_blob": "d7f5f2cef70497366e29293d67ba1b9fe29b271a"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Exact segment reveal/selection requires original segment identity, original selection state and visible selected segment, with no private text in public URLs.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.toc",
+      "label": "RN text TOC and versions",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ReaderTextTableOfContents.js",
+        "object_path": "ReaderTextTableOfContents.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "72f01a4dc5cde70441ef2f449394da8613ac9b2b4fc4d8ee4586c8b90cb86a60",
+        "bytes": 21915,
+        "git_blob": "ec3955a07e4069c1b13832efc5dd36b253aa3511"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original text TOC requires the current original work/structure/node/version and original visible row; openTextToc alone is insufficient for exact-node acceptance.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections",
+      "label": "RN connections/commentary panel",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanel.js",
+        "object_path": "ConnectionsPanel.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "6f60a758af9bb1efd6ec33fc82b491427cbcfcab52b7d8e9c45b0554d4213bb5",
+        "bytes": 22056,
+        "git_blob": "61f5a030baab62532ecefb05780979af9290f885"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original related-content panel requires the exact retained segment and original connection mode/source; revealing the root ReaderApp is insufficient.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.connections-filter",
+      "label": "RN connections filters/header",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ConnectionsPanelHeader.js",
+        "object_path": "ConnectionsPanelHeader.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "eaabbae614a3e4d0d4e6036192e2a728d3829a3541e02e55e5ff59949a2fb70b",
+        "bytes": 6697,
+        "git_blob": "1ca617ab96b002cb62e4932489e3bb4f1ad6f140"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "A fixed relationship/filter control can be meaningful, but must retain original segment/filter state and exact visible control. No arbitrary author/private filter mutation is exposed.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.link-content",
+      "label": "RN linked-source content",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/LinkContent.js",
+        "object_path": "LinkContent.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "204ce0bbb3f3c7fe2a27ff8171ab44ef192f47bab8eb2ef04db403ea7084028d",
+        "bytes": 138,
+        "git_blob": "9dcf2c52094d2404114491c709aa5dcc5d3ce2af"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "data_model_not_ui_target",
+      "rationale": "Pinned LinkContent.js is a seven-line data constructor (en, he, sectionRef), not a mounted control. Original visible connections have their own rows and contracts.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.versions",
+      "label": "RN version selection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/VersionBlock.js",
+        "object_path": "VersionBlock.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "c1a13329d29b9aac20432841a938709ec3c4c8f108afa9431fadfb4166a9feac",
+        "bytes": 8437,
+        "git_blob": "381493873d6d636868f0c8df8fdeaa76eaba3c7c"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original version selection/reveal requires exact original work/version identity and original visible version state; it cannot be represented by a generic page receipt.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.translations",
+      "label": "RN available translations",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TranslationsBox.js",
+        "object_path": "TranslationsBox.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "eac7be05e8451f8ac22c02b757b11f034977e69c3f48c727c3db96fe1e147a3d",
+        "bytes": 5699,
+        "git_blob": "1035a5bb7bc17fcb43df5677daebaee5af5fd30d"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original translations UI needs exact original work/version/language context and visible original control. Automatic preference changes are outside navigation.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dictionary",
+      "label": "RN dictionary/lexicon",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/LexiconBox.js",
+        "object_path": "LexiconBox.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "74bba675f0f1658fbdfec2759ab1f58d69c3327abf0684331a41cac453ba0b76",
+        "bytes": 11581,
+        "git_blob": "fa7fe943c7763bd42ad0ca6511a1f7fdf3aad800"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original dictionary/lexicon reveal needs the actual selected word and original source/lookup identity; no arbitrary private word/query is inserted into a public route.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.display-options",
+      "label": "RN text display options",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ReaderDisplayOptionsMenu.js",
+        "object_path": "ReaderDisplayOptionsMenu.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "4efddf0e7d6fc23ec4da0ae2ba39f213cffb03f3e5f363090359bf1151031c08",
+        "bytes": 11483,
+        "git_blob": "5c746224cfdbe5ff0c0ed4191c0f0eb5b60c9003"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Opening/focusing the original display panel can be meaningful. Changing language/font/layout values is a separate user action; current finite roots do not dismiss or operate it.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search",
+      "label": "RN global search page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/search/SearchPage.js",
+        "object_path": "search/SearchPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "9a9efc584ebf989cd1f98dd27c69b190ff7f19b954d343ff15595f7e7f61b49b",
+        "bytes": 1869,
+        "git_blob": "7843850638aadfd368737266c30cedfc3034fe76"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original RN SearchPage is the results/search owner, not a substitute for the separate Maktabah search engine. Exact original query/session state and original input/result witnesses are required.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-results",
+      "label": "RN search result page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/search/SearchResultPage.js",
+        "object_path": "search/SearchResultPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "374d76e9b9dfd5c671049706cd0e37625638383da139e3df56bc2c7bb79ebc9c",
+        "bytes": 3560,
+        "git_blob": "87e5a486ec166a01ccac6b28765b3d7061b40512"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Requires original submitted query/generation and exact loaded result identity/row, with no query text in public navigation tokens and no root-only success.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.search-filters",
+      "label": "RN search filter selection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/search/SearchFilterPage.js",
+        "object_path": "search/SearchFilterPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "aff1409a8ae53aad91712ac7b221e6c51616ada83c277518284d0d9e448a4f49",
+        "bytes": 12827,
+        "git_blob": "8b09d2eae16b270a6040216feae48efc5ae988ae"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original filter panel reveal is meaningful only with the exact original search context and original panel control. This slice does not apply filter values.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.autocomplete",
+      "label": "RN search autocomplete",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/search/AutocompletePage.js",
+        "object_path": "search/AutocompletePage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "afbbc5cd9e030a04848da48e72b997a9340819ed71b0975f11a5ab1c427daee4",
+        "bytes": 3315,
+        "git_blob": "f031eb1a02a8bd5dcb4a001335464a918a321166"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original autocomplete input can be a finite focus target after its real input/first-responder/source contract is implemented. openAutocomplete by itself does not prove field focus.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.history-saved",
+      "label": "RN history/saved page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/HistorySavedPage.js",
+        "object_path": "HistorySavedPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "466a28fadea885fc51b1407245dd063c485ef94d9c9874799e0e274d07923230",
+        "bytes": 15001,
+        "git_blob": "45160aff9fd26abc48fe9d3b2fa46602e9b28bb4"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "HistorySavedPage owns a local saved/history mode and synchronizes profile on mount. ReaderApp menu history does not select a private record or exact local mode; its saved render case is commented out. No invented saved-menu route or automatic private record selection.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings",
+      "label": "RN Settings page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original SettingsPage reveal requires exact original owner/control and source proof. Its syncProfile effect and original account/settings behavior remain; the four public roots do not mount this page.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.account",
+      "label": "RN account menu",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/AccountNavigationMenu.js",
+        "object_path": "AccountNavigationMenu.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "6ade35d78593afacb0ede6479c69e892b5743a358276c8baeeb31157f1da3432",
+        "bytes": 8166,
+        "git_blob": "244387225ae667c0372035924a2bb1de7e54c21d"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Opening an original account menu may be meaningful, but account identity/session and privacy must be retained. It does not authorize login/logout, sync mutations, deletion or external web actions.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.auth",
+      "label": "RN auth screen",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/AuthPage.js",
+        "object_path": "AuthPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "4c242c1e0e8677fb3fc7e7f87ce04a0143a4892a913206368f423d71fce139f3",
+        "bytes": 18115,
+        "git_blob": "2e8174410eaee70ff2c949ed93cc2f2d06a8a61f"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Revealing an original sign-in form is distinct from submitting credentials. No original field/entity/keyboard contract is implemented in this slice; no automated authentication action.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.reset-password",
+      "label": "RN password reset screen",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ForgotPasswordScreen.js",
+        "object_path": "ForgotPasswordScreen.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "85074c913589deb4400b0bae56645ca37d1a12e00d23f85da34c8d120246ac35",
+        "bytes": 10594,
+        "git_blob": "ef43739d72b107dcb8a5003c6e51dd5b1aeae566"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Revealing the original reset form is distinct from sending a reset request. No submit/account action or private address is accepted by these routes.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topics",
+      "label": "RN topics/category detail",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TopicPage.js",
+        "object_path": "TopicPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "bb6d3904e5509cbb7760196e5189bdf05a85852899bca21d32500c9a4c7795bf",
+        "bytes": 27893,
+        "git_blob": "aa15ea696cb53f3acbeee4792a7b8ddf889956bc"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "proposed_finite_root",
+      "rationale": "Call original openTopicToc(true); require navigationTopic null and original visible TopicCategory root header. LoadingView is not completion. Exact topic detail remains unavailable.",
+      "implementation": "PROPOSED_UNIMPLEMENTED",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.topic-list",
+      "label": "RN topic list",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/TopicList.js",
+        "object_path": "TopicList.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "917af8209a86321fb09eddf511d9bb270bb171f0cceabaf06c119b4537c488e8",
+        "bytes": 2384,
+        "git_blob": "d08535186d1eaa59e3cc839c81a94d834bf80f54"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "The original list of topics related to a retained source requires exact topic/source identity and actual visible item; the root Explore by Topic screen does not cover it.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.learning-schedules",
+      "label": "RN learning schedules",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/learningSchedules/LearningSchedules.js",
+        "object_path": "learningSchedules/LearningSchedules.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "119d8d323cbb671108c699642962b7129116ef7fd99ff41cba3e2dc051ca76f2",
+        "bytes": 7753,
+        "git_blob": "1bd1596bdd9dc28c3f832e17d0cb43a403cb3e27"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "proposed_finite_root",
+      "rationale": "Call original openMenu learning schedules; require exact menu and original page header plus unique description, not the same title in Library. Calendar data completeness is separate.",
+      "implementation": "PROPOSED_UNIMPLEMENTED",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.sheet",
+      "label": "RN source-sheet metadata",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SheetMeta.js",
+        "object_path": "SheetMeta.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "1b3805f877e9205d1d3abf7d4b816451e74e9681392561f3a1b5d3385a3f4801",
+        "bytes": 3288,
+        "git_blob": "20e70d01cf3ea8df6c470413ff315aa40d484cff"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original SheetMeta requires a retained real sheet identity and original visible metadata. A public unqualified numeric ID or arbitrary content mutation is not accepted.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.about",
+      "label": "RN About page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/AboutBox.js",
+        "object_path": "AboutBox.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "16ef128a58aab0c6ede7141a0e346381b90d3160156fb06ae5f4fd59d46caf39",
+        "bytes": 7817,
+        "git_blob": "83350346857399f288b42c9179cb53f753f75d7e"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Pinned AboutBox is current-text information in ConnectionsPanel about mode, not the app About page. Requires exact current text and original panel; the account app-about link is external web navigation.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.footer-tabs",
+      "label": "RN footer tab selection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/FooterTabBar.js",
+        "object_path": "FooterTabBar.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "5a18c445933c74257de45ce51fdce47cfd5d5f90a24b20278c54ad5a16fe9bb3",
+        "bytes": 1691,
+        "git_blob": "949d754ddde0a26293f0df2725c72ec2ac5828ea"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "container_not_public_action",
+      "rationale": "Original footer container is not a generic public tab executor. setFooterTab may restore prior tab state, so finite roots call the original specific methods instead of claiming footer selection proves a root.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.deep-links",
+      "label": "Upstream RN link parser",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/DeepLinkRouter.js",
+        "object_path": "DeepLinkRouter.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "5e216bd8c68bccc2cea223807677dcb972b53598960c62e5ec37ec1e9862b592",
+        "bytes": 7096,
+        "git_blob": "d23a0a6c60d6aea484d3ee3345e56b8c0d0c288d"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "candidate_foreground_gated",
+        "deep_link": "candidate_identity_only_no_private_text",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "infrastructure_not_destination",
+      "rationale": "Original DeepLinkRouter is routing infrastructure, not a visible target. It accepts more than the strict public contract, so new routes do not forward arbitrary URLs/JS/queries to it.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.error",
+      "label": "RN error boundary fallback",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/ErrorBoundaryFallbackComponent.js",
+        "object_path": "ErrorBoundaryFallbackComponent.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "7cd32c23c1831db3ec4d4167a04683aef81d62d01f9a68b4b72cac176d6d4503",
+        "bytes": 1091,
+        "git_blob": "e9c7e42caf79b6addf761770befb56073680377e"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "not_appropriate",
+      "rationale": "ErrorBoundaryFallbackComponent is an actual failure surface. It is not intentionally opened or counted as successful semantic navigation.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.web",
+      "label": "RN browser content view",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/WebViewPage.js",
+        "object_path": "WebViewPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "3c1d1978079073d097b279ee2437cdf06f5182139550525bac83c784242357f3",
+        "bytes": 1088,
+        "git_blob": "2fbc306cf51d1cbca9134c80096ace6a48955b21"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Only an explicitly reviewed safe original document/link and its visible original web owner could be meaningful. Arbitrary URLs, private tokens, embedded commands and browser fallback are not accepted.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.interface-language",
+      "label": "RN interface language subsection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original language control may be revealed/focused with its exact owner. Navigation alone never changes the original interface language or bypasses user choice.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.text-language",
+      "label": "RN text language subsection",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original text-language control reveal is separate from changing preference; requires actual settings row and original state.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.network",
+      "label": "RN offline network preference",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original network/offline preference row can be a guide target, but value changes require a separate explicit action; no network policy mutation is exposed.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.offline-library",
+      "label": "RN offline access/install/update/delete review",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original offline-library controls need their exact original UI and installed-resource state. Navigation does not install, update, download or delete resources.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.debug-destructive",
+      "label": "Excluded RN debug destructive control",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "not-appropriate",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "not_appropriate",
+      "rationale": "Original hidden destructive debug controls are excluded from public routes, intents and automated guide actions; no artificial completion or relaxed gate.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.email-frequency",
+      "label": "RN email-frequency setting",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original account-linked email preference may be a user-directed guide focus only; no public GET or automatic preference/profile write.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.reading-history",
+      "label": "RN reading-history setting",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original history privacy preference may be a user-directed guide focus only; no automatic history/consent mutation or private payload in public routes.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.custom",
+      "label": "RN preferred custom setting",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original preferred-custom row may be revealed with its original owner. No automatic profile/preference write is authorized by navigation.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.grogger",
+      "label": "RN grogger preference",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "never_GET; independent explicit user confirmation"
+      },
+      "navigation_classification": "meaningful_unavailable",
+      "rationale": "Original grogger preference control remains user-operated. Exact reveal/focus is unavailable until its original-row contract exists.",
+      "implementation": "UNAVAILABLE",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.logout",
+      "label": "RN logout flow",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "not-appropriate",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "not_appropriate",
+      "rationale": "Direct logout is a state-changing account action, explicitly excluded by the original inventory; no public navigation side effect.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.settings.delete-account",
+      "label": "RN account deletion flow",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/SettingsPage.js",
+        "object_path": "SettingsPage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "11f4f03007685bb0a67f850a05f6ea70258adc524230c03375697d00570cdd5e",
+        "bytes": 22783,
+        "git_blob": "e6026cd5770312ab46f11d7376e79e9ba330bade"
+      },
+      "original_status": "not-appropriate",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "not_appropriate",
+      "rationale": "Account deletion is explicitly excluded by the original inventory; no automatic selection/confirmation or invocation.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.dedication",
+      "label": "RN dedication information page",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/Dedication.js",
+        "object_path": "Dedication.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "18066086edb2d6ba1151286fb685357323c70b947247eacc688e2401d8f6a8d5",
+        "bytes": 3047,
+        "git_blob": "d2d82c3afd7838e423e8a4469c9055346c869f1f"
+      },
+      "original_status": "unavailable",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "candidate_via_single_existing_SDK_and_trusted_host_ports",
+        "guide": "semantic_focus_candidate_no_coordinate_taps",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "proposed_finite_guide_root",
+      "rationale": "Original Dedication is an informational page. Finite native reveal uses original openMenu dedication and actual title; preserve original guide/Hanlin suitability and do not advertise a direct public action without reviewed reclassification.",
+      "implementation": "PROPOSED_UNIMPLEMENTED",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    },
+    {
+      "id": "inventory.v1.embedded.rn.notice",
+      "label": "RN interrupting-message modal",
+      "source": {
+        "path": "Vendor/SefariaMobile/Upstream/InterruptingMessage.js",
+        "object_path": "InterruptingMessage.js",
+        "ref": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+        "sha256": "1c3b75e0b60138aca99b150e8302c9748864ebc94473e6b6b87a2139c73ee343",
+        "bytes": 7214,
+        "git_blob": "fbc19d4234c811f4342bf968cee2a468bae3f976"
+      },
+      "original_status": "not-appropriate",
+      "original_suitability": {
+        "app_intent": "not_appropriate_as_direct_public_action",
+        "deep_link": "not_appropriate",
+        "universal_link": "NOT_IMPLEMENTED_no_app_domain_AASA",
+        "hanlin": "not_appropriate",
+        "guide": "not_appropriate",
+        "private_payload": false,
+        "mutations": "navigation_does_not_authorize_writes"
+      },
+      "navigation_classification": "not_appropriate",
+      "rationale": "InterruptingMessage is an original runtime notice/modal, not an automatic action or destination. An open notice blocks this slice; it is never dismissed automatically.",
+      "implementation": "NO_DIRECT_PUBLIC_ACTION",
+      "native": "NOT_RUN",
+      "physical": "NOT_RUN"
+    }
+  ]
+}

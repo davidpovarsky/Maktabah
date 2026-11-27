@@ -1,0 +1,157 @@
+{
+  "artifacts": [
+    {
+      "bytes": 59617,
+      "path": "ACTUAL_SOURCE_CONTROLS_INDEX.json",
+      "sha256": "53088ade7b89868df25e8c38859045a0b5f85c8e3bd777fa5e703d72196da629"
+    },
+    {
+      "bytes": 393,
+      "path": "FINALIZATION.json",
+      "sha256": "31a75ad9fb790e0924cc8aaf0299efcb08a8fbc41e5538ff3e4b34336c19b392"
+    },
+    {
+      "bytes": 7556,
+      "path": "LOCAL_SOURCE_CONTROLS_INDEX.json",
+      "sha256": "6ae1cd2dcf77ca2fcafe0045b1aba3b2fcd3d299ae434a49f6ed6ebfe61f3999"
+    },
+    {
+      "bytes": 2358,
+      "path": "PEER_REVIEWS.json",
+      "sha256": "4fcc507cad616cb16704bfd7f2131ff841b3339142b3eb627363db0b8b21e484"
+    },
+    {
+      "bytes": 6145,
+      "path": "PRODUCT_PUBLICATION.json",
+      "sha256": "2d0b4f05237cc9668da52fada7c68dfc149e0eee40d535aa44e5ae67e14a8276"
+    },
+    {
+      "bytes": 8156,
+      "path": "README.md",
+      "sha256": "c89b276f4e0146514f4b27e621dcfd08aab59c7ccbb16184bb60b695ed25572d"
+    },
+    {
+      "bytes": 1878,
+      "path": "RESULT.json",
+      "sha256": "d5ca68f8485ea78e58c76da5d2413a282a9deca84a33b1b2859f89c284716be1"
+    },
+    {
+      "bytes": 10982,
+      "path": "SHARED_PROPOSALS.json",
+      "sha256": "7445687acf8f7e39979564c8e40fa5915efd5786171dda54fdde77c531dde89b"
+    },
+    {
+      "bytes": 5635,
+      "path": "SOURCE_INPUTS.json",
+      "sha256": "202df0f71d27a112e2bbb5a5cfbbf48c3680b68a13c95ea5bd3dd7c19aac1411"
+    },
+    {
+      "bytes": 25717,
+      "path": "SYNTAX_RESULT.json",
+      "sha256": "543f77e14ebec3abc10c3420f3d9b87e543946c0c156604e8b5070c39808f07b"
+    },
+    {
+      "bytes": 665526,
+      "path": "actual-source-controls.tar.gz",
+      "sha256": "8ae8057ea4f345586bffa067fb80bf6d84d863930ca03df8898d0896c56a7ff4"
+    },
+    {
+      "bytes": 89326,
+      "path": "local-source-controls.tar.gz",
+      "sha256": "f4f2f5aa0214b86674c9985c4ff5938fc035d53d19b376336c5ee8084157876c"
+    },
+    {
+      "bytes": 1824,
+      "path": "provenance/ADDITIONAL_BASE_INPUTS.json",
+      "sha256": "3fc2b4daf4cab21d1f72dc94f2aebc66c399fd04664fbcbab677ce39d4034c23"
+    },
+    {
+      "bytes": 2541,
+      "path": "provenance/BASE_INPUTS.json",
+      "sha256": "5d0b838e742bde21955aff565101ab1a604b1b30a984d137b3527f1364b8af78"
+    },
+    {
+      "bytes": 12252,
+      "path": "provenance/CONTRACT_PROPOSAL.md",
+      "sha256": "5858e52504b40307cdbb2c4bbaba77d640bf82f65966a0b2fe52532c5ec05c22"
+    },
+    {
+      "bytes": 685,
+      "path": "provenance/I18N_SOURCE_INPUTS.json",
+      "sha256": "dfeaaca3feffb26b9258dc9a332d89034a2b847c499b9ec1bfe1c41e49cad40a"
+    },
+    {
+      "bytes": 60152,
+      "path": "provenance/ORIGINAL_45_CLASSIFICATION.json",
+      "sha256": "0aae020c2caa83ee8f222192ebe89fc68f88b64941ea6df6f764cfb553cc9220"
+    },
+    {
+      "bytes": 163123,
+      "path": "provenance/PINNED_ORIGINAL_45_SOURCE.json.gz",
+      "sha256": "9f979423e687e4b076189d8a1c0ff0a39af28229a6f3649a43e83896adf65092"
+    },
+    {
+      "bytes": 41890,
+      "path": "provenance/UPSTREAM_INPUTS.json",
+      "sha256": "d120eb25e6300ef29adbec0c31eb6ddccfbe54c9499b3f1321ff828d7e32cc89"
+    },
+    {
+      "bytes": 339,
+      "path": "shared-proposals/GuidedNavigation.patch.gz",
+      "sha256": "d92f1fe3bf696c73c16f2458d60aa565a6287b9290e3a002362a1efd0b19d883"
+    },
+    {
+      "bytes": 693,
+      "path": "shared-proposals/MaktabahNativeComponentBinding.patch.gz",
+      "sha256": "218118e9e4a5d1391b1c7913a508e5949666d13f537b4ed277b394536e907559"
+    },
+    {
+      "bytes": 732,
+      "path": "shared-proposals/MaktabahNativePublicBindingAdapter.patch.gz",
+      "sha256": "06506d26e0e9f8682bcbd38d7ac86feef78d567c7bf5821116934a4e32958830"
+    },
+    {
+      "bytes": 2483,
+      "path": "shared-proposals/MaktabahNativeRoutingComposition.patch.gz",
+      "sha256": "7e147675da000eaad808df75cec928495cdd5ab29070f2f2f78863f82645b82d"
+    },
+    {
+      "bytes": 528,
+      "path": "shared-proposals/MaktabahNativeSceneProjection.patch.gz",
+      "sha256": "02635187204af329457e5df6796ea2224ea052999e04ba20fdae65272a29a414"
+    },
+    {
+      "bytes": 3638,
+      "path": "shared-proposals/MaktabahNativeSceneSession.patch.gz",
+      "sha256": "cc0741880eab25295129fc79f67b639c9594001a35b10fc66d549f4a3164cc74"
+    },
+    {
+      "bytes": 464,
+      "path": "shared-proposals/MaktabahNativeSearchEntry.patch.gz",
+      "sha256": "b4b096cf9686ad2d50fd3423dd47d6cf33ed15cb721277e3dffb48bcee1b52da"
+    },
+    {
+      "bytes": 938,
+      "path": "shared-proposals/MaktabahNativeWorkspaceOwner.patch.gz",
+      "sha256": "c765d3b6a1f1b5dbb2978330aef3c0f33e3fac0ead494a7f2fe5335f9d15d5b7"
+    },
+    {
+      "bytes": 1209,
+      "path": "shared-proposals/NativeComponentSourceObservation.patch.gz",
+      "sha256": "e523166ff7cce3d1adfd208a0a2f1b34b0cde619fa4a91a0ce4ed5fc277cf465"
+    },
+    {
+      "bytes": 318510,
+      "path": "shared-proposals/exact-source-pairs.json.gz",
+      "sha256": "cf0a0ef44bb724221e5a6b3ba1eec9186d105dfed5306a821eaadfd4cb713bbd"
+    },
+    {
+      "bytes": 429,
+      "path": "shared-proposals/iOSNavigationManager.patch.gz",
+      "sha256": "afcdc41aba89c375881a68168c08d4dea3b07510e777bbe22a4caaa576a5cf38"
+    }
+  ],
+  "schema": "otzaria.rn-semantic-source-packet/1",
+  "scope": "SOURCE_ONLY_NOT_ACCEPTANCE",
+  "source": "d4e25c0cf5581427d6742ade1d4d1e0f3ddaa1a3"
+}

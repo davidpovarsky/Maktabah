@@ -1,0 +1,182 @@
+{
+  "parent": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "rows": [
+    {
+      "after": {
+        "bytes": 41873,
+        "sha256": "ba40fc67d860a5530259a77a515e3f9980250ffcd3fff87beb85a79c15364e53"
+      },
+      "before": {
+        "bytes": 29317,
+        "sha256": "ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28"
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift"
+    },
+    {
+      "after": {
+        "bytes": 31947,
+        "sha256": "f33216f75a32f46e220613b31e828d7f024cc8c5312b3d4df0da61dc606f5db3"
+      },
+      "before": {
+        "bytes": 31396,
+        "sha256": "d1c64cdde4110d35e8f1ab229b8903e3da49eb21f30faee3c411c6cdc2fed9b6"
+      },
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift"
+    },
+    {
+      "after": {
+        "bytes": 12677,
+        "sha256": "63c5c4bef953de662c479e7e8a8f9c8eb1cee872201bf65362652141d4654f92"
+      },
+      "before": {
+        "bytes": 6981,
+        "sha256": "941a42e4cd4d3f49d3034e95d95c85ee1755d74ed8611a62de5ae16daac14e75"
+      },
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift"
+    },
+    {
+      "after": {
+        "bytes": 10150,
+        "sha256": "cd342245b2d7983bff2e05ea6500d097543531e64a4a73d369ba696537f3bb83"
+      },
+      "before": null,
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSemanticNavigation.swift"
+    },
+    {
+      "after": {
+        "bytes": 3491,
+        "sha256": "486ecfb8e603247c65dee48c1593085e254b43d85c67b1626c05fe7847f53817"
+      },
+      "before": null,
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js"
+    },
+    {
+      "after": {
+        "bytes": 3673,
+        "sha256": "746c0b832dae0647cfe8e884b422b11d1bb4dc2f882a56b255c0e54d67e9caa6"
+      },
+      "before": {
+        "bytes": 3557,
+        "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+      },
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js"
+    },
+    {
+      "after": {
+        "bytes": 11442,
+        "sha256": "6b8029cd72fa1c5a60ca764e8b2fef8b8e4f6370939e243bf1ce3e984080befc"
+      },
+      "before": {
+        "bytes": 6556,
+        "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+      },
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js"
+    },
+    {
+      "after": {
+        "bytes": 24141,
+        "sha256": "8444dc2ab7fb925cc4718bb1304c632d3a59376d419d94aebf3d3cb0422d8290"
+      },
+      "before": {
+        "bytes": 23528,
+        "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+      },
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js"
+    },
+    {
+      "after": {
+        "bytes": 851,
+        "sha256": "3bacf004774ba07f403e7ca205efe01a1952f101a703d85fc987311b99256da4"
+      },
+      "before": {
+        "bytes": 755,
+        "sha256": "6f59be52fb5bf22b13925d8b008d466053161cbc34a4b514257216cd8d75ddb2"
+      },
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m"
+    },
+    {
+      "after": {
+        "bytes": 8465,
+        "sha256": "e8bc3f5b057b7efa2e0ae24c2f75b9305ca4331e36e7e5888f28d2bb2cf381a4"
+      },
+      "before": {
+        "bytes": 8050,
+        "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+      },
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+    },
+    {
+      "after": {
+        "bytes": 6044,
+        "sha256": "6a94388d306793a21f9f2c98a675f3a98308e40b4740553ef6c748b41aa168f7"
+      },
+      "before": null,
+      "path": "tools/run_sefaria_semantic_binding_controls.py"
+    },
+    {
+      "after": {
+        "bytes": 5304,
+        "sha256": "2cad466a43f148b2f6fa1e67e02301e30d233699b3009fe8cd0daaa71e4509d0"
+      },
+      "before": null,
+      "path": "tools/run_sefaria_semantic_geometry_controls.py"
+    },
+    {
+      "after": {
+        "bytes": 13324,
+        "sha256": "fcb24ff38170920f3ca58b82ddd3dee231ecd8e45359112c8d8610c27f90c820"
+      },
+      "before": null,
+      "path": "tools/run_sefaria_semantic_source_controls.py"
+    },
+    {
+      "after": {
+        "bytes": 5500,
+        "sha256": "dd3934589d389bcb01cd74c4123ac6b46e854ac088bbf0c1c53b64b69e76dc46"
+      },
+      "before": null,
+      "path": "tools/sefaria_binding_control_boundaries.swift"
+    },
+    {
+      "after": {
+        "bytes": 16451,
+        "sha256": "fdc78f60be073a984fda3e55460717667ae93147cfbb7089530a39f3c4a7962e"
+      },
+      "before": null,
+      "path": "tools/test_sefaria_semantic_binding.swift"
+    },
+    {
+      "after": {
+        "bytes": 11801,
+        "sha256": "3944af7642c43128e02a3922514463aa89b4304aa330df8b86f3394a905c69d8"
+      },
+      "before": null,
+      "path": "tools/test_sefaria_semantic_geometry.swift"
+    },
+    {
+      "after": {
+        "bytes": 28104,
+        "sha256": "89c644caf220dda4c9036c1281115585615277fe1defafa4d086e93f1fcbef5a"
+      },
+      "before": null,
+      "path": "tools/test_sefaria_semantic_handoff.swift"
+    },
+    {
+      "after": {
+        "bytes": 15750,
+        "sha256": "8fdafe08c84fb42e78da277fc9fd9ebd76a633104ee680eb8b03c7c5c0ace495"
+      },
+      "before": null,
+      "path": "tools/test_sefaria_semantic_targets.mjs"
+    },
+    {
+      "after": {
+        "bytes": 5491,
+        "sha256": "97d4cf9949fec23af86079e765121b47b58ec603cf1569e7bbb88af1a6ae57ad"
+      },
+      "before": null,
+      "path": "tools/test_sefaria_workspace_publication.swift"
+    }
+  ],
+  "source": "d4e25c0cf5581427d6742ade1d4d1e0f3ddaa1a3"
+}

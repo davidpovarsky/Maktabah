@@ -1,0 +1,204 @@
+{
+  "members": [
+    {
+      "path": "controls-js-attempt-1/RESULT.json",
+      "bytes": 6655,
+      "sha256": "3fa9cbb447ad98d15133d6b191849cf23dc504a65cfc055de7ed11becaa0e41e"
+    },
+    {
+      "path": "controls-js-attempt-1/evaluated-registry.mjs",
+      "bytes": 16024,
+      "sha256": "e40f3b848a24df8f159365c5a762c667f0789b7efbd050a87f54aec28733ca68"
+    },
+    {
+      "path": "controls-js-attempt-1/verbatim-original-methods.js",
+      "bytes": 2234,
+      "sha256": "2a6d7183b779e5fd97921b50fcce436d144a4697d34acdf9487c21973a804f7b"
+    },
+    {
+      "path": "controls-js-attempt-2/RUNS.json",
+      "bytes": 2921,
+      "sha256": "62b6a2ff39296b4ffe4cf8a36f28e7346b8033d6acdff4186a4c807a72b7eb62"
+    },
+    {
+      "path": "controls-js-attempt-2/candidate/RESULT.json",
+      "bytes": 6655,
+      "sha256": "3fa9cbb447ad98d15133d6b191849cf23dc504a65cfc055de7ed11becaa0e41e"
+    },
+    {
+      "path": "controls-js-attempt-2/candidate/evaluated-registry.mjs",
+      "bytes": 16024,
+      "sha256": "e40f3b848a24df8f159365c5a762c667f0789b7efbd050a87f54aec28733ca68"
+    },
+    {
+      "path": "controls-js-attempt-2/candidate/verbatim-original-methods.js",
+      "bytes": 2234,
+      "sha256": "2a6d7183b779e5fd97921b50fcce436d144a4697d34acdf9487c21973a804f7b"
+    },
+    {
+      "path": "controls-js-attempt-2/candidate.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-2/candidate.stdout.log",
+      "bytes": 143,
+      "sha256": "cfcf4cdf16466fbfdc5ac5a957f6cc691d05794d6bf07539351c512ba8b27f64"
+    },
+    {
+      "path": "controls-js-attempt-2/omit-native-claim/RESULT.json",
+      "bytes": 7819,
+      "sha256": "e3f6ba4da1a16afb8706768c90b0fd7fb18b45c3ffdd6d85382dc4c50184f66e"
+    },
+    {
+      "path": "controls-js-attempt-2/omit-native-claim/evaluated-registry.mjs",
+      "bytes": 15998,
+      "sha256": "49672dd6979d0fbca892ded095a4e21ba89fe5dcc0e22aa5b6c25254c629c171"
+    },
+    {
+      "path": "controls-js-attempt-2/omit-native-claim/verbatim-original-methods.js",
+      "bytes": 2234,
+      "sha256": "2a6d7183b779e5fd97921b50fcce436d144a4697d34acdf9487c21973a804f7b"
+    },
+    {
+      "path": "controls-js-attempt-2/omit-native-claim.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-2/omit-native-claim.stdout.log",
+      "bytes": 2209,
+      "sha256": "9a608238bce7f6c89a26c25e18ce8231e9256fc8df7b4301f0a3578bb831d82c"
+    },
+    {
+      "path": "controls-js-attempt-2/original-root.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-2/original-root.stdout.json",
+      "bytes": 2584,
+      "sha256": "1205d2b67ea409cab351d497e7ac324a5e32835a98a8e0f2228565a101aca9c6"
+    },
+    {
+      "path": "controls-js-attempt-3/RUNS.json",
+      "bytes": 3707,
+      "sha256": "b2caddc6611b76c137e6b194a5587f6485490752b27d8e545ddfb4391affcba6"
+    },
+    {
+      "path": "controls-js-attempt-3/candidate/RESULT.json",
+      "bytes": 7239,
+      "sha256": "1bdfc817aac9b0e9b30814ae90bdd3b3e0f83f3c65f2fbf4a40a53e0870cacf6"
+    },
+    {
+      "path": "controls-js-attempt-3/candidate/evaluated-registry.mjs",
+      "bytes": 16094,
+      "sha256": "1a39e492b6e8ae696eefec1cf25298bc8c55dc6eab79f74775158d4f0fa76ae1"
+    },
+    {
+      "path": "controls-js-attempt-3/candidate/verbatim-original-methods.js",
+      "bytes": 2234,
+      "sha256": "2a6d7183b779e5fd97921b50fcce436d144a4697d34acdf9487c21973a804f7b"
+    },
+    {
+      "path": "controls-js-attempt-3/candidate.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-3/candidate.stdout.log",
+      "bytes": 143,
+      "sha256": "1f2f8fd63f31c80a11c17313f3db10bdcea5726c68cf9be54127bd6b5373b71a"
+    },
+    {
+      "path": "controls-js-attempt-3/omit-native-claim/RESULT.json",
+      "bytes": 8411,
+      "sha256": "a78200fb6bfd9a85f37a0696d4234659fda4efd1bb015a43f9f98d0a733a76fe"
+    },
+    {
+      "path": "controls-js-attempt-3/omit-native-claim/evaluated-registry.mjs",
+      "bytes": 16068,
+      "sha256": "e3fe8f3073e6760d9402b590502b2ba6279ff57803e5865ee0b5f53d3923b2c7"
+    },
+    {
+      "path": "controls-js-attempt-3/omit-native-claim/verbatim-original-methods.js",
+      "bytes": 2234,
+      "sha256": "2a6d7183b779e5fd97921b50fcce436d144a4697d34acdf9487c21973a804f7b"
+    },
+    {
+      "path": "controls-js-attempt-3/omit-native-claim.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-3/omit-native-claim.stdout.log",
+      "bytes": 2209,
+      "sha256": "2410aef99fc480918e76690e0a3896017788194e839371d8ea62e1ae1f4b6d4e"
+    },
+    {
+      "path": "controls-js-attempt-3/original-root.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "controls-js-attempt-3/original-root.stdout.json",
+      "bytes": 2584,
+      "sha256": "e3a203ed09d18510129195c71084f8816172748898985caa8f296cbcf81c5ff0"
+    },
+    {
+      "path": "controls-source-edit-attempt-1/FAILURE.txt",
+      "bytes": 293,
+      "sha256": "e156998ef83dfb217cd140058bf451046d559be910021bfbc706c98201ffef35"
+    },
+    {
+      "path": "controls-source-edit-attempt-1/prepare_shared_proposal.py",
+      "bytes": 6881,
+      "sha256": "1c6c255f8376bb53bda49371fcc03aa9ae345a66fb78acfcd19b7ccbf9f96234"
+    },
+    {
+      "path": "prepare_route_proposals.py",
+      "bytes": 10243,
+      "sha256": "b55184cffbecb1e5de5824db8365aee580bdf225c1f9a68f6c30aaf8846c59bb"
+    },
+    {
+      "path": "prepare_shared_proposal.py",
+      "bytes": 6922,
+      "sha256": "a05682968e9c448719da00c243cedca8790fb6ae01fa11b7d1c164d437cbb9b7"
+    },
+    {
+      "path": "rejected-observable-metadata/REJECTED.json",
+      "bytes": 1271,
+      "sha256": "0613003efe02bb69ce300549d659af3cae23d75b4d37b55148b69f3f57a28cb1"
+    },
+    {
+      "path": "rejected-observable-metadata/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 154647,
+      "sha256": "5f3a48d332ee7afa8b67efe4313a0695f2e40a4d67ce533f7983427002e572b5"
+    },
+    {
+      "path": "rejected-observable-metadata/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27614,
+      "sha256": "cee1c3e5f5f1297b18b17f79c6f146b109bd823158bd6898c372b4884a65f29b"
+    },
+    {
+      "path": "rejected-observable-metadata/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "bytes": 1713,
+      "sha256": "39b6cbdcdc6f9cdae9bdde534373d946937dc6f0251023faef4ae1780d026a9a"
+    },
+    {
+      "path": "rejected-observable-metadata/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "bytes": 52768,
+      "sha256": "8b34d7acbcc286190d06b8fa4efa7aa8ac5b9583e3eb17034511a598bb783a9b"
+    },
+    {
+      "path": "seal-source-capsule.py",
+      "bytes": 6841,
+      "sha256": "1b9f106ca046d0b0a53dbb0c04cc08e95d9b44120d212e89179309eabf4b22fa"
+    }
+  ],
+  "historical_generators_must_not_be_replayed": [
+    "prepare_shared_proposal.py",
+    "prepare_route_proposals.py"
+  ],
+  "reason": "They represent preserved rejected metadata proposals, not the final passive publisher."
+}

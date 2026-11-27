@@ -1,0 +1,270 @@
+{
+  "base": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "current_root_session_has_later_group_hunks": true,
+  "full_file_replacement_authorized": false,
+  "not_covered": [
+    "new Annotations original State publication facet requested after d4e seal",
+    "integrated app SDK compile",
+    "Guide execution",
+    "React bridge ABI",
+    "native UI"
+  ],
+  "owned_product_source": "d4e25c0cf5581427d6742ade1d4d1e0f3ddaa1a3",
+  "rows": [
+    {
+      "after": {
+        "bytes": 8386,
+        "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 7979,
+        "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+      },
+      "patch": {
+        "bytes": 1739,
+        "path": "shared-proposals/MaktabahNativeComponentBinding.patch",
+        "sha256": "70696ea995268961de56e195c62af9e0ffcc2ef09e30af02c36033dbc6822f71",
+        "storage": {
+          "bytes": 693,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeComponentBinding.patch.gz",
+          "raw_bytes": 1739,
+          "raw_sha256": "70696ea995268961de56e195c62af9e0ffcc2ef09e30af02c36033dbc6822f71",
+          "sha256": "218118e9e4a5d1391b1c7913a508e5949666d13f537b4ed277b394536e907559"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+    },
+    {
+      "after": {
+        "bytes": 22875,
+        "sha256": "719b5ed16eb7d1712c5f539148ba2930abcf6742635daa86866a2f744dfaef8c"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 22581,
+        "sha256": "fd70c7e7cdb42bbfd49b9be1a1bdfe048b756134daf99763a81ab08541a14092"
+      },
+      "patch": {
+        "bytes": 2442,
+        "path": "shared-proposals/MaktabahNativePublicBindingAdapter.patch",
+        "sha256": "1a6df3e12624aebd5f2fb1c9e4846d1928e86a8e88acd36b9902d02b3278516c",
+        "storage": {
+          "bytes": 732,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativePublicBindingAdapter.patch.gz",
+          "raw_bytes": 2442,
+          "raw_sha256": "1a6df3e12624aebd5f2fb1c9e4846d1928e86a8e88acd36b9902d02b3278516c",
+          "sha256": "06506d26e0e9f8682bcbd38d7ac86feef78d567c7bf5821116934a4e32958830"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+    },
+    {
+      "after": {
+        "bytes": 258181,
+        "sha256": "8c7495e39386a0b437ae30a41ccdb08c4d714fd98f6c8c908d02a59a4bb07ef2"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 253472,
+        "sha256": "9ebdf1237a1cd9cb0d64e7fd31542c2c3aee3907c7ce24488c966a14a4f4a720"
+      },
+      "patch": {
+        "bytes": 9770,
+        "path": "shared-proposals/MaktabahNativeRoutingComposition.patch",
+        "sha256": "25edec29f9697237ed07ef67bde7a61c7e2805f209f762ae83207bb747aa84a7",
+        "storage": {
+          "bytes": 2483,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeRoutingComposition.patch.gz",
+          "raw_bytes": 9770,
+          "raw_sha256": "25edec29f9697237ed07ef67bde7a61c7e2805f209f762ae83207bb747aa84a7",
+          "sha256": "7e147675da000eaad808df75cec928495cdd5ab29070f2f2f78863f82645b82d"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "after": {
+        "bytes": 26620,
+        "sha256": "122e6c16f65c1ae9ea8fc8c41ffb6ee75bed990b36f1409e57b62e301bbd9fc4"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 26609,
+        "sha256": "38d87aabc58d3c2ff3c3d499ca4b26acffe41f964326e8b5efaa4e67cf57c9dc"
+      },
+      "patch": {
+        "bytes": 1215,
+        "path": "shared-proposals/MaktabahNativeSceneProjection.patch",
+        "sha256": "946034f2a4d7c04cf185613d766f6ec2b6b4e68493cffc7a67f3fb1719628c39",
+        "storage": {
+          "bytes": 528,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeSceneProjection.patch.gz",
+          "raw_bytes": 1215,
+          "raw_sha256": "946034f2a4d7c04cf185613d766f6ec2b6b4e68493cffc7a67f3fb1719628c39",
+          "sha256": "02635187204af329457e5df6796ea2224ea052999e04ba20fdae65272a29a414"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    },
+    {
+      "after": {
+        "bytes": 154747,
+        "sha256": "ccb03fccc09f49f6591f8fa7d1635fce02e73b045217bb222d2ef671d5fea83c"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 150931,
+        "sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9"
+      },
+      "patch": {
+        "bytes": 16103,
+        "path": "shared-proposals/MaktabahNativeSceneSession.patch",
+        "sha256": "229d8fa2901010022bb00135a1a3b32cecd5b737218558bf4f24341eafdd6672",
+        "storage": {
+          "bytes": 3638,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeSceneSession.patch.gz",
+          "raw_bytes": 16103,
+          "raw_sha256": "229d8fa2901010022bb00135a1a3b32cecd5b737218558bf4f24341eafdd6672",
+          "sha256": "cc0741880eab25295129fc79f67b639c9594001a35b10fc66d549f4a3164cc74"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "after": {
+        "bytes": 27762,
+        "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 27583,
+        "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140"
+      },
+      "patch": {
+        "bytes": 1238,
+        "path": "shared-proposals/MaktabahNativeSearchEntry.patch",
+        "sha256": "4dd661f52d162e12231a3b1d8519d99d340e5cd11ae70475eaca1357ba8f3547",
+        "storage": {
+          "bytes": 464,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeSearchEntry.patch.gz",
+          "raw_bytes": 1238,
+          "raw_sha256": "4dd661f52d162e12231a3b1d8519d99d340e5cd11ae70475eaca1357ba8f3547",
+          "sha256": "b4b096cf9686ad2d50fd3423dd47d6cf33ed15cb721277e3dffb48bcee1b52da"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift"
+    },
+    {
+      "after": {
+        "bytes": 4741,
+        "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 4069,
+        "sha256": "087f48afc9f223e8498571e5e7dd84ba62020a8d8c50fb516bfe53ed531f2e22"
+      },
+      "patch": {
+        "bytes": 2657,
+        "path": "shared-proposals/MaktabahNativeWorkspaceOwner.patch",
+        "sha256": "895535e119c2840ce69e807e51eff21c1eac334748bf15dee9dc1b8018d7eea8",
+        "storage": {
+          "bytes": 938,
+          "encoding": "gzip",
+          "path": "shared-proposals/MaktabahNativeWorkspaceOwner.patch.gz",
+          "raw_bytes": 2657,
+          "raw_sha256": "895535e119c2840ce69e807e51eff21c1eac334748bf15dee9dc1b8018d7eea8",
+          "sha256": "c765d3b6a1f1b5dbb2978330aef3c0f33e3fac0ead494a7f2fe5335f9d15d5b7"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceOwner.swift"
+    },
+    {
+      "after": {
+        "bytes": 3125,
+        "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 1195,
+        "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21"
+      },
+      "patch": {
+        "bytes": 2821,
+        "path": "shared-proposals/NativeComponentSourceObservation.patch",
+        "sha256": "dcb374b35abaa53ddd135518971364a0e14dc1f2af2082e2d3403ff9e62a66c1",
+        "storage": {
+          "bytes": 1209,
+          "encoding": "gzip",
+          "path": "shared-proposals/NativeComponentSourceObservation.patch.gz",
+          "raw_bytes": 2821,
+          "raw_sha256": "dcb374b35abaa53ddd135518971364a0e14dc1f2af2082e2d3403ff9e62a66c1",
+          "sha256": "e523166ff7cce3d1adfd208a0a2f1b34b0cde619fa4a91a0ce4ed5fc277cf465"
+        }
+      },
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift"
+    },
+    {
+      "after": {
+        "bytes": 12146,
+        "sha256": "8e02c43fe534d2f703be0539a6b910bb99759b140966c1ea560654fc41669ad4"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 11974,
+        "sha256": "969898aba46d4c30a0f0f045db2e4da1b54d6f9cf4841a2ae40acecc8a960ccb"
+      },
+      "patch": {
+        "bytes": 795,
+        "path": "shared-proposals/GuidedNavigation.patch",
+        "sha256": "1875b80cd672c74a61815add5eb131c4464637d349871e3b2fb80839bfd7fd85",
+        "storage": {
+          "bytes": 339,
+          "encoding": "gzip",
+          "path": "shared-proposals/GuidedNavigation.patch.gz",
+          "raw_bytes": 795,
+          "raw_sha256": "1875b80cd672c74a61815add5eb131c4464637d349871e3b2fb80839bfd7fd85",
+          "sha256": "d92f1fe3bf696c73c16f2458d60aa565a6287b9290e3a002362a1efd0b19d883"
+        }
+      },
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Guides/GuidedNavigation.swift"
+    },
+    {
+      "after": {
+        "bytes": 52990,
+        "sha256": "f1c0a83426240ee40fc73f3aee5cd123129560bacf3cab1a6af2d3aa8f51b63a"
+      },
+      "application": "ROOT_OWNED_EXACT_HUNKS_ONLY_NOT_APPLIED_BY_THIS_LANE",
+      "before": {
+        "bytes": 52788,
+        "sha256": "c9a920f60bd20c804628be8410a6563d24543d9ff00b412ce1b721ee3ef8d23d"
+      },
+      "patch": {
+        "bytes": 806,
+        "path": "shared-proposals/iOSNavigationManager.patch",
+        "sha256": "28d702b1c3082dcb9ba7e7dd203c6d9f3ec8ad49ee42d9f8010ed8b82f0bc9e3",
+        "storage": {
+          "bytes": 429,
+          "encoding": "gzip",
+          "path": "shared-proposals/iOSNavigationManager.patch.gz",
+          "raw_bytes": 806,
+          "raw_sha256": "28d702b1c3082dcb9ba7e7dd203c6d9f3ec8ad49ee42d9f8010ed8b82f0bc9e3",
+          "sha256": "afcdc41aba89c375881a68168c08d4dea3b07510e777bbe22a4caaa576a5cf38"
+        }
+      },
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    }
+  ],
+  "unchanged_bodies": [
+    "original root and window nonobservable metadata classes",
+    "ignored currentMode revision and original setter body/order",
+    "original Guide validator names/order and all its prior guards"
+  ]
+}

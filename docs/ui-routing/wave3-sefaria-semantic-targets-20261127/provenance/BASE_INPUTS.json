@@ -1,0 +1,71 @@
+{
+  "head": "aee6fdd1cd635323f6a773f6559a9d0bf717f6b4",
+  "files": [
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "path": "PROJECT_BOARD.md",
+      "bytes": 45080,
+      "sha256": "5b36b294837af6ea3657db399789851f74ce52f22694ce672b16e5b724741e04"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "bytes": 6981,
+      "sha256": "941a42e4cd4d3f49d3034e95d95c85ee1755d74ed8611a62de5ae16daac14e75"
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+      "bytes": 3692,
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "bytes": 29317,
+      "sha256": "ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+      "bytes": 2814,
+      "sha256": "906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "bytes": 5809,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "bytes": 3557,
+      "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "bytes": 6556,
+      "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "bytes": 23528,
+      "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+    },
+    {
+      "path": "Source/SefariaEmbedded/Bridge/SefariaRPCModels.swift",
+      "bytes": 4566,
+      "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+    },
+    {
+      "path": ".gitmodules",
+      "bytes": 245,
+      "sha256": "59c874c50c37cc6630a473c26ab2662d5381a55b1154d3f2ac0e904f6821f860"
+    }
+  ],
+  "missing": []
+}
