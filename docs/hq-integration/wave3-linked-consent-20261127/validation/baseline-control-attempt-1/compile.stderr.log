@@ -1,0 +1,62 @@
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:61:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m57 |[0;0m     ExitProcess(1)
+ [0;36m58 |[0;0m     #else
+ [0;36m59 |[0;0m     exit(1)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+ [0;36m60 |[0;0m     #endif
+ [0;36m61 |[0;0m     fatalError("exit returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+ [0;36m62 |[0;0m }
+ [0;36m63 |[0;0m 
+
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeTestSupport.swift:219:5: [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m215 |[0;0m     TerminateProcess(GetCurrentProcess(), 73)
+[0;36m216 |[0;0m     #else
+[0;36m217 |[0;0m     _exit(73)
+    [0;36m|[0;0m     `- [1;39mnote: [1;39ma call to a never-returning function[0;0m
+[0;36m218 |[0;0m     #endif
+[0;36m219 |[0;0m     fatalError("termination returned")
+    [0;36m|[0;0m     `- [1;33mwarning: [1;39mwill never be executed[0;0m
+[0;36m220 |[0;0m }
+[0;36m221 |[0;0m 
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:81:24: [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+ [0;36m79 |[0;0m             guard case .unsupported(let version, let exact) = try TorahAnnotationEnvelopeCodec.decode(bytes) else { throw CheckFailure("unknown accepted") }
+ [0;36m80 |[0;0m             try require(version == 98 && exact == bytes, "unknown bytes changed")
+ [0;36m81 |[0;0m             let hash = try AcceptanceDigest().sha256(bytes), message = UUID()
+    [0;36m|[0;0m                        `- [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+ [0;36m82 |[0;0m             try require(f.ledger.recordIncoming(messageID: message, destination: scope(), namespace: namespace,
+ [0;36m83 |[0;0m                 annotationUUID: f.uuid, revision: 7, payload: bytes, expectedDigest: hash), "unknown not stored")
+
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:328:60: [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m326 |[0;0m         test("known_inbox_is_review_only_exact_idempotent_and_account_scoped") {
+[0;36m327 |[0;0m             let f = try Fixture(root: root, name: "inbox"), before = try f.originals()
+[0;36m328 |[0;0m             let bytes = try f.payload(extra: true), hash = try AcceptanceDigest().sha256(bytes), id = UUID()
+    [0;36m|[0;0m                                                            `- [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m329 |[0;0m             try require(f.ledger.recordIncoming(messageID: id, destination: scope(), namespace: namespace, annotationUUID: f.uuid, revision: 1, payload: bytes, expectedDigest: hash), "first inbox")
+[0;36m330 |[0;0m             try require(!f.ledger.recordIncoming(messageID: id, destination: scope(), namespace: namespace, annotationUUID: f.uuid, revision: 1, payload: bytes, expectedDigest: hash), "duplicate inbox")
+
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:338:102: [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m336 |[0;0m         }
+[0;36m337 |[0;0m         test("incoming_digest_and_identity_mismatch_are_rejected") {
+[0;36m338 |[0;0m             let f = try Fixture(root: root, name: "inbox-mismatch"), bytes = try f.payload(), hash = try AcceptanceDigest().sha256(bytes)
+    [0;36m|[0;0m                                                                                                      `- [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m339 |[0;0m             try rejects(.receiptMismatch) { _ = try f.ledger.recordIncoming(messageID: UUID(), destination: scope(), namespace: namespace, annotationUUID: f.uuid, revision: 1, payload: bytes, expectedDigest: String(repeating: "0", count: 64)) }
+[0;36m340 |[0;0m             try rejects(.receiptMismatch) { _ = try f.ledger.recordIncoming(messageID: UUID(), destination: scope(), namespace: namespace, annotationUUID: UUID(), revision: 1, payload: bytes, expectedDigest: hash) }
+
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:864:25: [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m862 |[0;0m         "observedRevisionBeforeSave": revision,
+[0;36m863 |[0;0m         "actualRevisionAfterSave": try f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid),
+[0;36m864 |[0;0m         "beforeSHA256": try AcceptanceDigest().sha256(before),
+    [0;36m|[0;0m                         `- [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m865 |[0;0m         "afterSHA256": try AcceptanceDigest().sha256(after),
+[0;36m866 |[0;0m         "allTableBytesUnchanged": before == after,
+
+/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package/Sources/ExchangeAcceptance/AnnotationExchangeAcceptance.swift:865:24: [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m863 |[0;0m         "actualRevisionAfterSave": try f.ledger.currentRevision(namespace: namespace, annotationUUID: f.uuid),
+[0;36m864 |[0;0m         "beforeSHA256": try AcceptanceDigest().sha256(before),
+[0;36m865 |[0;0m         "afterSHA256": try AcceptanceDigest().sha256(after),
+    [0;36m|[0;0m                        `- [1;33mwarning: [1;39mno calls to throwing functions occur within 'try' expression[0;0m [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker\UnnecessaryEffectMarker]8;;\]
+[0;36m866 |[0;0m         "allTableBytesUnchanged": before == after,
+[0;36m867 |[0;0m         "actualSQLite": true, "nativeUI": false, "nativeReceipt": false
+
+[#UnnecessaryEffectMarker]: <https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker>

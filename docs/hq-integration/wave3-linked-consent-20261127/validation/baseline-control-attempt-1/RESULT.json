@@ -1,0 +1,431 @@
+{
+  "schema": "otzaria.wave3.linked-consent-control/1",
+  "phase": "baseline",
+  "utc": "2026-11-27T05:35:40.059724+00:00",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "minimum_free_reserve": 2415919104,
+  "driver_sha256": "df6571483512f4f1247be7083cc3577e2523af683f7b7565cb8c08e09215f60f",
+  "native_ui": 0,
+  "anytype_runtime": 0,
+  "network_transport": 0,
+  "physical_devices": 0,
+  "original_15_rerun": false,
+  "status": "BASELINE_REPRODUCED_3_STALE_CONSENT_FAILURES",
+  "source_before": {
+    "source_sha": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+    "source_status": "EXACT_COMMITTED_SOURCE_ARCHIVE_NOT_GIT_CHECKOUT",
+    "source_archive": {
+      "manifest_sha256": "c8b05f568024f031b80ceba5b837d5c2a0f75df6cdd95bdd27f772be7422e2f8",
+      "canonical_commit": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+      "verified_file_count": 75,
+      "git_history_transferred": false
+    }
+  },
+  "inputs": {
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "bytes": 14916
+    },
+    "Source/Core/CloudKit/SyncPendingStore.swift": {
+      "sha256": "ee211046bdc2e4bd8a3fc01fee9471f64b48b471b079ba5ea25a6e80de3e7f14",
+      "bytes": 3534
+    },
+    "Source/ChavrusaText/Annotations/Exchange/TorahAnnotationEnvelope.swift": {
+      "sha256": "4907f35328791b0da7fa2dd85b75bc7b4162031e8c5067c461eef3b2e8260a29",
+      "bytes": 10075
+    },
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": {
+      "sha256": "52b56f4cef4d330510a5f4b70cfdc671cae456d12772284ccd6a5dfbb827ff32",
+      "bytes": 102733
+    },
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift": {
+      "sha256": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
+      "bytes": 15331
+    },
+    "Tests/HQ/sqlite/UnusedZstdBoundary.swift": {
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6",
+      "bytes": 443
+    },
+    "Tests/HQ/annotation-exchange/AnnotationExchangeTestSupport.swift": {
+      "sha256": "ceef8fc5c2b23eccecca09cedf93d4f42f5d2e7030872f2f24070412e59825e9",
+      "bytes": 15319
+    },
+    "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift": {
+      "sha256": "7cd401366bfb805b2eb5b9452818126dc85b023c41d7641d939594e6cc4c8f6b",
+      "bytes": 77923
+    },
+    "tools/hq-annotation-exchange-acceptance.py": {
+      "sha256": "574a9b8cb3f2af37594a549f62a2f764f41558af4e5bdfa64f8f418274e20af9",
+      "bytes": 12745
+    },
+    "tools/exact-source-archive.py": {
+      "sha256": "793a6761ba64f410448d51f03dd4bd700865fc4db9471df001c171f289d9c897",
+      "bytes": 3464
+    },
+    "Source/Features/Annotations/Database/AnnotationRepository.swift": {
+      "sha256": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f",
+      "bytes": 46094
+    },
+    "Source/Core/Configuration/ReusableFunc.swift": {
+      "sha256": "dcfbf50da4a828231dcaeb0d83da6eaecbaade6bfc7e47ad691ad026853e87b7",
+      "bytes": 14942
+    },
+    "Source/Otzaria/Actions/Integration/ActionAppIdentityBridge.swift": {
+      "sha256": "7f2982b8f228d5a2e959ca38176969843b930c13803dca2a25658e5f165eef08",
+      "bytes": 9314
+    },
+    "Source/Otzaria/Actions/Integration/ActionBackendCoordinatorFacade.swift": {
+      "sha256": "2df9c81e6058235ff8d8c4b41bf9424905fb45e13c4e18d877d0c8ac02fbd144",
+      "bytes": 45688
+    },
+    "Source/Otzaria/Actions/Integration/ActionLiveBackendBridge.swift": {
+      "sha256": "b0ff33f02f65d5f0632b15a354cbe2f7dd41b548abea5d83fb20be39e7ca52c9",
+      "bytes": 28870
+    },
+    "Source/Otzaria/Actions/Integration/ActionLiveOccurrenceCounter.swift": {
+      "sha256": "61a3cbbd3578713454f20bea7854b7a5bcbc3de396740862a064f64d4ab63312",
+      "bytes": 12257
+    },
+    "Source/Otzaria/Actions/Integration/ActionOccurrenceCoveragePolicy.swift": {
+      "sha256": "e308e16cc8da3e1efed5abe4a3424fb173095727676caca70dc0bec1894a6e43",
+      "bytes": 4779
+    },
+    "Source/Otzaria/Actions/Package.swift": {
+      "sha256": "f3c61079df27e8b27ad08675db230b478995218f3f781993488a622390799944",
+      "bytes": 446
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionBackendArgumentTarget.swift": {
+      "sha256": "f1c46980c4f39d98991629f04699d6a5ddf7cd8d4f4a1db1433d86ec02bba7b1",
+      "bytes": 1618
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchArgumentMapping.swift": {
+      "sha256": "7134e762c385c6dbd4ad7ee21b0237f0ce5440943329911fe583cc1fd1684de6",
+      "bytes": 1747
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/ActionSearchSemantics.swift": {
+      "sha256": "d28f2578557eac47cb15864823d7727e2b10c80921e97326f9de24cf4fbd90e5",
+      "bytes": 4725
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/BackendSemanticProfile.swift": {
+      "sha256": "8a01cf3b0de87b51d81c82f549c18bb0d1ed1e7243e1ef0a6a311bc9b8ac5f2d",
+      "bytes": 12045
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/BackendSemantics/EmbeddedActionResponseProof.swift": {
+      "sha256": "902863b2b4ef706176ed998e29ba550199eb6fc29c7bba7497b5f85e8a02ec40",
+      "bytes": 9437
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionCommentary.swift": {
+      "sha256": "89a02ef21a689fe24afccb612ba93593443818200e3b5bda4cffd42c35247717",
+      "bytes": 3725
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionJSON.swift": {
+      "sha256": "86f271de67b8e7de87c98f335cb714c31583d0f881e872170e1324c979cf7c93",
+      "bytes": 2619
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNativeUIFailure.swift": {
+      "sha256": "3ab7a8fce4297ee72b16e72ae10891333bd26b00c66e6138e6b98640acd34666",
+      "bytes": 1275
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionNoteDraft.swift": {
+      "sha256": "d63d8ad2bf2c284ec9ffb42a836d82b930c5d8eaa93c9b03cb0b424c4e3ec8f1",
+      "bytes": 5097
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOccurrenceCount.swift": {
+      "sha256": "ecac5538a3fae48ef1d3f3682f31b3407785aa8867bcbac1e78b462972d31dd7",
+      "bytes": 7473
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionOfflinePackages.swift": {
+      "sha256": "8dc4c515b8848b014e1e8c79d2ac5d6dc019591ba305b65459fb26f9fc9a557b",
+      "bytes": 1862
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionReferences.swift": {
+      "sha256": "5cf9d717005b4b9466e2519a50cc56befdfa00fe87fe368bd89156ce5d9d5f6e",
+      "bytes": 8009
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift": {
+      "sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "bytes": 5919
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSchemaValidator.swift": {
+      "sha256": "2ace2006d6aefddb6e277da24d88f95abbdebd86665e8f40e1dae7db965e4843",
+      "bytes": 4589
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearch.swift": {
+      "sha256": "59b585db5cd4fc0f05c5774bb1cdab4b9392940683c74302154bd1c77901b43a",
+      "bytes": 2353
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift": {
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "bytes": 5278
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionWireCodec.swift": {
+      "sha256": "0035a8a0f717e767330ad9fa9a98432323c521a3ef4f3ca888a0dbed74b327ab",
+      "bytes": 9216
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionDeadline.swift": {
+      "sha256": "3cbeb8013798aba9782059e29bddf88d21a98714d6e2e342d7fc5e2257ba2c49",
+      "bytes": 3154
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift": {
+      "sha256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "bytes": 70887
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift": {
+      "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "bytes": 14414
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionExecutionContext.swift": {
+      "sha256": "aac053ac7dea75abe5eadac90f29e1605118ab20a886c9d1065f5b58d46342b9",
+      "bytes": 1673
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionPolicy.swift": {
+      "sha256": "bc356126c53d2022323ae1983c9e4e5a2204c4a2dd16a6721f009ab31c3807b6",
+      "bytes": 4844
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Policy/ActionValidation.swift": {
+      "sha256": "1230c42e974b63bd26af3b60804d625ce9cea79cfe9b9186872ff50d0cb09086",
+      "bytes": 7952
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift": {
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "bytes": 8269
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionPorts.swift": {
+      "sha256": "4c7a3843c97e454bae79579eab2bdd3a4c364d312d669435c69f81e8d79b2e15",
+      "bytes": 8189
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift": {
+      "sha256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+      "bytes": 2110
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver+SourceSections.swift": {
+      "sha256": "9e6e9c568c4927bb760b69f95d845bb095ff279baf65ab9a4197632d70eedb0d",
+      "bytes": 2922
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resolver/CatalogActionResolver.swift": {
+      "sha256": "3a81482b17d635a68525f62ef420ae59990372691a32b26e8e8b461ee80fb4ef",
+      "bytes": 28048
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-catalog.v1.json": {
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "bytes": 43332
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-request.v1.schema.json": {
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "bytes": 1510
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/action-result.v1.schema.json": {
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "bytes": 3669
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-acceptance-cases.v1.json": {
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "bytes": 95749
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/backend-capability-matrix.v1.json": {
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "bytes": 36033
+    },
+    "Source/Otzaria/Actions/Sources/OtzariaActionCore/Resources/examples.v1.json": {
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "bytes": 10140
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/BackendSemantics/BackendSemanticsTests.swift": {
+      "sha256": "14e09f1d6a0c0dbbd91b3b7313418504440a0d7b468acf5ee20a780219e101d2",
+      "bytes": 15913
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/ContractAPITests.swift": {
+      "sha256": "e74b362654f3396f0274fee3a493110205384b5d8c498d25f181a30a4e2ec9df",
+      "bytes": 1000
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Contracts/WireSecurityTests.swift": {
+      "sha256": "6652f126c99367dd477c2d86d1e0d8d64368d343c32a42daa54a44c0822c0f6e",
+      "bytes": 9807
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/CatalogAuthorsActionTests.swift": {
+      "sha256": "4ef9a4b0d3832850da19cfa4212a0dfafcbfe5e251bd7acdc9db46f52d27581f",
+      "bytes": 2434
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ColdSearchExecutionOfflineTests.swift": {
+      "sha256": "54c2d18250e7e9715352ff029139ba690e296c15877bfb23e092d1dff02b0f22",
+      "bytes": 19796
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/EngineTests.swift": {
+      "sha256": "638580f65fb7f1436bb91ded515f94f66dda39ef1bcd2a0562d059898d083a84",
+      "bytes": 19429
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ExistingSearchPreparationObservationTests.swift": {
+      "sha256": "ad24426235ea2b469c84b9b23e99309651cc27e647df9b077129379fb525fd0a",
+      "bytes": 16954
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NavigationItemsActionTests.swift": {
+      "sha256": "845e23bf882314d1dc6c2f409b2700c2deb932c3c14cfe575c38f7cbf6ee2c47",
+      "bytes": 3353
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NavigationStructuresActionTests.swift": {
+      "sha256": "38ac17d42f3df34e0bbb6865c47960678d8221b4cf71ccbee2144a5b727c082b",
+      "bytes": 3147
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/NoteDraftActionTests.swift": {
+      "sha256": "b4031a94105c6f198b00bd4419afe0d3d1693003ccd9ee5288384a5e2871f852",
+      "bytes": 15263
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OccurrenceActionTests.swift": {
+      "sha256": "db5a29b8ae9053a7cae202c4b7be3d4f81b8c161cd546b6c2dc0cf1ec841a608",
+      "bytes": 18193
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/OfflinePackageObservationTests.swift": {
+      "sha256": "f615035d31f61df44edb56c83bc0c9390a0569df43302cfd154f61756764d67d",
+      "bytes": 3069
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/ReadSectionActionTests.swift": {
+      "sha256": "f1dd79dfea5b2cddc92c8f0bff603d8cf522b4516e3418e773f69ac4453e9663",
+      "bytes": 4582
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/RelatedRefsAndTopicsActionTests.swift": {
+      "sha256": "a51e339e8a5678b78b1ebcba31d4b271b9bbe608522da5a36c6fac03a3f27b07",
+      "bytes": 3964
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/RelatedSourcesActionTests.swift": {
+      "sha256": "74dbee7e0bf165e7b452731b72ef9115eb71622c71e23823531276563a7b5cc2",
+      "bytes": 3372
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/SemanticJourneyTests.swift": {
+      "sha256": "6bf41160e05f894207e641c2c9a6d39553814b0b3fcab6fd99c71d37b56e6943",
+      "bytes": 30792
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/TableOfContentsActionTests.swift": {
+      "sha256": "baeba7d78ce57c736e7d0624076411c92df124632c7f6dfcc066ad3e8a03e94c",
+      "bytes": 4274
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Engine/VersionListActionTests.swift": {
+      "sha256": "55459fc55c12e7ccb23ec4b5cb035501242f2209bcb8cfe3fc61000265b175fa",
+      "bytes": 4609
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Ports/MockPorts.swift": {
+      "sha256": "c2f575a0c8b224cca29b1715e372f6f0785a2df93c4ff85c7bc582fde189448c",
+      "bytes": 7735
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogActionResolverTests.swift": {
+      "sha256": "3d6b0bfd026fe77110476df60096ef8a98970757b7a68efff26e20b3bf4d4114",
+      "bytes": 28159
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CatalogSourceSectionsTests.swift": {
+      "sha256": "502c9445d753960caa233d1b3f290a2eab8517e2080a44f592121f76eb087254",
+      "bytes": 5342
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/CommentaryActionTests.swift": {
+      "sha256": "a8df3edd8832ea9f1b383ba52b84113fb3e108405b4fd1fe2a1d97ecfb554f7a",
+      "bytes": 21162
+    },
+    "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift": {
+      "sha256": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9",
+      "bytes": 14564
+    }
+  },
+  "package_sha256": "5c7401e051544db9825a80d39e76c5af5f20bc645611ecd009efbca783c04615",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0\n",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "compile": {
+    "command": [
+      "/usr/bin/swift",
+      "build",
+      "--package-path",
+      "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/package",
+      "--scratch-path",
+      "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/swift-build",
+      "-j",
+      "4"
+    ],
+    "exit": 0,
+    "seconds": 17.731834,
+    "minimum_free_bytes": 6891675648,
+    "termination": null,
+    "stdout": {
+      "path": "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/compile.stdout.log",
+      "sha256": "a6b2a258f824b918857d736fb9cae07113750e10a066f1e6444242df592c2b3d"
+    },
+    "stderr": {
+      "path": "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/compile.stderr.log",
+      "sha256": "d1c52bce2fc01fbaca6a56679a251591b02c95c582786a8ada05e0c95dd4489c"
+    }
+  },
+  "executable": {
+    "path": "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/swift-build/out/Products/Debug/ExchangeAcceptance",
+    "sha256": "02f5a9aebf05920c6b4534e38186c60728b97b55e54c04ea517b3b8771fa0bc5",
+    "bytes": 5072256
+  },
+  "execute": {
+    "command": [
+      "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/swift-build/out/Products/Debug/ExchangeAcceptance",
+      "linked-consent-only",
+      "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/fixtures"
+    ],
+    "exit": 1,
+    "seconds": 0.5615449999999989,
+    "minimum_free_bytes": 6887129088,
+    "termination": null,
+    "stdout": {
+      "path": "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/controls.stdout.log",
+      "sha256": "7ec31c6e4692416e402e7d0728a9255fcda8165f1b125811aedc5e1279ba2efe"
+    },
+    "stderr": {
+      "path": "/Users/m1/builds/otzaria-wave3-linked-consent-20261127/baseline-control-attempt-1/controls.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "cases": [
+    {
+      "error": "stale consent was not rejected: COMMITTED",
+      "name": "retained_link_cannot_resurrect_after_other_connection_unlinks",
+      "status": "FAIL",
+      "milliseconds": 33.102989196777344
+    },
+    {
+      "error": "stale consent was not rejected: COMMITTED",
+      "name": "retained_link_cannot_adopt_same_scope_relink_at_same_annotation_revision",
+      "status": "FAIL",
+      "milliseconds": 29.533982276916504
+    },
+    {
+      "error": "stale consent was not rejected: COMMITTED",
+      "name": "retained_absence_cannot_enable_after_other_connection_link_then_unlink",
+      "status": "FAIL",
+      "milliseconds": 24.2919921875
+    },
+    {
+      "name": "new_explicit_opt_in_after_observed_unlink_creates_new_identity",
+      "status": "PASS",
+      "milliseconds": 18.35000514984131
+    },
+    {
+      "name": "same_dialog_explicit_unlink_returns_exact_post_transaction_consent_for_receive_only",
+      "status": "PASS",
+      "milliseconds": 18.564939498901367
+    },
+    {
+      "name": "committed_receive_replay_after_unlink_remains_historical_without_relink",
+      "status": "PASS",
+      "milliseconds": 12.820005416870117
+    },
+    {
+      "name": "transport_root_and_dispatch_progress_do_not_replace_consent_identity",
+      "status": "PASS",
+      "milliseconds": 28.656959533691406
+    }
+  ],
+  "passed": 4,
+  "failed": 3,
+  "source_after": {
+    "source_sha": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+    "source_status": "EXACT_COMMITTED_SOURCE_ARCHIVE_NOT_GIT_CHECKOUT",
+    "source_archive": {
+      "manifest_sha256": "c8b05f568024f031b80ceba5b837d5c2a0f75df6cdd95bdd27f772be7422e2f8",
+      "canonical_commit": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+      "verified_file_count": 75,
+      "git_history_transferred": false
+    }
+  },
+  "free_bytes_after": 6886354944,
+  "owned_allocated_bytes": 99536896
+}

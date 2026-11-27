@@ -1,0 +1,92 @@
+{
+  "schema": "otzaria.wave3.linked-consent-source-review/1",
+  "donor": "178bf8e6697df7aa3d2d1b16092f4e35b4ca1462",
+  "baseline_test_commit": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+  "candidate_source": "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+  "candidate_inputs": [
+    {
+      "path": "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift",
+      "sha256": "418b6e85d0dd9f8359f27d9f689c65b7ff63df37830dcffe62d75c54c2e824ec",
+      "bytes": 106232
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift",
+      "sha256": "3936c2f6664daf6013e38e0daf52a2c3a28a27780f171b27948af907e09f4dc7",
+      "bytes": 93396
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift",
+      "sha256": "fc234e59a2bb560170a2daabc663f0e88a1141519c34cad2f2c2dc52ea7f959b",
+      "bytes": 25291
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+      "sha256": "cd445a484bc2ef348d43f83f53d419a5806ee17417bfb3cc4f62752d83112e55",
+      "bytes": 42603
+    },
+    {
+      "path": "Tests/HQ/annotation-exchange/AnnotationExchangeAcceptance.swift",
+      "sha256": "008b07c4ecb2267c2abc2aadf83a9c25e4e87727dd75cf9fd266436c478547df",
+      "bytes": 79038
+    },
+    {
+      "path": "Tests/HQ/annotation-exchange/run-linked-consent-controls.py",
+      "sha256": "62c88b5ebacda2541686d32f6e796ca35638757d014273c5d399f71c4052a2ea",
+      "bytes": 8328
+    }
+  ],
+  "original15_body": {
+    "bytes": 23942,
+    "sha256": "c2092fd181d36a8d384f68dc85acfef01ab706e82cdc8de500622b3f79aa6fd9",
+    "exact_unchanged": true
+  },
+  "baseline_candidate7_body": {
+    "bytes": 7718,
+    "sha256": "8fd9a054ef4413fa5c53ac0143ff9fb154e1dd64619ca22dce74816c25edd9ae",
+    "exact_unchanged": true
+  },
+  "original_default_case_bodies_unchanged": true,
+  "original_linked_schema_unchanged": true,
+  "original_replay_and_callback_tail_unchanged": true,
+  "actual_app_boundary_review": [
+    "Persistence.linkedState captures source/version and full historical consent inside the same original SQLite transaction.",
+    "Receive.begin retains that linkedState; readSelected copies its consent before the native read or any added suspension.",
+    "After native read/history preservation, the new progress read validates original observation/account and compares the same consent; it never replaces receivedConsent.",
+    "Session.saveReceived carries the same immutable proof into detached Persistence.commitReceived.",
+    "Fresh commit validates proof inside the existing outer Save transaction, before incoming/link mutation; failure rolls back body/queue/version too.",
+    "Only the explicit original unlink returns a same-transaction post-mutation proof; a later refresh cannot adopt another link.",
+    "Historical committed replay retains original requireNativeOriginReplay/replayLocked and mutates no consent."
+  ],
+  "qualification": {
+    "baseline_Apple7": {
+      "passed": 4,
+      "failed": 3
+    },
+    "candidate_Apple15_plus7": {
+      "original15": {
+        "passed": 15,
+        "failed": 0
+      },
+      "additive7": {
+        "passed": 7,
+        "failed": 0
+      },
+      "sentinel_job": "job_482b460ef682",
+      "result_sha256": "2dbe3fd206cf5d634bbea2b8237ac8c5e856b017d302408ea1f46be5fd14b3c1"
+    },
+    "app_layer_full_typecheck": "NOT_RUN",
+    "native_UI": 0,
+    "live_Anytype": 0,
+    "physical_device": 0,
+    "product_iOS27_syntax": {
+      "parsed_files": 4,
+      "exits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "imports_types_checked": false
+    }
+  }
+}
