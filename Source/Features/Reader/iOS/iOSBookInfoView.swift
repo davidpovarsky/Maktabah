@@ -168,17 +168,24 @@ private struct ReadOnlyTextView: UIViewRepresentable {
         textView.textContainerInset = UIEdgeInsets(
             top: 12, left: 16, bottom: 16, right: 16
         )
-        textView.textAlignment = .right
-        textView.font = font
+        textView.textAlignment = .natural
+        textView.adjustsFontForContentSizeCategory = true
+        textView.font = UIFontMetrics(forTextStyle: .body).scaledFont(
+            for: font, compatibleWith: textView.traitCollection
+        )
         textView.textColor = .label
         return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
+        // The original text view keeps its scroll position when only the
+        // font/category changes. UIKit scales the same original base font.
+        uiView.font = UIFontMetrics(forTextStyle: .body).scaledFont(
+            for: font, compatibleWith: uiView.traitCollection
+        )
+        uiView.textAlignment = .natural
         if uiView.text != text {
             uiView.text = text
-            uiView.font = font
-            uiView.textAlignment = .right
             uiView.setContentOffset(.zero, animated: false)
         }
     }
