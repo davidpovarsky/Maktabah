@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-27T04:02:08.074713+00:00",
+  "status": "OWNED_COMPRESSED_PLUS_DATABASE_CAPACITY_RESERVED_NO_DOWNLOAD",
+  "directory": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127",
+  "freeBytesBefore": 7918280704,
+  "compressedPlusDatabaseBytes": 6484966444,
+  "requiredResidualBytes": 1073741824,
+  "downloadStarted": false,
+  "files": [
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-000.reserved",
+      "bytes": 1992294400,
+      "allocatedBytes": 1992298496,
+      "device": 2064,
+      "inode": 5946337,
+      "mtimeNs": 1795752128076831775,
+      "ctimeNs": 1795752128076831775,
+      "status": "RESERVED_UNVERIFIED_ZERO_CONTENT"
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-001.reserved",
+      "bytes": 137608236,
+      "allocatedBytes": 137613312,
+      "device": 2064,
+      "inode": 5946338,
+      "mtimeNs": 1795752128082943290,
+      "ctimeNs": 1795752128082943290,
+      "status": "RESERVED_UNVERIFIED_ZERO_CONTENT"
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim.db.restoring",
+      "bytes": 4355063808,
+      "allocatedBytes": 4355088384,
+      "device": 2064,
+      "inode": 5946339,
+      "mtimeNs": 1795752128210832546,
+      "ctimeNs": 1795752128210832546,
+      "status": "RESERVED_UNVERIFIED_ZERO_CONTENT"
+    }
+  ],
+  "completedAt": "2026-11-27T04:02:08.222497+00:00",
+  "freeBytesAfter": 1433272320
+}

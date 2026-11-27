@@ -1,0 +1,21 @@
+{
+  "sourceSHA256": "fccc9e5c9b3c690b32a3db161f61e0055e8e498a152980c223bb6a8cd3290888",
+  "compressedSHA256": "f8962db7aebd412621ae2ad8a73b26317bc001802c26009c5274734b7efca275",
+  "zstdVersion": "*** Zstandard CLI (64-bit) v1.5.5, by Yann Collet ***",
+  "results": [
+    {
+      "option": "-M128",
+      "exit": 11,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matchesSource": false,
+      "stderr": "zstd: error 11 : Parameter is out of bound \n"
+    },
+    {
+      "option": "-M128MB",
+      "exit": 0,
+      "stdoutSHA256": "fccc9e5c9b3c690b32a3db161f61e0055e8e498a152980c223bb6a8cd3290888",
+      "matchesSource": true,
+      "stderr": ""
+    }
+  ]
+}

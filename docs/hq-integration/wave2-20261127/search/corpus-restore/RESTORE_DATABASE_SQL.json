@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-11-27T04:23:55.280415+00:00",
+  "sourceDatabaseURI": "file:///mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim.db.restoring?mode=ro&immutable=1",
+  "bytes": 4355063808,
+  "sha256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+  "identityBefore": {
+    "device": 2064,
+    "inode": 5946339,
+    "bytes": 4355063808,
+    "allocatedBytes": 4355162112,
+    "nlink": 1,
+    "mtimeNs": 1795753058125287433,
+    "ctimeNs": 1795753058125287433
+  },
+  "identityAfter": {
+    "device": 2064,
+    "inode": 5946339,
+    "bytes": 4355063808,
+    "allocatedBytes": 4355162112,
+    "nlink": 1,
+    "mtimeNs": 1795753058125287433,
+    "ctimeNs": 1795753058125287433
+  },
+  "counts": {
+    "book": 8259,
+    "line": 7925185,
+    "link": 7001824
+  },
+  "quickCheck": [
+    "ok"
+  ],
+  "pragmaUserVersion": 0,
+  "pageSize": 16384,
+  "journalMode": "delete",
+  "immutableReadOnly": true,
+  "sidecarsCreated": false
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-27T04:08:24.656646+00:00",
+  "scriptSHA256": "be266232d5faebbd2a02de442943cffd6ba96fcdd16ec345799041d8e41c610e",
+  "reservationSHA256": "8efd950e3b1a792390e754cfdf7f2a7e00ad9c8badfc6b9c1198f3ee8263c48d",
+  "originalResolver": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/Scripts/resolve-official-library-asset.py",
+    "bytes": 8908,
+    "sha256": "7b3f962894f00b31c829e9f607f12127f282878713d2aae2567857a3ce9758e5"
+  },
+  "publicReleaseSHA256": "caa2a31ed934a0159277a8d5b3348e7979ca879112045432cbbb6e8db6f80e9a",
+  "publicManifestSHA256": "ab51577bad2f457e24ab5f28082ba830597951ab5738a39652dec821e1dff2e3",
+  "releaseID": 455390662,
+  "releaseTag": "v40-20261123094345",
+  "freeBytes": 1234083840,
+  "scope": "Official source corpus reconstruction only; not in-app/UI installation acceptance",
+  "compressedPlusDatabaseAllocationAlreadyReserved": true,
+  "assembledCompressedCopyCreated": false,
+  "noDuplicateCorpusJob": true
+}

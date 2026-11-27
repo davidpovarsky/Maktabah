@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "ORDERED_PUBLIC_PARTS_AND_DECODED_DATABASE_SHA_VERIFIED",
+  "completedAt": "2026-11-27T04:17:42.185569+00:00",
+  "partsReadFromDisk": [
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-000.verified",
+      "bytes": 1992294400,
+      "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+      "identityUnchanged": true
+    },
+    {
+      "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-001.verified",
+      "bytes": 137608236,
+      "sha256": "a5469c776bae891d49dfcf33986474416b56ee739c4b0fba37ef7eb9ec53af1a",
+      "identityUnchanged": true
+    }
+  ],
+  "compressedBytes": 2129902636,
+  "compressedSHA256": "39a2b52129323ea53ac3629835c4721e25acff010a8fc971bf076a666a3b9587",
+  "decodedBytes": 4355063808,
+  "decodedSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01",
+  "decoderCommand": [
+    "zstd",
+    "-d",
+    "-q",
+    "-M128MB",
+    "-c"
+  ],
+  "decoderExit": 0,
+  "decoderMemoryLimitMiB": 128,
+  "ioBufferBytes": 1048576,
+  "assembledCompressedCopyCreated": false,
+  "targetIdentity": {
+    "device": 2064,
+    "inode": 5946339,
+    "bytes": 4355063808,
+    "allocatedBytes": 4355162112,
+    "nlink": 1,
+    "mtimeNs": 1795753058125287433,
+    "ctimeNs": 1795753058125287433
+  }
+}
