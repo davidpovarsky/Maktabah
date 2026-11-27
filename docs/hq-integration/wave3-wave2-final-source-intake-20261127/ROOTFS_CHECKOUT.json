@@ -1,0 +1,30 @@
+{
+  "schema": "otzaria.wave3.rootfs-integration-checkout.v1",
+  "time": "2026-11-27T11:46:34.450321+00:00",
+  "original": "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127",
+  "candidate": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+  "head": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "branch": "codex/otzaria-wave3-integration-20261127",
+  "origin": "https://github.com/davidpovarsky/Maktabah.git",
+  "alternates": "/mnt/development/projects/git-mirrors/Maktabah.git/objects",
+  "alternate_use": "Read existing object store only; candidate index/objects/config/refs/worktree writes are local rootfs",
+  "old_clean_unchanged": true,
+  "new_clean": true,
+  "sparse_pattern_sha256": "b67c77f892f05d25d46fb4c536d3cea538b6be4c78b79d63cbe88772f307939c",
+  "source_pins": {
+    "Source": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj/project.pbxproj": "daeb7f5a5a043117fb6da77b39c5590ed237e74d"
+  },
+  "configuration": "No hooksPath/signing override; normal inherited policy; maintenance disabled per invocation only",
+  "free_before": {
+    "data": 641769472,
+    "rootfs": 3355226112
+  },
+  "free_after": {
+    "data": 641769472,
+    "rootfs": 3224711168
+  },
+  "old_data_intake_plan": "Refused before artifact/Git mutation at protectedDatafloor; exact original guard stays in failed attempt record",
+  "native_or_compiler_runs": 0
+}

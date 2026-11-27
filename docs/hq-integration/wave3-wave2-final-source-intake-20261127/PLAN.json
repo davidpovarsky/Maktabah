@@ -1,0 +1,1834 @@
+{
+  "schema": "otzaria.wave3.wave2-final-source-intake-plan.v1",
+  "created_at": "2026-11-27T11:48:10.145778+00:00",
+  "root": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+  "root_before": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "base": "a1c32faca292e0ce1d7cbe2948fefc9a29cc7a72",
+  "donors": [
+    "20ab4e14f30c3ae272c7c57093544198d63f328b",
+    "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+    "fe017f463738342784e6e71dd1b65a7824d5f547",
+    "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+    "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+    "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+    "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+    "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+    "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+    "1f788fee9ffe58f692a0140e44a24e39b409af83",
+    "72ae2474e1341d511b9b56f097c773a791649753",
+    "141c413501858d43d2252b5630692d22e730aac7",
+    "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+    "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+    "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+    "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+    "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+    "113ab9b1a2921b791c0453a0b6af78537290b447"
+  ],
+  "source_pins": {
+    "Source": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj/project.pbxproj": "daeb7f5a5a043117fb6da77b39c5590ed237e74d"
+  },
+  "files": [
+    {
+      "donor": "20ab4e14f30c3ae272c7c57093544198d63f328b",
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-retirement-intake/README.md",
+      "bytes": 687,
+      "sha256": "ea9ceb740a586c6d4b1ab422502022938bc89a8377d571f95a5f39247ab0745c"
+    },
+    {
+      "donor": "20ab4e14f30c3ae272c7c57093544198d63f328b",
+      "path": "docs/hq-integration/wave2-20261127/search/corpus-retirement-intake/RESULT.json",
+      "bytes": 2692,
+      "sha256": "947801a85d10bd3b57ce13dfadc3719292995822b6e1a36934baf9ddb94a53bd"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "bytes": 371626,
+      "sha256": "8f732382df5878978caf9b589b6c376006d848248ea30962f03c81b82d44e220"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 49112,
+      "sha256": "b676367e9c5306f62962771cf8a7784d25991c88c3f3c5acdff391e3469091bf"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift",
+      "bytes": 31753,
+      "sha256": "e0ea195c23e0e0ce55069ee2d9fe43cd64afd2f4d1699d8be978f60fa21d369b"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/APPLE_READONLY_ADMISSION_20261127T072225Z.json",
+      "bytes": 1285,
+      "sha256": "81c22a03cd8d43ea1896515abc73017a8e650ff8d60dc657018a856f1a30185b"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CATALOG_PRESERVATION.json",
+      "bytes": 326,
+      "sha256": "a493a0931ca5c9ec668c30b5e99eb57b28cfe1023ef2c90823566a1d2ddb106d"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CONTROLS_01.json",
+      "bytes": 5499,
+      "sha256": "3b8c47c4f9aea1cca1bddf1c60bc8d6a391f2389f2b8ab1477ee922b97453232"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/README.md",
+      "bytes": 10257,
+      "sha256": "658a9c0080c068f7a347c7238417f75d8504074492798d568f4377f22730105b"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/SOURCE_PRESERVATION.json",
+      "bytes": 960,
+      "sha256": "23fe389e4aab79d0bdc74f63836d1c8c4c966c0b083a96c8dddaeb8cd6ece45a"
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/source-controls.py",
+      "bytes": 16072,
+      "sha256": "d4c4d06270678bd9d2dba2a8e7de5b14b62acaeb5f26c72aebc5fcf599eef4f3"
+    },
+    {
+      "donor": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 55721,
+      "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+    },
+    {
+      "donor": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/CONTROLS_02.json",
+      "bytes": 7423,
+      "sha256": "66939388063e9b3979de5fa492bfbef968a49bf8ed222c46d57ba814d5da89b0"
+    },
+    {
+      "donor": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/README.md",
+      "bytes": 12185,
+      "sha256": "c7fbf27e45cf43f1c0d20caeb78162269c8a0deca5a19a254fa6f4462f05c464"
+    },
+    {
+      "donor": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/source-controls.py",
+      "bytes": 24290,
+      "sha256": "a253cb9c096e9978d99238fdf2955634501767ced2eaec73a2eb13eea7562784"
+    },
+    {
+      "donor": "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/SOURCE_CHECK_29c074.json",
+      "bytes": 972,
+      "sha256": "7dbd02f28dcfb1551f589d0a2e2ac4fd9afbcf8f2d5efad24605b0690ed21030"
+    },
+    {
+      "donor": "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/SOURCE_CHECK_29c074.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-mode-matrix/SOURCE_CHECK_29c074.stdout.json",
+      "bytes": 14044,
+      "sha256": "91e0c8bdc0ff073b3b01fbebeff3311892c08bcd0f2fd2f7f2882cc8eeaeb96b"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/FINAL_RESULT.json",
+      "bytes": 1588,
+      "sha256": "8038b86a80c702ef29f109a702dc7f2b64519178649ca1b02b68e4fc23710363"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/README.md",
+      "bytes": 1760,
+      "sha256": "c1ee0954f59420727286f6f17bf63662b8779372d5e5190f503df5be51e8891a"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/RESULT.json",
+      "bytes": 6105,
+      "sha256": "c0a76847b14831e5818fbc0c91e958c72bc16a0d6f243937a679cd01da8143b3"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK.stderr.log",
+      "bytes": 1454,
+      "sha256": "86fc6ef1b46453af9c26005cf40dce5188348af38d8cc0e758791b9a50d7276d"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK.stdout.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK_02.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf01-matrix-intake/SOURCE_CHECK_02.stdout.json",
+      "bytes": 14219,
+      "sha256": "8e58013dfd51b80ad657d7139da43eb56be08a1e6c72d1e56b1d5eacf4837c54"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "Scripts/CI/study-ui-offline-exercises.py",
+      "bytes": 52858,
+      "sha256": "bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/API.md",
+      "bytes": 12125,
+      "sha256": "f8b01d8f1b843fdb1b3cd50e0672d8d2de5011496585dfd9d2110573870c722f"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/INPUT_SOURCE_RECEIPTS.json",
+      "bytes": 876,
+      "sha256": "dd3a43795695a90d9859ee6ed4e045e261829a9b6e9c9172fdd5cb39597bd63f"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.json",
+      "bytes": 641,
+      "sha256": "963cc976c5596490c2c7b70c4363fb0326cd3fd6e4e43ce89dc7ca124c4b4d0c"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.stderr.log",
+      "bytes": 4571,
+      "sha256": "52794a56048a2025e24f4be7fdfe4ab47bd85171d6e0a002c2df54bb6a6e9b91"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/ORACLE_CONTROLS.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/SOURCE_CONTROLS.json",
+      "bytes": 310,
+      "sha256": "211b850a2f288c58f376dd03993e360622dafd2c512727295153986ee617d623"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/controls.stderr.log",
+      "bytes": 4571,
+      "sha256": "4e2b4bcd375d4691c1e1b3c0b1862eb1d10d817624d0833cb7676feed0e074f6"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises/source-controls.py",
+      "bytes": 20026,
+      "sha256": "a215e9f3cfa137664b383a2531349a218dd4a83b71ff83cc2f3a39fdcf1ab8c3"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "Scripts/CI/study-ui-offline-exercises.py",
+      "bytes": 54090,
+      "sha256": "c6a5b80c7015374b487dddb49b12cd1852c6d85ae90b468337b289fc9402c406"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/BASELINE_CANDIDATE.json",
+      "bytes": 1449,
+      "sha256": "914fd4ef3c1bbfe511a30117db8efb905f7f15e04f2f4a65840f754e8ce5a0f3"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_CONTROLS.json",
+      "bytes": 383,
+      "sha256": "7cc76029e2ac6d9f037f210734f64e36b996b3e299e2f5bde414b6c6745442e4"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_ownership-baseline-control.py.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_ownership-baseline-control.py.stdout.log",
+      "bytes": 1449,
+      "sha256": "914fd4ef3c1bbfe511a30117db8efb905f7f15e04f2f4a65840f754e8ce5a0f3"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_source-controls.py.stderr.log",
+      "bytes": 5806,
+      "sha256": "af5319e43f3858771d0213c0dccacfaca85fbef7f0c894f6ada289bbac9e06bf"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ORACLE_source-controls.py.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/README.md",
+      "bytes": 2734,
+      "sha256": "fa4120cee9c31c91542362cee72f964782fac009a242acd828ca4196a54ce779"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/SOURCE_CONTROLS.json",
+      "bytes": 310,
+      "sha256": "e2a543bbf77efc201567db598ddd9112cbd803fc6ec2108c286ab9ebaa499595"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/baseline-b303.py",
+      "bytes": 52858,
+      "sha256": "bcb5d64c75ae5da597b0343ef96b911c4a3d7658da62c8bed3265216102fe48f"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/controls.stderr.log",
+      "bytes": 5806,
+      "sha256": "12d9af2e936ffdd1b28a28c5d153f0bdffd39f71e1acf78e51e4286b7652963c"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/ownership-baseline-control.py",
+      "bytes": 3609,
+      "sha256": "0d8686bf380b80f0bc73ed79f51dd3ad5ea12a26bcdae8a1a6d8fd55a84f643d"
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-exercises-ownership/source-controls.py",
+      "bytes": 24852,
+      "sha256": "56cb5d0cf4c04ec083cc2568e7f41b3ff670509388c7aa8b4740d6abbe051e7c"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "Scripts/CI/study-ui-offline-oracle.py",
+      "bytes": 60113,
+      "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md",
+      "bytes": 13795,
+      "sha256": "f665b4b22f2e8bc23f34a72c80ed74f85c51f95297a06d4b708cb8d44ae52a59"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/INPUT_SOURCE_RECEIPTS.json",
+      "bytes": 1750,
+      "sha256": "f7cf0b4b7682199614dfd5979e8d1d7d6647634cecf199c0284f0803d711b736"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.json",
+      "bytes": 350,
+      "sha256": "b98b5a8f5163d667274ae8529a783afc53e5b99ee03f9fb0964c26da0ba09571"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.stderr.log",
+      "bytes": 6080,
+      "sha256": "ea0cbb479ba43575024ae3c943a5924a8939dbfde60ae210982772e1b81e86b5"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/ORACLE_CONTROLS.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/SOURCE_CONTROLS.json",
+      "bytes": 335,
+      "sha256": "7e2852424c31ac2172fa3e0c2239122e6f15b33804a6d045e889462f8f2e957a"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/controls.stderr.log",
+      "bytes": 6080,
+      "sha256": "365551cc3fce9bbe442041cf184927c48247e829ee8bf615986a423cc1117b1f"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/source-controls.py",
+      "bytes": 31372,
+      "sha256": "628ec3da7d33eb2f1345f052f0a68b6bdb0e70ee44c2d90097372dc6f35276a0"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/ACTUAL_FAILURE_FILES_READBACK.json",
+      "bytes": 12919,
+      "sha256": "6d562f87ee76356803df31eff3e8d769c8c1f37f7c2f0ad0835d31cc0e53c59f"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/ORIGINAL_RECORD_JOB.json",
+      "bytes": 1907,
+      "sha256": "02d4784361316fefe149f07454ed92d0a3e2ab27b120776b75651f691a36d500"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/README.md",
+      "bytes": 2434,
+      "sha256": "4e7f4265d05853f5db8fb1c6af2a278ccc76858e8b125aa130e891c9772073ba"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/READ_ONLY_EXPORT_0750_TRANSPORT.json",
+      "bytes": 1886,
+      "sha256": "5c0d9993b934bb133854582fa9b5a25d5686ba36ce482ce0e833036e677c6a4f"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/READ_ONLY_EXPORT_0810_JOB.json",
+      "bytes": 1094,
+      "sha256": "c84fb8fad9d3f02959dc6e4731d8dde4c9721e613d97a30482959e8edaaa6228"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/owned-subject.py",
+      "bytes": 573,
+      "sha256": "72eb2e987be6bc400208a1eef956ea5c27063ae9e56d447894f72f9eff09492c"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/record.log",
+      "bytes": 298,
+      "sha256": "c0d4cde58e3bb8c782f78433550679b6ece2ce697865fcfa746e4f614ba93b90"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/run-owned-schema-control.py",
+      "bytes": 8430,
+      "sha256": "9d515600d35be03a828763ca173d7e55189080e0fa1351142f3117c30f0ce390"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/runner.stderr.log",
+      "bytes": 898,
+      "sha256": "590189907599fb560b87b0dc85db02eeefc6df1b3c95a0cffd4ffec83e3cbdce"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/runner.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/reader/root-trace-failed-readback/subject.stdout.log",
+      "bytes": 269,
+      "sha256": "1c1723f7940e0a1c396cf0c3beb43f84aa3d0ccff591c66477422c068497ded4"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/DONOR_INTAKE.json",
+      "bytes": 8572,
+      "sha256": "457155ab7eefb12b22df9a723552c85fc3d2a29ef01289eddf8d789e0734f205"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/README.md",
+      "bytes": 1023,
+      "sha256": "588b208029e67cf431af9bd60fd98937a848dbf296ba8fd2a4ed80ff12c727ac"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/RESULT.json",
+      "bytes": 6234,
+      "sha256": "711a964ae91a980e6732347bd72a541187327787fed0d369e1909c0fc64ed559"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/SOURCE_CHECK.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-intake/SOURCE_CHECK.stdout.json",
+      "bytes": 20160,
+      "sha256": "021239d32e58912059c6642db780d9c392f3f6300f2292cc8a88f91a09a0285a"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "Scripts/CI/study-ui-trace-exports.py",
+      "bytes": 33219,
+      "sha256": "53cc03862f1fe406701a8b64f6d97466638f34523359fd8e0c96b37955d0d01f"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_01.json",
+      "bytes": 6699,
+      "sha256": "5d90b57b61384f6c4580cba0dadbd47d38eaf0cbf150ffbd04c5242f2e46c23a"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_02.json",
+      "bytes": 6920,
+      "sha256": "4637a629928453798b74a2d52d3a520e3a8bb918259260d65a99f854e08602b5"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/ORIGINAL_REQUIREMENT.json",
+      "bytes": 1862,
+      "sha256": "4521a91668ee96ba5787213af50494290ace051fa76456d75679165e263537f4"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md",
+      "bytes": 9938,
+      "sha256": "eb500e136483ad07364c01a02309ae8951901d6ca572b5a7e85a95cf6e5c5ebf"
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/source-controls.py",
+      "bytes": 12943,
+      "sha256": "f115549c57d137e783e47bdabd061b837cf657fa96872754dfda7a72344b44d2"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "Scripts/CI/study-ui-trace-exports.py",
+      "bytes": 37661,
+      "sha256": "8a548083c5cf4a1746e1a694628060cb2ab4f826c62d96d1764234dac4be7043"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/CONTROLS_03.json",
+      "bytes": 6920,
+      "sha256": "0055e5ffffaf8c0a8b2c0b1a3fa65dddc55b418ed7d17e757994a38674f99619"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/OWNERSHIP_CONTROLS_01.json",
+      "bytes": 5252,
+      "sha256": "b3895c17edacc9ec2ebc8fa9cb88ee6074e63bcb84e462a428c235db2d8ea2fd"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/README.md",
+      "bytes": 12548,
+      "sha256": "bb3ee44a29b9511bf96261d65e360ed0bf1ffd1364b995fd75f5b4c9218fd20a"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/ownership-controls.py",
+      "bytes": 11628,
+      "sha256": "169d6c9656806333dd74b7bcf655811391d63886165bbef472836e51af39c622"
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-exports/source-controls.py",
+      "bytes": 13302,
+      "sha256": "8d9c153b9c38dee60d8fca039f13fc8ebc6007c3e07e8d91624008fa21a34aee"
+    },
+    {
+      "donor": "141c413501858d43d2252b5630692d22e730aac7",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/CLI_HELP.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "141c413501858d43d2252b5630692d22e730aac7",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/CLI_HELP.stdout.log",
+      "bytes": 990,
+      "sha256": "1a10a4b4e55da632fc4d589ae89650544a2d303657a2170188a7daabc84ed041"
+    },
+    {
+      "donor": "141c413501858d43d2252b5630692d22e730aac7",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/README.md",
+      "bytes": 1321,
+      "sha256": "62ea34b83fc7c342ad6e1a7a89fab27079f1a81a904ef8fbe47d8b79877f795f"
+    },
+    {
+      "donor": "141c413501858d43d2252b5630692d22e730aac7",
+      "path": "docs/hq-integration/wave2-20261127/reader/trace-export-intake/RESULT.json",
+      "bytes": 5415,
+      "sha256": "7e43a59b5de6fa26d87ffb980c29af79c05fea68ee509836288f422a515bf529"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+      "bytes": 142688,
+      "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "Scripts/CI/study-ui-pending-sql.py",
+      "bytes": 119300,
+      "sha256": "a8df46b5445d330eecf0e1943b2e95fb7c5aaa7a975204f3c459e466c6303004"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/API.md",
+      "bytes": 11613,
+      "sha256": "7c222864bcecf0267fc781c3e88dcbee7e820fca55c51ec681797e4e10826710"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ARTIFACT_INDEX.json",
+      "bytes": 803750,
+      "sha256": "741828c134f016e759c2b6829a4152f4c59c5fc4f4a7a526c1beef25bbc5d242"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/LOCAL_SOURCE_CHECK.json",
+      "bytes": 739,
+      "sha256": "ba7dc13cd065e67862d3d61debc59da1612b5ee93facc8ed1c558ac7393a4cb3"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_APPLY_SOURCE_ONLY.json",
+      "bytes": 2558,
+      "sha256": "9fddd5df25fec4c67b28fc62c534ce09b478f0c80653266dac4409e0753e99c0"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_FINAL_BEFORE.json",
+      "bytes": 617,
+      "sha256": "e367122ffc7e2580ca6a650c9fe242e579a40cd250552aabe2ef9ddd30e12de1"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/ORACLE_SOURCE_BEFORE.json",
+      "bytes": 1540,
+      "sha256": "228d0a193ba58fd32ffc9775d4c2611d592dbd076746cd1b399c656228e163f1"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/README.md",
+      "bytes": 16501,
+      "sha256": "1b7487b75517135aad190c74035602fea166d05f53b858602ffd5f8b0907f552"
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/source-controls-and-inputs.tar.gz",
+      "bytes": 977176,
+      "sha256": "1637f4b219268eecf2c6078f2c46cfcf556cfff9db70dafc0a647fe89a73e7e2"
+    },
+    {
+      "donor": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/README.md",
+      "bytes": 16989,
+      "sha256": "bf49f966a1016921b4c93a30fdc84373f515f4c64cb3ff3fa512ff218986aa24"
+    },
+    {
+      "donor": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/RESULT.json",
+      "bytes": 1808,
+      "sha256": "2e4f35b2521b7b2060991db7900c54a23a20a09c257a864b34d664abbb564f46"
+    },
+    {
+      "donor": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "path": "docs/hq-integration/wave2-20261127/library/pending-sql/oracle-swift-syntax/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "Scripts/CI/study-ui-offline-oracle.py",
+      "bytes": 61383,
+      "sha256": "7f40ce53485a56e327f6a09012066a8ee6d97dd4f0ce65363e30de8387110c9c"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ORACLE_EXECUTION.json",
+      "bytes": 936,
+      "sha256": "b42f8003943207d846c29d65b167ac3cfc79a7b0b79f22f1400c9aba3821370a"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ORIGINAL_ENVIRONMENT_READ.json",
+      "bytes": 21737,
+      "sha256": "9c1b88cbd6d57faedc65ded5e427fedb112ad726c28acb0dcf2befe93029b6ae"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/README.md",
+      "bytes": 4244,
+      "sha256": "0fadb2c897c36da4679cdd8aff086c69e50a3d96a26f27728b391b52388c0113"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/ROOT_CLOSURE_INPUT.json",
+      "bytes": 4573,
+      "sha256": "84172a21b0b2f90824b9a2bb42de252d12e95e9c417994329bf9d5c8d7f88691"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/SOURCE_CONTROLS.json",
+      "bytes": 541,
+      "sha256": "c0cb82820ccb5baa524d1f470d91e96e373a7821bac6ac7b243680741edb1d3b"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/baseline-4cb7590.py",
+      "bytes": 60113,
+      "sha256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/controls.stderr.log",
+      "bytes": 2124,
+      "sha256": "13319271ac274c328102e44c092cdb5d6dafddbc5559520d099dc172ac91f269"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/oracle-controls.stderr.log",
+      "bytes": 2124,
+      "sha256": "d2f33eba5169f37d3bdef216218c5b9b574199542dd725131846bab348d7a4f2"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/oracle-controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle-environment/source-controls.py",
+      "bytes": 14425,
+      "sha256": "07048297ebd14c05ff4c51772b6b9c2f6c8b771a99045aee5075a3b3af32dc01"
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md",
+      "bytes": 14360,
+      "sha256": "820d4eb1ac323bb069ea567158ab99b9197075ece05995073e2bd1ab94fa1ae4"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "Scripts/CI/study-ui-offline-exercises.py",
+      "bytes": 56645,
+      "sha256": "d0431a3a58b9e30cd3195744df8bd745c80ee5622261f650da09d603242ae45b"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "Scripts/CI/study-ui-offline-oracle.py",
+      "bytes": 66214,
+      "sha256": "14cdb114a733c698d99b98c290619ec42a8c72beebbad5ab968d105e33e336ee"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/BASELINE_INPUTS.json",
+      "bytes": 684,
+      "sha256": "7346a9b3c72a9206a7beb5eaebb9ecba9950481ed1aed7d38fd65820e2bd850a"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/ORACLE_EXECUTION.json",
+      "bytes": 2076,
+      "sha256": "ae04355251fa70a5f12a9ec3ded7eeac8e05071ae5c0fd3a999bacd8ae5c96d5"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/ORACLE_PREREQUISITE_MATERIALIZATION.json",
+      "bytes": 535,
+      "sha256": "917a3d768fd2102a1fd910b02cd01567e220e472cba777a53fc8a46eaa2b58a2"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/PEER_REVIEW.md",
+      "bytes": 1257,
+      "sha256": "f5ed3777ac3b73330b7791ae689b656c36499fc153390b79a0155226d2c4b40c"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/README.md",
+      "bytes": 4826,
+      "sha256": "d8d49d3676dfec63f9f652ab203dfe3b705c2491ece0a077a0b39d21fe610a14"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/SOURCE_CONTROLS.json",
+      "bytes": 1447,
+      "sha256": "bdd936a46cd61bbb1bfec2fa3c69b6ec9dbb85ffe863aabc7378a9bd58b41dd3"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt1-syntax.stderr.log",
+      "bytes": 325,
+      "sha256": "fa720f681d305b4cd4c16d31d5f06492880f458db39dfdd6c857216a56e3e712"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt2-SOURCE_CONTROLS.json",
+      "bytes": 1447,
+      "sha256": "ceb5f061d6485649198a79d9cf924cb3b7c171915122507937a749f9c5faa97f"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/attempt2-controls.stderr.log",
+      "bytes": 4639,
+      "sha256": "9bfb14460e3af3091c02cd1bc8e177af4ec07519c43f955006edcea3dc99cb73"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/baseline-exercises-8dba.py.gz",
+      "bytes": 13586,
+      "sha256": "efaa2263d0748dc2a6d3b018207006c385e07ee2ea3cc1797dea41fa7ef153f7"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/baseline-oracle-1d5140.py.gz",
+      "bytes": 16458,
+      "sha256": "a2281cd6d3663a918b612683c62d6042b323021dffc621a62c7e06689f815241"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/controls.stderr.log",
+      "bytes": 4277,
+      "sha256": "7b009e59f78830a0b9ef40198647d055463283a788c6794d83452202c5dc797b"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-attempt1-oracle-controls.stderr.log",
+      "bytes": 933,
+      "sha256": "0d5b84101950d2420f4a4ee865cec369a036620db1a1c0b2f05f0b1c37397f18"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-attempt1-oracle-controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-controls.stderr.log",
+      "bytes": 4277,
+      "sha256": "7e9fc54b6b60a069adb92829d1425d275c79fe05c53293aa0b76cb4a7c815b03"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/oracle-controls.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-lifecycle/source-controls.py",
+      "bytes": 23511,
+      "sha256": "cbac8692dd5ac80ea353d9dfe9fb7fdc963497a507ea0ec719d5a43a2da64511"
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "path": "docs/hq-integration/wave2-20261127/search/offline-oracle/API.md",
+      "bytes": 15540,
+      "sha256": "a5e1bfedf65c82747bbc2fd9f745b0a51f11b97ea3ce1969f3206d44f1ab179d"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "Scripts/CI/production-study-v40-ui.py",
+      "bytes": 61274,
+      "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "Scripts/CI/reader-full-v40-ui-observation.inputs.json",
+      "bytes": 8410,
+      "sha256": "d51304b5ea126a71522cb19f16403f797d26e12a97fe858b5076f90dd878aa41"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "Scripts/CI/study-ui-pending-execution.py",
+      "bytes": 19358,
+      "sha256": "92815771c88138601ba2feed379d7a665c5f00a14c6f27478e14c55319045340"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "Scripts/CI/study-ui-prerequisites.py",
+      "bytes": 49535,
+      "sha256": "7922abf4c56a0729c5dbe6ede6e627ac3644082a2a4f9e75ee212a7bbeedc2a6"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DOCS_TRANSFER.json",
+      "bytes": 4931,
+      "sha256": "5222a634390538b01cc47fb43bc6bb4c57f0a8dea11a81fe4f7fad1b0eb06cfb"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/DONOR_INTAKE.json",
+      "bytes": 11673,
+      "sha256": "19a11b2d88e56f308746b84b02a033be2a5c60a08cddeba06ab9fb63aa8cd82d"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_1.stderr.log",
+      "bytes": 3041,
+      "sha256": "6bbdcf4d93ef85e7a3b2c385f0ceba1d91a5f1648a34e864460773d0b90dc7c8"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_1.stdout.log",
+      "bytes": 751,
+      "sha256": "6cc9744289dbe98add473be834cce72f92a9e51d35f8f0f15b5171490258b75a"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_2.stderr.log",
+      "bytes": 3584,
+      "sha256": "b18df7c0a484ab694962d041356f46f0e792e38d76a547916cc14f23a839a7bc"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_CONTROLS_2.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/FINAL_LIBRARY_REVIEW.md",
+      "bytes": 1481,
+      "sha256": "90e6a3b6a8957cddff7344f0eb5e1c3b58f24799d90d92fc85657959b18e95b1"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/INTEGRATION_REVIEW.md",
+      "bytes": 5823,
+      "sha256": "33c2989f02c0255dbf3176c9eae619cffbee1a8c474c879e2a9e0680ef08a5d6"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/OFFLINE_REVIEWED_60dd.md",
+      "bytes": 4293,
+      "sha256": "9f554ff4fa27c074debae21caa67cb0eb647b2e0c3c63f6861e9900da590c7c2"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/PRESERVATION.json",
+      "bytes": 898,
+      "sha256": "4149a247fa1a024d1de86091569398effb3df6d82bbf382633ddac271e20a0a6"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/README.md",
+      "bytes": 10090,
+      "sha256": "247fe06037c0e5976c3df7b5b795b37d8923ad715fec8f86c683b0ff82f1b25f"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_LOCAL_CONTROLS.json",
+      "bytes": 7057,
+      "sha256": "7534426f1ebbb20152bc86f6fffb03ce757d5480c55a4858a66b75d42ffc0be2"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_PRESERVATION.json",
+      "bytes": 22216,
+      "sha256": "dea1cdc513e03e049eb65d5115e06241ab657671496d415c0ed65e30c635c056"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/ROOT_RESULT.json",
+      "bytes": 15964,
+      "sha256": "17c9a0f8e75c3ce40a9f5ba9a8b37666b462c26e2fb926c2ac9eb0d810c9f83d"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/SOURCE_TRANSFER.json",
+      "bytes": 1334,
+      "sha256": "38439916f90a7fe22ae69d62f636adcc8fd93d99572718dda16de269a6e9ec58"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-01.stderr.log",
+      "bytes": 3041,
+      "sha256": "6bbdcf4d93ef85e7a3b2c385f0ceba1d91a5f1648a34e864460773d0b90dc7c8"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-01.stdout.json",
+      "bytes": 746,
+      "sha256": "1a15435d6b1b743a079ff17a9c41f10929e44991bddcc0cca823e199681195f5"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-02.stderr.log",
+      "bytes": 3041,
+      "sha256": "a65f58d21c2fcfb1680aee796f8f54a918ba3c2f49e2e21504bba680fa1ef623"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/controls-02.stdout.log",
+      "bytes": 746,
+      "sha256": "457b7f68866067fcabe6fca760e7d3d417100938e1192f7486429384b20b811b"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/MATERIALIZED_HEAD_INPUTS.json",
+      "bytes": 343,
+      "sha256": "91f9cf1978ddc13fd2ffba54f269a39c0dc117b61ec37df25e9544a958f6d4c5"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/RESULT.json",
+      "bytes": 3514,
+      "sha256": "789f6ae6e7cca894afeffdaf10603562ad55185829cf982c73fab8b5ac1191dc"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/git-diff-check.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/git-diff-check.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/offline-zayit.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/offline-zayit.stdout.json",
+      "bytes": 24935,
+      "sha256": "91a85b1070af55767b709faee66a17d87a49398ea69ca78005750e12c5aaa246"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/reader-pending-sql.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/oracle-integrated-checks/reader-pending-sql.stdout.json",
+      "bytes": 24966,
+      "sha256": "5723b00a6d3fd8f49f3f57c903b46525ac81b0b5c3dd092581dc70bfe5a20e15"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/original-controller-controls.py",
+      "bytes": 14736,
+      "sha256": "678a4d4cb311574d353857dfbc76d3f1b75b7ea167f2b1e223da64c6df8c7808"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-01.stderr.log",
+      "bytes": 2627,
+      "sha256": "3fc0d095d7cc260164ab474ad746148e9af02bf5c66300f45ec4b5813829f714"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-01.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-02.stderr.log",
+      "bytes": 3584,
+      "sha256": "fa03a20acf7bd610ca073c970dd58d709549e88beecb3348c5e64e68ba593c39"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-controls-02.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/pending-source-controls.py",
+      "bytes": 19596,
+      "sha256": "9d7a1a35d4fa3a9abea3156aab6507aa924dfb2290ecf18548d0ba2114154fc8"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/reviewed-offline-controller-60dd.py",
+      "bytes": 58294,
+      "sha256": "60dd4c89e7ba872e285c14c3f7cba0077ad5f5b59a34b0d0326e8d070ebfb4d8"
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/study-phase-composition/source-controls.py",
+      "bytes": 12492,
+      "sha256": "1927a110e725c64eec45c1ed9a08274661aecfad5101895bf650c50ab97854b0"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 65732,
+      "sha256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/FINAL_HANDOFF.md",
+      "bytes": 1522,
+      "sha256": "1ee1ceca52f0200c43e497c41ab57ddba3b488a9972419398a610f03c31b88a6"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/INPUT_INDEX.json",
+      "bytes": 32951,
+      "sha256": "1051ddda453b9a2ce68936f6c1e22efffcad0a650ef9c9c79acfe8c728eeb587"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/PROVENANCE.json",
+      "bytes": 1477,
+      "sha256": "c303b0dbee8b8c7cf02c628672ce98f0b62f746d25cc15fed72fd0c8e314433e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/README.md",
+      "bytes": 8035,
+      "sha256": "0d889c8f699942a5afcf6af86c1033bad5b6126258245d635264488c99bd06fa"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "bytes": 55721,
+      "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/baseline/Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/controls/lifecycle-controls.py",
+      "bytes": 16962,
+      "sha256": "76a2f62279653b3fbdb74525a8ed730390b34aa4495ceea7a4b64e91fdace9ed"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/BASELINE.json",
+      "bytes": 484,
+      "sha256": "7b2920497784211210adf57e36d5a2219326bc71757be91112a291cc6c1ec20f"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE.patch",
+      "bytes": 15957,
+      "sha256": "f6ea80b1bfdeebbb2f957b9e20d0f810bdd175224cc349d51588ce563d6faa7e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/CANDIDATE_FINAL.patch",
+      "bytes": 16287,
+      "sha256": "e940248efaf91cc6effe496a8876756f37bf7add1246c9702f860fbbef40addd"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/EXECUTION.json",
+      "bytes": 1878,
+      "sha256": "ab8da409b8e5d5198f9719dcc687bcf30cde77564078abfbc1d433f0b39d6138"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/EXECUTION_FINAL.json",
+      "bytes": 1878,
+      "sha256": "9914de3d1e5e950adba7721d9e11203a3c4f4d055ff6766b8feab6ed7c8c3c46"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_HELPER_ORDER_FOLLOWUP.patch",
+      "bytes": 1736,
+      "sha256": "3f3c1eee2cdf225ad2490275c2d961acecddd39ff25f201ca6f6ea5adc4b22e6"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ORIGINAL_SOURCE_READBACK.json",
+      "bytes": 594,
+      "sha256": "09b8b8384b15c79c747b919b6925a4a129012f19c57aeabe91878274dd5b7a13"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PEER_REVIEW.json",
+      "bytes": 1195,
+      "sha256": "21593ff365183a313dae08528358dc308723f6a50d3031e18bed289b638a3abe"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PRESERVATION.json",
+      "bytes": 963,
+      "sha256": "6fcca3bded42a47bdbe50658d6444030e08dbff890ecfc67fde3b232aea191a4"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/PRESERVATION_FINAL.json",
+      "bytes": 963,
+      "sha256": "577cb7225289d48aa94e80c1d1b3eb0c54a323b25955c1663cbe7b26ce066fc9"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/REMOTE_TRANSFER_VERIFIED.json",
+      "bytes": 2837,
+      "sha256": "c728b660a86ddac80ac0c535bc6c86891a9dcdcdf2446e85887e5c44b1cd5e77"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/ROOTFS_SETUP.json",
+      "bytes": 3624,
+      "sha256": "d9e73ab79c20a155322434ec872672689477976d9247ccd0258db8ba5bbaab6e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/candidate-462a4cc9.py",
+      "bytes": 65407,
+      "sha256": "462a4cc96b8f8182398cf495207eda01c1be44180cd7794fb03a4397aa3001ee"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1.stdout.log",
+      "bytes": 1243,
+      "sha256": "fd9152a80cd440ece3f5a73042cec72878b90034439a4efe55437920c308e533"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/RESULT.json",
+      "bytes": 153773,
+      "sha256": "c9f54165a0623a4f7414af31ee77349c9b776f064430916a8a9bc1ea0ed096ad"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 225,
+      "sha256": "06a9c56b9599a29bfabdc980c9257ebb76d18b982041d06c8e3b62a1c43369ab"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/baseline-command-reaped-reused-pid/command-process-cleanup-1d3dc9a0c8654f1aaf1ed3f74b0dd238.json",
+      "bytes": 226,
+      "sha256": "030f1bdcd96d0fb80343977a05a3b4ff41d1620330d4749b8b35c0c30152c8f5"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-allocation-interrupted/command-process-cleanup-4e54b4a597cd4ba99489774113d31402.json",
+      "bytes": 618,
+      "sha256": "b2a6f4a4232cfbfc5b11d368af392d06936a8bddd6dd421de052beb5069c28bf"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-completed/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-completed/actual.process-cleanup.json",
+      "bytes": 993,
+      "sha256": "752dd303b2ff5eed47c8aa47ce4d40ea1b1af35221bcd6ee701b98fd215e5571"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+      "bytes": 1052,
+      "sha256": "b94ca2a29c9bba0adc9630e8df16b693f8c0661052eb56e69c7108e1d72f72d2"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-child-flag/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+      "bytes": 644,
+      "sha256": "8ce84605a9966787471b84d65a7ffc77d1d26867785d893ce1b8fa63fd6c5b7f"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+      "bytes": 637,
+      "sha256": "d8fe08141ee4983d11b18c0ccebcd4874209498a0d591f42ba38cd37e064cf86"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-live-failure/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-live-failure/actual.process-cleanup.json",
+      "bytes": 997,
+      "sha256": "d291de8ac3009052c06ed7b5dc83a24648cc9240ce1b519f90100b725763cb1e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 863,
+      "sha256": "566c5384d2e3ccd24d568535bff02bb6e99c02d48dace075495640f0d7b52e16"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-surviving-group/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+      "bytes": 868,
+      "sha256": "6213fb1ff3a222aa3b81f9c98cb2cbcfb0d45169f013b2b5bd614196e0d70c82"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-replacement-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+      "bytes": 870,
+      "sha256": "a8098c84241b1d7164de00e63bc12f4c5d5a95df81dd75ef39fd2d67cc96acc5"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-survivor-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+      "bytes": 867,
+      "sha256": "4aaab3111a649e1ea22fcf83bc580c3b4e6061a8d69f8176dcd745e1bc121a06"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-caller-assignment-interrupted/command-process-cleanup-c310636dba8a448094faed46df9640f1.json",
+      "bytes": 1030,
+      "sha256": "b0842a5081cbd92e56ee2ae680f484c23780052d98b24031ca4d06f20e802b19"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-completed/command-process-cleanup-86880eee63a646cda925f088437f773a.json",
+      "bytes": 1017,
+      "sha256": "17e27d96f16ad32f30a7a9e7236131c8aa0350e9692f4bd6af5a562bef1ae443"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-after-child/command-process-cleanup-e37ce3950335450c8fcf9d3f019a1042.json",
+      "bytes": 1076,
+      "sha256": "9c767d29e6208efb0f809b91b2920f3acdd3033c147b532ad5f49f6f9e559aba"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-before-child-flag/command-process-cleanup-1a3a94e3812f4628b4c91f81b3bb14da.json",
+      "bytes": 668,
+      "sha256": "b44a5d9c04928019b88b99307f70d870dac798d74972e03d9600fa6b8caa68ba"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-constructor-before-pid/command-process-cleanup-69e1d26b93584a6cbb413b11a2a56ba3.json",
+      "bytes": 661,
+      "sha256": "703d1457f5d0841a82b153434d172071ba3ef60c48e061d0a32794c9ce2c1a43"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-live-failure/command-process-cleanup-888e3d77c9814cc1a9330f9e4fe0c857.json",
+      "bytes": 1021,
+      "sha256": "47cd6343cac63138ff6afd0da5da756ca8726d33ced1821233cabda39ced905d"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-reaped-reused-pid/command-process-cleanup-29f0f00bfeab4b469cd31bd16ceec4da.json",
+      "bytes": 887,
+      "sha256": "479e312c32c5079edaac347d228d497cd85774dde5cf894d6b63cfaf45aeb27b"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-reaped-surviving-group/command-process-cleanup-0aa29a3a6848413191858dd6fb32910f.json",
+      "bytes": 892,
+      "sha256": "c9a80fb2f294df667b2e01d49c961bfc1c0e4c9fd1137ea278194857bafd1b2e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-replacement-after-signal/command-process-cleanup-ae2ddcaee9e947908967ce524c204e42.json",
+      "bytes": 894,
+      "sha256": "436474e83ae722451dac1125db73166107b02aa15cac91bd25e0b16815e9f41a"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-command-survivor-after-signal/command-process-cleanup-2a4d381da2d94c99960b3791fb7fcbfd.json",
+      "bytes": 891,
+      "sha256": "e60635b894095f55e21b5fed04778710df268b24f3c1209301b4a8a8afedca83"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-counter-with-missing-row/command-process-cleanup-dd93af781526473185b68bb6eac43b3c.json",
+      "bytes": 1024,
+      "sha256": "62b853c86f6ad971c06a7339dd797e576dba4522eccdda91cdf5b59dad999723"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-exec-transition/command-process-cleanup-d38fc4f01dc64e4a8cd4e5ca92f654d1.json",
+      "bytes": 1061,
+      "sha256": "2717de9ea2fdb44a107c99c7f644bf1881fa7620925e5750168eb6d17eeda674"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-group-changed/command-process-cleanup-f56fcf2c642c4f3b8e5531facd112c13.json",
+      "bytes": 875,
+      "sha256": "9a47da5518514cf5d321c792aeeeb38978aa88971f3ed77487d9ef8ed3253342"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-parent-changed/command-process-cleanup-8a71bac211294f0689f71859075386e8.json",
+      "bytes": 876,
+      "sha256": "e23c7134c91f837ca1d11cfc3f019cd8f6ce8955d2e96ee61c5fcd25bbfaaf9c"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-probe-permission-error/command-process-cleanup-67e6336ce9c8465f9f04ce6062059e80.json",
+      "bytes": 1071,
+      "sha256": "de86060e23d877be2127083db53bbe342f81165868244b1623f942e3ba8e2458"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-receipt-byte-change/command-process-cleanup-17d31aae12b54977af7b531da36f07ba.json",
+      "bytes": 912,
+      "sha256": "2fb9855afc4434fefd23ddddf843b11cab838e32b92fc93fd3b02e197024a718"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-send-permission-error/command-process-cleanup-fa72e397801640cda4298af18f659c77.json",
+      "bytes": 1129,
+      "sha256": "62708f09da1f3b38db2ca3cb99a48a62eb25c76a05df705101443e671ebb04f6"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-start-changed/command-process-cleanup-135b5d8c25b74cc59cb163480113ffdc.json",
+      "bytes": 875,
+      "sha256": "dc8445735e516cea2bb8d3d6b7c944e49b7ffc9e6f2e1f90054fc19c38d08324"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-unqualified-receipt/command-process-cleanup-f00f41f8af5d44b5834fbac03bcd2dfd.json",
+      "bytes": 1019,
+      "sha256": "3d3d233ae49d4ad2c7dcaf020ebba630346ecd5e3d17fb3ff9affd7be43cddb1"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt1/candidate-wrong-original-pgid/command-process-cleanup-fd9cc9498a4a485fb9e622f0cfa8c6c5.json",
+      "bytes": 1019,
+      "sha256": "374189ffed7c9dfb06dffcdb944cf6b1604b4a8ec9d25051fbe497eb3db1a7c4"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2.stdout.log",
+      "bytes": 1243,
+      "sha256": "0b5cb5762cde025765d8098892fea2b96dd1101dc9de4aa184907f754b437dbe"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/RESULT.json",
+      "bytes": 156538,
+      "sha256": "7832aa815b5e96b00cc0a61f558464f9264ae43fba992b3379e35231294359d0"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 225,
+      "sha256": "06a9c56b9599a29bfabdc980c9257ebb76d18b982041d06c8e3b62a1c43369ab"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/baseline-command-reaped-reused-pid/command-process-cleanup-32d9c6645d1f4ade99d1d41ebb9a03b9.json",
+      "bytes": 226,
+      "sha256": "030f1bdcd96d0fb80343977a05a3b4ff41d1620330d4749b8b35c0c30152c8f5"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-allocation-interrupted/command-process-cleanup-7dfa5ee1db18431eb16204a89becb5a4.json",
+      "bytes": 618,
+      "sha256": "6f05c752a02904f59ad85289595579f06799a84ea1c5f2aaa2ddd41fd764e49b"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-completed/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-completed/actual.process-cleanup.json",
+      "bytes": 993,
+      "sha256": "ac037989018f6b273fa86cecf7e54bc91e9e4afe727c9dc7c69c220c5d89ad00"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-after-child/actual.process-cleanup.json",
+      "bytes": 1052,
+      "sha256": "f3405d44938c65f0d0256b81ed7013d90da0eab5def8b4e5c159a479722c6a61"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-child-flag/actual.process-cleanup.json",
+      "bytes": 644,
+      "sha256": "cfac951e8a5b7b229daa9dca580f1e0ab48b273e5d7bc8cd495af445b5613dcf"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-constructor-before-pid/actual.process-cleanup.json",
+      "bytes": 637,
+      "sha256": "1c40f5c1a8998ded1b648e07a96ed3f45c9542289bb4860f8175798ae5fb507f"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-live-failure/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-live-failure/actual.process-cleanup.json",
+      "bytes": 997,
+      "sha256": "fe1a62b746d6a7510e0ac690f3847c061d6795a257c21e6ead90f07470e7b27f"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-missing-cleanup-import/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-reused-pid/actual.process-cleanup.json",
+      "bytes": 863,
+      "sha256": "9b6fa8a6b2acb4edfa81eb0d959f368ace5e148e19d73bd28aaa068ed579ab41"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-reaped-surviving-group/actual.process-cleanup.json",
+      "bytes": 868,
+      "sha256": "703ebdbf927f8c01ef6362a78e650e0d9efd137bb49c55c90db10eb03349ddbe"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-replacement-after-signal/actual.process-cleanup.json",
+      "bytes": 870,
+      "sha256": "4a40da267aade5f4f9c162acabbef1622f3072118d90105ac86fb06c22fb23e1"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-bounded-survivor-after-signal/actual.process-cleanup.json",
+      "bytes": 867,
+      "sha256": "47af0bfac10cf593fe78badb63a47dd32d8690b2af977944558326e8c7b29e42"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-caller-assignment-interrupted/command-process-cleanup-a3c9cc67baaf492dae8c336e447e286e.json",
+      "bytes": 1030,
+      "sha256": "dcebbbd8d71765986cb50d474fa9361ae2d38021fe4777fdefef4ffa588adeb6"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-completed/command-process-cleanup-29acdbe6955746be919a0d171cd9b694.json",
+      "bytes": 1017,
+      "sha256": "d605c08b9e060a61b903ef5db30142a7e3cc679e5b6a375937d1ed81118603a5"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-after-child/command-process-cleanup-6429153978404d1d9d7ad650a969e32a.json",
+      "bytes": 1076,
+      "sha256": "6430c0b4147311864cb26091912850e2cec2ff0a69f0869a6309ca659893431e"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-before-child-flag/command-process-cleanup-d401a2a52b98434a9fe3bec7965d2807.json",
+      "bytes": 668,
+      "sha256": "ca7606b83ca008651dbb7bac2581ed91970dd72550a5dbf5d53db03877c38c04"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-constructor-before-pid/command-process-cleanup-6f9dcbfa122544a9934edc04c2c862b5.json",
+      "bytes": 661,
+      "sha256": "0e5c6efe21f77db4e1e953c5a3cd257ca1340111203e99693e966aa0fbf003c5"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-live-failure/command-process-cleanup-2b103d52c5e54a8dacfabf15e703120d.json",
+      "bytes": 1021,
+      "sha256": "371487896e36d4447cde8c037ea7e52e61d4e2f2d783ad24b08900809f2bf9a0"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-reaped-reused-pid/command-process-cleanup-276a859c522443839a4f4e3fb001bc08.json",
+      "bytes": 887,
+      "sha256": "956bf9493b876ca46a741df17a38999d568a0f03215a3f3c4ef4ddb1e71aafea"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-reaped-surviving-group/command-process-cleanup-8251d887ca114ed18d8548fbbf8d0a60.json",
+      "bytes": 892,
+      "sha256": "0a82c370bc762fee082d126000cedeeedfcfb451b35f1d6949af0e661017495f"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-replacement-after-signal/command-process-cleanup-fae4747d5ed6490e97e858887ba2dc29.json",
+      "bytes": 894,
+      "sha256": "afc872f1f73d8b756eba3df697d513954693b33080274b753cb77357d685a6a0"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-command-survivor-after-signal/command-process-cleanup-3d396f93c90b4373b493c4f77422bb1a.json",
+      "bytes": 891,
+      "sha256": "64df9f5fea7c30836211b21f5a5b37d45f1cc70f2f7e3375a6eabec841cb0492"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-counter-with-missing-row/command-process-cleanup-30036623071845539168012e38e632f9.json",
+      "bytes": 1024,
+      "sha256": "f4010ab143b2f21b99cf73f30cd49e47670be241902b887c4b3fd92453085668"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-exec-transition/command-process-cleanup-f12c0078689d4abaaf9a9cab6ddadd5a.json",
+      "bytes": 1061,
+      "sha256": "5f210da88cc048dabc1800b2b1e7609a33a51c4d1f022557b63f103a725f6643"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-group-changed/command-process-cleanup-f4703f9b574840f28c91121858ead9cd.json",
+      "bytes": 875,
+      "sha256": "b7dd94777fefdd64fcb7b5dd7b1e6ac3ee3484eba28ac3b1e05e21f0c81e3804"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-parent-changed/command-process-cleanup-644b38a9ee6f4c1ea7bf3e265b0862c3.json",
+      "bytes": 876,
+      "sha256": "d3faf85e81e6e8b01c6503710cca1cb9c6ac0fded52333a7d5732a2cdd3c12fd"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-probe-permission-error/command-process-cleanup-4a1e2a83b7e0430abb23262b51d89907.json",
+      "bytes": 1071,
+      "sha256": "2c06b1bf613882fb4898ba4c06fefa958be266336f2ac4103f5d06c6efe43f90"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-receipt-byte-change/command-process-cleanup-3765b01d55ae46ea93df5b72937b5dc8.json",
+      "bytes": 912,
+      "sha256": "bec8c0ffeb0e7d33c81daf1cfe1a8c4ae5e3bc8fd27c55ed0a492f4c545e8f77"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-send-permission-error/command-process-cleanup-008405724ac14cfd98b60891d7834130.json",
+      "bytes": 1129,
+      "sha256": "fda34b9809b9d49da3e20ef0d9ac107fad692b373dc6965001eee9e2956889c4"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-start-changed/command-process-cleanup-3222da8cb38049c6a70ea5817b720ff4.json",
+      "bytes": 875,
+      "sha256": "5dbbe54306195490e9592b8c2e0288d3cd19bf322f6e56505820de0f03c9fa31"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-unqualified-receipt/command-process-cleanup-43174e3ca0b5460b960ef559e0845093.json",
+      "bytes": 1019,
+      "sha256": "f2370f462ab6ce57b848f2b62db29b212b5d69914d781c1322e5654cb2e7ef2b"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/control-attempt2/candidate-wrong-original-pgid/command-process-cleanup-ad208cf7c49b4bdf9134ccb730ed9019.json",
+      "bytes": 1019,
+      "sha256": "85b485ddacaabfeb6c651195b79f9b0f2932ea0e55bc9c83a91ead4846b92696"
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-process-ownership/evidence/lifecycle-controls-attempt1.py",
+      "bytes": 16201,
+      "sha256": "0bd57bdefb4c7ddb21583b58df01e93162175b651a7811c963283cbf355cb30a"
+    }
+  ],
+  "perbook_input_index_verified": 115,
+  "faithful_expected": {
+    "bytes": 371699,
+    "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+    "root_prefix_bytes": 351993,
+    "donor_append_bytes": 19706
+  },
+  "build8401_expected": {
+    "bytes": 142688,
+    "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5",
+    "root_prefix_bytes": 102598
+  },
+  "raw_donor_diff_check": {
+    "exit": 2,
+    "stdout_sha256": "13cce8e1c5e735c5cc7367df7fc5cb2bed5dc9b69475f8547d5111310deeb24e",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "retained_prior_review": "docs/hq-integration/wave3-wave2-delivery-review-20261127",
+  "perbook_review": "Original two reported lifecycle defects corrected at02aea727;39/39 synthetic controls and6 demonstrated baseline counterexamples, no native inference; unchanged wait loops/selectors/budgets/helper",
+  "scope": "Reviewed exact source intake only; no app/build/native/production freeze/physical acceptance",
+  "disk_free_before": {
+    "candidate_rootfs": 3221659648,
+    "preserved_data": 641589248
+  }
+}

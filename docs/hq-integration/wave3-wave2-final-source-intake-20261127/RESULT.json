@@ -1,0 +1,146 @@
+{
+  "schema": "otzaria.wave3.wave2-final-source-intake.v1",
+  "time": "2026-11-27T11:51:12.753243+00:00",
+  "root_before": "49f15cd68933b3e75ad8fe9074712c768f793566",
+  "root_source_head": "78ea16ed9c64064e4b704285717a0db1921b440d",
+  "mappings": [
+    {
+      "donor": "20ab4e14f30c3ae272c7c57093544198d63f328b",
+      "integrated": "c1400195c3f8ba4cf16bd44082b86dbe06b255c9",
+      "file_occurrences_verified": 2
+    },
+    {
+      "donor": "b0fae4b4b2812b5a4b6dbb2070b1498cee957148",
+      "integrated": "5380b196f9f537fc11cb0a8bee629536a5fc8b79",
+      "file_occurrences_verified": 9
+    },
+    {
+      "donor": "fe017f463738342784e6e71dd1b65a7824d5f547",
+      "integrated": "70e65134e909b80ec0306c1d34ccfb846be57745",
+      "file_occurrences_verified": 4
+    },
+    {
+      "donor": "a54e30c9b99a12d9072ee65fdc9d0b0c88f50433",
+      "integrated": "012ad5eab895ecdfa9ef77cb8360217e191c3bbe",
+      "file_occurrences_verified": 3
+    },
+    {
+      "donor": "2935ec4ae612ec1c10132b42eaf241fe9aaf7d64",
+      "integrated": "3326ab22c8241c2110fa777f3d8df3ef532b793d",
+      "file_occurrences_verified": 7
+    },
+    {
+      "donor": "ce13b5329ba394dbf37e077ae6c649efceb7b385",
+      "integrated": "c32b9c9bf11b96d63476256d493086161fb8982f",
+      "file_occurrences_verified": 10
+    },
+    {
+      "donor": "0cab128c1c635e82b87ed640d1d61023d714ffaf",
+      "integrated": "0c1cc84299831f1562e20dd10a5b95b9ae892858",
+      "file_occurrences_verified": 14
+    },
+    {
+      "donor": "a43aa1d4134a694df98d11daaa3334727a6d5b6a",
+      "integrated": "d866dc5c2cfa30eb30dc18cec9790350b861cc1c",
+      "file_occurrences_verified": 10
+    },
+    {
+      "donor": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "integrated": "aac1d29332d4f85e3712515b389af1ad440b64c6",
+      "file_occurrences_verified": 16
+    },
+    {
+      "donor": "1f788fee9ffe58f692a0140e44a24e39b409af83",
+      "integrated": "a0b88d340ae518e3356a408b168f0978d79ad42f",
+      "file_occurrences_verified": 6
+    },
+    {
+      "donor": "72ae2474e1341d511b9b56f097c773a791649753",
+      "integrated": "c527a27534bdad322122d43ec176fb2b6c4e452c",
+      "file_occurrences_verified": 6
+    },
+    {
+      "donor": "141c413501858d43d2252b5630692d22e730aac7",
+      "integrated": "eb9ac8a6d7571ac12f41d9a2be60d53d00743830",
+      "file_occurrences_verified": 4
+    },
+    {
+      "donor": "b18ef5557912f1f850d1c9a7ad0d22fa423f139c",
+      "integrated": "4841178e316d78876df72890b40416061752f749",
+      "file_occurrences_verified": 10
+    },
+    {
+      "donor": "e942b06a72ec15a8769e66e631ded0ae7fec7e45",
+      "integrated": "93036d85d9d3438c02f6d0546e1a409717a76c63",
+      "file_occurrences_verified": 4
+    },
+    {
+      "donor": "d8e1e7640f18acf0365bee74ef3e568b1af61bf6",
+      "integrated": "0e92a747a7182dc560c14b078f968815db4e29a2",
+      "file_occurrences_verified": 13
+    },
+    {
+      "donor": "81b54a5ed333b23b0e19ccf3efa346b2d8861a91",
+      "integrated": "7a3a6b5fd957a0d1ab1f464beab4e720b734a0cb",
+      "file_occurrences_verified": 21
+    },
+    {
+      "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+      "integrated": "aab785c51d1d2633f57b92e83eb95e1baf9636d9",
+      "file_occurrences_verified": 39
+    },
+    {
+      "donor": "113ab9b1a2921b791c0453a0b6af78537290b447",
+      "integrated": "30e4c5ef0f80f0de52297d2656c43d6d81fd85bc",
+      "file_occurrences_verified": 118
+    }
+  ],
+  "donors": 18,
+  "file_occurrences_verified": 296,
+  "perbook_input_index_verified": 115,
+  "source_pins_before": {
+    "Source": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj/project.pbxproj": "daeb7f5a5a043117fb6da77b39c5590ed237e74d"
+  },
+  "source_pins_after": {
+    "Source": "139acb7f1b3945b65d8d4e882cb2aeb5bb6a3b29",
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj/project.pbxproj": "daeb7f5a5a043117fb6da77b39c5590ed237e74d"
+  },
+  "faithful": {
+    "bytes": 371699,
+    "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec",
+    "root_prefix_bytes": 351993,
+    "donor_append_bytes": 19706
+  },
+  "build8401": {
+    "bytes": 142688,
+    "sha256": "ef11b311f8c2fbc612f9c1f9e68f0242412c14196a3fd3405dc945bc4aece3e5",
+    "root_prefix_bytes": 102598
+  },
+  "perbook_final_source_sha256": "02aea7270400acfab92f2d474a7367f6412e349d909f9eec3da746e2bb247100",
+  "perbook_retained_controls": {
+    "passed": 39,
+    "total": 39,
+    "actual_children": 0,
+    "actual_signals": 0,
+    "native": false
+  },
+  "raw_evidence_transport": "78ea16ed9c64064e4b704285717a0db1921b440d",
+  "old_data_root": "49f15cd68933b3e75ad8fe9074712c768f793566 preserved clean",
+  "final_profile_frozen": false,
+  "new_native_runs": 0,
+  "new_compiler_runs": 0,
+  "new_control_suite_runs": 0,
+  "qualification": "Source-only intake and immutable evidence validation; production/native/SDK/performance/owner-signing/final-merge gates remain open",
+  "rootfs_free": 3122446336,
+  "initial_receipt_publication_failure": {
+    "stage": "unchanged staged whitespace check",
+    "source_changes_after_failure": false,
+    "source_head": "78ea16ed9c64064e4b704285717a0db1921b440d",
+    "preserved_failure": "FAILURE.json.gz",
+    "preserved_actual_check": "FINAL_STAGED_CHECK.stdout.gz",
+    "repair": "Lossless compression of the literal diagnostic output, no data normalization"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "reason": "The original whitespace-check output includes its literal whitespace reproductions. Preserve raw bytes via gzip; no original check was skipped or relaxed, and all18 source cherry-picks remain unchanged.",
+  "files": [
+    {
+      "original_path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/wave3-wave2-final-source-intake-20261127/DONOR_DIFF_CHECK.stdout",
+      "stored": "DONOR_DIFF_CHECK.stdout.gz",
+      "original_bytes": 1995,
+      "original_sha256": "13cce8e1c5e735c5cc7367df7fc5cb2bed5dc9b69475f8547d5111310deeb24e",
+      "stored_bytes": 274,
+      "stored_sha256": "a2e3d10a3dd51bf8913a5ee707a826e48b068ddc6004d182d37293aa4d119925"
+    },
+    {
+      "original_path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/wave3-wave2-final-source-intake-20261127/FINAL_STAGED_CHECK.stdout",
+      "stored": "FINAL_STAGED_CHECK.stdout.gz",
+      "original_bytes": 1848,
+      "original_sha256": "52f122e4b2eff0361e0f36b21ffb729bcb6a340a05caf1ef2b4ccbfa1ac9e7d6",
+      "stored_bytes": 206,
+      "stored_sha256": "2f2561fae0e89819911c0f5d67c8a658ce542645c84bbd1c2f2620fd360340fb"
+    },
+    {
+      "original_path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/wave3-wave2-final-source-intake-20261127/FAILURE.json",
+      "stored": "FAILURE.json.gz",
+      "original_bytes": 4041,
+      "original_sha256": "82e3591bf714f51c305f85aa47a0049acf3aa7069f08bb66291dc9007d954ae5",
+      "stored_bytes": 1417,
+      "stored_sha256": "38288d1e7bddf073816ad5149798c0d75c6c99bcfc7f13e38fa981029aae116e"
+    }
+  ]
+}
