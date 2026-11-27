@@ -21,6 +21,7 @@ import {
 import ReaderApp from '../../Upstream/ReaderApp';
 import * as DownloadControl from '../../Upstream/DownloadControl';
 import { ChavrusaRPCFacade } from './chavrusaRPCFacade';
+import './ChavrusaVisibleSurface';
 
 const ReaderAppGesturified = gestureHandlerRootHOC(ReaderApp);
 const FallbackView = () => <View style={{ flex: 1, backgroundColor: 'transparent' }} />;

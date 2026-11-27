@@ -1,0 +1,252 @@
+{
+  "actualRemoteHEAD": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "appleAppAndJSBundle": "NOT_RUN",
+  "base": "68b191f56c4fc1644d0b2a3478f05e9935770d20",
+  "branch": "codex/otzaria-wave3-sefaria-native-surface-20261127",
+  "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "nativeAcceptance": "NOT_RUN",
+  "originalMaktabahRemote": "https://github.com/bismillah-100/Maktabah",
+  "ownershipMatrix": [
+    {
+      "baseBlob": null,
+      "bytes": 10779,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "a3eee637b85119073a474085755123c5aed2bc706d7bcbd99666faedc60dd687"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 29317,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "ac57ce535a515d43fdf9115da5afdf7bb13847913e8a6b2e29ef45fdbf97de28"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 2814,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "906a986ef50e1e9166c81358a78919743f6f241d19ed20dbb7f07bc91348d389"
+    },
+    {
+      "baseBlob": "05bd767754e4509b7b48c8ab2e94f4fc173240ad",
+      "bytes": 35707,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "15ad8ac0596056503e52082ae3d8c0b13499fdd5",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba"
+    },
+    {
+      "baseBlob": "efd5c651bda5577447b836ee40429cece2dfb429",
+      "bytes": 20518,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "8c4af92547d50c6bd5731722d6a77d7bc57a79618ffe500c4fdfa8c498afbcc9"
+    },
+    {
+      "baseBlob": "5b57b725a661f58bf133812328e36a30fe44c33b",
+      "bytes": 7988,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "54bffdc4c8c55c2632897a7691bae936d9efbabd09ac3de61c0482bb948137b3"
+    },
+    {
+      "baseBlob": "6a5a5466a08e384415f65eae15d1e6131919430b",
+      "bytes": 11797,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "f30721479d00651416844ce13863825e263e22e7ac3df6cd146e9e0b880b2634"
+    },
+    {
+      "baseBlob": "4a7f8b2112e4e7782d282a29ab1fff8739cea5ae",
+      "bytes": 17879,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "7be24ab648de8539afdb161c0551d605ce3c1e18",
+      "path": "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "17f242c80d496309da9887d331af89a89a32a640676a840a48c1407d1e766ae5"
+    },
+    {
+      "baseBlob": "a37c1df1138f96ae1ed1a214abfa9339604c60bf",
+      "bytes": 6981,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "941a42e4cd4d3f49d3034e95d95c85ee1755d74ed8611a62de5ae16daac14e75"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 3692,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+    },
+    {
+      "baseBlob": "4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7",
+      "bytes": 33519,
+      "classification": "SHARED_INTEGRATION_SEAM",
+      "introducedAt": "1d4f4a283bf34d62b3c7ec95e5da3c50f75cf625",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "presentAtOriginalMaktabahMain": true,
+      "sha256": "93a6af6df96bafabef1e832211b050350727e5fd7f3b013c408e0a53ae5bc9c6"
+    },
+    {
+      "baseBlob": "3d736ec0312cf622694e079f45ac31ee9de00941",
+      "bytes": 5809,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 3557,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 6556,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+    },
+    {
+      "baseBlob": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+      "bytes": 21034,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "c83bfde9afdc59e86bd16da1b88acf638afb4890aa640590513605b05b38fa9f"
+    },
+    {
+      "baseBlob": "5abb64ffc21de52daab497185c897e0b925441b7",
+      "bytes": 8050,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "b13aabcd300d91aae13d152875163e33906bcb7e",
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 13486,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/run_sefaria_visible_surface_source_controls.py",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "9d9fccc26383afd8231f94dc17c627831b7fe199f688fc9656bda51fe5bb0a0d"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 11189,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/test_sefaria_visible_surface_membership.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "51a63e8034dbca031ed15892f2034d5ace8dee3570f9b6903515a2d16720e33e"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 8921,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/test_sefaria_visible_surface_native_lifecycle.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "5aabea5cea488b858e4de0a7a83f257d7798b7df1f4464074962e71308a85973"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 9939,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/test_sefaria_visible_surface_registry.mjs",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "afff651fcd23a24dbb4a80cfb8e0e28334e36ac090d369ea91a2a660c3d0a924"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 21357,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/test_sefaria_visible_surface_runtime.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "e4315b38ac5b31bfe7e4201f6b1a72e0071c534c5f8fa58fc0816922cf4790a7"
+    },
+    {
+      "baseBlob": null,
+      "bytes": 5578,
+      "classification": "DOWNSTREAM_OWNED",
+      "introducedAt": "this isolated packet",
+      "path": "tools/test_sefaria_visible_surface_workspace_revision.swift",
+      "presentAtOriginalMaktabahMain": false,
+      "sha256": "4e8839f4b6e84cccc0d714227fe85723d410e79f8ae517d56cb2ba457e7f4275"
+    }
+  ],
+  "postControlSourceReviewedOnly": [
+    "exact cold-creator diagnostic cleanup helper",
+    "partial original host detach cleanup",
+    "explicit baseline Git pin in source-control runner",
+    "four declared native XCTest selectors"
+  ],
+  "recordedAt": "2026-11-27T06:31:35.241768+00:00",
+  "schema": "otzaria.wave3.original-rn-surface.source.v1",
+  "sefariaGitlink": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+  "sharedWiringBase": "f8d9be6c",
+  "sourceControlReceiptSHA256": "c30be503dbc6bd5f48a05160d396176ca6bee1ed38af6c2b7888f41c06a82be4",
+  "unchangedControlledMethods": [
+    {
+      "sha256": "f28b76993fd55d3e252961666a808cd11e158ef5b56584a75831c6346d314c81",
+      "signature": "    func releaseSource(requestID:",
+      "verbatimUnchanged": true
+    },
+    {
+      "sha256": "67ec1b2a8e4ffba64bd67ee0e8fd709da73b7425670d406b52b42b09534531a6",
+      "signature": "    func begin(requestID:",
+      "verbatimUnchanged": true
+    },
+    {
+      "sha256": "9f690111ba99f0b6701a6bdf0ceb7ffd13c6893a5ae296fcb4b4a7a0f5a53562",
+      "signature": "    private func withSource<T>(requestID:",
+      "verbatimUnchanged": true
+    },
+    {
+      "sha256": "7c9fdaddd643d5c3075b80b6d70c7b862c6e26e13d144dbf259d3ffd935bfff5",
+      "signature": "    private func retainedRequest(",
+      "verbatimUnchanged": true
+    },
+    {
+      "sha256": "f229a693a50bdf94dd0493bfcfd5efb082d217dd7ad974f880a0005ea9d0e94f",
+      "signature": "    private func validateMembership(",
+      "verbatimUnchanged": true
+    },
+    {
+      "sha256": "c3b51730edef67577aac9c0b7ae7df2f16f02ccb9f0692dbd28039bf0ea66d98",
+      "signature": "    private func withSource<T>(request:",
+      "verbatimUnchanged": true
+    }
+  ]
+}

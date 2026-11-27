@@ -27,10 +27,12 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             var passed: Bool
             var details: String?
             var durationMs: Int?
+            var surfaceEvidence: SefariaEmbeddedSurfaceAcceptanceEvidence? = nil
         }
     }
 
-    static func run(backendRegressionProvider: @escaping () async -> (succeeded: Bool, failureDetail: String?)) async -> AcceptanceReport {
+    static func run(visibleSurfaceProvider: @escaping @MainActor () async throws -> SefariaEmbeddedSurfaceAcceptanceEvidence,
+                    backendRegressionProvider: @escaping () async -> (succeeded: Bool, failureDetail: String?)) async -> AcceptanceReport {
         var report = AcceptanceReport(
             status: "PENDING",
             failedStage: nil,
@@ -218,18 +220,23 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             )
             NSLog("[SefariaAcceptance] Stage 12: searchOpenResult passed (%d ms)", dur12)
 
-            // Stage 13: fullReactSurface mounting
+            // Stage 13: the same canonical parent route must return its actual
+            // owned-window receipt and fresh original React/bridge proof.
             let startT13 = Date()
             NSLog("[SefariaAcceptance] Stage 13: fullReactSurface started")
-            #if canImport(UIKit)
-            let surfaceView = SefariaExpoLifecycleAdapter.shared.createSurfaceView(initialProperties: ["renderFullUI": true])
-            _ = surfaceView.subviews
-            #endif
+            let surface = try await visibleSurfaceProvider()
+            let original = surface.originalSurface
+            let identity = SefariaEmbeddedSurfaceIdentity(id: original.surfaceID, mountID: original.mountID,
+                sceneID: surface.nativeSceneID, epoch: SefariaJSRPCBridge.shared.currentSessionEpoch)
+            guard original.matches(identity, nonce: original.nonce) else {
+                throw SefariaRPCError(code: "VISIBLE_SURFACE_RECEIPT_STALE",
+                                      message: "The original Sefaria surface receipt no longer matches its runtime.")
+            }
             let dur13 = Int(Date().timeIntervalSince(startT13) * 1000)
             report.stages["fullReactSurface"] = .init(
                 passed: true,
-                details: "Original Sefaria React Native surface created cleanly with renderFullUI=true without key window disruption",
-                durationMs: dur13
+                details: "Canonical native receipt observed the original ReaderApp in its owned visible window and bridge epoch.",
+                durationMs: dur13, surfaceEvidence: surface
             )
             NSLog("[SefariaAcceptance] Stage 13: fullReactSurface passed (%d ms)", dur13)
 

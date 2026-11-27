@@ -173,21 +173,26 @@ final class SefariaExpoLifecycleAdapter {
     }
 
     #if canImport(UIKit)
-    func createSurfaceView(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) -> UIView {
+    var canCreateVisibleSurface: Bool {
+        #if canImport(React) && canImport(Expo)
+        return isHostActive && reactNativeFactory is ExpoReactNativeFactory
+        #else
+        return false
+        #endif
+    }
+    func createSurfaceView(moduleName: String = "ChavrusaSefariaRoot", initialProperties: [String: Any]? = nil) throws -> UIView {
         #if canImport(React)
         ensureHostStarted()
         #if canImport(Expo)
-        if let existing = hostedWindow?.rootViewController?.view {
-            return existing
-        }
+        // A visible root belongs to its requesting scene. Never reparent the
+        // independent headless bootstrap view or ignore its initial properties.
         if let factory = reactNativeFactory as? ExpoReactNativeFactory {
             return factory.rootViewFactory.view(withModuleName: moduleName, initialProperties: initialProperties)
         }
         #endif
         #endif
-        let container = UIView()
-        container.backgroundColor = .systemBackground
-        return container
+        throw SefariaRPCError(code: "VISIBLE_SURFACE_FACTORY_UNAVAILABLE",
+                              message: "The original Sefaria React Native factory is unavailable.")
     }
     #endif
 
