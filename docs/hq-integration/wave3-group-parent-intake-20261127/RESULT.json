@@ -1,0 +1,97 @@
+{
+  "schema": "otzaria.wave3.group-parent-intake.v1",
+  "base": "aa88b56b2e5fea1bf91de8a3e993e494ec41d96f",
+  "donor": "40847b8494cae95acaeb7d03ec5cdc6dbd2347bb",
+  "donorBase": "37caafcfaa4eb9b7bcfd02857bcb7c3f62daa4be",
+  "picked": "ff797d39ebda9c6e0e3340c9425c5e31cd7da22d",
+  "sessionCommit": "fcb6ddd02d68b7eac53eeb1dd9d348aa4ee9b3b5",
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23699,
+      "sha256": "3cf73c19859eba3dd22182457a544b6f255ba02c06a21f5ecc6e4563d309c75f",
+      "beforeBytes": 20823,
+      "beforeSHA256": "d25b21be0ff98eed6a663241fde17ce85df41d6b7b1b965d7432e827db89ffcd"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 23388,
+      "sha256": "0dbaed3628a17b63403b5eae244440b39b08409e5a963f4aaa0a7de472b94a50",
+      "beforeBytes": 20094,
+      "beforeSHA256": "0829ebda65406fa4fb639e100457485fd797a39a512d62d3fdb08d8aa1a2d0b8"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneNavigationPort.swift",
+      "bytes": 18778,
+      "sha256": "c2459607c4930a0f32dd6995789dc5bf41763275ccc172c62eb38285377ef16b",
+      "beforeBytes": 18186,
+      "beforeSHA256": "2814d6c1793e66c295a67d96977f757e71da0e6fd8902982d67f19c6076ff56b"
+    },
+    {
+      "path": "Source/Otzaria/UIRouting/Sources/OtzariaUIRouting/Ports/SceneSelectionContinuation.swift",
+      "bytes": 2566,
+      "sha256": "2b3d3a67bfeb839d5806e5e09a5860f8aef9179b137a663e36e6f980997e7e47",
+      "beforeBytes": 2168,
+      "beforeSHA256": "d9d515375ec29ce3ea3d2b574cb02627b737a253bda4361596692cc4a9ea3e72"
+    }
+  ],
+  "sourceTree": "498e7336fc23589995da698d3f72a92e766e29eb",
+  "protectedTrees": {
+    "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+    "Maktabah.xcodeproj": "e8f08a3e8be4a79a577c70d0819875be2fee1d1b",
+    "Scripts": "3b08c2291bc87d99bca1f6056328bc3362a66a7f",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Source/Otzaria/Actions": "0c9b1ca50eb9d9583567c4277a3506fe3d4b5679",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b"
+  },
+  "sessionJoin": {
+    "base": {
+      "bytes": 150931,
+      "sha256": "a77dd4223cf3a9c8336d405e45690b02016a022031b9002a5b97bb795650a4d9"
+    },
+    "candidate": {
+      "bytes": 156114,
+      "sha256": "2ede55ddaea7bdb068cf5ad3f4a3763a75fb96a8828ffe79d6702b4ca5b8cd16"
+    },
+    "edits": 13,
+    "inverse_original_bytes": true,
+    "root_owned_proposal_only": true
+  },
+  "sessionHunks": 13,
+  "inverseExact": true,
+  "capsulesVerified": {
+    "rawControls": 263,
+    "readOnlyCore": 42,
+    "source": 30
+  },
+  "sourceJoins": 23,
+  "actualPortableControls": {
+    "pass": 25,
+    "fail": 0
+  },
+  "actualOriginalDomainControls": {
+    "pass": 21,
+    "fail": 0
+  },
+  "preservedOriginalBeforeFeature": {
+    "pass": 0,
+    "fail": 2
+  },
+  "preservedRemoveVisibility": {
+    "pass": 0,
+    "fail": 2
+  },
+  "reusedFullSyntaxParses": 5,
+  "reexecutedControls": 0,
+  "AppleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "scope": "Exact original Group/Viewer/Store/persistence/Adapter and Core parent selection; declared domain/UIKit/Resolver/Reader boundaries. No final native acceptance.",
+  "stillOpen": [
+    "Cold pre-token Reader invocation",
+    "Hidden already-active phone Group",
+    "App SDK and native iPad/iPhone acceptance",
+    "Final Native116 and Release114+2",
+    "Real owner gate and final signed production release"
+  ]
+}
