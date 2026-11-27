@@ -1,0 +1,200 @@
+
+
+// Hidden-active phone Reader selection uses the original Back/Library and
+// workspace controls. Only the cached, real system entity delivers the measured
+// Reader-tab action; neither setup UI nor a parent-only receipt can satisfy it.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func requireOriginalHiddenPhoneReaderLibrary() throws {
+        requireOriginalPhoneLibrary(timeout: 15)
+        let library = app.descendants(matching: .any)
+            .matching(identifier: "library-contents-list").firstMatch
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            library.exists && library.isHittable && !library.frame.isEmpty
+                && self.app.windows.firstMatch.frame.intersects(library.frame)
+                && !self.app.staticTexts["reader-current-locator"].exists
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "The real Library must replace the visible Reader after its original Back action")
+    }
+
+    @MainActor
+    private func backgroundOriginalHiddenPhoneReader() {
+        XCUIDevice.shared.press(.home)
+        let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [background], timeout: 15), .completed,
+                       "Require an observed background state before the actual system invocation")
+    }
+
+    @MainActor
+    func runOriginalHiddenActivePhoneReaderTabSystemIntent(
+        entry: OriginalHiddenPhoneReaderTabEntry,
+        rejectPreviousGroupFromBackground: Bool? = nil
+    ) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: false)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let locator = "otzaria|\(work)|line:\(initial.lineIndex)"
+        let title = try XCTUnwrap(readerSourceMetadata().books[String(initial.bookId)])
+        XCTAssertFalse(title.isEmpty)
+        let workspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(workspace.lastActiveSceneID)
+        let original = try workspace.current()
+        XCTAssertEqual(original.0.tabs.count, 1,
+                       "This hidden-active case starts with exactly one original live Reader")
+        XCTAssertEqual(original.0.tabs.first?.session.id, original.1)
+        XCTAssertEqual(original.0.tabs.first?.session.bookId, initial.bookId)
+        XCTAssertEqual(original.0.tabs.first?.backend, "otzaria")
+        let documents = try actualSiriReaderDocuments(groupID: original.0.id)
+        let pid = try targetProcessIdentifier()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(matches.count, 1)
+        let cachedTab = try XCTUnwrap(matches.count == 1 ? matches.first : nil,
+                                     "Retain the actual system-discovered entity while its Reader is visible")
+
+        // Require an actual visible Reader BEFORE the same original Back action
+        // used by prepareOriginalPhoneLibrary. An already visible Library cannot
+        // stand in for hiding the still-active original tab.
+        try requireReaderLocator(locator)
+        let beforeBack = try actualNativeReceiptLines()
+        let back = app.navigationBars.buttons.matching(identifier: "BackButton")
+            .matching(NSPredicate(format: "label == %@", "Library"))
+        XCTAssertEqual(back.count, 1)
+        let originalBack = try XCTUnwrap(back.count == 1 ? back.allElementsBoundByIndex.first : nil)
+        XCTAssertTrue(originalBack.exists && originalBack.isHittable && !originalBack.frame.isEmpty)
+        capture("hidden-active-phone-reader-before-original-back")
+        originalBack.tap()
+        try requireOriginalHiddenPhoneReaderLibrary()
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeBack,
+                       "Original Back may hide the Reader but must not manufacture a canonical ACK")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+
+        let hiddenMatches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(hiddenMatches.count, 1,
+                       "The actual still-active hidden tab must remain discoverable in this original window")
+        if entry == .history {
+            let historyRequest = UUID()
+            // Use the existing dedicated History transport. publicRootURL has
+            // a narrower original search/annotations assertion and is unchanged.
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15))
+            XCTAssertTrue(history.isHittable && !history.frame.isEmpty)
+            try requireRootReceipt(historyRequest, destination: "native.history")
+            XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+            try requirePreservedOriginalWorkspace(original)
+            XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+            XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        }
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(entry.rawValue)-before-system-intent")
+        capture("hidden-active-phone-reader-\(entry.rawValue)-before-system-intent")
+        let before = try actualNativeReceiptLines()
+        if entry == .background { backgroundOriginalHiddenPhoneReader() }
+
+        // Sole measured successful delivery: the same cached actual entity.
+        // No direct perform(), constructed reference, activate() fallback, source
+        // mutation, or second Core request is used to reveal the Reader.
+        _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        try requireReaderLocator(locator)
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace(),
+                  let selected = try? current.current() else { return false }
+            return current.lastActiveSceneID == originalScene
+                && selected.0.id == original.0.id && selected.0.profileID == original.0.profileID
+                && selected.1 == original.1
+                && selected.0.tabs.map { $0.session.id } == original.0.tabs.map { $0.session.id }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed,
+                       "Restore the same original active tab without opening or replacing a document")
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        try requireNewSystemIntentReceipt(destination: "native.reader.tab", presentation: "currentTab", before: before)
+        let receipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        XCTAssertTrue(receipt.split(separator: " ").contains(Substring("scene=" + originalScene)),
+                      "The final Reader receipt must belong to the captured original scene")
+        XCTAssertFalse(history.exists)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(entry.rawValue)-restored")
+        capture("hidden-active-phone-reader-\(entry.rawValue)-restored")
+
+        guard let refusalFromBackground = rejectPreviousGroupFromBackground else { return }
+        XCTAssertEqual(entry, .library,
+                       "Each stale case first proves this SAME cached entity restored the hidden Reader")
+        let successfulReceipts = try actualNativeReceiptLines()
+        try openOriginalSelectionOverview(expectedPad: false)
+        let emptyID = try createOriginalEmptySelectionGroup(
+            name: "Hidden reader refusal " + UUID().uuidString, profileID: original.0.profileID)
+        XCTAssertNotEqual(emptyID, original.0.id)
+        try closeOriginalSelectionSheet("study-groups-overview")
+        _ = try requireOriginalSelectionEmptySurface(expectedPad: false)
+        let changed = try originalWorkspaceSelectionSnapshot().selected()
+        XCTAssertEqual(changed.0, originalScene)
+        XCTAssertEqual(changed.1.id, original.0.profileID)
+        XCTAssertEqual(changed.2.id, emptyID)
+        XCTAssertTrue(changed.2.tabs.isEmpty); XCTAssertNil(changed.3)
+        let oldGroup = try XCTUnwrap(actualReaderWorkspace().groups.first { $0.id == original.0.id })
+        XCTAssertEqual(oldGroup.tabs.map(\.session.id), original.0.tabs.map(\.session.id))
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents,
+                       "The cached Reader remains stored in its old group; it is foreign, not a fabricated ID")
+        XCTAssertEqual(try actualNativeReceiptLines(), successfulReceipts)
+        let unavailable = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertTrue(unavailable.isEmpty,
+                      "The actual query must withdraw the old group's entity before the measured refusal")
+        let refusalLabel = refusalFromBackground ? "background" : "foreground"
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(refusalLabel)-before-refusal")
+        capture("hidden-active-phone-reader-\(refusalLabel)-before-refusal")
+        if refusalFromBackground { backgroundOriginalHiddenPhoneReader() }
+        // Read the exact stable original state after any ordinary background
+        // checkpoint. The measured cached invocation may change none of it.
+        let stableWorkspace = try originalReaderTabWorkspaceSemantics()
+        let beforeRefusal = try actualNativeReceiptLines()
+        XCTAssertEqual(beforeRefusal, successfulReceipts)
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        } catch {
+            rejected = true
+            let errorEvidence = XCTAttachment(string: String(describing: error))
+            errorEvidence.name = "hidden-active-phone-reader-\(refusalLabel)-actual-system-refusal"
+            errorEvidence.lifetime = .keepAlways; add(errorEvidence)
+        }
+        XCTAssertTrue(rejected, "The previously successful cached original entity must now be refused")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+        let staleEffect = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let receipts = try? self.actualNativeReceiptLines(),
+                  let state = try? self.originalReaderTabWorkspaceSemantics() else { return true }
+            return receipts != beforeRefusal || state != stableWorkspace
+        }, object: nil)
+        staleEffect.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [staleEffect], timeout: 5), .completed,
+                       "A refused cached invocation cannot defer a mutation or ACK beyond the original Core bound")
+        // A system parameter-resolution refusal may leave the app in the
+        // background. Do not activate it to manufacture a foreground journey.
+        // If the system foregrounded it, its actual original empty Library must
+        // remain visible; otherwise preserve the witnessed background state.
+        if app.state == .runningForeground {
+            _ = try requireOriginalSelectionEmptySurface(expectedPad: false)
+        } else {
+            XCTAssertTrue(refusalFromBackground)
+            XCTAssertTrue(app.state == .runningBackground || app.state == .runningBackgroundSuspended)
+        }
+        let stateEvidence = XCTAttachment(string: "Actual post-refusal app state: \(app.state.rawValue)")
+        stateEvidence.name = "hidden-active-phone-reader-\(refusalLabel)-post-refusal-process-state"
+        stateEvidence.lifetime = .keepAlways; add(stateEvidence)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(refusalLabel)-refused")
+        capture("hidden-active-phone-reader-\(refusalLabel)-refused")
+    }
+}
