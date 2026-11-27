@@ -515,7 +515,9 @@ class iOSAnnotationViewController: UIViewController {
 
     /// The existing expansion owner serves both ordinary taps and the single
     /// canonical reveal. Ordinary toggle arguments and effects are unchanged.
-    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool) {
+    private func setOriginalGroupExpanded(_ node: SwiftUIAnnotationNode, willExpand: Bool, animated: Bool,
+                                          validating isCurrent: (@MainActor () -> Bool)? = nil) {
+        guard isCurrent?() ?? true else { return }
         let id = node.id
 
         if willExpand {
@@ -527,6 +529,7 @@ class iOSAnnotationViewController: UIViewController {
         let groupItem = AnnotationItem.group(node)
         var sectionSnapshot = dataSource.snapshot(for: id)
 
+        guard isCurrent?() ?? true else { return }
         if willExpand {
             sectionSnapshot.expand([groupItem])
         } else {
@@ -534,11 +537,15 @@ class iOSAnnotationViewController: UIViewController {
         }
 
         dataSource.apply(sectionSnapshot, to: id, animatingDifferences: animated)
+        guard isCurrent?() ?? true else { return }
         if let indexPath = dataSource.indexPath(for: groupItem),
            let cell = collectionView.cellForItem(at: indexPath)
         {
+            guard isCurrent?() ?? true else { return }
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {
+                guard isCurrent?() ?? true else { return }
                 if var config = cell.contentConfiguration as? ListContentConfiguration {
+                    guard isCurrent?() ?? true else { return }
                     config.isExpanded = willExpand
                     cell.contentConfiguration = config
                 }
@@ -742,7 +749,8 @@ extension iOSAnnotationViewController {
         try requireCurrent()
         let group = AnnotationItem.group(row.group)
         if !dataSource.snapshot(for: row.section).isExpanded(group) {
-            setOriginalGroupExpanded(row.group, willExpand: true, animated: false)
+            setOriginalGroupExpanded(row.group, willExpand: true, animated: false,
+                validating: { (try? requireCurrent()) != nil })
             try requireCurrent()
         }
         collectionView.layoutIfNeeded()
