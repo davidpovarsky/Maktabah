@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "path": "provenance/seal-attempt1-tool.json.gz",
+      "raw_bytes": 9446,
+      "raw_sha256": "93191e70efc820bb826bdbc8a0d56fc88e87d3e7037222b197742220b9afee54",
+      "gzip_sha256": "1a2d6bfefbbaf22a8ce0b15d4c32a107919caea2d96989db6d55f0969ca42f13"
+    },
+    {
+      "path": "provenance/seal-attempt1-controller.py.gz",
+      "raw_bytes": 116520,
+      "raw_sha256": "e6663f64a5829fdabbefa3d09fab5b81cabba2dfc67a210552fcfcc5be454b62",
+      "gzip_sha256": "eb1d6aeb7796c9da1a65618eb4f7f224dbb4600338229380b57ba12fadd6b36c"
+    },
+    {
+      "path": "provenance/owned-capacity-read.json.gz",
+      "raw_bytes": 2965,
+      "raw_sha256": "2cfc1a6017c8accb640fa0efc754268ec352855e2486d05a7f6b21e96f807552",
+      "gzip_sha256": "d1acc125fb4d4fd7208ef8e550b3b99c63db713d4507f81338203e96a7ca46c0"
+    }
+  ],
+  "seal_failure": "Exact git add rejected paths outside private sparse scope; final retry uses --sparse for the same explicit paths only. No content regeneration or test rerun."
+}

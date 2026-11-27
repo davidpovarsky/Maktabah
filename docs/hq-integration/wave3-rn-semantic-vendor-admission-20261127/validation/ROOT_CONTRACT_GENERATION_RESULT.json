@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/generate-semantic-vendor-contract.py",
+    "--repository",
+    "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127",
+    "--reviewed-source",
+    "a0e3b05df9d914cc886b843524915c509f70a852",
+    "--output",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/root-intake-binding-a0e3b05d/reviewed-vendor-semantics.inputs.json"
+  ],
+  "exit": 0,
+  "source": "a0e3b05df9d914cc886b843524915c509f70a852",
+  "generator_sha256": "f823508ad785a4f88830fc0dbb5285c127198074b6dd4cb57b35e94ff5e28a09",
+  "contract": {
+    "bytes": 44186,
+    "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+  },
+  "stdout": "{\"path\": \"/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/root-intake-binding-a0e3b05d/reviewed-vendor-semantics.inputs.json\", \"bytes\": 44186, \"sha256\": \"8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208\", \"reviewed_source\": \"a0e3b05df9d914cc886b843524915c509f70a852\", \"vendor_tree\": \"2fb868bdbe5d2d52735e857a24933918ff658cef\", \"exact_transition_paths\": [\"Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSemanticTargets.js\", \"Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js\", \"Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js\", \"Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\", \"Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.m\", \"Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift\"], \"cumulative_changed_paths\": 9, \"historical_preserved\": 194, \"previous_preserved\": 197}\n",
+  "stderr": "",
+  "native": "NOT_RUN",
+  "scope": "ACTUAL_REVIEWED_ROOT_INTAKE_SOURCE_IDENTITY_ONLY"
+}

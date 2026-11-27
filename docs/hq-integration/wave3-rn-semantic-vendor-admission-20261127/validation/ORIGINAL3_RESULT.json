@@ -1,0 +1,104 @@
+{
+  "scope": "ACTUAL_ORIGINAL_THREE_ROUTE_COUNTERFACTUAL_ONLY",
+  "native": "NOT_RUN",
+  "metro": "NOT_RUN",
+  "app_sdk_typecheck": "NOT_RUN",
+  "methods": 1,
+  "failures": 0,
+  "errors": 0,
+  "status": "PASS",
+  "records": [
+    {
+      "test": "<run_path>.AdmissionTests.test_actual_original_three_routes_reject_current_source",
+      "route": "original_final_source",
+      "outcome": "REFUSED",
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "actual_inputs": {
+        "checkout_sha": "f36ad7e81f455020c49603d3ef140c38d1630576",
+        "input_sha256": "139797605bae64f4b8a100143ee21e53a27ed435f00068e77681bbea604873ce",
+        "manifest_sha256": "8cc658745ef4c44df4afaa081a877c010071140cb25c9d756f9f44ce5e0c7eaa",
+        "contract_sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+      }
+    },
+    {
+      "test": "<run_path>.AdmissionTests.test_actual_original_three_routes_reject_current_source",
+      "route": "original_focused_preflight",
+      "outcome": "REFUSED",
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "actual_inputs": {
+        "checkout_sha": "f36ad7e81f455020c49603d3ef140c38d1630576",
+        "input_sha256": "139797605bae64f4b8a100143ee21e53a27ed435f00068e77681bbea604873ce",
+        "manifest_sha256": "8cc658745ef4c44df4afaa081a877c010071140cb25c9d756f9f44ce5e0c7eaa",
+        "contract_sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+      }
+    },
+    {
+      "test": "<run_path>.AdmissionTests.test_actual_original_three_routes_reject_current_source",
+      "route": "original_normal_source_plan",
+      "outcome": "REFUSED",
+      "error": "Missing or unreviewed Wave3 Vendor contract",
+      "actual_inputs": {
+        "checkout_sha": "f36ad7e81f455020c49603d3ef140c38d1630576",
+        "input_sha256": "139797605bae64f4b8a100143ee21e53a27ed435f00068e77681bbea604873ce",
+        "manifest_sha256": "8cc658745ef4c44df4afaa081a877c010071140cb25c9d756f9f44ce5e0c7eaa",
+        "contract_sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+      }
+    }
+  ],
+  "three_actual_original_validator_loads": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    }
+  ],
+  "original_validator_sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+  "loaded_paths": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/candidate/Scripts/CI/test-reviewed-semantic-vendor-source.py",
+      "bytes": 28789,
+      "sha256": "bfbd1492595b3997df44d48b6d2d85c19d87a9e1e0c587285b4f093bcf0fd7ea"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/candidate/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 41693,
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/original-source/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+      "bytes": 27814,
+      "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+    }
+  ],
+  "duration_s": 44.61643171310425
+}

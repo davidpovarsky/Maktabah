@@ -1,0 +1,56 @@
+{
+  "argv": [
+    "runuser",
+    "-u",
+    "ubuntu",
+    "--",
+    "python3",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/run-original3.py"
+  ],
+  "started_at": 1795806973.389589,
+  "scope": "SAME_ORIGINAL_THREE_ROUTES_WITH_CORRECTED_READONLY_TRACE",
+  "pid": 2087749,
+  "pgid": 2087749,
+  "exit": 0,
+  "seconds": 44.78788137435913,
+  "result_sha256": "d9a4645c2c44d18861ff1986de79b7846537f50c886d32c770448f6cbbce4363",
+  "result": {
+    "scope": "ACTUAL_ORIGINAL_THREE_ROUTE_COUNTERFACTUAL_ONLY",
+    "native": "NOT_RUN",
+    "metro": "NOT_RUN",
+    "app_sdk_typecheck": "NOT_RUN",
+    "methods": 1,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS",
+    "three_actual_original_validator_loads": [
+      {
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/original-source/final_integration_source.py",
+        "bytes": 27814,
+        "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+      },
+      {
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+        "bytes": 27814,
+        "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+      },
+      {
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-vendor-transition-20261127/controls-attempt-4-original-load-trace/original3/control-checkout/Scripts/CI/final_integration_source.py",
+        "bytes": 27814,
+        "sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72"
+      }
+    ],
+    "original_validator_sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+    "duration_s": 44.61643171310425
+  },
+  "outputs": {
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "bytes": 245,
+      "sha256": "8e93553f73c0dd335c6b380a7290eac61226cbef166897060abd29867093ccf4"
+    }
+  }
+}
